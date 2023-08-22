@@ -91,7 +91,7 @@ class CodiceDestinatarioType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceDestinatarioType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 57, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 57, 2)
     _Documentation = None
 CodiceDestinatarioType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceDestinatarioType._CF_pattern.addPattern(pattern='[A-Z0-9]{6,7}')
@@ -105,7 +105,7 @@ class CodiceType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 68, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 68, 2)
     _Documentation = None
 CodiceType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 CodiceType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(28))
@@ -120,7 +120,7 @@ class FormatoTrasmissioneType (pyxb.binding.datatypes.string, pyxb.binding.basis
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'FormatoTrasmissioneType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 74, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 74, 2)
     _Documentation = None
 FormatoTrasmissioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(5))
 FormatoTrasmissioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=FormatoTrasmissioneType, enum_prefix=None)
@@ -137,7 +137,7 @@ class CausalePagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.en
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CausalePagamentoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 163, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 163, 2)
     _Documentation = None
 CausalePagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=CausalePagamentoType, enum_prefix=None)
 CausalePagamentoType.A = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='A', tag='A')
@@ -179,7 +179,7 @@ class TipoScontoMaggiorazioneType (pyxb.binding.datatypes.string, pyxb.binding.b
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoScontoMaggiorazioneType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 198, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 198, 2)
     _Documentation = None
 TipoScontoMaggiorazioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 TipoScontoMaggiorazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoScontoMaggiorazioneType, enum_prefix=None)
@@ -196,7 +196,7 @@ class Art73Type (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_m
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Art73Type')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 213, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 213, 2)
     _Documentation = None
 Art73Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 Art73Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=Art73Type, enum_prefix=None)
@@ -212,7 +212,7 @@ class TipoCassaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumerati
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoCassaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 223, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 223, 2)
     _Documentation = None
 TipoCassaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoCassaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoCassaType, enum_prefix=None)
@@ -249,7 +249,7 @@ class TipoDocumentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enume
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoDocumentoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 338, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 338, 2)
     _Documentation = None
 TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoDocumentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoDocumentoType, enum_prefix=None)
@@ -283,7 +283,7 @@ class TipoRitenutaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumer
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoRitenutaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 438, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 438, 2)
     _Documentation = None
 TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoRitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoRitenutaType, enum_prefix=None)
@@ -304,7 +304,7 @@ class RiferimentoNumeroLineaType (pyxb.binding.datatypes.integer):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RiferimentoNumeroLineaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 489, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 489, 2)
     _Documentation = None
 RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
 RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
@@ -319,7 +319,7 @@ class SoggettoEmittenteType (pyxb.binding.datatypes.string, pyxb.binding.basis.e
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SoggettoEmittenteType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 535, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 535, 2)
     _Documentation = None
 SoggettoEmittenteType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 SoggettoEmittenteType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=SoggettoEmittenteType, enum_prefix=None)
@@ -336,7 +336,7 @@ class RegimeFiscaleType (pyxb.binding.datatypes.string, pyxb.binding.basis.enume
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RegimeFiscaleType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 575, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 575, 2)
     _Documentation = None
 RegimeFiscaleType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 RegimeFiscaleType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=RegimeFiscaleType, enum_prefix=None)
@@ -369,7 +369,7 @@ class CondizioniPagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CondizioniPagamentoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 787, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 787, 2)
     _Documentation = None
 CondizioniPagamentoType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 CondizioniPagamentoType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
@@ -389,7 +389,7 @@ class ModalitaPagamentoType (pyxb.binding.datatypes.string, pyxb.binding.basis.e
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ModalitaPagamentoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 833, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 833, 2)
     _Documentation = None
 ModalitaPagamentoType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 ModalitaPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=ModalitaPagamentoType, enum_prefix=None)
@@ -427,7 +427,7 @@ class IBANType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IBANType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 953, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 953, 2)
     _Documentation = None
 IBANType._CF_pattern = pyxb.binding.facets.CF_pattern()
 IBANType._CF_pattern.addPattern(pattern='[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{11,30}')
@@ -441,7 +441,7 @@ class BICType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'BICType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 958, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 958, 2)
     _Documentation = None
 BICType._CF_pattern = pyxb.binding.facets.CF_pattern()
 BICType._CF_pattern.addPattern(pattern='[A-Z]{6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3}){0,1}')
@@ -455,7 +455,7 @@ class RitenutaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeratio
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RitenutaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1024, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1024, 2)
     _Documentation = None
 RitenutaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 RitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=RitenutaType, enum_prefix=None)
@@ -471,7 +471,7 @@ class EsigibilitaIVAType (pyxb.binding.datatypes.string, pyxb.binding.basis.enum
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EsigibilitaIVAType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1046, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1046, 2)
     _Documentation = None
 EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
@@ -491,7 +491,7 @@ class NaturaType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NaturaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1067, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1067, 2)
     _Documentation = None
 NaturaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=NaturaType, enum_prefix=None)
 NaturaType.N1 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N1', tag='N1')
@@ -528,7 +528,7 @@ class CodiceFiscaleType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscaleType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1194, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1194, 2)
     _Documentation = None
 CodiceFiscaleType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceFiscaleType._CF_pattern.addPattern(pattern='[A-Z0-9]{11,16}')
@@ -542,7 +542,7 @@ class CodiceFiscalePFType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceFiscalePFType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1199, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1199, 2)
     _Documentation = None
 CodiceFiscalePFType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceFiscalePFType._CF_pattern.addPattern(pattern='[A-Z0-9]{16}')
@@ -556,7 +556,7 @@ class CodEORIType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodEORIType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1204, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1204, 2)
     _Documentation = None
 CodEORIType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(13))
 CodEORIType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(17))
@@ -571,7 +571,7 @@ class SocioUnicoType (pyxb.binding.datatypes.string, pyxb.binding.basis.enumerat
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SocioUnicoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1210, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1210, 2)
     _Documentation = None
 SocioUnicoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=SocioUnicoType, enum_prefix=None)
 SocioUnicoType.SU = SocioUnicoType._CF_enumeration.addEnumeration(unicode_value='SU', tag='SU')
@@ -586,7 +586,7 @@ class StatoLiquidazioneType (pyxb.binding.datatypes.string, pyxb.binding.basis.e
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'StatoLiquidazioneType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1224, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1224, 2)
     _Documentation = None
 StatoLiquidazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=StatoLiquidazioneType, enum_prefix=None)
 StatoLiquidazioneType.LS = StatoLiquidazioneType._CF_enumeration.addEnumeration(unicode_value='LS', tag='LS')
@@ -601,7 +601,7 @@ class TipoCessionePrestazioneType (pyxb.binding.datatypes.string, pyxb.binding.b
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoCessionePrestazioneType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1238, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1238, 2)
     _Documentation = None
 TipoCessionePrestazioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 TipoCessionePrestazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoCessionePrestazioneType, enum_prefix=None)
@@ -620,7 +620,7 @@ class TitoloType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TitoloType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1263, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1263, 2)
     _Documentation = None
 TitoloType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TitoloType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{2,10})')
@@ -636,7 +636,7 @@ class String10Type (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String10Type')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1269, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1269, 2)
     _Documentation = None
 String10Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String10Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,10})')
@@ -650,7 +650,7 @@ class String15Type (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String15Type')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1274, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1274, 2)
     _Documentation = None
 String15Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String15Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,15})')
@@ -664,7 +664,7 @@ class String20Type (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String20Type')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1279, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1279, 2)
     _Documentation = None
 String20Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String20Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,20})')
@@ -678,7 +678,7 @@ class String35Type (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String35Type')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1284, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1284, 2)
     _Documentation = None
 String35Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,35})')
@@ -692,7 +692,7 @@ class String35LatinExtType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String35LatinExtType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1289, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1289, 2)
     _Documentation = None
 String35LatinExtType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 String35LatinExtType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(35))
@@ -707,7 +707,7 @@ class String60Type (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String60Type')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1295, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1295, 2)
     _Documentation = None
 String60Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String60Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,60})')
@@ -721,7 +721,7 @@ class String80Type (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String80Type')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1300, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1300, 2)
     _Documentation = None
 String80Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,80})')
@@ -735,7 +735,7 @@ class String100Type (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String100Type')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1305, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1305, 2)
     _Documentation = None
 String100Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,100})')
@@ -749,7 +749,7 @@ class String60LatinType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String60LatinType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1310, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1310, 2)
     _Documentation = None
 String60LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String60LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,60}')
@@ -763,7 +763,7 @@ class String80LatinType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String80LatinType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1315, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1315, 2)
     _Documentation = None
 String80LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,80}')
@@ -777,7 +777,7 @@ class String100LatinType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String100LatinType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1320, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1320, 2)
     _Documentation = None
 String100LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,100}')
@@ -791,7 +791,7 @@ class String200LatinType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String200LatinType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1325, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1325, 2)
     _Documentation = None
 String200LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String200LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,200}')
@@ -805,7 +805,7 @@ class String1000LatinType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'String1000LatinType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1330, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1330, 2)
     _Documentation = None
 String1000LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String1000LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,1000}')
@@ -819,7 +819,7 @@ class ProvinciaType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ProvinciaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1335, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1335, 2)
     _Documentation = None
 ProvinciaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 ProvinciaType._CF_pattern.addPattern(pattern='[A-Z]{2}')
@@ -833,7 +833,7 @@ class NazioneType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NazioneType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1340, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1340, 2)
     _Documentation = None
 NazioneType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NazioneType._CF_pattern.addPattern(pattern='[A-Z]{2}')
@@ -847,7 +847,7 @@ class DivisaType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DivisaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1345, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1345, 2)
     _Documentation = None
 DivisaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DivisaType._CF_pattern.addPattern(pattern='[A-Z]{3}')
@@ -861,7 +861,7 @@ class TipoResaType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoResaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1350, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1350, 2)
     _Documentation = None
 TipoResaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TipoResaType._CF_pattern.addPattern(pattern='[A-Z]{3}')
@@ -875,7 +875,7 @@ class NumeroCivicoType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroCivicoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1355, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1355, 2)
     _Documentation = None
 NumeroCivicoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NumeroCivicoType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,8})')
@@ -889,7 +889,7 @@ class BolloVirtualeType (pyxb.binding.datatypes.string, pyxb.binding.basis.enume
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'BolloVirtualeType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1360, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1360, 2)
     _Documentation = None
 BolloVirtualeType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=BolloVirtualeType, enum_prefix=None)
 BolloVirtualeType.SI = BolloVirtualeType._CF_enumeration.addEnumeration(unicode_value='SI', tag='SI')
@@ -903,7 +903,7 @@ class TelFaxType (pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TelFaxType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1365, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1365, 2)
     _Documentation = None
 TelFaxType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TelFaxType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{5,12})')
@@ -917,7 +917,7 @@ class EmailType (pyxb.binding.datatypes.token):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EmailType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1370, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1370, 2)
     _Documentation = None
 EmailType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(256))
 EmailType._CF_pattern = pyxb.binding.facets.CF_pattern()
@@ -933,7 +933,7 @@ class EmailContattiType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EmailContattiType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1376, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1376, 2)
     _Documentation = None
 EmailContattiType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(7))
 EmailContattiType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(256))
@@ -951,7 +951,7 @@ class PesoType (pyxb.binding.datatypes.decimal):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'PesoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1384, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1384, 2)
     _Documentation = None
 PesoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 PesoType._CF_pattern.addPattern(pattern='[0-9]{1,4}\\.[0-9]{1,2}')
@@ -965,7 +965,7 @@ class Amount8DecimalType (pyxb.binding.datatypes.decimal):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Amount8DecimalType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1389, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1389, 2)
     _Documentation = None
 Amount8DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount8DecimalType._CF_pattern.addPattern(pattern='[\\-]?[0-9]{1,11}\\.[0-9]{2,8}')
@@ -979,7 +979,7 @@ class Amount2DecimalType (pyxb.binding.datatypes.decimal):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Amount2DecimalType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1394, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1394, 2)
     _Documentation = None
 Amount2DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount2DecimalType._CF_pattern.addPattern(pattern='[\\-]?[0-9]{1,11}\\.[0-9]{2}')
@@ -993,7 +993,7 @@ class RateType (pyxb.binding.datatypes.decimal):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RateType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1399, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1399, 2)
     _Documentation = None
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
@@ -1009,7 +1009,7 @@ class RiferimentoFaseType (pyxb.binding.datatypes.integer):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RiferimentoFaseType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1405, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1405, 2)
     _Documentation = None
 RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(1))
 RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(999))
@@ -1024,7 +1024,7 @@ class NumeroColliType (pyxb.binding.datatypes.integer):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroColliType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1411, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1411, 2)
     _Documentation = None
 NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(1))
 NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(9999))
@@ -1039,7 +1039,7 @@ class NumeroLineaType (pyxb.binding.datatypes.integer):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroLineaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1417, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1417, 2)
     _Documentation = None
 NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(1))
 NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
@@ -1054,7 +1054,7 @@ class CAPType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CAPType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1423, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1423, 2)
     _Documentation = None
 CAPType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CAPType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
@@ -1068,7 +1068,7 @@ class ABIType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ABIType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1428, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1428, 2)
     _Documentation = None
 ABIType._CF_pattern = pyxb.binding.facets.CF_pattern()
 ABIType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
@@ -1082,7 +1082,7 @@ class CABType (pyxb.binding.datatypes.string):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CABType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1433, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1433, 2)
     _Documentation = None
 CABType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CABType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
@@ -1096,7 +1096,7 @@ class GiorniTerminePagamentoType (pyxb.binding.datatypes.integer):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'GiorniTerminePagamentoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1438, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1438, 2)
     _Documentation = None
 GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
 GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(999))
@@ -1111,7 +1111,7 @@ class QuantitaType (pyxb.binding.datatypes.decimal):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'QuantitaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1444, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1444, 2)
     _Documentation = None
 QuantitaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 QuantitaType._CF_pattern.addPattern(pattern='[0-9]{1,12}\\.[0-9]{2,8}')
@@ -1125,7 +1125,7 @@ class DataFatturaType (pyxb.binding.datatypes.date):
     """An atomic simple type."""
 
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DataFatturaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1449, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1449, 2)
     _Documentation = None
 DataFatturaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=DataFatturaType, value=pyxb.binding.datatypes.date('1970-01-01'))
 DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive)
@@ -1139,50 +1139,50 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'FatturaElettronicaHeaderType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 25, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 25, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DatiTrasmissione uses Python identifier DatiTrasmissione
-    __DatiTrasmissione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiTrasmissione'), 'DatiTrasmissione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_DatiTrasmissione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 27, 6), )
 
-    
+    # Element DatiTrasmissione uses Python identifier DatiTrasmissione
+    __DatiTrasmissione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiTrasmissione'), 'DatiTrasmissione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_DatiTrasmissione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 27, 6), )
+
+
     DatiTrasmissione = property(__DatiTrasmissione.value, __DatiTrasmissione.set, None, None)
 
-    
-    # Element CedentePrestatore uses Python identifier CedentePrestatore
-    __CedentePrestatore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CedentePrestatore'), 'CedentePrestatore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CedentePrestatore', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 28, 6), )
 
-    
+    # Element CedentePrestatore uses Python identifier CedentePrestatore
+    __CedentePrestatore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CedentePrestatore'), 'CedentePrestatore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CedentePrestatore', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 28, 6), )
+
+
     CedentePrestatore = property(__CedentePrestatore.value, __CedentePrestatore.set, None, None)
 
-    
-    # Element RappresentanteFiscale uses Python identifier RappresentanteFiscale
-    __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), 'RappresentanteFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_RappresentanteFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 29, 6), )
 
-    
+    # Element RappresentanteFiscale uses Python identifier RappresentanteFiscale
+    __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), 'RappresentanteFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_RappresentanteFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 29, 6), )
+
+
     RappresentanteFiscale = property(__RappresentanteFiscale.value, __RappresentanteFiscale.set, None, None)
 
-    
-    # Element CessionarioCommittente uses Python identifier CessionarioCommittente
-    __CessionarioCommittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CessionarioCommittente'), 'CessionarioCommittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CessionarioCommittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 30, 6), )
 
-    
+    # Element CessionarioCommittente uses Python identifier CessionarioCommittente
+    __CessionarioCommittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CessionarioCommittente'), 'CessionarioCommittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_CessionarioCommittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 30, 6), )
+
+
     CessionarioCommittente = property(__CessionarioCommittente.value, __CessionarioCommittente.set, None, None)
 
-    
-    # Element TerzoIntermediarioOSoggettoEmittente uses Python identifier TerzoIntermediarioOSoggettoEmittente
-    __TerzoIntermediarioOSoggettoEmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TerzoIntermediarioOSoggettoEmittente'), 'TerzoIntermediarioOSoggettoEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_TerzoIntermediarioOSoggettoEmittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 31, 6), )
 
-    
+    # Element TerzoIntermediarioOSoggettoEmittente uses Python identifier TerzoIntermediarioOSoggettoEmittente
+    __TerzoIntermediarioOSoggettoEmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TerzoIntermediarioOSoggettoEmittente'), 'TerzoIntermediarioOSoggettoEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_TerzoIntermediarioOSoggettoEmittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 31, 6), )
+
+
     TerzoIntermediarioOSoggettoEmittente = property(__TerzoIntermediarioOSoggettoEmittente.value, __TerzoIntermediarioOSoggettoEmittente.set, None, None)
 
-    
-    # Element SoggettoEmittente uses Python identifier SoggettoEmittente
-    __SoggettoEmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'SoggettoEmittente'), 'SoggettoEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_SoggettoEmittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 32, 6), )
 
-    
+    # Element SoggettoEmittente uses Python identifier SoggettoEmittente
+    __SoggettoEmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'SoggettoEmittente'), 'SoggettoEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaHeaderType_SoggettoEmittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 32, 6), )
+
+
     SoggettoEmittente = property(__SoggettoEmittente.value, __SoggettoEmittente.set, None, None)
 
     _ElementMap.update({
@@ -1194,7 +1194,7 @@ class FatturaElettronicaHeaderType (pyxb.binding.basis.complexTypeDefinition):
         __SoggettoEmittente.name() : __SoggettoEmittente
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.FatturaElettronicaHeaderType = FatturaElettronicaHeaderType
 Namespace.addCategoryObject('typeBinding', 'FatturaElettronicaHeaderType', FatturaElettronicaHeaderType)
@@ -1207,43 +1207,43 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'FatturaElettronicaBodyType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 35, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 35, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DatiGenerali uses Python identifier DatiGenerali
-    __DatiGenerali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiGenerali'), 'DatiGenerali', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiGenerali', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 37, 6), )
 
-    
+    # Element DatiGenerali uses Python identifier DatiGenerali
+    __DatiGenerali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiGenerali'), 'DatiGenerali', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiGenerali', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 37, 6), )
+
+
     DatiGenerali = property(__DatiGenerali.value, __DatiGenerali.set, None, None)
 
-    
-    # Element DatiBeniServizi uses Python identifier DatiBeniServizi
-    __DatiBeniServizi = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiBeniServizi'), 'DatiBeniServizi', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiBeniServizi', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 38, 6), )
 
-    
+    # Element DatiBeniServizi uses Python identifier DatiBeniServizi
+    __DatiBeniServizi = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiBeniServizi'), 'DatiBeniServizi', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiBeniServizi', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 38, 6), )
+
+
     DatiBeniServizi = property(__DatiBeniServizi.value, __DatiBeniServizi.set, None, None)
 
-    
-    # Element DatiVeicoli uses Python identifier DatiVeicoli
-    __DatiVeicoli = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiVeicoli'), 'DatiVeicoli', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiVeicoli', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 39, 6), )
 
-    
+    # Element DatiVeicoli uses Python identifier DatiVeicoli
+    __DatiVeicoli = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiVeicoli'), 'DatiVeicoli', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiVeicoli', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 39, 6), )
+
+
     DatiVeicoli = property(__DatiVeicoli.value, __DatiVeicoli.set, None, None)
 
-    
-    # Element DatiPagamento uses Python identifier DatiPagamento
-    __DatiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiPagamento'), 'DatiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiPagamento', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 40, 6), )
 
-    
+    # Element DatiPagamento uses Python identifier DatiPagamento
+    __DatiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiPagamento'), 'DatiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_DatiPagamento', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 40, 6), )
+
+
     DatiPagamento = property(__DatiPagamento.value, __DatiPagamento.set, None, None)
 
-    
-    # Element Allegati uses Python identifier Allegati
-    __Allegati = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Allegati'), 'Allegati', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_Allegati', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 41, 6), )
 
-    
+    # Element Allegati uses Python identifier Allegati
+    __Allegati = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Allegati'), 'Allegati', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaBodyType_Allegati', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 41, 6), )
+
+
     Allegati = property(__Allegati.value, __Allegati.set, None, None)
 
     _ElementMap.update({
@@ -1254,7 +1254,7 @@ class FatturaElettronicaBodyType (pyxb.binding.basis.complexTypeDefinition):
         __Allegati.name() : __Allegati
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.FatturaElettronicaBodyType = FatturaElettronicaBodyType
 Namespace.addCategoryObject('typeBinding', 'FatturaElettronicaBodyType', FatturaElettronicaBodyType)
@@ -1267,50 +1267,50 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiTrasmissioneType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 44, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 44, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element IdTrasmittente uses Python identifier IdTrasmittente
-    __IdTrasmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdTrasmittente'), 'IdTrasmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_IdTrasmittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 49, 6), )
 
-    
+    # Element IdTrasmittente uses Python identifier IdTrasmittente
+    __IdTrasmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdTrasmittente'), 'IdTrasmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_IdTrasmittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 49, 6), )
+
+
     IdTrasmittente = property(__IdTrasmittente.value, __IdTrasmittente.set, None, None)
 
-    
-    # Element ProgressivoInvio uses Python identifier ProgressivoInvio
-    __ProgressivoInvio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ProgressivoInvio'), 'ProgressivoInvio', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ProgressivoInvio', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 50, 6), )
 
-    
+    # Element ProgressivoInvio uses Python identifier ProgressivoInvio
+    __ProgressivoInvio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ProgressivoInvio'), 'ProgressivoInvio', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ProgressivoInvio', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 50, 6), )
+
+
     ProgressivoInvio = property(__ProgressivoInvio.value, __ProgressivoInvio.set, None, None)
 
-    
-    # Element FormatoTrasmissione uses Python identifier FormatoTrasmissione
-    __FormatoTrasmissione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione'), 'FormatoTrasmissione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_FormatoTrasmissione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 51, 6), )
 
-    
+    # Element FormatoTrasmissione uses Python identifier FormatoTrasmissione
+    __FormatoTrasmissione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione'), 'FormatoTrasmissione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_FormatoTrasmissione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 51, 6), )
+
+
     FormatoTrasmissione = property(__FormatoTrasmissione.value, __FormatoTrasmissione.set, None, None)
 
-    
-    # Element CodiceDestinatario uses Python identifier CodiceDestinatario
-    __CodiceDestinatario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceDestinatario'), 'CodiceDestinatario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_CodiceDestinatario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 52, 6), )
 
-    
+    # Element CodiceDestinatario uses Python identifier CodiceDestinatario
+    __CodiceDestinatario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceDestinatario'), 'CodiceDestinatario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_CodiceDestinatario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 52, 6), )
+
+
     CodiceDestinatario = property(__CodiceDestinatario.value, __CodiceDestinatario.set, None, None)
 
-    
-    # Element ContattiTrasmittente uses Python identifier ContattiTrasmittente
-    __ContattiTrasmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ContattiTrasmittente'), 'ContattiTrasmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ContattiTrasmittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 53, 6), )
 
-    
+    # Element ContattiTrasmittente uses Python identifier ContattiTrasmittente
+    __ContattiTrasmittente = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ContattiTrasmittente'), 'ContattiTrasmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_ContattiTrasmittente', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 53, 6), )
+
+
     ContattiTrasmittente = property(__ContattiTrasmittente.value, __ContattiTrasmittente.set, None, None)
 
-    
-    # Element PECDestinatario uses Python identifier PECDestinatario
-    __PECDestinatario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PECDestinatario'), 'PECDestinatario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_PECDestinatario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 54, 6), )
 
-    
+    # Element PECDestinatario uses Python identifier PECDestinatario
+    __PECDestinatario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PECDestinatario'), 'PECDestinatario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasmissioneType_PECDestinatario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 54, 6), )
+
+
     PECDestinatario = property(__PECDestinatario.value, __PECDestinatario.set, None, None)
 
     _ElementMap.update({
@@ -1322,7 +1322,7 @@ class DatiTrasmissioneType (pyxb.binding.basis.complexTypeDefinition):
         __PECDestinatario.name() : __PECDestinatario
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiTrasmissioneType = DatiTrasmissioneType
 Namespace.addCategoryObject('typeBinding', 'DatiTrasmissioneType', DatiTrasmissioneType)
@@ -1335,22 +1335,22 @@ class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IdFiscaleType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 62, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 62, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element IdPaese uses Python identifier IdPaese
-    __IdPaese = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdPaese'), 'IdPaese', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdPaese', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 64, 6), )
 
-    
+    # Element IdPaese uses Python identifier IdPaese
+    __IdPaese = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdPaese'), 'IdPaese', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdPaese', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 64, 6), )
+
+
     IdPaese = property(__IdPaese.value, __IdPaese.set, None, None)
 
-    
-    # Element IdCodice uses Python identifier IdCodice
-    __IdCodice = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdCodice'), 'IdCodice', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdCodice', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 65, 6), )
 
-    
+    # Element IdCodice uses Python identifier IdCodice
+    __IdCodice = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdCodice'), 'IdCodice', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IdFiscaleType_IdCodice', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 65, 6), )
+
+
     IdCodice = property(__IdCodice.value, __IdCodice.set, None, None)
 
     _ElementMap.update({
@@ -1358,7 +1358,7 @@ class IdFiscaleType (pyxb.binding.basis.complexTypeDefinition):
         __IdCodice.name() : __IdCodice
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.IdFiscaleType = IdFiscaleType
 Namespace.addCategoryObject('typeBinding', 'IdFiscaleType', IdFiscaleType)
@@ -1371,22 +1371,22 @@ class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ContattiTrasmittenteType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 89, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 89, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element Telefono uses Python identifier Telefono
-    __Telefono = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Telefono'), 'Telefono', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Telefono', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 91, 6), )
 
-    
+    # Element Telefono uses Python identifier Telefono
+    __Telefono = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Telefono'), 'Telefono', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Telefono', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 91, 6), )
+
+
     Telefono = property(__Telefono.value, __Telefono.set, None, None)
 
-    
-    # Element Email uses Python identifier Email
-    __Email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Email'), 'Email', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Email', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 92, 6), )
 
-    
+    # Element Email uses Python identifier Email
+    __Email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Email'), 'Email', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiTrasmittenteType_Email', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 92, 6), )
+
+
     Email = property(__Email.value, __Email.set, None, None)
 
     _ElementMap.update({
@@ -1394,7 +1394,7 @@ class ContattiTrasmittenteType (pyxb.binding.basis.complexTypeDefinition):
         __Email.name() : __Email
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.ContattiTrasmittenteType = ContattiTrasmittenteType
 Namespace.addCategoryObject('typeBinding', 'ContattiTrasmittenteType', ContattiTrasmittenteType)
@@ -1409,78 +1409,78 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiGeneraliType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 95, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 95, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DatiGeneraliDocumento uses Python identifier DatiGeneraliDocumento
-    __DatiGeneraliDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiGeneraliDocumento'), 'DatiGeneraliDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiGeneraliDocumento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 102, 6), )
 
-    
+    # Element DatiGeneraliDocumento uses Python identifier DatiGeneraliDocumento
+    __DatiGeneraliDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiGeneraliDocumento'), 'DatiGeneraliDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiGeneraliDocumento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 102, 6), )
+
+
     DatiGeneraliDocumento = property(__DatiGeneraliDocumento.value, __DatiGeneraliDocumento.set, None, None)
 
-    
-    # Element DatiOrdineAcquisto uses Python identifier DatiOrdineAcquisto
-    __DatiOrdineAcquisto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiOrdineAcquisto'), 'DatiOrdineAcquisto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiOrdineAcquisto', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 103, 6), )
 
-    
+    # Element DatiOrdineAcquisto uses Python identifier DatiOrdineAcquisto
+    __DatiOrdineAcquisto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiOrdineAcquisto'), 'DatiOrdineAcquisto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiOrdineAcquisto', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 103, 6), )
+
+
     DatiOrdineAcquisto = property(__DatiOrdineAcquisto.value, __DatiOrdineAcquisto.set, None, None)
 
-    
-    # Element DatiContratto uses Python identifier DatiContratto
-    __DatiContratto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiContratto'), 'DatiContratto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiContratto', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 104, 6), )
 
-    
+    # Element DatiContratto uses Python identifier DatiContratto
+    __DatiContratto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiContratto'), 'DatiContratto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiContratto', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 104, 6), )
+
+
     DatiContratto = property(__DatiContratto.value, __DatiContratto.set, None, None)
 
-    
-    # Element DatiConvenzione uses Python identifier DatiConvenzione
-    __DatiConvenzione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiConvenzione'), 'DatiConvenzione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiConvenzione', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 105, 6), )
 
-    
+    # Element DatiConvenzione uses Python identifier DatiConvenzione
+    __DatiConvenzione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiConvenzione'), 'DatiConvenzione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiConvenzione', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 105, 6), )
+
+
     DatiConvenzione = property(__DatiConvenzione.value, __DatiConvenzione.set, None, None)
 
-    
-    # Element DatiRicezione uses Python identifier DatiRicezione
-    __DatiRicezione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiRicezione'), 'DatiRicezione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiRicezione', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 106, 6), )
 
-    
+    # Element DatiRicezione uses Python identifier DatiRicezione
+    __DatiRicezione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiRicezione'), 'DatiRicezione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiRicezione', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 106, 6), )
+
+
     DatiRicezione = property(__DatiRicezione.value, __DatiRicezione.set, None, None)
 
-    
-    # Element DatiFattureCollegate uses Python identifier DatiFattureCollegate
-    __DatiFattureCollegate = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiFattureCollegate'), 'DatiFattureCollegate', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiFattureCollegate', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 107, 6), )
 
-    
+    # Element DatiFattureCollegate uses Python identifier DatiFattureCollegate
+    __DatiFattureCollegate = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiFattureCollegate'), 'DatiFattureCollegate', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiFattureCollegate', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 107, 6), )
+
+
     DatiFattureCollegate = property(__DatiFattureCollegate.value, __DatiFattureCollegate.set, None, None)
 
-    
-    # Element DatiSAL uses Python identifier DatiSAL
-    __DatiSAL = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiSAL'), 'DatiSAL', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiSAL', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 108, 6), )
 
-    
+    # Element DatiSAL uses Python identifier DatiSAL
+    __DatiSAL = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiSAL'), 'DatiSAL', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiSAL', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 108, 6), )
+
+
     DatiSAL = property(__DatiSAL.value, __DatiSAL.set, None, None)
 
-    
-    # Element DatiDDT uses Python identifier DatiDDT
-    __DatiDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiDDT'), 'DatiDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiDDT', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 109, 6), )
 
-    
+    # Element DatiDDT uses Python identifier DatiDDT
+    __DatiDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiDDT'), 'DatiDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiDDT', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 109, 6), )
+
+
     DatiDDT = property(__DatiDDT.value, __DatiDDT.set, None, None)
 
-    
-    # Element DatiTrasporto uses Python identifier DatiTrasporto
-    __DatiTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiTrasporto'), 'DatiTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiTrasporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 110, 6), )
 
-    
+    # Element DatiTrasporto uses Python identifier DatiTrasporto
+    __DatiTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiTrasporto'), 'DatiTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_DatiTrasporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 110, 6), )
+
+
     DatiTrasporto = property(__DatiTrasporto.value, __DatiTrasporto.set, None, None)
 
-    
-    # Element FatturaPrincipale uses Python identifier FatturaPrincipale
-    __FatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FatturaPrincipale'), 'FatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_FatturaPrincipale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 111, 6), )
 
-    
+    # Element FatturaPrincipale uses Python identifier FatturaPrincipale
+    __FatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FatturaPrincipale'), 'FatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliType_FatturaPrincipale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 111, 6), )
+
+
     FatturaPrincipale = property(__FatturaPrincipale.value, __FatturaPrincipale.set, None, None)
 
     _ElementMap.update({
@@ -1496,7 +1496,7 @@ class DatiGeneraliType (pyxb.binding.basis.complexTypeDefinition):
         __FatturaPrincipale.name() : __FatturaPrincipale
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiGeneraliType = DatiGeneraliType
 Namespace.addCategoryObject('typeBinding', 'DatiGeneraliType', DatiGeneraliType)
@@ -1509,92 +1509,92 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiGeneraliDocumentoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 114, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 114, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element TipoDocumento uses Python identifier TipoDocumento
-    __TipoDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoDocumento'), 'TipoDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_TipoDocumento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 116, 6), )
 
-    
+    # Element TipoDocumento uses Python identifier TipoDocumento
+    __TipoDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoDocumento'), 'TipoDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_TipoDocumento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 116, 6), )
+
+
     TipoDocumento = property(__TipoDocumento.value, __TipoDocumento.set, None, None)
 
-    
-    # Element Divisa uses Python identifier Divisa
-    __Divisa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Divisa'), 'Divisa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Divisa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 117, 6), )
 
-    
+    # Element Divisa uses Python identifier Divisa
+    __Divisa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Divisa'), 'Divisa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Divisa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 117, 6), )
+
+
     Divisa = property(__Divisa.value, __Divisa.set, None, None)
 
-    
-    # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Data', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 118, 6), )
 
-    
+    # Element Data uses Python identifier Data
+    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Data', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 118, 6), )
+
+
     Data = property(__Data.value, __Data.set, None, None)
 
-    
-    # Element Numero uses Python identifier Numero
-    __Numero = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Numero'), 'Numero', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Numero', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 119, 6), )
 
-    
+    # Element Numero uses Python identifier Numero
+    __Numero = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Numero'), 'Numero', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Numero', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 119, 6), )
+
+
     Numero = property(__Numero.value, __Numero.set, None, None)
 
-    
-    # Element DatiRitenuta uses Python identifier DatiRitenuta
-    __DatiRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiRitenuta'), 'DatiRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiRitenuta', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 120, 6), )
 
-    
+    # Element DatiRitenuta uses Python identifier DatiRitenuta
+    __DatiRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiRitenuta'), 'DatiRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiRitenuta', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 120, 6), )
+
+
     DatiRitenuta = property(__DatiRitenuta.value, __DatiRitenuta.set, None, None)
 
-    
-    # Element DatiBollo uses Python identifier DatiBollo
-    __DatiBollo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiBollo'), 'DatiBollo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiBollo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 121, 6), )
 
-    
+    # Element DatiBollo uses Python identifier DatiBollo
+    __DatiBollo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiBollo'), 'DatiBollo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiBollo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 121, 6), )
+
+
     DatiBollo = property(__DatiBollo.value, __DatiBollo.set, None, None)
 
-    
-    # Element DatiCassaPrevidenziale uses Python identifier DatiCassaPrevidenziale
-    __DatiCassaPrevidenziale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale'), 'DatiCassaPrevidenziale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiCassaPrevidenziale', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 122, 6), )
 
-    
+    # Element DatiCassaPrevidenziale uses Python identifier DatiCassaPrevidenziale
+    __DatiCassaPrevidenziale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale'), 'DatiCassaPrevidenziale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_DatiCassaPrevidenziale', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 122, 6), )
+
+
     DatiCassaPrevidenziale = property(__DatiCassaPrevidenziale.value, __DatiCassaPrevidenziale.set, None, None)
 
-    
-    # Element ScontoMaggiorazione uses Python identifier ScontoMaggiorazione
-    __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ScontoMaggiorazione', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 123, 6), )
 
-    
+    # Element ScontoMaggiorazione uses Python identifier ScontoMaggiorazione
+    __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ScontoMaggiorazione', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 123, 6), )
+
+
     ScontoMaggiorazione = property(__ScontoMaggiorazione.value, __ScontoMaggiorazione.set, None, None)
 
-    
-    # Element ImportoTotaleDocumento uses Python identifier ImportoTotaleDocumento
-    __ImportoTotaleDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento'), 'ImportoTotaleDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ImportoTotaleDocumento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 124, 6), )
 
-    
+    # Element ImportoTotaleDocumento uses Python identifier ImportoTotaleDocumento
+    __ImportoTotaleDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento'), 'ImportoTotaleDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_ImportoTotaleDocumento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 124, 6), )
+
+
     ImportoTotaleDocumento = property(__ImportoTotaleDocumento.value, __ImportoTotaleDocumento.set, None, None)
 
-    
-    # Element Arrotondamento uses Python identifier Arrotondamento
-    __Arrotondamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), 'Arrotondamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Arrotondamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 125, 6), )
 
-    
+    # Element Arrotondamento uses Python identifier Arrotondamento
+    __Arrotondamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), 'Arrotondamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Arrotondamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 125, 6), )
+
+
     Arrotondamento = property(__Arrotondamento.value, __Arrotondamento.set, None, None)
 
-    
-    # Element Causale uses Python identifier Causale
-    __Causale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Causale'), 'Causale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Causale', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 126, 6), )
 
-    
+    # Element Causale uses Python identifier Causale
+    __Causale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Causale'), 'Causale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Causale', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 126, 6), )
+
+
     Causale = property(__Causale.value, __Causale.set, None, None)
 
-    
-    # Element Art73 uses Python identifier Art73
-    __Art73 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Art73'), 'Art73', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Art73', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 127, 6), )
 
-    
+    # Element Art73 uses Python identifier Art73
+    __Art73 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Art73'), 'Art73', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiGeneraliDocumentoType_Art73', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 127, 6), )
+
+
     Art73 = property(__Art73.value, __Art73.set, None, None)
 
     _ElementMap.update({
@@ -1612,7 +1612,7 @@ class DatiGeneraliDocumentoType (pyxb.binding.basis.complexTypeDefinition):
         __Art73.name() : __Art73
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiGeneraliDocumentoType = DatiGeneraliDocumentoType
 Namespace.addCategoryObject('typeBinding', 'DatiGeneraliDocumentoType', DatiGeneraliDocumentoType)
@@ -1625,36 +1625,36 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiRitenutaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 130, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 130, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element TipoRitenuta uses Python identifier TipoRitenuta
-    __TipoRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoRitenuta'), 'TipoRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_TipoRitenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 132, 6), )
 
-    
+    # Element TipoRitenuta uses Python identifier TipoRitenuta
+    __TipoRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoRitenuta'), 'TipoRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_TipoRitenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 132, 6), )
+
+
     TipoRitenuta = property(__TipoRitenuta.value, __TipoRitenuta.set, None, None)
 
-    
-    # Element ImportoRitenuta uses Python identifier ImportoRitenuta
-    __ImportoRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoRitenuta'), 'ImportoRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_ImportoRitenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 133, 6), )
 
-    
+    # Element ImportoRitenuta uses Python identifier ImportoRitenuta
+    __ImportoRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoRitenuta'), 'ImportoRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_ImportoRitenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 133, 6), )
+
+
     ImportoRitenuta = property(__ImportoRitenuta.value, __ImportoRitenuta.set, None, None)
 
-    
-    # Element AliquotaRitenuta uses Python identifier AliquotaRitenuta
-    __AliquotaRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AliquotaRitenuta'), 'AliquotaRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_AliquotaRitenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 134, 6), )
 
-    
+    # Element AliquotaRitenuta uses Python identifier AliquotaRitenuta
+    __AliquotaRitenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AliquotaRitenuta'), 'AliquotaRitenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_AliquotaRitenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 134, 6), )
+
+
     AliquotaRitenuta = property(__AliquotaRitenuta.value, __AliquotaRitenuta.set, None, None)
 
-    
-    # Element CausalePagamento uses Python identifier CausalePagamento
-    __CausalePagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CausalePagamento'), 'CausalePagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_CausalePagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 135, 6), )
 
-    
+    # Element CausalePagamento uses Python identifier CausalePagamento
+    __CausalePagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CausalePagamento'), 'CausalePagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRitenutaType_CausalePagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 135, 6), )
+
+
     CausalePagamento = property(__CausalePagamento.value, __CausalePagamento.set, None, None)
 
     _ElementMap.update({
@@ -1664,7 +1664,7 @@ class DatiRitenutaType (pyxb.binding.basis.complexTypeDefinition):
         __CausalePagamento.name() : __CausalePagamento
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiRitenutaType = DatiRitenutaType
 Namespace.addCategoryObject('typeBinding', 'DatiRitenutaType', DatiRitenutaType)
@@ -1677,22 +1677,22 @@ class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiBolloType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 138, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 138, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element BolloVirtuale uses Python identifier BolloVirtuale
-    __BolloVirtuale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'BolloVirtuale'), 'BolloVirtuale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_BolloVirtuale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 140, 6), )
 
-    
+    # Element BolloVirtuale uses Python identifier BolloVirtuale
+    __BolloVirtuale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'BolloVirtuale'), 'BolloVirtuale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_BolloVirtuale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 140, 6), )
+
+
     BolloVirtuale = property(__BolloVirtuale.value, __BolloVirtuale.set, None, None)
 
-    
-    # Element ImportoBollo uses Python identifier ImportoBollo
-    __ImportoBollo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoBollo'), 'ImportoBollo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_ImportoBollo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 141, 6), )
 
-    
+    # Element ImportoBollo uses Python identifier ImportoBollo
+    __ImportoBollo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoBollo'), 'ImportoBollo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBolloType_ImportoBollo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 141, 6), )
+
+
     ImportoBollo = property(__ImportoBollo.value, __ImportoBollo.set, None, None)
 
     _ElementMap.update({
@@ -1700,7 +1700,7 @@ class DatiBolloType (pyxb.binding.basis.complexTypeDefinition):
         __ImportoBollo.name() : __ImportoBollo
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiBolloType = DatiBolloType
 Namespace.addCategoryObject('typeBinding', 'DatiBolloType', DatiBolloType)
@@ -1713,64 +1713,64 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiCassaPrevidenzialeType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 144, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 144, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element TipoCassa uses Python identifier TipoCassa
-    __TipoCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoCassa'), 'TipoCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_TipoCassa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 146, 6), )
 
-    
+    # Element TipoCassa uses Python identifier TipoCassa
+    __TipoCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoCassa'), 'TipoCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_TipoCassa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 146, 6), )
+
+
     TipoCassa = property(__TipoCassa.value, __TipoCassa.set, None, None)
 
-    
-    # Element AlCassa uses Python identifier AlCassa
-    __AlCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AlCassa'), 'AlCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AlCassa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 147, 6), )
 
-    
+    # Element AlCassa uses Python identifier AlCassa
+    __AlCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AlCassa'), 'AlCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AlCassa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 147, 6), )
+
+
     AlCassa = property(__AlCassa.value, __AlCassa.set, None, None)
 
-    
-    # Element ImportoContributoCassa uses Python identifier ImportoContributoCassa
-    __ImportoContributoCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa'), 'ImportoContributoCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImportoContributoCassa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 148, 6), )
 
-    
+    # Element ImportoContributoCassa uses Python identifier ImportoContributoCassa
+    __ImportoContributoCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa'), 'ImportoContributoCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImportoContributoCassa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 148, 6), )
+
+
     ImportoContributoCassa = property(__ImportoContributoCassa.value, __ImportoContributoCassa.set, None, None)
 
-    
-    # Element ImponibileCassa uses Python identifier ImponibileCassa
-    __ImponibileCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImponibileCassa'), 'ImponibileCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImponibileCassa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 149, 6), )
 
-    
+    # Element ImponibileCassa uses Python identifier ImponibileCassa
+    __ImponibileCassa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImponibileCassa'), 'ImponibileCassa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_ImponibileCassa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 149, 6), )
+
+
     ImponibileCassa = property(__ImponibileCassa.value, __ImponibileCassa.set, None, None)
 
-    
-    # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AliquotaIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 150, 6), )
 
-    
+    # Element AliquotaIVA uses Python identifier AliquotaIVA
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_AliquotaIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 150, 6), )
+
+
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
-    
-    # Element Ritenuta uses Python identifier Ritenuta
-    __Ritenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Ritenuta'), 'Ritenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Ritenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 151, 6), )
 
-    
+    # Element Ritenuta uses Python identifier Ritenuta
+    __Ritenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Ritenuta'), 'Ritenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Ritenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 151, 6), )
+
+
     Ritenuta = property(__Ritenuta.value, __Ritenuta.set, None, None)
 
-    
-    # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Natura', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 152, 6), )
 
-    
+    # Element Natura uses Python identifier Natura
+    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_Natura', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 152, 6), )
+
+
     Natura = property(__Natura.value, __Natura.set, None, None)
 
-    
-    # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
-    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 153, 6), )
 
-    
+    # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
+    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiCassaPrevidenzialeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 153, 6), )
+
+
     RiferimentoAmministrazione = property(__RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
 
     _ElementMap.update({
@@ -1784,7 +1784,7 @@ class DatiCassaPrevidenzialeType (pyxb.binding.basis.complexTypeDefinition):
         __RiferimentoAmministrazione.name() : __RiferimentoAmministrazione
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiCassaPrevidenzialeType = DatiCassaPrevidenzialeType
 Namespace.addCategoryObject('typeBinding', 'DatiCassaPrevidenzialeType', DatiCassaPrevidenzialeType)
@@ -1797,29 +1797,29 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ScontoMaggiorazioneType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 156, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 156, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element Tipo uses Python identifier Tipo
-    __Tipo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Tipo'), 'Tipo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Tipo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 158, 6), )
 
-    
+    # Element Tipo uses Python identifier Tipo
+    __Tipo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Tipo'), 'Tipo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Tipo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 158, 6), )
+
+
     Tipo = property(__Tipo.value, __Tipo.set, None, None)
 
-    
-    # Element Percentuale uses Python identifier Percentuale
-    __Percentuale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Percentuale'), 'Percentuale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Percentuale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 159, 6), )
 
-    
+    # Element Percentuale uses Python identifier Percentuale
+    __Percentuale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Percentuale'), 'Percentuale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Percentuale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 159, 6), )
+
+
     Percentuale = property(__Percentuale.value, __Percentuale.set, None, None)
 
-    
-    # Element Importo uses Python identifier Importo
-    __Importo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Importo'), 'Importo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Importo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 160, 6), )
 
-    
+    # Element Importo uses Python identifier Importo
+    __Importo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Importo'), 'Importo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ScontoMaggiorazioneType_Importo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 160, 6), )
+
+
     Importo = property(__Importo.value, __Importo.set, None, None)
 
     _ElementMap.update({
@@ -1828,7 +1828,7 @@ class ScontoMaggiorazioneType (pyxb.binding.basis.complexTypeDefinition):
         __Importo.name() : __Importo
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.ScontoMaggiorazioneType = ScontoMaggiorazioneType
 Namespace.addCategoryObject('typeBinding', 'ScontoMaggiorazioneType', ScontoMaggiorazioneType)
@@ -1841,22 +1841,22 @@ class DatiSALType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiSALType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 473, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 473, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element RiferimentoFase uses Python identifier RiferimentoFase
-    __RiferimentoFase = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoFase'), 'RiferimentoFase', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiSALType_RiferimentoFase', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 475, 6), )
 
-    
+    # Element RiferimentoFase uses Python identifier RiferimentoFase
+    __RiferimentoFase = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoFase'), 'RiferimentoFase', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiSALType_RiferimentoFase', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 475, 6), )
+
+
     RiferimentoFase = property(__RiferimentoFase.value, __RiferimentoFase.set, None, None)
 
     _ElementMap.update({
         __RiferimentoFase.name() : __RiferimentoFase
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiSALType = DatiSALType
 Namespace.addCategoryObject('typeBinding', 'DatiSALType', DatiSALType)
@@ -1869,57 +1869,57 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiDocumentiCorrelatiType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 478, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 478, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element RiferimentoNumeroLinea uses Python identifier RiferimentoNumeroLinea
-    __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 480, 6), )
 
-    
+    # Element RiferimentoNumeroLinea uses Python identifier RiferimentoNumeroLinea
+    __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 480, 6), )
+
+
     RiferimentoNumeroLinea = property(__RiferimentoNumeroLinea.value, __RiferimentoNumeroLinea.set, None, None)
 
-    
-    # Element IdDocumento uses Python identifier IdDocumento
-    __IdDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdDocumento'), 'IdDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_IdDocumento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 481, 6), )
 
-    
+    # Element IdDocumento uses Python identifier IdDocumento
+    __IdDocumento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdDocumento'), 'IdDocumento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_IdDocumento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 481, 6), )
+
+
     IdDocumento = property(__IdDocumento.value, __IdDocumento.set, None, None)
 
-    
-    # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_Data', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 482, 6), )
 
-    
+    # Element Data uses Python identifier Data
+    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_Data', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 482, 6), )
+
+
     Data = property(__Data.value, __Data.set, None, None)
 
-    
-    # Element NumItem uses Python identifier NumItem
-    __NumItem = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumItem'), 'NumItem', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_NumItem', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 483, 6), )
 
-    
+    # Element NumItem uses Python identifier NumItem
+    __NumItem = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumItem'), 'NumItem', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_NumItem', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 483, 6), )
+
+
     NumItem = property(__NumItem.value, __NumItem.set, None, None)
 
-    
-    # Element CodiceCommessaConvenzione uses Python identifier CodiceCommessaConvenzione
-    __CodiceCommessaConvenzione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione'), 'CodiceCommessaConvenzione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCommessaConvenzione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 484, 6), )
 
-    
+    # Element CodiceCommessaConvenzione uses Python identifier CodiceCommessaConvenzione
+    __CodiceCommessaConvenzione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione'), 'CodiceCommessaConvenzione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCommessaConvenzione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 484, 6), )
+
+
     CodiceCommessaConvenzione = property(__CodiceCommessaConvenzione.value, __CodiceCommessaConvenzione.set, None, None)
 
-    
-    # Element CodiceCUP uses Python identifier CodiceCUP
-    __CodiceCUP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceCUP'), 'CodiceCUP', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCUP', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 485, 6), )
 
-    
+    # Element CodiceCUP uses Python identifier CodiceCUP
+    __CodiceCUP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceCUP'), 'CodiceCUP', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCUP', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 485, 6), )
+
+
     CodiceCUP = property(__CodiceCUP.value, __CodiceCUP.set, None, None)
 
-    
-    # Element CodiceCIG uses Python identifier CodiceCIG
-    __CodiceCIG = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceCIG'), 'CodiceCIG', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCIG', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 486, 6), )
 
-    
+    # Element CodiceCIG uses Python identifier CodiceCIG
+    __CodiceCIG = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceCIG'), 'CodiceCIG', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDocumentiCorrelatiType_CodiceCIG', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 486, 6), )
+
+
     CodiceCIG = property(__CodiceCIG.value, __CodiceCIG.set, None, None)
 
     _ElementMap.update({
@@ -1932,7 +1932,7 @@ class DatiDocumentiCorrelatiType (pyxb.binding.basis.complexTypeDefinition):
         __CodiceCIG.name() : __CodiceCIG
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiDocumentiCorrelatiType = DatiDocumentiCorrelatiType
 Namespace.addCategoryObject('typeBinding', 'DatiDocumentiCorrelatiType', DatiDocumentiCorrelatiType)
@@ -1945,29 +1945,29 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiDDTType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 495, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 495, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element NumeroDDT uses Python identifier NumeroDDT
-    __NumeroDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroDDT'), 'NumeroDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_NumeroDDT', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 497, 6), )
 
-    
+    # Element NumeroDDT uses Python identifier NumeroDDT
+    __NumeroDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroDDT'), 'NumeroDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_NumeroDDT', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 497, 6), )
+
+
     NumeroDDT = property(__NumeroDDT.value, __NumeroDDT.set, None, None)
 
-    
-    # Element DataDDT uses Python identifier DataDDT
-    __DataDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataDDT'), 'DataDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_DataDDT', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 498, 6), )
 
-    
+    # Element DataDDT uses Python identifier DataDDT
+    __DataDDT = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataDDT'), 'DataDDT', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_DataDDT', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 498, 6), )
+
+
     DataDDT = property(__DataDDT.value, __DataDDT.set, None, None)
 
-    
-    # Element RiferimentoNumeroLinea uses Python identifier RiferimentoNumeroLinea
-    __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 499, 6), )
 
-    
+    # Element RiferimentoNumeroLinea uses Python identifier RiferimentoNumeroLinea
+    __RiferimentoNumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), 'RiferimentoNumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiDDTType_RiferimentoNumeroLinea', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 499, 6), )
+
+
     RiferimentoNumeroLinea = property(__RiferimentoNumeroLinea.value, __RiferimentoNumeroLinea.set, None, None)
 
     _ElementMap.update({
@@ -1976,7 +1976,7 @@ class DatiDDTType (pyxb.binding.basis.complexTypeDefinition):
         __RiferimentoNumeroLinea.name() : __RiferimentoNumeroLinea
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiDDTType = DatiDDTType
 Namespace.addCategoryObject('typeBinding', 'DatiDDTType', DatiDDTType)
@@ -1989,99 +1989,99 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiTrasportoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 502, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 502, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DatiAnagraficiVettore uses Python identifier DatiAnagraficiVettore
-    __DatiAnagraficiVettore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagraficiVettore'), 'DatiAnagraficiVettore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DatiAnagraficiVettore', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 504, 6), )
 
-    
+    # Element DatiAnagraficiVettore uses Python identifier DatiAnagraficiVettore
+    __DatiAnagraficiVettore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagraficiVettore'), 'DatiAnagraficiVettore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DatiAnagraficiVettore', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 504, 6), )
+
+
     DatiAnagraficiVettore = property(__DatiAnagraficiVettore.value, __DatiAnagraficiVettore.set, None, None)
 
-    
-    # Element MezzoTrasporto uses Python identifier MezzoTrasporto
-    __MezzoTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'MezzoTrasporto'), 'MezzoTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_MezzoTrasporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 505, 6), )
 
-    
+    # Element MezzoTrasporto uses Python identifier MezzoTrasporto
+    __MezzoTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'MezzoTrasporto'), 'MezzoTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_MezzoTrasporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 505, 6), )
+
+
     MezzoTrasporto = property(__MezzoTrasporto.value, __MezzoTrasporto.set, None, None)
 
-    
-    # Element CausaleTrasporto uses Python identifier CausaleTrasporto
-    __CausaleTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CausaleTrasporto'), 'CausaleTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_CausaleTrasporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 506, 6), )
 
-    
+    # Element CausaleTrasporto uses Python identifier CausaleTrasporto
+    __CausaleTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CausaleTrasporto'), 'CausaleTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_CausaleTrasporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 506, 6), )
+
+
     CausaleTrasporto = property(__CausaleTrasporto.value, __CausaleTrasporto.set, None, None)
 
-    
-    # Element NumeroColli uses Python identifier NumeroColli
-    __NumeroColli = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroColli'), 'NumeroColli', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_NumeroColli', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 507, 6), )
 
-    
+    # Element NumeroColli uses Python identifier NumeroColli
+    __NumeroColli = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroColli'), 'NumeroColli', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_NumeroColli', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 507, 6), )
+
+
     NumeroColli = property(__NumeroColli.value, __NumeroColli.set, None, None)
 
-    
-    # Element Descrizione uses Python identifier Descrizione
-    __Descrizione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Descrizione'), 'Descrizione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_Descrizione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 508, 6), )
 
-    
+    # Element Descrizione uses Python identifier Descrizione
+    __Descrizione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Descrizione'), 'Descrizione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_Descrizione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 508, 6), )
+
+
     Descrizione = property(__Descrizione.value, __Descrizione.set, None, None)
 
-    
-    # Element UnitaMisuraPeso uses Python identifier UnitaMisuraPeso
-    __UnitaMisuraPeso = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso'), 'UnitaMisuraPeso', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_UnitaMisuraPeso', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 509, 6), )
 
-    
+    # Element UnitaMisuraPeso uses Python identifier UnitaMisuraPeso
+    __UnitaMisuraPeso = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso'), 'UnitaMisuraPeso', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_UnitaMisuraPeso', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 509, 6), )
+
+
     UnitaMisuraPeso = property(__UnitaMisuraPeso.value, __UnitaMisuraPeso.set, None, None)
 
-    
-    # Element PesoLordo uses Python identifier PesoLordo
-    __PesoLordo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PesoLordo'), 'PesoLordo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoLordo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 510, 6), )
 
-    
+    # Element PesoLordo uses Python identifier PesoLordo
+    __PesoLordo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PesoLordo'), 'PesoLordo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoLordo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 510, 6), )
+
+
     PesoLordo = property(__PesoLordo.value, __PesoLordo.set, None, None)
 
-    
-    # Element PesoNetto uses Python identifier PesoNetto
-    __PesoNetto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PesoNetto'), 'PesoNetto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoNetto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 511, 6), )
 
-    
+    # Element PesoNetto uses Python identifier PesoNetto
+    __PesoNetto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PesoNetto'), 'PesoNetto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_PesoNetto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 511, 6), )
+
+
     PesoNetto = property(__PesoNetto.value, __PesoNetto.set, None, None)
 
-    
-    # Element DataOraRitiro uses Python identifier DataOraRitiro
-    __DataOraRitiro = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataOraRitiro'), 'DataOraRitiro', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraRitiro', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 512, 6), )
 
-    
+    # Element DataOraRitiro uses Python identifier DataOraRitiro
+    __DataOraRitiro = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataOraRitiro'), 'DataOraRitiro', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraRitiro', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 512, 6), )
+
+
     DataOraRitiro = property(__DataOraRitiro.value, __DataOraRitiro.set, None, None)
 
-    
-    # Element DataInizioTrasporto uses Python identifier DataInizioTrasporto
-    __DataInizioTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataInizioTrasporto'), 'DataInizioTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataInizioTrasporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 513, 6), )
 
-    
+    # Element DataInizioTrasporto uses Python identifier DataInizioTrasporto
+    __DataInizioTrasporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataInizioTrasporto'), 'DataInizioTrasporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataInizioTrasporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 513, 6), )
+
+
     DataInizioTrasporto = property(__DataInizioTrasporto.value, __DataInizioTrasporto.set, None, None)
 
-    
-    # Element TipoResa uses Python identifier TipoResa
-    __TipoResa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoResa'), 'TipoResa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_TipoResa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 514, 6), )
 
-    
+    # Element TipoResa uses Python identifier TipoResa
+    __TipoResa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoResa'), 'TipoResa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_TipoResa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 514, 6), )
+
+
     TipoResa = property(__TipoResa.value, __TipoResa.set, None, None)
 
-    
-    # Element IndirizzoResa uses Python identifier IndirizzoResa
-    __IndirizzoResa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IndirizzoResa'), 'IndirizzoResa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_IndirizzoResa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 515, 6), )
 
-    
+    # Element IndirizzoResa uses Python identifier IndirizzoResa
+    __IndirizzoResa = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IndirizzoResa'), 'IndirizzoResa', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_IndirizzoResa', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 515, 6), )
+
+
     IndirizzoResa = property(__IndirizzoResa.value, __IndirizzoResa.set, None, None)
 
-    
-    # Element DataOraConsegna uses Python identifier DataOraConsegna
-    __DataOraConsegna = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataOraConsegna'), 'DataOraConsegna', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraConsegna', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 516, 6), )
 
-    
+    # Element DataOraConsegna uses Python identifier DataOraConsegna
+    __DataOraConsegna = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataOraConsegna'), 'DataOraConsegna', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiTrasportoType_DataOraConsegna', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 516, 6), )
+
+
     DataOraConsegna = property(__DataOraConsegna.value, __DataOraConsegna.set, None, None)
 
     _ElementMap.update({
@@ -2100,7 +2100,7 @@ class DatiTrasportoType (pyxb.binding.basis.complexTypeDefinition):
         __DataOraConsegna.name() : __DataOraConsegna
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiTrasportoType = DatiTrasportoType
 Namespace.addCategoryObject('typeBinding', 'DatiTrasportoType', DatiTrasportoType)
@@ -2113,50 +2113,50 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IndirizzoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 519, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 519, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element Indirizzo uses Python identifier Indirizzo
-    __Indirizzo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Indirizzo'), 'Indirizzo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Indirizzo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 521, 6), )
 
-    
+    # Element Indirizzo uses Python identifier Indirizzo
+    __Indirizzo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Indirizzo'), 'Indirizzo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Indirizzo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 521, 6), )
+
+
     Indirizzo = property(__Indirizzo.value, __Indirizzo.set, None, None)
 
-    
-    # Element NumeroCivico uses Python identifier NumeroCivico
-    __NumeroCivico = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroCivico'), 'NumeroCivico', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_NumeroCivico', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 522, 6), )
 
-    
+    # Element NumeroCivico uses Python identifier NumeroCivico
+    __NumeroCivico = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroCivico'), 'NumeroCivico', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_NumeroCivico', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 522, 6), )
+
+
     NumeroCivico = property(__NumeroCivico.value, __NumeroCivico.set, None, None)
 
-    
-    # Element CAP uses Python identifier CAP
-    __CAP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CAP'), 'CAP', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_CAP', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 523, 6), )
 
-    
+    # Element CAP uses Python identifier CAP
+    __CAP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CAP'), 'CAP', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_CAP', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 523, 6), )
+
+
     CAP = property(__CAP.value, __CAP.set, None, None)
 
-    
-    # Element Comune uses Python identifier Comune
-    __Comune = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Comune'), 'Comune', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Comune', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 524, 6), )
 
-    
+    # Element Comune uses Python identifier Comune
+    __Comune = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Comune'), 'Comune', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Comune', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 524, 6), )
+
+
     Comune = property(__Comune.value, __Comune.set, None, None)
 
-    
-    # Element Provincia uses Python identifier Provincia
-    __Provincia = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Provincia'), 'Provincia', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Provincia', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 525, 6), )
 
-    
+    # Element Provincia uses Python identifier Provincia
+    __Provincia = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Provincia'), 'Provincia', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Provincia', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 525, 6), )
+
+
     Provincia = property(__Provincia.value, __Provincia.set, None, None)
 
-    
-    # Element Nazione uses Python identifier Nazione
-    __Nazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Nazione'), 'Nazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Nazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 526, 6), )
 
-    
+    # Element Nazione uses Python identifier Nazione
+    __Nazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Nazione'), 'Nazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IndirizzoType_Nazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 526, 6), )
+
+
     Nazione = property(__Nazione.value, __Nazione.set, None, None)
 
     _ElementMap.update({
@@ -2168,7 +2168,7 @@ class IndirizzoType (pyxb.binding.basis.complexTypeDefinition):
         __Nazione.name() : __Nazione
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.IndirizzoType = IndirizzoType
 Namespace.addCategoryObject('typeBinding', 'IndirizzoType', IndirizzoType)
@@ -2181,22 +2181,22 @@ class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'FatturaPrincipaleType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 529, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 529, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element NumeroFatturaPrincipale uses Python identifier NumeroFatturaPrincipale
-    __NumeroFatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale'), 'NumeroFatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_NumeroFatturaPrincipale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 531, 6), )
 
-    
+    # Element NumeroFatturaPrincipale uses Python identifier NumeroFatturaPrincipale
+    __NumeroFatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale'), 'NumeroFatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_NumeroFatturaPrincipale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 531, 6), )
+
+
     NumeroFatturaPrincipale = property(__NumeroFatturaPrincipale.value, __NumeroFatturaPrincipale.set, None, None)
 
-    
-    # Element DataFatturaPrincipale uses Python identifier DataFatturaPrincipale
-    __DataFatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataFatturaPrincipale'), 'DataFatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_DataFatturaPrincipale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 532, 6), )
 
-    
+    # Element DataFatturaPrincipale uses Python identifier DataFatturaPrincipale
+    __DataFatturaPrincipale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataFatturaPrincipale'), 'DataFatturaPrincipale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaPrincipaleType_DataFatturaPrincipale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 532, 6), )
+
+
     DataFatturaPrincipale = property(__DataFatturaPrincipale.value, __DataFatturaPrincipale.set, None, None)
 
     _ElementMap.update({
@@ -2204,7 +2204,7 @@ class FatturaPrincipaleType (pyxb.binding.basis.complexTypeDefinition):
         __DataFatturaPrincipale.name() : __DataFatturaPrincipale
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.FatturaPrincipaleType = FatturaPrincipaleType
 Namespace.addCategoryObject('typeBinding', 'FatturaPrincipaleType', FatturaPrincipaleType)
@@ -2217,50 +2217,50 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CedentePrestatoreType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 550, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 550, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_DatiAnagrafici', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 555, 6), )
 
-    
+    # Element DatiAnagrafici uses Python identifier DatiAnagrafici
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_DatiAnagrafici', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 555, 6), )
+
+
     DatiAnagrafici = property(__DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
-    
-    # Element Sede uses Python identifier Sede
-    __Sede = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Sede'), 'Sede', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Sede', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 556, 6), )
 
-    
+    # Element Sede uses Python identifier Sede
+    __Sede = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Sede'), 'Sede', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Sede', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 556, 6), )
+
+
     Sede = property(__Sede.value, __Sede.set, None, None)
 
-    
-    # Element StabileOrganizzazione uses Python identifier StabileOrganizzazione
-    __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), 'StabileOrganizzazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_StabileOrganizzazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 557, 6), )
 
-    
+    # Element StabileOrganizzazione uses Python identifier StabileOrganizzazione
+    __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), 'StabileOrganizzazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_StabileOrganizzazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 557, 6), )
+
+
     StabileOrganizzazione = property(__StabileOrganizzazione.value, __StabileOrganizzazione.set, None, None)
 
-    
-    # Element IscrizioneREA uses Python identifier IscrizioneREA
-    __IscrizioneREA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IscrizioneREA'), 'IscrizioneREA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_IscrizioneREA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 558, 6), )
 
-    
+    # Element IscrizioneREA uses Python identifier IscrizioneREA
+    __IscrizioneREA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IscrizioneREA'), 'IscrizioneREA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_IscrizioneREA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 558, 6), )
+
+
     IscrizioneREA = property(__IscrizioneREA.value, __IscrizioneREA.set, None, None)
 
-    
-    # Element Contatti uses Python identifier Contatti
-    __Contatti = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Contatti'), 'Contatti', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Contatti', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 559, 6), )
 
-    
+    # Element Contatti uses Python identifier Contatti
+    __Contatti = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Contatti'), 'Contatti', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_Contatti', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 559, 6), )
+
+
     Contatti = property(__Contatti.value, __Contatti.set, None, None)
 
-    
-    # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
-    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 560, 6), )
 
-    
+    # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
+    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CedentePrestatoreType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 560, 6), )
+
+
     RiferimentoAmministrazione = property(__RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
 
     _ElementMap.update({
@@ -2272,7 +2272,7 @@ class CedentePrestatoreType (pyxb.binding.basis.complexTypeDefinition):
         __RiferimentoAmministrazione.name() : __RiferimentoAmministrazione
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.CedentePrestatoreType = CedentePrestatoreType
 Namespace.addCategoryObject('typeBinding', 'CedentePrestatoreType', CedentePrestatoreType)
@@ -2285,64 +2285,64 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiAnagraficiCedenteType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 563, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 563, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 565, 6), )
 
-    
+    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 565, 6), )
+
+
     IdFiscaleIVA = property(__IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
-    
-    # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 566, 6), )
 
-    
+    # Element CodiceFiscale uses Python identifier CodiceFiscale
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 566, 6), )
+
+
     CodiceFiscale = property(__CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
-    
-    # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 567, 6), )
 
-    
+    # Element Anagrafica uses Python identifier Anagrafica
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 567, 6), )
+
+
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
-    
-    # Element AlboProfessionale uses Python identifier AlboProfessionale
-    __AlboProfessionale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AlboProfessionale'), 'AlboProfessionale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_AlboProfessionale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 568, 6), )
 
-    
+    # Element AlboProfessionale uses Python identifier AlboProfessionale
+    __AlboProfessionale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AlboProfessionale'), 'AlboProfessionale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_AlboProfessionale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 568, 6), )
+
+
     AlboProfessionale = property(__AlboProfessionale.value, __AlboProfessionale.set, None, None)
 
-    
-    # Element ProvinciaAlbo uses Python identifier ProvinciaAlbo
-    __ProvinciaAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo'), 'ProvinciaAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_ProvinciaAlbo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 569, 6), )
 
-    
+    # Element ProvinciaAlbo uses Python identifier ProvinciaAlbo
+    __ProvinciaAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo'), 'ProvinciaAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_ProvinciaAlbo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 569, 6), )
+
+
     ProvinciaAlbo = property(__ProvinciaAlbo.value, __ProvinciaAlbo.set, None, None)
 
-    
-    # Element NumeroIscrizioneAlbo uses Python identifier NumeroIscrizioneAlbo
-    __NumeroIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo'), 'NumeroIscrizioneAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_NumeroIscrizioneAlbo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 570, 6), )
 
-    
+    # Element NumeroIscrizioneAlbo uses Python identifier NumeroIscrizioneAlbo
+    __NumeroIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo'), 'NumeroIscrizioneAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_NumeroIscrizioneAlbo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 570, 6), )
+
+
     NumeroIscrizioneAlbo = property(__NumeroIscrizioneAlbo.value, __NumeroIscrizioneAlbo.set, None, None)
 
-    
-    # Element DataIscrizioneAlbo uses Python identifier DataIscrizioneAlbo
-    __DataIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo'), 'DataIscrizioneAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_DataIscrizioneAlbo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 571, 6), )
 
-    
+    # Element DataIscrizioneAlbo uses Python identifier DataIscrizioneAlbo
+    __DataIscrizioneAlbo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo'), 'DataIscrizioneAlbo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_DataIscrizioneAlbo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 571, 6), )
+
+
     DataIscrizioneAlbo = property(__DataIscrizioneAlbo.value, __DataIscrizioneAlbo.set, None, None)
 
-    
-    # Element RegimeFiscale uses Python identifier RegimeFiscale
-    __RegimeFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RegimeFiscale'), 'RegimeFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_RegimeFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 572, 6), )
 
-    
+    # Element RegimeFiscale uses Python identifier RegimeFiscale
+    __RegimeFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RegimeFiscale'), 'RegimeFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCedenteType_RegimeFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 572, 6), )
+
+
     RegimeFiscale = property(__RegimeFiscale.value, __RegimeFiscale.set, None, None)
 
     _ElementMap.update({
@@ -2356,7 +2356,7 @@ class DatiAnagraficiCedenteType (pyxb.binding.basis.complexTypeDefinition):
         __RegimeFiscale.name() : __RegimeFiscale
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiAnagraficiCedenteType = DatiAnagraficiCedenteType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiCedenteType', DatiAnagraficiCedenteType)
@@ -2369,43 +2369,43 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'AnagraficaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 670, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 670, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element Denominazione uses Python identifier Denominazione
-    __Denominazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Denominazione'), 'Denominazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Denominazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 677, 10), )
 
-    
+    # Element Denominazione uses Python identifier Denominazione
+    __Denominazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Denominazione'), 'Denominazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Denominazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 677, 10), )
+
+
     Denominazione = property(__Denominazione.value, __Denominazione.set, None, None)
 
-    
-    # Element Nome uses Python identifier Nome
-    __Nome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Nome'), 'Nome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Nome', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 680, 10), )
 
-    
+    # Element Nome uses Python identifier Nome
+    __Nome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Nome'), 'Nome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Nome', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 680, 10), )
+
+
     Nome = property(__Nome.value, __Nome.set, None, None)
 
-    
-    # Element Cognome uses Python identifier Cognome
-    __Cognome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Cognome'), 'Cognome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Cognome', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 681, 10), )
 
-    
+    # Element Cognome uses Python identifier Cognome
+    __Cognome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Cognome'), 'Cognome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Cognome', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 681, 10), )
+
+
     Cognome = property(__Cognome.value, __Cognome.set, None, None)
 
-    
-    # Element Titolo uses Python identifier Titolo
-    __Titolo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Titolo'), 'Titolo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Titolo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 684, 6), )
 
-    
+    # Element Titolo uses Python identifier Titolo
+    __Titolo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Titolo'), 'Titolo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_Titolo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 684, 6), )
+
+
     Titolo = property(__Titolo.value, __Titolo.set, None, None)
 
-    
-    # Element CodEORI uses Python identifier CodEORI
-    __CodEORI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodEORI'), 'CodEORI', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_CodEORI', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 685, 6), )
 
-    
+    # Element CodEORI uses Python identifier CodEORI
+    __CodEORI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodEORI'), 'CodEORI', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AnagraficaType_CodEORI', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 685, 6), )
+
+
     CodEORI = property(__CodEORI.value, __CodEORI.set, None, None)
 
     _ElementMap.update({
@@ -2416,7 +2416,7 @@ class AnagraficaType (pyxb.binding.basis.complexTypeDefinition):
         __CodEORI.name() : __CodEORI
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.AnagraficaType = AnagraficaType
 Namespace.addCategoryObject('typeBinding', 'AnagraficaType', AnagraficaType)
@@ -2429,36 +2429,36 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiAnagraficiVettoreType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 688, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 688, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 690, 6), )
 
-    
+    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 690, 6), )
+
+
     IdFiscaleIVA = property(__IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
-    
-    # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 691, 6), )
 
-    
+    # Element CodiceFiscale uses Python identifier CodiceFiscale
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 691, 6), )
+
+
     CodiceFiscale = property(__CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
-    
-    # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 692, 6), )
 
-    
+    # Element Anagrafica uses Python identifier Anagrafica
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 692, 6), )
+
+
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
-    
-    # Element NumeroLicenzaGuida uses Python identifier NumeroLicenzaGuida
-    __NumeroLicenzaGuida = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida'), 'NumeroLicenzaGuida', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_NumeroLicenzaGuida', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 693, 6), )
 
-    
+    # Element NumeroLicenzaGuida uses Python identifier NumeroLicenzaGuida
+    __NumeroLicenzaGuida = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida'), 'NumeroLicenzaGuida', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiVettoreType_NumeroLicenzaGuida', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 693, 6), )
+
+
     NumeroLicenzaGuida = property(__NumeroLicenzaGuida.value, __NumeroLicenzaGuida.set, None, None)
 
     _ElementMap.update({
@@ -2468,7 +2468,7 @@ class DatiAnagraficiVettoreType (pyxb.binding.basis.complexTypeDefinition):
         __NumeroLicenzaGuida.name() : __NumeroLicenzaGuida
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiAnagraficiVettoreType = DatiAnagraficiVettoreType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiVettoreType', DatiAnagraficiVettoreType)
@@ -2481,43 +2481,43 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'IscrizioneREAType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 696, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 696, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element Ufficio uses Python identifier Ufficio
-    __Ufficio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Ufficio'), 'Ufficio', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_Ufficio', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 698, 6), )
 
-    
+    # Element Ufficio uses Python identifier Ufficio
+    __Ufficio = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Ufficio'), 'Ufficio', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_Ufficio', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 698, 6), )
+
+
     Ufficio = property(__Ufficio.value, __Ufficio.set, None, None)
 
-    
-    # Element NumeroREA uses Python identifier NumeroREA
-    __NumeroREA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroREA'), 'NumeroREA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_NumeroREA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 699, 6), )
 
-    
+    # Element NumeroREA uses Python identifier NumeroREA
+    __NumeroREA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroREA'), 'NumeroREA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_NumeroREA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 699, 6), )
+
+
     NumeroREA = property(__NumeroREA.value, __NumeroREA.set, None, None)
 
-    
-    # Element CapitaleSociale uses Python identifier CapitaleSociale
-    __CapitaleSociale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CapitaleSociale'), 'CapitaleSociale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_CapitaleSociale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 700, 6), )
 
-    
+    # Element CapitaleSociale uses Python identifier CapitaleSociale
+    __CapitaleSociale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CapitaleSociale'), 'CapitaleSociale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_CapitaleSociale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 700, 6), )
+
+
     CapitaleSociale = property(__CapitaleSociale.value, __CapitaleSociale.set, None, None)
 
-    
-    # Element SocioUnico uses Python identifier SocioUnico
-    __SocioUnico = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'SocioUnico'), 'SocioUnico', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_SocioUnico', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 701, 6), )
 
-    
+    # Element SocioUnico uses Python identifier SocioUnico
+    __SocioUnico = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'SocioUnico'), 'SocioUnico', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_SocioUnico', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 701, 6), )
+
+
     SocioUnico = property(__SocioUnico.value, __SocioUnico.set, None, None)
 
-    
-    # Element StatoLiquidazione uses Python identifier StatoLiquidazione
-    __StatoLiquidazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'StatoLiquidazione'), 'StatoLiquidazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_StatoLiquidazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 702, 6), )
 
-    
+    # Element StatoLiquidazione uses Python identifier StatoLiquidazione
+    __StatoLiquidazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'StatoLiquidazione'), 'StatoLiquidazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_IscrizioneREAType_StatoLiquidazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 702, 6), )
+
+
     StatoLiquidazione = property(__StatoLiquidazione.value, __StatoLiquidazione.set, None, None)
 
     _ElementMap.update({
@@ -2528,7 +2528,7 @@ class IscrizioneREAType (pyxb.binding.basis.complexTypeDefinition):
         __StatoLiquidazione.name() : __StatoLiquidazione
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.IscrizioneREAType = IscrizioneREAType
 Namespace.addCategoryObject('typeBinding', 'IscrizioneREAType', IscrizioneREAType)
@@ -2541,29 +2541,29 @@ class ContattiType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ContattiType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 705, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 705, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element Telefono uses Python identifier Telefono
-    __Telefono = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Telefono'), 'Telefono', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Telefono', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 707, 6), )
 
-    
+    # Element Telefono uses Python identifier Telefono
+    __Telefono = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Telefono'), 'Telefono', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Telefono', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 707, 6), )
+
+
     Telefono = property(__Telefono.value, __Telefono.set, None, None)
 
-    
-    # Element Fax uses Python identifier Fax
-    __Fax = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Fax'), 'Fax', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Fax', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 708, 6), )
 
-    
+    # Element Fax uses Python identifier Fax
+    __Fax = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Fax'), 'Fax', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Fax', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 708, 6), )
+
+
     Fax = property(__Fax.value, __Fax.set, None, None)
 
-    
-    # Element Email uses Python identifier Email
-    __Email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Email'), 'Email', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Email', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 709, 6), )
 
-    
+    # Element Email uses Python identifier Email
+    __Email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Email'), 'Email', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_ContattiType_Email', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 709, 6), )
+
+
     Email = property(__Email.value, __Email.set, None, None)
 
     _ElementMap.update({
@@ -2572,7 +2572,7 @@ class ContattiType (pyxb.binding.basis.complexTypeDefinition):
         __Email.name() : __Email
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.ContattiType = ContattiType
 Namespace.addCategoryObject('typeBinding', 'ContattiType', ContattiType)
@@ -2585,22 +2585,22 @@ class RappresentanteFiscaleType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RappresentanteFiscaleType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 712, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 712, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleType_DatiAnagrafici', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 717, 6), )
 
-    
+    # Element DatiAnagrafici uses Python identifier DatiAnagrafici
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleType_DatiAnagrafici', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 717, 6), )
+
+
     DatiAnagrafici = property(__DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
     _ElementMap.update({
         __DatiAnagrafici.name() : __DatiAnagrafici
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.RappresentanteFiscaleType = RappresentanteFiscaleType
 Namespace.addCategoryObject('typeBinding', 'RappresentanteFiscaleType', RappresentanteFiscaleType)
@@ -2613,29 +2613,29 @@ class DatiAnagraficiRappresentanteType (pyxb.binding.basis.complexTypeDefinition
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiAnagraficiRappresentanteType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 720, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 720, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 722, 6), )
 
-    
+    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 722, 6), )
+
+
     IdFiscaleIVA = property(__IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
-    
-    # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 723, 6), )
 
-    
+    # Element CodiceFiscale uses Python identifier CodiceFiscale
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 723, 6), )
+
+
     CodiceFiscale = property(__CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
-    
-    # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 724, 6), )
 
-    
+    # Element Anagrafica uses Python identifier Anagrafica
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiRappresentanteType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 724, 6), )
+
+
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
     _ElementMap.update({
@@ -2644,7 +2644,7 @@ class DatiAnagraficiRappresentanteType (pyxb.binding.basis.complexTypeDefinition
         __Anagrafica.name() : __Anagrafica
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiAnagraficiRappresentanteType = DatiAnagraficiRappresentanteType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiRappresentanteType', DatiAnagraficiRappresentanteType)
@@ -2657,36 +2657,36 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CessionarioCommittenteType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 727, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 727, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 732, 6), )
 
-    
+    # Element DatiAnagrafici uses Python identifier DatiAnagrafici
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 732, 6), )
+
+
     DatiAnagrafici = property(__DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
-    
-    # Element Sede uses Python identifier Sede
-    __Sede = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Sede'), 'Sede', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_Sede', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 733, 6), )
 
-    
+    # Element Sede uses Python identifier Sede
+    __Sede = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Sede'), 'Sede', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_Sede', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 733, 6), )
+
+
     Sede = property(__Sede.value, __Sede.set, None, None)
 
-    
-    # Element StabileOrganizzazione uses Python identifier StabileOrganizzazione
-    __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), 'StabileOrganizzazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_StabileOrganizzazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 734, 3), )
 
-    
+    # Element StabileOrganizzazione uses Python identifier StabileOrganizzazione
+    __StabileOrganizzazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), 'StabileOrganizzazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_StabileOrganizzazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 734, 3), )
+
+
     StabileOrganizzazione = property(__StabileOrganizzazione.value, __StabileOrganizzazione.set, None, None)
 
-    
-    # Element RappresentanteFiscale uses Python identifier RappresentanteFiscale
-    __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), 'RappresentanteFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_RappresentanteFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 735, 6), )
 
-    
+    # Element RappresentanteFiscale uses Python identifier RappresentanteFiscale
+    __RappresentanteFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), 'RappresentanteFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CessionarioCommittenteType_RappresentanteFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 735, 6), )
+
+
     RappresentanteFiscale = property(__RappresentanteFiscale.value, __RappresentanteFiscale.set, None, None)
 
     _ElementMap.update({
@@ -2696,7 +2696,7 @@ class CessionarioCommittenteType (pyxb.binding.basis.complexTypeDefinition):
         __RappresentanteFiscale.name() : __RappresentanteFiscale
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.CessionarioCommittenteType = CessionarioCommittenteType
 Namespace.addCategoryObject('typeBinding', 'CessionarioCommittenteType', CessionarioCommittenteType)
@@ -2709,36 +2709,36 @@ class RappresentanteFiscaleCessionarioType (pyxb.binding.basis.complexTypeDefini
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RappresentanteFiscaleCessionarioType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 738, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 738, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 740, 3), )
 
-    
+    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 740, 3), )
+
+
     IdFiscaleIVA = property(__IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
-    
-    # Element Denominazione uses Python identifier Denominazione
-    __Denominazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Denominazione'), 'Denominazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Denominazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 743, 10), )
 
-    
+    # Element Denominazione uses Python identifier Denominazione
+    __Denominazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Denominazione'), 'Denominazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Denominazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 743, 10), )
+
+
     Denominazione = property(__Denominazione.value, __Denominazione.set, None, None)
 
-    
-    # Element Nome uses Python identifier Nome
-    __Nome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Nome'), 'Nome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Nome', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 746, 10), )
 
-    
+    # Element Nome uses Python identifier Nome
+    __Nome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Nome'), 'Nome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Nome', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 746, 10), )
+
+
     Nome = property(__Nome.value, __Nome.set, None, None)
 
-    
-    # Element Cognome uses Python identifier Cognome
-    __Cognome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Cognome'), 'Cognome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Cognome', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 747, 10), )
 
-    
+    # Element Cognome uses Python identifier Cognome
+    __Cognome = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Cognome'), 'Cognome', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_RappresentanteFiscaleCessionarioType_Cognome', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 747, 10), )
+
+
     Cognome = property(__Cognome.value, __Cognome.set, None, None)
 
     _ElementMap.update({
@@ -2748,7 +2748,7 @@ class RappresentanteFiscaleCessionarioType (pyxb.binding.basis.complexTypeDefini
         __Cognome.name() : __Cognome
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.RappresentanteFiscaleCessionarioType = RappresentanteFiscaleCessionarioType
 Namespace.addCategoryObject('typeBinding', 'RappresentanteFiscaleCessionarioType', RappresentanteFiscaleCessionarioType)
@@ -2761,29 +2761,29 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiAnagraficiCessionarioType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 752, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 752, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 754, 6), )
 
-    
+    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 754, 6), )
+
+
     IdFiscaleIVA = property(__IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
-    
-    # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 755, 6), )
 
-    
+    # Element CodiceFiscale uses Python identifier CodiceFiscale
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 755, 6), )
+
+
     CodiceFiscale = property(__CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
-    
-    # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 756, 6), )
 
-    
+    # Element Anagrafica uses Python identifier Anagrafica
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiCessionarioType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 756, 6), )
+
+
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
     _ElementMap.update({
@@ -2792,7 +2792,7 @@ class DatiAnagraficiCessionarioType (pyxb.binding.basis.complexTypeDefinition):
         __Anagrafica.name() : __Anagrafica
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiAnagraficiCessionarioType = DatiAnagraficiCessionarioType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiCessionarioType', DatiAnagraficiCessionarioType)
@@ -2805,22 +2805,22 @@ class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiBeniServiziType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 759, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 759, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DettaglioLinee uses Python identifier DettaglioLinee
-    __DettaglioLinee = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DettaglioLinee'), 'DettaglioLinee', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DettaglioLinee', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 764, 6), )
 
-    
+    # Element DettaglioLinee uses Python identifier DettaglioLinee
+    __DettaglioLinee = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DettaglioLinee'), 'DettaglioLinee', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DettaglioLinee', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 764, 6), )
+
+
     DettaglioLinee = property(__DettaglioLinee.value, __DettaglioLinee.set, None, None)
 
-    
-    # Element DatiRiepilogo uses Python identifier DatiRiepilogo
-    __DatiRiepilogo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiRiepilogo'), 'DatiRiepilogo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DatiRiepilogo', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 765, 6), )
 
-    
+    # Element DatiRiepilogo uses Python identifier DatiRiepilogo
+    __DatiRiepilogo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiRiepilogo'), 'DatiRiepilogo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiBeniServiziType_DatiRiepilogo', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 765, 6), )
+
+
     DatiRiepilogo = property(__DatiRiepilogo.value, __DatiRiepilogo.set, None, None)
 
     _ElementMap.update({
@@ -2828,7 +2828,7 @@ class DatiBeniServiziType (pyxb.binding.basis.complexTypeDefinition):
         __DatiRiepilogo.name() : __DatiRiepilogo
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiBeniServiziType = DatiBeniServiziType
 Namespace.addCategoryObject('typeBinding', 'DatiBeniServiziType', DatiBeniServiziType)
@@ -2842,22 +2842,22 @@ class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiVeicoliType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 768, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 768, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element Data uses Python identifier Data
-    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_Data', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 774, 6), )
 
-    
+    # Element Data uses Python identifier Data
+    __Data = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Data'), 'Data', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_Data', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 774, 6), )
+
+
     Data = property(__Data.value, __Data.set, None, None)
 
-    
-    # Element TotalePercorso uses Python identifier TotalePercorso
-    __TotalePercorso = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TotalePercorso'), 'TotalePercorso', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_TotalePercorso', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 775, 6), )
 
-    
+    # Element TotalePercorso uses Python identifier TotalePercorso
+    __TotalePercorso = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TotalePercorso'), 'TotalePercorso', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiVeicoliType_TotalePercorso', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 775, 6), )
+
+
     TotalePercorso = property(__TotalePercorso.value, __TotalePercorso.set, None, None)
 
     _ElementMap.update({
@@ -2865,7 +2865,7 @@ class DatiVeicoliType (pyxb.binding.basis.complexTypeDefinition):
         __TotalePercorso.name() : __TotalePercorso
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiVeicoliType = DatiVeicoliType
 Namespace.addCategoryObject('typeBinding', 'DatiVeicoliType', DatiVeicoliType)
@@ -2878,22 +2878,22 @@ class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiPagamentoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 778, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 778, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element CondizioniPagamento uses Python identifier CondizioniPagamento
-    __CondizioniPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CondizioniPagamento'), 'CondizioniPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_CondizioniPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 783, 6), )
 
-    
+    # Element CondizioniPagamento uses Python identifier CondizioniPagamento
+    __CondizioniPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CondizioniPagamento'), 'CondizioniPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_CondizioniPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 783, 6), )
+
+
     CondizioniPagamento = property(__CondizioniPagamento.value, __CondizioniPagamento.set, None, None)
 
-    
-    # Element DettaglioPagamento uses Python identifier DettaglioPagamento
-    __DettaglioPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DettaglioPagamento'), 'DettaglioPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_DettaglioPagamento', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 784, 6), )
 
-    
+    # Element DettaglioPagamento uses Python identifier DettaglioPagamento
+    __DettaglioPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DettaglioPagamento'), 'DettaglioPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiPagamentoType_DettaglioPagamento', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 784, 6), )
+
+
     DettaglioPagamento = property(__DettaglioPagamento.value, __DettaglioPagamento.set, None, None)
 
     _ElementMap.update({
@@ -2901,7 +2901,7 @@ class DatiPagamentoType (pyxb.binding.basis.complexTypeDefinition):
         __DettaglioPagamento.name() : __DettaglioPagamento
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiPagamentoType = DatiPagamentoType
 Namespace.addCategoryObject('typeBinding', 'DatiPagamentoType', DatiPagamentoType)
@@ -2914,155 +2914,155 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DettaglioPagamentoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 808, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 808, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element Beneficiario uses Python identifier Beneficiario
-    __Beneficiario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Beneficiario'), 'Beneficiario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_Beneficiario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 810, 6), )
 
-    
+    # Element Beneficiario uses Python identifier Beneficiario
+    __Beneficiario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Beneficiario'), 'Beneficiario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_Beneficiario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 810, 6), )
+
+
     Beneficiario = property(__Beneficiario.value, __Beneficiario.set, None, None)
 
-    
-    # Element ModalitaPagamento uses Python identifier ModalitaPagamento
-    __ModalitaPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ModalitaPagamento'), 'ModalitaPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ModalitaPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 811, 6), )
 
-    
+    # Element ModalitaPagamento uses Python identifier ModalitaPagamento
+    __ModalitaPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ModalitaPagamento'), 'ModalitaPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ModalitaPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 811, 6), )
+
+
     ModalitaPagamento = property(__ModalitaPagamento.value, __ModalitaPagamento.set, None, None)
 
-    
-    # Element DataRiferimentoTerminiPagamento uses Python identifier DataRiferimentoTerminiPagamento
-    __DataRiferimentoTerminiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento'), 'DataRiferimentoTerminiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataRiferimentoTerminiPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 812, 6), )
 
-    
+    # Element DataRiferimentoTerminiPagamento uses Python identifier DataRiferimentoTerminiPagamento
+    __DataRiferimentoTerminiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento'), 'DataRiferimentoTerminiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataRiferimentoTerminiPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 812, 6), )
+
+
     DataRiferimentoTerminiPagamento = property(__DataRiferimentoTerminiPagamento.value, __DataRiferimentoTerminiPagamento.set, None, None)
 
-    
-    # Element GiorniTerminiPagamento uses Python identifier GiorniTerminiPagamento
-    __GiorniTerminiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento'), 'GiorniTerminiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_GiorniTerminiPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 813, 6), )
 
-    
+    # Element GiorniTerminiPagamento uses Python identifier GiorniTerminiPagamento
+    __GiorniTerminiPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento'), 'GiorniTerminiPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_GiorniTerminiPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 813, 6), )
+
+
     GiorniTerminiPagamento = property(__GiorniTerminiPagamento.value, __GiorniTerminiPagamento.set, None, None)
 
-    
-    # Element DataScadenzaPagamento uses Python identifier DataScadenzaPagamento
-    __DataScadenzaPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataScadenzaPagamento'), 'DataScadenzaPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataScadenzaPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 814, 6), )
 
-    
+    # Element DataScadenzaPagamento uses Python identifier DataScadenzaPagamento
+    __DataScadenzaPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataScadenzaPagamento'), 'DataScadenzaPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataScadenzaPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 814, 6), )
+
+
     DataScadenzaPagamento = property(__DataScadenzaPagamento.value, __DataScadenzaPagamento.set, None, None)
 
-    
-    # Element ImportoPagamento uses Python identifier ImportoPagamento
-    __ImportoPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoPagamento'), 'ImportoPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ImportoPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 815, 6), )
 
-    
+    # Element ImportoPagamento uses Python identifier ImportoPagamento
+    __ImportoPagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImportoPagamento'), 'ImportoPagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ImportoPagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 815, 6), )
+
+
     ImportoPagamento = property(__ImportoPagamento.value, __ImportoPagamento.set, None, None)
 
-    
-    # Element CodUfficioPostale uses Python identifier CodUfficioPostale
-    __CodUfficioPostale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodUfficioPostale'), 'CodUfficioPostale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodUfficioPostale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 816, 6), )
 
-    
+    # Element CodUfficioPostale uses Python identifier CodUfficioPostale
+    __CodUfficioPostale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodUfficioPostale'), 'CodUfficioPostale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodUfficioPostale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 816, 6), )
+
+
     CodUfficioPostale = property(__CodUfficioPostale.value, __CodUfficioPostale.set, None, None)
 
-    
-    # Element CognomeQuietanzante uses Python identifier CognomeQuietanzante
-    __CognomeQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante'), 'CognomeQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CognomeQuietanzante', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 817, 6), )
 
-    
+    # Element CognomeQuietanzante uses Python identifier CognomeQuietanzante
+    __CognomeQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante'), 'CognomeQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CognomeQuietanzante', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 817, 6), )
+
+
     CognomeQuietanzante = property(__CognomeQuietanzante.value, __CognomeQuietanzante.set, None, None)
 
-    
-    # Element NomeQuietanzante uses Python identifier NomeQuietanzante
-    __NomeQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NomeQuietanzante'), 'NomeQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_NomeQuietanzante', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 818, 6), )
 
-    
+    # Element NomeQuietanzante uses Python identifier NomeQuietanzante
+    __NomeQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NomeQuietanzante'), 'NomeQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_NomeQuietanzante', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 818, 6), )
+
+
     NomeQuietanzante = property(__NomeQuietanzante.value, __NomeQuietanzante.set, None, None)
 
-    
-    # Element CFQuietanzante uses Python identifier CFQuietanzante
-    __CFQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CFQuietanzante'), 'CFQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CFQuietanzante', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 819, 6), )
 
-    
+    # Element CFQuietanzante uses Python identifier CFQuietanzante
+    __CFQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CFQuietanzante'), 'CFQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CFQuietanzante', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 819, 6), )
+
+
     CFQuietanzante = property(__CFQuietanzante.value, __CFQuietanzante.set, None, None)
 
-    
-    # Element TitoloQuietanzante uses Python identifier TitoloQuietanzante
-    __TitoloQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante'), 'TitoloQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_TitoloQuietanzante', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 820, 6), )
 
-    
+    # Element TitoloQuietanzante uses Python identifier TitoloQuietanzante
+    __TitoloQuietanzante = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante'), 'TitoloQuietanzante', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_TitoloQuietanzante', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 820, 6), )
+
+
     TitoloQuietanzante = property(__TitoloQuietanzante.value, __TitoloQuietanzante.set, None, None)
 
-    
-    # Element IstitutoFinanziario uses Python identifier IstitutoFinanziario
-    __IstitutoFinanziario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario'), 'IstitutoFinanziario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IstitutoFinanziario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 821, 6), )
 
-    
+    # Element IstitutoFinanziario uses Python identifier IstitutoFinanziario
+    __IstitutoFinanziario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario'), 'IstitutoFinanziario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IstitutoFinanziario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 821, 6), )
+
+
     IstitutoFinanziario = property(__IstitutoFinanziario.value, __IstitutoFinanziario.set, None, None)
 
-    
-    # Element IBAN uses Python identifier IBAN
-    __IBAN = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IBAN'), 'IBAN', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IBAN', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 822, 6), )
 
-    
+    # Element IBAN uses Python identifier IBAN
+    __IBAN = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IBAN'), 'IBAN', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_IBAN', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 822, 6), )
+
+
     IBAN = property(__IBAN.value, __IBAN.set, None, None)
 
-    
-    # Element ABI uses Python identifier ABI
-    __ABI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ABI'), 'ABI', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ABI', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 823, 6), )
 
-    
+    # Element ABI uses Python identifier ABI
+    __ABI = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ABI'), 'ABI', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ABI', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 823, 6), )
+
+
     ABI = property(__ABI.value, __ABI.set, None, None)
 
-    
-    # Element CAB uses Python identifier CAB
-    __CAB = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CAB'), 'CAB', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CAB', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 824, 6), )
 
-    
+    # Element CAB uses Python identifier CAB
+    __CAB = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CAB'), 'CAB', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CAB', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 824, 6), )
+
+
     CAB = property(__CAB.value, __CAB.set, None, None)
 
-    
-    # Element BIC uses Python identifier BIC
-    __BIC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'BIC'), 'BIC', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_BIC', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 825, 6), )
 
-    
+    # Element BIC uses Python identifier BIC
+    __BIC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'BIC'), 'BIC', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_BIC', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 825, 6), )
+
+
     BIC = property(__BIC.value, __BIC.set, None, None)
 
-    
-    # Element ScontoPagamentoAnticipato uses Python identifier ScontoPagamentoAnticipato
-    __ScontoPagamentoAnticipato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato'), 'ScontoPagamentoAnticipato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ScontoPagamentoAnticipato', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 826, 6), )
 
-    
+    # Element ScontoPagamentoAnticipato uses Python identifier ScontoPagamentoAnticipato
+    __ScontoPagamentoAnticipato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato'), 'ScontoPagamentoAnticipato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_ScontoPagamentoAnticipato', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 826, 6), )
+
+
     ScontoPagamentoAnticipato = property(__ScontoPagamentoAnticipato.value, __ScontoPagamentoAnticipato.set, None, None)
 
-    
-    # Element DataLimitePagamentoAnticipato uses Python identifier DataLimitePagamentoAnticipato
-    __DataLimitePagamentoAnticipato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato'), 'DataLimitePagamentoAnticipato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataLimitePagamentoAnticipato', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 827, 6), )
 
-    
+    # Element DataLimitePagamentoAnticipato uses Python identifier DataLimitePagamentoAnticipato
+    __DataLimitePagamentoAnticipato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato'), 'DataLimitePagamentoAnticipato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataLimitePagamentoAnticipato', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 827, 6), )
+
+
     DataLimitePagamentoAnticipato = property(__DataLimitePagamentoAnticipato.value, __DataLimitePagamentoAnticipato.set, None, None)
 
-    
-    # Element PenalitaPagamentiRitardati uses Python identifier PenalitaPagamentiRitardati
-    __PenalitaPagamentiRitardati = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati'), 'PenalitaPagamentiRitardati', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_PenalitaPagamentiRitardati', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 828, 6), )
 
-    
+    # Element PenalitaPagamentiRitardati uses Python identifier PenalitaPagamentiRitardati
+    __PenalitaPagamentiRitardati = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati'), 'PenalitaPagamentiRitardati', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_PenalitaPagamentiRitardati', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 828, 6), )
+
+
     PenalitaPagamentiRitardati = property(__PenalitaPagamentiRitardati.value, __PenalitaPagamentiRitardati.set, None, None)
 
-    
-    # Element DataDecorrenzaPenale uses Python identifier DataDecorrenzaPenale
-    __DataDecorrenzaPenale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataDecorrenzaPenale'), 'DataDecorrenzaPenale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataDecorrenzaPenale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 829, 6), )
 
-    
+    # Element DataDecorrenzaPenale uses Python identifier DataDecorrenzaPenale
+    __DataDecorrenzaPenale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataDecorrenzaPenale'), 'DataDecorrenzaPenale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_DataDecorrenzaPenale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 829, 6), )
+
+
     DataDecorrenzaPenale = property(__DataDecorrenzaPenale.value, __DataDecorrenzaPenale.set, None, None)
 
-    
-    # Element CodicePagamento uses Python identifier CodicePagamento
-    __CodicePagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodicePagamento'), 'CodicePagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodicePagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 830, 6), )
 
-    
+    # Element CodicePagamento uses Python identifier CodicePagamento
+    __CodicePagamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodicePagamento'), 'CodicePagamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioPagamentoType_CodicePagamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 830, 6), )
+
+
     CodicePagamento = property(__CodicePagamento.value, __CodicePagamento.set, None, None)
 
     _ElementMap.update({
@@ -3089,7 +3089,7 @@ class DettaglioPagamentoType (pyxb.binding.basis.complexTypeDefinition):
         __CodicePagamento.name() : __CodicePagamento
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DettaglioPagamentoType = DettaglioPagamentoType
 Namespace.addCategoryObject('typeBinding', 'DettaglioPagamentoType', DettaglioPagamentoType)
@@ -3102,22 +3102,22 @@ class TerzoIntermediarioSoggettoEmittenteType (pyxb.binding.basis.complexTypeDef
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TerzoIntermediarioSoggettoEmittenteType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 963, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 963, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element DatiAnagrafici uses Python identifier DatiAnagrafici
-    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_TerzoIntermediarioSoggettoEmittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 968, 6), )
 
-    
+    # Element DatiAnagrafici uses Python identifier DatiAnagrafici
+    __DatiAnagrafici = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), 'DatiAnagrafici', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_TerzoIntermediarioSoggettoEmittenteType_DatiAnagrafici', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 968, 6), )
+
+
     DatiAnagrafici = property(__DatiAnagrafici.value, __DatiAnagrafici.set, None, None)
 
     _ElementMap.update({
         __DatiAnagrafici.name() : __DatiAnagrafici
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.TerzoIntermediarioSoggettoEmittenteType = TerzoIntermediarioSoggettoEmittenteType
 Namespace.addCategoryObject('typeBinding', 'TerzoIntermediarioSoggettoEmittenteType', TerzoIntermediarioSoggettoEmittenteType)
@@ -3130,29 +3130,29 @@ class DatiAnagraficiTerzoIntermediarioType (pyxb.binding.basis.complexTypeDefini
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiAnagraficiTerzoIntermediarioType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 971, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 971, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
-    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 973, 6), )
 
-    
+    # Element IdFiscaleIVA uses Python identifier IdFiscaleIVA
+    __IdFiscaleIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), 'IdFiscaleIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_IdFiscaleIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 973, 6), )
+
+
     IdFiscaleIVA = property(__IdFiscaleIVA.value, __IdFiscaleIVA.set, None, None)
 
-    
-    # Element CodiceFiscale uses Python identifier CodiceFiscale
-    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 974, 6), )
 
-    
+    # Element CodiceFiscale uses Python identifier CodiceFiscale
+    __CodiceFiscale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), 'CodiceFiscale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_CodiceFiscale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 974, 6), )
+
+
     CodiceFiscale = property(__CodiceFiscale.value, __CodiceFiscale.set, None, None)
 
-    
-    # Element Anagrafica uses Python identifier Anagrafica
-    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 975, 6), )
 
-    
+    # Element Anagrafica uses Python identifier Anagrafica
+    __Anagrafica = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Anagrafica'), 'Anagrafica', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiAnagraficiTerzoIntermediarioType_Anagrafica', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 975, 6), )
+
+
     Anagrafica = property(__Anagrafica.value, __Anagrafica.set, None, None)
 
     _ElementMap.update({
@@ -3161,7 +3161,7 @@ class DatiAnagraficiTerzoIntermediarioType (pyxb.binding.basis.complexTypeDefini
         __Anagrafica.name() : __Anagrafica
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiAnagraficiTerzoIntermediarioType = DatiAnagraficiTerzoIntermediarioType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiTerzoIntermediarioType', DatiAnagraficiTerzoIntermediarioType)
@@ -3174,43 +3174,43 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'AllegatiType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 978, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 978, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element NomeAttachment uses Python identifier NomeAttachment
-    __NomeAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NomeAttachment'), 'NomeAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_NomeAttachment', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 983, 6), )
 
-    
+    # Element NomeAttachment uses Python identifier NomeAttachment
+    __NomeAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NomeAttachment'), 'NomeAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_NomeAttachment', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 983, 6), )
+
+
     NomeAttachment = property(__NomeAttachment.value, __NomeAttachment.set, None, None)
 
-    
-    # Element AlgoritmoCompressione uses Python identifier AlgoritmoCompressione
-    __AlgoritmoCompressione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AlgoritmoCompressione'), 'AlgoritmoCompressione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_AlgoritmoCompressione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 984, 6), )
 
-    
+    # Element AlgoritmoCompressione uses Python identifier AlgoritmoCompressione
+    __AlgoritmoCompressione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AlgoritmoCompressione'), 'AlgoritmoCompressione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_AlgoritmoCompressione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 984, 6), )
+
+
     AlgoritmoCompressione = property(__AlgoritmoCompressione.value, __AlgoritmoCompressione.set, None, None)
 
-    
-    # Element FormatoAttachment uses Python identifier FormatoAttachment
-    __FormatoAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FormatoAttachment'), 'FormatoAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_FormatoAttachment', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 985, 6), )
 
-    
+    # Element FormatoAttachment uses Python identifier FormatoAttachment
+    __FormatoAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FormatoAttachment'), 'FormatoAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_FormatoAttachment', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 985, 6), )
+
+
     FormatoAttachment = property(__FormatoAttachment.value, __FormatoAttachment.set, None, None)
 
-    
-    # Element DescrizioneAttachment uses Python identifier DescrizioneAttachment
-    __DescrizioneAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DescrizioneAttachment'), 'DescrizioneAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_DescrizioneAttachment', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 986, 6), )
 
-    
+    # Element DescrizioneAttachment uses Python identifier DescrizioneAttachment
+    __DescrizioneAttachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DescrizioneAttachment'), 'DescrizioneAttachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_DescrizioneAttachment', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 986, 6), )
+
+
     DescrizioneAttachment = property(__DescrizioneAttachment.value, __DescrizioneAttachment.set, None, None)
 
-    
-    # Element Attachment uses Python identifier Attachment
-    __Attachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Attachment'), 'Attachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_Attachment', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 987, 6), )
 
-    
+    # Element Attachment uses Python identifier Attachment
+    __Attachment = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Attachment'), 'Attachment', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AllegatiType_Attachment', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 987, 6), )
+
+
     Attachment = property(__Attachment.value, __Attachment.set, None, None)
 
     _ElementMap.update({
@@ -3221,7 +3221,7 @@ class AllegatiType (pyxb.binding.basis.complexTypeDefinition):
         __Attachment.name() : __Attachment
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.AllegatiType = AllegatiType
 Namespace.addCategoryObject('typeBinding', 'AllegatiType', AllegatiType)
@@ -3234,120 +3234,120 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DettaglioLineeType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 990, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 990, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element NumeroLinea uses Python identifier NumeroLinea
-    __NumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroLinea'), 'NumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_NumeroLinea', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 992, 6), )
 
-    
+    # Element NumeroLinea uses Python identifier NumeroLinea
+    __NumeroLinea = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'NumeroLinea'), 'NumeroLinea', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_NumeroLinea', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 992, 6), )
+
+
     NumeroLinea = property(__NumeroLinea.value, __NumeroLinea.set, None, None)
 
-    
-    # Element TipoCessionePrestazione uses Python identifier TipoCessionePrestazione
-    __TipoCessionePrestazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione'), 'TipoCessionePrestazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_TipoCessionePrestazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 993, 6), )
 
-    
+    # Element TipoCessionePrestazione uses Python identifier TipoCessionePrestazione
+    __TipoCessionePrestazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione'), 'TipoCessionePrestazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_TipoCessionePrestazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 993, 6), )
+
+
     TipoCessionePrestazione = property(__TipoCessionePrestazione.value, __TipoCessionePrestazione.set, None, None)
 
-    
-    # Element CodiceArticolo uses Python identifier CodiceArticolo
-    __CodiceArticolo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceArticolo'), 'CodiceArticolo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_CodiceArticolo', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 994, 6), )
 
-    
+    # Element CodiceArticolo uses Python identifier CodiceArticolo
+    __CodiceArticolo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceArticolo'), 'CodiceArticolo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_CodiceArticolo', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 994, 6), )
+
+
     CodiceArticolo = property(__CodiceArticolo.value, __CodiceArticolo.set, None, None)
 
-    
-    # Element Descrizione uses Python identifier Descrizione
-    __Descrizione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Descrizione'), 'Descrizione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Descrizione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 995, 6), )
 
-    
+    # Element Descrizione uses Python identifier Descrizione
+    __Descrizione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Descrizione'), 'Descrizione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Descrizione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 995, 6), )
+
+
     Descrizione = property(__Descrizione.value, __Descrizione.set, None, None)
 
-    
-    # Element Quantita uses Python identifier Quantita
-    __Quantita = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Quantita'), 'Quantita', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Quantita', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 996, 6), )
 
-    
+    # Element Quantita uses Python identifier Quantita
+    __Quantita = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Quantita'), 'Quantita', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Quantita', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 996, 6), )
+
+
     Quantita = property(__Quantita.value, __Quantita.set, None, None)
 
-    
-    # Element UnitaMisura uses Python identifier UnitaMisura
-    __UnitaMisura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'UnitaMisura'), 'UnitaMisura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_UnitaMisura', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 997, 6), )
 
-    
+    # Element UnitaMisura uses Python identifier UnitaMisura
+    __UnitaMisura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'UnitaMisura'), 'UnitaMisura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_UnitaMisura', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 997, 6), )
+
+
     UnitaMisura = property(__UnitaMisura.value, __UnitaMisura.set, None, None)
 
-    
-    # Element DataInizioPeriodo uses Python identifier DataInizioPeriodo
-    __DataInizioPeriodo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataInizioPeriodo'), 'DataInizioPeriodo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataInizioPeriodo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 998, 6), )
 
-    
+    # Element DataInizioPeriodo uses Python identifier DataInizioPeriodo
+    __DataInizioPeriodo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataInizioPeriodo'), 'DataInizioPeriodo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataInizioPeriodo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 998, 6), )
+
+
     DataInizioPeriodo = property(__DataInizioPeriodo.value, __DataInizioPeriodo.set, None, None)
 
-    
-    # Element DataFinePeriodo uses Python identifier DataFinePeriodo
-    __DataFinePeriodo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataFinePeriodo'), 'DataFinePeriodo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataFinePeriodo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 999, 6), )
 
-    
+    # Element DataFinePeriodo uses Python identifier DataFinePeriodo
+    __DataFinePeriodo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'DataFinePeriodo'), 'DataFinePeriodo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_DataFinePeriodo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 999, 6), )
+
+
     DataFinePeriodo = property(__DataFinePeriodo.value, __DataFinePeriodo.set, None, None)
 
-    
-    # Element PrezzoUnitario uses Python identifier PrezzoUnitario
-    __PrezzoUnitario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PrezzoUnitario'), 'PrezzoUnitario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoUnitario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1000, 6), )
 
-    
+    # Element PrezzoUnitario uses Python identifier PrezzoUnitario
+    __PrezzoUnitario = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PrezzoUnitario'), 'PrezzoUnitario', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoUnitario', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1000, 6), )
+
+
     PrezzoUnitario = property(__PrezzoUnitario.value, __PrezzoUnitario.set, None, None)
 
-    
-    # Element ScontoMaggiorazione uses Python identifier ScontoMaggiorazione
-    __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_ScontoMaggiorazione', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1001, 6), )
 
-    
+    # Element ScontoMaggiorazione uses Python identifier ScontoMaggiorazione
+    __ScontoMaggiorazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), 'ScontoMaggiorazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_ScontoMaggiorazione', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1001, 6), )
+
+
     ScontoMaggiorazione = property(__ScontoMaggiorazione.value, __ScontoMaggiorazione.set, None, None)
 
-    
-    # Element PrezzoTotale uses Python identifier PrezzoTotale
-    __PrezzoTotale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PrezzoTotale'), 'PrezzoTotale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoTotale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1002, 6), )
 
-    
+    # Element PrezzoTotale uses Python identifier PrezzoTotale
+    __PrezzoTotale = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'PrezzoTotale'), 'PrezzoTotale', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_PrezzoTotale', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1002, 6), )
+
+
     PrezzoTotale = property(__PrezzoTotale.value, __PrezzoTotale.set, None, None)
 
-    
-    # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AliquotaIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1003, 6), )
 
-    
+    # Element AliquotaIVA uses Python identifier AliquotaIVA
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AliquotaIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1003, 6), )
+
+
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
-    
-    # Element Ritenuta uses Python identifier Ritenuta
-    __Ritenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Ritenuta'), 'Ritenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Ritenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1004, 6), )
 
-    
+    # Element Ritenuta uses Python identifier Ritenuta
+    __Ritenuta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Ritenuta'), 'Ritenuta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Ritenuta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1004, 6), )
+
+
     Ritenuta = property(__Ritenuta.value, __Ritenuta.set, None, None)
 
-    
-    # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Natura', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1005, 6), )
 
-    
+    # Element Natura uses Python identifier Natura
+    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_Natura', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1005, 6), )
+
+
     Natura = property(__Natura.value, __Natura.set, None, None)
 
-    
-    # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
-    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1006, 6), )
 
-    
+    # Element RiferimentoAmministrazione uses Python identifier RiferimentoAmministrazione
+    __RiferimentoAmministrazione = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), 'RiferimentoAmministrazione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_RiferimentoAmministrazione', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1006, 6), )
+
+
     RiferimentoAmministrazione = property(__RiferimentoAmministrazione.value, __RiferimentoAmministrazione.set, None, None)
 
-    
-    # Element AltriDatiGestionali uses Python identifier AltriDatiGestionali
-    __AltriDatiGestionali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AltriDatiGestionali'), 'AltriDatiGestionali', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AltriDatiGestionali', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1007, 6), )
 
-    
+    # Element AltriDatiGestionali uses Python identifier AltriDatiGestionali
+    __AltriDatiGestionali = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AltriDatiGestionali'), 'AltriDatiGestionali', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DettaglioLineeType_AltriDatiGestionali', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1007, 6), )
+
+
     AltriDatiGestionali = property(__AltriDatiGestionali.value, __AltriDatiGestionali.set, None, None)
 
     _ElementMap.update({
@@ -3369,7 +3369,7 @@ class DettaglioLineeType (pyxb.binding.basis.complexTypeDefinition):
         __AltriDatiGestionali.name() : __AltriDatiGestionali
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DettaglioLineeType = DettaglioLineeType
 Namespace.addCategoryObject('typeBinding', 'DettaglioLineeType', DettaglioLineeType)
@@ -3382,22 +3382,22 @@ class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CodiceArticoloType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1010, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1010, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element CodiceTipo uses Python identifier CodiceTipo
-    __CodiceTipo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceTipo'), 'CodiceTipo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceTipo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1012, 6), )
 
-    
+    # Element CodiceTipo uses Python identifier CodiceTipo
+    __CodiceTipo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceTipo'), 'CodiceTipo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceTipo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1012, 6), )
+
+
     CodiceTipo = property(__CodiceTipo.value, __CodiceTipo.set, None, None)
 
-    
-    # Element CodiceValore uses Python identifier CodiceValore
-    __CodiceValore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceValore'), 'CodiceValore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceValore', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1013, 6), )
 
-    
+    # Element CodiceValore uses Python identifier CodiceValore
+    __CodiceValore = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'CodiceValore'), 'CodiceValore', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_CodiceArticoloType_CodiceValore', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1013, 6), )
+
+
     CodiceValore = property(__CodiceValore.value, __CodiceValore.set, None, None)
 
     _ElementMap.update({
@@ -3405,7 +3405,7 @@ class CodiceArticoloType (pyxb.binding.basis.complexTypeDefinition):
         __CodiceValore.name() : __CodiceValore
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.CodiceArticoloType = CodiceArticoloType
 Namespace.addCategoryObject('typeBinding', 'CodiceArticoloType', CodiceArticoloType)
@@ -3418,36 +3418,36 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'AltriDatiGestionaliType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1016, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1016, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element TipoDato uses Python identifier TipoDato
-    __TipoDato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoDato'), 'TipoDato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_TipoDato', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1018, 6), )
 
-    
+    # Element TipoDato uses Python identifier TipoDato
+    __TipoDato = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'TipoDato'), 'TipoDato', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_TipoDato', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1018, 6), )
+
+
     TipoDato = property(__TipoDato.value, __TipoDato.set, None, None)
 
-    
-    # Element RiferimentoTesto uses Python identifier RiferimentoTesto
-    __RiferimentoTesto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoTesto'), 'RiferimentoTesto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoTesto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1019, 6), )
 
-    
+    # Element RiferimentoTesto uses Python identifier RiferimentoTesto
+    __RiferimentoTesto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoTesto'), 'RiferimentoTesto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoTesto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1019, 6), )
+
+
     RiferimentoTesto = property(__RiferimentoTesto.value, __RiferimentoTesto.set, None, None)
 
-    
-    # Element RiferimentoNumero uses Python identifier RiferimentoNumero
-    __RiferimentoNumero = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNumero'), 'RiferimentoNumero', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoNumero', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1020, 6), )
 
-    
+    # Element RiferimentoNumero uses Python identifier RiferimentoNumero
+    __RiferimentoNumero = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNumero'), 'RiferimentoNumero', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoNumero', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1020, 6), )
+
+
     RiferimentoNumero = property(__RiferimentoNumero.value, __RiferimentoNumero.set, None, None)
 
-    
-    # Element RiferimentoData uses Python identifier RiferimentoData
-    __RiferimentoData = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoData'), 'RiferimentoData', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoData', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1021, 6), )
 
-    
+    # Element RiferimentoData uses Python identifier RiferimentoData
+    __RiferimentoData = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoData'), 'RiferimentoData', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_AltriDatiGestionaliType_RiferimentoData', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1021, 6), )
+
+
     RiferimentoData = property(__RiferimentoData.value, __RiferimentoData.set, None, None)
 
     _ElementMap.update({
@@ -3457,7 +3457,7 @@ class AltriDatiGestionaliType (pyxb.binding.basis.complexTypeDefinition):
         __RiferimentoData.name() : __RiferimentoData
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.AltriDatiGestionaliType = AltriDatiGestionaliType
 Namespace.addCategoryObject('typeBinding', 'AltriDatiGestionaliType', AltriDatiGestionaliType)
@@ -3470,64 +3470,64 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatiRiepilogoType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1034, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1034, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element AliquotaIVA uses Python identifier AliquotaIVA
-    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_AliquotaIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1036, 6), )
 
-    
+    # Element AliquotaIVA uses Python identifier AliquotaIVA
+    __AliquotaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), 'AliquotaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_AliquotaIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1036, 6), )
+
+
     AliquotaIVA = property(__AliquotaIVA.value, __AliquotaIVA.set, None, None)
 
-    
-    # Element Natura uses Python identifier Natura
-    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Natura', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1037, 6), )
 
-    
+    # Element Natura uses Python identifier Natura
+    __Natura = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Natura'), 'Natura', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Natura', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1037, 6), )
+
+
     Natura = property(__Natura.value, __Natura.set, None, None)
 
-    
-    # Element SpeseAccessorie uses Python identifier SpeseAccessorie
-    __SpeseAccessorie = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'SpeseAccessorie'), 'SpeseAccessorie', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_SpeseAccessorie', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1038, 6), )
 
-    
+    # Element SpeseAccessorie uses Python identifier SpeseAccessorie
+    __SpeseAccessorie = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'SpeseAccessorie'), 'SpeseAccessorie', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_SpeseAccessorie', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1038, 6), )
+
+
     SpeseAccessorie = property(__SpeseAccessorie.value, __SpeseAccessorie.set, None, None)
 
-    
-    # Element Arrotondamento uses Python identifier Arrotondamento
-    __Arrotondamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), 'Arrotondamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Arrotondamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1039, 6), )
 
-    
+    # Element Arrotondamento uses Python identifier Arrotondamento
+    __Arrotondamento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), 'Arrotondamento', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Arrotondamento', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1039, 6), )
+
+
     Arrotondamento = property(__Arrotondamento.value, __Arrotondamento.set, None, None)
 
-    
-    # Element ImponibileImporto uses Python identifier ImponibileImporto
-    __ImponibileImporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImponibileImporto'), 'ImponibileImporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_ImponibileImporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1040, 6), )
 
-    
+    # Element ImponibileImporto uses Python identifier ImponibileImporto
+    __ImponibileImporto = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'ImponibileImporto'), 'ImponibileImporto', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_ImponibileImporto', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1040, 6), )
+
+
     ImponibileImporto = property(__ImponibileImporto.value, __ImponibileImporto.set, None, None)
 
-    
-    # Element Imposta uses Python identifier Imposta
-    __Imposta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Imposta'), 'Imposta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Imposta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1041, 6), )
 
-    
+    # Element Imposta uses Python identifier Imposta
+    __Imposta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'Imposta'), 'Imposta', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_Imposta', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1041, 6), )
+
+
     Imposta = property(__Imposta.value, __Imposta.set, None, None)
 
-    
-    # Element EsigibilitaIVA uses Python identifier EsigibilitaIVA
-    __EsigibilitaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA'), 'EsigibilitaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_EsigibilitaIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1042, 6), )
 
-    
+    # Element EsigibilitaIVA uses Python identifier EsigibilitaIVA
+    __EsigibilitaIVA = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA'), 'EsigibilitaIVA', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_EsigibilitaIVA', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1042, 6), )
+
+
     EsigibilitaIVA = property(__EsigibilitaIVA.value, __EsigibilitaIVA.set, None, None)
 
-    
-    # Element RiferimentoNormativo uses Python identifier RiferimentoNormativo
-    __RiferimentoNormativo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNormativo'), 'RiferimentoNormativo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_RiferimentoNormativo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1043, 6), )
 
-    
+    # Element RiferimentoNormativo uses Python identifier RiferimentoNormativo
+    __RiferimentoNormativo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'RiferimentoNormativo'), 'RiferimentoNormativo', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_DatiRiepilogoType_RiferimentoNormativo', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1043, 6), )
+
+
     RiferimentoNormativo = property(__RiferimentoNormativo.value, __RiferimentoNormativo.set, None, None)
 
     _ElementMap.update({
@@ -3541,7 +3541,7 @@ class DatiRiepilogoType (pyxb.binding.basis.complexTypeDefinition):
         __RiferimentoNormativo.name() : __RiferimentoNormativo
     })
     _AttributeMap.update({
-        
+
     })
 _module_typeBindings.DatiRiepilogoType = DatiRiepilogoType
 Namespace.addCategoryObject('typeBinding', 'DatiRiepilogoType', DatiRiepilogoType)
@@ -3554,45 +3554,45 @@ class FatturaElettronicaType (pyxb.binding.basis.complexTypeDefinition):
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'FatturaElettronicaType')
-    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 16, 2)
+    _XSDLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 16, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element FatturaElettronicaHeader uses Python identifier FatturaElettronicaHeader
-    __FatturaElettronicaHeader = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader'), 'FatturaElettronicaHeader', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaHeader', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 18, 6), )
 
-    
+    # Element FatturaElettronicaHeader uses Python identifier FatturaElettronicaHeader
+    __FatturaElettronicaHeader = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader'), 'FatturaElettronicaHeader', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaHeader', False, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 18, 6), )
+
+
     FatturaElettronicaHeader = property(__FatturaElettronicaHeader.value, __FatturaElettronicaHeader.set, None, None)
 
-    
-    # Element FatturaElettronicaBody uses Python identifier FatturaElettronicaBody
-    __FatturaElettronicaBody = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody'), 'FatturaElettronicaBody', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaBody', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 19, 6), )
 
-    
+    # Element FatturaElettronicaBody uses Python identifier FatturaElettronicaBody
+    __FatturaElettronicaBody = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody'), 'FatturaElettronicaBody', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_FatturaElettronicaBody', True, pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 19, 6), )
+
+
     FatturaElettronicaBody = property(__FatturaElettronicaBody.value, __FatturaElettronicaBody.set, None, None)
 
-    
+
     # Element {http://www.w3.org/2000/09/xmldsig#}Signature uses Python identifier Signature
     __Signature = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), 'Signature', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_httpwww_w3_org200009xmldsigSignature', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0), )
 
-    
+
     Signature = property(__Signature.value, __Signature.set, None, None)
 
-    
+
     # Attribute versione uses Python identifier versione
     __versione = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'versione'), 'versione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_versione', _module_typeBindings.FormatoTrasmissioneType, required=True)
-    __versione._DeclarationLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 22, 4)
-    __versione._UseLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 22, 4)
-    
+    __versione._DeclarationLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 22, 4)
+    __versione._UseLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 22, 4)
+
     versione = property(__versione.value, __versione.set, None, None)
 
-    
+
     # Attribute SistemaEmittente uses Python identifier SistemaEmittente
     __SistemaEmittente = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'SistemaEmittente'), 'SistemaEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_SistemaEmittente', _module_typeBindings.String10Type)
-    __SistemaEmittente._DeclarationLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 23, 4)
-    __SistemaEmittente._UseLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 23, 4)
-    
+    __SistemaEmittente._DeclarationLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 23, 4)
+    __SistemaEmittente._UseLocation = pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 23, 4)
+
     SistemaEmittente = property(__SistemaEmittente.value, __SistemaEmittente.set, None, None)
 
     _ElementMap.update({
@@ -3608,22 +3608,22 @@ _module_typeBindings.FatturaElettronicaType = FatturaElettronicaType
 Namespace.addCategoryObject('typeBinding', 'FatturaElettronicaType', FatturaElettronicaType)
 
 
-FatturaElettronica = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FatturaElettronica'), FatturaElettronicaType, documentation='XML schema fatture destinate a PA e privati in forma ordinaria 1.2.2', location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 10, 2))
+FatturaElettronica = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FatturaElettronica'), FatturaElettronicaType, documentation='XML schema fatture destinate a PA e privati in forma ordinaria 1.2.2', location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 10, 2))
 Namespace.addCategoryObject('elementBinding', FatturaElettronica.name().localName(), FatturaElettronica)
 
 
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiTrasmissione'), DatiTrasmissioneType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 27, 6)))
+FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiTrasmissione'), DatiTrasmissioneType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 27, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CedentePrestatore'), CedentePrestatoreType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 28, 6)))
+FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CedentePrestatore'), CedentePrestatoreType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 28, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), RappresentanteFiscaleType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 29, 6)))
+FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), RappresentanteFiscaleType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 29, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CessionarioCommittente'), CessionarioCommittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 30, 6)))
+FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CessionarioCommittente'), CessionarioCommittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 30, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TerzoIntermediarioOSoggettoEmittente'), TerzoIntermediarioSoggettoEmittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 31, 6)))
+FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TerzoIntermediarioOSoggettoEmittente'), TerzoIntermediarioSoggettoEmittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 31, 6)))
 
-FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SoggettoEmittente'), SoggettoEmittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 32, 6)))
+FatturaElettronicaHeaderType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SoggettoEmittente'), SoggettoEmittenteType, scope=FatturaElettronicaHeaderType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 32, 6)))
 
 def _BuildAutomaton ():
     # Remove this helper function from the namespace after it is invoked
@@ -3632,37 +3632,37 @@ def _BuildAutomaton ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 29, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 29, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 31, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 31, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 32, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 32, 6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiTrasmissione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 27, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiTrasmissione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 27, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'CedentePrestatore')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 28, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'CedentePrestatore')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 28, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 29, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 29, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'CessionarioCommittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 30, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'CessionarioCommittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 30, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'TerzoIntermediarioOSoggettoEmittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 31, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'TerzoIntermediarioOSoggettoEmittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 31, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'SoggettoEmittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 32, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaHeaderType._UseForTag(pyxb.namespace.ExpandedName(None, 'SoggettoEmittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 32, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     transitions = []
@@ -3703,15 +3703,15 @@ FatturaElettronicaHeaderType._Automaton = _BuildAutomaton()
 
 
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiGenerali'), DatiGeneraliType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 37, 6)))
+FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiGenerali'), DatiGeneraliType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 37, 6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiBeniServizi'), DatiBeniServiziType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 38, 6)))
+FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiBeniServizi'), DatiBeniServiziType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 38, 6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiVeicoli'), DatiVeicoliType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 39, 6)))
+FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiVeicoli'), DatiVeicoliType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 39, 6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiPagamento'), DatiPagamentoType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 40, 6)))
+FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiPagamento'), DatiPagamentoType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 40, 6)))
 
-FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Allegati'), AllegatiType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 41, 6)))
+FatturaElettronicaBodyType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Allegati'), AllegatiType, scope=FatturaElettronicaBodyType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 41, 6)))
 
 def _BuildAutomaton_ ():
     # Remove this helper function from the namespace after it is invoked
@@ -3720,34 +3720,34 @@ def _BuildAutomaton_ ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 39, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 39, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 40, 6))
+    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 40, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 41, 6))
+    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 41, 6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiGenerali')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 37, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiGenerali')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 37, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiBeniServizi')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 38, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiBeniServizi')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 38, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiVeicoli')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 39, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiVeicoli')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 39, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 40, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 40, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'Allegati')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 41, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaBodyType._UseForTag(pyxb.namespace.ExpandedName(None, 'Allegati')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 41, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
@@ -3786,17 +3786,17 @@ FatturaElettronicaBodyType._Automaton = _BuildAutomaton_()
 
 
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdTrasmittente'), IdFiscaleType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 49, 6)))
+DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdTrasmittente'), IdFiscaleType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 49, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ProgressivoInvio'), String10Type, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 50, 6)))
+DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ProgressivoInvio'), String10Type, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 50, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione'), FormatoTrasmissioneType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 51, 6)))
+DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione'), FormatoTrasmissioneType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 51, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceDestinatario'), CodiceDestinatarioType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 52, 6)))
+DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceDestinatario'), CodiceDestinatarioType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 52, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ContattiTrasmittente'), ContattiTrasmittenteType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 53, 6)))
+DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ContattiTrasmittente'), ContattiTrasmittenteType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 53, 6)))
 
-DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PECDestinatario'), EmailType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 54, 6)))
+DatiTrasmissioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PECDestinatario'), EmailType, scope=DatiTrasmissioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 54, 6)))
 
 def _BuildAutomaton_2 ():
     # Remove this helper function from the namespace after it is invoked
@@ -3805,35 +3805,35 @@ def _BuildAutomaton_2 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 53, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 53, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 54, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 54, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdTrasmittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 49, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdTrasmittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 49, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'ProgressivoInvio')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 50, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'ProgressivoInvio')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 50, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 51, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'FormatoTrasmissione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 51, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceDestinatario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 52, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceDestinatario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 52, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'ContattiTrasmittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 53, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'ContattiTrasmittente')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 53, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'PECDestinatario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 54, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasmissioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'PECDestinatario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 54, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     transitions = []
@@ -3870,9 +3870,9 @@ DatiTrasmissioneType._Automaton = _BuildAutomaton_2()
 
 
 
-IdFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdPaese'), NazioneType, scope=IdFiscaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 64, 6)))
+IdFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdPaese'), NazioneType, scope=IdFiscaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 64, 6)))
 
-IdFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdCodice'), CodiceType, scope=IdFiscaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 65, 6)))
+IdFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdCodice'), CodiceType, scope=IdFiscaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 65, 6)))
 
 def _BuildAutomaton_3 ():
     # Remove this helper function from the namespace after it is invoked
@@ -3883,11 +3883,11 @@ def _BuildAutomaton_3 ():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IdFiscaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdPaese')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 64, 6))
+    symbol = pyxb.binding.content.ElementUse(IdFiscaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdPaese')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 64, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IdFiscaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdCodice')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 65, 6))
+    symbol = pyxb.binding.content.ElementUse(IdFiscaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdCodice')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 65, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -3902,9 +3902,9 @@ IdFiscaleType._Automaton = _BuildAutomaton_3()
 
 
 
-ContattiTrasmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Telefono'), TelFaxType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 91, 6)))
+ContattiTrasmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Telefono'), TelFaxType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 91, 6)))
 
-ContattiTrasmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Email'), EmailContattiType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 92, 6)))
+ContattiTrasmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Email'), EmailContattiType, scope=ContattiTrasmittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 92, 6)))
 
 def _BuildAutomaton_4 ():
     # Remove this helper function from the namespace after it is invoked
@@ -3913,19 +3913,19 @@ def _BuildAutomaton_4 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 91, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 91, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 92, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 92, 6))
     counters.add(cc_1)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiTrasmittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Telefono')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 91, 6))
+    symbol = pyxb.binding.content.ElementUse(ContattiTrasmittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Telefono')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 91, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiTrasmittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Email')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 92, 6))
+    symbol = pyxb.binding.content.ElementUse(ContattiTrasmittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Email')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 92, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -3944,25 +3944,25 @@ ContattiTrasmittenteType._Automaton = _BuildAutomaton_4()
 
 
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiGeneraliDocumento'), DatiGeneraliDocumentoType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 102, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiGeneraliDocumento'), DatiGeneraliDocumentoType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 102, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiOrdineAcquisto'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 103, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiOrdineAcquisto'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 103, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiContratto'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 104, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiContratto'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 104, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiConvenzione'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 105, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiConvenzione'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 105, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRicezione'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 106, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRicezione'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 106, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiFattureCollegate'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 107, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiFattureCollegate'), DatiDocumentiCorrelatiType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 107, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiSAL'), DatiSALType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 108, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiSAL'), DatiSALType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 108, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiDDT'), DatiDDTType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 109, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiDDT'), DatiDDTType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 109, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiTrasporto'), DatiTrasportoType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 110, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiTrasporto'), DatiTrasportoType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 110, 6)))
 
-DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaPrincipale'), FatturaPrincipaleType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 111, 6)))
+DatiGeneraliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaPrincipale'), FatturaPrincipaleType, scope=DatiGeneraliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 111, 6)))
 
 def _BuildAutomaton_5 ():
     # Remove this helper function from the namespace after it is invoked
@@ -3971,72 +3971,72 @@ def _BuildAutomaton_5 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 103, 6))
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 103, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 104, 6))
+    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 104, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 105, 6))
+    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 105, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 106, 6))
+    cc_3 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 106, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 107, 6))
+    cc_4 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 107, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 108, 6))
+    cc_5 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 108, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 109, 6))
+    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 109, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 110, 6))
+    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 110, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 111, 6))
+    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 111, 6))
     counters.add(cc_8)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiGeneraliDocumento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 102, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiGeneraliDocumento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 102, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiOrdineAcquisto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 103, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiOrdineAcquisto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 103, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiContratto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 104, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiContratto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 104, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiConvenzione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 105, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiConvenzione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 105, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiRicezione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 106, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiRicezione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 106, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiFattureCollegate')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 107, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiFattureCollegate')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 107, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiSAL')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 108, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiSAL')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 108, 6))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiDDT')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 109, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiDDT')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 109, 6))
     st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiTrasporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 110, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiTrasporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 110, 6))
     st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'FatturaPrincipale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 111, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliType._UseForTag(pyxb.namespace.ExpandedName(None, 'FatturaPrincipale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 111, 6))
     st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     transitions = []
@@ -4173,29 +4173,29 @@ DatiGeneraliType._Automaton = _BuildAutomaton_5()
 
 
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoDocumento'), TipoDocumentoType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 116, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoDocumento'), TipoDocumentoType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 116, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Divisa'), DivisaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 117, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Divisa'), DivisaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 117, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), DataFatturaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 118, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), DataFatturaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 118, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Numero'), String20Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 119, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Numero'), String20Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 119, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRitenuta'), DatiRitenutaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 120, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRitenuta'), DatiRitenutaType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 120, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiBollo'), DatiBolloType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 121, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiBollo'), DatiBolloType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 121, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale'), DatiCassaPrevidenzialeType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 122, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale'), DatiCassaPrevidenzialeType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 122, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), ScontoMaggiorazioneType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 123, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), ScontoMaggiorazioneType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 123, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento'), Amount2DecimalType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 124, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento'), Amount2DecimalType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 124, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), Amount2DecimalType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 125, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), Amount2DecimalType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 125, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Causale'), String200LatinType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 126, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Causale'), String200LatinType, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 126, 6)))
 
-DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Art73'), Art73Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 127, 6)))
+DatiGeneraliDocumentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Art73'), Art73Type, scope=DatiGeneraliDocumentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 127, 6)))
 
 def _BuildAutomaton_6 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4204,77 +4204,77 @@ def _BuildAutomaton_6 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 120, 6))
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 120, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 121, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 121, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 122, 6))
+    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 122, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 123, 6))
+    cc_3 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 123, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 124, 6))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 124, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 125, 6))
+    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 125, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 126, 6))
+    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 126, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 127, 6))
+    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 127, 6))
     counters.add(cc_7)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoDocumento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 116, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoDocumento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 116, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Divisa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 117, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Divisa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 117, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 118, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 118, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Numero')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 119, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Numero')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 119, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiRitenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 120, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiRitenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 120, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiBollo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 121, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiBollo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 121, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 122, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiCassaPrevidenziale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 122, 6))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 123, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 123, 6))
     st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 124, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoTotaleDocumento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 124, 6))
     st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Arrotondamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 125, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Arrotondamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 125, 6))
     st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Causale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 126, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Causale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 126, 6))
     st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Art73')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 127, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiGeneraliDocumentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Art73')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 127, 6))
     st_11 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     transitions = []
@@ -4401,13 +4401,13 @@ DatiGeneraliDocumentoType._Automaton = _BuildAutomaton_6()
 
 
 
-DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoRitenuta'), TipoRitenutaType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 132, 6)))
+DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoRitenuta'), TipoRitenutaType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 132, 6)))
 
-DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoRitenuta'), Amount2DecimalType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 133, 6)))
+DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoRitenuta'), Amount2DecimalType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 133, 6)))
 
-DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaRitenuta'), RateType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 134, 6)))
+DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaRitenuta'), RateType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 134, 6)))
 
-DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CausalePagamento'), CausalePagamentoType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 135, 6)))
+DatiRitenutaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CausalePagamento'), CausalePagamentoType, scope=DatiRitenutaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 135, 6)))
 
 def _BuildAutomaton_7 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4418,19 +4418,19 @@ def _BuildAutomaton_7 ():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoRitenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 132, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoRitenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 132, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoRitenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 133, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoRitenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 133, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(None, 'AliquotaRitenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 134, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(None, 'AliquotaRitenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 134, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(None, 'CausalePagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 135, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRitenutaType._UseForTag(pyxb.namespace.ExpandedName(None, 'CausalePagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 135, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
@@ -4453,9 +4453,9 @@ DatiRitenutaType._Automaton = _BuildAutomaton_7()
 
 
 
-DatiBolloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'BolloVirtuale'), BolloVirtualeType, scope=DatiBolloType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 140, 6)))
+DatiBolloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'BolloVirtuale'), BolloVirtualeType, scope=DatiBolloType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 140, 6)))
 
-DatiBolloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoBollo'), Amount2DecimalType, scope=DatiBolloType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 141, 6)))
+DatiBolloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoBollo'), Amount2DecimalType, scope=DatiBolloType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 141, 6)))
 
 def _BuildAutomaton_8 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4464,16 +4464,16 @@ def _BuildAutomaton_8 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 141, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 141, 6))
     counters.add(cc_0)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiBolloType._UseForTag(pyxb.namespace.ExpandedName(None, 'BolloVirtuale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 140, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiBolloType._UseForTag(pyxb.namespace.ExpandedName(None, 'BolloVirtuale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 140, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiBolloType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoBollo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 141, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiBolloType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoBollo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 141, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -4490,21 +4490,21 @@ DatiBolloType._Automaton = _BuildAutomaton_8()
 
 
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoCassa'), TipoCassaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 146, 6)))
+DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoCassa'), TipoCassaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 146, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AlCassa'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 147, 6)))
+DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AlCassa'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 147, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa'), Amount2DecimalType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 148, 6)))
+DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa'), Amount2DecimalType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 148, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImponibileCassa'), Amount2DecimalType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 149, 6)))
+DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImponibileCassa'), Amount2DecimalType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 149, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 150, 6)))
+DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), RateType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 150, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ritenuta'), RitenutaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 151, 6)))
+DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ritenuta'), RitenutaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 151, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'), NaturaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 152, 6)))
+DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'), NaturaType, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 152, 6)))
 
-DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 153, 6)))
+DatiCassaPrevidenzialeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type, scope=DatiCassaPrevidenzialeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 153, 6)))
 
 def _BuildAutomaton_9 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4513,48 +4513,48 @@ def _BuildAutomaton_9 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 149, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 149, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 151, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 151, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 152, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 152, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 153, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 153, 6))
     counters.add(cc_3)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoCassa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 146, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoCassa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 146, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'AlCassa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 147, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'AlCassa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 147, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 148, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoContributoCassa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 148, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImponibileCassa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 149, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImponibileCassa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 149, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 150, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 150, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Ritenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 151, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Ritenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 151, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 152, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 152, 6))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 153, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiCassaPrevidenzialeType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 153, 6))
     st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     transitions = []
@@ -4609,11 +4609,11 @@ DatiCassaPrevidenzialeType._Automaton = _BuildAutomaton_9()
 
 
 
-ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Tipo'), TipoScontoMaggiorazioneType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 158, 6)))
+ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Tipo'), TipoScontoMaggiorazioneType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 158, 6)))
 
-ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Percentuale'), RateType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 159, 6)))
+ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Percentuale'), RateType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 159, 6)))
 
-ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Importo'), Amount8DecimalType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 160, 6)))
+ScontoMaggiorazioneType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Importo'), Amount8DecimalType, scope=ScontoMaggiorazioneType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 160, 6)))
 
 def _BuildAutomaton_10 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4622,23 +4622,23 @@ def _BuildAutomaton_10 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 159, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 159, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 160, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 160, 6))
     counters.add(cc_1)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'Tipo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 158, 6))
+    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'Tipo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 158, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'Percentuale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 159, 6))
+    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'Percentuale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 159, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'Importo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 160, 6))
+    symbol = pyxb.binding.content.ElementUse(ScontoMaggiorazioneType._UseForTag(pyxb.namespace.ExpandedName(None, 'Importo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 160, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
@@ -4663,7 +4663,7 @@ ScontoMaggiorazioneType._Automaton = _BuildAutomaton_10()
 
 
 
-DatiSALType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoFase'), RiferimentoFaseType, scope=DatiSALType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 475, 6)))
+DatiSALType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoFase'), RiferimentoFaseType, scope=DatiSALType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 475, 6)))
 
 def _BuildAutomaton_11 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4674,7 +4674,7 @@ def _BuildAutomaton_11 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiSALType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoFase')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 475, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiSALType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoFase')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 475, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
@@ -4685,19 +4685,19 @@ DatiSALType._Automaton = _BuildAutomaton_11()
 
 
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), RiferimentoNumeroLineaType, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 480, 6)))
+DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), RiferimentoNumeroLineaType, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 480, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdDocumento'), String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 481, 6)))
+DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdDocumento'), String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 481, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), pyxb.binding.datatypes.date, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 482, 6)))
+DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), pyxb.binding.datatypes.date, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 482, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumItem'), String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 483, 6)))
+DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumItem'), String20Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 483, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione'), String100LatinType, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 484, 6)))
+DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione'), String100LatinType, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 484, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCUP'), String15Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 485, 6)))
+DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCUP'), String15Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 485, 6)))
 
-DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCIG'), String15Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 486, 6)))
+DatiDocumentiCorrelatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceCIG'), String15Type, scope=DatiDocumentiCorrelatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 486, 6)))
 
 def _BuildAutomaton_12 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4706,50 +4706,50 @@ def _BuildAutomaton_12 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 480, 6))
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 480, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 482, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 482, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 483, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 483, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 484, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 484, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 485, 6))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 485, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 486, 6))
+    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 486, 6))
     counters.add(cc_5)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 480, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 480, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdDocumento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 481, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdDocumento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 481, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 482, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 482, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumItem')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 483, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumItem')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 483, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 484, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceCommessaConvenzione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 484, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceCUP')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 485, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceCUP')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 485, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceCIG')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 486, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDocumentiCorrelatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceCIG')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 486, 6))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     transitions = []
@@ -4816,11 +4816,11 @@ DatiDocumentiCorrelatiType._Automaton = _BuildAutomaton_12()
 
 
 
-DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroDDT'), String20Type, scope=DatiDDTType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 497, 6)))
+DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroDDT'), String20Type, scope=DatiDDTType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 497, 6)))
 
-DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataDDT'), pyxb.binding.datatypes.date, scope=DatiDDTType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 498, 6)))
+DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataDDT'), pyxb.binding.datatypes.date, scope=DatiDDTType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 498, 6)))
 
-DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), RiferimentoNumeroLineaType, scope=DatiDDTType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 499, 6)))
+DatiDDTType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea'), RiferimentoNumeroLineaType, scope=DatiDDTType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 499, 6)))
 
 def _BuildAutomaton_13 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4829,20 +4829,20 @@ def _BuildAutomaton_13 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 499, 6))
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 499, 6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroDDT')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 497, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroDDT')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 497, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataDDT')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 498, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataDDT')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 498, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 499, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiDDTType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoNumeroLinea')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 499, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
@@ -4863,31 +4863,31 @@ DatiDDTType._Automaton = _BuildAutomaton_13()
 
 
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagraficiVettore'), DatiAnagraficiVettoreType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 504, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagraficiVettore'), DatiAnagraficiVettoreType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 504, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'MezzoTrasporto'), String80LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 505, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'MezzoTrasporto'), String80LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 505, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CausaleTrasporto'), String100LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 506, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CausaleTrasporto'), String100LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 506, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroColli'), NumeroColliType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 507, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroColli'), NumeroColliType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 507, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Descrizione'), String100LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 508, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Descrizione'), String100LatinType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 508, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso'), String10Type, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 509, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso'), String10Type, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 509, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PesoLordo'), PesoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 510, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PesoLordo'), PesoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 510, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PesoNetto'), PesoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 511, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PesoNetto'), PesoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 511, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataOraRitiro'), pyxb.binding.datatypes.dateTime, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 512, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataOraRitiro'), pyxb.binding.datatypes.dateTime, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 512, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataInizioTrasporto'), pyxb.binding.datatypes.date, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 513, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataInizioTrasporto'), pyxb.binding.datatypes.date, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 513, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoResa'), TipoResaType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 514, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoResa'), TipoResaType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 514, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IndirizzoResa'), IndirizzoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 515, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IndirizzoResa'), IndirizzoType, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 515, 6)))
 
-DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataOraConsegna'), pyxb.binding.datatypes.dateTime, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 516, 6)))
+DatiTrasportoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataOraConsegna'), pyxb.binding.datatypes.dateTime, scope=DatiTrasportoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 516, 6)))
 
 def _BuildAutomaton_14 ():
     # Remove this helper function from the namespace after it is invoked
@@ -4896,96 +4896,96 @@ def _BuildAutomaton_14 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 504, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 504, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 505, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 505, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 506, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 506, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 507, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 507, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 508, 6))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 508, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 509, 6))
+    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 509, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 510, 6))
+    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 510, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 511, 6))
+    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 511, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 512, 6))
+    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 512, 6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 513, 6))
+    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 513, 6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 514, 6))
+    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 514, 6))
     counters.add(cc_10)
-    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 515, 6))
+    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 515, 6))
     counters.add(cc_11)
-    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 516, 6))
+    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 516, 6))
     counters.add(cc_12)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagraficiVettore')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 504, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagraficiVettore')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 504, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'MezzoTrasporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 505, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'MezzoTrasporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 505, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CausaleTrasporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 506, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CausaleTrasporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 506, 6))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroColli')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 507, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroColli')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 507, 6))
     st_3 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Descrizione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 508, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Descrizione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 508, 6))
     st_4 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 509, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'UnitaMisuraPeso')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 509, 6))
     st_5 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'PesoLordo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 510, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'PesoLordo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 510, 6))
     st_6 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'PesoNetto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 511, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'PesoNetto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 511, 6))
     st_7 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataOraRitiro')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 512, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataOraRitiro')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 512, 6))
     st_8 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataInizioTrasporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 513, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataInizioTrasporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 513, 6))
     st_9 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoResa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 514, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoResa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 514, 6))
     st_10 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_11, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'IndirizzoResa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 515, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'IndirizzoResa')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 515, 6))
     st_11 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_12, False))
-    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataOraConsegna')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 516, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiTrasportoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataOraConsegna')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 516, 6))
     st_12 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     transitions = []
@@ -5202,17 +5202,17 @@ DatiTrasportoType._Automaton = _BuildAutomaton_14()
 
 
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Indirizzo'), String60LatinType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 521, 6)))
+IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Indirizzo'), String60LatinType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 521, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroCivico'), NumeroCivicoType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 522, 6)))
+IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroCivico'), NumeroCivicoType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 522, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CAP'), CAPType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 523, 6)))
+IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CAP'), CAPType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 523, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Comune'), String60LatinType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 524, 6)))
+IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Comune'), String60LatinType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 524, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Provincia'), ProvinciaType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 525, 6)))
+IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Provincia'), ProvinciaType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 525, 6)))
 
-IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Nazione'), NazioneType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 526, 6), unicode_default='IT'))
+IndirizzoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Nazione'), NazioneType, scope=IndirizzoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 526, 6), unicode_default='IT'))
 
 def _BuildAutomaton_15 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5221,33 +5221,33 @@ def _BuildAutomaton_15 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 522, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 522, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 525, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 525, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Indirizzo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 521, 6))
+    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Indirizzo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 521, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroCivico')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 522, 6))
+    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroCivico')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 522, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CAP')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 523, 6))
+    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CAP')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 523, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Comune')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 524, 6))
+    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Comune')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 524, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Provincia')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 525, 6))
+    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Provincia')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 525, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Nazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 526, 6))
+    symbol = pyxb.binding.content.ElementUse(IndirizzoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Nazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 526, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     transitions = []
@@ -5286,9 +5286,9 @@ IndirizzoType._Automaton = _BuildAutomaton_15()
 
 
 
-FatturaPrincipaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale'), String20Type, scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 531, 6)))
+FatturaPrincipaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale'), String20Type, scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 531, 6)))
 
-FatturaPrincipaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataFatturaPrincipale'), pyxb.binding.datatypes.date, scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 532, 6)))
+FatturaPrincipaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataFatturaPrincipale'), pyxb.binding.datatypes.date, scope=FatturaPrincipaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 532, 6)))
 
 def _BuildAutomaton_16 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5299,11 +5299,11 @@ def _BuildAutomaton_16 ():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaPrincipaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 531, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaPrincipaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroFatturaPrincipale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 531, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaPrincipaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataFatturaPrincipale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 532, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaPrincipaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataFatturaPrincipale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 532, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -5318,17 +5318,17 @@ FatturaPrincipaleType._Automaton = _BuildAutomaton_16()
 
 
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiCedenteType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 555, 6)))
+CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiCedenteType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 555, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Sede'), IndirizzoType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 556, 6)))
+CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Sede'), IndirizzoType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 556, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), IndirizzoType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 557, 6)))
+CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), IndirizzoType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 557, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IscrizioneREA'), IscrizioneREAType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 558, 6)))
+CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IscrizioneREA'), IscrizioneREAType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 558, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Contatti'), ContattiType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 559, 6)))
+CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Contatti'), ContattiType, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 559, 6)))
 
-CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 560, 6)))
+CedentePrestatoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type, scope=CedentePrestatoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 560, 6)))
 
 def _BuildAutomaton_17 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5337,41 +5337,41 @@ def _BuildAutomaton_17 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 557, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 557, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 558, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 558, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 559, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 559, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 560, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 560, 6))
     counters.add(cc_3)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 555, 6))
+    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 555, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'Sede')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 556, 6))
+    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'Sede')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 556, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 557, 6))
+    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 557, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'IscrizioneREA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 558, 6))
+    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'IscrizioneREA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 558, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'Contatti')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 559, 6))
+    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'Contatti')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 559, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 560, 6))
+    symbol = pyxb.binding.content.ElementUse(CedentePrestatoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 560, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     transitions = []
@@ -5422,21 +5422,21 @@ CedentePrestatoreType._Automaton = _BuildAutomaton_17()
 
 
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 565, 6)))
+DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 565, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 566, 6)))
+DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 566, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 567, 6)))
+DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 567, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AlboProfessionale'), String60LatinType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 568, 6)))
+DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AlboProfessionale'), String60LatinType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 568, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo'), ProvinciaType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 569, 6)))
+DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo'), ProvinciaType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 569, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo'), String60Type, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 570, 6)))
+DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo'), String60Type, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 570, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo'), pyxb.binding.datatypes.date, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 571, 6)))
+DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo'), pyxb.binding.datatypes.date, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 571, 6)))
 
-DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RegimeFiscale'), RegimeFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 572, 6)))
+DatiAnagraficiCedenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RegimeFiscale'), RegimeFiscaleType, scope=DatiAnagraficiCedenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 572, 6)))
 
 def _BuildAutomaton_18 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5445,47 +5445,47 @@ def _BuildAutomaton_18 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 566, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 566, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 568, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 568, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 569, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 569, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 570, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 570, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 571, 6))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 571, 6))
     counters.add(cc_4)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 565, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 565, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 566, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 566, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 567, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 567, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'AlboProfessionale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 568, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'AlboProfessionale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 568, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 569, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'ProvinciaAlbo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 569, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 570, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroIscrizioneAlbo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 570, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 571, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataIscrizioneAlbo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 571, 6))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'RegimeFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 572, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCedenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'RegimeFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 572, 6))
     st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     transitions = []
@@ -5556,15 +5556,15 @@ DatiAnagraficiCedenteType._Automaton = _BuildAutomaton_18()
 
 
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Denominazione'), String80LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 677, 10)))
+AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Denominazione'), String80LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 677, 10)))
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Nome'), String60LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 680, 10)))
+AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Nome'), String60LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 680, 10)))
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Cognome'), String60LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 681, 10)))
+AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Cognome'), String60LatinType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 681, 10)))
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Titolo'), TitoloType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 684, 6)))
+AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Titolo'), TitoloType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 684, 6)))
 
-AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodEORI'), CodEORIType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 685, 6)))
+AnagraficaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodEORI'), CodEORIType, scope=AnagraficaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 685, 6)))
 
 def _BuildAutomaton_19 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5573,31 +5573,31 @@ def _BuildAutomaton_19 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 684, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 684, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 685, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 685, 6))
     counters.add(cc_1)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'Denominazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 677, 10))
+    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'Denominazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 677, 10))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'Nome')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 680, 10))
+    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'Nome')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 680, 10))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'Cognome')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 681, 10))
+    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'Cognome')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 681, 10))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'Titolo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 684, 6))
+    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'Titolo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 684, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodEORI')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 685, 6))
+    symbol = pyxb.binding.content.ElementUse(AnagraficaType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodEORI')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 685, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
@@ -5632,13 +5632,13 @@ AnagraficaType._Automaton = _BuildAutomaton_19()
 
 
 
-DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 690, 6)))
+DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 690, 6)))
 
-DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 691, 6)))
+DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 691, 6)))
 
-DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 692, 6)))
+DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 692, 6)))
 
-DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida'), String20Type, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 693, 6)))
+DatiAnagraficiVettoreType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida'), String20Type, scope=DatiAnagraficiVettoreType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 693, 6)))
 
 def _BuildAutomaton_20 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5647,26 +5647,26 @@ def _BuildAutomaton_20 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 691, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 691, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 693, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 693, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 690, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 690, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 691, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 691, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 692, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 692, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 693, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiVettoreType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroLicenzaGuida')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 693, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
@@ -5695,15 +5695,15 @@ DatiAnagraficiVettoreType._Automaton = _BuildAutomaton_20()
 
 
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ufficio'), ProvinciaType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 698, 6)))
+IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ufficio'), ProvinciaType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 698, 6)))
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroREA'), String20Type, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 699, 6)))
+IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroREA'), String20Type, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 699, 6)))
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CapitaleSociale'), Amount2DecimalType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 700, 6)))
+IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CapitaleSociale'), Amount2DecimalType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 700, 6)))
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SocioUnico'), SocioUnicoType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 701, 6)))
+IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SocioUnico'), SocioUnicoType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 701, 6)))
 
-IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StatoLiquidazione'), StatoLiquidazioneType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 702, 6)))
+IscrizioneREAType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StatoLiquidazione'), StatoLiquidazioneType, scope=IscrizioneREAType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 702, 6)))
 
 def _BuildAutomaton_21 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5712,29 +5712,29 @@ def _BuildAutomaton_21 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 700, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 700, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 701, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 701, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'Ufficio')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 698, 6))
+    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'Ufficio')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 698, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroREA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 699, 6))
+    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroREA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 699, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'CapitaleSociale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 700, 6))
+    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'CapitaleSociale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 700, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'SocioUnico')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 701, 6))
+    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'SocioUnico')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 701, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'StatoLiquidazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 702, 6))
+    symbol = pyxb.binding.content.ElementUse(IscrizioneREAType._UseForTag(pyxb.namespace.ExpandedName(None, 'StatoLiquidazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 702, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
@@ -5771,11 +5771,11 @@ IscrizioneREAType._Automaton = _BuildAutomaton_21()
 
 
 
-ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Telefono'), TelFaxType, scope=ContattiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 707, 6)))
+ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Telefono'), TelFaxType, scope=ContattiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 707, 6)))
 
-ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Fax'), TelFaxType, scope=ContattiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 708, 6)))
+ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Fax'), TelFaxType, scope=ContattiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 708, 6)))
 
-ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Email'), EmailContattiType, scope=ContattiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 709, 6)))
+ContattiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Email'), EmailContattiType, scope=ContattiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 709, 6)))
 
 def _BuildAutomaton_22 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5784,26 +5784,26 @@ def _BuildAutomaton_22 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 707, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 707, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 708, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 708, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 709, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 709, 6))
     counters.add(cc_2)
     states = []
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Telefono')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 707, 6))
+    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Telefono')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 707, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Fax')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 708, 6))
+    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Fax')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 708, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Email')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 709, 6))
+    symbol = pyxb.binding.content.ElementUse(ContattiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Email')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 709, 6))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
@@ -5830,7 +5830,7 @@ ContattiType._Automaton = _BuildAutomaton_22()
 
 
 
-RappresentanteFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiRappresentanteType, scope=RappresentanteFiscaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 717, 6)))
+RappresentanteFiscaleType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiRappresentanteType, scope=RappresentanteFiscaleType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 717, 6)))
 
 def _BuildAutomaton_23 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5841,7 +5841,7 @@ def _BuildAutomaton_23 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 717, 6))
+    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 717, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
@@ -5852,11 +5852,11 @@ RappresentanteFiscaleType._Automaton = _BuildAutomaton_23()
 
 
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 722, 6)))
+DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 722, 6)))
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 723, 6)))
+DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 723, 6)))
 
-DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 724, 6)))
+DatiAnagraficiRappresentanteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiRappresentanteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 724, 6)))
 
 def _BuildAutomaton_24 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5865,19 +5865,19 @@ def _BuildAutomaton_24 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 723, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 723, 6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 722, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 722, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 723, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 723, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 724, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiRappresentanteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 724, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
@@ -5900,13 +5900,13 @@ DatiAnagraficiRappresentanteType._Automaton = _BuildAutomaton_24()
 
 
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiCessionarioType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 732, 6)))
+CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiCessionarioType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 732, 6)))
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Sede'), IndirizzoType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 733, 6)))
+CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Sede'), IndirizzoType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 733, 6)))
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), IndirizzoType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 734, 3)))
+CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione'), IndirizzoType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 734, 3)))
 
-CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), RappresentanteFiscaleCessionarioType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 735, 6)))
+CessionarioCommittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale'), RappresentanteFiscaleCessionarioType, scope=CessionarioCommittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 735, 6)))
 
 def _BuildAutomaton_25 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5915,27 +5915,27 @@ def _BuildAutomaton_25 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 734, 3))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 734, 3))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 735, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 735, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 732, 6))
+    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 732, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Sede')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 733, 6))
+    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'Sede')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 733, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 734, 3))
+    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'StabileOrganizzazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 734, 3))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 735, 6))
+    symbol = pyxb.binding.content.ElementUse(CessionarioCommittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'RappresentanteFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 735, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
@@ -5964,13 +5964,13 @@ CessionarioCommittenteType._Automaton = _BuildAutomaton_25()
 
 
 
-RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 740, 3)))
+RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 740, 3)))
 
-RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Denominazione'), String80LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 743, 10)))
+RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Denominazione'), String80LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 743, 10)))
 
-RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Nome'), String60LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 746, 10)))
+RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Nome'), String60LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 746, 10)))
 
-RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Cognome'), String60LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 747, 10)))
+RappresentanteFiscaleCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Cognome'), String60LatinType, scope=RappresentanteFiscaleCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 747, 10)))
 
 def _BuildAutomaton_26 ():
     # Remove this helper function from the namespace after it is invoked
@@ -5981,19 +5981,19 @@ def _BuildAutomaton_26 ():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 740, 3))
+    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 740, 3))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Denominazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 743, 10))
+    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Denominazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 743, 10))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Nome')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 746, 10))
+    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Nome')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 746, 10))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Cognome')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 747, 10))
+    symbol = pyxb.binding.content.ElementUse(RappresentanteFiscaleCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Cognome')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 747, 10))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
@@ -6016,11 +6016,11 @@ RappresentanteFiscaleCessionarioType._Automaton = _BuildAutomaton_26()
 
 
 
-DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 754, 6)))
+DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 754, 6)))
 
-DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 755, 6)))
+DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 755, 6)))
 
-DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 756, 6)))
+DatiAnagraficiCessionarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiCessionarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 756, 6)))
 
 def _BuildAutomaton_27 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6029,21 +6029,21 @@ def _BuildAutomaton_27 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 754, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 754, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 755, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 755, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 754, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 754, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 755, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 755, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 756, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiCessionarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 756, 6))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
@@ -6068,9 +6068,9 @@ DatiAnagraficiCessionarioType._Automaton = _BuildAutomaton_27()
 
 
 
-DatiBeniServiziType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DettaglioLinee'), DettaglioLineeType, scope=DatiBeniServiziType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 764, 6)))
+DatiBeniServiziType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DettaglioLinee'), DettaglioLineeType, scope=DatiBeniServiziType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 764, 6)))
 
-DatiBeniServiziType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRiepilogo'), DatiRiepilogoType, scope=DatiBeniServiziType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 765, 6)))
+DatiBeniServiziType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiRiepilogo'), DatiRiepilogoType, scope=DatiBeniServiziType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 765, 6)))
 
 def _BuildAutomaton_28 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6081,11 +6081,11 @@ def _BuildAutomaton_28 ():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiBeniServiziType._UseForTag(pyxb.namespace.ExpandedName(None, 'DettaglioLinee')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 764, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiBeniServiziType._UseForTag(pyxb.namespace.ExpandedName(None, 'DettaglioLinee')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 764, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiBeniServiziType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiRiepilogo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 765, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiBeniServiziType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiRiepilogo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 765, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -6104,9 +6104,9 @@ DatiBeniServiziType._Automaton = _BuildAutomaton_28()
 
 
 
-DatiVeicoliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), pyxb.binding.datatypes.date, scope=DatiVeicoliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 774, 6)))
+DatiVeicoliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Data'), pyxb.binding.datatypes.date, scope=DatiVeicoliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 774, 6)))
 
-DatiVeicoliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TotalePercorso'), String15Type, scope=DatiVeicoliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 775, 6)))
+DatiVeicoliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TotalePercorso'), String15Type, scope=DatiVeicoliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 775, 6)))
 
 def _BuildAutomaton_29 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6117,11 +6117,11 @@ def _BuildAutomaton_29 ():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiVeicoliType._UseForTag(pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 774, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiVeicoliType._UseForTag(pyxb.namespace.ExpandedName(None, 'Data')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 774, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiVeicoliType._UseForTag(pyxb.namespace.ExpandedName(None, 'TotalePercorso')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 775, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiVeicoliType._UseForTag(pyxb.namespace.ExpandedName(None, 'TotalePercorso')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 775, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -6136,9 +6136,9 @@ DatiVeicoliType._Automaton = _BuildAutomaton_29()
 
 
 
-DatiPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CondizioniPagamento'), CondizioniPagamentoType, scope=DatiPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 783, 6)))
+DatiPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CondizioniPagamento'), CondizioniPagamentoType, scope=DatiPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 783, 6)))
 
-DatiPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DettaglioPagamento'), DettaglioPagamentoType, scope=DatiPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 784, 6)))
+DatiPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DettaglioPagamento'), DettaglioPagamentoType, scope=DatiPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 784, 6)))
 
 def _BuildAutomaton_30 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6149,11 +6149,11 @@ def _BuildAutomaton_30 ():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CondizioniPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 783, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CondizioniPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 783, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DettaglioPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 784, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DettaglioPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 784, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -6170,47 +6170,47 @@ DatiPagamentoType._Automaton = _BuildAutomaton_30()
 
 
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Beneficiario'), String200LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 810, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Beneficiario'), String200LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 810, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ModalitaPagamento'), ModalitaPagamentoType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 811, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ModalitaPagamento'), ModalitaPagamentoType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 811, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 812, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 812, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento'), GiorniTerminePagamentoType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 813, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento'), GiorniTerminePagamentoType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 813, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataScadenzaPagamento'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 814, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataScadenzaPagamento'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 814, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoPagamento'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 815, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImportoPagamento'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 815, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodUfficioPostale'), String20Type, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 816, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodUfficioPostale'), String20Type, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 816, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante'), String60LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 817, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante'), String60LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 817, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NomeQuietanzante'), String60LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 818, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NomeQuietanzante'), String60LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 818, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CFQuietanzante'), CodiceFiscalePFType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 819, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CFQuietanzante'), CodiceFiscalePFType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 819, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante'), TitoloType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 820, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante'), TitoloType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 820, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario'), String80LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 821, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario'), String80LatinType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 821, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IBAN'), IBANType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 822, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IBAN'), IBANType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 822, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ABI'), ABIType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 823, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ABI'), ABIType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 823, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CAB'), CABType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 824, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CAB'), CABType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 824, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'BIC'), BICType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 825, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'BIC'), BICType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 825, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 826, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 826, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 827, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 827, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 828, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati'), Amount2DecimalType, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 828, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataDecorrenzaPenale'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 829, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataDecorrenzaPenale'), pyxb.binding.datatypes.date, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 829, 6)))
 
-DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodicePagamento'), String60Type, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 830, 6)))
+DettaglioPagamentoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodicePagamento'), String60Type, scope=DettaglioPagamentoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 830, 6)))
 
 def _BuildAutomaton_31 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6219,142 +6219,142 @@ def _BuildAutomaton_31 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 810, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 810, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 812, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 812, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 813, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 813, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 814, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 814, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 816, 6))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 816, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 817, 6))
+    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 817, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 818, 6))
+    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 818, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 819, 6))
+    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 819, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 820, 6))
+    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 820, 6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 821, 6))
+    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 821, 6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 822, 6))
+    cc_10 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 822, 6))
     counters.add(cc_10)
-    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 823, 6))
+    cc_11 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 823, 6))
     counters.add(cc_11)
-    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 824, 6))
+    cc_12 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 824, 6))
     counters.add(cc_12)
-    cc_13 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 825, 6))
+    cc_13 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 825, 6))
     counters.add(cc_13)
-    cc_14 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 826, 6))
+    cc_14 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 826, 6))
     counters.add(cc_14)
-    cc_15 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 827, 6))
+    cc_15 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 827, 6))
     counters.add(cc_15)
-    cc_16 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 828, 6))
+    cc_16 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 828, 6))
     counters.add(cc_16)
-    cc_17 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 829, 6))
+    cc_17 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 829, 6))
     counters.add(cc_17)
-    cc_18 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 830, 6))
+    cc_18 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 830, 6))
     counters.add(cc_18)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Beneficiario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 810, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Beneficiario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 810, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ModalitaPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 811, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ModalitaPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 811, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 812, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataRiferimentoTerminiPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 812, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 813, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'GiorniTerminiPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 813, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataScadenzaPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 814, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataScadenzaPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 814, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 815, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImportoPagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 815, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodUfficioPostale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 816, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodUfficioPostale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 816, 6))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_5, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 817, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CognomeQuietanzante')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 817, 6))
     st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_6, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'NomeQuietanzante')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 818, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'NomeQuietanzante')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 818, 6))
     st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CFQuietanzante')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 819, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CFQuietanzante')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 819, 6))
     st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 820, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'TitoloQuietanzante')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 820, 6))
     st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 821, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'IstitutoFinanziario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 821, 6))
     st_11 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'IBAN')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 822, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'IBAN')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 822, 6))
     st_12 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_11, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ABI')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 823, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ABI')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 823, 6))
     st_13 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_13)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_12, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CAB')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 824, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CAB')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 824, 6))
     st_14 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_14)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_13, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'BIC')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 825, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'BIC')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 825, 6))
     st_15 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_15)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_14, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 826, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ScontoPagamentoAnticipato')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 826, 6))
     st_16 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_16)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_15, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 827, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataLimitePagamentoAnticipato')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 827, 6))
     st_17 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_17)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_16, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 828, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'PenalitaPagamentiRitardati')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 828, 6))
     st_18 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_18)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_17, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataDecorrenzaPenale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 829, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataDecorrenzaPenale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 829, 6))
     st_19 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_19)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_18, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodicePagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 830, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioPagamentoType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodicePagamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 830, 6))
     st_20 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_20)
     transitions = []
@@ -6705,7 +6705,7 @@ DettaglioPagamentoType._Automaton = _BuildAutomaton_31()
 
 
 
-TerzoIntermediarioSoggettoEmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiTerzoIntermediarioType, scope=TerzoIntermediarioSoggettoEmittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 968, 6)))
+TerzoIntermediarioSoggettoEmittenteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici'), DatiAnagraficiTerzoIntermediarioType, scope=TerzoIntermediarioSoggettoEmittenteType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 968, 6)))
 
 def _BuildAutomaton_32 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6716,7 +6716,7 @@ def _BuildAutomaton_32 ():
     counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TerzoIntermediarioSoggettoEmittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 968, 6))
+    symbol = pyxb.binding.content.ElementUse(TerzoIntermediarioSoggettoEmittenteType._UseForTag(pyxb.namespace.ExpandedName(None, 'DatiAnagrafici')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 968, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
@@ -6727,11 +6727,11 @@ TerzoIntermediarioSoggettoEmittenteType._Automaton = _BuildAutomaton_32()
 
 
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 973, 6)))
+DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA'), IdFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 973, 6)))
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 974, 6)))
+DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceFiscale'), CodiceFiscaleType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 974, 6)))
 
-DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 975, 6)))
+DatiAnagraficiTerzoIntermediarioType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Anagrafica'), AnagraficaType, scope=DatiAnagraficiTerzoIntermediarioType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 975, 6)))
 
 def _BuildAutomaton_33 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6740,21 +6740,21 @@ def _BuildAutomaton_33 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 973, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 973, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 974, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 974, 6))
     counters.add(cc_1)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 973, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'IdFiscaleIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 973, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 974, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceFiscale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 974, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 975, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiAnagraficiTerzoIntermediarioType._UseForTag(pyxb.namespace.ExpandedName(None, 'Anagrafica')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 975, 6))
     st_2 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []
@@ -6779,15 +6779,15 @@ DatiAnagraficiTerzoIntermediarioType._Automaton = _BuildAutomaton_33()
 
 
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NomeAttachment'), String60LatinType, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 983, 6)))
+AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NomeAttachment'), String60LatinType, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 983, 6)))
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AlgoritmoCompressione'), String10Type, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 984, 6)))
+AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AlgoritmoCompressione'), String10Type, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 984, 6)))
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FormatoAttachment'), String10Type, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 985, 6)))
+AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FormatoAttachment'), String10Type, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 985, 6)))
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DescrizioneAttachment'), String100LatinType, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 986, 6)))
+AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DescrizioneAttachment'), String100LatinType, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 986, 6)))
 
-AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Attachment'), pyxb.binding.datatypes.base64Binary, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 987, 6)))
+AllegatiType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Attachment'), pyxb.binding.datatypes.base64Binary, scope=AllegatiType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 987, 6)))
 
 def _BuildAutomaton_34 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6796,31 +6796,31 @@ def _BuildAutomaton_34 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 984, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 984, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 985, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 985, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 986, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 986, 6))
     counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'NomeAttachment')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 983, 6))
+    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'NomeAttachment')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 983, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'AlgoritmoCompressione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 984, 6))
+    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'AlgoritmoCompressione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 984, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'FormatoAttachment')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 985, 6))
+    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'FormatoAttachment')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 985, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'DescrizioneAttachment')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 986, 6))
+    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'DescrizioneAttachment')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 986, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Attachment')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 987, 6))
+    symbol = pyxb.binding.content.ElementUse(AllegatiType._UseForTag(pyxb.namespace.ExpandedName(None, 'Attachment')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 987, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     transitions = []
@@ -6865,37 +6865,37 @@ AllegatiType._Automaton = _BuildAutomaton_34()
 
 
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroLinea'), NumeroLineaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 992, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'NumeroLinea'), NumeroLineaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 992, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione'), TipoCessionePrestazioneType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 993, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione'), TipoCessionePrestazioneType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 993, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceArticolo'), CodiceArticoloType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 994, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceArticolo'), CodiceArticoloType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 994, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Descrizione'), String1000LatinType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 995, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Descrizione'), String1000LatinType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 995, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Quantita'), QuantitaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 996, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Quantita'), QuantitaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 996, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'UnitaMisura'), String10Type, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 997, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'UnitaMisura'), String10Type, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 997, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataInizioPeriodo'), pyxb.binding.datatypes.date, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 998, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataInizioPeriodo'), pyxb.binding.datatypes.date, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 998, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataFinePeriodo'), pyxb.binding.datatypes.date, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 999, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'DataFinePeriodo'), pyxb.binding.datatypes.date, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 999, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PrezzoUnitario'), Amount8DecimalType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1000, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PrezzoUnitario'), Amount8DecimalType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1000, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), ScontoMaggiorazioneType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1001, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione'), ScontoMaggiorazioneType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1001, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PrezzoTotale'), Amount8DecimalType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1002, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'PrezzoTotale'), Amount8DecimalType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1002, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), RateType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1003, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), RateType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1003, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ritenuta'), RitenutaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1004, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Ritenuta'), RitenutaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1004, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'), NaturaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1005, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'), NaturaType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1005, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1006, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione'), String20Type, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1006, 6)))
 
-DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AltriDatiGestionali'), AltriDatiGestionaliType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1007, 6)))
+DettaglioLineeType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AltriDatiGestionali'), AltriDatiGestionaliType, scope=DettaglioLineeType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1007, 6)))
 
 def _BuildAutomaton_35 ():
     # Remove this helper function from the namespace after it is invoked
@@ -6904,95 +6904,95 @@ def _BuildAutomaton_35 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 993, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 993, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 994, 6))
+    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 994, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 996, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 996, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 997, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 997, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 998, 6))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 998, 6))
     counters.add(cc_4)
-    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 999, 6))
+    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 999, 6))
     counters.add(cc_5)
-    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1001, 6))
+    cc_6 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1001, 6))
     counters.add(cc_6)
-    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1004, 6))
+    cc_7 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1004, 6))
     counters.add(cc_7)
-    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1005, 6))
+    cc_8 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1005, 6))
     counters.add(cc_8)
-    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1006, 6))
+    cc_9 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1006, 6))
     counters.add(cc_9)
-    cc_10 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1007, 6))
+    cc_10 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1007, 6))
     counters.add(cc_10)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroLinea')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 992, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'NumeroLinea')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 992, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 993, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoCessionePrestazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 993, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceArticolo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 994, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceArticolo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 994, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Descrizione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 995, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Descrizione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 995, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Quantita')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 996, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Quantita')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 996, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'UnitaMisura')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 997, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'UnitaMisura')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 997, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataInizioPeriodo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 998, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataInizioPeriodo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 998, 6))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataFinePeriodo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 999, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'DataFinePeriodo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 999, 6))
     st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'PrezzoUnitario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1000, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'PrezzoUnitario')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1000, 6))
     st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_8)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1001, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'ScontoMaggiorazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1001, 6))
     st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'PrezzoTotale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1002, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'PrezzoTotale')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1002, 6))
     st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1003, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1003, 6))
     st_11 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_11)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_7, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Ritenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1004, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Ritenuta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1004, 6))
     st_12 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_12)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_8, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1005, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1005, 6))
     st_13 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_13)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_9, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1006, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoAmministrazione')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1006, 6))
     st_14 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_14)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_10, False))
-    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'AltriDatiGestionali')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1007, 6))
+    symbol = pyxb.binding.content.ElementUse(DettaglioLineeType._UseForTag(pyxb.namespace.ExpandedName(None, 'AltriDatiGestionali')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1007, 6))
     st_15 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_15)
     transitions = []
@@ -7125,9 +7125,9 @@ DettaglioLineeType._Automaton = _BuildAutomaton_35()
 
 
 
-CodiceArticoloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceTipo'), String35Type, scope=CodiceArticoloType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1012, 6)))
+CodiceArticoloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceTipo'), String35Type, scope=CodiceArticoloType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1012, 6)))
 
-CodiceArticoloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceValore'), String35LatinExtType, scope=CodiceArticoloType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1013, 6)))
+CodiceArticoloType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'CodiceValore'), String35LatinExtType, scope=CodiceArticoloType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1013, 6)))
 
 def _BuildAutomaton_36 ():
     # Remove this helper function from the namespace after it is invoked
@@ -7138,11 +7138,11 @@ def _BuildAutomaton_36 ():
     counters = set()
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(CodiceArticoloType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceTipo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1012, 6))
+    symbol = pyxb.binding.content.ElementUse(CodiceArticoloType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceTipo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1012, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CodiceArticoloType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceValore')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1013, 6))
+    symbol = pyxb.binding.content.ElementUse(CodiceArticoloType._UseForTag(pyxb.namespace.ExpandedName(None, 'CodiceValore')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1013, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
@@ -7157,13 +7157,13 @@ CodiceArticoloType._Automaton = _BuildAutomaton_36()
 
 
 
-AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoDato'), String10Type, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1018, 6)))
+AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'TipoDato'), String10Type, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1018, 6)))
 
-AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoTesto'), String60LatinType, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1019, 6)))
+AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoTesto'), String60LatinType, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1019, 6)))
 
-AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumero'), Amount8DecimalType, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1020, 6)))
+AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNumero'), Amount8DecimalType, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1020, 6)))
 
-AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoData'), pyxb.binding.datatypes.date, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1021, 6)))
+AltriDatiGestionaliType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoData'), pyxb.binding.datatypes.date, scope=AltriDatiGestionaliType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1021, 6)))
 
 def _BuildAutomaton_37 ():
     # Remove this helper function from the namespace after it is invoked
@@ -7172,30 +7172,30 @@ def _BuildAutomaton_37 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1019, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1019, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1020, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1020, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1021, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1021, 6))
     counters.add(cc_2)
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoDato')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1018, 6))
+    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(None, 'TipoDato')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1018, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoTesto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1019, 6))
+    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoTesto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1019, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoNumero')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1020, 6))
+    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoNumero')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1020, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoData')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1021, 6))
+    symbol = pyxb.binding.content.ElementUse(AltriDatiGestionaliType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoData')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1021, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     transitions = []
@@ -7230,21 +7230,21 @@ AltriDatiGestionaliType._Automaton = _BuildAutomaton_37()
 
 
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), RateType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1036, 6)))
+DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'AliquotaIVA'), RateType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1036, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'), NaturaType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1037, 6)))
+DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Natura'), NaturaType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1037, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SpeseAccessorie'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1038, 6)))
+DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'SpeseAccessorie'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1038, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), Amount8DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1039, 6)))
+DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Arrotondamento'), Amount8DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1039, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImponibileImporto'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1040, 6)))
+DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'ImponibileImporto'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1040, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Imposta'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1041, 6)))
+DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'Imposta'), Amount2DecimalType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1041, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA'), EsigibilitaIVAType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1042, 6)))
+DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA'), EsigibilitaIVAType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1042, 6)))
 
-DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNormativo'), String100LatinType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1043, 6)))
+DatiRiepilogoType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'RiferimentoNormativo'), String100LatinType, scope=DatiRiepilogoType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1043, 6)))
 
 def _BuildAutomaton_38 ():
     # Remove this helper function from the namespace after it is invoked
@@ -7253,49 +7253,49 @@ def _BuildAutomaton_38 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1037, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1037, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1038, 6))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1038, 6))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1039, 6))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1039, 6))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1042, 6))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1042, 6))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1043, 6))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1043, 6))
     counters.add(cc_4)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1036, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'AliquotaIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1036, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1037, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Natura')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1037, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'SpeseAccessorie')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1038, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'SpeseAccessorie')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1038, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Arrotondamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1039, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Arrotondamento')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1039, 6))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImponibileImporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1040, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'ImponibileImporto')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1040, 6))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Imposta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1041, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'Imposta')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1041, 6))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1042, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'EsigibilitaIVA')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1042, 6))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoNormativo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1043, 6))
+    symbol = pyxb.binding.content.ElementUse(DatiRiepilogoType._UseForTag(pyxb.namespace.ExpandedName(None, 'RiferimentoNormativo')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 1043, 6))
     st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_7)
     transitions = []
@@ -7358,9 +7358,9 @@ DatiRiepilogoType._Automaton = _BuildAutomaton_38()
 
 
 
-FatturaElettronicaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader'), FatturaElettronicaHeaderType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 18, 6)))
+FatturaElettronicaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader'), FatturaElettronicaHeaderType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 18, 6)))
 
-FatturaElettronicaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody'), FatturaElettronicaBodyType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 19, 6)))
+FatturaElettronicaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody'), FatturaElettronicaBodyType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 19, 6)))
 
 FatturaElettronicaType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=FatturaElettronicaType, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0)))
 
@@ -7371,20 +7371,20 @@ def _BuildAutomaton_39 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 20, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 20, 6))
     counters.add(cc_0)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 18, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaHeader')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 18, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 19, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(None, 'FatturaElettronicaBody')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 19, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_fatturapa/bindings/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 20, 6))
+    symbol = pyxb.binding.content.ElementUse(FatturaElettronicaType._UseForTag(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature')), pyxb.utils.utility.Location('/home/simone/work/odoo12/l10n-italy/l10n_it_account/tools/xsd/Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd', 20, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     transitions = []

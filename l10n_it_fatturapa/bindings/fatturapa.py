@@ -14,7 +14,7 @@ from .binding import *  # noqa: F403
 
 XSD_SCHEMA = 'Schema_del_file_xml_FatturaPA_versione_1.2.2.xsd'
 
-_xsd_schema = get_module_resource('l10n_it_fatturapa', 'bindings', 'xsd',
+_xsd_schema = get_module_resource('l10n_it_account', 'tools', 'xsd',
                                   XSD_SCHEMA)
 _root = etree.parse(_xsd_schema)
 
