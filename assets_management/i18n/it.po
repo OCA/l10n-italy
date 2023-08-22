@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2023-08-10 12:10+0000\n"
+"PO-Revision-Date: 2023-10-11 10:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -216,7 +216,7 @@ msgstr "<span>Anno</span>"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__access_warning
 msgid "Access warning"
-msgstr "Avviso di accesso"
+msgstr "Avviso accesso"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_account_account
@@ -745,6 +745,19 @@ msgstr ""
 "dei cespiti sia per i tipi che per i modi di ammortamento."
 
 #. module: assets_management
+#: model:ir.model.fields,help:assets_management.field_wizard_asset_journal_report__show_sold_assets
+#: model:ir.model.fields,help:assets_management.field_wizard_asset_previsional_report__show_sold_assets
+msgid ""
+"By default, only unsold or assets sold in the selected year are printed.\n"
+"By selecting this flag, the report will show all assets, ignoring the sold "
+"check."
+msgstr ""
+"Solo i cespiti non venduti o quelli venduti nell'anno selezionato sono "
+"stampati in modo predefinito.\n"
+"Selezionando questa opzione, il resoconto stamperà tutti i cespiti, "
+"ignorando il controllo venduto."
+
+#. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_generate_depreciation_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_journal_report_form_view
@@ -911,12 +924,12 @@ msgstr ""
 #: code:addons/assets_management/models/asset_depreciation.py:0
 #, python-format
 msgid ""
-"Cannot update the following assets which contain posted depreciation for the "
+"Cannot update the following assets which contain draft depreciation for the "
 "chosen date and types:\n"
 "{}"
 msgstr ""
-"Non è possibile aggiornare i seguenti cespiti che contengono ammortamenti "
-"contabilizzati per le date e i tipi scelti:\n"
+"Impossibile aggiornare i seguenti cespiti, contengono ammortamenti in bozza "
+"per data e tipologie scelte:\n"
 "{}"
 
 #. module: assets_management
@@ -1198,12 +1211,12 @@ msgstr "Nota di Credito Cliente"
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__move_type__out_invoice
 msgid "Customer Invoice"
-msgstr "Fattura Cliente"
+msgstr "Fattura cliente"
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__access_url
 msgid "Customer Portal URL"
-msgstr "URL del portale clienti"
+msgstr "URL portale cliente"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__date
@@ -1423,17 +1436,40 @@ msgid "Depreciations cannot start before {}."
 msgstr "Gli ammortamenti non possono iniziare prima di {}."
 
 #. module: assets_management
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:0
+#, python-format
+msgid "Direct dismiss"
+msgstr "Dismissione diretta"
+
+#. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__management_type__dismiss
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 msgid "Dismiss Asset"
-msgstr "Dismetti Cespite"
+msgstr "Dismetti cespite"
+
+#. module: assets_management
+#: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__dismiss_asset_without_sale
+msgid "Dismiss Asset Without Sale"
+msgstr "Dismetti cespite senza vendita"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 msgid "Dismiss Asset and Show"
-msgstr "Dismetti Cespite e Mostra"
+msgstr "Dismetti cespite e visualizza"
 
 #. module: assets_management
+#: code:addons/assets_management/wizard/account_move_manage_asset.py:0
+#, python-format
+msgid "Dismiss Asset without Sale"
+msgstr "Dismetti cespite senza vendita"
+
+#. module: assets_management
+#: model:ir.actions.act_window,name:assets_management.action_wizard_asset_move_manage_asset
+msgid "Dismiss Assets"
+msgstr "Dismetti cespiti"
+
+#. module: assets_management
+#: model:ir.model.fields,field_description:assets_management.field_asset_asset__dismiss_date
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__dismiss_date
 msgid "Dismiss Date"
 msgstr "Data dismissione"
@@ -1442,6 +1478,17 @@ msgstr "Data dismissione"
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__dismiss_move_id
 msgid "Dismiss Move"
 msgstr "Registrazione contabile dismissione"
+
+#. module: assets_management
+#: model:ir.model.fields,field_description:assets_management.field_asset_asset__dismissed
+msgid "Dismissed"
+msgstr "Dismesso"
+
+#. module: assets_management
+#: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_title
+#: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_title
+msgid "Dismissed assets: show"
+msgstr "Cespiti dismessi: visualizza"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_account_account__display_name
@@ -2127,7 +2174,7 @@ msgstr "Riepilogo prossima attività"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_type_id
 msgid "Next Activity Type"
-msgstr "Tipologia prossima attività"
+msgstr "Tipo prossima attività"
 
 #. module: assets_management
 #: code:addons/assets_management/models/account_fiscal_year.py:0
@@ -2304,7 +2351,7 @@ msgstr "Scegliere almeno un tipo ammortamento!"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__access_url
 msgid "Portal Access URL"
-msgstr "URL di accesso al portale"
+msgstr "URL accesso portale"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
@@ -2686,6 +2733,22 @@ msgid "Show Category Totals"
 msgstr "Mostra totali categoria"
 
 #. module: assets_management
+#: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__show_dismissed_assets
+#: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional__show_dismissed_assets
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__show_dismissed_assets
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__show_dismissed_assets
+msgid "Show Dismissed Assets"
+msgstr "Visualizza cespiti dismessi"
+
+#. module: assets_management
+#: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__show_sold_assets
+#: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional__show_sold_assets
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__show_sold_assets
+#: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__show_sold_assets
+msgid "Show Sold Assets"
+msgstr "Visualizza cespiti venduti"
+
+#. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__show_totals
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional__show_totals
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__show_totals
@@ -2697,6 +2760,12 @@ msgstr "Mostra totali"
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__sold
 msgid "Sold"
 msgstr "Venduto"
+
+#. module: assets_management
+#: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_title
+#: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_title
+msgid "Sold assets: show"
+msgstr "Cespiti vendiuti: visualizza"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
@@ -3077,6 +3146,16 @@ msgstr "alla data {}"
 #, python-format
 msgid "{} - Depreciation"
 msgstr "{} - Ammortamento"
+
+#, python-format
+#~ msgid ""
+#~ "Cannot update the following assets which contain posted depreciation for "
+#~ "the chosen date and types:\n"
+#~ "{}"
+#~ msgstr ""
+#~ "Non è possibile aggiornare i seguenti cespiti che contengono ammortamenti "
+#~ "contabilizzati per le date e i tipi scelti:\n"
+#~ "{}"
 
 #, python-format
 #~ msgid ""
