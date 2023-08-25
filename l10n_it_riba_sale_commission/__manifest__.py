@@ -7,6 +7,7 @@
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Nextev Srl, Odoo Community Association (OCA)",
+    "maintainers": ["odooNextev"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
