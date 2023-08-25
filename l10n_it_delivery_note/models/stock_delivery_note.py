@@ -41,6 +41,7 @@ DOMAIN_INVOICE_STATUSES = [s[0] for s in INVOICE_STATUSES]
 class StockDeliveryNote(models.Model):
     _name = "stock.delivery.note"
     _inherit = [
+        "portal.mixin",
         "mail.thread",
         "mail.activity.mixin",
         "stock.picking.checker.mixin",
@@ -404,6 +405,12 @@ class StockDeliveryNote(models.Model):
             note.can_change_number = note.state == "draft" and can_change_number
             note.show_product_information = show_product_information
 
+    def _compute_access_url(self):
+        res = super()._compute_access_url()
+        for dn in self:
+            dn.access_url = "/my/delivery-notes/%s" % (dn.id)
+        return res
+
     @api.onchange("picking_type")
     def _onchange_picking_type(self):
         if self.picking_type:
@@ -672,6 +679,10 @@ class StockDeliveryNote(models.Model):
             "packages",
             "volume",
         ]
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return f"Delivery Note - {self.name}"
 
     def update_transport_datetime(self):
         self.transport_datetime = datetime.datetime.now()
