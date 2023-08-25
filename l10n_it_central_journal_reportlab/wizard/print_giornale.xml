@@ -10,7 +10,7 @@
                 <form string="General Journal">
                     <separator string="Dates movements"/>
                     <group>
-                        <field name="daterange"/>
+                        <field name="daterange" domain="[('company_id', '!=', False)]"/>
                         <field name="company_id"/>
                         <field name="group_by_account"/>
                         <field name="last_def_date_print" readonly="1"/>
