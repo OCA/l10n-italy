@@ -8,7 +8,9 @@
             <form string="General Journal">
                 <separator string="Dates movements" />
                 <group>
-                    <field name="daterange_id" />
+                    <!-- use only date range with company set -->
+                    <!-- because company giornale depends on date range -->
+                    <field name="daterange_id" domain="[('company_id', '!=', False)]" />
                     <field name="company_id" />
                     <field name="group_by_account" />
                     <field name="last_def_date_print" readonly="1" />
