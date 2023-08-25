@@ -23,6 +23,7 @@
         "mail",
         "sale_stock",
         "stock_account",
+        "portal",
         "product",
     ],
     "data": [
@@ -37,6 +38,8 @@
         "views/sale_order.xml",
         "views/stock_delivery_note.xml",
         "views/stock_picking.xml",
+        "views/portal_templates.xml",
+        "views/portal_my_delivery_notes.xml",
         "wizard/delivery_note_create.xml",
         "wizard/delivery_note_invoice.xml",
         "wizard/delivery_note_select.xml",
