@@ -14,5 +14,13 @@
             />
         </xpath>
     </template>
+    <template id="assets_frontend" name="assets" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/l10n_it_delivery_note/static/src/js/stock_delivery_note_portal.js"
+            />
+        </xpath>
+    </template>
 
 </odoo>
