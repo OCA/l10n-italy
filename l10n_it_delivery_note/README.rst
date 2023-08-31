@@ -118,6 +118,11 @@ La visibilità dei prezzi si trova nei permessi dell'utente.
 
 Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle righe nota.
 
+Accesso da portale
+~~~~~~~~~~~~~~~~~~
+
+Gli utenti portal hanno la possibilità di scaricare i report dei DDT di cui loro o la loro azienda padre sono impostati come destinatari o indirizzo di spedizione.
+
 
 Migrazione dei dati da *l10n_it_ddt*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -184,6 +189,7 @@ Contributors
 * `Ooops <https://www.ooops404.com>`_:
 
    * Giovanni Serra <giovanni@gslab.it>
+* Nextev Srl <odoo@nextev.it>
 
 Maintainers
 ~~~~~~~~~~~

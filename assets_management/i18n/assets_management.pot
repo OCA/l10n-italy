@@ -889,7 +889,7 @@ msgstr ""
 #: code:addons/assets_management/models/asset_depreciation.py:0
 #, python-format
 msgid ""
-"Cannot update the following assets which contain posted depreciation for the chosen date and types:\n"
+"Cannot update the following assets which contain draft depreciation for the chosen date and types:\n"
 "{}"
 msgstr ""
 
