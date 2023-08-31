@@ -112,7 +112,8 @@ class FatturaPAAttachment(models.AbstractModel):
             self.ensure_one()
             attachment = self.ir_attachment_id
         try:
-            data = base64.b64decode(attachment.datas)
+            data = base64.b64decode(attachment.raw or attachment.datas)
+
         except binascii.Error as e:
             raise UserError(_("Corrupted attachment %s.") % e.args)
 
