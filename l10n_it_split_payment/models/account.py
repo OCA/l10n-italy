@@ -72,7 +72,7 @@ class AccountMove(models.Model):
         """Recompute all account move lines by _recompute_dynamic_lines()
         and set correct receivable lines
         """
-        self._recompute_dynamic_lines()
+        self.with_context(check_move_validity=False)._recompute_dynamic_lines()
         line_client_ids = self.line_ids.filtered(
             lambda l: l.account_id.id
             == self.partner_id.property_account_receivable_id.id
@@ -159,6 +159,17 @@ class AccountMove(models.Model):
             self.set_receivable_line_ids()
             if self.amount_sp:
                 self.invoice_line_ids = [(0, 0, write_off_line_vals)]
+
+    def write(self, values):
+        if "fiscal_position_id" in values and not self.env.context.get(
+            "update_fiscal_position", False
+        ):
+            return (
+                super()
+                .with_context(check_move_validity=False, update_fiscal_position=True)
+                .write(values)
+            )
+        return super().write(values)
 
 
 class AccountMoveLine(models.Model):
