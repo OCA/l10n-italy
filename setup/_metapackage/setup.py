@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-fiscal_epos_print',
         'odoo14-addon-l10n_it_abicab',
         'odoo14-addon-l10n_it_account',
+        'odoo14-addon-l10n_it_account_balance_eu',
         'odoo14-addon-l10n_it_account_stamp',
         'odoo14-addon-l10n_it_account_tax_kind',
         'odoo14-addon-l10n_it_appointment_code',
