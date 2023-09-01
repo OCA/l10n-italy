@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-28 13:43+0000\n"
-"PO-Revision-Date: 2023-04-28 13:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,8 +29,8 @@ msgid "- REA:"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model:ir.model.fields.selection,name:l10n_it_account_balance_eu.selection__account_balance_eu_wizard__values_precision__d
-#: code:account_balance_eu_report.py:0
 #, python-format
 msgid "2 decimals Euro"
 msgstr ""
@@ -54,6 +52,12 @@ msgstr ""
 #. module: l10n_it_account_balance_eu
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.account_balance_eu_search_view
 msgid "ASSETS (Balance Sheet)"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/models/account_balance_eu.py:0
+#, python-format
+msgid "ASSETS codes must starting by PA"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
@@ -107,10 +111,11 @@ msgid "Balance"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
+#: code:addons/l10n_it_account_balance_eu/wizards/account_balance_eu_wizard.py:0
 #: model:ir.actions.report,name:l10n_it_account_balance_eu.action_report_balance_eu_xlsx
 #: model:ir.actions.report,name:l10n_it_account_balance_eu.action_report_balance_eu_xml
 #: model:ir.ui.menu,name:l10n_it_account_balance_eu.account_balance_eu_wizard_menu
-#: code:account_balance_eu_wizard.py:0
 #, python-format
 msgid "Balance EU"
 msgstr ""
@@ -162,7 +167,9 @@ msgid "City"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu__code
+#, python-format
 msgid "Code"
 msgstr ""
 
@@ -221,7 +228,9 @@ msgid "Debit (Balance EU)"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu__name
+#, python-format
 msgid "Description"
 msgstr ""
 
@@ -252,15 +261,19 @@ msgid "Export EU Balance in XLSX format"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#. openerp-web
+#: code:addons/l10n_it_account_balance_eu/static/src/xml/report.xml:0
+#: code:addons/l10n_it_account_balance_eu/static/src/xml/report.xml:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.account_balance_eu_wizard_view
-#: code:report.xml:0
 #, python-format
 msgid "Export XBRL"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#. openerp-web
+#: code:addons/l10n_it_account_balance_eu/static/src/xml/report.xml:0
+#: code:addons/l10n_it_account_balance_eu/static/src/xml/report.xml:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.account_balance_eu_wizard_view
-#: code:report.xml:0
 #, python-format
 msgid "Export XLSX"
 msgstr ""
@@ -278,8 +291,8 @@ msgid "Fiscal Code"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__hide_acc_amount_0
-#: code:account_balance_eu_report.py:0
 #, python-format
 msgid "Hide account with amount 0"
 msgstr ""
@@ -301,13 +314,19 @@ msgid "INCOME STATEMENT"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/models/account_balance_eu.py:0
+#, python-format
+msgid "INCOME STATEMENT codes must starting by E"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
 #: model:ir.model.fields.selection,name:l10n_it_account_balance_eu.selection__account_balance_eu__zone_bal__--
 msgid "Ignore"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__ignore_closing_move
-#: code:account_balance_eu_report.py:0
 #, python-format
 msgid "Ignore closing registration"
 msgstr ""
@@ -320,6 +339,12 @@ msgstr ""
 #. module: l10n_it_account_balance_eu
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.account_balance_eu_search_view
 msgid "LIABILITIES (Balance Sheet)"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/models/account_balance_eu.py:0
+#, python-format
+msgid "LIABILITIES codes must starting by PP"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
@@ -358,6 +383,14 @@ msgid "Link to Balance EU"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
+#, python-format
+msgid "NO"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__name
 msgid "Name"
 msgstr ""
@@ -388,6 +421,14 @@ msgid "Positive"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#. openerp-web
+#: code:addons/l10n_it_account_balance_eu/static/src/xml/report.xml:0
+#: code:addons/l10n_it_account_balance_eu/static/src/xml/report.xml:0
+#, python-format
+msgid "Print PDF"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__rea_num
 msgid "REA number"
 msgstr ""
@@ -400,6 +441,12 @@ msgstr ""
 #. module: l10n_it_account_balance_eu
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__rea_capital
 msgid "Share Capital"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
+#, python-format
+msgid "Share capital Euro "
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
@@ -423,8 +470,27 @@ msgid "Subtract"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/models/account_balance_eu.py:0
+#, python-format
+msgid "There are accounts not linked to any balance line:"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/models/account_balance_eu.py:0
+#, python-format
+msgid "There are accounts to ignore but with non-zero amount:"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
 #: model:ir.model.fields.selection,name:l10n_it_account_balance_eu.selection__account_balance_eu_wizard__state__unbalanced
 msgid "UNBALANCED"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/models/account_balance_eu.py:0
+#, python-format
+msgid ""
+"Unbalanced financial statements: {:s} (Assets) - {:s} (Liabilities) = {:s}"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
@@ -438,8 +504,8 @@ msgid "Unlinked account in balance EU"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__only_posted_move
-#: code:account_balance_eu_report.py:0
 #, python-format
 msgid "Use only posted registration"
 msgstr ""
@@ -455,9 +521,8 @@ msgid "VAT number nation"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__values_precision
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.balance_eu_html_report
-#: code:account_balance_eu_report.py:0
 #, python-format
 msgid "Values show as"
 msgstr ""
@@ -478,9 +543,16 @@ msgid "Wizard for balance EU calculation"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
-#: model:ir.actions.report,print_report_name:l10n_it_account_balance_eu.action_report_balance_eu_xbrl
 #: model:ir.actions.report,name:l10n_it_account_balance_eu.action_report_balance_eu_xbrl
 msgid "XBRL-financial-statements"
+msgstr ""
+
+#. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
+#, python-format
+msgid "YES"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
@@ -494,15 +566,15 @@ msgid "Zone"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model:ir.model.fields.selection,name:l10n_it_account_balance_eu.selection__account_balance_eu_wizard__values_precision__u
-#: code:account_balance_eu_report.py:0
 #, python-format
 msgid "euro units"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.balance_eu_html_report
-#: code:account_balance_eu_report.py:0
 #, python-format
 msgid "from"
 msgstr ""
@@ -513,52 +585,8 @@ msgid "or"
 msgstr ""
 
 #. module: l10n_it_account_balance_eu
+#: code:addons/l10n_it_account_balance_eu/report/account_balance_eu_report.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.balance_eu_html_report
-#: code:account_balance_eu_report.py:0
 #, python-format
 msgid "to"
 msgstr ""
-
-#. module: l10n_it_account_balance_eu
-#: code:account_balance_eu.py:0
-#, python-format
-msgid "Unbalanced financial statements: {:s} (Assets) - {:s} (Liabilities) = {:s}"
-msgstr ""
-
-#. module: l10n_it_account_balance_eu
-#: code:account_balance_eu.py:0
-#, python-format
-msgid "There are accounts not linked to any balance line:"
-msgstr ""
-
-#. module: l10n_it_account_balance_eu
-#: code:account_balance_eu.py:0
-#, python-format
-msgid "There are accounts to ignore but with non-zero amount:"
-msgstr ""
-
-#. module: l10n_it_account_balance_eu
-#: code:account_balance_eu_report.py:0
-#, python-format
-msgid "Share capital Euro "
-msgstr ""
-
-#. module: l10n_it_account_balance_eu
-#: code:account_balance_eu_report.py:0
-#, python-format
-msgid "YES"
-msgstr ""
-
-#. module: l10n_it_account_balance_eu
-#: code:account_balance_eu_report.py:0
-#, python-format
-msgid "NO"
-msgstr ""
-
-#. module: l10n_it_account_balance_eu
-#. openerp-web
-#: code:report.xml:0
-#, python-format
-msgid "Print PDF"
-msgstr ""
-
