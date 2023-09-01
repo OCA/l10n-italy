@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-08 03:45+0000\n"
-"PO-Revision-Date: 2017-12-08 03:45+0000\n"
-"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"PO-Revision-Date: 2023-09-01 08:51+0000\n"
+"Last-Translator: Matteo <matteomircoli@openforce.it>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_config_settings
@@ -190,7 +191,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_move__fatturapa_attachment_out_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_payment__fatturapa_attachment_out_id
 msgid "E-invoice Export File"
-msgstr ""
+msgstr "Exportierte E-Rechnungs-Dateien"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.ui.menu,name:l10n_it_fatturapa_out.fatturapa_attachment_menu
