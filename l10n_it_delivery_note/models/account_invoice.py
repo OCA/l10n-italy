@@ -74,12 +74,25 @@ class AccountInvoice(models.Model):
             **kwargs,
         }
 
+    def _prepare_note_dn_value(self, sequence, delivery_note_id):
+        return {
+            "sequence": sequence,
+            "display_type": "line_note",
+            "name": _("""Delivery Note "{}" of {}""").format(
+                delivery_note_id.name,
+                delivery_note_id.date.strftime(DATE_FORMAT),
+            ),
+            "note_dn": True,
+            "delivery_note_id": delivery_note_id.id,
+            "quantity": 0,
+        }
+
     def update_delivery_note_lines(self):
         context = {}
 
         for invoice in self.filtered(lambda i: i.delivery_note_ids):
             new_lines = []
-            old_lines = invoice.invoice_line_ids.filtered(lambda l: l.delivery_note_id)
+            old_lines = invoice.invoice_line_ids.filtered(lambda l: l.note_dn)
             old_lines.unlink()
 
             #
@@ -98,34 +111,54 @@ class AccountInvoice(models.Model):
             #
             context["lang"] = invoice.partner_id.lang
 
-            for line in invoice.invoice_line_ids:
-                for sale in line.sale_line_ids:
-                    delivery_note_line = (
-                        invoice.delivery_note_ids.mapped("line_ids")
-                        & sale.delivery_note_line_ids
+            if len(invoice.delivery_note_ids) == 1:
+                sequence = invoice.invoice_line_ids[0].sequence - 1
+                new_lines.append(
+                    (
+                        0,
+                        False,
+                        self._prepare_note_dn_value(
+                            sequence, invoice.delivery_note_ids[0]
+                        ),
                     )
-                    for note_line in delivery_note_line.filtered(
+                )
+            else:
+                sequence = 1
+                done_invoice_lines = self.env["account.move.line"]
+                for dn in invoice.mapped(
+                    "invoice_line_ids.sale_line_ids.delivery_note_line_ids."
+                    "delivery_note_id"
+                ).sorted(key="name"):
+                    dn_invoice_lines = invoice.invoice_line_ids.filtered(
+                        lambda x: x not in done_invoice_lines
+                        and dn
+                        in x.mapped(
+                            "sale_line_ids.delivery_note_line_ids.delivery_note_id"
+                        )
+                        # fixme test invoice from 2 sale lines
+                    )
+                    done_invoice_lines |= dn_invoice_lines
+                    for note_line in dn.line_ids.filtered(
                         lambda l: l.invoice_status == DOMAIN_INVOICE_STATUSES[2]
                     ):
-                        new_lines.append(
-                            (
-                                0,
-                                False,
-                                {
-                                    "sequence": line.sequence - 1,
-                                    "display_type": "line_note",
-                                    "name": _("""Delivery Note "{}" of {}""").format(
-                                        note_line.delivery_note_id.name,
-                                        note_line.delivery_note_id.date.strftime(
-                                            DATE_FORMAT
-                                        ),
-                                    ),
-                                    "delivery_note_id": note_line.delivery_note_id.id,
-                                    "quantity": 0,
-                                    "currency_id": line.currency_id.id,
-                                },
-                            )
+                        for invoice_line in dn_invoice_lines:
+                            if (
+                                note_line
+                                in invoice_line.sale_line_ids.delivery_note_line_ids
+                            ):
+                                invoice_line.delivery_note_id = (
+                                    note_line.delivery_note_id.id
+                                )
+                    new_lines.append(
+                        (
+                            0,
+                            False,
+                            self._prepare_note_dn_value(sequence, dn),
                         )
+                    )
+                    for invoice_line in dn_invoice_lines:
+                        sequence += 1
+                        invoice_line.sequence = sequence
 
             invoice.write({"line_ids": new_lines})
 
