@@ -28,6 +28,7 @@ class TestAccountInvoice(FatturaPACommon):
         self.env.company.fatturapa_fiscal_position_id = self.env.ref(
             "l10n_it_fatturapa.fatturapa_RF01"
         ).id
+        self.env.company.e_invoice_user_id = self.env.ref("base.user_root").id
 
     def test_action_open_export_send_sdi(self):
         """

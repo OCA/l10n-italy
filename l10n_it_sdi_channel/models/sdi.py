@@ -85,7 +85,7 @@ class SdiChannel(models.Model):
             company = self.env["res.company"].browse(company_id)
             e_invoice_user = company.e_invoice_user_id
             if e_invoice_user:
-                attachment_model = attachment_model.sudo(e_invoice_user.id)
+                attachment_model = attachment_model.with_user(e_invoice_user.id)
         existing_attachments = attachment_model.search(
             [
                 ("name", "=", file_name),
@@ -189,7 +189,7 @@ class SdiChannel(models.Model):
             company = self.env["res.company"].browse(company_id)
             e_invoice_user = company.e_invoice_user_id
             if e_invoice_user:
-                attachment_model = attachment_model.sudo(e_invoice_user.id)
+                attachment_model = attachment_model.with_user(e_invoice_user.id)
 
         attachments = attachment_model.create(all_attachments_values)
         for attachment in attachments:
