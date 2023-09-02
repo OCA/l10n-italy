@@ -107,6 +107,8 @@ class EInvoiceCommon(FatturaPACommon):
                 "user": "dummy",
                 "password": "secret",
                 "state": "done",
+                "pec_error_count": 0,
+                "lock_on_max_pec_error_count": True,
                 "e_inv_notify_partner_ids": [
                     (6, 0, [self.env.ref("base.user_admin").partner_id.id])
                 ],

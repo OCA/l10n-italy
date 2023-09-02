@@ -18,6 +18,12 @@ class Fetchmail(models.Model):
 
     last_pec_error_message = fields.Text("Last PEC Error Message", readonly=True)
     pec_error_count = fields.Integer("PEC error count", readonly=True)
+    lock_on_max_pec_error_count = fields.Boolean(
+        default=True,
+        string="Lock server on max PEC error count",
+        help="Put server in 'draft' state if max PEC error count reaches "
+        "'fetchmail.pec.max.retry' system parameter's value.",
+    )
     e_inv_notify_partner_ids = fields.Many2many(
         "res.partner",
         string="Contacts to notify",
@@ -131,7 +137,10 @@ class Fetchmail(models.Model):
                     max_retry = self.env["ir.config_parameter"].get_param(
                         "fetchmail.pec.max.retry"
                     )
-                    if server.pec_error_count > int(max_retry):
+                    if (
+                        server.pec_error_count > int(max_retry)
+                        and server.lock_on_max_pec_error_count
+                    ):
                         # Setting to draft prevents new e-invoices to
                         # be sent via PEC.
                         # Resetting server state only after N fails.

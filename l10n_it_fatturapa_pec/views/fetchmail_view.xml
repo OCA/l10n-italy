@@ -20,6 +20,9 @@
                     </group>
                 </page>
             </notebook>
+            <xpath expr="//page[@name='advanced_options']/group" position="inside">
+                <field name="lock_on_max_pec_error_count" />
+            </xpath>
             <xpath expr="//notebook/page[1]/group[1]/group[3]" position="attributes">
                 <!-- Hiding, because it would not be considered. See 'fetch_mail' override -->
                 <attribute
