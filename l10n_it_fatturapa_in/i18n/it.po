@@ -217,8 +217,8 @@ msgstr "Azienda"
 msgid ""
 "Company Name field contains '%(name)s'. Your System contains '%(partner)s'"
 msgstr ""
-"Il campo nome azienda contiene \"%(name)s\", il sistema contiene \"%(partner)"
-"s\""
+"Il campo nome azienda contiene \"%(name)s\", il sistema contiene "
+"\"%(partner)s\""
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
@@ -1011,8 +1011,8 @@ msgstr "Numero di errori"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Numero di messaggi che richiedono un'azione"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_error_counter
@@ -1314,8 +1314,8 @@ msgstr "Dati fornitore"
 msgid ""
 "Surname field contains '%(surname)s'. Your System contains '%(lastname)s'"
 msgstr ""
-"Il campo cognome contiene \"%(surname)s\". Il sistema contiene \"%(lastname)"
-"s\""
+"Il campo cognome contiene \"%(surname)s\". Il sistema contiene \"%(lastname)s"
+"\""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_in.selection__res_partner__e_invoice_detail_level__1
@@ -1615,3 +1615,6 @@ msgstr "È possibile selezionare solo un file XML da collegare."
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "on"
 msgstr "il"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Numero di messaggi che richiedono un'azione"
