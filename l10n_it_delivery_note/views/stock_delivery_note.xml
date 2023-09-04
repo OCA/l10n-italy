@@ -265,7 +265,6 @@
                                         name="price_unit"
                                         attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
                                                    'readonly': [('sale_line_id', '!=', False)]}"
-                                        sum="Total"
                                     />
                                     <field
                                         name="discount"
