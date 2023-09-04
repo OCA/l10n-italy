@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-20 09:39+0000\n"
-"PO-Revision-Date: 2023-03-20 09:39+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-09-04 11:36+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_account_balance_eu
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.balance_eu_html_report
@@ -315,7 +316,7 @@ msgstr "Nascondere conti a 0"
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_report_l10n_it_account_balance_eu_balance_eu_xbrl_report__id
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_report_l10n_it_account_balance_eu_balance_eu_xlsx_report__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_account_balance_eu
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.account_balance_eu_search_view
@@ -372,7 +373,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_log__write_uid
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento il"
+msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_account_balance_eu
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu__write_date
