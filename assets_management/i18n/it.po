@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2023-09-01 08:46+0000\n"
+"PO-Revision-Date: 2023-09-04 18:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -752,6 +752,10 @@ msgid ""
 "By selecting this flag, the report will show all assets, ignoring the sold "
 "check."
 msgstr ""
+"Solo i cespiti non venduti o quelli venduti nell'anno selezionato sono "
+"stampati in modo predefinito.\n"
+"Selezionando questa opzione, il resoconto stamperà tutti i cespiti, "
+"ignorando il controllo venduto."
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
@@ -924,6 +928,9 @@ msgid ""
 "chosen date and types:\n"
 "{}"
 msgstr ""
+"Impossibile aggiornare i seguenti cespiti, contengono ammortamenti in bozza "
+"per data e tipologie scelte:\n"
+"{}"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_gain
@@ -1209,7 +1216,7 @@ msgstr "Fattura Cliente"
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__access_url
 msgid "Customer Portal URL"
-msgstr "URL del portale clienti"
+msgstr "URL portale cliente"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__date
@@ -2310,7 +2317,7 @@ msgstr "Scegliere almeno un tipo ammortamento!"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__access_url
 msgid "Portal Access URL"
-msgstr "URL di accesso al portale"
+msgstr "URL accesso portale"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
@@ -2697,7 +2704,7 @@ msgstr "Mostra totali categoria"
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__show_sold_assets
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__show_sold_assets
 msgid "Show Sold Assets"
-msgstr ""
+msgstr "Visualizza cespiti venduti"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__show_totals
@@ -2716,7 +2723,7 @@ msgstr "Venduto"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_title
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_title
 msgid "Sold assets: show"
-msgstr ""
+msgstr "Cespiti vendiuti: visualizza"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
