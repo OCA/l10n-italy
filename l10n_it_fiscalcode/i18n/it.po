@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-29 09:52+0000\n"
-"PO-Revision-Date: 2023-06-08 09:09+0000\n"
+"PO-Revision-Date: 2023-09-04 19:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -109,7 +109,7 @@ msgstr "Nome"
 #: field:res.partner,fiscalcode:0
 #: view:wizard.compute.fc:l10n_it_fiscalcode.wizard_compute_fc_form
 msgid "Fiscal Code"
-msgstr "Codice Fiscale"
+msgstr "Codice fiscale"
 
 #. module: l10n_it_fiscalcode
 #: field:res.city.it.code,id:0 field:res.city.it.code.distinct,id:0
