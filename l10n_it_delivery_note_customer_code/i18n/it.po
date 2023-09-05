@@ -18,8 +18,8 @@ msgstr ""
 
 #. module: l10n_it_delivery_note_customer_code
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_customer_code.delivery_note_report_template_customer_code
-msgid "Customer Code"
-msgstr "Codice cliente"
+msgid "Code"
+msgstr ""
 
 #. module: l10n_it_delivery_note_customer_code
 #: model:ir.model,name:l10n_it_delivery_note_customer_code.model_stock_delivery_note_line
@@ -45,3 +45,16 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_customer_code.field_stock_delivery_note_line__product_customer_code
 msgid "Product Customer Code"
 msgstr "Codice cliente prodotto"
+
+#. module: l10n_it_delivery_note_customer_code
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_customer_code.field_stock_delivery_note_line__product_customer_name
+msgid "Product Customer Name"
+msgstr ""
+
+#. module: l10n_it_delivery_note_customer_code
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_customer_code.delivery_note_report_template_customer_code
+msgid "Product Name"
+msgstr ""
+
+#~ msgid "Customer Code"
+#~ msgstr "Codice cliente"
