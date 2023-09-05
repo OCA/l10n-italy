@@ -7,19 +7,54 @@
         >
             <xpath
                 expr="//div[hasclass('page')]/table/thead/tr/th[1]"
-                position="replace"
+                position="attributes"
             >
+                <attribute name="style">display:none</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('page')]/table/thead/tr/th[1]" position="after">
                 <th class="text-left">
-                    Customer Code
+                     Code
                 </th>
+            </xpath>
+             <xpath
+                expr="//div[hasclass('page')]/table/thead/tr/th[3]"
+                position="attributes"
+            >
+                <attribute name="style">display:none</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('page')]/table/thead/tr/th[3]" position="after">
+                <th class="text-left">
+                    Product Name
+                </th>
+            </xpath>
+             <xpath
+                expr="//div[hasclass('page')]//table/tbody/t/tr/t/td[1]/span"
+                position="attributes"
+            >
+                <attribute name="t-if">not line.product_customer_code</attribute>
+
             </xpath>
             <xpath
                 expr="//div[hasclass('page')]/table/tbody/t/tr/t/td[1]"
-                position="replace"
+                position="inside"
             >
-                <td>
-                    <span t-esc="line.product_customer_code or ''" />
-                </td>
+                <t t-if="line.product_customer_code">
+                    <span t-esc="line.product_customer_code" />
+                </t>
+            </xpath>
+            <xpath
+                expr="//div[hasclass('page')]//table/tbody/t/tr/t/td[2]/span"
+                position="attributes"
+            >
+                <attribute name="t-if">not line.product_customer_name</attribute>
+            </xpath>
+            <xpath
+                expr="//div[hasclass('page')]/table/tbody/t/tr/t/td[2]"
+                position="inside"
+            >
+                <t t-if="line.product_customer_name">
+                    <span t-esc="line.product_customer_name" />
+                </t>
             </xpath>
         </template>
     </data>
