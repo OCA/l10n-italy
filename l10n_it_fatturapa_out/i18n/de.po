@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-08 03:45+0000\n"
-"PO-Revision-Date: 2023-09-01 08:51+0000\n"
+"PO-Revision-Date: 2023-09-06 10:41+0000\n"
 "Last-Translator: Matteo <matteomircoli@openforce.it>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -246,7 +246,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_out.action_fatturapa_attachment
 msgid "Electronic Invoice Export Files"
-msgstr ""
+msgstr "Exportierte E-Rechnungs-Dateien"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_invoice_fatturapa_out_filter
