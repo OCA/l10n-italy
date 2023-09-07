@@ -1,15 +1,12 @@
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import base64
-import io
 import logging
 import re
-import zipfile
 
 from lxml import etree
 
-from odoo import api, api, fields, models
+from odoo import api, fields, models
 from odoo.fields import first
 
 FATTURAPA_IN_REGEX = (
