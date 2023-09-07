@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -76,13 +76,6 @@ msgid "Delivered"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_ir_mail_server__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_mail_thread__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__display_name
 msgid "Display Name"
 msgstr ""
@@ -115,6 +108,7 @@ msgid "ES channel type"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
 #, python-format
 msgid "Email %s is not valid"
@@ -133,25 +127,20 @@ msgid "Exchange System Email Address"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:0
 #, python-format
 msgid "Fetchmail PEC server [%s] error"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
 #, python-format
 msgid "File content and file name are mandatory"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_ir_mail_server__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_mail_thread__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__id
 msgid "ID"
 msgstr ""
@@ -167,13 +156,6 @@ msgid "Incoming PEC server"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_ir_mail_server____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_mail_thread____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -210,6 +192,7 @@ msgid "Mail Server"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
@@ -237,14 +220,16 @@ msgid "PEC error count"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:0
 #, python-format
 msgid ""
-"PEC message \"%s\" has been read but not processed, as not related to an e-invoice.\n"
-"Please check PEC mailbox %s, at server %s, with user %s."
+"PEC message \"%(subject)s\" has been read but not processed, as not related to an e-invoice.\n"
+"Please check PEC mailbox %(fetchmail_name)s, at server %(fetchmail_server)s, with user %(fetchmail_user)s."
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
 #, python-format
 msgid ""
@@ -253,9 +238,12 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:0
 #, python-format
-msgid "PEC server %s has been reset. Last error message is '%s'"
+msgid ""
+"PEC server %(name)s has been reset. Last error message is "
+"'%(error_message)s'"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -264,6 +252,7 @@ msgid "Reset to ready"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
 #, python-format
 msgid ""
@@ -322,10 +311,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
 #: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
 #, python-format
-msgid "The channel %s with pec server %s already exists"
+msgid "The channel %(name)s with pec server %(server_name)s already exists"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
@@ -339,6 +329,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
 #, python-format
 msgid "This is a first sending but SDI address is different from %s"
@@ -361,6 +352,7 @@ msgid "Wizard to send multiple e-invoice PEC"
 msgstr ""
 
 #. module: l10n_it_fatturapa_pec
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
 #, python-format
 msgid "You can only send files in 'Ready to Send' state."
