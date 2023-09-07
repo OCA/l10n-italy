@@ -22,7 +22,10 @@ class AccountMoveLine(models.Model):
     def _compute_rc_flag(self):
         for line in self:
             move = line.move_id
-            is_invoice_line = line in move.invoice_line_ids
+            # see invoice_line_ids field definition
+            is_invoice_line = line.display_type in (
+                'product', 'line_section', 'line_note'
+            )
             is_rc = (
                 move.is_purchase_document()
                 and move.fiscal_position_id.rc_type_id
@@ -31,7 +34,7 @@ class AccountMoveLine(models.Model):
             line.rc = is_rc
 
     rc = fields.Boolean(
-        "RC", compute="_compute_rc_flag", store=True, readonly=False, default=False
+        "RC", compute="_compute_rc_flag", store=True, readonly=False
     )
 
 
