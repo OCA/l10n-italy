@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-26 16:44+0000\n"
+"PO-Revision-Date: 2023-09-08 10:38+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_central_journal_reportlab
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
@@ -289,7 +289,7 @@ msgstr "Pronto per la stampa"
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__report_giornale
 msgid "Report Giornale"
-msgstr ""
+msgstr "Report giornale"
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__report_giornale_name
@@ -315,7 +315,7 @@ msgstr "Stato"
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__target_move
 msgid "Target Move"
-msgstr ""
+msgstr "Movimento destinazione"
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__date_move_line_to
@@ -330,7 +330,7 @@ msgstr "Valore stampato nel piè di pagina vicino al numero pagina"
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model,name:l10n_it_central_journal_reportlab.model_wizard_giornale_reportlab
 msgid "Wizard journal report with reportlab"
-msgstr ""
+msgstr "Procedura guidata resoconto registro con ReportLab"
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__year_footer
