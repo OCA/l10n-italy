@@ -6,7 +6,7 @@ from odoo.exceptions import UserError
 
 
 class FatturaPAAttachment(models.Model):
-    _inherit = "fatturapa.attachment"
+    _inherit = "ir.attachment"
     _name = "fatturapa.attachment.out"
     _description = "Electronic Invoice"
 

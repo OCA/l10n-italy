@@ -6,7 +6,7 @@ from io import BytesIO
 
 import lxml.etree as ET
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.modules import get_resource_path
 from odoo.tools.translate import _
@@ -77,6 +77,7 @@ class Attachment(models.Model):
         info = cms.ContentInfo.load(data)
         return info["content"]["encap_content_info"]["content"].native
 
+    @api.model
     def cleanup_xml(self, xml_string):
         xml_string = self.remove_xades_sign(xml_string)
         xml_string = self.strip_xml_content(xml_string)
@@ -114,6 +115,7 @@ class Attachment(models.Model):
         except AttributeError as e:
             raise UserError(_("Invalid xml %s.") % e.args) from e
 
+    @api.model
     def get_fattura_elettronica_preview(self):
         xsl_path = get_resource_path(
             "l10n_it_fatturapa",
