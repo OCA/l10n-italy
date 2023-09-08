@@ -24,7 +24,9 @@ class AccountMoveLine(models.Model):
             move = line.move_id
             # see invoice_line_ids field definition
             is_invoice_line = line.display_type in (
-                'product', 'line_section', 'line_note'
+                "product",
+                "line_section",
+                "line_note",
             )
             is_rc = (
                 move.is_purchase_document()
@@ -33,9 +35,7 @@ class AccountMoveLine(models.Model):
             )
             line.rc = is_rc
 
-    rc = fields.Boolean(
-        "RC", compute="_compute_rc_flag", store=True, readonly=False
-    )
+    rc = fields.Boolean("RC", compute="_compute_rc_flag", store=True, readonly=False)
 
 
 class AccountMove(models.Model):
