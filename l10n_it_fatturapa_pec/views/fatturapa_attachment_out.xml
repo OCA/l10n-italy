@@ -17,7 +17,6 @@
                 >
                     <field name="last_sdi_response" nolabel="1" />
                 </group>
-            </page>
             <div name="creation_div" position="after">
                 <label
                     for="sending_user"
@@ -43,6 +42,7 @@
                     <field name="delivered_date" readonly="1" class="oe_inline" />
                 </div>
             </div>
+            </xpath>
         </field>
     </record>
 
