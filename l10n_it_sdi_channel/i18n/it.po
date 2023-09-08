@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 15:51+0000\n"
-"PO-Revision-Date: 2018-10-09 15:51+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-09-08 11:36+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model,name:l10n_it_sdi_channel.model_res_company
@@ -52,7 +53,7 @@ msgstr ""
 #: field:res.company,email_exchange_system:0
 #: field:sdi.channel,email_exchange_system:0
 msgid "Exchange System Email Address"
-msgstr "Exchange System Email Address"
+msgstr "Indirizzo e-mail SdI"
 
 #. module: l10n_it_sdi_channel
 #: field:fetchmail.server,is_fatturapa_pec:0
