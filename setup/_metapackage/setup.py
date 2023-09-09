@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo-addon-l10n_it_payment_reason>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_pec>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_rea>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_reverse_charge>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_sdi_channel>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_vat_payability>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_website_portal_ipa>=16.0dev,<16.1dev',
