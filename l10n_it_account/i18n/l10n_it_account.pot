@@ -17,7 +17,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid ""
 "<br/>\n"
-"                    <span class=\"text-right\">TIN: </span>"
+"                    <span class=\"text-end\">TIN: </span>"
 msgstr ""
 
 #. module: l10n_it_account

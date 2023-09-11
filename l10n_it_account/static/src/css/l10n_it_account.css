@@ -1,5 +1,5 @@
 table {
-    border: 0px;
+    border: 0px solid transparent !important;
 }
 thead {
     background: #f5f5f5;
