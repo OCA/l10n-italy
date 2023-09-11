@@ -58,8 +58,8 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax.registry,layout_type:0
-#: selection:wizard.registro.iva,layout_type:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__customer
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__customer
 msgid "Customer Invoices"
 msgstr "Izdani računi"
 
@@ -81,7 +81,6 @@ msgstr "Opis"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__display_name
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__display_name
 msgid "Display Name"
 msgstr "Prikazani naziv"
@@ -103,7 +102,6 @@ msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__id
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva__id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__id
 msgid "ID"
 msgstr "ID"
@@ -138,7 +136,6 @@ msgstr "Dnevniki"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry____last_update
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva____last_update
 msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
@@ -173,7 +170,8 @@ msgid "Message"
 msgstr "Sporočilo"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/models/vat_registry.py:77
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:0
 #, python-format
 msgid "Move line %s has too many base taxes"
 msgstr ""
@@ -184,7 +182,8 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: l10n_it_vat_registries
-#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:64
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:0
 #, python-format
 msgid ""
 "No journals found in the current selection.\n"
@@ -239,14 +238,14 @@ msgid "Select journals you want retrieve documents from"
 msgstr "Izberi dnevnike iz katerih želite pridobiti dokumente"
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax.registry,layout_type:0
-#: selection:wizard.registro.iva,layout_type:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__corrispettivi
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__corrispettivi
 msgid "Sums due"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: selection:account.tax.registry,layout_type:0
-#: selection:wizard.registro.iva,layout_type:0
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__supplier
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__supplier
 msgid "Supplier Invoices"
 msgstr "Prejeti računi"
 
@@ -322,7 +321,6 @@ msgid "VAT registries"
 msgstr "DDV registri"
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_bank_statement_import_journal_creation__tax_registry_id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__tax_registry_id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__tax_registry_id
 msgid "VAT registry"
@@ -339,7 +337,6 @@ msgid "Year for Footer"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_bank_statement_import_journal_creation__tax_registry_id
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal__tax_registry_id
 msgid ""
 "You can group several journals within 1 registry. In printing wizard, you "

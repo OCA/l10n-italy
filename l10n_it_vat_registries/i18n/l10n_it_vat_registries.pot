@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -72,10 +72,7 @@ msgid "Description"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__display_name
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__display_name
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__display_name
 msgid "Display Name"
 msgstr ""
@@ -96,10 +93,7 @@ msgid "General Total EUR"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__id
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__id
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva__id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__id
 msgid "ID"
 msgstr ""
@@ -133,10 +127,7 @@ msgid "Journals"
 msgstr ""
 
 #. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal____last_update
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry____last_update
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -171,6 +162,7 @@ msgid "Message"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
 #: code:addons/l10n_it_vat_registries/models/vat_registry.py:0
 #, python-format
 msgid "Move line %s has too many base taxes"
@@ -182,6 +174,7 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:0
 #, python-format
 msgid ""
