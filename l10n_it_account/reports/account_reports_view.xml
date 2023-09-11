@@ -61,15 +61,12 @@
                         t-esc="company.city"
                         class=""
                     /> - <span t-esc="company.state_id.code" class="" /><br />
-                    <span class="text-right">TIN: </span><span
+                    <span class="text-end">TIN: </span><span
                         t-esc="company.partner_id.vat"
                         class=""
                     /><br />
                 </div>
-                <div
-                    class="col-xs-4 col-xs-offset-4 text-right"
-                    style="margin-left:10px"
-                >
+                <div class="col-xs-4 col-xs-offset-4 text-end" style="margin-left:10px">
                     <h3 t-esc="title" />
                 </div>
             </div>
