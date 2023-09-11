@@ -6,7 +6,7 @@ from odoo import fields, models
 class AccountTaxRegistry(models.Model):
     _name = "account.tax.registry"
     _description = "Tax registry"
-    name = fields.Char("Name", required=True)
+    name = fields.Char(required=True)
     company_id = fields.Many2one(
         "res.company",
         "Company",
