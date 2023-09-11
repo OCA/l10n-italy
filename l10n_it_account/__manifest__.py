@@ -31,7 +31,7 @@
         "views/account_view.xml",
     ],
     "assets": {
-        "web.minimal_layout": [
+        "web.report_assets_common": [
             "l10n_it_account/static/src/css/*.css",
         ]
     },
