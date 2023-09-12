@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_vat_statement_communication_company_form" model="ir.ui.view">
+        <field name="name">view_vat_statement_communication_company_form</field>
+        <field name="model">res.company</field>
+        <field
+            name="inherit_id"
+            ref="account_vat_period_end_statement.view_vat_period_end_statement_company_form"
+        />
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//field[@name='of_account_end_vat_statement_interest_account_id']"
+                position="after"
+            >
+                <field name="vsc_supply_code" placeholder="IVP18" />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
