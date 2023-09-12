@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -161,6 +161,7 @@ msgid "Communication prepared by taxpayer"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "Communication with identifier {} already exists"
@@ -227,6 +228,7 @@ msgid "Declarant Fiscalcode"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid ""
@@ -260,11 +262,9 @@ msgid "Delegate sign"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__display_name
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -345,16 +345,12 @@ msgid "Followers"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "For group's statement, controller's TIN must be empty"
@@ -376,17 +372,21 @@ msgid "Group's statement"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "Group's statement not valid, as fiscal code is 16 characters"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__id
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file__id
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__id
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company__id
 msgid "ID"
 msgstr ""
 
@@ -403,7 +403,6 @@ msgstr ""
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction
-#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -419,11 +418,9 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_account_tax____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_export_file____last_update
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp____last_update
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_res_company____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -477,6 +474,7 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:0
 #, python-format
 msgid "No communication selected"
@@ -494,17 +492,12 @@ msgstr ""
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,help:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
@@ -573,6 +566,7 @@ msgid "Signature"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "Specify role code of declarant"
@@ -619,6 +613,7 @@ msgid "Taxpayer Fiscalcode"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid ""
@@ -639,16 +634,6 @@ msgstr ""
 #. module: l10n_it_vat_statement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione_vp__imponibile_operazioni_passive
 msgid "Unprofitable operations total (without VAT)"
-msgstr ""
-
-#. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_it_vat_statement_communication
-#: model:ir.model.fields,field_description:l10n_it_vat_statement_communication.field_comunicazione_liquidazione__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
@@ -711,24 +696,28 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "With delegate in commitment section, you need to check 'delegate sign'"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "With intermediary fiscal code, you need to specify commitment code"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "With intermediary fiscal code, you need to specify commitment date"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid ""
@@ -741,18 +730,21 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "Year required"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/wizard/export_file.py:0
 #, python-format
 msgid "You can export only 1 communication at a time"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "month"
@@ -764,6 +756,7 @@ msgid "or"
 msgstr ""
 
 #. module: l10n_it_vat_statement_communication
+#. odoo-python
 #: code:addons/l10n_it_vat_statement_communication/models/comunicazione_liquidazione.py:0
 #, python-format
 msgid "quarter"
