@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-15 08:42+0000\n"
-"PO-Revision-Date: 2020-10-15 08:42+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-09-20 06:39+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_delivery_note_order_link
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_order_link.field_purchase_order__delivery_note_ids
@@ -59,7 +60,7 @@ msgstr "Riga ordine di acquisto"
 #. module: l10n_it_delivery_note_order_link
 #: model:ir.model,name:l10n_it_delivery_note_order_link.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #~ msgid "Sale Order"
 #~ msgstr "Ordine di vendita"
