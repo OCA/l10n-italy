@@ -459,6 +459,11 @@ msgid "Keep original"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__key
+msgid "Key"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachments____last_update
@@ -719,6 +724,13 @@ msgid "TZ"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__key
+msgid ""
+"Technical field used to resolve multiple attachments in a multi-website "
+"environment."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/company.py:0
 #, python-format
 msgid ""
@@ -758,6 +770,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__res_id
 msgid "The record id this is attached to."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__theme_template_id
+msgid "Theme Template"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -818,8 +835,18 @@ msgid "Valuta"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_id
+msgid "Website"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_message_ids
 msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_url
+msgid "Website URL"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
