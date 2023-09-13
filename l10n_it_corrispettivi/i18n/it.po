@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-29 12:51+0000\n"
-"PO-Revision-Date: 2023-08-09 14:11+0000\n"
+"PO-Revision-Date: 2023-09-20 17:52+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -307,7 +307,7 @@ msgstr ""
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:l10n_it_corrispettivi.corrispettivi_tree
 msgid "Total Amount"
-msgstr "Importo Totale"
+msgstr "Importo totale"
 
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:l10n_it_corrispettivi.view_account_corrispettivi_filter
