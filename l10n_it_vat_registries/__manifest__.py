@@ -6,7 +6,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "name": "ITA - Registri IVA",
     "category": "Localization/Italy",
     "author": "Agile Business Group, Odoo Community Association (OCA), LinkIt Srl",
