@@ -54,6 +54,7 @@ addon | version | maintainers | summary
 [l10n_it_reverse_charge](l10n_it_reverse_charge/) | 16.0.1.0.0 |  | Inversione contabile
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 16.0.1.0.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
 [l10n_it_vat_payability](l10n_it_vat_payability/) | 16.0.1.0.0 |  | ITA - Esigibilità IVA
+[l10n_it_vat_registries](l10n_it_vat_registries/) | 16.0.1.0.0 |  | ITA - Registri IVA
 [l10n_it_vat_statement_communication](l10n_it_vat_statement_communication/) | 16.0.1.0.0 |  | Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate
 [l10n_it_website_portal_ipa](l10n_it_website_portal_ipa/) | 16.0.1.0.1 |  | Aggiunge l'indice PA (IPA) tra i dettagli dell'utente nel portale.
 [l10n_it_withholding_tax](l10n_it_withholding_tax/) | 16.0.1.1.2 |  | ITA - Ritenute d'acconto
