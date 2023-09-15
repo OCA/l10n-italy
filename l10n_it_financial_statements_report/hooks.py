@@ -109,7 +109,7 @@ def migrate_old_module(cr):
     )
     full_renamed_xmlids = [
         (
-            ".".join((NEW_MODULE_NAME, old_xmlid)),
+            ".".join((OLD_MODULE_NAME, old_xmlid)),
             ".".join((NEW_MODULE_NAME, new_xmlid)),
         )
         for old_xmlid, new_xmlid in RENAMED_XMLIDS
