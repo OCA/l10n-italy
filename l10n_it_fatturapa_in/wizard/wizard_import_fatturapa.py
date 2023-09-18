@@ -1876,6 +1876,11 @@ class WizardImportFatturapa(models.TransientModel):
             new_price_precision.sudo().write({"digits": original_precision})
             new_cr.commit()
 
+    def _get_invoice_partner_id(self, fatt):
+        cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
+        partner_id = self.getCedPrest(cedentePrestatore)
+        return partner_id
+
     def importFatturaPA(self):
         self.ensure_one()
 
@@ -1908,7 +1913,7 @@ class WizardImportFatturapa(models.TransientModel):
             fatt = self.get_invoice_obj(fatturapa_attachment)
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
-            partner_id = self.getCedPrest(cedentePrestatore)
+            partner_id = self._get_invoice_partner_id(fatt)
             # 1.3
             TaxRappresentative = fatt.FatturaElettronicaHeader.RappresentanteFiscale
             # 1.5
