@@ -67,6 +67,16 @@ class TestImportZIP(FatturapaCommon):
                     ),
                 },
             ],
+            "IT06363391001_00009.xml": [
+                {
+                    "partner_id": self.env["res.partner"].search(
+                        [
+                            ("name", "=", "Foreign Customer"),
+                        ],
+                        limit=1,
+                    ),
+                }
+            ],
         }
 
         for attachment in attachments_out:
