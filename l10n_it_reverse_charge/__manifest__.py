@@ -3,6 +3,7 @@
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
 # Copyright 2023 Simone Rubino - TAKOBI
+# Copyright 2023 Matteo Mircoli - Openforce srls
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpg).
 
 {
