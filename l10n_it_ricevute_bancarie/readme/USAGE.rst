@@ -14,3 +14,6 @@ I possibili stati della distinta sono: *Bozza*, *Accettata*, *Accreditata*,
 Ad ogni passaggio di stato sarà possibile generare le relative registrazioni
 contabili, le quali verranno riepilogate nella scheda «Contabilità».
 Questa scheda è presente sia sulla distinta che sulle sue righe.
+
+La voce di menù 'Presentazione Riba' permette estrarre le riba fino al
+raggiungimento dell'importo massimo inserito dall'utente.
