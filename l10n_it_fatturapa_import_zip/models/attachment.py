@@ -4,6 +4,7 @@
 import base64
 import tempfile
 import zipfile
+from io import BytesIO
 from pathlib import Path
 
 from odoo import fields, models
@@ -14,10 +15,8 @@ from odoo.addons.l10n_it_fatturapa_in.wizard import efattura
 def _extract_zip_file(directory, datas):
     """Extract the zip file having content `datas` to `directory`."""
     zip_data = base64.b64decode(datas)
-    with tempfile.NamedTemporaryFile(mode="wb") as tmp_file:
-        tmp_file.write(zip_data)
-        with zipfile.ZipFile(tmp_file.name, mode="r") as zip_ref:
-            zip_ref.extractall(directory)
+    with zipfile.ZipFile(BytesIO(zip_data)) as zip_ref:
+        zip_ref.extractall(directory)
 
 
 class FatturaPAAttachmentImportZIP(models.Model):
