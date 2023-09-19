@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="asset_category_tree_view">
+        <field name="name">asset.category.asset.tree</field>
+        <field name="model">asset.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asset_category_form_view">
+        <field name="name">asset.category.form.view</field>
+        <field name="model">asset.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="id" invisible="1" />
+                    <div class="oe_title">
+                        <h2>
+                            <field name="name" />
+                        </h2>
+                    </div>
+                    <field
+                        name="type_ids"
+                        context="{'default_category_id':id}"
+                        nolabel="1"
+                    >
+                        <tree editable="bottom">
+                            <field name="category_id" invisible="1" />
+                            <field name="depreciation_type_id" />
+                            <field name="pro_rata_temporis" />
+                            <field name="base_coeff" />
+                            <field name="percentage" />
+                            <field name="mode_id" />
+                        </tree>
+                    </field>
+                    <group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="journal_id" />
+                            <field name="asset_account_id" />
+                            <field name="fund_account_id" />
+                            <field name="depreciation_account_id" />
+                        </group>
+                        <group>
+                            <field name="gain_account_id" />
+                            <field name="loss_account_id" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="tag_ids" widget="many2many_tags" />
+                        </group>
+                        <group>
+                            <field name="print_by_default" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="comment" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_asset_category" model="ir.actions.act_window">
+        <field name="name">Assets category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">asset.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="asset_category_tree_view" />
+    </record>
+
+    <menuitem
+        id="menu_asset_category"
+        action="action_asset_category"
+        name="Categories"
+        parent="menu_asset_configuration"
+        sequence="20"
+    />
+
+</odoo>

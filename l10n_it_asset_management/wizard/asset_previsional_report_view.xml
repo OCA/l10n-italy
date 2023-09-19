@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="wizard_asset_previsional_report_form_view" model="ir.ui.view">
+        <field name="name">wizard.asset.previsional.report.form.view</field>
+        <field name="model">wizard.asset.previsional.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="filters" string="Filters">
+                        <field name="date" />
+                        <field
+                            name="company_id"
+                            groups="base.group_multi_company"
+                            options="{'no_open':1, 'no_create_edit': True}"
+                        />
+                        <field
+                            name="category_ids"
+                            widget="many2many_tags"
+                            options="{'no_create_edit': True}"
+                        />
+                        <field
+                            name="type_ids"
+                            widget="many2many_tags"
+                            options="{'no_create_edit': True}"
+                        />
+                    </group>
+                    <separator string="Assets" />
+                    <field name="asset_ids" nolabel="1" />
+                    <group name="print_options" string="Options">
+                        <group>
+                            <field name="asset_order_fname" />
+                        </group>
+                        <group>
+                            <field name="show_totals" />
+                            <field name="show_category_totals" />
+                            <field name="show_sold_assets" />
+                        </group>
+                    </group>
+                    <group name="report_options" string="Options">
+                        <group>
+                            <field name="report_footer_year" />
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="button_export_asset_previsional_html"
+                        string="View Previsional Report"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button
+                        name="button_export_asset_previsional_pdf"
+                        string="Print Previsional Report"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button
+                        name="button_export_asset_previsional_xlsx"
+                        string="Export Previsional Report"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    or
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_asset_previsional_report" model="ir.actions.act_window">
+        <field name="name">Asset Previsional Report</field>
+        <field name="res_model">wizard.asset.previsional.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_asset_previsional_report_form_view" />
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_wizard_asset_previsional_report"
+        name="Asset Previsional Report"
+        parent="menu_asset_reports"
+        action="action_wizard_asset_previsional_report"
+        sequence="25"
+    />
+
+</odoo>

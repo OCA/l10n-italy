@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_move_form_inherit" model="ir.ui.view">
+        <field name="name">view.move.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='state']" position="before">
+                <field name="hide_link_asset_button" invisible="1" />
+                <button
+                    name="open_wizard_manage_asset"
+                    type="object"
+                    string="Link to Asset"
+                    attrs="{'invisible': [('hide_link_asset_button', '=', True)]}"
+                    groups="l10n_it_asset_management.group_asset_user"
+                    class="oe_highlight"
+                />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    name="assets"
+                    groups="l10n_it_asset_management.group_asset_user"
+                    string="Assets"
+                >
+                    <field name="asset_ids" nolabel="1">
+                        <tree>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="category_id" />
+                            <field name="purchase_date" />
+                            <field name="purchase_amount" widget="monetary" />
+                            <field name="currency_id" invisible="1" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_line_form_inherit" model="ir.ui.view">
+        <field name="name">view.move.line.form.inherit</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="assets" string="Assets">
+                    <group
+                        name="assets_info"
+                        string="Assets"
+                        groups="l10n_it_asset_management.group_asset_user"
+                    >
+                        <field name="asset_ids" nolabel="1">
+                            <tree>
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="category_id" />
+                                <field name="purchase_date" />
+                                <field name="purchase_amount" widget="monetary" />
+                                <field name="currency_id" invisible="1" />
+                                <field
+                                    name="company_id"
+                                    groups="base.group_multi_company"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                    <group
+                        name="dep_lines_info"
+                        string="Depreciation Lines"
+                        groups="l10n_it_asset_management.group_asset_user"
+                    >
+                        <field name="dep_line_ids" nolabel="1">
+                            <tree>
+                                <field name="depreciation_id" />
+                                <field name="name" />
+                                <field name="date" />
+                                <field name="move_type" />
+                                <field
+                                    name="depreciation_line_type_id"
+                                    string="In/Out Amount Type"
+                                />
+                                <field name="force_dep_nr" invisible="1" />
+                                <field name="partial_dismissal" invisible="1" />
+                                <field
+                                    name="depreciation_nr"
+                                    attrs="{'invisible': [('force_dep_nr', '=', False), '|', ('partial_dismissal', '=', True), ('move_type', 'not in', ('depreciated', 'historical'))]}"
+                                />
+                                <field name="amount" widget="monetary" />
+                                <field name="requires_account_move" invisible="1" />
+                                <field name="currency_id" invisible="1" />
+                                <field name="company_id" invisible="1" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
