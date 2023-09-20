@@ -18,6 +18,7 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid ""
@@ -28,17 +29,11 @@ msgstr ""
 "fiscale 'TD17', 'TD18' o 'TD19'."
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid "Country code does not exist or it is not mapped in countries: %s"
 msgstr "Codice paese non esistente o non mappato per i Paesi: %s"
-
-#. module: l10n_it_fatturapa_out_rc
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type__display_name
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_wizard_export_fatturapa__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
 
 #. module: l10n_it_fatturapa_out_rc
 #: model:ir.model,name:l10n_it_fatturapa_out_rc.model_wizard_export_fatturapa
@@ -51,49 +46,40 @@ msgid "Fiscal Document Type"
 msgstr "Tipo di documento fiscale"
 
 #. module: l10n_it_fatturapa_out_rc
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type__id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_wizard_export_fatturapa__id
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_it_fatturapa_out_rc
 #: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_move
 msgid "Journal Entry"
 msgstr "Registrazione contabile"
 
 #. module: l10n_it_fatturapa_out_rc
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type____last_update
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_wizard_export_fatturapa____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid "Partner %s, City is not set."
 msgstr "Partner %s, la città non è impostata."
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid "Partner %s, Country is not set."
 msgstr "Partner %s, la nazione non è impostata."
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid "Partner %s, Street is not set."
 msgstr "Partner %s, l'indirizzo non è impostato."
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid "Partner %s, ZIP is not set."
 msgstr "Partner %s, il CAP non è impostato."
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid "Please specify a supplier in reverse charge invoices."
@@ -105,6 +91,7 @@ msgid "Reverse Charge Type"
 msgstr "Tipo inversione contabile"
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid ""
@@ -116,6 +103,7 @@ msgstr ""
 "esclusivamente di altri tipi."
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid ""
@@ -126,6 +114,7 @@ msgstr ""
 "necessario selezionare un insieme più piccolo di fatture"
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid ""
@@ -141,6 +130,7 @@ msgid "To be used when sending self invoices to the exchange system"
 msgstr "Da usare quando si inviano le autofatture al sistema di interscambio"
 
 #. module: l10n_it_fatturapa_out_rc
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_out_rc/models/account_move.py:0
 #, python-format
 msgid ""
@@ -149,6 +139,15 @@ msgid ""
 msgstr ""
 "La fattura fornitore che ha generato quest'autofattura non è validata. "
 "Validare prima la fattura fornitore."
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "Impossible to set IdFiscaleIVA for %s"
 #~ msgstr "Impossibile impostare IdFiscaleIVA per %s"
