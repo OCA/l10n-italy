@@ -20,15 +20,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid ""
 "<span class=\"o_form_label\">Supplier Invoices</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"                            <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -270,8 +272,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner__e_invoice_discount_decimal_digits
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_users__e_invoice_discount_decimal_digits
 msgid ""
-"Decimal digits used for discount field. See \"prices decimal digits\". -1 to"
-" use the default precision"
+"Decimal digits used for discount field. See \"prices decimal digits\". -1 to "
+"use the default precision"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -283,8 +285,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_partner__e_invoice_quantity_decimal_digits
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_users__e_invoice_quantity_decimal_digits
 msgid ""
-"Decimal digits used for quantity field. See \"prices decimal digits\". -1 to"
-" use the default precision"
+"Decimal digits used for quantity field. See \"prices decimal digits\". -1 to "
+"use the default precision"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -728,6 +730,11 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid "Key"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_discount_rise_price____last_update
@@ -852,9 +859,12 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_res_users__e_invoice_detail_level
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_wizard_import_fatturapa__e_invoice_detail_level
 msgid ""
-"Minimum level: Bill is created with no lines; User will have to create them, according to what specified in the electronic bill.\n"
-"Tax rate level: Rate level: an invoice line is created for each rate present in the electronic invoice\n"
-"Maximum level: every line contained in the electronic bill will create a line in the bill."
+"Minimum level: Bill is created with no lines; User will have to create them, "
+"according to what specified in the electronic bill.\n"
+"Tax rate level: Rate level: an invoice line is created for each rate present "
+"in the electronic invoice\n"
+"Maximum level: every line contained in the electronic bill will create a "
+"line in the bill."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1119,13 +1129,11 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Round down account is not set in Accounting Settings"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Round up account is not set in Accounting Settings"
@@ -1145,13 +1153,11 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Rounding down"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Rounding up"
@@ -1252,6 +1258,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid ""
+"Technical field used to resolve multiple attachments in a multi-website "
+"environment."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__text_ref
 msgid "Text Reference"
 msgstr ""
@@ -1283,6 +1296,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__res_id
 msgid "The record id this is attached to."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__theme_template_id
+msgid "Theme Template"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1392,7 +1410,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/models/account.py:0
-#: code:addons/l10n_it_fatturapa_in/models/account.py:0
 #, python-format
 msgid ""
 "Vendor reference ({bill_vendor_ref}) does not match with e-bill vendor "
@@ -1400,8 +1417,18 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_id
+msgid "Website"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_message_ids
 msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_url
+msgid "Website URL"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1435,8 +1462,8 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
-"Welfare Fund data %s has withholding tax but no withholding tax was found in"
-" the system."
+"Welfare Fund data %s has withholding tax but no withholding tax was found in "
+"the system."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in

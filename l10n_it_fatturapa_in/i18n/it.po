@@ -772,6 +772,11 @@ msgid "Journal Item"
 msgstr "Movimento contabile"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid "Key"
+msgstr "Chiave"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_discount_rise_price____last_update
@@ -1321,6 +1326,14 @@ msgstr ""
 "delle imposte della fattura elettronica ({e_bill_amount_tax})"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid ""
+"Technical field used to resolve multiple attachments in a multi-website "
+"environment."
+msgstr ""
+"Campo tecnico usato per gestire allegati multipli in un ambiente multisito."
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__text_ref
 msgid "Text Reference"
 msgstr "Riferimento testo"
@@ -1355,6 +1368,11 @@ msgstr "Il nome del file della e-fattura deve essere unico!"
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__res_id
 msgid "The record id this is attached to."
 msgstr "L'ID del record a cui questo è collegato."
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__theme_template_id
+msgid "Theme Template"
+msgstr "Modello del tema"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_search
@@ -1485,9 +1503,19 @@ msgstr ""
 "riferimento fornitore della fattura elettronica ({e_bill_vendor_ref})"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_id
+msgid "Website"
+msgstr "Sito web"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi sito web"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_url
+msgid "Website URL"
+msgstr "URL sito web"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_message_ids
@@ -1626,33 +1654,14 @@ msgstr "È possibile selezionare solo un file XML da collegare."
 #~ msgid "Invoice Line"
 #~ msgstr "Riga fattura"
 
-#~ msgid "Key"
-#~ msgstr "Chiave"
-
 #~ msgid "Number of error"
 #~ msgstr "Numero di errori"
 
 #~ msgid "Res Model Name"
 #~ msgstr "Nome modello risorsa"
 
-#~ msgid ""
-#~ "Technical field used to resolve multiple attachments in a multi-website "
-#~ "environment."
-#~ msgstr ""
-#~ "Campo tecnico usato per gestire allegati multipli in un ambiente "
-#~ "multisito."
-
-#~ msgid "Theme Template"
-#~ msgstr "Modello del tema"
-
 #~ msgid "Thumbnail"
 #~ msgstr "Anteprima"
-
-#~ msgid "Website"
-#~ msgstr "Sito web"
-
-#~ msgid "Website URL"
-#~ msgstr "URL sito web"
 
 #~ msgid "Do not block e-bill import in case of missing Enasarco configuration"
 #~ msgstr ""
