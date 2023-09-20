@@ -15,7 +15,6 @@
         id="menu_asset_management"
         name="Assets Management"
         parent="menu_asset"
-        groups="assets_management.group_asset_user"
         sequence="4"
     />
 
@@ -24,7 +23,6 @@
         id="menu_asset_reports"
         name="Asset Reports"
         parent="menu_asset"
-        groups="assets_management.group_asset_user"
         sequence="100"
     />
 
@@ -33,7 +31,6 @@
         id="menu_asset_configuration"
         name="Asset Configuration"
         parent="menu_asset"
-        groups="assets_management.group_asset_user"
         sequence="200"
     />
 
