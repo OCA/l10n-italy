@@ -21,10 +21,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
 msgid ""
 "<br/>\n"
-"                    <span class=\"text-right\">TIN: </span>"
+"                    <span class=\"text-end\">TIN: </span>"
 msgstr ""
-"<br/>\n"
-"                    <span class=\"text-right\">IVA: </span>"
 
 #. module: l10n_it_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.internal_layout
@@ -145,6 +143,13 @@ msgid ""
 msgstr ""
 "Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
 "registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+
+#~ msgid ""
+#~ "<br/>\n"
+#~ "                    <span class=\"text-right\">TIN: </span>"
+#~ msgstr ""
+#~ "<br/>\n"
+#~ "                    <span class=\"text-right\">IVA: </span>"
 
 #~ msgid "Date ranges"
 #~ msgstr "Intervalli date"
