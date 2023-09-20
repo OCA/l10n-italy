@@ -481,6 +481,11 @@ msgid "Keep original"
 msgstr "Mantieni l'originale"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__key
+msgid "Key"
+msgstr "Chiave"
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachments____last_update
@@ -743,6 +748,14 @@ msgid "TZ"
 msgstr "TZ"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__key
+msgid ""
+"Technical field used to resolve multiple attachments in a multi-website "
+"environment."
+msgstr ""
+"Campo tecnico usato per gestire allegati multipli in un ambiente multisito."
+
+#. module: l10n_it_fatturapa_out
 #: code:addons/l10n_it_fatturapa_out/models/company.py:0
 #, python-format
 msgid ""
@@ -787,6 +800,11 @@ msgstr "Il nome file della e-fattura deve essere univoco!"
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__res_id
 msgid "The record id this is attached to."
 msgstr "L'ID del record a cui questo è collegato."
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__theme_template_id
+msgid "Theme Template"
+msgstr "Modello del tema"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachments__is_pdf_invoice_print
@@ -849,9 +867,19 @@ msgid "Valuta"
 msgstr "Valuta"
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_id
+msgid "Website"
+msgstr "Sito web"
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi sito web"
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_url
+msgid "Website URL"
+msgstr "URL sito web"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_message_ids
@@ -982,9 +1010,6 @@ msgstr "il"
 #~ msgid "Invoice {invoice} has no tax lines"
 #~ msgstr "La fattura {invoice} non ha righe imposta"
 
-#~ msgid "Key"
-#~ msgstr "Chiave"
-
 #~ msgid "No 'law reference' field for tax %s."
 #~ msgstr "Campo \"Riferimento normativo\" non valorizzato per l'imposta %s."
 
@@ -1025,16 +1050,6 @@ msgstr "il"
 #~ msgid "TIN not set."
 #~ msgstr "Partita IVA non impostata."
 
-#~ msgid ""
-#~ "Technical field used to resolve multiple attachments in a multi-website "
-#~ "environment."
-#~ msgstr ""
-#~ "Campo tecnico usato per gestire allegati multipli in un ambiente "
-#~ "multisito."
-
-#~ msgid "Theme Template"
-#~ msgstr "Modello del tema"
-
 #~ msgid "Thumbnail"
 #~ msgstr "Anteprima"
 
@@ -1043,12 +1058,6 @@ msgstr "il"
 
 #~ msgid "VAT number and fiscal code are not set for %s."
 #~ msgstr "Partita IVA e codice fiscale non impostati per %s."
-
-#~ msgid "Website"
-#~ msgstr "Sito web"
-
-#~ msgid "Website URL"
-#~ msgstr "URL sito web"
 
 #~ msgid "ZIP is not set for %s."
 #~ msgstr "CAP non impostato per %s."
