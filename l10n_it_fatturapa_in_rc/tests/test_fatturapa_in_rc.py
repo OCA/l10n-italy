@@ -20,9 +20,7 @@ class TestInvoiceRC(FatturapaCommon):
             {
                 "code": "295000",
                 "name": "selfinvoice temporary",
-                "user_type_id": self.env.ref(
-                    "account.data_account_type_current_liabilities"
-                ).id,
+                "account_type": "liability_current",
             }
         )
 
