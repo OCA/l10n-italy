@@ -612,8 +612,7 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: field:report.l10n_it_ricevute_bancarie.distinta_qweb,__last_update:0
 #: field:riba.accreditation,__last_update:0
-#: field:riba.configuration,__last_update:0
-#: field:riba.distinta,__last_update:0
+#: field:riba.configuration,__last_update:0 field:riba.distinta,__last_update:0
 #: field:riba.distinta.line,__last_update:0
 #: field:riba.distinta.move.line,__last_update:0
 #: field:riba.file.export,__last_update:0 field:riba.issue,__last_update:0
@@ -624,9 +623,8 @@ msgstr ""
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.accreditation,write_uid:0 field:riba.configuration,write_uid:0
 #: field:riba.distinta,write_uid:0 field:riba.distinta.line,write_uid:0
-#: field:riba.distinta.move.line,write_uid:0
-#: field:riba.file.export,write_uid:0 field:riba.issue,write_uid:0
-#: field:riba.unsolved,write_uid:0
+#: field:riba.distinta.move.line,write_uid:0 field:riba.file.export,write_uid:0
+#: field:riba.issue,write_uid:0 field:riba.unsolved,write_uid:0
 msgid "Last Updated by"
 msgstr "Última Actualización por"
 
