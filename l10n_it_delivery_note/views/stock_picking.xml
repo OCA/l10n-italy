@@ -16,8 +16,13 @@
                 <xpath expr="//form/sheet" position="before">
                     <field name="picking_type_code" invisible="True" />
                 </xpath>
-                <xpath expr="//form/sheet/group/group/field[@name='partner_id']" position="attributes">
-                    <attribute name="attrs">{'invisible': [('picking_type_code', '=', 'internal')]}</attribute>
+                <xpath
+                    expr="//form/sheet/group/group/field[@name='partner_id']"
+                    position="attributes"
+                >
+                    <attribute
+                        name="attrs"
+                    >{'required': [('picking_type_code', '!=', 'internal')]}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='%(stock.action_report_delivery)d']" position="attributes">
                     <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'done'), '&amp;', ('delivery_note_state', '!=', 'draft')]}</attribute>
