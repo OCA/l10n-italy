@@ -228,7 +228,6 @@ msgstr "Nome"
 
 #. module: l10n_it_central_journal_reportlab
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato per la selezione corrente"
