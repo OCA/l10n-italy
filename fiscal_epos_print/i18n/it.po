@@ -257,7 +257,6 @@ msgstr "Seriale stampante fiscale"
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
-#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
 #, python-format
 msgid "Fiscal closure"
 msgstr "Chiusura fiscale"
@@ -327,7 +326,6 @@ msgstr "File ADE"
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
-#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
 #, python-format
 msgid "IRA status"
 msgstr "Stato ADE"
@@ -371,7 +369,6 @@ msgstr "Manca l'IVA sul prodotto"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
 #: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
 #, python-format
 msgid "Max 4 numbers"
@@ -427,8 +424,6 @@ msgstr "Vecchi file: "
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
-#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
 #: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
 #, python-format
 msgid "Open CashDrawer"
@@ -556,7 +551,6 @@ msgstr ""
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
-#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
 #, python-format
 msgid "RT Serial"
 msgstr "Seriale REA"
@@ -658,7 +652,6 @@ msgstr "Rendiconti"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
 #: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
 #, python-format
 msgid "Reprint Last Receipt"
@@ -815,8 +808,6 @@ msgstr "Attesa chiusura scontrino modalità JAVAPOS"
 
 #. module: fiscal_epos_print
 #. openerp-web
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
-#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
 #, python-format
 msgid "Wrong answer"
