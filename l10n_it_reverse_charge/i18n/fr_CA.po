@@ -20,6 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_it_reverse_charge
+#. odoo-python
 #: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:0
 #, python-format
 msgid ""
@@ -51,9 +52,6 @@ msgid "Description"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__display_name
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__display_name
 msgid "Display Name"
@@ -79,21 +77,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__id
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__id
 msgid "ID"
 msgstr "Identifiant"
 
 #. module: l10n_it_reverse_charge
+#. odoo-python
 #: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid ""
-"Invoice %s, line\n"
-"%s\n"
-"is RC but has not tax"
+"Invoice %(invoice)s, line\n"
+" %(line)s\n"
+" is RC but has not tax"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
@@ -122,9 +118,6 @@ msgid "Journal used to pay RC self invoices."
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type____last_update
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax____last_update
 msgid "Last Modified on"
@@ -158,6 +151,7 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: l10n_it_reverse_charge
+#. odoo-python
 #: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid ""
@@ -166,12 +160,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#. odoo-python
 #: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid "No line to reconcile for reverse charge in {move}"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#. odoo-python
 #: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid "Only inbound and outbound moves are supported"
@@ -183,6 +179,7 @@ msgid "Original Purchase Tax"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#. odoo-python
 #: code:addons/l10n_it_reverse_charge/models/account_rc_type.py:0
 #, python-format
 msgid ""
@@ -264,19 +261,19 @@ msgstr ""
 #. module: l10n_it_reverse_charge
 #: model:ir.actions.act_window,name:l10n_it_reverse_charge.action_rc_type
 #: model:ir.ui.menu,name:l10n_it_reverse_charge.menu_action_rc_type
-#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_tree
 msgid "Reverse Charge Types"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#. odoo-python
 #: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid ""
 "Reverse charge self invoice.\n"
-"Supplier: %s\n"
-"Reference: %s\n"
-"Date: %s\n"
-"Internal reference: %s"
+"Supplier: %(supplier)s\n"
+"Reference: %(reference)s\n"
+"Date: %(date)s\n"
+"Internal reference: %(internal_reference)s"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
@@ -335,11 +332,6 @@ msgid "Supplier Self Invoice Journal"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
-msgid "Tax Mapping"
-msgstr ""
-
-#. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type_tax
 msgid "Tax Mapping for self invoices"
 msgstr ""
@@ -379,6 +371,7 @@ msgid "VAT Integration"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#. odoo-python
 #: code:addons/l10n_it_reverse_charge/models/account_move.py:0
 #, python-format
 msgid ""
