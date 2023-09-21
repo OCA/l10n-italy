@@ -241,8 +241,8 @@ msgid ""
 msgstr ""
 "Il messaggio PEC \"%(subject)s\" è stato letto ma non elaborato, dato che "
 "non riguarda una fattura elettronica.\n"
-"Controlla la casella PEC %(fetchmail_name)s, sul server %(fetchmail_server)"
-"s, con utente %(fetchmail_user)s."
+"Controlla la casella PEC %(fetchmail_name)s, sul server "
+"%(fetchmail_server)s, con utente %(fetchmail_user)s."
 
 #. module: l10n_it_fatturapa_pec
 #. odoo-python
