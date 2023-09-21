@@ -149,9 +149,8 @@ msgid "Create Invoice"
 msgstr ""
 
 #. module: l10n_it_ddt
-#: field:add.pickings.to.ddt,create_uid:0
-#: field:ddt.create.invoice,create_uid:0 field:ddt.from.pickings,create_uid:0
-#: field:stock.ddt.type,create_uid:0
+#: field:add.pickings.to.ddt,create_uid:0 field:ddt.create.invoice,create_uid:0
+#: field:ddt.from.pickings,create_uid:0 field:stock.ddt.type,create_uid:0
 #: field:stock.picking.carriage_condition,create_uid:0
 #: field:stock.picking.goods_description,create_uid:0
 #: field:stock.picking.transportation_method,create_uid:0
@@ -161,8 +160,8 @@ msgstr "Creado por"
 
 #. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,create_date:0
-#: field:ddt.create.invoice,create_date:0
-#: field:ddt.from.pickings,create_date:0 field:stock.ddt.type,create_date:0
+#: field:ddt.create.invoice,create_date:0 field:ddt.from.pickings,create_date:0
+#: field:stock.ddt.type,create_date:0
 #: field:stock.picking.carriage_condition,create_date:0
 #: field:stock.picking.goods_description,create_date:0
 #: field:stock.picking.transportation_method,create_date:0
@@ -382,8 +381,7 @@ msgstr ""
 #. module: l10n_it_ddt
 #: field:add.pickings.to.ddt,__last_update:0
 #: field:ddt.create.invoice,__last_update:0
-#: field:ddt.from.pickings,__last_update:0
-#: field:stock.ddt.type,__last_update:0
+#: field:ddt.from.pickings,__last_update:0 field:stock.ddt.type,__last_update:0
 #: field:stock.picking.carriage_condition,__last_update:0
 #: field:stock.picking.goods_description,__last_update:0
 #: field:stock.picking.transportation_method,__last_update:0
@@ -402,9 +400,8 @@ msgid "Last Updated by"
 msgstr "Última Actualización por"
 
 #. module: l10n_it_ddt
-#: field:add.pickings.to.ddt,write_date:0
-#: field:ddt.create.invoice,write_date:0 field:ddt.from.pickings,write_date:0
-#: field:stock.ddt.type,write_date:0
+#: field:add.pickings.to.ddt,write_date:0 field:ddt.create.invoice,write_date:0
+#: field:ddt.from.pickings,write_date:0 field:stock.ddt.type,write_date:0
 #: field:stock.picking.carriage_condition,write_date:0
 #: field:stock.picking.goods_description,write_date:0
 #: field:stock.picking.transportation_method,write_date:0
