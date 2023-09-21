@@ -29,8 +29,8 @@ msgstr ""
 "pagamenti</span>\n"
 "                        <span class=\"fa fa-lg fa-building-o\" title=\"I "
 "valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
-"impostati qui sono specifici per azienda.\" groups=\"base."
-"group_multi_company\" role=\"img\"/>"
+"impostati qui sono specifici per azienda.\" groups=\"base.group_multi_company"
+"\" role=\"img\"/>"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,help:l10n_it_split_payment.field_res_company__sp_account_id
@@ -42,7 +42,8 @@ msgstr "Conto utilizzato per ammortizzare l'importo dell'IVA"
 #: code:addons/l10n_it_split_payment/models/account.py:107
 #, python-format
 msgid "Can't handle supplier invoices with split payment"
-msgstr "Impossibile gestire le fatture fornitore con la scissione dei pagamenti"
+msgstr ""
+"Impossibile gestire le fatture fornitore con la scissione dei pagamenti"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_company
