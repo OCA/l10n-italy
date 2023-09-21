@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* currency_rate_update_boi
+# 	* currency_rate_update_boi
 #
 msgid ""
 msgstr ""
