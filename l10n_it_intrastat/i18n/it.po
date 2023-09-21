@@ -70,8 +70,8 @@ msgid ""
 msgstr ""
 "(5-etil-2-metil-2-ossido-1,3,2-diossafosfinan-5-il) metil metil "
 "metilfosfonato; bis [(5-etil-2-metil-2-ossido-1,3,2 - diossafosfinan 5-il) "
-"metil] metilfosfonato, 2,4,6-tripropil-1,3, 5,2,4,6-triossatrifosfinan "
-"2,4,6-triossido; dimetil propilfosfonato , dietil etilfosfonato; sodio 3 - "
+"metil] metilfosfonato, 2,4,6-tripropil-1,3, 5,2,4,6-triossatrifosfinan 2,4,6-"
+"triossido; dimetil propilfosfonato , dietil etilfosfonato; sodio 3 - "
 "(triidrossisilil) propil metilfosfonato; miscele consistitenti "
 "principalmente di acido metilfosfonico ed (amminoimminometil)urea (in "
 "rapporto 50:50)inometil)urea (in rapporto 50:50)"
@@ -162,7 +162,8 @@ msgstr "Dietilenglicole"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29309040
 msgid "2,2'-Thiodiethyl bis[3-\"3,5-di-tert-butyl-4-hydroxyphenyl\"propionate]"
-msgstr "Bis[3-\"3,5-di-ter-butil-4-idrossifenil\"propionato] di 2,2'-tiodietile"
+msgstr ""
+"Bis[3-\"3,5-di-ter-butil-4-idrossifenil\"propionato] di 2,2'-tiodietile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29055991
@@ -271,8 +272,8 @@ msgid ""
 "3,3',4,4',5,5',6,6'-Octabromo-N,N'-ethylenediphthalimide; N,N'-"
 "ethylenebis(4,5-dibromohexahydro-3,6-methanophthalimide)"
 msgstr ""
-"3,3',4,4',5,5',6,6'-Octabromo-N,N'-etilendiftalimmide;N,N'-etilenbis(4,5-dibr"
-"omoesaidro-3,6-etanoftalimmide)"
+"3,3',4,4',5,5',6,6'-Octabromo-N,N'-etilendiftalimmide;N,N'-etilenbis(4,5-"
+"dibromoesaidro-3,6-etanoftalimmide)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29333945
@@ -299,9 +300,8 @@ msgid ""
 "3-{1-[7-(Hexadecylsulphonylamino)-1H-indole-3-yl]-3-oxo-1H,3H-naphtho[1,8-"
 "cd]pyran-1-yl}-N,N-dimethyl-1H-indole-7-sulphonamide; metosulam (ISO)"
 msgstr ""
-"3-{1-[7-(Esadecilsolfonilammino)-1H-indol-3-il]-3-osso-1H,3H-"
-"nafto[1,8-cd]piran-1-ile}-N,N-dimetil-1H-indol-7-solfonammide; metosulam "
-"(ISO)"
+"3-{1-[7-(Esadecilsolfonilammino)-1H-indol-3-il]-3-osso-1H,3H-nafto[1,8-"
+"cd]piran-1-ile}-N,N-dimetil-1H-indol-7-solfonammide; metosulam (ISO)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29072300
@@ -602,8 +602,8 @@ msgstr ""
 "keruing, ramin, kapur, jongkong, merbau, jelutong, kempas, okoumé, obeche, "
 "sipo, acajou d'Afrique, makoré tiama, mansonia, ilomba, dibétou, limba, "
 "azobé, palissandre de Rio, palissandre de Para e palissandre de Rose, segati "
-"o tagliati per lungo, tranciati o sfogliati di spessore > 6 mm, levigati ("
-"escl. incollati con giunture di testa e piallati)"
+"o tagliati per lungo, tranciati o sfogliati di spessore > 6 mm, levigati "
+"(escl. incollati con giunture di testa e piallati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.651211
