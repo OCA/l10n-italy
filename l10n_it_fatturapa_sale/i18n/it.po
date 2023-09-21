@@ -23,6 +23,15 @@ msgid "Admin. ref."
 msgstr "Rif. ammin."
 
 #. module: l10n_it_fatturapa_sale
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order__display_name
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_sale
 #: model:ir.model,name:l10n_it_fatturapa_sale.model_fatturapa_related_document_type
 msgid "E-invoice Related Document Type"
 msgstr "Tipo documento relativo alla e-fattura"
@@ -34,14 +43,32 @@ msgid "Electronic Invoice"
 msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa_sale
-#: model:ir.model,name:l10n_it_fatturapa_sale.model_account_invoice
-msgid "Invoice"
-msgstr "Fattura"
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order__id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order_line__id
+msgid "ID"
+msgstr ""
 
 #. module: l10n_it_fatturapa_sale
-#: model:ir.model,name:l10n_it_fatturapa_sale.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Riga fattura"
+#: model:ir.model,name:l10n_it_fatturapa_sale.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model,name:l10n_it_fatturapa_sale.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_fatturapa_sale
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order____last_update
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order__related_documents
@@ -60,11 +87,6 @@ msgid "Related Invoice Line"
 msgstr "Riga fattura collegata"
 
 #. module: l10n_it_fatturapa_sale
-#: model:ir.model,name:l10n_it_fatturapa_sale.model_sale_order
-msgid "Sale Order"
-msgstr "Ordine di vendita"
-
-#. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_fatturapa_related_document_type__sale_order_id
 msgid "Sale order"
 msgstr "Ordine di vendita"
@@ -75,6 +97,20 @@ msgid "Sale order line"
 msgstr "Riga ordine di vendita"
 
 #. module: l10n_it_fatturapa_sale
+#: model:ir.model,name:l10n_it_fatturapa_sale.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: l10n_it_fatturapa_sale
 #: model:ir.model,name:l10n_it_fatturapa_sale.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
+
+#~ msgid "Invoice"
+#~ msgstr "Fattura"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Riga fattura"
+
+#~ msgid "Sale Order"
+#~ msgstr "Ordine di vendita"
