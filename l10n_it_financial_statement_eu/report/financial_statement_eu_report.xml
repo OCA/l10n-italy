@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_financial_statement_eu_xml" model="ir.actions.report">
+        <field name="name">Financial statement EU</field>
+        <field name="model">financial.statement.eu.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field
+            name="report_name"
+        >l10n_it_financial_statement_eu.fseu_html_report</field>
+        <field
+            name="report_file"
+        >l10n_it_financial_statement_eu.fseu_html_report</field>
+        <field name="binding_model_id" ref="model_financial_statement_eu_wizard" />
+    </record>
+    <template id="fseu_html_report">
+        <t t-call="web.html_container">
+            <t t-call="l10n_it_financial_statement_eu.internal_layout">
+                <t t-if="len(warnings)>0">
+                    <div class="warnings">
+                        <t t-foreach="warnings" t-as="msg">
+                            <t t-esc="msg" /><br />
+                        </t>
+                        <t t-if="len(unlinked_account)>0">
+                            <table>
+                                <t t-foreach="unlinked_account" t-as="acc">
+                                    <tr class="account_row">
+                                        <td>
+                                            <span t-esc="acc['code']" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="acc['desc']" />
+                                        </td>
+                                        <td style="text-align: right">
+                                            <span
+                                                t-esc="acc['amount']"
+                                                t-options='{"widget": "float", "precision": 2}'
+                                            />
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </t>
+                    </div>
+                    <br />
+                </t>
+
+                <div>
+                    <h2>
+                        <t t-esc="form_data['company_name']" />
+                    </h2>
+                    <h6>
+                        <t t-esc="form_data['address']" />
+                        -
+                        <t t-esc="form_data['city']" />
+                        <br />
+                        Taxcode
+                        <t t-esc="form_data['vat_code_nation']" />
+                        <t t-esc="form_data['vat_code']" />
+                        - Fiscal Code
+                        <t t-esc="form_data['fiscalcode']" />
+                        <br />
+                        Share capital Euro
+                        <t t-esc="form_data['rea_capital']" />
+                        - REA: <t t-esc="form_data['rea_office']" />-<t
+                            t-esc="form_data['rea_num']"
+                        />
+                    </h6>
+                    <br /><br />
+                    <h3>
+                        <t t-esc="form_data['name']" />
+                    </h3>
+                    <div class="period">
+                        from
+                        <t
+                            t-esc="form_data['date_from']"
+                            t-options='{"widget": "date","format": "dd/MM/yyyy"}'
+                        />
+                        to
+                        <t
+                            t-esc="form_data['date_to']"
+                            t-options='{"widget": "date","format": "dd/MM/yyyy"}'
+                        />
+                    </div>
+                </div>
+                <table>
+                    <t t-foreach="financial_statement_eu_lines" t-as="line">
+                        <tr>
+                            <td>
+                                <span t-esc="line['code']" />
+                            </td>
+                            <td>
+                                <t t-foreach="range(len(line['code'])-3)" t-as="c">
+                                    <![CDATA[&emsp;]]>
+                                </t>
+                                <span t-esc="line['desc']" />
+                            </td>
+                            <td style="text-align: right">
+                                <t t-if="line['code']=='E'">
+                                    <td />
+                                </t>
+                                <t t-elif="form_data['values_precision']=='d'">
+                                    <span
+                                        t-esc="line['amount']"
+                                        t-options='{"widget": "float", "precision": 2}'
+                                    />
+                                </t>
+                                <t t-else="">
+                                    <span
+                                        t-esc="line['amount']"
+                                        t-options='{"widget": "float", "precision": 0}'
+                                    />
+                                </t>
+                            </td>
+                        </tr>
+                        <t t-foreach="line['accounts']" t-as="acc">
+                            <tr class="account_row account_row_background">
+                                <td>
+                                    <span t-esc="acc['code']" />
+                                </td>
+                                <td>
+                                    <span t-esc="acc['desc']" />
+                                </td>
+                                <td style="text-align: right">
+                                    <span
+                                        t-esc="acc['amount']"
+                                        t-options='{"widget": "float", "precision": 2}'
+                                    />
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </table>
+            </t>
+        </t>
+    </template>
+    <record id="action_report_financial_statement_eu_xlsx" model="ir.actions.report">
+        <field name="name">Financial statement EU</field>
+        <field name="model">financial.statement.eu.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field
+            name="report_name"
+        >l10n_it_financial_statement_eu.fseu_xlsx_report</field>
+        <field name="binding_model_id" ref="model_financial_statement_eu_wizard" />
+    </record>
+    <record id="action_report_financial_statement_eu_xbrl" model="ir.actions.report">
+        <field name="name">XBRL-financial-statements</field>
+        <field name="model">financial.statement.eu.wizard</field>
+        <field name="report_type">qweb-xml</field>
+        <field
+            name="report_name"
+        >l10n_it_financial_statement_eu.fseu_xbrl_report</field>
+        <field name="binding_model_id" ref="model_financial_statement_eu_wizard" />
+    </record>
+
+</odoo>
