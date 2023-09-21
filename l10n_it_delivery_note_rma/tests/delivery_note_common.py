@@ -35,6 +35,23 @@ class StockDeliveryNoteCommon(TransactionCase):
     def setUp(self):
         super().setUp()
 
+        self.env.ref("l10n_it_delivery_note_base.delivery_note_type_ddt").write(
+            {
+                "default_transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ),
+                "default_goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ),
+                "default_transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ),
+                "default_transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ),
+            }
+        )
+
         self.env.user.write(
             {
                 "groups_id": [

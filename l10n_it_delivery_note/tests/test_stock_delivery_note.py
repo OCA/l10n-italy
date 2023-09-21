@@ -90,6 +90,22 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         dn = dn_form.save()
         dn.confirm()
         self.assertTrue(picking.delivery_note_id)
+        picking.delivery_note_id.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PA"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_CAR"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VIS"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_DES"
+                ).id,
+            }
+        )
         picking.delivery_note_id.action_confirm()
         self.assertEqual(picking.delivery_note_id.state, "confirm")
         self.assertEqual(picking.delivery_note_id.invoice_status, "no")
