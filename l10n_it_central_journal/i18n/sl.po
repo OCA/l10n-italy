@@ -42,7 +42,7 @@ msgid "Account name"
 msgstr "Naziv konta"
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,target_move:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__target_move__all
 msgid "All"
 msgstr "Vse"
 
@@ -83,12 +83,12 @@ msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_date_range
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__daterange
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__daterange_id
 msgid "Date Range"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:149
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:0
 #, python-format
 msgid "Date already printed"
 msgstr "Datum je že natisnjen"
@@ -104,18 +104,19 @@ msgid "Debit"
 msgstr "Obveznosti"
 
 #. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__display_name
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__display_name
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale__display_name
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__display_name
 msgid "Display Name"
 msgstr "Prikazani naziv"
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,target_move:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__target_move__draft
 msgid "Draft"
 msgstr "Osnutek"
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_bank_statement_import_journal_creation__central_journal_exclude
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__central_journal_exclude
 #, fuzzy
 msgid "Exclude from General Journal"
@@ -151,6 +152,8 @@ msgid "General Journal Info"
 msgstr "Podatki o osrednjem dnevniku"
 
 #. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__id
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__id
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale__id
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__id
 msgid "ID"
@@ -179,6 +182,8 @@ msgid "Journals"
 msgstr "Dnevniki"
 
 #. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal____last_update
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range____last_update
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale____last_update
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale____last_update
 msgid "Last Modified on"
@@ -220,14 +225,13 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:132
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:154
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:0
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "V trenutnem izboru ni najdenih dokumentov"
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,target_move:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__target_move__posted
 msgid "Posted"
 msgstr "Knjiženo"
 
@@ -237,7 +241,7 @@ msgid "Print"
 msgstr "Natisni"
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,print_state:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__print_state__printed
 msgid "Printed"
 msgstr "Natisnjeno"
 
@@ -264,7 +268,7 @@ msgid "Progressive of the page"
 msgstr "Progresiva strani"
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,print_state:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__print_state__print
 msgid "Ready for printing"
 msgstr "Pripravljeno za tisk"
 

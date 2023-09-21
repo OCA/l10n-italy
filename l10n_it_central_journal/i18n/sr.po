@@ -40,7 +40,7 @@ msgid "Account name"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,target_move:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__target_move__all
 msgid "All"
 msgstr ""
 
@@ -81,12 +81,12 @@ msgstr ""
 
 #. module: l10n_it_central_journal
 #: model:ir.model,name:l10n_it_central_journal.model_date_range
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__daterange
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__daterange_id
 msgid "Date Range"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:149
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:0
 #, python-format
 msgid "Date already printed"
 msgstr ""
@@ -102,18 +102,19 @@ msgid "Debit"
 msgstr ""
 
 #. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__display_name
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__display_name
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale__display_name
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,target_move:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__target_move__draft
 msgid "Draft"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_bank_statement_import_journal_creation__central_journal_exclude
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__central_journal_exclude
 msgid "Exclude from General Journal"
 msgstr ""
@@ -146,6 +147,8 @@ msgid "General Journal Info"
 msgstr ""
 
 #. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal__id
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range__id
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale__id
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale__id
 msgid "ID"
@@ -173,6 +176,8 @@ msgid "Journals"
 msgstr ""
 
 #. module: l10n_it_central_journal
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_account_journal____last_update
+#: model:ir.model.fields,field_description:l10n_it_central_journal.field_date_range____last_update
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_report_l10n_it_central_journal_report_giornale____last_update
 #: model:ir.model.fields,field_description:l10n_it_central_journal.field_wizard_giornale____last_update
 msgid "Last Modified on"
@@ -214,14 +219,13 @@ msgid "Name"
 msgstr "Ime"
 
 #. module: l10n_it_central_journal
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:132
-#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:154
+#: code:addons/l10n_it_central_journal/wizard/print_giornale.py:0
 #, python-format
 msgid "No documents found in the current selection"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,target_move:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__target_move__posted
 msgid "Posted"
 msgstr ""
 
@@ -231,7 +235,7 @@ msgid "Print"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,print_state:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__print_state__printed
 msgid "Printed"
 msgstr ""
 
@@ -258,7 +262,7 @@ msgid "Progressive of the page"
 msgstr ""
 
 #. module: l10n_it_central_journal
-#: selection:wizard.giornale,print_state:0
+#: model:ir.model.fields.selection,name:l10n_it_central_journal.selection__wizard_giornale__print_state__print
 msgid "Ready for printing"
 msgstr ""
 
