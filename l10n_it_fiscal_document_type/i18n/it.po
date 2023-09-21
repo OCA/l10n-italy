@@ -93,8 +93,8 @@ msgstr "Registro"
 #, python-format
 msgid "Journal %s can be linked to only 1 fiscal document type (found in %s)"
 msgstr ""
-"Il registro %s può essere collegato a un solo tipo di documento fiscale ("
-"trovato in %s)"
+"Il registro %s può essere collegato a un solo tipo di documento fiscale "
+"(trovato in %s)"
 
 #. module: l10n_it_fiscal_document_type
 #: model:ir.model.fields,field_description:l10n_it_fiscal_document_type.field_fiscal_document_type_journal_ids
