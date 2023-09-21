@@ -42,6 +42,7 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__display_name
 #: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__display_name
 msgid "Display Name"
@@ -60,12 +61,14 @@ msgid "Fiscal Payment Term"
 msgstr "Termini di pagamento fiscali"
 
 #. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term__id
 #: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method__id
 #: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_fiscal_payment_term
+#: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_account_payment_term____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_method____last_update
 #: model:ir.model.fields,field_description:l10n_it_fiscal_payment_term.field_fatturapa_payment_term____last_update
 msgid "Last Modified on"
