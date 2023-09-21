@@ -64,7 +64,6 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_payment_reason
 #: model:ir.model,name:l10n_it_payment_reason.model_payment_reason
 #: model_terms:ir.ui.view,arch_db:l10n_it_payment_reason.view_payment_reason_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_payment_reason.view_payment_reason_tree
 msgid "Payment Reason"
 msgstr "Causale pagamento"
 
@@ -75,6 +74,7 @@ msgid "Payment Reasons"
 msgstr "Causali pagamento"
 
 #. module: l10n_it_payment_reason
+#. odoo-python
 #: code:addons/l10n_it_payment_reason/models/payment_reason.py:0
 #, python-format
 msgid "The element with code %s already exists"
