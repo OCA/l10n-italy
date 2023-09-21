@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_website_sale_fatturapa
+# 	* l10n_it_website_sale_fatturapa
 #
 msgid ""
 msgstr ""
