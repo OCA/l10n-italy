@@ -70,16 +70,19 @@ msgstr ""
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__display_name
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Mostrar nombre"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__id
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category____last_update
+#: model:ir.model.fields,field_description:l10n_it_ateco.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Modificada por última vez"
 
