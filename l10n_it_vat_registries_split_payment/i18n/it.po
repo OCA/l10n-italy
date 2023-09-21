@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_vat_registries_split_payment
+# 	* l10n_it_vat_registries_split_payment
 #
 msgid ""
 msgstr ""
