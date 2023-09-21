@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_fatturapa_in_rc
+# 	* l10n_it_fatturapa_in_rc
 #
 msgid ""
 msgstr ""
@@ -51,7 +51,9 @@ msgstr "Tipo inversione contabile"
 #. module: l10n_it_fatturapa_in_rc
 #: code:addons/l10n_it_fatturapa_in_rc/models/account_invoice.py:36
 #, python-format
-msgid "Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount ({e_bill_amount_tax})"
+msgid ""
+"Taxed amount ({bill_amount_tax}) does not match with e-bill taxed amount "
+"({e_bill_amount_tax})"
 msgstr ""
 "L'importo delle imposte ({bill_amount_tax}) non corrisponde con l'importo "
 "delle imposte della fattura elettronica ({e_bill_amount_tax})"
@@ -59,7 +61,9 @@ msgstr ""
 #. module: l10n_it_fatturapa_in_rc
 #: code:addons/l10n_it_fatturapa_in_rc/models/account_invoice.py:60
 #, python-format
-msgid "Total amount ({bill_amount_total}) does not match with e-bill total amount ({e_bill_amount_total})"
+msgid ""
+"Total amount ({bill_amount_total}) does not match with e-bill total amount "
+"({e_bill_amount_total})"
 msgstr ""
 "L'importo totale ({bill_amount_total}) non corrisponde con l'importo totale "
 "della fattura elettronica ({e_bill_amount_total})"
