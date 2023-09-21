@@ -69,8 +69,7 @@ msgid "Invoice Line"
 msgstr "Righe Fattura"
 
 #. module: l10n_it_account_stamp
-#: field:account.invoice.line,is_stamp_line:0
-#: field:product.template,is_stamp:0
+#: field:account.invoice.line,is_stamp_line:0 field:product.template,is_stamp:0
 msgid "Is stamp"
 msgstr "È una Marca da Bollo"
 
