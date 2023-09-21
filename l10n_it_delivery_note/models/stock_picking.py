@@ -251,7 +251,9 @@ class StockPicking(models.Model):
         partners = self.get_partners()
         return self.env['stock.delivery.note'].create({
             'partner_sender_id': partners[0].id,
-            'partner_id': partners[1].id,
+            'partner_id': self.sale_id.partner_id.id
+            if self.sale_id.partner_id
+            else self.partner_id.id,
             'partner_shipping_id': partners[1].id
         })
 
