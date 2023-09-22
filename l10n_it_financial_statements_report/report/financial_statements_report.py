@@ -254,3 +254,9 @@ class ReportFinancialStatementsReport(models.AbstractModel):
             }
         )
         return report_data
+
+
+class ReportFinancialStatementsReportPDF(models.AbstractModel):
+    _name = "report.l10n_it_financial_statements_report.report_pdf"
+    _description = "Financial Statements QWeb Report PDF"
+    _inherit = "report.l10n_it_financial_statements_report.report"
