@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2023-06-08 12:12+0000\n"
+"PO-Revision-Date: 2023-09-22 16:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -488,7 +488,6 @@ msgstr "Report"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_document
-#, fuzzy
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM,\n"
 "                                        Op.Vat., Op.FUE, Beni UE in Italia, "
@@ -500,10 +499,15 @@ msgid ""
 "UE,\n"
 "                                        Microproc. UE"
 msgstr ""
-"Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
-"Italia, Beni FUE in Italia, Cell., Microproc.\n"
-"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, "
-"Cell. UE, Microproc. UE"
+"Reverse charge: comprende RevCharge, Op.SM,,\n"
+"                                        Op.Vat., Op.FUE, Beni UE in Italia, "
+"Beni FUE in ,\n"
+"                                        Italia, Cell., Microproc.,\n"
+"                                        Operazioni UE: Servizi Si Intra, "
+"Servizi No ,\n"
+"                                        Intra, Beni UE, Rev.Charge UE, Cell. "
+"UE, \n"
+"                                        Microproc. UE"
 
 #. module: account_vat_period_end_statement
 #: view:website:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
