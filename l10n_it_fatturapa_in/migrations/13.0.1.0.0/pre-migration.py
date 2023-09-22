@@ -1,8 +1,12 @@
 #  Copyright 2021 Alfredo Zamora - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import logging
+
 from openupgradelib import openupgrade
 from psycopg2 import sql
+
+_logger = logging.getLogger(__name__)
 
 
 def migrate(cr, installed_version):
@@ -38,15 +42,34 @@ where
     eil.invoice_id = inv.id;
     """,
     )
-    openupgrade.logged_query(
-        cr,
+    cr.execute(
         """
-        UPDATE einvoice_line t
-        SET invoice_id = inv.move_id
-        from account_invoice inv
-        WHERE t.invoice_id = inv.id
-        AND t.invoice_id NOT IN (
-            SELECT id FROM account_move
-        )
-        """
+            SELECT eil.invoice_id, inv.move_id, eil.id
+            FROM einvoice_line eil
+            JOIN account_invoice inv ON inv.id = eil.invoice_id
+            WHERE eil.invoice_id NOT IN (
+                SELECT id FROM account_move
+            )
+        """,
     )
+    res = cr.fetchall()
+    for r in res:
+        invoice_id, move_id, eil_id = r
+        _logger.info(
+            "Invoice with id %s and move id %s for einvoice_line id %s was not "
+            "found, so it is linked to move_id found in invoice."
+            % (invoice_id, move_id, eil_id)
+        )
+    if res:
+        openupgrade.logged_query(
+            cr,
+            """
+            UPDATE einvoice_line eil
+            SET invoice_id = inv.move_id
+            FROM account_invoice inv
+            WHERE eil.invoice_id = inv.id
+            AND eil.invoice_id NOT IN (
+                SELECT id FROM account_move
+            )
+            """,
+        )
