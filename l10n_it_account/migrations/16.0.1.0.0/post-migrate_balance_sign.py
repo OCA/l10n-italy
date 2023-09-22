@@ -4,17 +4,21 @@
 from openupgradelib import openupgrade
 
 
-def migrate(cr, installed_version):
+@openupgrade.migrate()
+def migrate(env, installed_version):
     # Assign the sign of the account type to the account
-    openupgrade.logged_query(
-        cr,
-        """
-UPDATE account_account
-SET
-    account_balance_sign = aat.account_balance_sign
-FROM
-    account_account_type aat
-WHERE
-    aat.id = account_account.user_type_id
-""",
-    )
+    if openupgrade.table_exists(env.cr, "account_account_type"):
+        openupgrade.logged_query(
+            env.cr,
+            """
+            UPDATE account_account
+            SET
+                account_balance_sign = aat.account_balance_sign
+            FROM
+                account_account_type aat
+            WHERE
+                aat.id = account_account.user_type_id
+            """,
+        )
+    else:
+        env["account.account"].set_account_types_negative_sign()
