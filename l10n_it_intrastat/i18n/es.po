@@ -9749,11 +9749,6 @@ msgid "Code Type"
 msgstr "Tipo Código"
 
 #. module: l10n_it_intrastat
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_tree_report_intrastat_code
-msgid "Codes"
-msgstr "Códigos"
-
-#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_09011100
 msgid "Coffee (excl. roasted and decaffeinated)"
 msgstr ""
@@ -12466,7 +12461,6 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_custom_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_custom_view_tree
 msgid "Customs Section"
 msgstr ""
 
@@ -13635,20 +13629,12 @@ msgid "Disodium tetraborate pentahydrate"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_fiscal_position__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_payment_term__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_category__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_template__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_country__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -28827,20 +28813,12 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_fiscal_position__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move_line__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_payment_term__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_category__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_template__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_country__id
 msgid "ID"
 msgstr ""
 
@@ -30089,6 +30067,7 @@ msgid "Intrastat code"
 msgstr "Código Intrastat"
 
 #. module: l10n_it_intrastat
+#. odoo-python
 #: code:addons/l10n_it_intrastat/models/account.py:0
 #, python-format
 msgid "Intrastat total must be equal to invoice untaxed total"
@@ -31490,20 +31469,12 @@ msgid "Lasers (excl. laser diodes)"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_fiscal_position____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transaction_nature_b____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_transport____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_payment_term____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_category____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_template____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_country____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -50405,13 +50376,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: model:ir.model,name:l10n_it_intrastat.model_product_category
-msgid "Product Category"
+#: model:ir.model,name:l10n_it_intrastat.model_product_template
+msgid "Product"
 msgstr ""
 
 #. module: l10n_it_intrastat
-#: model:ir.model,name:l10n_it_intrastat.model_product_template
-msgid "Product Template"
+#: model:ir.model,name:l10n_it_intrastat.model_product_category
+msgid "Product Category"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -59701,6 +59672,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#. odoo-python
 #: code:addons/l10n_it_intrastat/models/intrastat.py:0
 #, python-format
 msgid "State %s without ISO code"
@@ -64928,7 +64900,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__transaction_nature_id
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_transaction_nature
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transaction_nature_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transaction_nature_view_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Transaction Nature"
 msgstr "Naturaleza de la Transacción"
@@ -64939,7 +64910,6 @@ msgstr "Naturaleza de la Transacción"
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__transaction_nature_b_id
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_transaction_nature_b
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transaction_nature_b_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transaction_nature_b_view_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Transaction Nature B"
 msgstr ""
@@ -65091,7 +65061,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__transport_code_id
 #: model:ir.ui.menu,name:l10n_it_intrastat.menu_account_intrastat_transport
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transport_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.account_intrastat_transport_view_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Transport Mode"
 msgstr "Modo Transporte"
@@ -75284,6 +75253,9 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_99450000
 msgid "repairs or maintenance"
 msgstr ""
+
+#~ msgid "Codes"
+#~ msgstr "Códigos"
 
 #~ msgid "Invoice Line"
 #~ msgstr "Línea Factura"
