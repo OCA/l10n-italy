@@ -38,3 +38,15 @@ where
     eil.invoice_id = inv.id;
     """,
     )
+    openupgrade.logged_query(
+        cr,
+        """
+        UPDATE einvoice_line t
+        SET invoice_id = inv.move_id
+        from account_invoice inv
+        WHERE t.invoice_id = inv.id
+        AND t.invoice_id NOT IN (
+            SELECT id FROM account_move
+        )
+        """
+    )
