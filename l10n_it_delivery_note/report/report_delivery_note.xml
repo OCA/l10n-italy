@@ -77,7 +77,7 @@
                     <div style="display:table-row;width:100%;">
                         <div class="well" style="display:table-cell;width:49%;padding:10px;vertical-align:top;">
                             <h4>
-                                <strong>Warehouse:</strong>
+                                <strong>Shipping from:</strong>
                             </h4>
                             <t t-foreach="doc.picking_ids" t-as="pick">
                                 <t t-if="location != pick.location_id.id">
@@ -121,7 +121,7 @@
 
                 <div>
                     <div t-if="doc.picking_type=='outgoing'">
-                        <strong>Warehouse:</strong>
+                        <strong>Shipping from:</strong>
                         <t t-foreach="doc.picking_ids" t-as="pick">
                             <p>
                                 <t t-esc="doc.get_location_address(pick.location_id.id)"/><br/>
