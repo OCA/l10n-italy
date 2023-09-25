@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2023-01-03 13:44+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-09 07:52+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_fatturapa_in
 #: help:account.config.settings,arrotondamenti_passivi_account_id:0
@@ -450,7 +450,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: field:fatturapa.attachment.in,message_follower_ids:0
 msgid "Followers"
-msgstr "Followers"
+msgstr "Seguito da"
 
 #. module: l10n_it_fatturapa_in
 #: field:account.invoice,e_invoice_force_validation:0
@@ -484,8 +484,8 @@ msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
 msgstr ""
-"Contiene il sommario della Chat (n. di messaggi, ...). Questo sommario è "
-"direttamente in formato html per essere inserito nelle viste kanban."
+"Contiene il riepilogo Chatter (numero di messaggi, ...). Questa sintesi è "
+"direttamente in formato HTML, al fine di essere inserita nelle viste kanban."
 
 #. module: l10n_it_fatturapa_in
 #: field:einvoice.line,id:0 field:einvoice.line.other.data,id:0
