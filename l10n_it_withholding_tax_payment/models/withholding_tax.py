@@ -38,7 +38,7 @@ class WithholdingTaxMove(models.Model):
                 )
             )
 
-        super().check_unlink()
+        return super().check_unlink()
 
 
 class WithholdingTaxMovePayment(models.Model):
@@ -69,8 +69,8 @@ class WithholdingTaxMovePayment(models.Model):
         required=True,
         default=lambda self: self.env.company,
     )
-    name = fields.Char("Name")
-    date = fields.Date(string="Date")
+    name = fields.Char()
+    date = fields.Date()
     date_payment = fields.Date("Payment Date")
     date_start = fields.Date("Start Date", readonly=True)
     date_stop = fields.Date("Stop Date", readonly=True)

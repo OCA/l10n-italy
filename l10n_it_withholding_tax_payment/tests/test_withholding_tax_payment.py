@@ -1,4 +1,5 @@
 #  Copyright 2021 Simone Rubino - Agile Business Group
+#  Copyright 2023 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import Form, tagged
@@ -39,7 +40,9 @@ class TestWithholdingTaxPayment(AccountTestInvoicingCommon):
         """
         cls.set_allowed_companies(company_data["company"])
         wh_tax = cls.setup_withholding_tax(company_data)
-        invoice = cls.init_invoice("in_invoice", amounts=[100])
+        invoice = cls.init_invoice(
+            "in_invoice", amounts=[100], company=company_data["company"]
+        )
         invoice_form = Form(invoice)
         with invoice_form.invoice_line_ids.edit(0) as line_form:
             line_form.invoice_line_tax_wt_ids.clear()
@@ -56,7 +59,9 @@ class TestWithholdingTaxPayment(AccountTestInvoicingCommon):
         """
         context = {"allowed_company_ids": company.ids}
         if "allowed_company_ids" in cls.env.context:
-            cls.env.context.pop("allowed_company_ids")
+            ctx = dict(cls.env.context)
+            ctx.pop("allowed_company_ids")
+            cls.env.context = ctx
         cls.env.context = dict(**cls.env.context, **context)
 
     @classmethod
@@ -91,7 +96,10 @@ class TestWithholdingTaxPayment(AccountTestInvoicingCommon):
         )
         wh_tax_payment_wizard = (
             self.env["wizard.wt.move.payment.create"]
-            .with_context(active_model=wh_tax_move._name, active_ids=wh_tax_move.ids)
+            .with_context(
+                active_model=wh_tax_move._name,
+                active_ids=wh_tax_move.ids,
+            )
             .create({})
         )
         wh_tax_payment_action = wh_tax_payment_wizard.generate()
