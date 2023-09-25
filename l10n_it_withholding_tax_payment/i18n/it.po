@@ -224,12 +224,6 @@ msgid "WT move already paid! - {} - {} - {}"
 msgstr "Movimento RdA già pagato - {} - {} - {}"
 
 #. module: l10n_it_withholding_tax_payment
-#: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:140
-#, python-format
-msgid "WT move already paid! - {} - {} - {}"
-msgstr ""
-
-#. module: l10n_it_withholding_tax_payment
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:80
 #, python-format
 msgid ""
