@@ -81,7 +81,7 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         posted = super()._post(soft)
         # Check if there is enough available amount on declarations
-        for invoice in self:
+        for invoice in self.filtered(lambda m: m.is_invoice()):
             declarations = invoice.get_declarations()
             # If partner has no declarations, do nothing
             if not declarations:
