@@ -29,7 +29,7 @@ addon | version | maintainers | summary
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 16.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_ateco](l10n_it_ateco/) | 16.0.1.1.0 |  | ITA - Codici Ateco
 [l10n_it_central_journal_reportlab](l10n_it_central_journal_reportlab/) | 16.0.1.0.0 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) [![Borruso](https://github.com/Borruso.png?size=30px)](https://github.com/Borruso) | ITA - Libro giornale - Reportlab
-[l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 16.0.1.0.1 |  | Gestione dichiarazioni di intento
+[l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 16.0.1.0.2 |  | Gestione dichiarazioni di intento
 [l10n_it_delivery_note](l10n_it_delivery_note/) | 16.0.1.0.4 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 16.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 16.0.1.0.0 | [![andreampiovesana](https://github.com/andreampiovesana.png?size=30px)](https://github.com/andreampiovesana) | Crea collegamento tra i DDT e ordine di vendita/acquisto
