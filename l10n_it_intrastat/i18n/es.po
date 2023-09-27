@@ -3548,6 +3548,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84145925
+msgid ""
+"Axial fans (excl. table, floor, wall, window, ceiling or roof fans, with a "
+"self-contained electric motor of an output <= 125 W, and fans for cooling IT "
+"equipment of 84145915)"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_86079110
 msgid "Axle-boxes and parts thereof, for locomotives, n.e.s."
 msgstr ""
@@ -5276,6 +5284,11 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22083049
 msgid "Blended malt Scotch whisky, in containers holding > 2 l"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181631
+msgid "Blind rivet nuts of stainless steel"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -15341,6 +15354,16 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85369095
+msgid ""
+"Electrical apparatus for making connections to or in electrical circuits, "
+"for a voltage <= 1.000 V (excl. fuses, circuit breakers and other apparatus "
+"for protecting electrical circuits, relays and other switches, lamp holders, "
+"plugs and sockets, prefabricated elements for electrical circuits, "
+"connections and contact elements for wire and cables, and car battery clamps)"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85359000
 msgid ""
 "Electrical apparatus for switching or protecting electrical circuits, or for "
@@ -15995,6 +16018,16 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423119
+msgid ""
+"Electronic integrated circuits as processors and controllers, whether or not "
+"combined with memories, converters, logic circuits, amplifiers, clock and "
+"timing circuits, or other circuits in the form of multichip integrated "
+"circuits consisting of two or more interconnected monolithic integrated "
+"circuits as specified in note 12 (b) (3) to chapter 85"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423110
 msgid ""
 "Electronic integrated circuits as processors and controllers, whether or not "
@@ -16066,6 +16099,15 @@ msgid ""
 "apparatus (excl. compasses, rangefinders, theodolites, tachymeters "
 "\"tacheometers\", levels and photogrammetrical surveying instruments and "
 "appliances)"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423111
+msgid ""
+"Electronic multi-component integrated circuits \"MCOs\" as processors and "
+"controllers as specified in note 12 (b) (4) to chapter 85, whether or not "
+"combined with memories, converters, logic circuits, amplifiers, clock and "
+"timing circuits, or other circuits"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -16910,6 +16952,14 @@ msgstr ""
 msgid ""
 "Fans (excl. table, floor, wall, window, ceiling or roof fans, with a self-"
 "contained electric motor of an output <= 125 W, axial and centrifugal fans)"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84145915
+msgid ""
+"Fans of a kind used solely or principally for cooling microprocessors, "
+"telecommunication apparatus, automatic data processing machines or units of "
+"automatic data processing machines"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -40876,6 +40926,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181639
+msgid "Nuts of stainless steel (excl. blind rivet nuts)"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181630
 msgid ""
 "Nuts of stainless steel (excl. nuts turned from bars, rods, profiles, or "
@@ -55105,6 +55160,15 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181542
+msgid ""
+"Screws and bolts, of iron or steel other than stainless \"whether or not "
+"with their nuts and washers\", without heads, with a tensile strength of < "
+"800 MPa (excl. screws and bolts for fixing railway track construction "
+"material)"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181541
 msgid ""
 "Screws and bolts, of iron or steel other than stainless \"whether or not "
@@ -55112,6 +55176,15 @@ msgid ""
 "800 MPa (excl. screws turned from bars, rods, profiles, or wire, of solid "
 "section, threaded, of a shank thickness of <= 6 mm, and screws and bolts for "
 "fixing railway track construction material)"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181548
+msgid ""
+"Screws and bolts, of iron or steel other than stainless \"whether or not "
+"with their nuts and washers\", without heads, with a tensile strength of >= "
+"800 MPa (excl. screws and bolts for fixing railway track construction "
+"material)"
 msgstr ""
 
 #. module: l10n_it_intrastat
@@ -59681,6 +59754,12 @@ msgstr "Estado %s sin código ISO"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__statement_section
 msgid "Statement Section"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85044095
+msgid ""
+"Static converters (excl. accumulator chargers, rectifiers, and inverters)"
 msgstr ""
 
 #. module: l10n_it_intrastat
