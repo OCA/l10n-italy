@@ -1,3 +1,6 @@
+#  Copyright 2023 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, models
 from odoo.tools import float_compare
 
@@ -5,19 +8,15 @@ from odoo.tools import float_compare
 class InvoiceLine(models.Model):
     _inherit = "account.move.line"
 
-    @api.depends(
-        "move_id",
-        "move_id.move_type",
-        "move_id.fiscal_position_id",
-        "move_id.fiscal_position_id.rc_type_id",
-        "tax_ids",
-    )
+    @api.depends()
     def _compute_rc_flag(self):
         if "fatturapa.attachment.in" in self.env.context.get("active_model", []):
             # this means we are importing an e-invoice,
             # so RC flag is already set, where needed
-            return
-        super()._compute_rc_flag()
+            for line in self:
+                line.rc = line.rc
+        else:
+            return super()._compute_rc_flag()
 
 
 class Invoice(models.Model):
@@ -46,7 +45,7 @@ class Invoice(models.Model):
                 )
             return error_message
         else:
-            return super(Invoice, self).e_inv_check_amount_tax()
+            return super().e_inv_check_amount_tax()
 
     def e_inv_check_amount_total(self):
         if any(self.invoice_line_ids.mapped("rc")) and self.e_invoice_amount_total:
@@ -71,4 +70,4 @@ class Invoice(models.Model):
                 )
             return error_message
         else:
-            return super(Invoice, self).e_inv_check_amount_total()
+            return super().e_inv_check_amount_total()

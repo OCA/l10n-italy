@@ -1,12 +1,15 @@
+#  Copyright 2023 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import api, models
 
 
 class Attachment(models.Model):
     _inherit = "fatturapa.attachment.in"
 
-    @api.model
-    def create(self, vals):
-        attachments = super(Attachment, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        attachments = super().create(vals_list)
         rc_invoices = self.env["account.move"].search(
             [
                 ("move_type", "in", ("in_invoice", "in_refund")),

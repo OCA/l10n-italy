@@ -1,3 +1,6 @@
+#  Copyright 2023 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo.addons.l10n_it_fatturapa_in.tests.fatturapa_common import FatturapaCommon
 
 
@@ -20,9 +23,7 @@ class TestInvoiceRC(FatturapaCommon):
             {
                 "code": "295000",
                 "name": "selfinvoice temporary",
-                "user_type_id": self.env.ref(
-                    "account.data_account_type_current_liabilities"
-                ).id,
+                "account_type": "liability_current",
             }
         )
 
@@ -108,6 +109,16 @@ class TestInvoiceRC(FatturapaCommon):
         res = self.run_wizard(
             "test0", "IT01234567890_FPR04.xml", module_name="l10n_it_fatturapa_in_rc"
         )
+        # Trigger pending computations as if they were done during the attachment import,
+        # in the UX this happens right before going back to the client.
+        # Otherwise account.move.line.rc field is computed on demand
+        # and its check on the context fails.
+        self.env(
+            context=dict(
+                active_model="fatturapa.attachment.in",
+            ),
+        ).flush_all()
+
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.invoice_line_ids[0].name, "LA DESCRIZIONE")

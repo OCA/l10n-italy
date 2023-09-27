@@ -1,9 +1,10 @@
 # Copyright 2018 Sergio Corato (https://efatto.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "ITA - Fattura elettronica - Inversione contabile",
     "summary": "Modulo ponte tra e-fattura in acquisto e inversione" " contabile",
-    "version": "14.0.1.1.1",
+    "version": "16.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
