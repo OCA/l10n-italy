@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-24 10:37+0000\n"
-"PO-Revision-Date: 2023-07-08 11:10+0000\n"
+"PO-Revision-Date: 2023-10-09 05:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -95,6 +95,9 @@ msgid ""
 " %(line)s\n"
 " is RC but has not tax"
 msgstr ""
+"Fattura %(invoice)s, riga \n"
+" %(line)s\n"
+" è RC ma non ha imposta"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_move
@@ -284,6 +287,11 @@ msgid ""
 "Date: %(date)s\n"
 "Internal reference: %(internal_reference)s"
 msgstr ""
+"Autofattura reverse charge.\n"
+"Fornitore: %(supplier)s\n"
+"Riferimento: %(reference)s\n"
+"Data: %(date)s\n"
+"Riferimento interno: %(internal_reference)s"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__sale_tax_id
