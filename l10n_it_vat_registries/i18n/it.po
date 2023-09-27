@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:26+0000\n"
-"PO-Revision-Date: 2023-01-23 13:44+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2023-10-09 05:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
@@ -187,8 +187,8 @@ msgid ""
 "No journals found in the current selection.\n"
 "Please load them before to retry!"
 msgstr ""
-"Nessun registro trovato nella selezione corrente,\n"
-"caricarli prima di riprovare."
+"Nessun registro trovato nella selezione corrente.\n"
+"Caricarli prima di riprovare!"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
@@ -227,9 +227,8 @@ msgstr "Resoconto registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
-#, fuzzy
 msgid "Run VAT registry"
-msgstr "Registro IVA"
+msgstr "Stampa Registro IVA"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__journal_ids
