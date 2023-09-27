@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2023-09-04 18:39+0000\n"
+"PO-Revision-Date: 2023-10-09 05:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -1439,34 +1439,34 @@ msgstr "Gli ammortamenti non possono iniziare prima di {}."
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Direct dismiss"
-msgstr ""
+msgstr "Dismissione diretta"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__management_type__dismiss
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 msgid "Dismiss Asset"
-msgstr "Dismetti Cespite"
+msgstr "Dismetti cespite"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__dismiss_asset_without_sale
 msgid "Dismiss Asset Without Sale"
-msgstr ""
+msgstr "Dismetti cespite senza vendita"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 msgid "Dismiss Asset and Show"
-msgstr "Dismetti Cespite e Mostra"
+msgstr "Dismetti cespite e visualizza"
 
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Dismiss Asset without Sale"
-msgstr ""
+msgstr "Dismetti cespite senza vendita"
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_wizard_asset_move_manage_asset
 msgid "Dismiss Assets"
-msgstr ""
+msgstr "Dismetti cespiti"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__dismiss_date
@@ -1482,13 +1482,13 @@ msgstr "Registrazione contabile dismissione"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__dismissed
 msgid "Dismissed"
-msgstr ""
+msgstr "Dismesso"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_title
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_title
 msgid "Dismissed assets: show"
-msgstr ""
+msgstr "Cespiti dismessi: visualizza"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_account_account__display_name
@@ -2738,7 +2738,7 @@ msgstr "Mostra totali categoria"
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__show_dismissed_assets
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__show_dismissed_assets
 msgid "Show Dismissed Assets"
-msgstr ""
+msgstr "Visualizza cespiti dismessi"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__show_sold_assets
