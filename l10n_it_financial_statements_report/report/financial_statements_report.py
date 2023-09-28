@@ -1,3 +1,4 @@
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, models
@@ -234,7 +235,7 @@ class ReportFinancialStatementsReport(models.AbstractModel):
     def get_balance_sign(self, account, account_group):
         sign = 1
         if account:
-            sign = account.user_type_id.account_balance_sign
+            sign = account.account_balance_sign
         elif account_group:
             sign = account_group.account_balance_sign
         return sign

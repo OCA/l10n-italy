@@ -1,3 +1,4 @@
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -17,13 +18,15 @@ class ReportFinancialStatementsWizard(models.TransientModel):
     @api.onchange("show_partner_details")
     def onchange_show_partner_details(self):
         """Override to avoid unwanted changes"""
+        res = None
         if self.financial_statements_report_type not in REPORT_TYPES:
-            super().onchange_show_partner_details()
+            res = super().onchange_show_partner_details()
         else:
             if self.payable_accounts_only:
                 self.payable_accounts_only = False
             if self.receivable_accounts_only:
                 self.receivable_accounts_only = False
+        return res
 
     def prepare_report_vals(self):
         self.ensure_one()

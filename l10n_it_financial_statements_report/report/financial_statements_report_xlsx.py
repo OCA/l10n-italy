@@ -1,3 +1,4 @@
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
@@ -43,7 +44,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
 
     def _define_formats(self, workbook, report_data):
         """Defines new formats"""
-        super()._define_formats(workbook, report_data)
+        res = super()._define_formats(workbook, report_data)
         company_id = report_data.get("company_id")
         if company_id is not None:
             company = self.env["res.company"].browse(company_id)
@@ -96,6 +97,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         report_data["formats"]["format_header_amount_right"].set_num_format(
             "#,##0." + "0" * currency.decimal_places
         )
+        return res
 
     def _get_report_name(self, report, data=False):
         """
@@ -119,7 +121,14 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         date_from = report.date_from.strftime("%d-%m-%Y")
         date_to = report.date_to.strftime("%d-%m-%Y")
         return [
-            (_("Date range filter"), _("From: %s To: %s", date_from, date_to)),
+            (
+                _("Date range filter"),
+                _(
+                    "From: %(from_)s To: %(to)s",
+                    from_=date_from,
+                    to=date_to,
+                ),
+            ),
             (
                 _("Target moves filter"),
                 _("All posted entries")
@@ -410,9 +419,10 @@ class FinancialStatementsReportXslx(models.AbstractModel):
                     fvars = func.__code__.co_varnames
                     fvars_names = ", ".join(fvars) if fvars else ""
                     msg = _(
-                        "Cannot filter lines with function `%s(%s)`.",
-                        fname,
-                        fvars_names,
+                        "Cannot filter lines with function "
+                        "`%(function_name)s(%(function_args)s)`.",
+                        function_name=fname,
+                        function_args=fvars_names,
                     )
                 elif isinstance(func, str):
                     msg = _("Cannot filter lines with attribute `%s`.", func)
@@ -605,10 +615,10 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         debit_data = order_currency_amount(currency, debit)
 
         left_str = _(
-            "%s BALANCE: %s %s",
-            report_data["financial_statements_report_cols"]["left"]["name"],
-            debit_data[0],
-            debit_data[1],
+            "%(column)s BALANCE: %(curr_or_amount)s %(amount_or_curr)s",
+            column=report_data["financial_statements_report_cols"]["left"]["name"],
+            curr_or_amount=debit_data[0],
+            amount_or_curr=debit_data[1],
         )
         left_columns = _extract_financial_statements_report_columns(
             report_data["columns"], "left"
@@ -623,10 +633,10 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         )
 
         right_str = _(
-            "%s BALANCE: %s %s",
-            report_data["financial_statements_report_cols"]["right"]["name"],
-            credit_data[0],
-            credit_data[1],
+            "%(column)s BALANCE: %(curr_or_amount)s %(amount_or_curr)s",
+            column=report_data["financial_statements_report_cols"]["right"]["name"],
+            curr_or_amount=credit_data[0],
+            amount_or_curr=credit_data[1],
         )
         right_columns = _extract_financial_statements_report_columns(
             report_data["columns"], "right"
