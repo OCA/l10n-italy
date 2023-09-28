@@ -7,7 +7,8 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, exceptions, fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 # -------------------------------------------------------
@@ -87,9 +88,11 @@ class RibaIssue(models.TransientModel):
             if move_line.move_id.riba_partner_bank_id:
                 bank_id = move_line.move_id.riba_partner_bank_id
             else:
-                raise exceptions.Warning(
-                    _("No bank has been specified for invoice %s")
-                    % move_line.move_id.name
+                raise UserError(
+                    _(
+                        "No bank has been specified for invoice %(invoice)s",
+                        invoice=move_line.move_id.name,
+                    )
                 )
             if move_line.partner_id.group_riba and do_group_riba:
                 for key in grouped_lines:

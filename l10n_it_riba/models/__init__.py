@@ -8,7 +8,6 @@
 
 from . import account
 from . import account_config
-from . import bank_statement
 from . import ir_ui_menu
 from . import partner
 from . import riba

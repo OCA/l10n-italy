@@ -10,7 +10,7 @@
 from datetime import date
 
 from odoo import _, api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 
 
 class RibaList(models.Model):
@@ -141,9 +141,10 @@ class RibaList(models.Model):
                 raise UserError(
                     _(
                         "Slip %(name)s is in state '%(state)s'. You can only delete documents"
-                        " in state 'Draft' or 'Canceled'."
+                        " in state 'Draft' or 'Canceled'.",
+                        name=riba_list.name,
+                        state=riba_list.state,
                     )
-                    % {"name": riba_list.name, "state": riba_list.state}
                 )
 
     def confirm(self):
@@ -174,7 +175,7 @@ class RibaList(models.Model):
         if self.date_accepted and self.date_credited:
             if self.date_accepted > self.date_credited:
                 raise UserError(
-                    _("Credit date must be greater or equal to" " acceptance date.")
+                    _("Credit date must be greater or equal to acceptance date.")
                 )
 
     def riba_past_due(self):

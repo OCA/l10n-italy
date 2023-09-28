@@ -13,9 +13,6 @@ from . import riba_common
 
 
 class TestInvoiceDueCost(riba_common.TestRibaCommon):
-    def setUp(self):
-        super(TestInvoiceDueCost, self).setUp()
-
     def test_add_due_cost(self):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id

@@ -8,7 +8,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 
 
 class AccountPaymentTerm(models.Model):
@@ -90,8 +90,8 @@ class AccountMove(models.Model):
     )
 
     @api.model_create_multi
-    def create(self, vals):
-        invoices = super().create(vals)
+    def create(self, vals_list):
+        invoices = super().create(vals_list)
         for invoice in invoices:
             if not invoice.riba_partner_bank_id:
                 invoice._onchange_riba_partner_bank_id()
@@ -202,7 +202,7 @@ class AccountMove(models.Model):
     def button_draft(self):
         # ---- Delete Collection Fees Line of invoice when set Back to Draft
         # ---- line was added on new validate
-        res = super(AccountMove, self).button_draft()
+        res = super().button_draft()
         for invoice in self:
             due_cost_line_ids = invoice.get_due_cost_line_ids()
             if due_cost_line_ids:
@@ -231,16 +231,19 @@ class AccountMove(models.Model):
                     if len(riba_line_ids) > 1:
                         riba_line_ids = riba_line_ids[0]
                     raise UserError(
-                        _("Invoice is linked to RiBa slip No. {riba}").format(
-                            riba=riba_line_ids.riba_line_id.slip_id.name
+                        _(
+                            "Invoice is linked to RiBa slip No. %(riba)s",
+                            riba=riba_line_ids.riba_line_id.slip_id.name,
                         )
                     )
-        return super(AccountMove, self).button_cancel()
+        return super().button_cancel()
 
     def copy(self, default=None):
         self.ensure_one()
         # Delete Collection Fees Line of invoice when copying
-        invoice = super(AccountMove, self).copy(default)
+        invoice = super().copy(
+            default=default,
+        )
         if invoice:
             due_cost_line_ids = invoice.get_due_cost_line_ids()
             if due_cost_line_ids:
@@ -296,13 +299,19 @@ class AccountMoveLine(models.Model):
         if ids and view_id == view_payments_tree_id[1]:
             # Use RiBa slip
             result = super(models.Model, self).fields_view_get(
-                view_id, view_type, toolbar=toolbar, submenu=submenu
+                view_id=view_id,
+                view_type=view_type,
+                toolbar=toolbar,
+                submenu=submenu,
             )
         else:
             # Use special views for account.move.line object
             # (for ex. tree view contains user defined fields)
-            result = super(AccountMoveLine, self).fields_view_get(
-                view_id, view_type, toolbar=toolbar, submenu=submenu
+            result = super().fields_view_get(
+                view_id=view_id,
+                view_type=view_type,
+                toolbar=toolbar,
+                submenu=submenu,
             )
         return result
 
@@ -323,7 +332,7 @@ class AccountMoveLine(models.Model):
                         riba_line.slip_id.state = "paid"
 
     def reconcile(self):
-        res = super(AccountMoveLine, self).reconcile()
+        res = super().reconcile()
         for line in self:
             line.update_paid_riba_lines()
         return res
@@ -372,7 +381,7 @@ class AccountFullReconcile(models.Model):
         riba_lines = None
         for rec in self:
             riba_lines = rec.get_riba_lines()
-        res = super(AccountFullReconcile, self).unlink()
+        res = super().unlink()
         if riba_lines:
             self.unreconcile_riba_lines(riba_lines)
         return res
@@ -385,7 +394,7 @@ class AccountPartialReconcile(models.Model):
         riba_lines = None
         for rec in self:
             riba_lines = rec.get_riba_lines()
-        res = super(AccountPartialReconcile, self).unlink()
+        res = super().unlink()
         if riba_lines:
             self.env["account.full.reconcile"].unreconcile_riba_lines(riba_lines)
         return res
