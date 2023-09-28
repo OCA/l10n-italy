@@ -670,9 +670,7 @@ class StockDeliveryNote(models.Model):
     @api.model
     def get_location_address(self, location_id):
         location_address = ""
-        warehouse = self.env["stock.warehouse"].search(
-            [("lot_stock_id", "=", location_id)]
-        )
+        warehouse = self.env["stock.location"].browse(location_id).warehouse_id
 
         if warehouse and warehouse.partner_id:
             partner = warehouse.partner_id
