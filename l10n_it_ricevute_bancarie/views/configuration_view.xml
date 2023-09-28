@@ -55,6 +55,20 @@
     </record>
 
     <!-- ====================================================== -->
+    <!-- 				CONFIGURAZIONE RIBA TREE 				-->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_riba_configuration_tree">
+        <field name="name">riba.configuration.tree</field>
+        <field name="model">riba.configuration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
     <!-- 				CONFIGURAZIONE RIBA ACTION				-->
     <!-- ====================================================== -->
     <record id="action_riba_configuration" model="ir.actions.act_window">

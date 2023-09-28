@@ -4,6 +4,11 @@ from odoo.tests import common
 class TestRibaCommon(common.TransactionCase):
     def setUp(self):
         super(TestRibaCommon, self).setUp()
+        self.company2 = self.env["res.company"].create(
+            {
+                "name": "company 2",
+            }
+        )
         self.service_due_cost = self._create_service_due_cost()
         self.account_model = self.env["account.account"]
         self.move_line_model = self.env["account.move.line"]
@@ -88,6 +93,13 @@ class TestRibaCommon(common.TransactionCase):
             }
         )
         self.company_bank = self.env.ref("l10n_it_ricevute_bancarie.company_bank")
+        self.company2_bank = self.env["res.partner.bank"].create(
+            {
+                "acc_number": "IT000000000000000000",
+                "partner_id": self.company2.partner_id.id,
+                "company_id": self.company2.id,
+            }
+        )
         self.riba_config = self.create_config()
         self.account_payment_term_riba = self.env.ref(
             "l10n_it_ricevute_bancarie.account_payment_term_riba"
