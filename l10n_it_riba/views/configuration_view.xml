@@ -13,12 +13,14 @@
         <field name="model">riba.configuration</field>
         <field name="arch" type="xml">
             <form string="RiBa - Configuration">
+                <field name="company_id" invisible="1" />
                 <group>
                     <field name="name" />
                     <field name="type" />
                     <field
                         name="bank_id"
-                        domain="[('partner_id.ref_company_ids', 'in', allowed_company_ids)]"
+                        domain="[('partner_id.ref_company_ids', 'in', [company_id])]"
+                        options="{'no_create': True}"
                     />
                     <field
                         name="company_id"
@@ -32,32 +34,57 @@
                     <field
                         name="acceptance_journal_id"
                         attrs="{'required':[('type','=','sbf')]}"
+                        options="{'no_create': True}"
                     />
                     <field
                         name="acceptance_account_id"
                         attrs="{'required':[('type','=','sbf')]}"
+                        options="{'no_create': True}"
                     />
                 </group>
 
                 <group string="Credit" attrs="{'invisible': [('type','!=','sbf')]}">
-                    <field name="credit_journal_id" />
-                    <field name="credit_account_id" />
-                    <field name="bank_account_id" />
-                    <field name="bank_expense_account_id" />
+                    <field name="credit_journal_id" options="{'no_create': True}" />
+                    <field name="credit_account_id" options="{'no_create': True}" />
+                    <field name="bank_account_id" options="{'no_create': True}" />
+                    <field
+                        name="bank_expense_account_id"
+                        options="{'no_create': True}"
+                    />
                 </group>
 
                 <group string="Past Due" attrs="{'invisible': [('type','!=','sbf')]}">
-                    <field name="past_due_journal_id" />
-                    <field name="overdue_effects_account_id" />
-                    <field name="protest_charge_account_id" />
+                    <field name="past_due_journal_id" options="{'no_create': True}" />
+                    <field
+                        name="overdue_effects_account_id"
+                        options="{'no_create': True}"
+                    />
+                    <field
+                        name="protest_charge_account_id"
+                        options="{'no_create': True}"
+                    />
                 </group>
 
                 <group string="Settlement" attrs="{'invisible': [('type','!=','sbf')]}">
-                    <field name="past_due_journal_id" />
-                    <field name="settlement_journal_id" />
+                    <field name="past_due_journal_id" options="{'no_create': True}" />
+                    <field name="settlement_journal_id" options="{'no_create': True}" />
                 </group>
 
             </form>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!-- 				CONFIGURAZIONE RIBA TREE 				-->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_riba_configuration_tree">
+        <field name="name">riba.configuration.tree</field>
+        <field name="model">riba.configuration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
         </field>
     </record>
 

@@ -25,17 +25,19 @@ class RibaConfiguration(models.Model):
         "res.partner.bank",
         "Bank Account",
         required=True,
-        help="Bank account used for RiBa issuing.",
+        domain="[('company_id', '=', company_id)]",
+        help="Bank account used for C/O issuing.",
     )
     acceptance_journal_id = fields.Many2one(
         "account.journal",
         "Acceptance Journal",
-        domain=[("type", "=", "bank")],
+        domain="[('company_id', '=', company_id), ('type', '=', 'bank')]",
         help="Journal used when RiBa is accepted by the bank.",
     )
     acceptance_account_id = fields.Many2one(
         "account.account",
         "Acceptance Account",
+        domain="[('company_id', '=', company_id)]",
         help="Account used when RiBa is accepted by the bank.",
     )
     company_id = fields.Many2one(
@@ -47,38 +49,42 @@ class RibaConfiguration(models.Model):
     credit_journal_id = fields.Many2one(
         "account.journal",
         "Credit Journal",
-        domain=[("type", "=", "bank")],
+        domain="[('company_id', '=', company_id), ('type', '=', 'bank')]",
         help="Journal used when RiBa amount is credited by the bank.",
     )
     credit_account_id = fields.Many2one(
         "account.account",
         "RiBa Account",
         help="Account used when RiBa amount is credited by the bank.",
-        domain=[("account_type", "!=", "liability_credit_card")],
+        domain="[('company_id', '=', company_id), \
+                ('account_type', '!=', 'liability_credit_card')]",
     )
     bank_account_id = fields.Many2one(
         "account.account",
         "A/C Bank Account",
-        domain=[("account_type", "=", "asset_cash")],
+        domain="[('company_id', '=', company_id), ('account_type', '=', 'asset_cash')]",
     )
     bank_expense_account_id = fields.Many2one("account.account", "Bank Fees Account")
     past_due_journal_id = fields.Many2one(
         "account.journal",
         "Past Due Journal",
-        domain=[("type", "=", "bank")],
+        domain="[('company_id', '=', company_id), ('type', '=', 'bank')]",
         help="Journal used when RiBa is past due.",
     )
     overdue_effects_account_id = fields.Many2one(
         "account.account",
         "Past Due Bills Account",
-        domain=[("account_type", "=", "asset_receivable")],
+        domain="[('company_id', '=', company_id), ('account_type', '=', 'asset_receivable')]",
     )
     protest_charge_account_id = fields.Many2one(
-        "account.account", "Protest Fee Account"
+        "account.account",
+        "Protest Fee Account",
+        domain="[('company_id', '=', company_id)]",
     )
     settlement_journal_id = fields.Many2one(
         "account.journal",
         "Settlement Journal",
+        domain="[('company_id', '=', company_id)]",
         help="Journal used when customers finally pay the invoice to bank.",
     )
 
