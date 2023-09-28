@@ -10,22 +10,28 @@ from odoo.tools.float_utils import float_compare, float_is_zero
 class WizardAccountMoveManageAsset(models.TransientModel):
     _name = "wizard.account.move.manage.asset"
     _description = "Manage Assets from Account Moves"
+    _check_company_auto = True
 
     @api.model
     def get_default_company_id(self):
-        return self.env.user.company_id
+        return self.env.company
 
     @api.model
     def get_default_move_ids(self):
         return self._context.get("move_ids")
 
-    asset_id = fields.Many2one("asset.asset", string="Asset")
+    asset_id = fields.Many2one(
+        "asset.asset",
+        string="Asset",
+        check_company=True,
+    )
 
     asset_purchase_amount = fields.Monetary(string="Purchase Amount")
 
     category_id = fields.Many2one(
         "asset.category",
         string="Category",
+        check_company=True,
     )
 
     code = fields.Char(
@@ -35,6 +41,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     company_id = fields.Many2one(
         "res.company",
+        readonly=True,
         default=get_default_company_id,
         string="Company",
     )
@@ -49,7 +56,9 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     depreciated_fund_amount = fields.Monetary(string="Depreciated Fund Amount")
 
     depreciation_type_ids = fields.Many2many(
-        "asset.depreciation.type", string="Depreciation Types"
+        "asset.depreciation.type",
+        string="Depreciation Types",
+        check_company=True,
     )
 
     dismiss_date = fields.Date(
@@ -77,11 +86,13 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         "account.move",
         default=get_default_move_ids,
         string="Moves",
+        check_company=True,
     )
 
     move_line_ids = fields.Many2many(
         "account.move.line",
         string="Move Lines",
+        check_company=True,
     )
 
     move_type = fields.Selection(

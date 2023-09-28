@@ -87,7 +87,6 @@
                         <group>
                             <field
                                 name="company_id"
-                                attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
                                 groups="base.group_multi_company"
                             />
                             <field

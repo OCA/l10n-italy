@@ -31,6 +31,7 @@
                             nolabel="1"
                         >
                             <tree editable="bottom">
+                                <field name="company_id" invisible="1" />
                                 <field name="category_id" invisible="1" />
                                 <field name="depreciation_type_id" />
                                 <field name="pro_rata_temporis" />

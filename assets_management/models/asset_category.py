@@ -10,10 +10,11 @@ class AssetCategory(models.Model):
     _name = "asset.category"
     _description = "Asset Category"
     _order = "name"
+    _check_company_auto = True
 
     @api.model
     def get_default_company_id(self):
-        return self.env.user.company_id
+        return self.env.company
 
     @api.model
     def get_default_type_ids(self):
@@ -46,6 +47,7 @@ class AssetCategory(models.Model):
         "account.account",
         required=True,
         string="Asset Account",
+        check_company=True,
     )
 
     comment = fields.Text(
@@ -53,33 +55,42 @@ class AssetCategory(models.Model):
     )
 
     company_id = fields.Many2one(
-        "res.company", default=get_default_company_id, string="Company"
+        "res.company", default=get_default_company_id, readonly=True, string="Company"
     )
 
     depreciation_account_id = fields.Many2one(
         "account.account",
         required=True,
         string="Depreciation Account",
+        check_company=True,
     )
 
     fund_account_id = fields.Many2one(
         "account.account",
         required=True,
         string="Fund Account",
+        check_company=True,
     )
 
     gain_account_id = fields.Many2one(
         "account.account",
         required=True,
         string="Capital Gain Account",
+        check_company=True,
     )
 
-    journal_id = fields.Many2one("account.journal", required=True, string="Journal")
+    journal_id = fields.Many2one(
+        "account.journal",
+        required=True,
+        string="Journal",
+        check_company=True,
+    )
 
     loss_account_id = fields.Many2one(
         "account.account",
         required=True,
         string="Capital Loss Account",
+        check_company=True,
     )
 
     name = fields.Char(
@@ -97,6 +108,7 @@ class AssetCategory(models.Model):
     tag_ids = fields.Many2many(
         "asset.tag",
         string="Tag",
+        check_company=True,
     )
 
     type_ids = fields.One2many(
@@ -104,6 +116,7 @@ class AssetCategory(models.Model):
         "category_id",
         default=get_default_type_ids,
         string="Depreciation Types",
+        check_company=True,
     )
 
     def copy(self, default=None):

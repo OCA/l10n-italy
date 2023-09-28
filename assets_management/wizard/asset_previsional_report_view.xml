@@ -17,12 +17,12 @@
                         <field
                             name="category_ids"
                             widget="many2many_tags"
-                            options="{'no_create_edit': True}"
+                            options="{'no_create': True, 'no_create_edit': True}"
                         />
                         <field
                             name="type_ids"
                             widget="many2many_tags"
-                            options="{'no_create_edit': True}"
+                            options="{'no_create': True, 'no_create_edit': True}"
                         />
                     </group>
                     <group name="assets" string="Assets">
