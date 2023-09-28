@@ -1,4 +1,5 @@
 #  Copyright 2023 Simone Rubino - TAKOBI
+#  Copyright 2023 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
@@ -77,12 +78,14 @@ class TestReport(AccountTestInvoicingCommon):
     def _render_report(self, report, report_data, report_type, wizard_ids):
         if report_type == "pdf":
             report_content, report_type = report._render_qweb_pdf(
+                report,
                 res_ids=wizard_ids,
                 data=report_data,
             )
             report_content = report_content.decode()
         elif report_type == "xlsx":
             report_content, report_type = report._render_xlsx(
+                report,
                 wizard_ids,
                 report_data,
             )
@@ -103,7 +106,7 @@ class TestReport(AccountTestInvoicingCommon):
         context = report_action["context"]
         wizard_ids = context["active_ids"]
         report = self.env["ir.actions.report"]._get_report_from_name(report_name)
-        report = report.with_context(context)
+        report = report.with_context(**context)
         report_data = report_action["data"]
 
         report_content = self._render_report(

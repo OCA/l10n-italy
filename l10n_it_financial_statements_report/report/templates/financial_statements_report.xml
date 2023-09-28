@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <template id="template_financial_statements_report">
@@ -210,7 +214,7 @@
                         >
                             <t
                                 t-att-style="style"
-                                t-raw="accounts_data[account_id]['code']"
+                                t-out="accounts_data[account_id]['code']"
                             /></a>
                     </span>
                 </t>
@@ -225,7 +229,7 @@
                         >
                             <t
                                 t-att-style="style"
-                                t-raw="line.get('complete_code')"
+                                t-out="line.get('complete_code')"
                             /></a>
                     </span>
                 </t>
@@ -243,7 +247,7 @@
                         >
                             <t
                                 t-att-style="style"
-                                t-raw="accounts_data[account_id]['name']"
+                                t-out="accounts_data[account_id]['name']"
                             /></a>
                     </span>
                 </t>
@@ -256,7 +260,7 @@
                             t-att-style="style"
                             view-type="form"
                         >
-                            <t t-att-style="style" t-raw="line.get('name')" /></a>
+                            <t t-att-style="style" t-out="line.get('name')" /></a>
                     </span>
                 </t>
             </div>
@@ -278,7 +282,7 @@
                         >
                         <t
                                 t-att-style="style"
-                                t-raw="line.get('ending_balance')"
+                                t-out="line.get('ending_balance')"
                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                             /></a>
                     </span>
@@ -299,7 +303,7 @@
                         >
                         <t
                                 t-att-style="style"
-                                t-raw="line.get('ending_balance')"
+                                t-out="line.get('ending_balance')"
                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                             /></a>
                     </span>
@@ -334,7 +338,7 @@
                                 >
                                 <t
                                         t-att-style="style"
-                                        t-raw="line.get('ending_currency_balance')"
+                                        t-out="line.get('ending_currency_balance')"
                                         t-options="{'widget': 'monetary', 'display_currency': currency}"
                                     /></a>
                             </span>
@@ -355,7 +359,7 @@
                                 >
                                 <t
                                         t-att-style="style"
-                                        t-raw="line.get('ending_currency_balance')"
+                                        t-out="line.get('ending_currency_balance')"
                                         t-options="{'widget': 'monetary', 'display_currency': currency}"
                                     /></a>
                             </span>
@@ -416,7 +420,7 @@
                         >
                             <t
                                 t-att-style="partner_style"
-                                t-raw="partners_data.get(partner_id, {}).get('name', 'No partner allocated')"
+                                t-out="partners_data.get(partner_id, {}).get('name', 'No partner allocated')"
                             />
                         </a>
                     </span>
@@ -438,7 +442,7 @@
                         >
                             <t
                                 t-att-style="partner_style"
-                                t-raw="partner_line.get('ending_balance')"
+                                t-out="partner_line.get('ending_balance')"
                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                             />
                         </a>
@@ -499,7 +503,7 @@
                         style="font-size: 14px; margin-right: 4px; text-align: right; font-weight: bold;"
                     >
                         <span t-esc="left_col_name" /> BALANCE: <t
-                            t-raw="total_debit"
+                            t-out="total_debit"
                             t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                         />
                     </span>
@@ -510,7 +514,7 @@
                         style="font-size: 14px; margin-right: 4px; text-align: right; font-weight: bold;"
                     >
                         <span t-esc="right_col_name" /> BALANCE: <t
-                            t-raw="total_credit"
+                            t-out="total_credit"
                             t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                         />
                     </span>
@@ -526,7 +530,7 @@
                             style="font-size: 14px; margin-right: 4px; text-align: right; font-weight: bold;"
                         >
                             SURPLUS: <t
-                                t-raw="total_balance"
+                                t-out="total_balance"
                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                             />
                         </span>
@@ -538,7 +542,7 @@
                             style="font-size: 14px; margin-right: 4px; text-align: right; font-weight: bold;"
                         >
                             DEFICIT: <t
-                                t-raw="total_balance"
+                                t-out="total_balance"
                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                             />
                         </span>

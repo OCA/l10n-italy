@@ -3,6 +3,5 @@ asn1crypto
 codicefiscale
 elementpath
 mock
-openupgradelib
 unidecode
 xmlschema
