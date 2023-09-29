@@ -1,5 +1,11 @@
+import logging
+
 from odoo import _, api, fields, models
 from odoo.tools import format_date
+
+from ..wizard import efattura
+
+_logger = logging.getLogger(__name__)
 
 SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21", "TD27", "TD28")
 
@@ -43,8 +49,13 @@ class FatturaPAAttachmentIn(models.Model):
         compute="_compute_e_invoice_validation_error"
     )
 
+    e_invoice_parsing_error = fields.Text(
+        compute="_compute_e_invoice_parsing_error",
+        store=True,
+    )
+
     is_self_invoice = fields.Boolean(
-        "Contains self invoices", compute="_compute_xml_data", store=True
+        "Contains self invoices", compute="_compute_is_self_invoice", store=True
     )
 
     inconsistencies = fields.Text(compute="_compute_xml_data", store=True)
@@ -84,8 +95,61 @@ class FatturaPAAttachmentIn(models.Model):
             att.e_invoice_validation_message = "\n\n".join(error_messages)
 
     def recompute_xml_fields(self):
-        self._compute_xml_data()
+        # Pretend the attachment has been modified
+        # and trigger a recomputation:
+        # this recomputes all fields whose value
+        # is extracted from the attachment
+        self.modified(["ir_attachment_id"])
+        self.recompute()
         self._compute_registered()
+
+    def get_invoice_obj(self):
+        """
+        Parse the invoice into a lxml.etree.ElementTree object.
+        If the parsing goes wrong:
+         - log the error
+         - save the parsing error in field `e_invoice_parsing_error`
+         - return `False`
+        :rtype: lxml.etree.ElementTree or bool.
+        """
+        self.ensure_one()
+        invoice_obj = False
+        try:
+            xml_string = self.get_xml_string()
+            invoice_obj = efattura.CreateFromDocument(xml_string)
+        except Exception as e:
+            error_msg = _("Impossible to parse XML for {att_name}: {error_msg}").format(
+                att_name=self.display_name,
+                error_msg=e,
+            )
+            _logger.error(error_msg)
+            self.e_invoice_parsing_error = error_msg
+        else:
+            self.e_invoice_parsing_error = False
+        return invoice_obj
+
+    @api.depends("ir_attachment_id.datas")
+    def _compute_is_self_invoice(self):
+        for att in self:
+            att.is_self_invoice = False
+            if not att.datas:
+                return
+            fatt = att.get_invoice_obj()
+            if fatt:
+                for invoice_body in fatt.FatturaElettronicaBody:
+                    document_type = (
+                        invoice_body.DatiGenerali.DatiGeneraliDocumento.TipoDocumento
+                    )
+                    if document_type in SELF_INVOICE_TYPES:
+                        att.is_self_invoice = True
+                        break
+
+    @api.depends("ir_attachment_id.datas")
+    def _compute_e_invoice_parsing_error(self):
+        for att in self:
+            if not att.datas:
+                return
+            att.get_invoice_obj()
 
     @api.depends("ir_attachment_id.datas")
     def _compute_xml_data(self):
@@ -94,31 +158,51 @@ class FatturaPAAttachmentIn(models.Model):
             att.invoices_number = False
             att.invoices_total = False
             att.invoices_date = False
-            att.is_self_invoice = False
-            if not att.ir_attachment_id.datas:
+            if not att.datas:
+                return
+            fatt = att.get_invoice_obj()
+            if not fatt:
+                # Set default values and carry on
                 continue
-            wiz_obj = self.env["wizard.import.fatturapa"].with_context(
-                from_attachment=att
-            )
-            fatt = wiz_obj.get_invoice_obj(att)
-            cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
-            partner_id = wiz_obj.getCedPrest(cedentePrestatore)
-            att.xml_supplier_id = partner_id
-            att.invoices_number = len(fatt.FatturaElettronicaBody)
-            att.invoices_total = 0
+            # Look into each invoice to compute the following values
             invoices_date = []
             for invoice_body in fatt.FatturaElettronicaBody:
-                dgd = invoice_body.DatiGenerali.DatiGeneraliDocumento
-                att.invoices_total += float(dgd.ImportoTotaleDocumento or 0)
+                # Assign this directly so that rounding is applied each time
+                att.invoices_total += float(
+                    invoice_body.DatiGenerali.DatiGeneraliDocumento.ImportoTotaleDocumento
+                    or 0
+                )
+
+                document_date = invoice_body.DatiGenerali.DatiGeneraliDocumento.Data
                 invoice_date = format_date(
                     att.with_context(lang=att.env.user.lang).env,
-                    fields.Date.from_string(dgd.Data),
+                    fields.Date.from_string(document_date),
                 )
                 if invoice_date not in invoices_date:
                     invoices_date.append(invoice_date)
-                if dgd.TipoDocumento in SELF_INVOICE_TYPES:
-                    att.is_self_invoice = True
-            att.invoices_date = " ".join(invoices_date)
+
+            att.update(
+                dict(
+                    invoices_date=" ".join(invoices_date),
+                )
+            )
+
+            # We don't need to look into each invoice
+            # for the following fields
+            att.invoices_number = len(fatt.FatturaElettronicaBody)
+
+            # Partner creation that may happen in `getCedPrest`
+            # triggers a recomputation
+            # that messes up the cache of some fields if they are set
+            # (more properly, put in cache) afterwards;
+            # this happens for `is_self_invoice` for instance.
+            # That is why we set it as the last field.
+            cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
+            wiz_obj = self.env["wizard.import.fatturapa"].with_context(
+                from_attachment=att
+            )
+            partner_id = wiz_obj.getCedPrest(cedentePrestatore)
+            att.xml_supplier_id = partner_id
             inconsistencies = wiz_obj.env.context.get("inconsistencies", False)
             att.inconsistencies = inconsistencies
 
@@ -151,12 +235,12 @@ class FatturaPAAttachmentIn(models.Model):
     @api.depends("ir_attachment_id.datas")
     def _compute_linked_invoice_id_xml(self):
         for att in self:
+            att.linked_invoice_id_xml = ""
+            if not att.datas:
+                return
             if isinstance(att.id, int):
                 att.linked_invoice_id_xml = ""
-                wiz_obj = self.env["wizard.import.fatturapa"].with_context(
-                    from_attachment=att
-                )
-                fatt = wiz_obj.get_invoice_obj(att)
+                fatt = att.get_invoice_obj()
                 if fatt:
                     for invoice_body in fatt.FatturaElettronicaBody:
                         if (

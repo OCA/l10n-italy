@@ -173,13 +173,13 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
     def test_06_import_except(self):
         # File not exist Exception
         self.assertRaises(Exception, self.run_wizard, "test6_Exception", "")
-        # fake Signed file is passed , generate orm_exception
-        self.assertRaises(
-            UserError,
-            self.run_wizard,
-            "test6_orm_exception",
-            "IT05979361218_fake.xml.p7m",
-        )
+
+        # fake Signed file is passed , generate parsing error
+        with mute_logger("odoo.addons.l10n_it_fatturapa_in.models.attachment"):
+            attachment = self.create_attachment(
+                "test6_orm_exception", "IT05979361218_fake.xml.p7m"
+            )
+        self.assertIn("Invalid xml", attachment.e_invoice_parsing_error)
 
     def test_07_xml_import(self):
         # 2 lines with quantity != 1 and discounts
@@ -894,6 +894,21 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_ids = res.get("domain")[0][2]
         invoice = self.invoice_model.browse(invoice_ids)
         self.assertTrue(invoice.fatturapa_attachment_in_id.is_self_invoice)
+
+    def test_52_12_xml_import(self):
+        """
+        Check that an XML with syntax error is created,
+        but it shows a parsing error.
+        """
+        with mute_logger("odoo.addons.l10n_it_fatturapa_in.models.attachment"):
+            attachment = self.create_attachment(
+                "test52_12",
+                "ZGEXQROO37831_anonimizzata.xml",
+            )
+        self.assertIn(
+            "Impossible to parse XML for test52_12:",
+            attachment.e_invoice_parsing_error or "",
+        )
 
     def test_52_xml_import(self):
         # we test partner creation, too
