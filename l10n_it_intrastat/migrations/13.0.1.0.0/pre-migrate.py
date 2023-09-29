@@ -63,3 +63,25 @@ where
     invoice_id = inv.id;
     """,
     )
+
+    # Drop intrastat info not linked to an account_move.
+    # It happens when invoices are in draft state
+    openupgrade.logged_query(
+        env.cr,
+        """
+select id, invoice_id
+from account_invoice_intrastat
+where invoice_id not in (select id from account_move)
+    """,
+    )
+    for row in env.cr.fetchall():
+        openupgrade.logger.info(
+            f"Deleting account_invoice_intrastat {row[0]} for draft invoice {row[1]}"
+        )
+    openupgrade.logged_query(
+        env.cr,
+        """
+delete from account_invoice_intrastat
+where invoice_id not in (select id from account_move)
+    """,
+    )
