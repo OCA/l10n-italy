@@ -183,8 +183,6 @@ class TestReport(AccountTestInvoicingCommon):
         )
         workbook = xlrd.open_workbook(file_contents=report_content)
         sheet = workbook.sheet_by_index(0)
-        with open("/tmp/test.xlsx", "bw+") as f:
-            f.write(report_content)
 
         # Assert
         account_group = self.account_group
