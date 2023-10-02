@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="assets_frontend_rma"
+        inherit_id="web.assets_frontend"
+        name="Request RMA"
+    >
+        <xpath expr="//link[last()]" position="after">
+            <script
+                type="text/javascript"
+                src="/l10n_it_delivery_note_rma/static/src/js/rma_portal_form.js"
+            />
+        </xpath>
+    </template>
+</odoo>

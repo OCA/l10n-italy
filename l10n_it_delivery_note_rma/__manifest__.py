@@ -12,9 +12,11 @@
     "installable": True,
     "depends": ["rma", "l10n_it_delivery_note"],
     "data": [
+        "views/assets.xml",
         "security/ir.model.access.csv",
         "views/rma_views.xml",
         "views/delivery_views.xml",
         "wizard/stock_delivery_note_rma_wizard_views.xml",
+        "views/delivery_portal_template.xml",
     ],
 }
