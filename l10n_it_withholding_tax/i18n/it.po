@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 05:14+0000\n"
-"PO-Revision-Date: 2023-07-17 17:17+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-09 07:52+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -385,7 +385,7 @@ msgstr "Partner"
 #: view:withholding.tax.move:l10n_it_withholding_tax.view_withholding_move_search
 #: view:withholding.tax.statement:l10n_it_withholding_tax.view_withholding_tax_statement_search
 msgid "Partners"
-msgstr "Partners"
+msgstr "Partner"
 
 #. module: l10n_it_withholding_tax
 #: field:withholding.tax.move,account_move_id:0
@@ -461,7 +461,7 @@ msgstr ""
 #. module: l10n_it_withholding_tax
 #: field:withholding.tax,comment:0 field:withholding.tax.rate,comment:0
 msgid "Text"
-msgstr "Text"
+msgstr "Testo"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/wizard/create_wt_statement.py:28
