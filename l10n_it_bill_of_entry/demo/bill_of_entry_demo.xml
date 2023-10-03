@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
   ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ Copyright 2023 Simone Rubino - Aion Tech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
@@ -8,31 +9,25 @@
     <record id="account_account_extraEU_purchase" model="account.account">
         <field name="code">280310</field>
         <field name="name">ExtraEU Goods Purchase</field>
-        <field
-            name="user_type_id"
-            ref="account.data_account_type_current_liabilities"
-        />
+        <field name="account_type">liability_current</field>
         <field name="reconcile">True</field>
     </record>
     <record id="account_account_adv_customs_expense" model="account.account">
         <field name="code">280320</field>
         <field name="name">Advanced Customs Expenses</field>
-        <field
-            name="user_type_id"
-            ref="account.data_account_type_current_liabilities"
-        />
+        <field name="account_type">liability_current</field>
         <field name="reconcile">True</field>
     </record>
     <record id="account_account_customs_expense" model="account.account">
         <field name="code">421500</field>
         <field name="name">Customs Expenses</field>
-        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="account_type">expense</field>
         <field name="reconcile">True</field>
     </record>
     <record id="account_account_stamp_duties" model="account.account">
         <field name="code">421400</field>
         <field name="name">Stamp Duties</field>
-        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="account_type">expense</field>
         <field name="reconcile">True</field>
     </record>
 
@@ -43,7 +38,7 @@
     <record id="account_account_delivery_expense" model="account.account">
         <field name="code">420101</field>
         <field name="name">Delivery Expenses</field>
-        <field name="user_type_id" ref="account.data_account_type_expenses" />
+        <field name="account_type">expense</field>
         <field name="reconcile">True</field>
     </record>
 
