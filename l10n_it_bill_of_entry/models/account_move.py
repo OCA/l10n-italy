@@ -1,4 +1,5 @@
 #  Copyright 2022 Simone Rubino - TAKOBI
+#  Copyright 2023 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -16,7 +17,6 @@ class AccountMove(models.Model):
             ("supplier_invoice", "Supplier Invoice"),
             ("forwarder_invoice", "Forwarder Invoice"),
         ],
-        "Customs Doc Type",
         readonly=True,
     )
     supplier_bill_of_entry_ids = fields.Many2many(
@@ -127,8 +127,11 @@ class AccountMove(models.Model):
         for bill_of_entry in self.forwarder_bill_of_entry_ids:
             if bill_of_entry.state not in ("posted", "paid"):
                 raise UserError(
-                    _("Bill of entry %s is in state %s")
-                    % (bill_of_entry.partner_id.name, bill_of_entry.state)
+                    _(
+                        "Bill of entry %(partner)s is in state %(state)s",
+                        partner=bill_of_entry.partner_id.name,
+                        state=bill_of_entry.state,
+                    )
                 )
 
         boe_tax_rates = self.forwarder_bill_of_entry_ids.mapped(
@@ -163,7 +166,7 @@ class AccountMove(models.Model):
 
         for bill_of_entry in self.forwarder_bill_of_entry_ids:
             boe_payable_lines = bill_of_entry.line_ids.filtered(
-                lambda l: l.account_internal_type == "payable"
+                lambda l: l.account_type == "liability_payable"
             )
             boe_account = first(boe_payable_lines).account_id
             line_vals = {
@@ -202,7 +205,7 @@ class AccountMove(models.Model):
             line_account = move_line.account_id
             for boe in self.forwarder_bill_of_entry_ids:
                 boe_payable_lines = boe.line_ids.filtered(
-                    lambda l: l.account_internal_type == "payable"
+                    lambda l: l.account_type == "liability_payable"
                 )
                 boe_account = first(boe_payable_lines).account_id
                 if line_account == boe_account:
@@ -292,4 +295,4 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    advance_customs_vat = fields.Boolean("Advance Customs Vat")
+    advance_customs_vat = fields.Boolean()

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
   ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ Copyright 2023 Simone Rubino - Aion Tech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
@@ -155,12 +156,6 @@
                         ],
                     }"
                 />
-            </xpath>
-            <xpath
-                expr="//notebook/page[@id='aml_tab']//field[@name='line_ids']/tree/field[@name='price_subtotal']"
-                position="after"
-            >
-                <field name="advance_customs_vat" invisible="True" />
             </xpath>
         </field>
     </record>

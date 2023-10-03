@@ -1,6 +1,7 @@
 # Copyright 2017 CQ Creativi Quadrati (http://www.creativiquadrati.it)
 # Copyright 2017 Diego Bruselli <d.bruselli@creativiquadrati.it>
 # Copyright 2022 Simone Rubino - TAKOBI
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
@@ -48,9 +49,8 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         self.env.user.company_id = demo_data_company
 
         # Default accounts for invoice line account_id
-        revenue_acctype_id = self.env.ref("account.data_account_type_revenue").id
         self.account_revenue = self.account_model.search(
-            [("user_type_id", "=", revenue_acctype_id)], limit=1
+            [("account_type", "=", "income")], limit=1
         )
         # Default purchase journal
         self.journal = self.journal_model.search([("type", "=", "purchase")], limit=1)
@@ -247,7 +247,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
 
         # Customs Expense account.move.lines
         boe_payable_lines = self.bill_of_entry.line_ids.filtered(
-            lambda l: l.account_internal_type == "payable"
+            lambda l: l.account_type == "liability_payable"
         )
         boe_account = first(boe_payable_lines).account_id
         move_line_domain = [
