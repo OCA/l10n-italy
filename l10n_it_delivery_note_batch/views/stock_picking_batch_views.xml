@@ -35,10 +35,6 @@
                     </button>
                 </div>
             </xpath>
-
-            <xpath expr="//field[@name='picking_ids']/tree" position="inside">
-                <field name="delivery_note_id" />
-            </xpath>
         </field>
     </record>
 
