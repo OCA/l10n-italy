@@ -32,12 +32,6 @@ msgid "Account Central Journal.pdf"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
-#, python-format
-msgid "Account Move"
-msgstr ""
-
-#. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields.selection,name:l10n_it_central_journal_reportlab.selection__wizard_giornale_reportlab__target_move__all
 msgid "All"
 msgstr ""
@@ -231,6 +225,12 @@ msgid "No documents found in the current selection"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
+#, python-format
+msgid "Number"
+msgstr ""
+
+#. module: l10n_it_central_journal_reportlab
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal_reportlab.wizard_giornale_reportlab
 msgid "PDF"
 msgstr ""
@@ -281,6 +281,12 @@ msgstr ""
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields.selection,name:l10n_it_central_journal_reportlab.selection__wizard_giornale_reportlab__print_state__print
 msgid "Ready for printing"
+msgstr ""
+
+#. module: l10n_it_central_journal_reportlab
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
+#, python-format
+msgid "Ref"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
