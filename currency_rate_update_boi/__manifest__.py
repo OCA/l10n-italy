@@ -3,17 +3,18 @@
 
 {
     "name": "Currency Rate Update: Banca d'Italia",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Financial Management/Configuration",
     "summary": "Update exchange rates using www.bancaditalia.it",
     "author": "TAKOBI, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy"
-    "/tree/12.0/currency_rate_update_boi",
+    "/tree/16.0/currency_rate_update_boi",
     "maintainers": ["eLBati"],
     "license": "AGPL-3",
     "installable": True,
     "application": False,
     "depends": [
+        "account",
         "currency_rate_update",
     ],
     "data": [],

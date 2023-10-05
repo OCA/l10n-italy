@@ -272,7 +272,9 @@ class ResCurrencyRateProviderBOI(models.Model):
                     lang="EN",
                 )
             )
-            response = requests.get(url, headers={"Accept": "application/json"})
+            response = requests.get(
+                url, headers={"Accept": "application/json"}, timeout=10
+            )
             curr_dict = response.content
             content[date_from_str] = {}
             for row in safe_eval(curr_dict)["rates"]:
