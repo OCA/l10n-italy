@@ -1,5 +1,7 @@
 import base64
+import operator
 import tempfile
+from functools import reduce
 
 from odoo.modules import get_module_resource
 from odoo.tests import Form
@@ -26,7 +28,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "1040",
                 "code": "1040",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -42,7 +44,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2320",
                 "code": "2320",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -58,7 +60,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2320",
                 "code": "2320",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -74,7 +76,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2620q",
                 "code": "2620q",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -90,7 +92,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2640q",
                 "code": "2640q",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -106,7 +108,7 @@ class FatturapaCommon(SingleTransactionCase):
             {
                 "name": "2720q",
                 "code": "2720q",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
@@ -123,13 +125,141 @@ class FatturapaCommon(SingleTransactionCase):
                 "name": "4q",
                 "code": "4q",
                 "wt_types": "enasarco",
-                "account_receivable_id": cls.payable_account_id,
+                "account_receivable_id": cls.receivable_account.id,
                 "account_payable_id": cls.payable_account_id,
                 "payment_term": cls.env.ref(
                     "account.account_payment_term_immediate"
                 ).id,
                 "rate_ids": [(0, 0, {"tax": 4.0, "base": 1.0})],
                 "payment_reason_id": cls.env.ref("l10n_it_payment_reason.q").id,
+            }
+        )
+
+    @classmethod
+    def create_misc_journal(cls):
+        return cls.env["account.journal"].create(
+            {
+                "name": "Test Miscellaneous Journal",
+                "code": "TMJ",
+                "type": "general",
+            }
+        )
+
+    def create_wt_115_r(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "1040 R",
+                "code": "1040R",
+                "account_receivable_id": self.receivable_account.id,
+                "account_payable_id": self.payable_account.id,
+                "journal_id": self.misc_journal.id,
+                "payment_term": self.env.ref("account.account_payment_term_advance").id,
+                "wt_types": "ritenuta",
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.r").id,
+                "rate_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax": 11.50,
+                            "base": 1.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def create_wt_enasarco_115_a(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "1040/3",
+                "code": "1040",
+                "account_receivable_id": self.receivable_account.id,
+                "account_payable_id": self.payable_account.id,
+                "journal_id": self.misc_journal.id,
+                "payment_term": self.env.ref("account.account_payment_term_advance").id,
+                "wt_types": "ritenuta",
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.a").id,
+                "rate_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax": 11.50,
+                            "base": 1.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def create_wt_enasarco_85_r(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "Enasarco 8,50",
+                "code": "TC07",
+                "account_receivable_id": self.receivable_account.id,
+                "account_payable_id": self.payable_account.id,
+                "journal_id": self.misc_journal.id,
+                "payment_term": self.env.ref("account.account_payment_term_advance").id,
+                "wt_types": "enasarco",
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.r").id,
+                "rate_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax": 8.5,
+                            "base": 1.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def create_wt_enasarco_157_r(self):
+        return self.env["withholding.tax"].create(
+            {
+                "name": "Enasarco",
+                "code": "TC07",
+                "account_receivable_id": self.receivable_account.id,
+                "account_payable_id": self.payable_account.id,
+                "journal_id": self.misc_journal.id,
+                "payment_term": self.env.ref("account.account_payment_term_advance").id,
+                "wt_types": "enasarco",
+                "payment_reason_id": self.env.ref("l10n_it_payment_reason.r").id,
+                "rate_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax": 1.57,
+                            "base": 1.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    @classmethod
+    def create_receivable_account(cls):
+        return cls.env["account.account"].create(
+            {
+                "name": "Test WH tax",
+                "code": "whtaxrec2",
+                "account_type": "asset_receivable",
+                "reconcile": True,
+            }
+        )
+
+    @classmethod
+    def create_payable_account(cls):
+        return cls.env["account.account"].create(
+            {
+                "name": "Test WH tax",
+                "code": "whtaxpay2",
+                "account_type": "liability_payable",
+                "reconcile": True,
             }
         )
 
@@ -166,7 +296,7 @@ class FatturapaCommon(SingleTransactionCase):
             wizard_form = Form(
                 self.wizard_model.with_context(
                     active_ids=[attach_id], active_model="fatturapa.attachment.in"
-                ).with_company(self.env.company)
+                )
             )
             wizard = wizard_form.save()
             return wizard.importFatturaPA()
@@ -174,7 +304,7 @@ class FatturapaCommon(SingleTransactionCase):
             wizard_form = Form(
                 self.wizard_link_model.with_context(
                     active_ids=[attach_id], active_model="fatturapa.attachment.in"
-                ).with_company(self.env.company)
+                )
             )
             wizard = wizard_form.save()
             if wiz_values:
@@ -187,35 +317,59 @@ class FatturapaCommon(SingleTransactionCase):
     def run_wizard_multi(self, file_name_list, module_name=None):
         if module_name is None:
             module_name = "l10n_it_fatturapa_in"
-        active_ids = []
-        for file_name in file_name_list:
-            active_ids.append(
-                self.attach_model.create(
-                    {
-                        "name": file_name,
-                        "datas": self.getFile(file_name, module_name)[1],
-                    }
-                ).id
-            )
-        wizard = self.wizard_model.with_context(active_ids=active_ids).create({})
+
+        attachments = self.attach_model.create(
+            [
+                {
+                    "name": file_name,
+                    "datas": self.getFile(file_name, module_name=module_name)[1],
+                }
+                for file_name in file_name_list
+            ]
+        )
+
+        wizard = self.wizard_model.with_context(
+            active_model=attachments._name,
+            active_ids=attachments.ids,
+        ).create({})
+
         return wizard.importFatturaPA()
 
     @classmethod
+    def _setup_journals(cls):
+        cls.misc_journal = cls.create_misc_journal()
+
+    @classmethod
     def _setup_taxes(cls):
-        # duplicate US purchase taxes in our current country
-        for tax in cls.env["account.tax"].search(
+        company = cls.env.company
+        cls._copy_taxes_to_company(company)
+        cls.env.company.arrotondamenti_tax_id = cls.env["account.tax"].search(
             [
-                ("country_id", "=", cls.env.ref("base.us").id),
                 ("type_tax_use", "=", "purchase"),
-            ]
-        ):
-            tax_data = tax.sudo().copy_data()[0]
-            default_account_tax_purchase = cls.env["account.account"].search(
-                [
-                    ("company_id", "=", cls.env.company.id),
-                    ("code", "=", "251000"),  # Tax receivable
-                ]
-            )
+                ("amount", "=", 0.0),
+            ],
+            order="sequence",
+            limit=1,
+        )
+
+    @classmethod
+    def _copy_taxes_to_company(cls, company):
+        """Copy specific taxes to `company`."""
+        # Demo taxes have been created for another company,
+        # copy them in current company
+        external_ids = [
+            "l10n_it_fatturapa.tax_22_acq",
+            "l10n_it_fatturapa.tax_00_minimi_acq",
+        ]
+        taxes_list = [cls.env.ref(external_id) for external_id in external_ids]
+        taxes = reduce(
+            operator.ior,
+            taxes_list,
+        )
+        sudo_taxes = taxes.sudo()
+        taxes_values = []
+        for tax in sudo_taxes:
+            tax_data = tax.copy_data()[0]
             invoice_rpls = [
                 (
                     0,
@@ -223,7 +377,7 @@ class FatturapaCommon(SingleTransactionCase):
                     {
                         "factor_percent": rpl.factor_percent,
                         "repartition_type": rpl.repartition_type,
-                        "account_id": default_account_tax_purchase.id
+                        "account_id": cls.tax_receivable_account.id
                         if rpl.account_id
                         else None,
                     },
@@ -237,7 +391,7 @@ class FatturapaCommon(SingleTransactionCase):
                     {
                         "factor_percent": rpl.factor_percent,
                         "repartition_type": rpl.repartition_type,
-                        "account_id": default_account_tax_purchase.id
+                        "account_id": cls.tax_receivable_account.id
                         if rpl.account_id
                         else None,
                     },
@@ -246,13 +400,14 @@ class FatturapaCommon(SingleTransactionCase):
             ]
             tax_data.update(
                 {
-                    "country_id": cls.env.company.country_id.id,
-                    "company_id": cls.env.company.id,
+                    "country_id": company.country_id.id,
+                    "company_id": company.id,
                     "invoice_repartition_line_ids": invoice_rpls,
                     "refund_repartition_line_ids": refund_rpls,
                 }
             )
-            tax.create(tax_data)
+            taxes_values.append(tax_data)
+        return cls.env["account.tax"].create(taxes_values)
 
     @classmethod
     def _setup_accounts(cls):
@@ -279,34 +434,19 @@ class FatturapaCommon(SingleTransactionCase):
             )
             .id
         )
-        cls.env.company.arrotondamenti_tax_id = cls.env["account.tax"].search(
-            [
-                ("type_tax_use", "=", "purchase"),
-                ("amount", "=", 0.0),
-                ("company_id", "=", cls.env.company.id),
-            ],
-            order="sequence",
-            limit=1,
-        )
         cls.env.company.arrotondamenti_attivi_account_id = (
             arrotondamenti_attivi_account_id
         )
         cls.env.company.arrotondamenti_passivi_account_id = (
             arrotondamenti_passivi_account_id
         )
-        cls.payable_account_id = (
-            cls.env["account.account"]
-            .search(
-                [
-                    (
-                        "account_type",
-                        "=",
-                        "liability_payable",
-                    )
-                ],
-                limit=1,
-            )
-            .id
+        cls.payable_account = cls.create_payable_account()
+        cls.payable_account_id = cls.payable_account.id
+        cls.receivable_account = cls.create_receivable_account()
+        cls.tax_receivable_account = cls.env["account.account"].search(
+            [
+                ("code", "=", "251000"),  # Tax receivable
+            ]
         )
 
     @classmethod
@@ -337,8 +477,9 @@ class FatturapaCommon(SingleTransactionCase):
             currency_id=cls.env.ref("base.EUR").id,
             country_id=cls.env.ref("base.it").id,
         )
-        cls.env.user.company_ids |= cls.company_data_it["company"]
-        cls.env.company = cls.company_data_it["company"]
+        it_company = cls.company_data_it["company"]
+        cls.env.user.company_id = it_company
+        cls.env.user.company_ids = it_company
         cls.env["res.lang"]._activate_lang("it_IT")
 
         # we need a fiscal position in the current country
@@ -350,22 +491,15 @@ class FatturapaCommon(SingleTransactionCase):
             }
         )
 
-        cls._setup_taxes()
         cls._setup_accounts()
+        cls._setup_journals()
+        cls._setup_taxes()
 
-        cls.wizard_model = cls.env["wizard.import.fatturapa"].with_company(
-            cls.env.company
-        )
-        cls.wizard_link_model = cls.env["wizard.link.to.invoice"].with_company(
-            cls.env.company
-        )
-        cls.wizard_link_inv_line_model = cls.env[
-            "wizard.link.to.invoice.line"
-        ].with_company(cls.env.company)
-        cls.attach_model = cls.env["fatturapa.attachment.in"].with_company(
-            cls.env.company
-        )
-        cls.invoice_model = cls.env["account.move"].with_company(cls.env.company)
+        cls.wizard_model = cls.env["wizard.import.fatturapa"]
+        cls.wizard_link_model = cls.env["wizard.link.to.invoice"]
+        cls.wizard_link_inv_line_model = cls.env["wizard.link.to.invoice.line"]
+        cls.attach_model = cls.env["fatturapa.attachment.in"]
+        cls.invoice_model = cls.env["account.move"]
         cls.headphones = cls.env.ref("product.product_product_7_product_template")
         cls.imac = cls.env.ref("product.product_product_8_product_template")
         cls.service = cls.env.ref("product.product_product_1")
