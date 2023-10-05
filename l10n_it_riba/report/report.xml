@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="print_slip_qweb" model="ir.actions.report">
+        <field name="name">Print Slip</field>
+        <field name="model">riba.slip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_it_riba.slip_qweb</field>
+        <field name="report_file">l10n_it_riba.slip_qweb</field>
+        <field name="binding_model_id" ref="model_riba_slip" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+
+    <!-- ====================================================== -->
+    <!-- 				CONFIGURAZIONE RIBA FORM 				-->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_riba_configuration_form">
+        <field name="name">riba.configuration.form</field>
+        <field name="model">riba.configuration</field>
+        <field name="arch" type="xml">
+            <form string="RiBa - Configuration">
+                <group>
+                    <field name="name" />
+                    <field name="type" />
+                    <field
+                        name="bank_id"
+                        domain="[('partner_id.ref_company_ids', 'in', allowed_company_ids)]"
+                    />
+                    <field
+                        name="company_id"
+                        widget="selection"
+                        groups="base.group_multi_company"
+                        readonly="1"
+                    />
+                </group>
+
+                <group string="Acceptance" attrs="{'invisible': [('type','!=','sbf')]}">
+                    <field
+                        name="acceptance_journal_id"
+                        attrs="{'required':[('type','=','sbf')]}"
+                    />
+                    <field
+                        name="acceptance_account_id"
+                        attrs="{'required':[('type','=','sbf')]}"
+                    />
+                </group>
+
+                <group string="Credit" attrs="{'invisible': [('type','!=','sbf')]}">
+                    <field name="credit_journal_id" />
+                    <field name="credit_account_id" />
+                    <field name="bank_account_id" />
+                    <field name="bank_expense_account_id" />
+                </group>
+
+                <group string="Past Due" attrs="{'invisible': [('type','!=','sbf')]}">
+                    <field name="past_due_journal_id" />
+                    <field name="overdue_effects_account_id" />
+                    <field name="protest_charge_account_id" />
+                </group>
+
+                <group string="Settlement" attrs="{'invisible': [('type','!=','sbf')]}">
+                    <field name="past_due_journal_id" />
+                    <field name="settlement_journal_id" />
+                </group>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!-- 				CONFIGURAZIONE RIBA ACTION				-->
+    <!-- ====================================================== -->
+    <record id="action_riba_configuration" model="ir.actions.act_window">
+        <field name="name">RiBa - Configuration</field>
+        <field name="res_model">riba.configuration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!-- 				CONFIGURAZIONE RIBA MENU 				-->
+    <!-- ====================================================== -->
+    <menuitem
+        action="action_riba_configuration"
+        id="menu_riba_configuration"
+        name="RiBa Configuration"
+        parent="account.root_payment_menu"
+    />
+
+</odoo>
