@@ -573,13 +573,6 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#. odoo-python
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, python-format
-msgid "File is linked to bills yet."
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_follower_ids
 msgid "Followers"
 msgstr ""
