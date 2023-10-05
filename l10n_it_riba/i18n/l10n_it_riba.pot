@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 10:27+0000\n"
-"PO-Revision-Date: 2023-09-28 10:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,8 +27,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_credit.py:0
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #, python-format
@@ -155,8 +151,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_credit.py:0
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #, python-format
@@ -171,18 +165,12 @@ msgid "Bank Fees Account"
 msgstr ""
 
 #. module: l10n_it_riba
-#: model:ir.model,name:l10n_it_riba.model_account_bank_statement_line
-msgid "Bank Statement Line"
-msgstr ""
-
-#. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__bank_id
 msgid "Bank account used for RiBa issuing."
 msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #, python-format
 msgid "Bills"
@@ -321,7 +309,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
 #, python-format
@@ -340,7 +327,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__credit_move_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
@@ -366,7 +352,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/models/riba.py:0
 #: code:addons/l10n_it_riba/models/riba.py:0
 #, python-format
 msgid "Credit date must be greater or equal to acceptance date."
@@ -456,8 +441,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_credit.py:0
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #, python-format
@@ -600,10 +583,9 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/models/account.py:0
 #: code:addons/l10n_it_riba/models/account.py:0
 #, python-format
-msgid "Invoice is linked to RiBa slip No. {riba}"
+msgid "Invoice is linked to RiBa slip No. %(riba)s"
 msgstr ""
 
 #. module: l10n_it_riba
@@ -639,6 +621,11 @@ msgstr ""
 #. module: l10n_it_riba
 #: model:ir.actions.server,name:l10n_it_riba.riba_issue_action_server
 msgid "Issue RiBa"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
+msgid "Issued RiBas"
 msgstr ""
 
 #. module: l10n_it_riba
@@ -781,15 +768,13 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
-msgid "No IBAN or ABI/CAB specified for "
+msgid "No IBAN or ABI/CAB specified for %(partner)s"
 msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
 msgid "No IBAN specified."
@@ -797,28 +782,27 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
-msgid "No SIA Code specified for "
+msgid "No SIA Code specified for %(company)s"
 msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_riba_file_export.py:0
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_riba_file_export.py:0
-#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
-msgid "No VAT or Fiscal Code specified for "
+msgid "No VAT or Fiscal Code specified for %(company)s"
 msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_credit.py:0
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_credit.py:0
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
+#, python-format
+msgid "No VAT or Fiscal Code specified for %(partner)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
@@ -829,10 +813,9 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_riba_issue.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_riba_issue.py:0
 #, python-format
-msgid "No bank has been specified for invoice %s"
+msgid "No bank has been specified for invoice %(invoice)s"
 msgstr ""
 
 #. module: l10n_it_riba
@@ -901,7 +884,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #, python-format
 msgid "Past Due Bills"
@@ -930,7 +912,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__past_due_move_id
 #, python-format
@@ -959,7 +940,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #, python-format
 msgid "Past Due RiBa %(name)s - Line %(sequence)s"
@@ -1003,7 +983,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/models/riba.py:0
 #: code:addons/l10n_it_riba/models/riba.py:0
 #, python-format
 msgid "Please define a Settlement Journal."
@@ -1048,11 +1027,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
-msgid "RIBA Issued RiBas"
-msgstr ""
-
-#. module: l10n_it_riba
-#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
 msgid "Reconciled"
 msgstr ""
 
@@ -1073,11 +1047,11 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_move_line__riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment_term__riba
 #: model:ir.ui.menu,name:l10n_it_riba.menu_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_partner_form_riba
 #, python-format
 msgid "RiBa"
 msgstr ""
@@ -1086,6 +1060,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_riba.action_riba_configuration
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
 msgid "RiBa - Configuration"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:account.payment.term,name:l10n_it_riba.account_payment_term_riba
+#: model_terms:account.payment.term,note:l10n_it_riba.account_payment_term_riba
+msgid "RiBa 30 Days End of Month"
 msgstr ""
 
 #. module: l10n_it_riba
@@ -1131,7 +1111,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #, python-format
 msgid "RiBa Credit %s"
@@ -1162,6 +1141,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_riba.action_riba_to_issue
 #: model:ir.model,name:l10n_it_riba.model_riba_issue
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_issue_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_presentation_riba
 msgid "RiBa Issue"
 msgstr ""
 
@@ -1218,7 +1198,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/models/account.py:0
 #: code:addons/l10n_it_riba/models/account.py:0
 #, python-format
 msgid "Set a Service for Collection Fees in Company Config."
@@ -1251,7 +1230,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/models/riba.py:0
 #: code:addons/l10n_it_riba/models/riba.py:0
 #, python-format
 msgid ""
@@ -1366,7 +1344,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_riba/models/account.py:0
 #: code:addons/l10n_it_riba/models/account.py:0
 #, python-format
 msgid "{line_name} for {month}-{year}"
