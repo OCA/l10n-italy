@@ -192,9 +192,6 @@ class WizardGiornaleReportlab(models.TransientModel):
         move_line_ids = flatten(res)
         return move_line_ids
 
-    def _get_move_name_reportlab(self, line):
-        return " - ".join(filter(None, [line.move_id.ref, line.move_id.name]))
-
     def _get_account_name_reportlab(self, line):
         return " - ".join(filter(None, [line.account_id.code, line.account_id.name]))
 
@@ -274,7 +271,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         }
 
     def get_colwidths_report_giornale(self, width_available):
-        colwidths = [32, 35, 130, 130, 130, 50, 50]
+        colwidths = [32, 40, 50, 120, 130, 100, 50, 50]
         total = sum(colwidths)
         return [c / total * width_available for c in colwidths]
 
@@ -288,7 +285,8 @@ class WizardGiornaleReportlab(models.TransientModel):
             [
                 Paragraph(_("Row"), style_header),
                 Paragraph(_("Date"), style_header),
-                Paragraph(_("Account Move"), style_header),
+                Paragraph(_("Ref"), style_header),
+                Paragraph(_("Number"), style_header),
                 Paragraph(_("Account"), style_header),
                 Paragraph(_("Name"), style_header),
                 Paragraph(_("Debit"), style_header_number),
@@ -303,6 +301,7 @@ class WizardGiornaleReportlab(models.TransientModel):
 
         initial_balance_data = [
             [
+                "",
                 "",
                 "",
                 "",
@@ -390,7 +389,8 @@ class WizardGiornaleReportlab(models.TransientModel):
             start_row += 1
             row = Paragraph(str(start_row), style_name)
             date = Paragraph(format_date(self.env, line.date), style_name)
-            move_name = self._get_move_name_reportlab(line)
+            ref = Paragraph(str(line.ref or ""), style_name)
+            move_name = line.move_id.name or ""
             move = Paragraph(move_name, style_name)
             account_name = self._get_account_name_reportlab(line)
             account = Paragraph(account_name, style_name)
@@ -404,7 +404,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             debit = Paragraph(formatLang(self.env, line.debit), style_number)
             credit = Paragraph(formatLang(self.env, line.credit), style_number)
             list_balance.append((line.debit, line.credit))
-            line_data = [[row, date, move, account, name, debit, credit]]
+            line_data = [[row, date, ref, move, account, name, debit, credit]]
             if previous_move_name != move_name:
                 previous_move_name = move_name
                 tables.append(
@@ -425,6 +425,7 @@ class WizardGiornaleReportlab(models.TransientModel):
 
         balance_data = [
             [
+                "",
                 "",
                 "",
                 "",
