@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo-addon-l10n_it_delivery_note_order_link>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fatturapa>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fatturapa_export_zip>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_fatturapa_import_zip>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fatturapa_in>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fatturapa_in_purchase>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_fatturapa_out>=16.0dev,<16.1dev',
