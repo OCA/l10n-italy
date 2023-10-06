@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_intrastat_mod2">
+        <t t-call="web.html_container">
+            <t t-translation="off">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page" style="font-size: 10px">
+                            <div class="row">
+                                <div class="col-2">
+                                    <p class="text-right"><img
+                                            src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
+                                            height="80px"
+                                        /></p>
+                                </div>
+                                <div class="col-6 offset-2">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td><b>ELENCO RIEPILOGATIVO DEGLI ACQUISTI
+                                            <br
+                                                    />INTRACOMUNITARI DI BENI E DEI SERVIZI RICEVUTI</b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-2">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td>Mod.INTRA-2</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <hr />
+                            <table class="table table-bordered">
+                                <th colspan="3" class="fondo">PERIODICITÀ ELENCO</th>
+                                <tr>
+                                    <td
+                                        width="20%"
+                                        rowspan="2"
+                                    >PERIODO DI RIFERIMENTO</td>
+                                    <td>MESE: <t t-if="o.period_type == 'M'"><span
+                                                class="font_bold"
+                                                t-esc="o.period_number"
+                                            /> ANNO: <span
+                                                class="font_bold"
+                                                t-esc="o.fiscalyear"
+                                            /></t></td>
+                                    <td
+                                        class="center"
+                                        width="20%"
+                                        rowspan="2"
+                                    > NUMERO DI RIFERIMENTO <br /><span
+                                            class="font_bold"
+                                            t-esc="o.purchase_statement_sequence"
+                                        /></td>
+                                </tr>
+                                <tr>
+                                    <td>TRIMESTRE: <t t-if="o.period_type == 'T'"><span
+                                                class="font_bold"
+                                                t-esc="o.period_number"
+                                            /> ANNO: <span
+                                                class="font_bold"
+                                                t-esc="o.fiscalyear"
+                                            /></t>
+                                    <br />
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                LE INFORMAZIONI DELLE SEZIONI 1 e/o 3 SONO DA RIFERIRSI A (Barrare la casella):
+                                            </tr>
+                                            <tr>
+                                            <td width="8%" />
+                                            <td
+                                                    width="25%"
+                                                >SOLO 1° MESE DEL TRIMESTRE</td>
+                                            <td width="8%" />
+                                            <td
+                                                    width="25%"
+                                                >1° E 2° MESE DEL TRIMESTRE</td>
+                                            <td width="8%" />
+                                            <td width="25%">3° TRIMESTRE COMPLETO</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered">
+                                <th colspan="4" class="fondo">SOGGETTO OBBLIGATO</th>
+                                <tr>
+                                    <td colspan="4">PARTITA IVA: <span
+                                            class="font_bold"
+                                            t-esc="o.company_id.partner_id.vat"
+                                        /></td>
+                                </tr><tr>
+                                    <td colspan="4" class="fondo">PERSONA FISICA</td>
+                                </tr><tr>
+                                    <td colspan="2">COGNOME<p /></td><td
+                                        colspan="2"
+                                    >NOME<p /></td>
+                                </tr><tr>
+                                    <td
+                                        colspan="4"
+                                        class="fondo"
+                                    >SOGGETTO DIVERSO DA PERSONA FISICA</td>
+                                </tr><tr>
+                                    <td
+                                        colspan="4"
+                                    >DENOMINAZIONE / RAGIONE SOCIALE <span
+                                            class="font_bold"
+                                            t-esc="o.company_id.partner_id.name"
+                                        /></td>
+                                </tr>
+                                <tr>
+                                    <td width="10%" />
+                                    <td
+                                        width="40%"
+                                    >BARRARE LA CASELLA NEL CASO NON SIANO STATI PRESENTATI IN PRECEDENZA ELENCHI RIEPILOGATIVI (Mod. INTRA-1 od INTRA-2)</td>
+                                    <td width="10%" />
+                                    <td
+                                        width="40%"
+                                    >BARRARE LA CASELLA IN CASO DI CESSAZIONE DI ATTIVITÀ OVVERO DI VARIAZIONE DELLA PARTITA IVA</td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered">
+                                <th class="fondo">SOGGETTO DELEGATO</th>
+                                <tr>
+                                    <td>PARTITA IVA: <span
+                                            class="font_bold"
+                                            t-esc="o.company_id.intrastat_delegated_vat"
+                                        /></td>
+                                </tr><tr>
+                                    <td
+                                    >COGNOME E NOME o DENOMINAZIONE / RAGIONE SOCIALE <span
+                                            class="font_bold"
+                                            t-esc="o.company_id.intrastat_delegated_name"
+                                        /></td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered">
+                                <th
+                                    colspan="8"
+                                    class="fondo"
+                                >DATI RIASSUNTIVI DELL'ELENCO</th>
+                                <tr>
+                                    <td rowspan="2">BENI</td>
+                                    <td rowspan="2">SEZIONE 1</td>
+                                    <td>TOTALE RIGHE DETTAGLIO</td>
+                                    <td>AMMONTARE COMPLESSIVO IN EURO</td>
+                                    <td rowspan="2">BENI</td>
+                                    <td rowspan="2">SEZIONE 2</td>
+                                    <td>TOTALE RIGHE DETTAGLIO</td>
+                                    <td>AMMONTARE COMPLESSIVO IN EURO</td>
+                                </tr>
+                                <tr>
+                                    <td><span
+                                            t-esc="o.purchase_section1_operation_number or ''"
+                                        /></td>
+                                    <td><span
+                                            t-esc="o.purchase_section1_operation_amount or ''"
+                                        /></td>
+                                    <td><span
+                                            t-esc="o.purchase_section2_operation_number or ''"
+                                        /></td>
+                                    <td><span
+                                            t-esc="o.purchase_section2_operation_amount or ''"
+                                        /></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">SERVIZI</td>
+                                    <td rowspan="2">SEZIONE 3</td>
+                                    <td>TOTALE RIGHE DETTAGLIO</td>
+                                    <td>AMMONTARE COMPLESSIVO IN EURO</td>
+                                    <td rowspan="2">SERVIZI</td>
+                                    <td rowspan="2">SEZIONE 4</td>
+                                    <td>TOTALE RIGHE DETTAGLIO</td>
+                                    <td>AMMONTARE COMPLESSIVO IN EURO</td>
+                                </tr>
+                                <tr>
+                                    <td><span
+                                            t-esc="o.purchase_section3_operation_number or ''"
+                                        /></td>
+                                    <td><span
+                                            t-esc="o.purchase_section3_operation_amount or ''"
+                                        /></td>
+                                    <td><span
+                                            t-esc="o.purchase_section4_operation_number or ''"
+                                        /></td>
+                                    <td><span
+                                            t-esc="o.purchase_section4_operation_amount or ''"
+                                        /></td>
+                                </tr>
+                            </table>
+                            <table class="table">
+                                <tr>
+                                    <td
+                                    >DATA __________________________________________________</td>
+                                    <td
+                                    >FIRMA __________________________________________________</td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered">
+                                <th
+                                    colspan="8"
+                                    class="fondo text-center"
+                                >SPAZIO RISERVATO ALL'UFFICIO</th>
+                                <tr>
+                                    <td>DATA PRESENTAZIONE</td>
+                                    <td>PROTOCOLLO</td>
+                                </tr><tr>
+                                    <td><p /><p /></td>
+                                    <td><p /><p /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
