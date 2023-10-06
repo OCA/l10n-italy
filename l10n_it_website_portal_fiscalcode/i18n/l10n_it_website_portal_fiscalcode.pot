@@ -15,5 +15,12 @@ msgstr ""
 
 #. module: l10n_it_website_portal_fiscalcode
 #: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fiscalcode.fiscalcode_details
+msgid ""
+"Changing Fiscal Code is not allowed once document(s) have been issued for your account.\n"
+"                Please contact us directly for this operation."
+msgstr ""
+
+#. module: l10n_it_website_portal_fiscalcode
+#: model_terms:ir.ui.view,arch_db:l10n_it_website_portal_fiscalcode.fiscalcode_details
 msgid "Fiscal Code"
 msgstr ""
