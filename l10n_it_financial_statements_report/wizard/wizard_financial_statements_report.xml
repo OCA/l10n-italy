@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="wizard_report_financial_statements_report" model="ir.ui.view">
+        <field name="name">wizard.report.financial.statements.report</field>
+        <field name="model">trial.balance.report.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="main_info">
+                    <field name="financial_statements_report_type" required="1" />
+                    <field
+                        name="company_id"
+                        options="{'no_create': True}"
+                        groups="base.group_multi_company"
+                    />
+                </group>
+                <div
+                    attrs="{'invisible': [('not_only_one_unaffected_earnings_account', '=', True)]}"
+                >
+                    <group name="filters">
+                        <group name="date_range">
+                            <field name="company_id" invisible="True" />
+                            <field
+                                name="date_range_id"
+                                domain="[('company_id','in',(company_id,False))]"
+                            />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                            <field name="fy_start_date" invisible="1" />
+                        </group>
+                        <group name="other_filters">
+                            <field name="target_move" widget="radio" />
+                            <field name="hide_account_at_0" />
+                            <field name="hide_accounts_codes" />
+                            <field name="show_partner_details" />
+                            <field name="show_hierarchy" invisible="1" />
+                            <field
+                                name="limit_hierarchy_level"
+                                attrs="{'invisible':[('show_hierarchy','=',False)]}"
+                            />
+                            <field
+                                name="show_hierarchy_level"
+                                attrs="{'invisible':[('limit_hierarchy_level','=', False)]}"
+                            />
+                            <field
+                                name="hide_parent_hierarchy_level"
+                                attrs="{'invisible':[('limit_hierarchy_level','=', False)]}"
+                            />
+                            <field
+                                name="foreign_currency"
+                                string="Show Ending Balance in Currency"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        name="partner_filter"
+                        col="4"
+                        attrs="{'invisible':[('show_partner_details','=',False)]}"
+                    >
+                        <label for="partner_ids" colspan="4" />
+                        <field
+                            name="partner_ids"
+                            nolabel="1"
+                            widget="many2many_tags"
+                            options="{'no_create': True}"
+                            colspan="4"
+                        />
+                        <div />
+                    </group>
+                    <group name="journal_filter" col="4">
+                        <label for="journal_ids" colspan="4" />
+                        <field
+                            name="journal_ids"
+                            nolabel="1"
+                            widget="many2many_tags"
+                            options="{'no_create': True}"
+                            colspan="4"
+                        />
+                        <div />
+                    </group>
+                    <group name="account_filter" col="4">
+                        <label for="account_ids" colspan="4" />
+                        <field
+                            name="account_ids"
+                            nolabel="1"
+                            widget="many2many_tags"
+                            options="{'no_create': True}"
+                            colspan="4"
+                        />
+                    </group>
+                </div>
+                <div
+                    attrs="{'invisible': [('not_only_one_unaffected_earnings_account', '=', False)]}"
+                >
+                    <field
+                        name="not_only_one_unaffected_earnings_account"
+                        invisible="1"
+                    />
+                    <group />
+                    <h4>
+                        Financial Statements can be computed only if selected
+                        company have only one unaffected earnings account.
+                    </h4>
+                    <group />
+                </div>
+                <footer>
+                    <div
+                        attrs="{'invisible': [('not_only_one_unaffected_earnings_account', '=', True)]}"
+                    >
+                        <button
+                            name="button_export_html"
+                            string="View"
+                            type="object"
+                            default_focus="1"
+                            class="oe_highlight"
+                        />
+                        or
+                        <button
+                            name="button_export_pdf"
+                            string="Export PDF"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                        or
+                        <button
+                            name="button_export_xlsx"
+                            string="Export XLSX"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </div>
+                    <div
+                        attrs="{'invisible': [('not_only_one_unaffected_earnings_account', '=', False)]}"
+                    >
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </div>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_financial_statements_wizard" model="ir.actions.act_window">
+        <field name="name">Financial Statements Report</field>
+        <field name="res_model">trial.balance.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_report_financial_statements_report" />
+        <field name="target">new</field>
+        <field
+            name="context"
+        >{'default_financial_statements_report_type':'profit_loss','default_show_hierarchy':True}</field>
+    </record>
+
+    <menuitem
+        parent="account_financial_report.menu_oca_reports"
+        action="action_financial_statements_wizard"
+        id="menu_financial_statements_wizard"
+        sequence="10"
+    />
+</odoo>
