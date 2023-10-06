@@ -691,6 +691,12 @@ msgid "Invoices"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__is_carrier
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_users__is_carrier
+msgid "Is Carrier"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_is_follower
 msgid "Is Follower"
 msgstr ""
