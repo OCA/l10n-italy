@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Simone Rubino
+  Copyright 2019 Lorenzo Battistini
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+
+    <template
+        id="fatturapa_details"
+        name="Add fatturapa fields"
+        inherit_id="l10n_it_website_portal_fiscalcode.fiscalcode_details"
+    >
+        <xpath expr="//input[@name='name']/.." position="attributes">
+            <attribute
+                name="t-attf-class"
+                separator=" "
+                add="#{'o_hidden' if not partner.is_company else ''}"
+            />
+        </xpath>
+        <xpath expr="//input[@name='name']/.." position="after">
+            <t t-if="not partner.is_company">
+                <div class="clearfix" />
+                <div
+                    t-attf-class="form-group #{error.get('firstname') and 'has-error' or ''} col-lg-6"
+                >
+                    <label class="control-label" for="firstname">
+                        Your First Name
+                    </label>
+                    <input
+                        type="text"
+                        name="firstname"
+                        class="form-control"
+                        t-att-value="firstname or partner.firstname"
+                    />
+                </div>
+                <div
+                    t-attf-class="form-group #{error.get('lastname') and 'has-error' or ''} col-lg-6"
+                >
+                    <label class="control-label" for="lastname">
+                        Your Last Name
+                    </label>
+                    <input
+                        type="text"
+                        name="lastname"
+                        class="form-control"
+                        t-att-value="lastname or partner.lastname"
+                    />
+                </div>
+                <div class="clearfix" />
+            </t>
+        </xpath>
+        <div
+            t-attf-class="mb-3 #{error.get('state_id') and 'o_has_error' or ''} col-xl-6"
+            position="after"
+        >
+            <!-- after state_id -->
+            <div class="row">
+                <div class="col-xl-6 form-group div_electronic_invoice_subjected">
+                    <input
+                        type="checkbox"
+                        name="electronic_invoice_subjected"
+                        style="width: auto; margin:0px"
+                        t-att-checked="electronic_invoice_subjected or partner.electronic_invoice_subjected"
+                    />
+                    <label for="electronic_invoice_subjected" style="margin-left:5px">
+                        Enable receiving electronic invoice
+                    </label>
+                </div>
+            </div>
+            <div class="row div_electronic_invoice_subjected_fields">
+                <div
+                    t-attf-class="form-group #{error.get('codice_destinatario') and 'o_has_error' or ''} col-xl-6"
+                >
+                    <label class="col-form-label" for="codice_destinatario">
+                        Addressee code
+                    </label>
+                    <input
+                        type="text"
+                        name="codice_destinatario"
+                        t-attf-class="form-control #{error.get('codice_destinatario') and 'is-invalid' or ''}"
+                        t-att-value="codice_destinatario or partner.codice_destinatario"
+                    />
+                </div>
+                <div
+                    t-attf-class="form-group #{error.get('pec_destinatario') and 'o_has_error' or ''} col-xl-6"
+                >
+                    <label class="col-form-label" for="pec_destinatario">
+                        Or PEC address for Electronic invoicing
+                    </label>
+                    <input
+                        type="text"
+                        name="pec_destinatario"
+                        t-attf-class="form-control #{error.get('pec_destinatario') and 'is-invalid' or ''}"
+                        t-att-value="pec_destinatario or partner.pec_destinatario"
+                    />
+                </div>
+                <div
+                    t-attf-class="form-group #{error.get('eori_code') and 'o_has_error' or ''} col-xl-6"
+                >
+                    <label class="col-form-label label-optional" for="eori_code">
+                        EORI code
+                    </label>
+                    <input
+                        type="text"
+                        name="eori_code"
+                        t-attf-class="form-control #{error.get('eori_code') and 'is-invalid' or ''}"
+                        t-att-value="eori_code or partner.eori_code"
+                    />
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
