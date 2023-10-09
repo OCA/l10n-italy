@@ -176,6 +176,7 @@ msgstr "Numero fatture"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__invoices_total
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_tree
 msgid "Bills Total"
 msgstr "Totale fatture"
 
@@ -623,13 +624,6 @@ msgstr "Contenuto file (grezzo)"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__file_size
 msgid "File Size"
 msgstr "Dimensione file"
-
-#. module: l10n_it_fatturapa_in
-#. odoo-python
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, python-format
-msgid "File is linked to bills yet."
-msgstr "Il file è già collegato a delle fatture."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_follower_ids
@@ -1620,6 +1614,10 @@ msgstr "È possibile selezionare solo un file XML da collegare."
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "on"
 msgstr "il"
+
+#, python-format
+#~ msgid "File is linked to bills yet."
+#~ msgstr "Il file è già collegato a delle fatture."
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Numero di messaggi che richiedono un'azione"
