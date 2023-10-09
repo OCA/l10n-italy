@@ -22,7 +22,8 @@ msgid "Addressee code"
 msgstr "Codice destinatario"
 
 #. module: l10n_it_website_portal_fatturapa
-#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:72
+#. odoo-python
+#: code:addons/l10n_it_website_portal_fatturapa/controllers/main.py:0
 #, python-format
 msgid "At least one of first name and last name is required"
 msgstr "Almeno uno fra nome e cognome è richiesto"
