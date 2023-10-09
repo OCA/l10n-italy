@@ -186,6 +186,7 @@ msgstr "Tassa DatiCassPrev"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_partial_reconcile__display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__display_name
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment_register__display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__display_name
@@ -245,6 +246,7 @@ msgstr "Raggruppa per..."
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_partial_reconcile__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment__id
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment_register__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate__id
@@ -309,6 +311,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_partial_reconcile____last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment____last_update
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_payment_register____last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax____last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate____last_update
@@ -442,6 +445,11 @@ msgstr "Pagamenti"
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_form
 msgid "Rates"
 msgstr "Aliquote"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_payment_register
+msgid "Register Payment"
+msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_bank_statement_line__amount_net_pay_residual
