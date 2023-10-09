@@ -89,7 +89,6 @@ msgid "Date"
 msgstr "Дата"
 
 #. module: l10n_it_withholding_tax_payment
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create__display_name
 msgid "Display Name"
@@ -106,7 +105,6 @@ msgid "Generate"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create__id
 msgid "ID"
@@ -118,7 +116,6 @@ msgid "Journal"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
-#: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment____last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_wizard_wt_move_payment_create____last_update
 msgid "Last Modified on"
@@ -178,6 +175,7 @@ msgid "Stop Date"
 msgstr "Дата"
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
 msgid "The selected moves must have the same company!"
@@ -210,18 +208,21 @@ msgid "WT Payment Moves"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
 msgid "WT move already in a payment move! Paym. move {} - Ref WT: {} - {} - {}"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
 msgid "WT move already paid! - {} - {} - {}"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
 msgid ""
@@ -230,12 +231,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
 msgid "Warning! Withholding tax move in a payment {}: you can not delete it"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
 msgid "Warning! Withholding tax moves in a payment: {}"
@@ -243,7 +246,6 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_tree
 msgid "Withholding Payment Move"
 msgstr ""
 
@@ -253,6 +255,7 @@ msgid "Withholding Tax Move"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #: code:addons/l10n_it_withholding_tax_payment/wizard/create_move_payment.py:0
 #, python-format
@@ -267,12 +270,14 @@ msgid "Withholding Tax Payment Move"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
 msgid "Withholding tax payment {}"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
+#. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
 msgid "You can only delete draft payments"
