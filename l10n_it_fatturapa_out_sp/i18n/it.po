@@ -17,21 +17,15 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_fatturapa_out_sp
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_sp.field_wizard_export_fatturapa__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: l10n_it_fatturapa_out_sp
 #: model:ir.model,name:l10n_it_fatturapa_out_sp.model_wizard_export_fatturapa
 msgid "Export E-invoice"
 msgstr "Esporta e-fattura"
 
-#. module: l10n_it_fatturapa_out_sp
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_sp.field_wizard_export_fatturapa__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
 
-#. module: l10n_it_fatturapa_out_sp
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_sp.field_wizard_export_fatturapa____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
