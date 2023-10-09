@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2023-09-28 10:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,10 +20,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_account_config_settings_riba
 msgid ""
 "<span class=\"o_form_label\">RiBa Collection Fees</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title=\"Product used as Service for RiBa Collection Fees\" aria-label=\"Product used as Service for RiBa Collection Fees\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Product used as Service for RiBa Collection Fees\" aria-label=\"Product "
+"used as Service for RiBa Collection Fees\" groups=\"base.group_multi_company"
+"\" role=\"img\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Spese di incasso RiBa</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title=\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label=\"Prodotto usato come servizio per le spese di incasso RiBa\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label="
+"\"Prodotto usato come servizio per le spese di incasso RiBa\" groups=\"base."
+"group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
@@ -169,11 +176,6 @@ msgstr "Spese bancarie"
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__bank_expense_account_id
 msgid "Bank Fees Account"
 msgstr "Conto spese bancarie"
-
-#. module: l10n_it_riba
-#: model:ir.model,name:l10n_it_riba.model_account_bank_statement_line
-msgid "Bank Statement Line"
-msgstr "Riga estratto conto bancario"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__bank_id
@@ -599,8 +601,8 @@ msgstr "Numero fattura"
 #. odoo-python
 #: code:addons/l10n_it_riba/models/account.py:0
 #, python-format
-msgid "Invoice is linked to RiBa slip No. {riba}"
-msgstr "La fattura è collegata alla distinta RiBa n. {riba}"
+msgid "Invoice is linked to RiBa slip No. %(riba)s"
+msgstr ""
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_is_follower
@@ -636,6 +638,11 @@ msgstr "Modalità emissione"
 #: model:ir.actions.server,name:l10n_it_riba.riba_issue_action_server
 msgid "Issue RiBa"
 msgstr "Emetti RiBa"
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
+msgid "Issued RiBas"
+msgstr ""
 
 #. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_account_move
@@ -780,8 +787,8 @@ msgstr "Riga movimento"
 #. odoo-python
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
-msgid "No IBAN or ABI/CAB specified for "
-msgstr "Nessun IBAN o ABI/CAB specificato per "
+msgid "No IBAN or ABI/CAB specified for %(partner)s"
+msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
@@ -794,22 +801,26 @@ msgstr "Nessun IBAN specificato."
 #. odoo-python
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
-msgid "No SIA Code specified for "
-msgstr "Nessun codice SIA specificato per "
+msgid "No SIA Code specified for %(company)s"
+msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
-#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
-msgid "No VAT or Fiscal Code specified for "
-msgstr "Nessuna partita IVA o codice fiscale specificato per "
+msgid "No VAT or Fiscal Code specified for %(company)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
+#, python-format
+msgid "No VAT or Fiscal Code specified for %(partner)s"
+msgstr ""
 
 #. module: l10n_it_riba
 #. odoo-python
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
-#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
-#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #, python-format
 msgid "No active ID found."
@@ -819,8 +830,8 @@ msgstr "Nessun ID attivo trovato."
 #. odoo-python
 #: code:addons/l10n_it_riba/wizard/wizard_riba_issue.py:0
 #, python-format
-msgid "No bank has been specified for invoice %s"
-msgstr "Nessuna banca specificata per la fattura %s"
+msgid "No bank has been specified for invoice %(invoice)s"
+msgstr ""
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__sequence
@@ -1055,6 +1066,7 @@ msgstr "Reimposta a bozza"
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_move_line__riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment_term__riba
 #: model:ir.ui.menu,name:l10n_it_riba.menu_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_partner_form_riba
 #, python-format
 msgid "RiBa"
 msgstr "RiBa"
@@ -1064,6 +1076,12 @@ msgstr "RiBa"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
 msgid "RiBa - Configuration"
 msgstr "RiBa - Configurazione"
+
+#. module: l10n_it_riba
+#: model:account.payment.term,name:l10n_it_riba.account_payment_term_riba
+#: model_terms:account.payment.term,note:l10n_it_riba.account_payment_term_riba
+msgid "RiBa 30 Days End of Month"
+msgstr ""
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__credit_account_id
@@ -1138,6 +1156,7 @@ msgstr "Procedura esportazione file RiBa"
 #: model:ir.actions.act_window,name:l10n_it_riba.action_riba_to_issue
 #: model:ir.model,name:l10n_it_riba.model_riba_issue
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_issue_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_presentation_riba
 msgid "RiBa Issue"
 msgstr "Emissione RiBa"
 
@@ -1276,8 +1295,7 @@ msgstr "Questa procedura genera la distinta RiBa"
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
-msgid ""
-"This wizard will generate the journal entry related to an past due RiBa"
+msgid "This wizard will generate the journal entry related to an past due RiBa"
 msgstr ""
 "Questa procedura genera la registrazione contabile relativa a una RiBa "
 "insoluta"
@@ -1356,3 +1374,26 @@ msgstr "del"
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "Bank Statement Line"
+#~ msgstr "Riga estratto conto bancario"
+
+#, python-format
+#~ msgid "Invoice is linked to RiBa slip No. {riba}"
+#~ msgstr "La fattura è collegata alla distinta RiBa n. {riba}"
+
+#, python-format
+#~ msgid "No IBAN or ABI/CAB specified for "
+#~ msgstr "Nessun IBAN o ABI/CAB specificato per "
+
+#, python-format
+#~ msgid "No SIA Code specified for "
+#~ msgstr "Nessun codice SIA specificato per "
+
+#, python-format
+#~ msgid "No VAT or Fiscal Code specified for "
+#~ msgstr "Nessuna partita IVA o codice fiscale specificato per "
+
+#, python-format
+#~ msgid "No bank has been specified for invoice %s"
+#~ msgstr "Nessuna banca specificata per la fattura %s"
