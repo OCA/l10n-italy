@@ -45,13 +45,6 @@ msgid "Account Central Journal.pdf"
 msgstr "Libro giornale.pdf"
 
 #. module: l10n_it_central_journal_reportlab
-#. odoo-python
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
-#, python-format
-msgid "Account Move"
-msgstr "Movimento contabile"
-
-#. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields.selection,name:l10n_it_central_journal_reportlab.selection__wizard_giornale_reportlab__target_move__all
 msgid "All"
 msgstr "Tutti"
@@ -246,6 +239,13 @@ msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato per la selezione corrente"
 
 #. module: l10n_it_central_journal_reportlab
+#. odoo-python
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
+#, python-format
+msgid "Number"
+msgstr ""
+
+#. module: l10n_it_central_journal_reportlab
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal_reportlab.wizard_giornale_reportlab
 msgid "PDF"
 msgstr "PDF"
@@ -298,6 +298,13 @@ msgstr "Progressivo pagina"
 #: model:ir.model.fields.selection,name:l10n_it_central_journal_reportlab.selection__wizard_giornale_reportlab__print_state__print
 msgid "Ready for printing"
 msgstr "Pronto per la stampa"
+
+#. module: l10n_it_central_journal_reportlab
+#. odoo-python
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
+#, python-format
+msgid "Ref"
+msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__report_giornale
@@ -356,6 +363,10 @@ msgstr "Anno per il piè di pagina"
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal_reportlab.wizard_giornale_reportlab
 msgid "or"
 msgstr "oppure"
+
+#, python-format
+#~ msgid "Account Move"
+#~ msgstr "Movimento contabile"
 
 #~ msgid "Group by account"
 #~ msgstr "Raggruppa per conto"
