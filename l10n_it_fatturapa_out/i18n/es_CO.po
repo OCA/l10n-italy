@@ -589,6 +589,13 @@ msgid "Preview link"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:0
+#, python-format
+msgid "Print report not found"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore
 msgid "RF01"
 msgstr ""
