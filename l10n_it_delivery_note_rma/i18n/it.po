@@ -17,6 +17,37 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_delivery_note_rma
+#: code:addons/l10n_it_delivery_note_rma/controllers/delivery_note_portal.py:0
+#, python-format
+msgid " (Portal)"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "&amp;times;"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "<i class=\"fa fa-check\"/> Request RMAs"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_portal_template_rma
+msgid "<i class=\"fa fa-reply\"/> Request RMAs"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "<i class=\"fa fa-times\"/> Cancel"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "<i class=\"fa fa-truck\"/> Choose a delivery address"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_wizard_form_view
 msgid "Accept"
 msgstr "Accetta"
@@ -47,6 +78,18 @@ msgstr "Annulla"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__uom_category_id
 msgid "Category"
 msgstr "Categoria"
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "Close"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid ""
+"Comment anything relevant to the return, like serial numbers, a description "
+"of the issue, etc"
+msgstr ""
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__commercial_partner_id
@@ -83,6 +126,16 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_delivery_note_rma
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__custom_description
+msgid "Custom Description"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "Delivery"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_move__delivery_note_line_id
 msgid "Delivery Line"
 msgstr "Riga consegna"
@@ -112,6 +165,11 @@ msgid "Delivery order"
 msgstr "Ordine di consegna"
 
 #. module: l10n_it_delivery_note_rma
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__description
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line__display_name
@@ -130,6 +188,11 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_move__id
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "If no requested operation is set, the RMA won't be correctly fulfilled"
+msgstr ""
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_invoice_id
@@ -181,11 +244,13 @@ msgstr "Origine movimento"
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__product_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__product_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "Product"
 msgstr "Prodotto"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__quantity
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "Quantity"
 msgstr "Quantità"
 
@@ -216,9 +281,25 @@ msgid "Refund address for current RMA."
 msgstr "Indirizzo di rimborso per questo RMA."
 
 #. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "Request RMAs"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__operation_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "Requested operation"
 msgstr "Operazione richiesta"
+
+#. module: l10n_it_delivery_note_rma
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__sale_line_id
+msgid "Sale Line"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "Select the product quantity and the requested operation"
+msgstr ""
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_shipping_id
@@ -247,9 +328,26 @@ msgid "Stock Move"
 msgstr "Movimento di magazzino"
 
 #. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "The limit will decrease when the units in other RMAs are confirmed"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__uom_id
 msgid "Unit of Measure"
 msgstr "Unità di misura"
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid ""
+"Use the comment button to add relevant information regarding the RMA, like "
+"returned serial numbers or a description of the issue"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model:ir.model.fields,help:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__custom_description
+msgid "Values coming from portal RMA request form custom fields"
+msgstr ""
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note__warehouse_id
@@ -267,10 +365,28 @@ msgid "Wizard"
 msgstr "Procedura guidata"
 
 #. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid ""
+"You can only return as much product units as you received for this order"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid "You can send a message in every RMA sent"
+msgstr ""
+
+#. module: l10n_it_delivery_note_rma
 #: code:addons/l10n_it_delivery_note_rma/models/stock_delivery_note.py:0
 #, python-format
 msgid "You may only create RMAs from a confirmed or done delivery order."
 msgstr "Puoi creare RMA solo da un ordine di consegna confermato o concluso."
+
+#. module: l10n_it_delivery_note_rma
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
+msgid ""
+"You're about to perform an RMA request. Our team will process it an will "
+"reach you once it's validated. Keep in mind that:"
+msgstr ""
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.actions.act_window,name:l10n_it_delivery_note_rma.delivery_note_create_rma_action
