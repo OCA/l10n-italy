@@ -80,28 +80,26 @@
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False),
                                           ('fatturapa_attachment_out_id', '=', False)]}"
                 >
-                    <group string="Attachments">
-                        <field name="fatturapa_doc_attachments" nolabel="1">
-                            <tree>
-                                <field name="ir_attachment_id" />
-                                <field name="name" />
-                                <field name="description" />
-                                <field name="is_pdf_invoice_print" />
-                            </tree>
-                            <form string="Attachments">
+                    <field name="fatturapa_doc_attachments" nolabel="1">
+                        <tree>
+                            <field name="ir_attachment_id" />
+                            <field name="name" />
+                            <field name="description" />
+                            <field name="is_pdf_invoice_print" />
+                        </tree>
+                        <form string="Attachments">
+                            <group>
                                 <group>
-                                    <group>
-                                        <field name="description" />
-                                        <field name="is_pdf_invoice_print" />
-                                    </group>
-                                    <group>
-                                        <field name="datas" filename="name" />
-                                        <field name="name" />
-                                    </group>
+                                    <field name="description" />
+                                    <field name="is_pdf_invoice_print" />
                                 </group>
-                            </form>
-                        </field>
-                    </group>
+                                <group>
+                                    <field name="datas" filename="name" />
+                                    <field name="name" />
+                                </group>
+                            </group>
+                        </form>
+                    </field>
                 </page>
             </xpath>
         </field>
