@@ -46,21 +46,19 @@
                     string="Related Documents"
                     attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}"
                 >
-                    <group string="Related Documents">
-                        <field name="related_documents" nolabel="1">
-                            <tree editable="bottom">
-                                <field name="type" />
-                                <field name="name" />
-                                <field name="lineRef" readonly="1" />
-                                <field name="date" />
-                                <field name="numitem" />
-                                <field name="code" />
-                                <field name="cig" />
-                                <field name="cup" />
-                                <field name="invoice_id" invisible="1" />
-                            </tree>
-                        </field>
-                    </group>
+                    <field name="related_documents" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="type" />
+                            <field name="name" />
+                            <field name="lineRef" readonly="1" />
+                            <field name="date" />
+                            <field name="numitem" />
+                            <field name="code" />
+                            <field name="cig" />
+                            <field name="cup" />
+                            <field name="invoice_id" invisible="1" />
+                        </tree>
+                    </field>
                 </page>
                 <page
                     string="Electronic Invoice"
