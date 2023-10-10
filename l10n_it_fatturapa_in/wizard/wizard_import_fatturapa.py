@@ -1197,6 +1197,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         invoice_data = {
             "e_invoice_received_date": e_invoice_received_date,
+            "invoice_date": e_invoice_date,
             "date": e_invoice_received_date
             if company.in_invoice_registration_date == "rec_date"
             else e_invoice_date,
