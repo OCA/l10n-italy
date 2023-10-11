@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-19 17:09+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-10-11 17:37+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -20,32 +20,32 @@ msgstr ""
 #: code:addons/l10n_it_delivery_note_rma/controllers/delivery_note_portal.py:0
 #, python-format
 msgid " (Portal)"
-msgstr ""
+msgstr " (Portale)"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "&amp;times;"
-msgstr ""
+msgstr "&amp;times;"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "<i class=\"fa fa-check\"/> Request RMAs"
-msgstr ""
+msgstr "<i class=\"fa fa-check\"/> Richiesta RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_portal_template_rma
 msgid "<i class=\"fa fa-reply\"/> Request RMAs"
-msgstr ""
+msgstr "<i class=\"fa fa-reply\"/> Richiesta RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "<i class=\"fa fa-times\"/> Cancel"
-msgstr ""
+msgstr "<i class=\"fa fa-times\"/> Annulla"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "<i class=\"fa fa-truck\"/> Choose a delivery address"
-msgstr ""
+msgstr "<i class=\"fa fa-truck\"/> Scegli un indirizzo di consegna"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_wizard_form_view
@@ -82,7 +82,7 @@ msgstr "Categoria"
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
@@ -90,6 +90,8 @@ msgid ""
 "Comment anything relevant to the return, like serial numbers, a description "
 "of the issue, etc"
 msgstr ""
+"Commenta qualsiasi cosa rilevante per il reso, come numeri di serie, una "
+"descrizione del problema, ecc"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__commercial_partner_id
@@ -128,12 +130,12 @@ msgstr "Creato il"
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__custom_description
 msgid "Custom Description"
-msgstr ""
+msgstr "Descrizione personalizzata"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "Delivery"
-msgstr ""
+msgstr "Consegna"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_move__delivery_note_line_id
@@ -167,7 +169,7 @@ msgstr "Ordine di consegna"
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__description
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_rma__display_name
@@ -193,6 +195,8 @@ msgstr "ID"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "If no requested operation is set, the RMA won't be correctly fulfilled"
 msgstr ""
+"Se nessuna operazione richiesta è impostata, l'RMA non sarà completato "
+"correttamente"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_invoice_id
@@ -283,7 +287,7 @@ msgstr "Indirizzo di rimborso per questo RMA."
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "Request RMAs"
-msgstr ""
+msgstr "Richiesta RMA"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__operation_id
@@ -294,12 +298,12 @@ msgstr "Operazione richiesta"
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__sale_line_id
 msgid "Sale Line"
-msgstr ""
+msgstr "Riga vendita"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "Select the product quantity and the requested operation"
-msgstr ""
+msgstr "Seleziona la quantità prodotto e l'operazione richiesta"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__partner_shipping_id
@@ -330,7 +334,7 @@ msgstr "Movimento di magazzino"
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "The limit will decrease when the units in other RMAs are confirmed"
-msgstr ""
+msgstr "Il limite diminuirà quando le unità in altri RMA saranno confermate"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__uom_id
@@ -343,11 +347,15 @@ msgid ""
 "Use the comment button to add relevant information regarding the RMA, like "
 "returned serial numbers or a description of the issue"
 msgstr ""
+"Usa il pulsante commento per aggiungere informazioni rilevanti riguardo "
+"l'RMA, come numeri seriali resi o una descrizione dell'errore"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,help:l10n_it_delivery_note_rma.field_stock_delivery_note_rma_wizard__custom_description
 msgid "Values coming from portal RMA request form custom fields"
 msgstr ""
+"Valori provenienti dai campi personalizzati del modulo di richiesta RMA del "
+"portale"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note__warehouse_id
@@ -369,11 +377,12 @@ msgstr "Procedura guidata"
 msgid ""
 "You can only return as much product units as you received for this order"
 msgstr ""
+"Puoi restituire solo le unità di prodotto che hai ricevuto per questo ordine"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
 msgid "You can send a message in every RMA sent"
-msgstr ""
+msgstr "Puoi inviare un messaggio in ogni RMA inviato"
 
 #. module: l10n_it_delivery_note_rma
 #: code:addons/l10n_it_delivery_note_rma/models/stock_delivery_note.py:0
@@ -387,6 +396,8 @@ msgid ""
 "You're about to perform an RMA request. Our team will process it an will "
 "reach you once it's validated. Keep in mind that:"
 msgstr ""
+"Stai per eseguire una richiesta RMA. Il nostro team lo elaborerà e ti "
+"arriverà una volta convalidato. Tieni presente che:"
 
 #. module: l10n_it_delivery_note_rma
 #: model:ir.actions.act_window,name:l10n_it_delivery_note_rma.delivery_note_create_rma_action
