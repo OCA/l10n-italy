@@ -223,6 +223,11 @@ msgid "Financial Statements QWeb Report"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
+#: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report_pdf
+msgid "Financial Statements QWeb Report PDF"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
 #: model:ir.actions.act_window,name:l10n_it_financial_statements_report.action_financial_statements_wizard
 #: model:ir.ui.menu,name:l10n_it_financial_statements_report.menu_financial_statements_wizard
 msgid "Financial Statements Report"

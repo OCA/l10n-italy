@@ -17,7 +17,12 @@
     <template id="report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="account_financial_report.internal_layout">
+                <t t-call="web.external_layout">
+                    <t t-set="company" t-value="o.company_id" />
+                    <link
+                        href="/account_financial_report/static/src/css/report.css"
+                        rel="stylesheet"
+                    />
                     <t
                         t-call="l10n_it_financial_statements_report.financial_statements_report_base"
                     />
