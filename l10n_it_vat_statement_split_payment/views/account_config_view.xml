@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright (c) 2019 Matteo Bilotta
+  -->
+<odoo>
+
+    <record id="view_account_config_settings_inherit" model="ir.ui.view">
+        <field name="name">view.account.config.settings.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_split_payment.view_account_config_settings"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sp_account_id']" position="after">
+                <label for="sp_description" class="col-md-6 o_light_label" />
+                <div>
+                    <field name="sp_description" class="oe_inline" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_vat_statement_split_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model,name:l10n_it_vat_statement_split_payment.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model,name:l10n_it_vat_statement_split_payment.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_res_company__sp_description
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_res_config_settings__sp_description
+msgid "Description for period end statements"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_account_vat_period_end_statement__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_statement_generic_account_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_account_vat_period_end_statement__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_res_config_settings__id
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_statement_generic_account_line__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_statement_generic_account_line__is_split_payment
+msgid "Is Split Payment"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model,name:l10n_it_vat_statement_split_payment.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_account_vat_period_end_statement____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_statement_split_payment.field_statement_generic_account_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model,name:l10n_it_vat_statement_split_payment.model_statement_generic_account_line
+msgid "VAT Statement generic account line"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: model:ir.model,name:l10n_it_vat_statement_split_payment.model_account_vat_period_end_statement
+msgid "VAT period end statement"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: code:addons/l10n_it_vat_statement_split_payment/models/statement.py:0
+#, python-format
+msgid "Write-off tax amount on tax"
+msgstr ""
+
+#. module: l10n_it_vat_statement_split_payment
+#: code:addons/l10n_it_vat_statement_split_payment/models/statement.py:0
+#, python-format
+msgid "from {} to {}"
+msgstr ""
