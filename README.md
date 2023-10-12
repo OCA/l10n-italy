@@ -70,7 +70,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 12.0.2.2.0 |  | Invio fatture elettroniche tramite PEC
 [l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 12.0.1.1.4 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
 [l10n_it_fatturapa_sdicoop](l10n_it_fatturapa_sdicoop/) | 12.0.2.2.1 |  | Invio fatture elettroniche tramite SDICoop
-[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 12.0.2.1.2 |  | Italian Localization - Tipi di documento fiscale per dichiarativi
+[l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 12.0.2.2.0 |  | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 12.0.2.0.0 |  | Condizioni di pagamento delle fatture elettroniche
 [l10n_it_fiscalcode](l10n_it_fiscalcode/) | 12.0.1.1.4 |  | Italian Localization - Fiscal Code
 [l10n_it_fiscalcode_crm](l10n_it_fiscalcode_crm/) | 12.0.1.0.2 |  | Aggiunge il campo codice fiscale ai contatti/opportunità
