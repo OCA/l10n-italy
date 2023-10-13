@@ -39,8 +39,8 @@ addon | version | maintainers | summary
 [l10n_it_central_journal_reportlab](l10n_it_central_journal_reportlab/) | 14.0.1.0.1 |  | ITA - Libro giornale - Reportlab
 [l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 14.0.1.1.7 |  | Gestione dichiarazioni di intento
 [l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.2.3.0 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) | Crea, gestisce e fattura i DDT partendo dalle consegne
-[l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
-[l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) | Crea i DDT partendo da gruppi di prelievi
+[l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.0 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) [![Byloth](https://github.com/Byloth.png?size=30px)](https://github.com/Byloth) | Crea e gestisce tabelle principali per gestire i DDT
+[l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.0.0 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) | Crea i DDT partendo da gruppi di prelievi
 [l10n_it_delivery_note_customer_code](l10n_it_delivery_note_customer_code/) | 14.0.1.1.0 |  | Product Customer code and name for delivery note
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 14.0.1.0.1 | [![andreampiovesana](https://github.com/andreampiovesana.png?size=30px)](https://github.com/andreampiovesana) | Crea collegamento tra i DDT e ordine di vendita/acquisto
 [l10n_it_delivery_note_rma](l10n_it_delivery_note_rma/) | 14.0.1.1.0 | [![solo4games](https://github.com/solo4games.png?size=30px)](https://github.com/solo4games) [![CetmixGitDrone](https://github.com/CetmixGitDrone.png?size=30px)](https://github.com/CetmixGitDrone) | Add Oportunity to create RMA from DN with wizard and smart button to DN view
@@ -69,7 +69,7 @@ addon | version | maintainers | summary
 [l10n_it_invoices_data_communication_fatturapa](l10n_it_invoices_data_communication_fatturapa/) | 14.0.1.0.0 |  | Integrazione fatturazione elettronica e comunicazione dati fatture (c.d. "nuovo spesometro")
 [l10n_it_ipa](l10n_it_ipa/) | 14.0.1.0.2 |  | ITA - Codice IPA
 [l10n_it_location_nuts](l10n_it_location_nuts/) | 14.0.1.1.0 |  | Opzioni NUTS specifiche per l'Italia
-[l10n_it_mis_reports_pl_bs](l10n_it_mis_reports_pl_bs/) | 14.0.1.0.0 | [![As400it](https://github.com/As400it.png?size=30px)](https://github.com/As400it) | Modelli "MIS Builder" per il conto economico e lo stato patrimoniale
+[l10n_it_mis_reports_pl_bs](l10n_it_mis_reports_pl_bs/) | 14.0.1.0.0 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) | Modelli "MIS Builder" per il conto economico e lo stato patrimoniale
 [l10n_it_payment_reason](l10n_it_payment_reason/) | 14.0.1.1.0 |  | Aggiunge la tabella delle causali di pagamento da usare ad esempio nelle ritenute d'acconto
 [l10n_it_pec](l10n_it_pec/) | 14.0.1.0.0 |  | Aggiunge il campo email PEC al partner
 [l10n_it_pos_fatturapa](l10n_it_pos_fatturapa/) | 14.0.1.0.0 |  | Gestione dati fattura elettronica del cliente all'internodell'interfaccia del POS
