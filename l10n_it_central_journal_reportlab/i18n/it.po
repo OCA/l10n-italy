@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-09 05:35+0000\n"
+"PO-Revision-Date: 2023-10-13 10:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -243,7 +243,7 @@ msgstr "Nessun documento trovato per la selezione corrente"
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Number"
-msgstr ""
+msgstr "Numero"
 
 #. module: l10n_it_central_journal_reportlab
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal_reportlab.wizard_giornale_reportlab
@@ -304,7 +304,7 @@ msgstr "Pronto per la stampa"
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
 msgid "Ref"
-msgstr ""
+msgstr "Rif."
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__report_giornale
