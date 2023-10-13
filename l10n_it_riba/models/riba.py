@@ -367,7 +367,9 @@ class RibaListLine(models.Model):
             total_credit = 0.0
             move = move_model.create(
                 {
-                    "ref": "RiBa {} - Line {}".format(line.slip_id.name, line.sequence),
+                    "ref": "{} RiBa {} - Line {}".format(
+                        line.invoice_number, line.slip_id.name, line.sequence
+                    ),
                     "journal_id": journal.id,
                     "date": line.slip_id.registration_date,
                 }
@@ -414,8 +416,9 @@ class RibaListLine(models.Model):
                 to_be_reconciled |= riba_move_line.move_line_id
             move_line_model.with_context(check_move_validity=False).create(
                 {
-                    "name": "RiBa %s-%s Ref. %s - %s"
+                    "name": "%s RiBa %s-%s Ref. %s - %s"
                     % (
+                        line.invoice_number,
                         line.slip_id.name,
                         line.sequence,
                         riba_move_line_name,
