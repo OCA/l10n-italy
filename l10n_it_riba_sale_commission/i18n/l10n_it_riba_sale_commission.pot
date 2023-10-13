@@ -14,11 +14,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_riba_sale_commission
+#: model:ir.model,name:l10n_it_riba_sale_commission.model_account_invoice_line_agent
+msgid "Agent detail of commission line in invoice lines"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
 #: model:ir.model,name:l10n_it_riba_sale_commission.model_riba_configuration
 msgid "Configuration parameters for Cash Orders"
 msgstr ""
 
 #. module: l10n_it_riba_sale_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_invoice_line_agent__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle__display_name
@@ -26,6 +32,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_it_riba_sale_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_invoice_line_agent__id
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__id
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle__id
@@ -38,6 +45,7 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_it_riba_sale_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_invoice_line_agent____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle____last_update
