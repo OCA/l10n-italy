@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 10:26+0000\n"
-"PO-Revision-Date: 2023-10-12 09:39+0000\n"
+"PO-Revision-Date: 2023-10-13 10:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -603,7 +603,7 @@ msgstr "Numero fattura"
 #: code:addons/l10n_it_riba/models/account.py:0
 #, python-format
 msgid "Invoice is linked to RiBa slip No. %(riba)s"
-msgstr ""
+msgstr "La fattura è collegata alla distinta RiBa n. %(riba)s"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_is_follower
@@ -643,7 +643,7 @@ msgstr "Emetti RiBa"
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
 msgid "Issued RiBas"
-msgstr ""
+msgstr "RiBa emesse"
 
 #. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_account_move
@@ -789,7 +789,7 @@ msgstr "Riga movimento"
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
 msgid "No IBAN or ABI/CAB specified for %(partner)s"
-msgstr ""
+msgstr "Nessun IBAN o ABI/CAB specificato per %(partner)s"
 
 #. module: l10n_it_riba
 #. odoo-python
@@ -803,21 +803,21 @@ msgstr "Nessun IBAN specificato."
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
 msgid "No SIA Code specified for %(company)s"
-msgstr ""
+msgstr "Nessun codice SIA indicato per %(company)s"
 
 #. module: l10n_it_riba
 #. odoo-python
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
 msgid "No VAT or Fiscal Code specified for %(company)s"
-msgstr ""
+msgstr "Nessuna partita IVA o codice fiscale specificato per %(company)s"
 
 #. module: l10n_it_riba
 #. odoo-python
 #: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
 #, python-format
 msgid "No VAT or Fiscal Code specified for %(partner)s"
-msgstr ""
+msgstr "Nessuna partita IVA o codice fiscale specificato per %(partner)s"
 
 #. module: l10n_it_riba
 #. odoo-python
@@ -832,7 +832,7 @@ msgstr "Nessun ID attivo trovato."
 #: code:addons/l10n_it_riba/wizard/wizard_riba_issue.py:0
 #, python-format
 msgid "No bank has been specified for invoice %(invoice)s"
-msgstr ""
+msgstr "Non è stata specificata una banca per la fattura %(invoice)s"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__sequence
@@ -1082,7 +1082,7 @@ msgstr "RiBa - Configurazione"
 #: model:account.payment.term,name:l10n_it_riba.account_payment_term_riba
 #: model_terms:account.payment.term,note:l10n_it_riba.account_payment_term_riba
 msgid "RiBa 30 Days End of Month"
-msgstr ""
+msgstr "RiBa 30 gg. fine mese"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__credit_account_id
