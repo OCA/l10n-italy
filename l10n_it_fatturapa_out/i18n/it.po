@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2023-09-04 18:38+0000\n"
+"PO-Revision-Date: 2023-10-13 10:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -610,7 +610,7 @@ msgstr "Collegamento di anteprima"
 #: code:addons/l10n_it_fatturapa_out/wizard/wizard_export_fatturapa.py:0
 #, python-format
 msgid "Print report not found"
-msgstr ""
+msgstr "Stampa resoconto non trovata"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore
