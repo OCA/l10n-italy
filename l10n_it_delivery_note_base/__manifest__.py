@@ -16,7 +16,7 @@
     "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",
-    "maintainers": ["As400it", "Byloth"],
+    "maintainers": ["MarcoCalcagni", "Byloth"],
     "depends": ["base"],
     "data": [
         "security/ir.model.access.csv",

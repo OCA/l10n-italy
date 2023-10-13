@@ -7,7 +7,7 @@
     "category": "Localization/Italy",
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "maintainers": ["As400it"],
+    "maintainers": ["MarcoCalcagni"],
     "depends": [
         "mis_builder",
     ],
