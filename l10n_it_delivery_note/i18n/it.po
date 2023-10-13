@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2023-09-04 18:38+0000\n"
+"PO-Revision-Date: 2023-10-13 10:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -721,7 +721,7 @@ msgstr "Fatture"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__is_carrier
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_users__is_carrier
 msgid "Is Carrier"
-msgstr ""
+msgstr "È trasportatore"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_is_follower
