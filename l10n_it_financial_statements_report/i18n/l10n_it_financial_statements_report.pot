@@ -162,6 +162,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__display_name
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account_type__display_name
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_pdf__display_name
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_xlsx__display_name
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard__display_name
 msgid "Display Name"
@@ -213,6 +214,11 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report
 msgid "Financial Statements QWeb Report"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report_pdf
+msgid "Financial Statements QWeb Report PDF"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
@@ -281,6 +287,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__id
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account_type__id
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_pdf__id
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_xlsx__id
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard__id
 msgid "ID"
@@ -301,6 +308,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account____last_update
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account_type____last_update
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report____last_update
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_pdf____last_update
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_xlsx____last_update
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard____last_update
 msgid "Last Modified on"
