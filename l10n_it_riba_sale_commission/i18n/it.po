@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-07 10:09+0000\n"
-"PO-Revision-Date: 2023-06-05 16:09+0000\n"
+"PO-Revision-Date: 2023-10-13 13:38+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: l10n_it_riba_sale_commission
 #: model:ir.model,name:l10n_it_riba_sale_commission.model_account_invoice_line_agent
 msgid "Agent detail of commission line in invoice lines"
-msgstr ""
+msgstr "Dettaglio agente della riga provvigione nelle righe fattura"
 
 #. module: l10n_it_riba_sale_commission
 #: model:ir.model,name:l10n_it_riba_sale_commission.model_riba_configuration
