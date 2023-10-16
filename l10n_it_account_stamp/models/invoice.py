@@ -53,6 +53,18 @@ class AccountInvoice(models.Model):
                 if invoice.manually_apply_tax_stamp:
                     invoice.tax_stamp = True
 
+    def write(self, vals):
+        res = super().write(vals)
+        for inv in self:
+            if not inv.tax_stamp and inv.state == "draft" and any(
+                line.product_id and line.product_id.is_stamp
+                for line in inv.invoice_line_ids
+            ):
+                for line in inv.invoice_line_ids:
+                    if line.product_id and line.product_id.is_stamp:
+                        line.unlink()
+        return res
+
     @api.multi
     def add_tax_stamp_line(self):
         for inv in self:
