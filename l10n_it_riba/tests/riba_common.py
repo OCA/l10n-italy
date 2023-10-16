@@ -72,11 +72,19 @@ class TestRibaCommon(common.TransactionCase):
         self.partner = self.env.ref("base.res_partner_3")
         self.partner.vat = "IT01234567890"
         self.product1 = self.env.ref("product.product_product_5")
-        self.sale_journal = self.env["account.journal"].search([("type", "=", "sale")])[
-            0
-        ]
-        self.bank_journal = self.env["account.journal"].search(
-            [("type", "=", "bank")], limit=1
+        self.sale_journal = self.env["account.journal"].create(
+            {
+                "name": "Sale",
+                "code": "SALE",
+                "type": "sale",
+            }
+        )
+        self.bank_journal = self.env["account.journal"].create(
+            {
+                "name": "Bank",
+                "code": "BANK",
+                "type": "bank",
+            }
         )
         self.payment_term1 = self._create_pterm()
         self.payment_term2 = self._create_pterm2()
@@ -88,39 +96,34 @@ class TestRibaCommon(common.TransactionCase):
                 reconcile=True,
             )
         )
-        self.sale_account = self.env["account.account"].search(
-            [
-                (
-                    "account_type",
-                    "=",
-                    "income_other",
-                )
-            ],
-            limit=1,
+        self.sale_account = self.account_model.create(
+            dict(
+                code="incothacc",
+                name="income other account",
+                account_type="income_other",
+                reconcile=True,
+            )
         )
-        self.expenses_account = self.env["account.account"].search(
-            [
-                (
-                    "account_type",
-                    "=",
-                    "expense",
-                )
-            ],
-            limit=1,
+        self.expenses_account = self.account_model.create(
+            dict(
+                code="expacc",
+                name="expense account",
+                account_type="expense",
+                reconcile=True,
+            )
         )
-        self.bank_account = self.env["account.account"].search(
-            [
-                (
-                    "account_type",
-                    "=",
-                    "asset_cash",
-                )
-            ],
-            limit=1,
+        self.bank_account = self.account_model.create(
+            dict(
+                code="asscasacc",
+                name="asset cash account",
+                account_type="asset_cash",
+                reconcile=True,
+            )
         )
+
         self.invoice = self._create_invoice()
         self.invoice2 = self._create_invoice()
-        self.sbf_effects = self.env["account.account"].create(
+        self.sbf_effects = self.account_model.create(
             {
                 "code": "STC",
                 "name": "STC Bills (test)",
@@ -128,14 +131,14 @@ class TestRibaCommon(common.TransactionCase):
                 "account_type": "asset_receivable",
             }
         )
-        self.riba_account = self.env["account.account"].create(
+        self.riba_account = self.account_model.create(
             {
                 "code": "RiBa",
                 "name": "RiBa Account (test)",
                 "account_type": "asset_fixed",
             }
         )
-        self.past_due_account = self.env["account.account"].create(
+        self.past_due_account = self.account_model.create(
             {
                 "code": "PastDue",
                 "name": "Past Due Bills Account (test)",
