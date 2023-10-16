@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-13 14:52+0000\n"
-"PO-Revision-Date: 2023-07-29 13:10+0000\n"
+"PO-Revision-Date: 2023-10-16 10:43+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -225,7 +225,7 @@ msgstr "Stampa QWeb del Bilancio Contabile"
 #. module: l10n_it_financial_statements_report
 #: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report_pdf
 msgid "Financial Statements QWeb Report PDF"
-msgstr ""
+msgstr "Stampa PDF QWeb del bilancio contabile"
 
 #. module: l10n_it_financial_statements_report
 #: model:ir.actions.act_window,name:l10n_it_financial_statements_report.action_financial_statements_wizard
