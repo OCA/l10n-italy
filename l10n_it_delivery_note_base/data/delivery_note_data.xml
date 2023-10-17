@@ -5,55 +5,6 @@
   -->
 <odoo noupdate="1">
 
-    <!-- Delivery note sequences -->
-    <record id="delivery_note_sequence_ddt_incoming" model="ir.sequence">
-        <field name="name">Incoming DdT sequence</field>
-        <field name="code">stock.delivery.note.din</field>
-        <field name="prefix">DIN/</field>
-        <field name="implementation">no_gap</field>
-        <field name="padding" eval="5" />
-    </record>
-    <record id="delivery_note_sequence_ddt" model="ir.sequence">
-        <field name="name">Outgoing DdT sequence</field>
-        <field name="code">stock.delivery.note.ddt</field>
-        <field name="prefix">DDT/</field>
-        <field name="implementation">no_gap</field>
-        <field name="padding" eval="5" />
-    </record>
-    <record id="delivery_note_sequence_ddt_internal" model="ir.sequence">
-        <field name="name">Internal DdT sequence</field>
-        <field name="code">stock.delivery.note.int</field>
-        <field name="prefix">INT/</field>
-        <field name="implementation">no_gap</field>
-        <field name="padding" eval="5" />
-    </record>
-
-    <!-- Delivery note types -->
-    <record id="delivery_note_type_incoming_ddt" model="stock.delivery.note.type">
-        <field name="name">Incoming</field>
-        <field name="sequence_id" ref="delivery_note_sequence_ddt_incoming" />
-        <field name="print_prices" eval="False" />
-        <field name="code">incoming</field>
-    </record>
-    <record id="delivery_note_type_ddt" model="stock.delivery.note.type">
-        <field name="name">Outgoing</field>
-        <field name="sequence_id" ref="delivery_note_sequence_ddt" />
-        <field name="print_prices" eval="False" />
-        <field name="code">outgoing</field>
-    </record>
-    <record id="delivery_note_type_priced_ddt" model="stock.delivery.note.type">
-        <field name="name">Outgoing (with prices)</field>
-        <field name="sequence_id" ref="delivery_note_sequence_ddt" />
-        <field name="print_prices" eval="True" />
-        <field name="code">outgoing</field>
-    </record>
-    <record id="delivery_note_type_internal_ddt" model="stock.delivery.note.type">
-        <field name="name">Internal transfer</field>
-        <field name="sequence_id" ref="delivery_note_sequence_ddt_internal" />
-        <field name="print_prices" eval="False" />
-        <field name="code">internal</field>
-    </record>
-
     <!-- Conditions of transport -->
     <record id="transport_condition_PF" model="stock.picking.transport.condition">
         <field name="name">Carriage paid</field>

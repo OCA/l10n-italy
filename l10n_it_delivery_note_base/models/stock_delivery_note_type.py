@@ -5,9 +5,11 @@
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 # Copyright (c) 2020, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
+# Copyright (c) 2023, Nextev Srl
+# @author: Nextev Srl <odoo@nextev.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import _, fields, models
 
 DELIVERY_NOTE_TYPE_CODES = [
     ("incoming", "Incoming"),
@@ -73,3 +75,130 @@ class StockDeliveryNoteType(models.Model):
             "target": "current",
             **kwargs,
         }
+
+    def _get_dn_types_sequences_values(self, code, company_id):
+        """
+        This method prepares values to create sequences
+        """
+        res = {}
+        if code == "stock.delivery.note.din":
+            res = {
+                "name": _("Incoming DdT sequence"),
+                "code": f"stock.delivery.note.din.c{company_id.id}",
+                "prefix": f"DIN/C{company_id.id}/",
+                "implementation": "no_gap",
+                "padding": 5,
+                "company_id": company_id.id,
+            }
+        elif code == "stock.delivery.note.ddt":
+            res = {
+                "name": _("Outgoing DdT sequence"),
+                "code": f"stock.delivery.note.ddt.c{company_id.id}",
+                "prefix": f"DDT/C{company_id.id}/",
+                "implementation": "no_gap",
+                "padding": 5,
+                "company_id": company_id.id,
+            }
+        elif code == "stock.delivery.note.int":
+            res = {
+                "name": _("Internal DdT sequence"),
+                "code": f"stock.delivery.note.int.c{company_id.id}",
+                "prefix": f"INT/C{company_id.id}/",
+                "implementation": "no_gap",
+                "padding": 5,
+                "company_id": company_id.id,
+            }
+        return res
+
+    def _check_existing_sequence_domain(self, code, company_id):
+        """
+        This method sets domain to check if sequence already exists
+        """
+        return [("code", "=", code), ("company_id", "=", company_id.id)]
+
+    def _get_or_create_sequence(self, code, company_id):
+        """
+        This method gets sequence id or creates a new one if it doesn't already exist
+        """
+        sequence = self.env["ir.sequence"].search(
+            self._check_existing_sequence_domain(f"{code}.c{company_id.id}", company_id)
+        )
+        if sequence:
+            return sequence.id
+        else:
+            return (
+                self.env["ir.sequence"]
+                .create(self._get_dn_types_sequences_values(code, company_id))
+                .id
+            )
+
+    def _check_existing_dn_type_domain(self, name, company_id):
+        """
+        This method sets domain to check if dn type already exists
+        """
+        return [("name", "=", name), ("company_id", "=", company_id.id)]
+
+    def _set_or_create_dn_types(
+        self, name, sequence_code, print_prices, code, company_id
+    ):
+        """
+        This method creates dn types and relative sequences if they don't
+        already exist
+        """
+        dn_type = self.env["stock.delivery.note.type"].search(
+            self._check_existing_dn_type_domain(name, company_id)
+        )
+        if not dn_type:
+            sequence_id = self._get_or_create_sequence(sequence_code, company_id)
+            self.env["stock.delivery.note.type"].create(
+                {
+                    "name": name,
+                    "sequence_id": sequence_id,
+                    "print_prices": print_prices,
+                    "code": code,
+                    "company_id": company_id.id,
+                }
+            )
+
+    def _prepare_dn_types_vals(self, company_id):
+        """
+        This method sets values needed to search and create dn types
+        """
+        self._set_or_create_dn_types(
+            _("Incoming"),
+            "stock.delivery.note.din",
+            False,
+            "incoming",
+            company_id,
+        )
+        self._set_or_create_dn_types(
+            _("Outgoing"),
+            "stock.delivery.note.ddt",
+            False,
+            "outgoing",
+            company_id,
+        )
+        self._set_or_create_dn_types(
+            _("Outgoing (with prices)"),
+            "stock.delivery.note.ddt",
+            True,
+            "outgoing",
+            company_id,
+        )
+        self._set_or_create_dn_types(
+            _("Internal transfer"),
+            "stock.delivery.note.int",
+            False,
+            "internal",
+            company_id,
+        )
+
+    def create_dn_types(self, company_id):
+        """
+        This method creates DN types for the company in the input parameters.
+        It first checks if they already exist, if not it will create them and
+        then they'll be linked to their relative sequences (they'll be created
+        too if they not already exist).
+        """
+        lang = company_id.partner_id.lang
+        self.with_context(lang=lang)._prepare_dn_types_vals(company_id)

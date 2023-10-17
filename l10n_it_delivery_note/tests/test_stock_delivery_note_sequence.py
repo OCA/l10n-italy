@@ -1,16 +1,146 @@
 # Copyright 2022 Sergio Corato
+# Copyright 2023 Nextev Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import date, datetime, timedelta
 
-from odoo.tests import Form
+from odoo import _
+from odoo.tests.common import users
 from odoo.tools.date_utils import relativedelta
 
 from .delivery_note_common import StockDeliveryNoteCommon
 
 
 class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
+    def test_new_company_dn_type_creation(self):
+        """
+        This test is for checking dn_types and sequence creation after
+        creating a new company
+        """
+        company = self.env["res.company"].create(
+            {
+                "name": "New company",
+            }
+        )
+        dn_types = self.env["stock.delivery.note.type"].search(
+            [("company_id", "=", company.id)]
+        )
+        self.assertTrue(
+            dn_types.filtered(
+                lambda d: d.name == _("Incoming")
+                and d.sequence_id
+                == self.env["ir.sequence"].search(
+                    [
+                        ("code", "=", f"stock.delivery.note.din.c{company.id}"),
+                        ("company_id", "=", company.id),
+                    ]
+                )
+            )
+        )
+        self.assertTrue(
+            dn_types.filtered(
+                lambda d: d.name == _("Outgoing")
+                and d.sequence_id
+                == self.env["ir.sequence"].search(
+                    [
+                        ("code", "=", f"stock.delivery.note.ddt.c{company.id}"),
+                        ("company_id", "=", company.id),
+                    ]
+                )
+            )
+        )
+        self.assertTrue(
+            dn_types.filtered(
+                lambda d: d.name == _("Outgoing (with prices)")
+                and d.sequence_id
+                == self.env["ir.sequence"].search(
+                    [
+                        ("code", "=", f"stock.delivery.note.ddt.c{company.id}"),
+                        ("company_id", "=", company.id),
+                    ]
+                )
+            )
+        )
+        self.assertTrue(
+            dn_types.filtered(
+                lambda d: d.name == _("Internal transfer")
+                and d.sequence_id
+                == self.env["ir.sequence"].search(
+                    [
+                        ("code", "=", f"stock.delivery.note.int.c{company.id}"),
+                        ("company_id", "=", company.id),
+                    ]
+                )
+            )
+        )
+
+    def test_initial_dn_type_creation(self):
+        """
+        This test is for checking dn_types and sequence creation by
+        l10n_it_delivery_note_base post_init_hook
+        """
+        companies = self.env["res.company"].search([])
+        for company in companies:
+            dn_types = self.env["stock.delivery.note.type"].search(
+                [("company_id", "=", company.id)]
+            )
+            self.assertTrue(
+                dn_types.filtered(
+                    lambda d: d.name == _("Incoming")
+                    and d.sequence_id
+                    == self.env["ir.sequence"].search(
+                        [
+                            ("code", "=", f"stock.delivery.note.din.c{company.id}"),
+                            ("company_id", "=", company.id),
+                        ]
+                    )
+                )
+            )
+            self.assertTrue(
+                dn_types.filtered(
+                    lambda d: d.name == _("Outgoing")
+                    and d.sequence_id
+                    == self.env["ir.sequence"].search(
+                        [
+                            ("code", "=", f"stock.delivery.note.ddt.c{company.id}"),
+                            ("company_id", "=", company.id),
+                        ]
+                    )
+                )
+            )
+            self.assertTrue(
+                dn_types.filtered(
+                    lambda d: d.name == _("Outgoing (with prices)")
+                    and d.sequence_id
+                    == self.env["ir.sequence"].search(
+                        [
+                            ("code", "=", f"stock.delivery.note.ddt.c{company.id}"),
+                            ("company_id", "=", company.id),
+                        ]
+                    )
+                )
+            )
+            self.assertTrue(
+                dn_types.filtered(
+                    lambda d: d.name == _("Internal transfer")
+                    and d.sequence_id
+                    == self.env["ir.sequence"].search(
+                        [
+                            ("code", "=", f"stock.delivery.note.int.c{company.id}"),
+                            ("company_id", "=", company.id),
+                        ]
+                    )
+                )
+            )
+
+    @users("fm")
     def test_complete_invoicing_sequence(self):
-        sequence = self.env.ref("l10n_it_delivery_note_base.delivery_note_sequence_ddt")
+        company_id = self.env.company.id
+        sequence = self.env["ir.sequence"].search(
+            [
+                ("code", "=", f"stock.delivery.note.ddt.c{company_id}"),
+                ("company_id", "=", company_id),
+            ]
+        )
         current_year = datetime.today().year
         old_year = (datetime.today() - relativedelta(years=1)).year
         for sequence_year in [current_year, old_year]:
@@ -52,18 +182,10 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         result = picking.button_validate()
         self.assertTrue(result)
 
-        dn_form = Form(
-            self.env["stock.delivery.note.create.wizard"].with_context(
-                active_ids=picking.ids,
-            )
-        )
-        wizard = dn_form.save()
-        wizard.confirm()
         delivery_note = picking.delivery_note_id
         delivery_note.transport_datetime = datetime.now() + timedelta(days=1, hours=3)
         delivery_note.date = date.today().replace(year=old_year)
         delivery_note.action_confirm()
-
         self.assertEqual(delivery_note.type_id.sequence_id, sequence)
         self.assertEqual(
             delivery_note.name, sequence.prefix + "%%0%sd" % sequence.padding % 50
