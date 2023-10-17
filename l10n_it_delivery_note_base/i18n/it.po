@@ -91,6 +91,11 @@ msgid "Charged in invoice"
 msgstr "Caricato in fattura"
 
 #. module: l10n_it_delivery_note_base
+#: model:ir.model,name:l10n_it_delivery_note_base.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__company_id
 msgid "Company"
 msgstr "Azienda"
@@ -139,6 +144,7 @@ msgid "Delivery Note Type"
 msgstr "Tipo documento di trasporto"
 
 #. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__display_name
@@ -158,6 +164,7 @@ msgid "Goods on approval"
 msgstr "Merce in approvazione"
 
 #. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition__id
@@ -167,15 +174,28 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:0
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note_base.selection__stock_delivery_note_type__code__incoming
-#: model:stock.delivery.note.type,name:l10n_it_delivery_note_base.delivery_note_type_incoming_ddt
+#, python-format
 msgid "Incoming"
 msgstr "In arrivo"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:0
+#, python-format
+msgid "Incoming DdT sequence"
+msgstr ""
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note_base.selection__stock_delivery_note_type__code__internal
 msgid "Internal"
 msgstr "Interno"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:0
+#, python-format
+msgid "Internal DdT sequence"
+msgstr ""
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__note
@@ -196,7 +216,8 @@ msgid "Internal notes"
 msgstr "Note interne"
 
 #. module: l10n_it_delivery_note_base
-#: model:stock.delivery.note.type,name:l10n_it_delivery_note_base.delivery_note_type_internal_ddt
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:0
+#, python-format
 msgid "Internal transfer"
 msgstr "Trasferimento interno"
 
@@ -206,6 +227,7 @@ msgid "Inventory settings"
 msgstr "Impostazioni del magazzino"
 
 #. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_res_company____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_goods_appearance____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_condition____last_update
@@ -272,15 +294,23 @@ msgid "Numeration"
 msgstr "Numerazione"
 
 #. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:0
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note_base.selection__stock_delivery_note_type__code__outgoing
-#: model:stock.delivery.note.type,name:l10n_it_delivery_note_base.delivery_note_type_ddt
+#, python-format
 msgid "Outgoing"
 msgstr "In uscita"
 
 #. module: l10n_it_delivery_note_base
-#: model:stock.delivery.note.type,name:l10n_it_delivery_note_base.delivery_note_type_priced_ddt
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:0
+#, python-format
 msgid "Outgoing (with prices)"
 msgstr "In uscita (con prezzi)"
+
+#. module: l10n_it_delivery_note_base
+#: code:addons/l10n_it_delivery_note_base/models/stock_delivery_note_type.py:0
+#, python-format
+msgid "Outgoing DdT sequence"
+msgstr ""
 
 #. module: l10n_it_delivery_note_base
 #: model:stock.picking.goods.appearance,name:l10n_it_delivery_note_base.goods_appearance_BAN
