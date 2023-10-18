@@ -461,7 +461,7 @@ class AssetHistoryImport(models.TransientModel):
             partner = partner.search([("vat", "ilike", supplier_vat)])[:1]
             if not partner:
                 raise ValidationError(
-                    _("Could not find Supplier with VAT {}".format(supplier_vat))
+                    _("Could not find Supplier with VAT %s", supplier_vat)
                 )
 
         supplier_doc_ref_col = get_header_by_model_and_field(
