@@ -16,7 +16,7 @@
     "version": "14.0.1.0.1",
     "category": "Localization/Italy",
     "license": "AGPL-3",
-    "maintainers": ["MarcoCalcagni", "Byloth"],
+    "maintainers": ["MarcoCalcagni"],
     "depends": ["base"],
     "data": [
         "security/ir.model.access.csv",
