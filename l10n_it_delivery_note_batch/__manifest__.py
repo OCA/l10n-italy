@@ -11,7 +11,7 @@
     "version": "16.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",
-    "maintainers": ["As400it", "TheMule71"],
+    "maintainers": ["MarcoCalcagni", "TheMule71", "Borruso"],
     "depends": [
         "stock",
         "stock_picking_batch",
