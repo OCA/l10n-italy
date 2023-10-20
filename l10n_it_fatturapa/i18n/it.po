@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2023-10-13 10:37+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-29 08:27+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -296,7 +296,7 @@ msgstr "Esigibilità differita"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,delivery_address:0
 msgid "Delivery Address"
-msgstr "Indirizzo di Consegna"
+msgstr "Indirizzo di consegna"
 
 #. module: l10n_it_fatturapa
 #: field:account.invoice,delivery_datetime:0
@@ -537,7 +537,7 @@ msgstr "Nome File"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,file_size:0
 msgid "File Size"
-msgstr "Dimensione File"
+msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,file_type_icon:0
@@ -612,7 +612,7 @@ msgstr "Condizioni di consegna"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,index_content:0
 msgid "Indexed Content"
-msgstr "Contenuto Indicizzato"
+msgstr "Contenuto indicizzato"
 
 #. module: l10n_it_fatturapa
 #: help:account.config.settings,fatturapa_art73:0
@@ -972,7 +972,7 @@ msgstr ""
 #: field:fatturapa.attachments,ftpa_preview_link:0
 #: field:ir.attachment,ftpa_preview_link:0
 msgid "Preview link"
-msgstr "Preview link"
+msgstr "Collegamento di anteprima"
 
 #. module: l10n_it_fatturapa
 #: field:res.partner,register:0
@@ -1169,7 +1169,7 @@ msgstr "Modello risorsa"
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,res_name:0
 msgid "Resource Name"
-msgstr "Nome Risorsa"
+msgstr "Nome risorsa"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_00_rc
@@ -1217,7 +1217,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:fatturapa.attachments,store_fname:0
 msgid "Stored Filename"
-msgstr "Nome del File Registrato"
+msgstr "Nome file memorizzato"
 
 #. module: l10n_it_fatturapa
 #: help:account.invoice,efatt_stabile_organizzazione_civico:0
