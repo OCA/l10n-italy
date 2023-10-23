@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2023-10-13 13:38+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-28 15:47+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4394,6 +4394,9 @@ msgid ""
 "self-contained electric motor of an output <= 125 W, and fans for cooling IT "
 "equipment of 84145915)"
 msgstr ""
+"Ventilatori da tavolo, da suolo, da muro o da parete, da soffitto, da tetto "
+"o da finestra, con motore elettrico incorporato di potenza inferiore o "
+"uguale a 125 W, assiali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_86079110
@@ -6597,7 +6600,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181631
 msgid "Blind rivet nuts of stainless steel"
-msgstr ""
+msgstr "Dadi di acciaio inossidabile per ribadini ciechi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70169040
@@ -19294,6 +19297,13 @@ msgid ""
 "plugs and sockets, prefabricated elements for electrical circuits, "
 "connections and contact elements for wire and cables, and car battery clamps)"
 msgstr ""
+"Apparecchi per l'interruzione, il sezionamento, la protezione, la "
+"diramazione, l'allacciamento o il collegamento dei circuiti elettrici per "
+"una tensione inferiore o uguale a 1 000 V (escl. fusibili, interruttori di "
+"sicurezza e altri apparecchi per proteggere circuiti elettrici, relè e altri "
+"interruttori, portalampade, spine e prese di corrente, elementi "
+"prefabbricati per i circuiti elettrici, connessioni e contatti per fili e "
+"cavi, morsetti per batterie di automobili)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85359000
@@ -20157,6 +20167,12 @@ msgid ""
 "circuits consisting of two or more interconnected monolithic integrated "
 "circuits as specified in note 12 (b) (3) to chapter 85"
 msgstr ""
+"Processori e dispositivi di controllori (controllers), anche combinati con "
+"memorie, convertitori, circuiti logici, amplificatori, orologi, circuiti di "
+"sincronizzazione o altri circuiti nella forma di circuiti integrati "
+"multichip costituiti da due o più circuiti integrati monolotici "
+"interconnessi.\n"
+"Merci specificate nella nota 12(b)(3 e 4) cap. 85"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423110
@@ -20261,6 +20277,10 @@ msgid ""
 "combined with memories, converters, logic circuits, amplifiers, clock and "
 "timing circuits, or other circuits"
 msgstr ""
+"Circuiti integrati multicomponenti come processori e dispositivi di "
+"controllori (controllers), anche combinati con memorie, convertitori, "
+"circuiti logici, amplificatori, orologi, circuiti di sincronizzazione o "
+"altri circuiti. Merci specificate nella nota 12(b)(3 e 4) cap. 85"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90302091
@@ -21301,6 +21321,10 @@ msgid ""
 "telecommunication apparatus, automatic data processing machines or units of "
 "automatic data processing machines"
 msgstr ""
+"Ventilatori dei tipi usati esclusivamente o principalmente per raffreddare "
+"microprocessori, apparecchiature per le telecomunicazioni, macchine "
+"automatiche per l'elaborazione dell'informazione o unità di macchine "
+"automatiche per l'elaborazione dell'informazione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84324090
@@ -51938,7 +51962,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181639
 msgid "Nuts of stainless steel (excl. blind rivet nuts)"
-msgstr ""
+msgstr "Dadi di acciaio inossidabile, altri"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181630
@@ -70050,6 +70074,10 @@ msgid ""
 "800 MPa (excl. screws and bolts for fixing railway track construction "
 "material)"
 msgstr ""
+"Viti, bulloni, dadi, tirafondi, ganci a vite, ribadini, copiglie, pernotti, "
+"chiavette, rondelle (comprese le rondelle destinate a funzionare da molla) "
+"ed articoli simili, di ghisa, ferro o acciaio: altre viti e bulloni, anche "
+"con i relativi dadi o rondelle: inferiore a 800 MPa"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181541
@@ -70074,6 +70102,10 @@ msgid ""
 "800 MPa (excl. screws and bolts for fixing railway track construction "
 "material)"
 msgstr ""
+"Viti, bulloni, dadi, tirafondi, ganci a vite, ribadini, copiglie, pernotti, "
+"chiavette, rondelle (comprese le rondelle destinate a funzionare da molla) "
+"ed articoli simili, di ghisa, ferro o acciaio: altre viti e bulloni, anche "
+"con i relativi dadi o rondelle: uguale o superiore a 800 MPa."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181549
@@ -75931,6 +75963,8 @@ msgstr "Sezione dichiarazione"
 msgid ""
 "Static converters (excl. accumulator chargers, rectifiers, and inverters)"
 msgstr ""
+"Convertitori statici (escl. accumulatori statici, raddrizzatori e "
+"invertitori)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85044090
