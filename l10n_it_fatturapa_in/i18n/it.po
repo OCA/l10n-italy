@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:07+0000\n"
-"PO-Revision-Date: 2019-04-12 22:16+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2023-10-29 08:28+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_account_config_settings_arrotondamenti_attivi_account_id
@@ -513,7 +513,7 @@ msgstr "File e-fatture in ingresso"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in_index_content
 msgid "Indexed Content"
-msgstr "Contenuto Indicizzato"
+msgstr "Contenuto indicizzato"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_account_invoice
@@ -1195,7 +1195,7 @@ msgid ""
 "link to your file."
 msgstr ""
 "È possibile caricare un file dal computer oppure fare copia/incolla di un "
-"collegamento Internet nel file."
+"collegamento Internet al file."
 
 #. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:119
