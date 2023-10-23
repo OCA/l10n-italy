@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-11 17:37+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-28 15:51+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -298,7 +298,7 @@ msgstr "Operazione richiesta"
 #. module: l10n_it_delivery_note_rma
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_rma.field_stock_delivery_note_line_rma_wizard__sale_line_id
 msgid "Sale Line"
-msgstr "Riga vendita"
+msgstr "Riga di vendita"
 
 #. module: l10n_it_delivery_note_rma
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_rma.delivery_note_rma_request_form
