@@ -186,7 +186,7 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
                 "method": "selfinvoice",
                 "partner_type": "other",
                 "with_supplier_self_invoice": True,
-                "partner_id": cls.env.ref("base.main_partner").id,
+                "partner_id": cls.env.company.partner_id.id,
                 "journal_id": cls.journal_selfinvoice_extra.id,
                 "supplier_journal_id": cls.journal_cee_extra.id,
                 "payment_journal_id": cls.journal_reconciliation.id,
