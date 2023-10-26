@@ -174,12 +174,19 @@ class EFatturaOut:
             wiz = self.env["wizard.export.fatturapa"]
             return wiz.getAllTaxes(record)
 
-        def get_importo(line):
-            str_number = str(line.discount)
+        def get_importo(line, discount_field="discount"):
+            str_number = str(line[discount_field])
             number = str_number[::-1].find(".")
             if number <= 2:
                 return False
-            return line.price_unit * line.discount / 100
+            if discount_field == "discount2":
+                price_unit = line.price_unit * (1 - line.discount / 100)
+                return price_unit * line[discount_field] / 100
+            elif discount_field == "discount3":
+                price_unit = line.price_unit * (1 - line.discount / 100)
+                price_unit = price_unit * (1 - line.discount2 / 100)
+                return price_unit * line[discount_field] / 100
+            return line.price_unit * line[discount_field] / 100
 
         def get_importo_totale(invoice):
             # wrapper to a method in wizard (for better overriding)
