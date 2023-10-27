@@ -156,20 +156,6 @@ class StockDeliveryNoteLine(models.Model):
                 )
         return super().create(vals_list)
 
-    def write(self, vals):
-        if "display_type" in vals and self.filtered(
-            lambda l: l.display_type != vals["display_type"]
-        ):
-            raise UserError(
-                _(
-                    "You cannot change the type of a delivery note line. "
-                    "Instead you should delete the current line"
-                    " and create a new line of the proper type."
-                )
-            )
-
-        return super().write(vals)
-
     def sync_invoice_status(self):
         for line in self.filtered(lambda l: l.sale_line_id):
             invoice_status = line.sale_line_id.invoice_status
