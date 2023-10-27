@@ -801,7 +801,6 @@ msgstr ""
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_error
-#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -1364,11 +1363,6 @@ msgstr ""
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__codice_carica_id
 msgid "Role code"
-msgstr ""
-
-#. module: l10n_it_invoices_data_communication
-#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_it_invoices_data_communication
