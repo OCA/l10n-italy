@@ -652,9 +652,12 @@ msgid "If these problems persist, don't hesitate to contact the helpdesk."
 msgstr "Se questi problemi persistono, non esitate a contattare l'helpdesk."
 
 #. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__incoming
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__incoming
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
+#, python-format
 msgid "Incoming"
 msgstr "In entrata"
 
@@ -680,6 +683,13 @@ msgstr "Nota interna"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Internal notes"
 msgstr "Note interne"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
+#, python-format
+msgid "Internal transfer"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_location
@@ -943,11 +953,21 @@ msgid "Open picking"
 msgstr "Apri consegna"
 
 #. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__outgoing
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__outgoing
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
+#, python-format
 msgid "Outgoing"
 msgstr "In uscita"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
+#, python-format
+msgid "Outgoing (with prices)"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__packages
