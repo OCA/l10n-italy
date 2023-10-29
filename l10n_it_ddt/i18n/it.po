@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-28 04:13+0000\n"
-"PO-Revision-Date: 2023-10-09 09:13+0000\n"
+"PO-Revision-Date: 2023-10-29 16:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -237,7 +237,7 @@ msgstr "Aspetto esteriore dei beni"
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 msgid "Gross Weight"
-msgstr "Peso Lordo"
+msgstr "Peso lordo"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.ddt_stock_picking_package_preparation_search
