@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2023-10-29 08:27+0000\n"
+"PO-Revision-Date: 2023-10-29 16:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -565,7 +565,7 @@ msgstr "Formato"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,gross_weight:0
 msgid "Gross Weight"
-msgstr "Peso Lordo"
+msgstr "Peso lordo"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.payment.detail,payment_bank_iban:0
@@ -789,7 +789,7 @@ msgstr "Persona naturale"
 #. module: l10n_it_fatturapa
 #: field:account.invoice,net_weight:0
 msgid "Net Weight"
-msgstr "Peso Netto"
+msgstr "Peso netto"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/account_tax.py:38
