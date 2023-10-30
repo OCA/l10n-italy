@@ -211,7 +211,6 @@ msgstr "Accredito"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__intrastat_custom_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_res_company__intrastat_custom_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_custom_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_custom_view_tree
 msgid "Customs Section"
 msgstr "Sezione doganale"
 
@@ -441,7 +440,6 @@ msgstr "Modello INTRA-2"
 
 #. module: l10n_it_intrastat_statement
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
-#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_tree_view
 msgid "INTRASTAT Statement"
 msgstr "Dichiarazione INTRASTAT"
 
