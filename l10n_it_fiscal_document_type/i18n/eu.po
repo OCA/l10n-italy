@@ -69,7 +69,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_fiscal_document_type.action_view_fiscal_document_type
 #: model:ir.ui.menu,name:l10n_it_fiscal_document_type.menu_fiscal_document_type
 #: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_fiscal_document_type.view_fiscal_document_type_tree
 msgid "Fiscal Document Types"
 msgstr ""
 
