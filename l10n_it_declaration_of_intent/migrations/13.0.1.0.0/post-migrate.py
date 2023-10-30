@@ -3,6 +3,8 @@
 
 from openupgradelib import openupgrade
 
+from odoo.addons.l10n_it_declaration_of_intent import hooks
+
 
 def copy_invoice_m2m_values(
     env, field_name, old_relation_table=None, old_comodel_column=None
@@ -30,21 +32,19 @@ def copy_invoice_m2m_values(
             old_model_name.replace(".", "_"),
         )
     query = """
-INSERT INTO %(new_relation_table)s
-    (%(new_model_column)s, %(new_comodel_column)s)
-VALUES (
-    SELECT
-        am.id,
-        rel.%(old_comodel_column)s
-    FROM %(old_relation_table)s rel
-    JOIN account_invoice ai ON ai.id = rel.account_invoice_id
-    JOIN account_move am on am.id = ai.move_id
-)
+INSERT INTO {new_relation_table}
+    ({new_model_column}, {new_comodel_column})
+SELECT
+    am.id,
+    rel.{old_comodel_column}
+FROM {old_relation_table} rel
+JOIN account_invoice ai ON ai.id = rel.account_invoice_id
+JOIN account_move am on am.id = ai.move_id
+
 """
     return openupgrade.logged_query(
         env.cr,
-        query,
-        dict(
+        query.format(
             new_model_column=new_model_column,
             new_comodel_column=new_comodel_column,
             new_relation_table=new_relation_table,
@@ -61,46 +61,9 @@ def migrate(env, version):
         env,
         "declaration_of_intent_ids",
         old_relation_table="account_invoice_dichiarazione_intento_rel",
-        old_comodel_column="declaration_of_intent_id",
+        old_comodel_column="dichiarazione_intento_id",
     )
-
-    # Copy value of force_declaration_of_intent_id
-    # from account_invoice_line
-    # to corresponding account_move_line
-    query = """
-UPDATE account_move_line
-SET
-    force_declaration_of_intent_id = ail.force_declaration_of_intent_id
-FROM account_invoice_line ail
-    JOIN account_invoice ai ON ai.id = ail.invoice_id
-    JOIN account_move am ON am.id = ai.move_id
-WHERE
-    move_id = am.id
-    AND aml.tax_line_id IS NULL
-    AND aml.account_id <> ai.account_id
-    AND ail.quantity = aml.quantity
-    AND ((ail.product_id IS NULL AND aml.product_id IS NULL)
-        OR ail.product_id = aml.product_id)
-    AND ((ail.uom_id IS NULL AND aml.product_uom_id IS NULL)
-        OR ail.uom_id = aml.product_uom_id)
-"""
-    openupgrade.logged_query(
+    hooks.copy_m2m_values(
         env.cr,
-        query,
-    )
-
-    # Update invoice_id in declaration line
-    # from pointing to account.invoice
-    # to pointing to account.move
-    query = """
-UPDATE l10n_it_declaration_of_intent_declaration_line
-SET
-    invoice_id = ai.move_id
-FROM account_invoice ai
-WHERE
-    ai.id = invoice_id
-"""
-    openupgrade.logged_query(
-        env.cr,
-        query,
+        False,
     )
