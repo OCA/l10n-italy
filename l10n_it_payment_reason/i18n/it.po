@@ -64,7 +64,6 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_payment_reason
 #: model:ir.model,name:l10n_it_payment_reason.model_payment_reason
 #: model_terms:ir.ui.view,arch_db:l10n_it_payment_reason.view_payment_reason_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_payment_reason.view_payment_reason_tree
 msgid "Payment Reason"
 msgstr "Causale pagamento"
 
