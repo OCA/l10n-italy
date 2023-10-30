@@ -240,7 +240,6 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_tree
 msgid "Withholding Payment Move"
 msgstr ""
 
