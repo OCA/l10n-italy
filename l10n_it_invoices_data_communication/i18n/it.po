@@ -532,9 +532,7 @@ msgstr "Corpo fattura cliente"
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__fatture_emesse
 #: model:ir.model.fields.selection,name:l10n_it_invoices_data_communication.selection__comunicazione_dati_iva__dati_trasmissione__dte
-#: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_body_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_emesse_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
 msgid "Customer invoices"
 msgstr "Fatture cliente"
@@ -819,7 +817,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_error
-#: model:ir.model.fields,help:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -908,7 +905,6 @@ msgstr "Comunicazione dati fatture - Corpo fatture fornitori"
 
 #. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_search
-#: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_tree
 msgid "Invoices data communications"
 msgstr "Comunicazioni dati IVA"
 
@@ -1374,11 +1370,6 @@ msgid "Role code"
 msgstr "Codice carica"
 
 #. module: l10n_it_invoices_data_communication
-#: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: l10n_it_invoices_data_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
 msgid "Seller"
@@ -1471,7 +1462,6 @@ msgstr "Corpo fattura fornitore"
 #: model:ir.model.fields,field_description:l10n_it_invoices_data_communication.field_comunicazione_dati_iva__fatture_ricevute
 #: model:ir.model.fields.selection,name:l10n_it_invoices_data_communication.selection__comunicazione_dati_iva__dati_trasmissione__dtr
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_fatture_ricevute_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.view_comunicazione_dati_iva_form
 msgid "Supplier bills"
 msgstr "Fatture fornitori"
@@ -1666,6 +1656,9 @@ msgstr "CAP %s del cedente %s non è di 5 caratteri"
 #: model_terms:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_split_big_communication
 msgid "or"
 msgstr "oppure"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "If checked new messages require your attention."
 #~ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
