@@ -161,7 +161,6 @@ msgstr ""
 #. module: l10n_it_sdi_channel
 #: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_tree
 msgid "ES Channel"
 msgstr ""
 
