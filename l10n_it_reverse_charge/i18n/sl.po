@@ -271,7 +271,6 @@ msgstr "Tip obrnjene davčne obveznosti"
 #. module: l10n_it_reverse_charge
 #: model:ir.actions.act_window,name:l10n_it_reverse_charge.action_rc_type
 #: model:ir.ui.menu,name:l10n_it_reverse_charge.menu_action_rc_type
-#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_tree
 msgid "Reverse Charge Types"
 msgstr "Tipi obrnjenih davčnih obveznosti"
 
@@ -342,11 +341,6 @@ msgid "Supplier Self Invoice Journal"
 msgstr "Dnevnik samo-obdavčitev prejetih računov"
 
 #. module: l10n_it_reverse_charge
-#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
-msgid "Tax Mapping"
-msgstr "Mapiranje davkov"
-
-#. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type_tax
 msgid "Tax Mapping for self invoices"
 msgstr "Mapiranje davkov za samo-obdavčitve"
@@ -396,6 +390,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__with_supplier_self_invoice
 msgid "With additional supplier self invoice"
 msgstr "Z dodatnim prejetim računom za samo-obdavčitev"
+
+#~ msgid "Tax Mapping"
+#~ msgstr "Mapiranje davkov"
 
 #, python-format
 #~ msgid ""

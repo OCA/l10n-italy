@@ -263,7 +263,6 @@ msgstr ""
 #. module: l10n_it_reverse_charge
 #: model:ir.actions.act_window,name:l10n_it_reverse_charge.action_rc_type
 #: model:ir.ui.menu,name:l10n_it_reverse_charge.menu_action_rc_type
-#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_tree
 msgid "Reverse Charge Types"
 msgstr ""
 
@@ -331,11 +330,6 @@ msgstr ""
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__supplier_journal_id
 msgid "Supplier Self Invoice Journal"
-msgstr ""
-
-#. module: l10n_it_reverse_charge
-#: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
-msgid "Tax Mapping"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
