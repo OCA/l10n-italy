@@ -648,7 +648,6 @@ msgstr "Attenzione, movimento contabile RdA già esistente: %s"
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_fiscal_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_tree
 msgid "Withholding Tax"
 msgstr "Ritenuta d'acconto"
 
@@ -674,7 +673,6 @@ msgstr "Righe ritenuta d'acconto"
 #: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_move
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_tree
 msgid "Withholding Tax Move"
 msgstr "Movimento ritenuta di acconto"
 
@@ -697,14 +695,8 @@ msgstr "Ritenuta d'acconto generata da"
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
 msgid "Withholding Tax statement"
 msgstr "Dichiarazione ritenuta d'acconto"
-
-#. module: l10n_it_withholding_tax
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_invoice_form
-msgid "Withholding Taxes"
-msgstr "Ritenute d'acconto"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax__withholding_tax_id
@@ -729,6 +721,9 @@ msgstr "Registro ritenuta d'acconto"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__wt_types
 msgid "Withholding tax type"
 msgstr "Tipologia ritenuta d'acconto"
+
+#~ msgid "Withholding Taxes"
+#~ msgstr "Ritenute d'acconto"
 
 #~ msgid " (Residual Net to pay: %s)"
 #~ msgstr " (Netto a pagare residuo: %s)"
