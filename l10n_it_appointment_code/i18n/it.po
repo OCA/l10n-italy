@@ -20,7 +20,6 @@ msgstr ""
 #. module: l10n_it_appointment_code
 #: model:ir.model,name:l10n_it_appointment_code.model_appointment_code
 #: model_terms:ir.ui.view,arch_db:l10n_it_appointment_code.view_appointment_code_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_appointment_code.view_appointment_code_tree
 msgid "Appointment Code"
 msgstr "Codice carica"
 
