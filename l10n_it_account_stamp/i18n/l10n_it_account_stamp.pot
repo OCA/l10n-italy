@@ -17,7 +17,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
 msgid ""
 "<span class=\"o_form_label\">Configuration for Tax stamp</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -165,8 +165,8 @@ msgstr ""
 #: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
 msgid ""
 "Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree June\n"
-"                17, 2014\n"
-"            "
+"            17, 2014\n"
+"        "
 msgstr ""
 
 #. module: l10n_it_account_stamp
