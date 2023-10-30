@@ -257,7 +257,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
 msgid ""
 "Financial Statements can be computed only if selected\n"
-"                            company have only one unaffected earnings account."
+"                        company have only one unaffected earnings account."
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
