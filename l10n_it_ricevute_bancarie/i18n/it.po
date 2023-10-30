@@ -298,7 +298,6 @@ msgstr "Procedura esportazione file RiBa"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.action_riba_da_emettere
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.riba_issue_view
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.wizard_presentation_riba
 msgid "C/O Issue"
 msgstr "Emissione RiBa"
@@ -323,14 +322,8 @@ msgstr "Rendiconto distinta RiBa"
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_filtri
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_distinta_riba_tree
 msgid "C/O Slips"
 msgstr "Distinte RiBa"
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_detail_riba_tree
-msgid "C/O Slips Detail"
-msgstr "Dettaglio distinte RiBa"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__config_id
@@ -570,7 +563,6 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Detail"
 msgstr "Dettaglio"
@@ -748,9 +740,7 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__message_has_error
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__message_has_sms_error
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_line__message_has_error
-#: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -963,11 +953,6 @@ msgstr "Messaggi"
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
 msgid "Move Line"
 msgstr "Riga movimento"
-
-#. module: l10n_it_ricevute_bancarie
-#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
-msgid "Move Lines"
-msgstr "Righe movimento"
 
 #. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_file_export.py:0
@@ -1252,12 +1237,6 @@ msgid "SIA Code"
 msgstr "Codice SIA"
 
 #. module: l10n_it_ricevute_bancarie
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta__message_has_sms_error
-#: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: l10n_it_ricevute_bancarie
 #: code:addons/l10n_it_ricevute_bancarie/models/account.py:0
 #, python-format
 msgid "Set a Service for Collection Fees in Company Config."
@@ -1430,6 +1409,15 @@ msgstr "del"
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "C/O Slips Detail"
+#~ msgstr "Dettaglio distinte RiBa"
+
+#~ msgid "Move Lines"
+#~ msgstr "Righe movimento"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "Group By Customer"
 #~ msgstr "Raggruppa per cliente"
