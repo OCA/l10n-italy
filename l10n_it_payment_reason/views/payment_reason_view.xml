@@ -5,7 +5,7 @@
         <field name="name">view.payment.reason.tree</field>
         <field name="model">payment.reason</field>
         <field name="arch" type="xml">
-            <tree string="Payment Reason">
+            <tree>
                 <field name="code" />
                 <field name="name" />
             </tree>

@@ -1,5 +1,5 @@
-<odoo>
-  <data noupdate="1">
+<odoo noupdate="1">
+
     <record model="appointment.code" id="1">
       <field name="code">1</field>
       <field name="name">Rappresentante legale, negoziale o di fatto, socio
@@ -80,5 +80,4 @@
  amministrazione</field>
     </record>
 
-  </data>
 </odoo>

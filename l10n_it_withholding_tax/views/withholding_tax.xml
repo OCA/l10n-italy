@@ -15,7 +15,7 @@
             <field name="name">view.withholding.tax.tree</field>
             <field name="model">withholding.tax</field>
             <field name="arch" type="xml">
-                <tree string="Withholding Tax">
+                <tree>
                     <field name="name" />
                     <field name="code" />
                     <field name="tax" />
@@ -115,12 +115,7 @@
             <field name="name">view.withholding.tax.statement.tree</field>
             <field name="model">withholding.tax.statement</field>
             <field name="arch" type="xml">
-                <tree
-                string="Withholding Tax statement"
-                create="false"
-                edit="false"
-                delete="false"
-            >
+                <tree create="false" edit="false" delete="false">
                     <field name="wt_type" />
                     <field name="partner_id" />
                     <field name="date" />
@@ -261,12 +256,7 @@
             <field name="name">view.withholding.tax.move.tree</field>
             <field name="model">withholding.tax.move</field>
             <field name="arch" type="xml">
-                <tree
-                string="Withholding Tax Move"
-                create="false"
-                edit="false"
-                delete="false"
-            >
+                <tree create="false" edit="false" delete="false">
                     <field name="wt_type" />
                     <field name="partner_id" />
                     <field name="date" />

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!-- oca-hooks:disable=xml-dangerous-qweb-replace-low-priority -->
 
     <template
         id="wt_account_invoice_it_dati_ritenuta"

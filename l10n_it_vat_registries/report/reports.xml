@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
 
         <record id="action_report_registro_iva" model="ir.actions.report">
             <field name="name">Invoices VAT Registry</field>
@@ -9,11 +8,9 @@
             <field name="report_name">l10n_it_vat_registries.report_registro_iva</field>
             <field name="report_file">l10n_it_vat_registries.report_registro_iva</field>
             <field
-                name="paperformat_id"
-                ref="l10n_it_account.l10n_it_account_a4_landscape"
-            />
+            name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_landscape"
+        />
         </record>
-
-    </data>
 
 </odoo>

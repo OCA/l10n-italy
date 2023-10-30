@@ -4,15 +4,13 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-    <data>
 
         <record id="module_category_inventory_checkboxes" model="ir.module.category">
             <field name="name">Inventory settings</field>
             <field
-                name="description"
-            >Define some other extra rights on inventory management.</field>
+            name="description"
+        >Define some other extra rights on inventory management.</field>
             <field name="sequence">10</field>
         </record>
 
-    </data>
 </odoo>

@@ -1,174 +1,170 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="view_fatturapa_out_attachment_tree">
-            <field name="name">fatturapa.attachment.out.tree</field>
-            <field name="model">fatturapa.attachment.out</field>
-            <field name="arch" type="xml">
-                <tree string="Export Electronic Invoice" create="false">
-                    <field name="name" />
-                    <field name="invoice_partner_id" />
-                    <field name="out_invoice_ids" widget="many2many_tags" />
-                    <field name="state" />
-                    <field name="sending_date" />
-                    <field name="delivered_date" />
-                </tree>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="view_fatturapa_out_attachment_search">
-            <field name="name">fatturapa.attachment.out.search</field>
-            <field name="model">fatturapa.attachment.out</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="name" />
-                    <field name="invoice_partner_id" />
-                    <field name="state" />
-                    <filter
-                        name="ready"
-                        string="Ready to Send"
-                        domain="[('state','=','ready')]"
-                    />
-                    <filter
-                        name="sender_error"
-                        string="Sender Error"
-                        domain="[('state','=','sender_error')]"
-                    />
-                    <filter
-                        name="recipient_error"
-                        string="Not delivered"
-                        domain="[('state','=','recipient_error')]"
-                    />
-                    <filter
-                        name="rejected"
-                        string="Rejected (PA)"
-                        domain="[('state','=','rejected')]"
-                    />
-                </search>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="view_fatturapa_out_attachment_tree">
+        <field name="name">fatturapa.attachment.out.tree</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="name" />
+                <field name="invoice_partner_id" />
+                <field name="out_invoice_ids" widget="many2many_tags" />
+                <field name="state" />
+                <field name="sending_date" />
+                <field name="delivered_date" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_fatturapa_out_attachment_search">
+        <field name="name">fatturapa.attachment.out.search</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="invoice_partner_id" />
+                <field name="state" />
+                <filter
+                    name="ready"
+                    string="Ready to Send"
+                    domain="[('state','=','ready')]"
+                />
+                <filter
+                    name="sender_error"
+                    string="Sender Error"
+                    domain="[('state','=','sender_error')]"
+                />
+                <filter
+                    name="recipient_error"
+                    string="Not delivered"
+                    domain="[('state','=','recipient_error')]"
+                />
+                <filter
+                    name="rejected"
+                    string="Rejected (PA)"
+                    domain="[('state','=','rejected')]"
+                />
+            </search>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
-            <field name="name">fatturapa.attachment.out.form</field>
-            <field name="model">fatturapa.attachment.out</field>
-            <field
-                name="inherit_id"
-                ref="l10n_it_fatturapa.fatturapa_attachment_view_form"
-            />
-            <field name="mode">primary</field>
-            <field name="arch" type="xml">
-                <form position="attributes">
-                    <attribute name="string">Export Electronic Invoice</attribute>
-                    <attribute name="create">false</attribute>
-                </form>
-                <sheet position="before">
-                    <header>
-                        <field name="state" widget="statusbar" />
-                    </header>
-                </sheet>
-                <field name="datas" position="attributes">
-                    <!-- Add readonly to parent's invisible rules -->
-                    <attribute name="attrs">
-                        {
-                            'invisible': [('id', '=', False)],
-                            'readonly': [('state', 'not in', ['ready', 'sender_error'])]
-                        }
-                    </attribute>
-                </field>
-                <group name="preview" position="after">
-                    <group>
-                        <field name="has_pdf_invoice_print" />
-                        <field name="invoice_partner_id" />
-                    </group>
-                    <group string="Invoices" colspan="2">
-                        <field
-                            name="out_invoice_ids"
-                            nolabel="1"
-                            context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"
-                        >
-                            <tree>
-                                <field name="partner_id" />
-                                <field name="invoice_date" />
-                                <field name="name" />
-                                <field name="invoice_origin" />
-                                <field name="amount_total" />
-                                <field name="amount_residual" />
-                                <field name="state" />
-                                <button
-                                    name="open_form_current"
-                                    type="object"
-                                    string="Open full-screen"
-                                    icon="fa-external-link"
-                                    context="{'form_view_ref': 'account.view_move_form'}"
-                                />
-                            </tree>
-                        </field>
-                    </group>
-                </group>
-                <div name="creation_div" position="after">
-                    <label
-                        for="sending_user"
-                        string="Sent by"
-                        attrs="{'invisible': [('sending_user' ,'=', False)]}"
-                    />
-                    <div
-                        name="sending_user"
-                        attrs="{'invisible': [('sending_user' ,'=', False)]}"
-                    >
-                        <field name="sending_user" readonly="1" class="oe_inline" /> on
-                        <field name="sending_date" readonly="1" class="oe_inline" />
-                    </div>
-                    <label
-                        for="delivered_date"
-                        string="Delivered"
-                        attrs="{'invisible': [('delivered_date' ,'=', False)]}"
-                    />
-                    <div
-                        name="delivered_date"
-                        attrs="{'invisible': [('delivered_date' ,'=', False)]}"
-                    >
-                        <field name="delivered_date" readonly="1" class="oe_inline" />
-                    </div>
-                </div>
-            </field>
-        </record>
-
-        <record id="action_fatturapa_attachment" model="ir.actions.act_window">
-            <field name="name">Electronic Invoice Export Files</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">fatturapa.attachment.out</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_fatturapa_out_attachment_tree" />
-            <field
-                name="context"
-            >{'search_default_ready': True, 'search_default_sender_error': True, 'search_default_rejected': True, }</field>
-        </record>
-
-        <menuitem
-            action="action_fatturapa_attachment"
-            parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
-            name="E-invoice Export Files"
-            id="fatturapa_attachment_menu"
+    <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
+        <field name="name">fatturapa.attachment.out.form</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa.fatturapa_attachment_view_form"
         />
-
-        <record model="ir.ui.view" id="fatturapa_attachment_out_form_statusbar">
-            <field
-                name="name"
-            >Allow to change status by clicking on the status bar</field>
-            <field name="model">fatturapa.attachment.out</field>
-            <field
-                name="inherit_id"
-                ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
-            />
-            <field
-                name="groups_id"
-                eval="[(4,ref('l10n_it_fatturapa_out.group_force_e_inv_export_state'))]"
-            />
-            <field name="arch" type="xml">
-                <field name="state" position="attributes">
-                    <attribute name="clickable">1</attribute>
-                </field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form position="attributes">
+                <attribute name="string">Export Electronic Invoice</attribute>
+                <attribute name="create">false</attribute>
+            </form>
+            <sheet position="before">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+            </sheet>
+            <field name="datas" position="attributes">
+                <!-- Add readonly to parent's invisible rules -->
+                <attribute name="attrs">
+                    {
+                        'invisible': [('id', '=', False)],
+                        'readonly': [('state', 'not in', ['ready', 'sender_error'])]
+                    }
+                </attribute>
             </field>
-        </record>
-    </data>
+            <group name="preview" position="after">
+                <group>
+                    <field name="has_pdf_invoice_print" />
+                    <field name="invoice_partner_id" />
+                </group>
+                <group string="Invoices" colspan="2">
+                    <field
+                        name="out_invoice_ids"
+                        nolabel="1"
+                        context="{'form_view_ref': 'account.invoice_form', 'tree_view_ref': 'account.invoice_tree'}"
+                    >
+                        <tree>
+                            <field name="partner_id" />
+                            <field name="invoice_date" />
+                            <field name="name" />
+                            <field name="invoice_origin" />
+                            <field name="amount_total" />
+                            <field name="amount_residual" />
+                            <field name="state" />
+                            <button
+                                name="open_form_current"
+                                type="object"
+                                string="Open full-screen"
+                                icon="fa-external-link"
+                                context="{'form_view_ref': 'account.view_move_form'}"
+                            />
+                        </tree>
+                    </field>
+                </group>
+            </group>
+            <div name="creation_div" position="after">
+                <label
+                    for="sending_user"
+                    string="Sent by"
+                    attrs="{'invisible': [('sending_user' ,'=', False)]}"
+                />
+                <div
+                    name="sending_user"
+                    attrs="{'invisible': [('sending_user' ,'=', False)]}"
+                >
+                    <field name="sending_user" readonly="1" class="oe_inline" /> on
+                    <field name="sending_date" readonly="1" class="oe_inline" />
+                </div>
+                <label
+                    for="delivered_date"
+                    string="Delivered"
+                    attrs="{'invisible': [('delivered_date' ,'=', False)]}"
+                />
+                <div
+                    name="delivered_date"
+                    attrs="{'invisible': [('delivered_date' ,'=', False)]}"
+                >
+                    <field name="delivered_date" readonly="1" class="oe_inline" />
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="action_fatturapa_attachment" model="ir.actions.act_window">
+        <field name="name">Electronic Invoice Export Files</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fatturapa.attachment.out</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_fatturapa_out_attachment_tree" />
+        <field
+            name="context"
+        >{'search_default_ready': True, 'search_default_sender_error': True, 'search_default_rejected': True, }</field>
+    </record>
+
+    <menuitem
+        action="action_fatturapa_attachment"
+        parent="l10n_it_fatturapa.menu_fattura_pa_receivables"
+        name="E-invoice Export Files"
+        id="fatturapa_attachment_menu"
+    />
+
+    <record model="ir.ui.view" id="fatturapa_attachment_out_form_statusbar">
+        <field name="name">Allow to change status by clicking on the status bar</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
+        />
+        <field
+            name="groups_id"
+            eval="[(4,ref('l10n_it_fatturapa_out.group_force_e_inv_export_state'))]"
+        />
+        <field name="arch" type="xml">
+            <field name="state" position="attributes">
+                <attribute name="clickable">1</attribute>
+            </field>
+        </field>
+    </record>
 </odoo>

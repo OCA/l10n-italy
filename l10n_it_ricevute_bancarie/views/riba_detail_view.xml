@@ -48,7 +48,7 @@
         <field name="name">riba.distinta.line.tree</field>
         <field name="model">riba.distinta.line</field>
         <field name="arch" type="xml">
-            <tree create="false" string="C/O Slips Detail">
+            <tree create="false">
                 <field name="config_id" />
                 <field name="sequence" />
                 <field name="invoice_number" />
