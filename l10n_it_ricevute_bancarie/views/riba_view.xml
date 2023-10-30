@@ -45,7 +45,7 @@
         <field name="name">riba.distinta.tree</field>
         <field name="model">riba.distinta</field>
         <field name="arch" type="xml">
-            <tree string="C/O Slips">
+            <tree>
                 <field name="name" />
                 <field name="config_id" />
                 <field name="date_accepted" />
@@ -86,7 +86,7 @@
                     <page string="Accounting">
                         <separator string="Invoice Entries" colspan="4" />
                         <field name="move_line_ids" nolabel="1" colspan="4">
-                            <tree string="Move Lines">
+                            <tree>
                                 <field name="amount" />
                                 <field name="move_line_id" />
                             </tree>
@@ -103,7 +103,7 @@
                         </group>
                         <separator string="Payments" colspan="4" />
                         <field name="payment_ids" nolabel="1" colspan="4">
-                            <tree string="Payments">
+                            <tree>
                                 <field name="date" />
                                 <field name="move_id" />
                                 <field name="ref" />
@@ -175,7 +175,7 @@
                 <notebook colspan="4">
                     <page string="General">
                         <field name="line_ids" nolabel="1" colspan="4">
-                            <tree string="Detail">
+                            <tree>
                                 <field name="sequence" />
                                 <field name="invoice_number" />
                                 <field name="invoice_date" />
@@ -225,7 +225,7 @@
                         <field name='accreditation_move_id' colspan="4" nolabel="1" />
                         <separator colspan="4" string="Payments" />
                         <field name='payment_ids' colspan="4" nolabel="1">
-                            <tree string="Payments">
+                            <tree>
                                 <field name="date" />
                                 <field name="move_id" />
                                 <field name="ref" />

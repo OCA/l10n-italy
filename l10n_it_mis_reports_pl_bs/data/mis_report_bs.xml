@@ -2,7 +2,6 @@
 <!-- Copyright 2015-2020 Dinamiche Aziendali srl
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-  <data noupdate="0">
     <record model="mis.report" id="mis_report_bs">
       <field name="name">EEC Financial Statements - Balance Sheet</field>
       <field name="style_id" ref="mis_report_style_l10n_it_base" />
@@ -23,17 +22,17 @@
       <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_a</field>
       <field
-                name="description"
-            >A) RECEIVABLES FROM SHAREHOLDERS FOR SHARE CAPITAL</field>
+            name="description"
+        >A) RECEIVABLES FROM SHAREHOLDERS FOR SHARE CAPITAL</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_1" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">5</field>
     </record>
 
@@ -68,9 +67,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">21</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi2">
@@ -83,43 +82,43 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">22</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi3">
       <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi3</field>
       <field
-                name="description"
-            >3) industrial patents and similar intellectual property rights</field>
+            name="description"
+        >3) industrial patents and similar intellectual property rights</field>
       <field name="expression">bals[1106%,1116%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">23</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi4">
       <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_bi4</field>
       <field
-                name="description"
-            >4) concessions, licenses, trademarks and similar rights</field>
+            name="description"
+        >4) concessions, licenses, trademarks and similar rights</field>
       <field name="expression">bals[00%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">24</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi5">
@@ -132,9 +131,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">25</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi6">
@@ -147,9 +146,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">26</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsa_bi7">
@@ -162,9 +161,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">27</field>
     </record>
 
@@ -200,9 +199,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">31</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_bii2">
@@ -215,9 +214,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">32</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_bii3">
@@ -230,9 +229,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">33</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_bii4">
@@ -240,16 +239,16 @@
       <field name="name">a_bii4</field>
       <field name="description">4) other tangible fixed assets</field>
       <field
-                name="expression"
-            >bals[1204%,1205%,1206%,1207%,1208%,1214%,1215%,1216%,1217%,1218%]</field>
+            name="expression"
+        >bals[1204%,1205%,1206%,1207%,1208%,1214%,1215%,1216%,1217%,1218%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">34</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_bii5">
@@ -262,9 +261,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">35</field>
     </record>
 
@@ -314,9 +313,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">42</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii1b">
@@ -329,9 +328,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">43</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii1c">
@@ -344,9 +343,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">44</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii1d">
@@ -359,9 +358,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">45</field>
     </record>
 
@@ -386,9 +385,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">47</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii2b">
@@ -401,9 +400,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">48</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii2c">
@@ -416,9 +415,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">49</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_biii2d">
@@ -431,9 +430,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">50</field>
     </record>
 
@@ -447,9 +446,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">51</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_biii4">
@@ -462,9 +461,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">52</field>
     </record>
 
@@ -522,9 +521,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">62</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci2">
@@ -537,9 +536,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
        <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">63</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci3">
@@ -552,9 +551,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
        <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">64</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci4">
@@ -567,9 +566,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
        <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">65</field>
     </record>
    <record model="mis.report.kpi" id="mis_report_bsa_ci5">
@@ -582,9 +581,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
        <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">66</field>
     </record>
 
@@ -621,9 +620,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">71</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii2">
@@ -636,9 +635,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">72</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii3">
@@ -651,9 +650,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">73</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii4">
@@ -666,26 +665,26 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">74</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii5">
       <field name="report_id" ref="mis_report_bs" />
       <field name="name">a_cii5</field>
       <field
-                name="description"
-            >5) from companies subject to control by the parent companies</field>
+            name="description"
+        >5) from companies subject to control by the parent companies</field>
       <field name="expression">bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">75</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii5bis">
@@ -693,16 +692,16 @@
       <field name="name">a_cii5bis</field>
       <field name="description">5bis) tax receivables</field>
       <field
-                name="expression"
-            >(bals[160100]) + (bals[1602%]) + (bals[1605%]) + (bals[1607%]) + (bals[1608%]) + (bals[1609%]) + (bals[161%])  </field>
+            name="expression"
+        >(bals[160100]) + (bals[1602%]) + (bals[1605%]) + (bals[1607%]) + (bals[1608%]) + (bals[1609%]) + (bals[161%])  </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">76</field>
     </record>
 
@@ -716,9 +715,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">77</field>
     </record>
   <record model="mis.report.kpi" id="mis_report_bsa_cii5quater">
@@ -731,9 +730,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">78</field>
     </record>
 
@@ -742,8 +741,8 @@
       <field name="name">a_ciit</field>
       <field name="description">Total Receivables</field>
       <field
-                name="expression"
-            >+a_cii1 +a_cii2 +a_cii3 +a_cii4 +a_cii5 +a_cii5bis +a_cii5ter +a_cii5quater </field>
+            name="expression"
+        >+a_cii1 +a_cii2 +a_cii3 +a_cii4 +a_cii5 +a_cii5bis +a_cii5ter +a_cii5quater </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
@@ -758,8 +757,8 @@
       <field name="name">a_ciii</field>
       <field name="description">III) Current financial assets</field>
       <field
-                name="expression"
-            >+a_ciii1 +a_ciii2 +a_ciii3 +a_ciii4 +a_ciii5 +a_ciii6 </field>
+            name="expression"
+        >+a_ciii1 +a_ciii2 +a_ciii3 +a_ciii4 +a_ciii5 +a_ciii6 </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
@@ -776,9 +775,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">81</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii2">
@@ -791,9 +790,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">82</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii3">
@@ -806,9 +805,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">83</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii4">
@@ -821,9 +820,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">84</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii5">
@@ -836,9 +835,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
      <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">85</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsa_ciii6">
@@ -851,9 +850,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
      <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">86</field>
     </record>
 
@@ -863,8 +862,8 @@
       <field name="name">a_ciiit</field>
       <field name="description">Total Current financial assets</field>
       <field
-                name="expression"
-            >+a_ciii1 +a_ciii2 +a_ciii3 +a_ciii4 +a_ciii5 +a_ciii6 </field>
+            name="expression"
+        >+a_ciii1 +a_ciii2 +a_ciii3 +a_ciii4 +a_ciii5 +a_ciii6 </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
@@ -890,16 +889,16 @@
       <field name="name">a_civ1</field>
       <field name="description">1) deposit accounts</field>
       <field
-                name="expression"
-            >pbals[182001]+ pbals[182002] + pbals[182003]+ pbals[182004]+ pbals[183001]</field>
+            name="expression"
+        >pbals[182001]+ pbals[182002] + pbals[182003]+ pbals[182004]+ pbals[183001]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">91</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_civ2">
@@ -912,9 +911,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">92</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_civ3">
@@ -927,9 +926,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">93</field>
     </record>
 
@@ -976,9 +975,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">101</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_d2">
@@ -991,9 +990,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">102</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsa_d3">
@@ -1006,9 +1005,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">103</field>
     </record>
 
@@ -1078,9 +1077,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
      <field name="sequence">201</field>
   </record>
  <record model="mis.report.kpi" id="mis_report_bsl_aii">
@@ -1093,9 +1092,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">202</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_aiii">
@@ -1108,9 +1107,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">203</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_aiv">
@@ -1123,9 +1122,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">204</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_av">
@@ -1138,9 +1137,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">205</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_avi">
@@ -1153,26 +1152,26 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">206</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_avii">
       <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_avii</field>
       <field
-                name="description"
-            >VII) Reserve for hedging operations of expected cash flows</field>
+            name="description"
+        >VII) Reserve for hedging operations of expected cash flows</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">207</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_aviii">
@@ -1185,9 +1184,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">208</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_aix">
@@ -1200,9 +1199,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2i" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">209</field>
     </record>
 
@@ -1211,8 +1210,8 @@
       <field name="name">l_at</field>
       <field name="description">Total Net equity</field>
       <field
-                name="expression"
-            >+l_ai +l_aii +l_aiii +l_aiv +l_av +l_avi +l_avii +l_aviii +l_aix</field>
+            name="expression"
+        >+l_ai +l_aii +l_aiii +l_aiv +l_av +l_avi +l_avii +l_aviii +l_aix</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_2" />
@@ -1236,34 +1235,34 @@
       <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_b1</field>
       <field
-                name="description"
-            >1) directors' termination benefits and similar provisions</field>
+            name="description"
+        >1) directors' termination benefits and similar provisions</field>
       <field name="expression">-bals[000000]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">212</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_b2">
       <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_b2</field>
       <field
-                name="description"
-            >2) tax provisions, including deferred tax liabilities</field>
+            name="description"
+        >2) tax provisions, including deferred tax liabilities</field>
       <field name="expression">-bals[2104%,2105%,22%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">213</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_b3">
@@ -1276,9 +1275,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">214</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_b4">
@@ -1291,9 +1290,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">215</field>
     </record>
 
@@ -1320,9 +1319,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_2" />
       <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
 <field name="sequence">220</field>
     </record>
  <record model="mis.report.kpi" id="mis_report_bsl_d">
@@ -1345,9 +1344,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">231</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d2">
@@ -1360,9 +1359,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">232</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d3">
@@ -1375,9 +1374,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">233</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d4">
@@ -1385,16 +1384,16 @@
       <field name="name">l_d4</field>
       <field name="description">4) bank financing</field>
       <field
-                name="expression"
-            >(bals[24%])+ (-nbals[182001])+ (-nbals[182002])+ (-nbals[182003])+ (-nbals[182004]) + (-nbals[183001])</field>
+            name="expression"
+        >(bals[24%])+ (-nbals[182001])+ (-nbals[182002])+ (-nbals[182003])+ (-nbals[182004]) + (-nbals[183001])</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">234</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d5">
@@ -1407,9 +1406,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">235</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d6">
@@ -1422,9 +1421,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">236</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d7">
@@ -1437,9 +1436,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">237</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d8">
@@ -1452,9 +1451,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">238</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d9">
@@ -1467,9 +1466,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">239</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d10">
@@ -1482,9 +1481,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">240</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d11">
@@ -1497,9 +1496,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">241</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d12">
@@ -1507,33 +1506,33 @@
       <field name="name">l_d12</field>
       <field name="description">12) tax payables</field>
       <field
-                name="expression"
-            > (-bals[260100]) + (-bals[2602%]) + (-bals[2605%]) + (-bals[2606%]) + (-bals[2619%]) + (-bals[2810%]) + (-bals[2811%]) </field>
+            name="expression"
+        > (-bals[260100]) + (-bals[2602%]) + (-bals[2605%]) + (-bals[2606%]) + (-bals[2619%]) + (-bals[2810%]) + (-bals[2811%]) </field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">242</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d13">
       <field name="report_id" ref="mis_report_bs" />
       <field name="name">l_d13</field>
       <field
-                name="description"
-            >13) payables to social security and welfare institutions</field>
+            name="description"
+        >13) payables to social security and welfare institutions</field>
       <field name="expression">bals[2301%, 263%]</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">243</field>
     </record>
 <record model="mis.report.kpi" id="mis_report_bsl_d14">
@@ -1546,9 +1545,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">244</field>
     </record>
 
@@ -1557,8 +1556,8 @@
       <field name="name">l_dt</field>
       <field name="description">Total Payables (D)</field>
       <field
-                name="expression"
-            >+l_d1 +l_d2 +l_d3 +l_d4 +l_d5 +l_d6 +l_d7 +l_d8 +l_d9 +l_d10 +l_d11 +l_d12 +l_d13 +l_d14</field>
+            name="expression"
+        >+l_d1 +l_d2 +l_d3 +l_d4 +l_d5 +l_d6 +l_d7 +l_d8 +l_d9 +l_d10 +l_d11 +l_d12 +l_d13 +l_d14</field>
       <field name="type">num</field>
       <field name="compare_method">pct</field>
       <field name="style_id" ref="mis_report_style_l10n_it_2" />
@@ -1585,9 +1584,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
     <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">251</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsl_e2">
@@ -1600,9 +1599,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
         <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">252</field>
     </record>
     <record model="mis.report.kpi" id="mis_report_bsl_e3">
@@ -1615,9 +1614,9 @@
       <field name="style_id" ref="mis_report_style_l10n_it_3" />
         <field name="auto_expand_accounts" eval="True" />
       <field
-                name="auto_expand_accounts_style_id"
-                ref="mis_report_style_l10n_it_acc_det"
-            />
+            name="auto_expand_accounts_style_id"
+            ref="mis_report_style_l10n_it_acc_det"
+        />
       <field name="sequence">253</field>
     </record>
 
@@ -1643,6 +1642,4 @@
       <field name="sequence">280</field>
  </record>
 
-
-</data>
 </odoo>

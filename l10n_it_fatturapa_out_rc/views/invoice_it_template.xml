@@ -2,6 +2,7 @@
 <!-- Copyright 2021 Alex Comba - Agile Business Group
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
+    <!-- oca-hooks:disable=xml-dangerous-qweb-replace-low-priority -->
         <template
         id="account_invoice_it_FatturaPA_export"
         inherit_id="l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"

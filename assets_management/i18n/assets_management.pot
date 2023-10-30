@@ -1778,7 +1778,6 @@ msgstr ""
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_asset_asset__message_has_error
-#: model:ir.model.fields,help:assets_management.field_asset_asset__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -2634,11 +2633,6 @@ msgstr ""
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__activity_user_id
 msgid "Responsible User"
-msgstr ""
-
-#. module: assets_management
-#: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: assets_management
