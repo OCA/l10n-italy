@@ -181,7 +181,6 @@ msgstr "E-fattura inviata"
 #. module: l10n_it_sdi_channel
 #: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_tree
 msgid "ES Channel"
 msgstr "Canale SdI"
 
@@ -255,7 +254,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__message_has_error
-#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -370,11 +368,6 @@ msgid "Reset to ready"
 msgstr "Reimposta a pronta"
 
 #. module: l10n_it_sdi_channel
-#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: l10n_it_sdi_channel
 #: model:ir.model,name:l10n_it_sdi_channel.model_fatturapa_attachment
 msgid "SdI file"
 msgstr "File SdI"
@@ -458,6 +451,9 @@ msgstr "Procedura guidata per inviare e-fatture multiple a SdI"
 #, python-format
 msgid "You can only send files in 'Ready to Send' state."
 msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "E-invoice PEC server"
 #~ msgstr "Server PEC e-fattura"
