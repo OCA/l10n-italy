@@ -45,7 +45,7 @@
         <field name="name">C/O Issue</field>
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
-            <tree string="C/O Issue" create="false">
+            <tree create="false">
                 <field name="partner_id" readonly="1" />
                 <field name="move_id" readonly="1" />
                 <field name="iban" readonly="1" />
