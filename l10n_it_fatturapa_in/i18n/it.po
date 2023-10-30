@@ -678,7 +678,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_error
-#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -1257,11 +1256,6 @@ msgid "Rounding up"
 msgstr "Arrotondamento attivo"
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__service_type
 msgid "Sale Provision Type"
 msgstr "Tipo cessione prestazione"
@@ -1571,11 +1565,6 @@ msgid "Welfare Fund Data Product"
 msgstr "Prodotto per dati cassa previdenziale"
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
-msgid "Welfare Fund Details"
-msgstr "Dettagli cassa previdenziale"
-
-#. module: l10n_it_fatturapa_in
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
@@ -1603,11 +1592,6 @@ msgid "Withholding"
 msgstr "Ritenuta"
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
-msgid "Withholding Details"
-msgstr "Dettagli ritenuta"
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__wizard_id
 msgid "Wizard"
 msgstr "Procedura guidata"
@@ -1630,11 +1614,6 @@ msgstr ""
 "sistema"
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_tree
-msgid "Xml Attachment"
-msgstr "Allegato XML"
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__type
 msgid ""
 "You can either upload a file from your computer or copy/paste an internet "
@@ -1648,6 +1627,18 @@ msgstr ""
 #, python-format
 msgid "You can select only one XML file to link."
 msgstr "È possibile selezionare solo un file XML da collegare."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
+
+#~ msgid "Welfare Fund Details"
+#~ msgstr "Dettagli cassa previdenziale"
+
+#~ msgid "Withholding Details"
+#~ msgstr "Dettagli ritenuta"
+
+#~ msgid "Xml Attachment"
+#~ msgstr "Allegato XML"
 
 #~ msgid "Creation"
 #~ msgstr "Creazione"
