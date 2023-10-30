@@ -634,7 +634,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_fiscal_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_statement_search
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_tree
 msgid "Withholding Tax"
 msgstr ""
 
@@ -660,7 +659,6 @@ msgstr ""
 #: model:ir.model,name:l10n_it_withholding_tax.model_withholding_tax_move
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_search
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_move_tree
 msgid "Withholding Tax Move"
 msgstr ""
 
@@ -683,13 +681,7 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_form
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_statement_tree
 msgid "Withholding Tax statement"
-msgstr ""
-
-#. module: l10n_it_withholding_tax
-#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_invoice_form
-msgid "Withholding Taxes"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
