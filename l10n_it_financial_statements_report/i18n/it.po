@@ -263,11 +263,8 @@ msgstr "Stampa XLSX del Bilancio Contabile"
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
 msgid ""
 "Financial Statements can be computed only if selected\n"
-"                            company have only one unaffected earnings "
-"account."
+"                        company have only one unaffected earnings account."
 msgstr ""
-"Il Bilancio Contabile può essere calcolato solo se l'azienda selezionata\n"
-"                            ha un solo conto di risultato economico."
 
 #. module: l10n_it_financial_statements_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
@@ -473,3 +470,11 @@ msgstr "Sì"
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
 msgid "or"
 msgstr "oppure"
+
+#~ msgid ""
+#~ "Financial Statements can be computed only if selected\n"
+#~ "                            company have only one unaffected earnings "
+#~ "account."
+#~ msgstr ""
+#~ "Il Bilancio Contabile può essere calcolato solo se l'azienda selezionata\n"
+#~ "                            ha un solo conto di risultato economico."
