@@ -20,5 +20,5 @@
         "views/payment_reason_view.xml",
     ],
     "installable": True,
-    "pre_init_hook": "rename_old_italian_module",
+    "pre_init_hook": "pre_absorb_old_module",
 }
