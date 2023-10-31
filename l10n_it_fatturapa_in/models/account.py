@@ -320,6 +320,8 @@ class AccountInvoice(models.Model):
 
     def process_negative_lines(self):
         self.ensure_one()
+        if not self.invoice_line_ids:
+            return
         for line in self.invoice_line_ids:
             if line.price_unit >= 0:
                 return
@@ -329,7 +331,7 @@ class AccountInvoice(models.Model):
                 {"price_unit": -line.price_unit}
             )
         self.with_context(check_move_validity=False)._recompute_dynamic_lines(
-            recompute_all_taxes=True
+            recompute_all_taxes=True, recompute_tax_base_amount=True
         )
 
 

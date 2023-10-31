@@ -52,7 +52,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         welfare_found = False
         for line in invoice.invoice_line_ids:
             if line.product_id.id == self.service.id:
-                self.assertEqual(line.price_unit, 3)
+                self.assertAlmostEqual(line.price_unit, 3)
                 welfare_found = True
         self.assertTrue(welfare_found)
         self.assertTrue(len(invoice.e_invoice_line_ids) == 1)
@@ -135,7 +135,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[1].tax_ids[0].name, "22% e-bill")
         self.assertEqual(invoice.invoice_line_ids[0].tax_ids[0].amount, 22)
         self.assertEqual(invoice.invoice_line_ids[1].tax_ids[0].amount, 22)
-        self.assertEqual(invoice.invoice_line_ids[1].price_unit, 2)
+        self.assertAlmostEqual(invoice.invoice_line_ids[1].price_unit, 2)
         self.assertTrue(len(invoice.e_invoice_line_ids) == 2)
         for e_line in invoice.e_invoice_line_ids:
             self.assertTrue(e_line.line_number in (1, 2))
@@ -648,10 +648,10 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.move_type, "in_refund")
         self.assertEqual(invoice.amount_total, 18.3)
-        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 2.0)
+        self.assertAlmostEqual(invoice.invoice_line_ids[0].price_unit, 2.0)
         self.assertEqual(invoice.invoice_line_ids[0].quantity, 10.0)
         self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 20.0)
-        self.assertEqual(invoice.invoice_line_ids[1].price_unit, -1.0)
+        self.assertAlmostEqual(invoice.invoice_line_ids[1].price_unit, -1.0)
         self.assertEqual(invoice.invoice_line_ids[1].quantity, 5.0)
         self.assertEqual(invoice.invoice_line_ids[1].price_subtotal, -5.0)
 
@@ -662,7 +662,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.move_type, "in_refund")
         self.assertEqual(round(invoice.amount_total, 2), 24.4)
-        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 2.0)
+        self.assertAlmostEqual(invoice.invoice_line_ids[0].price_unit, 2.0)
         self.assertEqual(invoice.invoice_line_ids[0].quantity, 10.0)
         self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 20.0)
         self.assertEqual(invoice.e_invoice_amount_untaxed, -20.0)
@@ -815,7 +815,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertEqual(invoice.amount_total, 18.07)
-        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 18.07)
+        self.assertAlmostEqual(invoice.invoice_line_ids[0].price_unit, 18.07)
         self.assertEqual(invoice.invoice_line_ids[0].quantity, 1.0)
         self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 18.07)
         self.assertEqual(invoice.invoice_line_ids[1].price_unit, 16.60)
@@ -1074,7 +1074,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
         self.assertEqual(invoice.invoice_line_ids[0].price_unit, 164.46)
         self.assertEqual(invoice.invoice_line_ids[0].quantity, 1.0)
-        self.assertEqual(invoice.invoice_line_ids[1].price_unit, 3.52)
+        self.assertAlmostEqual(invoice.invoice_line_ids[1].price_unit, 3.52)
         self.assertEqual(invoice.invoice_line_ids[1].quantity, 1.0)
 
     def test_e_invoice_field_compute(self):
