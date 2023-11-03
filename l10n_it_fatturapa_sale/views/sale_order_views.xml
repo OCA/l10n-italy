@@ -34,9 +34,7 @@
                     string="Electronic Invoice"
                     groups="account.group_account_user"
                 >
-                    <group name="related_documents" string="Related Documents">
-                        <field name="related_documents" nolabel="1" colspan="2" />
-                    </group>
+                    <field name="related_documents" nolabel="1" />
                 </page>
             </notebook>
         </field>
