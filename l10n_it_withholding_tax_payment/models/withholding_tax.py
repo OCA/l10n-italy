@@ -70,6 +70,7 @@ class WithholdingTaxMovePayment(models.Model):
         default=lambda self: self.env.company,
     )
     name = fields.Char()
+    description = fields.Html()
     date = fields.Date()
     date_payment = fields.Date("Payment Date")
     date_start = fields.Date("Start Date", readonly=True)
