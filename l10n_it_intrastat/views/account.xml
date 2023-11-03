@@ -45,13 +45,7 @@
                             />
                             </group>
                             <newline />
-                            <group colspan="4">
-                                <field
-                                name="intrastat_line_ids"
-                                nolabel="1"
-                                colspan="4"
-                            />
-                            </group>
+                            <field name="intrastat_line_ids" nolabel="1" />
                         </group>
                     </page>
                 </xpath>
