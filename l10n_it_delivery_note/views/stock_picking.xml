@@ -325,16 +325,15 @@
                                         />
                                     </group>
                                 </group>
-                                <group
+                                <separator
                                     string="Delivery Notes"
                                     attrs="{'invisible': [('delivery_note_exists', '=', False)]}"
-                                >
-                                    <field
-                                        name="delivery_note_note"
-                                        nolabel="1"
-                                        attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
-                                    />
-                                </group>
+                                />
+                                <field
+                                    name="delivery_note_note"
+                                    nolabel="1"
+                                    attrs="{'readonly': [('delivery_note_readonly', '=', True)], 'invisible': [('delivery_note_exists', '=', False)]}"
+                                />
                             </div>
                         </div>
                     </page>
