@@ -118,16 +118,14 @@
                             </group>
                         </group>
                         <newline />
-                        <group>
-                            <field name="line_ids" nolabel="1">
-                                <tree delete="false">
-                                    <field name="date" />
-                                    <field name="partner_id" />
-                                    <field name="withholding_tax_id" />
-                                    <field name="amount" sum="Tot" />
-                                </tree>
-                            </field>
-                        </group>
+                        <field name="line_ids" nolabel="1">
+                            <tree delete="false">
+                                <field name="date" />
+                                <field name="partner_id" />
+                                <field name="withholding_tax_id" />
+                                <field name="amount" sum="Tot" />
+                            </tree>
+                        </field>
                     </sheet>
                 </form>
             </field>
