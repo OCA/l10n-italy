@@ -24,15 +24,12 @@
                 <field name="year_footer" />
                 <!--</group>-->
                 <separator string="Journals" />
-                <group>
-                    <field
-                        name="journal_ids"
-                        colspan="4"
-                        nolabel="1"
-                        height="250"
-                        domain="[('central_journal_exclude', '=', False)]"
-                    />
-                </group>
+                <field
+                    name="journal_ids"
+                    nolabel="1"
+                    height="250"
+                    domain="[('central_journal_exclude', '=', False)]"
+                />
                 <separator string="Layout" />
                 <group>
                     <field name="target_move" />
