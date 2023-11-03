@@ -18,17 +18,25 @@ class PresentationRibaIssue(models.TransientModel):
     presentation_amount = fields.Monetary(currency_field="currency_id")
 
     def action_presentation_riba(self):
+        active_ids = self.env.context.get("active_ids")
+        move_lines = (
+            self.env["account.move.line"]
+            .browse(active_ids)
+            .sorted(key=lambda r: (r.date_maturity, r.price_total))
+        )
+        if not move_lines:
+            move_lines = self.env["account.move.line"].search(
+                [
+                    "&",
+                    "|",
+                    ("riba", "=", "True"),
+                    ("unsolved_invoice_ids", "!=", False),
+                    ("account_id.internal_type", "=", "receivable"),
+                ],
+                order="date_maturity asc, price_total asc",
+            )
         list_ids = []
-        for line in self.env["account.move.line"].search(
-            [
-                "&",
-                "|",
-                ("riba", "=", "True"),
-                ("unsolved_invoice_ids", "!=", False),
-                ("account_id.internal_type", "=", "receivable"),
-            ],
-            order="date_maturity asc, price_total asc",
-        ):
+        for line in move_lines:
             if (
                 self.currency_id.compare_amounts(
                     line.amount_residual,
@@ -36,7 +44,7 @@ class PresentationRibaIssue(models.TransientModel):
                 )
                 > 0
             ):
-                break
+                continue
             self.presentation_amount -= line.amount_residual
             list_ids.append(line.id)
         res = self.env["ir.actions.act_window"]._for_xml_id(
