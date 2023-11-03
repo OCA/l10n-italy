@@ -325,6 +325,17 @@ class AccountMoveLine(models.Model):
             "context": ctx,
         }
 
+    def action_open_presentation_riba_wiz(self):
+        ctx = dict(self.env.context)
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Presentation Riba",
+            "res_model": "presentation.riba.issue",
+            "view_mode": "form",
+            "target": "new",
+            "context": ctx,
+        }
+
 
 class AccountFullReconcile(models.Model):
     _inherit = "account.full.reconcile"
