@@ -18,13 +18,14 @@
     "website": "https://github.com/OCA/l10n-italy",
     "maintainers": ["eLBati"],
     "depends": [
-        "point_of_sale",
+        "point_of_sale","hr","pos_hr",
         # TODO is this necessary?
         # 'pos_order_mgmt'
     ],
     "data": [
         "views/account.xml",
         "views/point_of_sale.xml",
+        "views/employee_view.xml",
     ],
     "assets": {
         "point_of_sale.assets": [
