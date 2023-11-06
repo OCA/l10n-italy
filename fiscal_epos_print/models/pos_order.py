@@ -17,6 +17,7 @@ class PosOrder(models.Model):
     fiscal_z_rep_number = fields.Integer("Fiscal closure number")
     fiscal_printer_serial = fields.Char()
     fiscal_printer_debug_info = fields.Text("Debug info", readonly=True)
+    fiscal_operator_number = fields.Text("Fiscal Operator", readonly=True)
 
     # TODO allow to save code on customer and load customer, if present
     lottery_code = fields.Char()
@@ -39,6 +40,7 @@ class PosOrder(models.Model):
         res["fiscal_printer_debug_info"] = ui_order.get(
             "fiscal_printer_debug_info", False
         )
+        res["fiscal_operator_number"] = ui_order.get("fiscal_operator_number", False)
         return res
 
     @api.model
@@ -63,7 +65,10 @@ class PosOrder(models.Model):
         fiscal_printer_serial = (
             pos_order.get("fiscal_printer_serial")
             or self.config_id.fiscal_printer_serial
-        )
+            )
+
+        fiscal_operator_number = pos_order.get("fiscal_operator_number")
+        
         if po:
             po.write(
                 {
@@ -72,6 +77,7 @@ class PosOrder(models.Model):
                     "fiscal_receipt_amount": receipt_amount,
                     "fiscal_z_rep_number": fiscal_z_rep_number,
                     "fiscal_printer_serial": fiscal_printer_serial,
+                    "fiscal_operator_number": fiscal_operator_number,
                 }
             )
         return True
@@ -101,6 +107,7 @@ class PosOrder(models.Model):
                 "fiscal_z_rep_number": order.fiscal_z_rep_number,
                 "fiscal_printer_serial": order.fiscal_printer_serial,
                 "fiscal_printer_debug_info": order.fiscal_printer_debug_info,
+                "fiscal_operator_number": order.fiscal_operator_number,
             }
         )
         return result
