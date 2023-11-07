@@ -12,7 +12,7 @@
     "author": "LinkIt Srl, Agile Business Group,"
               " Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-italy/tree/12.0/',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     "depends": [
         'account',
         'l10n_it_vat_registries',
