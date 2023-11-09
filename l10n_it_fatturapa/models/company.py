@@ -17,7 +17,7 @@ class ResCompany(models.Model):
         size=20,
     )
     fatturapa_tax_representative = fields.Many2one(
-        "res.partner", "Legal Tax Representative"
+        "res.partner", "Tax Representative"
     )
     fatturapa_sender_partner = fields.Many2one(
         "res.partner",
@@ -85,7 +85,7 @@ class AccountConfigSettings(models.TransientModel):
     )
     fatturapa_tax_representative = fields.Many2one(
         related="company_id.fatturapa_tax_representative",
-        string="Legal Tax Representative",
+        string="Tax Representative",
         help="The fields must be entered only when the seller/provider makes "
         "use of a tax representative in Italy",
         readonly=False,
