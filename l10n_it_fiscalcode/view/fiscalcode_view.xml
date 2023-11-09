@@ -5,12 +5,15 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <field name="vat" position="before">
+            <xpath
+                expr="//field[@name='vat']/ancestor::div | //field[@name='vat']"
+                position="after"
+            >
                 <label for="fiscalcode" />
                 <div name="fiscalcode_info" class="o_row">
-                    <field name="fiscalcode" class="oe_inline" />
+                    <field name="fiscalcode" nolabel="1" />
                 </div>
-            </field>
+            </xpath>
         </field>
     </record>
     <record id="view_res_partner_filter_fiscalcode_data" model="ir.ui.view">
