@@ -17,10 +17,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.3.2\n"
 
-#. module: l10n_it_fatturapa_out_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_stamp.account_invoice_it_dati_bollo
-msgid "SI"
-msgstr "SI"
+#~ msgid "SI"
+#~ msgstr "SI"
 
 #~ msgid "Export E-invoice"
 #~ msgstr "Esporta e-fattura"
