@@ -473,7 +473,7 @@ class AssetHistoryImport(models.TransientModel):
                 "category_id": categ.id,
                 "company_id": self.company_id.id,
                 "currency_id": curr.id,
-                "supplier_id": partner and partner.id or False,
+                "supplier_id": partner.id,
                 "supplier_ref": supplier_doc_ref,
             }
         )
