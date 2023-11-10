@@ -1,6 +1,5 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_it_fatturapa_out_di
 #
 msgid ""
 msgstr ""
@@ -12,29 +11,3 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-msgid "0.00"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-msgid "Altre lettere d'intento"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-msgid "Esclusa ex. Art. 15"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_line_it_FatturaPA
-msgid "INTENTO"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-msgid "N1"
-msgstr ""
