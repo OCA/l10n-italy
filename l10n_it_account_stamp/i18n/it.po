@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-24 15:03+0000\n"
-"PO-Revision-Date: 2023-07-31 12:11+0000\n"
+"PO-Revision-Date: 2023-11-12 17:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -25,6 +25,11 @@ msgid ""
 "\"Values set here are company-specific.\" aria-label=\"Values set here are "
 "company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
+"<span class=\"o_form_label\">Configurazione per il bollo</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"I "
+"valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
+"impostati qui sono specifici per azienda.\" groups=\"base."
+"group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.report_invoice_document_custom_fields_ext
@@ -178,6 +183,10 @@ msgid ""
 "            17, 2014\n"
 "        "
 msgstr ""
+"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del D."
+"M.\n"
+"            17 giugno 2014\n"
+"        "
 
 #. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_tax_ids
