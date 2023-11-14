@@ -189,5 +189,5 @@ class FatturaPAAttachmentOut(models.Model):
     )
 
     def get_invoice_obj(self, fatturapa_attachment):
-        xml_string = fatturapa_attachment.get_xml_string()
+        xml_string = fatturapa_attachment.ir_attachment_id.get_xml_string()
         return efattura.CreateFromDocument(xml_string)

@@ -1905,7 +1905,12 @@ class WizardImportFatturapa(models.TransientModel):
             self.reset_inconsistencies()
             self._check_attachment(fatturapa_attachment)
 
-            fatt = fatturapa_attachment.get_invoice_obj()
+            if fatturapa_attachment._name == "fatturapa.attachment.in":
+                fatt = fatturapa_attachment.get_invoice_obj()
+            else:
+                # So it is fatturapa.attachment.out, thus
+                # get_invoice_obj() has a different signature.
+                fatt = fatturapa_attachment.get_invoice_obj(fatturapa_attachment)
             if not fatt:
                 raise UserError(
                     _(
