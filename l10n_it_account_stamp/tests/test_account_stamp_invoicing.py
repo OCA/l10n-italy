@@ -1,3 +1,4 @@
+from odoo.fields import first
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.test_account_invoice_report import (
@@ -47,29 +48,30 @@ class InvoicingTest(TestAccountInvoiceReport):
         self.env.company.tax_stamp_product_id = stamp_product_id
 
     def test_post_invoicing(self):
-        invoice_ids = self.invoices.filtered(
-            lambda invoice: invoice.move_type == "out_invoice"
+        invoice = first(
+            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
         )
 
-        self.assertEqual(len(invoice_ids), 1)
-        final_invoice = invoice_ids[0]
-        self.assertEqual(len(final_invoice.invoice_line_ids), 2)
+        self.assertEqual(len(invoice), 1)
+        self.assertEqual(len(invoice.invoice_line_ids), 2)
 
-        final_invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
+        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
         self.assertEqual(
-            len(final_invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 0
+            len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 0
         )
-        self.assertTrue(final_invoice.tax_stamp)
-        final_invoice.action_post()
+        self.assertTrue(invoice.tax_stamp)
+        invoice.action_post()
 
         self.assertEqual(
-            len(final_invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 2
+            len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 2
         )
 
     def test_keep_lines_description(self):
         """Check that description is kept in other lines when adding stamp."""
         # Get an invoice and make it eligible for applying stamp
-        invoice = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        invoice = first(
+            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        )
         self.assertEqual(len(invoice), 1)
         invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
 
@@ -89,7 +91,9 @@ class InvoicingTest(TestAccountInvoiceReport):
         """Modify invoice currency and check that amount_total does not change after
         action_post"""
         self.env.company.tax_stamp_product_id.auto_compute = False
-        invoice = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        invoice = first(
+            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        )
         invoice_form = Form(invoice)
         invoice_form.manually_apply_tax_stamp = False
         invoice_form.currency_id = self.env.ref("base.USD")
