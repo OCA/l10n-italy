@@ -112,9 +112,13 @@ odoo.define('fiscal_epos_print.models', function (require) {
                 res['full_price'] = this.price
             }
             else {
-                res['full_price'] = this.price * (1 + (res['tax_department']['tax_amount'] / 100))
-            }
-            return res;
+                // This strategy was used because JavaScript's Math.round rounds to the nearest integer
+                let dec_precision = this.pos.currency.decimals;
+                let full_price = Number((this.price * (1 + (res['tax_department']['tax_amount'] / 100))).toFixed(dec_precision));
+                let rounding_factor = Math.pow(10, dec_precision);
+                res['full_price'] = Math.trunc(full_price * rounding_factor) / rounding_factor;
+                            }
+            return res
         },
         get_tax_details_r: function(){
             var details =  this.get_all_prices();
