@@ -1005,7 +1005,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         )
         existing_partners.update({
             'vat': 'IT12345670017',
-            'fiscalcode': '1234567890123456',
+            'fiscalcode': 'TSTCOA80R07I829X',
         })
 
         # Act: Import the XMLs,

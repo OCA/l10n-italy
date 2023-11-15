@@ -27,7 +27,7 @@ class TestFiscalCode(TransactionCase):
         self.assertEqual(self.partner.fiscalcode, 'RSSMRA84H04H501X')
 
     def test_fiscalcode_check(self):
-        # Wrong FC
+        # Wrong FC length
         with self.assertRaises(ValidationError):
             self.env['res.partner'].create({
                 'name': 'Person',
@@ -51,3 +51,12 @@ class TestFiscalCode(TransactionCase):
             'is_company': False,
             'fiscalcode': '123456789',
         })
+        # Invalid FC
+        with self.assertRaises(ValidationError):
+            self.env["res.partner"].create(
+                {
+                    "name": "Person",
+                    "is_company": False,
+                    "fiscalcode": "AAAMRA00H04H5010",
+                }
+            )
