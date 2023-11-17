@@ -14,7 +14,7 @@ class TestAccountTaxKind(TransactionCase):
         self.tax_kind_n1._compute_display_name()
         self.assertEqual(
             self.tax_kind_n1.display_name,
-            "[{}] {}".format(self.tax_kind_n1.code, self.tax_kind_n1.name),
+            f"[{self.tax_kind_n1.code}] {self.tax_kind_n1.name}",
         )
 
     def test_name_search(self):
