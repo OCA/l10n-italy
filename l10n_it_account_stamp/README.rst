@@ -30,7 +30,8 @@ ITA - Imposta di bollo
 
 **Italiano**
 
-Questo modulo aggiunge il supporto all'imposta di bollo italiana nelle fatture e nelle ricevute.
+Questo modulo aggiunge il supporto all'imposta di bollo italiana nelle
+fatture e nelle ricevute.
 
 **English**
 
@@ -46,30 +47,38 @@ Configuration
 
 **Italiano**
 
-Per modificare le impostazioni sul prodotto "Imposta di bollo 2 euro" è necessario abilitare le funzioni complete per la contabilità:
+Per modificare le impostazioni sul prodotto "Imposta di bollo 2 euro" è
+necessario abilitare le funzioni complete per la contabilità:
 
 1. Impostazioni -> Utenti e aziende -> Gruppi
-2. Cercare il gruppo "Mostrare funzionalità contabili complete" e selezionarlo
+2. Cercare il gruppo "Mostrare funzionalità contabili complete" e
+   selezionarlo
 3. Nel tab "Utenti" aggiungere l'utente e salvare
-
 
 Modalità automatica:
 
-- andare sul prodotto "Imposta di bollo 2 euro" e configurare "Imposte marca da bollo" (Imposte in esenzione).
-
-- per ciascuna fattura o ricevuta, l'applicabilità dell'imposta di bollo verrà calcolata in modo automatico in base alla somma degli imponibili relativi alle imposte selezionate.
+-  andare sul prodotto "Imposta di bollo 2 euro" e configurare "Imposte
+   marca da bollo" (Imposte in esenzione).
+-  per ciascuna fattura o ricevuta, l'applicabilità dell'imposta di
+   bollo verrà calcolata in modo automatico in base alla somma degli
+   imponibili relativi alle imposte selezionate.
 
 Modalità manuale:
 
-- andare sul prodotto "Imposta di bollo 2 euro" e deselezionare la casella "Calcolo automatico".
+-  andare sul prodotto "Imposta di bollo 2 euro" e deselezionare la
+   casella "Calcolo automatico".
+-  per ciascuna fattura o ricevuta, abilitare manualmente la casella di
+   selezione "Imposta di bollo". L'applicabilità dell'imposta di bollo
+   verrà calcolata in base alla somma degli imponibili relativi alle
+   imposte selezionate.
 
-- per ciascuna fattura o ricevuta, abilitare manualmente la casella di selezione "Imposta di bollo". L'applicabilità dell'imposta di bollo verrà calcolata in base alla somma degli imponibili relativi alle imposte selezionate.
-
-Impostare i conti di ricavo/costo nella scheda "Contabilità", generalmente ricavo="Debiti per bolli" e costo="Valori bollati".
+Impostare i conti di ricavo/costo nella scheda "Contabilità",
+generalmente ricavo="Debiti per bolli" e costo="Valori bollati".
 
 **English**
 
-In order to change Tax Stamp 2 euro product settings, enable full accounting features:
+In order to change Tax Stamp 2 euro product settings, enable full
+accounting features:
 
 1. Settings -> Users & Companies -> Groups
 2. Search "Show Full Accounting Features" group and select it
@@ -77,32 +86,40 @@ In order to change Tax Stamp 2 euro product settings, enable full accounting fea
 
 Automatic mode:
 
-- Go to 'Tax Stamp 2 euro' product and configure 'Stamp taxes' (exemption taxes).
-
-- For each invoice or receipt, the base amount for each selected tax will be added up and used to determine the application of the account stamp.
+-  Go to 'Tax Stamp 2 euro' product and configure 'Stamp taxes'
+   (exemption taxes).
+-  For each invoice or receipt, the base amount for each selected tax
+   will be added up and used to determine the application of the account
+   stamp.
 
 Manual mode:
 
-- Go to 'Tax Stamp 2 euro' product and deselect 'Auto-compute' checkbox.
+-  Go to 'Tax Stamp 2 euro' product and deselect 'Auto-compute'
+   checkbox.
+-  For each invoice or receipt, manually enable 'Tax Stamp' checkbox.
 
-- For each invoice or receipt, manually enable 'Tax Stamp' checkbox.
-
-Also set income/expense accounts, typically income = 'Debiti per bolli' and expense = 'Valori bollati'.
+Also set income/expense accounts, typically income = 'Debiti per bolli'
+and expense = 'Valori bollati'.
 
 Usage
 =====
 
 **Italiano**
 
-Se nella fattura o ricevuta è previsto l'addebito dell'imposta di bollo al cliente, fare clic sul pulsante "Aggiungi riga bollo" per aggiungere una riga relativa all'imposta di bollo.
+Se nella fattura o ricevuta è previsto l'addebito dell'imposta di bollo
+al cliente, fare clic sul pulsante "Aggiungi riga bollo" per aggiungere
+una riga relativa all'imposta di bollo.
 
-In caso contrario, l'imposta di bollo verrà comunque considerata ma non verrà addebitata al cliente.
+In caso contrario, l'imposta di bollo verrà comunque considerata ma non
+verrà addebitata al cliente.
 
 **English**
 
-In invoice or receipt form, when applicable, click 'Add tax stamp line' button to add tax stamp as invoice line, thus charging customer.
+In invoice or receipt form, when applicable, click 'Add tax stamp line'
+button to add tax stamp as invoice line, thus charging customer.
 
-Otherwise, tax stamp will be anyway accounted, without charging customer.
+Otherwise, tax stamp will be anyway accounted, without charging
+customer.
 
 Bug Tracker
 ===========
@@ -118,26 +135,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ermanno Gnan
 * Sergio Corato
 * Enrico Ganzaroli
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini <https://github.com/eLBati>
-* Sergio Corato
-* Ermanno Gnan
-* Enrico Ganzaroli
-* Sergio Zanchetta <https://github.com/primes2h>
-* Marco Colombo <https://github.com/TheMule71>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Giovanni Serra <giovanni@gslab.it>
+-  Lorenzo Battistini <https://github.com/eLBati>
+-  Sergio Corato
+-  Ermanno Gnan
+-  Enrico Ganzaroli
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Marco Colombo <https://github.com/TheMule71>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Giovanni Serra <giovanni@gslab.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
