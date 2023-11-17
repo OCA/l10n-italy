@@ -6,7 +6,6 @@ from .delivery_note_common import StockDeliveryNoteCommon
 
 
 class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
-
     # ⇒ "Ordine singolo: fatturazione completa"
     def test_complete_invoicing_single_so(self):
         #
