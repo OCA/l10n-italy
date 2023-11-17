@@ -28,7 +28,8 @@ ITA - Codice fiscale nel preventivo
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Permette di mostrare il codice fiscale del cliente nella stampa del preventivo / ordine di vendita.
+Permette di mostrare il codice fiscale del cliente nella stampa del
+preventivo / ordine di vendita.
 
 **Table of contents**
 
@@ -49,19 +50,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * TAKOBI
 * Nextev Srl
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini (`TAKOBI <https://takobi.online>`_)
-* `Nextev Srl <https://www.nextev.it>`_
+-  Lorenzo Battistini (`TAKOBI <https://takobi.online>`__)
+-  `Nextev Srl <https://www.nextev.it>`__
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
