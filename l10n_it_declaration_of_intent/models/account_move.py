@@ -8,7 +8,6 @@ from odoo.tools.misc import format_date
 
 
 class AccountMove(models.Model):
-
     _inherit = "account.move"
 
     declaration_of_intent_ids = fields.Many2many(
@@ -295,7 +294,6 @@ class AccountMove(models.Model):
 
 
 class AccountMoveLine(models.Model):
-
     _inherit = "account.move.line"
 
     force_declaration_of_intent_id = fields.Many2one(

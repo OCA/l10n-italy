@@ -6,7 +6,6 @@ from odoo.osv import expression
 
 
 class SelectManuallyDeclarations(models.TransientModel):
-
     _name = "l10n_it_declaration_of_intent.select_declarations"
     _description = "Set declaration of intent manually on invoice"
 

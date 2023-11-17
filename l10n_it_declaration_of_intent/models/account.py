@@ -6,7 +6,6 @@ from odoo.exceptions import ValidationError
 
 
 class AccountFiscalPosition(models.Model):
-
     _inherit = "account.fiscal.position"
 
     valid_for_declaration_of_intent = fields.Boolean("Valid for declaration of intent")
