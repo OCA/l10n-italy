@@ -9,7 +9,6 @@ from odoo.tools.translate import _
 
 
 class AddPeriod(models.TransientModel):
-
     _name = "add.period.to.vat.statement"
     _description = "Add period to VAT Statement"
 
