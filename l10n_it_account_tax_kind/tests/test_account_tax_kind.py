@@ -7,7 +7,7 @@ from odoo.addons.l10n_it_account.tools.account_tools import fpa_schema_get_enum
 
 class TestAccountTaxKind(TransactionCase):
     def setUp(self):
-        super(TestAccountTaxKind, self).setUp()
+        super().setUp()
         self.tax_kind_n1 = self.env.ref("l10n_it_account_tax_kind.n1")
 
     def test_compute_display_name(self):
