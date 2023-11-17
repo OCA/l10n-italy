@@ -9229,8 +9229,8 @@ msgid ""
 "Karamanie and similar hand-woven rugs, and Axminster carpets)"
 msgstr ""
 "Tappeti ed altri rivestimenti del pavimento di materie tessili sintetiche o "
-"artificiali, di lana o di peli fini, tessuti (non \"tufted\" né \"floccati\")"
-", vellutati, confezionati (escl. \"Kelim\" o \"Kilim\", \"Schumacks\" o "
+"artificiali, di lana o di peli fini, tessuti (non \"tufted\" né \"floccati"
+"\"), vellutati, confezionati (escl. \"Kelim\" o \"Kilim\", \"Schumacks\" o "
 "\"Soumak\", \"Karamanie\", tappeti simili tessuti a mano, e tappeti "
 "\"Axminster\")"
 
@@ -10749,8 +10749,8 @@ msgid ""
 "of non-fatty matter of > 52% but <= 62%, n.e.s."
 msgstr ""
 "Formaggi con grassi, in peso, fino a 40% ed acqua della materia non grassa, "
-"in peso > 52% e fino a 62%, esclusi quelli delle voci 0406 90 da 730 a 850, n"
-".n.a."
+"in peso > 52% e fino a 62%, esclusi quelli delle voci 0406 90 da 730 a 850, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069088
@@ -12757,6 +12757,11 @@ msgstr ""
 #: model:ir.model,name:l10n_it_intrastat.model_res_company
 msgid "Companies"
 msgstr "Aziende"
+
+#. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__company_id
+msgid "Company"
+msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.692022
@@ -15957,8 +15962,8 @@ msgid ""
 msgstr ""
 "Ammidi (compresi i carbammati) cicliche e loro derivati; sali di tali "
 "prodotti (escl. Ureine e loro derivati; sali di tali prodotti, Acido 2-"
-"acetammidobenzoico (acido N-acetilantranilico) e suoi Sali, e Etinamato (DCI)"
-" , Lidocaina (DCI) e Paracetamolo (DCI))"
+"acetammidobenzoico (acido N-acetilantranilico) e suoi Sali, e Etinamato "
+"(DCI) , Lidocaina (DCI) e Paracetamolo (DCI))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29094980
@@ -22057,11 +22062,11 @@ msgid ""
 "Oncorhynchus masou and Oncorhynchus rhodurus\", Atlantic salmon \"Salmo salar"
 "\" and Danube salmon \"Hucho hucho\", salted or in brine, but not smoked"
 msgstr ""
-"Filetti di salmoni del Pacifico salati o in salamoia, ma non affumicati ("
-"Oncorhynchus nerka, Oncorhynchus gorbuscha, Oncorhynchus keta, Oncorhynchus "
+"Filetti di salmoni del Pacifico salati o in salamoia, ma non affumicati "
+"(Oncorhynchus nerka, Oncorhynchus gorbuscha, Oncorhynchus keta, Oncorhynchus "
 "tschawytscha, Oncorhynchus kisutch, Oncorhynchus masou e Oncorhynchus "
-"rhodurus), di salmoni dell'Atlantico (Salmo salar) e salmoni del Danubio ("
-"Hucho hucho),"
+"rhodurus), di salmoni dell'Atlantico (Salmo salar) e salmoni del Danubio "
+"(Hucho hucho),"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03053990
@@ -22936,8 +22941,8 @@ msgid ""
 "electrical steel)"
 msgstr ""
 "Prodotti piatti di acciai legati diversi dagli acciai inossidabili, di "
-"larghezza < 600 mm, laminati a caldo o a freddo e ulteriormente trattati ("
-"escl. zincati nonché di acciai rapidi o di acciai al silicio detti "
+"larghezza < 600 mm, laminati a caldo o a freddo e ulteriormente trattati "
+"(escl. zincati nonché di acciai rapidi o di acciai al silicio detti "
 "\"magnetici\")"
 
 #. module: l10n_it_intrastat
@@ -26134,8 +26139,8 @@ msgid ""
 "Fresh or chilled backs, necks, backs with necks attached, rumps and wing-"
 "tips of domestic ducks"
 msgstr ""
-"Dorsi, colli, dorsi con colli attaccati, codrioni, punte di ali di anatre ("
-"non disossati), freschi o refrigerati"
+"Dorsi, colli, dorsi con colli attaccati, codrioni, punte di ali di anatre "
+"(non disossati), freschi o refrigerati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02075441
@@ -26398,7 +26403,8 @@ msgstr "Carni fresche o refrigerate di anatre domestiche, disossate"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02074481
 msgid "Fresh or chilled cuts of domestic ducks, with bone in, n.e.s."
-msgstr "Parti fresche o refrigerate di anatre domestiche, non disossate, n.n.a."
+msgstr ""
+"Parti fresche o refrigerate di anatre domestiche, non disossate, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02075410
@@ -28690,8 +28696,8 @@ msgid ""
 msgstr ""
 "Crostacei congelati, destinati al consumo umano, anche affumicati, sgusciati "
 "o in guscio, cotti in acqua o al vapore (escl. aragoste e altri gamberi di "
-"mare, astici, gamberetti, gamberoni, granchi, gamberi di fiume e scampi ("
-"Nephrops norvegicus))"
+"mare, astici, gamberetti, gamberoni, granchi, gamberi di fiume e scampi "
+"(Nephrops norvegicus))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03061905
@@ -28802,8 +28808,8 @@ msgid ""
 "Frozen dogfish and other sharks (excl. dogfish \"Squalus acanthias and "
 "Scyliorhinus spp.\" and porbeagle shark)"
 msgstr ""
-"Squalidi congelati, escluso spinaroli (Squalus acanthias), gattucci ("
-"Scyliorhinus spp.), smerigli (Lamna nasus) e verdesche (Prionace glauca)"
+"Squalidi congelati, escluso spinaroli (Squalus acanthias), gattucci "
+"(Scyliorhinus spp.), smerigli (Lamna nasus) e verdesche (Prionace glauca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03038120
@@ -29016,8 +29022,8 @@ msgid ""
 "Frozen fillets of Cape hake \"shallow-water hake\" \"Merluccius capensis\" "
 "and deepwater hake \"deepwater Cape hake\" \"Merluccius paradoxus\""
 msgstr ""
-"Filetti di naselli del Capo congelati (nasello delle acque poco profonde ) ("
-"Merluccius capensis) e naselli delle acque profonde (naselli del Capo delle "
+"Filetti di naselli del Capo congelati (nasello delle acque poco profonde ) "
+"(Merluccius capensis) e naselli delle acque profonde (naselli del Capo delle "
 "acque profonde) (Merluccius paradoxus)"
 
 #. module: l10n_it_intrastat
@@ -29054,8 +29060,8 @@ msgstr ""
 "Filetti congelati di carpe (Cyprinus spp., Carassius spp., Ctenopharyngodon "
 "idellus, Hypophthalmichthys spp., Cirrhinus spp., Mylopharyngodon piceus, "
 "Catla catla, Labeo spp., Osteochilus hasselti, Leptobarbus hoeveni, "
-"Megalobrama spp.), anguille (Anguilla spp.) e pesci testa di serpente ("
-"Channa spp.)"
+"Megalobrama spp.), anguille (Anguilla spp.) e pesci testa di serpente "
+"(Channa spp.)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03046200
@@ -29312,9 +29318,9 @@ msgid ""
 "preservation (excl. skipjack or stripe-bellied bonito)"
 msgstr ""
 "Pesci di acqua dolce del genere Euthynnus, congelati, destinati alla "
-"trasformazione industriale o alla conservazione (escl. i tonnetti striati ["
-"Euthynnus (Katsuwonus) pelamis] della sottovoce 0302 33 e escl. i tonnetti ("
-"Euthynnus affinis) della sottovoce 0302 49)"
+"trasformazione industriale o alla conservazione (escl. i tonnetti striati "
+"[Euthynnus (Katsuwonus) pelamis] della sottovoce 0302 33 e escl. i tonnetti "
+"(Euthynnus affinis) della sottovoce 0302 49)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03033930
@@ -29801,8 +29807,8 @@ msgstr ""
 "Carne di pesci congelata, anche tritata, delle famiglie Bregmacerotidae, "
 "Euclichthyidae, gadidi, Macrouridae, Melanonidae, Merluccidi, Moridae e "
 "Muraenolepididae (escl. filetti, surimi, merluzzi dell'Alaska (Theragra "
-"chalcogramma), merluzzi bianchi, eglefini, merluzzi carbonari, naselli ("
-"Merluccius spp.) e melù)"
+"chalcogramma), merluzzi bianchi, eglefini, merluzzi carbonari, naselli "
+"(Merluccius spp.) e melù)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03049530
@@ -29841,8 +29847,8 @@ msgid ""
 "\"Anguilla spp.\", Nile perch \"Lates niloticus\" and snakeheads \"Channa "
 "spp.\" (excl. fillets and surimi)"
 msgstr ""
-"Carne congelata, anche tritata , di tilapia (Oreochromis spp.), pesci gatto ("
-"Pangasio spp., Silurus spp., Clarias spp., Ictalurus spp.), carpe (Cyprinus "
+"Carne congelata, anche tritata , di tilapia (Oreochromis spp.), pesci gatto "
+"(Pangasio spp., Silurus spp., Clarias spp., Ictalurus spp.), carpe (Cyprinus "
 "carpio, Carassius carassius, Ctenopharyngodon idellus, Hypophthalmichthys "
 "spp., Cirrhinus spp., Mylopharyngodon piceus), anguille (Anguilla spp.), "
 "persici del Nilo ( Lates niloticus) e pesci testa di serpente (Channa spp. ) "
@@ -32908,17 +32914,17 @@ msgid ""
 msgstr ""
 "Merci della voce 3808 contenenti una o più delle seguenti sostanze: aldrin "
 "(ISO); binapacrile (ISO); canfecloro (ISO) (toxafene); captafol (ISO); "
-"clordano (ISO); clordimeforma (ISO); clorobenzilato (ISO); DDT (ISO) ("
-"clofenotano (DCI), 1,1,1-tricloro-2,2-bis(p-clorofenil)etano); dieldrin ("
-"ISO, INN); 4,6-dinitro-o-cresolo (DNOC (ISO)) o suoi sali; dinoseb (ISO), "
+"clordano (ISO); clordimeforma (ISO); clorobenzilato (ISO); DDT (ISO) "
+"(clofenotano (DCI), 1,1,1-tricloro-2,2-bis(p-clorofenil)etano); dieldrin "
+"(ISO, INN); 4,6-dinitro-o-cresolo (DNOC (ISO)) o suoi sali; dinoseb (ISO), "
 "suoi sali o suoi esteri; dibromuro di etilene (ISO) (1,2-dibromoetano); "
 "dicloruro di etilene (ISO) (1,2-dicloroetano); fluoroacetammide (ISO); "
 "eptacloro (ISO); esaclorobenzene (ISO); 1,2,3,4,5,6-esaclorocicloesano (HCH "
 "(ISO)), compreso lindano (ISO, INN); composti del mercurio; metamidofos "
 "(ISO); monocrotofos (ISO); ossirano (ossido di etilene); paration (ISO); "
 "paration-metile (ISO) (metil-paration); pentaclorofenolo (ISO), suoi sali o "
-"suoi esteri; fosfamidone (ISO); 2,4,5-T (ISO) (acido "
-"2,4,5-triclorofenossiacetico), suoi sali o suoi esteri; composti di "
+"suoi esteri; fosfamidone (ISO); 2,4,5-T (ISO) (acido 2,4,5-"
+"triclorofenossiacetico), suoi sali o suoi esteri; composti di "
 "tributilstagno. Anche formulazioni in polvere spolverabili contenenti una "
 "miscela di benomil (ISO), carbofuran (ISO) e tiram (ISO)."
 
@@ -34239,8 +34245,8 @@ msgid ""
 "ethane or propane, n.e.s."
 msgstr ""
 "Derivati alogenati di idrocarburi aciclici contenenti due o più alogeni "
-"diversi, alogenati soltanto con fluoro e bromo, di metano, etano o propano, n"
-".n.a."
+"diversi, alogenati soltanto con fluoro e bromo, di metano, etano o propano, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29037919
@@ -34379,7 +34385,8 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84132000
 msgid "Hand pumps for liquids (excl. those of subheading 8413.11 and 8413.19)"
-msgstr "Pompe a mano, diverse da quelle delle sottovoci 8413 11 00 e 8413 19 00"
+msgstr ""
+"Pompe a mano, diverse da quelle delle sottovoci 8413 11 00 e 8413 19 00"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68043000
@@ -43217,8 +43224,8 @@ msgid ""
 "Made-up knotted fishing nets of yarn, of man-made textile materials (excl. "
 "those of twine, cordage, rope or cables and landing nets)"
 msgstr ""
-"Reti confezionate per la pesca, in strisce o in pezza, di materie tessili ("
-"escl. quelle ottenute con spago, corde o funi e reti da sbarco)"
+"Reti confezionate per la pesca, in strisce o in pezza, di materie tessili "
+"(escl. quelle ottenute con spago, corde o funi e reti da sbarco)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_56081930
@@ -47972,10 +47979,10 @@ msgstr ""
 "Miscugli di guaiave, manghi, mangostani, papaie (papaya), tamarindi, mele di "
 "acagiù, litchi, jackfruit, sapotiglie, frutti della passione, carambole e "
 "pitahaya, incl. miscugli contenenti, in peso, 50% o più di frutta tropicale "
-"e noci di cocco, noci di acagiù, noci del Brasile, noci di arec (o di Betel)"
-", noci di cola e noci di macadamia, preparati o conservati, con aggiunta di "
-"alcole, aventi tenore, in peso, di zuccheri <= 9% e con titolo alcolometrico "
-"effettivo <= 11,85% mas"
+"e noci di cocco, noci di acagiù, noci del Brasile, noci di arec (o di "
+"Betel), noci di cola e noci di macadamia, preparati o conservati, con "
+"aggiunta di alcole, aventi tenore, in peso, di zuccheri <= 9% e con titolo "
+"alcolometrico effettivo <= 11,85% mas"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20089736
@@ -48010,10 +48017,10 @@ msgstr ""
 "Miscugli di guaiave, manghi, mangostani, papaie (papaya), tamarindi, mele di "
 "acagiù, litchi, jackfruit, sapotiglie, frutti della passione, carambole e "
 "pitahaya, incl. miscugli contenenti, in peso, 50% o più di frutta tropicale "
-"e noci di cocco, noci di acagiù, noci del Brasile, noci di arec (o di Betel)"
-", noci di cola e noci di macadamia, preparati o conservati, con aggiunta di "
-"alcole, con tenore, in peso, di zuccheri > 9% e con titolo alcolometrico "
-"effettivo <= 11,85% mas"
+"e noci di cocco, noci di acagiù, noci del Brasile, noci di arec (o di "
+"Betel), noci di cola e noci di macadamia, preparati o conservati, con "
+"aggiunta di alcole, con tenore, in peso, di zuccheri > 9% e con titolo "
+"alcolometrico effettivo <= 11,85% mas"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20089716
@@ -48454,9 +48461,9 @@ msgstr ""
 "Molluschi, atti all'alimentazione umana, anche in conchiglia, affumicati, "
 "anche cotti ma non altrimenti preparati (escl. ostriche, capesante dei "
 "generi Pecten, Chlamys o Placopecten, mitili (Mytilus spp. Perna spp.), "
-"seppie (Sepia officinalis, Rossia macrosoma, Sepiola spp.), calamari ("
-"Ommastrephes spp., Loligo spp., Nototodarus spp., Sepioteuthis spp.), polpi ("
-"Octopus spp), altre lumache diverse da quelle di mare, vongole, fasolari e "
+"seppie (Sepia officinalis, Rossia macrosoma, Sepiola spp.), calamari "
+"(Ommastrephes spp., Loligo spp., Nototodarus spp., Sepioteuthis spp.), polpi "
+"(Octopus spp), altre lumache diverse da quelle di mare, vongole, fasolari e "
 "conchiglie arcada quelle di mare, vongole, fasolari e conchiglie arca e "
 "abalone)"
 
@@ -49835,8 +49842,8 @@ msgid ""
 "warm water supply; channel impeller, side channel and general radial flow "
 "pumps)"
 msgstr ""
-"Pompe centrifughe con bocca di mandata di diametro > 15 mm, multicellulari ("
-"escl. le sottovoci 8413 11 e 8413 19 e pompe di carburante, ad olio o "
+"Pompe centrifughe con bocca di mandata di diametro > 15 mm, multicellulari "
+"(escl. le sottovoci 8413 11 e 8413 19 e pompe di carburante, ad olio o "
 "liquido di raffreddamento per motori ad accensione a scintilla o per "
 "compressione, pompe per calcestruzzo, pompe sommerse e pompe di circolazione "
 "per impianti di riscaldamento centrale e acqua calda)"
@@ -53110,10 +53117,10 @@ msgstr ""
 "Tiocomposti organici (escl. tiocarbammati e ditiocarbammati, mono-, di- o "
 "tetrasolfuri di tiourame, metionina, captafol (ISO) e metamidofos (ISO), "
 "cisteina e cistina e loro derivati, tiodiglicolo (DCI) (2,2'-tiodietanolo), "
-"Acido DL-2-idrossi-4-(metiltio)butirrico, Bis[3-(3,5-di-ter-"
-"butil-4-idrossifenil)propionato] di 2,2'-tiodietile, miscela di isomeri "
-"costituita di 4-metil-2,6-bis(metiltio)-m-fenilendiammina e "
-"2-metil-4,6,-bis(metiltio)-m-fenilendiammina, 2-(N,N-Dietilammino)etantiolo)"
+"Acido DL-2-idrossi-4-(metiltio)butirrico, Bis[3-(3,5-di-ter-butil-4-"
+"idrossifenil)propionato] di 2,2'-tiodietile, miscela di isomeri costituita "
+"di 4-metil-2,6-bis(metiltio)-m-fenilendiammina e 2-metil-4,6,-bis(metiltio)-"
+"m-fenilendiammina, 2-(N,N-Dietilammino)etantiolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44101210
@@ -55228,7 +55235,8 @@ msgstr "Parti e accessori di velocipedi, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87142000
 msgid "Parts and accessories for carriages for disabled persons, n.e.s."
-msgstr "Parti ed accessori di carrozzelle o veicoli simili per invalidi, n.n.a."
+msgstr ""
+"Parti ed accessori di carrozzelle o veicoli simili per invalidi, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90079100
@@ -56118,8 +56126,8 @@ msgstr ""
 "Parti di silenziatori \"marmitte\" e tubi di scarico, per trattori, "
 "autoveicoli per il trasporto di dieci o più persone, autoveicoli e altri "
 "autoveicoli progettati principalmente per il trasporto di persone, "
-"autoveicoli per il trasporto di merci e autoveicoli per usi speciali , "
-"n.n.s. (escl. quelli destinati all'assemblaggio industriale di alcuni "
+"autoveicoli per il trasporto di merci e autoveicoli per usi speciali , n.n."
+"s. (escl. quelli destinati all'assemblaggio industriale di alcuni "
 "autoveicoli della sottovoce 8708.92.20 e di acciaio fucinato a stampo chiuso)"
 
 #. module: l10n_it_intrastat
@@ -56137,8 +56145,8 @@ msgstr ""
 "dieci o più persone, autoveicoli ed altri autoveicoli progettati "
 "principalmente per il trasporto di persone, autoveicoli per il trasporto di "
 "merci e di autoveicoli per uso speciale, n.n.a. (escl. quelli destinati "
-"all'assemblaggio industriale di alcuni autoveicoli della sottovoce 8708.92."
-"20)"
+"all'assemblaggio industriale di alcuni autoveicoli della sottovoce "
+"8708.92.20)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87089499
@@ -56172,8 +56180,8 @@ msgstr ""
 "persone, autoveicoli e altri autoveicoli progettati principalmente per il "
 "trasporto di persone, autoveicoli per il trasporto trasporto di merci e di "
 "autoveicoli per uso speciale, n.n.a. (escl. quelli destinati "
-"all'assemblaggio industriale di alcuni autoveicoli della sottovoce 8708.94."
-"20)"
+"all'assemblaggio industriale di alcuni autoveicoli della sottovoce "
+"8708.94.20)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85389019
@@ -56440,8 +56448,8 @@ msgid ""
 "ultraviolet or infra-red lamps and arc lamps, n.e.s. (excl. lamp bases)"
 msgstr ""
 "Parti di lampade elettriche ad incandescenza o a scarica, oggetti luminosi "
-"sigillati, lampade a raggi ultravioletti o infrarossi e lampade ad arco, "
-"n.n.a. (escl. basi per lampade)"
+"sigillati, lampade a raggi ultravioletti o infrarossi e lampade ad arco, n.n."
+"a. (escl. basi per lampade)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85149000
@@ -57450,8 +57458,8 @@ msgstr ""
 "Parti riconoscibili come destinate esclusivamente o principalmente ad "
 "apparecchi di trasmissione che non incorporano un apparecchio ricevente per "
 "la radiodiffusione o la televisione, videocamere, apparecchi radar, "
-"apparecchi di radionavigazione ed apparecchi di comando a distanza, n.n.a. ("
-"escl. gruppi e sottogruppi, parti di fotocamere digitali, antenne e "
+"apparecchi di radionavigazione ed apparecchi di comando a distanza, n.n.a. "
+"(escl. gruppi e sottogruppi, parti di fotocamere digitali, antenne e "
 "riflettori per antenne e gruppi elettronici)"
 
 #. module: l10n_it_intrastat
@@ -58635,8 +58643,8 @@ msgid ""
 "paperboard or textiles)"
 msgstr ""
 "Pellicole, fotografiche, sensibilizzate, in rotoli (non impressionate) "
-"perforate, per la fotografia a colori (policromia), di larghezza > 35 mm ("
-"escl. quelle di carta, di cartoni o di tessili)"
+"perforate, per la fotografia a colori (policromia), di larghezza > 35 mm "
+"(escl. quelle di carta, di cartoni o di tessili)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_37029690
@@ -59212,8 +59220,8 @@ msgstr ""
 msgid ""
 "Pineapples, prepared or preserved, not containing added spirit or added sugar"
 msgstr ""
-"Ananassi, altrimenti preparati o conservati (senza aggiunta di alcole) ("
-"senza aggiunta di zucchero)"
+"Ananassi, altrimenti preparati o conservati (senza aggiunta di alcole) "
+"(senza aggiunta di zucchero)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_82034000
@@ -60509,10 +60517,10 @@ msgid ""
 "floor, wall and ceiling coverings of heading 3918 and sterile surgical or "
 "dental adhesion barriers of subheading 3006.10.30)"
 msgstr ""
-"Lastre, piastre, fogli, pellicole, nastri e strisce di materie plastiche, "
-"n.n.a. (non alveolari, non rinforzati nè stratificati, nè parimenti "
-"associati ad altre materie), senza supporto, (non lavorati) o lavorati solo "
-"in superficie o tagliati in forma quadrata o rettangolare (escl. prodotti "
+"Lastre, piastre, fogli, pellicole, nastri e strisce di materie plastiche, n."
+"n.a. (non alveolari, non rinforzati nè stratificati, nè parimenti associati "
+"ad altre materie), senza supporto, (non lavorati) o lavorati solo in "
+"superficie o tagliati in forma quadrata o rettangolare (escl. prodotti "
 "autoadesivi, rivestimenti per pavimenti, pareti e soffitti della sottovoce "
 "3918 e barriere antiaderenziali sterili per la chirurgia o l'odontoiatria, "
 "della sottovoce 3006 10 30)"
@@ -61215,12 +61223,12 @@ msgid ""
 msgstr ""
 "Compensato costituito esclusivamente da fogli di legno di spessore <= 6 mm, "
 "con almeno uno strato esterno di legno diverso da quello di conifere o di "
-"altro legno tropicale indicato nella nota di sottovoci 1 di questo capitolo ("
-"escl. di ontano, frassino, faggio, betulla, ciliegio , castagno, olmo, noce "
+"altro legno tropicale indicato nella nota di sottovoci 1 di questo capitolo "
+"(escl. di ontano, frassino, faggio, betulla, ciliegio , castagno, olmo, noce "
 "americano, carpino, ippocastano, tiglio, acero, quercia, platano, pioppo, "
 "robinia, noce, pioppo giallo, bambù e fogli di legno compresso, pannelli "
-"cellulari, legno intarsiato e fogli identificabili come componenti di mobili "
-")"
+"cellulari, legno intarsiato e fogli identificabili come componenti di "
+"mobili )"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44123110
@@ -61866,8 +61874,8 @@ msgstr ""
 "Polimeri di propilene o di altre olefine, in forme primarie (escl. "
 "polipropilene, poliisobutilene e copolimeri di propilene nonchè copolimero a "
 "blocchi a-b-a di polistirene, copolimero etilene-butilene e polistirene, "
-"contenente, in peso, <= 35% di stirene e polibuteno-1, copolimero di butene-"
-"1 e di etilene contenenti, in peso, <= 10% di etilene, o miscugli di "
+"contenente, in peso, <= 35% di stirene e polibuteno-1, copolimero di "
+"butene-1 e di etilene contenenti, in peso, <= 10% di etilene, o miscugli di "
 "polibutene-1, polietilene e/o polipropilene contenenti, in peso, <= 10 % di "
 "polipropilene e/o <= 25 % di polipropilene, in blocchi irregolari, pezzi, "
 "grumi, polveri, granuli, fiocchi e masse non coerenti simili)"
@@ -61912,10 +61920,10 @@ msgid ""
 "13% of acetyl groups evaluated as vinyl acetate and >= 5% but <= 6,5% of "
 "hydroxy groups evaluated as vinyl alcohol)"
 msgstr ""
-"Polimeri di esteri di vinile e altri polimeri di vinile, in forme primarie ("
-"escl. polimeri di cloruro di vinile o di altre olefine alogenate, acetato di "
-"polivinile, copolimeri nonchè alcoli polivinilici, anche contenenti gruppi "
-"di acetato non idrolizzato nonchè formale polivinilico, in blocchi "
+"Polimeri di esteri di vinile e altri polimeri di vinile, in forme primarie "
+"(escl. polimeri di cloruro di vinile o di altre olefine alogenate, acetato "
+"di polivinile, copolimeri nonchè alcoli polivinilici, anche contenenti "
+"gruppi di acetato non idrolizzato nonchè formale polivinilico, in blocchi "
 "irregolari, pezzi, grumi, polveri, granuli, fiocchi e masse non coerenti "
 "simili, di peso molecolare => 10 000 e <= 40 000 e contenente, in peso => "
 "9,5% e <= 13% dei gruppi acetile, espressi come acetato di vinile, e => 5% e "
@@ -64700,8 +64708,8 @@ msgid ""
 "of subheading 8413.11 and 8413.19, fuel, lubricating or cooling medium pumps "
 "for internal combustion piston engine and submersible pumps)"
 msgstr ""
-"Pompe radiali con bocca di mandata di diametro <= 15 mm, multicellulari ("
-"escl. quelle delle sottovoci 8413 11 00 e 8413 19 00 e pompe sommergibili)"
+"Pompe radiali con bocca di mandata di diametro <= 15 mm, multicellulari "
+"(escl. quelle delle sottovoci 8413 11 00 e 8413 19 00 e pompe sommergibili)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84624910
@@ -64972,8 +64980,8 @@ msgid ""
 "multi-stage (excl. pumps of subheading 8413.11 and 8413.19 and submersible "
 "pumps)"
 msgstr ""
-"Pompe radiali con bocca di mandata di diametro > 15 mm, multicellulari ("
-"escl. quelle delle sottovoci 8413 11 00 e 8413 19 00 e pompe sommerse)"
+"Pompe radiali con bocca di mandata di diametro > 15 mm, multicellulari "
+"(escl. quelle delle sottovoci 8413 11 00 e 8413 19 00 e pompe sommerse)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84137065
@@ -68751,8 +68759,8 @@ msgid ""
 "Rotary piston vacuum pumps, sliding vane rotary pumps, molecular drag pumps "
 "and Roots pumps"
 msgstr ""
-"Pompe per vuoto, ad eccentrico, pompe a palette, molecolari e pompe Roots ("
-"escl. i tipi usati esclusivamente o principalmente per la fabbricazione di "
+"Pompe per vuoto, ad eccentrico, pompe a palette, molecolari e pompe Roots "
+"(escl. i tipi usati esclusivamente o principalmente per la fabbricazione di "
 "semiconduttori o di dispositivi di visualizzazione a schermo piatto)"
 
 #. module: l10n_it_intrastat
@@ -69992,9 +70000,9 @@ msgid ""
 "Scotch whisky, in containers holding <= 2 l (other than single malt, blended "
 "malt, single grain and blended grain whisky)"
 msgstr ""
-"Whisky detto \"blended\", presentato in recipienti di capacità <= 2 litri ("
-"escl. \"single malt\", \"blended malt\", \"single grain\" e \"blended grain\""
-")"
+"Whisky detto \"blended\", presentato in recipienti di capacità <= 2 litri "
+"(escl. \"single malt\", \"blended malt\", \"single grain\" e \"blended grain"
+"\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22083079
@@ -70002,9 +70010,9 @@ msgid ""
 "Scotch whisky, in containers holding > 2 l (other than single malt, blended "
 "malt, single grain and blended grain whisky)"
 msgstr ""
-"Whisky detto \"blended\", presentato in recipienti di capacità > 2 litri ("
-"escl. \"single malt\", \"blended malt\", \"single grain\" e \"blended grain\""
-")"
+"Whisky detto \"blended\", presentato in recipienti di capacità > 2 litri "
+"(escl. \"single malt\", \"blended malt\", \"single grain\" e \"blended grain"
+"\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_34054000
@@ -70627,8 +70635,8 @@ msgid ""
 "goods of heading 4810)"
 msgstr ""
 "Carta o cartone autoadesiva, colorata in superficie, decorata o stampata in "
-"rotoli o in fogli di forma quadrata o rettangolare, di qualsiasi formato ("
-"escl. quelli di larghezza <= 10 cm patinati, spalmati con gomma sintetica o "
+"rotoli o in fogli di forma quadrata o rettangolare, di qualsiasi formato "
+"(escl. quelli di larghezza <= 10 cm patinati, spalmati con gomma sintetica o "
 "naturale non vulcanizzata; prodotti della voce 4810)"
 
 #. module: l10n_it_intrastat
@@ -70675,8 +70683,8 @@ msgid ""
 "ceiling coverings of heading 3918)"
 msgstr ""
 "Lastre, fogli, strisce, nastri, pellicole ed altre forme piatte, "
-"autoadesivi, di materie plastiche, anche in rotoli di larghezza > 20 cm ("
-"escl. i prodotti per rivestimenti per pavimenti, per pareti e per soffitti "
+"autoadesivi, di materie plastiche, anche in rotoli di larghezza > 20 cm "
+"(escl. i prodotti per rivestimenti per pavimenti, per pareti e per soffitti "
 "della voce 3918)"
 
 #. module: l10n_it_intrastat
@@ -71041,8 +71049,8 @@ msgid ""
 "(excl. of tool steel and products of square or rectangular, circular or "
 "polygamol cross-section)"
 msgstr ""
-"Semiprodotti di acciai legati, diversi dall'acciaio inossidabile, sborrati ("
-"escl. quelli di acciai per utensili nonchè articoli di sezione trasversale "
+"Semiprodotti di acciai legati, diversi dall'acciaio inossidabile, sborrati "
+"(escl. quelli di acciai per utensili nonchè articoli di sezione trasversale "
 "quadrata, rettangolare, circolare o poligonale)"
 
 #. module: l10n_it_intrastat
@@ -72612,9 +72620,9 @@ msgid ""
 "mounting on road vehicles)"
 msgstr ""
 "Bighe, gru, comprese le gru a funi (escl. ponti scorrevoli e travi "
-"scorrevoli, gru a portale, gru a ponte , carrelli-elevatori detti cavaliers "
-", gru a torre, gru a portale, macchine ed apparecchi semoventi o costruiti "
-"per essere montati su un veicolo stradale)"
+"scorrevoli, gru a portale, gru a ponte , carrelli-elevatori detti "
+"cavaliers , gru a torre, gru a portale, macchine ed apparecchi semoventi o "
+"costruiti per essere montati su un veicolo stradale)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84871090
@@ -73510,8 +73518,8 @@ msgid ""
 "warm water supply; channel impeller, side channel and general radial flow "
 "pumps)"
 msgstr ""
-"Pompe centrifughe con bocca di mandata di diametro > 15 mm, monocellulari ("
-"escl. le sottovoci 8413 11 00 e 8413 19 00 e pompe di carburante, ad olio o "
+"Pompe centrifughe con bocca di mandata di diametro > 15 mm, monocellulari "
+"(escl. le sottovoci 8413 11 00 e 8413 19 00 e pompe di carburante, ad olio o "
 "liquido di raffreddamento per motori ad accensione a scintilla o per "
 "compressione, pompe per calcestruzzo, pompe sommerse e pompe di circolazione "
 "per impianti di riscaldamento centrale ed acqua calda)"
@@ -73679,8 +73687,8 @@ msgstr ""
 "pressato o foggiate a stampo, anche armato, per l'edilizia o la costruzione; "
 "cubi, tessere ed altre vetrerie, anche su supporto, per mosaici o "
 "decorazioni simili; vetri riuniti in vetrate; vetro detto «multicellulare» o "
-"vetro «ad alveoli» in blocchi, pannelli, lastre, conchiglie o forme simili ("
-"escl. vetri temperati, vetriisolanti a pareti multiple e vetri riuniti in "
+"vetro «ad alveoli» in blocchi, pannelli, lastre, conchiglie o forme simili "
+"(escl. vetri temperati, vetriisolanti a pareti multiple e vetri riuniti in "
 "vetrate, blocchi e mattoni per l'edilizia o la costruzione)"
 
 #. module: l10n_it_intrastat
@@ -74090,13 +74098,13 @@ msgstr ""
 "Oncorhynchus tschawytscha, Oncorhynchus kisutch, Oncorhynchus masou e "
 "Oncorhynchus rhodurus), salmoni dell'Atlantico (Salmo salar), salmoni del "
 "Danubio (Hucho hucho), aringhe (Clupea harengus, Clupea pallasii), "
-"ippoglossi neri (Reinhardtius ippoglossoides), ippoglossi dell'Atlantico ("
-"Hippoglossus hippoglossus), sgombri (Scomber scombrus, Scomber "
+"ippoglossi neri (Reinhardtius ippoglossoides), ippoglossi dell'Atlantico "
+"(Hippoglossus hippoglossus), sgombri (Scomber scombrus, Scomber "
 "australasicus, Scomber japonicus), trote (Salmo trutta, Oncorhynchus mykiss, "
 "Oncorhynchus clarki, Oncorhynchus aguabonita, Oncorhynchus gilae, "
-"Oncorhynchus apache e Oncorhynchus chrysogaster), tilapia (Oreochromis spp.)"
-", pesci gatto (Pangasius spp., Silurus spp., Clarias spp., Ictalurus spp.), "
-"carpe (Cyprinus spp., Carassius spp., Ctenopharyngodon idellus, "
+"Oncorhynchus apache e Oncorhynchus chrysogaster), tilapia (Oreochromis "
+"spp.), pesci gatto (Pangasius spp., Silurus spp., Clarias spp., Ictalurus "
+"spp.), carpe (Cyprinus spp., Carassius spp., Ctenopharyngodon idellus, "
 "Hypophthalmichthys spp., Cirrhinus spp., Mylopharyngodon piceus, Catla "
 "catla, Labeo spp., Osteochilus hasselti, Leptobarbus hoeveni, Megalobrama "
 "spp.), anguille (Anguilla spp.), persico africano (Lates niloticus) e pesci "
@@ -83288,11 +83296,11 @@ msgid ""
 "subheadings 7304 19 to 7304 29 and 7304 59 10)"
 msgstr ""
 "Tubi e profilati cavi (senza saldatura) di sezione circolare, di acciai "
-"legati diversi dagli acciai inossidabili (non trafilati o laminati a freddo)"
-", diritti e a pareti di spessore uniforme, contenenti, in peso, da 0,9% a "
-"1,15% incl. di carbonio e da 0,5% a 2% incl. di cromo ed eventualmente <= "
-"0,5% di molibdeno, di lunghezza <= 0,5 m (escl. tubi dei tipi utilizzati per "
-"l'estrazione di petrolio o gas, per oleodotti e gasdotti)"
+"legati diversi dagli acciai inossidabili (non trafilati o laminati a "
+"freddo), diritti e a pareti di spessore uniforme, contenenti, in peso, da "
+"0,9% a 1,15% incl. di carbonio e da 0,5% a 2% incl. di cromo ed "
+"eventualmente <= 0,5% di molibdeno, di lunghezza <= 0,5 m (escl. tubi dei "
+"tipi utilizzati per l'estrazione di petrolio o gas, per oleodotti e gasdotti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73030090
@@ -85894,8 +85902,8 @@ msgid ""
 msgstr ""
 "Vini varietali, prodotti nell'Unione europea, né a indicazione geografica "
 "protetta (IGP) e né a denominazione d'origine protetta (DOP), in recipienti "
-"di capacità > 10 litri, e con titolo alcolometrico effettivo <= 15% vol. ("
-"escl. vini spumanti, vini frizzanti e vini bianchi)"
+"di capacità > 10 litri, e con titolo alcolometrico effettivo <= 15% vol. "
+"(escl. vini spumanti, vini frizzanti e vini bianchi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29399900
@@ -86062,8 +86070,8 @@ msgstr ""
 "peperoni, granturco dolce (Zea mays var. saccharata), ignami, patate dolci e "
 "parti commestibili simili di piante aventi tenore, in peso, di amido o di "
 "fecola => 5 %; funghi, cuori di palma, olive, peperoni, guaiave, manghi, "
-"mangostani, papaie, tamarindi, frutta di acagiù, litchi, frutta di jack ("
-"pane di scimmia), sapotiglie, frutti della passione, carambole, pitahaya, "
+"mangostani, papaie, tamarindi, frutta di acagiù, litchi, frutta di jack "
+"(pane di scimmia), sapotiglie, frutti della passione, carambole, pitahaya, "
 "noci di cocco, noci di acagiù, noci del Brasile, noci di arec (o di betel), "
 "noci di cola e macadamia)"
 
@@ -88335,8 +88343,8 @@ msgid ""
 "Whey butter of a fat content, by weight, of >= 80% but <= 85% (excl. "
 "dehydrated butter and ghee)"
 msgstr ""
-"Burro di siero di latte, avente tenore, in peso, di materie grasse <= 85% ("
-"escl. burro disidratato e ghee)"
+"Burro di siero di latte, avente tenore, in peso, di materie grasse <= 85% "
+"(escl. burro disidratato e ghee)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22083082
@@ -93373,8 +93381,8 @@ msgid ""
 "of heading 5911)"
 msgstr ""
 "Tessuti di lana pettinata o di peli fini pettinati contenenti "
-"complessivamente < 85% in peso di lana o di peli fini di peso > 200 g/m² ("
-"escl. quelli contenenti > 10% in peso di seta, cascami di seta)"
+"complessivamente < 85% in peso di lana o di peli fini di peso > 200 g/m² "
+"(escl. quelli contenenti > 10% in peso di seta, cascami di seta)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_51122000
