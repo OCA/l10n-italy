@@ -44,11 +44,11 @@ class ComunicazioneLiquidazione(models.Model):
                         period_type = _("month")
                     else:
                         period_type = _("quarter")
-                    name += "{} {}".format(str(dich.year), period_type)
+                    name += f"{str(dich.year)} {period_type}"
                 if quadro.period_type == "month":
-                    name += ", {}".format(str(quadro.month))
+                    name += f", {str(quadro.month)}"
                 else:
-                    name += ", {}".format(str(quadro.quarter))
+                    name += f", {str(quadro.quarter)}"
             dich.name = name
 
     def _get_identificativo(self):
@@ -380,86 +380,80 @@ class ComunicazioneLiquidazione(models.Model):
             TotaleOperazioniAttive = etree.SubElement(
                 xModulo, etree.QName(NS_IV, "TotaleOperazioniAttive")
             )
-            TotaleOperazioniAttive.text = "{:.2f}".format(
-                quadro.imponibile_operazioni_attive
-            ).replace(".", ",")
+            TotaleOperazioniAttive.text = (
+                f"{quadro.imponibile_operazioni_attive:.2f}".replace(".", ",")
+            )
             # 1.2.2.1.6  TotaleOperazioniPassive
             TotaleOperazioniPassive = etree.SubElement(
                 xModulo, etree.QName(NS_IV, "TotaleOperazioniPassive")
             )
-            TotaleOperazioniPassive.text = "{:.2f}".format(
-                quadro.imponibile_operazioni_passive
-            ).replace(".", ",")
+            TotaleOperazioniPassive.text = (
+                f"{quadro.imponibile_operazioni_passive:.2f}".replace(".", ",")
+            )
         # 1.2.2.1.7  IvaEsigibile
         IvaEsigibile = etree.SubElement(xModulo, etree.QName(NS_IV, "IvaEsigibile"))
-        IvaEsigibile.text = "{:.2f}".format(quadro.iva_esigibile).replace(".", ",")
+        IvaEsigibile.text = f"{quadro.iva_esigibile:.2f}".replace(".", ",")
         # 1.2.2.1.8  IvaDetratta
         IvaDetratta = etree.SubElement(xModulo, etree.QName(NS_IV, "IvaDetratta"))
-        IvaDetratta.text = "{:.2f}".format(quadro.iva_detratta).replace(".", ",")
+        IvaDetratta.text = f"{quadro.iva_detratta:.2f}".replace(".", ",")
         # 1.2.2.1.9  IvaDovuta
         if quadro.iva_dovuta_debito:
             IvaDovuta = etree.SubElement(xModulo, etree.QName(NS_IV, "IvaDovuta"))
-            IvaDovuta.text = "{:.2f}".format(quadro.iva_dovuta_debito).replace(".", ",")
+            IvaDovuta.text = f"{quadro.iva_dovuta_debito:.2f}".replace(".", ",")
         # 1.2.2.1.10  IvaCredito
         if quadro.iva_dovuta_credito:
             IvaCredito = etree.SubElement(xModulo, etree.QName(NS_IV, "IvaCredito"))
-            IvaCredito.text = "{:.2f}".format(quadro.iva_dovuta_credito).replace(
-                ".", ","
-            )
+            IvaCredito.text = f"{quadro.iva_dovuta_credito:.2f}".replace(".", ",")
         # 1.2.2.1.11 DebitoPrecedente
         DebitoPrecedente = etree.SubElement(
             xModulo, etree.QName(NS_IV, "DebitoPrecedente")
         )
-        DebitoPrecedente.text = "{:.2f}".format(
-            quadro.debito_periodo_precedente
-        ).replace(".", ",")
+        DebitoPrecedente.text = f"{quadro.debito_periodo_precedente:.2f}".replace(
+            ".", ","
+        )
         # 1.2.2.1.12 CreditoPeriodoPrecedente
         CreditoPeriodoPrecedente = etree.SubElement(
             xModulo, etree.QName(NS_IV, "CreditoPeriodoPrecedente")
         )
-        CreditoPeriodoPrecedente.text = "{:.2f}".format(
-            quadro.credito_periodo_precedente
-        ).replace(".", ",")
+        CreditoPeriodoPrecedente.text = (
+            f"{quadro.credito_periodo_precedente:.2f}".replace(".", ",")
+        )
         # 1.2.2.1.13 CreditoAnnoPrecedente
         CreditoAnnoPrecedente = etree.SubElement(
             xModulo, etree.QName(NS_IV, "CreditoAnnoPrecedente")
         )
-        CreditoAnnoPrecedente.text = "{:.2f}".format(
-            quadro.credito_anno_precedente
-        ).replace(".", ",")
+        CreditoAnnoPrecedente.text = f"{quadro.credito_anno_precedente:.2f}".replace(
+            ".", ","
+        )
         # 1.2.2.1.14 VersamentiAutoUE
         VersamentiAutoUE = etree.SubElement(
             xModulo, etree.QName(NS_IV, "VersamentiAutoUE")
         )
-        VersamentiAutoUE.text = "{:.2f}".format(quadro.versamento_auto_UE).replace(
-            ".", ","
-        )
+        VersamentiAutoUE.text = f"{quadro.versamento_auto_UE:.2f}".replace(".", ",")
         # 1.2.2.1.15 CreditiImposta
         CreditiImposta = etree.SubElement(xModulo, etree.QName(NS_IV, "CreditiImposta"))
-        CreditiImposta.text = "{:.2f}".format(quadro.crediti_imposta).replace(".", ",")
+        CreditiImposta.text = f"{quadro.crediti_imposta:.2f}".replace(".", ",")
         # 1.2.2.1.16 InteressiDovuti
         InteressiDovuti = etree.SubElement(
             xModulo, etree.QName(NS_IV, "InteressiDovuti")
         )
-        InteressiDovuti.text = "{:.2f}".format(quadro.interessi_dovuti).replace(
-            ".", ","
-        )
+        InteressiDovuti.text = f"{quadro.interessi_dovuti:.2f}".replace(".", ",")
         # 1.2.2.1.17 Acconto
         if quadro.metodo_calcolo_acconto:
             Metodo = etree.SubElement(xModulo, etree.QName(NS_IV, "Metodo"))
             Metodo.text = quadro.metodo_calcolo_acconto
         Acconto = etree.SubElement(xModulo, etree.QName(NS_IV, "Acconto"))
-        Acconto.text = "{:.2f}".format(quadro.accounto_dovuto).replace(".", ",")
+        Acconto.text = f"{quadro.accounto_dovuto:.2f}".replace(".", ",")
         # 1.2.2.1.18 ImportoDaVersare
         ImportoDaVersare = etree.SubElement(
             xModulo, etree.QName(NS_IV, "ImportoDaVersare")
         )
-        ImportoDaVersare.text = "{:.2f}".format(quadro.iva_da_versare).replace(".", ",")
+        ImportoDaVersare.text = f"{quadro.iva_da_versare:.2f}".replace(".", ",")
         # 1.2.2.1.19 ImportoACredito
         ImportoACredito = etree.SubElement(
             xModulo, etree.QName(NS_IV, "ImportoACredito")
         )
-        ImportoACredito.text = "{:.2f}".format(quadro.iva_a_credito).replace(".", ",")
+        ImportoACredito.text = f"{quadro.iva_a_credito:.2f}".replace(".", ",")
 
         return xModulo
 
@@ -631,13 +625,11 @@ class ComunicazioneLiquidazioneVp(models.Model):
 
     @api.onchange("liquidazioni_ids")
     def compute_from_liquidazioni(self):
-
         for quadro in self:
             # Reset valori
             quadro._reset_values()
 
             for liq in quadro.liquidazioni_ids:
-
                 for period in liq.date_range_ids:
                     quadro._compute_imponibile_operazioni_attive(liq, period)
                     quadro._compute_imponibile_operazioni_passive(liq, period)
