@@ -70,11 +70,12 @@ class SaleOrder(models.Model):
 
     def _assign_delivery_notes_invoices(self, invoice_ids):
         order_lines = self.mapped("order_line").filtered(
-            lambda l: l.is_invoiced and l.delivery_note_line_ids
+            lambda order_line: order_line.is_invoiced
+            and order_line.delivery_note_line_ids
         )
 
         delivery_note_lines = order_lines.mapped("delivery_note_line_ids").filtered(
-            lambda l: l.is_invoiceable
+            lambda dn_line: dn_line.is_invoiceable
         )
         delivery_notes = delivery_note_lines.mapped("delivery_note_id")
 
