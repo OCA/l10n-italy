@@ -79,7 +79,9 @@ class AccountInvoice(models.Model):
 
         for invoice in self.filtered(lambda i: i.delivery_note_ids):
             new_lines = []
-            old_lines = invoice.invoice_line_ids.filtered(lambda l: l.delivery_note_id)
+            old_lines = invoice.invoice_line_ids.filtered(
+                lambda inv_line: inv_line.delivery_note_id
+            )
             old_lines.unlink()
 
             #
@@ -105,7 +107,8 @@ class AccountInvoice(models.Model):
                         & sale.delivery_note_line_ids
                     )
                     for note_line in delivery_note_line.filtered(
-                        lambda l: l.invoice_status == DOMAIN_INVOICE_STATUSES[2]
+                        lambda dn_line: dn_line.invoice_status
+                        == DOMAIN_INVOICE_STATUSES[2]
                     ):
                         new_lines.append(
                             (
@@ -114,9 +117,10 @@ class AccountInvoice(models.Model):
                                 {
                                     "sequence": line.sequence - 1,
                                     "display_type": "line_note",
-                                    "name": _("""Delivery Note "{}" of {}""").format(
-                                        note_line.delivery_note_id.name,
-                                        note_line.delivery_note_id.date.strftime(
+                                    "name": _(
+                                        """Delivery Note "%(name)s" of %(date)s""",
+                                        name=note_line.delivery_note_id.name,
+                                        date=note_line.delivery_note_id.date.strftime(
                                             DATE_FORMAT
                                         ),
                                     ),
