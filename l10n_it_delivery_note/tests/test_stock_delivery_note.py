@@ -101,7 +101,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         # create delivery note with advanced mode
         dn_form = Form(
             self.env["stock.delivery.note.create.wizard"].with_context(
-                active_ids=[picking.id]
+                **{"active_id": picking.id, "active_ids": picking.ids}
             )
         )
         dn = dn_form.save()
