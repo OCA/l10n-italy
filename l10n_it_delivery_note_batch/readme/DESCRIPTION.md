@@ -1,6 +1,7 @@
 **Italiano**
 
-Questo modulo permette la creazione di DDT a partire da gruppi di prelievi.
+Questo modulo permette la creazione di DDT a partire da gruppi di
+prelievi.
 
 **English**
 
