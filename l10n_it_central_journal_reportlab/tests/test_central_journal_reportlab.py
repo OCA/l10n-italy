@@ -13,7 +13,7 @@ from odoo.tools import pdf
 
 class TestCentralJournalReportlab(TransactionCase):
     def setUp(self):
-        super(TestCentralJournalReportlab, self).setUp()
+        super().setUp()
 
         self.today = datetime.now()
         self.range_type = self.env["date.range.type"].create({"name": "Fiscal year"})
