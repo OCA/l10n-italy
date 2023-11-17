@@ -30,13 +30,14 @@ ITA - POS - Codice fiscale
 
 **Italiano**
 
-Il modulo aggiunge il campo codice fiscale nella schermata del cliente nell'interfaccia del punto vendita,
-permettendo di visualizzarlo e modificarlo.
+Il modulo aggiunge il campo codice fiscale nella schermata del cliente
+nell'interfaccia del punto vendita, permettendo di visualizzarlo e
+modificarlo.
 
 **English**
 
-The module adds fiscal code field to partner form within point of sale interface,
-allowing to view and edit it.
+The module adds fiscal code field to partner form within point of sale
+interface, allowing to view and edit it.
 
 **Table of contents**
 
@@ -57,12 +58,12 @@ Credits
 =======
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini <https://github.com/eLBati>
+-  Lorenzo Battistini <https://github.com/eLBati>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
