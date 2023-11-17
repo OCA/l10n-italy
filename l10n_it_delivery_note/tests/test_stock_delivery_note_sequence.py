@@ -85,48 +85,48 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
             )
             self.assertTrue(
                 dn_types.filtered(
-                    lambda d: d.name == _("Incoming")
+                    lambda d, c=company: d.name == _("Incoming")
                     and d.sequence_id
                     == self.env["ir.sequence"].search(
                         [
-                            ("code", "=", f"stock.delivery.note.din.c{company.id}"),
-                            ("company_id", "=", company.id),
+                            ("code", "=", f"stock.delivery.note.din.c{c.id}"),
+                            ("company_id", "=", c.id),
                         ]
                     )
                 )
             )
             self.assertTrue(
                 dn_types.filtered(
-                    lambda d: d.name == _("Outgoing")
+                    lambda d, c=company: d.name == _("Outgoing")
                     and d.sequence_id
                     == self.env["ir.sequence"].search(
                         [
-                            ("code", "=", f"stock.delivery.note.ddt.c{company.id}"),
-                            ("company_id", "=", company.id),
+                            ("code", "=", f"stock.delivery.note.ddt.c{c.id}"),
+                            ("company_id", "=", c.id),
                         ]
                     )
                 )
             )
             self.assertTrue(
                 dn_types.filtered(
-                    lambda d: d.name == _("Outgoing (with prices)")
+                    lambda d, c=company: d.name == _("Outgoing (with prices)")
                     and d.sequence_id
                     == self.env["ir.sequence"].search(
                         [
-                            ("code", "=", f"stock.delivery.note.ddt.c{company.id}"),
-                            ("company_id", "=", company.id),
+                            ("code", "=", f"stock.delivery.note.ddt.c{c.id}"),
+                            ("company_id", "=", c.id),
                         ]
                     )
                 )
             )
             self.assertTrue(
                 dn_types.filtered(
-                    lambda d: d.name == _("Internal transfer")
+                    lambda d, c=company: d.name == _("Internal transfer")
                     and d.sequence_id
                     == self.env["ir.sequence"].search(
                         [
-                            ("code", "=", f"stock.delivery.note.int.c{company.id}"),
-                            ("company_id", "=", company.id),
+                            ("code", "=", f"stock.delivery.note.int.c{c.id}"),
+                            ("company_id", "=", c.id),
                         ]
                     )
                 )
