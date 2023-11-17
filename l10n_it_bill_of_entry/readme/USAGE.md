@@ -12,8 +12,8 @@ transfer account move, which closes and reconciles the bill of entry.
 
 Dalla fattura fornitore è possibile generare la bolla doganale.
 
-Nella fattura spedizioniere bisogna indicare quale (o quali) riga (righe)
-rappresenti(no) l'IVA anticipata alla dogana.
+Nella fattura spedizioniere bisogna indicare quale (o quali) riga
+(righe) rappresenti(no) l'IVA anticipata alla dogana.
 
 Alla conferma della fattura spedizioniere, verrà generata la scrittura
 contabile di giroconto per chiudere la bolla doganale.
