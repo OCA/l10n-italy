@@ -15,7 +15,7 @@ from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
-class RibaStorage(object):
+class RibaStorage:
     def __init__(self):
         self.sequence = 0
         self.creditor_bank = 0
