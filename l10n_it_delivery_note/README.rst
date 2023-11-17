@@ -32,32 +32,38 @@ ITA - Documento di trasporto
 
 This module manage the Italian DDT (Delivery note).
 
-From a picking is possible to generate a Delivery Note and group more picking in one delivery note. It's also possible to invoice from the delivery note form.
+From a picking is possible to generate a Delivery Note and group more
+picking in one delivery note. It's also possible to invoice from the
+delivery note form.
 
-This module is alternative to :code:`l10n_it_ddt`, it follows the Odoo way to process sale orders, pickings and invoices.
+This module is alternative to ``l10n_it_ddt``, it follows the Odoo way
+to process sale orders, pickings and invoices.
 
-You can't have both :code:`l10n_it_ddt` and :code:`l10n_it_delivery_note` installed together.
+You can't have both ``l10n_it_ddt`` and ``l10n_it_delivery_note``
+installed together.
 
 There are two available settings:
 
-- Base (default): one picking, one DN.
-- Advanced: more picking in one DN.
-
+-  Base (default): one picking, one DN.
+-  Advanced: more picking in one DN.
 
 **Italiano**
 
 Questo modulo consente di gestire i DDT.
 
-Da un prelievo è possibile generare un DDT e raggruppare più prelievi in un DDT. È anche possibile fatturare dalla scheda del DDT.
+Da un prelievo è possibile generare un DDT e raggruppare più prelievi in
+un DDT. È anche possibile fatturare dalla scheda del DDT.
 
-Questo modulo è un alternativa al modulo :code:`l10n_it_ddt`, segue la modalità Odoo di gestire ordini di vendita, prelievi e fatture.
+Questo modulo è un alternativa al modulo ``l10n_it_ddt``, segue la
+modalità Odoo di gestire ordini di vendita, prelievi e fatture.
 
-Non è possibile avere installati contemporaneamente :code:`l10n_it_ddt` e :code:`l10n_it_delivery_note`.
+Non è possibile avere installati contemporaneamente ``l10n_it_ddt`` e
+``l10n_it_delivery_note``.
 
 Ci sono due impostazioni possibili.
 
-- Base (predefinita): un prelievo, un DDT.
-- Avanzata: più prelievi in un DDT.
+-  Base (predefinita): un prelievo, un DDT.
+-  Avanzata: più prelievi in un DDT.
 
 **Table of contents**
 
@@ -71,84 +77,114 @@ To configure this module, go to:
 
 1. *Inventory → Configuration → Settings - Delivery Notes*
 
-   Checking 'Use Advanced DN Features' allows you to manage more picking on one delivery note.
+   Checking 'Use Advanced DN Features' allows you to manage more picking
+   on one delivery note.
 
-2. *Inventory → Configuration → Warehouse Management → Delivery Note Types*
+2. *Inventory → Configuration → Warehouse Management → Delivery Note
+   Types*
 
-   In delivery note type you can specify if the product price have to be printed in the delivery note report/slip.
+   In delivery note type you can specify if the product price have to be
+   printed in the delivery note report/slip.
 
-   - *Inventory → Configuration → Delivery Notes → Conditions of Transport*
-   - *Inventory → Configuration → Delivery Notes → Appearances of Goods*
-   - *Inventory → Configuration → Delivery Notes → Reasons of Transport*
-   - *Inventory → Configuration → Delivery Notes → Methods of Transport*
+   -  *Inventory → Configuration → Delivery Notes → Conditions of
+      Transport*
+   -  *Inventory → Configuration → Delivery Notes → Appearances of
+      Goods*
+   -  *Inventory → Configuration → Delivery Notes → Reasons of
+      Transport*
+   -  *Inventory → Configuration → Delivery Notes → Methods of
+      Transport*
 
 3. *Settings → User & Companies → Users*
 
-   In the user profile settings, "Show product information in DN lines" allows showing prices in the form.
+   In the user profile settings, "Show product information in DN lines"
+   allows showing prices in the form.
 
 Usage
 =====
 
 Funzionalità base
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Quando un prelievo viene validato compare una scheda DDT.
 
-Nella scheda fare clic su "Crea nuovo", si apre un procedura guidata dove scegliere il tipo di DDT, quindi confermare. Immettere i dati richiesti e poi fare clic su "Valida" per numerare il DDT.
+Nella scheda fare clic su "Crea nuovo", si apre un procedura guidata
+dove scegliere il tipo di DDT, quindi confermare. Immettere i dati
+richiesti e poi fare clic su "Valida" per numerare il DDT.
 
-Una volta validato, è possibile emettere fattura direttamente dal DDT se il DDT stesso è di tipo consegna a cliente (In uscita) e si hanno i permessi sull'utente.
+Una volta validato, è possibile emettere fattura direttamente dal DDT se
+il DDT stesso è di tipo consegna a cliente (In uscita) e si hanno i
+permessi sull'utente.
 
-È possibile annullare il DDT, reimpostarlo a bozza e poi modificarlo. Se il DDT è fatturato il numero e la data non sono modificabili.
+È possibile annullare il DDT, reimpostarlo a bozza e poi modificarlo. Se
+il DDT è fatturato il numero e la data non sono modificabili.
 
-Per i trasferimenti tra magazzini creare un prelievo di tipo interno con le relative ubicazioni. Validare il prelievo visualizza la scheda DDT.
+Per i trasferimenti tra magazzini creare un prelievo di tipo interno con
+le relative ubicazioni. Validare il prelievo visualizza la scheda DDT.
 
-È possibile anche avere DDT in ingresso, ovvero dopo la validazione del prelievo selezionare la scheda per indicare il numero del DDT fornitore e la data.
+È possibile anche avere DDT in ingresso, ovvero dopo la validazione del
+prelievo selezionare la scheda per indicare il numero del DDT fornitore
+e la data.
 
 Funzionalità avanzata
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 Vengono attivate varie funzionalità aggiuntive:
 
-- più prelievi per un DDT
-- selezione multipla di prelievi e generazione dei DDT
-- aggiunta righe nota e righe sezione descrittive.
-- lista dei DDT.
+-  più prelievi per un DDT
+-  selezione multipla di prelievi e generazione dei DDT
+-  aggiunta righe nota e righe sezione descrittive.
+-  lista dei DDT.
 
-Il report DDT stampa in righe aggiuntive i lotti/seriali e le scadenze del prodotto.
+Il report DDT stampa in righe aggiuntive i lotti/seriali e le scadenze
+del prodotto.
 
-Il prezzo può essere indicato anche nel report DDT se nel tipo DDT è indicata la stampa prezzi.
-La visibilità dei prezzi si trova nei permessi dell'utente.
+Il prezzo può essere indicato anche nel report DDT se nel tipo DDT è
+indicata la stampa prezzi. La visibilità dei prezzi si trova nei
+permessi dell'utente.
 
-Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle righe nota.
-
+Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle
+righe nota.
 
 Migrazione dei dati da *l10n_it_ddt*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
-Il modulo presenta una funzione di migrazione dei dati dal modulo OCA *l10n_it_ddt* da eseguire manualmente.
-Al momento, non è ancora presente un menù oppure una voce da interfaccia che permetta di eseguire questa operazione; bensì, è stato definito un comando da CLI da eseguire all’avvio di Odoo.
-Di seguito, una piccola lista di passi da seguire per portare a termine la migrazione:
+Il modulo presenta una funzione di migrazione dei dati dal modulo OCA
+*l10n_it_ddt* da eseguire manualmente. Al momento, non è ancora presente
+un menù oppure una voce da interfaccia che permetta di eseguire questa
+operazione; bensì, è stato definito un comando da CLI da eseguire
+all’avvio di Odoo. Di seguito, una piccola lista di passi da seguire per
+portare a termine la migrazione:
 
 1. Eseguire un back-up del database.
 
-   Questa procedura di migrazione dei dati è stata sì sviluppata e testata, MA solamente per un numero limitato di casi.
-   NON è consigliata in alcun modo come funzionalità production-ready.
+   Questa procedura di migrazione dei dati è stata sì sviluppata e
+   testata, MA solamente per un numero limitato di casi. NON è
+   consigliata in alcun modo come funzionalità production-ready.
 
-2. Installare il modulo *l10n_it_delivery_note* SENZA prima disinstallare il modulo OCA *l10n_it_ddt*.
+2. Installare il modulo *l10n_it_delivery_note* SENZA prima
+   disinstallare il modulo OCA *l10n_it_ddt*.
 
-   N.B.: NON iniziare ad usare il modulo *l10n_it_delivery_note* senza aver prima migrato i dati.
-   Potrebbero verificarsi, in prima battuta, problemi legati alla numerazione dei documenti creati.
-   Inoltre, la procedura di migrazione stessa è progettata affinché verifichi che non siano presenti documenti di *l10n_it_delivery_note*; qualora ne rilevi alcuni, si interromperà non eseguendo alcuna migrazione.
+   N.B.: NON iniziare ad usare il modulo *l10n_it_delivery_note* senza
+   aver prima migrato i dati. Potrebbero verificarsi, in prima battuta,
+   problemi legati alla numerazione dei documenti creati. Inoltre, la
+   procedura di migrazione stessa è progettata affinché verifichi che
+   non siano presenti documenti di *l10n_it_delivery_note*; qualora ne
+   rilevi alcuni, si interromperà non eseguendo alcuna migrazione.
 
-3. Terminata l’installazione del modulo, terminare in sicurezza il processo di Odoo.
+3. Terminata l’installazione del modulo, terminare in sicurezza il
+   processo di Odoo.
 
-4. Lanciare Odoo, nella maniera in cui si è soliti fare, aggiungendo alcuni parametri al comando d’avvio:
+4. Lanciare Odoo, nella maniera in cui si è soliti fare, aggiungendo
+   alcuni parametri al comando d’avvio:
 
-   `./odoo-bin migratel10nitddt --database <nome_database> [...]`
+   ./odoo-bin migratel10nitddt --database <nome_database> [...]
 
-5. Una volta terminata l’esecuzione della procedura, verificare che tutti i documenti siano stati migrati con successo e nel modo atteso.
+5. Una volta terminata l’esecuzione della procedura, verificare che
+   tutti i documenti siano stati migrati con successo e nel modo atteso.
 
-6. Verificata l’esattezza dei dati migrati, disinstallare il modulo *l10n_it_ddt*.
+6. Verificata l’esattezza dei dati migrati, disinstallare il modulo
+   *l10n_it_ddt*.
 
 È possibile iniziare ad utilizzare *l10n_it_delivery_note*.
 
@@ -166,30 +202,39 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Marco Calcagni
 * Gianmarco Conte
 * Link IT Europe Srl
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Riccardo Bellanova <r.bellanova@apuliasoftware.it>
-* Matteo Bilotta <mbilotta@linkeurope.it>
-* Giuseppe Borruso <gconte@dinamicheaziendali.it>
-* Marco Calcagni <mcalcagni@dinamicheaziendali.it>
-* Marco Colombo <marco.colombo@gmail.com>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Letizia Freda <letizia.freda@netfarm.it>
-* Andrea Piovesana <andrea.m.piovesana@gmail.com>
-* Alex Comba <alex.comba@agilebg.com>
-* `Ooops <https://www.ooops404.com>`_:
+-  Riccardo Bellanova <r.bellanova@apuliasoftware.it>
 
-   * Giovanni Serra <giovanni@gslab.it>
+-  Matteo Bilotta <mbilotta@linkeurope.it>
+
+-  Giuseppe Borruso <gconte@dinamicheaziendali.it>
+
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+
+-  Marco Colombo <marco.colombo@gmail.com>
+
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+
+-  Letizia Freda <letizia.freda@netfarm.it>
+
+-  Andrea Piovesana <andrea.m.piovesana@gmail.com>
+
+-  Alex Comba <alex.comba@agilebg.com>
+
+-  `Ooops <https://www.ooops404.com>`__:
+
+      -  Giovanni Serra <giovanni@gslab.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
