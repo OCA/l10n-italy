@@ -6,7 +6,6 @@ from odoo import fields, models
 
 
 class AtecoCategory(models.Model):
-
     _name = "ateco.category"
     _description = "ATECO Code"
 
