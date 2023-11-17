@@ -156,7 +156,7 @@ class StockDeliveryNoteLine(models.Model):
 
     def write(self, vals):
         if "display_type" in vals and self.filtered(
-            lambda l: l.display_type != vals["display_type"]
+            lambda note_line: note_line.display_type != vals["display_type"]
         ):
             raise UserError(
                 _(
@@ -169,7 +169,7 @@ class StockDeliveryNoteLine(models.Model):
         return super().write(vals)
 
     def sync_invoice_status(self):
-        for line in self.filtered(lambda l: l.sale_line_id):
+        for line in self.filtered(lambda note_line: note_line.sale_line_id):
             invoice_status = line.sale_line_id.invoice_status
             line.invoice_status = (
                 DOMAIN_INVOICE_STATUSES[1]
