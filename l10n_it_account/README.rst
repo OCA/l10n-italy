@@ -32,7 +32,8 @@ ITA - Contabilità base
 
 Modulo di supporto per la contabilità.
 
-Usato da moduli come l10n_it_vat_registries e account_vat_period_end_statement
+Usato da moduli come l10n_it_vat_registries e
+account_vat_period_end_statement
 
 Nota: lo script di migrazione non è stato testato.
 
@@ -40,7 +41,8 @@ Nota: lo script di migrazione non è stato testato.
 
 Accounting-related modules helpers.
 
-Used by modules like l10n_it_vat_registries and account_vat_period_end_statement
+Used by modules like l10n_it_vat_registries and
+account_vat_period_end_statement
 
 Notice: the migration script hasn't been tested.
 
@@ -63,33 +65,34 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Agile Business Group
 * Abstract
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Davide Corio
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Alex Comba <alex.comba@agilebg.com>
-* Sergio Zanchetta <https://github.com/primes2h>
-* Gianmarco Conte - Dinamiche Aziendali Sr <gconte@dinamicheaziendali.it>
-* Marco Colombo - Phi S.r.l. <marco.colombo@phi.technology>
-* `TAKOBI <https://takobi.online>`_:
+-  Davide Corio
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Gianmarco Conte - Dinamiche Aziendali Sr
+   <gconte@dinamicheaziendali.it>
+-  Marco Colombo - Phi S.r.l. <marco.colombo@phi.technology>
+-  `TAKOBI <https://takobi.online>`__:
 
-  * Simone Rubino <sir@takobi.online>
+   -  Simone Rubino <sir@takobi.online>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Odoo Italia Network
+-  Odoo Italia Network
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
