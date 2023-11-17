@@ -657,7 +657,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         retLine.update(
             {
-                "name": "Riepilogo Aliquota {}".format(line.AliquotaIVA),
+                "name": f"Riepilogo Aliquota {line.AliquotaIVA}",
                 "sequence": nline,
                 "account_id": credit_account_id,
                 "price_unit": float(abs(line.ImponibileImporto)),
@@ -1635,7 +1635,6 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_line_model = self.env["account.move.line"]
         invoice_line_ids = []
         if self.e_invoice_detail_level == "2":
-
             Welfares = (
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiCassaPrevidenziale
             )
@@ -1756,7 +1755,6 @@ class WizardImportFatturapa(models.TransientModel):
     def _set_invoice_lines(
         self, product, invoice_line_data, invoice_lines, invoice_line_model
     ):
-
         if product:
             invoice_line_data["product_id"] = product.id
             self.adjust_accounting_data(product, invoice_line_data)
@@ -1933,7 +1931,6 @@ class WizardImportFatturapa(models.TransientModel):
 
             # 2
             for fattura in fatt.FatturaElettronicaBody:
-
                 # reset inconsistencies
                 self.reset_inconsistencies()
 

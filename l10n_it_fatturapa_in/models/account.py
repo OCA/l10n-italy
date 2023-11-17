@@ -257,7 +257,7 @@ class AccountMove(models.Model):
         for tup in result:
             invoice = self.browse(tup[0])
             if invoice.is_purchase_document():
-                name = "{}, {}".format(tup[1], invoice.partner_id.name)
+                name = f"{tup[1]}, {invoice.partner_id.name}"
                 if invoice.amount_total_signed:
                     name += ", {} {}".format(
                         invoice.amount_total_signed,
