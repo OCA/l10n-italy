@@ -61,8 +61,9 @@ class MailThread(models.AbstractModel):
             ]
         ):
             _logger.info(
-                "Processing FatturaPA PEC with Message-Id: "
-                "{}".format(message.get("Message-Id"))
+                "Processing FatturaPA PEC with Message-Id: " "{}".format(
+                    message.get("Message-Id")
+                )
             )
             fatturapa_attachments = [
                 x for x in message_dict["attachments"] if fatturapa_regex.match(x.fname)

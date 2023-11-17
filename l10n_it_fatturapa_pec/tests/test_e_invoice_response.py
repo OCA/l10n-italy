@@ -1,8 +1,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import email
-
-import mock
+from unittest import mock
 
 from odoo.fields import Datetime
 from odoo.modules import get_module_resource
