@@ -195,7 +195,7 @@ class FatturapaRelatedDocumentType(models.Model):
             if vals.get("invoice_line_id"):
                 line = line_obj.browse(vals["invoice_line_id"])
                 vals["lineRef"] = line.sequence
-        return super(FatturapaRelatedDocumentType, self).create(vals_list)
+        return super().create(vals_list)
 
 
 class FatturapaActivityProgress(models.Model):
@@ -247,7 +247,7 @@ class FatturapaRelatedDdt(models.Model):
             if vals.get("invoice_line_id"):
                 line = line_obj.browse(vals["invoice_line_id"])
                 vals["lineRef"] = line.sequence
-        return super(FatturapaRelatedDdt, self).create(vals_list)
+        return super().create(vals_list)
 
 
 class AccountInvoiceLine(models.Model):
