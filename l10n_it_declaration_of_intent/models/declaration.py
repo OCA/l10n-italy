@@ -97,7 +97,7 @@ class DeclarationOfIntent(models.Model):
             if values.get("type", False) == "in":
                 year = fields.Date.to_date(values["date_start"]).strftime("%Y")
                 plafond = self.env.company.declaration_yearly_limit_ids.filtered(
-                    lambda r: r.year == year
+                    lambda r, y=year: r.year == y
                 )
                 if not plafond:
                     raise UserError(
