@@ -570,7 +570,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
                 "amount",
                 "amount_currency",
             ):
-                value = format(value, ".{}f".format(decimals))
+                value = format(value, f".{decimals}f")
             if not isinstance(value, str) and cell_type not in (
                 "amount",
                 "amount_currency",
@@ -588,13 +588,13 @@ class FinancialStatementsReportXslx(models.AbstractModel):
             allow = True
 
         if allow and isinstance(value, float) and float_is_zero(value, decimals):
-            value = format(value, ".{}f".format(decimals))
+            value = format(value, f".{decimals}f")
 
         return value, style, allow
 
     def format_value_by_lang(self, lang, value=None, decimals=None):
         """Mimics `res.lang` model's `format` method"""
-        percent = "%.{}f".format(decimals or 2)
+        percent = f"%.{decimals or 2}f"
         value = value or 0
         return lang.format(percent, value, grouping=True, monetary=True)
 
@@ -668,7 +668,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         if surplus or deficit:
             title = _("SURPLUS") if surplus else _("DEFICIT")
             bal_data = order_currency_amount(currency, balance)
-            balance_str = "{}: {} {}".format(title, bal_data[0], bal_data[1])
+            balance_str = f"{title}: {bal_data[0]} {bal_data[1]}"
             left_columns = _extract_financial_statements_report_columns(
                 report_data["columns"], "left"
             )

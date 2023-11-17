@@ -68,11 +68,7 @@ class TestReport(AccountTestInvoicingCommon):
         elif report_type == "xlsx":
             report_action = wiz.button_export_xlsx()
         else:
-            raise Exception(
-                "Report Type {report_type} not supported".format(
-                    report_type=report_type,
-                )
-            )
+            raise Exception(f"Report Type {report_type} not supported")
         return report_action
 
     def _render_report(self, report, report_data, report_type, wizard_ids):
@@ -90,11 +86,7 @@ class TestReport(AccountTestInvoicingCommon):
                 report_data,
             )
         else:
-            raise Exception(
-                "Report Type {report_type} not supported".format(
-                    report_type=report_type,
-                )
-            )
+            raise Exception(f"Report Type {report_type} not supported")
         return report_content
 
     def _get_report_content(self, wizard_values, report_type="pdf"):

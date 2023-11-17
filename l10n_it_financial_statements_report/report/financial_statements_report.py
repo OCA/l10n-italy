@@ -8,7 +8,7 @@ from odoo.tools.float_utils import float_compare
 
 def get_xmlid(id_str):
     id_str = id_str.replace(".", "")
-    return "l10n_it_financial_statements_report.{}".format(id_str)
+    return f"l10n_it_financial_statements_report.{id_str}"
 
 
 class ReportFinancialStatementsReport(models.AbstractModel):
