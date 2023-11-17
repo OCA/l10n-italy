@@ -56,13 +56,12 @@ class WizardExportFatturapa(models.TransientModel):
 
         attach_str = fatturapa.to_xml(self.env)
         attach_vals = {
-            "name": "{}_{}.xml".format(vat, number),
+            "name": f"{vat}_{number}.xml",
             "datas": base64.encodebytes(attach_str),
         }
         return attach_obj.create(attach_vals)
 
     def getPartnerId(self, invoice_ids):
-
         invoice_model = self.env["account.move"]
         partner = False
 
@@ -301,7 +300,7 @@ class WizardExportFatturapa(models.TransientModel):
         )
         att_id = self.env["ir.attachment"].create(
             {
-                "name": "{}.pdf".format(inv.name),
+                "name": f"{inv.name}.pdf",
                 "type": "binary",
                 "datas": base64.encodebytes(attachment),
                 "res_model": "account.move",

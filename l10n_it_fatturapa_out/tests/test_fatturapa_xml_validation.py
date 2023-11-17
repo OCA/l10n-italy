@@ -794,9 +794,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         wizard = self.wizard_model.create({})
         with self.assertRaises(UserError) as ue:
             wizard.with_context(active_ids=[invoice.id]).exportFatturaPA()
-        error_message = "Invoice {} contains product lines w/o taxes".format(
-            invoice.name
-        )
+        error_message = f"Invoice {invoice.name} contains product lines w/o taxes"
         self.assertEqual(ue.exception.args[0], error_message)
 
     def test_multicompany_fail(self):

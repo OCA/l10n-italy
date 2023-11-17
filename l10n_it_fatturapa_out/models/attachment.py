@@ -79,7 +79,7 @@ class FatturaPAAttachment(models.Model):
 
     def file_name_exists(self, file_id):
         vat = self.get_file_vat()
-        partial_fname = r"{}\_{}.".format(vat, file_id)  # escaping _ SQL
+        partial_fname = rf"{vat}\_{file_id}."  # escaping _ SQL
         # Not trying to perfect match file extension, because user could have
         # downloaded, signed and uploaded again the file, thus having changed
         # file extension
