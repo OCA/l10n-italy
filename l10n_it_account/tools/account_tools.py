@@ -25,8 +25,10 @@ def encode_for_export(string_to_encode, max_chars, encoding="latin"):
 # Contiene un riferimento ad un'antica spec di xmldsig-core-schema.xsd, non presente
 # nei vari XML Catalog recenti, es. sulla mia Fedora 33
 # $ fgrep xmldsig-core-schema.xsd /etc/xml/catalog
-#   <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/> # noqa: B950
-#   <uri name="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/> # noqa: B950
+#   <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"
+#    uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/>
+#   <uri name="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"
+#    uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/>
 # L'assenza dell'entry nel Catalog fa sì che il documento venga scaricato
 # ogni volta, e - a giudicare dalla lentezza nella risposta - qualcuno
 # al w3.org ha notato la cosa (la lentezza è relativa a quel solo URL).
@@ -60,7 +62,8 @@ fpa_schema = xmlschema.XMLSchema(
 
 def fpa_schema_etree():
     # fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
-    #      schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" /> # noqa: B950
+    #      schemaLocation="http://www.w3.org/TR/2002/
+    #      REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
 
     class VeryOldXSDSpecResolverTYVMSdI(etree.Resolver):
         def resolve(self, system_url, public_id, context):
