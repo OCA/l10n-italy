@@ -26,6 +26,6 @@ class POLine(models.Model):
     def name_get(self):
         res = []
         for line in self:
-            name = "{}: {}".format(line.order_id.name, line.name)
+            name = f"{line.order_id.name}: {line.name}"
             res.append((line.id, name))
         return res
