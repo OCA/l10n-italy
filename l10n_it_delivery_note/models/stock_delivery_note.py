@@ -299,13 +299,13 @@ class StockDeliveryNote(models.Model):
             if not note.name:
                 partner_name = note.partner_id.display_name
                 create_date = note.create_date.strftime(DATETIME_FORMAT)
-                name = "{} - {}".format(partner_name, create_date)
+                name = f"{partner_name} - {create_date}"
 
             else:
                 name = note.name
 
                 if note.partner_ref and note.type_code == "incoming":
-                    name = "{} ({})".format(name, note.partner_ref)
+                    name = f"{name} ({note.partner_ref})"
             result.append((note.id, name))
 
         return result
@@ -704,12 +704,12 @@ class StockDeliveryNote(models.Model):
         if warehouse and warehouse.partner_id:
             partner = warehouse.partner_id
 
-            location_address += "{}, ".format(partner.name)
+            location_address += f"{partner.name}, "
             if partner.street:
-                location_address += "{} - ".format(partner.street)
+                location_address += f"{partner.street} - "
 
-            location_address += "{} {}".format(partner.zip, partner.city)
+            location_address += f"{partner.zip} {partner.city}"
             if partner.state_id:
-                location_address += " ({})".format(partner.state_id.name)
+                location_address += f" ({partner.state_id.name})"
 
         return location_address

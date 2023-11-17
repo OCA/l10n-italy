@@ -93,7 +93,6 @@ class StockDeliveryNoteLine(models.Model):
     @api.onchange("product_id")
     def _onchange_product_id(self):
         if self.product_id:
-
             name = self.product_id.name
             if self.product_id.description_sale:
                 name += "\n" + self.product_id.description_sale
@@ -113,7 +112,6 @@ class StockDeliveryNoteLine(models.Model):
     def _prepare_detail_lines(self, moves):
         lines = []
         for move in moves:
-
             name = move.product_id.name
             if move.product_id.description_sale:
                 name += "\n" + move.product_id.description_sale
