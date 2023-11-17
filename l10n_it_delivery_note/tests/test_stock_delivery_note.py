@@ -9,7 +9,6 @@ from .delivery_note_common import StockDeliveryNoteCommon
 
 
 class StockDeliveryNote(StockDeliveryNoteCommon):
-
     # ⇒ "Ordine singolo: consegna parziale"
     def test_partial_delivering_single_so(self):
         #
