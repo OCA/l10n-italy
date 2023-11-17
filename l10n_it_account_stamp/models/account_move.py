@@ -143,7 +143,7 @@ class AccountMove(models.Model):
         return income_vals, expense_vals
 
     def _post(self, soft=True):
-        res = super(AccountMove, self)._post(soft=soft)
+        res = super()._post(soft=soft)
         for inv in self:
             posted = False
             if (
@@ -170,7 +170,7 @@ class AccountMove(models.Model):
         return res
 
     def button_draft(self):
-        res = super(AccountMove, self).button_draft()
+        res = super().button_draft()
         for account_move in self:
             move_line_tax_stamp_ids = account_move.line_ids.filtered(
                 lambda line: line.is_stamp_line
