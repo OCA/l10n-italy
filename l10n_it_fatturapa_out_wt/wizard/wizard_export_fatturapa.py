@@ -8,7 +8,6 @@ from odoo.addons.l10n_it_fatturapa_out.wizard.wizard_export_fatturapa import (
 
 
 class WizardExportFatturapa(models.TransientModel):
-
     WT_TAX_CODE = {"inps": "RT03", "enasarco": "RT04", "enpam": "RT05", "other": "RT06"}
 
     _inherit = "wizard.export.fatturapa"
