@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 
 try:
     from asn1crypto import cms
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     _logger.debug(err)
 
 

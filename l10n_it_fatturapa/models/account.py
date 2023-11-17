@@ -88,7 +88,7 @@ class WelfareFundType(models.Model):
     def name_get(self):
         res = []
         for record in self:
-            res.append((record.id, "[{}] {}".format(record.name, record.description)))
+            res.append((record.id, f"[{record.name}] {record.description}"))
         return res
 
 
