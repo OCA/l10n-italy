@@ -37,7 +37,7 @@ class ReportIntrastatCode(models.Model):
     def name_get(self):
         res = []
         for code in self:
-            name = "{} - {}".format(code.name, code.description)
+            name = f"{code.name} - {code.description}"
             if len(name) > 50:
                 name = name[:50] + "..."
             res.append((code.id, name))
