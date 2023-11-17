@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class BankCase(TransactionCase):
     def setUp(self):
-        super(BankCase, self).setUp()
+        super().setUp()
         self.partner1 = self.env["res.partner"].create({"name": "Partner1"})
 
     def test_create_bank(self):
