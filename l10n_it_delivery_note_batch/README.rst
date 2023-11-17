@@ -30,7 +30,8 @@ ITA - Documento di trasporto - Prelievo raggruppato
 
 **Italiano**
 
-Questo modulo permette la creazione di DDT a partire da gruppi di prelievi.
+Questo modulo permette la creazione di DDT a partire da gruppi di
+prelievi.
 
 **English**
 
@@ -44,11 +45,9 @@ This module creates delivery documents from picking groups.
 Usage
 =====
 
-**Italiano**
-Da fare.
+**Italiano** Da fare.
 
-**English**
-TBD
+**English** TBD
 
 Bug Tracker
 ===========
@@ -64,19 +63,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Marco Colombo
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Marco Colombo <marco.colombo@gmail.com>
-* Andrea Piovesana <andrea.m.piovesana@gmail.com>
-* Francesco Apruzzese <cescoap@gmail.com>
+-  Marco Colombo <marco.colombo@gmail.com>
+-  Andrea Piovesana <andrea.m.piovesana@gmail.com>
+-  Francesco Apruzzese <cescoap@gmail.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
