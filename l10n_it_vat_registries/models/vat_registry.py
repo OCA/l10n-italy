@@ -124,7 +124,6 @@ class ReportRegistroIva(models.AbstractModel):
         return res
 
     def _get_tax_lines(self, move, data):
-
         """
 
         Args:
@@ -181,7 +180,6 @@ class ReportRegistroIva(models.AbstractModel):
         return inv_taxes, used_taxes
 
     def _get_move_total(self, move):
-
         total = 0.0
         receivable_payable_found = False
         for move_line in move.line_ids:
