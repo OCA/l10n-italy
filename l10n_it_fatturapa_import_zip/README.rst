@@ -30,13 +30,15 @@ ITA - Fattura elettronica - Import ZIP
 
 **Italiano**
 
-Questo modulo aggiunge una vista per importare diversi file XML di fatture elettroniche (OUT/IN) tramite file ZIP.
+Questo modulo aggiunge una vista per importare diversi file XML di
+fatture elettroniche (OUT/IN) tramite file ZIP.
 
 Il modulo importerà dal file ZIP solo file XML o P7M, anche se in subdirectory, ignorando file non riconosciuti.
 
 **English**
 
-This module adds a view to import several XML e-invoice files (OUT/IN) via ZIP file.
+This module adds a view to import several XML e-invoice files (OUT/IN)
+via ZIP file.
 
 The module will import only XML or P7M files from the ZIP file, even if in subdirectories, ignoring unrecognized files.
 
@@ -50,15 +52,18 @@ Usage
 
 **Italiano**
 
- * Andare in Fatturazione -> Configurazione -> Fiscalità italiana -> Import E-bill ZIP Files
- * Caricare un file ZIP contenente i file XML di fatture elettroniche (OUT/IN)
- * Eseguire "Import Invoices" per creare le fatture in bozza
+   -  Andare in Fatturazione -> Configurazione -> Fiscalità italiana ->
+      Import E-bill ZIP Files
+   -  Caricare un file ZIP contenente i file XML di fatture elettroniche
+      (OUT/IN)
+   -  Eseguire "Import Invoices" per creare le fatture in bozza
 
 **English**
 
- * Go to Accounting -> Configuration -> Italian Localization -> Import E-bill ZIP Files
- * Upload ZIP file including XML e-invoice files (OUT/IN)
- * Run "Import Invoices" to create a draft invoices/bills
+   -  Go to Accounting -> Configuration -> Italian Localization ->
+      Import E-bill ZIP Files
+   -  Upload ZIP file including XML e-invoice files (OUT/IN)
+   -  Run "Import Invoices" to create a draft invoices/bills
 
 Bug Tracker
 ===========
@@ -74,20 +79,22 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * TAKOBI
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `TAKOBI <https://takobi.online>`_:
+-  `TAKOBI <https://takobi.online>`__:
 
-  * Simone Rubino <sir@takobi.online>
-* Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>
+   -  Simone Rubino <sir@takobi.online>
+
+-  Giuseppe Borruso - Dinamiche Aziendali srl
+   <gborruso@dinamicheaziendali.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

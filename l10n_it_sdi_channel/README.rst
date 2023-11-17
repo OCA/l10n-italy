@@ -30,7 +30,8 @@ ITA - Fattura elettronica - Canale SdI
 
 **Italiano**
 
-Questo modulo aggiunge alcuni campi, utili come prerequisito per inviare file XML e ZIP delle fatture elettroniche
+Questo modulo aggiunge alcuni campi, utili come prerequisito per inviare
+file XML e ZIP delle fatture elettroniche
 
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm
 
@@ -40,7 +41,8 @@ http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
 **English**
 
-This module add some useful fields as a pre-requisite to send XML and ZIP files of electronic invoices
+This module add some useful fields as a pre-requisite to send XML and
+ZIP files of electronic invoices
 
 http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm
 
@@ -58,16 +60,16 @@ Configuration
 
 **Italiano**
 
-Andare in Contabilità →  Configurazione →  Contabilità →  Canali SdI
+Andare in Contabilità → Configurazione → Contabilità → Canali SdI
 
-Per la configurazione del canale vedere il modulo `l10n_it_fatturapa_pec`
-
+Per la configurazione del canale vedere il modulo l10n_it_fatturapa_pec
 
 **English**
 
-Go to Accounting →  Configuration →  Accounting →  ES Channels
+Go to Accounting → Configuration → Accounting → ES Channels
 
-For further details on how to configure a channel have a look at `l10n_it_fatturapa_pec`
+For further details on how to configure a channel have a look at
+l10n_it_fatturapa_pec
 
 Bug Tracker
 ===========
@@ -83,24 +85,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Efatto.it di Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <info@efatto.it>
-* Lorenzo Battistini <https://github.com/eLBati>
-* Sergio Zanchetta <https://github.com/primes2h>
+-  Sergio Corato <info@efatto.it>
+-  Lorenzo Battistini <https://github.com/eLBati>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  `Ooops <https://www.ooops404.com>`__:
 
-* `Ooops <https://www.ooops404.com>`_:
+   -  Giovanni Serra <giovanni@gslab.it>
 
-  * Giovanni Serra <giovanni@gslab.it>
-* Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

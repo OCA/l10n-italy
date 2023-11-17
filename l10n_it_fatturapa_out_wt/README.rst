@@ -32,7 +32,8 @@ ITA - Fattura elettronica - Integrazione ritenuta
 
 Modulo ponte tra emissione fatture elettroniche e ritenute.
 
-Con questo modulo, l'elemento XML DatiRitenuta verrà correttamente valorizzato.
+Con questo modulo, l'elemento XML DatiRitenuta verrà correttamente
+valorizzato.
 
 **English**
 
@@ -59,20 +60,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <info@efatto.it>
-* Ciro Urselli <c.urselli@apuliasoftware.it>
-* Marco Colombo <marco.colombo@phi.technology>
-* Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Sergio Corato <info@efatto.it>
+-  Ciro Urselli <c.urselli@apuliasoftware.it>
+-  Marco Colombo <marco.colombo@phi.technology>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

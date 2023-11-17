@@ -28,7 +28,8 @@ ITA - Website portal fiscalcode
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Allow frontend users to edit their fiscal code from their *details* page.
+Allow frontend users to edit their fiscal code from their *details*
+page.
 
 **Table of contents**
 
@@ -49,7 +50,7 @@ Credits
 =======
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

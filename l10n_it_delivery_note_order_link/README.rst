@@ -34,7 +34,8 @@ This module link delivery notes to sale/purchase orders.
 
 **Italiano**
 
-Questo modulo consente di collegare gli ordini di vendita/acquisto ai DDT.
+Questo modulo consente di collegare gli ordini di vendita/acquisto ai
+DDT.
 
 **Table of contents**
 
@@ -50,18 +51,21 @@ No configuration required after module installation.
 
 **Italiano**
 
-Dopo l'installazione del modulo non sono necessarie ulteriori configurazioni.
+Dopo l'installazione del modulo non sono necessarie ulteriori
+configurazioni.
 
 Usage
 =====
 
 **English**
 
-A smart button will appear on each sale/purchase order, so you can link them to DNs.
+A smart button will appear on each sale/purchase order, so you can link
+them to DNs.
 
 **Italiano**
 
-Su ciascun ordine di vendita/acquisto comparirà un pulsante (smart button) che permette di collegarlo ai DDT.
+Su ciascun ordine di vendita/acquisto comparirà un pulsante (smart
+button) che permette di collegarlo ai DDT.
 
 Bug Tracker
 ===========
@@ -77,18 +81,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Openindustry.it Sas
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Andrea Piovesana <andrea.m.piovesana@gmail.com>
-* Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.com>
+-  Andrea Piovesana <andrea.m.piovesana@gmail.com>
+-  Giuseppe Borruso - Dinamiche Aziendali srl
+   <gborruso@dinamicheaziendali.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

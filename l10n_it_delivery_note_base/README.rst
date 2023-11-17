@@ -32,17 +32,15 @@ ITA - Documento di trasporto - Base
 
 This module is base layer.
 
-Within there are principal tables,
-so anybody can use it with another modules.
-
+Within there are principal tables, so anybody can use it with another
+modules.
 
 **Italiano**
 
 Questo modulo è un livello base.
 
-All'interno ci sono le tabelle principali,
-in modo che chiunque possa usarlo con altri
-moduli.
+All'interno ci sono le tabelle principali, in modo che chiunque possa
+usarlo con altri moduli.
 
 **Table of contents**
 
@@ -63,27 +61,27 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Marco Calcagni
 * Gianmarco Conte
 * Link IT Europe Srl
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Riccardo Bellanova <r.bellanova@apuliasoftware.it>
-* Matteo Bilotta <mbilotta@linkeurope.it>
-* Giuseppe Borruso <gborruso@dinamicheaziendali.it>
-* Marco Calcagni <mcalcagni@dinamicheaziendali.it>
-* Marco Colombo <marco.colombo@gmail.com>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Letizia Freda <letizia.freda@netfarm.it>
-* Andrea Piovesana <andrea.m.piovesana@gmail.com>
-* Nextev Srl <odoo@nextev.it>
+-  Riccardo Bellanova <r.bellanova@apuliasoftware.it>
+-  Matteo Bilotta <mbilotta@linkeurope.it>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Marco Colombo <marco.colombo@gmail.com>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Letizia Freda <letizia.freda@netfarm.it>
+-  Andrea Piovesana <andrea.m.piovesana@gmail.com>
+-  Nextev Srl <odoo@nextev.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

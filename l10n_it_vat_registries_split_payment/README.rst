@@ -35,8 +35,8 @@ funzionalità inerenti alla scissione dei pagamenti.
 
 **English**
 
-Bridge module to make "VAT Registries" module work along with "Split Payment"
-module.
+Bridge module to make "VAT Registries" module work along with "Split
+Payment" module.
 
 **Table of contents**
 
@@ -57,18 +57,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Agile Business Group
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Matteo Bilotta <mbilotta@linkgroup.it>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Matteo Bilotta <mbilotta@linkgroup.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

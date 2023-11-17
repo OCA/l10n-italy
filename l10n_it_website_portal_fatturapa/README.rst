@@ -28,7 +28,8 @@ Italian Localization - Fattura elettronica - Portale
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Allow frontend users to edit any necessary field for Electronic invoice from their *details* page.
+Allow frontend users to edit any necessary field for Electronic invoice
+from their *details* page.
 
 **Table of contents**
 
@@ -38,7 +39,9 @@ Allow frontend users to edit any necessary field for Electronic invoice from the
 Known issues / Roadmap
 ======================
 
-Fields `is_pa` and `ipa_code` are not shown in the frontend because Odoo core always supposes that frontend users are individual, and these fields are only meaningful for companies.
+Fields is_pa and ipa_code are not shown in the frontend because Odoo
+core always supposes that frontend users are individual, and these
+fields are only meaningful for companies.
 
 Bug Tracker
 ===========
@@ -54,7 +57,7 @@ Credits
 =======
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

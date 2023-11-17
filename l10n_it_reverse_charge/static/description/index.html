@@ -370,19 +370,29 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/16.0/l10n_it_reverse_charge"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-16-0/l10n-italy-16-0-l10n_it_reverse_charge"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p><strong>Italiano</strong></p>
-<p>Modulo per gestire l’inversione contabile (reverse charge) nelle fatture fornitore.</p>
-<p>Il modulo permette di automatizzare le registrazioni contabili derivate dalle fatture fornitori intra UE ed extra UE mediante l’inversione contabile IVA.
-Inoltre è automatizzata la procedura di annullamento e riapertura della fattura fornitore.</p>
-<p>È inoltre possibile utilizzare la modalità “con autofattura fornitore aggiuntiva”.
-Questa modalità è usata tipicamente per i fornitori extra UE per mostrare, nel registro IVA acquisti, una fattura intestata alla propria azienda (autofattura passiva).
-L’autofattura passiva verrà poi totalmente riconciliata con l’autofattura attiva, anch’essa intestata alla propria azienda.</p>
+<p>Modulo per gestire l’inversione contabile (reverse charge) nelle fatture
+fornitore.</p>
+<p>Il modulo permette di automatizzare le registrazioni contabili derivate
+dalle fatture fornitori intra UE ed extra UE mediante l’inversione
+contabile IVA. Inoltre è automatizzata la procedura di annullamento e
+riapertura della fattura fornitore.</p>
+<p>È inoltre possibile utilizzare la modalità “con autofattura fornitore
+aggiuntiva”. Questa modalità è usata tipicamente per i fornitori extra
+UE per mostrare, nel registro IVA acquisti, una fattura intestata alla
+propria azienda (autofattura passiva). L’autofattura passiva verrà poi
+totalmente riconciliata con l’autofattura attiva, anch’essa intestata
+alla propria azienda.</p>
 <p><strong>English</strong></p>
 <p>Module to handle reverse charge IVA in vendor bills.</p>
-<p>The module allows you to automate the accounting entries derived from invoices of intra-EU and extra-EU suppliers through the VAT reverse charge.
-Furthermore, the vendor bill cancellation and reopening procedure is automated.</p>
+<p>The module allows you to automate the accounting entries derived from
+invoices of intra-EU and extra-EU suppliers through the VAT reverse
+charge. Furthermore, the vendor bill cancellation and reopening
+procedure is automated.</p>
 <p>It is also possible to use the “additional vendor self billing” mode.
-This mode is typically used for non-EU suppliers to show, in the purchases VAT journal, a vendor bill addressed to your own company (self-bill).
-The self-bill will then be completely reconciled with the self-invoice, which is also addressed to your own company.</p>
+This mode is typically used for non-EU suppliers to show, in the
+purchases VAT journal, a vendor bill addressed to your own company
+(self-bill). The self-bill will then be completely reconciled with the
+self-invoice, which is also addressed to your own company.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -401,95 +411,60 @@ The self-bill will then be completely reconciled with the self-invoice, which is
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p><strong>Italiano</strong></p>
 <p>Creare l’imposta <strong>22% intra UE</strong> - Vendite:</p>
-<div class="figure">
-<img alt="22% intra UE - Vendite" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png" style="width: 600px;" />
-</div>
+<p><img alt="image1" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png" /></p>
 <p>Creare l’imposta <strong>22% intra UE</strong> - Acquisti:</p>
-<div class="figure">
-<img alt="22% intra UE - Acquisti" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png" style="width: 600px;" />
-</div>
+<p><img alt="image2" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png" /></p>
 <p>Creare l’imposta <strong>22% extra UE</strong> - Vendite:</p>
-<div class="figure">
-<img alt="22% extra UE - Vendite" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png" style="width: 600px;" />
-</div>
+<p><img alt="image3" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png" /></p>
 <p>Creare l’imposta <strong>22% extra UE</strong> - Acquisti:</p>
-<div class="figure">
-<img alt="22% extra UE - Acquisti" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png" style="width: 600px;" />
-</div>
+<p><img alt="image4" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png" /></p>
 <p>Creare il conto ‘Transitorio autofatturazione’:</p>
-<div class="figure">
-<img alt="conto transitorio Autofattura" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png" style="width: 600px;" />
-</div>
+<p><img alt="image5" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png" /></p>
 <p>Creare il registro ‘Riconciliazione RC’ di tipo Varie.</p>
 <p>Modificare il tipo inversione contabile <strong>Intra-UE (autofattura)</strong>:</p>
-<div class="figure">
-<img alt="inversione contabile con Autofattura" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png" style="width: 600px;" />
-</div>
+<p><img alt="image6" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png" /></p>
 <p>Il registro autofattura deve essere di tipo ‘Vendita’.</p>
 <p>Modificare il tipo inversione contabile <strong>Extra-UE (autofattura)</strong>:</p>
-<div class="figure">
-<img alt="inversione contabile con Autofattura" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png" style="width: 600px;" />
-</div>
+<p><img alt="image7" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png" /></p>
 <p>Il ‘Registro autofattura passiva’ deve essere di tipo ‘Acquisto’.</p>
 <p>Nella posizione fiscale, impostare il tipo inversione contabile:</p>
-<div class="figure">
-<img alt="Impostazione posizioni fiscali Intra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png" style="width: 600px;" />
-</div>
-<div class="figure">
-<img alt="Impostazione posizioni fiscali Extra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png" style="width: 600px;" />
-</div>
-<p>La posizione fiscale deve essere salvata sui contatti dei fornitori nel campo ‘Posizione fiscale’</p>
-<div class="figure">
-<img alt="Impostazione posizioni fiscali Extra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png" style="width: 600px;" />
-</div>
+<p><img alt="image8" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png" /></p>
+<p><img alt="image9" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png" /></p>
+<p>La posizione fiscale deve essere salvata sui contatti dei fornitori nel
+campo ‘Posizione fiscale’</p>
+<p><img alt="image10" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png" /></p>
 <p><strong>English</strong></p>
 <p>Create the tax <strong>22% intra EU</strong> - Sale:</p>
-<div class="figure">
-<img alt="22% intra UE - Sale" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png" style="width: 600px;" />
-</div>
+<p><img alt="image11" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png" /></p>
 <p>Create the tax <strong>22% intra EU</strong> - Purchase:</p>
-<div class="figure">
-<img alt="22% intra UE - Purchase" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png" style="width: 600px;" />
-</div>
+<p><img alt="image12" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png" /></p>
 <p>Create the tax <strong>22% extra EU</strong> - Sale:</p>
-<div class="figure">
-<img alt="22% extra UE - Sale" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png" style="width: 600px;" />
-</div>
+<p><img alt="image13" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png" /></p>
 <p>Create the tax <strong>22% extra EU</strong> - Purchase:</p>
-<div class="figure">
-<img alt="22% extra UE - Purchase" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png" style="width: 600px;" />
-</div>
+<p><img alt="image14" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png" /></p>
 <p>Create the account ‘Self Invoice Transitory’ as follows:</p>
-<div class="figure">
-<img alt="Self Invoice Transitory Account" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png" style="width: 600px;" />
-</div>
+<p><img alt="image15" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png" /></p>
 <p>Create the ‘RC Reconciliation’ Journal of type Miscellaneous.</p>
 <p>Edit the reverse charge type <strong>Intra-EU (self-invoice)</strong>:</p>
-<div class="figure">
-<img alt="reverse charge with Self Invoice" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png" style="width: 600px;" />
-</div>
+<p><img alt="image16" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png" /></p>
 <p>The Self Invoice journal has to be of type ‘Sale’.</p>
 <p>Edit the reverse charge type <strong>Extra-EU (self-invoice)</strong> :</p>
-<div class="figure">
-<img alt="reverse charge with Self Invoice" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png" style="width: 600px;" />
-</div>
+<p><img alt="image17" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png" /></p>
 <p>The ‘Supplier Self Invoice Journal’ has to be of type ‘Purchase’.</p>
 <p>In the fiscal position, set the reverse charge type:</p>
-<div class="figure">
-<img alt="Impostazione posizioni fiscali Intra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png" style="width: 600px;" />
-</div>
-<div class="figure">
-<img alt="Impostazione posizioni fiscali Extra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png" style="width: 600px;" />
-</div>
-<p>Fiscal position has to be saved on suppliers’ contact inside ‘Fiscal position’ field</p>
-<div class="figure">
-<img alt="Impostazione posizioni fiscali Extra CEE" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png" style="width: 600px;" />
-</div>
+<p><img alt="image18" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png" /></p>
+<p><img alt="image19" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png" /></p>
+<p>Fiscal position has to be saved on suppliers’ contact inside ‘Fiscal
+position’ field</p>
+<p><img alt="image20" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_reverse_charge/static/description/partner_fiscal_pos.png" /></p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
-<p>Only the <strong>self-invoice</strong> method is managed, <strong>VAT integration</strong> method is not managed yet.</p>
-<p>In test case test_intra_EU_exempt, the payment line to be reconciled is reconciled without having any reconciliation; it should be reconciled with the invoice.</p>
+<p>Only the <strong>self-invoice</strong> method is managed, <strong>VAT integration</strong> method
+is not managed yet.</p>
+<p>In test case test_intra_EU_exempt, the payment line to be reconciled is
+reconciled without having any reconciliation; it should be reconciled
+with the invoice.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>

@@ -30,11 +30,16 @@ ITA - Fattura elettronica - Integrazione vendite
 
 **Italiano**
 
-Questo modulo permette di impostare i documenti correlati e il riferimento amministrazione nell'ordine di vendita (o le sue righe) e propagarli alla fattura (o le sue righe) durante la creazione della fattura.
+Questo modulo permette di impostare i documenti correlati e il
+riferimento amministrazione nell'ordine di vendita (o le sue righe) e
+propagarli alla fattura (o le sue righe) durante la creazione della
+fattura.
 
 **English**
 
-This module allows to set related documents and Admin. Ref. in the sale order (or its lines) and propagate them to the invoice (or its lines) during invoice creation.
+This module allows to set related documents and Admin. Ref. in the sale
+order (or its lines) and propagate them to the invoice (or its lines)
+during invoice creation.
 
 **Table of contents**
 
@@ -55,20 +60,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Agile Business Group
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Agile Business Group
-* `Ooops <https://www.ooops404.com>`_:
+-  Agile Business Group
 
-   * Giovanni Serra <giovanni@gslab.it>
+-  `Ooops <https://www.ooops404.com>`__:
+
+      -  Giovanni Serra <giovanni@gslab.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

@@ -30,9 +30,11 @@ ITA - Emissione e-fattura con reverse charge
 
 **Italiano**
 
-Gestione tipi documento fiscale TD16, TD17, TD18, TD19 in generazione fattura elettronica.
+Gestione tipi documento fiscale TD16, TD17, TD18, TD19 in generazione
+fattura elettronica.
 
-Il modulo permette di impostare, nell'XML, il corretto fornitore in caso di reverse charge.
+Il modulo permette di impostare, nell'XML, il corretto fornitore in caso
+di reverse charge.
 
 **Table of contents**
 
@@ -44,7 +46,8 @@ Configuration
 
 **Italiano**
 
-Vedi ``l10n_it_reverse_charge`` per la configurazione dei tipi di reverse charge.
+Vedi ``l10n_it_reverse_charge`` per la configurazione dei tipi di
+reverse charge.
 
 Per le autofatture da comunicare a SDI va impostato
 
@@ -54,7 +57,8 @@ e
 
 **Partner autofattura** = **My company**
 
-Sul tipo di reverse charge impostare anche il relativo **Tipo documento fiscale**
+Sul tipo di reverse charge impostare anche il relativo **Tipo documento
+fiscale**
 
 Bug Tracker
 ===========
@@ -70,23 +74,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * TAKOBI
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `TAKOBI <https://takobi.online>`_:
+-  `TAKOBI <https://takobi.online>`__:
 
-  * Lorenzo Battistini
-  * Simone Rubino <sir@takobi.online>
-* `Agile Business Group <https://agilebg.com>`_:
+   -  Lorenzo Battistini
+   -  Simone Rubino <sir@takobi.online>
 
-  * Alex Comba <alex.comba@agilebg.com>
+-  `Agile Business Group <https://agilebg.com>`__:
+
+   -  Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

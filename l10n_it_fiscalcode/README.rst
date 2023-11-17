@@ -30,11 +30,13 @@ ITA - Codice fiscale
 
 **Italiano**
 
-Questo modulo aggiunge al partner il campo codice fiscale e permette di calcolarne il suo valore.
+Questo modulo aggiunge al partner il campo codice fiscale e permette di
+calcolarne il suo valore.
 
 **English**
 
-This module extends the functionality of partner allowing you to compute its fiscal code.
+This module extends the functionality of partner allowing you to compute
+its fiscal code.
 
 **Table of contents**
 
@@ -46,48 +48,50 @@ Installation
 
 **Italiano**
 
-Installare il modulo Python: `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__.
+Installare il modulo Python:
+`codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__.
 
 **English**
 
-Install the Python package: `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__.
+Install the Python package:
+`codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__.
 
 Usage
 =====
 
 **Italiano**
 
-Sulla scheda del partner fare clic sul pulsante *Calcola CF* per aprire la procedura guidata relativa al calcolo
-del codice fiscale.
+Sulla scheda del partner fare clic sul pulsante *Calcola CF* per aprire
+la procedura guidata relativa al calcolo del codice fiscale.
 
 **English**
 
-Go to Partner and click "Compute FC" in order to open the wizard related to the fiscal code computation.
+Go to Partner and click "Compute FC" in order to open the wizard related
+to the fiscal code computation.
 
 Changelog
 =========
 
-[ The change log. The goal of this file is to help readers
-  understand changes between version. The primary audience is
-  end users and integrators. Purely technical changes such as
-  code refactoring must not be mentioned here.
+| [ The change log. The goal of this file is to help readers
+| understand changes between version. The primary audience is end users
+  and integrators. Purely technical changes such as code refactoring
+  must not be mentioned here.
 
-  This file may contain ONE level of section titles, underlined
-  with the ~ (tilde) character. Other section markers are
-  forbidden and will likely break the structure of the README.rst
-  or other documents where this fragment is included. ]
+This file may contain ONE level of section titles, underlined with the ~
+(tilde) character. Other section markers are forbidden and will likely
+break the structure of the README.rst or other documents where this
+fragment is included. ]
 
 16.0.1.0.0 (2022-11-11)
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
-* [MIG] Migration from Odoo 14.0 to 16.0
-* [IMP] Black, isort, prettier (pre-commit)
-
+-  [MIG] Migration from Odoo 14.0 to 16.0
+-  [IMP] Black, isort, prettier (pre-commit)
 
 16.0.1.0.1 (2022-11-16)
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
-* [IMP] Add codicefiscale.isvalid() to improve fiscalcode validation
+-  [IMP] Add codicefiscale.isvalid() to improve fiscalcode validation
 
 Bug Tracker
 ===========
@@ -103,33 +107,34 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Link IT s.r.l.
 * Apulia Software
 * Odoo Italia Network
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Davide Corio
-* Luca Subiaco <subluca@gmail.com>
-* Simone Orsi <simone.orsi@domsense.com>
-* Mario Riva <mario.riva@agilebg.com>
-* Mauro Soligo <mauro.soligo@katodo.com>
-* Giovanni Barzan <giovanni.barzan@gmail.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Roberto Onnis <onnis.roberto@gmail.com>
-* Franco Tampieri
-* Andrea Cometa <info@andreacometa.it>
-* Andrea Gallina
-* Matteo Bilotta <mbilotta@linkgroup.it>
-* Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>
-* Alex Comba <alex.comba@agilebg.com>
-* Marco Colombo <marco.colombo@phi.technology>
+-  Davide Corio
+-  Luca Subiaco <subluca@gmail.com>
+-  Simone Orsi <simone.orsi@domsense.com>
+-  Mario Riva <mario.riva@agilebg.com>
+-  Mauro Soligo <mauro.soligo@katodo.com>
+-  Giovanni Barzan <giovanni.barzan@gmail.com>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Roberto Onnis <onnis.roberto@gmail.com>
+-  Franco Tampieri
+-  Andrea Cometa <info@andreacometa.it>
+-  Andrea Gallina
+-  Matteo Bilotta <mbilotta@linkgroup.it>
+-  Giuseppe Borruso - Dinamiche Aziendali srl
+   <gborruso@dinamicheaziendali.it>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Marco Colombo <marco.colombo@phi.technology>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

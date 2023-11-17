@@ -30,11 +30,13 @@ ITA - Fattura elettronica - Emissione - OSS
 
 **Italiano**
 
-Modulo tecnico di integrazione tra l10n_eu_oss_oca e l10n_it_fatturapa_out
+Modulo tecnico di integrazione tra l10n_eu_oss_oca e
+l10n_it_fatturapa_out
 
 **English**
 
-Technical module for integrating l10n_eu_oss_oca and l10n_it_fatturapa_out
+Technical module for integrating l10n_eu_oss_oca and
+l10n_it_fatturapa_out
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -60,21 +62,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  `TAKOBI <https://takobi.online>`__:
 
-* `TAKOBI <https://takobi.online>`_:
-
-  * Lorenzo Battistini
+   -  Lorenzo Battistini
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

@@ -55,20 +55,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Gianmarco Conte - Dinamiche Aziendali srl
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Lara Baggio <lbaggio@linkgroup.it>
-* Glauco Prina <gprina@linkgroup.it>
-* Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Lara Baggio <lbaggio@linkgroup.it>
+-  Glauco Prina <gprina@linkgroup.it>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

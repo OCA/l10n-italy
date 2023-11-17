@@ -30,11 +30,13 @@ ITA - Fattura elettronica - Emissione - Dichiarazione d'intento
 
 **Italiano**
 
-Modulo tecnico di integrazione tra l10n_it_declaration_of_intent e l10n_it_fatturapa_out
+Modulo tecnico di integrazione tra l10n_it_declaration_of_intent e
+l10n_it_fatturapa_out
 
 **English**
 
-Technical module for integrating l10n_it_declaration_of_intent and l10n_it_fatturapa_out
+Technical module for integrating l10n_it_declaration_of_intent and
+l10n_it_fatturapa_out
 
 **Table of contents**
 
@@ -55,18 +57,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Marco Colombo
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Marco Colombo <https://github.com/TheMule71>
-* Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Marco Colombo <https://github.com/TheMule71>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

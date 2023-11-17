@@ -369,8 +369,11 @@ ul.auto-toc {
 !! source digest: sha256:9afa12ec3a9496c9d996c745c9ecbfe7bb7ecf5ba2bb4ac3a76aaef66a040709
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/16.0/l10n_it_withholding_tax"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-16-0/l10n-italy-16-0-l10n_it_withholding_tax"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>La ritenuta d’acconto provvede a calcolare automaticamente i valori delle diverse tipologie di ritenuta presenti nella contaiblità italiana.</p>
-<p>Con questo modulo è possibile, tramite apposito workflow, gestire i diversi passaggi di stato delle ritenute rilevate: dovuta, applicata, versata</p>
+<p>La ritenuta d’acconto provvede a calcolare automaticamente i valori
+delle diverse tipologie di ritenuta presenti nella contaiblità italiana.</p>
+<p>Con questo modulo è possibile, tramite apposito workflow, gestire i
+diversi passaggi di stato delle ritenute rilevate: dovuta, applicata,
+versata</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -386,36 +389,48 @@ ul.auto-toc {
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
-<p>Per prima cosa dovremo creare una ritenuta d’acconto dove inserire tutti i campi necessari per un corretto calcolo.</p>
-<p>Visto che le aliquote possono variare nel corso del tempo, nella codifica sono previsti scaglioni temporali di competenza.</p>
-<p>E’ necessario anche inserire i conti contabili che verranno utilizzati quando il modulo si occuperà di generare registrazioni contabili per la rilevazione della ritenuta.</p>
-<div class="figure">
-<img alt="Withholding tax" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/ritenuta-acconto-odoo-codifica-768x457.png" style="width: 600px;" />
-</div>
-<p>Una volta aggiunta, nella tabella ritenute, potrà essere utilizzata all’interno della fattura, in corrispondenza delle righe soggette a ritenute.</p>
-<p>Per ogni riga è possibile utilizzare più di una ritenuta. Per alcune casistiche il moduo ritenute viene usato anche per rilevare le trattenute INPS.</p>
-<p>Il modulo ritenute calcolerà i valori corrispondenti e ne mostrerà il dettaglio nell’apposita area ritenute, dove è possibile verificare per ogni codice ritenuta usato, l’imponibile e l’importo ritenuta applicato.</p>
-<p>In calce ai totali, verrà totalizzato l’ammontare della ritenuta e il netto a pagare. Questa sezione sarà visibile solamente in presenza di almeno una ritenuta</p>
-<div class="figure">
-<img alt="Supplier invoice" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/fattura-fornitore-768x517.png" style="width: 600px;" />
-</div>
-<p>Per registrare il pagamento di una fattura con ritenuta, indicare come importo il “Netto a pagare” e lasciare aperta la fattura:</p>
-<div class="figure">
-<img alt="Pagamento fattura fornitore" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/pagamento-fattura-fornitore.png" />
-</div>
-<p>Il sistema provvederà alla creazione di un ulteriore pagamento che coprirà l’ammontare della ritenuta e la fattura risulterà completamente pagata:</p>
-<div class="figure">
-<img alt="Pagamento ritenuta" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/pagamento-ritenuta.png" />
-</div>
-<p>Per il pagamento della ritenuta d’acconto fare riferimento al modulo <cite>l10n_it_withholding_tax_payment</cite>.</p>
-<p>Successivamente andando nella sezione situazione ritenute d’acconto il sistema vi mostrerà una situazione riepilogativa delle varie ritenute divisa per documento di origine.</p>
-<p>I campi principalmente da tenere in considerazione in questa tabella sono: ritenuta dovuta, ritenuta applicata e ritenuta versata.</p>
-<p><em>Ritenuta dovuta</em> contiene il valore della ritenuta contenuta nella fattura.</p>
-<p><em>Ritenuta applicata</em> mostra il valore della ritenuta rilevata al momento del pagamento della fattura.</p>
-<p><em>Ritenuta versata</em> contiene l’importo di ritenuta, già applicata, che è stata versata all’erario</p>
-<div class="figure">
-<img alt="WT statement" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/foto-3-1-1024x505.png" style="width: 600px;" />
-</div>
+<p>Per prima cosa dovremo creare una ritenuta d’acconto dove inserire tutti
+i campi necessari per un corretto calcolo.</p>
+<p>Visto che le aliquote possono variare nel corso del tempo, nella
+codifica sono previsti scaglioni temporali di competenza.</p>
+<p>E’ necessario anche inserire i conti contabili che verranno utilizzati
+quando il modulo si occuperà di generare registrazioni contabili per la
+rilevazione della ritenuta.</p>
+<p><img alt="image1" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/ritenuta-acconto-odoo-codifica-768x457.png" /></p>
+<p>Una volta aggiunta, nella tabella ritenute, potrà essere utilizzata
+all’interno della fattura, in corrispondenza delle righe soggette a
+ritenute.</p>
+<p>Per ogni riga è possibile utilizzare più di una ritenuta. Per alcune
+casistiche il moduo ritenute viene usato anche per rilevare le
+trattenute INPS.</p>
+<p>Il modulo ritenute calcolerà i valori corrispondenti e ne mostrerà il
+dettaglio nell’apposita area ritenute, dove è possibile verificare per
+ogni codice ritenuta usato, l’imponibile e l’importo ritenuta applicato.</p>
+<p>In calce ai totali, verrà totalizzato l’ammontare della ritenuta e il
+netto a pagare. Questa sezione sarà visibile solamente in presenza di
+almeno una ritenuta</p>
+<p><img alt="image2" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/fattura-fornitore-768x517.png" /></p>
+<p>Per registrare il pagamento di una fattura con ritenuta, indicare come
+importo il “Netto a pagare” e lasciare aperta la fattura:</p>
+<p><img alt="image3" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/pagamento-fattura-fornitore.png" /></p>
+<p>Il sistema provvederà alla creazione di un ulteriore pagamento che
+coprirà l’ammontare della ritenuta e la fattura risulterà completamente
+pagata:</p>
+<p><img alt="image4" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/pagamento-ritenuta.png" /></p>
+<p>Per il pagamento della ritenuta d’acconto fare riferimento al modulo
+l10n_it_withholding_tax_payment.</p>
+<p>Successivamente andando nella sezione situazione ritenute d’acconto il
+sistema vi mostrerà una situazione riepilogativa delle varie ritenute
+divisa per documento di origine.</p>
+<p>I campi principalmente da tenere in considerazione in questa tabella
+sono: ritenuta dovuta, ritenuta applicata e ritenuta versata.</p>
+<p><em>Ritenuta dovuta</em> contiene il valore della ritenuta contenuta nella
+fattura.</p>
+<p><em>Ritenuta applicata</em> mostra il valore della ritenuta rilevata al momento
+del pagamento della fattura.</p>
+<p><em>Ritenuta versata</em> contiene l’importo di ritenuta, già applicata, che è
+stata versata all’erario</p>
+<p><img alt="image5" src="https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/foto-3-1-1024x505.png" /></p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>

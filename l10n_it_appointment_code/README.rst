@@ -46,28 +46,29 @@ Configuration
 
 **Italiano**
 
-La tabella viene aggiunta nell'area *Fatturazione*, ed è raggiungibile nella
-sezione *Configurazione*. Occorre avere i privilegi di *Responsabile fatturazione*.
+La tabella viene aggiunta nell'area *Fatturazione*, ed è raggiungibile
+nella sezione *Configurazione*. Occorre avere i privilegi di
+*Responsabile fatturazione*.
 
 **English**
 
-Table is inserted on *Invoicing* and can be reached in the configuration.
-Billing Manager privileges are needed.
+Table is inserted on *Invoicing* and can be reached in the
+configuration. Billing Manager privileges are needed.
 
 Usage
 =====
 
 **Italiano**
 
-Installando il modulo vengono precaricati i codici disponibili.
-È possibile aggiungere nuovi codici o modificare quelli esistenti.
-Non è possibile avere più di un elemento con lo stesso codice.
+Installando il modulo vengono precaricati i codici disponibili. È
+possibile aggiungere nuovi codici o modificare quelli esistenti. Non è
+possibile avere più di un elemento con lo stesso codice.
 
 **English**
 
-Available codes are preloaded on module installation.
-The existing codes can be modified or new ones can be added.
-It is not possible to have more than one element with the same code.
+Available codes are preloaded on module installation. The existing codes
+can be modified or new ones can be added. It is not possible to have
+more than one element with the same code.
 
 Bug Tracker
 ===========
@@ -83,21 +84,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Openforce di Camilli Alessandro
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alessandro Camilli <alessandrocamilli@openforce.it>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Stefano Consolaro <https://github.com/mymage>
-* Alex Comba <alex.comba@agilebg.com>
-* Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Alessandro Camilli <alessandrocamilli@openforce.it>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Stefano Consolaro <https://github.com/mymage>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

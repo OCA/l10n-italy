@@ -43,53 +43,56 @@ Configuration
 **Italiano**
 
 Nella configurazione delle RiBa è possibile specificare se si tratti di
-'Salvo buon fine' o 'Al dopo incasso', che hanno un flusso completamente diverso.
+'Salvo buon fine' o 'Al dopo incasso', che hanno un flusso completamente
+diverso.
 
-- Al dopo incasso: nessuna registrazione verrà effettuata automaticamente e le
-  fatture risulteranno pagate solo al momento dell'effettivo incasso.
-- Salvo buon fine: le registrazioni generate seguiranno la struttura descritta nel
-  documento http://goo.gl/jpRhJp
+-  Al dopo incasso: nessuna registrazione verrà effettuata
+   automaticamente e le fatture risulteranno pagate solo al momento
+   dell'effettivo incasso.
+-  Salvo buon fine: le registrazioni generate seguiranno la struttura
+   descritta nel documento http://goo.gl/jpRhJp
 
-È possibile specificare diverse configurazioni (dal menù
-*Configurazione → Pagamenti → Configurazione RiBa*). Per ognuna, in caso di
-'Salvo buon fine', è necessario specificare almeno il registro e il conto da
-utilizzare al momento dell'accettazione della distinta da parte della banca.
-Tale conto deve essere di tipo 'Crediti' (ad esempio "RiBa all'incasso",
-eventualmente da creare).
+È possibile specificare diverse configurazioni (dal menù *Configurazione
+→ Pagamenti → Configurazione RiBa*). Per ognuna, in caso di 'Salvo buon
+fine', è necessario specificare almeno il registro e il conto da
+utilizzare al momento dell'accettazione della distinta da parte della
+banca. Tale conto deve essere di tipo 'Crediti' (ad esempio "RiBa
+all'incasso", eventualmente da creare).
 
-La configurazione relativa alla fase di accredito, verrà usata nel momento in
-cui la banca accredita l'importo della distinta.
-È possibile utilizzare un registro creato appositamente, ad esempio "Accredito RiBa",
-e un conto chiamato ad esempio "Banche c/RiBa all'incasso", che non deve essere di tipo
-'Banca e cassa'.
+La configurazione relativa alla fase di accredito, verrà usata nel
+momento in cui la banca accredita l'importo della distinta. È possibile
+utilizzare un registro creato appositamente, ad esempio "Accredito
+RiBa", e un conto chiamato ad esempio "Banche c/RiBa all'incasso", che
+non deve essere di tipo 'Banca e cassa'.
 
-La configurazione relativa all'insoluto verrà utilizzata in caso di mancato pagamento
-da parte del cliente.
-Il conto può chiamarsi ad esempio "Crediti insoluti".
+La configurazione relativa all'insoluto verrà utilizzata in caso di
+mancato pagamento da parte del cliente. Il conto può chiamarsi ad
+esempio "Crediti insoluti".
 
-Nel caso si vogliano gestire anche le spese per ogni scadenza con ricevuta bancaria,
-si deve configurare un prodotto di tipo servizio e collegarlo in
-*Configurazione → Impostazioni → Contabilità → Imposte → Spese di incasso RiBa*.
+Nel caso si vogliano gestire anche le spese per ogni scadenza con
+ricevuta bancaria, si deve configurare un prodotto di tipo servizio e
+collegarlo in *Configurazione → Impostazioni → Contabilità → Imposte →
+Spese di incasso RiBa*.
 
 Usage
 =====
 
 **Italiano**
 
-Per utilizzare il meccanismo delle RiBa è necessario configurare un termine
-di pagamento di tipo 'RiBa'.
+Per utilizzare il meccanismo delle RiBa è necessario configurare un
+termine di pagamento di tipo 'RiBa'.
 
 Per emettere una distinta è necessario andare su *RiBa → Emetti RiBa* e
-selezionare i pagamenti per i quali emettere la distinta.
-Se per il cliente è stato abilitato il raggruppamento, i pagamenti dello stesso
-cliente e con la stessa data di scadenza andranno a costituire un solo elemento
-della distinta.
+selezionare i pagamenti per i quali emettere la distinta. Se per il
+cliente è stato abilitato il raggruppamento, i pagamenti dello stesso
+cliente e con la stessa data di scadenza andranno a costituire un solo
+elemento della distinta.
 
-I possibili stati della distinta sono: *Bozza*, *Accettata*, *Accreditata*,
-*Pagata*, *Insoluta* e *Annullata*.
-Ad ogni passaggio di stato sarà possibile generare le relative registrazioni
-contabili, le quali verranno riepilogate nella scheda «Contabilità».
-Questa scheda è presente sia sulla distinta che sulle sue righe.
+I possibili stati della distinta sono: *Bozza*, *Accettata*,
+*Accreditata*, *Pagata*, *Insoluta* e *Annullata*. Ad ogni passaggio di
+stato sarà possibile generare le relative registrazioni contabili, le
+quali verranno riepilogate nella scheda «Contabilità». Questa scheda è
+presente sia sulla distinta che sulle sue righe.
 
 La voce di menù 'Presentazione Riba' permette estrarre le riba fino al
 raggiungimento dell'importo massimo inserito dall'utente.
@@ -99,8 +102,8 @@ Known issues / Roadmap
 
 **Italiano**
 
-Attenzione!
-Il modulo è stato migrato, ma gli script di migrazione non sono stati provati.
+Attenzione! Il modulo è stato migrato, ma gli script di migrazione non
+sono stati provati.
 
 Bug Tracker
 ===========
@@ -116,26 +119,26 @@ Credits
 =======
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Andrea Cometa <a.cometa@apuliasoftware.it>
-* Andrea Gallina <a.gallina@apuliasoftware.it>
-* Davide Corio <info@davidecorio.com>
-* Giacomo Grasso <giacomo.grasso@agilebg.com>
-* Gabriele Baldessari <gabriele.baldessari@gmail.com>
-* Alex Comba <alex.comba@agilebg.com>
-* Marco Calcagni <mcalcagni@dinamicheaziendali.it>
-* Sergio Zanchetta <https://github.com/primes2h>
-* Simone Vanin <simone.vanin@agilebg.com>
-* Sergio Corato <https://github.com/sergiocorato>
-* Giovanni Serra <giovanni@gslab.it>
-* `Aion Tech <https://aiontech.company/>`_:
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Andrea Cometa <a.cometa@apuliasoftware.it>
+-  Andrea Gallina <a.gallina@apuliasoftware.it>
+-  Davide Corio <info@davidecorio.com>
+-  Giacomo Grasso <giacomo.grasso@agilebg.com>
+-  Gabriele Baldessari <gabriele.baldessari@gmail.com>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Simone Vanin <simone.vanin@agilebg.com>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  Giovanni Serra <giovanni@gslab.it>
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  * Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

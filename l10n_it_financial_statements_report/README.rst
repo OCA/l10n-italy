@@ -30,7 +30,8 @@ ITA - Stato patrimoniale e conto economico
 
 **Italiano**
 
-Rendicontazione PDF e XLS per stato patrimoniale e conto economico a sezioni contrapposte.
+Rendicontazione PDF e XLS per stato patrimoniale e conto economico a
+sezioni contrapposte.
 
 **English**
 
@@ -46,19 +47,23 @@ Installation
 
 **Italiano**
 
-Se questo modulo viene installato in un ambiente dove `l10n_it_account_balance_report` è presente, lo sostituisce.
+Se questo modulo viene installato in un ambiente dove
+l10n_it_account_balance_report è presente, lo sostituisce.
 
 **English**
 
-If this module is installed in an instance where `l10n_it_account_balance_report` is present, it replaces it.
+If this module is installed in an instance where
+l10n_it_account_balance_report is present, it replaces it.
 
 Usage
 =====
 
-From your Accounting / Report section, select "Financial Statements Report".
+From your Accounting / Report section, select "Financial Statements
+Report".
 
-This will trigger a wizard, from which you can setup your report configuration.
-From it, you can choose whether should be created, either an HTML interactive view, or a PDF / XLS sheet.
+This will trigger a wizard, from which you can setup your report
+configuration. From it, you can choose whether should be created, either
+an HTML interactive view, or a PDF / XLS sheet.
 
 Bug Tracker
 ===========
@@ -74,31 +79,32 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Openforce
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Silvio Gregorini <https://github.com/SilvioGregorini>
-* `Ooops <https://www.ooops404.com>`_
-* `TAKOBI <https://takobi.online>`_:
+-  Silvio Gregorini <https://github.com/SilvioGregorini>
+-  `Ooops <https://www.ooops404.com>`__
+-  `TAKOBI <https://takobi.online>`__:
 
-  * Simone Rubino <sir@takobi.online>
-* `Aion Tech <https://aiontech.company/>`_:
+   -  Simone Rubino <sir@takobi.online>
 
-  * Simone Rubino <simone.rubino@aion-tech.it>
+-  `Aion Tech <https://aiontech.company/>`__:
+
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Odoo Italia Network
+-  Odoo Italia Network
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

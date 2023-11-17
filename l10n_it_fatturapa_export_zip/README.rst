@@ -30,11 +30,13 @@ ITA - Fattura elettronica - Export ZIP
 
 **Italiano**
 
-Questo modulo aggiunge una procedura per esportare in uno ZIP diversi file XML di fatture elettroniche.
+Questo modulo aggiunge una procedura per esportare in uno ZIP diversi
+file XML di fatture elettroniche.
 
 **English**
 
-This module adds a wizard to export several XML e-invoice files into a ZIP file.
+This module adds a wizard to export several XML e-invoice files into a
+ZIP file.
 
 **Table of contents**
 
@@ -55,18 +57,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Efatto.it di Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <info@efatto.it>
-* Lorenzo Battistini <https://github.com/eLBati>
+-  Sergio Corato <info@efatto.it>
+-  Lorenzo Battistini <https://github.com/eLBati>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
