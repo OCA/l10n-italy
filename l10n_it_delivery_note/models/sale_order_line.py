@@ -61,6 +61,6 @@ class SaleOrderLine(models.Model):
         return bool(self.move_ids & picking_ids.mapped("move_ids"))
 
     def retrieve_pickings_lines(self, picking_ids):
-        return self.filtered(lambda l: l.has_picking).filtered(
-            lambda l: l.is_pickings_related(picking_ids)
+        return self.filtered(lambda line: line.has_picking).filtered(
+            lambda line: line.is_pickings_related(picking_ids)
         )
