@@ -54,6 +54,16 @@
                         placeholder="RT Serial"
                     />
                 </div>
+                <div class='client-detail'>
+                    <div class='label'>Full Refund</div>
+                    <input
+                        id="refund_full_refund"
+                        class="detail refund_full_refund"
+                        type='checkbox'
+                        t-att-value="props.refund_full_refund || ''"
+                        t-ref="inputRefundFullRefund"
+                    />
+                </div>
 
                 <div class="footer">
                     <div class="button confirm" t-on-click="clickConfirmRefund">

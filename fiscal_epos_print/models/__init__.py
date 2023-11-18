@@ -6,4 +6,6 @@ from . import account_journal
 from . import pos_order
 from . import pos_session
 from . import res_config_settings
+from . import res_users
+from . import hr_employee_base
 from . import hr_employee

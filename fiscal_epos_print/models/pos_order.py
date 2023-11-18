@@ -8,7 +8,7 @@ class PosOrder(models.Model):
     refund_report = fields.Integer(string="Closure reference")
     refund_doc_num = fields.Integer(string="Document Number")
     refund_cash_fiscal_serial = fields.Char(string="Refund Cash Serial")
-
+    refund_full_refund = fields.Boolean(string="Full Refund", default=False)
     fiscal_receipt_number = fields.Integer(
         string="Fiscal receipt number",
     )
@@ -32,6 +32,7 @@ class PosOrder(models.Model):
         res["refund_cash_fiscal_serial"] = ui_order.get(
             "refund_cash_fiscal_serial", False
         )
+        res["refund_full_refund"] = ui_order.get("refund_full_refund", False)
         res["fiscal_receipt_number"] = ui_order.get("fiscal_receipt_number", False)
         res["fiscal_receipt_amount"] = ui_order.get("fiscal_receipt_amount", False)
         res["fiscal_receipt_date"] = ui_order.get("fiscal_receipt_date", False)
@@ -65,10 +66,9 @@ class PosOrder(models.Model):
         fiscal_printer_serial = (
             pos_order.get("fiscal_printer_serial")
             or self.config_id.fiscal_printer_serial
-            )
-
+        )
         fiscal_operator_number = pos_order.get("fiscal_operator_number")
-        
+
         if po:
             po.write(
                 {
@@ -101,6 +101,7 @@ class PosOrder(models.Model):
                 "refund_report": order.refund_report,
                 "refund_doc_num": order.refund_doc_num,
                 "refund_cash_fiscal_serial": order.refund_cash_fiscal_serial,
+                "refund_full_refund": order.refund_full_refund,
                 "fiscal_receipt_number": order.fiscal_receipt_number,
                 "fiscal_receipt_amount": order.fiscal_receipt_amount,
                 "fiscal_receipt_date": order.fiscal_receipt_date,
