@@ -133,7 +133,9 @@ odoo.define("fiscal_epos_print.EpsonFP81IIComponent", function (require) {
                 body: _t("Please confirm to reprint the last receipt"),
             });
             if (confirmed) {
-                fp90.printFiscalReprintLast();
+                fp90.printFiscalReprintLast(
+                    this.env.pos.cashier.fiscal_operator_number || "1"
+                );
             } else {
                 // TODO not exist
                 // this.chrome.loading_hide();
@@ -163,8 +165,10 @@ odoo.define("fiscal_epos_print.EpsonFP81IIComponent", function (require) {
                 body: _t("Please confirm to execute the Printer Fiscal Closure"),
             });
             if (confirmed) {
-                //                Fp90.printFiscalReport();
-                fp90.printFiscalXZReport();
+                // Fp90.printFiscalReport();
+                fp90.printFiscalXZReport(
+                    this.env.pos.cashier.fiscal_operator_number || "1"
+                );
             } else {
                 // TODO not exist
                 // this.chrome.loading_hide();
@@ -186,7 +190,9 @@ odoo.define("fiscal_epos_print.EpsonFP81IIComponent", function (require) {
                 ),
             });
             if (confirmed) {
-                fp90.printFiscalXReport();
+                fp90.printFiscalXReport(
+                    this.env.pos.cashier.fiscal_operator_number || "1"
+                );
             } else {
                 // TODO not exist
                 // this.chrome.loading_hide();

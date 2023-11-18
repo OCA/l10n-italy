@@ -26,6 +26,14 @@ odoo.define("fiscal_epos_print.SetRefundInfoButton", function (require) {
         async onClickRefund() {
             var self = this;
             var current_order = this.env.pos.get_order();
+            if (current_order.refund_date === null || current_order.refund_date === "") {
+                this.showPopup("ErrorPopup", {
+                    title: _t("Error"),
+                    body: _t(
+                        "Must select a refund order before clicking on this button!"
+                    ),
+                });
+            }
             var dd = ("0" + current_order.refund_date.getDate()).slice(-2);
             var mm = ("0" + (current_order.refund_date.getMonth() + 1)).slice(-2);
             var yyyy = current_order.refund_date.getFullYear();
