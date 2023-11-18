@@ -27,7 +27,9 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
             sendToFP90Printer(receipt, printer_options) {
                 var fp90 = new eposDriver(printer_options, this);
                 fp90.printFiscalReceipt(receipt);
-                this.env.pos.context = {};
+                // This line causes problems on bill split. What's the sense of deleting the actual pos context?!
+                // It regenerates orders wich are already partly paid using split function...
+                // this.env.pos.context = {};
             }
 
             async _finalizeValidation() {
