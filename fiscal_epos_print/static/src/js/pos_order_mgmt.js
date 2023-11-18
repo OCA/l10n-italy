@@ -18,12 +18,14 @@ odoo.define("fiscal_epos_print.pos_order_mgmt", function (require) {
                 order.refund_date = order_data.refund_date;
                 order.refund_doc_num = order_data.refund_doc_num;
                 order.refund_cash_fiscal_serial = order_data.refund_cash_fiscal_serial;
+                order.refund_full_refund = order_data.refund_full_refund;
             } else if (action === "return") {
                 order.lottery_code = order_data.lottery_code;
                 order.refund_report = order_data.fiscal_z_rep_number;
                 order.refund_date = order_data.fiscal_receipt_date;
                 order.refund_doc_num = order_data.fiscal_receipt_number;
                 order.refund_cash_fiscal_serial = order_data.fiscal_printer_serial;
+                order.refund_full_refund = order_data.refund_full_refund;
             }
             // For action === 'copy' we don't need to do anything
             return order;
