@@ -15,6 +15,7 @@ odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
             this.inputRefundDate = useRef("inputRefundDate");
             this.inputRefundDocNum = useRef("inputRefundDocNum");
             this.inputRefundCashFiscalSerial = useRef("inputRefundCashFiscalSerial");
+            this.inputRefundFullRefund = useRef("inputRefundFullRefund");
             this.inputDatePicker = this.initializeDatePicker();
         }
 
@@ -24,9 +25,10 @@ odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
             function allValid() {
                 return self.$el
                     .find("input")
+                    .not("#refund_full_refund")
                     .toArray()
                     .every(function (element) {
-                        return element.value && element.value !== "";
+                        return element.value && element.value != "";
                     });
             }
 
@@ -39,18 +41,21 @@ odoo.define("fiscal_epos_print.RefundInfoPopup", function (require) {
                 var refund_cash_fiscal_serial = this.$el
                     .find("#refund_cash_fiscal_serial")
                     .val();
+                var refund_full_refund = this.$el.find("#refund_full_refund").val();
                 this.env.pos.context = {
                     refund_details: true,
                     refund_date: refund_date,
                     refund_report: refund_report,
                     refund_doc_num: refund_doc_num,
                     refund_cash_fiscal_serial: refund_cash_fiscal_serial,
+                    refund_full_refund: refund_full_refund,
                 };
                 this.env.pos.set_refund_data(
                     refund_date,
                     refund_report,
                     refund_doc_num,
-                    refund_cash_fiscal_serial
+                    refund_cash_fiscal_serial,
+                    refund_full_refund
                 );
                 if (
                     this.props.update_refund_info_button &&

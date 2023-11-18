@@ -18,7 +18,9 @@
     "website": "https://github.com/OCA/l10n-italy",
     "maintainers": ["eLBati"],
     "depends": [
-        "point_of_sale","hr","pos_hr",
+        "point_of_sale",
+        "hr",
+        "pos_hr",
         # TODO is this necessary?
         # 'pos_order_mgmt'
     ],
