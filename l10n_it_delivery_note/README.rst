@@ -216,6 +216,10 @@ Contributors
       -  Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
       -  Sebastiano Picchi <sebastiano.picchi@pytech.it>
 
+-  `Aion Tech <https://aiontech.company/>`__:
+
+   -  Simone Rubino <simone.rubino@aion-tech.it>
+
 Maintainers
 -----------
 
