@@ -15,3 +15,5 @@
    * Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
    * Sebastiano Picchi <sebastiano.picchi@pytech.it>
 * Sergio Corato <https://github.com/sergiocorato>
+* `Aion Tech <https://aiontech.company>`_:
+   * Simone Rubino <simone.rubino@aion-tech.it>
