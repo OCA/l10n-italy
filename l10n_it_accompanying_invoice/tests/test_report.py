@@ -1,17 +1,21 @@
 # Copyright 2020 Simone Vanin - Agile Business Group
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import odoo.tests
+
+from odoo.tests import tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestReport(odoo.tests.TransactionCase):
+@tagged("post_install", "-at_install")
+class TestReport(AccountTestInvoicingCommon):
     def test_report(self):
-        report = self.env["ir.actions.report"]._get_report_from_name(
-            "l10n_it_accompanying_invoice.accompanying_invoice_template"
+        invoice = self.init_invoice(
+            "out_invoice",
         )
 
-        partner1 = self.env.ref("base.res_partner_1")
-        invoice = self.env["account.invoice"].create({"partner_id": partner1.id})
-
-        html = report.render_qweb_html([invoice.id])
-
+        html = self.env["ir.actions.report"]._render_qweb_html(
+            "l10n_it_accompanying_invoice.shipping_invoice_template",
+            [invoice.id],
+        )
         self.assertTrue(html)
