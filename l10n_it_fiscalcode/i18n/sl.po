@@ -249,13 +249,24 @@ msgstr "Priimek"
 #. odoo-python
 #: code:addons/l10n_it_fiscalcode/model/res_partner.py:0
 #, python-format
-msgid "The fiscal code doesn't seem to be correct."
-msgstr "Kaže, da je fiskalna koda nepravilna."
+msgid "The fiscal code isn't valid."
+msgstr ""
+
+#. module: l10n_it_fiscalcode
+#. odoo-python
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:0
+#, python-format
+msgid "The fiscal code must have 16 characters."
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__var_date
 msgid "Variation date"
 msgstr "Variacija datuma"
+
+#, python-format
+#~ msgid "The fiscal code doesn't seem to be correct."
+#~ msgstr "Kaže, da je fiskalna koda nepravilna."
 
 #~ msgid "Creation date"
 #~ msgstr "Datum nastanka"
