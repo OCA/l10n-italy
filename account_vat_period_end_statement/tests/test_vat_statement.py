@@ -1,5 +1,6 @@
 #  Copyright 2015 Agile Business Group <http://www.agilebg.com>
 #  Copyright 2022 Simone Rubino - TAKOBI
+#  Copyright 2023 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields
@@ -225,3 +226,36 @@ class TestTax(TestVATStatementCommon):
             other_statement.previous_credit_vat_amount,
             -other_last_year_statement.authority_vat_amount,
         )
+
+    def test_create_move_with_payment_term(self):
+        """When there is a payment term, the move can be created."""
+        # Arrange
+        date_range = self.current_period
+        out_invoice = self.init_invoice(
+            "out_invoice",
+            invoice_date=self.recent_date,
+            amounts=[
+                100,
+            ],
+            taxes=self.account_tax_22,
+            post=True,
+        )
+        statement = self._get_statement(
+            date_range,
+            self.last_year_date,
+            self.env["account.account"].browse(),
+            payment_term=self.env.ref("account.account_payment_term_advance_60days"),
+        )
+        # pre-condition
+        self.assertTrue(statement.payment_term_id)
+        self.assertIn(date_range, statement.date_range_ids)
+        date_range_domain = date_range.get_domain("invoice_date")
+        date_range_invoices = self.invoice_model.search(date_range_domain)
+        self.assertIn(out_invoice, date_range_invoices)
+
+        # Act
+        statement.create_move()
+
+        # Assert
+        move = statement.move_id
+        self.assertEqual(move.amount_total, 22)

@@ -1,5 +1,6 @@
 #  Copyright 2015 Agile Business Group <http://www.agilebg.com>
 #  Copyright 2022 Simone Rubino - TAKOBI
+#  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from datetime import date, datetime
@@ -157,16 +158,18 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         bill.action_post()
         return bill
 
-    def _get_statement(self, period, statement_date, accounts):
+    def _get_statement(self, period, statement_date, accounts, payment_term=None):
         """
         Create a VAT Statement in date `statement_date`
         for Period `period` and Accounts `accounts`.
         """
+        if payment_term is None:
+            payment_term = self.account_payment_term
         # Create statement
         statement_form = Form(self.vat_statement_model)
         statement_form.journal_id = self.general_journal
         statement_form.authority_vat_account_id = self.vat_authority
-        statement_form.payment_term_id = self.account_payment_term
+        statement_form.payment_term_id = payment_term
         statement_form.date = statement_date
         statement_form.account_ids.clear()
         for account in accounts:

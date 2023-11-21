@@ -13,3 +13,5 @@
 - Salvo Rapisarda \<<sdrapisarda@gmail.com>\>
 - [TAKOBI](https://takobi.online):
   - Simone Rubino \<<sir@takobi.online>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>
