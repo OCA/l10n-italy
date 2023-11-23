@@ -1,3 +1,5 @@
+import math
+
 from odoo import _, api, models
 from odoo.tools import float_compare
 
@@ -52,7 +54,16 @@ class Invoice(models.Model):
         if any(self.invoice_line_ids.mapped("rc")) and self.e_invoice_amount_total:
             error_message = ""
             amount_added_for_rc = self.get_tax_amount_added_for_rc()
-            amount_total = self.amount_total - amount_added_for_rc
+            rounding_value = 0.01
+            if self.currency_id.rounding:
+                rounding_value = self.currency_id.rounding
+            rounding_digits = int(math.ceil(math.log10(1 / rounding_value)))
+            rounding_factor = math.pow(10, rounding_digits)
+            rounded_amount_total = (
+                self.amount_total - amount_added_for_rc
+            ) * rounding_factor
+            int_amnt_total = math.trunc(rounded_amount_total)
+            amount_total = int_amnt_total / rounding_factor
             if (
                 float_compare(
                     amount_total,
