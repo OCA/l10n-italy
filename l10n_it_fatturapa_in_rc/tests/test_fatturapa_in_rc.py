@@ -219,7 +219,7 @@ class TestInvoiceRC(FatturapaCommon):
 
     def test_01_xml_import(self):
         res = self.run_wizard(
-            "test1", "IT01234567890_FPR05.xml", module_name="l10n_it_fatturapa_in_rc"
+            "test2", "IT01234567890_FPR05.xml", module_name="l10n_it_fatturapa_in_rc"
         )
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
@@ -248,7 +248,7 @@ class TestInvoiceRC(FatturapaCommon):
         partner = invoice.partner_id
         partner.e_invoice_detail_level = "0"
         res = self.run_wizard(
-            "test1", "IT01234567890_FPR05.xml", module_name="l10n_it_fatturapa_in_rc"
+            "test3", "IT01234567890_FPR05.xml", module_name="l10n_it_fatturapa_in_rc"
         )
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
