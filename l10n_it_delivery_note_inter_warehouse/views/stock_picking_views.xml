@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Copyright 2023 Ooops404
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="stock_picking_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="l10n_it_delivery_note.stock_picking_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//form/sheet/group/group/field[@name='partner_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'required': [('type_inter_warehouse_transfer','=',True)]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
