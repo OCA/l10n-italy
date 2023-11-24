@@ -43,4 +43,15 @@
         action="riba_presentation_action"
         sequence="99"
     />
+
+    <record id="presentation_riba_action_server" model="ir.actions.server">
+        <field name="name">Presentation Riba</field>
+        <field name="model_id" ref="account.model_account_move_line" />
+        <field
+            name="binding_model_id"
+            ref="l10n_it_ricevute_bancarie.model_account_move_line"
+        />
+        <field name="state">code</field>
+        <field name="code">action = records.action_open_presentation_riba_wiz()</field>
+    </record>
 </odoo>
