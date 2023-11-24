@@ -1152,6 +1152,7 @@ msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie.riba_presentation_action
+#: model:ir.actions.server,name:l10n_it_ricevute_bancarie.presentation_riba_action_server
 #: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_presentation_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.wizard_presentation_riba
 msgid "Presentation Riba"
