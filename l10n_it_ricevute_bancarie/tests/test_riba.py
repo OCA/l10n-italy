@@ -32,7 +32,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             self.invoice.invoice_line_ids[2].product_id.id, self.service_due_cost.id
         )
         # ---- Test Cost line is equal to 10.00
-        self.assertEqual(
+        self.assertAlmostEqual(
             (
                 self.invoice.invoice_line_ids[1].price_unit
                 + self.invoice.invoice_line_ids[2].price_unit
