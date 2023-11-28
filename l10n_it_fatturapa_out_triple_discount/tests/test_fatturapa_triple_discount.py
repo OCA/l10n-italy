@@ -21,6 +21,7 @@ class TestEInvoiceTripleDiscount(Common):
             partner=partner,
             products=self.product_product_10,
             taxes=self.tax_22,
+            currency=self.env.user.company_id.currency_id,
         )
         invoice_form = Form(invoice)
         invoice_form.invoice_payment_term_id = self.account_payment_term

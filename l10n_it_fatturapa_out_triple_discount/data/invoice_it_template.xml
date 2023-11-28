@@ -5,7 +5,7 @@
   -->
 <odoo>
     <template
-        id="account_invoice_it_dati_bollo"
+        id="account_invoice_it_triple_discount"
         inherit_id="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione"
     >
         <ScontoMaggiorazione position="after">
@@ -18,8 +18,8 @@
                 t-as="ScontoMaggiorazione_values"
             >
                 <ScontoMaggiorazione t-translation="off">
-                    <Tipo t-out="ScontoMaggiorazione_values['Tipo']" />
-                    <Percentuale t-out="ScontoMaggiorazione_values['Percentuale']" />
+                    <Tipo t-esc="ScontoMaggiorazione_values['Tipo']" />
+                    <Percentuale t-esc="ScontoMaggiorazione_values['Percentuale']" />
                 </ScontoMaggiorazione>
             </t>
         </ScontoMaggiorazione>
