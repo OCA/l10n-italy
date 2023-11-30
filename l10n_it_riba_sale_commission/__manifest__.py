@@ -12,7 +12,7 @@
     "application": False,
     "installable": True,
     "depends": [
-        "sale_commission",
+        "sale_commission_partial_settlement",
         "l10n_it_ricevute_bancarie",
     ],
     "data": [
