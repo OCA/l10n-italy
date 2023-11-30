@@ -316,7 +316,7 @@ class AccountMove(models.Model):
         "invoice_line_ids.price_subtotal",
         "withholding_tax_line_ids.tax",
         "amount_total",
-        # "payment_move_line_ids",
+        "amount_total_signed",
     )
     def _compute_amount_withholding_tax(self):
         dp_obj = self.env["decimal.precision"]
@@ -326,6 +326,9 @@ class AccountMove(models.Model):
                 withholding_tax_amount += float_round(
                     wt_line.tax, dp_obj.precision_get("Account")
                 )
+            invoice.amount_net_pay_signed = invoice.amount_total_signed - (
+                withholding_tax_amount * (-1 if invoice.amount_total_signed < 0 else 1)
+            )
             invoice.amount_net_pay = invoice.amount_total - withholding_tax_amount
             amount_net_pay_residual = invoice.amount_net_pay
             invoice.withholding_tax_amount = withholding_tax_amount
@@ -368,6 +371,13 @@ class AccountMove(models.Model):
         compute="_compute_amount_withholding_tax",
         digits="Account",
         string="Net To Pay",
+        store=True,
+        readonly=True,
+    )
+    amount_net_pay_signed = fields.Float(
+        compute="_compute_amount_withholding_tax",
+        digits="Account",
+        string="Net To Pay Signed",
         store=True,
         readonly=True,
     )
