@@ -31,6 +31,10 @@ class StockDeliveryNote(models.Model):
                 lambda x: x.delivery_note_id.id == note.id and x.intercompany_picking_id
             ).intercompany_picking_id
             if intercompany_picking_id:
+                # We want to give access to the referenced
+                # delivery note only in this specific case
+                intercompany_picking_id = intercompany_picking_id.sudo()
+
                 intercompany_note = intercompany_picking_id.delivery_note_id
                 note.partner_ref = intercompany_note.name
 
