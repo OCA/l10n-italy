@@ -328,6 +328,14 @@ class AccountMove(models.Model):
             line.with_context(check_move_validity=False).update(
                 {"price_unit": -line.price_unit}
             )
+        for line in self.line_ids:
+            if (
+                not line.amount_currency
+                and self.company_id.currency_id == self.currency_id
+            ):
+                # force updating amount_currency,
+                # computed like in account.move.line.create
+                line.amount_currency = line.balance
 
 
 class FatturapaArticleCode(models.Model):
