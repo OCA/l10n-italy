@@ -375,6 +375,7 @@ class StockPicking(models.Model):
         partner_id = self.mapped("partner_id")
         src_location_id = self.mapped("location_id")
         dest_location_id = self.mapped("location_dest_id")
+        picking_type_code = self.mapped("picking_type_code")
 
         src_warehouse_id = src_location_id.warehouse_id
         dest_warehouse_id = dest_location_id.warehouse_id
@@ -383,16 +384,16 @@ class StockPicking(models.Model):
         dest_partner_id = dest_warehouse_id.partner_id
 
         if not src_partner_id:
-            src_partner_id = partner_id
+            if picking_type_code == ["outgoing"]:
+                src_partner_id = self.company_id.partner_id
+            else:
+                src_partner_id = partner_id or self.company_id.partner_id
 
-            if not dest_partner_id:
-                raise ValueError(
-                    "Fields 'src_partner_id' and 'dest_partner_id' "
-                    "cannot be both unset."
-                )
-
-        elif not dest_partner_id:
-            dest_partner_id = partner_id
+        if not dest_partner_id:
+            if picking_type_code == ["incoming"]:
+                dest_partner_id = self.company_id.partner_id
+            else:
+                dest_partner_id = partner_id or self.company_id.partner_id
 
         return (src_partner_id, dest_partner_id)
 
