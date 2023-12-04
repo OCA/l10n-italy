@@ -16,7 +16,7 @@ from odoo.addons.l10n_it_reverse_charge.tests.rc_common import ReverseChargeComm
 class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
     def setUp(self):
         super().setUp()
-
+        self.maxDiff = None
         # XXX - a company named "YourCompany" already exists
         # we move it out of the way but we should do better here
         self.env.company.sudo().search([("name", "=", "YourCompany")]).write(
@@ -234,4 +234,41 @@ class TestFatturaPAXMLValidation(ReverseChargeCommon, FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(
             xml_content, "IT10538570960_00004.xml", "l10n_it_fatturapa_out_rc"
+        )
+
+    def test_extra_EU_with_light_VAT(self):
+        self.set_sequences(28, "2020-12-01", sequence_name=self.bill_sequence_name)
+        self.supplier_extraEU.property_payment_term_id = self.term_15_30.id
+
+        invoice_form = self._create_invoice(
+            move_type="in_invoice",
+            partner=self.supplier_extraEU,
+            name="BILL/2021/12/0005",
+            invoice_date="2020-12-01",
+            ref="EXEU-SUPPLIER-REF",
+            taxes=self.tax_0_pur,
+        )
+        invoice = invoice_form.save()
+        invoice.action_post()
+        self_invoice = invoice.rc_self_purchase_invoice_id.rc_self_invoice_id
+
+        self.assertEqual(self_invoice.fiscal_document_type_id.code, "TD17")
+        with self.assertRaises(UserError):
+            # Impossible to set IdFiscaleIVA
+            self.run_wizard(self_invoice.id)
+        self.supplier_extraEU.vat = "IT02423590971"
+        with self.assertRaises(UserError):
+            # Street is not set
+            self.run_wizard(self_invoice.id)
+        self.supplier_extraEU.street = "Street"
+        self.supplier_extraEU.zip = "12345"
+        self.supplier_extraEU.city = "city"
+        self.supplier_extraEU.country_id = self.env.ref("base.us")
+        self.supplier_extraEU.is_company = True
+        res = self.run_wizard(self_invoice.id)
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT10538570960_00005.xml")
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(
+            xml_content, "IT10538570960_00005.xml", "l10n_it_fatturapa_out_rc"
         )

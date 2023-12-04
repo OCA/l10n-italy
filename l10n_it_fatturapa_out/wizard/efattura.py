@@ -112,6 +112,10 @@ class EFatturaOut:
             if partner.vat:
                 if id_paese == "IT" and partner.vat.startswith("IT"):
                     id_codice = partner.vat[2:]
+                elif id_paese != "IT" and partner.vat.startswith("IT"):
+                    # this is a light italian VAT of a non-italian vendor
+                    id_paese = partner.vat[:2]
+                    id_codice = partner.vat[2:]
                 else:
                     id_codice = partner.vat
             elif partner.fiscalcode or id_paese == "IT":
