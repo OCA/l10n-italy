@@ -339,6 +339,7 @@ class StockPicking(models.Model):
         )
         return self.env["stock.delivery.note"].create(
             {
+                "company_id": self.company_id.id,
                 "partner_sender_id": partners[0].id,
                 "partner_id": self.sale_id.partner_id.id
                 if self.sale_id

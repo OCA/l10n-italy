@@ -48,13 +48,18 @@ class StockDeliveryNote(models.Model):
     ]
     _description = "Delivery Note"
     _order = "date DESC, id DESC"
+    _check_company_auto = True
 
     def _default_company(self):
         return self.env.company
 
     def _default_type(self):
         return self.env["stock.delivery.note.type"].search(
-            [("code", "=", DOMAIN_PICKING_TYPES[1])], limit=1
+            [
+                ("code", "=", DOMAIN_PICKING_TYPES[1]),
+                ("company_id", "=", self.env.company.id),
+            ],
+            limit=1,
         )
 
     def _default_volume_uom(self):
@@ -238,12 +243,16 @@ class StockDeliveryNote(models.Model):
     )
 
     picking_ids = fields.One2many(
-        "stock.picking", "delivery_note_id", string="Pickings"
+        "stock.picking",
+        "delivery_note_id",
+        string="Pickings",
+        check_company=True,
     )
     pickings_picker = fields.Many2many(
         "stock.picking",
         compute="_compute_get_pickings",
         inverse="_inverse_set_pickings",
+        check_company=True,
     )
 
     picking_type = fields.Selection(

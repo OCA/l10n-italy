@@ -21,9 +21,9 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         picking_ids = self.env["stock.picking"].browse(active_ids)
         if picking_ids:
             type_code = picking_ids[0].picking_type_id.code
-
+            company_id = picking_ids[0].company_id
             return self.env["stock.delivery.note.type"].search(
-                [("code", "=", type_code)], limit=1
+                [("code", "=", type_code), ("company_id", "=", company_id.id)], limit=1
             )
 
         else:
@@ -69,6 +69,8 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
 
     def _prepare_delivery_note_vals(self, sale_order_id):
         return {
+            "company_id": self.selected_picking_ids.mapped("company_id")[:1].id
+            or False,
             "partner_sender_id": self.partner_sender_id.id,
             "partner_id": self.partner_id.id,
             "partner_shipping_id": self.partner_shipping_id.id,
