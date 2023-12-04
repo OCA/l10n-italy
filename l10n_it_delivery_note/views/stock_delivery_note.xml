@@ -139,6 +139,7 @@
                             <field
                                 name="company_id"
                                 options="{'no_create': True}"
+                                attrs="{'readonly': [('pickings_picker', '!=', [])]}"
                                 groups="base.group_multi_company"
                             />
                             <field
