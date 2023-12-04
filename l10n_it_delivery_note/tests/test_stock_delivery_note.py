@@ -1,6 +1,7 @@
 # Copyright 2021 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.exceptions import UserError
 from odoo.tests import new_test_user
 from odoo.tests.common import Form
 
@@ -111,3 +112,11 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         picking.delivery_note_id.action_confirm()
         self.assertEqual(picking.delivery_note_id.state, "confirm")
         self.assertEqual(picking.delivery_note_id.invoice_status, "no")
+
+        test_company = self.env["res.company"].create({"name": "Test Company"})
+        with self.assertRaises(UserError) as exc:
+            picking.delivery_note_id.write({"company_id": test_company.id})
+        exc_message = exc.exception.args[0]
+        self.assertIn("type_id", exc_message)
+        self.assertIn("picking_ids", exc_message)
+        self.assertIn("belongs to another company", exc_message)
