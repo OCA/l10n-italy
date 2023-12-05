@@ -85,6 +85,7 @@
                     string="RIBA Issued"
                     domain="[('distinta_line_ids', '!=', False)]"
                 />
+                <separator />
                 <filter
                     name="reconciled"
                     string="Reconciled"
