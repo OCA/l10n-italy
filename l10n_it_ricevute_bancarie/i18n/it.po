@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-20 06:12+0000\n"
-"PO-Revision-Date: 2023-10-13 10:37+0000\n"
+"PO-Revision-Date: 2023-12-05 14:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -657,7 +657,7 @@ msgstr "Riga distinta"
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Move line"
-msgstr "Move line"
+msgstr "Riga movimento"
 
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
