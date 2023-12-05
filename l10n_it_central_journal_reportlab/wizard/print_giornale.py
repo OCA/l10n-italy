@@ -201,19 +201,19 @@ class WizardGiornaleReportlab(models.TransientModel):
     def get_template_header_report_giornale(self, report, height_available):
         report.setFont("Helvetica-Bold", 12)
         height_available -= gap
-        report.drawString(margin_left, height_available, self.env.user.company_id.name)
+        report.drawString(margin_left, height_available, self.company_id.name)
         report.setFont("Helvetica", 10)
         text = ""
-        if self.env.user.company_id.street:
-            text += self.env.user.company_id.street
-        if self.env.user.company_id.zip:
-            text += " " + self.env.user.company_id.zip
-        if self.env.user.company_id.city:
-            text += " - " + self.env.user.company_id.city
-        if self.env.user.company_id.state_id.code:
-            text += " - " + self.env.user.company_id.state_id.code
-        if self.env.user.company_id.vat:
-            text += " IVA: " + self.env.user.company_id.vat
+        if self.company_id.street:
+            text += self.company_id.street
+        if self.company_id.zip:
+            text += " " + self.company_id.zip
+        if self.company_id.city:
+            text += " - " + self.company_id.city
+        if self.company_id.state_id.code:
+            text += " - " + self.company_id.state_id.code
+        if self.company_id.vat:
+            text += " IVA: " + self.company_id.vat
         height_available -= gap_text
         report.drawString(margin_left, height_available, text)
         return height_available
