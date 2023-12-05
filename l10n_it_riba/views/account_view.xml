@@ -89,6 +89,7 @@
                     string="Issued RiBas"
                     domain="[('slip_line_ids', '!=', False)]"
                 />
+            <separator />
             <filter
                     name="reconciled"
                     string="Reconciled"
