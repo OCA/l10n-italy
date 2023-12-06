@@ -101,6 +101,12 @@
                     string="Past Due"
                     domain="[('unsolved_invoice_ids', '!=', False)]"
                 />
+                <separator />
+                <filter
+                    name="posted"
+                    string="Posted"
+                    domain="[('parent_state', '=', 'posted')]"
+                />
             </xpath>
         </field>
     </record>
@@ -118,7 +124,7 @@
         >['&amp;','|',('riba','=','True'),('unsolved_invoice_ids','!=',False),('account_id.internal_type','=','receivable')]</field>
         <field
             name="context"
-        >{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
+        >{'search_default_da_emettere':1, 'search_default_to_reconcile':1, 'search_default_posted':1}</field>
     </record>
 
 
