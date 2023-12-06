@@ -8,6 +8,7 @@
 import time
 
 from odoo import api, models
+from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
 
@@ -19,11 +20,15 @@ class VatPeriodEndStatementReport(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         docs = self.env["account.vat.period.end.statement"].browse(docids)
+        companies = docs.mapped("company_id")
+        if len(companies) != 1:
+            raise UserError(_("You must select documents from the same company!"))
+        company = companies[0]
         vals = {
             "docs": docs,
             "time": time,
-            "tax_amounts": self._get_taxes_amounts,
-            "account_vat_amounts": self._get_account_vat_amounts,
+            "tax_amounts": self.with_company(company)._get_taxes_amounts,
+            "account_vat_amounts": self.with_company(company)._get_account_vat_amounts,
             "formatLang": formatLang,
             "env": self.env,
         }
