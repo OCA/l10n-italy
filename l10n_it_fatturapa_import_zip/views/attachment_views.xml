@@ -107,11 +107,7 @@
         <field name="name">fatturapa_attachment_import_zip_tree</field>
         <field name="model">fatturapa.attachment.import.zip</field>
         <field name="arch" type="xml">
-            <tree
-                string="Xml Attachment"
-                decoration-info="state == 'draft'"
-                decoration-muted="state == 'done'"
-            >
+            <tree decoration-info="state == 'draft'" decoration-muted="state == 'done'">
                 <field name="name" />
                 <field name="create_date" />
                 <field name="state" />
