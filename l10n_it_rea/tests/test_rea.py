@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestRea(TransactionCase):
     def setUp(self):
-        super(TestRea, self).setUp()
+        super().setUp()
         self.company = self.env.ref("base.main_company")
         self.rome_province = self.env.ref("base.state_it_rm")
         self.partner_model = self.env["res.partner"]
