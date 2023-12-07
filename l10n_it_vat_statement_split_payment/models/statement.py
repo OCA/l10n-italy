@@ -46,7 +46,11 @@ class AccountVatPeriodEndStatement(models.Model):
                 date_start_str = date_range.date_start
                 date_end_str = date_range.date_end
 
-                date_string = _("from {} to {}").format(date_start_str, date_end_str)
+                date_string = _(
+                    "from %(start)s to %(end)s",
+                    start=date_start_str,
+                    end=date_end_str,
+                )
 
                 for group_key in grouped_lines:
                     amount = 0.0
