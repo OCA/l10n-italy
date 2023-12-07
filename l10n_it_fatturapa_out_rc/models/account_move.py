@@ -109,7 +109,8 @@ class AccountMove(models.Model):
         fiscal_document_type_codes = invoices_with_rc.mapped(
             "fiscal_document_type_id.code"
         )
-        # TD17, TD18 e TD19 solo per partner esteri; in caso contrario il file viene scartato
+        # TD17, TD18 e TD19 solo per partner esteri;
+        # in caso contrario il file viene scartato
         ccode = rc_suppliers.country_id.code
         if ccode == "IT" and any(
             [x in ["TD17", "TD18", "TD19"] for x in fiscal_document_type_codes]
