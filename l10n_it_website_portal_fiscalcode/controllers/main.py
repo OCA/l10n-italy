@@ -11,9 +11,9 @@ CustomerPortal.OPTIONAL_BILLING_FIELDS.extend(["fiscalcode"])
 
 class WebsitePortalFiscalCode(CustomerPortal):
     def details_form_validate(self, data, partner_creation=False):
-        error, error_message = super(
-            WebsitePortalFiscalCode, self
-        ).details_form_validate(data, partner_creation=partner_creation)
+        error, error_message = super().details_form_validate(
+            data, partner_creation=partner_creation
+        )
         # Check fiscalcode
         partner = request.env.user.partner_id
         # company_type does not come from page form
