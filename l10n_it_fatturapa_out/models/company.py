@@ -62,7 +62,7 @@ class AccountConfigSettings(models.TransientModel):
 
     @api.onchange("company_id")
     def onchange_company_id(self):
-        res = super(AccountConfigSettings, self).onchange_company_id()
+        res = super().onchange_company_id()
         if self.company_id:
             company = self.company_id
             self.max_invoice_in_xml = company.max_invoice_in_xml or 0

@@ -127,7 +127,7 @@ class FatturaPAAttachment(models.Model):
             attachment_out.state = "ready"
 
     def write(self, vals):
-        res = super(FatturaPAAttachment, self).write(vals)
+        res = super().write(vals)
         if "datas" in vals and "message_ids" not in vals:
             for attachment in self:
                 attachment.message_post(
@@ -147,7 +147,7 @@ class FatturaPAAttachment(models.Model):
                 invoice.fatturapa_doc_attachments.filtered(
                     "is_pdf_invoice_print"
                 ).unlink()
-        return super(FatturaPAAttachment, self).unlink()
+        return super().unlink()
 
 
 class FatturaAttachments(models.Model):

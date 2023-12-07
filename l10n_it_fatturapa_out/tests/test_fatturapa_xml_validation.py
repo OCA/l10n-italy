@@ -39,7 +39,7 @@ class TestDuplicatedAttachment(FatturaPACommon):
 @tagged("post_install", "-at_install")
 class TestFatturaPAXMLValidation(FatturaPACommon):
     def setUp(self):
-        super(TestFatturaPAXMLValidation, self).setUp()
+        super().setUp()
         self.company = self.env.company = self.sales_journal.company_id
 
         # XXX - a company named "YourCompany" alread exists
