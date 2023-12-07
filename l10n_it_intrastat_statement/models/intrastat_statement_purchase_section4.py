@@ -42,9 +42,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
-        res = super(IntrastatStatementPurchaseSection4, self)._prepare_statement_line(
-            inv_intra_line, statement_id
-        )
+        res = super()._prepare_statement_line(inv_intra_line, statement_id)
         # Period Ref
         ref_period = statement_id._get_period_ref()
 
@@ -64,9 +62,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
         return res
 
     def _export_line_checks(self, section_label, section_number):
-        res = super(IntrastatStatementPurchaseSection4, self)._export_line_checks(
-            section_label, section_number
-        )
+        res = super()._export_line_checks(section_label, section_number)
         if not self.year_id:
             raise ValidationError(
                 _("Missing reference year on 'Purchases - Section 4'")

@@ -13,9 +13,7 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
-        res = super(IntrastatStatementPurchaseSection, self)._prepare_statement_line(
-            inv_intra_line, statement_id
-        )
+        res = super()._prepare_statement_line(inv_intra_line, statement_id)
         company_id = self.env.context.get("company_id", self.env.company)
         invoice_id = inv_intra_line.invoice_id
 
