@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class TestFiscalCode(TransactionCase):
     def setUp(self):
-        super(TestFiscalCode, self).setUp()
+        super().setUp()
 
         self.partner = self.env.ref("base.res_partner_2")
         self.rome_province = self.env.ref("base.state_it_rm")
