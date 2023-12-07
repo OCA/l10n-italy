@@ -485,27 +485,27 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         info = {}
         left_lines = report_data["financial_statements_report_left_lines"]
         right_lines = report_data["financial_statements_report_right_lines"]
-        l, r = left_lines.get(row), right_lines.get(row)
+        left, right = left_lines.get(row), right_lines.get(row)
 
-        if l:
+        if left:
             cols_dict = _extract_financial_statements_report_columns(
                 report_data["columns"], "left"
             )
             for c in cols_dict:
                 value, style, allow = self.get_write_data(
-                    l, cols_dict[c], report, report_data, report_result
+                    left, cols_dict[c], report, report_data, report_result
                 )
-                info[(l["account_id"], (c, row))] = value, style, allow
+                info[(left["account_id"], (c, row))] = value, style, allow
 
-        if r:
+        if right:
             cols_dict = _extract_financial_statements_report_columns(
                 report_data["columns"], "right"
             )
             for c in cols_dict:
                 value, style, allow = self.get_write_data(
-                    r, cols_dict[c], report, report_data, report_result
+                    right, cols_dict[c], report, report_data, report_result
                 )
-                info[(r["account_id"], (c, row))] = value, style, allow
+                info[(right["account_id"], (c, row))] = value, style, allow
 
         return info
 
@@ -566,7 +566,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
             allow = True
 
         if value:
-            if isinstance(value, (int, float)) and cell_type not in (
+            if isinstance(value, int | float) and cell_type not in (
                 "amount",
                 "amount_currency",
             ):
