@@ -7,7 +7,7 @@ from odoo.addons.l10n_it_account.tools.account_tools import fpa_schema_get_enum
 
 class TestFiscalPaymentTerm(TransactionCase):
     def setUp(self):
-        super(TestFiscalPaymentTerm, self).setUp()
+        super().setUp()
         self.term_model = self.env["fatturapa.payment_term"]
         self.method_model = self.env["fatturapa.payment_method"]
 
