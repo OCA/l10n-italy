@@ -879,7 +879,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         )
         self.assertEqual(len(invoice), 1)
         invoice_line = invoice.invoice_line_ids.filtered(
-            lambda l: l.product_id.id == product_id
+            lambda line: line.product_id.id == product_id
         )
         self.assertEqual(len(invoice_line), 1)
 
@@ -1058,7 +1058,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
 class TestFatturaPAEnasarco(FatturapaCommon):
     def setUp(self):
-        super(TestFatturaPAEnasarco, self).setUp()
+        super().setUp()
 
         self.invoice_model = self.env["account.move"]
 

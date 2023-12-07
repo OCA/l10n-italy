@@ -111,7 +111,8 @@ def _fix_xmlstring(xml_string):
         "xmlns:ds='http://www.w3.org/2000/09/xmldsig#'",
         xml_string,
     )
-    # xmlns:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 fatturaordinaria_v1.2.xsd" # noqa: B950
+    # xmlns:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/
+    # docs/xsd/fatture/v1.2 fatturaordinaria_v1.2.xsd"
     xml_string = re.sub(
         r"xmlns:(\S*?)=(\"|')([^\"']*?)(\"|')",
         lambda m: "xmlns:{}={}{}{}".format(
@@ -163,7 +164,7 @@ def CreateFromDocument(xml_string):  # noqa: C901
             if len(result) > 10:
                 msg = (
                     "removed timezone information from date only element "
-                    "%s: %s" % (tree.getpath(element), element.text)
+                    f"{tree.getpath(element)}: {element.text}"
                 )
                 problems.append(msg)
             element.text = result[:10]
@@ -179,8 +180,8 @@ def CreateFromDocument(xml_string):  # noqa: C901
                 element_path = tree.getpath(element)
                 if mandatory:
                     _logger.error(
-                        "element %s is invalid but is mandatory: "
-                        "%s" % (element_path, element.text)
+                        f"element {element_path} is invalid but is mandatory: "
+                        f"{element.text}"
                     )
                 else:
                     element.getparent().remove(element)

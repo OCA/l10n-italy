@@ -409,11 +409,15 @@ class WizardImportFatturapa(models.TransientModel):
                     p_name = partner_model.browse(partner_id).name
                     self.log_inconsistency(
                         _(
-                            "Current invoice is from {} with REA Code"
-                            " {}. Yet it seems that partners {} have the same"
+                            "Current invoice is from %(partner)s with REA Code"
+                            " %(code)s. Yet it seems that"
+                            " partners %(partners)s have the same"
                             " REA Code. This code should be unique; please fix"
-                            " it."
-                        ).format(p_name, rea_nr, rea_names)
+                            " it.",
+                            partner=p_name,
+                            code=rea_nr,
+                            partners=rea_names,
+                        )
                     )
                 else:
                     vals["rea_code"] = REA.NumeroREA
@@ -497,7 +501,8 @@ class WizardImportFatturapa(models.TransientModel):
             self.log_inconsistency(
                 _(
                     "No tax with percentage "
-                    "%(percentage)s and nature %(nature)s found. Please configure this tax.",
+                    "%(percentage)s and nature %(nature)s found. "
+                    "Please configure this tax.",
                     percentage=tax_amount,
                     nature=Natura,
                 )

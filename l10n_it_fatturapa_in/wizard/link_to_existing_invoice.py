@@ -130,7 +130,7 @@ class WizardLinkToInvoice(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(WizardLinkToInvoice, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         attachment = self._get_default_attachment()
         lines_vals = self._get_default_lines_vals(attachment)
         res.update(
