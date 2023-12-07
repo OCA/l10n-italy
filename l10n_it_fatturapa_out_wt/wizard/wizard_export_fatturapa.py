@@ -17,7 +17,7 @@ class WizardExportFatturapa(models.TransientModel):
         def _key(tax_id):
             return tax_id.id
 
-        res = super(WizardExportFatturapa, self).getAllTaxes(invoice)
+        res = super().getAllTaxes(invoice)
         wt_lines_to_write = invoice.withholding_tax_line_ids.filtered(
             lambda x: x.withholding_tax_id.wt_types not in ("ritenuta", "other")
             and x.withholding_tax_id.use_daticassaprev
