@@ -18,7 +18,7 @@ class IrMailServer(models.Model):
                 server.env.user.email = server.email_from_for_fatturaPA
             # no need to revert to correct email: UserError is always raised and
             # rollback done
-        return super(IrMailServer, self).test_smtp_connection()
+        return super().test_smtp_connection()
 
     @api.model
     def _search(
@@ -36,6 +36,4 @@ class IrMailServer(models.Model):
             # In this case (sending normal emails without expliciting SMTP server)
             # the e-invoice PEC server must not be used
             args = [("is_fatturapa_pec", "=", False)]
-        return super(IrMailServer, self)._search(
-            args, offset, limit, order, count, access_rights_uid
-        )
+        return super()._search(args, offset, limit, order, count, access_rights_uid)

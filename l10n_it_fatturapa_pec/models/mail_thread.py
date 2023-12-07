@@ -103,7 +103,7 @@ class MailThread(models.AbstractModel):
                         "fetchmail_user": fetchmail_server.user,
                     }
                 )
-        return super(MailThread, self).message_route(
+        return super().message_route(
             message,
             message_dict,
             model=model,

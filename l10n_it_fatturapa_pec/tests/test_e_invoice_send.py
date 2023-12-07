@@ -10,9 +10,6 @@ from .e_invoice_common import EInvoiceCommon
 
 @tagged("post_install", "-at_install")
 class TestEInvoiceSend(EInvoiceCommon):
-    def setUp(self):
-        super(TestEInvoiceSend, self).setUp()
-
     def test_send_check_fetchmail(self):
         """Sending e-invoice when there is no
         PEC server configured raises UserError"""

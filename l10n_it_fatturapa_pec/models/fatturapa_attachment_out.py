@@ -91,7 +91,7 @@ class FatturaPAAttachmentOut(models.Model):
         error_list = root.find("ListaErrori")
         error_str = ""
         for error in error_list:
-            error_str += "\n[%s] %s %s" % (
+            error_str += "\n[{}] {} {}".format(
                 error.find("Codice").text if error.find("Codice") is not None else "",
                 error.find("Descrizione").text
                 if error.find("Descrizione") is not None
