@@ -27,12 +27,12 @@ class WizardImportFatturapa(models.TransientModel):
                 retLine["tax_ids"] = [(6, 0, [account_taxes[0].id])]
             return retLine
         else:
-            return super(WizardImportFatturapa, self)._prepare_generic_line_data(line)
+            return super()._prepare_generic_line_data(line)
 
     def set_invoice_line_ids(
         self, FatturaBody, credit_account_id, partner, wt_found, invoice
     ):
-        res = super(WizardImportFatturapa, self).set_invoice_line_ids(
+        res = super().set_invoice_line_ids(
             FatturaBody, credit_account_id, partner, wt_found, invoice
         )
         if not invoice.invoice_line_ids:
