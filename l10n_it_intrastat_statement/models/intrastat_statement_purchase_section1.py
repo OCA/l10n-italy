@@ -60,9 +60,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
             self.additional_units = self.weight_kg
 
     def apply_partner_data(self, partner_data):
-        res = super(IntrastatStatementPurchaseSection1, self).apply_partner_data(
-            partner_data
-        )
+        res = super().apply_partner_data(partner_data)
         if "country_origin_id" in partner_data:
             self.country_origin_id = partner_data["country_origin_id"]
         if "country_good_origin_id" in partner_data:
@@ -71,9 +69,7 @@ class IntrastatStatementPurchaseSection1(models.Model):
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
-        res = super(IntrastatStatementPurchaseSection1, self)._prepare_statement_line(
-            inv_intra_line, statement_id
-        )
+        res = super()._prepare_statement_line(inv_intra_line, statement_id)
         company_id = self.env.context.get("company_id", self.env.company)
 
         # Company defaults

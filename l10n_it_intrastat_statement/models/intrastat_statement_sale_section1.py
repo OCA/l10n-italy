@@ -57,9 +57,7 @@ class IntrastatStatementSaleSection1(models.Model):
         return 1
 
     def apply_partner_data(self, partner_data):
-        res = super(IntrastatStatementSaleSection1, self).apply_partner_data(
-            partner_data
-        )
+        res = super().apply_partner_data(partner_data)
         if "country_destination_id" in partner_data:
             self.country_destination_id = partner_data["country_destination_id"]
         return res
@@ -77,9 +75,7 @@ class IntrastatStatementSaleSection1(models.Model):
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
-        res = super(IntrastatStatementSaleSection1, self)._prepare_statement_line(
-            inv_intra_line, statement_id
-        )
+        res = super()._prepare_statement_line(inv_intra_line, statement_id)
         company_id = self.env.company
 
         # Company defaults
