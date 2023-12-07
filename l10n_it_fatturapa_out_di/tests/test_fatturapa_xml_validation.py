@@ -11,7 +11,7 @@ from .fatturapa_common import FatturaPACommon
 @tagged("post_install", "-at_install")
 class TestFatturaPAXMLValidation(FatturaPACommon):
     def setUp(self):
-        super(TestFatturaPAXMLValidation, self).setUp()
+        super().setUp()
 
         # XXX - a company named "YourCompany" alread exists
         # we move it out of the way but we should do better here
