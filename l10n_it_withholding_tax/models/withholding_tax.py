@@ -101,7 +101,7 @@ class WithholdingTax(models.Model):
         default = dict(default or {})
         if "code" not in default:
             default["code"] = _("%s (copy)") % self.code
-        return super(WithholdingTax, self).copy(default=default)
+        return super().copy(default=default)
 
     @api.constrains("rate_ids")
     def _check_rate_ids(self):
@@ -356,7 +356,7 @@ class WithholdingTaxMove(models.Model):
                         "Warning! You can not delete withholding tax move in state: {}"
                     ).format(rec.state)
                 )
-        return super(WithholdingTaxMove, self).unlink()
+        return super().unlink()
 
     def generate_account_move(self):
         """
@@ -369,8 +369,10 @@ class WithholdingTaxMove(models.Model):
             )
         # Move - head
         move_vals = {
-            "ref": _("WT {0} - {1}").format(
-                self.withholding_tax_id.code, self.credit_debit_line_id.move_id.name
+            "ref": _(
+                "WT %(code)s - %(move)s",
+                code=self.withholding_tax_id.code,
+                move=self.credit_debit_line_id.move_id.name,
             ),
             "journal_id": self.withholding_tax_id.journal_id.id,
             "date": self.payment_line_id.move_id.date,
@@ -379,10 +381,11 @@ class WithholdingTaxMove(models.Model):
         move_lines = []
         for _type in ("partner", "tax"):
             ml_vals = {
-                "ref": _("WT {0} - {1} - {2}").format(
-                    self.withholding_tax_id.code,
-                    self.partner_id.name,
-                    self.credit_debit_line_id.move_id.name,
+                "ref": _(
+                    "WT %(code)s - %(partner)s - %(move)s",
+                    code=self.withholding_tax_id.code,
+                    partner=self.partner_id.name,
+                    move=self.credit_debit_line_id.move_id.name,
                 ),
                 "name": "%s" % (self.credit_debit_line_id.move_id.name),
                 "date": move_vals["date"],
