@@ -30,12 +30,12 @@ class FiscalDocumentType(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = super(FiscalDocumentType, self).create(vals_list)
+        res = super().create(vals_list)
         res.journal_ids.check_doc_type_relation()
         return res
 
     def write(self, vals):
-        res = super(FiscalDocumentType, self).write(vals)
+        res = super().write(vals)
         for doc in self:
             doc.journal_ids.check_doc_type_relation()
         return res
@@ -43,5 +43,5 @@ class FiscalDocumentType(models.Model):
     def name_get(self):
         res = []
         for doc_type in self:
-            res.append((doc_type.id, "[%s] %s" % (doc_type.code, doc_type.name)))
+            res.append((doc_type.id, f"[{doc_type.code}] {doc_type.name}"))
         return res
