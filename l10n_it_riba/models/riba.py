@@ -140,7 +140,8 @@ class RibaList(models.Model):
             if riba_list.state not in ("draft", "cancel"):
                 raise UserError(
                     _(
-                        "Slip %(name)s is in state '%(state)s'. You can only delete documents"
+                        "Slip %(name)s is in state '%(state)s'."
+                        " You can only delete documents"
                         " in state 'Draft' or 'Canceled'.",
                         name=riba_list.name,
                         state=riba_list.state,
@@ -416,8 +417,7 @@ class RibaListLine(models.Model):
                 to_be_reconciled |= riba_move_line.move_line_id
             move_line_model.with_context(check_move_validity=False).create(
                 {
-                    "name": "%s RiBa %s-%s Ref. %s - %s"
-                    % (
+                    "name": "{} RiBa {}-{} Ref. {} - {}".format(
                         line.invoice_number,
                         line.slip_id.name,
                         line.sequence,

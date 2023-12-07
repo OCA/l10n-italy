@@ -146,7 +146,7 @@ class AccountMove(models.Model):
             if not any(line.due_cost_line for line in move_line):
                 move_line = self.env["account.move.line"]
             # ---- Filtered recordset with date_maturity
-            move_line = move_line.filtered(lambda l: l.date_maturity is not False)
+            move_line = move_line.filtered(lambda line: line.date_maturity is not False)
             # ---- Sorted
             move_line = move_line.sorted(key=lambda r: r.date_maturity)
             # ---- Get date
@@ -256,7 +256,7 @@ class AccountMove(models.Model):
         return invoice
 
     def get_due_cost_line_ids(self):
-        return self.invoice_line_ids.filtered(lambda l: l.due_cost_line).ids
+        return self.invoice_line_ids.filtered(lambda line: line.due_cost_line).ids
 
 
 # se slip_line_ids == None allora non è stata emessa
