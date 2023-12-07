@@ -532,7 +532,7 @@ class AccountMove(models.Model):
             ):
                 inv.rc_self_purchase_invoice_id.remove_rc_payment()
                 inv.rc_self_purchase_invoice_id.button_cancel()
-        return super(AccountMove, self).button_cancel()
+        return super().button_cancel()
 
     def button_draft(self):
         new_self = self.with_context(rc_set_to_draft=True)
