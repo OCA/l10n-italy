@@ -9,7 +9,7 @@ class AccountTax(models.Model):
     exclude_from_registries = fields.Boolean(string="Exclude from VAT registries")
 
     def get_balance_domain(self, state_list, type_list):
-        domain = super(AccountTax, self).get_balance_domain(state_list, type_list)
+        domain = super().get_balance_domain(state_list, type_list)
         if self.env.context.get("vat_registry_journal_ids"):
             domain.append(
                 (
@@ -21,7 +21,7 @@ class AccountTax(models.Model):
         return domain
 
     def get_base_balance_domain(self, state_list, type_list):
-        domain = super(AccountTax, self).get_base_balance_domain(state_list, type_list)
+        domain = super().get_base_balance_domain(state_list, type_list)
         if self.env.context.get("vat_registry_journal_ids"):
             domain.append(
                 (
