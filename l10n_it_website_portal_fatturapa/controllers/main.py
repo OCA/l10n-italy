@@ -38,9 +38,7 @@ class WebsitePortalFatturapa(WebsitePortalFiscalCode):
         )
         if data["electronic_invoice_subjected"]:
             data["electronic_invoice_obliged_subject"] = True
-        error, error_message = super(
-            WebsitePortalFatturapa, self
-        ).details_form_validate(data)
+        error, error_message = super().details_form_validate(data)
         partner_sudo = request.env.user.partner_id.sudo()
         error, error_message = self.validate_partner_firstname(
             data, error, error_message
