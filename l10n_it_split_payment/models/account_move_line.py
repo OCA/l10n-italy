@@ -71,7 +71,9 @@ class AccountMoveLine(models.Model):
             ):
                 write_off_line_vals = line._build_writeoff_line()
                 line_sp = fields.first(
-                    line.move_id.line_ids.filtered(lambda l: l.is_split_payment)
+                    line.move_id.line_ids.filtered(
+                        lambda move_line: move_line.is_split_payment
+                    )
                 )
                 if line_sp:
                     if (
