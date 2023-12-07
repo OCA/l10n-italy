@@ -782,7 +782,7 @@ class AccountIntrastatStatement(models.Model):
             for section_type in ["purchase", "sale"]:
                 for section_number in range(1, 5):
                     section_details = (section_type, section_number)
-                    statement_section = "%s_s%s" % section_details
+                    statement_section = "{}_s{}".format(*section_details)
                     if inv_intra_line.statement_section != statement_section:
                         continue
                     statement_section_model_name = self.get_section_model(
