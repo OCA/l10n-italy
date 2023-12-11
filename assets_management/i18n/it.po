@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-26 05:37+0000\n"
-"PO-Revision-Date: 2023-10-11 11:38+0000\n"
+"PO-Revision-Date: 2023-12-11 15:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -3019,7 +3019,7 @@ msgstr "Nome tipo"
 #: code:addons/assets_management/report/asset_previsional.py:493
 #, python-format
 msgid "Unknown"
-msgstr "Non definito"
+msgstr "Sconosciuto"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_accounting_info.py:246
