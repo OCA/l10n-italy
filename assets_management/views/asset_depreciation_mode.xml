@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record model="ir.ui.view" id="asset_depreciation_mode_tree_view">
@@ -27,10 +31,20 @@
                     </group>
                     <group>
                         <field name="company_id" groups="base.group_multi_company" />
+                        <field
+                            name="company_id"
+                            invisible="True"
+                            groups="!base.group_multi_company"
+                        />
                     </group>
                 </group>
                 <group>
-                    <field name="line_ids" context="{'default_mode_id':id}" nolabel="1">
+                    <field
+                        name="line_ids"
+                        context="{'default_mode_id':id}"
+                        colspan="2"
+                        nolabel="1"
+                    >
                         <tree editable="bottom">
                             <field name="mode_id" invisible="1" />
                             <field name="from_nr" />

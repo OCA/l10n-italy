@@ -1,9 +1,11 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Command
 
 
 class AssetDepreciationMode(models.Model):
@@ -13,7 +15,7 @@ class AssetDepreciationMode(models.Model):
 
     @api.model
     def get_default_company_id(self):
-        return self.env.user.company_id
+        return self.env.company
 
     company_id = fields.Many2one(
         "res.company", default=get_default_company_id, string="Company"
@@ -27,7 +29,6 @@ class AssetDepreciationMode(models.Model):
 
     name = fields.Char(
         required=True,
-        string="Name",
     )
 
     used_asset_coeff = fields.Float(
@@ -41,14 +42,17 @@ class AssetDepreciationMode(models.Model):
             {
                 "default": False,
                 "line_ids": [
-                    (0, 0, line.copy_data({"mode_id": False})[0])
+                    Command.create(line.copy_data({"mode_id": False})[0])
                     for line in self.line_ids
                 ],
             }
         )
         return super().copy(default)
 
-    def unlink(self):
+    @api.ondelete(
+        at_uninstall=False,
+    )
+    def _unlink_except_in_depreciation(self):
         if (
             self.env["asset.category.depreciation.type"]
             .sudo()
@@ -67,7 +71,6 @@ class AssetDepreciationMode(models.Model):
                     " to depreciations."
                 )
             )
-        return super().unlink()
 
     @api.constrains("company_id", "default")
     def check_default_modes(self):

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record model="ir.ui.view" id="view_asset_depreciation_form">
@@ -59,7 +63,17 @@
                         <field name="amount_gain" widget="monetary" />
                         <field name="amount_residual" widget="monetary" />
                         <field name="currency_id" groups="base.group_multi_currency" />
+                        <field
+                            name="currency_id"
+                            invisible="True"
+                            groups="!base.group_multi_currency"
+                        />
                         <field name="company_id" groups="base.group_multi_company" />
+                        <field
+                            name="company_id"
+                            invisible="True"
+                            groups="!base.group_multi_company"
+                        />
                         <field name="dismiss_move_id" />
                     </group>
                 </group>

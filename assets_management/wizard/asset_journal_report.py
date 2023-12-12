@@ -1,10 +1,12 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from datetime import date
 
 from odoo import api, fields, models
+from odoo.fields import Command
 
 
 class WizardAssetJournalReport(models.TransientModel):
@@ -30,7 +32,7 @@ class WizardAssetJournalReport(models.TransientModel):
 
     @api.model
     def get_default_company_id(self):
-        return self.env.user.company_id
+        return self.env.company
 
     @api.model
     def get_default_date(self):
@@ -68,9 +70,9 @@ class WizardAssetJournalReport(models.TransientModel):
         string="To Date",
     )
 
-    show_totals = fields.Boolean(default=True, string="Show Totals")
+    show_totals = fields.Boolean(default=True)
 
-    show_category_totals = fields.Boolean(default=True, string="Show Category Totals")
+    show_category_totals = fields.Boolean(default=True)
     show_sold_assets = fields.Boolean(
         help="By default, only unsold or assets sold in the selected year are printed."
         "\nBy selecting this flag, the report will show all assets, ignoring the sold "
@@ -79,7 +81,7 @@ class WizardAssetJournalReport(models.TransientModel):
     show_dismissed_assets = fields.Boolean()
 
     report_footer_year = fields.Char(
-        default=get_default_report_footer_year, string="Report Footer Year"
+        default=get_default_report_footer_year,
     )
 
     type_ids = fields.Many2many(
@@ -151,9 +153,9 @@ class WizardAssetJournalReport(models.TransientModel):
     def prepare_report_vals(self):
         self.ensure_one()
         return {
-            "asset_ids": [(6, 0, self.asset_ids.ids)],
+            "asset_ids": [Command.set(self.asset_ids.ids)],
             "asset_order_fname": self.asset_order_fname,
-            "category_ids": [(6, 0, self.category_ids.ids)],
+            "category_ids": [Command.set(self.category_ids.ids)],
             "company_id": self.company_id.id,
             "date": self.date,
             "show_totals": self.show_totals,
@@ -161,5 +163,5 @@ class WizardAssetJournalReport(models.TransientModel):
             "show_sold_assets": self.show_sold_assets,
             "show_dismissed_assets": self.show_dismissed_assets,
             "report_footer_year": self.report_footer_year,
-            "type_ids": [(6, 0, self.type_ids.ids)],
+            "type_ids": [Command.set(self.type_ids.ids)],
         }

@@ -1,5 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -14,34 +15,35 @@ class DepLineType(models.Model):
 
     @api.model
     def get_default_company_id(self):
-        return self.env.user.company_id
+        return self.env.company
 
-    code = fields.Char(string="Code")
+    code = fields.Char()
 
     company_id = fields.Many2one(
         "res.company", default=get_default_company_id, string="Company"
     )
 
-    name = fields.Char(required=True, string="Name")
+    name = fields.Char(required=True)
 
     type = fields.Selection(
         [("in", "In"), ("out", "Out")],
-        string="Type",
     )
 
-    def unlink(self):
+    @api.ondelete(
+        at_uninstall=False,
+    )
+    def _unlink_except_in_depreciation_line(self):
         for line_type in self:
             if self.env["asset.depreciation.line"].search(
                 [("depreciation_line_type_id", "=", line_type.id)]
             ):
                 raise ValidationError(
                     _(
-                        "Cannot remove type {}: there is some depreciation"
-                        " line linked to it.".format(line_type.name)
+                        "Cannot remove type %(type)s: there is some depreciation"
+                        " line linked to it.",
+                        type=line_type.name,
                     )
                 )
-
-        return super().unlink()
 
     def name_get(self):
         return [(line_type.id, line_type.make_name()) for line_type in self]

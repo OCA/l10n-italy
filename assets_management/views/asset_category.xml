@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record model="ir.ui.view" id="asset_category_tree_view">
@@ -28,6 +32,7 @@
                         <field
                             name="type_ids"
                             context="{'default_category_id':id}"
+                            colspan="2"
                             nolabel="1"
                         >
                             <tree editable="bottom">
@@ -45,6 +50,11 @@
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
+                            />
+                            <field
+                                name="company_id"
+                                invisible="True"
+                                groups="!base.group_multi_company"
                             />
                             <field name="journal_id" />
                             <field name="asset_account_id" />

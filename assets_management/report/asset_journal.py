@@ -1,11 +1,13 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from collections import OrderedDict
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 from odoo.tools.misc import format_amount
 
 
@@ -100,7 +102,10 @@ class Report(models.TransientModel):
             res = self.do_print(report_type)
         elif report_type:
             raise ValidationError(
-                _("No report has been defined for type `{}`.").format(report_type)
+                _(
+                    "No report has been defined for type `%(report_type)s`.",
+                    report_type=report_type,
+                )
             )
         else:
             raise ValidationError(
@@ -184,7 +189,7 @@ class Report(models.TransientModel):
         self.write(
             {
                 "report_category_ids": [
-                    (0, 0, {"category_id": c.id, "report_id": self.id})
+                    Command.create({"category_id": c.id, "report_id": self.id})
                     for c in categories.sorted("name")
                 ]
             }
@@ -193,7 +198,7 @@ class Report(models.TransientModel):
             report_categ.write(
                 {
                     "report_asset_ids": [
-                        (0, 0, {"asset_id": a.id, "report_id": self.id})
+                        Command.create({"asset_id": a.id, "report_id": self.id})
                         for a in self.sort_assets(assets)
                         if a.category_id == report_categ.category_id
                     ]
@@ -203,7 +208,7 @@ class Report(models.TransientModel):
             report_asset.write(
                 {
                     "report_depreciation_ids": [
-                        (0, 0, {"depreciation_id": d.id, "report_id": self.id})
+                        Command.create({"depreciation_id": d.id, "report_id": self.id})
                         for d in deps
                         if d.asset_id == report_asset.asset_id
                     ]
@@ -217,11 +222,9 @@ class Report(models.TransientModel):
                     report_dep.write(
                         {
                             "report_depreciation_year_line_ids": [
-                                (
-                                    0,
-                                    0,
+                                Command.create(
                                     {
-                                        "dep_line_ids": [(6, 0, lines.ids)],
+                                        "dep_line_ids": [Command.set(lines.ids)],
                                         "fiscal_year_id": fyear.id,
                                         "report_id": self.id,
                                         "sequence": sequence,
@@ -248,9 +251,7 @@ class Report(models.TransientModel):
         self.write(
             {
                 "report_total_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         dict(
                             v,
                             name=_("General Total"),
@@ -292,7 +293,10 @@ class Report(models.TransientModel):
     def set_report_name(self):
         report_name = _("Assets Depreciations ")
         if self.date:
-            report_name += _("to date {}").format(format_date(self, "date", "%d-%m-%Y"))
+            report_name += _(
+                "to date %(to_date)s",
+                to_date=format_date(self, "date", "%d-%m-%Y"),
+            )
         self.report_name = report_name.strip()
 
     def sort_assets(self, assets):
@@ -393,9 +397,7 @@ class ReportCategory(models.TransientModel):
             categ.write(
                 {
                     "report_total_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             dict(
                                 v,
                                 name=categ.category_id.name_get()[0][-1],
@@ -820,7 +822,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
                     "res_model": "account.move",
                     "sequence": num + 1,
                 }
-                accounting_doc_vals.append((0, 0, vals))
+                accounting_doc_vals.append(Command.create(vals))
 
         start = fields.Date.from_string(self.fiscal_year_id.date_from).year
         end = fields.Date.from_string(self.fiscal_year_id.date_to).year

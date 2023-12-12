@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record model="ir.ui.view" id="wizard_account_move_mange_asset_form_view">
@@ -140,6 +144,7 @@
                         <field
                             name="move_line_ids"
                             domain="[('move_id', 'in', move_ids), ('asset_accounting_info_ids', '=', False)]"
+                            colspan="2"
                             nolabel="1"
                         >
                             <tree editable="bottom">

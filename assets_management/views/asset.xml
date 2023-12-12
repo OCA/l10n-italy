@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record model="ir.ui.view" id="asset_search_view">
@@ -91,9 +95,19 @@
                                 groups="base.group_multi_company"
                             />
                             <field
+                                name="company_id"
+                                invisible="True"
+                                groups="!base.group_multi_company"
+                            />
+                            <field
                                 name="currency_id"
                                 attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
                                 groups="base.group_multi_currency"
+                            />
+                            <field
+                                name="currency_id"
+                                invisible="True"
+                                groups="!base.group_multi_currency"
                             />
                         </group>
                     </group>
@@ -127,6 +141,7 @@
                                 <field
                                     name="depreciation_ids"
                                     context="{'default_asset_id':id}"
+                                    colspan="2"
                                     nolabel="1"
                                 >
                                     <tree>

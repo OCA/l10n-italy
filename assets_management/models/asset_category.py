@@ -1,9 +1,11 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command
 
 
 class AssetCategory(models.Model):
@@ -13,7 +15,7 @@ class AssetCategory(models.Model):
 
     @api.model
     def get_default_company_id(self):
-        return self.env.user.company_id
+        return self.env.company
 
     @api.model
     def get_default_type_ids(self):
@@ -38,7 +40,9 @@ class AssetCategory(models.Model):
             )
 
         return [
-            (0, 0, {"base_coeff": 1, "depreciation_type_id": t.id, "mode_id": mode.id})
+            Command.create(
+                {"base_coeff": 1, "depreciation_type_id": t.id, "mode_id": mode.id}
+            )
             for t in types
         ]
 
@@ -48,9 +52,7 @@ class AssetCategory(models.Model):
         string="Asset Account",
     )
 
-    comment = fields.Text(
-        string="Comment",
-    )
+    comment = fields.Text()
 
     company_id = fields.Many2one(
         "res.company", default=get_default_company_id, string="Company"
@@ -84,14 +86,12 @@ class AssetCategory(models.Model):
 
     name = fields.Char(
         required=True,
-        string="Name",
     )
 
     print_by_default = fields.Boolean(
         default=True,
         help="Defines whether a category should be added by default when"
         " printing assets' reports.",
-        string="Print By Default",
     )
 
     tag_ids = fields.Many2many(
@@ -110,21 +110,23 @@ class AssetCategory(models.Model):
         default = dict(default or [])
         default.update(
             {
-                "tag_ids": [(6, 0, self.tag_ids.ids)],
+                "tag_ids": [Command.set(self.tag_ids.ids)],
                 "type_ids": [
-                    (0, 0, t.copy_data({"category_id": False})[0])
+                    Command.create(t.copy_data({"category_id": False})[0])
                     for t in self.type_ids
                 ],
             }
         )
         return super().copy(default)
 
-    def unlink(self):
+    @api.ondelete(
+        at_uninstall=False,
+    )
+    def _unlink_except_in_asset(self):
         if self.env["asset.asset"].sudo().search([("category_id", "in", self.ids)]):
             raise UserError(
                 _("Cannot delete categories while they're still linked" " to an asset.")
             )
-        return super().unlink()
 
     def get_depreciation_vals(self, amount_depreciable=0):
         return [t.get_depreciation_vals(amount_depreciable) for t in self.type_ids]

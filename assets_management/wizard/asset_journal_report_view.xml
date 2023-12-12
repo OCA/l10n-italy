@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record id="wizard_asset_journal_report_form_view" model="ir.ui.view">
@@ -26,7 +30,7 @@
                         />
                     </group>
                     <group name="assets" string="Assets">
-                        <field name="asset_ids" nolabel="1" />
+                        <field name="asset_ids" colspan="2" nolabel="1" />
                     </group>
                     <group name="print_options" string="Options">
                         <group>

@@ -1,9 +1,11 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 
 
 class AccountMove(models.Model):
@@ -37,9 +39,10 @@ class AccountMove(models.Model):
             if len(comp) > 1 or (comp and comp != move.company_id):
                 raise ValidationError(
                     _(
-                        "`{}`: cannot change move's company once it's already"
-                        " related to an asset."
-                    ).format(move.name_get()[0][-1])
+                        "`%(move)s`: cannot change move's company once it's already"
+                        " related to an asset.",
+                        move=move.name_get()[0][-1],
+                    )
                 )
 
     def button_cancel(self):
@@ -68,8 +71,8 @@ class AccountMove(models.Model):
                 assets += dep_lines.mapped("asset_id")
             move.update(
                 {
-                    "asset_ids": [(6, 0, assets.ids)],
-                    "dep_line_ids": [(6, 0, dep_lines.ids)],
+                    "asset_ids": [Command.set(assets.ids)],
+                    "dep_line_ids": [Command.set(dep_lines.ids)],
                 }
             )
 
@@ -104,8 +107,8 @@ class AccountMove(models.Model):
             {
                 "default_company_id": self.company_id.id,
                 "default_dismiss_date": self.invoice_date or self.invoice_date_due,
-                "default_move_ids": [(6, 0, self.ids)],
-                "default_move_line_ids": [(6, 0, lines.ids)],
+                "default_move_ids": [Command.set(self.ids)],
+                "default_move_line_ids": [Command.set(lines.ids)],
                 "default_purchase_date": self.invoice_date or self.invoice_date_due,
                 "move_ids": self.ids,
             }

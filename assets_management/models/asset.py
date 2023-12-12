@@ -1,9 +1,11 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 
 
 class Asset(models.Model):
@@ -14,7 +16,7 @@ class Asset(models.Model):
 
     @api.model
     def get_default_company_id(self):
-        return self.env.user.company_id
+        return self.env.company
 
     asset_accounting_info_ids = fields.One2many(
         "asset.accounting.info", "asset_id", string="Accounting Info"
@@ -28,7 +30,6 @@ class Asset(models.Model):
 
     code = fields.Char(
         default="",
-        string="Code",
     )
 
     company_id = fields.Many2one(
@@ -55,7 +56,6 @@ class Asset(models.Model):
 
     name = fields.Char(
         required=True,
-        string="Name",
         tracking=True,
     )
 
@@ -66,7 +66,6 @@ class Asset(models.Model):
 
     purchase_date = fields.Date(
         default=fields.Date.today(),
-        string="Purchase Date",
         tracking=True,
     )
 
@@ -76,14 +75,14 @@ class Asset(models.Model):
         string="Sale Value",
     )
 
-    sale_date = fields.Date(string="Sale Date")
+    sale_date = fields.Date()
 
     dismiss_date = fields.Date()
 
     sale_move_id = fields.Many2one("account.move", string="Sale Move")
 
-    sold = fields.Boolean(string="Sold")
-    dismissed = fields.Boolean(string="Dismissed")
+    sold = fields.Boolean()
+    dismissed = fields.Boolean()
 
     state = fields.Selection(
         [
@@ -94,29 +93,29 @@ class Asset(models.Model):
         compute="_compute_state",
         default="non_depreciated",
         store=True,
-        string="State",
     )
 
     supplier_id = fields.Many2one("res.partner", string="Supplier")
 
     supplier_ref = fields.Char(string="Supplier Ref.")
 
-    used = fields.Boolean(
-        string="Used",
-    )
+    used = fields.Boolean()
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         # Add depreciation if it's missing while category is set
-        create_deps_from_categ = False
-        if vals.get("category_id") and not vals.get("depreciation_ids"):
-            create_deps_from_categ = True
-        if vals.get("code"):
-            vals["code"] = " ".join(vals.get("code").split())
-        asset = super().create(vals)
-        if create_deps_from_categ:
-            asset.onchange_category_id()
-        return asset
+        assets = self.browse()
+        for vals in vals_list:
+            create_deps_from_categ = False
+            if vals.get("category_id") and not vals.get("depreciation_ids"):
+                create_deps_from_categ = True
+            if vals.get("code"):
+                vals["code"] = " ".join(vals.get("code").split())
+            asset = super().create(vals)
+            if create_deps_from_categ:
+                asset.onchange_category_id()
+            assets |= asset
+        return assets
 
     def write(self, vals):
         if vals.get("code"):
@@ -138,9 +137,10 @@ class Asset(models.Model):
             if len(comp) > 1 or (comp and comp != asset.company_id):
                 raise ValidationError(
                     _(
-                        "`{}`: cannot change asset's company once it's already"
-                        " related to accounting info."
-                    ).format(asset.make_name())
+                        "`%(asset)s`: cannot change asset's company once it's already"
+                        " related to accounting info.",
+                        asset=asset.make_name(),
+                    )
                 )
 
     @api.depends("depreciation_ids", "depreciation_ids.state")
@@ -167,7 +167,7 @@ class Asset(models.Model):
 
             # Set new lines
             vals = self.category_id.get_depreciation_vals(self.purchase_amount)
-            self.depreciation_ids = [(0, 0, v) for v in vals]
+            self.depreciation_ids = [Command.create(v) for v in vals]
             self.onchange_purchase_amount()
             self.onchange_purchase_date()
 
@@ -206,12 +206,12 @@ class Asset(models.Model):
         ctx = dict(self._context)
         ctx.update(
             {
-                "default_asset_ids": [(6, 0, self.ids)],
-                "default_category_ids": [(6, 0, self.category_id.ids)],
+                "default_asset_ids": [Command.set(self.ids)],
+                "default_category_ids": [Command.set(self.category_id.ids)],
                 "default_company_id": self.company_id.id,
                 "default_date": fields.Date.today(),
                 "default_type_ids": [
-                    (6, 0, self.depreciation_ids.mapped("type_id").ids)
+                    Command.set(self.depreciation_ids.mapped("type_id").ids)
                 ],
             }
         )

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record model="ir.ui.view" id="asset_tag_tree_view">
@@ -20,6 +24,11 @@
                 <group>
                     <field name="name" />
                     <field name="company_id" groups="base.group_multi_company" />
+                    <field
+                        name="company_id"
+                        invisible="True"
+                        groups="!base.group_multi_company"
+                    />
                 </group>
             </form>
         </field>

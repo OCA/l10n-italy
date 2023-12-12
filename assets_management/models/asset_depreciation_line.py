@@ -1,9 +1,11 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 
 
 class AssetDepreciationLine(models.Model):
@@ -11,9 +13,7 @@ class AssetDepreciationLine(models.Model):
     _description = "Assets Depreciations Lines"
     _order = "date asc, name asc"
 
-    amount = fields.Monetary(
-        string="Amount",
-    )
+    amount = fields.Monetary()
 
     asset_accounting_info_ids = fields.One2many(
         "asset.accounting.info", "dep_line_id", string="Accounting Info"
@@ -30,12 +30,9 @@ class AssetDepreciationLine(models.Model):
     balance = fields.Monetary(
         compute="_compute_balance",
         store=True,
-        string="Balance",
     )
 
-    base = fields.Float(
-        string="Base",
-    )
+    base = fields.Float()
 
     company_id = fields.Many2one(
         "res.company",
@@ -51,7 +48,6 @@ class AssetDepreciationLine(models.Model):
 
     date = fields.Date(
         required=True,
-        string="Date",
     )
 
     depreciation_id = fields.Many2one(
@@ -101,10 +97,9 @@ class AssetDepreciationLine(models.Model):
 
     name = fields.Char(
         required=True,
-        string="Name",
     )
 
-    partial_dismissal = fields.Boolean(string="Partial Dismissal")
+    partial_dismissal = fields.Boolean()
 
     percentage = fields.Float(string="%")
 
@@ -129,12 +124,15 @@ class AssetDepreciationLine(models.Model):
     # depreciable amount
     _update_move_types = ("in", "out")
 
-    @api.model
-    def create(self, vals):
-        line = super().create(vals)
-        if line.need_normalize_depreciation_nr():
-            line.normalize_depreciation_nr(force=True)
-        return line
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = self.browse()
+        for vals in vals_list:
+            line = super().create(vals)
+            if line.need_normalize_depreciation_nr():
+                line.normalize_depreciation_nr(force=True)
+            lines |= line
+        return lines
 
     def write(self, vals):
         res = super().write(vals)
@@ -144,7 +142,10 @@ class AssetDepreciationLine(models.Model):
                 line.normalize_depreciation_nr(force=True)
         return res
 
-    def unlink(self):
+    @api.ondelete(
+        at_uninstall=False,
+    )
+    def _unlink_except_open_move(self):
         if any([m.state != "draft" for m in self.mapped("move_id")]):
             lines = self.filtered(
                 lambda line: line.move_id and line.move_id.state != "draft"
@@ -157,6 +158,8 @@ class AssetDepreciationLine(models.Model):
                 )
                 + name_list
             )
+
+    def unlink(self):
         self.mapped("asset_accounting_info_ids").unlink()
         self.mapped("move_id").unlink()
         return super().unlink()
@@ -170,9 +173,10 @@ class AssetDepreciationLine(models.Model):
             if len(comp) > 1 or (comp and comp != dep_line.company_id):
                 raise ValidationError(
                     _(
-                        "`{}`: cannot change depreciation line's company once"
-                        " it's already related to an asset."
-                    ).format(dep_line.make_name())
+                        "`%(dep_line)s`: cannot change depreciation line's company once"
+                        " it's already related to an asset.",
+                        dep_line=dep_line.make_name(),
+                    )
                 )
 
     @api.constrains("depreciation_nr")
@@ -353,7 +357,7 @@ class AssetDepreciationLine(models.Model):
 
         line_vals = self.get_account_move_line_vals()
         for v in line_vals:
-            vals["line_ids"].append((0, 0, v))
+            vals["line_ids"].append(Command.create(v))
 
         self.move_id = am_obj.create(vals)
 

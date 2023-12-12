@@ -1,9 +1,11 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 
 
 class AccountMoveLine(models.Model):
@@ -31,9 +33,10 @@ class AccountMoveLine(models.Model):
             if len(comp) > 1 or (comp and comp != move_line.company_id):
                 raise ValidationError(
                     _(
-                        "`{}`: cannot change move line's company once it's"
-                        " already related to an asset."
-                    ).format(move_line.name_get()[0][-1])
+                        "`%(move_line)s`: cannot change move line's company once it's"
+                        " already related to an asset.",
+                        move_line=move_line.name_get()[0][-1],
+                    )
                 )
 
     @api.depends(
@@ -50,8 +53,8 @@ class AccountMoveLine(models.Model):
                 assets += dep_lines.mapped("asset_id")
             line.update(
                 {
-                    "asset_ids": [(6, 0, assets.ids)],
-                    "dep_line_ids": [(6, 0, dep_lines.ids)],
+                    "asset_ids": [Command.set(assets.ids)],
+                    "dep_line_ids": [Command.set(dep_lines.ids)],
                 }
             )
 

@@ -1,9 +1,11 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 from odoo.tools import float_compare, float_is_zero
 
 
@@ -83,7 +85,7 @@ class AssetDepreciation(models.Model):
         "res.currency", readonly=True, related="asset_id.currency_id", string="Currency"
     )
 
-    date_start = fields.Date(string="Date Start")
+    date_start = fields.Date()
 
     dismiss_move_id = fields.Many2one("account.move", string="Dismiss Move")
 
@@ -131,22 +133,24 @@ class AssetDepreciation(models.Model):
         compute="_compute_state",
         default="non_depreciated",
         store=True,
-        string="State",
     )
 
     type_id = fields.Many2one("asset.depreciation.type", string="Depreciation Type")
 
     zero_depreciation_until = fields.Date(string="Zero Depreciation Up To")
 
-    @api.model
-    def create(self, vals):
-        dep = super().create(vals)
-        dep.normalize_first_dep_nr()
-        if dep.line_ids:
-            num_lines = dep.line_ids.filtered("requires_depreciation_nr")
-            if num_lines:
-                num_lines.normalize_depreciation_nr()
-        return dep
+    @api.model_create_multi
+    def create(self, vals_list):
+        depreciations = self.browse()
+        for vals in vals_list:
+            dep = super().create(vals)
+            dep.normalize_first_dep_nr()
+            if dep.line_ids:
+                num_lines = dep.line_ids.filtered("requires_depreciation_nr")
+                if num_lines:
+                    num_lines.normalize_depreciation_nr()
+            depreciations |= dep
+        return depreciations
 
     def write(self, vals):
         res = super().write(vals)
@@ -159,7 +163,10 @@ class AssetDepreciation(models.Model):
                 num_lines.normalize_depreciation_nr(force=True)
         return res
 
-    def unlink(self):
+    @api.ondelete(
+        at_uninstall=False,
+    )
+    def _unlink_except_open_move(self):
         if self.mapped("line_ids"):
             raise ValidationError(
                 _(
@@ -176,10 +183,10 @@ class AssetDepreciation(models.Model):
             raise ValidationError(
                 _(
                     "Following lines are linked to posted account moves, and"
-                    " cannot be deleted:\n{}"
-                ).format(name_list)
+                    " cannot be deleted:\n%(name_list)s",
+                    name_list=name_list,
+                )
             )
-        return super().unlink()
 
     def name_get(self):
         return [(dep.id, dep.make_name()) for dep in self]
@@ -276,8 +283,9 @@ class AssetDepreciation(models.Model):
             raise ValidationError(
                 _(
                     "Cannot update the following assets which contain"
-                    " draft depreciation for the chosen date and types:\n{}"
-                ).format(draft_names)
+                    " draft depreciation for the chosen date and types:\n%(draft_names)s",
+                    draft_names=draft_names,
+                )
             )
 
     def generate_depreciation_lines(self, dep_date):
@@ -314,7 +322,7 @@ class AssetDepreciation(models.Model):
 
         line_vals = self.get_dismiss_account_move_line_vals()
         for v in line_vals:
-            vals["line_ids"].append((0, 0, v))
+            vals["line_ids"].append(Command.create(v))
 
         self.dismiss_move_id = am_obj.create(vals)
 
@@ -412,7 +420,10 @@ class AssetDepreciation(models.Model):
         if dep_date < date_start:
             dt_start_str = fields.Date.from_string(date_start).strftime("%d-%m-%Y")
             raise ValidationError(
-                _("Depreciations cannot start before {}.").format(dt_start_str)
+                _(
+                    "Depreciations cannot start before %(start_date)s.",
+                    start_date=dt_start_str,
+                )
             )
 
         if self.pro_rata_temporis or self._context.get("force_prorata"):
@@ -517,7 +528,12 @@ class AssetDepreciation(models.Model):
         )
         if not fiscal_year:
             date_str = fields.Date.from_string(date).strftime("%d/%m/%Y")
-            raise ValidationError(_("No fiscal year defined for date {}") + date_str)
+            raise ValidationError(
+                _(
+                    "No fiscal year defined for date %(date)s",
+                    date=date_str,
+                )
+            )
 
         return (
             fields.Date.from_string(fiscal_year.date_from),
@@ -548,7 +564,10 @@ class AssetDepreciation(models.Model):
             return ((dt_end - dt).days + 1) / lapse
         elif mode:
             raise NotImplementedError(
-                _("Cannot get pro rata temporis multiplier for mode `{}`").format(mode)
+                _(
+                    "Cannot get pro rata temporis multiplier for mode `%(mode)s`",
+                    mode=mode,
+                )
             )
         raise NotImplementedError(
             _("Cannot get pro rata temporis multiplier for unspecified mode")
@@ -599,5 +618,8 @@ class AssetDepreciation(models.Model):
             "date": dep_date,
             "depreciation_id": self.id,
             "move_type": "depreciated",
-            "name": _("{} - Depreciation").format(dep_year),
+            "name": _(
+                "%(year)s - Depreciation",
+                year=dep_year,
+            ),
         }
