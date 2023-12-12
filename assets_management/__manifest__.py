@@ -28,7 +28,6 @@
         "report/templates/asset_journal.xml",
         "report/templates/asset_previsional.xml",
         "report/reports.xml",
-        "views/action_client.xml",
         "views/asset_menuitems.xml",
         "views/account_move.xml",
         "views/asset.xml",
