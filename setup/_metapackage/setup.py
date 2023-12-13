@@ -34,6 +34,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_delivery_note_rma',
         'odoo14-addon-l10n_it_fatturapa',
         'odoo14-addon-l10n_it_fatturapa_export_zip',
+        'odoo14-addon-l10n_it_fatturapa_import_zip',
         'odoo14-addon-l10n_it_fatturapa_in',
         'odoo14-addon-l10n_it_fatturapa_in_purchase',
         'odoo14-addon-l10n_it_fatturapa_in_rc',
