@@ -315,7 +315,6 @@
                         />
                         </group>
                         <group>
-                            <field name="sequence" />
                             <field name="transaction_nature_id" required="1" />
                             <field name="transaction_nature_b_id" />
                         </group>
@@ -389,7 +388,6 @@
                         />
                         </group>
                         <group>
-                            <field name="sequence" />
                             <field name="transaction_nature_id" required="1" />
                         </group>
                     </group>
@@ -453,7 +451,6 @@
                         />
                         </group>
                         <group>
-                            <field name="sequence" />
                         </group>
                     </group>
                     <newline />
@@ -522,7 +519,6 @@
                         />
                         </group>
                         <group>
-                            <field name="sequence" />
                             <field name="intrastat_custom_id" required="1" />
                             <field name="year_id" required="1" />
                             <field name="protocol" required="1" options="{'size': 6}" />
@@ -594,7 +590,6 @@
                         />
                         </group>
                         <group>
-                            <field name="sequence" />
                             <field name="transaction_nature_id" required="1" />
                             <field name="transaction_nature_b_id" />
                         </group>
@@ -670,7 +665,6 @@
                         />
                         </group>
                         <group>
-                            <field name="sequence" />
                             <field name="transaction_nature_id" required="1" />
                         </group>
                     </group>
@@ -727,7 +721,6 @@
                             <field name="vat_code" string="Supplier VAT Code" />
                         </group>
                         <group>
-                            <field name="sequence" />
                         </group>
                     </group>
                     <newline />
@@ -788,7 +781,6 @@
                         />
                         </group>
                         <group>
-                            <field name="sequence" />
                             <field name="intrastat_custom_id" required="1" />
                             <field name="year_id" required="1" />
                             <field name="protocol" required="1" options="{'size': 6}" />
