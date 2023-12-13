@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="fatturapa_attachment_import_zip_form" model="ir.ui.view">
+        <field name="name">fatturapa_attachment_import_zip_form</field>
+        <field name="model">fatturapa.attachment.import.zip</field>
+        <field name="arch" type="xml">
+            <form string="Import e-bill ZIP" duplicate="false">
+                <header>
+                        <button
+                        name="action_import"
+                        type="object"
+                        states="draft"
+                        string="Import invoices"
+                        class="oe_highlight"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet string="Import e-bill ZIP">
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_view_xml"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-files-o"
+                            context="{'xml_type': 'out_xml'}"
+                            attrs="{'invisible': [('xml_out_count', '=', 0)]}"
+                        >
+                            <field
+                                name="xml_out_count"
+                                widget="statinfo"
+                                string="XML Out"
+                            />
+                        </button>
+                        <button
+                            name="action_view_xml"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-files-o"
+                            context="{'xml_type': 'in_xml'}"
+                            attrs="{'invisible': [('xml_in_count', '=', 0)]}"
+                        >
+                            <field
+                                name="xml_in_count"
+                                widget="statinfo"
+                                string="XML In"
+                            />
+                        </button>
+                        <button
+                            name="action_view_invoices"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            context="{'invoice_type': 'out_invoice'}"
+                            attrs="{'invisible': [('invoices_out_count', '=', 0)]}"
+                        >
+                            <field
+                                name="invoices_out_count"
+                                widget="statinfo"
+                                string="Out invoices"
+                            />
+                        </button>
+                        <button
+                            name="action_view_invoices"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            context="{'invoice_type': 'in_invoice'}"
+                            attrs="{'invisible': [('invoices_in_count', '=', 0)]}"
+                        >
+                            <field
+                                name="invoices_in_count"
+                                widget="statinfo"
+                                string="In invoices"
+                            />
+                        </button>
+                    </div>
+                    <div>
+                        <group>
+                            <group>
+                                <label for="datas" />
+                                <div>
+                                    <field
+                                        name="datas"
+                                        filename="name"
+                                        attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                    />
+                                </div>
+                                <field name="name" invisible="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Messages">
+                                <field name="messages" />
+                            </page>
+                        </notebook>
+                    </div>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="fatturapa_attachment_import_zip_tree" model="ir.ui.view">
+        <field name="name">fatturapa_attachment_import_zip_tree</field>
+        <field name="model">fatturapa.attachment.import.zip</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'draft'" decoration-muted="state == 'done'">
+                <field name="name" />
+                <field name="create_date" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="fatturapa_attachment_import_zip_search" model="ir.ui.view">
+        <field name="name">fatturapa_attachment_import_zip_search</field>
+        <field name="model">fatturapa.attachment.import.zip</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="state" />
+            </search>
+        </field>
+    </record>
+    <record id="action_fatturapa_attachment_import_zip" model="ir.actions.act_window">
+        <field name="name">Import E-bill ZIP Files</field>
+        <field name="res_model">fatturapa.attachment.import.zip</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="fatturapa_attachment_import_zip_tree" />
+    </record>
+    <menuitem
+        action="action_fatturapa_attachment_import_zip"
+        id="menu_action_fatturapa_attachment_import_zip"
+        parent="l10n_it_account.account_italian_localization"
+    />
+
+    <record id="view_fatturapa_in_attachment_form_zip_import" model="ir.ui.view">
+        <field name="name">view_fatturapa_in_attachment_form_zip_import</field>
+        <field name="model">fatturapa.attachment.in</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_in.view_fatturapa_in_attachment_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="ZIP import"
+                    attrs="{'invisible': [('attachment_import_zip_id', '=', False)]}"
+                >
+                    <group>
+                        <field name="attachment_import_zip_id" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_fatturapa_out_attachment_form_zip_import" model="ir.ui.view">
+        <field name="name">view_fatturapa_out_attachment_form_zip_import</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
+        />
+        <field name="arch" type="xml">
+            <field name="invoice_partner_id" position="after">
+                <field
+                    name="attachment_import_zip_id"
+                    attrs="{'invisible': [('attachment_import_zip_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
