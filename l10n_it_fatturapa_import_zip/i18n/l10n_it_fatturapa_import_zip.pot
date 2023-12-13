@@ -6,11 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-19 16:10+0000\n"
-"PO-Revision-Date: 2021-11-19 16:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -119,7 +116,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_out__display_name
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_wizard_import_fatturapa__display_name
 msgid "Display Name"
-msgstr "Nome visualizzato"
+msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_import_zip.selection__fatturapa_attachment_import_zip__state__draft
@@ -308,7 +305,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model,name:l10n_it_fatturapa_import_zip.model_account_move
 msgid "Journal Entry"
-msgstr "Registrazione contabile"
+msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__key
@@ -322,7 +319,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_out____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_wizard_import_fatturapa____last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__write_uid
@@ -557,9 +554,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.view_fatturapa_in_attachment_form_zip_import
 msgid "ZIP import"
 msgstr ""
-
-#~ msgid "E-bill import file"
-#~ msgstr "File importato e-fattura"
-
-#~ msgid "E-invoice Export File"
-#~ msgstr "File esportato e-fattura"
