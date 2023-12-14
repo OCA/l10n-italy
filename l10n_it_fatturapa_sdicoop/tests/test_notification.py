@@ -27,6 +27,7 @@ class TestBillNotification(FatturapaCommon):
         # and a follower for the channel
         company = self.env.company
         notified_partner = self.notified_user.partner_id
+        self.sdicoop_channel.sudo().company_id = self.env.user.company_id.id
         company.sdi_channel_id = self.sdicoop_channel
         company.sdi_channel_id.message_subscribe(
             partner_ids=notified_partner.ids,
