@@ -24,16 +24,21 @@ def migrate(env, version):
             ),
         )
     # update invoice_id ref in table
+    if openupgrade.column_exists(env.cr, "account_move", "old_invoice_id"):
+        clause = "am.old_invoice_id = inv.id"
+    else:
+        clause = "am.id = inv.move_id"
     query = """
         UPDATE {table}
         SET
             invoice_id = am.id
         FROM account_invoice inv
-            JOIN account_move am ON am.id = inv.move_id
+            JOIN account_move am ON {clause}
         WHERE
             invoice_id = inv.id
     """.format(
-        table=table
+        table=table,
+        clause=clause,
     )
     openupgrade.logged_query(
         env.cr,
