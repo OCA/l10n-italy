@@ -43,6 +43,7 @@ class FatturaPAAttachment(models.AbstractModel):
     ]
     _order = "id desc"
 
+    id = fields.Id()
     ir_attachment_id = fields.Many2one(
         comodel_name="ir.attachment",
         string="Attachment",
