@@ -31,7 +31,7 @@ def is_base64(s):
     return re_base64.match(s)
 
 
-class FatturaPAAttachment(models.AbstractModel):
+class FatturaPAAttachment(models.Model):
     _name = "fatturapa.attachment"
     _description = "SdI file"
     _inherits = {
