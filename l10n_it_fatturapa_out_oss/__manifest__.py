@@ -13,8 +13,7 @@
         "l10n_it_fatturapa_out",
         "l10n_eu_oss",
     ],
-    "data": [
-    ],
+    "data": [],
     "installable": True,
     "auto_install": True,
     "post_init_hook": "_l10n_it_fatturapa_out_oss_post_init",

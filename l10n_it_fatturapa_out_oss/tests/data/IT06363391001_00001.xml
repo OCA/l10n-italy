@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ns1:FatturaElettronica xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" versione="FPR12">
+<?xml version="1.0" encoding="UTF-8" ?>
+<ns1:FatturaElettronica
+    xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+    versione="FPR12"
+>
     <FatturaElettronicaHeader>
         <DatiTrasmissione>
             <IdTrasmittente>
@@ -87,7 +90,8 @@
                 <Natura>N3.2</Natura>
                 <ImponibileImporto>14.00</ImponibileImporto>
                 <Imposta>0.00</Imposta>
-                <RiferimentoNormativo>NON IMPONIBILE ART. 41 COMMA 1, LETT. B</RiferimentoNormativo>
+                <RiferimentoNormativo
+                >NON IMPONIBILE ART. 41 COMMA 1, LETT. B</RiferimentoNormativo>
             </DatiRiepilogo>
         </DatiBeniServizi>
         <DatiPagamento>
