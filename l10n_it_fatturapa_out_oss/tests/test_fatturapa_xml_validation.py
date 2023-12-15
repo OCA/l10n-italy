@@ -4,62 +4,60 @@
 import base64
 
 from odoo import fields
+from odoo.tests import Form, tagged
 
-from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACommon
+from .fatturapa_common import FatturaPACommon
 
 
+@tagged("post_install", "-at_install")
 class TestInvoiceOss(FatturaPACommon):
     def setUp(self):
         super().setUp()
 
+        # XXX - a company named "YourCompany" alread exists
+        # we move it out of the way but we should do better here
+        self.env.company.sudo().search([("name", "=", "YourCompany")]).write(
+            {"name": "YourCompany_"}
+        )
+
+        self.env.company.name = "YourCompany"
+        self.env.company.vat = "IT06363391001"
+        self.env.company.fatturapa_art73 = False
+        self.env.company.partner_id.street = "Via Milano, 1"
+        self.env.company.partner_id.city = "Roma"
+        self.env.company.partner_id.state_id = self.env.ref("base.state_us_2").id
+        self.env.company.partner_id.zip = "00100"
+        self.env.company.partner_id.phone = "06543534343"
+        self.env.company.email = "info@yourcompany.example.com"
+        self.env.company.partner_id.country_id = self.env.ref("base.it").id
+        self.env.company.fatturapa_fiscal_position_id = self.env.ref(
+            "l10n_it_fatturapa.fatturapa_RF01"
+        ).id
+
         self.today_date = fields.Date.today()
-        self.env.user.company_id.fatturapa_art73 = False
-        au_country = self.env.ref("base.at")
-        self.tax1 = self.env["account.tax"].create(
-            {
-                "name": "OSS AU",
-                "amount": 20.0,
-                "oss_country_id": au_country.id,
-                "kind_id": self.env.ref("l10n_it_account_tax_kind.n3_2").id,
-                "law_reference": "NON IMPONIBILE ART. 41 COMMA 1, LETT. B",
-            }
-        )
+        self.env.ref("product.decimal_product_uom").digits = 3
+        self.env.ref("uom.product_uom_unit").name = "Unit(s)"
         self.product_product_10.write({"taxes_id": [(6, 0, self.tax_22.ids)]})
-        self.fiscal_position = (
-            self.env["account.fiscal.position"]
-            .sudo()
-            .create(
-                {
-                    "name": "OSS Test",
-                    "tax_ids": [
-                        (
-                            0,
-                            0,
-                            {
-                                "tax_src_id": self.tax_22.id,
-                                "tax_dest_id": self.tax1.id,
-                            },
-                        )
-                    ],
-                }
-            )
-        )
-        self.account = self.env["account.account"].search(
-            [
-                (
-                    "user_type_id",
-                    "=",
-                    self.env.ref("account.data_account_type_receivable").id,
-                )
-            ],
-            limit=1,
-        )
+
+        tax1_form = Form(self.env["account.tax"])
+        tax1_form.name = "OSS AU"
+        tax1_form.amount = 20.0
+        tax1_form.kind_id = self.env.ref("l10n_it_account_tax_kind.n3_2")
+        tax1_form.law_reference = "NON IMPONIBILE ART. 41 COMMA 1, LETT. B"
+        self.tax1 = tax1_form.save()
+        self.tax1.oss_country_id = self.env.ref("base.at").id
+
+        fp_form = Form(self.env["account.fiscal.position"])
+        fp_form.name = "OSS Test"
+        with fp_form.tax_ids.new() as tax_form:
+            tax_form.tax_src_id = self.tax_22
+            tax_form.tax_dest_id = self.tax1
+        self.fiscal_position = fp_form.save()
 
         self.eu_b2c_customer = self.env["res.partner"].create(
             {
                 "name": "EU B2C Customer",
-                "customer": True,
-                "supplier": False,
+                "customer_rank": 1,
                 "is_company": False,
                 "street": "11 Wien St",
                 "is_pa": False,
@@ -70,63 +68,39 @@ class TestInvoiceOss(FatturaPACommon):
             }
         )
 
-    def getAttachment(self, name, module_name=None):
-        if module_name is None:
-            module_name = "l10n_it_fatturapa_out_oss"
-        return super().getAttachment(name, module_name)
-
-    def getFile(self, filename, module_name=None):
-        if module_name is None:
-            module_name = "l10n_it_fatturapa_out_oss"
-        return super().getFile(filename, module_name)
-
     def _create_invoice(self, date):
-        payment_term = self.env.ref("account.account_payment_term")
-        return self.env["account.invoice"].create(
-            {
-                "name": "Test Invoice for OSS",
-                "type": "out_invoice",
-                "account_id": self.account.id,
-                "date_invoice": fields.Date.from_string(date),
-                "partner_id": self.eu_b2c_customer.id,
-                "payment_term_id": payment_term.id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product_product_10.name,
-                            "product_id": self.product_product_10.id,
-                            "quantity": 1,
-                            "uom_id": self.product_uom_unit.id,
-                            "price_unit": 14.0,
-                            "account_id": self.a_sale.id,
-                            "invoice_line_tax_ids": [
-                                (
-                                    6,
-                                    0,
-                                    [
-                                        self.tax_22.id,
-                                    ],
-                                )
-                            ],
-                        },
-                    )
-                ],
-            }
+        move_form = Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
+        move_form.invoice_date = fields.Date.from_string(date)
+        move_form.partner_id = self.eu_b2c_customer
+        move_form.invoice_payment_term_id = self.env.ref(
+            "account.account_payment_term_end_following_month"
+        )
+        with move_form.invoice_line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.quantity = 1
+            line_form.product_uom_id = self.product_uom_unit
+            line_form.price_unit = 14.0
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.add(self.tax_22)
+        account_move = move_form.save()
+        return account_move
 
     def test_1_oss_xml_export(self):
         date = "2022-02-28"
-        self.set_sequences(18, date)
         invoice = self._create_invoice(date)
-        invoice.fiscal_position_id = self.fiscal_position
-        invoice.invoice_line_ids._onchange_product_id()
-        invoice.compute_taxes()
+        move_form = Form(invoice)
+        move_form.fiscal_position_id = self.fiscal_position
+        with move_form.invoice_line_ids.edit(0) as line_form:
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax1)
+        invoice = move_form.save()
         self.assertEqual(
-            invoice.invoice_line_ids[0].invoice_line_tax_ids[0].name, self.tax1.name
+            fields.first(invoice.invoice_line_ids).tax_ids[:1].name,
+            self.tax1.name,
         )
-        invoice.action_invoice_open()
+        invoice.action_post()
 
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res["res_id"])
@@ -136,14 +110,12 @@ class TestInvoiceOss(FatturaPACommon):
 
     def test_2_oss_xml_export(self):
         date = "2023-02-28"
-        self.set_sequences(18, date)
         invoice = self._create_invoice(date)
-        invoice.invoice_line_ids._onchange_product_id()
-        invoice.compute_taxes()
         self.assertEqual(
-            invoice.invoice_line_ids[0].invoice_line_tax_ids[0].name, self.tax_22.name
+            fields.first(invoice.invoice_line_ids).tax_ids[:1].name,
+            self.tax_22.name,
         )
-        invoice.action_invoice_open()
+        invoice.action_post()
 
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res["res_id"])
