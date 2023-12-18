@@ -57,6 +57,7 @@ class EInvoiceCommon(FatturaPACommon):
             }
         )
         sdi_channel_form.fetch_pec_server_id = self._create_fetchmail_pec_server()
+        sdi_channel_form.email_exchange_system = "sdi01@pec.fatturapa.it"
         self.sdi_channel_id = sdi_channel_form.save()
         self.env.company.sdi_channel_id = self.sdi_channel_id.id
 
