@@ -50,9 +50,9 @@
             <field name="name">fatturapa.attachment.out.form</field>
             <field name="model">fatturapa.attachment.out</field>
             <field
-                name="inherit_id"
-                ref="l10n_it_fatturapa.fatturapa_attachment_view_form"
-            />
+            name="inherit_id"
+            ref="l10n_it_fatturapa.fatturapa_attachment_view_form"
+        />
             <field name="mode">primary</field>
             <field name="arch" type="xml">
                 <form position="attributes">
@@ -107,26 +107,26 @@
                 </group>
                 <div name="creation_div" position="after">
                     <label
-                        for="sending_user"
-                        string="Sent by"
-                        attrs="{'invisible': [('sending_user' ,'=', False)]}"
-                    />
+                    for="sending_user"
+                    string="Sent by"
+                    attrs="{'invisible': [('sending_user' ,'=', False)]}"
+                />
                     <div
-                        name="sending_user"
-                        attrs="{'invisible': [('sending_user' ,'=', False)]}"
-                    >
+                    name="sending_user"
+                    attrs="{'invisible': [('sending_user' ,'=', False)]}"
+                >
                         <field name="sending_user" readonly="1" class="oe_inline" /> on
                         <field name="sending_date" readonly="1" class="oe_inline" />
                     </div>
                     <label
-                        for="delivered_date"
-                        string="Delivered"
-                        attrs="{'invisible': [('delivered_date' ,'=', False)]}"
-                    />
+                    for="delivered_date"
+                    string="Delivered"
+                    attrs="{'invisible': [('delivered_date' ,'=', False)]}"
+                />
                     <div
-                        name="delivered_date"
-                        attrs="{'invisible': [('delivered_date' ,'=', False)]}"
-                    >
+                    name="delivered_date"
+                    attrs="{'invisible': [('delivered_date' ,'=', False)]}"
+                >
                         <field name="delivered_date" readonly="1" class="oe_inline" />
                     </div>
                 </div>
@@ -152,9 +152,7 @@
     />
 
     <record model="ir.ui.view" id="fatturapa_attachment_out_form_statusbar">
-        <field
-            name="name"
-        >Allow to change status by clicking on the status bar</field>
+        <field name="name">Allow to change status by clicking on the status bar</field>
         <field name="model">fatturapa.attachment.out</field>
         <field
             name="inherit_id"

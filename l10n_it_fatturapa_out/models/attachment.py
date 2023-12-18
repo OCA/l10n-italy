@@ -45,7 +45,6 @@ class FatturaPAAttachment(models.Model):
     )
     sending_user = fields.Many2one(
         comodel_name="res.users",
-        string="Sending User",
         readonly=True,
     )
     sending_date = fields.Datetime("Sent Date", readonly=True)
