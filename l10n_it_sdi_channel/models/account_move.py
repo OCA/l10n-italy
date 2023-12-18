@@ -26,13 +26,6 @@ class AccountMove(models.Model):
             .create([{}])
         )
         export_result = export_wizard.exportFatturaPA()
-        # Ensure the link of the invoice to its attachment before exporting:
-        # otherwise an error during the export might break the link
-        self.flush_recordset(
-            fnames=[
-                "fatturapa_attachment_out_id",
-            ]
-        )
 
         # Get the exported attachments
         attachment_model = self.env[export_result.get("res_model")]

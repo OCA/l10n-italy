@@ -29,31 +29,6 @@ class TestAccountInvoice(FatturaPACommon):
             "l10n_it_fatturapa.fatturapa_RF01"
         ).id
 
-    def test_action_open_export_send_sdi(self):
-        """
-        Check that the "Validate, export and send to SdI" button
-        validates the invoice and exports the attachment.
-        """
-        # Arrange: create a draft invoice with no attachment
-        invoice = self._create_invoice()
-        self.assertEqual(invoice.state, "draft")
-        self.assertFalse(invoice.fatturapa_attachment_out_id)
-
-        # Act: open, export and send.
-        # This raises an exception because there is no channel,
-        # we can't create a channel yet
-        # because channel types are defined by depending modules
-        with self.assertRaises(ValueError) as ve:
-            invoice.action_open_export_send_sdi()
-        exc_message = ve.exception.args[0]
-
-        # Assert: we are missing the SdI channel,
-        # but invoice is validated and attachment has been created
-        self.assertIn("Expected singleton", exc_message)
-        self.assertIn("sdi.channel", exc_message)
-        self.assertEqual(invoice.state, "posted")
-        self.assertTrue(invoice.fatturapa_attachment_out_id)
-
     def test_action_open_export_send_sdi_ui(self):
         """
         Check that the "Validate, export and send to SdI" button
