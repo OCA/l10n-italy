@@ -660,6 +660,25 @@ class StockDeliveryNote(models.Model):
         self.ensure_one()
         return f"Delivery Note - {self.name}"
 
+    @api.model
+    def _get_sync_fields(self):
+        """
+        Returns a list of fields that can be used to
+         synchronize the state of the Delivery Note
+        """
+        return [
+            "date",
+            "transport_datetime",
+            "transport_condition_id",
+            "goods_appearance_id",
+            "transport_reason_id",
+            "transport_method_id",
+            "gross_weight",
+            "net_weight",
+            "packages",
+            "volume",
+        ]
+
     def update_transport_datetime(self):
         self.transport_datetime = datetime.datetime.now()
 
