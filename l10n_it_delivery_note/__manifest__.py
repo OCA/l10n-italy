@@ -16,7 +16,7 @@
     "version": "16.0.1.2.7",
     "category": "Localization/Italy",
     "license": "AGPL-3",
-    "maintainers": ["MarcoCalcagni"],
+    "maintainers": ["MarcoCalcagni", "aleuffre", "renda-dev"],
     "depends": [
         "delivery",
         "l10n_it_delivery_note_base",
