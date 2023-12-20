@@ -10,6 +10,7 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
+    "maintainers": ["MarcoCalcagni", "Borruso"],
     "depends": ["account", "date_range"],
     "data": [
         "security/ir.model.access.csv",
