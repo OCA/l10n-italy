@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-24 10:35+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-12-20 11:38+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,9 @@ msgid ""
 "                    Warning: Selected Delivery Note's data will be "
 "overwritten based on the last picking."
 msgstr ""
+"<span class=\"fa fa-warning\"/>\n"
+"                    Attenzione: i dati dei DdT selezionati saranno "
+"sovrascritti con i dati dell'ultimo trasferimento."
 
 #. module: l10n_it_delivery_note_inter_company
 #: model:ir.model,name:l10n_it_delivery_note_inter_company.model_stock_delivery_note
@@ -32,7 +35,7 @@ msgstr "DdT"
 #. module: l10n_it_delivery_note_inter_company
 #: model:ir.model,name:l10n_it_delivery_note_inter_company.model_stock_delivery_note_select_wizard
 msgid "Delivery Note Selector"
-msgstr ""
+msgstr "Selettore DdT"
 
 #. module: l10n_it_delivery_note_inter_company
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_company.field_stock_delivery_note__display_name
@@ -49,7 +52,7 @@ msgstr "ID"
 #. module: l10n_it_delivery_note_inter_company
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_company.field_stock_delivery_note_select_wizard__is_inter_company
 msgid "Is Inter Company"
-msgstr ""
+msgstr "E' inter-aziendale"
 
 #. module: l10n_it_delivery_note_inter_company
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_company.field_stock_delivery_note____last_update
