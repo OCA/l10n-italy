@@ -10,6 +10,9 @@
     "website": "https://github.com/OCA/l10n-italy",
     "category": "Localization/Italy",
     "license": "AGPL-3",
+    "data": [
+        "wizards/delivery_note_select.xml",
+    ],
     "installable": True,
     "application": False,
 }
