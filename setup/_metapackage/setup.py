@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_delivery_note_batch',
         'odoo14-addon-l10n_it_delivery_note_customer_code',
         'odoo14-addon-l10n_it_delivery_note_inter_company',
+        'odoo14-addon-l10n_it_delivery_note_inter_warehouse',
         'odoo14-addon-l10n_it_delivery_note_order_link',
         'odoo14-addon-l10n_it_delivery_note_rma',
         'odoo14-addon-l10n_it_fatturapa',
