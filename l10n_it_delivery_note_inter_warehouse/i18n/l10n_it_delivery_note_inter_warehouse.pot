@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_delivery_note_inter_warehouse
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_delivery_note_inter_warehouse
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note_inter_warehouse.stock_delivery_note_select_form_view
+msgid ""
+"<span class=\"fa fa-warning\"/>\n"
+"                    Warning: Selected Delivery Note's data will be overwritten based on the last picking."
+msgstr ""
+
+#. module: l10n_it_delivery_note_inter_warehouse
+#: model:ir.model,name:l10n_it_delivery_note_inter_warehouse.model_stock_delivery_note
+msgid "Delivery Note"
+msgstr ""
+
+#. module: l10n_it_delivery_note_inter_warehouse
+#: model:ir.model,name:l10n_it_delivery_note_inter_warehouse.model_stock_delivery_note_select_wizard
+msgid "Delivery Note Selector"
+msgstr ""
+
+#. module: l10n_it_delivery_note_inter_warehouse
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_warehouse.field_stock_delivery_note__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_warehouse.field_stock_delivery_note_select_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_delivery_note_inter_warehouse
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_warehouse.field_stock_delivery_note__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_warehouse.field_stock_delivery_note_select_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_delivery_note_inter_warehouse
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_warehouse.field_stock_delivery_note_select_wizard__is_inter_warehouse
+msgid "Is Inter Warehouse"
+msgstr ""
+
+#. module: l10n_it_delivery_note_inter_warehouse
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_warehouse.field_stock_delivery_note____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_inter_warehouse.field_stock_delivery_note_select_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
