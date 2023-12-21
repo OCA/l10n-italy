@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Copyright 2023 Ooops404
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="stock_delivery_note_select_form_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.select.form</field>
+        <field name="model">stock.delivery.note.select.wizard</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_delivery_note.stock_delivery_note_select_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="selected_picking_ids" position="after">
+                <field name="is_inter_warehouse" invisible="1" />
+                <p
+                    class="text-center alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': ['|', ('delivery_note_id', '=', False), ('is_inter_warehouse', '=', False)]}"
+                >
+                    <span class="fa fa-warning" />
+                    Warning: Selected Delivery Note's data will be overwritten based on the last picking.
+                </p>
+            </field>
+        </field>
+    </record>
+</odoo>
