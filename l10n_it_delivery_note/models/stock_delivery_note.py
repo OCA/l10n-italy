@@ -580,6 +580,25 @@ class StockDeliveryNote(models.Model):
             "l10n_it_delivery_note.delivery_note_report_action"
         ).report_action(self)
 
+    @api.model
+    def _get_sync_fields(self):
+        """
+        Returns a list of fields that can be used to
+         synchronize the state of the Delivery Note
+        """
+        return [
+            "date",
+            "transport_datetime",
+            "transport_condition_id",
+            "goods_appearance_id",
+            "transport_reason_id",
+            "transport_method_id",
+            "gross_weight",
+            "net_weight",
+            "packages",
+            "volume",
+        ]
+
     def update_transport_datetime(self):
         self.transport_datetime = datetime.datetime.now()
 
