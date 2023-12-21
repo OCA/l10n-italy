@@ -139,7 +139,8 @@ class EFatturaOut:
 
                 try:
                     narration_text = "\n".join(
-                        html.fromstring(invoice.narration).xpath("//text()")
+                        text.strip()
+                        for text in html.fromstring(invoice.narration).xpath("//text()")
                     )
                 except Exception:
                     narration_text = ""
