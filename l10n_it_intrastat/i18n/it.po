@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2023-10-28 15:47+0000\n"
+"PO-Revision-Date: 2023-12-24 17:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -4354,7 +4354,8 @@ msgid ""
 "economizers, superheaters, soot removers and gas recoverers;"
 msgstr ""
 "Apparecchi ausiliari per caldaie delle voci 8402 o 8403, p.es. "
-"economizzatori, surriscaldatori, apparecchi di pulitura o recuperatori di gas"
+"economizzatori, surriscaldatori, apparecchi di pulitura o recuperatori di "
+"gas;"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38249065
@@ -5287,7 +5288,7 @@ msgid ""
 "drawn or extruded, of circular cross-section measuring < 80 mm and "
 "containing by weight >= 2,5% nickel"
 msgstr ""
-"Barre di  acciai  inossidabili, semplicemente laminate o estruse a caldo, di "
+"Barre di acciai inossidabili, semplicemente laminate o estruse a caldo, di "
 "sezione circolare di diametro < 80 mm e contenenti, in peso, => 2,5% di "
 "nichel"
 
@@ -6341,7 +6342,7 @@ msgid ""
 msgstr ""
 "Biodiesel e le sue miscele, non contenenti o contenenti, in peso, < 70% di "
 "oli di petrolio o di minerali bituminosi (escl. esteri monoalchilici di "
-"acidi grassi, contenenti in volume =>  96,5% di esteri (FAMAE))"
+"acidi grassi, contenenti in volume => 96,5% di esteri (FAMAE))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44039959
@@ -7288,7 +7289,7 @@ msgstr ""
 "Freni e servo freni e loro parti per trattori e veicoli a motore per il "
 "trasporto di dieci o più persone, macchine e altri veicoli a motore "
 "specificamente progettati per il trasporto di persone, veicoli speciali per "
-"il trasporto di beni , n.n.a.  (escl. quelli per assemblaggio dei veicoli a "
+"il trasporto di beni , n.n.a. (escl. quelli per assemblaggio dei veicoli a "
 "motore della voce 8708 30 10 e per i freni a disco)"
 
 #. module: l10n_it_intrastat
@@ -7510,7 +7511,7 @@ msgid ""
 "Bricks, blocks, tiles and other ceramic goods of siliceous fossil meals, e."
 "g. kieselguhr, tripolite or diatomite, or of similar siliceous earths"
 msgstr ""
-"Mattoni, lastre,  piastrelle  ed altri pezzi ceramici di  farine  silicee  "
+"Mattoni, lastre, piastrelle ed altri pezzi ceramici di farine silicee "
 "fossili, p.es. kieselgur, tripolite, diatomite,  o di terre silicee simili"
 
 #. module: l10n_it_intrastat
@@ -7608,7 +7609,7 @@ msgid ""
 "iodates and periodates"
 msgstr ""
 "Bromati e perbromati (esclusi il bromato di potassio e di sodio); iodati e "
-"periodati (escl. composti organici o inorganici  di mercurio)"
+"periodati (escl. composti organici o inorganici di mercurio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28299040
@@ -8382,7 +8383,7 @@ msgstr ""
 "Mobili e cofanetti di legno, per apparecchi di trasmissione e/o ricezione "
 "televisiva e radiofonica, telecamere, macchine fotografiche digitali, "
 "registratori video camera, apparati radar, di navigazione, e apparecchi e "
-"radio a distanza, monitor e proiettori  , n.n.a."
+"radio a distanza, monitor e proiettori , n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85299049
@@ -8392,10 +8393,10 @@ msgid ""
 "cameras, video camera recorders, radar apparatus, radio navigational aid "
 "apparatus or radio remote control apparatus, monitors and projectors, n.e.s."
 msgstr ""
-"Mobili e cofanetti di materiale diverso dal legno,  per apparecchi di "
+"Mobili e cofanetti di materiale diverso dal legno, per apparecchi di "
 "trasmissione e/o ricezione televisiva e radiofonica, telecamere, macchine "
 "fotografiche digitali, registratori video camera, apparati radar, di "
-"navigazione, e apparecchi e radio a distanza, monitor e proiettori  , n.n.a."
+"navigazione, e apparecchi e radio a distanza, monitor e proiettori , n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44151090
@@ -8606,7 +8607,7 @@ msgid ""
 msgstr ""
 "Apparecchi fotografici, esclusi quelli delle precedenti voci 9006, con "
 "mirino di puntamento passante per l'obiettivo, per pellicole in rotoli di "
-"larghezza non superiore  a 35 mm"
+"larghezza non superiore a 35 mm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63069000
@@ -8730,7 +8731,7 @@ msgid ""
 "Capers, prepared or preserved otherwise than by vinegar or acetic acid "
 "(excl. frozen)"
 msgstr ""
-"Capperi, preparati o conservati né nell'aceto e nell'acido acetico  (escl. "
+"Capperi, preparati o conservati né nell'aceto e nell'acido acetico (escl. "
 "congelati)"
 
 #. module: l10n_it_intrastat
@@ -8931,7 +8932,7 @@ msgid ""
 msgstr ""
 "Acidi carbossilici a funzione fenolo ma senza altra funzione ossigenata, "
 "loro anidridi, alogenuri, perossidi, perossiacidi e loro derivati (escl. "
-"acido salicilico  e  acido o-acetilsalicilico, suoi sali e suoi esteri)"
+"acido salicilico e acido o-acetilsalicilico, suoi sali e suoi esteri)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39123100
@@ -9226,9 +9227,9 @@ msgid ""
 "Karamanie and similar hand-woven rugs, and Axminster carpets)"
 msgstr ""
 "Tappeti ed altri rivestimenti del pavimento di materie tessili sintetiche o "
-"artificiali, di lana o di peli fini, tessuti (non \"tufted\" né \"floccati"
-"\"), vellutati, confezionati (escl. \"Kelim\" o \"Kilim\", \"Schumacks\" o "
-"\"Soumak\", \"Karamanie\",  tappeti simili tessuti a mano, e tappeti "
+"artificiali, di lana o di peli fini, tessuti (non \"tufted\" né \"floccati\")"
+", vellutati, confezionati (escl. \"Kelim\" o \"Kilim\", \"Schumacks\" o "
+"\"Soumak\", \"Karamanie\", tappeti simili tessuti a mano, e tappeti "
 "\"Axminster\")"
 
 #. module: l10n_it_intrastat
@@ -9309,9 +9310,9 @@ msgid ""
 "floor coverings of coconut fibres \"coir\")"
 msgstr ""
 "Tappeti e altri rivestimenti di pavimento, di materiale tessile vegetale e "
-"peli di animali grossi,  tessuti (non \"tufted\" né \"floccati\"), né "
+"peli di animali grossi, tessuti (non \"tufted\" né \"floccati\"), né "
 "vellutati né confezionati (escl. \"Kelim\" o \"Kilim\", \"Schumacks\" o "
-"\"Soumak\", \"Karamanie\",  tappeti simili tessuti a mano e rivestimenti del "
+"\"Soumak\", \"Karamanie\", tappeti simili tessuti a mano e rivestimenti del "
 "suolo di cocco)"
 
 #. module: l10n_it_intrastat
@@ -9383,7 +9384,7 @@ msgid ""
 msgstr ""
 "Tappeti ed altri rivestimenti del pavimento, di lana o di peli fini animale, "
 "tessuti (non \"tufted\" nè \"floccati\"), vellutati, confezionati (escl. "
-"\"Kelim\" o \"Kilim\", \"Schumacks\" o \"Soumak\", \"Karamanie\",  tappeti "
+"\"Kelim\" o \"Kilim\", \"Schumacks\" o \"Soumak\", \"Karamanie\", tappeti "
 "simili tessuti a mano, e tappeti \"Axminster\")"
 
 #. module: l10n_it_intrastat
@@ -9621,7 +9622,7 @@ msgid ""
 msgstr ""
 "Tubi di rivestimento o di produzione (senza saldatura) di ferro o di "
 "acciaio, dei tipi utilizzati per l'estrazione del petrolio o del gas, con "
-"diametro esterno => 168,3  e  <= 406,4 mm (escl. quelli di ghisa)"
+"diametro esterno => 168,3 e <= 406,4 mm (escl. quelli di ghisa)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73042990
@@ -9674,7 +9675,7 @@ msgid ""
 "iron or steel"
 msgstr ""
 "Tubi di rivestimento dei tipi utilizzati per l'estrazione del petrolio o del "
-"gas, a sezione circolare, con diametro  esterno > 406,4 mm, ottenuti da "
+"gas, a sezione circolare, con diametro esterno > 406,4 mm, ottenuti da "
 "prodotti laminati piatti di ferro o di acciaio"
 
 #. module: l10n_it_intrastat
@@ -9833,7 +9834,7 @@ msgid ""
 msgstr ""
 "Altri lettori di cassette del tipo \"play-only\" con sistema di lettura "
 "analogico e numerico (digitale), che utilizzano mezzi semiconduttori "
-"magnetici o ottici, senza dispotivi per la riproduzione  delsuono (escl. "
+"magnetici o ottici, senza dispotivi per la riproduzione delsuono (escl. "
 "dittafoni e lettori tascabili)"
 
 #. module: l10n_it_intrastat
@@ -10709,7 +10710,7 @@ msgid ""
 msgstr ""
 "Formaggi destinati alla trasformazione (escl. formaggi freschi, incl. il "
 "formaggio di siero di latte, non fermentato, i latticini, i formaggi fusi, i "
-"formaggi a pasta erborinata, nonchè i formaggi grattugiati o in polvere)"
+"formaggi a pasta erborinata, nonchè i formaggi grattugiati o in polvere):"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069069
