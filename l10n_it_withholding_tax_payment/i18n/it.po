@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 14:10+0000\n"
-"PO-Revision-Date: 2023-10-29 16:41+0000\n"
+"PO-Revision-Date: 2023-12-24 18:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -178,7 +178,7 @@ msgstr "Stato"
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:132
 #, python-format
 msgid "The selected moves must have the same company!"
-msgstr "Le voci selezionate devono appartenere alla stessa azienda"
+msgstr "Le voci selezionate devono appartenere alla stessa azienda!"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
