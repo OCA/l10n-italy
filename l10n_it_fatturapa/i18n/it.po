@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2023-10-29 08:28+0000\n"
+"PO-Revision-Date: 2023-12-24 18:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -248,9 +248,9 @@ msgstr "Contratto"
 
 #. module: l10n_it_fatturapa
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:79
-#, fuzzy, python-format
+#, python-format
 msgid "Corrupted attachment %s."
-msgstr "Allegati e-fattura"
+msgstr "Allegato danneggiato %s."
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_invoice_efatt_stabile_organizzazione_nazione
