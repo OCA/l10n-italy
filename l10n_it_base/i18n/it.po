@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-29 09:52+0000\n"
-"PO-Revision-Date: 2023-06-08 09:09+0000\n"
+"PO-Revision-Date: 2023-12-24 18:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -118,7 +118,7 @@ msgstr "Usa Mail Pec nel Profilo Partner"
 #. module: l10n_it_base
 #: field:l10n_it.config.settings,module_l10n_it_fiscalcode:0
 msgid "Use fiscal code in Partner Profile"
-msgstr "Usa il codice fiscale nel profilo del partner "
+msgstr "Usa il codice fiscale nel profilo del partner"
 
 #. module: l10n_it_base
 #: view:l10n_it.config.settings:l10n_it_base.view_l10n_it_config_settings
