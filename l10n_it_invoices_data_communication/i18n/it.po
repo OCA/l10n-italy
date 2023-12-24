@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-20 11:38+0000\n"
-"PO-Revision-Date: 2023-06-08 09:09+0000\n"
+"PO-Revision-Date: 2023-12-24 18:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -1320,11 +1320,10 @@ msgstr ""
 
 #. module: l10n_it_invoices_data_communication
 #: view:comunicazione.dati.iva.ricalcolo.tipo.document.fiscale:l10n_it_invoices_data_communication.wizard_compute_fiscal_document_type
-#, fuzzy
 msgid "to assign the fiscal document type to the invoices of communication's"
 msgstr ""
 "Fare click su <strong>Calcola</strong> per assegnare il tipo di documento "
-"fiscale delle fatture del  <strong>periodo</strong> della comunicazione."
+"fiscale delle fatture del <strong>periodo</strong> della comunicazione."
 
 #. module: l10n_it_invoices_data_communication
 #: view:comunicazione.dati.iva.export.file:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
