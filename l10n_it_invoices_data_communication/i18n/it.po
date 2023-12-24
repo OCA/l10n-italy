@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-20 11:38+0000\n"
-"PO-Revision-Date: 2023-06-08 09:11+0000\n"
+"PO-Revision-Date: 2023-12-24 18:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -122,7 +122,7 @@ msgid ""
 "invoices of communication's <strong>period</strong>."
 msgstr ""
 "Fare click su <strong>Calcola</strong> per assegnare il tipo di documento "
-"fiscale delle fatture del  <strong>periodo</strong> della comunicazione."
+"fiscale delle fatture del <strong>periodo</strong> della comunicazione."
 
 #. module: l10n_it_invoices_data_communication
 #: model:ir.ui.view,arch_db:l10n_it_invoices_data_communication.wizard_dati_iva_export_file
