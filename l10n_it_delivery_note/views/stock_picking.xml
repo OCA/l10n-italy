@@ -359,9 +359,9 @@
                     aria-label="Go to delivery note"
                     title="Go to delivery note"
                 />
-                <field name="delivery_note_id" />
-                <field name="delivery_note_state" />
-                <field name="delivery_note_date" />
+                <field name="delivery_note_id" optional="show" />
+                <field name="delivery_note_state" optional="show" />
+                <field name="delivery_note_date" optional="show" />
             </field>
         </field>
     </record>
