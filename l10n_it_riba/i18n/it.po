@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 10:26+0000\n"
-"PO-Revision-Date: 2023-10-13 10:39+0000\n"
+"PO-Revision-Date: 2023-12-31 19:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -765,7 +765,7 @@ msgstr "Segna come pagata"
 #. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_ir_ui_menu
 msgid "Menu"
-msgstr "Menù"
+msgstr "Menu"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_has_error
