@@ -287,7 +287,7 @@ class TestRibaCommon(common.TransactionCase):
     def create_config_incasso(self):
         return self.env["riba.configuration"].create(
             {
-                "name": "After Colection",
+                "name": "After Collection",
                 "type": "incasso",
                 "bank_id": self.company_bank.id,
                 "acceptance_journal_id": self.bank_journal.id,
