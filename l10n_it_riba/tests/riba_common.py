@@ -157,6 +157,7 @@ class TestRibaCommon(common.TransactionCase):
             }
         )
         self.riba_config = self.create_config()
+        self.riba_config_incasso = self.create_config_incasso()
         self.account_payment_term_riba = self.env.ref(
             "l10n_it_riba.account_payment_term_riba"
         )
@@ -280,5 +281,16 @@ class TestRibaCommon(common.TransactionCase):
                 "past_due_journal_id": self.bank_journal.id,
                 "overdue_effects_account_id": self.past_due_account.id,
                 "protest_charge_account_id": self.expenses_account.id,
+            }
+        )
+
+    def create_config_incasso(self):
+        return self.env["riba.configuration"].create(
+            {
+                "name": "After Colection",
+                "type": "incasso",
+                "bank_id": self.company_bank.id,
+                "acceptance_journal_id": self.bank_journal.id,
+                "acceptance_account_id": self.sbf_effects.id,
             }
         )
