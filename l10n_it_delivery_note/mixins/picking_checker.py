@@ -75,6 +75,14 @@ class StockPickingCheckerMixin(models.AbstractModel):
             )
 
     @api.model
+    def _check_pickings_carriers(self, pickings):
+        carrier_ids = pickings.mapped("carrier_id")
+        if len(carrier_ids) > 1:
+            raise ValidationError(
+                _("You need to select pickings with all the same carriers.")
+            )
+
+    @api.model
     def _check_pickings_src_locations(self, pickings):
         src_locations = pickings.mapped("location_id")
 
@@ -130,5 +138,6 @@ class StockPickingCheckerMixin(models.AbstractModel):
         self._check_pickings_state(pickings)
         self._check_pickings_types(pickings)
         self._check_pickings_partners(pickings)
+        self._check_pickings_carriers(pickings)
         self._check_pickings_src_locations(pickings)
         self._check_pickings_dest_locations(pickings)

@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import _
+from odoo import _, fields
 from odoo.exceptions import UserError, ValidationError
 
 from .core import EasyCommand
@@ -287,7 +287,7 @@ class MigrateL10nItDdt(EasyCommand):
                 "partner_shipping_id": record.partner_shipping_id.id,
                 "type_id": self._document_types[record.ddt_type_id].id,
                 "date": record.date,
-                "carrier_id": record.carrier_id.id,
+                "carrier_id": fields.first(record.picking_ids).carrier_id.id,
                 "delivery_method_id": record.partner_id.property_delivery_carrier_id.id,
                 "transport_datetime": record.date_done,
                 "packages": record.parcels,

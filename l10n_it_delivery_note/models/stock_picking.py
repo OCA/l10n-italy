@@ -34,7 +34,7 @@ class StockPicking(models.Model):
     )
 
     delivery_note_carrier_id = fields.Many2one(
-        "res.partner", string="DN Carrier", related="delivery_note_id.carrier_id"
+        "delivery.carrier", string="DN Carrier", related="delivery_note_id.carrier_id"
     )
     delivery_method_id = fields.Many2one(
         "delivery.carrier", related="delivery_note_id.delivery_method_id"
@@ -346,6 +346,7 @@ class StockPicking(models.Model):
                 "partner_shipping_id": partners[1].id,
                 "type_id": type_id.id,
                 "date": self.date_done,
+                "carrier_id": self.carrier_id.id,
                 "delivery_method_id": self.partner_id.property_delivery_carrier_id.id,
                 "transport_condition_id": (
                     self.sale_id.default_transport_condition_id.id

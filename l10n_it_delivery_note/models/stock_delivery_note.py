@@ -139,7 +139,7 @@ class StockDeliveryNote(models.Model):
     )
 
     carrier_id = fields.Many2one(
-        "res.partner",
+        "delivery.carrier",
         string="Carrier",
         states=DONE_READONLY_STATE,
         tracking=True,
