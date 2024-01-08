@@ -65,6 +65,9 @@
         <field name="model">financial.statement.eu</field>
         <field name="arch" type="xml">
             <tree create="false" edit="false" default_order="sequence,zone_bal,code">
+                <field name="sequence" invisible="True" />
+                <field name="zone_bal" invisible="True" />
+                <field name="code" invisible="True" />
                 <field name="complete_name" />
             </tree>
         </field>
