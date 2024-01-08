@@ -126,8 +126,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.invoice_date.month,
-                "fiscalyear": invoice.invoice_date.year,
+                "period_number": invoice.date.month,
+                "fiscalyear": invoice.date.year,
             }
         )
 
@@ -145,13 +145,13 @@ class TestIntrastatStatement(TransactionCase):
 
     def test_statement_sale_quarter(self):
         invoice = self._get_intrastat_computed_invoice()
-        month = invoice.invoice_date.month
+        month = invoice.date.month
         quarter = 1 + (month - 1) // 3
         statement = self.statement_model.create(
             {
                 "period_number": quarter,
                 "period_type": "T",
-                "fiscalyear": invoice.invoice_date.year,
+                "fiscalyear": invoice.date.year,
             }
         )
 
@@ -167,8 +167,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.invoice_date.month,
-                "fiscalyear": bill.invoice_date.year,
+                "period_number": bill.date.month,
+                "fiscalyear": bill.date.year,
             }
         )
 
@@ -189,8 +189,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.invoice_date.month,
-                "fiscalyear": bill.invoice_date.year,
+                "period_number": bill.date.month,
+                "fiscalyear": bill.date.year,
             }
         )
 
@@ -213,8 +213,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill_refund.invoice_date.month,
-                "fiscalyear": bill_refund.invoice_date.year,
+                "period_number": bill_refund.date.month,
+                "fiscalyear": bill_refund.date.year,
             }
         )
 
@@ -256,8 +256,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill_refund.invoice_date.month,
-                "fiscalyear": bill_refund.invoice_date.year,
+                "period_number": bill_refund.date.month,
+                "fiscalyear": bill_refund.date.year,
             }
         )
 
@@ -285,8 +285,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill_refund.invoice_date.month,
-                "fiscalyear": bill_refund.invoice_date.year,
+                "period_number": bill_refund.date.month,
+                "fiscalyear": bill_refund.date.year,
             }
         )
 
@@ -362,13 +362,13 @@ class TestIntrastatStatement(TransactionCase):
 
     def test_statement_purchase_quarter(self):
         bill = self._get_intrastat_computed_bill()
-        month = bill.invoice_date.month
+        month = bill.date.month
         quarter = 1 + (month - 1) // 3
         statement = self.statement_model.create(
             {
                 "period_number": quarter,
                 "period_type": "T",
-                "fiscalyear": bill.invoice_date.year,
+                "fiscalyear": bill.date.year,
             }
         )
 
@@ -384,8 +384,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.invoice_date.month,
-                "fiscalyear": invoice.invoice_date.year,
+                "period_number": invoice.date.month,
+                "fiscalyear": invoice.date.year,
             }
         )
         statement.compute_statement()
@@ -405,8 +405,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.invoice_date.month,
-                "fiscalyear": bill.invoice_date.year,
+                "period_number": bill.date.month,
+                "fiscalyear": bill.date.year,
             }
         )
         line = statement.purchase_section1_ids.create({})
@@ -421,8 +421,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.invoice_date.month,
-                "fiscalyear": invoice.invoice_date.year,
+                "period_number": invoice.date.month,
+                "fiscalyear": invoice.date.year,
             }
         )
 
@@ -440,8 +440,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.invoice_date.month,
-                "fiscalyear": invoice.invoice_date.year,
+                "period_number": invoice.date.month,
+                "fiscalyear": invoice.date.year,
             }
         )
         statement.compute_statement()
@@ -459,8 +459,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": invoice.invoice_date.month,
-                "fiscalyear": invoice.invoice_date.year,
+                "period_number": invoice.date.month,
+                "fiscalyear": invoice.date.year,
             }
         )
         statement.compute_statement()
@@ -482,8 +482,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.invoice_date.month,
-                "fiscalyear": bill.invoice_date.year,
+                "period_number": bill.date.month,
+                "fiscalyear": bill.date.year,
             }
         )
         statement.compute_statement()
@@ -514,8 +514,8 @@ class TestIntrastatStatement(TransactionCase):
 
         statement = self.statement_model.create(
             {
-                "period_number": bill.invoice_date.month,
-                "fiscalyear": bill.invoice_date.year,
+                "period_number": bill.date.month,
+                "fiscalyear": bill.date.year,
             }
         )
         statement.compute_statement()
