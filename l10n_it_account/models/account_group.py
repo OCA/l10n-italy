@@ -1,4 +1,5 @@
 # Copyright 2022 Simone Rubino - TAKOBI
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -84,5 +85,9 @@ class AccountGroup(models.Model):
 
     def get_group_subgroups(self):
         """Retrieves every subgroup for groups `self`."""
-        subgroups_ids = self.search([("id", "child_of", self.ids)])
-        return subgroups_ids
+        # Avoid recursion upon empty recordsets
+        if not self:
+            return self
+        subgroups = self.search([("parent_id", "in", self.ids)])
+        subgroup_ids = subgroups.ids + subgroups.get_group_subgroups().ids
+        return self.browse(tuple(set(subgroup_ids)))

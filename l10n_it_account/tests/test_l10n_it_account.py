@@ -1,4 +1,5 @@
 # Copyright 2022 Simone Rubino - TAKOBI
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import datetime
@@ -256,3 +257,50 @@ class TestAccount(AccountTestInvoicingCommon):
         )
         self.assertEqual(tax.deductible_balance, deductible)
         self.assertEqual(tax.undeductible_balance, not_deductible)
+
+    def test_children_group_sign(self):
+        """Groups in a parent/child relationship have the same sign."""
+        account = self.env["account.account"].create(
+            {
+                "name": "it_account_1",
+                "code": "it.account.1",
+                "account_type": "liability_current",
+            }
+        )
+        group = self.group_1
+        account_sign = -1
+        # pre-condition
+        self.assertEqual(account.account_balance_sign, account_sign)
+        self.assertEqual(account.group_id, group)
+        self.assertEqual(group.account_balance_sign, account_sign)
+        self.assertEqual(group.account_ids, account)
+
+        # Act
+        child_group = group.copy(
+            default={
+                "code_prefix_start": "it.account.1",
+                "code_prefix_end": "it.account.1",
+            },
+        )
+
+        # Assert
+        # The relationship of account groups is peculiar:
+        # if a group has a parent_id it doesn't imply it is child_of the parent_id
+        self.assertEqual(child_group.parent_id, group)
+        children_groups = self.env["account.group"].search(
+            [
+                ("id", "child_of", group.ids),
+            ],
+        )
+        self.assertNotIn(child_group, children_groups)
+        # The account has been reassigned to the most specific group
+        self.assertFalse(group.account_ids)
+        self.assertEqual(child_group.account_ids, account)
+        # Signs are consistent
+        (group + child_group).invalidate_recordset(
+            fnames=[
+                "account_balance_sign",
+            ],
+        )
+        self.assertEqual(group.account_balance_sign, account_sign)
+        self.assertEqual(child_group.account_balance_sign, account_sign)
