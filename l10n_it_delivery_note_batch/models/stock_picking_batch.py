@@ -14,10 +14,19 @@ class StockPickingBatch(models.Model):
     )
 
     delivery_note_count = fields.Integer(compute="_compute_delivery_note_count")
+    all_pickings_have_delivery_note = fields.Boolean(
+        compute="_compute_all_pickings_have_delivery_note"
+    )
 
     def _compute_delivery_note_count(self):
         for rec in self:
             rec.delivery_note_count = len(rec.delivery_note_ids)
+
+    def _compute_all_pickings_have_delivery_note(self):
+        for rec in self:
+            rec.all_pickings_have_delivery_note = all(
+                p.delivery_note_id for p in rec.picking_ids
+            )
 
     def create_delivery_notes(self, **kwargs):
         for rec in self:
