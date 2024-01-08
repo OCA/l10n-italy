@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_delivery_note_batch
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_batch.field_stock_picking_batch__all_pickings_have_delivery_note
+msgid "All Pickings Have Delivery Note"
+msgstr ""
+
+#. module: l10n_it_delivery_note_batch
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_batch.field_stock_delivery_note__stock_picking_batch_id
 msgid "Batch Picking"
 msgstr ""
