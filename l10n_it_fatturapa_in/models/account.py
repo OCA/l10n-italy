@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
@@ -122,12 +125,13 @@ class AccountMove(models.Model):
 
     def e_inv_check_amount_total(self):
         error_message = ""
+        bill_total = self.amount_total - self.efatt_rounding
+        e_bill_total = self.e_invoice_amount_total or 0
         if (
-            self.e_invoice_amount_total
-            and float_compare(
-                self.amount_total - self.efatt_rounding,
-                abs(self.e_invoice_amount_total),
-                precision_rounding=self.currency_id.rounding,
+            e_bill_total
+            and self.currency_id.compare_amounts(
+                bill_total,
+                abs(e_bill_total),
             )
             != 0
         ):
@@ -136,8 +140,8 @@ class AccountMove(models.Model):
                 "does not match with "
                 "e-bill total amount ({e_bill_amount_total})"
             ).format(
-                bill_amount_total=self.amount_total or 0,
-                e_bill_amount_total=self.e_invoice_amount_total,
+                bill_amount_total=bill_total or 0,
+                e_bill_amount_total=e_bill_total,
             )
         return error_message
 
