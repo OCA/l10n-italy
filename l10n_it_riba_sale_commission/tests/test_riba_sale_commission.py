@@ -26,6 +26,15 @@ class TestRibaCommission(SavepointCase):
                 "amount_base_type": "net_amount",
             }
         )
+        cls.partial_commission_net_paid = cls.commission_model.create(
+            {
+                "name": "20% fixed commission (Net amount) - Payment Based - Partial",
+                "fix_qty": 20.0,
+                "invoice_state": "paid",
+                "amount_base_type": "net_amount",
+                "payment_amount_type": "paid",
+            }
+        )
         cls.commission_section_paid = cls.commission_model.create(
             {
                 "name": "Section commission - Payment Based",
@@ -161,6 +170,7 @@ class TestRibaCommission(SavepointCase):
             limit=1,
         )
         cls.payment_term = cls._create_riba_pterm(cls)
+        cls.partial_payment_term = cls._create_riba_partials_pterm(cls)
         cls.env["res.partner.bank"].create(
             {
                 "acc_number": "IT59R0100003228000000000622",
@@ -169,7 +179,7 @@ class TestRibaCommission(SavepointCase):
             }
         )
 
-    def _create_invoice(self, inv_date):
+    def _create_invoice(self, inv_date, payment_term, commission):
         self.partner.property_account_receivable_id = self.account_rec1_id.id
         return self.env["account.move"].create(
             {
@@ -177,7 +187,7 @@ class TestRibaCommission(SavepointCase):
                 "move_type": "out_invoice",
                 "journal_id": self.sale_journal.id,
                 "partner_id": self.partner.id,
-                "invoice_payment_term_id": self.payment_term.id,
+                "invoice_payment_term_id": payment_term.id,
                 "riba_partner_bank_id": self.partner.bank_ids[0].id,
                 "invoice_line_ids": [
                     (
@@ -195,7 +205,7 @@ class TestRibaCommission(SavepointCase):
                                     0,
                                     {
                                         "agent_id": self.agent_monthly.id,
-                                        "commission_id": self.commission_net_paid.id,
+                                        "commission_id": commission.id,
                                     },
                                 )
                             ],
@@ -221,6 +231,36 @@ class TestRibaCommission(SavepointCase):
                             "days": 1,
                         },
                     )
+                ],
+            }
+        )
+
+    def _create_riba_partials_pterm(self):
+        return self.env["account.payment.term"].create(
+            {
+                "name": "C/O 30% Now, Balance 60 Days",
+                "riba": True,
+                "riba_payment_cost": 0,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "value": "percent",
+                            "value_amount": 30,
+                            "option": "day_after_invoice_date",
+                            "days": 0,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "value": "balance",
+                            "option": "day_after_invoice_date",
+                            "days": 60,
+                        },
+                    ),
                 ],
             }
         )
@@ -269,7 +309,7 @@ class TestRibaCommission(SavepointCase):
             )
             .create(
                 {
-                    "bank_amount": invoice.amount_total,
+                    "bank_amount": invoice.amount_total - invoice.amount_residual,
                 }
             )
         )
@@ -277,9 +317,13 @@ class TestRibaCommission(SavepointCase):
 
     def test_riba_settlement(self):
         date = fields.Date.today()
-        invoice = self._create_invoice(date - relativedelta(days=100))
+        invoice = self._create_invoice(
+            date - relativedelta(days=100), self.payment_term, self.commission_net_paid
+        )
         self.register_payment(invoice)
-        invoice_not_settle = self._create_invoice(date - relativedelta(days=4))
+        invoice_not_settle = self._create_invoice(
+            date - relativedelta(days=4), self.payment_term, self.commission_net_paid
+        )
         self.register_payment(invoice_not_settle)
         self._settle_agent(self.agent_monthly, 1, date_payment_to=datetime.now())
         settlements = self.env["sale.commission.settlement"].search(
@@ -294,3 +338,22 @@ class TestRibaCommission(SavepointCase):
         )
         self.assertEqual(1, len(settlements))
         self.assertEqual(1, len(settlements.line_ids))
+
+    def test_riba_partial_settlement(self):
+        date = fields.Date.today()
+        invoice = self._create_invoice(
+            date, self.partial_payment_term, self.partial_commission_net_paid
+        )
+        self.register_payment(invoice)
+        self._settle_agent(self.agent_monthly, 1, date_payment_to=datetime.now())
+        settlements = self.env["sale.commission.settlement"].search(
+            [
+                (
+                    "agent_id",
+                    "=",
+                    self.agent_monthly.id,
+                ),
+                ("state", "=", "settled"),
+            ]
+        )
+        self.assertEqual(0, len(settlements))
