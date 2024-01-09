@@ -928,28 +928,6 @@ msgstr ""
 "                                    DdT introducendo funzionalità aggiuntive."
 
 #. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"It seems that at least one delivery note has been already created. You can't "
-"migrate any data on an already used database."
-msgstr ""
-"Sembra che sia stato già creato almeno un DdT. Non puoi migrare nessun dato "
-"se il database è già in uso."
-
-#. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"It seems that there are no documents to migrate. You don't need to run this "
-"command."
-msgstr ""
-"Sembra che non ci siano documenti da migrare. Non si necessita di eseguire "
-"questo comando."
-
-#. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_account_move
 msgid "Journal Entry"
 msgstr "Registrazione contabile"
@@ -1054,17 +1032,6 @@ msgstr "Metodo di trasporto"
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_picking_transport_method_menu
 msgid "Methods of transport"
 msgstr "Metodi di trasporto"
-
-#. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"Module `l10n_it_ddt` isn't installed on this database. You don't need to run "
-"this command."
-msgstr ""
-"Il modulo `l10n_it_ddt` non è installato in questo database. Non si "
-"necessita di eseguire questo comando."
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__my_activity_date_deadline
@@ -2050,6 +2017,30 @@ msgstr "di:"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "qty"
 msgstr "q.tà"
+
+#, python-format
+#~ msgid ""
+#~ "It seems that at least one delivery note has been already created. You "
+#~ "can't migrate any data on an already used database."
+#~ msgstr ""
+#~ "Sembra che sia stato già creato almeno un DdT. Non puoi migrare nessun "
+#~ "dato se il database è già in uso."
+
+#, python-format
+#~ msgid ""
+#~ "It seems that there are no documents to migrate. You don't need to run "
+#~ "this command."
+#~ msgstr ""
+#~ "Sembra che non ci siano documenti da migrare. Non si necessita di "
+#~ "eseguire questo comando."
+
+#, python-format
+#~ msgid ""
+#~ "Module `l10n_it_ddt` isn't installed on this database. You don't need to "
+#~ "run this command."
+#~ msgstr ""
+#~ "Il modulo `l10n_it_ddt` non è installato in questo database. Non si "
+#~ "necessita di eseguire questo comando."
 
 #, python-format
 #~ msgid "Delivery Note \"%(name)s\" of %(date)s"
