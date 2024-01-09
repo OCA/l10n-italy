@@ -5,6 +5,24 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
+class Attachment(models.Model):
+    _inherit = "ir.attachment"
+
+    @api.model
+    def check(self, mode, values=None):
+        for attachment in self:
+            ftpa_attachment = (
+                self.env["fatturapa.attachment.out"]
+                .sudo()
+                .search([("ir_attachment_id", "=", attachment.id)])
+            )
+            if ftpa_attachment:
+                self._check_access_ftpa(mode, ftpa_attachment)
+            else:
+                super(Attachment, attachment).check(mode, values)
+        return None
+
+
 class FatturaPAAttachment(models.Model):
     _name = "fatturapa.attachment.out"
     _description = "E-invoice Export File"
