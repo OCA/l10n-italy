@@ -43,29 +43,6 @@ class AccountMove(models.Model):
 
     e_invoice_received_date = fields.Date(string="E-Bill Received Date")
 
-    @api.depends(
-        "line_ids.matched_debit_ids.debit_move_id.move_id.line_ids.amount_residual",
-        "line_ids.matched_debit_ids.debit_move_id.move_id.line_ids.amount_residual_currency",  # noqa: B950
-        "line_ids.matched_credit_ids.credit_move_id.move_id.line_ids.amount_residual",
-        "line_ids.matched_credit_ids.credit_move_id.move_id.line_ids.amount_residual_currency",  # noqa: B950
-        "line_ids.debit",
-        "line_ids.credit",
-        "line_ids.currency_id",
-        "line_ids.amount_currency",
-        "line_ids.amount_residual",
-        "line_ids.amount_residual_currency",
-        "line_ids.payment_id.state",
-        "line_ids.full_reconcile_id",
-    )
-    def _compute_amount(self):
-        super()._compute_amount()
-        for inv in self:
-            if inv.efatt_rounding != 0:
-                inv.amount_total += inv.efatt_rounding
-                sign = inv.move_type in ["in_refund", "out_refund"] and -1 or 1
-                inv.amount_total_signed = inv.amount_total * sign
-        return  # fix W8110
-
     def action_post(self):
         for invoice in self:
             if (
@@ -125,7 +102,7 @@ class AccountMove(models.Model):
 
     def e_inv_check_amount_total(self):
         error_message = ""
-        bill_total = self.amount_total - self.efatt_rounding
+        bill_total = self.amount_total
         e_bill_total = self.e_invoice_amount_total or 0
         if (
             e_bill_total
