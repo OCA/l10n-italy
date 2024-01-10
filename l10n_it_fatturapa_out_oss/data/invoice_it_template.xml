@@ -23,19 +23,19 @@
                 <AliquotaIVA>0.00</AliquotaIVA>
                 <Natura
                     t-if="tax_data.get('Natura', False)"
-                    t-out="tax_data['Natura']"
+                    t-esc="tax_data['Natura']"
                 />
                 <ImponibileImporto
-                    t-out="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], record), euro)"
+                    t-esc="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], record), euro)"
                 />
                 <Imposta>0.00</Imposta>
                 <EsigibilitaIVA
                     t-if="tax_data.get('EsigibilitaIVA', False)"
-                    t-out="tax_data['EsigibilitaIVA']"
+                    t-esc="tax_data['EsigibilitaIVA']"
                 />
                 <RiferimentoNormativo
                     t-if="tax_data.get('RiferimentoNormativo', False)"
-                    t-out="encode_for_export(tax_data['RiferimentoNormativo'], 100)"
+                    t-esc="encode_for_export(tax_data['RiferimentoNormativo'], 100)"
                 />
            </DatiRiepilogo>
         </xpath>
@@ -50,12 +50,12 @@
             position="attributes"
         >
             <attribute
-                name="t-out"
+                name="t-esc"
             >format_numbers(0) if tax_ids and tax_ids.oss_country_id and tax_ids.kind_id else format_numbers(tax_ids.amount)</attribute>
         </xpath>
         <xpath expr="//AliquotaIVA[@t-if='line_is_section_note']">
             <attribute
-                name="t-out"
+                name="t-esc"
             >format_numbers(0) if tax_ids and tax_ids.oss_country_id and tax_ids.kind_id else existing_tax_line['AliquotaIVA']</attribute>
         </xpath>
         <xpath expr="//DettaglioLinee">
@@ -63,7 +63,7 @@
                 t-if="tax_ids and tax_ids.oss_country_id and tax_ids.kind_id"
             >
                 <TipoDato>OSS</TipoDato>
-                <RiferimentoTesto t-out="format_numbers(tax_ids.amount)" />
+                <RiferimentoTesto t-esc="format_numbers(tax_ids.amount)" />
             </AltriDatiGestionali>
         </xpath>
     </template>

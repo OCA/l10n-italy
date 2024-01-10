@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "ITA - Fattura elettronica - Emissione - OSS",
-    "version": "16.0.1.0.0",
+    "version": "14.0.1.0.0",
     "development_status": "Alpha",
     "category": "Localization/Italy",
     "summary": "OSS in fatturapa",
@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     "depends": [
         "l10n_it_fatturapa_out",
-        "l10n_eu_oss_oca",
+        "l10n_eu_oss",
     ],
     "data": [
         "data/invoice_it_template.xml",
