@@ -67,6 +67,18 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # Collection fees line has been unlink
         self.assertEqual(len(self.invoice.invoice_line_ids), 1)
 
+    def test_date_maturity_invoice_line(self):
+        # ---- Set Service in Company Config
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        # ---- Validate Invoice
+        self.invoice.action_post()
+        # Collection fees line has been created
+        self.assertTrue(any(self.invoice.invoice_line_ids.mapped("due_cost_line")))
+        # ---- Validate Invoice2
+        self.invoice2.action_post()
+        # Collection fees line not created because same period
+        self.assertTrue(not any(self.invoice2.invoice_line_ids.mapped("due_cost_line")))
+
     def test_riba_flow(self):
         self.partner.property_account_receivable_id = self.account_rec1_id.id
         recent_date = (
