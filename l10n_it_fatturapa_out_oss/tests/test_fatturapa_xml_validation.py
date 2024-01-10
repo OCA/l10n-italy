@@ -14,13 +14,6 @@ class TestInvoiceOss(FatturaPACommon):
     def setUp(self):
         super().setUp()
 
-        # XXX - a company named "YourCompany" alread exists
-        # we move it out of the way but we should do better here
-        self.env.company.sudo().search([("name", "=", "YourCompany")]).write(
-            {"name": "YourCompany_"}
-        )
-
-        self.env.company.name = "YourCompany"
         self.env.company.vat = "IT06363391001"
         self.env.company.fatturapa_art73 = False
         self.env.company.partner_id.street = "Via Milano, 1"
@@ -34,9 +27,6 @@ class TestInvoiceOss(FatturaPACommon):
             "l10n_it_fatturapa.fatturapa_RF01"
         ).id
 
-        self.today_date = fields.Date.today()
-        self.env.ref("product.decimal_product_uom").digits = 3
-        self.env.ref("uom.product_uom_unit").name = "Unit(s)"
         self.product_product_10.write({"taxes_id": [(6, 0, self.tax_22.ids)]})
 
         tax1_form = Form(self.env["account.tax"])

@@ -24,7 +24,7 @@
                     <IdCodice>06363391001</IdCodice>
                 </IdFiscaleIVA>
                 <Anagrafica>
-                    <Denominazione>YourCompany</Denominazione>
+                    <Denominazione>company_1_data</Denominazione>
                 </Anagrafica>
                 <RegimeFiscale>RF01</RegimeFiscale>
             </DatiAnagrafici>
@@ -74,8 +74,8 @@
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
                 <Descrizione>Cabinet with Doors</Descrizione>
-                <Quantita>1.000</Quantita>
-                <UnitaMisura>Unit(s)</UnitaMisura>
+                <Quantita>1.00</Quantita>
+                <UnitaMisura>Units</UnitaMisura>
                 <PrezzoUnitario>14.00000</PrezzoUnitario>
                 <PrezzoTotale>14.00</PrezzoTotale>
                 <AliquotaIVA>0.00</AliquotaIVA>
