@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_delivery_note_confirm_form_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.confirm.form</field>
+        <field name="model">stock.delivery.note.confirm.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="warning_message" />
+                <footer>
+                    <button
+                        name="confirm"
+                        type="object"
+                        class="btn-primary"
+                        string="Confirm"
+                    />
+                    <button special="cancel" class="btn-secondary" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

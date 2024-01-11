@@ -362,6 +362,9 @@
                 <field name="delivery_note_state" optional="show" />
                 <field name="delivery_note_date" optional="show" />
             </field>
+            <field name="partner_id" position="after">
+                <field name="carrier_id" string="Delivery Method" />
+            </field>
         </field>
     </record>
 
