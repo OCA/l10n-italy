@@ -156,6 +156,12 @@
                             <th t-if="doc.print_prices" class="text-end">
                                 Taxes
                             </th>
+                            <th t-if="doc.lines_have_so_number">
+                                Ref. Order
+                            </th>
+                            <th t-if="doc.lines_have_customer_ref">
+                                Ref. Customer
+                            </th>
                         </tr>
                     </thead>
 
@@ -200,6 +206,12 @@
                                         <span
                                             t-esc="', '.join(map(lambda t: (t.description or t.name), line.tax_ids))"
                                         />
+                                    </td>
+                                    <td t-if="doc.lines_have_so_number">
+                                        <span t-esc="line.sale_order_number" />
+                                    </td>
+                                    <td t-if="doc.lines_have_customer_ref">
+                                        <span t-esc="line.sale_order_client_ref" />
                                     </td>
                                 </t>
                                 <t t-else="">

@@ -242,6 +242,12 @@ class StockDeliveryNote(models.Model):
         store=True,
         copy=False,
     )
+    lines_have_so_number = fields.Boolean(
+        compute="_compute_lines_have_so_number",
+    )
+    lines_have_customer_ref = fields.Boolean(
+        compute="_compute_lines_have_customer_ref",
+    )
 
     picking_ids = fields.One2many(
         "stock.picking",
@@ -410,6 +416,20 @@ class StockDeliveryNote(models.Model):
         for dn in self:
             dn.access_url = "/my/delivery-notes/%s" % (dn.id)
         return res
+
+    def _compute_lines_have_so_number(self):
+        for sdn in self:
+            sdn.lines_have_so_number = (
+                sdn.company_id.display_ref_order_dn_report
+                and any(line.sale_order_number for line in sdn.line_ids)
+            )
+
+    def _compute_lines_have_customer_ref(self):
+        for sdn in self:
+            sdn.lines_have_customer_ref = (
+                sdn.company_id.display_ref_customer_dn_report
+                and any(line.sale_order_client_ref for line in sdn.line_ids)
+            )
 
     @api.onchange("picking_type")
     def _onchange_picking_type(self):
