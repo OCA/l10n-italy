@@ -14,6 +14,14 @@
                     <field name="error_message" />
                 </div>
                 <field name="selected_picking_ids" invisible="True" />
+                <p
+                    class="text-center alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': [('warning_message', '=', False)]}"
+                >
+                    <span class="fa fa-warning" title="Warning!" />
+                    <field name="warning_message" />
+                </p>
                 <div
                     class="oe_title"
                     attrs="{'invisible': [('error_message', '!=', False)]}"
