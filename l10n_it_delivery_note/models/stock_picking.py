@@ -90,6 +90,8 @@ class StockPicking(models.Model):
         string="DN Operation Type", related="picking_type_id.code"
     )
 
+    carrier_partner_id = fields.Many2one("res.partner", related="carrier_id.partner_id")
+
     use_delivery_note = fields.Boolean(compute="_compute_boolean_flags")
     use_advanced_behaviour = fields.Boolean(compute="_compute_boolean_flags")
     delivery_note_exists = fields.Boolean(compute="_compute_boolean_flags")
@@ -142,6 +144,10 @@ class StockPicking(models.Model):
                     picking.delivery_note_id.state == DOMAIN_DELIVERY_NOTE_STATES[3]
                 )
                 picking.can_be_invoiced = bool(picking.delivery_note_id.sale_ids)
+
+    @api.onchange("delivery_method_id")
+    def _onchange_delivery_method_id(self):
+        self.delivery_note_carrier_id = self.delivery_method_id.partner_id
 
     @api.onchange("delivery_note_type_id")
     def _onchange_delivery_note_type(self):
@@ -339,6 +345,7 @@ class StockPicking(models.Model):
             ],
             limit=1,
         )
+        delivery_method_id = self.mapped("carrier_id")[:1]
         return self.env["stock.delivery.note"].create(
             {
                 "company_id": self.company_id.id,
@@ -349,7 +356,8 @@ class StockPicking(models.Model):
                 "partner_shipping_id": partners[1].id,
                 "type_id": type_id.id,
                 "date": self.date_done,
-                "delivery_method_id": self.partner_id.property_delivery_carrier_id.id,
+                "carrier_id": delivery_method_id.partner_id.id,
+                "delivery_method_id": delivery_method_id.id,
                 "transport_condition_id": (
                     self.sale_id.default_transport_condition_id.id
                     or partners[1].default_transport_condition_id.id
