@@ -244,6 +244,12 @@ class StockDeliveryNote(models.Model):
         store=True,
         copy=False,
     )
+    lines_have_so_number = fields.Boolean(
+        compute="_compute_lines_have_so_number",
+    )
+    lines_have_customer_ref = fields.Boolean(
+        compute="_compute_lines_have_customer_ref",
+    )
 
     picking_ids = fields.One2many(
         "stock.picking",
@@ -411,6 +417,20 @@ class StockDeliveryNote(models.Model):
         super(StockDeliveryNote, self)._compute_access_url()
         for dn in self:
             dn.access_url = "/my/delivery-notes/%s" % (dn.id)
+
+    def _compute_lines_have_so_number(self):
+        for sdn in self:
+            sdn.lines_have_so_number = (
+                sdn.company_id.display_ref_order_dn_report
+                and any(line.sale_order_number for line in sdn.line_ids)
+            )
+
+    def _compute_lines_have_customer_ref(self):
+        for sdn in self:
+            sdn.lines_have_customer_ref = (
+                sdn.company_id.display_ref_customer_dn_report
+                and any(line.sale_order_client_ref for line in sdn.line_ids)
+            )
 
     @api.onchange("picking_type")
     def _onchange_picking_type(self):
@@ -847,6 +867,16 @@ class StockDeliveryNoteLine(models.Model):
     sale_line_id = fields.Many2one(
         "sale.order.line", related="move_id.sale_line_id", store=True, copy=False
     )
+    sale_order_number = fields.Char(
+        "Sale Order Number",
+        compute="_compute_sale_order_number",
+        store=True,
+    )
+    sale_order_client_ref = fields.Char(
+        "Customer Reference",
+        compute="_compute_sale_order_client_ref",
+        store=True,
+    )
     invoice_status = fields.Selection(
         INVOICE_STATUSES,
         string="Invoice status",
@@ -867,6 +897,18 @@ class StockDeliveryNoteLine(models.Model):
     @property
     def is_invoiceable(self):
         return self.invoice_status == DOMAIN_INVOICE_STATUSES[1]
+
+    @api.depends("sale_line_id.order_id.name")
+    def _compute_sale_order_number(self):
+        for sdnl in self:
+            sdnl.sale_order_number = sdnl.sale_line_id.order_id.name or ""
+
+    @api.depends("sale_line_id.order_id.client_order_ref")
+    def _compute_sale_order_client_ref(self):
+        for sdnl in self:
+            sdnl.sale_order_client_ref = (
+                sdnl.sale_line_id.order_id.client_order_ref or ""
+            )
 
     @api.onchange("product_id")
     def _onchange_product_id(self):

@@ -23,3 +23,14 @@ class ResConfigSettings(models.TransientModel):
         default=_default_virtual_locations_root,
         config_parameter="stock.location.virtual_root",
     )
+
+    display_ref_order_dn_report = fields.Boolean(
+        string="Display Ref. Order in Delivery Note Report",
+        related="company_id.display_ref_order_dn_report",
+        readonly=False,
+    )
+    display_ref_customer_dn_report = fields.Boolean(
+        string="Display Ref. Customer in Delivery Note Report",
+        related="company_id.display_ref_customer_dn_report",
+        readonly=False,
+    )
