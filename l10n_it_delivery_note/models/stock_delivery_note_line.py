@@ -69,6 +69,15 @@ class StockDeliveryNoteLine(models.Model):
     sale_line_id = fields.Many2one(
         "sale.order.line", related="move_id.sale_line_id", store=True, copy=False
     )
+    sale_order_number = fields.Char(
+        compute="_compute_sale_order_number",
+        store=True,
+    )
+    sale_order_client_ref = fields.Char(
+        "Customer Reference",
+        compute="_compute_sale_order_client_ref",
+        store=True,
+    )
     invoice_status = fields.Selection(
         INVOICE_STATUSES,
         string="Invoice status",
@@ -89,6 +98,18 @@ class StockDeliveryNoteLine(models.Model):
     @property
     def is_invoiceable(self):
         return self.invoice_status == DOMAIN_INVOICE_STATUSES[1]
+
+    @api.depends("sale_line_id.order_id.name")
+    def _compute_sale_order_number(self):
+        for sdnl in self:
+            sdnl.sale_order_number = sdnl.sale_line_id.order_id.name or ""
+
+    @api.depends("sale_line_id.order_id.client_order_ref")
+    def _compute_sale_order_client_ref(self):
+        for sdnl in self:
+            sdnl.sale_order_client_ref = (
+                sdnl.sale_line_id.order_id.client_order_ref or ""
+            )
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
