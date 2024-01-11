@@ -75,6 +75,7 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         )
 
     def _prepare_delivery_note_vals(self, sale_order_id):
+        delivery_method_id = self.selected_picking_ids.mapped("carrier_id")[:1]
         return {
             "company_id": (
                 self.selected_picking_ids.mapped("company_id")[:1].id or False
@@ -88,7 +89,8 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
             "partner_shipping_id": self.partner_shipping_id.id,
             "type_id": self.type_id.id,
             "date": self.date,
-            "delivery_method_id": self.partner_id.property_delivery_carrier_id.id,
+            "carrier_id": delivery_method_id.partner_id.id,
+            "delivery_method_id": delivery_method_id.id,
             "transport_condition_id": (
                 sale_order_id
                 and sale_order_id.default_transport_condition_id.id

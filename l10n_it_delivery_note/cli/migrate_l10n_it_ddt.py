@@ -288,7 +288,8 @@ class MigrateL10nItDdt(EasyCommand):
                 "type_id": self._document_types[record.ddt_type_id].id,
                 "date": record.date,
                 "carrier_id": record.carrier_id.id,
-                "delivery_method_id": record.partner_id.property_delivery_carrier_id.id,
+                "delivery_method_id": record.picking_ids.mapped("carrier_id")[:1].id
+                or record.partner_id.property_delivery_carrier_id.id,
                 "transport_datetime": record.date_done,
                 "packages": record.parcels,
                 "volume": record.volume,
