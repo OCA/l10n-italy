@@ -151,10 +151,7 @@
                     </group>
                     <group>
                         <group>
-                            <field
-                                name="carrier_id"
-                                domain="[('is_carrier','=', True)]"
-                            />
+                            <field name="carrier_id" />
                             <field name="delivery_method_id" />
                         </group>
                         <group>
@@ -423,6 +420,8 @@
                                     />
                                     <field name="scheduled_date" readonly="True" />
                                     <field name="origin" />
+                                    <field name="carrier_id" string="Delivery Method" />
+                                    <field name="carrier_partner_id" />
                                     <field name="backorder_id" />
                                     <field name="state" />
                                 </tree>

@@ -1,7 +1,7 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class StockDeliveryNoteSelectWizard(models.TransientModel):
@@ -37,7 +37,21 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
             self.picking_ids += self.selected_picking_ids
         else:
             self.picking_ids = self.picking_ids
+        self.warning_message = self._get_warning_message()
+
         return True
+
+    def _get_warning_message(self):
+        res = super()._get_warning_message()
+        carrier_ids = self.picking_ids.mapped("carrier_id")
+        if len(carrier_ids.mapped("partner_id")) > 1:
+            res = _(
+                "The selected pickings have different delivery methods: %(carriers)s",
+                carriers=", ".join(
+                    f'"{i.name:s}: {i.partner_id.name:s}"' for i in carrier_ids
+                ),
+            )
+        return res
 
     def check_compliance(self, pickings):
         super().check_compliance(pickings)
