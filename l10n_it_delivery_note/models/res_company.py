@@ -12,3 +12,11 @@ class ResCompany(models.Model):
         "Display Ref. Customer in Delivery Note Report",
         default=False,
     )
+    display_carrier_dn_report = fields.Boolean(
+        "Display Carrier in Delivery Note Report",
+        default=False,
+    )
+    display_delivery_method_dn_report = fields.Boolean(
+        "Display Delivery Method in Delivery Note Report",
+        default=False,
+    )

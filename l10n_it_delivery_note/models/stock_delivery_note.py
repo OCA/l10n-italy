@@ -141,7 +141,6 @@ class StockDeliveryNote(models.Model):
         string="Carrier",
         states=DONE_READONLY_STATE,
         tracking=True,
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     delivery_method_id = fields.Many2one(
         "delivery.carrier",
@@ -362,6 +361,10 @@ class StockDeliveryNote(models.Model):
     def _onchange_picking_ids(self):
         self._compute_weights()
 
+    @api.onchange("delivery_method_id")
+    def _onchange_delivery_method_id(self):
+        self.carrier_id = self.delivery_method_id.partner_id
+
     def _inverse_set_pickings(self):
         for note in self:
             if note.pickings_picker:
@@ -532,7 +535,7 @@ class StockDeliveryNote(models.Model):
         self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[0]})
         self.line_ids.sync_invoice_status()
 
-    def action_confirm(self):
+    def _action_confirm(self):
         for note in self:
             sequence = note.type_id.sequence_id
 
@@ -543,6 +546,64 @@ class StockDeliveryNote(models.Model):
             if not note.name:
                 note.name = sequence.next_by_id()
                 note.sequence_id = sequence
+
+    def action_confirm(self):
+        for note in self:
+            warning_message = False
+            carrier_ids = note.mapped("picking_ids.carrier_id")
+            carrier_partner_ids = carrier_ids.mapped("partner_id")
+            if len(carrier_partner_ids) > 1:
+                warning_message = _(
+                    "This delivery note contains pickings "
+                    "related to different transporters. "
+                    "Are you sure you want to proceed?\n"
+                    "Carrier Partners: %(carrier_partners)s",
+                    carrier_partners=", ".join(carrier_partner_ids.mapped("name")),
+                )
+            elif len(carrier_ids) > 1:
+                warning_message = _(
+                    "This delivery note contains pickings related to different "
+                    "delivery methods from the same transporter. "
+                    "Are you sure you want to proceed?\n"
+                    "Delivery Methods: %(carriers)s",
+                    carriers=", ".join(carrier_ids.mapped("name")),
+                )
+            elif (
+                carrier_partner_ids
+                and note.carrier_id
+                and note.carrier_id != carrier_partner_ids
+            ):
+                warning_message = _(
+                    "The carrier set in Delivery Note is different "
+                    "from the carrier set in picking(s). "
+                    "Are you sure you want to proceed?"
+                )
+            elif (
+                carrier_ids
+                and note.delivery_method_id
+                and carrier_ids != note.delivery_method_id
+            ):
+                warning_message = _(
+                    "The shipping method set in Delivery Note is different "
+                    "from the shipping method set in picking(s). "
+                    "Are you sure you want to proceed?"
+                )
+            if warning_message:
+                return {
+                    "type": "ir.actions.act_window",
+                    "name": _("Warning"),
+                    "res_model": "stock.delivery.note.confirm.wizard",
+                    "view_type": "form",
+                    "target": "new",
+                    "view_mode": "form",
+                    "context": {
+                        "default_delivery_note_id": note.id,
+                        "default_warning_message": warning_message,
+                        **self._context,
+                    },
+                }
+            else:
+                note._action_confirm()
 
     def _check_delivery_notes_before_invoicing(self):
         for delivery_note_id in self:
