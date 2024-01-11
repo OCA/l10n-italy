@@ -34,3 +34,13 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.display_ref_customer_dn_report",
         readonly=False,
     )
+    display_carrier_dn_report = fields.Boolean(
+        string="Display Carrier in Delivery Note Report",
+        related="company_id.display_carrier_dn_report",
+        readonly=False,
+    )
+    display_delivery_method_dn_report = fields.Boolean(
+        string="Display Delivery Method in Delivery Note Report",
+        related="company_id.display_delivery_method_dn_report",
+        readonly=False,
+    )

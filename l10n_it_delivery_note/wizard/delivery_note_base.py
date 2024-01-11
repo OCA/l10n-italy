@@ -38,6 +38,7 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
     )
 
     error_message = fields.Html(compute="_compute_fields")
+    warning_message = fields.Char("Warning", readonly=True, compute="_compute_fields")
 
     def _get_validation_errors(self, pickings):
         validators = [
@@ -63,6 +64,16 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
 
         return errors
 
+    def _get_warning_message(self):
+        """
+        This method is used to be inherited and extended
+        to display whatever message could be used to improve the
+        user experience when creating a delivery note
+
+        :return: message to be displayed
+        """
+        return False
+
     @api.depends("selected_picking_ids")
     def _compute_fields(self):
         try:
@@ -84,6 +95,7 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
             )
 
         else:
+            self.warning_message = self._get_warning_message()
             partners = self.selected_picking_ids.get_partners()
             self.partner_sender_id = partners[0]
             self.partner_id = partners[1]

@@ -18,7 +18,7 @@
     "license": "AGPL-3",
     "maintainers": ["MarcoCalcagni", "aleuffre", "renda-dev"],
     "depends": [
-        "delivery",
+        "delivery_carrier_partner",
         "l10n_it_delivery_note_base",
         "mail",
         "sale_stock",
@@ -40,11 +40,16 @@
         "views/stock_picking.xml",
         "views/portal_templates.xml",
         "views/portal_my_delivery_notes.xml",
+        "wizard/delivery_note_confirm.xml",
         "wizard/delivery_note_create.xml",
         "wizard/delivery_note_invoice.xml",
         "wizard/delivery_note_select.xml",
         "wizard/delivery_note_template.xml",
         "wizard/sale_advance_payment_inv.xml",
+    ],
+    "demo": [
+        "demo/res_partner_demo.xml",
+        "demo/delivery_carrier_demo.xml",
     ],
     "assets": {
         "web.assets_backend": [
