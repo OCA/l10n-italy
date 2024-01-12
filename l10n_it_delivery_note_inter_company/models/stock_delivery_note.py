@@ -1,7 +1,7 @@
 # Copyright 2023 Ooops404
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import fields, models
 
 
 class StockDeliveryNote(models.Model):
@@ -14,7 +14,9 @@ class StockDeliveryNote(models.Model):
             if picking_ids:
                 # We want to give access to the referenced
                 # delivery note only in this specific case
-                intercompany_picking_id = picking_ids[-1].intercompany_picking_id.sudo()
+                intercompany_picking_id = fields.first(
+                    picking_ids[::-1]
+                ).intercompany_picking_id.sudo()
 
                 intercompany_note = intercompany_picking_id.delivery_note_id
                 note.partner_ref = intercompany_note.name
