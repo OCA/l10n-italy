@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <!-- Account account -->
+    <record id="account_account_extraEU_purchase" model="account.account">
+        <field name="code">280310</field>
+        <field name="name">ExtraEU Goods Purchase</field>
+        <field name="account_type">liability_current</field>
+        <field name="reconcile">True</field>
+    </record>
+    <record id="account_account_adv_customs_expense" model="account.account">
+        <field name="code">280320</field>
+        <field name="name">Advanced Customs Expenses</field>
+        <field name="account_type">liability_current</field>
+        <field name="reconcile">True</field>
+    </record>
+    <record id="account_account_customs_expense" model="account.account">
+        <field name="code">421500</field>
+        <field name="name">Customs Expenses</field>
+        <field name="account_type">expense</field>
+        <field name="reconcile">True</field>
+    </record>
+    <record id="account_account_stamp_duties" model="account.account">
+        <field name="code">421400</field>
+        <field name="name">Stamp Duties</field>
+        <field name="account_type">expense</field>
+        <field name="reconcile">True</field>
+    </record>
+
+<!--
+        When l10n_it is installed, it creates the l10n_it.1_4201 account
+        (420100 costi di trasporto)
+-->
+    <record id="account_account_delivery_expense" model="account.account">
+        <field name="code">420101</field>
+        <field name="name">Delivery Expenses</field>
+        <field name="account_type">expense</field>
+        <field name="reconcile">True</field>
+    </record>
+
+    <!-- Account Tax -->
+    <record id="tax_tag_22extraUE" model="account.account.tag">
+        <field name="name">22aExtraUE</field>
+        <field name="applicability">taxes</field>
+        <field name="country_id" ref="base.it" />
+    </record>
+    <record id="tax_22extraUE" model="account.tax">
+        <field name="name">Iva al 22% ExtraUE (credito)</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">22</field>
+        <field name="description">22aExtraUE</field>
+        <field name="tax_group_id" ref="account.tax_group_taxes" />
+        <field name="sequence">99</field>
+    </record>
+
+    <!-- Partner -->
+    <record id="partner_customs" model="res.partner">
+        <field name="name">Customs</field>
+        <field name="is_company">True</field>
+    </record>
+
+    <!-- Account Fiscal Position -->
+    <record id="fiscal_position_extraEU" model="account.fiscal.position">
+        <field name="name">Extra EU</field>
+     </record>
+
+    <!-- Account Journal -->
+    <record id="account_journal_purchase_extraEU" model="account.journal">
+        <field name="name">Supplier Invoices ExtraUE</field>
+        <field name="type">purchase</field>
+        <field name="code">NOUE</field>
+     </record>
+
+    <!-- Product product -->
+    <record id="product_product_extraEU_purchase" model="product.product">
+        <field name="name">ExtraEU Goods Purchase</field>
+        <field name="categ_id" ref="product.product_category_1" />
+        <field name="purchase_ok">True</field>
+        <field name="standard_price">1.0</field>
+        <field name="list_price">1.0</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_adv_customs_expense" model="product.product">
+        <field name="name">Advance Customs Expense</field>
+        <field name="categ_id" ref="product.product_category_1" />
+        <field name="purchase_ok">True</field>
+        <field name="standard_price">1.0</field>
+        <field name="list_price">1.0</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_customs_expense" model="product.product">
+        <field name="name">Customs Expense</field>
+        <field name="categ_id" ref="product.product_category_1" />
+        <field name="purchase_ok">True</field>
+        <field name="standard_price">1.0</field>
+        <field name="list_price">1.0</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_delivery" model="product.product">
+        <field name="name">Delivery Expense</field>
+        <field name="categ_id" ref="product.product_category_1" />
+        <field name="purchase_ok">True</field>
+        <field name="standard_price">1.0</field>
+        <field name="list_price">1.0</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <!-- Usually this is standard VAT -->
+        <field name="supplier_taxes_id" eval="[(6, 0, [ref('tax_22extraUE')])]" />
+    </record>
+    <record id="product_product_stamp_duties" model="product.product">
+        <field name="name">Stamp Duties</field>
+        <field name="categ_id" ref="product.product_category_1" />
+        <field name="purchase_ok">True</field>
+        <field name="standard_price">1.0</field>
+        <field name="list_price">1.0</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="property_account_expense_id" ref="account_account_stamp_duties" />
+    </record>
+</odoo>
