@@ -122,7 +122,7 @@ class StockDeliveryNoteLine(models.Model):
                 "move_id": move.id,
                 "name": name,
                 "product_id": move.product_id.id,
-                "product_qty": move.product_uom_qty,
+                "product_qty": move.quantity_done,
                 "product_uom_id": move.product_uom.id,
             }
 
