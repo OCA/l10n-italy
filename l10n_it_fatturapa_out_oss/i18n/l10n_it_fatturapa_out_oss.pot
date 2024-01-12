@@ -19,6 +19,11 @@ msgid "0.00"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out_oss
+#: model:ir.model,name:l10n_it_fatturapa_out_oss.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_oss
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_oss.fatturapa_out_oss_line_it_FatturaPA
 msgid "OSS"
 msgstr ""
