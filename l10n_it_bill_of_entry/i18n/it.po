@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-31 11:08+0000\n"
-"PO-Revision-Date: 2023-10-09 05:36+0000\n"
+"PO-Revision-Date: 2024-01-15 11:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -75,7 +75,7 @@ msgstr "Numero bolle doganali"
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Bill of entry %(partner)s is in state %(state)s"
-msgstr ""
+msgstr "Bolla doganale %(partner)s in stato %(state)s"
 
 #. module: l10n_it_bill_of_entry
 #: model:ir.model.fields,field_description:l10n_it_bill_of_entry.field_res_company__bill_of_entry_journal_id
