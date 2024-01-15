@@ -362,6 +362,7 @@ class TestAssets(SavepointCase):
             )
         )
         asset = wiz.link_asset()
+        self.assertFalse(asset.dismiss_date)
         self.assertEqual(asset.purchase_amount, 7000)
         # dismiss asset with sale
         # create sale invoice and link to asset
