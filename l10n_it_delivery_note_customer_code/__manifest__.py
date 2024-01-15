@@ -13,6 +13,7 @@
     ],
     "data": [
         "report/report_delivery_note.xml",
+        "views/stock_delivery_note_views.xml",
     ],
     "installable": True,
     "auto_install": True,
