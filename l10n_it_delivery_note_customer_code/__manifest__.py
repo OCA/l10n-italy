@@ -7,6 +7,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "category": "Stock",
+    "maintainers": ["aleuffre", "renda-dev", "PicchiSeba"],
     "depends": [
         "product_supplierinfo_for_customer_picking",
         "l10n_it_delivery_note",
