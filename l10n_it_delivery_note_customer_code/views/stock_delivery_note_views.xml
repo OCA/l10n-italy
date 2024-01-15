@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="stock_delivery_note_form_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.form</field>
+        <field name="model">stock.delivery.note</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_delivery_note.stock_delivery_note_form_view"
+        />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='name']"
+                position="after"
+            >
+                <field name="product_customer_code" optional="hide" />
+                <field name="product_customer_name" optional="hide" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/form" position="inside">
+                <group name="customer_info">
+                    <group>
+                        <field name="product_customer_code" optional="hide" />
+                    </group>
+                    <group>
+                        <field name="product_customer_name" optional="hide" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
