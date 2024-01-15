@@ -1,13 +1,13 @@
 # Copyright 2023 Giuseppe Borruso (gborruso@dinamicheaziendali.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import date
+from datetime import date, timedelta
 from unittest import mock
 
 from dateutil.relativedelta import relativedelta
 from freezegun import freeze_time
 
-from odoo import fields
+from odoo import api, fields
 from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -48,17 +48,20 @@ class TestCurrencyRateUpdate(AccountTestInvoicingCommon):
         )
         cls.CurrencyRate.search([]).unlink()
 
+    @api.model
+    def _get_no_weekend_date(self, compute_date):
+        if compute_date.weekday() in [5, 6]:
+            days_to_friday = 4 - compute_date.weekday()
+            return compute_date + timedelta(days=days_to_friday)
+        else:
+            return compute_date
+
     def test_supported_currencies_BOI(self):
         self.ecb_provider._get_supported_currencies()
 
     def test_error_BOI(self):
         with mock.patch(_BOI_provider_class + "._obtain_rates", return_value=None):
             self.ecb_provider._update(self.today, self.today)
-
-    def _get_no_weekend_date(self, compute_date):
-        if compute_date.weekday() == 5 or compute_date.weekday() == 6:
-            compute_date -= relativedelta(days=1)
-        return compute_date
 
     def test_update_BOI_yesterday(self):
         compute_date = self._get_no_weekend_date(self.today - relativedelta(days=1))
