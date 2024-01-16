@@ -258,6 +258,11 @@ msgid "Carriers"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__company_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__company_id
 msgid "Company"
@@ -354,6 +359,11 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__access_url
 msgid "Customer Portal URL"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__sale_order_client_ref
+msgid "Customer Reference"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -538,6 +548,7 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_advance_payment_inv__display_name
@@ -554,6 +565,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_checker_mixin__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_ref_customer_dn_report
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_ref_customer_dn_report
+msgid "Display Ref. Customer in Delivery Note Report"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_ref_order_dn_report
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_ref_order_dn_report
+msgid "Display Ref. Order in Delivery Note Report"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -679,6 +702,7 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_advance_payment_inv__id
@@ -867,6 +891,7 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_advance_payment_inv____last_update
@@ -911,6 +936,16 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__line_ids
 msgid "Lines"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__lines_have_customer_ref
+msgid "Lines Have Customer Ref"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__lines_have_so_number
+msgid "Lines Have So Number"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1145,6 +1180,16 @@ msgid "Print"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid "Prints Customer References on DN report (if there are any)"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid "Prints Sale Order numbers on DN report (if there are any)"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Product"
@@ -1190,6 +1235,16 @@ msgid "Recipients"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "Ref. Customer"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "Ref. Order"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Reset to draft"
@@ -1213,6 +1268,11 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__sale_line_id
 msgid "Sale Line"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__sale_order_number
+msgid "Sale Order Number"
 msgstr ""
 
 #. module: l10n_it_delivery_note
