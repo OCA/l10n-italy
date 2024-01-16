@@ -8,6 +8,9 @@
 * Andrea Piovesana <andrea.m.piovesana@gmail.com>
 * Alex Comba <alex.comba@agilebg.com>
 * `Ooops <https://www.ooops404.com>`_:
-
    * Giovanni Serra <giovanni@gslab.it>
+   * Foresti Francesco <francesco.foresti@ooops404.com>
 * Nextev Srl <odoo@nextev.it>
+* `PyTech-SRL <info@pytech.it>`_:
+   * Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
+   * Sebastiano Picchi <sebastiano.picchi@pytech.it>
