@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-15 08:40+0000\n"
-"PO-Revision-Date: 2021-02-19 14:45+0000\n"
-"Last-Translator: Angeli Cecilia <cecilia@ooops404.com>\n"
+"PO-Revision-Date: 2024-01-17 09:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__active
@@ -226,7 +226,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_picking_transport_method__name
 msgid "Method name"
-msgstr "nome del Metodo"
+msgstr "Nome metodo"
 
 #. module: l10n_it_delivery_note_base
 #: model:ir.model,name:l10n_it_delivery_note_base.model_stock_picking_transport_method
