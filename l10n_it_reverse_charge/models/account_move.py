@@ -194,6 +194,7 @@ class AccountMove(models.Model):
             "credit": credit,
             "debit": debit,
             "account_id": account.id,
+            "currency_id": self.currency_id.id,
         }
 
     def _rc_credit_line_amounts(self, amount):
