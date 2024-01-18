@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-20 06:12+0000\n"
-"PO-Revision-Date: 2023-12-27 11:36+0000\n"
+"PO-Revision-Date: 2024-01-18 10:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -795,7 +795,7 @@ msgstr "Data registrazione"
 #. module: l10n_it_ricevute_bancarie
 #: view:riba.distinta:l10n_it_ricevute_bancarie.view_riba_distinta_form
 msgid "Reset to Draft"
-msgstr "Riporta a bozza"
+msgstr "Reimposta a bozza"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.menu,name:l10n_it_ricevute_bancarie.menu_riba
