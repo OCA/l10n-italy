@@ -235,6 +235,7 @@
                                     <field name="sale_line_id" invisible="True" />
                                     <field name="invoice_status" invisible="True" />
                                     <control>
+                                        <create string="Add a line" />
                                         <create
                                             string="Add a section"
                                             context="{'default_display_type': 'line_section'}"
