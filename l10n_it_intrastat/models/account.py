@@ -4,6 +4,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
+from datetime import datetime, timedelta
 
 
 class AccountFiscalPosition(models.Model):
@@ -286,6 +287,135 @@ class AccountMove(models.Model):
         copy=False,
     )
 
+    #calcolo soglie intrastat
+    def _calculate_total(self, category, company):
+        if category == 'goods_sale':
+            return self._calculate_goods_sale_total(company)
+        elif category == 'goods_purchase':
+            return self._calculate_goods_purchase_total(company)
+        elif category == 'service_sale':
+            return self._calculate_service_sale_total(company)
+        elif category == 'service_purchase':
+            return self._calculate_service_purchase_total(company)
+        else:
+            return 0
+    
+    from datetime import datetime
+
+    #trova data inizio e fine trimestre corrente
+    @api.model
+    def _get_quarter_start_date(self):
+        current_date = datetime.now()
+        current_year = current_date.year
+        current_month = current_date.month
+
+        if current_month <= 3:
+            # Primo trimestre
+            start_date = datetime(current_year, 1, 1)
+        elif current_month <= 6:
+            # Secondo trimestre
+            start_date = datetime(current_year, 4, 1)
+        elif current_month <= 9:
+            # Terzo trimestre
+            start_date = datetime(current_year, 7, 1)
+        else:
+            # Quarto trimestre
+            start_date = datetime(current_year, 10, 1)
+
+        return start_date
+    
+    @api.model
+    def _get_quarter_end_date(self, start_date):
+        #Aggiunge tre mesi alla data di inizio del trimestre e sottrae un giorno per ottenere la fine del trimestre
+        return start_date + timedelta(days=89) 
+    
+    #Soglia Cessioni Intra-UE (beni):
+    def _calculate_goods_sale_total(self, company):
+        fiscal_position_id = company.fiscal_position_goods_sale_id.id
+
+        domain = [
+            ('move_type', '=', 'out_invoice'),
+            ('fiscal_position_id', '=', fiscal_position_id),
+            ('invoice_date', '>=', self._get_quarter_start_date()),
+            ('invoice_date', '<=', self._get_quarter_end_date(self._get_quarter_start_date())),
+            ('product_id.detailed_type', 'in', ['consu', 'product'])
+        ]
+        return self._compute_total(domain)
+    
+    #Soglia Acquisti Intra-UE (beni):
+    def _calculate_goods_purchase_total(self, company):
+        fiscal_position_id = company.fiscal_position_goods_purchase_id.id
+        domain = [
+            ('move_type', '=', 'in_invoice'),
+            ('fiscal_position_id', '=', fiscal_position_id),
+            ('date', '>=', self._get_quarter_start_date()),
+            ('date', '<=', self._get_quarter_end_date(self._get_quarter_start_date())),
+            ('product_id.detailed_type', 'in', ['consu', 'product'])
+        ]
+        return self._compute_total(domain)
+    
+    #Soglia Prestazioni Rese a soggetti UE (servizi):
+    def _calculate_service_sale_total(self, company):
+        fiscal_position_id = company.fiscal_position_service_sale_id.id
+        domain = [
+            ('move_type', '=', 'out_invoice'),
+            ('fiscal_position_id', '=', fiscal_position_id),
+            ('invoice_date', '>=', self._get_quarter_start_date()),
+            ('invoice_date', '<=', self._get_quarter_end_date(self._get_quarter_start_date())),
+            ('product_id.detailed_type', '=', 'service')
+        ]
+        return self._compute_total(domain)
+    #Soglia Prestazioni Ricevute da soggetti UE (servizi):
+    def _calculate_service_purchase_total(self, company):
+        fiscal_position_id = company.fiscal_position_service_purchase_id.id
+        domain = [
+            ('move_type', '=', 'in_invoice'),
+            ('fiscal_position_id', '=', fiscal_position_id),
+            ('date', '>=', self._get_quarter_start_date()),
+            ('date', '<=', self._get_quarter_end_date(self._get_quarter_start_date())),
+            ('product_id.detailed_type', '=', 'service')
+        ]
+        return self._compute_total(domain)
+    
+    def _compute_total(self, domain):
+        total = 0
+        invoices = self.env['account.move'].search(domain)
+        for invoice in invoices:
+            total += sum(line.price_subtotal for line in invoice.invoice_line_ids)
+        return total
+    
+    @api.model
+    def check_intrastat_thresholds_and_send_emails(self):
+        companies = self.env['res.company'].search([])
+        for company in companies:
+            if company.intrastat_email_enabled:
+                self._check_intrastat_threshold_and_send_email(company)
+
+    
+    def _check_intrastat_threshold_and_send_email(self, company):
+
+        if self._calculate_goods_sale_total(company) > company.intrastat_goods_sale_threshold:
+            self._send_intrastat_email(company, 'email_template_intrastat_goods_sale_exceeded')
+        
+        if self._calculate_goods_purchase_total(company) > company.intrastat_goods_purchase_threshold:
+            self._send_intrastat_email(company, 'email_template_intrastat_goods_purchase_exceeded')
+        
+        if self._calculate_service_sale_total(company) > company.intrastat_service_sale_threshold:
+            self._send_intrastat_email(company, 'email_template_intrastat_service_sale_exceeded')
+        
+        if self._calculate_service_purchase_total(company) > company.intrastat_service_purchase_threshold:
+            self._send_intrastat_email(company, 'email_template_intrastat_service_purchase_exceeded')
+    
+    def _send_intrastat_email(self, company, template_xml_id):
+        template = self.env.ref(template_xml_id)
+        if template:
+            email_values = {
+                'email_to': company.intrastat_email_recipients,
+                'body_html': template.body_html,
+                'subject': template.subject,
+            }
+            template.send_mail(self.id, email_values=email_values, force_send=True)
+
     @api.onchange("fiscal_position_id")
     def change_fiscal_position(self):
         self.intrastat = self.fiscal_position_id.intrastat
@@ -336,6 +466,9 @@ class AccountMove(models.Model):
                     raise UserError(
                         _("Intrastat total must be equal to invoice untaxed total")
                     )
+        # chiama il metodo per controllare le soglie intrastat e inviare le email ogni volta che viene postata una fattura
+        self.env['account.move'].check_intrastat_thresholds_and_send_emails()
+
         return True
 
     def compute_intrastat_lines(self):

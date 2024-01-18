@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Intrastat",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "category": "Account",
     "summary": "Riclassificazione merci e servizi per dichiarazioni Intrastat",
     "author": "Openforce, Link IT srl, Agile Business Group, "
@@ -29,6 +29,8 @@
         "views/product.xml",
         "views/account.xml",
         "views/config.xml",
+        "views/company.xml",
+        "views/template_mail_intrastat_excedeed.xml",
     ],
     "demo": ["demo/product_demo.xml"],
 }
