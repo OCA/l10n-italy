@@ -12,12 +12,12 @@
 
         <div class="header">
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-6">
                     <h3>
                         <span t-esc="company.name" />
                     </h3>
                 </div>
-                <div class="col-xs-6 pull-right text-right">
+                <div class="col-6 text-end">
                     <span t-esc="company.street" class="" />
                     <br />
                     <span t-esc="company.zip" class="" /> - <span
@@ -25,7 +25,7 @@
                         class=""
                     /> - <span t-esc="company.state_id.code" class="" />
                     <br />
-                    <span class="text-right"><t
+                    <span class="text-end"><t
                             t-esc="company.country_id.vat_label or 'TIN'"
                         />: </span><span t-esc="company.partner_id.vat" class="" />
                     <br />
@@ -43,19 +43,19 @@
 
         <div class="footer">
             <div class="row text-muted">
-                <div class="col-xs-6 custom_footer">
+                <div class="col-6 custom_footer">
                     <span t-esc="' '" />
                 </div>
-                <div class="col-xs-6 text-right custom_footer">
+                <div class="col-6 text-end custom_footer">
                     <ul class="list-inline">
-                        <li>
+                        <li class="list-inline-item">
                             <t t-if="o.report_footer_year"><span
                                     t-esc="o.report_footer_year"
                                 /></t>
                             <t t-else=""><span class="page" /></t>
                         </li>
-                        <li>/</li>
-                        <li>
+                        <li class="list-inline-item">/</li>
+                        <li class="list-inline-item">
                             <t t-if="o.report_footer_year"><span class="page" /></t>
                             <t t-else=""><span class="topage" /></t>
                         </li>
