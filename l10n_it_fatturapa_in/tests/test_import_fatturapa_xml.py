@@ -984,6 +984,21 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             ),
         )
 
+    def test_54_xml_import(self):
+        """
+        Test: Negative invoice (TD01) is correctly imported,
+        converted all values to positive and set move_type to in_refund
+        """
+        res = self.run_wizard("test54", "IT02098391200_FPR16.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.amount_untaxed, 1.5)
+        self.assertEqual(invoice.amount_total, 1.83)
+        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 0.15)
+        self.assertEqual(invoice.invoice_line_ids[0].quantity, 10.0)
+        self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 1.5)
+        self.assertEqual(invoice.move_type, "in_refund")
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
