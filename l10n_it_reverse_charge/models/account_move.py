@@ -190,15 +190,20 @@ class AccountMove(models.Model):
             "date": self.date,
         }
 
-    def _rc_line_values(self, account, credit, debit):
+    def _rc_line_values(self, account, credit, debit, line_amount_currency=None):
         """Base Values for the RC Payment Move lines."""
-        return {
+        values = {
             "name": self.name,
             "credit": credit,
             "debit": debit,
             "account_id": account.id,
             "currency_id": self.currency_id.id,
         }
+        if line_amount_currency:
+            sign = 1 if debit else -1
+            amount_currency = abs(line_amount_currency) * sign
+            values["amount_currency"] = amount_currency
+        return values
 
     def _rc_credit_line_amounts(self, amount):
         if self.is_inbound():
@@ -221,7 +226,9 @@ class AccountMove(models.Model):
         )
         account = line_to_reconcile.account_id
 
-        line_values = self._rc_line_values(account, credit, debit)
+        line_values = self._rc_line_values(
+            account, credit, debit, line_to_reconcile.amount_currency
+        )
         line_values.update(
             {
                 "partner_id": self.partner_id.id,
@@ -235,16 +242,20 @@ class AccountMove(models.Model):
             abs(line_to_reconcile.balance),
         )
 
-        line_values = self._rc_line_values(account, credit, debit)
+        line_values = self._rc_line_values(
+            account, credit, debit, line_to_reconcile.amount_currency
+        )
         return line_values
 
     def rc_credit_line_vals(self, account, amount):
         credit, debit = self._rc_credit_line_amounts(amount)
         return self._rc_line_values(account, credit, debit)
 
-    def rc_debit_line_vals(self, account, amount):
+    def rc_debit_line_vals(self, account, amount, line_amount_currency=None):
         credit, debit = self._rc_debit_line_amounts(amount)
-        line_values = self._rc_line_values(account, credit, debit)
+        line_values = self._rc_line_values(
+            account, credit, debit, line_amount_currency=line_amount_currency
+        )
         line_values.update(
             {
                 "partner_id": self.partner_id.id,
@@ -269,6 +280,7 @@ class AccountMove(models.Model):
         payment_debit_line_data = self.rc_debit_line_vals(
             line_to_reconcile.account_id,
             payment_credit_line_data["credit"],
+            payment_credit_line_data.get("amount_currency"),
         )
         rc_payment_data["line_ids"] = [
             (0, 0, payment_debit_line_data),
