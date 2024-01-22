@@ -7442,6 +7442,8 @@ msgid ""
 "Bread, not containing added honey, eggs, cheese or fruit, whether or not "
 "containing in the dry state <= 5% by weight of either sugars or fats"
 msgstr ""
+"Pane senza miele, uova, formaggio o frutta, con zuccheri e grassi, in peso, "
+"fino a 5% ciascuno"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90200000
