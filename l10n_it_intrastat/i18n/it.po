@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-22 10:40+0000\n"
+"PO-Revision-Date: 2024-01-22 10:43+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -7414,6 +7414,10 @@ msgid ""
 "incl. knitted or crocheted (excl. in a set made up for retail sale "
 "containing a brassière and a brief)"
 msgstr ""
+"Reggiseno e bustini, ottenuti con prodotti di materie tessili di ogni sorta, "
+"anche elastici, incl. a maglia (escl. presentati in assortimenti "
+"condizionati per la vendita al minuto contenente un reggiseno o un bustino e "
+"uno slip)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_62121010
@@ -7422,11 +7426,15 @@ msgid ""
 "incl. knitted or crocheted, in a set made up for retail sale containing a "
 "brassière and a brief"
 msgstr ""
+"Reggiseno e bustini, ottenuti con prodotti di materie tessili di ogni sorta, "
+"anche elastici, incl. a maglia, presentati in assortimenti condizionati per "
+"la vendita al minuto contenente un reggiseno oun bustino e uno slip"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85151900
 msgid "Brazing or soldering machines (excl. soldering irons and guns)"
 msgstr ""
+"Macchine ed apparecchi per la brasatura, esclusi quelli della voce precedente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_19059030
