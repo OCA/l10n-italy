@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-22 10:37+0000\n"
+"PO-Revision-Date: 2024-01-22 10:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -7405,7 +7405,7 @@ msgstr "Brandy de Jerez, presentato in recipienti di capacità > 2 litri"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_92051000
 msgid "Brass-wind instruments"
-msgstr ""
+msgstr "Strumenti musicali detti \"ottoni\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_62121090
