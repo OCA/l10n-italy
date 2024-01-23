@@ -779,33 +779,31 @@ class AccountIntrastatStatement(models.Model):
             inv_type += ["in_invoice", "in_refund"]
         domain.append(("move_type", "in", inv_type))
 
-        statement_data = dict()
+        statement_data = {}
+        section_field_reverse = {}
+        for section_type in ["purchase", "sale"]:
+            for section_number in range(1, 5):
+                statement_section_field = self.get_section_field_name(
+                    section_type, section_number
+                )
+                statement_data[statement_section_field] = list()
+                section_field_reverse["{}_s{}".format(section_type, section_number)] = (
+                    section_type,
+                    section_number,
+                )
+
         invoices = self.env["account.move"].search(domain)
 
         for inv_intra_line in invoices.mapped("intrastat_line_ids"):
-            for section_type in ["purchase", "sale"]:
-                for section_number in range(1, 5):
-                    section_details = (section_type, section_number)
-                    statement_section = "%s_s%s" % section_details
-                    if inv_intra_line.statement_section != statement_section:
-                        continue
-                    statement_section_model_name = self.get_section_model(
-                        *section_details
-                    )
-                    st_line = self.env[
-                        statement_section_model_name
-                    ]._prepare_statement_line(inv_intra_line, self)
-                    if not st_line:
-                        continue
-                    statement_section_field = self.get_section_field_name(
-                        *section_details
-                    )
-                    if statement_section_field not in statement_data:
-                        statement_data[statement_section_field] = list()
-                    st_line["sequence"] = (
-                        len(statement_data[statement_section_field]) + 1
-                    )
-                    statement_data[statement_section_field].append((0, 0, st_line))
+            section_details = section_field_reverse[inv_intra_line.statement_section]
+            statement_section_model_name = self.get_section_model(*section_details)
+            st_line = self.env[statement_section_model_name]._prepare_statement_line(
+                inv_intra_line, self
+            )
+            if st_line:
+                statement_section_field = self.get_section_field_name(*section_details)
+                st_line["sequence"] = len(statement_data[statement_section_field]) + 1
+                statement_data[statement_section_field].append((0, 0, st_line))
 
         self.write(statement_data)
         # Group refund to sale lines if they have the same period of ref
