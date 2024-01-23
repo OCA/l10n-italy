@@ -334,11 +334,11 @@ class AccountMove(models.Model):
         fiscal_position_id = company.fiscal_position_goods_sale_id.id
 
         domain = [
-            ("move_type", "=", "out_invoice"),
-            ("fiscal_position_id", "=", fiscal_position_id),
-            ("invoice_date", ">=", self._get_quarter_start_date()),
+            ("move_id.move_type", "=", "out_invoice"),
+            ("move_id.fiscal_position_id", "=", fiscal_position_id),
+            ("move_id.invoice_date", ">=", self._get_quarter_start_date()),
             (
-                "invoice_date",
+                "move_id.invoice_date",
                 "<=",
                 self._get_quarter_end_date(self._get_quarter_start_date()),
             ),
@@ -350,10 +350,14 @@ class AccountMove(models.Model):
     def _calculate_goods_purchase_total(self, company):
         fiscal_position_id = company.fiscal_position_goods_purchase_id.id
         domain = [
-            ("move_type", "=", "in_invoice"),
-            ("fiscal_position_id", "=", fiscal_position_id),
-            ("date", ">=", self._get_quarter_start_date()),
-            ("date", "<=", self._get_quarter_end_date(self._get_quarter_start_date())),
+            ("move_id.move_type", "=", "in_invoice"),
+            ("move_id.fiscal_position_id", "=", fiscal_position_id),
+            ("move_id.invoice_date", ">=", self._get_quarter_start_date()),
+            (
+                "move_id.invoice_date",
+                "<=",
+                self._get_quarter_end_date(self._get_quarter_start_date()),
+            ),
             ("product_id.detailed_type", "in", ["consu", "product"]),
         ]
         return self._compute_total(domain)
@@ -362,11 +366,11 @@ class AccountMove(models.Model):
     def _calculate_service_sale_total(self, company):
         fiscal_position_id = company.fiscal_position_service_sale_id.id
         domain = [
-            ("move_type", "=", "out_invoice"),
-            ("fiscal_position_id", "=", fiscal_position_id),
-            ("invoice_date", ">=", self._get_quarter_start_date()),
+            ("move_id.move_type", "=", "out_invoice"),
+            ("move_id.fiscal_position_id", "=", fiscal_position_id),
+            ("move_id.invoice_date", ">=", self._get_quarter_start_date()),
             (
-                "invoice_date",
+                "move_id.invoice_date",
                 "<=",
                 self._get_quarter_end_date(self._get_quarter_start_date()),
             ),
@@ -378,19 +382,23 @@ class AccountMove(models.Model):
     def _calculate_service_purchase_total(self, company):
         fiscal_position_id = company.fiscal_position_service_purchase_id.id
         domain = [
-            ("move_type", "=", "in_invoice"),
-            ("fiscal_position_id", "=", fiscal_position_id),
-            ("date", ">=", self._get_quarter_start_date()),
-            ("date", "<=", self._get_quarter_end_date(self._get_quarter_start_date())),
+            ("move_id.move_type", "=", "in_invoice"),
+            ("move_id.fiscal_position_id", "=", fiscal_position_id),
+            ("move_id.invoice_date", ">=", self._get_quarter_start_date()),
+            (
+                "move_id.invoice_date",
+                "<=",
+                self._get_quarter_end_date(self._get_quarter_start_date()),
+            ),
             ("product_id.detailed_type", "=", "service"),
         ]
         return self._compute_total(domain)
 
     def _compute_total(self, domain):
         total = 0
-        invoices = self.env["account.move"].search(domain)
-        for invoice in invoices:
-            total += sum(line.price_subtotal for line in invoice.invoice_line_ids)
+        invoice_lines = self.env["account.move.line"].search(domain)
+        for line in invoice_lines:
+            total += line.price_subtotal
         return total
 
     @api.model
@@ -407,7 +415,8 @@ class AccountMove(models.Model):
             > company.intrastat_goods_sale_threshold
         ):
             self._send_intrastat_email(
-                company, "email_template_intrastat_goods_sale_exceeded"
+                company,
+                "l10n_it_intrastat.email_template_intrastat_goods_sale_exceeded",
             )
 
         if (
@@ -415,7 +424,8 @@ class AccountMove(models.Model):
             > company.intrastat_goods_purchase_threshold
         ):
             self._send_intrastat_email(
-                company, "email_template_intrastat_goods_purchase_exceeded"
+                company,
+                "l10n_it_intrastat.email_template_intrastat_goods_purchase_exceeded",
             )
 
         if (
@@ -423,7 +433,8 @@ class AccountMove(models.Model):
             > company.intrastat_service_sale_threshold
         ):
             self._send_intrastat_email(
-                company, "email_template_intrastat_service_sale_exceeded"
+                company,
+                "l10n_it_intrastat.email_template_intrastat_service_sale_exceeded",
             )
 
         if (
@@ -431,7 +442,8 @@ class AccountMove(models.Model):
             > company.intrastat_service_purchase_threshold
         ):
             self._send_intrastat_email(
-                company, "email_template_intrastat_service_purchase_exceeded"
+                company,
+                "l10n_it_intrastat.email_template_intrastat_service_purchase_exceeded",
             )
 
     def _send_intrastat_email(self, company, template_xml_id):
