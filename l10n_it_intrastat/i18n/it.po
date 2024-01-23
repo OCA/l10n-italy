@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2023-12-24 17:36+0000\n"
+"PO-Revision-Date: 2024-01-23 18:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -7512,7 +7512,7 @@ msgid ""
 "g. kieselguhr, tripolite or diatomite, or of similar siliceous earths"
 msgstr ""
 "Mattoni, lastre, piastrelle ed altri pezzi ceramici di farine silicee "
-"fossili, p.es. kieselgur, tripolite, diatomite,  o di terre silicee simili"
+"fossili, p.es. kieselgur, tripolite, diatomite, o di terre silicee simili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73081000
@@ -9976,7 +9976,7 @@ msgid ""
 "synthetic textile fibres or artificial plastic materials"
 msgstr ""
 "Olio di ricino e sue frazioni, destinato alla produzione di acido ammino-"
-"undecanoico per la fabbricazione  di fibre sintetiche o materie plastiche"
+"undecanoico per la fabbricazione di fibre sintetiche o materie plastiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_12073000
@@ -11788,7 +11788,7 @@ msgid ""
 "Clock and watch cases (excl. for wrist-watches, pocket-watches and other "
 "watches of heading 9101 or 9102)"
 msgstr ""
-"Casse e gabbie per apparecchi di orologeria  (escl. per orologi da polso, da "
+"Casse e gabbie per apparecchi di orologeria (escl. per orologi da polso, da "
 "tasca e simili delle voci 9101 o 9102)"
 
 #. module: l10n_it_intrastat
@@ -12159,7 +12159,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_18010000
 msgid "Cocoa beans, whole or broken, raw or roasted"
-msgstr "Cacao in grani, interi o franti;  greggi o tostati"
+msgstr "Cacao in grani, interi o franti; greggi o tostati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_18040000
@@ -12823,8 +12823,8 @@ msgid ""
 "paper; paper and paperboard made from recovered paper, whether or not coated "
 "with paper)"
 msgstr ""
-"Carta  e  cartone  piatti,  riuniti mediante incollatura in forma piatta, "
-"non patinati nè spalmati alla superficie nè impregnati, anche rinforzati "
+"Carta e cartone piatti, riuniti mediante incollatura in forma piatta, non "
+"patinati nè spalmati alla superficie nè impregnati, anche rinforzati "
 "internamente, in rotoli di larghezza > 36 cm o in fogli di forma quadrata o "
 "rettangolare con almeno un lato > 36 cm e con l'altro lato > 15 cm a foglio "
 "spiegato (escl. carta e cartone con intercalazione di bitume, catrame o "
@@ -13288,7 +13288,7 @@ msgid ""
 "or marine propulsion and engines for motor vehicles of chapter 87)"
 msgstr ""
 "Motori a pistone, con accensione per compressione, nuovi, di potenza <= 15 "
-"kW (escl.  motori per la propulsione di navi o di veicoli ferroviari, motori "
+"kW (escl. motori per la propulsione di navi o di veicoli ferroviari, motori "
 "veicoli del capitolo 87)"
 
 #. module: l10n_it_intrastat
@@ -13323,9 +13323,9 @@ msgid ""
 "rail traction or marine propulsion and engines for motor vehicles of chapter "
 "87)"
 msgstr ""
-"Motori a pistone, con accensione per compressione, nuovi, di potenza > 15 "
-"kW  ma <=30 (escl. motori per la propulsione di navi o di veicoli "
-"ferroviari, motori veicoli del capitolo 87)"
+"Motori a pistone, con accensione per compressione, nuovi, di potenza > 15 kW "
+"ma <=30 (escl. motori per la propulsione di navi o di veicoli ferroviari, "
+"motori veicoli del capitolo 87)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84089065
@@ -13348,7 +13348,7 @@ msgid ""
 "87)"
 msgstr ""
 "Motori a pistone, con accensione per compressione, nuovi, di potenza > 30 "
-"kW, ma <= 50 kW (escl.  motori per la propulsione di navi o di veicoli "
+"kW, ma <= 50 kW (escl. motori per la propulsione di navi o di veicoli "
 "ferroviari, motori veicoli del capitolo 87)"
 
 #. module: l10n_it_intrastat
@@ -13954,7 +13954,7 @@ msgid ""
 "specifically constructed or equipped for one or more types of transport)"
 msgstr ""
 "Recipienti per gas compressi o liquefatti, di ghisa, ferro o acciaio, senza "
-"saldatura, con pressione => 165 bar, di capacità => 20  e <= 50 litri (escl. "
+"saldatura, con pressione => 165 bar, di capacità => 20 e <= 50 litri (escl. "
 "contenitori specificamente costruiti o equipaggiati per uno o più modalità "
 "di trasporto)"
 
@@ -14738,8 +14738,8 @@ msgid ""
 "crabs in shell, cooked by steaming or by boiling in water (excl. smoked and "
 "\"Cancer pagurus\")"
 msgstr ""
-"Granchi,  anche  sgusciati,  vivi,  freschi, refrigerati, secchi, salati o "
-"in salamoia, incl. granchi (non sgusciati) cotti in acqua o al vapore (escl. "
+"Granchi, anche sgusciati, vivi, freschi, refrigerati, secchi, salati o in "
+"salamoia, incl. granchi (non sgusciati) cotti in acqua o al vapore (escl. "
 "granchi porri (Cancer pagurus))"
 
 #. module: l10n_it_intrastat
@@ -15311,7 +15311,7 @@ msgid ""
 "Crude palm oil, for technical or industrial uses (excl. for manufacture of "
 "foodstuffs)"
 msgstr ""
-"Olio di palma, greggio,  per usi tecnici o industriali diversi dalla "
+"Olio di palma, greggio, per usi tecnici o industriali diversi dalla "
 "fabbricazione di prodotti alimentari destinati al consumo umano"
 
 #. module: l10n_it_intrastat
@@ -15386,8 +15386,8 @@ msgid ""
 "Crude sesame oil, for technical or industrial uses (excl. for manufacture of "
 "foodstuffs)"
 msgstr ""
-"Olio greggio di sesamo e sue frazioni,  per usi tecnici o industriali "
-"diversi dalla fabbricazione di prodotti alimentari destinati al consumo umano"
+"Olio greggio di sesamo e sue frazioni, per usi tecnici o industriali diversi "
+"dalla fabbricazione di prodotti alimentari destinati al consumo umano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15071090
@@ -15440,7 +15440,7 @@ msgid ""
 "Crude tobacco-seed oil, for technical or industrial uses (excl. for "
 "manufacture of foodstuffs)"
 msgstr ""
-"Olio greggio di semi di tabacco e sue frazioni,  per usi tecnici o "
+"Olio greggio di semi di tabacco e sue frazioni, per usi tecnici o "
 "industriali diversi dalla fabbricazione di prodotti alimentari"
 
 #. module: l10n_it_intrastat
@@ -15714,8 +15714,8 @@ msgid ""
 "knitted or crocheted (excl. of synthetic fibres, awnings and sunblinds)"
 msgstr ""
 "Tendine, tende e tende avvolgibili per interni, mantovane e tendaggi per "
-"letto, a maglia, di materie tessili (escl.  di fibre sintetiche, nonchè "
-"tende per l'esterno e da sole)"
+"letto, a maglia, di materie tessili (escl. di fibre sintetiche, nonchè tende "
+"per l'esterno e da sole)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.661932
@@ -15880,7 +15880,7 @@ msgid ""
 "(excl. cyclohexanone, methylcyclohexanones, ionones and methylionones)"
 msgstr ""
 "Chetoni cicloparaffinici, cicloolefinici o cicloterpenici non contenenti "
-"altre funzioni ossigenate (escl.  Cicloesanone,  metilcicloesanoni, iononi e "
+"altre funzioni ossigenate (escl. Cicloesanone, metilcicloesanoni, iononi e "
 "metiliononi)"
 
 #. module: l10n_it_intrastat
@@ -15951,8 +15951,8 @@ msgid ""
 msgstr ""
 "Ammidi (compresi i carbammati) cicliche e loro derivati; sali di tali "
 "prodotti (escl. Ureine e loro derivati; sali di tali prodotti, Acido 2-"
-"acetammidobenzoico (acido N-acetilantranilico) e suoi Sali, e Etinamato "
-"(DCI) , Lidocaina (DCI) e  Paracetamolo (DCI))"
+"acetammidobenzoico (acido N-acetilantranilico) e suoi Sali, e Etinamato (DCI)"
+" , Lidocaina (DCI) e Paracetamolo (DCI))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29094980
@@ -16816,7 +16816,7 @@ msgid ""
 "incorporating sound reproducing apparatus, not capable of operating without "
 "an external source of power (excl. transcribing machines [play only])"
 msgstr ""
-"Dittafoni che non possono funzionare senza una sorgente di energia esterna,  "
+"Dittafoni che non possono funzionare senza una sorgente di energia esterna, "
 "a semiconduttori magnetici o otticie con dispositivo di riproduzione del "
 "suono"
 
@@ -17076,7 +17076,7 @@ msgid ""
 "units)"
 msgstr ""
 "Unità di memoria disco per macchine automatiche numeriche per l'elaborazione "
-"dell'informazione nè ottiche nè magneto-ottiche  (escl. unità di memoria "
+"dell'informazione nè ottiche nè magneto-ottiche (escl. unità di memoria "
 "centrali e hard-disk)"
 
 #. module: l10n_it_intrastat
@@ -17937,7 +17937,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133310
 msgid "Dried, shelled kidney beans \"Phaseolus vulgaris\", for sowing"
-msgstr "Fagioli comuni secchi, destinati  alla semina"
+msgstr "Fagioli comuni secchi, destinati alla semina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133390
@@ -17952,7 +17952,7 @@ msgid ""
 "Dried, shelled leguminous vegetables, whether or not skinned or split (excl. "
 "peas, chickpeas, beans, lentils, broad beans, horse beans and pigeon peas)"
 msgstr ""
-"Legumi da granella,  secchi, sgranati, anche decorticati o  spezzati (escl. "
+"Legumi da granella, secchi, sgranati, anche decorticati o spezzati (escl. "
 "piselli, ceci, fagioli delle specie Vigna spp. e Phaseolus spp., lenticchie, "
 "fave e favette)"
 
@@ -18879,7 +18879,7 @@ msgid ""
 "lights of plastics, ceramics or glass)"
 msgstr ""
 "Lampadari ed altri apparecchi per l'illuminazione, elettrici, da appendere o "
-"da fissare al soffitto o al muro (escl.  materie plastiche, ceramica e vetro)"
+"da fissare al soffitto o al muro (escl. materie plastiche, ceramica e vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94051091
@@ -18900,7 +18900,7 @@ msgid ""
 "wires of a diameter > 0,51 mm)"
 msgstr ""
 "Conduttori elettrici per una tensione di 1 000 V, isolati, non adatti a "
-"connettori, n.n.a.  (escl. cavi per avvolgimenti, conduttori coassiali, set "
+"connettori, n.n.a. (escl. cavi per avvolgimenti, conduttori coassiali, set "
 "elettrici per veicoli, aerei o navi e fili e cavi elettrici con diametro dei "
 "singoli fili > 0,51 mm)"
 
@@ -19152,8 +19152,8 @@ msgstr ""
 "Apparecchi elettrici di segnalazione acustica o visiva (escl. con "
 "visualizzatore a schermo piatto, pannelli indicatori che incorporano "
 "dispositivi a cristalli liquidi (LCD) o a diodi emettitori di luce (LED) "
-"nonché  tipi utilizzati per autoveicoli, biciclette o per le segnalazioni "
-"del traffico)"
+"nonché tipi utilizzati per autoveicoli, biciclette o per le segnalazioni del "
+"traffico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85318020
@@ -19165,7 +19165,7 @@ msgid ""
 msgstr ""
 "Apparecchi elettrici di segnalazione acustica o visiva, con visualizzatore a "
 "schermo piatto (escl. pannelli indicatori che incorporano dispositivi a "
-"cristalli liquidi (LCD) o a diodi emettitori di luce (LED) nonché  tipi "
+"cristalli liquidi (LCD) o a diodi emettitori di luce (LED) nonché tipi "
 "utilizzati per autoveicoli, biciclette o per le segnalazioni del traffico)"
 
 #. module: l10n_it_intrastat
@@ -19606,10 +19606,10 @@ msgid ""
 "plates, boiling rings, grillers, roasters, coffee makers, tea makers, "
 "toasters and deep fat fryers)"
 msgstr ""
-"Apparecchi elettrotermici  per  usi domestici (escl. per parrucchiere o per "
+"Apparecchi elettrotermici per usi domestici (escl. per parrucchiere o per "
 "asciugare le mani, per il riscaldamento dei locali, del suolo o per usi "
 "simili, scaldacqua, scaldatori ad immersione, ferrida stiro, forni a "
-"microonde, cucine, fornelli,  piastre  di  cottura,  griglie  e girarrosti, "
+"microonde, cucine, fornelli, piastre di cottura, griglie e girarrosti, "
 "apparecchi per la preparazione del caffè o del tè, tostapane nonchè "
 "friggitrici)"
 
@@ -21364,7 +21364,7 @@ msgid ""
 "Fats of bovine animals, sheep or goats (excl. for technical/industrial uses, "
 "and tallow, oleostearin and oleo-oil)"
 msgstr ""
-"Grassi di animali della specie bovina, ovina o caprina (escl. per  usi "
+"Grassi di animali della specie bovina, ovina o caprina (escl. per usi "
 "tecnici industriali, sego, oleostearina e oleomargarina)"
 
 #. module: l10n_it_intrastat
@@ -21374,7 +21374,7 @@ msgid ""
 "manufacture of foodstuffs, and tallow, oleostearin and oleo-oil)"
 msgstr ""
 "Altri grassi di animali della specie bovina, ovina o caprina, per usi "
-"industriali  diversi dalla fabbricazione di prodotti alimentari destinati al "
+"industriali diversi dalla fabbricazione di prodotti alimentari destinati al "
 "consumo umano"
 
 #. module: l10n_it_intrastat
@@ -21419,7 +21419,7 @@ msgid ""
 "Fatty-acid mono-alkyl esters, containing by volume => 96,5 % of esters "
 "\"FAMAE\""
 msgstr ""
-"Esteri monoalchilici di acidi grassi, contenenti in volume =>  96,5% di "
+"Esteri monoalchilici di acidi grassi, contenenti in volume => 96,5% di "
 "esteri (FAMAE)"
 
 #. module: l10n_it_intrastat
@@ -21665,7 +21665,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72022100
 msgid "Ferro-silicon, containing by weight > 55% of silicon"
-msgstr "Ferrosilicio, contenente, in  peso, > 55% di silicio"
+msgstr "Ferrosilicio, contenente, in peso, > 55% di silicio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72029100
@@ -21962,7 +21962,7 @@ msgid ""
 "textured yarn)"
 msgstr ""
 "Filati di poliesteri, incl. i monofilamenti < 67 decitex, semplici (non "
-"torti) o con torsione <= 50 giri per metro, parzialmente orientati,  (escl. "
+"torti) o con torsione <= 50 giri per metro, parzialmente orientati, (escl. "
 "filati per cucire, filati condizionati per la vendita al minuto, di "
 "elastomeri, e testurizzati)"
 
@@ -22046,11 +22046,11 @@ msgid ""
 "Oncorhynchus masou and Oncorhynchus rhodurus\", Atlantic salmon \"Salmo salar"
 "\" and Danube salmon \"Hucho hucho\", salted or in brine, but not smoked"
 msgstr ""
-"Filetti di salmoni del Pacifico salati o in salamoia, ma non affumicati  "
-"(Oncorhynchus nerka, Oncorhynchus gorbuscha, Oncorhynchus keta, Oncorhynchus "
+"Filetti di salmoni del Pacifico salati o in salamoia, ma non affumicati ("
+"Oncorhynchus nerka, Oncorhynchus gorbuscha, Oncorhynchus keta, Oncorhynchus "
 "tschawytscha, Oncorhynchus kisutch, Oncorhynchus masou e Oncorhynchus "
-"rhodurus), di salmoni dell'Atlantico (Salmo salar) e salmoni del Danubio "
-"(Hucho hucho),"
+"rhodurus), di salmoni dell'Atlantico (Salmo salar) e salmoni del Danubio ("
+"Hucho hucho),"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03053990
@@ -22307,7 +22307,7 @@ msgstr ""
 "Agenti d'apprettatura o di finitura, accelleranti di tintura o di fissaggio "
 "di coloranti e altri prodotti e preparazioni, utilizzati nelle industrie "
 "tessili, della carta, del cuoio, e simili, a base di sostanze amidacee, con "
-"tenore, in peso, di tali sostanze => 70% e <  83%"
+"tenore, in peso, di tali sostanze => 70% e < 83%"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38091090
@@ -22558,9 +22558,8 @@ msgid ""
 "Fish, dried, even salted, not smoked (excl. cod, Boreogadus saida, herring, "
 "anchovies, Atlantic halibut and fillets and offal)"
 msgstr ""
-"Pesci (non affumicati)  secchi,  anche salati (escl.  merluzzi  bianchi,  "
-"pesci Boreogadus saida,  aringhe, acciughe, ippoglossi dell'Atlantico e "
-"filetti)"
+"Pesci (non affumicati) secchi, anche salati (escl. merluzzi bianchi, pesci "
+"Boreogadus saida, aringhe, acciughe, ippoglossi dell'Atlantico e filetti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03056980
@@ -22653,7 +22652,7 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73024000
 msgid "Fish-plates and sole plates of iron or steel, for railways or tramways"
 msgstr ""
-"Stecche (ganasce) e piastre  di appoggio, di ghisa, di ferro o di acciaio, "
+"Stecche (ganasce) e piastre di appoggio, di ghisa, di ferro o di acciaio, "
 "per rotaie di strade ferrate"
 
 #. module: l10n_it_intrastat
@@ -22733,7 +22732,7 @@ msgstr ""
 msgid ""
 "Fittings, e.g. joints, elbows, flanges, of plastics, for tubes, pipes and "
 "hoses"
-msgstr "Raccorderia  gomiti, flange e simili , di materie plastiche"
+msgstr "Raccorderia gomiti, flange e simili , di materie plastiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85321000
@@ -22912,10 +22911,9 @@ msgid ""
 "plated or coated with zinc (excl. products of high-speed steel or silicon-"
 "electrical steel)"
 msgstr ""
-"Prodotti piatti di acciai legati diversi dagli acciai inossidabili, di  "
-"larghezza < 600 mm, laminati a  caldo  o  a  freddo e zincati "
-"elettroliticamente (escl. quelli di acciai rapidi o di acciai al silicio "
-"detti \"magnetici\")"
+"Prodotti piatti di acciai legati diversi dagli acciai inossidabili, di "
+"larghezza < 600 mm, laminati a caldo o a freddo e zincati elettroliticamente "
+"(escl. quelli di acciai rapidi o di acciai al silicio detti \"magnetici\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72269970
@@ -22925,9 +22923,9 @@ msgid ""
 "plated or coated with zinc, and products of high-speed steel or silicon-"
 "electrical steel)"
 msgstr ""
-"Prodotti piatti di acciai legati diversi dagli acciai inossidabili, di  "
-"larghezza < 600 mm, laminati a caldo o a freddo e ulteriormente trattati "
-"(escl. zincati nonché di acciai rapidi o di acciai al silicio detti "
+"Prodotti piatti di acciai legati diversi dagli acciai inossidabili, di "
+"larghezza < 600 mm, laminati a caldo o a freddo e ulteriormente trattati ("
+"escl. zincati nonché di acciai rapidi o di acciai al silicio detti "
 "\"magnetici\")"
 
 #. module: l10n_it_intrastat
@@ -22938,8 +22936,8 @@ msgid ""
 "zinc (excl. electrolytically plated or coated, and products of high-speed "
 "steel or silicon-electrical steel)"
 msgstr ""
-"Prodotti piatti di acciai legati, diversi dagli acciai inossidabili, di  "
-"larghezza < 600 mm, laminati a caldo o a freddo e zincati (escl.  di acciai "
+"Prodotti piatti di acciai legati, diversi dagli acciai inossidabili, di "
+"larghezza < 600 mm, laminati a caldo o a freddo e zincati (escl. di acciai "
 "rapidi o di acciai al silicio detti \"magnetici\")"
 
 #. module: l10n_it_intrastat
@@ -22972,7 +22970,7 @@ msgid ""
 "plated or coated with zinc and products of silicon-electrical steel)"
 msgstr ""
 "Prodotti piatti di acciai legati diversi da inossidabile, di larghezza => "
-"600 mm, laminati a caldo o a freddo (escl.  quelli zincati "
+"600 mm, laminati a caldo o a freddo (escl. quelli zincati "
 "elettroliticamente, e di acciai al silicio detti «magnetici»)"
 
 #. module: l10n_it_intrastat
@@ -23093,7 +23091,7 @@ msgid ""
 "\"cold-reduced\", of a width of < 600 mm, tinned (excl. tinplate, not "
 "further worked than surface-treated)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, laminati a  caldo  o a "
+"Prodotti piatti, di ferro o di acciai non legati, laminati a caldo o a "
 "freddo, di larghezza < 600 mm, stagnati (escl. latta, solo trattata in "
 "superficie)"
 
@@ -23106,7 +23104,7 @@ msgid ""
 "chromium oxides, plastics, platinum, painted or varnished, clad and tinned "
 "and printed)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, rivestiti (escl. quelli stagnati, piombati, "
 "zincati, rivestiti di alluminio, ossidi di cromo, cromo e ossidi di cromo o "
 "materie plastiche, dipinti o verniciati, placcati, nonchè stagnati e "
@@ -23119,7 +23117,7 @@ msgid ""
 "further worked than hot-rolled, not clad, plated or coated, of a thickness "
 "of >= 4,75 mm (excl. \"wide flats\")"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza < 600 mm, "
 "semplicemente laminati a caldo, non placcati nè rivestiti, di spessore => "
 "4,75 mm (escl. i cosiddetti larghi piatti, o acciaiuniversali)"
 
@@ -23130,7 +23128,7 @@ msgid ""
 "hot-rolled, not clad, plated or coated, of a thickness < 4,75 mm (excl. "
 "\"wide flats\")"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza < 600 mm, "
 "semplicemente laminati a caldo, non placcati nè rivestiti, di spessore < "
 "4,75 mm (escl. i cosiddetti larghi piatti, o acciai universali)"
 
@@ -23141,9 +23139,9 @@ msgid ""
 "but >= 600 mm, not in coils, simply hot-rolled, not clad, plated or coated, "
 "of a thickness of > 10 mm but <= 15 mm, without patterns in relief"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza < 2050 mm, "
-"ma => 600 mm, non arrotolati, semplicemente laminati a caldo, non placcati "
-"nè rivestiti, di spessore > 10 mm, ma <= 15 mm, senza motivi in rilievo"
+"Prodotti piatti di ferro o di acciai non legati, di larghezza < 2050 mm, ma "
+"=> 600 mm, non arrotolati, semplicemente laminati a caldo, non placcati nè "
+"rivestiti, di spessore > 10 mm, ma <= 15 mm, senza motivi in rilievo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72085299
@@ -23167,8 +23165,8 @@ msgid ""
 "plated or coated, containing by weight < 0,25% of carbon (excl. electrical "
 "plate)"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza < 600 mm e "
-"di spessore < 0,35 mm, semplicemente laminati a freddo, non placcati nè "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza < 600 mm e di "
+"spessore < 0,35 mm, semplicemente laminati a freddo, non placcati nè "
 "rivestiti, contenenti, in peso, < 0,25% di carbonio (escl. prodotti piatti "
 "detti \"magnetici\")"
 
@@ -23204,7 +23202,7 @@ msgid ""
 "plated or coatednon-perforated"
 msgstr ""
 "Prodotti laminati piatti non forati, di ferro o di acciai non legati, di "
-"larghezza < 600 mm,  laminati a caldo e a freddo e ulteriormente trattati, "
+"larghezza < 600 mm, laminati a caldo e a freddo e ulteriormente trattati, "
 "non laccati, non placcati e né rivestiti"
 
 #. module: l10n_it_intrastat
@@ -23213,7 +23211,7 @@ msgid ""
 "Flat-rolled products of iron or non-alloy steel, of a width of < 600 mm, hot-"
 "rolled or cold-rolled \"cold-reduced\", clad"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, placcati"
 
 #. module: l10n_it_intrastat
@@ -23225,9 +23223,9 @@ msgid ""
 "chromium oxides, chromium, nickel or aluminium, painted or varnished, and "
 "plastic-coated)"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza < 600 mm, "
-"laminati a caldo o a freddo, rivestiti (escl. stagnati, zincati, dipinti,  "
-"verniciati,  rivestiti  di  materie plastiche o diossidi di cromo o di cromo "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza < 600 mm, "
+"laminati a caldo o a freddo, rivestiti (escl. stagnati, zincati, dipinti, "
+"verniciati, rivestiti di  materie plastiche o diossidi di cromo o di cromo "
 "ed ossidi di cromo, ramati,, cromati, nichelati nonchè rivestiti di "
 "alluminio)"
 
@@ -23238,7 +23236,7 @@ msgid ""
 "rolled or cold-rolled \"cold-reduced\", electrolytically plated or coated "
 "with zinc"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, zincati elettroliticamente"
 
 #. module: l10n_it_intrastat
@@ -23249,10 +23247,10 @@ msgid ""
 "(excl. tinplate, not further worked than varnished, and products plated or "
 "coated with chromium oxides or with chromium and chromium oxides, varnished)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, dipinti, verniciati o rivestiti di materie "
-"plastiche (escl.  latta, semplicemente laccata e prodotti rivestiti di "
-"ossidi di cromo o di cromo ed ossidi di cromo, verniciati)"
+"plastiche (escl. latta, semplicemente laccata e prodotti rivestiti di ossidi "
+"di cromo o di cromo ed ossidi di cromo, verniciati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72125069
@@ -23261,7 +23259,7 @@ msgid ""
 "rolled or cold-rolled \"cold-reduced\", plated or coated with aluminium "
 "(excl. products plated or coated with aluminium-zinc alloys)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, rivestiti di alluminio (escl. quelli rivestiti "
 "di leghe di alluminio-zinco)"
 
@@ -23272,7 +23270,7 @@ msgid ""
 "rolled or cold-rolled \"cold-reduced\", plated or coated with aluminium-zinc "
 "alloys"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, rivestiti di leghe di alluminio-zinco"
 
 #. module: l10n_it_intrastat
@@ -23282,7 +23280,7 @@ msgid ""
 "rolled or cold-rolled \"cold-reduced\", plated or coated with chromium or "
 "nickel"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, cromati o nichelati"
 
 #. module: l10n_it_intrastat
@@ -23292,7 +23290,7 @@ msgid ""
 "rolled or cold-rolled \"cold-reduced\", plated or coated with chromium "
 "oxides or with chromium and chromium oxides (excl. varnished)"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, rivestiti di ossidi di cromo o di cromo ed "
 "ossidi di cromo (escl. verniciati)"
 
@@ -23302,7 +23300,7 @@ msgid ""
 "Flat-rolled products of iron or non-alloy steel, of a width of < 600 mm, hot-"
 "rolled or cold-rolled \"cold-reduced\", plated or coated with copper"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, ramati"
 
 #. module: l10n_it_intrastat
@@ -23312,8 +23310,8 @@ msgid ""
 "rolled or cold-rolled \"cold-reduced\", tinned (excl. electrolytically "
 "plated or coated with zinc)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza < 600 mm, "
-"laminati a caldo o a  freddo,  zincati (escl.  quelli zincati "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza < 600 mm, "
+"laminati a caldo o a freddo, zincati (escl. quelli zincati "
 "elettroliticamente)"
 
 #. module: l10n_it_intrastat
@@ -23323,9 +23321,9 @@ msgid ""
 "simply cold-rolled \"cold-reduced\", not clad, plated or coated, containing "
 "by weight < 0,25% of carbon \"electrical\""
 msgstr ""
-"Prodotti piatti detti \"magnetici\", di ferro o di acciai non legati, di  "
+"Prodotti piatti detti \"magnetici\", di ferro o di acciai non legati, di "
 "larghezza < 600 mm, semplicemente laminati a freddo, non placcati nè "
-"rivestiti, contenenti,  in  peso, < 0,25% di carbonio"
+"rivestiti, contenenti, in peso, < 0,25% di carbonio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72112900
@@ -23334,7 +23332,7 @@ msgid ""
 "simply cold-rolled \"cold-reduced\", not clad, plated or coated, containing "
 "by weight >= 0,25% of carbon"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza < 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza < 600 mm, "
 "semplicemente laminati a freddo, non placcati nè rivestiti, contenenti, in "
 "peso, => 0,25% di carbonio"
 
@@ -23392,7 +23390,7 @@ msgid ""
 "Flat-rolled products of iron or non-alloy steel, of a width of >= 600 mm, "
 "hot-rolled or cold-rolled \"cold-reduced\", clad"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, placcati"
 
 #. module: l10n_it_intrastat
@@ -23402,8 +23400,8 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", corrugated, plated or coated "
 "with zinc (excl. electrolytically plated or coated with zinc)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
-"laminati a caldo o a freddo,  ondulati, zincati (escl. quelli zincati "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
+"laminati a caldo o a freddo, ondulati, zincati (escl. quelli zincati "
 "elettroliticamente)"
 
 #. module: l10n_it_intrastat
@@ -23413,7 +23411,7 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", electrolytically plated or "
 "coated with zinc"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, zincati elettroliticamente"
 
 #. module: l10n_it_intrastat
@@ -23423,7 +23421,7 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", not corrugated, plated or coated "
 "with zinc (excl. electrolytically plated or coated with zinc)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, zincati (non ondulati)"
 
 #. module: l10n_it_intrastat
@@ -23434,7 +23432,7 @@ msgid ""
 "coated (excl. tinplate and products electrolytically plated or coated with "
 "chrome, varnished)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, dipinti, verniciati o rivestiti di materia "
 "plastica (escl. latta e prodotti cromati elettroliticamente, verniciati)"
 
@@ -23445,7 +23443,7 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", plated or coated with aluminium "
 "(excl. products plated or coated with aluminium-zinc alloys)"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, rivestiti di alluminio (escl. quelli rivestiti "
 "di leghe di alluminio-zinco)"
 
@@ -23456,7 +23454,7 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", plated or coated with aluminium-"
 "zinc alloys"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, rivestiti di leghe di alluminio-zinco"
 
 #. module: l10n_it_intrastat
@@ -23466,7 +23464,7 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", plated or coated with chromium "
 "oxides or with chromium and chromium oxides"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, rivestiti di ossidi di cromo o di cromo ed "
 "ossidi di cromo"
 
@@ -23477,7 +23475,7 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", plated or coated with lead, "
 "incl. terne-plate"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, piombati, incl. quelli placcati o rivestiti con "
 "lega di piombo e stagno"
 
@@ -23488,7 +23486,7 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", plated or coated with tin, of a "
 "thickness of < 0,5 mm (excl. tinplate)"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo e a freddo, stagnati, di spessore < 0,5 mm (escl. latta)"
 
 #. module: l10n_it_intrastat
@@ -23498,7 +23496,7 @@ msgid ""
 "hot-rolled or cold-rolled \"cold-reduced\", tinned, of a thickness of >= 0,5 "
 "mm"
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, stagnati, di spessore => 0,5 mm"
 
 #. module: l10n_it_intrastat
@@ -23598,7 +23596,7 @@ msgid ""
 "coils, simply hot-rolled, not clad, plated or coated, of a thickness of < 3 "
 "mm, not pickled, without patterns in relief"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, "
 "arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, di "
 "spessore < 3 mm, non decapati e senza motivi in rilievo"
 
@@ -23631,7 +23629,7 @@ msgid ""
 "coils, simply hot-rolled, not clad, plated or coated, of a thickness of >= 3 "
 "mm but < 4,75 mm, not pickled, without patterns in relief"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, "
 "arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, di "
 "spessore => 3 mm, ma < 4,75 mm, non decapati e senza motivi in rilievo"
 
@@ -23653,7 +23651,7 @@ msgid ""
 "coils, simply hot-rolled, not clad, plated or coated, of a thickness of >= "
 "4,75 mm but < 10 mm, not pickled, without patterns in relief"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, "
 "arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, di "
 "spessore => 4,75 mm, ma <= 10 mm, non decapati, senza motivi in rilievo"
 
