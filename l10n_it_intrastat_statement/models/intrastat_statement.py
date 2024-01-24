@@ -1,6 +1,7 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from collections import defaultdict
 from datetime import date, datetime, timedelta
 
 from dateutil.relativedelta import relativedelta
@@ -775,35 +776,35 @@ class AccountIntrastatStatement(models.Model):
             inv_type += ["in_invoice", "in_refund"]
         domain.append(("move_type", "in", inv_type))
 
-        statement_data = dict()
+        statement_data = defaultdict(list)
+        section_field_reverse = {}
+        for section_type in ["purchase", "sale"]:
+            for section_number in range(1, 5):
+                statement_section_field = self.get_section_field_name(
+                    section_type, section_number
+                )
+                section_model = self.get_section_model(section_type, section_number)
+                section_field_reverse[f"{section_type}_s{section_number}"] = {
+                    "model": self.env[section_model],
+                    "field": statement_section_field,
+                }
+
         invoices = self.env["account.move"].search(domain)
 
         for inv_intra_line in invoices.mapped("intrastat_line_ids"):
-            for section_type in ["purchase", "sale"]:
-                for section_number in range(1, 5):
-                    section_details = (section_type, section_number)
-                    statement_section = "{}_s{}".format(*section_details)
-                    if inv_intra_line.statement_section != statement_section:
-                        continue
-                    statement_section_model_name = self.get_section_model(
-                        *section_details
-                    )
-                    st_line = self.env[
-                        statement_section_model_name
-                    ]._prepare_statement_line(inv_intra_line, self)
-                    if not st_line:
-                        continue
-                    statement_section_field = self.get_section_field_name(
-                        *section_details
-                    )
-                    if statement_section_field not in statement_data:
-                        statement_data[statement_section_field] = list()
-                    st_line["sequence"] = (
-                        len(statement_data[statement_section_field]) + 1
-                    )
-                    statement_data[statement_section_field].append((0, 0, st_line))
+            statement_section = section_field_reverse[inv_intra_line.statement_section]
+            statement_section_model_name = statement_section["model"]
+            st_line = statement_section_model_name._prepare_statement_line(
+                inv_intra_line, self
+            )
+            if st_line:
+                statement_section_field = statement_section["field"]
+                st_line["sequence"] = len(statement_data[statement_section_field]) + 1
+                statement_data[statement_section_field].append((0, 0, st_line))
 
+        # Write only the fields having been touched
         self.write(statement_data)
+
         # Group refund to sale lines if they have the same period of ref
         refund_map = [
             (2, 1),  # Sale (Purchase) section 2 refunds section 1
