@@ -97,6 +97,7 @@
       <CondizioniPagamento>TP02</CondizioniPagamento>
       <DettaglioPagamento>
         <ModalitaPagamento>MP05</ModalitaPagamento>
+        <DataRiferimentoTerminiPagamento>2021-12-16</DataRiferimentoTerminiPagamento>
         <DataScadenzaPagamento>2022-01-31</DataScadenzaPagamento>
         <ImportoPagamento>11.97</ImportoPagamento>
       </DettaglioPagamento>
