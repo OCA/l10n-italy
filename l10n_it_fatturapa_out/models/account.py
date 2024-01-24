@@ -40,6 +40,8 @@ class AccountInvoice(models.Model):
         store="true",
     )
 
+    causale = fields.Html()
+
     @api.depends("fatturapa_attachment_out_id.state")
     def _compute_fatturapa_state(self):
         for record in self:

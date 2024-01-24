@@ -95,7 +95,7 @@ class AccountMove(models.Model):
         if original_invoice:
             supplier = original_invoice.partner_id
 
-        narration = _(
+        causale = _(
             "Reverse charge self invoice.\n"
             "Supplier: %(supplier)s\n"
             "Reference: %(reference)s\n"
@@ -119,7 +119,7 @@ class AccountMove(models.Model):
             "currency_id": currency.id,
             "fiscal_position_id": False,
             "invoice_payment_term_id": False,
-            "narration": narration,
+            "causale": causale,
         }
 
     def _rc_get_move_line_to_reconcile(self):
