@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-23 18:35+0000\n"
+"PO-Revision-Date: 2024-01-24 10:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -23225,9 +23225,8 @@ msgid ""
 msgstr ""
 "Prodotti piatti di ferro o di acciai non legati, di larghezza < 600 mm, "
 "laminati a caldo o a freddo, rivestiti (escl. stagnati, zincati, dipinti, "
-"verniciati, rivestiti di  materie plastiche o diossidi di cromo o di cromo "
-"ed ossidi di cromo, ramati,, cromati, nichelati nonchè rivestiti di "
-"alluminio)"
+"verniciati, rivestiti di materie plastiche o diossidi di cromo o di cromo ed "
+"ossidi di cromo, ramati,, cromati, nichelati nonchè rivestiti di alluminio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72122000
@@ -23762,9 +23761,9 @@ msgid ""
 "not in coils, simply hot-rolled, not clad, plated or coated, of a thickness "
 "of < 3 mm, without patterns in relief"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
-"non arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, "
-"di spessore < 3 mm, senza motivi in rilievo"
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, non "
+"arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, di "
+"spessore < 3 mm, senza motivi in rilievo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72085120
@@ -23773,9 +23772,9 @@ msgid ""
 "not in coils, simply hot-rolled, not clad, plated or coated, of a thickness "
 "of > 15 mm, without patterns in relief"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
-"non arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, "
-"di spessore > 15 mm, senza motivi in rilievo"
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, non "
+"arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, di "
+"spessore > 15 mm, senza motivi in rilievo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72085390
@@ -23799,9 +23798,9 @@ msgid ""
 "not in coils, simply hot-rolled, not clad, plated or coated, with patterns "
 "in relief directly due to the rolling process"
 msgstr ""
-"Prodotti piatti di  ferro  o di acciai non legati, di larghezza => 600 mm, "
-"non arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, "
-"che presentano  motivi in rilievo derivanti o direttamente dalla laminazione"
+"Prodotti piatti di ferro o di acciai non legati, di larghezza => 600 mm, non "
+"arrotolati, semplicemente laminati a caldo, non placcati nè rivestiti, che "
+"presentano motivi in rilievo derivanti o direttamente dalla laminazione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72111300
@@ -23822,7 +23821,7 @@ msgid ""
 "Flat-rolled products of iron or non-alloy steel, tinned and printed, of a "
 "width of >= 600 mm, hot-rolled or cold-rolled \"cold-reduced\""
 msgstr ""
-"Prodotti piatti, di  ferro o di acciai non legati, di larghezza => 600 mm, "
+"Prodotti piatti, di ferro o di acciai non legati, di larghezza => 600 mm, "
 "laminati a caldo o a freddo, stagnati e stampati"
 
 #. module: l10n_it_intrastat
@@ -23832,7 +23831,7 @@ msgid ""
 "further worked, but not clad, plated or coated, non-perforated"
 msgstr ""
 "Prodotti laminati piatti non forati, di ferro o di acciaio, di larghezza => "
-"600  mm,  laminati  a  caldo e ulteriormente  trattati, non laccati, non  "
+"600 mm, laminati a caldo e ulteriormente trattati, non laccati, non  "
 "placcati nè rivestiti"
 
 #. module: l10n_it_intrastat
@@ -23841,9 +23840,9 @@ msgid ""
 "Flat-rolled products of iron or steel, of a width >= 600 mm, hot-rolled and "
 "further worked, but not clad, plated or coated, perforated"
 msgstr ""
-"Prodotti laminati piatti forati, di ferro o di acciaio, di larghezza => 600  "
-"mm,  laminati  a  caldo e ulteriormente  trattati, non laccati, non  "
-"placcati nè rivestiti"
+"Prodotti laminati piatti forati, di ferro o di acciaio, di larghezza => 600 "
+"mm, laminati a caldo e ulteriormente trattati, non laccati, non placcati nè "
+"rivestiti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72099080
@@ -23853,7 +23852,7 @@ msgid ""
 "perforated"
 msgstr ""
 "Prodotti laminati piatti non forati, di ferro o di acciaio, di larghezza => "
-"600  mm,  laminati  a  freddo, e ulteriormente trattati, non laccati, non  "
+"600 mm, laminati a freddo, e ulteriormente trattati, non laccati, non "
 "placcati nè rivestiti"
 
 #. module: l10n_it_intrastat
@@ -23863,9 +23862,9 @@ msgid ""
 "\"cold-reduced\" and further worked, but not clad, plated or coated, "
 "perforated"
 msgstr ""
-"Prodotti laminati piatti forati, di ferro o di acciaio, di larghezza => 600  "
-"mm,  laminati  a  freddo, e ulteriormente trattati, non laccati, non  "
-"placcati nè rivestiti"
+"Prodotti laminati piatti forati, di ferro o di acciaio, di larghezza => 600 "
+"mm, laminati a freddo, e ulteriormente trattati, non laccati, non placcati "
+"nè rivestiti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72261980
@@ -23874,7 +23873,7 @@ msgid ""
 "cold-rolled \"cold-reduced\", whether or not further worked, or hot-rolled "
 "and further worked, non-grain-oriented"
 msgstr ""
-"Prodotti piatti di  acciai al silicio detti \"magnetici\" di larghezza < 600 "
+"Prodotti piatti di acciai al silicio detti \"magnetici\" di larghezza < 600 "
 "mm, laminati a freddo, anche ulteriormente trattati, o laminati a caldo e "
 "ulteriormente trattati, a grani (non orientati)"
 
@@ -23884,8 +23883,8 @@ msgid ""
 "Flat-rolled products of silicon-electrical steel, of a width of < 600 mm, "
 "hot-rolled or cold-rolled \"cold-reduced\", grain-oriented"
 msgstr ""
-"Prodotti piatti di  acciai al silicio detti \"magnetici\", di larghezza < "
-"600 mm, laminati a caldo o a freddo, a grani orientati"
+"Prodotti piatti di acciai al silicio detti \"magnetici\", di larghezza < 600 "
+"mm, laminati a caldo o a freddo, a grani orientati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72261910
@@ -23939,7 +23938,7 @@ msgid ""
 "or cold-rolled \"cold-reduced\" and further worked, perforated"
 msgstr ""
 "Prodotti laminati piatti forati, di acciai inossidabili, di larghezza <600 "
-"mm  laminati a caldo e a freddo e ulteriormente trattati"
+"mm laminati a caldo e a freddo e ulteriormente trattati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72202089
@@ -23948,9 +23947,8 @@ msgid ""
 "worked than cold-rolled \"cold-reduced\", of a thickness of <= 0,35 mm and "
 "containing by weight < 2,5% nickel"
 msgstr ""
-"Prodotti piatti  di  acciai inossidabili, di larghezza < 600 mm, solo "
-"laminati a freddo, di spessore <= 0,35 mm, contenenti, in peso, < 2,5% di "
-"nichel"
+"Prodotti piatti di acciai inossidabili, di larghezza < 600 mm, solo laminati "
+"a freddo, di spessore <= 0,35 mm, contenenti, in peso, < 2,5% di nichel"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72202081
@@ -23959,9 +23957,8 @@ msgid ""
 "worked than cold-rolled \"cold-reduced\", of a thickness of <= 0,35 mm and "
 "containing by weight >= 2,5% nickel"
 msgstr ""
-"Prodotti piatti  di  acciai inossidabili, di larghezza < 600 mm, solo "
-"laminati a freddo, di spessore <= 0,35 mm, contenenti, in peso, => 2,5% di "
-"nichel"
+"Prodotti piatti di acciai inossidabili, di larghezza < 600 mm, solo laminati "
+"a freddo, di spessore <= 0,35 mm, contenenti, in peso, => 2,5% di nichel"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72202049
@@ -23970,9 +23967,9 @@ msgid ""
 "worked than cold-rolled \"cold-reduced\", of a thickness of > 0,35 mm but < "
 "3 mm, and containing by weight < 2,5% nickel"
 msgstr ""
-"Prodotti piatti  di  acciai inossidabili, di larghezza < 600 mm, solo "
-"laminati a freddo, di spessore > 0,35 mm, ma < 3 mm, contenenti, in peso, < "
-"2,5% di nichel"
+"Prodotti piatti di acciai inossidabili, di larghezza < 600 mm, solo laminati "
+"a freddo, di spessore > 0,35 mm, ma < 3 mm, contenenti, in peso, < 2,5% di "
+"nichel"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72202041
@@ -23981,9 +23978,9 @@ msgid ""
 "worked than cold-rolled \"cold-reduced\", of a thickness of > 0,35 mm but < "
 "3 mm, and containing by weight >= 2,5% nickel"
 msgstr ""
-"Prodotti piatti  di  acciai inossidabili, di larghezza < 600 mm, solo "
-"laminati a freddo, di spessore > 0,35 mm, ma < 3 mm contenenti, in peso, => "
-"2,5% di nichel"
+"Prodotti piatti di acciai inossidabili, di larghezza < 600 mm, solo laminati "
+"a freddo, di spessore > 0,35 mm, ma < 3 mm contenenti, in peso, => 2,5% di "
+"nichel"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72202029
@@ -23992,8 +23989,8 @@ msgid ""
 "worked than cold-rolled \"cold-reduced\", of a thickness of >= 3 mm and "
 "containing by weight < 2,5% nickel"
 msgstr ""
-"Prodotti piatti  di  acciai inossidabili, di larghezza < 600 mm, solo "
-"laminati a freddo, di spessore => 3 mm, contenenti, in peso, < 2,5% di nichel"
+"Prodotti piatti di acciai inossidabili, di larghezza < 600 mm, solo laminati "
+"a freddo, di spessore => 3 mm, contenenti, in peso, < 2,5% di nichel"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72202021
@@ -24002,9 +23999,8 @@ msgid ""
 "worked than cold-rolled \"cold-reduced\", of a thickness of >= 3 mm and "
 "containing by weight >= 2,5% nickel"
 msgstr ""
-"Prodotti piatti  di  acciai inossidabili, di larghezza < 600 mm, solo "
-"laminati a freddo, di spessore => 3 mm, contenenti, in peso, => 2,5% di "
-"nichel"
+"Prodotti piatti di acciai inossidabili, di larghezza < 600 mm, solo laminati "
+"a freddo, di spessore => 3 mm, contenenti, in peso, => 2,5% di nichel"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72201200
@@ -24040,7 +24036,7 @@ msgid ""
 "or cold-rolled \"cold-reduced\" and further worked, perforated"
 msgstr ""
 "Prodotti laminati piatti forati, di acciai inossidabili, di larghezza =>600 "
-"mm  laminati a caldo e a freddo e ulteriormente trattati"
+"mm laminati a caldo e a freddo e ulteriormente trattati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72193590
@@ -24284,8 +24280,8 @@ msgstr ""
 msgid ""
 "Flat-rolled products of tool steel, of a width of < 600 mm, simply hot-rolled"
 msgstr ""
-"Prodotti piatti di  acciai per utensili, di larghezza < 600 mm, solo "
-"laminati a caldo"
+"Prodotti piatti di acciai per utensili, di larghezza < 600 mm, solo laminati "
+"a caldo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72253010
@@ -24293,7 +24289,7 @@ msgid ""
 "Flat-rolled products of tool steel, of a width of >= 600 mm, not further "
 "worked than hot-rolled, in coils"
 msgstr ""
-"Prodotti piatti di  acciai per utensili, di larghezza => 600 mm, solo "
+"Prodotti piatti di acciai per utensili, di larghezza => 600 mm, solo "
 "laminati a caldo, in rotoli (coils)"
 
 #. module: l10n_it_intrastat
@@ -24302,7 +24298,7 @@ msgid ""
 "Flat-rolled products of tool steel, of a width of >= 600 mm, not further "
 "worked than hot-rolled, not in coils"
 msgstr ""
-"Prodotti piatti di  acciai per utensili, di larghezza => 600 mm, "
+"Prodotti piatti di acciai per utensili, di larghezza => 600 mm, "
 "semplicemente laminati a caldo, non arrotolati"
 
 #. module: l10n_it_intrastat
@@ -24811,7 +24807,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_24011085
 msgid "Flue-cured tobacco, unstemmed or unstripped"
-msgstr "Tabacchi \"flue cured\",  non scostolati"
+msgstr "Tabacchi \"flue cured\", non scostolati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28261200
@@ -25083,7 +25079,7 @@ msgid ""
 "Food preparations, n.e.s., containing, by weight, >= 1,5% milkfat, >= 5% "
 "sucrose or isoglucose, >= 5% glucose or >= 5% starch"
 msgstr ""
-"Preparazioni alimentari n.n.a., contenenti, in peso,  più di 1,5% di materie "
+"Preparazioni alimentari n.n.a., contenenti, in peso, più di 1,5% di materie "
 "grasse provenienti dal latte, più di 5% di saccarosio, più di 5% di glucosio "
 "o di amido"
 
@@ -25522,7 +25518,7 @@ msgid ""
 "soles of rubber, plastics, leather or composition leather and uppers of "
 "leather, orthopaedic footwear and toy footwear)"
 msgstr ""
-"Calzature con tomaia di cuoio naturale o ricostituito (escl.  le  calzature "
+"Calzature con tomaia di cuoio naturale o ricostituito (escl. le calzature "
 "con suola esterna di gomma, di materia plastica, di cuoio naturale o "
 "ricostituito e tomaia di cuoio naturale, le calzature ortopediche e le "
 "calzature aventi carattere di giocattolo)"
@@ -25727,7 +25723,7 @@ msgstr "Mobili congelatori-conservatori, tipo cofano, di capacità <= 400 litri"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84183080
 msgid "Freezers of the chest type, of a capacity > 400 l but <= 800 l"
 msgstr ""
-"Mobili congelatori-conservatori, tipo cofano, di capacità > 400 e  <= 800 "
+"Mobili congelatori-conservatori, tipo cofano, di capacità > 400 e <= 800 "
 "litri"
 
 #. module: l10n_it_intrastat
@@ -26031,7 +26027,7 @@ msgstr "Sgombri jack cileni freschi o refrigerati (Trachurus murphyi)"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03028410
 msgid "Fresh or chilled European sea bass \"Dicentrarchus labrax\""
-msgstr "Branzini europei freschi o refrigerati  (Dicentrarchus labrax)"
+msgstr "Branzini europei freschi o refrigerati (Dicentrarchus labrax)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03023599
@@ -26126,8 +26122,8 @@ msgid ""
 "Fresh or chilled backs, necks, backs with necks attached, rumps and wing-"
 "tips of domestic ducks"
 msgstr ""
-"Dorsi, colli, dorsi con colli attaccati, codrioni, punte di ali di anatre  "
-"(non disossati), freschi o refrigerati"
+"Dorsi, colli, dorsi con colli attaccati, codrioni, punte di ali di anatre ("
+"non disossati), freschi o refrigerati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02075441
@@ -26289,7 +26285,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03024390
 msgid "Fresh or chilled brisling or sprats \"Sprattus sprattus\""
-msgstr "Alacce o spratti freschi o refrigerati  (Sprattus sprattus)"
+msgstr "Alacce o spratti freschi o refrigerati (Sprattus sprattus)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07051100
@@ -26391,7 +26387,7 @@ msgstr "Carni fresche o refrigerate di anatre domestiche, disossate"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02074481
 msgid "Fresh or chilled cuts of domestic ducks, with bone in, n.e.s."
 msgstr ""
-"Parti  fresche o refrigerate di anatre domestiche, non disossate, non "
+"Parti fresche o refrigerate di anatre domestiche, non disossate, non "
 "nominate altrove"
 
 #. module: l10n_it_intrastat
@@ -26403,7 +26399,7 @@ msgstr "Pezzi freschi o congelati di oche domestiche, disossati"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02075481
 msgid "Fresh or chilled cuts of domestic geese, with bone in, n.e.s."
 msgstr ""
-"Parti  fresche o refrigerate di oche domestiche, non disossate, non nominate "
+"Parti fresche o refrigerate di oche domestiche, non disossate, non nominate "
 "altrove"
 
 #. module: l10n_it_intrastat
@@ -26448,7 +26444,7 @@ msgid ""
 "Fresh or chilled dogfish and other sharks (excl. dogfish \"Squalus acanthias "
 "and Scyliorhinus spp.\" and porbeagle shark)"
 msgstr ""
-"Palombi e altri squali freschi o refrigerati (escl.  i gattucci (Squalus "
+"Palombi e altri squali freschi o refrigerati (escl. i gattucci (Squalus "
 "acanthias e Scyliorhinus spp.) e gli squali smeriglio)"
 
 #. module: l10n_it_intrastat
@@ -26722,7 +26718,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03044990
 msgid "Fresh or chilled fillets of fish, n.e.s."
-msgstr "Filetti di pesci d'acqua dolce freschi o refrigerati  n.n.a."
+msgstr "Filetti di pesci d'acqua dolce freschi o refrigerati n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03044300
@@ -26843,7 +26839,7 @@ msgid ""
 "Fresh or chilled fish of the genus Euthynnus, for industrial processing or "
 "preservation (excl. skipjack or stripe-bellied bonito)"
 msgstr ""
-"Pesci di acqua dolce del genere Euthynnus,  freschi o refrigerati, destinati "
+"Pesci di acqua dolce del genere Euthynnus, freschi o refrigerati, destinati "
 "alla trasformazione industriale o alla conservazione (escl. i tonnetti "
 "striati [Euthynnus (Katsuwonus) pelamis] della sottovoce 0302 33 e escl. i "
 "tonnetti (Euthynnus affinis) della sottovoce 0302 49)"
@@ -27078,7 +27074,7 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03022110
 msgid ""
 "Fresh or chilled lesser or Greenland halibut \"Hippoglossus hippoglossus\""
-msgstr "Ippoglossi neri freschi o refrigerati  (Reinhardtius hippoglossoides)"
+msgstr "Ippoglossi neri freschi o refrigerati (Reinhardtius hippoglossoides)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07051900
@@ -27168,7 +27164,7 @@ msgid ""
 "Bregmacerotidae, Euclichthyidae, Gadidae, Macrouridae, Melanonidae, "
 "Merlucciidae, Moridae and Muraenolepididae (excl. fillets)"
 msgstr ""
-"Carni  anche tritate fresche o refrigerate, di pesce delle famiglie "
+"Carni anche tritate fresche o refrigerate, di pesce delle famiglie "
 "Bregmacerotidae, Euclichthyidae, gadidi, Macrouridae, Melanonidae, "
 "Merluccidi, Moridae e Muraenolepididae (escl. i filetti)"
 
@@ -27282,7 +27278,7 @@ msgstr "Passere di mare fresche o refrigerate"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03025930
 msgid "Fresh or chilled pollack \"Pollachius pollachius\""
-msgstr "Merluzzi gialli freschi o refrigerati  (Pollachius pollachius)"
+msgstr "Merluzzi gialli freschi o refrigerati (Pollachius pollachius)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03028130
@@ -27326,7 +27322,7 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07099910
 msgid "Fresh or chilled salad vegetables (excl. lettuce and chicory)"
 msgstr ""
-"Insalate fresche o refrigerate, diverse  dalla lattuga (Lactuca sativa) e  "
+"Insalate fresche o refrigerate, diverse dalla lattuga (Lactuca sativa) e "
 "dalla cicoria (Cichorium spp.)"
 
 #. module: l10n_it_intrastat
@@ -27488,9 +27484,9 @@ msgid ""
 "and gills on, gutted, weighing > 1,2 kg each, or with heads off, gilled and "
 "gutted, weighing > 1 kg each"
 msgstr ""
-"Trote della specie Oncorhynchus mykiss,  con testa e branchie, senza "
-"visceri, di peso > 1,2 kg per pezzo o decapitate, senza branchie, senza "
-"visceri, di peso > 1 kg per pezzo, fresche o refrigerate"
+"Trote della specie Oncorhynchus mykiss, con testa e branchie, senza visceri, "
+"di peso > 1,2 kg per pezzo o decapitate, senza branchie, senza visceri, di "
+"peso > 1 kg per pezzo, fresche o refrigerate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07095950
@@ -27533,7 +27529,7 @@ msgstr "Ortaggi freschi o refrigerati non nominati altrove"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03025920
 msgid "Fresh or chilled whiting \"Merlangius merlangus\""
-msgstr "Merlani freschi o refrigerati  (Merlangius merlangus)"
+msgstr "Merlani freschi o refrigerati (Merlangius merlangus)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02074431
@@ -27988,8 +27984,8 @@ msgstr ""
 msgid ""
 "Fresh, chilled or frozen cuts of domestic guinea fowls, with bone in, n.e.s."
 msgstr ""
-"Parti  fresche, refrigerate o congelate di faraone domestiche, non "
-"disossate, non nominate altrove"
+"Parti fresche, refrigerate o congelate di faraone domestiche, non disossate, "
+"non nominate altrove"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02076005
@@ -28075,7 +28071,7 @@ msgid ""
 "Fresh, chilled or frozen meat and edible offal of camels and other camelids "
 "[Camelidae]"
 msgstr ""
-"Carne  e frattaglie fresche, refrigerate o congelate di cammelli e altri "
+"Carne e frattaglie fresche, refrigerate o congelate di cammelli e altri "
 "camelidi (Camelidae)"
 
 #. module: l10n_it_intrastat
@@ -28243,7 +28239,7 @@ msgid ""
 "Frozen Atlantic bluefin tuna \"Thunnus thynnus\" (excl. for industrial "
 "processing or preservation)"
 msgstr ""
-"Tonni rossi dell'Atlantico congelati  (Thunnus thynnus) (escl. quelli "
+"Tonni rossi dell'Atlantico congelati (Thunnus thynnus) (escl. quelli "
 "destinati alla trasformazione industriale o alla conservazione)"
 
 #. module: l10n_it_intrastat
@@ -28252,7 +28248,7 @@ msgid ""
 "Frozen Atlantic bluefin tuna \"Thunnus thynnus\", for industrial processing "
 "or preservation"
 msgstr ""
-"Tonni rossi dell'Atlantico congelati  (Thunnus thynnus) destinati alla "
+"Tonni rossi dell'Atlantico congelati (Thunnus thynnus) destinati alla "
 "trasformazione industriale o alla conservazione"
 
 #. module: l10n_it_intrastat
@@ -28439,7 +28435,7 @@ msgstr "Merluzzi granatieri congelati (Macrouronus novaezelandiae)"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03036810
 msgid "Frozen blue whiting \"Micromesistius poutassou, Gadus poutassou\""
-msgstr "Melù  congelati (Micromesistius poutassou, Gadus poutassou)"
+msgstr "Melù congelati (Micromesistius poutassou, Gadus poutassou)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02071410
@@ -28646,7 +28642,7 @@ msgid ""
 "boiling in water (excl. smoked)"
 msgstr ""
 "Granchi delle specie Paralithodes camchaticus, Chionoecetes spp. e "
-"Callinectes sapidus, congelati, anche affumicati, sgusciati o in guscio,  "
+"Callinectes sapidus, congelati, anche affumicati, sgusciati o in guscio, "
 "cotti al vapore o in acqua bollente"
 
 #. module: l10n_it_intrastat
@@ -28656,7 +28652,7 @@ msgid ""
 "boiling in water (excl. smoked and \"Paralithodes camchaticus\", "
 "\"Chionoecetes spp.\", \"Callinectes sapidus\" and \"Cancer pagurus\")"
 msgstr ""
-"Granchi congelati, anche affumicati, sgusciati o in guscio,  cotti al vapore "
+"Granchi congelati, anche affumicati, sgusciati o in guscio, cotti al vapore "
 "o in acqua bollente (escl. granchi delle specie Paralithodes camchaticus, "
 "Chionoecetes spp. e Callinectes sapidus e granchi porri (Cancer pagurus))"
 
@@ -28675,7 +28671,7 @@ msgid ""
 "in shell, incl. crawfish tails in their shell, cooked by steaming or by "
 "boiling in water (excl. smoked)"
 msgstr ""
-"Code di aragosta (Palinurus spp., Panulirus spp., Jasus spp.) congelate,  "
+"Code di aragosta (Palinurus spp., Panulirus spp., Jasus spp.) congelate, "
 "anche affumicate, sgusciate o in guscio, cotte al vapore o bollite in acqua"
 
 #. module: l10n_it_intrastat
@@ -28690,8 +28686,8 @@ msgid ""
 msgstr ""
 "Crostacei congelati, destinati al consumo umano, anche affumicati, sgusciati "
 "o in guscio, cotti in acqua o al vapore (escl. aragoste e altri gamberi di "
-"mare, astici,  gamberetti, gamberoni,  granchi, gamberi di fiume e scampi "
-"(Nephrops norvegicus))"
+"mare, astici, gamberetti, gamberoni, granchi, gamberi di fiume e scampi ("
+"Nephrops norvegicus))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03061905
@@ -28717,7 +28713,7 @@ msgstr "Pezzi congelati di anatre domestiche, disossati"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02074581
 msgid "Frozen cuts of domestic ducks, with bone in, n.e.s."
 msgstr ""
-"Parti  congelate di anatre domestiche, non disossate, non nominate altrove"
+"Parti congelate di anatre domestiche, non disossate, non nominate altrove"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02075510
@@ -28727,8 +28723,7 @@ msgstr "Pezzi congelati di oche domestiche, disossati"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02075581
 msgid "Frozen cuts of domestic geese, with bone in, n.e.s."
-msgstr ""
-"Parti  congelate di oche domestiche, non disossate, non nominate altrove"
+msgstr "Parti congelate di oche domestiche, non disossate, non nominate altrove"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02071470
@@ -28795,7 +28790,7 @@ msgid ""
 "incl. shrimps in shell, cooked by steaming or by boiling in water (excl. "
 "smoked)"
 msgstr ""
-"Gamberi rosa mediterraneo (Parapenaeus longirostris) congelati,  anche "
+"Gamberi rosa mediterraneo (Parapenaeus longirostris) congelati, anche "
 "affumicati, sgusciati o in guscio, cotti al vapore o in acqua bollente"
 
 #. module: l10n_it_intrastat
@@ -28804,8 +28799,8 @@ msgid ""
 "Frozen dogfish and other sharks (excl. dogfish \"Squalus acanthias and "
 "Scyliorhinus spp.\" and porbeagle shark)"
 msgstr ""
-"Squalidi congelati, escluso spinaroli (Squalus acanthias),  gattucci "
-"(Scyliorhinus spp.), smerigli (Lamna nasus) e verdesche (Prionace glauca)"
+"Squalidi congelati, escluso spinaroli (Squalus acanthias), gattucci ("
+"Scyliorhinus spp.), smerigli (Lamna nasus) e verdesche (Prionace glauca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03038120
@@ -29004,7 +28999,7 @@ msgid ""
 "Frozen fillets of Argentine hake \"Southwest Atlantic hake\" \"Merluccius "
 "hubbsi\""
 msgstr ""
-"Filetti di naselli argentini congelati  (nasello dell'Atlantico sud-"
+"Filetti di naselli argentini congelati (nasello dell'Atlantico sud-"
 "occidentale) (nasello argentino)"
 
 #. module: l10n_it_intrastat
@@ -29018,14 +29013,14 @@ msgid ""
 "Frozen fillets of Cape hake \"shallow-water hake\" \"Merluccius capensis\" "
 "and deepwater hake \"deepwater Cape hake\" \"Merluccius paradoxus\""
 msgstr ""
-"Filetti di naselli del Capo congelati  (nasello delle acque poco profonde ) "
-"(Merluccius capensis) e naselli delle acque profonde (naselli del Capo delle "
+"Filetti di naselli del Capo congelati (nasello delle acque poco profonde ) ("
+"Merluccius capensis) e naselli delle acque profonde (naselli del Capo delle "
 "acque profonde) (Merluccius paradoxus)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03046300
 msgid "Frozen fillets of Nile perch \"Lates niloticus\""
-msgstr "Filetti di pesci persico del Nilo congelati  (Lates niloticus)"
+msgstr "Filetti di pesci persico del Nilo congelati (Lates niloticus)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03048100
@@ -29035,7 +29030,7 @@ msgid ""
 "kisutch, Oncorhynchus masou and Oncorhynchus rhodurus\", Atlantic salmon "
 "\"Salmo salar\" and Danube salmon \"Hucho hucho\""
 msgstr ""
-"Filetti di salmoni del Pacifico congelati  (Oncorhynchus nerka, Oncorhynchus "
+"Filetti di salmoni del Pacifico congelati (Oncorhynchus nerka, Oncorhynchus "
 "gorbuscha, Oncorhynchus keta, Oncorhynchus tschawytscha, Oncorhynchus "
 "kisutch, Oncorhynchus masou e Oncorhynchus rhodurus), salmoni dell'Atlantico "
 "(Salmo salar) e salmoni del Danubio (Hucho hucho)"
@@ -29056,8 +29051,8 @@ msgstr ""
 "Filetti congelati di carpe (Cyprinus spp., Carassius spp., Ctenopharyngodon "
 "idellus, Hypophthalmichthys spp., Cirrhinus spp., Mylopharyngodon piceus, "
 "Catla catla, Labeo spp., Osteochilus hasselti, Leptobarbus hoeveni, "
-"Megalobrama spp.), anguille (Anguilla spp.)  e pesci testa di serpente "
-"(Channa spp.)"
+"Megalobrama spp.), anguille (Anguilla spp.) e pesci testa di serpente ("
+"Channa spp.)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03046200
@@ -29135,12 +29130,12 @@ msgstr "Filetti di passere di mare congelati (Platichthys flesus)"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03048910
 msgid "Frozen fillets of freshwater fish, n.e.s."
-msgstr "Filetti congelati di pesci di acqua dolce  n.n.a."
+msgstr "Filetti congelati di pesci di acqua dolce n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03047200
 msgid "Frozen fillets of haddock \"Melanogrammus aeglefinus\""
-msgstr "Filetti di eglefini congelati  (Melanogrammus aeglefinus)"
+msgstr "Filetti di eglefini congelati (Melanogrammus aeglefinus)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03047419
@@ -29149,12 +29144,12 @@ msgid ""
 "and Argentine hake)"
 msgstr ""
 "Filetti di naselli congelati (Merluccius spp). (escl. naselli del Capo, "
-"naselli delle acque profonde e naselli  argentini)"
+"naselli delle acque profonde e naselli argentini)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03047490
 msgid "Frozen fillets of hake \"Urophycis spp.\""
-msgstr "Filetti di naselli congelati  (Urophycis spp)."
+msgstr "Filetti di naselli congelati (Urophycis spp)."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03048600
@@ -29218,7 +29213,7 @@ msgstr "Filetti di pesci spada congelati (Xiphias gladius)"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03046100
 msgid "Frozen fillets of tilapia \"Oreochromis spp.\""
-msgstr "Filetti di tilapia congelati  (Oreochromis spp)"
+msgstr "Filetti di tilapia congelati (Oreochromis spp)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03048500
@@ -29236,7 +29231,7 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03048210
 msgid "Frozen fillets of trout \"Oncorhynchus mykiss\", weighing > 400 g each"
 msgstr ""
-"Filetti di trote congelati  (Oncorhynchus mykiss), di peso > 400 g per pezzo"
+"Filetti di trote congelati (Oncorhynchus mykiss), di peso > 400 g per pezzo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03048290
@@ -29255,8 +29250,8 @@ msgid ""
 "Frozen fillets of tuna \"of the genus Thunnus\", skipjack or stripe-bellied "
 "bonito \"Euthynnus [Katsuwonus] pelamis\""
 msgstr ""
-"Filetti di tonni congelati (del genere Thunnus), tonnetti striati  "
-"(Euthynnus (Katsuwonus) pelamis)"
+"Filetti di tonni congelati (del genere Thunnus), tonnetti striati (Euthynnus "
+"(Katsuwonus) pelamis)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03047930
@@ -29313,10 +29308,10 @@ msgid ""
 "Frozen fish of the genus Euthynnus, for industrial processing or "
 "preservation (excl. skipjack or stripe-bellied bonito)"
 msgstr ""
-"Pesci di acqua dolce del genere Euthynnus,  congelati, destinati alla "
-"trasformazione industriale o alla conservazione (escl. i tonnetti striati "
-"[Euthynnus (Katsuwonus) pelamis] della sottovoce 0302 33 e escl. i tonnetti "
-"(Euthynnus affinis) della sottovoce 0302 49)"
+"Pesci di acqua dolce del genere Euthynnus, congelati, destinati alla "
+"trasformazione industriale o alla conservazione (escl. i tonnetti striati ["
+"Euthynnus (Katsuwonus) pelamis] della sottovoce 0302 33 e escl. i tonnetti ("
+"Euthynnus affinis) della sottovoce 0302 49)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03033930
@@ -29622,7 +29617,7 @@ msgid ""
 "Frozen lobsters \"Homarus spp.\", smoked, even in shell, even cooked but not "
 "otherwise prepared"
 msgstr ""
-"Astici  congelati, affumicati (Homarus spp.), anche in guscio, anche cotti "
+"Astici congelati, affumicati (Homarus spp.), anche in guscio, anche cotti "
 "prima o durante l'affumicatura, non altrimenti preparati"
 
 #. module: l10n_it_intrastat
@@ -29655,7 +29650,7 @@ msgid ""
 "Frozen meat \"whether or not minced\" of Ray's bream \"Brama spp.\" (excl. "
 "fillets)"
 msgstr ""
-"Carne di pesci castagna (Brama spp.),  anche tritata, congelata (esclusi i "
+"Carne di pesci castagna (Brama spp.), anche tritata, congelata (esclusi i "
 "filetti)"
 
 #. module: l10n_it_intrastat
@@ -29743,7 +29738,7 @@ msgid ""
 "Frozen meat, whether or not minced, of Alaska pollack \"Theragra chalcogramma"
 "\" (excl. fillets and surimi)"
 msgstr ""
-"Carne  di merluzzi dell'Alaska congelata, anche tritata, (Theragra "
+"Carne di merluzzi dell'Alaska congelata, anche tritata, (Theragra "
 "chalcogramma) (escl. filetti e surimi)"
 
 #. module: l10n_it_intrastat
@@ -29803,8 +29798,8 @@ msgstr ""
 "Carne di pesci congelata, anche tritata, delle famiglie Bregmacerotidae, "
 "Euclichthyidae, gadidi, Macrouridae, Melanonidae, Merluccidi, Moridae e "
 "Muraenolepididae (escl. filetti, surimi, merluzzi dell'Alaska (Theragra "
-"chalcogramma), merluzzi bianchi, eglefini,  merluzzi carbonari, naselli "
-"(Merluccius spp.) e melù)"
+"chalcogramma), merluzzi bianchi, eglefini, merluzzi carbonari, naselli ("
+"Merluccius spp.) e melù)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03049530
@@ -29843,8 +29838,8 @@ msgid ""
 "\"Anguilla spp.\", Nile perch \"Lates niloticus\" and snakeheads \"Channa "
 "spp.\" (excl. fillets and surimi)"
 msgstr ""
-"Carne  congelata, anche tritata , di tilapia (Oreochromis spp.), pesci gatto "
-"(Pangasio spp., Silurus spp., Clarias spp., Ictalurus spp.), carpe (Cyprinus "
+"Carne congelata, anche tritata , di tilapia (Oreochromis spp.), pesci gatto ("
+"Pangasio spp., Silurus spp., Clarias spp., Ictalurus spp.), carpe (Cyprinus "
 "carpio, Carassius carassius, Ctenopharyngodon idellus, Hypophthalmichthys "
 "spp., Cirrhinus spp., Mylopharyngodon piceus), anguille (Anguilla spp.), "
 "persici del Nilo ( Lates niloticus) e pesci testa di serpente (Channa spp. ) "
@@ -30013,7 +30008,7 @@ msgid ""
 "and smoked)"
 msgstr ""
 "Aragoste (Palinurus spp., Panulirus spp., Jasus spp.) e altri crostacei "
-"marini, congelati,  anche affumicati, sgusciate o in guscio, cotti al vapore "
+"marini, congelati, anche affumicati, sgusciate o in guscio, cotti al vapore "
 "o bolliti in acqua (escl. le code di aragosta)"
 
 #. module: l10n_it_intrastat
@@ -30117,7 +30112,7 @@ msgid ""
 "Frozen shrimps of the genus \"Penaeus\", even in shell, incl. shrimps in "
 "shell, cooked by steaming or by boiling in water (excl. smoked)"
 msgstr ""
-"Gamberoni (mazzancolle) del genere Penaeus congelati,  anche affumicati, "
+"Gamberoni (mazzancolle) del genere Penaeus congelati, anche affumicati, "
 "sgusciati o in guscio, cotti al vapore o in acqua bollente"
 
 #. module: l10n_it_intrastat
@@ -30126,7 +30121,7 @@ msgid ""
 "Frozen shrimps of the genus Crangon, even in shell, incl. shrimps in shell, "
 "cooked by steaming or by boiling in water (excl. smoked and Crangon crangon)"
 msgstr ""
-"Gamberetti del genere Crangon,  congelati, anche affumicati, sgusciati o in "
+"Gamberetti del genere Crangon, congelati, anche affumicati, sgusciati o in "
 "guscio, cotti al vapore o in acqua bollente (escl. \"Crangon crangon\")"
 
 #. module: l10n_it_intrastat
@@ -30191,7 +30186,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03049410
 msgid "Frozen surimi of Alaska pollack \"Theragra chalcogramma\""
-msgstr "Surimi di merluzzi  dell'Alaska congelati (Theragra chalcogramma)"
+msgstr "Surimi di merluzzi dell'Alaska congelati (Theragra chalcogramma)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03049910
@@ -30558,13 +30553,13 @@ msgid ""
 "cashew apples, lychees, jackfruit, sapodillo plums, carambola and pitahaya)"
 msgstr ""
 "Frutta e altre parti commestibili di piante, preparate o conservate, senza "
-"aggiunta di alcole, ma con aggiunta  di zuccheri, in imballaggi immediati di "
+"aggiunta di alcole, ma con aggiunta di zuccheri, in imballaggi immediati di "
 "contenuto netto <= 1 kg (escl. cotte negli zuccheri o candite ma non "
 "sciroppate, confetture, gelatine, marmellate, puree e paste di frutta, "
 "ottenute mediante cottura, nonchè frutta a guscio, arachidi e altri semi, "
-"ananassi, agrumi, pere,  albicocche,  ciliegie, pesche, fragole, zenzero, "
+"ananassi, agrumi, pere, albicocche, ciliegie, pesche, fragole, zenzero, "
 "frutti della passione, guaiave, manghi, mangostani, papaie, tamarindi, "
-"frutta di acagiù, litchi, frutta  di jack, sapotiglie, carambole e pitahaya)"
+"frutta di acagiù, litchi, frutta di jack, sapotiglie, carambole e pitahaya)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20089949
@@ -30710,7 +30705,7 @@ msgid ""
 "containing biodiesel)"
 msgstr ""
 "Oli combustibili ottenuti da materiali bituminosi, aventi tenore, in peso, "
-"di zolfo >  0,1% ma <= 1%, diversi da quelli contenenti biodiesel e dai "
+"di zolfo > 0,1% ma <= 1%, diversi da quelli contenenti biodiesel e dai "
 "residui di oli, destinati a subire una trasformazione chimica mediante un "
 "trattamento diverso da quelli definiti nella nota complementare 5 del "
 "capitolo 27"
@@ -31216,7 +31211,7 @@ msgid ""
 "Furniture of plastics (excl. medical, dental, surgical or veterinary, and "
 "seats)"
 msgstr ""
-"Mobili di materie plastiche (escl. mobili  per la medicina, la chirurgia, "
+"Mobili di materie plastiche (escl. mobili per la medicina, la chirurgia, "
 "l'odontoiatria o la veterinaria, letti e sedili)"
 
 #. module: l10n_it_intrastat
@@ -31321,7 +31316,7 @@ msgid ""
 msgstr ""
 "Indumenti confezionati di tessuti non tessuti, anche impregnati, spalmati, "
 "ricoperti o stratificati (escl. indumenti per neonati, accessori di "
-"abbigliamento, e camici monouso utilizzati  in ambito chirurgico)"
+"abbigliamento, e camici monouso utilizzati in ambito chirurgico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_62102000
@@ -31555,7 +31550,7 @@ msgid ""
 "Gaskets, washers and other seals, of vulcanised rubber (excl. hard rubber "
 "and those of cellular rubber)"
 msgstr ""
-"Giunti di gomma vulcanizzata non indurita  (escl. di gomma indurita e "
+"Giunti di gomma vulcanizzata non indurita (escl. di gomma indurita e "
 "alveolare)"
 
 #. module: l10n_it_intrastat
@@ -31595,8 +31590,8 @@ msgid ""
 "Gauze (excl. that of silk, silk waste or cotton, and narrow woven fabrics of "
 "heading 5806)"
 msgstr ""
-"Tessuti a punto di garza (escl.  quelli di seta, di cascami di seta o "
-"cotone; e nastri, galloni e simili della voce 5806)"
+"Tessuti a punto di garza (escl. quelli di seta, di cascami di seta o cotone; "
+"e nastri, galloni e simili della voce 5806)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30059031
@@ -31756,7 +31751,7 @@ msgid ""
 "fuel, lubricating or cooling medium pumps for internal combustion piston "
 "engine and hydraulic pumps, incl. hydraulic units)"
 msgstr ""
-"Pompe a ingranaggi (escl. quelle delle sottovoci  8413 11 00 e 8413 19 00, "
+"Pompe a ingranaggi (escl. quelle delle sottovoci 8413 11 00 e 8413 19 00, "
 "pompe di carburante, olio o liquido di raffreddamento per motori ad "
 "accensione a scintilla o per compressione, pompe idrauliche inclusivi di "
 "aggregati idraulici)"
@@ -31778,7 +31773,7 @@ msgid ""
 "bevel, bevel-spur gears and gearing and worm gear, gear boxes and other "
 "speed changers)"
 msgstr ""
-"Ingranaggi per macchine (escl. quelli  con ruote cilindriche, con ruote "
+"Ingranaggi per macchine (escl. quelli con ruote cilindriche, con ruote "
 "coniche o cilindro-coniche e con vite senza fine nonchè riduttori, "
 "moltiplicatori e variatori di velocità)"
 
@@ -31857,7 +31852,7 @@ msgid ""
 "Generating sets with compression-ignition internal combustion piston engine "
 "\"diesel or semi-diesel engine\" of an output > 2.000 kVA"
 msgstr ""
-"Gruppi elettrogeni con motore a pistone con accensione per compressione  "
+"Gruppi elettrogeni con motore a pistone con accensione per compressione "
 "motori diesel o semi-diesel , di potenza > 2 000 kVA"
 
 #. module: l10n_it_intrastat
@@ -31893,7 +31888,7 @@ msgid ""
 "Generating sets with compression-ignition internal combustion piston engine "
 "\"diesel or semi-diesel engine\" of an output > 750 kVA but <= 2.000 kVA"
 msgstr ""
-"Gruppi elettrogeni con motore a pistone con accensione per compressione  "
+"Gruppi elettrogeni con motore a pistone con accensione per compressione "
 "motori diesel o semi-diesel , di potenza > 750 kVA ma <= 2 000 kVA"
 
 #. module: l10n_it_intrastat
@@ -31912,7 +31907,7 @@ msgid ""
 "output > 375 kVA but <= 750 kVA"
 msgstr ""
 "Gruppi elettrogeni con motore a pistone con accensione a scintilla (motori a "
-"scoppio), di potenza >  375 kVA e fino a 750 kVA"
+"scoppio), di potenza > 375 kVA e fino a 750 kVA"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85022040
@@ -31921,7 +31916,7 @@ msgid ""
 "output > 7,5 kVA but <= 375 kVA"
 msgstr ""
 "Gruppi elettrogeni con motore a pistone con accensione a scintilla (motori a "
-"scoppio), di potenza >  7,5 kVA e fino a 375 kVA"
+"scoppio), di potenza > 7,5 kVA e fino a 375 kVA"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85022080
@@ -31939,7 +31934,7 @@ msgid ""
 "combustion piston engine (excl. turbogenerators)"
 msgstr ""
 "Gruppi elettrogeni diversi da quelli ad energia eolica e da quelli con "
-"motore a pistone con accensione a scintilla  motori a scoppio (escl. "
+"motore a pistone con accensione a scintilla motori a scoppio (escl. "
 "turbogeneratori)"
 
 #. module: l10n_it_intrastat
@@ -33041,7 +33036,7 @@ msgid ""
 "of a weight of <= 185 g (excl. laying stocks)"
 msgstr ""
 "Pulcini femmine per la selezione e la riproduzione, di galline delle specie "
-"domestiche, di peso <= 185 g  (escl. razze ovaiole)"
+"domestiche, di peso <= 185 g (escl. razze ovaiole)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_01051111
@@ -33348,7 +33343,7 @@ msgid ""
 msgstr ""
 "Succo di pompelmo o di pomelo non fermentato, senza aggiunta di alcole, "
 "anche con aggiunta di zuccheri o di altri dolcificanti, di un valore Brix > "
-"67  e di valore <= 30 Euro per 100 kg di peso netto"
+"67 e di valore <= 30 Euro per 100 kg di peso netto"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20092919
@@ -33359,7 +33354,7 @@ msgid ""
 msgstr ""
 "Succo di pompelmo o di pomelo non fermentato, senza aggiunta di alcole, "
 "anche con aggiunta di zuccheri o di altri dolcificanti, di un valore Brix > "
-"67  e di valore > 30 Euro per 100 kg di peso netto"
+"67 e di valore > 30 Euro per 100 kg di peso netto"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20083071
@@ -34360,8 +34355,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84132000
 msgid "Hand pumps for liquids (excl. those of subheading 8413.11 and 8413.19)"
-msgstr ""
-"Pompe a mano, diverse da quelle delle sottovoci  8413 11 00 e 8413 19 00"
+msgstr "Pompe a mano, diverse da quelle delle sottovoci 8413 11 00 e 8413 19 00"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68043000
@@ -34526,7 +34520,7 @@ msgid ""
 "cotton, and knitted or crocheted)"
 msgstr ""
 "Fazzoletti da naso o da taschino, di materie tessili, di cui nessun lato "
-"supera 60 cm (diverse  dal cotone e a maglia)"
+"supera 60 cm (diverse dal cotone e a maglia)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48182010
@@ -34727,9 +34721,9 @@ msgid ""
 "forage products (excl. swedes, mangolds and other fodder roots and lucerne "
 "meal)"
 msgstr ""
-"Fieno, erba medica, trifoglio lupinella, cavoli da foraggio, lupino,  vecce  "
-"e altri simili prodotti da  foraggio (escl.  barbabietole da foraggio, "
-"navoni-rutabaga, radici da foraggio nonchè farina di erba medica)"
+"Fieno, erba medica, trifoglio lupinella, cavoli da foraggio, lupino, vecce e "
+"altri simili prodotti da foraggio (escl. barbabietole da foraggio, navoni-"
+"rutabaga, radici da foraggio nonchè farina di erba medica)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84333000
@@ -35244,9 +35238,9 @@ msgid ""
 "tetrahydrofurfuryl alcohol)"
 msgstr ""
 "Composti eterociclici con uno o più eteroatomi di solo ossigeno, contenenti "
-"un anello furanico (idrogenato o non) non condensato (escl. "
-"tetraidrofurano,  2-furaldeide (furfurale), alcole furfurilico e alcole "
-"tetraidrofurfurilico, sucralosio)"
+"un anello furanico (idrogenato o non) non condensato (escl. tetraidrofurano, "
+"2-furaldeide (furfurale), alcole furfurilico e alcole tetraidrofurfurilico, "
+"sucralosio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29039200
@@ -35457,7 +35451,7 @@ msgid ""
 "Hides and skins of swine, in the dry state (crust), without wool on, whether "
 "or not split (excl. further prepared and pre-tanned only)"
 msgstr ""
-"Cuoi e pelli di suini, allo stato secco (in crosta), depilati,  anche "
+"Cuoi e pelli di suini, allo stato secco (in crosta), depilati, anche "
 "spaccati (escl. altrimenti preparati e solamente preconciati)"
 
 #. module: l10n_it_intrastat
@@ -36014,7 +36008,7 @@ msgstr "Fiocchi di granturco mondati, anche tagliati o spezzati; perlati"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11042904
 msgid "Hulled, even sliced or kibbled barley grains"
-msgstr "Fiocchi d'orzo mondati,  anche tagliati o spezzati"
+msgstr "Fiocchi d'orzo mondati, anche tagliati o spezzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11042917
@@ -36295,7 +36289,7 @@ msgid ""
 "psychrometers, whether or not combined with each other or with thermometers "
 "or barometers, electronic"
 msgstr ""
-"Densimetri,  aerometri, pesaliquidi  e strumenti simili a galleggiamento, "
+"Densimetri, aerometri, pesaliquidi e strumenti simili a galleggiamento, "
 "igrometri e psicrometri, anche combinati fra loro, anche con termometri e "
 "barometri elettronici"
 
@@ -36306,7 +36300,7 @@ msgid ""
 "psychrometers, whether or not combined with each other or with thermometers "
 "or barometers, non-electronic"
 msgstr ""
-"Densimetri,  aerometri, pesaliquidi  e strumenti simili a galleggiamento, "
+"Densimetri, aerometri, pesaliquidi e strumenti simili a galleggiamento, "
 "igrometri e psicrometri, anche combinati fra loro, anche con termometri e "
 "barometri non elettronici"
 
@@ -36369,7 +36363,7 @@ msgid ""
 "hot-rolled, hot-drawn or extruded, of a height > 220 mm"
 msgstr ""
 "Profilati di ferro o acciai non legati, a I, semplicemente laminati o "
-"estrusi a caldo, di altezza > 220 mm, ad  ali a facce parallele"
+"estrusi a caldo, di altezza > 220 mm, ad ali a facce parallele"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72163211
@@ -36975,8 +36969,8 @@ msgid ""
 "Inner tubes, of rubber (excl. those of a kind used on motor cars, incl. "
 "station wagons and racing cars, buses, lorries and bicycles)"
 msgstr ""
-"Camere  d'aria,  di  gomma (escl.  dei  tipi utilizzati per autoveicoli da "
-"turismo, incl. autoveicoli tipo \"break\" e  auto da corsa, autobus, "
+"Camere d'aria, di gomma (escl. dei tipi utilizzati per autoveicoli da "
+"turismo, incl. autoveicoli tipo \"break\" e auto da corsa, autobus, "
 "autocarri e biciclette)"
 
 #. module: l10n_it_intrastat
@@ -37169,8 +37163,8 @@ msgid ""
 "apparatus for fitting in motor vehicles)"
 msgstr ""
 "Antenne per interni di apparecchi riceventi di radiodiffusione e di "
-"radiotelevisione, comprese quelle incorporate (escl.  telescopiche, antenne "
-"a frusta per apparecchi portatili e per apparecchi da installare sugli "
+"radiotelevisione, comprese quelle incorporate (escl. telescopiche, antenne a "
+"frusta per apparecchi portatili e per apparecchi da installare sugli "
 "autoveicoli)"
 
 #. module: l10n_it_intrastat
