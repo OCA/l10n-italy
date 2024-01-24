@@ -35,6 +35,7 @@ class ResCompany(models.Model):
         [
             ("Foglio_di_stile_fatturaordinaria_v1.2.2.xsl", "Fattura Ordinaria"),
             ("FoglioStileAssoSoftware.xsl", "AssoSoftware"),
+            ("FoglioStileSouthTyrol-bilingue.xsl", "South-Tyrol"),
         ],
         string="Preview Format Style",
         required=True,
