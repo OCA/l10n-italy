@@ -388,6 +388,18 @@
                     domain="[('delivery_note_state', '=', 'confirm')]"
                 />
             </xpath>
+            <group position="inside">
+                <filter
+                    name="delivery_note_state"
+                    domain="[]"
+                    context="{'group_by': 'delivery_note_state'}"
+                />
+                <filter
+                    name="delivery_note_date"
+                    domain="[]"
+                    context="{'group_by': 'delivery_note_date'}"
+                />
+            </group>
         </field>
     </record>
 
