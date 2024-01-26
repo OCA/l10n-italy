@@ -24,42 +24,39 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                 }
             }
 
-            sendToFP90Printer(receipt, printer_options) {
-                var fp90 = new eposDriver(printer_options, this);
-                fp90.printFiscalReceipt(receipt);
-                // This line causes problems on bill split. What's the sense of deleting the actual pos context?!
-                // It regenerates orders wich are already partly paid using split function...
-                // this.env.pos.context = {};
-            }
-
-            async _finalizeValidation() {
-                // We need to get currentOrder before calling the _super()
-                // otherwise we will likely get a empty order when we want to skip
-                // the receipt preview
-                var currentOrder = this.currentOrder;
-                await super._finalizeValidation();
-                if (this.env.pos.config.printer_ip && !currentOrder.is_to_invoice()) {
+            async sendToFP90Printer(order) {
+                if (this.env.pos.config.printer_ip && !order.is_to_invoice()) {
                     // TODO self.chrome does not exists
                     // this.chrome.loading_show();
                     // this.chrome.loading_message(_t('Connecting to the fiscal printer'));
                     if (
-                        currentOrder.has_refund &&
+                        order.has_refund &&
                         this.env.pos.context &&
                         this.env.pos.context.refund_details
                     ) {
-                        currentOrder.refund_date = this.env.pos.context.refund_date;
-                        currentOrder.refund_report = this.env.pos.context.refund_report;
-                        currentOrder.refund_doc_num =
-                            this.env.pos.context.refund_doc_num;
-                        currentOrder.refund_cash_fiscal_serial =
+                        order.refund_date = this.env.pos.context.refund_date;
+                        order.refund_report = this.env.pos.context.refund_report;
+                        order.refund_doc_num = this.env.pos.context.refund_doc_num;
+                        order.refund_cash_fiscal_serial =
                             this.env.pos.context.refund_cash_fiscal_serial;
                     }
 
-                    var printer_options = currentOrder.getPrinterOptions();
-                    printer_options.order = currentOrder;
-                    var receipt = currentOrder.export_for_printing();
-                    this.sendToFP90Printer(receipt, printer_options);
+                    var printer_options = order.getPrinterOptions();
+                    printer_options.order = order;
+                    var receipt = order.export_for_printing();
+                    var fp90 = new eposDriver(printer_options, this);
+                    await fp90.printFiscalReceipt(receipt);
+                    await new Promise((resolve) => setTimeout(resolve, 2000));
+                    // This line causes problems on bill split. What's the sense of deleting the actual pos context?!
+                    // It regenerates orders which are already partly paid using split function...
+                    // this.env.pos.context = {};
                 }
+            }
+
+            async _finalizeValidation() {
+                var currentOrder = this.currentOrder;
+                await this.sendToFP90Printer(currentOrder);
+                await super._finalizeValidation();
             }
 
             _isOrderValid(isForceValidate) {

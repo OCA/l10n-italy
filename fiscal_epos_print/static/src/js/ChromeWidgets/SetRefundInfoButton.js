@@ -26,7 +26,10 @@ odoo.define("fiscal_epos_print.SetRefundInfoButton", function (require) {
         async onClickRefund() {
             var self = this;
             var current_order = this.env.pos.get_order();
-            if (current_order.refund_date === null || current_order.refund_date === "") {
+            if (
+                current_order.refund_date === null ||
+                current_order.refund_date === ""
+            ) {
                 this.showPopup("ErrorPopup", {
                     title: _t("Error"),
                     body: _t(
