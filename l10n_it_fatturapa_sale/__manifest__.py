@@ -4,7 +4,7 @@
     "name": "ITA - Fattura elettronica - Integrazione vendite",
     "summary": "Aggiunge alcuni dati per la "
     "fatturazione elettronica nell'ordine di vendita",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "Agile Business Group, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
