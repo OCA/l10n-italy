@@ -155,7 +155,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             JSON.stringify(tag_list_names) +
                             "\n" +
                             JSON.stringify(add_info);
-                        sender.env.pos.push_single_order(order);
+                        // Sender.env.pos.push_single_order(order);
                     }
                     if (tagStatus.length > 0) {
                         info = add_info[tagStatus[0]];
@@ -244,7 +244,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             sender.env.pos.config.fiscal_printer_serial;
                         // Sender.env.pos.db.add_order(order.export_as_JSON());
                         // Try to save the order
-                        sender.env.pos.push_single_order(order);
+                        // sender.env.pos.push_single_order(order);
                     }
                     if (sender.env.pos.config.fiscal_cashdrawer) {
                         self.printOpenCashDrawer();
