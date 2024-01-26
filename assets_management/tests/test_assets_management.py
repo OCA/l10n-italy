@@ -56,19 +56,21 @@ class TestAssets(TransactionCase):
                 'assets_management.ad_mode_materiale').id,
         })
 
-    def _create_asset(self):
+    def _create_asset(self, asset_date):
         asset = self.env['asset.asset'].create({
             'name': 'Test asset',
             'category_id': self.asset_category_1.id,
             'company_id': self.env.ref('base.main_company').id,
             'currency_id': self.env.ref('base.main_company').currency_id.id,
             'purchase_amount': 1000.0,
-            'purchase_date': fields.Date.today() + relativedelta(days=-366),
+            'purchase_date': asset_date,
         })
         return asset
 
     def test_create_depreciation(self):
-        asset = self._create_asset()
+        today = fields.Date.today()
+        purchase_date = today + relativedelta(days=-366)
+        asset = self._create_asset(purchase_date)
         self.assertEqual(asset.state, 'non_depreciated',
                          'Asset is not in non depreciated state!')
 
@@ -152,8 +154,8 @@ class TestAssets(TransactionCase):
         """
         # Arrange: Create an asset bought in 2019
         # and totally depreciated in 2019 and 2020
-        asset = self._create_asset()
         purchase_date = date(2019, 1, 1)
+        asset = self._create_asset(purchase_date)
         asset.purchase_date = purchase_date
         self.assertEqual(asset.purchase_amount, 1000)
         self._civil_depreciate_asset(asset)
