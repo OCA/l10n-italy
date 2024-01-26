@@ -1,4 +1,8 @@
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class PosOrder(models.Model):
@@ -24,7 +28,7 @@ class PosOrder(models.Model):
 
     @api.model
     def _order_fields(self, ui_order):
-        res = super(PosOrder, self)._order_fields(ui_order)
+        res = super()._order_fields(ui_order)
         res["lottery_code"] = ui_order.get("lottery_code", "")
         res["refund_date"] = ui_order.get("refund_date", False)
         res["refund_report"] = ui_order.get("refund_report", False)
@@ -44,56 +48,8 @@ class PosOrder(models.Model):
         res["fiscal_operator_number"] = ui_order.get("fiscal_operator_number", False)
         return res
 
-    @api.model
-    def update_fiscal_receipt_debug_info(self, pos_order):
-        po = self.search([("pos_reference", "=", pos_order.get("name"))])
-        debug_info = pos_order.get("fiscal_printer_debug_info")
-        if po:
-            po.write(
-                {
-                    "fiscal_printer_debug_info": debug_info,
-                }
-            )
-        return True
-
-    @api.model
-    def update_fiscal_receipt_values(self, pos_order):
-        po = self.search([("pos_reference", "=", pos_order.get("name"))])
-        receipt_no = int(pos_order.get("fiscal_receipt_number"))
-        receipt_date = pos_order.get("fiscal_receipt_date")
-        receipt_amount = float(pos_order.get("fiscal_receipt_amount"))
-        fiscal_z_rep_number = int(pos_order.get("fiscal_z_rep_number"))
-        fiscal_printer_serial = (
-            pos_order.get("fiscal_printer_serial")
-            or self.config_id.fiscal_printer_serial
-        )
-        fiscal_operator_number = pos_order.get("fiscal_operator_number")
-
-        if po:
-            po.write(
-                {
-                    "fiscal_receipt_number": receipt_no,
-                    "fiscal_receipt_date": receipt_date,
-                    "fiscal_receipt_amount": receipt_amount,
-                    "fiscal_z_rep_number": fiscal_z_rep_number,
-                    "fiscal_printer_serial": fiscal_printer_serial,
-                    "fiscal_operator_number": fiscal_operator_number,
-                }
-            )
-        return True
-
-    @api.model
-    def create_from_ui(self, orders, draft=False):
-        order_ids = super(PosOrder, self).create_from_ui(orders, draft)
-        for order in orders:
-            if order["data"].get("fiscal_receipt_number"):
-                self.update_fiscal_receipt_values(order["data"])
-            if order["data"].get("fiscal_printer_debug_info"):
-                self.update_fiscal_receipt_debug_info(order["data"])
-        return order_ids
-
     def _export_for_ui(self, order):
-        result = super(PosOrder, self)._export_for_ui(order)
+        result = super()._export_for_ui(order)
         result.update(
             {
                 "lottery_code": order.lottery_code,
