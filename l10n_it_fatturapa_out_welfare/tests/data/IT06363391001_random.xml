@@ -62,7 +62,7 @@
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2023-01-01</Data>
-                <Numero>INV/2023/0001</Numero>
+                <Numero>INV/2023/0005</Numero>
                 <DatiRitenuta>
                     <TipoRitenuta>RT02</TipoRitenuta>
                     <ImportoRitenuta>20.00</ImportoRitenuta>
