@@ -42,7 +42,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_sale
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order__related_documents
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_sale.field_sale_order_line__related_documents
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_sale.view_order_form
 msgid "Related Documents"
 msgstr ""
 
