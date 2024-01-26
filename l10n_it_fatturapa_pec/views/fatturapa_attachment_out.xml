@@ -25,13 +25,15 @@
                 />
             </xpath>
             <xpath expr="//div/group[last()]" position="after">
-                <group
-                    name="last_sdi_response"
+                <separator
                     string="Last Response from Exchange System"
                     attrs="{'invisible':[('state', '=', 'ready')]}"
-                >
-                    <field name="last_sdi_response" nolabel="1" />
-                </group>
+                />
+                <field
+                    name="last_sdi_response"
+                    nolabel="1"
+                    attrs="{'invisible':[('state', '=', 'ready')]}"
+                />
             </xpath>
             <div name="creation_div" position="after">
                 <label
