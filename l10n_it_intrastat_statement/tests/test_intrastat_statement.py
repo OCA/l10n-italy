@@ -88,7 +88,11 @@ class TestIntrastatStatement(TransactionCase):
         )
 
     def _get_intrastat_computed_bill(
-        self, product=None, currency=None, price_unit=100.0
+        self,
+        product=None,
+        currency=None,
+        price_unit=100.0,
+        date=None,
     ):
         if product is None:
             product = self.product01
@@ -98,13 +102,14 @@ class TestIntrastatStatement(TransactionCase):
             product=product,
             taxes=self.tax22_purchase,
             amount=price_unit,
+            date=date,
         )
         if currency:
             invoice.currency_id = currency
         invoice.action_post()
         return invoice
 
-    def _get_intrastat_computed_invoice(self, price_unit=100.0):
+    def _get_intrastat_computed_invoice(self, price_unit=100.0, date=None):
         invoice = self._create_move(
             "out_invoice",
             partner=self.partner01,
@@ -112,6 +117,7 @@ class TestIntrastatStatement(TransactionCase):
             taxes=self.tax22_sale,
             amount=price_unit,
             post=True,
+            date=date,
         )
         return invoice
 
@@ -218,6 +224,11 @@ class TestIntrastatStatement(TransactionCase):
             statement.generate_file_export()
 
         statement.compute_statement()
+
+        # Check compensation, we expect only purchase section 1 having one line
+        self.assertEqual(len(statement.purchase_section1_ids), 1)
+        self.assertEqual(len(statement.purchase_section2_ids), 0)
+
         file_content = statement.with_context(purchase=True).generate_file_export()
         self.assertIn(bill_refund.partner_id.vat[2:], file_content)
 
@@ -228,6 +239,34 @@ class TestIntrastatStatement(TransactionCase):
         file_lines = file_content.splitlines()
         self.assertEqual(len(file_lines), 3)
         self.assertSetEqual({len(line) for line in file_lines}, {75, 130, 119})
+
+    def test_statement_purchase_refund_no_compensation(self):
+        bill = self._get_intrastat_computed_bill(date="2018-12-15")
+        self._get_intrastat_computed_bill(date="2019-01-05")
+
+        bill_refund = self._create_move_refund(bill, date="2019-01-10")
+        # This refund will be subtracted from bill
+        bill_refund.update(
+            {
+                "intrastat": True,
+            }
+        )
+        bill_refund.action_post()
+        bill_refund.compute_intrastat_lines()
+
+        statement = self.statement_model.create(
+            {
+                "period_number": bill_refund.invoice_date.month,
+                "fiscalyear": bill_refund.invoice_date.year,
+            }
+        )
+
+        statement.compute_statement()
+
+        # No compensation should happen, we expect both purchase section 1 and 2
+        # to have 1 entry
+        self.assertEqual(len(statement.purchase_section1_ids), 1)
+        self.assertEqual(len(statement.purchase_section2_ids), 1)
 
     def test_statement_purchase_refund_no_subtract(self):
         bill = self._get_intrastat_computed_bill()
@@ -504,11 +543,14 @@ class TestIntrastatStatement(TransactionCase):
         product=None,
         amount=None,
         taxes=None,
+        date=None,
     ):
         move_form = Form(
             self.env["account.move"].with_context(default_move_type=move_type)
         )
-        move_form.invoice_date = invoice_date or fields.Date.from_string("2019-01-01")
+        move_form.invoice_date = invoice_date or fields.Date.from_string(
+            date or "2019-01-01"
+        )
         move_form.partner_id = partner or self.partner_a
         move_form.intrastat = True
 
@@ -526,13 +568,13 @@ class TestIntrastatStatement(TransactionCase):
 
         return rslt
 
-    def _create_move_refund(self, move):
+    def _create_move_refund(self, move, date=None):
         move_reversal = (
             self.env["account.move.reversal"]
             .with_context(active_model="account.move", active_ids=move.ids)
             .create(
                 {
-                    "date": fields.Date.from_string("2019-01-01"),
+                    "date": fields.Date.from_string(date or "2019-01-01"),
                     "reason": "no reason",
                     "refund_method": "refund",
                 }
