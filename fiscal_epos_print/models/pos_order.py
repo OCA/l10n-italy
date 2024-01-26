@@ -1,4 +1,9 @@
+import logging
+
 from odoo import api, fields, models
+from odoo.tools import float_is_zero
+
+_logger = logging.getLogger(__name__)
 
 
 class PosOrder(models.Model):
@@ -45,51 +50,51 @@ class PosOrder(models.Model):
         return res
 
     @api.model
-    def update_fiscal_receipt_debug_info(self, pos_order):
-        po = self.search([("pos_reference", "=", pos_order.get("name"))])
-        debug_info = pos_order.get("fiscal_printer_debug_info")
-        if po:
-            po.write(
-                {
-                    "fiscal_printer_debug_info": debug_info,
-                }
-            )
-        return True
-
-    @api.model
-    def update_fiscal_receipt_values(self, pos_order):
-        po = self.search([("pos_reference", "=", pos_order.get("name"))])
-        receipt_no = int(pos_order.get("fiscal_receipt_number"))
-        receipt_date = pos_order.get("fiscal_receipt_date")
-        receipt_amount = float(pos_order.get("fiscal_receipt_amount"))
-        fiscal_z_rep_number = int(pos_order.get("fiscal_z_rep_number"))
-        fiscal_printer_serial = (
-            pos_order.get("fiscal_printer_serial")
-            or self.config_id.fiscal_printer_serial
-        )
-        fiscal_operator_number = pos_order.get("fiscal_operator_number")
-
-        if po:
-            po.write(
-                {
-                    "fiscal_receipt_number": receipt_no,
-                    "fiscal_receipt_date": receipt_date,
-                    "fiscal_receipt_amount": receipt_amount,
-                    "fiscal_z_rep_number": fiscal_z_rep_number,
-                    "fiscal_printer_serial": fiscal_printer_serial,
-                    "fiscal_operator_number": fiscal_operator_number,
-                }
-            )
-        return True
-
-    @api.model
     def create_from_ui(self, orders, draft=False):
+        if self.env.company.country_id.id == self.env.ref("base.it").id:
+            draft = True
         order_ids = super(PosOrder, self).create_from_ui(orders, draft)
+        process_order_ids = []
         for order in orders:
-            if order["data"].get("fiscal_receipt_number"):
-                self.update_fiscal_receipt_values(order["data"])
-            if order["data"].get("fiscal_printer_debug_info"):
-                self.update_fiscal_receipt_debug_info(order["data"])
+            if order["data"].get("pricelist_id", False):
+                pricelist_id = self.env["product.pricelist"].browse(
+                    order["data"]["pricelist_id"]
+                )
+                precision = pricelist_id.currency_id.decimal_places
+            else:
+                precision = self.env.company.currency_id.decimal_places
+            if (
+                order["data"].get("fiscal_receipt_number", False)
+                or order["data"].get("to_invoice", False)
+                or float_is_zero(order["data"].get("amount_total", 0), precision)
+            ) and self.env.company.country_id.id == self.env.ref("base.it").id:
+                order_name = order["data"].get("name")
+                try:
+                    existing_draft_orders = self.search(
+                        [
+                            ("pos_reference", "=", order_name),
+                            ("state", "=", "draft"),
+                        ]
+                    )
+                    for existing_draft_order in existing_draft_orders:
+                        process_order_ids.append(
+                            self._process_order(order, False, existing_draft_order)
+                        )
+                except Exception as e:
+                    _logger.exception(
+                        "An error occurred when processing the PoS order %s", order_name
+                    )
+                    pos_session = self.env["pos.session"].browse(
+                        order["data"].get("pos_session_id", 0)
+                    )
+                    pos_session._handle_order_process_fail(order, e, draft)
+                    raise
+        if process_order_ids:
+            order_ids = self.env["pos.order"].search_read(
+                domain=[("id", "in", process_order_ids)],
+                fields=["id", "pos_reference", "account_move"],
+                load=False,
+            )
         return order_ids
 
     def _export_for_ui(self, order):
