@@ -19,8 +19,9 @@ def migrate(env, version):
         """,
         (table_name, "%s" % constraint_name),
     )
+    result = env.cr.fetchall()
 
-    if env.cr.fetchall()[0]:
+    if result and result[0]:
         alter_table_sql = sql.SQL("ALTER TABLE {} DROP CONSTRAINT {}").format(
             sql.Identifier(table_name), sql.Identifier(constraint_name)
         )
