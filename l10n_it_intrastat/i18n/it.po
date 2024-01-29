@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-23 17:35+0000\n"
+"PO-Revision-Date: 2024-01-29 10:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15814,22 +15814,24 @@ msgstr "Seppie e seppiole, vive, fresche o refrigerate"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_16055400
 msgid "Cuttlefish and squid, prepared or preserved (excl. smoked)"
-msgstr ""
+msgstr "Seppie e calamari, preparati o conservati (escl. affumicati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28371900
 msgid "Cyanides and cyanide oxides (excl. sodium and mercury)"
-msgstr ""
+msgstr "Cianuri e ossicianuri (escl. quelli di sodio e di mercurio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28530050
 msgid "Cyanogen chloride"
-msgstr ""
+msgstr "Cloruro di cianogeno"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29021900
 msgid "Cyclanes, cyclenes and cycloterpenes (excl. cyclohexane)"
 msgstr ""
+"Idrocarburi ciclici, cicloparaffinici, cicloolefinici o cicloterpenici ("
+"escl. cicloesano)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29061900
@@ -15839,6 +15841,9 @@ msgid ""
 "cyclohexanol, methylcyclohexanols, dimethylcyclohexanols, sterols and "
 "inositols)"
 msgstr ""
+"Alcoli cicloparaffinici, cicloolefinici o cicloterpenici e loro derivati "
+"alogenati, solfonati, nitrati o nitrosi (escl. mentolo,cicloesanolo, "
+"metilcicloesanoli, dimetilcicloesanoli , steroli e inosotoli)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29092000
@@ -15846,6 +15851,8 @@ msgid ""
 "Cyclanic, cyclenic or cycloterpenic ethers and their halogenated, "
 "sulphonated, nitrated or nitrosated derivatives"
 msgstr ""
+"Eteri cicloparaffinici, cicloolefinici, cicloterpenici e loro derivati "
+"alogenati, solfonati, nitrati o nitrosi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29142900
@@ -15853,6 +15860,9 @@ msgid ""
 "Cyclanic, cyclenic or cycloterpenic ketones, without other oxygen function "
 "(excl. cyclohexanone, methylcyclohexanones, ionones and methylionones)"
 msgstr ""
+"Chetoni cicloparaffinici, cicloolefinici o cicloterpenici non contenenti "
+"altre funzioni ossigenate (escl. Cicloesanone, metilcicloesanoni, iononi e "
+"metiliononi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29213099
@@ -15861,6 +15871,10 @@ msgid ""
 "derivatives; salts thereof (excl. cyclohexylamine, cyclohexyldimethylamine "
 "and their salts, and cyclohex-1,3-ylenediamine \"1,3-diaminocyclohexane\")"
 msgstr ""
+"Monoammine e poliammine, cicloparaffiniche, cicloolefiniche o "
+"cicloterpeniche, e loro derivati; sali di tali prodotti (escl. "
+"cicloesilammina, cicloesildimetilammina e loro sali nonchè cicloes-1,3-"
+"ilendiammina \"1,3-diamminocicloesano\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29162000
@@ -15869,6 +15883,10 @@ msgid ""
 "halides, peroxides, peroxyacids and their halogenated, sulphonated, nitrated "
 "or nitrosated derivatives (excl. inorganic or organic compounds of mercury)"
 msgstr ""
+"Acidi monocarbossilici, cicloparaffinici, cicloolefinici o cicloterpenici, "
+"loro anidridi, alogenuri, perossidi, perossiacidi e loro derivati alogenati, "
+"solfonati, nitrati o nitrosi (escl. composti organici o inorganici, di "
+"mercurio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29172000
@@ -15876,6 +15894,8 @@ msgid ""
 "Cyclanic, cyclenic or cycloterpenic polycarboxylic acids, their anhydrides, "
 "halides, peroxides, peroxyacids and their derivatives"
 msgstr ""
+"Acidi policarbossilici cicloparaffinici, cicloolefinici o cicloterpenici, "
+"loro anidriti, alogenuri, perossidi, perossiacidi e loro derivati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87120070
@@ -15883,6 +15903,8 @@ msgid ""
 "Cycles, incl. delivery tricycles, not motorised (excl. bicycles with ball "
 "bearings)"
 msgstr ""
+"Cicli, compresi i furgoncini a triciclo, senza motore (escl. biciclette con "
+"cuscinetti a sfere)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87119010
@@ -15890,11 +15912,15 @@ msgid ""
 "Cycles, with an auxiliary electric motor with a continuous rated power <= "
 "250 W"
 msgstr ""
+"Cicli, con un motore ausiliario elettrico avente una potenza nominale "
+"continua <= 250 W"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29122900
 msgid "Cyclic aldehydes, without other oxygen function (excl. benzaldehyde)"
 msgstr ""
+"Aldeidi, cicliche (non contenenti) altre funzioni ossigenate (escl. "
+"benzaldeide (aldeide benzoica))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29242998
@@ -15904,6 +15930,10 @@ msgid ""
 "\"N-acetylanthranilic acid\" and its salts, and ethinamate \"INN\", "
 "lidocaine \"INN\" and paracetamol \"INN\")"
 msgstr ""
+"Ammidi (compresi i carbammati) cicliche e loro derivati; sali di tali "
+"prodotti (escl. Ureine e loro derivati; sali di tali prodotti, Acido 2-"
+"acetammidobenzoico (acido N-acetilantranilico) e suoi Sali, e Etinamato (DCI)"
+" , Lidocaina (DCI) e Paracetamolo (DCI))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29094980
@@ -15911,6 +15941,8 @@ msgid ""
 "Cyclic ether-alcohols and their halogenated, sulphonated, nitrated or "
 "nitrosated derivatives (excl. 2-(2-Chloroethoxy)ethanol)"
 msgstr ""
+"Eteri-alcoli e loro derivati alogenati, solfonati, nitrati o nitrosi (escl. "
+"2,2'-Ossidietanolo (dietilenglicole)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29029000
@@ -15918,41 +15950,45 @@ msgid ""
 "Cyclic hydrocarbons (excl. cyclanes, cyclenes, benzene, toluene, xylenes, "
 "styrene, ethylbenzene and cumene)"
 msgstr ""
+"Idrocarburi ciclici (escl. cicloparaffinici, cicloolefinici, benzene, "
+"toluene, xileni, stirene, etilbenzene e cumene)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29125000
 msgid "Cyclic polymers of aldehydes"
-msgstr ""
+msgstr "Polimeri ciclici delle aldeidi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29213091
 msgid "Cyclohex-1,3-ylenediamine \"1,3-diaminocyclohexane\""
-msgstr ""
+msgstr "Cicloes-1,3-ilendiammina \"1,3-diamminocicloesano\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29021100
 msgid "Cyclohexane"
-msgstr ""
+msgstr "Cicloesano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29061200
 msgid "Cyclohexanol, methylcyclohexanols and dimethylcyclohexanols"
-msgstr ""
+msgstr "Cicloesanolo, metilcicloesanoli e dimetilcicloesanoli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29142200
 msgid "Cyclohexanone and methylcyclohexanones"
-msgstr ""
+msgstr "Cicloesanone e metilcicloesanoni"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29213010
 msgid "Cyclohexylamine and cyclohexyldimethylamine, and their salts"
-msgstr ""
+msgstr "Cicloesilammina, cicloesildimetilammina, e loro sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_83014011
 msgid "Cylinder locks of a kind used for doors of buildings, of base metal"
 msgstr ""
+"Serrature del tipo utilizzato per porte di edifici, a cilindri, di metalli "
+"comuni"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84209180
@@ -15960,6 +15996,8 @@ msgid ""
 "Cylinders for calendering or other rolling machines (excl. of cast iron and "
 "those for metals or glass)"
 msgstr ""
+"Cilindri per calandre e laminatoi (escl. quelli di ghisa e quelli per i "
+"metalli o per il vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84209110
@@ -15967,23 +16005,25 @@ msgid ""
 "Cylinders for calendering or other rolling machines, of cast iron (other "
 "than for metals or glass)"
 msgstr ""
+"Cilindri per calandre e laminatoi, di ghisa (escl. quelli per i metalli o "
+"per il vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84825000
 msgid "Cylindrical roller bearings (excl. needle roller bearings)"
-msgstr ""
+msgstr "Cuscinetti a rulli cilindrici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29309013
 msgid "Cysteine and cystine"
-msgstr ""
+msgstr "Cisteina e cistina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29362400
 msgid ""
 "D-Pantothenic or DL-pantothenic acid \"Vitamin B3 or B5\" and their "
 "derivatives, used primarily as vitamins"
-msgstr ""
+msgstr "Vitamina d- o dl-pantotenico e suoi derivati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29054499
@@ -15991,13 +16031,14 @@ msgid ""
 "D-glucitol \"sorbitol\" (excl. in aqueous solution and containing <= 2% by "
 "weight of d-mannitol, calculated on the d-glucitol content)"
 msgstr ""
+"Sorbitolo, non in soluzione acquosa, diverso da quello della voce precedente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29054419
 msgid ""
 "D-glucitol \"sorbitol\" in aqueous solution (excl. containing <= 2% by "
 "weight of d-mannitol, calculated on the d-glucitol content)"
-msgstr ""
+msgstr "Sorbitolo in soluzione acquosa, diverso da quello della voce precedente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29054491
@@ -16005,6 +16046,8 @@ msgid ""
 "D-glucitol \"sorbitol\", containing <= 2% by weight of d-mannitol, "
 "calculated on the d-glucitol content (excl. in aqueous solution)"
 msgstr ""
+"Sorbitolo, non in soluzione acquosa, contenente mannitolo in proporzione "
+"fino a 2%,in peso, calcolata sul tenore in d-glucitolo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29054411
@@ -16012,26 +16055,34 @@ msgid ""
 "D-glucitol \"sorbitol\", in aqueous solution containing <= 2% by weight of d-"
 "mannitol, calculated on the d-glucitol content"
 msgstr ""
+"Sorbitolo in soluzione acquosa, contenente mannitolo in proporzione fino a "
+"2%, in peso calcolata sul tenore in d-glucitolo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85013400
 msgid "DC motors and DC generators of an output > 375 kW"
 msgstr ""
+"Motori a corrente continua e generatori a corrente continua di potenza > 375 "
+"kW (escl. generatori fotovoltaici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85013300
 msgid "DC motors and DC generators of an output > 75 kW but <= 375 kW"
 msgstr ""
+"Motori a corrente continua e generatori a corrente continua di potenza > 75 "
+"kW ma <= 375 kW (escl. generatori fotovoltaici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85013200
 msgid "DC motors and DC generators of an output > 750 W but <= 75 kW"
 msgstr ""
+"Motori a corrente continua e generatori a corrente continua di potenza > 750 "
+"W ma <= 75 kW (escl. generatori fotovoltaici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85011099
 msgid "DC motors of an output <= 37,5 W"
-msgstr ""
+msgstr "Motori elettrici a corrente continua di potenza <= 37,5 W"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85013100
@@ -16039,11 +16090,13 @@ msgid ""
 "DC motors of an output > 37,5 W but <= 750 W and DC generators of an output "
 "<= 750 W"
 msgstr ""
+"Motori a corrente continua di potenza > 37,5 W ma <= 750 W e generatori a "
+"corrente continua di potenza <= 750 W (escl. generatori fotovoltaici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29309030
 msgid "DL-2-hydroxy-4-\"methylthio\"butyric acid"
-msgstr ""
+msgstr "Acido dl-2-idrossi-4-(metiltio)butirrico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84342000
@@ -16051,22 +16104,28 @@ msgid ""
 "Dairy machinery (excl. refrigerating or heat treatment equipment, cream "
 "separators, clarifying centrifuges, filter presses and other filtering "
 "equipment)"
-msgstr ""
+msgstr "Macchine ed apparecchi per l'industria del latte"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04052090
 msgid "Dairy spreads of a fat content, by weight, of > 75% but < 80%"
 msgstr ""
+"Paste da spalmare lattiere aventi tenore, in peso, di materie grasse > 75% e "
+"< 80%"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04052010
 msgid "Dairy spreads of a fat content, by weight, of >= 39% but < 60%"
 msgstr ""
+"Paste da spalmare lattiere aventi tenore, in peso, di materie grasse => 39% "
+"e < 60%"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04052030
 msgid "Dairy spreads of a fat content, by weight, of >= 60% but <= 75%"
 msgstr ""
+"Paste da spalmare lattiere aventi tenore, in peso, di materie grasse <= 60% "
+"e <= 75%"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069076
@@ -16075,6 +16134,10 @@ msgid ""
 "by weight of <= 40% and a water content, by weight, of non-fatty matter of > "
 "47% but <= 72% (excl. grated or powdered and for processing)"
 msgstr ""
+"Danbo, Fontal, Fontina, Fynbo, Havarti, Maribo e Samso, aventi tenore, in "
+"peso, di materie grasse <= 40% e aventi tenore, in peso, di acqua della "
+"materia non grassa > 47% e <= 72% (escl. grattugiati o in polvere nonchè "
+"destinati alla trasformazione)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.855211
@@ -16084,7 +16147,7 @@ msgstr "Servizi forniti dalle scuole di ballo e dagli istruttori di danza"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_24011070
 msgid "Dark air-cured tobacco, unstemmed or unstripped"
-msgstr ""
+msgstr "Tabacchi non scostolati, \"dark air cured\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44034100
@@ -16095,6 +16158,11 @@ msgid ""
 "into boards or beams, etc.; wood treated with paint, stains, creosote or "
 "other preservatives)"
 msgstr ""
+"Dark Red Meranti, Light Red Meranti e Meranti Bakau, grezzi, anche "
+"scortecciati, privati dell'alburno o squadrati (escl. legno semplicemente "
+"sgrossato per bastoni, ombrelli, manici di utensili e simili; legno in forma "
+"di mensole o di travi, ecc.; legno trattato con tinte, creosoto o altri "
+"agenti di conservazione)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44072590
@@ -16103,6 +16171,9 @@ msgid ""
 "lengthwise, sliced or peeled, of a thickness of > 6 mm (excl. such products "
 "planed, sanded or end-jointed)"
 msgstr ""
+"Dark Red Meranti, Light Red Meranti e Meranti Bakau, segato o tagliato per "
+"il lungo, tranciato o sfogliato, di spessore > 6 mm (escl. piallato, "
+"levigato o incollato con giuntura di testa)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44072510
@@ -16111,6 +16182,9 @@ msgid ""
 "lengthwise, sliced or peeled, of a thickness of > 6 mm, end-jointed, whether "
 "or not planed or sanded"
 msgstr ""
+"Dark Red Meranti, Light Red Meranti e Meranti Bakau, segato o tagliato per "
+"il lungo, tranciato o sfogliato, di spessore > 6 mm, incollato con giunture "
+"a spina, anche piallato o levigato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44072530
@@ -16119,6 +16193,9 @@ msgid ""
 "lengthwise, sliced or peeled, of a thickness of > 6 mm, planed (excl. end-"
 "jointed)"
 msgstr ""
+"Dark Red Meranti, Light Red Meranti e Meranti Bakau, segato o tagliato per "
+"il lungo, tranciato o sfogliato, di spessore > 6 mm, piallato (escl. "
+"incollato con giunture a spina)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44072550
@@ -16127,6 +16204,9 @@ msgid ""
 "lengthwise, sliced or peeled, of a thickness of > 6 mm, sanded (excl. end-"
 "jointed)"
 msgstr ""
+"Dark Red Meranti, Light Red Meranti e Meranti Bakau, segato o tagliato per "
+"il lungo, tranciato o sfogliato, di spessore > 6 mm, levigato (escl. "
+"incollato con giunture a spina)"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__intrastat_type_data
@@ -16157,6 +16237,10 @@ msgid ""
 "or not combined (excl. portable weighing <= 10 kg and excl. those presented "
 "in the form of systems and peripheral units)"
 msgstr ""
+"Macchine automatiche per l'elaborazione dell'informazione che comportano in "
+"uno stesso involucro, almeno una unità centrale di elaborazione e, anche "
+"combinate, una unità di entrata o di uscita (escl. quelle portatili, di peso "
+"<= 10 kg, e quelle presentate in forma di sistemi e unità periferiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84713000
@@ -16165,6 +16249,9 @@ msgid ""
 "of at least a central processing unit, a keyboard and a display (excl. "
 "peripheral units)"
 msgstr ""
+"Macchine automatiche per l'elaborazione dell'informazione, portatili, di "
+"peso <= 10 kg, che comportano almeno una unità centrale di elaborazione, una "
+"tastiera e uno schermo (escl. unità periferiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84714900
@@ -16173,6 +16260,11 @@ msgid ""
 "\"comprising at least a central processing unit, one input unit and one "
 "output unit\" (excl. portable weighing <= 10 kg and excl. peripheral units)"
 msgstr ""
+"Macchine automatiche per l'elaborazione dell'informazione presentate in "
+"forma di sistemi e che comportano, in uno stesso involucro, almeno una unità "
+"centrale di elaborazione e una unità di entrata o di uscita (escl. quelle "
+"portatili, di peso <= 10 kg, e quelle presentate in forma di sistemi e unità "
+"periferiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85404000
@@ -16181,6 +16273,9 @@ msgid ""
 "with a phosphor dot screen pitch of < 0,4 mm (excl. photo cathode tubes and "
 "cathode ray tubes)"
 msgstr ""
+"Tubi di visualizzazione dei dati grafici, a colori, con uno schermo "
+"fosforico di diradamento a punti < 0,4 mm (escl. tubi catodici e a "
+"fotocatodo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.582913
@@ -16208,27 +16303,33 @@ msgid ""
 "Dead-burned \"sintered\" magnesia, whether or not containing small "
 "quantities of other oxides added before sintering"
 msgstr ""
+"Magnesia calcinata a morte (sinterizzata), anche contenente piccole quantità "
+"di altri ossidi aggiunti prima della sinterizzazione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_09011200
 msgid "Decaffeinated coffee (excl. roasted)"
-msgstr ""
+msgstr "Caffè (non torrefatto) decaffeinizzato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_88051090
 msgid "Deck-arrestor or similar gear for aircraft and parts thereof, n.e.s."
 msgstr ""
+"Apparecchi e dispositivi per l'appontaggio di veicoli aerei e apparecchi e "
+"dispositivi simili e loro parti, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15220010
 msgid "Degras"
-msgstr ""
+msgstr "Dregas"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_51012900
 msgid ""
 "Degreased wool, non-carbonised, neither carded nor combed (excl. shorn wool)"
 msgstr ""
+"Lane, sgrassate (non carbonizzate) (non cardate nè pettinate) (escl. di "
+"tosatura)"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_delegated_name
@@ -16255,6 +16356,8 @@ msgstr "Lavori di demolizione"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22072000
 msgid "Denatured ethyl alcohol and other spirits of any strength"
 msgstr ""
+"Alcole etilico ed acquaviti, denaturati, diversi da quelli della voce "
+"precedente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11062010
@@ -16263,6 +16366,9 @@ msgid ""
 "Jerusalem artichokes, sweet potatoes and similar roots and tubers with a "
 "high content of starch or inulin of heading 0714"
 msgstr ""
+"Farine e semolini di sago, di radici o tuberi di manioca, d'arrow-root o di "
+"salep, topinambur, patate dolci e altre simili radici e tuberi ad alto "
+"tenore di fecola o di inulina, denaturati della voce 0714"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_52094200
@@ -16270,6 +16376,8 @@ msgid ""
 "Denim, containing >= 85% cotton by weight and weighing > 200 g/m², made of "
 "yarn of different colours"
 msgstr ""
+"Tessuti di cotone, con almeno 85%, in peso, di cotone, di peso > 200 g per "
+"m2, di filati di diversi colori, detti \"denim\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_52114200
@@ -16278,6 +16386,9 @@ msgid ""
 "principally or solely with man-made fibres and weighing > 200 g/m², made of "
 "yarn of different colours"
 msgstr ""
+"Tessuti di cotone, con meno di 85%, in peso, di cotone, misti principalmente "
+"con fibre sintetiche o artificiali, di peso > 200 g per m2, di filati di "
+"diversi colori, detti tessuti \"denim\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50072059
@@ -16286,6 +16397,9 @@ msgid ""
 "(excl. crêpes, and pongee, habutai, honan, shantung, corah and similar far "
 "eastern fabrics wholly of silk)"
 msgstr ""
+"Tessuti, serrati, contenenti, in peso, => 85% di seta o di cascami di seta, "
+"tinti (escl. crespi, nonchè pongé, habutai, honan, shantung, corah e tessuti "
+"simili dell'estremo oriente, di seta pura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50072051
@@ -16294,6 +16408,9 @@ msgid ""
 "unbleached, scoured or bleached (excl. crêpes, and pongee, habutai, honan, "
 "shantung, corah and similar far eastern fabrics wholly of silk)"
 msgstr ""
+"Tessuti, serrati, contenenti, in peso, => 85% di seta o di cascami di seta, "
+"greggi, sgommati o imbianchiti (escl. crespi, nonchè pongé, habutai, honan, "
+"shantung, corah e tessuti simili dell'estremooriente, di seta pura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50072069
@@ -16303,6 +16420,10 @@ msgid ""
 "crêpes, and pongee, habutai, honan, shantung, corah and similar far eastern "
 "fabrics wholly of silk)"
 msgstr ""
+"Tessuti, serrati, contenenti, in peso, => 85% di seta o di cascami di seta, "
+"a colori (escl. tessuti di larghezza > 57 cm, ma <= 75 cm, crespi, nonchè "
+"pongèes, habutai, honan, shantung, corah e tessuti simili dell'estremo "
+"oriente, di seta pura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50072061
@@ -16312,6 +16433,10 @@ msgid ""
 "pongee, habutai, honan, shantung, corah and similar far eastern fabrics "
 "wholly of silk)"
 msgstr ""
+"Tessuti, serrati, contenenti, in peso, => 85% di seta o di cascami di seta, "
+"a colori, di larghezza > 57 cm, ma <= 75 cm (escl. crespi, nonchè pongé, "
+"habutai, honan, shantung, corah e tessuti simili dell'Estremo Oriente, di "
+"seta pura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50072071
@@ -16320,11 +16445,16 @@ msgid ""
 "printed (excl. crêpes, and pongee, habutai, honan, shantung, corah and "
 "similar far eastern fabrics wholly of silk)"
 msgstr ""
+"Tessuti, serrati, contenenti, in peso, => 85% di seta o di cascami di seta, "
+"stampati (escl. crespi, nonchè pongé, habutai, honan, shantung, corah e "
+"tessuti simili dell'Estremo Oriente, di seta pura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30064000
 msgid "Dental cements and other dental fillings; bone reconstruction cements"
 msgstr ""
+"Cementi e altri prodotti per l'otturazione dentaria; cementi per la "
+"ricostruzione ossea"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90184100
@@ -16332,16 +16462,18 @@ msgid ""
 "Dental drill engines, whether or not combined on a single base with other "
 "dental equipment"
 msgstr ""
+"Trapani per denti, anche comprendenti, su un basamento comune, altre "
+"apparecchiature per dentisti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90212900
 msgid "Dental fittings (excl. artificial teeth)"
-msgstr ""
+msgstr "Oggetti ed apparecchi di protesi dentaria (escl. denti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33061000
 msgid "Dentifrices, incl. those used by dental practitioners"
-msgstr ""
+msgstr "Dentifrici, anche dei tipi utilizzati dai dentisti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94021000
@@ -16349,12 +16481,16 @@ msgid ""
 "Dentists', barbers' or similar chairs having rotating as well as both "
 "reclining and elevating movement, and parts thereof, n.e.s."
 msgstr ""
+"Poltrone per dentisti; poltrone da parrucchiere e poltrone simili, con "
+"dispositivo di orientamento o di elevazione e loro parti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33079000
 msgid ""
 "Depilatories and other perfumery, toilet or cosmetic preparations, n.e.s."
 msgstr ""
+"Prodotti depilatori e altri prodotti per profumeria o per toletta preparati "
+"e altre preparazioni cosmetiche, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.641911
@@ -16369,7 +16505,7 @@ msgstr "Servizi di deposito a favore di altri clienti"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87149950
 msgid "Derailleur gears for bicycles"
-msgstr ""
+msgstr "Cambi per biciclette e altri velocipedi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29081900
@@ -16377,16 +16513,18 @@ msgid ""
 "Derivatives containing only halogen substituents and their salts, of phenols "
 "or phenol-alcohols (excl. pentachlorophenol [ISO])"
 msgstr ""
+"Derivati unicamente alogenati e loro sali di fenoli o fenolialcoli (escl. "
+"pentaclorofenolo ISO)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29309016
 msgid "Derivatives of cysteine or of cystine"
-msgstr ""
+msgstr "Derivati di cisteina o di cistina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29042000
 msgid "Derivatives of hydrocarbons containing only nitro or nitroso groups"
-msgstr ""
+msgstr "Derivati degli idrocarburi, unicamente nitrati o unicamente nitrosi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29041000
@@ -16394,6 +16532,8 @@ msgid ""
 "Derivatives of hydrocarbons containing only sulpho groups, their salts and "
 "ethyl esters"
 msgstr ""
+"Derivati, loro sali e loro esteri etilici, degli idrocarburi, unicamente "
+"solfonati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29335400
@@ -16401,6 +16541,8 @@ msgid ""
 "Derivatives of malonylurea \"barbituric acid\" and salts thereof (excl. "
 "salts of malonylurea)"
 msgstr ""
+"Derivati di malonilurea (acido barbiturico); sali di tali prodotti (escl. "
+"sali di malonilurea)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29215190
@@ -16409,6 +16551,8 @@ msgid ""
 "diaminotoluenes; salts thereof (excl. halogenated, sulphonated, nitrated and "
 "nitrosated derivatives, and salts thereof)"
 msgstr ""
+"O-, m-, p-fenilendiammina, diamminotolueni, loro derivati e loro sali, "
+"esclusi quelli della voce precedente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38069000
@@ -16418,6 +16562,10 @@ msgid ""
 "treatment \"run gums\" (excl. salts of rosin, of resin acids or salts of "
 "derivatives of rosin or resin acids, and ester gums)"
 msgstr ""
+"Derivati della colofonia, incl. sali dei prodotti aggiuntivi delle "
+"colofonie, e derivati degli acidi resinici, essenza di colofonia e oli di "
+"colofonia nonchè gomme fuse (escl. sali di colofonie o di acidi resinici, "
+"sali dei derivati di colofonie o di acidi resinici nonchè gomme-esteri)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.091012
@@ -16425,6 +16573,9 @@ msgid ""
 "Derrick erection, repair and dismantling services and related support "
 "services to petroleum and natural gas extraction"
 msgstr ""
+"Servizi di costruzione, riparazione e smantellamento di torri di "
+"trivellazione e connessi servizi di supporto per l'estrazione di petrolio e "
+"di gas naturale"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_report_intrastat_code__description
@@ -16434,7 +16585,7 @@ msgstr "Descrizione"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08011100
 msgid "Desiccated coconuts"
-msgstr ""
+msgstr "Noci di cocco, disseccate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.741020
@@ -16444,7 +16595,7 @@ msgstr "Originali di modelli"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94033011
 msgid "Desks for offices, with wooden frames"
-msgstr ""
+msgstr "Scrivanie di legno, alte fino a 80 cm"
 
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_form_invoice_intrastat_form
@@ -16470,6 +16621,8 @@ msgid ""
 "enriched in deuterium; mixtures and solutions containing these products "
 "[Euratom] (excl. heavy water \"deuterium oxide\")"
 msgstr ""
+"Deuterio ed altri composti del deuterio; idrogeno e suoi composti, "
+"arricchiti in deuterio; miscele e soluzioni contenenti tali prodotti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_37079020
@@ -16477,7 +16630,7 @@ msgid ""
 "Developers and fixers in the form of chemical preparations for photographic "
 "use, incl. unmixed products, in measured doses or put up for retail sale "
 "ready for use (excl. salts and compounds of heading 2843 to 2846)"
-msgstr ""
+msgstr "Rivelatori e fissatori per usi fotografici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.582914
@@ -16489,24 +16642,24 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_35051010
 msgid "Dextrins"
-msgstr ""
+msgstr "Destrina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29334930
 msgid "Dextromethorphan \"INN\" and its salts"
-msgstr ""
+msgstr "Dextrometorfano (DCI) e i suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29221400
 msgid "Dextropropoxyphene \"INN\" and its salts"
-msgstr ""
+msgstr "Destropropoxifene (DCI) e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29342020
 msgid ""
 "Di\"benzothiazol-2-yl\"disulphide; benzothiazol-2-thiol "
 "\"mercaptobenzothiazole\" and its salts"
-msgstr ""
+msgstr "Disolfuro di(benzotiazol-2-ile); benzotiazol-2-tiolo e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.869017
@@ -16523,11 +16676,17 @@ msgid ""
 "prophylactic or diagnostic uses and vaccines, toxins, cultures of micro-"
 "organisms and similar products)"
 msgstr ""
+"Reattivi per diagnostica o da laboratorio su qualsiasi supporto e reattivi "
+"per diagnostica o da laboratorio preparati, anche presentati su supporto ("
+"escl. reattivi composti per diagnostica da impegare sul paziente, reattivi "
+"per la determinazione dei gruppi o dei fattori sanguigni, sangue animale "
+"preparato per usi diagnostici, nonché vaccini, tossine, colture di "
+"microrganismi e prodotti simili)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_91143000
 msgid "Dials for clocks or watches"
-msgstr ""
+msgstr "Quadranti per orologi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_31053000
@@ -16535,16 +16694,20 @@ msgid ""
 "Diammonium hydrogenorthophosphate \"diammonium phosphate\" (excl. that in "
 "tablets or similar forms, or in packages with a gross weight of <= 10 kg)"
 msgstr ""
+"Idrogenoortofosfato di diammonio (fosfato diammonico) (escl. quello "
+"presentato in tavolette o forme simili o in imballaggi di peso lordo <= 10 "
+"kg)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_71021000
 msgid "Diamonds, unsorted"
 msgstr ""
+"Diamanti, anche lavorati, ma non montati né incastonati, non selezionati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_71023900
 msgid "Diamonds, worked, but not mounted or set (excl. industrial diamonds)"
-msgstr ""
+msgstr "Diamanti non industriali, diversi da quelli della voce precedente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50072041
@@ -16552,76 +16715,79 @@ msgid ""
 "Diaphanous fabrics \"open weave\" containing >= 85% silk or silk waste by "
 "weight"
 msgstr ""
+"Tessuti chiari, contenenti almeno 85%,in peso, di seta o di cascami di seta"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84818087
 msgid "Diaphragm valves for pipes, boiler shells, tanks, vats or the like"
-msgstr ""
+msgstr "Valvole a membrana per tubi o condutture flessibili, ecc."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48201050
 msgid "Diaries with calendars, of paper or paperboard"
-msgstr ""
+msgstr "Agende"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90189040
 msgid "Diathermic apparatus (excl. ultraviolet or infra-red apparatus)"
 msgstr ""
+"Apparecchi di diatermia (escl. gli apparecchi a raggi ultravioletti o "
+"infrarossi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29335910
 msgid "Diazinon \"ISO\""
-msgstr ""
+msgstr "Diazinon (ISO)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29270000
 msgid "Diazo-, azo- or azoxy-compounds"
-msgstr ""
+msgstr "Composti a funzione diazo, azo o azossi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28100010
 msgid "Diboron trioxide"
-msgstr ""
+msgstr "Triossido di diboro"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29033915
 msgid "Dibromomethane"
-msgstr ""
+msgstr "Dibromometano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29037690
 msgid "Dibromotetrafluoroethanes"
-msgstr ""
+msgstr "Dibromotetrafluoroetani"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29037720
 msgid "Dichlorodifluoromethane"
-msgstr ""
+msgstr "Diclorodifluorometano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29037300
 msgid "Dichlorofluoroethanes"
-msgstr ""
+msgstr "Diclorofluoroetano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29031200
 msgid "Dichloromethane \"methylene chloride\""
-msgstr ""
+msgstr "Diclorometano (cloruro di metilene)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29037500
 msgid "Dichloropentafluoropropanes"
-msgstr ""
+msgstr "Dicloropentafluoropropano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29037740
 msgid "Dichlorotetrafluoroethanes"
-msgstr ""
+msgstr "Diclorotetrafluoroetani"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29037200
 msgid "Dichlorotrifluoroethanes"
-msgstr ""
+msgstr "Diclorotrifluoroetano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85198151
@@ -16630,61 +16796,69 @@ msgid ""
 "incorporating sound reproducing apparatus, not capable of operating without "
 "an external source of power (excl. transcribing machines [play only])"
 msgstr ""
+"Dittafoni che non possono funzionare senza una sorgente di energia esterna, "
+"a semiconduttori magnetici o otticie con dispositivo di riproduzione del "
+"suono"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_49019100
 msgid "Dictionaries and encyclopaedias, and serial instalments thereof"
-msgstr ""
+msgstr "Dizionari ed enciclopedie, anche in fascicoli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_95030085
 msgid "Die-cast metal miniature models"
-msgstr ""
+msgstr "Modelli in miniatura, ottenuti per fusione, di metallo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29104000
 msgid "Dieldrin \"ISO\" \"INN\""
-msgstr ""
+msgstr "Dieldrin ISO INN"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_86021000
 msgid "Diesel-electric locomotives"
-msgstr ""
+msgstr "Locomotive diesel-elettriche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29221200
 msgid "Diethanolamine and its salts"
-msgstr ""
+msgstr "Dietanolammina e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29091100
 msgid "Diethyl ether"
-msgstr ""
+msgstr "Etere dietilico (ossido di dietile)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29209050
 msgid "Diethyl phosphonate \"diethyl hydrogenphosphite\" \"diethyl phosphite\""
-msgstr ""
+msgstr "Fosfonato di dietile (idrogenofosfito di dietile) (fosfito di dietile)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29211950
 msgid "Diethylamine and its salts"
-msgstr ""
+msgstr "Dietilammina e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84141081
 msgid "Diffusion pumps, cryopumps and adsorption pumps"
 msgstr ""
+"Pompe a diffusione, pompe criostatiche e pompe ad assorbimento (escl. i tipi "
+"usati esclusivamente o principalmente per la fabbricazione di semiconduttori "
+"o di dispositivi di visualizzazione a schermo piatto)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85258030
 msgid "Digital cameras"
-msgstr ""
+msgstr "Apparecchi fotografici digitali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_92071030
 msgid "Digital pianos, with keyboard"
 msgstr ""
+"Pianoforti digitali, il cui suono è prodotto o deve essere amplificato "
+"elettricamente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85234951
@@ -16695,11 +16869,16 @@ msgid ""
 "being manipulated or providing interactivity to a user, by means of an "
 "automatic data-processing machine)"
 msgstr ""
+"Dischi digitali versatili (DVD), registrati, per la riproduzione del suono e "
+"immagine o solo immagine (escl. per la riproduzione di rappresentazioni di "
+"istruzioni, dati, suono e immagini registrati in forma binaria leggibile da "
+"una macchina, manipolabili dall'utente o interattivi, per mezzo di una "
+"macchina automatica per l'elaborazione dell'informazione)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29389010
 msgid "Digitalis glycosides"
-msgstr ""
+msgstr "Glucosidi delle digitali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29412030
