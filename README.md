@@ -23,7 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [account_invoice_report_ddt_group](account_invoice_report_ddt_group/) | 12.0.1.0.5 |  | Raggruppa le righe fattura per DDT che le ha generate, mostrando eventualmente i lotti/seriali
 [account_vat_period_end_statement](account_vat_period_end_statement/) | 12.0.1.8.1 |  | Allow to create the 'VAT Statement'.
-[assets_management](assets_management/) | 12.0.1.0.1 |  | Gestione Cespiti
+[assets_management](assets_management/) | 12.0.1.0.2 |  | Gestione Cespiti
 [currency_rate_update_boi](currency_rate_update_boi/) | 12.0.1.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Update exchange rates using www.bancaditalia.it
 [fiscal_epos_print](fiscal_epos_print/) | 12.0.2.0.2 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: FP81II, FP90III
 [fiscal_epos_print_fiscalcode](fiscal_epos_print_fiscalcode/) | 12.0.1.1.0 |  | Consente di includere il codice fiscale negli scontrini
@@ -65,7 +65,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_out_rc](l10n_it_fatturapa_out_rc/) | 12.0.1.1.2 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 12.0.2.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
 [l10n_it_fatturapa_out_triple_discount](l10n_it_fatturapa_out_triple_discount/) | 12.0.2.0.1 |  | Modulo ponte tra emissione fatture elettroniche e sconto triplo
-[l10n_it_fatturapa_out_welfare](l10n_it_fatturapa_out_welfare/) | 12.0.1.0.1 |  | Registrazione della cassa previdenziale nelle fatture elettroniche in uscita
+[l10n_it_fatturapa_out_welfare](l10n_it_fatturapa_out_welfare/) | 12.0.1.0.2 |  | Registrazione della cassa previdenziale nelle fatture elettroniche in uscita
 [l10n_it_fatturapa_out_wt](l10n_it_fatturapa_out_wt/) | 12.0.2.0.1 |  | Modulo ponte tra emissione fatture elettroniche e ritenute.
 [l10n_it_fatturapa_pec](l10n_it_fatturapa_pec/) | 12.0.2.2.0 |  | Invio fatture elettroniche tramite PEC
 [l10n_it_fatturapa_sale](l10n_it_fatturapa_sale/) | 12.0.1.1.4 |  | Aggiunge alcuni dati per la fatturazione elettronica nell'ordine di vendita
