@@ -793,9 +793,7 @@ class WizardExportFatturapa(models.TransientModel):
                     raise UserError(
                         _("No 'nature' field for tax %s.") % tax.name)
                 riepilogo.Natura = tax.kind_id.code
-                if not tax.law_reference:
-                    raise UserError(
-                        _("No 'law reference' field for tax %s.") % tax.name)
+            if tax.law_reference:
                 riepilogo.RiferimentoNormativo = encode_for_export(
                     tax.law_reference, 100)
             if tax.payability:
