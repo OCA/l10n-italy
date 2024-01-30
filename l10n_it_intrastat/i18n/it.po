@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-29 10:35+0000\n"
+"PO-Revision-Date: 2024-01-31 00:05+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -688,7 +688,7 @@ msgid ""
 "Acorns and horse-chestnuts and pomace or marc of fruit, for animal feeding, "
 "whether or not in the form of pellets (excl. grape marc)"
 msgstr ""
-"Ghiande di quercia e castagne d'India nonchè residui della spremitura di "
+"Ghiande di quercia e castagne d'India nonché residui della spremitura di "
 "frutta, anche agglomerati in forma di pellet, dei tipi utilizzati per "
 "l'alimentazione degli animali (escl. i residui della spremitura dell'uva)"
 
@@ -872,7 +872,7 @@ msgid ""
 "ethylenediamine and hexamethylenediamine, and their salts)"
 msgstr ""
 "Poliammine, acicliche, e loro derivati; sali di tali prodotti (escl. "
-"etilendiammina, esametilendiammina, nonchè sali di tali prodotti)"
+"etilendiammina, esametilendiammina, nonché sali di tali prodotti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29171990
@@ -1514,7 +1514,7 @@ msgid ""
 "containing by weight > 80% whey proteins, calculated on the dry matter])"
 msgstr ""
 "Albumine inadatte o rese inadatte all'alimentazione umana, (escl. "
-"ovoalbumina nonchè concentrati di più proteine di siero di latte contenenti, "
+"ovoalbumina nonché concentrati di più proteine di siero di latte contenenti, "
 "in peso, calcolato sulla sostanza secca, > 80% di proteine di siero di latte)"
 
 #. module: l10n_it_intrastat
@@ -1607,7 +1607,7 @@ msgstr ""
 "concentrati di paglia di papavero; buprenorfina (DCI), codeina, "
 "diidrocodeina (DCI), etilmorfina, etorfina (DCI), eroina, idrocodone(DCI), "
 "idromorfone (DCI), morfina, nicomorfina (DCI), oxicodone (DCI), oximorfone "
-"(DCI), folcodina (DCI), tebacone (DCI) e tebaina nonchè sali di tali "
+"(DCI), folcodina (DCI), tebacone (DCI) e tebaina nonché sali di tali "
 "prodotti)"
 
 #. module: l10n_it_intrastat
@@ -1706,7 +1706,7 @@ msgstr ""
 "medazepam (DCI), midazolam (DCI), nimetazepam (DCI), nitrazepam (DCI), "
 "nordazepam (DCI), oxazepam (DCI), pinazepam (DCI), prazepam (DCI), "
 "pyrovalerone (DCI), temazepam (DCI), tetrazepam (DCI) e triazolam (DCI); "
-"sali di tali prodotti, nonchè sali del clordiazepossido (DCI)"
+"sali di tali prodotti, nonché sali del clordiazepossido (DCI)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28273200
@@ -1937,7 +1937,7 @@ msgid ""
 "methadone \"INN\" and normethadone \"INN\", and salts thereof)"
 msgstr ""
 "Ammino-aldeidi, ammino-chetoni e ammino-chinoni (escl. quelli contenenti più "
-"di un tipo di funzione ossigenata nonchè amfepramone (DCI), metadone (DCI) e "
+"di un tipo di funzione ossigenata nonché amfepramone (DCI), metadone (DCI) e "
 "normetadone (DCI), sali di tali prodotti)"
 
 #. module: l10n_it_intrastat
@@ -2184,7 +2184,7 @@ msgid ""
 "than cold-formed or cold-finished (excl. profiled sheet)"
 msgstr ""
 "Profilati di ferro o di acciai non legati, semplicemente ottenuti o rifiniti "
-"a freddo (escl. quelli ottenuti da prodotti laminati piatti, nonchè lamiere "
+"a freddo (escl. quelli ottenuti da prodotti laminati piatti, nonché lamiere "
 "profilate (nervate))"
 
 #. module: l10n_it_intrastat
@@ -2402,7 +2402,7 @@ msgid ""
 msgstr ""
 "Antibiotici (escl. penicilline e loro derivati, con struttura di acido "
 "penicillanico, sali di tali prodotti, streptomicine, tetracicline, "
-"cloramfenicolo e eritromicina, loro derivati, nonchè sali di tali prodotti)"
+"cloramfenicolo e eritromicina, loro derivati, nonché sali di tali prodotti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_26171000
@@ -2476,7 +2476,7 @@ msgid ""
 "uses (excl. for dental purposes and computer tomography apparatus)"
 msgstr ""
 "Apparecchi a raggi X per uso medico, chirurgico o veterinario (escl. per uso "
-"odontoiatrico nonchè apparecchi di tomografia pilotati da una macchina per "
+"odontoiatrico nonché apparecchi di tomografia pilotati da una macchina per "
 "il trattamento dell'informazione)"
 
 #. module: l10n_it_intrastat
@@ -16883,67 +16883,67 @@ msgstr "Glucosidi delle digitali"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29412030
 msgid "Dihydrostreptomycin, its salts, esters and hydrates"
-msgstr ""
+msgstr "Diidrostreptomicina, suoi sali, esteri e idrati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29319010
 msgid "Dimethyl methylphosphonate"
-msgstr ""
+msgstr "Metilfosfonato di dimetile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29209020
 msgid "Dimethyl phosphonate \"dimethyl phosphite\""
-msgstr ""
+msgstr "Fosfonato di dimetile (fosfito di dimetile)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29173700
 msgid "Dimethyl terephthalate"
-msgstr ""
+msgstr "Tereftalato di dimetile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29173300
 msgid "Dinonyl or didecyl orthophthalates"
-msgstr ""
+msgstr "Ortoftalati di dinonile o di didecile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29089100
 msgid "Dinoseb \"ISO\" and its salts"
-msgstr ""
+msgstr "Dinoseb ISO e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29153600
 msgid "Dinoseb acetate \"ISO\""
-msgstr ""
+msgstr "Acetato di dinoseb ISO"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29173200
 msgid "Dioctyl orthophthalates"
-msgstr ""
+msgstr "Ortoftalati di diottile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85411000
 msgid "Diodes (excl. photosensitive or light emitting diodes)"
-msgstr ""
+msgstr "Diodi diversi dai fotodiodi e dai diodi emettitori di luci"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29093010
 msgid "Diphenyl ether"
-msgstr ""
+msgstr "Eteri, difenilici (ossido di difenile)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29214400
 msgid "Diphenylamine and its derivatives; salts thereof"
-msgstr ""
+msgstr "Difenilammina, suoi derivati e loro sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28091000
 msgid "Diphosphorus pentaoxide"
-msgstr ""
+msgstr "Pentaossido di difosforo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28269010
 msgid "Dipotassium hexafluorozirconate"
-msgstr ""
+msgstr "Esafluorozirconato di dipotassio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.731112
@@ -16957,11 +16957,12 @@ msgid ""
 "organic dyes of a kind used to dye fabrics or produce colorant preparations "
 "(excl. preparations of heading 3207, 3208, 3209, 3210, 3213 and 3215)"
 msgstr ""
+"Coloranti organici sintetici diretti e preparazioni a base di tali coloranti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90141000
 msgid "Direction finding compasses"
-msgstr ""
+msgstr "Bussole, comprese quelle di navigazione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.581210
@@ -16973,6 +16974,8 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84322100
 msgid "Disc harrows for use in agriculture, horticulture or forestry"
 msgstr ""
+"Erpici a dischi (polverizzatori) per l'agricoltura, l'orticoltura e la "
+"silvicoltura"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85393900
@@ -16980,31 +16983,35 @@ msgid ""
 "Discharge lamps (excl. flourescent, hot cathode lamps, mercury or sodium "
 "vapour lamps, metal halide lamps and ultraviolet lamps)"
 msgstr ""
+"Lampade e tubi a scarica (escl. lampade e tubi fluorescenti a catodo caldo, "
+"a vapore di mercurio o di sodio, lampade alogene metalliche e lampade e tubi "
+"a raggi ultravioletti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85393190
 msgid "Discharge lamps, fluorescent, hot cathode (excl. with double ended cap)"
 msgstr ""
+"Lampade e tubi fluorescenti a catodo caldo, con uno o più di due zoccoli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85393110
 msgid "Discharge lamps, fluorescent, hot cathode, with double ended cap"
-msgstr ""
+msgstr "Lampade e tubi fluorescenti a catodo caldo, con due zoccoli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73209030
 msgid "Discs springs, of iron or steel"
-msgstr ""
+msgstr "Molle a forma di dischi, di ferro o acciaio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84221900
 msgid "Dishwashing machines (excl. those of the household type)"
-msgstr ""
+msgstr "Lavastoviglie, diverse da quelle di tipo familiare"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84221100
 msgid "Dishwashing machines of the household type"
-msgstr ""
+msgstr "Lavastoviglie di tipo familiare"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38089420
@@ -17012,6 +17019,9 @@ msgid ""
 "Disinfectants, based on halogenated compounds, put up for retail sale or as "
 "preparations or articles (excl. goods of subheading 3808.50)"
 msgstr ""
+"Disinfettanti e prodotti simili a base di composti alogenati, presentati in "
+"forme o in imballaggi per la vendita al minuto oppure allo stato di "
+"preparazioni o in forma di oggetti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38089410
@@ -17019,6 +17029,9 @@ msgid ""
 "Disinfectants, based on quaternary ammonium salts, put up for retail sale or "
 "as preparations or articles (excl. goods of subheading 3808.50)"
 msgstr ""
+"Disinfettanti e prodotti simili a base di sali di ammonio quaternario, "
+"presentati in forme o in imballaggi per la vendita al minuto oppure allo "
+"stato di preparazioni o in forma di oggetti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38089490
@@ -17027,6 +17040,8 @@ msgid ""
 "such products based on quaternary ammonium salts or halogenated compounds "
 "and goods of subheading 3808.50)"
 msgstr ""
+"Disinfettanti, esclusi quelli a base di sali di ammonio quaternario e di "
+"composti alogenati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.812911
@@ -17040,13 +17055,16 @@ msgid ""
 "nor magneto-optical (excl. hard disk storage drives and central storage "
 "units)"
 msgstr ""
+"Unità di memoria disco per macchine automatiche numeriche per l'elaborazione "
+"dell'informazione nè ottiche nè magneto-ottiche (escl. unità di memoria "
+"centrali e hard-disk)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84717030
 msgid ""
 "Disk storage units for automatic data-processing machines, optical, incl. "
 "magneto-optical \"e.g. CD-ROM drives\" (excl. central storage units)"
-msgstr ""
+msgstr "Unità di memorie a dischi ottiche, comprese le magneto-ottiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.383112
@@ -17059,12 +17077,12 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28362000
 msgid "Disodium carbonate"
-msgstr ""
+msgstr "Carbonato di disodio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28331100
 msgid "Disodium sulphate"
-msgstr ""
+msgstr "Solfato di disodio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28401990
@@ -17072,11 +17090,13 @@ msgid ""
 "Disodium tetraborate \"refined borax\" (excl. anhydrous and disodium "
 "tetraborate pentahydrate)"
 msgstr ""
+"Tetraborato di disodio (borace raffinato) (escl. quello anidro nonchè "
+"tetraborato di disodio pentaidrato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28401910
 msgid "Disodium tetraborate pentahydrate"
-msgstr ""
+msgstr "Tetraborato di disodio pentaidrato"
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_intrastat_custom__display_name
@@ -17092,16 +17112,18 @@ msgstr "Nome visualizzato"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90065310
 msgid "Disposable cameras for roll film of a width of 35 mm"
 msgstr ""
+"Apparecchi fotografici usa e getta, per pellicole in rotoli di larghezza = "
+"35 mm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28530010
 msgid "Distilled and conductivity water and water of similar purity"
-msgstr ""
+msgstr "Acque distillate di conducibilità o dello stesso grado di purezza"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84194000
 msgid "Distilling or rectifying plant"
-msgstr ""
+msgstr "Apparecchi di distillazione o di rettificazione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.351310
@@ -17119,26 +17141,30 @@ msgid ""
 "Distributors and ignition coils of a kind used for spark-ignition or "
 "compression-ignition internal combustion engines"
 msgstr ""
+"Distributori e bobine di accensione per motori con accensione o per "
+"compressione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28121091
 msgid "Disulphur dichloride"
-msgstr ""
+msgstr "Dicloruro di dizolfo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28311000
 msgid "Dithionite and sulfoxylate of sodium"
-msgstr ""
+msgstr "Ditioniti e solfossilati, di sodio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28319000
 msgid "Dithionites and sulfoxylates (excl. sodium)"
-msgstr ""
+msgstr "Ditioniti e solfossilati, esclusi quelli di sodio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84663000
 msgid "Dividing heads and other special attachments for machine tools, n.e.s."
 msgstr ""
+"Dispositivi divisori ed altri dispositivi speciali da applicare su macchine "
+"utensili, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.821913
@@ -17153,6 +17179,8 @@ msgid ""
 "Dodecan-1-ol \"lauryl alcohol\", hexadecan-1-ol \"cetyl alcohol\" and "
 "octadecan-1-ol \"stearyl alcohol\""
 msgstr ""
+"Dodecan-1-olo (alcole laurilico), esadecan-1-olo (alcole cetilico) e "
+"ottodecan-1-olo (alcole stearico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091070
@@ -17160,6 +17188,10 @@ msgid ""
 "Dog or cat food put up for retail sale, containing no starch, glucose, "
 "maltodextrine or maltodextrine syrup, but containing milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, (non "
+"contenenti nè amido o fecola, nè glucosio o sciroppo di glucosio, nè malto-"
+"destrina o sciroppo di malto-destrina) ma contenenti prodotti lattiero-"
+"caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091090
@@ -17167,6 +17199,9 @@ msgid ""
 "Dog or cat food put up for retail sale, containing no starch, glucose, "
 "maltodextrine or maltodextrine syrup, nor milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto (non "
+"contenenti nè amido o fecola, nè glucosio o sciroppo di glucosio, nè malto-"
+"destrina o sciroppo di malto-destrina nè prodotti lattiero-caseari)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091033
@@ -17175,6 +17210,11 @@ msgid ""
 "maltodextrine or maltodextrine syrup and containing > 10% but <= 30% of "
 "starch and >= 10% but < 50% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso > 10% e <= 30% di "
+"amido o di fecola e non contenenti prodotti lattiero-caseari o con tenore in "
+"peso > 10% e < 50% di prodotti lattiero-casearii"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091039
@@ -17183,6 +17223,11 @@ msgid ""
 "maltodextrine or maltodextrine syrup and containing > 10% but <= 30% of "
 "starch and >= 50% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso > 10% e <= 30% di "
+"amido o di fecola e non contenenti prodotti lattiero-caseari o con tenore in "
+"peso => 50% di prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091031
@@ -17191,6 +17236,11 @@ msgid ""
 "maltodextrine or maltodextrine syrup and containing > 10% but <= 30% of "
 "starch and no milk products or < 10% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso > 10% e <= 30% di "
+"amido o di fecola e non contenenti prodotti lattiero-caseari o con tenore in "
+"peso < 10% di prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091053
@@ -17199,6 +17249,11 @@ msgid ""
 "maltodextrine or maltodextrine syrup and containing > 30% of starch and >= "
 "10% but < 50% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso > 30% di amido o di "
+"fecola e non contenenti prodotti lattiero-caseari o con tenore in peso > 50% "
+"di prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091059
@@ -17207,6 +17262,10 @@ msgid ""
 "maltodextrine or maltodextrine syrup and containing > 30% of starch and >= "
 "50% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"con tenore in peso > 30% di amido o di fecola e con tenore in peso => 50% di "
+"prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091051
@@ -17215,6 +17274,11 @@ msgid ""
 "maltodextrine or maltodextrine syrup and containing > 30% of starch and no "
 "milk products or < 10% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso > 30% di amido o di "
+"fecola e non contenenti prodotti lattiero-caseari o con tenore in peso < 10% "
+"di prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091013
@@ -17223,6 +17287,11 @@ msgid ""
 "maltodextrine or maltodextrine syrup but containing no starch or containing "
 "<= 10% starch and >= 10% but < 50% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso <= 10% di amido o di "
+"fecola e non contenenti prodotti lattiero-caseari o con tenore in peso > 10% "
+"e < 50% di prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091015
@@ -17231,6 +17300,11 @@ msgid ""
 "maltodextrine or maltodextrine syrup but containing no starch or containing "
 "<= 10% starch and >= 50% but < 75% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso <= 10% di amido o di "
+"fecola e non contenenti prodotti lattiero-caseari o con tenore in peso > 50% "
+"e < 75% di prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091019
@@ -17239,6 +17313,11 @@ msgid ""
 "maltodextrine or maltodextrine syrup but containing no starch or containing "
 "<= 10% starch and >= 75% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso <= 10% di amido o di "
+"fecola e non contenenti prodotti lattiero-caseari o con tenore in peso => "
+"75% di prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23091011
@@ -17247,16 +17326,21 @@ msgid ""
 "maltodextrine or maltodextrine syrup but containing no starch or no milk "
 "products or containing <= 10% starch and < 10% by weight of milk products"
 msgstr ""
+"Alimenti per cani o gatti, condizionati per la vendita al minuto, contenenti "
+"glucosio, sciroppo di glucosio, malto-destrina o sciroppo di malto-destrina, "
+"ma non contenenti amido o fecola o con tenore in peso <= 10% di amido o di "
+"fecola e non contenenti prodotti lattiero-caseari o con tenore in peso < 10% "
+"di prodotti lattiero-caseari"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_95030021
 msgid "Dolls representing only human beings, whether or not clothed"
-msgstr ""
+msgstr "Bambole raffiguranti unicamente soggetti umani"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_25183000
 msgid "Dolomite ramming mix"
-msgstr ""
+msgstr "Pigiata di dolomite"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85094000
@@ -17264,6 +17348,8 @@ msgid ""
 "Domestic food grinders and mixers and fruit or vegetable juice extractors, "
 "with self-contained electric motor"
 msgstr ""
+"Trituratori e mescolatori di alimenti, spremifrutta e spremiverdura, con "
+"motore elettrico incorporato, per uso domestico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.511012
@@ -17282,39 +17368,45 @@ msgstr "Servizi di trasporto aereo interno, di linea, di passeggeri"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101960
 msgid "Domestic swine fore-ends and cuts thereof, dried or smoked"
-msgstr ""
+msgstr "Parti anteriori e loro pezzi, di suidi domestici, secchi o affumicati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101131
 msgid "Domestic swine hams and cuts thereof, dried or smoked, with bone in"
 msgstr ""
+"Prosciutti e loro pezzi, di suidi domestici (non disossati) secchi o "
+"affumicati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101111
 msgid "Domestic swine hams and cuts thereof, salted or in brine, with bone in"
 msgstr ""
+"Prosciutti e loro pezzi, di suidi domestici (non disossati) salati o in "
+"salamoia"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101970
 msgid "Domestic swine loins and cuts thereof, dried or smoked"
-msgstr ""
+msgstr "Lombate e loro pezzi, di suidi domestici, secchi o affumicati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101139
 msgid ""
 "Domestic swine shoulders and cuts thereof, dried or smoked, with bone in"
 msgstr ""
+"Spalle e loro pezzi, di suidi domestici (non disossati) secchi o affumicati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101119
 msgid ""
 "Domestic swine shoulders and cuts thereof, salted or in brine, with bone in"
 msgstr ""
+"Spalle e loro pezzi, di suidi domestici (non disossati) salati o in salamoia"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_01039110
 msgid "Domestic swine, weighing < 50 kg (excl. pure-bred for breeding)"
-msgstr ""
+msgstr "Suini, vivi, di peso < 50 kg (escl. riproduttori di razza pura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84481100
@@ -17322,11 +17414,13 @@ msgid ""
 "Doobies and jacquards; card reducing, copying, punching or assembling "
 "machines for use therewith"
 msgstr ""
+"Ratiere e meccanismi jacquard; riduttori, perforatrici e copiatrici di "
+"cartoni, macchine per allacciare i cartoni dopo le perforazioni"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44182050
 msgid "Doors and their frames and thresholds, of coniferous wood"
-msgstr ""
+msgstr "Porte e loro telai, stipiti e soglie, di legno di conifere"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44182010
@@ -17339,6 +17433,8 @@ msgid ""
 "\", imbuia, balsa, palissandre de Rio, palissandre de Para and palissandre "
 "de rose"
 msgstr ""
+"Porte e loro telai, stipiti e soglie, di legno tropicale definito nella nota "
+"due di questo capitolo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44182080
@@ -17351,24 +17447,34 @@ msgid ""
 "\"Swietenia spp.\", imbuia, balsa, palissandre de Rio, palissandre de Para "
 "and palissandre de rose, and coniferous wood)"
 msgstr ""
+"Porte e loro telai, stipiti e soglie, di legno (escl. di Okoumé, Obéché, "
+"Sapelli, Sipo, Acajou d'Afrique, Makoré, Iroko, Tiama, Mansonia, Ilomba, "
+"Dibétou, Limba, Azobé, Dark Red Meranti, Light Red Meranti, Meranti Bakau, "
+"White Lauan, White Meranti, White Seraya, Yellow Meranti, Alan, Keruing, "
+"Ramin, Kapur, Teak, Jongkong, Merbau, Jelutong, Kempas, Virola, Mahogany ("
+"Swietenia spp.), Imbuia, Balsa, Palissandro di Rio, Palissandro di Para e "
+"Palissandro di rosa, nonché di legno di conifere)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_76101000
 msgid ""
 "Doors, windows and their frames and thresholds for door, of aluminium (excl. "
 "door furniture)"
-msgstr ""
+msgstr "Porte, finestre e loro intelaiature, stipiti e soglie di alluminio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73083000
 msgid ""
 "Doors, windows and their frames and thresholds for doors, of iron or steel"
 msgstr ""
+"Porte, finestre e loro intelaiature e stipiti e soglie, di ghisa, ferro o "
+"acciaio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39252000
 msgid "Doors, windows and their frames and thresholds for doors, of plastics"
 msgstr ""
+"Porte, finestre e loro intelaiature, stipiti e soglie, di materie plastiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06011090
@@ -17377,33 +17483,35 @@ msgid ""
 "those used for human consumption, hyacinth, narcissi, tulip, gladioli and "
 "chicory plants and roots)"
 msgstr ""
+"Bulbi, cipolle, tuberi, radici tuberose, zampe e rizomi, allo stato di "
+"riposo vegetativo, (escl. giacinti, narcisi, tulipani e gladioli)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06011040
 msgid "Dormant gladioli bulbs"
-msgstr ""
+msgstr "Gladioli allo stato di riposo vegetativo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06011010
 msgid "Dormant hyacinth bulbs"
-msgstr ""
+msgstr "Giacinti allo stato di riposo vegetativo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06011020
 msgid "Dormant narcissi bulbs"
-msgstr ""
+msgstr "Narcisi allo stato di riposo vegetativo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06011030
 msgid "Dormant tulip bulbs"
-msgstr ""
+msgstr "Tulipani allo stato di riposo vegetativo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84135040
 msgid ""
 "Dosing and proportioning reciprocating positive displacement pumps, power-"
 "driven"
-msgstr ""
+msgstr "Pompe dosatrici volumetriche alternative"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28421000
@@ -17412,6 +17520,9 @@ msgid ""
 "aluminosilicates whether or not chemically defined (excl. inorganic or "
 "organic compounds of mercury whether or not chemically defined)"
 msgstr ""
+"Silicati doppi o complessi degli acidi o perossoacidi inorganici, compresi "
+"gli alluminosilicati di costituzione chimica definita o no (escl. composti "
+"organici o inorganici di mercurio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_31022900
@@ -17420,6 +17531,8 @@ msgid ""
 "goods of this chapter in tablets or similar forms or in packages of a gross "
 "weight of <= 10 kg)"
 msgstr ""
+"Sali doppi e miscugli di solfato di ammonio e di nitrato di ammonio (escl. "
+"in pastiglie o forme simili o in imballaggi di peso lordo <= 10 kg)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_31026000
@@ -17427,17 +17540,19 @@ msgid ""
 "Double salts and mixtures of calcium nitrate and ammonium nitrate (excl. "
 "those in pellet or similar forms, or in packages with a gross weight of <= "
 "10 kg)"
-msgstr ""
+msgstr "Sali doppi e miscugli di nitrato di calcio e di nitrato di ammonio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_95061129
 msgid "Downhill skis (excl. monoskis and snowboards)"
-msgstr ""
+msgstr "Sci alpini (escl. monosci e surf da neve)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90171090
 msgid "Drafting tables and machines, whether or not automatic (excl. plotters)"
 msgstr ""
+"Tavoli e macchine per disegnare, anche automatici (escl. tracciatori "
+"(plotter))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84631090
@@ -17445,41 +17560,43 @@ msgid ""
 "Draw-benches for metal bars, tubes, profiles, or the like (excl. draw-"
 "benches for wire)"
 msgstr ""
+"Trafilatrici per barre, tubi, profilati, fili o simili, di metallo (escl. "
+"trafilatrici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84631010
 msgid "Draw-benches for metal wire"
-msgstr ""
+msgstr "Trafilatrici per fili metallici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90172010
 msgid "Drawing instruments (excl. drafting tables and machines, plotters)"
-msgstr ""
+msgstr "Strumenti da disegno (escl. tavoli e macchine da disegno, tracciatori)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84451300
 msgid "Drawing or roving machines"
-msgstr ""
+msgstr "Banchi a fusi per la preparazione delle materie tessili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_89051090
 msgid "Dredgers (excl. seagoing)"
-msgstr ""
+msgstr "Draghe, diverse da quelle per la navigazione marittima"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08133000
 msgid "Dried apples"
-msgstr ""
+msgstr "Mele, secche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08131000
 msgid "Dried apricots"
-msgstr ""
+msgstr "Albicocche, secche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21021031
 msgid "Dried bakers' yeast"
-msgstr ""
+msgstr "Lieviti vivi di panificazione, secchi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04089120
@@ -17487,6 +17604,8 @@ msgid ""
 "Dried birds' eggs, not in shell, whether or not containing added sugar or "
 "other sweetening matter, not suitable for human consumption (excl. egg yolks)"
 msgstr ""
+"Uova di volatili sgusciate, essiccate, anche con aggiunta di zuccheri o di "
+"altri dolcificanti, inadatte ad uso alimentare (escl. tuorli)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04089180
@@ -17494,6 +17613,8 @@ msgid ""
 "Dried birds' eggs, not in shell, whether or not containing added sugar or "
 "other sweetening matter, suitable for human consumption (excl. egg yolks)"
 msgstr ""
+"Uova di volatili sgusciate, essiccate, anche con aggiunta di zuccheri o di "
+"altri dolcificanti, atte ad uso alimentare (escl. tuorli)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07129050
@@ -17501,11 +17622,12 @@ msgid ""
 "Dried carrots, whole, cut, sliced, broken or in powder, but not further "
 "prepared"
 msgstr ""
+"Carote secche, anche tagliate in pezzi o a fette (non altrimenti preparate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08042090
 msgid "Dried figs"
-msgstr ""
+msgstr "Fichi, secchi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_09042190
@@ -17513,6 +17635,8 @@ msgid ""
 "Dried fruit of genus Capsicum or Pimenta, neither crushed nor ground (excl. "
 "sweet peppers)"
 msgstr ""
+"Frutta secca del genere Capsicum o Pimenta, non tritati né polverizzati ("
+"escl. peperoni)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08134095
@@ -17521,7 +17645,7 @@ msgid ""
 "guavas, mangoes, mangosteens, papaws \"papayas\", tamarinds, cashew apples, "
 "lychees, jackfruit, sapodillo plums, passion fruit, carambola, pitahaya, "
 "citrus fruit, grapes, apricots, plums, apples, pears and peaches, unmixed)"
-msgstr ""
+msgstr "Frutta commestibile, secca, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30019098
@@ -17530,6 +17654,9 @@ msgid ""
 "powdered, and other substances of animal origin prepared for therapeutic or "
 "prophylactic uses, n.e.s. (excl. heparin and its salts)"
 msgstr ""
+"Ghiandole ed altri organi per usi opoterapici, anche polverizzati , e altre "
+"sostanze di origine animale preparate per scopi terapeutici o profilattici , "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30019020
@@ -17538,11 +17665,14 @@ msgid ""
 "powdered, and other substances of human origin prepared for therapeutic or "
 "prophylactic uses, n.e.s."
 msgstr ""
+"Ghiandole ed altri organi per usi opoterapici, anche polverizzati , e altre "
+"sostanze di origine umana preparate per scopi terapeutici o profilattici , n."
+"n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08062090
 msgid "Dried grapes (excl. currants and sultanas)"
-msgstr ""
+msgstr "Uve secche (escluse le uve di Corinto e l'uva sultanina)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07123300
@@ -17550,6 +17680,8 @@ msgid ""
 "Dried jelly fungi \"Tremella spp.\", whole, cut, sliced, broken or in "
 "powder, but not further prepared"
 msgstr ""
+"Tremelle (Tremella spp.), secche, anche tagliate in pezzi o a fette oppure "
+"tritate o polverizzate, non altrimenti preparate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07123900
@@ -17558,6 +17690,10 @@ msgid ""
 "not further prepared (excl. mushrooms of the genus \"Agaricus\", wood ears "
 "\"Auricularia spp.\" and jelly fungi \"Tremella spp.\")"
 msgstr ""
+"Funghi e tartufi essiccati, interi, tagliati, affettati, a pezzi o in "
+"polvere, ma non ulteriormente preparati (escl. funghi del genere (Agaricus), "
+"orecchie di Giuda (Auricularia spp.), tremelle (Tremella spp.) e shiitake ("
+"Lentinus edodes))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07123100
@@ -17565,6 +17701,8 @@ msgid ""
 "Dried mushrooms of the genus \"Agaricus\", whole, cut, sliced, broken or in "
 "powder, but not further prepared"
 msgstr ""
+"Funghi del genere Agaricus, secchi, anche tagliati in pezzi o a fette oppure "
+"tritati o polverizzati, non altrimenti preparati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07122000
@@ -17572,12 +17710,16 @@ msgid ""
 "Dried onions, whole, cut, sliced, broken or in powder, but not further "
 "prepared"
 msgstr ""
+"Cipolle, secche, anche tagliate in pezzi o a fette oppure tritate o "
+"polverizzate (non altrimenti preparate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101981
 msgid ""
 "Dried or smoked boneless domestic swine meat (excl. bellies and cuts thereof)"
 msgstr ""
+"Carni di suidi domestici, disossate, secche o affumicate (escl. pancette "
+"(ventresche), parti anteriori, lombate, e loro pezzi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101989
@@ -17586,48 +17728,53 @@ msgid ""
 "cuts thereof, bellies and cuts thereof, and fore-ends, loins and cuts "
 "thereof)"
 msgstr ""
+"Carni di suidi domestici (non disossate) secche o affumicate (escl. "
+"prosciutti, spalle, pancette (ventresche) parti anteriori, lombate, e loro "
+"pezzi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08134050
 msgid "Dried pawpaws"
-msgstr ""
+msgstr "Papaie, secche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08134010
 msgid "Dried peaches, incl. nectarines"
-msgstr ""
+msgstr "Pesche e pesche noci, secche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08134030
 msgid "Dried pears"
-msgstr ""
+msgstr "Pere, secche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07129005
 msgid "Dried potatoes, whether or not cut or sliced, but not further prepared"
 msgstr ""
+"Patate, secche, anche tagliate in pezzi o a fette oppure tritate o "
+"polverizzate (non altrimenti preparate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08132000
 msgid "Dried prunes"
-msgstr ""
+msgstr "Prugne, secche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_09042110
 msgid "Dried sweet peppers (excl. crushed or ground)"
-msgstr ""
+msgstr "Peperoni essiccati, non tritati né polverizzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07129019
 msgid ""
 "Dried sweetcorn \"Zea mays var. saccharata\", whether or nor cut or sliced, "
 "but not further prepared (excl. hybrids for sowing)"
-msgstr ""
+msgstr "Granturco dolce, esclusi gli ibridi destinati alla semina, secco"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07129011
 msgid "Dried sweetcorn, hybrid, for sowing"
-msgstr ""
+msgstr "Ibridi di granturco dolce, destinato alla semina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08134065
@@ -17635,6 +17782,8 @@ msgid ""
 "Dried tamarinds, cashew apples, lychees, jackfruit, sapodillo plums, passion "
 "fruit, carambola and pitahaya"
 msgstr ""
+"Tamarindi, frutta di acagiù, frutta di jack, litchi, sapotiglie, frutti "
+"della passione, carambole e pitahaya, secchi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07129030
@@ -17642,6 +17791,8 @@ msgid ""
 "Dried tomatoes, whole, cut, sliced, broken or in powder, but not further "
 "prepared"
 msgstr ""
+"Pomodori, secchi, anche tagliati in pezzi o a fette (non altrimenti "
+"preparati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07129090
@@ -17650,6 +17801,9 @@ msgid ""
 "in powder, but not further prepared (excl. potatoes, onions, mushrooms, "
 "truffles, sweetcorn, tomatoes and carrots)"
 msgstr ""
+"Ortaggi o legumi; miscele di ortaggi o legumi, secchi, anche tagliati in "
+"pezzi o a fette oppure tritati o polverizzati (non altrimenti preparati) ("
+"escl. patate, cipolle, funghi, tartufi, granturco, pomodori e carote)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07123200
@@ -17657,6 +17811,8 @@ msgid ""
 "Dried wood ears \"Auricularia spp.\", whole, cut, sliced, broken or in "
 "powder, but not further prepared"
 msgstr ""
+"Orecchie di giuda (Auricularia spp.), secche, anche tagliate in pezzi o a "
+"fette oppure tritate o polverizzate, non altrimenti preparate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06039000
@@ -17664,11 +17820,13 @@ msgid ""
 "Dried, dyed, bleached, impregnated or otherwise prepared cut flowers and "
 "buds, of a kind suitable for bouquets or for ornamental purposes"
 msgstr ""
+"Fiori recisi, essiccati, imbianchiti, tinti, impregnati o altrimenti "
+"preparati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_19023010
 msgid "Dried, prepared pasta (excl. stuffed)"
-msgstr ""
+msgstr "Paste alimentari, secche (escl. paste alimentari farcite)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03089090
@@ -17678,11 +17836,14 @@ msgid ""
 "salted or in brine, flours, meals and pellets of aquatic invertebrates other "
 "than crustaceans and molluscs, fit for human consumption"
 msgstr ""
+"Invertebrati acquatici affumicati, essiccati, salati o in salamoia (escl. "
+"crostacei, molluschi, oloturie (cetrioli di mare), ricci di mare e meduse)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03083090
 msgid "Dried, salted or in brine, jellyfish \"Rhopilema spp.\" (excl. smoked)"
 msgstr ""
+"Meduse secche, salate o in salamoia, (Rhopilema spp.) (escl. affumicate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03082990
@@ -17691,6 +17852,9 @@ msgid ""
 "Paracentrotus lividus, Loxechinus albus, Echichinus esculentus\" (excl. "
 "smoked)"
 msgstr ""
+"Ricci di mare secchi, salati o in salamoia (Strongylocentrotus spp., "
+"Paracentrotus lividus, Loxechinus albus, Echichinus esculentus) (escl. "
+"affumicati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133400
@@ -17698,6 +17862,8 @@ msgid ""
 "Dried, shelled bambara beans \"Vigna subterranea or Voandzeia subterranea\", "
 "whether or not skinned or split"
 msgstr ""
+"Fagioli bambara o di terra (Vigna subterranea o Voandzeia subterranea) "
+"secchi, sgusciati, anche decorticati o spezzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133900
@@ -17707,6 +17873,9 @@ msgid ""
 "[L.] Wilczek\", small red \"Adzuki\" beans, kidney beans, Bambara beans and "
 "cow peas)"
 msgstr ""
+"Fagioli (Vigna spp., Phaseolus spp.) secchi, sgranati, anche decorticati o "
+"spezzati (escl. fagioli delle specie Vigna mungo (L.) Hepper o Vigna radiata "
+"(L.) Wilczek, fagioli Adzuki e fagioli comuni)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133100
@@ -17714,6 +17883,8 @@ msgid ""
 "Dried, shelled beans of species \"Vigna mungo [L.] Hepper or Vigna radiata "
 "[L.] Wilczek\", whether or not skinned or split"
 msgstr ""
+"Fagioli Vigna mungo (L.) Hepper o Vigna radiata (L.) Wilczek secchi, "
+"sgranati, anche decorticati o spezzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07135000
@@ -17721,11 +17892,13 @@ msgid ""
 "Dried, shelled broad beans \"Vicia faba var. major\" and horse beans \"Vicia "
 "faba var. equina and Vicia faba var. minor\", whether or not skinned or split"
 msgstr ""
+"Fave (Vicia faba var. major) e favette (Vicia faba var. equina) e (Vicia "
+"faba var. minor) secche, sgranate, anche decorticate o spezzate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07132000
 msgid "Dried, shelled chickpeas \"garbanzos\", whether or not skinned or split"
-msgstr ""
+msgstr "Ceci, secchi, sgranati, anche decorticati o spezzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133500
@@ -17733,18 +17906,20 @@ msgid ""
 "Dried, shelled cow peas \"Vigna unguiculata\", whether or not skinned or "
 "split"
 msgstr ""
+"Fagioli dall'occho (Vigna unguiculata) secchi, sgusciati, anche decorticati "
+"o spezzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133310
 msgid "Dried, shelled kidney beans \"Phaseolus vulgaris\", for sowing"
-msgstr ""
+msgstr "Fagioli comuni secchi, destinati alla semina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133390
 msgid ""
 "Dried, shelled kidney beans \"Phaseolus vulgaris\", whether or not skinned "
 "or split (excl. for sowing)"
-msgstr ""
+msgstr "Fagioli comuni secchi, esclusi quelli destinati alla semina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07139000
@@ -17752,17 +17927,22 @@ msgid ""
 "Dried, shelled leguminous vegetables, whether or not skinned or split (excl. "
 "peas, chickpeas, beans, lentils, broad beans, horse beans and pigeon peas)"
 msgstr ""
+"Legumi da granella, secchi, sgranati, anche decorticati o spezzati (escl. "
+"piselli, ceci, fagioli delle specie Vigna spp. e Phaseolus spp., lenticchie, "
+"fave e favette)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07134000
 msgid "Dried, shelled lentils, whether or not skinned or split"
-msgstr ""
+msgstr "Lenticchie, secche, sgranate, anche decorticate o spezzate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07136000
 msgid ""
 "Dried, shelled pigeon peas \"Cajanus cajan\", whether or not skinned or split"
 msgstr ""
+"Piselli caiano o del tropico (Cajanus Cajano) secchi, sgusciati, anche "
+"decorticati o spezzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_07133200
@@ -17770,6 +17950,8 @@ msgid ""
 "Dried, shelled small red \"Adzuki\" beans \"Phaseolus or Vigna angularis\", "
 "whether or not skinned or split"
 msgstr ""
+"Fagioli Adzuki (Phaseolus o Vigna angularis) secchi, sgranati, anche "
+"decorticati o spezzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73042300
@@ -17777,6 +17959,9 @@ msgid ""
 "Drill pipe, seamless, of a kind used in drilling for oil or gas, of iron or "
 "steel (excl. products of stainless steel or of cast iron)"
 msgstr ""
+"Aste di perforazione, senza saldatura, di ferro o acciaio, dei tipi "
+"utilizzati per l'estrazione del petrolio o del gas (escl. Prodotti di "
+"acciaio inossidabile e ghisa)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73042200
@@ -17784,20 +17969,22 @@ msgid ""
 "Drill pipe, seamless, of stainless steel, of a kind used in drilling for oil "
 "or gas"
 msgstr ""
+"Aste di perforazione, senza saldatura, di acciaio inossidabile, dei tipi "
+"utilizzati per l'estrazione del petrolio o del gas"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84592900
 msgid ""
 "Drilling machines for working metal, not numerically controlled (excl. way-"
 "type unit head machines and hand-operated machines)"
-msgstr ""
+msgstr "Foratrici per metalli, diverse da quelle a comando numerico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84592100
 msgid ""
 "Drilling machines for working metal, numerically controlled (excl. way-type "
 "unit head machines)"
-msgstr ""
+msgstr "Foratrici per metalli, a comando numerico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84659500
@@ -17806,11 +17993,16 @@ msgid ""
 "hard plastics or similar hard materials (excl. machines for working in the "
 "hand and machines of subheading 8465.10)"
 msgstr ""
+"Foratrici o mortasatrici per la lavorazione del legno, del sughero, "
+"dell'osso, della gomma indurita, delle materie plastiche dure o di materie "
+"dure simili (escl. macchine manovrabili a mano e macchine delle sottovoci "
+"8465 10 e 8465 20)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.091011
 msgid "Drilling services to petroleum and natural gas extraction"
 msgstr ""
+"Servizi di perforazione connessi all'estrazione di petrolio e di gas naturale"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84672110
@@ -17818,6 +18010,8 @@ msgid ""
 "Drills of all kinds for working in the hand, with self-contained electric "
 "motor capable of operation without an external source of power"
 msgstr ""
+"Trapani a mano di ogni specie, con motore elettrico incorporato, incl. le "
+"perforatrici rotative, funzionanti senza una sorgente di energia esterna"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84672199
@@ -17826,6 +18020,8 @@ msgid ""
 "motor operating with an external source of power (excl. electropneumatic "
 "drills)"
 msgstr ""
+"Trapani a mano di ogni specie, con motore elettrico incorporato, con "
+"alimentazione da rete (escl. trapani elettropneumatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133319
@@ -17833,6 +18029,8 @@ msgid ""
 "Drinking glasses of lead crystal, gathered by hand (excl. cut or otherwise "
 "decorated and stemware)"
 msgstr ""
+"Bicchieri di cristallo al piombo, fabbricati a mano (escl. bicchieri a "
+"calice e quelli incisi o altrimenti decorati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133311
@@ -17840,6 +18038,8 @@ msgid ""
 "Drinking glasses of lead crystal, gathered by hand, cut or otherwise "
 "decorated (excl. stemware)"
 msgstr ""
+"Bicchieri di cristallo al piombo, fabbricati a mano, incisi o altrimenti "
+"decorati (escl. bicchieri a calice)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133399
@@ -17847,6 +18047,8 @@ msgid ""
 "Drinking glasses of lead crystal, gathered mechanically (excl. cut or "
 "otherwise decorated and stemware)"
 msgstr ""
+"Bicchieri di cristallo al piombo, fabbricati meccanicamente (escl. bicchieri "
+"a calice e quelli incisi o altrimenti decorati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133391
@@ -17854,16 +18056,18 @@ msgid ""
 "Drinking glasses of lead crystal, gathered mechanically, cut or otherwise "
 "decorated (excl. stemware)"
 msgstr ""
+"Bicchieri di cristallo al piombo, incisi o altrimenti decorati,fabbricati "
+"meccanicamente (escl. bicchieri a calice)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70132290
 msgid "Drinking glasses of lead crystal, stemware, gathered mechanically"
-msgstr ""
+msgstr "Bicchieri a calice, di cristallo al piombo, fabbricati meccanicamente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133710
 msgid "Drinking glasses of toughened glass (excl. stemware)"
-msgstr ""
+msgstr "Bicchieri di vetro temperato (escl. a calice)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133759
@@ -17872,6 +18076,9 @@ msgid ""
 "decorated, or of glass ceramics, lead crystal or toughened glass and "
 "stemware)"
 msgstr ""
+"Bicchieri, fabbricati a mano (escl. quelli incisi o altrimenti decorati, "
+"quelli di vetroceramica, di cristallo al piombo, di vetro temperato e "
+"oggetti di vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133751
@@ -17879,6 +18086,8 @@ msgid ""
 "Drinking glasses, gathered by hand, cut or otherwise decorated (excl. "
 "glasses of glass ceramics, lead crystal or toughened glass and stemware)"
 msgstr ""
+"Bicchieri, fabbricati a mano, incisi o altrimenti decorati (escl. di "
+"vetroceramica, di cristallo al piombo e di vetro temperato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133799
@@ -17887,6 +18096,9 @@ msgid ""
 "decorated, or of glass ceramics, lead crystal or toughened glass and "
 "stemware)"
 msgstr ""
+"Bicchieri, fabbricati meccanicamente (escl. quelli incisi o altrimenti "
+"decorati, quelli di vetroceramica, di cristallo al piombo, di vetro "
+"temperato e a calice)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70133791
@@ -17894,6 +18106,9 @@ msgid ""
 "Drinking glasses, gathered mechanically, cut or otherwise decorated (excl. "
 "glasses of glass ceramics, lead crystal or toughened glass and stemware)"
 msgstr ""
+"Bicchieri, fabbricati meccanicamente, incisi o altrimenti decorati (escl. "
+"quelli di vetroceramica, di cristallo al piombo, di vetro temperato e "
+"oggetti di vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70132810
@@ -17901,6 +18116,8 @@ msgid ""
 "Drinking glasses, stemware, gathered by hand (excl. of glass ceramics or of "
 "lead crystal)"
 msgstr ""
+"Bicchieri a calice, fabbricati a mano (escl. di vetroceramica o di cristallo "
+"al piombo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70132890
@@ -17908,11 +18125,13 @@ msgid ""
 "Drinking glasses, stemware, gathered mechanically (excl. of glass ceramics "
 "or of lead crystal)"
 msgstr ""
+"Bicchieri a calice, fabbricati meccanicamente (escl. di vetroceramica o di "
+"cristallo al piombo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70132210
 msgid "Drinking glasses, stemware, of lead crystal, gathered by hand"
-msgstr ""
+msgstr "Bicchieri a calice, di cristallo al piombo, fabbricati a mano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.360011
@@ -17931,6 +18150,12 @@ msgid ""
 "internal piston engine <= 2800 cm³, special purpose motor vehicles of "
 "heading 8705, n.e.s"
 msgstr ""
+"Ponti con differenziale, anche dotati di altri organi di trasmissione, e "
+"assi portanti, e loro parti, destinati all'industria del montaggio: degli "
+"autoveicoli della voce 8703, 8704 azionati da motorea pistone con accensione "
+"per compressione (diesel o semi-diesel), di cilindrata <= 2 500 cm3 o con "
+"pistone ad accensione a scintilla di cilindrata <= 2 800 cm3 e dei veicoli "
+"speciali a motore della voce 8705 n.c.a"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87085035
@@ -17943,6 +18168,11 @@ msgid ""
 "for the industrial assembly of certain motor vehicles of subheading "
 "8708.50.20)"
 msgstr ""
+"Ponti con differenziale, anche dotati di altri organi di trasmissione, e "
+"assi portanti; loro parti, per trattori, veicoli a motore per il trasporto "
+"di dieci o più persone, macchine e altri veicoli a motore specificamente "
+"progettati per il trasporto di persone, veicoli speciali per il trasporto di "
+"beni (escl. quelli per il montaggio dei veicoli della voce 8708 50 20)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_86071100
@@ -17950,6 +18180,8 @@ msgid ""
 "Driving bogies and bissel-bogies for railway or tramway locomotives or "
 "rolling stock"
 msgstr ""
+"Carrelli girevoli a due o più assi (bogies) e ad un asse (bissels), di "
+"trazione, per veicoli su rotaie"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.960112
@@ -17959,18 +18191,20 @@ msgstr "Servizi di pulitura a secco (inclusi servizi di pulitura di pellicce)"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_13022010
 msgid "Dry pectic substances, pectinates and pectates in powder form"
-msgstr ""
+msgstr "Sostanze pectiche, pectinati e pectati, secchi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85068005
 msgid ""
 "Dry zinc-carbon batteries of a voltage of >= 5,5 V but <= 6,5 V (excl. spent)"
 msgstr ""
+"Batterie a secco, a zinco-carbonio, di tensione => 5,5 V, ma <= 6,5 V (escl. "
+"fuori uso)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84511000
 msgid "Dry-cleaning machines for made-up textile articles"
-msgstr ""
+msgstr "Macchine per pulire a secco materie tessili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84193900
@@ -17979,16 +18213,21 @@ msgid ""
 "or paperboard, for yarns, fabrics and other textile products, dryers for "
 "bottles or other containers, hairdryers, hand dryers and domestic appliances)"
 msgstr ""
+"Essiccatori (escl. apparecchi per la liofilizzazione, unità di "
+"crioessiccamento ed essiccatori a spruzzo, essiccatori per prodotti "
+"agricoli, per legno, pasta di carta, carta o cartone, per filati, tessuti e "
+"altri prodotti tessili, essiccatori per bottiglie o altri contenitori, "
+"asciugacapelli, asciugamani ed elettrodomestici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84193100
 msgid "Dryers for agricultural products"
-msgstr ""
+msgstr "Essiccatori per prodotti agricoli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84193200
 msgid "Dryers for wood, paper pulp, paper or paperboard"
-msgstr ""
+msgstr "Essiccatori per il legno, le paste per carta, la carta o i cartoni"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84512900
@@ -17996,12 +18235,15 @@ msgid ""
 "Drying machines for textile yarns, fabrics or made-up textile articles "
 "(excl. machines of a dry linen capacity <= 10 kg and centrifugal driers)"
 msgstr ""
+"Macchine per asciugare, di capacità, in peso di biancheria secca, > 10 kg"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84512100
 msgid ""
 "Drying machines, of a dry linen capacity <= 10 kg (excl. centrifugal driers)"
 msgstr ""
+"Macchine per asciugare di capacità unitaria, espressa in peso di biancheria "
+"secca, <= 10 kg"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.161091
@@ -18015,6 +18257,8 @@ msgid ""
 "Dumpers for off-highway use with engines other than internal combustion "
 "piston engine"
 msgstr ""
+"Autocarri a cassone ribaltabile fuoristrada, con motore diverso da quello "
+"diesel, semi-diesel o a scoppio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87041010
@@ -18023,13 +18267,17 @@ msgid ""
 "piston engine \"diesel or semi-diesel engine\" or with spark-ignition "
 "internal combustion piston engine"
 msgstr ""
+"Autocarri a cassone ribaltabile detti \"dumpers\", costruiti per essere "
+"utilizzati fuori della sede stradale, azionati da motore a pistone con "
+"accensione per compressione (diesel o semi-diesel) o con accensione a "
+"scintilla"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84721000
 msgid ""
 "Duplicating machines \"hectograph or stencil\" (excl. printing machines and "
 "photocopying or thermo-copying machines)"
-msgstr ""
+msgstr "Duplicatori ettografici o a matrice per uffici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.821911
@@ -18039,22 +18287,22 @@ msgstr "Servizi di duplicazione"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_10011900
 msgid "Durum wheat (excl. seed for sowing)"
-msgstr ""
+msgstr "Frumento di grano duro (escl. quello destinato alla semina)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11010011
 msgid "Durum wheat flour"
-msgstr ""
+msgstr "Farine di frumento (grano) duro"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_10011100
 msgid "Durum wheat seed for sowing"
-msgstr ""
+msgstr "Frumento di grano duro destinato alla semina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_71051000
 msgid "Dust and powder of diamonds, incl. synthetic diamonds"
-msgstr ""
+msgstr "Residui e polveri di diamanti, incl. diamanti sintetici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_71059000
@@ -18062,6 +18310,8 @@ msgid ""
 "Dust and powder of natural or synthetic precious or semi-precious stones "
 "(excl. dust and powder of diamonds)"
 msgstr ""
+"Residui e polveri di pietre preziose, esclusi i diamanti, semipreziose o "
+"sintetiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60053250
@@ -18071,6 +18321,10 @@ msgid ""
 "net curtain fabric and those containing by weight >= 5% of elastomeric yarn "
 "or  rubber thread)"
 msgstr ""
+"Pizzi raschel di maglia di catena, incl. quelli ottenuti su telai per "
+"galloni, di larghezza > 30 cm, di fibre sintetiche, tinti (escl. quelli per "
+"tende e tendine nonché contenenti, in peso, => 5% di filati di elastomeri o "
+"di fili di gomma)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60062200
@@ -18082,6 +18336,12 @@ msgid ""
 "similar articles, and knitted or crocheted fabrics, impregnated, coated, "
 "covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm, di cotone, tinte (escl. stoffe a "
+"maglia di catena, incl. quelle ottenute su telai per galloni, stoffe a "
+"maglia contenenti, in peso, => 5% di filati di elastomeri o di fili di gomma "
+"nonchè velluti, felpe, incl. le stoffe dette a peli lunghi, stoffe a ricci, "
+"etichette, scudetti e manufatti simili, nonchè stoffe a maglia impregnate, "
+"spalmate, ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60052200
@@ -18092,6 +18352,12 @@ msgid ""
 "looped pile fabrics, labels, badges and similar articles, and knitted or "
 "crocheted fabrics, impregnated, coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia di catena, incl. quelle ottenute su telai per galloni, di "
+"larghezza > 30 cm, di cotone, tinte (escl. contenenti, in peso, => 5% di "
+"filati di elastomeri o di fili di gomma nonchè velluti, felpe, incl. le "
+"stoffe dette a peli lunghi, stoffe a ricci, etichette, scudetti e manufatti "
+"simili, nonchè stoffe a maglia impregnate, spalmate, ricoperte o "
+"stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60064200
@@ -18103,6 +18369,12 @@ msgid ""
 "and similar articles, and knitted or crocheted fabrics, impregnated, coated, "
 "covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm, di fibre artificiali, tinte (escl. "
+"stoffe a maglia di catena, incl. quelle ottenute su telai per galloni, "
+"stoffe a maglia contenenti, in peso, => 5% di filati dielastomeri o di fili "
+"di gomma nonché velluti, felpe, incl. le stoffe dette a peli lunghi, stoffe "
+"a ricci, etichette, scudetti e manufatti simili, nonché stoffe a maglia "
+"impregnate, spalmate, ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60063290
@@ -18114,6 +18386,12 @@ msgid ""
 "fabrics, labels, badges and similar articles, and knitted or crocheted "
 "fabrics, impregnated, coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm, di fibre sintetiche, tinte (escl. per "
+"tende o tendine, stoffe a maglia di catena, incl. quelle ottenute su telai "
+"per galloni, stoffe a maglia contenenti, in peso, => 5% di filati di "
+"elastomeri o di fili di gomma nonché velluti, felpe, incl. le stoffe dette a "
+"peli lunghi, stoffe a ricci, etichette, scudetti e manufatti simili, nonché "
+"stoffe a maglia impregnate, spalmate, ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60063210
@@ -18125,6 +18403,12 @@ msgid ""
 "looped pile fabrics, and knitted or crocheted fabrics, impregnated, coated, "
 "covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm, di fibre sintetiche, tinte, per tende "
+"e tendine (escl. stoffe a maglia di catena, incl. quelle ottenute su telai "
+"per galloni, stoffe a maglia contenenti, in peso, => 5% di filati di "
+"elastomeri o di fili di gomma nonché velluti, felpe, incl. le stoffe dette a "
+"peli lunghi, stoffe a ricci, etichette, scudetti e manufatti simili, nonché "
+"stoffe a maglia impregnate, spalmate, ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60054200
@@ -18135,6 +18419,12 @@ msgid ""
 "\"long pile\", looped pile fabrics, labels, badges and similar articles, and "
 "knitted or crocheted fabrics, impregnated, coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia di catena, incl. quelle ottenute su telai per galloni, di "
+"larghezza > 30 cm, di fibre artificiali, tinte (escl. contenenti, in peso, "
+"=> 5% di filati di elastomeri o di fili di gomma nonchè velluti, felpe, "
+"incl. le stoffe dette a peli lunghi, stoffe a ricci, etichette, scudetti e "
+"manufatti simili, nonchè stoffe a maglia impregnate, spalmate, ricoperte o "
+"stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60053290
@@ -18146,6 +18436,12 @@ msgid ""
 "badges and similar articles, and knitted or crocheted fabrics, impregnated, "
 "coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia di catena, incl. quelle ottenute su telai per galloni, di "
+"larghezza > 30 cm, di fibre sintetiche, tinte (escl. per tende e tendine, "
+"pizzi raschel, stoffe a maglia contenenti, in peso,=> 5% di filati di "
+"elastomeri o di fili di gomma nonché velluti, felpe, incl. le stoffe dette a "
+"peli lunghi, stoffe a ricci, etichette, scudetti e manufatti simili, nonché "
+"stoffe a maglia impregnate, spalmate, ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60053210
@@ -18156,6 +18452,12 @@ msgid ""
 "rubber thread, and pile fabrics, incl. \"long pile\", looped pile fabrics, "
 "and knitted or crocheted fabrics, impregnated, coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia di catena, incl. quelle ottenute su telai per galloni, di "
+"larghezza > 30 cm, di fibre sintetiche, tinte, per tende e tendine (escl. "
+"contenenti, in peso, => 5% di filati di elastomeri o di fili di gomma nonché "
+"velluti, felpe, incl. le stoffe dette a peli lunghi, stoffe a ricci, "
+"etichette, scudetti e manufatti simili, nonché stoffe a maglia impregnate, "
+"spalmate, ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50079030
@@ -18163,6 +18465,8 @@ msgid ""
 "Dyed woven fabrics containing predominantly, but < 85% silk or silk waste by "
 "weight"
 msgstr ""
+"Tessuti prevalentemente di seta o di cascami di seta, ma contenenti, in "
+"peso, < 85% di seta, tinti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.960114
@@ -18185,6 +18489,12 @@ msgid ""
 "kind used to dye fabrics or produce colorant preparations (excl. "
 "preparations of heading 3207, 3208, 3209, 3210, 3213 and 3215)"
 msgstr ""
+"Sostanze coloranti, di origine animale, incl. gli estratti per tinta (escl. "
+"i neri di origine animale), anche di costituzione chimica definita; "
+"preparazioni a base di tali sostanze coloranti, dei tipi utilizzati per "
+"colorare qualsiasi materiale o destinate alla fabbricazione di preparazioni "
+"coloranti (escl. preparazioni che rientrano nelle voci 3207, 3208, 3209, "
+"3210, 3212, 3213 e 3215)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_32030010
@@ -18194,17 +18504,21 @@ msgid ""
 "dye fabrics or produce colorant preparations (excl. preparations of heading "
 "3207, 3208, 3209, 3210, 3213 and 3215)"
 msgstr ""
+"Sostanze coloranti, di origine vegetale, incl. gli estratti per tinta, anche "
+"di costituzione chimica definita"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28212000
 msgid ""
 "Earth colours containing >= 70% by weight of combined iron evaluated as Fe2O3"
-msgstr ""
+msgstr "Terre coloranti, contenenti 70% o piùdi ferro combinato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84306900
 msgid "Earth moving machinery, not self-propelled, n.e.s."
 msgstr ""
+"Macchine, apparecchi e strumenti per movimenti di terra (non semoventi) , n.n"
+".a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_25152000
@@ -18215,27 +18529,35 @@ msgid ""
 "rectangular shape (excl. in the form of granules, chippings or powder, and "
 "marble and travertine)"
 msgstr ""
+"Calcare di Ecaussines ed altre pietre calcaree da taglio o da costruzione; "
+"alabastro"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069023
 msgid "Edam (excl. grated or powdered and for processing)"
 msgstr ""
+"Edam (escl. quello grattugiato o in polvere e quello destinato alla "
+"trasformazione)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109941
 msgid "Edible domestic swine livers, salted, in brine, dried or smoked"
 msgstr ""
+"Fegati di suidi domestici, commestibili, salati o in salamoia, secchi o "
+"affumicati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109949
 msgid ""
 "Edible domestic swine offal, salted, in brine, dried or smoked (excl. livers)"
 msgstr ""
+"Frattaglie di suidi domestici, commestibili, salate o in salamoia, secche o "
+"affumicate (escl. i fegati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109971
 msgid "Edible fatty goose or duck livers, salted or in brine"
-msgstr ""
+msgstr "Fegati grassi di oche o anatre, commestibili, secchi o in salamoia"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15179091
@@ -18245,6 +18567,10 @@ msgid ""
 "elaidinised, whether or not refined, but not further prepared, and mixtures "
 "of olive oils)"
 msgstr ""
+"Oli vegetali fissi, fluidi, semplicemente miscelati, aventi tenore, in peso, "
+"di materie grasse provenienti dal latte <= 10% (escl. oli parzialmente o "
+"totalmente idrogenati, interesterificati, riesterificati o elaidinizzati, "
+"anche raffinati (ma non altrimenti preparati) e miscele di oli di oliva)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109990
@@ -18254,6 +18580,10 @@ msgid ""
 "dugongs \"mammals of the order Sirenia\", seals, sea lions and walruses and "
 "reptiles)"
 msgstr ""
+"Farine e polveri commestibili di carne o frattaglie (escl. di primati, "
+"balene, delfini e focene (mammiferi della specie dei cetacei), lamantini e "
+"dugonghi (mammiferi della specie dei sireni), foche, leoni marini e "
+"trichechi, rettili e insetti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109299
@@ -18261,6 +18591,8 @@ msgid ""
 "Edible flours and meals of meat or meat offal, of seals, sea lions and "
 "walruses (mammals of the suborder Pinnipedia)"
 msgstr ""
+"Farine e polveri commestibili di carni o di frattaglie, di foche, leoni "
+"marini e trichechi (mammiferi sottordine della specie dei Pinnipedia)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15179093
@@ -18268,6 +18600,8 @@ msgid ""
 "Edible mixtures or preparations for mould-release preparations, containing "
 "<= 10% milkfats"
 msgstr ""
+"Miscele o preparazioni culinarie utilizzate per la sformatura, aventi "
+"tenore, in peso, di materie grasse provenienti dal latte <= 10%"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15179099
@@ -18277,6 +18611,13 @@ msgid ""
 "(excl. fixed vegetable oils, fluid, mixed, edible mixtures or preparations "
 "for mould-release preparations, and solid margarine)"
 msgstr ""
+"Miscele o preparazioni alimentari di grassi, oli animali o vegetali o "
+"frazioni di differenti grassi o oli, con tenore, in peso, di materie grasse "
+"<= 10% (escl. grassi, oli e loro frazioni, parzialmente o totalmente "
+"idrogenati, interesterificati, riesterificati o elaidinizzati, anche "
+"raffinati (ma non altrimenti preparati) oli vegetali fissi, fluidi, "
+"semplicemente mescelati e miscele o preparazioni culinarie utilizzate per la "
+"sformatura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15179010
@@ -18288,6 +18629,12 @@ msgid ""
 "refined, but not further prepared, mixtures of olive oils, olive oil "
 "fractions and fixed margarine)"
 msgstr ""
+"Miscele e preparazioni alimentari di grassi o di oli animali o vegetali o di "
+"frazioni di differenti grassi e oli, aventi tenore, in peso, di materie "
+"grasse provenienti dal latte > 10% ma =< 15% (escl. grassi e oli e loro "
+"frazioni parzialmente o totalmente idrogenati, interesterificati, "
+"riesterificati o elaidinizzati, anche raffinati (ma non altrimenti preparati)"
+", miscele di oli di oliva e loro frazioni, nonchè margarina solida)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109959
@@ -18295,11 +18642,13 @@ msgid ""
 "Edible offal of bovine animals, salted, in brine, dried or smoked (excl. "
 "thick skirt and thin skirt)"
 msgstr ""
+"Frattaglie di bovini, commestibili, salate o in salamoia, secche o "
+"affumicate (escl. pezzi detti \"onglets\" e \"hampes\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02064900
 msgid "Edible offal of swine, frozen (excl. livers)"
-msgstr ""
+msgstr "Frattaglie di suidi, commestibili, congelate (escl. i fegati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109985
@@ -18309,6 +18658,10 @@ msgid ""
 "order Cetacea\", manatees and dugongs \"mammals of the order Sirenia\", "
 "seals, sea lions and walruses, reptiles and poultry liver)"
 msgstr ""
+"Frattaglie commestibili, salate o in salamoia, secche o affumicate (escl. di "
+"suini domestici, bovini, primati, balene, delfini e focene (mammiferi della "
+"specie dei cetacei), lamantini e dugonghi (mammiferi della specie dei sireni)"
+", foche, leoni marini e trichechi, rettili e fegati di volatili)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109292
@@ -18316,6 +18669,9 @@ msgid ""
 "Edible offal, salted, in brine, dried or smoked, of seals, sea lions and "
 "walruses (mammals of the suborder Pinnipedia)"
 msgstr ""
+"Frattaglie commestibili, salate o in salamoia, essiccati o affumicati, di "
+"foche, leoni marini e trichechi (mammiferi sottordine della specie dei "
+"Pinnipedia)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109979
@@ -18323,6 +18679,8 @@ msgid ""
 "Edible poultry liver, salted, in brine, dried or smoked (excl. fatty goose "
 "or duck livers)"
 msgstr ""
+"Fegati di volatili, commestibili, salati o in salamoia, secchi o affumicati ("
+"escl. fegati grassi di oche o anatre)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02109951
@@ -18330,11 +18688,13 @@ msgid ""
 "Edible thick skirt and thin skirt of bovine animals, salted, in brine, dried "
 "or smoked"
 msgstr ""
+"Pezzi detti \"onglets\" e \"hampes\" di bovini, commestibili, salati o in "
+"salamoia, secchi o affumicati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85366110
 msgid "Edison lamp holders, electric"
-msgstr ""
+msgstr "Portalampade elettriche, con filettatura edison"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.855919
@@ -18352,6 +18712,8 @@ msgid ""
 "Egg albumin, dried \"e.g. in sheets, scales, flakes, powder\", fit for human "
 "consumption"
 msgstr ""
+"Ovoalbumina, adatta all'alimentazione umana, essiccata \"in fogli, scaglie, "
+"cristalli, polveri, ecc.\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_35021110
@@ -18359,6 +18721,8 @@ msgid ""
 "Egg albumin, dried \"e.g. in sheets, scales, flakes, powder\", unfit, or to "
 "be rendered unfit, for human consumption"
 msgstr ""
+"Ovoalbumina essiccata \"in fogli, scaglie, cristalli, polveri ecc.\", "
+"inadatta o resa inadatta all'alimentazione umana"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_35021990
@@ -18366,6 +18730,8 @@ msgid ""
 "Egg albumin, fit for human consumption (excl. dried [e.g. in sheets, flakes, "
 "crystals, powder])"
 msgstr ""
+"Ovoalbumina, adatta all'alimentazione umana (escl. quella essiccata \"in "
+"fogli, scaglie, cristalli, polveri, ecc.\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_35021910
@@ -18373,6 +18739,8 @@ msgid ""
 "Egg albumin, unfit, or to be rendered unfit, for human consumption (excl. "
 "dried [e.g. in sheets, scales, flakes, powder])"
 msgstr ""
+"Ovoalbumina, inadatta o resa inadatta all'alimentazione umana (escl. quella "
+"essiccata \"in fogli, scaglie, cristalli, polveri, ecc.\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04081989
@@ -18380,21 +18748,21 @@ msgid ""
 "Egg yolks (other than liquid), frozen or otherwise preserved, suitable for "
 "human consumption, whether or not containing added sugar or other sweetening "
 "matter (excl. dried)"
-msgstr ""
+msgstr "Tuorli congelati, atti ad uso alimentare"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04081180
 msgid ""
 "Egg yolks, dried, for human consumption, whether or not containing added "
 "sugar or other sweetening matter"
-msgstr ""
+msgstr "Tuorli essiccati, atti ad uso alimentare"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04081120
 msgid ""
 "Egg yolks, dried, not suitable for human consumption, whether or not "
 "containing added sugar or other sweetening matter"
-msgstr ""
+msgstr "Tuorli essiccati, non atti ad uso alimentare"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04081920
@@ -18403,13 +18771,16 @@ msgid ""
 "otherwise preserved, whether or not containing added sugar or other "
 "sweetening matter, unsuitable for human consumption (excl. dried)"
 msgstr ""
+"Tuorli freschi, cotti in acqua o al vapore, modellati, congelati o "
+"altrimenti conservati, anche con aggiunta di zuccheri o di altri "
+"dolcificanti, inadatti ad uso alimentare (escl. essiccati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04081981
 msgid ""
 "Egg yolks, liquid, suitable for human consumption, whether or not containing "
 "added sugar or other sweetening matter"
-msgstr ""
+msgstr "Tuorli liquidi, atti ad uso alimentare"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_54041100
@@ -18417,6 +18788,8 @@ msgid ""
 "Elastomeric monofilament of >= 67 decitex and with a cross sectional "
 "dimension of <= 1 mm"
 msgstr ""
+"Monofilamenti sintetici di elastomeri, di 67 decitex o più, di cui la più "
+"grande dimensione della sezione trasversale non supera 1 mm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73079290
@@ -18424,11 +18797,13 @@ msgid ""
 "Elbows and bends, of iron or steel, threaded (excl. cast or of stainless "
 "steel)"
 msgstr ""
+"Gomiti e curve, non fusi, filettati, per tubi, esclusi quelli di acciaio "
+"inossidabile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73072290
 msgid "Elbows and bends, of stainless steel, threaded (excl. cast products)"
-msgstr ""
+msgstr "Gomiti e curve, di acciai inossidabili, filettati (escl. fusi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85078000
@@ -18436,16 +18811,22 @@ msgid ""
 "Electric accumulators (excl. spent and lead-acid, nickel-cadmium, nickel-"
 "iron, nickel-metal hydride and lithium-ion accumulators)"
 msgstr ""
+"Accumulatori elettrici (escl. esauriti e al piombo, al nichel-cadmio, al "
+"nichel-idruro metallico e agli ioni di litio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63011000
 msgid "Electric blankets of all types of textile materials"
 msgstr ""
+"Coperte ottenute con prodotti di materie tessili di ogni sorta, a "
+"riscaldamento elettrico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_95049010
 msgid "Electric car racing sets, having the character of competitive games"
 msgstr ""
+"Complessi di vetture da corsa elettriche, con caratteristiche di giochi da "
+"competizione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94051040
@@ -18453,6 +18834,8 @@ msgid ""
 "Electric ceiling or wall lighting fittings, of plastics or of ceramics "
 "(excl. of plastics if used with filament lamps)"
 msgstr ""
+"Lampadari ed altri apparecchi per l'illuminazione, elettrici, da appendere o "
+"da fissare al soffitto o al muro, di ceramica"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94051021
@@ -18460,6 +18843,9 @@ msgid ""
 "Electric ceiling or wall lighting fittings, of plastics, used with filament "
 "lamps"
 msgstr ""
+"Lampadari ed altri apparecchi per l'illuminazione, elettrici, da appendere o "
+"da fissare al soffitto o al muro, di materie plastiche, dei tipi utilizzati "
+"per lampade e tubi ad incandescenza"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94051098
@@ -18467,6 +18853,8 @@ msgid ""
 "Electric ceiling or wall lighting fittings, used with discharge lamps (excl. "
 "lights of plastics, ceramics or glass)"
 msgstr ""
+"Lampadari ed altri apparecchi per l'illuminazione, elettrici, da appendere o "
+"da fissare al soffitto o al muro (escl. materie plastiche, ceramica e vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94051091
@@ -18474,6 +18862,9 @@ msgid ""
 "Electric ceiling or wall lighting fittings, used with filament lamps (excl. "
 "lights of plastics, ceramics or glass)"
 msgstr ""
+"Lampadari ed altri apparecchi per l'illuminazione, elettrici, da appendere o "
+"da fissare al soffitto o al muro, dei tipi utilizzati per lampade e tubi ad "
+"incandescenza (escl. di materie plastiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85444999
@@ -18483,6 +18874,10 @@ msgid ""
 "vehicles, aircraft or ships, and wire and cables with individual conductor "
 "wires of a diameter > 0,51 mm)"
 msgstr ""
+"Conduttori elettrici per una tensione di 1 000 V, isolati, non adatti a "
+"connettori, n.n.a. (escl. cavi per avvolgimenti, conduttori coassiali, set "
+"elettrici per veicoli, aerei o navi e fili e cavi elettrici con diametro dei "
+"singoli fili > 0,51 mm)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85446090
@@ -18490,6 +18885,8 @@ msgid ""
 "Electric conductors for a voltage > 1.000 V, insulated, not with copper "
 "conductors, n.e.s."
 msgstr ""
+"Conduttori elettrici, diversi da quelli delle precedenti voci 8544, per "
+"tensioni > 1 000 V, con conduttori non di rame"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85446010
@@ -18497,6 +18894,8 @@ msgid ""
 "Electric conductors for a voltage > 1.000 V, insulated, with copper "
 "conductors, n.e.s."
 msgstr ""
+"Conduttori elettrici, diversi da quelli delle precedenti voci 8544, per "
+"tensioni > 1 000 V, con conduttori di rame"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85444995
@@ -18506,6 +18905,10 @@ msgid ""
 "wiring sets for vehicles, aircraft or ships, and wire and cables with "
 "individual conductor wires of a diameter > 0,51 mm)"
 msgstr ""
+"Conduttori elettrici per tensioni > 80 V, ma < 1 000 V, isolati, non adatti "
+"a connettori, n.n.a. (escl. cavi per avvolgimenti, conduttori coassiali, set "
+"elettrici per veicoli, aerei o navi e fili e cavi elettrici con diametro dei "
+"singoli fili > 0,51 mm)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85444210
@@ -18513,6 +18916,8 @@ msgid ""
 "Electric conductors of a kind used for telecommunications, for a voltage <= "
 "1.000 V, insulated, fitted with connectors, n.e.s."
 msgstr ""
+"Conduttori elettrici, per tensioni <= 1 000 V muniti di pezzi di "
+"congiunzione e isolati, dei tipi utilizzati per le telecomunicazioni, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85444290
@@ -18520,47 +18925,51 @@ msgid ""
 "Electric conductors, for a voltage <= 1.000 V, insulated, fitted with "
 "connectors, n.e.s. (other than of a kind used for telecommunications)"
 msgstr ""
+"Conduttori elettrici, per tensioni <= 1 000 V muniti di pezzi di "
+"congiunzione, n.n.a. (escl. quelli usati per le telecomunicazioni)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85162950
 msgid "Electric convection heaters, for space-heating and soil-heating"
 msgstr ""
+"Radiatori elettrici, per convezione, per il riscaldamento dei locali, del "
+"suolo o per usi simili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85166010
 msgid ""
 "Electric cookers incorporating at least an oven and a hob, for domestic use"
-msgstr ""
+msgstr "Cucine elettriche per uso domestico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85166050
 msgid "Electric cooking plates, boiling rings and hobs, for domestic use"
-msgstr ""
+msgstr "Piastre elettriche, fornelli e piani di cottura, per uso domestico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85167920
 msgid "Electric deep fat fryers, for domestic use"
-msgstr ""
+msgstr "Friggitrici elettriche per usi domestici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85437060
 msgid "Electric fence energisers"
-msgstr ""
+msgstr "Elettrificatori di recinti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85166070
 msgid "Electric grillers and roasters, for domestic use"
-msgstr ""
+msgstr "Griglie e girarrosti elettrici, per uso domestico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85163100
 msgid "Electric hairdryers"
-msgstr ""
+msgstr "Asciugacapelli elettrici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85163300
 msgid "Electric hand-drying apparatus"
-msgstr ""
+msgstr "Apparecchi per asciugare le mani, elettrici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85168080
@@ -18568,11 +18977,13 @@ msgid ""
 "Electric heating resistors (excl. electric heating resistors assembled with "
 "an insulated former of agglomerated carbon or graphite)"
 msgstr ""
+"Resistenze scaldanti (escluse quelle accoppiate ad un supporto di materia "
+"isolante e di agglomerato di carbone e grafite)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85168020
 msgid "Electric heating resistors, assembled with an insulated former"
-msgstr ""
+msgstr "Resistenze scaldanti, accoppiate ad un supporto di materia isolante"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85143000
@@ -18580,21 +18991,25 @@ msgid ""
 "Electric industrial or laboratory furnaces and ovens (excl. resistance "
 "heated, induction, dielectric and drying furnaces and ovens)"
 msgstr ""
+"Forni elettrici industriali o di laboratorio (escl. a riscaldamento "
+"indiretto, ad induzione, per perdite dielettriche e forni di asciugatura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85161011
 msgid "Electric instantaneous water heaters"
-msgstr ""
+msgstr "Scaldacqua istantanei, elettrici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054099
 msgid "Electric lamps and lighting fittings, n.e.s. (excl. of plastics)"
 msgstr ""
+"Apparecchi elettrici per l'illuminazione, di materie diverse dalle materie "
+"plastiche, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054039
 msgid "Electric lamps and lighting fittings, of plastics, n.e.s."
-msgstr ""
+msgstr "Apparecchi elettrici per l'illuminazione, di materie plastiche, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054031
@@ -18602,6 +19017,8 @@ msgid ""
 "Electric lamps and lighting fittings, of plastics, used with filament lamps, "
 "n.e.s."
 msgstr ""
+"Apparecchi elettrici per l'illuminazione, di materie plastiche, dei tipi "
+"utilizzati per lampade e tubi ad incandescenza, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054035
@@ -18609,6 +19026,8 @@ msgid ""
 "Electric lamps and lighting fittings, of plastics, used with tubular "
 "fluorescent lamps, n.e.s."
 msgstr ""
+"Apparecchi elettrici per l'illuminazione, di materie plastiche, dei tipi "
+"utilizzati per tubi fluorescenti"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054091
@@ -18616,6 +19035,8 @@ msgid ""
 "Electric lamps and lighting fittings, used with filament lamps, n.e.s. "
 "(excl. of plastics)"
 msgstr ""
+"Apparecchi elettrici per l'illuminazione, di materie diverse dalle materie "
+"plastiche, dei tipi utilizzati per lampade e tubi ad incandescenza, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054095
@@ -18623,6 +19044,8 @@ msgid ""
 "Electric lamps and lighting fittings, used with tubular fluorescent lamps, n."
 "e.s. (excl. of plastics)"
 msgstr ""
+"Apparecchi elettrici per l'illuminazione, di materie diverse dalle materie "
+"plastiche, dei tipi utilizzati per tubi fluorescenti, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85121000
@@ -18630,11 +19053,13 @@ msgid ""
 "Electric lighting or visual signalling equipment of a kind used for bicycles "
 "(other than lamps of heading 8539)"
 msgstr ""
+"Apparecchi elettrici di illuminazione e di segnalazione visiva, dei tipi "
+"utilizzati per biciclette (escl. lampade della voce 8539)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94053000
 msgid "Electric lighting sets of a kind used for Christmas trees"
-msgstr ""
+msgstr "Ghirlande elettriche dei tipi utilizzati per gli alberi di Natale"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84331110
@@ -18642,6 +19067,8 @@ msgid ""
 "Electric motor mowers for lawns, parks or sports grounds, with the cutting "
 "device rotating in a horizontal plane"
 msgstr ""
+"Tosatrici da prato a motore elettrico, con dispositivo di taglio ruotante su "
+"un piano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84331910
@@ -18649,11 +19076,13 @@ msgid ""
 "Electric motor mowers for lawns, parks or sports grounds, with the cutting "
 "device rotating in a vertical plane or with cutter bars"
 msgstr ""
+"Tosatrici da prato, diverse da quelle con dispositivo di taglio ruotante su "
+"un piano, con motore elettrico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85166080
 msgid "Electric ovens for building in, for domestic use"
-msgstr ""
+msgstr "Forni elettrici da fissare, per uso domestico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85166090
@@ -18662,28 +19091,30 @@ msgid ""
 "cookers incorporating at least an oven and a hob, microwave ovens and "
 "electric ovens for building in)"
 msgstr ""
+"Forni e cucine elettriche, per usi domestici (escl. stufe da camera, cucine "
+"complete, forni a microonde e forni da fissare)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85024000
 msgid "Electric rotary converters"
-msgstr ""
+msgstr "Convertitori rotanti elettrici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054010
 msgid ""
 "Electric searchlights and spotlights (excl. for aircraft, motor vehicles or "
 "bicycles, and searchlight lamps)"
-msgstr ""
+msgstr "Proiettori elettrici per l'illuminazione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85164000
 msgid "Electric smoothing irons"
-msgstr ""
+msgstr "Ferri da stiro elettrici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85185000
 msgid "Electric sound amplifier sets"
-msgstr ""
+msgstr "Apparecchi elettrici di amplificazione del suono"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85318095
@@ -18693,6 +19124,11 @@ msgid ""
 "diodes, burglar or fire alarms and similar apparatus and apparatus for "
 "cycles, motor vehicles and traffic signalling)"
 msgstr ""
+"Apparecchi elettrici di segnalazione acustica o visiva (escl. con "
+"visualizzatore a schermo piatto, pannelli indicatori che incorporano "
+"dispositivi a cristalli liquidi (LCD) o a diodi emettitori di luce (LED) "
+"nonché tipi utilizzati per autoveicoli, biciclette o per le segnalazioni del "
+"traffico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85318020
@@ -18702,6 +19138,10 @@ msgid ""
 "emitting diodes, burglar or fire alarms and similar apparatus and apparatus "
 "for cycles, motor vehicles and traffic signalling)"
 msgstr ""
+"Apparecchi elettrici di segnalazione acustica o visiva, con visualizzatore a "
+"schermo piatto (escl. pannelli indicatori che incorporano dispositivi a "
+"cristalli liquidi (LCD) o a diodi emettitori di luce (LED) nonché tipi "
+"utilizzati per autoveicoli, biciclette o per le segnalazioni del traffico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85162991
@@ -18709,6 +19149,8 @@ msgid ""
 "Electric space-heating and soil-heating apparatus, with built-in fan (excl. "
 "storage heating radiators)"
 msgstr ""
+"Radiatori elettrici, diversi da quelli ad accumulazione, a circolazione di "
+"liquido o per convezione, con ventilatore incorporato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85162999
@@ -18716,16 +19158,22 @@ msgid ""
 "Electric space-heating and soil-heating apparatus, without built-in fan "
 "(excl. convection heaters and liquid-filled radiators)"
 msgstr ""
+"Radiatori elettrici, diversi da quelli ad accumulazione, a circolazione di "
+"liquido o per convezione, senza ventilatore incorporato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85162100
 msgid "Electric storage heating radiators, for space-heating"
 msgstr ""
+"Radiatori elettrici ad accumulazione, per il riscaldamento dei locali, del "
+"suolo o per usi simili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94052050
 msgid "Electric table, desk, bedside or floor-standing lamps, of glass"
 msgstr ""
+"Lampade da comodino, da scrittoio e lampadari per interni, elettrici, di "
+"vetro"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94052040
@@ -18733,6 +19181,8 @@ msgid ""
 "Electric table, desk, bedside or floor-standing lamps, of plastics or "
 "ceramic materials, used for discharge lamps"
 msgstr ""
+"Lampade elettriche da tavolo, da scrivania, da comodino o lampade da terra, "
+"di materie plastiche o di ceramica, utilizzati per lampade a scarica"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94052011
@@ -18740,6 +19190,8 @@ msgid ""
 "Electric table, desk, bedside or floor-standing lamps, of plastics, used for "
 "filament lamps"
 msgstr ""
+"Lampade da comodino, da scrittoio e lampadari per interni, elettrici, di "
+"materie plastiche, dei tipi utilizzati per lampade e tubi ad incandescenza"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94052099
@@ -18747,6 +19199,9 @@ msgid ""
 "Electric table, desk, bedside or floor-standing lamps, used with discharge "
 "lamps (excl. of plastics, ceramics and glass)"
 msgstr ""
+"Lampade da comodino, da scrittoio e lampadari per interni, elettrici, dei "
+"tipi utilizzati per lampade e tubi a scarica (escl. quelli di materie "
+"plastiche, ceramica e vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94052091
@@ -18754,11 +19209,14 @@ msgid ""
 "Electric table, desk, bedside or floor-standing lamps, used with filament "
 "lamps (excl. of plastics, ceramics and glass)"
 msgstr ""
+"Lampade da comodino, da scrittoio e lampadari per interni, elettrici, dei "
+"tipi utilizzati per lampade e tubi ad incandescenza (escl. quelli di materie "
+"plastiche, ceramica e vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85167200
 msgid "Electric toasters, for domestic use"
-msgstr ""
+msgstr "Tostapane elettrici, per uso domestico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_95030030
@@ -18766,6 +19224,8 @@ msgid ""
 "Electric trains, incl. tracks, signals and other accessories therefor; "
 "reduced-size \"scale\" model assembly kits"
 msgstr ""
+"Trenini elettrici, comprese le rotaie, i segnali ed altri accessori; modelli "
+"ridotti da montare"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85161080
@@ -18773,6 +19233,8 @@ msgid ""
 "Electric water heaters and immersion heaters (excl. instantaneous water "
 "heaters)"
 msgstr ""
+"Scaldacqua e scaldatori ad immersione, elettrici (escl. scaldacqua "
+"istantanei)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85444991
@@ -18781,6 +19243,8 @@ msgid ""
 "with connectors, with individual conductor wires of a diameter > 0,51 mm, n."
 "e.s."
 msgstr ""
+"Fili e cavi elettrici, isolati, non adatti a connettori con diametro dei "
+"singoli fili > 0,51 mm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85369085
@@ -18791,6 +19255,14 @@ msgid ""
 "plugs and sockets, prefabricated elements for electrical circuits and other "
 "connections and contact elements for wire and cables and for wafer probers)"
 msgstr ""
+"Apparecchi per l'interruzione, il sezionamento, l'allacciamento o il "
+"collegamento dei circuiti elettrici, per una tensione <= 1 000 V (escl. "
+"fusibili e interruttori di sicurezza a fusibili, interruttori automatici ed "
+"altri apparecchi per la protezione dei circuiti elettrici, relé ed altri "
+"interruttori, sezionatori e commutatori, portalampade, spine e prese di "
+"corrente, elementi prefabbricati per canalizzazioni elettriche ed altre "
+"connessioni ed elementi di contatto per fili e cavi nonché sonde di dischi "
+"(wafers) a semiconduttore)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85359000
@@ -18801,11 +19273,17 @@ msgid ""
 "switches, lightning arresters, voltage limiters, surge suppressors and "
 "control desks, cabinets, panels etc. of heading 8537)"
 msgstr ""
+"Apparecchi per l'interruzione, il sezionamento, la protezione, la "
+"diramazione, l'allacciamento o il collegamento di circuiti elettrici, per "
+"una tensione > 1 000 V (escl. fusibili e interrutori di sicurezza a "
+"fusibili, interruttori automatici, sezionatori e interruttori, scaricatori, "
+"limitatori di tensione, limitatori di sovracorrente, armadi di comando, "
+"banchi di comando, supporti per la distribuzione ecc.)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_27160000
 msgid "Electrical energy"
-msgstr ""
+msgstr "Energia elettrica"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85118000
@@ -18815,6 +19293,10 @@ msgid ""
 "(excl. generators, starter motors, distributors, ignition coils, ignition "
 "magnetos, magnetic flywheels and sparking plugs)"
 msgstr ""
+"Apparecchi e dispositivi elettrici di accensione o di avviamento, incl. "
+"congiuntori-disgiuntori, per motori con accensione a scintilla o per "
+"compressione (escl. generatori, avviatori, distributori, bobine di "
+"accensione, magneti, volano-magneti e candele di accensione)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.432110
@@ -18829,6 +19311,12 @@ msgid ""
 "constituent of the preparations (excl. for undergoing chemical "
 "transformation)"
 msgstr ""
+"Oli per isolamenti elettrici contenenti in peso => 70% di oli di petrolio o "
+"di minerali bituminosi, in cui tali oli costituiscono il componente base ("
+"escl. destinati a subire una trasformazione chimica, quelli destinati a "
+"subire un trattamento definito ai sensi della nota complementare 4 del "
+"capitolo 27 nonchè quelli destinati ad essere miscelati conformemente alle "
+"condizioni della nota complementare 6 del capitolo 27)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85469090
@@ -18836,21 +19324,24 @@ msgid ""
 "Electrical insulators (excl. those of glass, ceramics or plastics and "
 "insulating fittings)"
 msgstr ""
+"Isolatori per l'elettricità (escl. quelli di vetro, di ceramica, di materie "
+"plastiche e pezzi isolanti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85462000
 msgid "Electrical insulators of ceramics (excl. insulating fittings)"
-msgstr ""
+msgstr "Isolatori per l'elettricità, di ceramica (escl. pezzi isolanti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85461000
 msgid "Electrical insulators of glass (excl. insulating fittings)"
-msgstr ""
+msgstr "Isolatori per l'elettricità, di vetro (escl. pezzi isolanti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85469010
 msgid "Electrical insulators of plastics (excl. insulating fittings)"
 msgstr ""
+"Isolatori per l'elettricità, di materie plastiche (escl. pezzi isolanti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85122000
@@ -18858,6 +19349,10 @@ msgid ""
 "Electrical lighting or visual signalling equipment for motor vehicles (excl. "
 "lamps of heading 8539)"
 msgstr ""
+"Apparecchi elettrici di illuminazione o di segnalazione visiva, dei tipi "
+"utilizzati per autoveicoli (escl. lampade e tubi elettrici ad incandescenza "
+"o a scarica, incl. fari e proiettori sigillati, lampade e tubi a raggi "
+"ultravioletti o infrarossi e lampade ad arco)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85158010
@@ -18866,6 +19361,9 @@ msgid ""
 "(excl. for resistance, arc or plasma arc welding and metal spray guns "
 "specified elsewhere)"
 msgstr ""
+"Macchine ed apparecchi elettrici per la saldatura o brasatura a caldo dei "
+"metalli (escl. a resistenza, ad arco o a getto di plasma e pistole a spruzzo "
+"di metallo precisati altrove)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85158090
@@ -18873,6 +19371,9 @@ msgid ""
 "Electrical machines and apparatus for welding thermoplastic materials (excl. "
 "wire bonders of a kind used for the manufacture of semiconductor devices)"
 msgstr ""
+"Macchine ed apparecchi per la saldatura di materiali termoplastici (escl.di "
+"saldatori di fili del tipo usato per la manifattura di dispositivi "
+"semiconduttori)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85437090
@@ -18880,11 +19381,13 @@ msgid ""
 "Electrical machines and apparatus, having individual functions, n.e.s. in "
 "chap. 85"
 msgstr ""
+"Macchine e apparecchi elettrici, aventi funzioni specifiche, n.n.a. nel cap. "
+"85"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85437010
 msgid "Electrical machines with translation or dictionary functions"
-msgstr ""
+msgstr "Macchine elettriche con funzioni di traduzione o dizionario"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85431000
@@ -18892,11 +19395,13 @@ msgid ""
 "Electrical particle accelerators for electrons, protons, etc. (excl. ion "
 "implanters for doping semiconductor materials)"
 msgstr ""
+"Acceleratori di particelle per elettroni, protoni ecc. (impiantatori di ioni "
+"per materiali semiconduttori)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85489090
 msgid "Electrical parts of machinery or apparatus, n.e.s. in chapter 85"
-msgstr ""
+msgstr "Parti elettriche di macchine e apparecchi n.n.a. nel capitolo 85"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85308000
@@ -18905,6 +19410,9 @@ msgid ""
 "railways or tramways and mechanical or electromechanical equipment of "
 "heading 8608)"
 msgstr ""
+"Apparecchi elettrici di segnalazione, di sicurezza, di controllo o di "
+"comando, per strade non ferrate, vie fluviali, aree di parcheggio, "
+"installazioni portuali o aerodromi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85301000
@@ -18912,13 +19420,17 @@ msgid ""
 "Electrical signalling, safety or traffic control equipment for railways or "
 "tramways (excl. mechanical or electromechanical equipment of heading 8608)"
 msgstr ""
+"Apparecchi elettrici di segnalazione, di sicurezza, di controllo o di "
+"comando per strade ferrate o simili (escl. quelli per la trasmissione di "
+"messaggi e apparecchi meccanici ed elettromeccanici di segnalazione, di "
+"sicurezza, di controllo o di comando)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85123090
 msgid ""
 "Electrical sound signalling equipment for cycles or motor vehicles (excl. "
 "burglar alarms for motor vehicles)"
-msgstr ""
+msgstr "Apparecchi di segnalazione acustica per motocicili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.452012
@@ -18940,6 +19452,8 @@ msgid ""
 "power handling capacity <= 20 W (excl. wirewound variable resistors and "
 "heating resistors)"
 msgstr ""
+"Resistenze variabili, incl. i reostati ed i potenziometri, per una potenza "
+"<= 20 W (escl. resistenze variabili bobinate e resistenze di riscaldamento)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85334090
@@ -18948,6 +19462,8 @@ msgid ""
 "power handling capacity > 20 W (excl. wirewound variable resistors and "
 "heating resistors)"
 msgstr ""
+"Resistenze variabili, incl. i reostati ed i potenziometri, per una potenza > "
+"20 W (escl. resistenze variabili bobinate e resistenze di riscaldamento)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87091110
@@ -18955,6 +19471,8 @@ msgid ""
 "Electrical vehicles, not fitted with lifting or handling equipment, for the "
 "transport of highly radioactive materials [Euratom]"
 msgstr ""
+"Carrelli elettrici, non muniti di dispositivo di sollevamento, per il "
+"trasporto di merci su brevi distanze, per prodotti a forte radioattività"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87091190
@@ -18965,17 +19483,21 @@ msgid ""
 "(excl. vehicles specially designed for the transport of highly radioactive "
 "materials)"
 msgstr ""
+"Carrelli elettrici, non muniti di dispositivo di sollevamento, per il "
+"trasporto di merci su brevi distanze, diversi da quelli della voce precedente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90191010
 msgid "Electrical vibratory-massage apparatus"
-msgstr ""
+msgstr "Vibromassaggiatori elettrici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85124000
 msgid ""
 "Electrical windscreen wipers, defrosters and demisters, for motor vehicles"
 msgstr ""
+"Tergicristalli, sbrinatori e dispositivi antiappannanti, dei tipi utilizzati "
+"per motocicli o autoveicoli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.351110
@@ -19006,7 +19528,7 @@ msgstr "Energia elettrica"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90181100
 msgid "Electro-cardiographs"
-msgstr ""
+msgstr "Elettrocardiografi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90181990
@@ -19017,6 +19539,12 @@ msgid ""
 "apparatus, scintigraphic apparatus and monitoring apparatus for simultaneous "
 "monitoring of two or more physiological parameters)"
 msgstr ""
+"Apparecchi di elettrodiagnosi, incl. gli apparecchi di esplorazione "
+"funzionale e di controllo di parametri fisiologici (escl. "
+"elettrocardiografi, apparecchi di diagnosi a scansione ultrasonica, "
+"apparecchi di diagnosi ad immagine, a risonanza magnetica e apparecchi per "
+"scintigrafia nonchè apparecchi per il controllo simultaneo di due o più "
+"parametri funzionali)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90181910
@@ -19024,6 +19552,8 @@ msgid ""
 "Electro-diagnostic monitoring apparatus for simultaneous monitoring of two "
 "or more physiological parameters"
 msgstr ""
+"Apparecchi di elettrodiagnosi, per il controllo simultaneo di due o più "
+"parametri fisiologici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85167970
@@ -19034,21 +19564,29 @@ msgid ""
 "plates, boiling rings, grillers, roasters, coffee makers, tea makers, "
 "toasters and deep fat fryers)"
 msgstr ""
+"Apparecchi elettrotermici per usi domestici (escl. per parrucchiere o per "
+"asciugare le mani, per il riscaldamento dei locali, del suolo o per usi "
+"simili, scaldacqua, scaldatori ad immersione, ferrida stiro, forni a "
+"microonde, cucine, fornelli, piastre di cottura, griglie e girarrosti, "
+"apparecchi per la preparazione del caffè o del tè, tostapane nonchè "
+"friggitrici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85167100
 msgid "Electro-thermic coffee or tea makers, for domestic use"
 msgstr ""
+"Apparecchi elettrotermici per la preparazione del caffè e del tè, per usi "
+"domestici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85163200
 msgid "Electro-thermic hairdressing apparatus (excl. hairdryers)"
-msgstr ""
+msgstr "Apparecchi elettrotermici per parrucchiere, esclusi gli asciugacapelli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85451100
 msgid "Electrodes of graphite or other carbon, for electric furnaces"
-msgstr ""
+msgstr "Elettrodi di grafite o di altro carbonio, dei tipi utilizzati per forni"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85451900
@@ -19056,16 +19594,18 @@ msgid ""
 "Electrodes of graphite or other carbon, for electrical purposes (excl. those "
 "used for furnaces)"
 msgstr ""
+"Elettrodi di grafite o di altro carbonio, per usi elettrici (escl. quelli "
+"utilizzati per forni)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85052000
 msgid "Electromagnetic couplings, clutches and brakes"
-msgstr ""
+msgstr "Accoppiamenti, innesti, variatori di velocità e freni elettromagnetici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85059050
 msgid "Electromagnetic lifting heads"
-msgstr ""
+msgstr "Teste di sollevamento elettromagnetiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85059020
@@ -19073,6 +19613,8 @@ msgid ""
 "Electromagnets; electromagnetic or permanent magnet chucks, clamps and "
 "similar holding devices"
 msgstr ""
+"Elettromagneti; dischi, mandrini e dispositivi magnetici o elettromagnetici "
+"simili di fissazione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85098000
@@ -19081,6 +19623,9 @@ msgid ""
 "(excl. vacuum cleaners, dry and wet vacuum cleaners, food grinders and "
 "mixers, fruit or vegetable juice extractors, and hair-removing appliances)"
 msgstr ""
+"Altri apparecchi domestici elettromeccanici, con motore elettrico "
+"incorporato (escl. aspirapolvere, idropulitori e pulitori a secco, "
+"trituratori e mescolatori (mixer) di alimenti; spremifrutta e spremiverdura)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85365007
@@ -19088,6 +19633,8 @@ msgid ""
 "Electromechanical snap-action switches for a current <= 11 A (excl. relays "
 "and automatic circuit breakers)"
 msgstr ""
+"Interruttori elettromeccanici a scatto per un'intensità <= 11 A (escl. relè "
+"nonchè interruttori automatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84672920
@@ -19096,6 +19643,9 @@ msgid ""
 "electric motor capable of operation without an external source of power "
 "(excl. saws and drills)"
 msgstr ""
+"Strumenti elettromeccanici per l'impiego a mano, a motore elettrico "
+"incorporato funzionante senza fonte di energia esterna (escl. seghe e "
+"trapani)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84672985
@@ -19104,6 +19654,10 @@ msgid ""
 "electric motor operating with an external source of power (excl. saws, "
 "drills, grinders, sanders, planers, hedge trimmers and lawn edge cutters)"
 msgstr ""
+"Strumenti elettromeccanici per l'impiego a mano, a motore elettrico "
+"incorporato funzionante con una fonte di energia esterna (escl. seghe, "
+"trapani, smerigliatrici, levigatrici, piallatrici, tagliasiepi, forbici per "
+"prato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90121010
@@ -19111,6 +19665,9 @@ msgid ""
 "Electron microscopes fitted with equipment specifically designed for the "
 "handling and transport of semiconductor wafers or reticles"
 msgstr ""
+"Microscopi elettronici provvisti di apparecchi specificamente studiati per "
+"la manipolazione e il trasporto di dischi (wafers) o reticoli a "
+"semiconduttore"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90121090
