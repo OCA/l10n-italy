@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 12.0.1.4.0 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_stamp_ddt](l10n_it_account_stamp_ddt/) | 12.0.1.0.1 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra imposta di bollo e DDT
 [l10n_it_account_stamp_sale](l10n_it_account_stamp_sale/) | 12.0.1.0.2 | [![tafaRU](https://github.com/tafaRU.png?size=30px)](https://github.com/tafaRU) | Modulo ponte tra imposta di bollo e vendite
-[l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 12.0.2.1.0 |  | Italian Localisation - Natura delle aliquote IVA
+[l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 12.0.2.1.1 |  | Italian Localisation - Natura delle aliquote IVA
 [l10n_it_asset_history_import](l10n_it_asset_history_import/) | 12.0.1.0.0 |  | Cespiti: importazione storico dati
 [l10n_it_ateco](l10n_it_ateco/) | 12.0.1.0.1 |  | ITA - Codici Ateco
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 12.0.1.0.1 |  | ITA - Bolle doganali
@@ -58,7 +58,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 12.0.3.1.8 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 12.0.1.0.2 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 12.0.1.2.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra e-fattura in acquisto e inversione contabile
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 12.0.3.2.2 |  | Emissione fatture elettroniche
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 12.0.3.2.3 |  | Emissione fatture elettroniche
 [l10n_it_fatturapa_out_ddt](l10n_it_fatturapa_out_ddt/) | 12.0.1.4.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e DDT
 [l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 12.0.1.0.1 |  | Dichiarazioni d'intento in fatturapa
 [l10n_it_fatturapa_out_fd](l10n_it_fatturapa_out_fd/) | 12.0.1.0.0 |  | Emissione di fattura elettronica con sconto fisso
