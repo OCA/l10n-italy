@@ -137,12 +137,6 @@
                     <group>
                         <group>
                             <field
-                                name="company_id"
-                                options="{'no_create': True}"
-                                attrs="{'readonly': [('pickings_picker', '!=', [])]}"
-                                groups="base.group_multi_company"
-                            />
-                            <field
                                 name="partner_sender_id"
                                 attrs="{'readonly': [('pickings_picker', '!=', [])]}"
                             />
@@ -179,6 +173,13 @@
                                     title="Update to now"
                                 />
                             </div>
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                attrs="{'readonly': [('pickings_picker', '!=', [])]}"
+                                groups="base.group_multi_company"
+                                domain="[('id', 'in', allowed_company_ids)]"
+                            />
                         </group>
                     </group>
                     <group>
