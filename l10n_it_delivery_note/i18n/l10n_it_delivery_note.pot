@@ -373,7 +373,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/models/account_invoice.py:0
 #, python-format
-msgid "Delivery Note \"{}\" of {}"
+msgid "Delivery Note \"%(name)s\" of %(date)s"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -615,7 +615,6 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_has_error
-#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -1053,11 +1052,6 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__activity_user_id
 msgid "Responsible User"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_it_delivery_note
