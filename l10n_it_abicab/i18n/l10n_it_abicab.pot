@@ -31,11 +31,6 @@ msgid "Bank Accounts"
 msgstr ""
 
 #. module: l10n_it_abicab
-#: model_terms:ir.ui.view,arch_db:l10n_it_abicab.view_bank_form_abicab
-msgid "Bank Details"
-msgstr ""
-
-#. module: l10n_it_abicab
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_account_setup_bank_manual_config__bank_cab
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__cab
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_cab

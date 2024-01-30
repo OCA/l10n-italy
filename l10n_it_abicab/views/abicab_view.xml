@@ -31,15 +31,9 @@
            <field name="model">res.bank</field>
            <field name="inherit_id" ref="base.view_res_bank_form" />
            <field name="arch" type="xml">
-               <field name="bic" position="attributes">
-                   <attribute name="invisible">1</attribute>
-               </field>
-               <field name="name" position="after">
-                   <group string="Bank Details" colspan="6">
-                       <field name="abi" />
-                       <field name="cab" />
-                       <field name="bic" />
-                   </group>
+               <field name="bic" position="after">
+                    <field name="abi" />
+                    <field name="cab" />
                </field>
            </field>
        </record>
