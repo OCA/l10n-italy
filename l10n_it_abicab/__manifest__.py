@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Codici bancari ABI/CAB",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Localization/Italy",
     "development_status": "Production/Stable",
     "summary": "Base Bank ABI/CAB codes",
