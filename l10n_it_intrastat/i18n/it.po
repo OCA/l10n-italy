@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-31 10:36+0000\n"
+"PO-Revision-Date: 2024-01-31 15:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -19887,12 +19887,16 @@ msgid ""
 "data recording, reproducing and displaying machines with calculating "
 "functions"
 msgstr ""
+"Calcolatrici elettroniche che possono funzionare senza fonte di energia "
+"esterna"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90066100
 msgid ""
 "Electronic discharge lamp flashlight apparatus for photographic purposes"
 msgstr ""
+"Apparecchi con tubo a scarica per la produzione di lampi di luce detti "
+"\"flashes elettronici\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90261021
@@ -19900,11 +19904,13 @@ msgid ""
 "Electronic flow meters for measuring or checking the flow or level of "
 "liquids (excl. meters and regulators)"
 msgstr ""
+"Misuratori di portata elettronici (escl. dei contatori e degli strumenti ed "
+"apparecchi di regolazione o di controllo automatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90271010
 msgid "Electronic gas or smoke analysis apparatus"
-msgstr ""
+msgstr "Analizzatori di gas o di fumi, elettronici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90262020
@@ -19912,6 +19918,9 @@ msgid ""
 "Electronic instruments and apparatus for measuring or checking pressure of "
 "liquids or gases (excl. regulators)"
 msgstr ""
+"Strumenti ed apparecchi per la misura o il controllo della pressione, "
+"elettronici (escl. dei contatori e degli strumenti ed apparecchi di "
+"regolazione o di controllo automatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90261029
@@ -19919,6 +19928,9 @@ msgid ""
 "Electronic instruments and apparatus for measuring or checking the flow or "
 "level of liquids (excl. flow meters, meters and regulators)"
 msgstr ""
+"Strumenti ed apparecchi per la misura o il controllo della portata o del "
+"livello dei liquidi (escl. misuratori di portata, dei contatori e degli "
+"strumenti ed apparecchi di regolazione o di controllo automatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90303310
@@ -19927,6 +19939,9 @@ msgid ""
 "current, resistance or electrical power, without recording device (excl. "
 "multimeters, and oscilloscopes and oscillographs)"
 msgstr ""
+"Strumenti ed apparecchi elettronici per la misura o il controllo della "
+"tensione, dell'intensità, della resistenza o della potenza elettrica senza "
+"dispositivo registratore (escl. multimetri, oscilloscopi e oscillografi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90278017
@@ -19935,6 +19950,9 @@ msgid ""
 "for measuring viscosity, porosity, expansion, surface tension or the like, "
 "or for measuring heat, sound or light, n.e.s."
 msgstr ""
+"Strumenti e apparecchi elettronici per analisi fisiche o chimiche o per "
+"prove di viscosità, porosità, dilatazione, tensione superficiale o simili, o "
+"per misure calorimetriche, acustiche o fotometriche, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90308930
@@ -19942,6 +19960,8 @@ msgid ""
 "Electronic instruments and appliances for measuring or checking electrical "
 "quantities, without recording device, n.e.s."
 msgstr ""
+"Strumenti ed apparecchi elettronici specialmente costruiti per il controllo "
+"dell'elettricità senza dispositivo registratore , n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90158019
@@ -19951,6 +19971,9 @@ msgid ""
 "tachymeters \"tacheometers\", levels and photogrammetrical surveying "
 "instruments and appliances)"
 msgstr ""
+"Strumenti ed apparecchi di geodesia, topografia, agrimensura, idrografia, "
+"oceanografia, elettronici (escl. bussole, telemetri, teodoliti e "
+"tacheometri, livelle, strumenti ed apparecchi di fotogrammetria)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90268020
@@ -19958,6 +19981,8 @@ msgid ""
 "Electronic instruments or apparatus for measuring or checking variables of "
 "liquids or gases, n.e.s."
 msgstr ""
+"Strumenti ed apparecchi per la misura o il controllo di caratteristiche "
+"variabili dei liquidi o dei gas, elettronici, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90318032
@@ -19966,6 +19991,10 @@ msgid ""
 "wafers or devices or for inspecting photomasks or reticles used in "
 "manufacturing semiconductor devices"
 msgstr ""
+"Strumenti, apparecchi e macchine elettronici per il controllo dei dischi "
+"(wafers) o dei dispositivi a semiconduttore o per il controllo delle "
+"maschere e dei reticoli destinati alla fabbricazione di dispositivi a "
+"semiconduttore"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90318034
@@ -19975,6 +20004,10 @@ msgid ""
 "or for inspecting photomasks or reticles used in manufacturing semiconductor "
 "devices)"
 msgstr ""
+"Strumenti, apparecchi e macchine elettronici per la misura o il controllo di "
+"grandezze geometriche (escl. per il controllo dei dischi (wafers) o dei "
+"dispositivi a semiconduttore o per il controllo delle maschere e dei "
+"reticoli destinati alla fabbricazione di dispositivi a semiconduttore)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90318038
@@ -19982,6 +20015,8 @@ msgid ""
 "Electronic instruments, apparatus and machines for measuring or checking, n."
 "e.s. in chapter 90"
 msgstr ""
+"Strumenti, apparecchi e macchine di misura o di controllo elettronici, n.n.a "
+"nel capitolo 90"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423990
@@ -19989,6 +20024,8 @@ msgid ""
 "Electronic integrated circuits (excl.  in the form of multichip integrated "
 "circuits and such as processors, controllers, memories and amplifiers)"
 msgstr ""
+"Altri circuiti elettronici integrati (escl. processori, controller, nella "
+"forma di multichips integrati, memorie e amplificatori)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423255
@@ -19996,11 +20033,13 @@ msgid ""
 "Electronic integrated circuits as UV erasable, programmable read-only "
 "memories \"EPROMs\" (excl. in the form of multichip integrated circuits)"
 msgstr ""
+"Memoria di sola lettura, programmabile, cancellabile ai raggi ultravioletti "
+"(EPROM), (escl. i circuiti multichip integrati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423300
 msgid "Electronic integrated circuits as amplifiers"
-msgstr ""
+msgstr "Amplificatori in forma di circuito elettronico intgrato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423231
@@ -20009,6 +20048,8 @@ msgid ""
 "with a storage capacity of <= 512 Mbit (excl. in the form of multichip "
 "integrated circuits)"
 msgstr ""
+"Memorie di lettura e scrittura a libero accesso del tipo D-RAM con capacità "
+"di memorizzazione <= 512 Mbit (escl. i circuiti multichip integrati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423239
@@ -20017,6 +20058,8 @@ msgid ""
 "with a storage capacity of > 512 Mbit (excl. in the form of multichip "
 "integrated circuits)"
 msgstr ""
+"Memorie di lettura e scrittura a libero accesso del tipo D-RAM con capacità "
+"di memorizzazione > 512 Mbit (escl. i circuiti multichip integrati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423275
@@ -20025,6 +20068,8 @@ msgid ""
 "only memories \"E2PROMs\" (excl. flash E²PROMs and in the form of multichip "
 "integrated circuits)"
 msgstr ""
+"Memoria di sola lettura, programmabile, cancellabile elettricamente (E²PROM)"
+", (escl. i flash E²PROM e i circuiti multichip integrati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423261
@@ -20033,6 +20078,9 @@ msgid ""
 "only memories \"flash E²PROMs\", with a storage capacity of <= 512 Mbit "
 "(excl. in the form of multichip integrated circuits)"
 msgstr ""
+"Memoria di sola lettura, programmabile, cancellabile elettricamente (E²PROM)"
+", compresi i flash E²PROM con capacità di memorizzazione <= 512 Mbit (escl. "
+"i circuiti multichip integrati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423269
@@ -20041,6 +20089,9 @@ msgid ""
 "only memories \"flash E²PROMs\", with a storage capacity of > 512 Mbit "
 "(excl. in the form of multichip integrated circuits)"
 msgstr ""
+"Memoria di sola lettura, programmabile, cancellabile elettricamente (E²PROM)"
+", compresi i flash E²PROM con capacità di memorizzazione > 512 Mbit (escl. i "
+"circuiti multichip integrati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423210
@@ -20049,6 +20100,9 @@ msgid ""
 "integrated circuits consisting of two or more interconnected monolithic "
 "integrated circuits as specified in note 8 (b) (3) to chapter 85"
 msgstr ""
+"Memorie nella forma di multichips integrati consistenti in due o più "
+"circuiti monolitici integrati come specificato nella nota 8 b) 3) del "
+"presente capitolo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423190
@@ -20058,6 +20112,10 @@ msgid ""
 "timing circuits, or other circuits (excl. in the form of multichip "
 "integrated circuits)"
 msgstr ""
+"Processori o controllo, anche combinati con memorie, convertitori, circuiti "
+"logici, amplificatori, circuiti a tempo integrati consistenti in due o più "
+"circuiti monolitici integrati come specificato (escl. quelli nella forma di "
+"multichips integrati consistenti in due o più circuiti monolitici integrati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423110
@@ -20068,6 +20126,10 @@ msgid ""
 "circuits consisting of two or more interconnected monolithic integrated "
 "circuits as specified in note 8 (b) (3) to chapter 85"
 msgstr ""
+"Processori o controllo, anche combinati con memorie, convertitori, circuiti "
+"logici, amplificatori, circuiti a tempo, o altri circuiti nella forma di "
+"multichips integrati consistenti in due o più circuiti monolitici integrati "
+"come specificato nella nota 8 b) 3) del presente capitolo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423245
@@ -20076,6 +20138,9 @@ msgid ""
 "\", incl. cache random-access memories \"cache-RAMs\" (excl. in the form of "
 "multichip integrated circuits)"
 msgstr ""
+"Memorie di lettura e scrittura a libero accesso (S/RAM), compresa la memoria "
+"cache di lettura e scrittura a libero accesso (cache/RAM) (escl. i circuiti "
+"multichip integrati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85423910
@@ -20085,16 +20150,22 @@ msgid ""
 "specified in note 8 (b) (3) to chapter 85 (excl. such as processors, "
 "controllers, memories and amplifiers)"
 msgstr ""
+"Altri circuiti elettronici nella forma di multichips integrati consistenti "
+"in due o più circuiti monolitici integrati ai circuiti come specificato "
+"nella nota 8 b) 3) del presente capitolo (escl. processori, controller, "
+"memorie e amplificatori)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90153010
 msgid "Electronic levels"
-msgstr ""
+msgstr "Livelle elettroniche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90241013
 msgid "Electronic machines and appliances for testing the hardness of metals"
 msgstr ""
+"Macchine ed apparecchi per prove su metalli, elettronici, per prove di "
+"durezza"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90248019
@@ -20102,6 +20173,8 @@ msgid ""
 "Electronic machines and appliances for testing the mechanical properties of "
 "materials (excl. metals, textiles, paper or paperboard)"
 msgstr ""
+"Macchine ed apparecchi per prove su tessili, carta e cartoni, elettronici ("
+"escl. metalli, tessili, carta e cartoni)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90241019
@@ -20109,6 +20182,8 @@ msgid ""
 "Electronic machines and appliances for testing the mechanical properties of "
 "metals (excl. for universal, tensile or hardness testing)"
 msgstr ""
+"Macchine ed apparecchi per prove su metalli, elettronici (escl. universali e "
+"per prove di trazione, nonché per prove di durezza)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90248011
@@ -20116,6 +20191,7 @@ msgid ""
 "Electronic machines and appliances for testing the mechanical properties of "
 "textiles, paper or paperboard"
 msgstr ""
+"Macchine ed apparecchi per prove su tessili, carta e cartoni, elettronici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90241011
@@ -20123,6 +20199,8 @@ msgid ""
 "Electronic machines and appliances for universal testing of mechanical "
 "properties of metals or for tensile testing of metals"
 msgstr ""
+"Macchine ed apparecchi per prove su metalli, elettronici, universali e per "
+"prove di trazione"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90158011
@@ -20132,6 +20210,7 @@ msgid ""
 "\"tacheometers\", levels and photogrammetrical surveying instruments and "
 "appliances)"
 msgstr ""
+"Strumenti ed apparecchi di meteorologia, idrologia e geofisica, elettronici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90302091
@@ -20139,6 +20218,8 @@ msgid ""
 "Electronic oscilloscopes and oscillographs, without recording device (excl. "
 "cathode ray oscilloscopes and oscillographs)"
 msgstr ""
+"Oscilloscopi e oscillografi elettronici senza dispositivo registratore ("
+"escl.oscilloscopi e oscillografi catodici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90278011
@@ -20146,16 +20227,18 @@ msgid ""
 "Electronic pH meters, rH meters and other apparatus for measuring "
 "conductivity"
 msgstr ""
+"Ph-metri, rh-metri ed altri apparecchi per misurare la conducibilità, "
+"elettronici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90154010
 msgid "Electronic photogrammetrical surveying instruments and appliances"
-msgstr ""
+msgstr "Strumenti ed apparecchi di fotogrammetria, elettronici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90151010
 msgid "Electronic rangefinders"
-msgstr ""
+msgstr "Telemetri elettronici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.592032
@@ -20169,16 +20252,19 @@ msgid ""
 "consisting of a transistor and a logic chip \"chip-on-chip technology"
 "\" (excl. relays and automatic circuit breakers)"
 msgstr ""
+"Interruttori elettronici, compresi gli interruttori elettronici protetti "
+"dalla temperatura, costituiti da un transistor e da un chip logico ("
+"tecnologia chip-on-chip) (escl. relè nonchè interruttori automatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90152010
 msgid "Electronic theodolites and tachymeters \"tacheometers\""
-msgstr ""
+msgstr "Teodoliti e tacheometri, elettronici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90321020
 msgid "Electronic thermostats"
-msgstr ""
+msgstr "Termostati elettronici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85408900
@@ -20188,11 +20274,15 @@ msgid ""
 "other monochrome data-graphic display tubes and colour data-graphic display "
 "tubes with a phosphor dot screen pitch of < 0,4 mm)"
 msgstr ""
+"Lampade, tubi e valvole (escl. tubi per ricezione e amplificazione, tubi per "
+"iperfrequenza, tubi catodici e a fotocatodo, tubi di visualizzazione dei "
+"dati grafici, in bianco e nero o in altre monocromie o a colori, con uno "
+"schermo fosforico di diradamento a punti < 0,4 mm)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84672191
 msgid "Electropneumatic drills of all kinds for working in the hand"
-msgstr ""
+msgstr "Trapani a mano di ogni specie, elettropneumatici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58109190
@@ -20201,6 +20291,8 @@ msgid ""
 "in motifs, of a net value of <=  17,50 per kg (excl. embroidery without "
 "visible ground)"
 msgstr ""
+"Ricami di cotone, in pezza, in strisce o in motivi, di valore fino a 17,50 "
+"Euro per kg netto"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58109110
@@ -20209,6 +20301,8 @@ msgid ""
 "in motifs, of a net value of >  17,50 per kg (excl. embroidery without "
 "visible ground)"
 msgstr ""
+"Ricami di cotone, in pezza, in strisce o in motivi, di valore > 17,50 Euro "
+"per kg netto"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58109290
@@ -20217,6 +20311,9 @@ msgid ""
 "strips or in motifs, of a net value of <=  17,50 per kg (excl. embroidery "
 "without visible ground)"
 msgstr ""
+"Ricami di fibre tessili sintetiche o artificiali, a base di materie tessili, "
+"in pezza, in strisce o in motivi, di valore <= 17,50 Euro/kg netto (escl. "
+"ricami chimici o aeriennes e ricami a fondo tagliato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58109210
@@ -20225,6 +20322,9 @@ msgid ""
 "strips or in motifs, of a net value of >  17,50 per kg (excl. embroidery "
 "without visible ground)"
 msgstr ""
+"Ricami di fibre tessili sintetiche o artificiali, a base di materie tessili, "
+"in pezza, in strisce o in motivi, di valore > 17,50 Euro/kg netto (escl. "
+"ricami chimici o aeriennes e ricami a fondo tagliato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58109990
@@ -20233,6 +20333,10 @@ msgid ""
 "fabric base, in the piece, in strips or in motifs, of a net value of <=  "
 "17,50 per kg (excl. embroidery without visible ground)"
 msgstr ""
+"Ricami di materie tessili diverse dal cotone o dalle fibre tessili "
+"sintetiche o artificiali, a base di materie tessili in pezza, in strisce o "
+"in motivi, di valore <= 17,50 Euro/kg netto (escl. ricamichimici o aeriennes "
+"e ricami a fondo tagliato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58109910
@@ -20241,6 +20345,10 @@ msgid ""
 "fabric base, in the piece, in strips or in motifs, of a net value of >  "
 "17,50 per kg (excl. embroidery without visible ground)"
 msgstr ""
+"Ricami di materie tessili diverse dal cotone o dalle fibre tessili "
+"sintetiche o artificiali, a base di materie tessili, in pezza, in strisce o "
+"in motivi, di valore > 17,50 Euro/kg netto (escl. ricamichimici o aeriennes "
+"e ricami a fondo tagliato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58101090
@@ -20248,6 +20356,8 @@ msgid ""
 "Embroidery on a textile fabric ground without visible ground, in the piece, "
 "in strips or in motifs, of a net value of <=  35 per kg"
 msgstr ""
+"Ricami chimici o aeriennes e ricami a fondo tagliato, in pezza, in strisce o "
+"in motivi, di valore fino a 35 Euro per kg netto"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_58101010
@@ -20255,6 +20365,8 @@ msgid ""
 "Embroidery on a textile fabric ground without visible ground, in the piece, "
 "in strips or in motifs, of a net value of >  35 per kg"
 msgstr ""
+"Ricami chimici o aeriennes e ricami a fondo tagliato, in pezza, in strisce o "
+"in motivi, di valore > 35 Euro per kg netto"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_25132000
@@ -20262,16 +20374,21 @@ msgid ""
 "Emery; natural corundum, natural garnet and other natural abrasives, whether "
 "or not heat-treated"
 msgstr ""
+"Smeriglio, corindone naturale, granato naturale e altri abrasivi naturali, "
+"anche trattati termicamente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069013
 msgid "Emmentaler (excl. grated or powdered and that for processing)"
 msgstr ""
+"Emmental (escl. grattugiato o in polvere, destinato alla trasformazione)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73141200
 msgid "Endless bands of stainless steel wire, for machinery"
 msgstr ""
+"Tele metalliche continue o senza fine, per macchine, di fili di acciaio "
+"inossidabile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40103600
@@ -20279,6 +20396,8 @@ msgid ""
 "Endless synchronous belts, of vulcanised rubber, of an outside circumference "
 "> 150 cm but <= 198 cm"
 msgstr ""
+"Cinghie di trasmissione dentellate (sincrone) senza fine, di gomma "
+"vulcanizzata, di una circonferenza esterna > 150 cm e <= 198 cm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40103500
@@ -20286,6 +20405,8 @@ msgid ""
 "Endless synchronous belts, of vulcanised rubber, of an outside circumference "
 "> 60 cm but <= 150 cm"
 msgstr ""
+"Cinghie di trasmissione dentellate (sincrone) senza fine, di gomma "
+"vulcanizzata, di una circonferenza esterna > 60 cm e <= 150 cm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40103300
@@ -20294,6 +20415,8 @@ msgid ""
 "vulcanised rubber, V-ribbed, of an outside circumference > 180 cm but <= 240 "
 "cm"
 msgstr ""
+"Cinghie di trasmissione senza fine, di sezione trapezoidale, di gomma "
+"vulcanizzata, striate, di una circonferenza esterna > 180 cm e <= 240 cm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40103100
@@ -20302,6 +20425,8 @@ msgid ""
 "vulcanised rubber, V-ribbed, of an outside circumference > 60 cm but <= 180 "
 "cm"
 msgstr ""
+"Cinghie di trasmissione senza fine, di sezione trapezoidale, di gomma "
+"vulcanizzata, striate, di una circonferenza esterna > 60 cm e <= 180 cm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40103400
@@ -20310,6 +20435,9 @@ msgid ""
 "vulcanised rubber, of an outside circumference > 180 cm but <= 240 cm (excl. "
 "V-ribbed)"
 msgstr ""
+"Cinghie di trasmissione senza fine, di sezione trapezoidale, di gomma "
+"vulcanizzata, di una circonferenza esterna > 180 cm e <= 240 cm (escl. "
+"quelle striate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40103200
@@ -20318,11 +20446,14 @@ msgid ""
 "vulcanised rubber, of an outside circumference > 60 cm but <= 180 cm (excl. "
 "V-ribbed)"
 msgstr ""
+"Cinghie di trasmissione senza fine, di sezione trapezoidale, di gomma "
+"vulcanizzata, di una circonferenza esterna > 60 cm e <= 180 cm (escl. quelle "
+"striate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90189020
 msgid "Endoscopes used in medical, surgical or veterinary sciences"
-msgstr ""
+msgstr "Endoscopi, per uso medico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.711211
@@ -20388,11 +20519,15 @@ msgid ""
 "reaction engines, hydraulic power engines and motors, pneumatic power "
 "engines and motors, steam or other vapour power engines and electric motors)"
 msgstr ""
+"Altri motori e macchine motrici non elettriche (escl. turbine a vapore, "
+"motori a pistone, turbine idrauliche, ruote idrauliche, turbine a gas, "
+"propulsori a reazione, motori idraulici, motori oleoidraulici, motori "
+"pneumatici,a vapore ed elettrici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_32072010
 msgid "Engobes \"slips\""
-msgstr ""
+msgstr "Ingobbi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.932929
@@ -20402,12 +20537,12 @@ msgstr "Servizi di intrattenimento e di spettacolo n.c.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85176920
 msgid "Entry-phone systems"
-msgstr ""
+msgstr "Citofoni"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48171000
 msgid "Envelopes of paper or paperboard (excl. letter cards)"
-msgstr ""
+msgstr "Buste di carta o di cartone (escl. biglietti postali)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.749013
@@ -20420,11 +20555,13 @@ msgid ""
 "Enzymes and prepared enzymes, n.e.s. (excl. rennet and concentrates thereof, "
 "lipoprotein lipase and Aspergillus alkaline protease)"
 msgstr ""
+"Enzimi ed enzimi preparati, n.n.a. (escl. presame e suoi concentrati nonchè "
+"lipoproteina lipasi e proteasi alcalina da aspergillus)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29394100
 msgid "Ephedrine and its salts"
-msgstr ""
+msgstr "Efedrina e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29394900
@@ -20432,11 +20569,14 @@ msgid ""
 "Ephedrines and their salts (excl. ephedrine, pseudoephedrine \"INN\", "
 "cathine \"INN\", norephedrine, and their salts)"
 msgstr ""
+"Efedrine e loro sali (escl. efedrina, pseudoefedrina (INN), catina (INN), "
+"norefedrina, levometamfetamina, metamfetamina (INN), racemato di "
+"metamfetamina e loro sali)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39073000
 msgid "Epoxide resins, in primary forms"
-msgstr ""
+msgstr "Resine epossidiche, in forme primarie"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29109000
@@ -20446,6 +20586,10 @@ msgid ""
 "(excl. oxirane \"ethylene oxide\", methyloxirane \"propylene oxide\", 1-"
 "Chloro-2,3-epoxypropane \"epichlorohydrin\" and dieldrin [ISO] [INN])"
 msgstr ""
+"Epossidi, epossi-alcoli, epossi-fenoli, epossi-eteri ad anello triatomico, e "
+"loro derivati alogenati, solfonati, nitrati o nitrosi (escl. ossirano ("
+"ossido di etilene), metilossirano (ossido di propilene), 1-cloro-2,3-"
+"epossipropano (epicloridrina), dieldrina (ISO,DCI) e endrin (ISO))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73084000
@@ -20454,6 +20598,9 @@ msgid ""
 "composite sheetpiling products and formwork panels for poured-in-place "
 "concrete, which have the characteristics of moulds)"
 msgstr ""
+"Materiale per impalcature, casseforme e puntellature (escl. ponti ed "
+"elementi dei ponti e pannelli per casseforme per cemento armato versato in "
+"luogo, che hanno le caratteristiche di stampi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85144000
@@ -20461,6 +20608,8 @@ msgid ""
 "Equipment for the heat treatment of materials by induction or dielectric "
 "loss (excl. ovens and furnaces)"
 msgstr ""
+"Apparecchi per il trattamento termico delle materie per induzione o perdite "
+"dielettriche, esclusi i forni"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40169200
@@ -20468,26 +20617,28 @@ msgid ""
 "Erasers, of vulcanised rubber (excl. hard rubber), conditioned (excl. those "
 "simply cut to rectangular or square shape)"
 msgstr ""
+"Gomme per cancellare di gomma vulcanizzata (non indurita), pronte all'uso ("
+"escl. solo tagliate in forma quadrata o rettangolare)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29396100
 msgid "Ergometrine \"INN\" and its salts"
-msgstr ""
+msgstr "Ergometrina (DCI) e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29396200
 msgid "Ergotamine \"INN\" and its salts"
-msgstr ""
+msgstr "Ergotamina (DCI) e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29415000
 msgid "Erythromycin and its derivatives; salts thereof"
-msgstr ""
+msgstr "Eritromicina, suoi derivati e loro sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84284000
 msgid "Escalators and moving walkways"
-msgstr ""
+msgstr "Scale meccaniche e marciapiedi mobili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.960912
@@ -20501,6 +20652,10 @@ msgid ""
 "content by weight of <= 40% and a water content, by weight, of non-fatty "
 "matter of > 47% but <= 72% (excl. grated or powdered and for processing)"
 msgstr ""
+"Esrom, Italico, Kernhem, Saint-Nectaire, Saint-Paulin, Taleggio, aventi "
+"tenore, in peso, di materie grasse <= 40% e aventi tenore, in peso, di acqua "
+"della sostanza (non grassa) > 47% ma <= 72% (escl. quelli grattugiati o in "
+"polvere e quelli destinati alla trasformazione)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33012941
@@ -20508,11 +20663,14 @@ msgid ""
 "Essential oils, not deterpenated, incl. concretes and absolutes (except of "
 "citrus fruit, mint, clove, niaouli and ylang-ylang)"
 msgstr ""
+"Oli essenziali non di agrumi non deterpenati, compresi quelli detti "
+"\"concreti\" o \"assoluti\" (escl. quelli di agrumi, menta, garofano, "
+"niaouli e ylang-ylang)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38063000
 msgid "Ester gums"
-msgstr ""
+msgstr "\"Gomme-esteri\""
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29173920
@@ -20523,6 +20681,11 @@ msgid ""
 "tetrachlorophthalic anhydride; sodium 3,5-"
 "bis(methoxycarbonyl)benzenesulphonate"
 msgstr ""
+"Estere o anidride dell'acido tetrabromoftalico; acido "
+"benzen-1,2,4-tricarbossilico; dicloruro di isoftaloile, contenente, in peso, "
+"0,8 % o meno di dicloruro di tereftaloile; acido "
+"naftalen-1,4,5,8-tetracarbossilico; anidride tetracloroftalica; "
+"3,5-bis(metossicarbonile) benzensulfonato di sodio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29153900
@@ -20530,16 +20693,18 @@ msgid ""
 "Esters of acetic acid (excl. ethyl, vinyl, n-butyl and dinoseb [ISO] "
 "acetates)"
 msgstr ""
+"Esteri dell'acido acetico (escl. esteri dell'acetato di etile, vinile, n-"
+"butile e dinoseb (ISO))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29161200
 msgid "Esters of acrylic acid"
-msgstr ""
+msgstr "Esteri dell'acido acrilico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29151300
 msgid "Esters of formic acid"
-msgstr ""
+msgstr "Esteri dell'acido formico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29209085
@@ -20553,11 +20718,18 @@ msgid ""
 "\", triethyl phosphite and diethyl phosphonate \"diethyl hydrogenphosphite\" "
 "\"diethyl phosphite\")"
 msgstr ""
+"Esteri degli altri acidi inorganici e loro sali; loro derivati alogenati, "
+"solfonati, nitrati o nitrosi (escl. esteri degli alogenuri di idrogeno e "
+"esteri fosforici, esteri tiofosforici (fosforotioati), esteri solforici e "
+"esteri carbonici, loro sali, loro derivati alogenati, solfonati, nitrati o "
+"nitrosi, fosfonato di dimetile (fosfito di dimetile), fosfito di trimetile "
+"(trimetossifosfina), fosfito di trietile e fosfonato di dietile ("
+"idrogenofosfito di dietile) (fosfito di dietile))"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29161400
 msgid "Esters of methacrylic acid"
-msgstr ""
+msgstr "Esteri dell'acido metacrilico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29173400
@@ -20565,11 +20737,13 @@ msgid ""
 "Esters of orthophthalic acid (excl. dioctyl, dinonyl or didecyl "
 "orthophthalates)"
 msgstr ""
+"Esteri dell'acido ortoftalico (escl. ortoftalati di diottile, dinonile o "
+"didecile)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29163910
 msgid "Esters of phenylacetic acid"
-msgstr ""
+msgstr "Esteri dell'acido fenilacetico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29182300
@@ -20577,16 +20751,18 @@ msgid ""
 "Esters of salicylic acid and their salts (excl. o-acetylsalicylic acid, its "
 "salts and esters)"
 msgstr ""
+"Esteri dell'acido salicilico e loro sali (escl. acido o-acetilsalicilico, "
+"suoi sali e suoi esteri)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29121200
 msgid "Ethanal \"acetaldehyde\""
-msgstr ""
+msgstr "Etanale (acetaldeide)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29055100
 msgid "Ethchlorvynol \"INN\""
-msgstr ""
+msgstr "Etclorvinolo (DCI)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29095000
@@ -20594,31 +20770,33 @@ msgid ""
 "Ether-phenols, ether-alcohol-phenols and their halogenated, sulphonated, "
 "nitrated or nitrosated derivatives"
 msgstr ""
+"Eteri-fenoli, eteri-alcoli-fenoli e loro derivati alogenati, solfonati, "
+"nitrati o nitrosi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29242400
 msgid "Ethinamate \"INN\""
-msgstr ""
+msgstr "Etinamato (DCI)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29153100
 msgid "Ethyl acetate"
-msgstr ""
+msgstr "Acetato di etile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29026000
 msgid "Ethylbenzene"
-msgstr ""
+msgstr "Etilbenzene"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29012100
 msgid "Ethylene"
-msgstr ""
+msgstr "Etilene"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29033100
 msgid "Ethylene dibromide \"ISO\" \"1,2-dibromoethane\""
-msgstr ""
+msgstr "Dibromuro di etilene ISO 1,2dibromoetano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29031500
