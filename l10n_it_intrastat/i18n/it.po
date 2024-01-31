@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-30 22:34+0000\n"
+"PO-Revision-Date: 2024-01-31 10:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -19756,7 +19756,7 @@ msgid ""
 "machines, equipment or devices of heading 8469 to 8472, n.e.s."
 msgstr ""
 "Assiemaggi elettronici che possono essere utilizzati indifferentemente con "
-"le macchine o apparecchi di più voci da 8470 a 8472"
+"le macchine o apparecchi di più voci da 8470 a 8472, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85389091
@@ -19855,8 +19855,8 @@ msgid ""
 "and other printing components of heading 8442)"
 msgstr ""
 "Assiemaggi elettronici di stampanti, di copiatrici e macchine simili, n.n.a. "
-"(escl. quelli di macchine per per stampare con lastre, cilindri o altri "
-"organi per la stampa della voce 8442)"
+"(escl. quelli di macchine per stampare con lastre, cilindri o altri organi "
+"per la stampa della voce 8442)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85049091
@@ -19872,7 +19872,9 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85229041
 msgid "Electronic assemblies of telephone answering machines, n.e.s."
-msgstr "Assiemaggi a circuiti stampati per prodotti della sottovoce 8519á50 00"
+msgstr ""
+"Assiemaggi a circuiti stampati per prodotti della sottovoce 8519á50 00, n.n."
+"a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84731019
@@ -19901,7 +19903,7 @@ msgstr ""
 "Assiemaggi elettronici utilizzabili esclusivamente per apparecchi di "
 "trasmissione e/o ricezione televisiva e radiofonica, telecamere, macchine "
 "fotografiche digitali, registratori video camera, apparati radar, di "
-"navigazione, e apparecchi e radio a distanza, monitor e proiettori"
+"navigazione, e apparecchi e radio a distanza, monitor e proiettori, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84702100
