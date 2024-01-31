@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-31 00:05+0000\n"
+"PO-Revision-Date: 2024-01-31 10:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -19676,6 +19676,10 @@ msgid ""
 "electron microscopes fitted with equipment specifically designed for the "
 "handling and transport of semiconductor wafers or reticles)"
 msgstr ""
+"Microscopi elettronici e microscopi protonici; diffrattografi (escl. "
+"microscopi elettronici provvisti di apparecchi specificamente studiati per "
+"la manipolazione e il trasporto di dischi (wafers) o reticoli a "
+"semiconduttore)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85365003
@@ -19684,6 +19688,9 @@ msgid ""
 "circuits \"insulated thyristor AC switches\" (excl. relays and automatic "
 "circuit breakers)"
 msgstr ""
+"Interruttori elettronici a corrente alternata costituiti da circuiti di "
+"entrata e di uscita ad accoppiamento ottico (interruttori a corrente "
+"alternata a tiristore isolato) (escl. relè nonchè interruttori automatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90278013
@@ -19693,6 +19700,10 @@ msgid ""
 "associated insulating or conductive layers during the semiconductor wafer "
 "production process or the LCD production process"
 msgstr ""
+"Apparecchi elettronici per la misurazione delle proprietà fisiche di "
+"materiali per semiconduttori o di substrati LCD o di strati isolanti e "
+"conduttori associati, durante il processo di produzione di dischi (wafers) a "
+"semiconduttore o di LCD"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84735020
@@ -19701,6 +19712,8 @@ msgid ""
 "typewriters, word-processing machines, calculating machines or other "
 "machines, equipment or devices of heading 8469 to 8472, n.e.s."
 msgstr ""
+"Assiemaggi elettronici che possono essere utilizzati indifferentemente con "
+"le macchine o apparecchi di più voci da 8470 a 8472, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85389091
@@ -19711,6 +19724,10 @@ msgid ""
 "combinations of apparatus of heading 8537 (excl. for wafer probers of "
 "subheading 8536.90.20)"
 msgstr ""
+"Assiemaggi elettronici di apparati elettrici per l'accensione, delle voci o "
+"la protezione di circuiti elettrici, o per la connessione ai circuiti "
+"elettrici delle voci 8535 e 8536, per panneli di controllo, contenitori e "
+"similari della voce 8537 (escl. i wafer della voce 8536 90 20)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85229049
@@ -19719,11 +19736,15 @@ msgid ""
 "video recording or reproducing apparatus, n.e.s. (excl. of telephone "
 "answering machines)"
 msgstr ""
+"Assiemaggi per la riproduzione e apparati per la registrazione anche video, "
+"n.n.a. (escl. segreterie telefoniche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85389011
 msgid "Electronic assemblies for wafer probers of subheading 8536.90.20"
 msgstr ""
+"Assiemaggi elettronici per sonde di dischi (wafers) a semiconduttore della "
+"sottovoce 8536 90 20"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84732910
@@ -19731,6 +19752,9 @@ msgid ""
 "Electronic assemblies of accounting machines, cash registers or other "
 "machines, incorporating a calculating device, of heading 8470, n.e.s."
 msgstr ""
+"Assiemeggi elettronici per macchine contabili, registratori di cassa e "
+"simili, con dispositivi di calcolo incorporati, e per quelle della voce "
+"8470, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84733020
@@ -19738,6 +19762,8 @@ msgid ""
 "Electronic assemblies of automatic data-processing machines or for other "
 "machines of heading 8471, n.e.s."
 msgstr ""
+"Assiemaggi elettronici per macchine automatiche di elaborazione-dati e per "
+"le macchine della voce 8471, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84734011
@@ -19745,6 +19771,8 @@ msgid ""
 "Electronic assemblies of automatic teller machines of subheading 8472.90.30, "
 "n.e.s."
 msgstr ""
+"Assiemaggi elettronici per sportelli automatici della sottovoce 8472 90 30, n"
+".n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84732110
@@ -19752,6 +19780,8 @@ msgid ""
 "Electronic assemblies of electronic calculators of subheading 8470.10, "
 "8470.21 or 8470.29, n.e.s."
 msgstr ""
+"Assiemaggi elettronici per macchine calcolatrici elettroniche delle "
+"sottovoci 8470 10, 8470 21 o 8470 29, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85049005
@@ -19760,6 +19790,10 @@ msgid ""
 "apparatus and for power supplies for automatic data-processing machines and "
 "units thereof, n.e.s."
 msgstr ""
+"Assiemaggi elettronici per bobine di reattanza e di autoinduzione del tipo "
+"utilizzato con le apparecchiature per le telecomunicazioni e per "
+"l'alimentazione elettrica di macchine automatiche per l'elaborazione "
+"dell'informazione e loro unità, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84734018
@@ -19767,6 +19801,8 @@ msgid ""
 "Electronic assemblies of other office machines of heading 8472, n.e.s. "
 "(excl. of automatic teller machines)"
 msgstr ""
+"Assiemaggi elettronici per altre macchine ed apparecchi per ufficio della "
+"voce 8472, n.n.a.(escl. per sportelli automatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84439910
@@ -19775,6 +19811,9 @@ msgid ""
 "(excl. of printing machinery used for printing by means of plates, cylinders "
 "and other printing components of heading 8442)"
 msgstr ""
+"Assiemaggi elettronici di stampanti, di copiatrici e macchine simili, n.n.a. "
+"(escl. quelli di macchine per stampare con lastre, cilindri o altri organi "
+"per la stampa della voce 8442)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85049091
@@ -19783,16 +19822,21 @@ msgid ""
 "telecommunication apparatus, automatic data-processing machines and units "
 "thereof, n.e.s."
 msgstr ""
+"Assiemaggi elettronici per convertitori statici del tipo utilizzato con le "
+"apparecchiature per le telecomunicazioni, le macchine automatiche per "
+"l'elaborazione dell'informazione e le loro unità, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85229041
 msgid "Electronic assemblies of telephone answering machines, n.e.s."
 msgstr ""
+"Assiemaggi a circuiti stampati per prodotti della sottovoce 8519á50 00, n.n."
+"a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84731019
 msgid "Electronic assemblies of typewriters of heading 8469, n.e.s."
-msgstr ""
+msgstr "Assiemaggi elettronici per macchine da scrivere della voce 8469, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84731011
@@ -19800,6 +19844,8 @@ msgid ""
 "Electronic assemblies of word-processing machines of subheading 8469 00 10, "
 "n.e.s."
 msgstr ""
+"Assiemaggi elettronici per macchine per l'elaborazione di testi della voce "
+"8469, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85299065
@@ -19810,6 +19856,10 @@ msgid ""
 "apparatus, radio navigational aid apparatus or radio remote control "
 "apparatus, monitors and projectors, n.e.s."
 msgstr ""
+"Assiemaggi elettronici utilizzabili esclusivamente per apparecchi di "
+"trasmissione e/o ricezione televisiva e radiofonica, telecamere, macchine "
+"fotografiche digitali, registratori video camera, apparati radar, di "
+"navigazione, e apparecchi e radio a distanza, monitor e proiettori, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84702100
@@ -19817,6 +19867,8 @@ msgid ""
 "Electronic calculating machines incorporating a printing device, with mains "
 "connection (excl. data-processing machines of heading 8471)"
 msgstr ""
+"Calcolatrici elettroniche, diverse da quelle della voce 8470 10 00, con "
+"dispositivo stampante"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84702900
@@ -19824,6 +19876,8 @@ msgid ""
 "Electronic calculating machines not incorporating a printing device, with "
 "mains connection (excl. data-processing machines of heading 8471)"
 msgstr ""
+"Calcolatrici elettroniche, diverse da quelle della voce 8470 10 00, senza "
+"dispositivo stampante"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84701000
