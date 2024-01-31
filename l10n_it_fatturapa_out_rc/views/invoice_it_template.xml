@@ -55,7 +55,7 @@
             </xpath>
             <xpath expr="//DatiRiepilogo/ImponibileImporto" position="replace">
                 <ImponibileImporto
-                t-esc="format_monetary(fpa_to_eur(get_sign(record) * tax_data['ImponibileImporto'], record), euro)"
+                t-esc="format_monetary(get_sign(record) * tax_data['ImponibileImporto'], euro)"
             />
             </xpath>
             <xpath expr="//DatiRiepilogo/Imposta" position="replace">
