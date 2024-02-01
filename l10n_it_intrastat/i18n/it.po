@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-01-31 15:36+0000\n"
+"PO-Revision-Date: 2024-02-01 09:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -20801,12 +20801,12 @@ msgstr "Dibromuro di etilene ISO 1,2dibromoetano"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29031500
 msgid "Ethylene dichloride \"ISO\" \"1,2 dichloroethane\""
-msgstr ""
+msgstr "1,2-dicloroetano (cloruro di etilene)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29053100
 msgid "Ethylene glycol \"ethanediol\""
-msgstr ""
+msgstr "Glicole etilenico (etandiolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_27111400
@@ -20814,28 +20814,30 @@ msgid ""
 "Ethylene, propylene, butylene and butadiene, liquefied (excl. ethylene of a "
 "purity of >= 95% and propylene, butylene and butadiene of a purity of >= 90%)"
 msgstr ""
+"Etilene, propilene, butilene e butadiene, liquefatti (escl. etilene di "
+"purezza => 95% e propilene, butilene e butadiene di purezza => 90%)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40027000
 msgid ""
 "Ethylene-propylene diene rubber \"EPDM\", non-conjugated, in primary forms "
 "or in plates, sheets or strip"
-msgstr ""
+msgstr "Gomma etilene-propilene-diene non coniugato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39013000
 msgid "Ethylene-vinyl acetate copolymers, in primary forms"
-msgstr ""
+msgstr "Copolimeri di etilene e di acetato di vinile, in forme primarie"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29212100
 msgid "Ethylenediamine and its salts"
-msgstr ""
+msgstr "Etilendiammina e suoi sali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29124200
 msgid "Ethylvanillin \"3-ethoxy-4-hydroxybenzaldehyde\""
-msgstr ""
+msgstr "Etilvanillina (aldeide etilprotocatechica)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44039930
@@ -20845,6 +20847,8 @@ msgid ""
 "shafts and the like; wood cut into boards or beams, etc.; wood treated with "
 "paint, stains, creosote or other preservatives)"
 msgstr ""
+"Legno grezzo, diverso da quello trattato con tinte, creosoto o altri agenti "
+"di conservazione, di eucalipto"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03079920
@@ -20852,16 +20856,17 @@ msgid ""
 "European flying squid \"Todarodes sagittatus\", dried, salted or in brine "
 "(excl. smoked)"
 msgstr ""
+"Totani (Todarodes sagittatus) secchi, salati o in salamoia (escl. affumicati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03079914
 msgid "European flying squid \"Todarodes sagittatus\", frozen (excl. smoked)"
-msgstr ""
+msgstr "Totani (Todarodes sagittatus) congelati (escl. affumicati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84796000
 msgid "Evaporative air coolers, n.e.s."
-msgstr ""
+msgstr "Apparecchi a evaporazione per il raffreddamento dell'aria"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84189910
@@ -20869,6 +20874,8 @@ msgid ""
 "Evaporators and condensers for refrigerating equipment (excl. for household "
 "refrigerators)"
 msgstr ""
+"Evaporatori e condensatori, per la produzione del freddo (escl. apparecchi "
+"di tipo domestico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.562111
@@ -20913,6 +20920,9 @@ msgid ""
 "containers with outer surface of leather, composition leather or patent "
 "leather"
 msgstr ""
+"Valigette portadocumenti, borse portacarte, cartelle e contenitori simili, "
+"con superficie esterna di cuoio o di pelli naturali, ricostituiti o "
+"verniciati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_42021211
@@ -20920,6 +20930,8 @@ msgid ""
 "Executive-cases, briefcases, school satchels and similar containers, with "
 "outer surface of plastic sheeting"
 msgstr ""
+"Valigette portadocumenti, borse portacarte, cartelle e contenitori simili, "
+"con superficie esterna in fogli di materie plastiche o di materie tessili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_42021291
@@ -20929,16 +20941,19 @@ msgid ""
 "(excl. those with an outer surface of plastic sheeting or moulded plastic "
 "material)"
 msgstr ""
+"Valigette portadocumenti, borse portacarte, cartelle e contenitori simili, "
+"con superficie esterna diversa da quella in fogli di materie plastiche o di "
+"materie plastiche stampate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48202000
 msgid "Exercise books of paper or paperboard"
-msgstr ""
+msgstr "Quaderni"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_95069110
 msgid "Exercising apparatus with adjustable resistance mechanisms"
-msgstr ""
+msgstr "Apparecchi per esercizi a sistema che permette di scegliere lo sforzo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68062090
@@ -20946,31 +20961,33 @@ msgid ""
 "Exfoliated vermiculite, foamed slag and similar expanded mineral materials, "
 "incl. intermixtures thereof (excl. expanded clays)"
 msgstr ""
+"Vermiculite espansa, schiuma di scorie e simili prodotti minerali espansi, "
+"anche miscelati fra loro (escl. l'argilla espansa)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68062010
 msgid "Expanded clays"
-msgstr ""
+msgstr "Argille espanse"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73145000
 msgid "Expanded metal, of iron or steel"
-msgstr ""
+msgstr "Lamiere e lastre, incise o striate, di ferro o acciaio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39031100
 msgid "Expansible polystyrene, in primary forms"
-msgstr ""
+msgstr "Polistirene, in forme primarie, espansibile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90278005
 msgid "Exposure meters"
-msgstr ""
+msgstr "Indicatori dei tempi di posa"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33019021
 msgid "Extracted oleoresins of liquorice and hops"
-msgstr ""
+msgstr "Oleoresine d'estrazione, di liquirizia e di luppolo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33019030
@@ -20978,6 +20995,8 @@ msgid ""
 "Extracted oleoresins of quassia wood, aloe, manna and other plants (excl. "
 "vanilla, liquorice and hops)"
 msgstr ""
+"Oleoresine d'estrazione, di \"quassia amara\", aloe, manna e altre piante ("
+"escl. di vaniglia, di liquirizia e di luppolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_16030010
@@ -20985,6 +21004,8 @@ msgid ""
 "Extracts and juices of meat, fish, crustaceans, molluscs and other aquatic "
 "invertebrates, in immediate packings of <= 1 kg"
 msgstr ""
+"Estratti e sughi di carne, pesce o crostacei in imballaggi di contenuto "
+"netto fino a 1 kg"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_16030080
@@ -20992,6 +21013,8 @@ msgid ""
 "Extracts and juices of meat, fish, crustaceans, molluscs and other aquatic "
 "invertebrates, in immediate packings of > 1 kg or put up otherwise"
 msgstr ""
+"Estratti e sughi di carne, di pesci, di crostacei, di molluschi o di altri "
+"invertebrati acquatici, in imballaggi immediati di contenuto netto > 1 kg"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30012090
@@ -20999,6 +21022,8 @@ msgid ""
 "Extracts of glands or other organs or of their secretions, of animals, for "
 "organo-therapeutic uses"
 msgstr ""
+"Estratti di ghiandole o di altri organi o delle loro secrezioni, di origine "
+"animale, per usi opoterapici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30012010
@@ -21006,11 +21031,13 @@ msgid ""
 "Extracts of glands or other organs or of their secretions, of human origin, "
 "for organo-therapeutic uses"
 msgstr ""
+"Estratti di ghiandole o di altri organi o delle loro secrezioni, di origine "
+"umana, per usi opoterapici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_13021300
 msgid "Extracts of hops"
-msgstr ""
+msgstr "Succhi ed estratti di luppolo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_13021200
@@ -21018,16 +21045,19 @@ msgid ""
 "Extracts of liquorice (excl. that with a sucrose content by weight of > 10% "
 "or in the form of confectionery)"
 msgstr ""
+"Succhi ed estratti di liquirizia (escl. estratti di liquirizia aventi "
+"tenore, in peso, di saccarosio > 10% o che presentano il carattere dei "
+"prodotti a base di zuccheri)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21011100
 msgid "Extracts, essences and concentrates, of coffee"
-msgstr ""
+msgstr "Estratti, essenze e concentrati di caffè"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21013091
 msgid "Extracts, essences and concentrates, of roasted chicory"
-msgstr ""
+msgstr "Estratti, essenze e concentrati di cicoria torrefatta"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21013099
@@ -21035,28 +21065,30 @@ msgid ""
 "Extracts, essences and concentrates, of roasted coffee substitutes (excl. "
 "chicory)"
 msgstr ""
+"Estratti, essenze e concentrati di succedanei torrefatti del caffè (escl. "
+"cicoria)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21012020
 msgid "Extracts, essences and concentrates, of tea or maté"
-msgstr ""
+msgstr "Estratti, essenze e concentrati di tè o di mate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_19059055
 msgid ""
 "Extruded or expanded products, savoury or salted (excl. crispbread, rusks, "
 "toasted bread, similar toasted products and waffles and wafers)"
-msgstr ""
+msgstr "Prodotti estrusi o espansi, salati o aromatizzati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84772000
 msgid "Extruders for working rubber or plastics"
-msgstr ""
+msgstr "Estrusori per la lavorazione della gomma o delle materie plastiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33042000
 msgid "Eye make-up preparations"
-msgstr ""
+msgstr "Prodotti per il trucco degli occhi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68129910
@@ -21064,6 +21096,8 @@ msgid ""
 "Fabricated asbestos fibres; mixtures with a basis of asbestos or with a "
 "basis of asbestos and magnesium carbonate (excl. of crocidolite asbestos)"
 msgstr ""
+"Amianto lavorato, in fibre; miscele a base di amianto o a base di amianto e "
+"carbonato di magnesio (escl.di crocidolite amianto)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68128010
@@ -21071,6 +21105,8 @@ msgid ""
 "Fabricated crocidolite asbestos fibres; mixtures with a basis of crocidolite "
 "asbestos or with a basis of crocidolite asbestos and magnesium carbonate"
 msgstr ""
+"Crocidolite amianto lavorato in fibre; miscele a base di amianto o a base di "
+"amianto e carbonato di magnesio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50079050
@@ -21078,6 +21114,8 @@ msgid ""
 "Fabrics woven from yarns of different colours, containing predominantly, but "
 "< 85% silk or silk waste by weight"
 msgstr ""
+"Tessuti prevalentemente di seta o di cascami di seta, ma contenenti, in "
+"peso, < 85% di seta, a colori"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60069000
@@ -21089,6 +21127,13 @@ msgid ""
 "looped pile fabrics, labels, badges and similar articles, and knitted or "
 "crocheted fabrics, impregnated, coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm (escl. di fibre sintetiche e "
+"artificiali, di cotone, di lana o peli fini, stoffe a maglia di catena, "
+"incl. quelle ottenute su telai per galloni, stoffe a maglia contenenti, in "
+"peso, => 5% di filati di elastomeri o di fili di gomma nonchè velluti, "
+"felpe, incl. le stoffe dette a peli lunghi, stoffe a ricci, etichette, "
+"scudetti e manufatti simili, nonchè stoffe a maglia impregnate, spalmate, "
+"ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60061000
@@ -21100,6 +21145,12 @@ msgid ""
 "and similar articles, and knitted or crocheted fabrics, impregnated, coated, "
 "covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm, di lana o di peli fini (escl. stoffe "
+"a maglia di catena, incl. quelle ottenute su telai per galloni, stoffe a "
+"maglia contenenti, in peso, => 5% di filati di elastomeri o di fili di gomma "
+"nonchè velluti, felpe, incl. le stoffe dette a peli lunghi, stoffe a ricci, "
+"etichette, scudetti e manufatti simili, nonchè stoffe a maglia impregnate, "
+"spalmate, ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60064300
@@ -21111,6 +21162,12 @@ msgid ""
 "looped pile fabrics, labels, badges and similar articles, and knitted or "
 "crocheted fabrics, impregnated, coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm, di fibre artificiali, di filati di "
+"diversi colori (escl. stoffe a maglia di catena, incl. quelle ottenute su "
+"telai per galloni, stoffe a maglia contenenti, in peso, => 5% di filati di "
+"elastomeri o di fili di gomma nonchè velluti, felpe, incl. le stoffe dette a "
+"peli lunghi, stoffe a ricci, etichette, scudetti e manufatti simili, nonchè "
+"stoffe a maglia impregnate, spalmate, ricoperte o stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60063390
@@ -21122,6 +21179,13 @@ msgid ""
 "\"long pile\", looped pile fabrics, labels, badges and similar articles, and "
 "knitted or crocheted fabrics, impregnated, coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm, di fibre sintetiche, di filati di "
+"diversi colori (escl. per tende o tendine, stoffe a maglia di catena, incl. "
+"quelle ottenute su telai per galloni, stoffe a maglia contenenti, in peso, "
+"=> 5% di filati di elastomeri o di fili di gomma nonché velluti, felpe, "
+"incl. le stoffe dette a peli lunghi, stoffe a ricci, etichette, scudetti e "
+"manufatti simili, nonché stoffe a maglia impregnate, spalmate, ricoperte o "
+"stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_60063310
@@ -21133,6 +21197,13 @@ msgid ""
 "fabrics, incl. \"long pile\", looped pile fabrics, and knitted or crocheted "
 "fabrics, impregnated, coated, covered or laminated)"
 msgstr ""
+"Stoffe a maglia, di larghezza > 30 cm, di fibre sintetiche, di filati di "
+"diversi colori, per tende e tendine (escl. stoffe a maglia di catena, incl. "
+"quelle ottenute su telai per galloni, stoffe a maglia contenenti, in peso, "
+"=> 5% di filati di elastomeri o di fili di gomma nonché velluti, felpe, "
+"incl. le stoffe dette a peli lunghi, stoffe a ricci, etichette, scudetti e "
+"manufatti simili, nonché stoffe a maglia impregnate, spalmate, ricoperte o "
+"stratificate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84433230
@@ -21140,6 +21211,8 @@ msgid ""
 "Facsimile machines capable of connecting to an automatic data processing "
 "machine or to a network"
 msgstr ""
+"Telecopiatrici (telefax) in grado di connettersi ad una macchina automatica "
+"di elaborazione dati o a una rete"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_92089000
@@ -21149,6 +21222,9 @@ msgid ""
 "heading in chapter 92; decoy calls of all kinds; whistles, call horns and "
 "other mouth-blown sound signalling instruments"
 msgstr ""
+"Orchestrion, organi di barberia, uccelli cantanti, seghe musicali ed altri "
+"strumenti non nominati nelle precedenti voci del cap. 92; richiami di ogni "
+"genere; fischietti, corni ed altri strumenti simili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_67041900
@@ -21156,6 +21232,8 @@ msgid ""
 "False beards, eyebrows and eyelashes, switches and the like, of synthetic "
 "textile materials (excl. complete wigs)"
 msgstr ""
+"Barbe, sopracciglia, ciglia, ciocche ed oggetti simili, di materie tessili "
+"sintetiche (escl. le parrucche complete)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84145980
@@ -21163,6 +21241,8 @@ msgid ""
 "Fans (excl. table, floor, wall, window, ceiling or roof fans, with a self-"
 "contained electric motor of an output <= 125 W, axial and centrifugal fans)"
 msgstr ""
+"Ventilatori, diversi da quelli delle precedenti voci 8414 51 00, esclusi "
+"quelli assiali e quelli centrifughi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84324090
@@ -21170,6 +21250,9 @@ msgid ""
 "Farmyard manure or compost spreaders for use in agriculture, horticulture "
 "and forestry (excl. sprayers)"
 msgstr ""
+"Spanditori di letame o di miscele organiche fertilizzanti per l'agricoltura, "
+"l'orticoltura e la silvicoltura (escl. apparecchi spruzzatori, nebulizzatori "
+"e polverizzatori)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04059090
@@ -21178,6 +21261,10 @@ msgid ""
 "content, by weight, of >= 99,3% and a water content, by weight, of <= 0,5%, "
 "and natural butter, recombined butter and whey butter)"
 msgstr ""
+"Materie grasse provenienti dal latte nonchè burro disidratato e ghee (escl. "
+"aventi tenore, in peso, di materie grasse => 99,3% ed aventi tenore, in "
+"peso, di acqua <= 0,5% nonchè burro naturale, burro ricombinato e burro di "
+"siero di latte)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04059010
@@ -21185,6 +21272,8 @@ msgid ""
 "Fats and oils derived from milk, of a fat content, by weight, of >= 99,3% "
 "and of a water content, by weight, of <= 0,5%"
 msgstr ""
+"Materie grasse provenienti dal latte, aventi tenore, in peso, di materie "
+"grasse <= 99,3% ed aventi tenore, in peso, di acqua <= 0,5%"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15029090
@@ -21192,6 +21281,8 @@ msgid ""
 "Fats of bovine animals, sheep or goats (excl. for technical/industrial uses, "
 "and tallow, oleostearin and oleo-oil)"
 msgstr ""
+"Grassi di animali della specie bovina, ovina o caprina (escl. per usi "
+"tecnici industriali, sego, oleostearina e oleomargarina)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15029010
@@ -21199,16 +21290,19 @@ msgid ""
 "Fats of bovine animals, sheep or goats, for industrial uses (excl. for "
 "manufacture of foodstuffs, and tallow, oleostearin and oleo-oil)"
 msgstr ""
+"Altri grassi di animali della specie bovina, ovina o caprina, per usi "
+"industriali diversi dalla fabbricazione di prodotti alimentari destinati al "
+"consumo umano"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38231930
 msgid "Fatty acid distillate"
-msgstr ""
+msgstr "Distillato di acidi grassi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38231910
 msgid "Fatty acids, distilled"
-msgstr ""
+msgstr "Acidi grassi distillati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38231990
@@ -21217,11 +21311,14 @@ msgid ""
 "stearic acid, oleic acid and tall oil fatty acids, distilled fatty acids and "
 "fatty acid distillate)"
 msgstr ""
+"Acidi grassi industriali monocarbossilici; oli acidi di raffinazione (escl. "
+"l'acido stearico, l'acido oleico, gli acidi grassi del tallolio nonchè gli "
+"acidi grassi distillati e il distillato di acidigrassi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38237000
 msgid "Fatty alcohols, industrial"
-msgstr ""
+msgstr "Alcoli grassi industriali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02074300
@@ -21614,24 +21711,27 @@ msgid ""
 "Filament lamps of a power <= 200 W and for a voltage > 100 V (excl. tungsten "
 "halogen lamps, reflector lamps and ultraviolet or infra-red lamps)"
 msgstr ""
+"Lampade e tubi di potenza <= 200 W e di tensione > 100 V (escl. lampade "
+"alogene al tungsteno, lampade e tubi a riflettore, lampade e tubi a raggi "
+"ultravioletti o infrarossi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_55013000
 msgid ""
 "Filament tow as specified in Note 1 to chapter 55, acrylic or modacrylic"
-msgstr ""
+msgstr "Fasci di filamenti acrilici o modacrilici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_55011000
 msgid ""
 "Filament tow as specified in Note 1 to chapter 55, of nylon or other "
 "polyamides"
-msgstr ""
+msgstr "Fasci di filamenti di nylon o di altri poliammidi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_55012000
 msgid "Filament tow as specified in Note 1 to chapter 55, of polyesters"
-msgstr ""
+msgstr "Fasci di filamenti di poliesteri"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_54033300
@@ -21640,6 +21740,9 @@ msgid ""
 "single (excl. sewing thread, high-tenacity yarn and yarn put up for retail "
 "sale)"
 msgstr ""
+"Filati di acetato cellulosa , incl. i monofilamenti di <67 decitex, semplici "
+"(escl. filati per cucire, filati condizionati per la vendita al minuto e "
+"filati ad alta tenacità)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_54024500
@@ -21649,6 +21752,10 @@ msgid ""
 "sewing thread, yarn put up for retail sale, elastomeric yarn, high-tenacity "
 "yarn and textured yarn)"
 msgstr ""
+"Filati di nylon o di altre poliammidi, incl. i monofilamenti < 67 decitex, "
+"semplici (non torti) o con torsione <= 50 giri per metro (escl. filati per "
+"cucire, filati condizionati per la vendita al minuto, di elastomeri, nonchè "
+"filati ad alta tenacità e testurizzati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_54025100
@@ -21657,6 +21764,10 @@ msgid ""
 "decitex, single, with a twist of > 50 turns per metre (excl. sewing thread, "
 "yarn put up for retail sale, high-tenacity yarn or textured yarn)"
 msgstr ""
+"Filati di nylon o di altre poliammidi, incl. i monofilamenti < 67 decitex, "
+"semplici, con torsione > 50 giri per metro (escl. filati per cucire, filati "
+"condizionati per la vendita al minuto, nonchè filati ad alta tenacità o "
+"filati testurizzati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_54024700
@@ -21666,6 +21777,10 @@ msgid ""
 "sewing thread, yarn put up for retail sale, textured yarn and yarn of "
 "partially oriented polyester filament)"
 msgstr ""
+"Filati di poliesteri, incl. i monofilamenti < 67 decitex, semplici (non "
+"torti) o con torsione <= 50 giri per metro (escl. filati per cucire, filati "
+"condizionati per la vendita al minuto, di elastomeri, testurizzati e filati "
+"di poliesteri parzialmente orientati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_54024600
@@ -21675,6 +21790,10 @@ msgid ""
 "(excl. elastomeric yarn, sewing thread, yarn put up for retail sale and "
 "textured yarn)"
 msgstr ""
+"Filati di poliesteri, incl. i monofilamenti < 67 decitex, semplici (non "
+"torti) o con torsione <= 50 giri per metro, parzialmente orientati, (escl. "
+"filati per cucire, filati condizionati per la vendita al minuto, di "
+"elastomeri, e testurizzati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_54025200
