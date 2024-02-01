@@ -319,7 +319,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-out="partner_id.fiscalcode"
                 />
                     <Anagrafica>
-                        <Denominazione t-out="partner_id.display_name" />
+                        <Denominazione
+                        t-if="partner_id.is_company"
+                        t-out="partner_id.display_name"
+                    />
                         <Nome
                         t-if="not partner_id.is_company"
                         t-out="partner_id.firstname"
