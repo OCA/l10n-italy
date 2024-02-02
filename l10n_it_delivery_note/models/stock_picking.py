@@ -41,7 +41,9 @@ class StockPicking(models.Model):
     )
 
     delivery_note_type_id = fields.Many2one(
-        "stock.delivery.note.type", related="delivery_note_id.type_id"
+        "stock.delivery.note.type",
+        related="delivery_note_id.type_id",
+        check_company=True,
     )
     delivery_note_type_code = fields.Selection(related="delivery_note_type_id.code")
     delivery_note_date = fields.Date(string="DN Date", related="delivery_note_id.date")
@@ -337,6 +339,7 @@ class StockPicking(models.Model):
         )
         return self.env["stock.delivery.note"].create(
             {
+                "company_id": self.company_id.id,
                 "partner_sender_id": partners[0].id,
                 "partner_id": self.sale_id.partner_id.id
                 if self.sale_id

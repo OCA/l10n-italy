@@ -15,6 +15,9 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
 
         return self.env["stock.picking"].browse(active_ids)
 
+    def _domain_type_id(self):
+        return [("company_id", "in", [False, self.env.company.id])]
+
     selected_picking_ids = fields.Many2many(
         "stock.picking", default=_default_stock_pickings, readonly=True
     )
@@ -28,7 +31,11 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
     partner_shipping_id = fields.Many2one("res.partner", string="Shipping address")
 
     date = fields.Date()
-    type_id = fields.Many2one("stock.delivery.note.type", string="Type")
+    type_id = fields.Many2one(
+        "stock.delivery.note.type",
+        string="Type",
+        domain=_domain_type_id,
+    )
 
     error_message = fields.Html(compute="_compute_fields")
 
