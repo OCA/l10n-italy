@@ -300,8 +300,28 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 }
             )
         )
+
         credit_wizard.create_move()
         self.assertEqual(riba_list.state, "credited")
+
+        # credit wizard with skip
+        credit_wizard = (
+            self.env["riba.credit"]
+            .with_context(
+                active_model="riba.slip",
+                active_ids=[riba_list_id],
+                active_id=riba_list_id,
+            )
+            .create(
+                {
+                    "bank_amount": 95,
+                    "expense_amount": 5,
+                }
+            )
+        )
+        credit_wizard.skip()
+        self.assertEqual(riba_list.state, "credited")
+        self.assertEqual(riba_list.line_ids[0].state, "credited")
 
         # past due wizard
         past_due_wizard = (
