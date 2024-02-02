@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <field name="purchase_vendor_bill_id" position="after">
+                <label
+                    for="delivery_note_id"
+                    string="Auto-Complete from DN"
+                    class="oe_edit_only"
+                    attrs="{'invisible': [
+                        '|',
+                            ('state','!=','draft'),
+                            ('move_type', '!=', 'in_invoice'),
+                        ]}"
+                />
+                <field
+                    name="delivery_note_id"
+                    nolabel="1"
+                    attrs="{'invisible': [
+                        '|',
+                            ('state','!=','draft'),
+                            ('move_type', '!=', 'in_invoice'),
+                        ]}"
+                    class="oe_edit_only"
+                    domain="partner_id and
+                            [
+                                ('company_id', '=', company_id),
+                                ('partner_sender_id.commercial_partner_id', '=', commercial_partner_id),
+                                ('type_code', '=', 'incoming'),
+                                ('state', 'not in', ['draft', 'cancel']),
+                            ]
+                            or [
+                                ('company_id', '=', company_id),
+                                ('type_code', '=', 'incoming'),
+                                ('state', 'not in', ['draft', 'cancel']),
+                            ]"
+                    placeholder="Select a delivery note"
+                    options="{'no_create': True, 'no_open': True}"
+                />
+            </field>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='company_id']"
+                position="after"
+            >
+                <field name="delivery_note_line_id" invisible="1" />
+                <field
+                    name="delivery_note_id"
+                    attrs="{'column_invisible': [('parent.move_type', '!=', 'in_invoice')]}"
+                    optional="hide"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='company_id']"
+                position="after"
+            >
+                <field name="delivery_note_line_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
