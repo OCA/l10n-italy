@@ -139,7 +139,10 @@ class AccountMove(models.Model):
         is_zero = self.currency_id.is_zero
         for move_line in self.line_ids:
             field_value = getattr(move_line, line_field)
-            if not is_zero(field_value):
+            if not is_zero(field_value) and move_line.account_id.account_type in (
+                "asset_receivable",
+                "liability_payable",
+            ):
                 break
         else:
             raise UserError(
