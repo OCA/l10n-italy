@@ -6,6 +6,9 @@
         <field name="model">stock.picking.batch</field>
         <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form" />
         <field name="arch" type="xml">
+            <header position="inside">
+                <field name="all_pickings_have_delivery_note" invisible="1" />
+            </header>
             <xpath expr="//button[@name='action_print']" position="before">
                 <button
                     class="oe_highlight"
@@ -13,7 +16,11 @@
                     type="object"
                     string="Create DNs"
                     style="margin-left:10px;"
-                    attrs="{'invisible': [('state', '!=', 'done')]}"
+                    attrs="{'invisible': [
+                        '|',
+                        ('state', '=', 'done'),
+                        ('all_pickings_have_delivery_note', '=', True)
+                    ]}"
                 />
                 <!-- attrs="{'invisible': ['|', ('state', '!=', 'done'), ('delivery_note_count', '!=', 0)]}" -->
             </xpath>
