@@ -143,7 +143,9 @@ class WizardGiornaleReportlab(models.TransientModel):
                 LEFT JOIN account_move am ON (am.id = aml.move_id)
                 LEFT JOIN account_account aa ON (aa.id = aml.account_id)
             WHERE
-                aml.date >= %(date_from)s
+                aa.code IS NOT NULL
+                AND aa.name IS NOT NULL
+                AND aml.date >= %(date_from)s
                 AND aml.date <= %(date_to)s
                 AND am.state in %(target_type)s
                 AND aml.journal_id in %(journal_ids)s
