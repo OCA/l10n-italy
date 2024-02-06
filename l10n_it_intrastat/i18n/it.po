@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-01 09:38+0000\n"
+"PO-Revision-Date: 2024-02-06 10:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -3444,8 +3444,7 @@ msgid ""
 "Articles of copper, cast, moulded, stamped or forged, but not further "
 "worked, n.e.s."
 msgstr ""
-"Lavori di rame, colati, gettati in forma (fusi), stampati o fucinati (ma non "
-"ulteriormente lavorati)"
+"Lavori di rame, colati, gettati in forma (fusi), stampati o fucinati, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_74199990
@@ -3473,7 +3472,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44219091
 msgid "Articles of fibreboard, n.e.s."
-msgstr "Articoli di pannelli di fibre, non nominati né compresi altrove."
+msgstr "Articoli di pannelli di fibre, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_43039000
@@ -3579,7 +3578,7 @@ msgstr "Lavori di afnio (celtio) e germanio, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73262000
 msgid "Articles of iron or steel wire, n.e.s."
-msgstr "Lavori di fili di ferro o acciaio, non nominati altrove."
+msgstr "Lavori di fili di ferro o acciaio, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73259990
@@ -3602,7 +3601,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73269094
 msgid "Articles of iron or steel, closed-die forged, n.e.s."
-msgstr "Lavori di ferro o acciaio, stampati, non nominati altrove."
+msgstr "Lavori di ferro o acciaio, stampati, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73269098
@@ -3621,7 +3620,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73269092
 msgid "Articles of iron or steel, open-die forged, n.e.s."
-msgstr "Lavori di ferro o acciaio, fucinati, non nominati altrove."
+msgstr "Lavori di ferro o acciaio, fucinati, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_71132000
@@ -3722,7 +3721,7 @@ msgstr "Lavori di nichel, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_81129930
 msgid "Articles of niobium \"columbium\" or rhenium, n.e.s."
-msgstr "Lavori di niobio e di renio."
+msgstr "Lavori di niobio e di renio, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73251000
@@ -3772,7 +3771,7 @@ msgstr ""
 "Altri lavori di materie plastiche, diversi da cestelli e altri articoli "
 "simili per filtrare l'acqua all'entrata dei tombini e da visiere/schermi "
 "facciali protettivi (non compresi nelle voci 39261000, 39262000, 39263000 e "
-"39264000)"
+"39264000), n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_71159000
@@ -3794,7 +3793,9 @@ msgstr ""
 msgid ""
 "Articles of stone or other mineral substances, n.e.s. (excl. containing "
 "magnesite, dolomite or chromite and articles of graphite or other carbon)"
-msgstr "Lavori in pietra o altre sostanze minerali, n.n.a."
+msgstr ""
+"Lavori in pietra o altre sostanze minerali, n.n.a. (escl. contenenti "
+"magnesite, dolomite o cromite e articoli di grafite o altro carbone)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68159100
@@ -3803,8 +3804,7 @@ msgid ""
 "dolomite or chromite"
 msgstr ""
 "Lavori in pietra o altre sostanze minerali, n.n.a. contenenti magnesite, "
-"magnesia sotto forma di periclasio, dolomite, anche sotto forma di calce "
-"dolomitica, o cromite"
+"magnesia, dolomite o cromite"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_81039090
@@ -3854,7 +3854,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44219097
 msgid "Articles of wood, n.e.s."
-msgstr "Articoli di legno, non nominati né compresi altrove"
+msgstr "Articoli di legno, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_56090000
@@ -4201,7 +4201,7 @@ msgstr "Lavori di montaggio e installazione di opere prefabbricate"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.293292
 msgid "Assembly services of parts and accessories for motor vehicles, n.e.c."
-msgstr "Servizi di assemblaggio di parti ed accessori n.c.a. di autoveicoli"
+msgstr "Servizi di assemblaggio di parti ed accessori di autoveicoli, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22041091
@@ -4407,7 +4407,7 @@ msgid ""
 "propelled, n.e.s."
 msgstr ""
 "Assi per rimorchi e semirimorchi per qualsiasi veicolo e per altri veicoli "
-"non automobili"
+"non automobili, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_86071910
@@ -4952,7 +4952,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_76042910
 msgid "Bars and rods of aluminium alloys"
-msgstr "Barre di leghe di alluminio, n.n.a."
+msgstr "Barre di leghe di alluminio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72281050
@@ -5586,7 +5586,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_74072110
 msgid "Bars and rods, of copper-zinc base alloys \"brass\", n.e.s."
-msgstr "Barre di ottone"
+msgstr "Barre di ottone, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72139910
@@ -6835,7 +6835,7 @@ msgid ""
 "propelled, n.e.s."
 msgstr ""
 "Carrozzerie per rimorchi e semirimorchi per qualsiasi veicolo e per altri "
-"veicoli non automobili"
+"veicoli non automobili, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.452014
