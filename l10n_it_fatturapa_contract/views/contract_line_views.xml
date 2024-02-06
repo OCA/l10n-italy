@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2024 Roberto Fichera - Level Prime Srl
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+
+    <record id="contract_line_view_form_readonly" model="ir.ui.view">
+        <field
+            name="name"
+        >Add e-invoice fields in contract.line readonly form view</field>
+        <field name="model">contract.line</field>
+        <field name="inherit_id" ref="contract.contract_line_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='recurrence_info']" position="after">
+                <group name="e_invoice" string="Electronic Invoice">
+                    <field name="admin_ref" readonly="1" />
+                    <field name="related_documents" readonly="1" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
