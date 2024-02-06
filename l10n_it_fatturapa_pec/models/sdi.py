@@ -85,7 +85,9 @@ class SdiChannel(models.Model):
                 )
 
     def check_first_pec_sending(self):
-        sdi_address = self.env["ir.config_parameter"].get_param("sdi.pec.first.address")
+        sdi_address = (
+            self.env["ir.config_parameter"].sudo().get_param("sdi.pec.first.address")
+        )
         if not self.first_invoice_sent:
             if self.email_exchange_system != sdi_address:
                 raise exceptions.UserError(
