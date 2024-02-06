@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-06 10:36+0000\n"
+"PO-Revision-Date: 2024-02-06 16:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -7762,8 +7762,8 @@ msgid ""
 "Building blocks and bricks, of light concrete with a basis of crushed "
 "pumice, granulated slag, etc."
 msgstr ""
-"Blocchi e mattoni da costruzione, di cemento leggero (a base di pietra "
-"pomice, scorie granulate, ecc.)"
+"Blocchi e mattoni da costruzione, di cemento leggero a base di pietra "
+"pomice, scorie granulate, ecc."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_69041000
@@ -7855,7 +7855,7 @@ msgstr ""
 "della voce 8704, azionati da motore a pistone con accensione per "
 "compressione (diesel o semi-diesel), di cilindrata <= 2 500 cm3 o con "
 "accensione a scintilla, di cilindrata <= 2 800 cm3, degli autoveicoli per "
-"usi speciali della voce 8705"
+"usi speciali della voce 8705, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85311095
@@ -8793,9 +8793,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28030000
 msgid "Carbon \"carbon blacks and other forms of carbon\", n.e.s."
-msgstr ""
-"Carbonio (neri di carbonio ed altre forme di carbonio non nominate né "
-"comprese altrove)"
+msgstr "Carbonio (neri di carbonio ed altre forme di carbonio), n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85452000
@@ -10590,7 +10588,7 @@ msgid ""
 "propelled, n.e.s."
 msgstr ""
 "Telai per rimorchi e semirimorchi per qualsiasi veicolo e per altri veicoli "
-"non automobili"
+"non automobili, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87060091
@@ -10707,7 +10705,7 @@ msgstr ""
 msgid "Cheese of a fat content by weight of > 40%, n.e.s."
 msgstr ""
 "Formaggi, diversi dai freschi o fermentati, con grassi, in peso, > 40%, ed "
-"acqua, in peso, della materia non grassa, > 72%"
+"acqua, in peso, della materia non grassa, > 72%, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069086
@@ -10716,7 +10714,7 @@ msgid ""
 "of non-fatty matter of > 47% but <= 52%, n.e.s."
 msgstr ""
 "Formaggi con grassi, in peso, fino a 40% ed acqua della materia non grassa, "
-"in peso > 47% e fino a 52%, non specificati altrove"
+"in peso > 47% e fino a 52%, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069087
@@ -10725,7 +10723,8 @@ msgid ""
 "of non-fatty matter of > 52% but <= 62%, n.e.s."
 msgstr ""
 "Formaggi con grassi, in peso, fino a 40% ed acqua della materia non grassa, "
-"in peso > 52% e fino a 62%, esclusi quelli delle voci 0406 90 da 730 a 850"
+"in peso > 52% e fino a 62%, esclusi quelli delle voci 0406 90 da 730 a 850, n"
+".n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069088
@@ -10734,7 +10733,8 @@ msgid ""
 "of non-fatty matter of > 62% but <= 72%, n.e.s."
 msgstr ""
 "Formaggi con grassi, in peso, fino a 40% ed acqua della materia non grassa, "
-"in peso > 62% e fino a 72%, esclusi quelli delle voci 0406 90 da 73 a 85"
+"in peso > 62% e fino a 72%, esclusi quelli delle voci 0406 90 da 73 a 85, n.n"
+".a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_04069093
@@ -10743,7 +10743,7 @@ msgid ""
 "of non-fatty matter of > 72%, n.e.s."
 msgstr ""
 "Formaggi, diversi dai freschi o fermentati, con grassi, in peso, fino a 40%, "
-"ed acqua, in peso, della materia non grassa, > 72%"
+"ed acqua, in peso, della materia non grassa, > 72%, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30066000
@@ -11952,7 +11952,7 @@ msgstr ""
 "degli autoveicoli per il trasporto di merci, azionati da motore a pistone "
 "con accensione per compressione (diesel o semi-diesel), di cilindrata <= 2 "
 "500 cm³ o con accensione a scintilla, di cilindrata <= 2 800 cm³, degli "
-"autoveicoli per usi speciali della voce 8705"
+"autoveicoli per usi speciali della voce 8705, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87089390
@@ -13538,7 +13538,7 @@ msgid ""
 "calculated on the dry matter"
 msgstr ""
 "Concentrati di proteine del latte aventi tenore di proteine, calcolato in "
-"peso sulla sostanza secca, > 85 %."
+"peso sulla sostanza secca, > 85 %"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33019090
@@ -13640,7 +13640,7 @@ msgid ""
 msgstr ""
 "Conduttori elettrici, diversi da quelli delle precedenti voci 8544, per "
 "tensioni fino a 80 V, non muniti di pezzi di congiunzione, dei tipi "
-"utilizzati per telecomunicazioni"
+"utilizzati per telecomunicazioni, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44012100
@@ -16482,7 +16482,7 @@ msgid ""
 "reclining and elevating movement, and parts thereof, n.e.s."
 msgstr ""
 "Poltrone per dentisti; poltrone da parrucchiere e poltrone simili, con "
-"dispositivo di orientamento o di elevazione e loro parti"
+"dispositivo di orientamento o di elevazione e loro parti, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33079000
@@ -16720,7 +16720,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84818087
 msgid "Diaphragm valves for pipes, boiler shells, tanks, vats or the like"
-msgstr "Valvole a membrana per tubi o condutture flessibili, ecc."
+msgstr "Valvole a membrana per tubi o condutture flessibili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48201050
@@ -17645,7 +17645,11 @@ msgid ""
 "guavas, mangoes, mangosteens, papaws \"papayas\", tamarinds, cashew apples, "
 "lychees, jackfruit, sapodillo plums, passion fruit, carambola, pitahaya, "
 "citrus fruit, grapes, apricots, plums, apples, pears and peaches, unmixed)"
-msgstr "Frutta commestibile, secca, n.n.a."
+msgstr ""
+"Frutta secca, commestibile (escl. noci, banane, datteri, fichi, ananassi, "
+"avocadi, guaiave, manghi, mangostani, papaia, tamarindi, anacardi, litchi, "
+"jackfruit, sapotiglie, frutti della passione, carambole, pitahaya, agrumi, "
+"uva, albicocche, prugne, mele, pere e pesche, non mescolate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30019098
@@ -17656,7 +17660,7 @@ msgid ""
 msgstr ""
 "Ghiandole ed altri organi per usi opoterapici, anche polverizzati , e altre "
 "sostanze di origine animale preparate per scopi terapeutici o profilattici , "
-"n.n.a."
+"n.n.a. (escl. eparina e suoi sali)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_30019020
@@ -18886,7 +18890,7 @@ msgid ""
 "conductors, n.e.s."
 msgstr ""
 "Conduttori elettrici, diversi da quelli delle precedenti voci 8544, per "
-"tensioni > 1 000 V, con conduttori non di rame"
+"tensioni > 1 000 V, con conduttori non di rame, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85446010
