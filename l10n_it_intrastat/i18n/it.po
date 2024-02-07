@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-07 14:37+0000\n"
+"PO-Revision-Date: 2024-02-07 19:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -19031,8 +19031,8 @@ msgstr "Scaldacqua istantanei, elettrici"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054099
 msgid "Electric lamps and lighting fittings, n.e.s. (excl. of plastics)"
 msgstr ""
-"Apparecchi elettrici per l'illuminazione, di materie diverse dalle materie "
-"plastiche, n.n.a."
+"Apparecchi elettrici per l'illuminazione, n.n.a. (di materie diverse dalle "
+"materie plastiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054039
@@ -25666,7 +25666,7 @@ msgstr "Semi da bosco, destinati alla semina"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84368010
 msgid "Forestry machinery, n.e.s."
-msgstr "Macchine ed apparecchi per la silvicoltura"
+msgstr "Macchine ed apparecchi per la silvicoltura, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84621090
