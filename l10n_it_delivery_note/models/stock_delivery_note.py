@@ -551,6 +551,20 @@ class StockDeliveryNote(models.Model):
 
     def action_confirm(self):
         for note in self:
+            if (
+                note.type_code == "incoming"
+                and not note.partner_ref
+                and self.env.user.has_group(
+                    "l10n_it_delivery_note.group_required_partner_ref"
+                )
+            ):
+                raise UserError(
+                    _(
+                        "The field 'Partner reference' is "
+                        "mandatory to validate the Delivery Note."
+                    )
+                )
+
             warning_message = False
             carrier_ids = note.mapped("picking_ids.carrier_id")
             carrier_partner_ids = carrier_ids.mapped("partner_id")
