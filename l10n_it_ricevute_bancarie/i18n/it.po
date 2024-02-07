@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 21:25+0000\n"
-"PO-Revision-Date: 2024-01-22 10:41+0000\n"
+"PO-Revision-Date: 2024-02-07 10:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -182,7 +182,7 @@ msgstr "Conto spese bancarie"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_bank_statement_line
 msgid "Bank Statement Line"
-msgstr "Riga estratto conto bancario"
+msgstr "Riga estratto conto"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_configuration__bank_id
