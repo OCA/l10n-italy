@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-07 10:34+0000\n"
+"PO-Revision-Date: 2024-02-07 19:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -19007,8 +19007,8 @@ msgstr "Scaldacqua istantanei, elettrici"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054099
 msgid "Electric lamps and lighting fittings, n.e.s. (excl. of plastics)"
 msgstr ""
-"Apparecchi elettrici per l'illuminazione, di materie diverse dalle materie "
-"plastiche, n.n.a."
+"Apparecchi elettrici per l'illuminazione, n.n.a. (di materie diverse dalle "
+"materie plastiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054039
@@ -22951,6 +22951,10 @@ msgid ""
 "> 10 mm (excl. products of tool steel, high-speed steel or silicon-"
 "electrical steel)"
 msgstr ""
+"Prodotti piatti di acciai legati diversi dagli acciai inossidabili, di "
+"larghezza => 600 mm, solo laminati a caldo (non in rotoli (coils)), di "
+"spessore > 10 mm (escl. quelli di acciai per utensili, diacciai rapidi e di "
+"acciai al silicio detti \"magnetici\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72254060
@@ -22960,6 +22964,10 @@ msgid ""
 ">= 4,75 mm but <= 10 mm (excl. products of tool steel, high-speed steel or "
 "silicon-electrical steel)"
 msgstr ""
+"Prodotti piatti di acciai legati diversi dagli acciai inossidabili, di "
+"larghezza => 600 mm, solo laminati a caldo (non in rotoli (coils)), di "
+"spessore => 4,75 mm, ma <= 10 mm (escl. quelli di acciai per utensili, di "
+"acciai rapidi e di acciai al silicio detti \"magnetici\")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72262000
@@ -24035,6 +24043,9 @@ msgid ""
 "further worked than cold-rolled \"cold-reduced\", of a thickness of >= 3 mm "
 "but <= 4,75 mm, containing by weight >= 2,5% nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a freddo, di spessore => 3 mm, ma < 4,75 mm, contenenti, in peso, "
+"=> 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72193100
@@ -24043,6 +24054,8 @@ msgid ""
 "further worked than cold-rolled \"cold-reduced\", of a thickness of >= 4,75 "
 "mm"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a freddo, di spessore => 4,75 mm (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72191490
@@ -24051,6 +24064,9 @@ msgid ""
 "further worked than hot-rolled, in coils, of a thickness of < 3 mm, "
 "containing by weight < 2,5 nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo, in rotoli (coils), di spessore < 3 mm, contenenti, in "
+"peso, < 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72191410
@@ -24059,6 +24075,9 @@ msgid ""
 "further worked than hot-rolled, in coils, of a thickness of < 3 mm, "
 "containing by weight >= 2,5 nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo, in rotoli (coils), di spessore < 3 mm, contenenti, in "
+"peso, => 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72191100
@@ -24066,6 +24085,8 @@ msgid ""
 "Flat-rolled products of stainless steel, of a width of >= 600 mm, not "
 "further worked than hot-rolled, in coils, of a thickness of > 10 mm"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo, in rotoli (coils), di spessore > 10 mm (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72191390
@@ -24074,6 +24095,9 @@ msgid ""
 "further worked than hot-rolled, in coils, of a thickness of >= 3 mm but <= "
 "4,75 mm, containing by weight < 2,5 nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo, in rotoli (coils), di spessore => 3 mm, ma < 4,75 mm, "
+"contenenti, in peso, < 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72191310
@@ -24082,6 +24106,9 @@ msgid ""
 "further worked than hot-rolled, in coils, of a thickness of >= 3 mm but <= "
 "4,75 mm, containing by weight >= 2,5 nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo, in rotoli (coils), di spessore => 3 mm, ma < 4,75 mm, "
+"contenenti, in peso, => 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72191290
@@ -24090,6 +24117,9 @@ msgid ""
 "further worked than hot-rolled, in coils, of a thickness of >= 4,75 mm but "
 "<= 10 mm, containing by weight < 2,5 nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo, in rotoli (coils), di spessore => 4,75 mm, ma <= 10 mm, "
+"contenenti, in peso, < 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72191210
@@ -24098,6 +24128,9 @@ msgid ""
 "further worked than hot-rolled, in coils, of a thickness of >= 4,75 mm but "
 "<= 10 mm, containing by weight >= 2,5 nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo, in rotoli (coils), di spessore => 4,75 mm, ma <= 10 mm, "
+"contenenti, in peso, => 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72192400
@@ -24105,6 +24138,8 @@ msgid ""
 "Flat-rolled products of stainless steel, of a width of >= 600 mm, not "
 "further worked than hot-rolled, not in coils, of a thickness of < 3 mm"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo (non in rotoli (coils)), di spessore < 3 mm (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72192190
@@ -24113,6 +24148,9 @@ msgid ""
 "further worked than hot-rolled, not in coils, of a thickness of > 10 mm, "
 "containing by weight < 2,5 nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo (non in rotoli (coils)), di spessore > 10 mm, contenenti, "
+"in peso, < 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72192110
@@ -24121,6 +24159,9 @@ msgid ""
 "further worked than hot-rolled, not in coils, of a thickness of > 10 mm, "
 "containing by weight >= 2,5 nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, "
+"semplicemente laminati a caldo, non arrotolati, di spessore > 10 mm e "
+"contenenti, in peso, => 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72192300
@@ -24129,6 +24170,9 @@ msgid ""
 "further worked than hot-rolled, not in coils, of a thickness of >= 3 mm and "
 "< 4,75 mm"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo (non in rotoli (coils)), di spessore => 3 mm, ma < 4,75 mm "
+"(Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72192290
@@ -24137,6 +24181,9 @@ msgid ""
 "further worked than hot-rolled, not in coils, of a thickness of >= 4,75 mm "
 "but <= 10 mm, containing by weight < 2,5% nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo (non in rotoli (coils)), di spessore => 4,75 mm, ma <= 10 "
+"mm, contenenti, in peso, < 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72192210
@@ -24145,12 +24192,17 @@ msgid ""
 "further worked than hot-rolled, not in coils, of a thickness of >= 4,75 mm "
 "but <= 10 mm, containing by weight >= 2,5% nickel"
 msgstr ""
+"Prodotti piatti di acciai inossidabili, di larghezza => 600 mm, solo "
+"laminati a caldo (non in rotoli (coils)), di spessore => 4,75 mm, ma <= 10 "
+"mm, contenenti, in peso, => 2,5% di nichel (Ceca)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72269120
 msgid ""
 "Flat-rolled products of tool steel, of a width of < 600 mm, simply hot-rolled"
 msgstr ""
+"Prodotti piatti di acciai per utensili, di larghezza < 600 mm, solo laminati "
+"a caldo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72253010
@@ -24158,6 +24210,8 @@ msgid ""
 "Flat-rolled products of tool steel, of a width of >= 600 mm, not further "
 "worked than hot-rolled, in coils"
 msgstr ""
+"Prodotti piatti di acciai per utensili, di larghezza => 600 mm, solo "
+"laminati a caldo, in rotoli (coils)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72254012
@@ -24165,6 +24219,8 @@ msgid ""
 "Flat-rolled products of tool steel, of a width of >= 600 mm, not further "
 "worked than hot-rolled, not in coils"
 msgstr ""
+"Prodotti piatti di acciai per utensili, di larghezza => 600 mm, "
+"semplicemente laminati a caldo, non arrotolati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84601900
@@ -24172,7 +24228,7 @@ msgid ""
 "Flat-surface grinding machines, for working metal, in which the positioning "
 "in any one axis can be set up to an accuracy of at least 0,01 mm, not "
 "numerically controlled"
-msgstr ""
+msgstr "Macchine per rettificare le superfici piane, non a comando numerico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84601100
@@ -24181,21 +24237,24 @@ msgid ""
 "in any one axis can be set up to an accuracy of at least 0,01 mm, "
 "numerically controlled"
 msgstr ""
+"Macchine per rettificare le superfici piane, per la lavorazione dei metalli, "
+"il cui posizionamento in uno degli assi può essere regolato con una "
+"precisione di almeno 0,01 mm, a comando numerico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21069055
 msgid "Flavoured or coloured glucose and maltodextrine syrups"
-msgstr ""
+msgstr "Sciroppo di glucosio o di maltodestrina, aromatizzati o colorati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21069030
 msgid "Flavoured or coloured isoglucose syrups"
-msgstr ""
+msgstr "Sciroppo di isoglucosio, aromatizzato o colorato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21069051
 msgid "Flavoured or coloured lactose syrups"
-msgstr ""
+msgstr "Sciroppo di lattosio, aromatizzato o colorato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21069059
@@ -24203,16 +24262,19 @@ msgid ""
 "Flavoured or coloured sugar syrups (excl. isoglucose, lactose, glucose and "
 "maltodextrine syrups)"
 msgstr ""
+"Sciroppi di zucchero, esclusi quelli di isoglucosio, di lattosio, di "
+"glucosio e di maltodestrina, aromatizzati o colorati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_53013000
 msgid "Flax tow and waste, incl. yarn waste and garnetted stock"
 msgstr ""
+"Stoppe e cascami di lino, compresi i cascami di filati e gli sfilacciati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_53012100
 msgid "Flax, broken or scutched"
-msgstr ""
+msgstr "Lino, maciullato o stigliato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_53012900
@@ -24220,11 +24282,13 @@ msgid ""
 "Flax, hackled or otherwise processed, but not spun (excl. broken, scutched "
 "and retted flax)"
 msgstr ""
+"Lino, pettinato o altrimenti preparato (ma non filato) (escl. maciullato o "
+"stigliato, nonchè lino macerato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_53011000
 msgid "Flax, raw or retted"
-msgstr ""
+msgstr "Lino, greggio o macerato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63053290
@@ -24232,6 +24296,9 @@ msgid ""
 "Flexible intermediate bulk containers, for the packing of goods, of man-made "
 "textile materials (excl. of polyethylene or polypropylene strip or the like)"
 msgstr ""
+"Contenitori flessibili per merci alla rinfusa, di materie tessili sintetiche "
+"o artificiali (escl. ottenuti da lamelle o forme simili di polietilene o di "
+"polipropilene)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63053219
@@ -24239,6 +24306,8 @@ msgid ""
 "Flexible intermediate bulk containers, for the packing of goods, of "
 "polyethylene or polypropylene strip or the like (excl. knitted or crocheted)"
 msgstr ""
+"Contenitori flessibili per merci alla rinfusa, da imballaggio, ottenuti da "
+"lamelle o forme simili di polietilene o di polipropilene (escl. a maglia)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63053211
@@ -24246,6 +24315,8 @@ msgid ""
 "Flexible intermediate bulk containers, for the packing of goods, of "
 "polyethylene or polypropylene strip or the like, knitted or crocheted"
 msgstr ""
+"Contenitori flessibili per merci alla rinfusa, ottenuti da lamelle o forme "
+"simili, a maglia, di polietilene o di polipropilene"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39173300
@@ -24253,6 +24324,9 @@ msgid ""
 "Flexible tubes, pipes and hoses of plastics, not reinforced or otherwise "
 "combined with other materials, with fittings, seals or connectors"
 msgstr ""
+"Tubi, flessibili, di materie plastiche (non rinforzati con altre materie nè "
+"altrimenti associati ad altre materie) muniti di accessori, utilizzati per "
+"incanalare, condurre o distribuire gas o liquidi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39173200
@@ -24260,12 +24334,16 @@ msgid ""
 "Flexible tubes, pipes and hoses of plastics, not reinforced or otherwise "
 "combined with other materials, without fittings"
 msgstr ""
+"Tubi flessibili non rinforzati con altre materie né altrimenti associati ad "
+"altre materie, senza accessori"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39173100
 msgid ""
 "Flexible tubes, pipes and hoses, of plastics, burst pressure >= 27,6 MPa"
 msgstr ""
+"Tubi, flessibili, di materie plastiche, che possono sopportare una pressione "
+"=> 27,6 mpa, utilizzati per incanalare, condurre o distribuire gas o liquidi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39173900
@@ -24274,23 +24352,26 @@ msgid ""
 "combined with other materials (excl. those with a burst pressure of >= 27,6 "
 "MPa)"
 msgstr ""
+"Tubi flessibili non rinforzati con altre materie né altrimenti associati ad "
+"altre materie, senza accessori (escl. quelli che possono sopportare una "
+"pressione di almeno 27,6 mpa)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_83079000
 msgid ""
 "Flexible tubing of base metal other than iron or steel, with or without "
 "fittings"
-msgstr ""
+msgstr "Tubi flessibili di altri metalli comuni, anche con i loro accessori"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_83071000
 msgid "Flexible tubing of iron or steel, with or without fittings"
-msgstr ""
+msgstr "Tubi flessibili di ferro o di acciaio, anche con i loro accessori"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84431600
 msgid "Flexographic printing machinery"
-msgstr ""
+msgstr "Macchine ed apparecchi per la stampa, flessografici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70052925
@@ -24301,6 +24382,10 @@ msgid ""
 "surface ground, or glass having an absorbent, reflecting or non-reflecting "
 "layer)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, ma non altrimenti lavorato, di spessore <= 3,5 mm ("
+"escl. armato, colorato nella massa, opacizzato, placcato o semplicemente "
+"levigato, o con strato assorbente, riflettente o non riflettente)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70052935
@@ -24311,6 +24396,11 @@ msgid ""
 "flashed or merely surface ground, or glass having an absorbent, reflecting "
 "or non-reflecting layer)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, ma non altrimenti lavorato, di spessore > 3,5 mm e <= "
+"4,5 mm (escl. armato, colorato nella massa, opacizzato, placcato o "
+"semplicemente levigato, o con strato assorbente, riflettente o non "
+"riflettente)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70052980
@@ -24321,6 +24411,10 @@ msgid ""
 "opacified, flashed or merely surface ground, or glass having an absorbent, "
 "reflecting or non-reflecting layer)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, ma non altrimenti lavorato, di spessore > 4,5 mm ("
+"escl. armato, colorato nella massa, opacizzato, placcato o semplicemente "
+"levigato, o con strato assorbente, riflettente o non riflettente)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70053000
@@ -24329,6 +24423,9 @@ msgid ""
 "having an absorbent, reflecting or non-reflecting layer, wired, but not "
 "otherwise worked"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, anche con strato assorbente, riflettente o non "
+"riflettente, armato, ma non altrimenti lavorato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70052125
@@ -24338,6 +24435,10 @@ msgid ""
 "otherwise worked, of a thickness of <= 3,5 mm (excl. wired glass or glass "
 "having an absorbent, reflecting or non-reflecting layer)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, colorato nella massa, opacizzato, placcato o "
+"semplicemente levigato, ma non altrimenti lavorato, di spessore <= 3,5 mm ("
+"escl. armato e con strato assorbente, riflettente o non riflettente)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70052130
@@ -24347,6 +24448,11 @@ msgid ""
 "otherwise worked, of a thickness of > 3,5 mm but <= 4,5 mm (excl. wired "
 "glass or glass having an absorbent, reflecting or non-reflecting layer)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, colorato nella massa, opacizzato, placcato o "
+"semplicemente levigato, ma non altrimenti lavorato, di spessore > 3,5 mm, ma "
+"<= 4,5 mm (escl. armato e con strato assorbente, riflettente o non "
+"riflettente)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70052180
@@ -24356,6 +24462,10 @@ msgid ""
 "otherwise worked, of a thickness of > 4,5 mm (excl. wired glass or glass "
 "having an absorbent, reflecting or non-reflecting layer)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, colorato nella massa, opacizzato, placcato o "
+"semplicemente levigato, ma non altrimenti lavorato, di spessore > 4,5 mm ("
+"escl. armato e con strato assorbente, riflettente o non riflettente)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70051005
@@ -24363,6 +24473,9 @@ msgid ""
 "Float glass and surface ground or polished glass, in sheets, having a non-"
 "reflecting layer, but not otherwise worked (excl. wired glass)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, con strato non riflettente, non armato nè altrimenti "
+"lavorato"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70051025
@@ -24371,6 +24484,9 @@ msgid ""
 "absorbent or reflecting layer, but not otherwise worked, of a thickness of "
 "<= 3,5 mm (excl. wired glass)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, con strato assorbente o riflettente, non armato nè "
+"altrimenti lavorato, di spessore <= 3,5 mm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70051030
@@ -24379,6 +24495,9 @@ msgid ""
 "absorbent or reflecting layer, but not otherwise worked, of a thickness of > "
 "3,5 mm but <= 4,5 mm (excl. wired glass)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, con strato assorbente o riflettente, non armato nè "
+"altrimenti lavorato, di spessore > 3,5 mm, ma <= 4,5mm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70051080
@@ -24387,11 +24506,15 @@ msgid ""
 "absorbent or reflecting layer, but not otherwise worked, of a thickness of > "
 "4,5 mm (excl. wired glass)"
 msgstr ""
+"Vetro \"flottè\" e vetro levigato o smerigliato su una o entrambe le facce, "
+"in lastre o in fogli, con strato assorbente o riflettente, non armato nè "
+"altrimenti lavorato, di spessore > 4,5 mm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_89052000
 msgid "Floating or submersible drilling or production platforms"
 msgstr ""
+"Piattaforme di perforazione o di sfruttamento, galleggianti o sommergibili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40169100
@@ -24400,6 +24523,8 @@ msgid ""
 "chamfered sides, rounded corners or shaped edges or otherwise worked (excl. "
 "those simply cut to rectangular or square shape and goods of cellular rubber)"
 msgstr ""
+"Rivestimenti e tappeti di gomma vulcanizzata non indurita, diversa da quella "
+"alveolare"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_40082110
@@ -24407,6 +24532,9 @@ msgid ""
 "Floor coverings and mats, uncut or simply cut to rectangular or square "
 "shape, of non-cellular rubber"
 msgstr ""
+"Rivestimenti e tappeti da pavimento, in pezza o tagliati a misura oppure "
+"solamente tagliati in forma quadrata o rettangolare, di gomma (non "
+"cellulare, non indurita)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_59049000
@@ -24414,12 +24542,14 @@ msgid ""
 "Floor coverings consisting of a coating or covering applied on a textile "
 "backing, whether or not cut to shape (excl. linoleum)"
 msgstr ""
+"Rivestimenti del suolo costituiti da una spalmatura o da una ricopertura "
+"applicata su un supporto tessile, anche tagliati (escl. linoleum)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_57022000
 msgid ""
 "Floor coverings of coconut fibres \"coir\", woven, whether or not made up"
-msgstr ""
+msgstr "Rivestimenti del suolo, di cocco"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39189000
@@ -24431,6 +24561,9 @@ msgid ""
 "coloured, design-printed or otherwise decorated (excl. coverings of polymers "
 "of vinyl chloride)"
 msgstr ""
+"Rivestimenti per pavimenti, per pareti o per soffitti, di materie plastiche "
+"esclusi i polimeri di cloruro di vinile, in rotoli o in forma di piastrelle "
+"o di lastre"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39181090
@@ -24439,6 +24572,9 @@ msgid ""
 "in rolls or in the form of tiles (excl. those on a backing coated, "
 "impregnated or covered with poly\"vinyl chloride\")"
 msgstr ""
+"Rivestimenti per pavimenti, per pareti o per soffitti, in rotoli o in forma "
+"di piastrelle o di lastre, di polimeri di cloruro di vinile, esclusi quelli "
+"della voce precedente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39181010
@@ -24450,18 +24586,23 @@ msgid ""
 "coloured, design-printed or otherwise decorated\", on a support impregnated, "
 "coated or covered with poly\"vinyl chloride\""
 msgstr ""
+"Rivestimenti per pavimenti, per pareti o per soffitti, in rotoli o in forma "
+"di piastrelle o di lastre, di polimeri di cloruro di vinile, costituiti da "
+"un supporto impregnato, spalmato o ricoperto di policloruro di vinile"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_57041000
 msgid "Floor tiles, of felt, not tufted or flocked, with an area of <= 0,3 m²"
 msgstr ""
+"Quadrelli per il rivestimento del suolo di feltro non \"tufted\" nè "
+"\"floccati\", con superficie fino a 0,3 m2"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63071010
 msgid ""
 "Floorcloths, dishcloths, dusters and similar cleaning cloths, knitted or "
 "crocheted"
-msgstr ""
+msgstr "Tele e strofinacci, anche scamosciati e articoli simili, a maglia"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63071090
@@ -24469,17 +24610,21 @@ msgid ""
 "Floorcloths, dishcloths, dusters and similar cleaning cloths, of all types "
 "of textile materials (excl. knitted or crocheted and nonwovens)"
 msgstr ""
+"Tele e strofinacci, anche scamosciati e articoli simili, di prodotti di "
+"materie tessili di ogni sorta (escl. stoffe (non tessute) e a maglia)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_63071030
 msgid ""
 "Floorcloths, dishcloths, dusters and similar cleaning cloths, of nonwovens"
 msgstr ""
+"Tele e strofinacci, anche scamosciati e articoli simili, di stoffe (non "
+"tessute)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44187100
 msgid "Flooring panels for mosaic floors, assembled, of wood"
-msgstr ""
+msgstr "Pannelli assemblati per pavimenti a mosaico, di legno"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44187900
@@ -24487,22 +24632,26 @@ msgid ""
 "Flooring panels, assembled, of wood (excl. multilayer panels and flooring "
 "panels for mosaic floors)"
 msgstr ""
+"Pannelli per pavimenti, assemblati, di legno diverso dal bambù (escl. "
+"pannelli multistrato e per pavimenti a mosaico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44187200
 msgid ""
 "Flooring panels, multilayer, assembled, of wood (excl. for mosaic floors)"
 msgstr ""
+"Pannelli per pavimenti assemblati multistrato, di legno (escl. pavimenti a "
+"mosaico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11010015
 msgid "Flour of common wheat and spelt"
-msgstr ""
+msgstr "Farine di frumento (grano) tenero e di spelta"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11063010
 msgid "Flour, meal and powder of bananas"
-msgstr ""
+msgstr "Farine, semolini e polveri, di banane"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11061000
@@ -24510,18 +24659,20 @@ msgid ""
 "Flour, meal and powder of peas, beans, lentils and the other dried "
 "leguminous vegetables of heading 0713"
 msgstr ""
+"Farine, semolini e polveri di piselli, fagioli, lenticchie e altri legumi da "
+"granella secchi della voce 0713"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11051000
 msgid "Flour, meal and powder of potatoes"
-msgstr ""
+msgstr "Farina, semolino e polveri di patate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11063090
 msgid ""
 "Flour, meal and powder of produce of chapter 8 \"Edible fruit and nuts; peel "
 "of citrus fruits or melons\" (other than bananas)"
-msgstr ""
+msgstr "Farine, semolini e polveri, dei prodotti del cap. 8, escluse le banane"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_11062090
@@ -24530,12 +24681,15 @@ msgid ""
 "salep, Jerusalem artichokes, sweet potatoes and similar roots and tubers "
 "with a high content of starch or inulin of heading 0714 (excl. denatured)"
 msgstr ""
+"Farine e semolini di sago, di radici o tuberi della voce 0714, non "
+"denaturati, per la fabbricazione dell'amido e della fecola"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_12089000
 msgid ""
 "Flours and meal of oil seeds or oleaginous fruit (excl. soya and mustard)"
 msgstr ""
+"Farine di semi o di frutti oleosi (escl. farine di senapa e fave di soia)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23012000
@@ -24543,11 +24697,15 @@ msgid ""
 "Flours, meals and pellets of fish or crustaceans, molluscs or other aquatic "
 "invertebrates, unfit for human consumption"
 msgstr ""
+"Farine, polveri e agglomerati in forma di pellet, di pesci, crostacei, "
+"molluschi o altri invertebrati acquatici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_03051000
 msgid "Flours, meals and pellets of fish, fit for human consumption"
 msgstr ""
+"Farine, polveri e agglomerati in forma di pellet di pesci, atti "
+"all'alimentazione umana"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_23011000
@@ -24555,6 +24713,8 @@ msgid ""
 "Flours, meals and pellets, of meat or offal, unfit for human consumption; "
 "greaves"
 msgstr ""
+"Farine, polveri e agglomerati in forma di pellet, di carni o di frattaglie; "
+"ciccioli"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90261081
@@ -24562,16 +24722,18 @@ msgid ""
 "Flow meters for measuring or checking the flow or level of liquids, non-"
 "electronic (excl. meters and regulators)"
 msgstr ""
+"Misuratori di portata non elettronici (escl. dei contatori e degli strumenti "
+"ed apparecchi di regolazione o di controllo automatici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_24011085
 msgid "Flue-cured tobacco, unstemmed or unstripped"
-msgstr ""
+msgstr "Tabacchi \"flue cured\", non scostolati"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28261200
 msgid "Fluoride of aluminium"
-msgstr ""
+msgstr "Fluoruro di alluminio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29033990
@@ -24579,31 +24741,33 @@ msgid ""
 "Fluorides \"fluorinated derivatives\" and iodides \"iodinated derivatives\" "
 "of acyclic hydrocarbons"
 msgstr ""
+"Floruri derivati fluorurati e ioduri derivati iodurati degli idrocarburi "
+"aciclici"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28261990
 msgid "Fluorides (excl. of ammonium, sodium, aluminium and mercury)"
-msgstr ""
+msgstr "Fluoruri (escl. quelli di ammonio, di sodio e di alluminio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28261910
 msgid "Fluorides of ammonium or of sodium"
-msgstr ""
+msgstr "Fluoruri di ammonio o di sodio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28013010
 msgid "Fluorine"
-msgstr ""
+msgstr "Fluoro"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29241200
 msgid "Fluoroacetamide \"ISO\", monocrotophos \"ISO\" and phosphamidon \"ISO\""
-msgstr ""
+msgstr "Fluoroacetamide ISO, monocrotophos ISO e phosphamidon ISO"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39046920
 msgid "Fluoroelastomers FKM, in primary forms"
-msgstr ""
+msgstr "Fluoroelastomero FKM, in forme primarie"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39046980
@@ -24613,6 +24777,10 @@ msgid ""
 "fluoride) in blocks of irregular shape, lumps, powders, granules, flakes and "
 "similar bulk forms)"
 msgstr ""
+"Fluoropolimeri di cloruro di vinile o di altre olefine alogenate, in forme "
+"primarie (escl. fluoroelastomeri FKM, politetrafluoroetilene, poli (fluoruro "
+"di vinile) in blocchi irregolari, pezzi, grumi,polveri, granuli, fiocchi e "
+"masse simili)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28269080
@@ -24621,21 +24789,24 @@ msgid ""
 "sodium hexafluoroaluminate \"synthetic cryolite\", dipotassium "
 "hexafluorozirconate and inorganic or organic compounds of mercury)"
 msgstr ""
+"Fluorosilicati, fluroralluminati e altri sali complessi del fluoro (escl. "
+"esafluoroalluminato di sodio [criolite sintetica], esafluorozirconayo di "
+"dipotassio, e composti organici e inorganici di mercurio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_25292100
 msgid "Fluorspar containing by weight <= 97% calcium fluoride"
-msgstr ""
+msgstr "Spatofluore, contenente, in peso, 97% o meno di fluoruro di calcio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_25292200
 msgid "Fluorspar containing by weight > 97% calcium fluoride"
-msgstr ""
+msgstr "Spatofluore, contenente, in peso, più di 97% di fluoruro di calcio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29333950
 msgid "Fluroxypyr \"ISO\" methyl ester"
-msgstr ""
+msgstr "Estere metilico di flurossipir (ISO)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48051990
@@ -24645,6 +24816,10 @@ msgid ""
 "unfolded state (excl. semi-chemical fluting paper, straw fluting paper and "
 "Wellenstoff)"
 msgstr ""
+"Carta ondulata, non patinata nè spalmata, in rotoli di larghezza > 36 cm o "
+"in fogli di forma quadrata o rettangolare con almeno un lato > 36 cm e con "
+"l'altro lato > 15 cm a foglio spiegato (escl. carta di pasta semichimica da "
+"ondulare, carta paglia da ondulare nonchè wellenstoff)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38109090
@@ -24655,6 +24830,12 @@ msgid ""
 "consisting of metal and other materials, and welding electrodes or rods of "
 "base metals or metal carbides coated with fluxes)"
 msgstr ""
+"Preparazioni disossidanti ed altre preparazioni ausiliarie per la saldatura "
+"o la brasatura dei metalli (escl. preparazioni dei tipi utilizzati per il "
+"rivestimento o il riempimento di elettrodi o di bacchette per saldatura, "
+"paste e polveri per saldare o brasare, composte di metallo o di altri "
+"prodotti nonchè elettrodi o bacchette per saldatura, fatti di metalli comuni "
+"o di carburi metallici, rivestiti di preparazioni disossidanti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.855312
@@ -24666,26 +24847,32 @@ msgstr "Servizi di scuole di pilotaggio e nautiche"
 msgid ""
 "Flywheels and pulleys, incl. pulley blocks (excl. of cast iron or cast steel)"
 msgstr ""
+"Volani e pulegge, incl. le carrucole a staffa (escl. quelli di getti di "
+"ghisa, di ferro o di acciaio)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84835020
 msgid "Flywheels and pulleys, incl. pulley blocks, of cast iron or cast steel"
 msgstr ""
+"Volani e pulegge, incl. le carrucole a staffa, di getti di ghisa, di ferro o "
+"di acciaio"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_12092960
 msgid "Fodder beet seed \"Beta vulgaris var. alba\", for sowing"
 msgstr ""
+"Semi di barbabietole da foraggio (Beta vulgaris var. alba), destinate alla "
+"semina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48192000
 msgid "Folding cartons, boxes and cases, of non-corrugated paper or paperboard"
-msgstr ""
+msgstr "Scatole e cartonaggi, pieghevoli, di carta o di cartone (non ondulato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84401010
 msgid "Folding machines for bookbinding"
-msgstr ""
+msgstr "Piegatrici per legatoria"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06049099
@@ -24694,6 +24881,9 @@ msgid ""
 "grasses, suitable for bouquets or for ornamental purposes, dyed, bleached, "
 "impregnated or otherwise prepared (excl. dried)"
 msgstr ""
+"Fogliame, rami ed altre parti di piante, senza fiori né boccioli, ed erbe "
+"tinti, imbianchiti, impregnati o altrimenti preparati, per mazzi o per "
+"ornamento (escl. quelli essiccati)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06042090
@@ -24702,6 +24892,9 @@ msgid ""
 "and grasses, fresh, suitable for bouquets or ornamental purposes (excl. "
 "Christmas trees and conifer branches)"
 msgstr ""
+"Fogliame, rami ed altre parti di piante, senza fiori né boccioli di fiori, "
+"ed erbe, freschi, per mazzi o per ornamento (escl. alberi di Natale e rami "
+"di conifere)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_06049091
@@ -24709,11 +24902,13 @@ msgid ""
 "Foliage, branches and other parts of plants, without flowers or flower buds, "
 "and grasses, suitable for bouquets or ornamental purposes, dried"
 msgstr ""
+"Fogliame, rami ed altre parti di piante, senza fiori né boccioli di fiori, "
+"ed erbe, essiccati, per mazzi o per ornamento"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_10084000
 msgid "Fonio \"Digitaria spp.\""
-msgstr ""
+msgstr "Fonio (Digitaria spp.)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.532012
@@ -24728,6 +24923,11 @@ msgid ""
 "retail sale as infant food or for dietetic purposes, in containers of <= 250 "
 "g"
 msgstr ""
+"Preparazioni alimentari composte omogeneizzate, costituite da una miscela "
+"finemente omogeneizzata di più sostanze di base, quali carne, pesce, "
+"ortaggi, legumi, frutta, condizionate per la vendita al minuto per "
+"l'alimentazione dei bambini o per usi dietetici, in recipienti immediati di "
+"contenuto netto =< 250 g"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_19011000
@@ -24739,6 +24939,13 @@ msgid ""
 "not containing cocoa or containing < 5% by weight of cocoa calculated on a "
 "totally defatted basis, n.e.s."
 msgstr ""
+"Preparazioni alimentari a base di farine, semolini, amidi, fecole o estratti "
+"di malto, non contenenti cacao o contenenti < 40%, in peso, di cacao "
+"calcolato su una base completamente sgrassata, n.n.a.; preparazioni "
+"alimentari dei prodotti delle voci da 0401 a 0404, non contenenti cacao o "
+"contenenti < 5%, in peso, di cacao calcolato su una base completamente "
+"sgrassata, per l'alimentazione dei bambini, condizionate per la vendita al "
+"minuto, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_19019091
@@ -24752,6 +24959,16 @@ msgid ""
 "form of milk, cream, butter milk, sour milk, sour cream, whey, yogurt, "
 "kephir or similar goods of heading 0401 to 0404)"
 msgstr ""
+"Preparazioni alimentari a base di farina, semole, semolini, amido o estratti "
+"di malto, non contenenti materie grasse del latte, saccarosio, isoglucosio, "
+"glucosio o amido o contenenti < 1,5% di materie grasse del latte, 5% di "
+"saccarosio, isoglucosio, glucosio o amido, non contenenti cacao o contenenti "
+"cacao in proporzione in peso < 40%, calcolato su base totalmente sgrassata ("
+"escl. estratti di malto e preparazioni per alimenti per l'infanzia, "
+"destinate alla vendita al minuto, preparati e impasti per la preparazione di "
+"prodotti da forno e in polvere di latte, panna, burro di latte, latte acido, "
+"panna acida, siero di latte, yogurt, kephir o prodotti simili delle voci da "
+"0401 a 0404)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_19019099
@@ -24766,6 +24983,16 @@ msgid ""
 "sale, mixes and doughs for preparation of bakers' wares and goods in "
 "subheading 1901.90.91)"
 msgstr ""
+"Preparazioni alimentari a base di farina, semole, semolini, amido o estratti "
+"di malto, non contenenti cacao o contenenti cacao in proporzione in peso < "
+"40%, calcolata su base totalmente sgrassata, e preparazioni alimentari a "
+"base di latte, panna., burro di latte, latte acido , panna. acida, siero di "
+"latte, yogurt, kephir o prodotti simili delle voci da 0401 a 0404, non "
+"contenenti cacao o contenenti cacao in proporzione in peso < 5%, calcolato "
+"su base totalmente sgrassata, n.n.a. (escl. estratti di malto e preparazioni "
+"per alimenti per l'infanzia, destinte alla vendita al minuto miscele e "
+"impasti per la preparazione di prodotti da forno e prodotti delle sottovoci "
+"1901 90 91 e 1901 90 95)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21069098
@@ -24773,6 +25000,9 @@ msgid ""
 "Food preparations, n.e.s., containing, by weight, >= 1,5% milkfat, >= 5% "
 "sucrose or isoglucose, >= 5% glucose or >= 5% starch"
 msgstr ""
+"Preparazioni alimentari n.n.a., contenenti, in peso, più di 1,5% di materie "
+"grasse provenienti dal latte, più di 5% di saccarosio, più di 5% di glucosio "
+"o di amido"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21069092
@@ -24781,6 +25011,10 @@ msgid ""
 "starch or glucose or containing, by weight, < 1,5% milkfat, < 5% sucrose or "
 "isoglucose, < 5% glucose or < 5% starch"
 msgstr ""
+"Preparazioni alimentari, n.n.a., non contenenti materie grasse del latte, "
+"saccarosio, amido di isoglucosio o glucosio o contenenti, in peso, < 1,5% di "
+"materie grasse del latte, < 5% di saccarosio o isoglucosio, < 5% di glucosio "
+"o < 5% di amido o fecola"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029110
@@ -24789,6 +25023,9 @@ msgid ""
 "outer soles and uppers of rubber or plastics (excl. waterproof footwear of "
 "heading 6401, sports footwear and orthopaedic footwear)"
 msgstr ""
+"Calzature con puntale protettivo di metallo con suole esterne e tomaie di "
+"gomma o di materia plastica che ricoprono la caviglia (escl. calzature "
+"impermeabili della voce 6401, calzature sportive e ortopediche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029190
@@ -24797,6 +25034,10 @@ msgid ""
 "plastics (excl. incorporating a protective metal toecap, waterproof footwear "
 "of heading 6401, sports footwear, orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna e tomaia di gomma o di materia plastica, che "
+"ricoprono la caviglia (escl. le calzature con puntale protettivo di metallo "
+"e le calzature impermeabili della voce 6401, le calzature per lo sport, le "
+"calzature ortopediche e le calzature aventi carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029905
@@ -24805,6 +25046,9 @@ msgid ""
 "uppers of rubber or plastics (excl. covering the ankle, waterproof footwear "
 "of heading 6401, sports footwear and orthopaedic footwear)"
 msgstr ""
+"Calzature con puntale protettivo di metallo con suole esterne e tomaie di "
+"gomma o di materia plastica che non ricoprono la caviglia (escl. calzature "
+"impermeabili della voce 6401, calzature sportive eortopediche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039993
@@ -24816,6 +25060,13 @@ msgid ""
 "with a vamp made of straps or which has one or more pieces cut out; indoor, "
 "sports or orthopaedic footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma, materia plastica o cuoi o pelli "
+"ricostituiti e tomaia di cuoio o pelle, con suola interna di lunghezza => 24 "
+"cm, non riconoscibili come calzature per uomo o per donna (escl. che "
+"ricoprono la caviglia o con puntale protettivo di metallo, o con suola "
+"principale di legno, senza suola interna, nonchè calzature la cui mascherina "
+"è formata da strisce o presenta uno o più intagli, calzature da camera, "
+"calzature per lo sport e calzature ortopediche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039933
@@ -24826,6 +25077,11 @@ msgid ""
 "pieces cut out, with sole and heel height <= 3 cm, with in-soles of a length "
 ">= 24 cm (excl. 6403.11-00 to 6403.40.00)"
 msgstr ""
+"Calzature con suola esterna di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e tomaia di cuoio naturale, la cui mascherina è formata da "
+"strisce o presenta uno o più intagli, con tacco di altezza, incl. la suola, "
+"<= 3 cm e con suola interna => 24 cm, non riconoscibili come calzature per "
+"uomo o per donna"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039113
@@ -24835,6 +25091,11 @@ msgid ""
 "the ankle (but not the calf), with in-soles of a length >= 24 cm (excl. "
 "6403.11-00 to 6403.40.00)"
 msgstr ""
+"Calzature con suola esterna di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e tomaia di cuoio naturale, che ricoprono la caviglia ma non "
+"il polpaccio, con suola interna di lunghezza => 24 cm, non riconoscibili "
+"come calzature per uomo o per donna (escl. le calzature con puntale "
+"protettivo di metallo, le calzature per lo sport, e le calzature ortopediche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039193
@@ -24843,6 +25104,11 @@ msgid ""
 "rubber, plastics or composition leather, with uppers of leather, covering "
 "the ankle, with in-soles of a length >= 24 cm (excl. 6403.1-00 to 6403.40.00)"
 msgstr ""
+"Calzature con suola esterna di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e tomaia di cuoio naturale, che ricoprono la caviglia e il "
+"polpaccio, con suola interna di lunghezza => 24 cm, non riconoscibili come "
+"calzature per uomo o per donna (escl. le calzature con puntale protettivo di "
+"metallo, le calzature per lo sport e le calzature ortopediche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029993
@@ -24854,6 +25120,13 @@ msgid ""
 "toecap, indoor or sports footwear, waterproof footwear in heading 6401, and "
 "orthopaedic footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma o di materia plastica e tomaia di "
+"materia plastica, con suola interna di lunghezza => 24 cm, non riconoscibili "
+"come calzature per uomo o per donna (escl. le calzature che ricoprono la "
+"caviglia, le calzature la cui mascherina è formata da strisce o presenta uno "
+"o più intagli, le calzature con puntale protettivo di metallo, le calzature "
+"da camera, le calzature per lo sport, le calzature impermeabili della voce "
+"6401 e le calzature ortopediche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64035191
@@ -24862,6 +25135,9 @@ msgid ""
 "calf, with in-soles of < 24 cm in length (excl. incorporating a protective "
 "metal toecap, sports footwear, orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suole esterne di cuoio naturale, escluse quelle da sport, e "
+"diverse da quelle che ricoprono la caviglia ma non il polpaccio, con suole "
+"interne di lunghezza fino a 24 cm, con tomaie di cuoio naturale"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64035111
@@ -24871,6 +25147,9 @@ msgid ""
 "protective metal toecap, sports footwear, orthopaedic footwear and toy "
 "footwear)"
 msgstr ""
+"Calzature con suole esterne di cuoio naturale, escluse quelle da sport, che "
+"ricoprono la caviglia ma non il polpaccio, con suole interne di lunghezza "
+"fino a 24 cm, con tomaie di cuoio naturale"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64035105
@@ -24879,6 +25158,9 @@ msgid ""
 "of wood, covering the ankle, with neither an inner sole nor a protective "
 "metal toecap"
 msgstr ""
+"Calzature con tomaia di cuoio naturale e suola principale di legno, con la "
+"copertura della caviglia, senza suola interna e senza puntale protettivo di "
+"metallo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64035905
@@ -24887,6 +25169,9 @@ msgid ""
 "of wood, with neither an inner sole nor a protective metal toecap (excl. "
 "covering the ankle)"
 msgstr ""
+"Calzature con tomaia di cuoio naturale e suola principale di legno, senza la "
+"copertura della caviglia, senza suola interna e senza puntale protettivo di "
+"metallo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64035931
@@ -24897,6 +25182,10 @@ msgid ""
 "which consist of leather straps across the instep and around the big toe, "
 "and toy footwear)"
 msgstr ""
+"Calzature con suole esterne di cuoio naturale, escluse quelle da sport, di "
+"cui la mascherina è formata da strisce o presenta uno o più tagli, con "
+"altezza del tacco, compresa la suola, < 3 cm e con suole interne di "
+"lunghezza < 24 cm, con tomaie di cuoio naturale"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64035911
@@ -24906,6 +25195,9 @@ msgid ""
 "height of > 3 cm (excl. with uppers which consist of leather straps across "
 "the instep and around the big toe)"
 msgstr ""
+"Calzature con suole esterne di cuoio naturale, escluse quelle da sport, di "
+"cui la mascherina è formata da strisce o presenta uno o più tagli, con "
+"altezza del tacco, compresa la suola, > 3 cm, con tomaie di cuoio naturale"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64035991
@@ -24916,6 +25208,10 @@ msgid ""
 "made of straps, indoor footwear, sports footwear, orthopaedic footwear, and "
 "toy footwear)"
 msgstr ""
+"Calzature con suole esterne di cuoio naturale, escluse quelle da sport, di "
+"cui la mascherina è diversa da quella formata da strisce o presenta uno o "
+"più tagli, con suole interne di lunghezza < 24 cm, con tomaie di cuoio "
+"naturale"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64022000
@@ -24923,6 +25219,9 @@ msgid ""
 "Footwear with outer soles and uppers of rubber or plastics, with upper "
 "straps or thongs assembled to the sole by means of plugs (excl. toy footwear)"
 msgstr ""
+"Calzature con suola esterna e tomaia di gomma o di materia plastica, con "
+"tomaia a strisce o cinturini fissati alla suola con naselli (escl. le "
+"calzature aventi carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64042090
@@ -24930,6 +25229,8 @@ msgid ""
 "Footwear with outer soles of leather or composition leather and uppers of "
 "textile materials (excl. indoor footwear and toy footwear)"
 msgstr ""
+"Calzature, diverse dalle pantofole e altre calzature da camera, con suole "
+"esterne di cuoio naturale o ricostituito e tomaie di materie tessili"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64032000
@@ -24937,6 +25238,9 @@ msgid ""
 "Footwear with outer soles of leather, and uppers which consist of leather "
 "straps across the instep and around the big toe"
 msgstr ""
+"Calzature con suole esterne di cuoio naturale e con tomaie a strisce di "
+"cuoio naturale passanti sopra il collo del piede e intorno all'alluce, "
+"escluse quelle da sport"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029998
@@ -24948,6 +25252,13 @@ msgid ""
 "waterproof footwear in heading 6401, orthopaedic footwear and footwear which "
 "cannot be identified as men's or women's)"
 msgstr ""
+"Calzature con suola esterna di gomma o materia plastica e con tomaia di "
+"materia plastica, con suola interna di lunghezza => 24 cm, per donna (escl. "
+"che ricoprono la caviglia oppure la cui mascherina è formata da strisce o "
+"presenta uno o più intagli, oppure con puntale protettivo di metallo, nonchè "
+"calzature da camera, calzature per lo sport, calzature impermeabili della "
+"voce 6401, calzature ortopediche, e calzature che non sono riconoscibili "
+"come calzature per uomo o per donna)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029996
@@ -24959,6 +25270,13 @@ msgid ""
 "waterproof footwear in heading 6401, orthopaedic footwear and footwear which "
 "cannot be identified as men's or women's)"
 msgstr ""
+"Calzature con suola esterna di gomma o materia plastica e con tomaia di "
+"materia plastica, con suola interna di lunghezza => 24 cm, per uomo (escl. "
+"che ricoprono la caviglia oppure la cui mascherina èformata da strisce o "
+"presenta uno o più intagli, oppure con puntale protettivo di metallo, nonchè "
+"calzature da camera, calzature per lo sport, calzature impermeabili della "
+"voce 6401, calzature ortopediche, e calzature che non sono riconoscibili "
+"come calzature per uomo o per donna)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64041990
@@ -24967,6 +25285,10 @@ msgid ""
 "materials (excl. indoor footwear, sports footwear, incl. tennis shoes, "
 "basketball shoes, gym shoes, training shoes and the like, and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma o di materia plastica e tomaia di "
+"materie tessili (escl. le calzature da camera, le calzature per lo sport, le "
+"calzature dette da tennis, da pallacanestro, da ginnastica, da allenamento e "
+"le calzature simili, nonchè le calzature aventi carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039998
@@ -24978,6 +25300,14 @@ msgid ""
 "has one or more pieces cut out; indoor, sports or orthopaedic footwear; "
 "footwear which cannot be identified as men's or women's)"
 msgstr ""
+"Calzature con suola esterna di gomma, materia plastica o cuoi o pelli "
+"ricostituiti e tomaie di cuoio o pelle, con suola interna di lunghezza => 24 "
+"cm, per donna (escl. che ricoprono la caviglia o conpuntale protettivo di "
+"metallo, o con suola principale di legno, senza suola interna, nonchè "
+"calzature la cui mascherina è formata da strisce o presenta uno o più "
+"intagli, calzature da camera, calzature per lo sport e calzature "
+"ortopediche, e calzature non riconoscibili come calzature per uomo o per "
+"donna)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039191
@@ -24987,6 +25317,11 @@ msgid ""
 "length (excl. incorporating a protective metal toecap, sports footwear, "
 "orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e tomaia di cuoio naturale, che ricoprono la caviglia e il "
+"polpaccio, con suola interna di lunghezza < 24 cm (escl. le calzature con "
+"puntale protettivo di metallo, le calzature per lo sport, le calzature "
+"ortopediche e le calzature aventi carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039111
@@ -24996,6 +25331,11 @@ msgid ""
 "24 cm in length (excl. incorporating a protective metal toecap, sports "
 "footwear, orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e tomaia di cuoio naturale, che ricoprono la caviglia ma non "
+"il polpaccio, con suola interna di lunghezza <24 cm (escl. le calzature con "
+"puntale protettivo di metallo, le calzature per lo sport, le calzature "
+"ortopediche e le calzature aventi carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039105
@@ -25004,6 +25344,10 @@ msgid ""
 "uppers of leather, made on a base or platform of wood, covering the ankle "
 "with neither an inner sole nor a protective metal toecap"
 msgstr ""
+"Calzature con suole esterne di gomma, di materia plastica, di cuoio "
+"ricostituito con tomaia di cuoio naturale, con suola principale di legno, "
+"senza suola interna, con la copertura della caviglia, senza suola interna e "
+"senza puntale protettivo di metallo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039905
@@ -25012,6 +25356,11 @@ msgid ""
 "uppers of leather, made on a base or platform of wood, with neither an inner "
 "sole nor a protective metal toecap (excl. covering the ankle)"
 msgstr ""
+"Calzature con suole esterne di gomma, di materia plastica, di cuoio "
+"ricostituito con tomaia di cuoio naturale, e suola principale di legno, con "
+"suola principale di legno, senza suola interna, con la copertura della "
+"caviglia, senza suola interna e senza puntale protettivo di metallo (escl. "
+"quelle con copertura alla caviglia)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039931
@@ -25021,6 +25370,11 @@ msgid ""
 "pieces cut out, with a maximum sole and heel height of <= 3 cm, with in-"
 "soles of < 24 cm in length (excl. toy footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e tomaia di cuoio naturale, la cui mascherina è formata da "
+"strisce o presenta uno o più intagli, con tacco di altezza, incl. la suola, "
+"<= 3 cm e con suola interna < 24 cm (escl. le calzature aventi carattere di "
+"giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039911
@@ -25029,6 +25383,10 @@ msgid ""
 "uppers of leather, with a vamp made of straps or which has one or several "
 "pieces cut out, with a maximum sole and heel height of > 3 cm"
 msgstr ""
+"Calzature con suola esterna di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e tomaia di cuoio naturale, la cui mascherina è formata da "
+"strisce o presenta uno o più intagli, con tacco di altezza, incl. la suola, "
+"> 3 cm"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64039991
@@ -25040,6 +25398,13 @@ msgid ""
 "several pieces cut out, indoor footwear, sports footwear, orthopaedic "
 "footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma, materia plastica, cuoio naturale o "
+"ricostituito e tomaia di cuoio naturale, con suola interna di lunghezza < 24 "
+"cm (escl. le calzature che ricoprono la caviglia,le calzature con puntale "
+"protettivo di metallo, le calzature con suola principale di legno, senza "
+"suola interna, le calzature con mascherina formata da strisce o che presenta "
+"uno o più intagli, le calzature da camera, le calzature per lo sport, le "
+"calzature ortopediche e le calzature aventi carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64059010
@@ -25048,6 +25413,10 @@ msgid ""
 "leather and uppers of materials other than leather, composition leather or "
 "textile materials (excl. orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e tomaia di materie diverse dalla gomma, dalla materia "
+"plastica, dal cuoio naturale o ricostituito e dalle materie tessili (escl. "
+"le calzature ortopediche e le calzature aventi carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64059090
@@ -25057,6 +25426,11 @@ msgid ""
 "of materials other than leather, composition leather or textile materials "
 "(excl. orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di legno, sughero, corda, cartone, pelliccia, "
+"tessuto, feltro, tessuto non tessuto, linoleum, rafia, paglia, luffa, ecc. e "
+"tomaia di materie diverse dal cuoio naturale o ricostituito e dalle materie "
+"tessili (escl. le calzature ortopediche e le calzature aventi carattere di "
+"giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64051000
@@ -25065,6 +25439,10 @@ msgid ""
 "soles of rubber, plastics, leather or composition leather and uppers of "
 "leather, orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con tomaia di cuoio naturale o ricostituito (escl. le calzature "
+"con suola esterna di gomma, di materia plastica, di cuoio naturale o "
+"ricostituito e tomaia di cuoio naturale, le calzature ortopediche e le "
+"calzature aventi carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029939
@@ -25074,6 +25452,10 @@ msgid ""
 "maximum sole and heel height of <= 3 cm (excl. with upper straps or thongs "
 "assembled to the sole by means of plugs)"
 msgstr ""
+"Calzature con suola esterna di gomma o di materia plastica e tomaia di "
+"materia plastica, la cui mascherina è formata da strisce o presenta uno o "
+"più intagli, con tacco di altezza, incl. la suola, <= 3 cm (escl. le "
+"calzature con tomaia a strisce o cinturini fissati alla suola con naselli)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029931
@@ -25083,6 +25465,10 @@ msgid ""
 "maximum sole and heel height of > 3 cm (excl. with upper straps or thongs "
 "assembled to the sole by means of plugs)"
 msgstr ""
+"Calzature con suola esterna di gomma o di materia plastica e tomaia di "
+"materia plastica, la cui mascherina è formata da strisce o presenta uno o "
+"più intagli, con tacco di altezza, incl. la suola, > 3cm (escl. le calzature "
+"con tomaia a strisce o cinturini fissati alla suola con naselli)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029991
@@ -25093,6 +25479,13 @@ msgid ""
 "incorporating a protective metal toecap, indoor footwear, sports footwear, "
 "waterproof footwear of heading 6401, orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma o di materia plastica e tomaia di "
+"materia plastica, con suola interna di lunghezza < 24 cm (escl. le calzature "
+"che ricoprono la caviglia, le calzature la cui mascherina è formata da "
+"strisce o presenta uno o più intagli, le calzature con puntale protettivo di "
+"metallo, le calzature da camera, le calzature per lo sport, le calzature "
+"impermeabili della voce 6401, le calzature ortopediche e le calzature aventi "
+"carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64029910
@@ -25102,6 +25495,12 @@ msgid ""
 "means of plugs, waterproof footwear of heading 6401, sports footwear, "
 "orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di gomma o di materia plastica e tomaia di gomma "
+"(escl. le calzature che ricoprono la caviglia, le calzature con tomaia a "
+"strisce o cinturini fissati alla suola con naselli, le calzature con puntale "
+"protettivo di metallo, le calzature impermeabili della voce 6401, le "
+"calzature per lo sport, le calzature ortopediche e le calzature aventi "
+"carattere di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64052099
@@ -25110,6 +25509,10 @@ msgid ""
 "plastics, leather or composition leather, wood or cork, indoor footwear, "
 "orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con tomaia di materie tessili (escl. le calzature con suola "
+"esterna di gomma, di materia plastica, di cuoio naturale o ricostituito, di "
+"legno o di sughero, le calzature ortopediche e le calzature aventi carattere "
+"di giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64052010
@@ -25117,6 +25520,9 @@ msgid ""
 "Footwear with uppers of textile materials and outer soles of wood or cork "
 "(excl. orthopaedic footwear and toy footwear)"
 msgstr ""
+"Calzature con suola esterna di legno o di sughero e tomaia di materie "
+"tessili (escl. le calzature ortopediche e le calzature aventi carattere di "
+"giocattolo)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_64034000
@@ -25125,16 +25531,19 @@ msgid ""
 "rubber, plastics, leather or composition leather and uppers of leather "
 "(excl. sports footwear and orthopaedic footwear)"
 msgstr ""
+"Calzature con suole esterne di gomma, di materia plastica, di cuoio naturale "
+"o ricostituito e con tomaie di cuio naturale non a strisce, escluse quelle "
+"da sport, con puntale protettivo di metallo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84335919
 msgid "Forage harvesters, not self-propelled"
-msgstr ""
+msgstr "Falciatrinciacaricatrici, non semoventi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84335911
 msgid "Forage harvesters, self-propelled"
-msgstr ""
+msgstr "Falciatrinciacaricatrici, semoventi"
 
 #. module: l10n_it_intrastat
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
@@ -25144,7 +25553,7 @@ msgstr "Forzare valore statistico in euro"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_02101930
 msgid "Fore-ends and cuts thereof of domestic swine, salted or in brine"
-msgstr ""
+msgstr "Parti anteriori e loro pezzi, di suidi domestici, salati o in salamoia"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.842112
@@ -25164,17 +25573,17 @@ msgstr "Servizi connessi agli aiuti militari destinati all'estero"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.021020
 msgid "Forest trees nurseries services"
-msgstr ""
+msgstr "Servizi vivaistici per piante forestali"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_12099910
 msgid "Forest-tree seed for sowing"
-msgstr ""
+msgstr "Semi da bosco, destinati alla semina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84368010
 msgid "Forestry machinery, n.e.s."
-msgstr ""
+msgstr "Macchine ed apparecchi per la silvicoltura, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84621090
@@ -25182,6 +25591,8 @@ msgid ""
 "Forging or die-stamping machines, incl. presses, and hammers, not "
 "numerically controlled"
 msgstr ""
+"Macchine, incl. le presse, per fucinare o forgiare a stampo, magli (non a "
+"comando numerico)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84621010
@@ -25189,6 +25600,8 @@ msgid ""
 "Forging or die-stamping machines, incl. presses, and hammers, numerically "
 "controlled"
 msgstr ""
+"Macchine, incl. le presse, per fucinare o forgiare a stampo, magli, a "
+"comando numerico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.255011
@@ -25198,33 +25611,34 @@ msgstr "Servizi di fucinatura dei metalli"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29151100
 msgid "Formic acid"
-msgstr ""
+msgstr "Acido formico"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_96083000
 msgid "Fountain pens, stylograph pens and other pens"
-msgstr ""
+msgstr "Penne stilografiche ed altre penne"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90031900
 msgid ""
 "Frames and mountings for spectacles, goggles or the like (excl. of plastics)"
 msgstr ""
+"Montature per occhiali o per oggetti simili (escl. di materie plastiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90031100
 msgid "Frames and mountings for spectacles, goggles or the like, of plastics"
-msgstr ""
+msgstr "Montature per occhiali o per oggetti simili, di materie plastiche"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87149110
 msgid "Frames for cycles (excl. for motorcycles)"
-msgstr ""
+msgstr "Telai per biciclette e altri velocipedi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84183020
 msgid "Freezers of the chest type, of a capacity <= 400 l"
-msgstr ""
+msgstr "Mobili congelatori-conservatori, tipo cofano, di capacità <= 400 litri"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84183080
