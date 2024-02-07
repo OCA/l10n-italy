@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-06 16:37+0000\n"
+"PO-Revision-Date: 2024-02-07 10:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -21454,7 +21454,7 @@ msgid ""
 "covered or laminated, of wool or fine animal hair, n.e.s."
 msgstr ""
 "Prodotti cuciti con punto a maglia, non impregnati, nè spalmati, nè "
-"ricoperti, nè stratificati, di lana o peli fini"
+"ricoperti, nè stratificati, di lana o peli fini, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48055000
@@ -21473,7 +21473,7 @@ msgid ""
 "chapter 59, n.e.s."
 msgstr ""
 "Prodotti e manufatti tessili per usi tecnici, non nominati nelle precedenti "
-"voci 5911, di feltro"
+"voci 5911, di feltro, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_56029000
@@ -22632,7 +22632,7 @@ msgid ""
 "international units per g, whether or not refined (excl. chemically modified)"
 msgstr ""
 "Olio di fegato di pesci e loro frazioni aventi tenore di vitamina A "
-"inferiore o uguale a 2 500 Unità Internazionali per grammo"
+"inferiore o uguale a 2500 Unità Internazionali per grammo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15041091
