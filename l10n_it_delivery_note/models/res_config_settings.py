@@ -17,6 +17,11 @@ class ResConfigSettings(models.TransientModel):
         implied_group="l10n_it_delivery_note.use_advanced_delivery_notes",
     )
 
+    group_required_partner_ref = fields.Boolean(
+        string="Make Partner Ref. in DN Mandatory",
+        implied_group="l10n_it_delivery_note.group_required_partner_ref",
+    )
+
     virtual_locations_root = fields.Many2one(
         "stock.location",
         string="Virtual locations root",
