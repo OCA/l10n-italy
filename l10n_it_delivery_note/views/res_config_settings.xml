@@ -29,6 +29,20 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="group_required_partner_ref" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="group_required_partner_ref" />
+                            <div class="text-muted">
+                                <p>
+                                    Block the validation of incoming DNs if the
+                                    "Partner reference" field is not set.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
                         <div class="o_setting_right_pane">
                             <label for="virtual_locations_root" />
                             <div class="text-muted">
