@@ -44,6 +44,9 @@ class WizardRegistroIva(models.TransientModel):
     year_footer = fields.Char(
         string="Year for Footer", help="Value printed near number of page in the footer"
     )
+    enable_currency = fields.Boolean(
+        string="Enable currency values", help="Enable currency values in the report"
+    )
 
     @api.onchange("tax_registry_id")
     def on_change_tax_registry_id(self):
@@ -102,6 +105,7 @@ class WizardRegistroIva(models.TransientModel):
         datas_form["fiscal_page_base"] = wizard.fiscal_page_base
         datas_form["registry_type"] = wizard.layout_type
         datas_form["year_footer"] = wizard.year_footer
+        datas_form["enable_currency"] = wizard.enable_currency
 
         lang_code = self.env.company.partner_id.lang
         lang = self.env["res.lang"]
