@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-07 19:37+0000\n"
+"PO-Revision-Date: 2024-02-08 15:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -19031,7 +19031,7 @@ msgid ""
 "fluorescent lamps, n.e.s."
 msgstr ""
 "Apparecchi elettrici per l'illuminazione, di materie plastiche, dei tipi "
-"utilizzati per tubi fluorescenti"
+"utilizzati per tubi fluorescenti, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054091
@@ -19048,8 +19048,8 @@ msgid ""
 "Electric lamps and lighting fittings, used with tubular fluorescent lamps, n."
 "e.s. (excl. of plastics)"
 msgstr ""
-"Apparecchi elettrici per l'illuminazione, di materie diverse dalle materie "
-"plastiche, dei tipi utilizzati per tubi fluorescenti, n.n.a."
+"Apparecchi elettrici per l'illuminazione, dei tipi utilizzati per tubi "
+"fluorescenti, n.n.a. (di materie diverse dalle materie plastiche)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85121000
@@ -19248,7 +19248,7 @@ msgid ""
 "e.s."
 msgstr ""
 "Fili e cavi elettrici, isolati, non adatti a connettori con diametro dei "
-"singoli fili > 0,51 mm"
+"singoli fili > 0,51 mm, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85369085
@@ -20870,7 +20870,7 @@ msgstr "Totani (Todarodes sagittatus) congelati (escl. affumicati)"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84796000
 msgid "Evaporative air coolers, n.e.s."
-msgstr "Apparecchi a evaporazione per il raffreddamento dell'aria"
+msgstr "Apparecchi a evaporazione per il raffreddamento dell'aria, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84189910
