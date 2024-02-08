@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-30 17:34+0000\n"
-"PO-Revision-Date: 2023-12-24 18:42+0000\n"
+"PO-Revision-Date: 2024-02-08 10:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -67,7 +67,7 @@ msgstr "Fattura"
 #. module: l10n_it_account_stamp
 #: model:ir.model,name:l10n_it_account_stamp.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Righe Fattura"
+msgstr "Riga fattura"
 
 #. module: l10n_it_account_stamp
 #: field:account.invoice.line,is_stamp_line:0 field:product.template,is_stamp:0
