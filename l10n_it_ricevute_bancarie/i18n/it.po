@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-20 06:12+0000\n"
-"PO-Revision-Date: 2024-01-18 10:37+0000\n"
+"PO-Revision-Date: 2024-02-08 10:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -553,7 +553,7 @@ msgstr "Data Fattura"
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Riga Fattura"
+msgstr "Riga fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta.line,invoice_number:0
