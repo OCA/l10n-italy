@@ -373,6 +373,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             "code": self.code,
             "company_id": self.company_id.id,
             "currency_id": self.currency_id.id,
+            "dismiss_date": False,
             "name": self.name,
             "purchase_amount": purchase_amount,
             "purchase_date": self.purchase_date,
