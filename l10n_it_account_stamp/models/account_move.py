@@ -16,7 +16,7 @@ class AccountMove(models.Model):
     manually_apply_tax_stamp = fields.Boolean("Apply tax stamp")
 
     def is_tax_stamp_applicable(self):
-        stamp_product_id = self.env.company.with_context(
+        stamp_product_id = self.company_id.with_context(
             lang=self.partner_id.lang
         ).tax_stamp_product_id
         if not stamp_product_id:
@@ -56,7 +56,7 @@ class AccountMove(models.Model):
         for inv in self:
             if not inv.tax_stamp:
                 raise UserError(_("Tax stamp is not applicable"))
-            stamp_product_id = self.env.company.with_context(
+            stamp_product_id = inv.company_id.with_context(
                 lang=inv.partner_id.lang
             ).tax_stamp_product_id
             if not stamp_product_id:
@@ -163,7 +163,7 @@ class AccountMove(models.Model):
                     posted = True
                     inv.state = "draft"
                 line_model = self.env["account.move.line"]
-                stamp_product_id = self.env.company.with_context(
+                stamp_product_id = inv.company_id.with_context(
                     lang=inv.partner_id.lang
                 ).tax_stamp_product_id
                 if not stamp_product_id:
