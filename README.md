@@ -104,7 +104,7 @@ addon | version | maintainers | summary
 [l10n_it_website_sale_corrispettivi](l10n_it_website_sale_corrispettivi/) | 12.0.1.0.1 |  | Aggiunge la ricevuta come opzione per l'utente e-commerce
 [l10n_it_website_sale_fatturapa](l10n_it_website_sale_fatturapa/) | 12.0.1.0.3 |  | Aggiunge i campi necessari alla fatturazione elettronica nel form del checkout
 [l10n_it_website_sale_fiscalcode](l10n_it_website_sale_fiscalcode/) | 12.0.1.1.3 |  | Website Sale FiscalCode
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 12.0.2.1.6 |  | ITA - Ritenute d'acconto
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 12.0.2.1.7 |  | ITA - Ritenute d'acconto
 [l10n_it_withholding_tax_causali](l10n_it_withholding_tax_causali/) | 12.0.2.0.0 |  | Causali pagamento per ritenute d'acconto
 [l10n_it_withholding_tax_payment](l10n_it_withholding_tax_payment/) | 12.0.1.0.1 |  | Gestisce le ritenute sulle fatture e sui pagamenti
 
