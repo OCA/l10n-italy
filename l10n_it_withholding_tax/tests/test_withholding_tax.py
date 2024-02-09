@@ -1,4 +1,8 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
+# Copyright 2022 ~ 2023 Simone Rubino - TAKOBI
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+import json
 
 from odoo.tests.common import TransactionCase, Form
 from datetime import date, timedelta
@@ -57,6 +61,21 @@ class TestWithholdingTax(TransactionCase):
                 })]
             }
         self.wt1040 = self.env['withholding.tax'].create(wt_vals)
+        wt_4_enasarco_values = {
+            'name': '4q',
+            'code': '4q',
+            'wt_types': 'enasarco',
+            'account_receivable_id': self.wt_account_receivable.id,
+            'account_payable_id': self.wt_account_payable.id,
+            'payment_term': self.payment_term_15.id,
+            'rate_ids': [
+                (0, 0, {
+                    'tax': 4.0,
+                    'base': 1.0,
+                }),
+            ],
+        }
+        self.wt_4_enasarco = self.env['withholding.tax'].create(wt_4_enasarco_values)
 
         # Supplier Invoice with WT
         invoice_line_vals = [
@@ -193,7 +212,10 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(new_tax.code, "1040 (copy)")
         self.assertEqual(new_tax.name, "Code 1040")
 
-    def _create_bill(self):
+    def _create_bill(self, withholding_taxes=None):
+        if withholding_taxes is None:
+            withholding_taxes = self.wt1040
+
         bill_model = self.env['account.invoice'].with_context(type='in_invoice')
         bill_form = Form(bill_model)
         bill_form.name = "Test Supplier Invoice WT"
@@ -202,7 +224,8 @@ class TestWithholdingTax(TransactionCase):
             line.name = "Advice"
             line.price_unit = 1000
             line.invoice_line_tax_wt_ids.clear()
-            line.invoice_line_tax_wt_ids.add(self.wt1040)
+            for withholding_tax in withholding_taxes:
+                line.invoice_line_tax_wt_ids.add(withholding_tax)
         bill = bill_form.save()
         bill.action_invoice_open()
         return bill
@@ -277,3 +300,120 @@ class TestWithholdingTax(TransactionCase):
             ('reconcile_partial_id', '=', reconciliation.id),
         ])
         self.assertFalse(withholding_tax_moves)
+
+    def _pay_invoice(self, invoice, amount):
+        """
+        Pay `amount` for `invoice`.
+        """
+        register_payments = self.env['account.register.payments'] \
+            .with_context({
+                'active_model': invoice._name,
+                'active_ids': invoice.ids,
+            }) \
+            .create({
+                'payment_date': time.strftime('%Y') + '-07-15',
+                'amount': amount,
+                'journal_id': self.journal_bank.id,
+                'payment_method_id': self.env.ref(
+                    "account.account_payment_method_manual_out").id,
+            })
+        payment_action = register_payments.create_payments()
+        return payment_action
+
+    def _get_invoice_wt_payment_lines(self, invoice, wt):
+        """
+        Get the Payment Lines for `invoice` and `wt`.
+        """
+        payments_info_json = invoice.outstanding_credits_debits_widget
+        payments_info = json.loads(payments_info_json)
+        payments_info_content = payments_info['content']
+        payments_ids = list(filter(None, [
+            info.get('id')
+            for info in payments_info_content
+        ]))
+        payment_lines = self.env['account.move.line'].browse(payments_ids)
+
+        invoice_payment_line = payment_lines.filtered(
+            lambda p: p.move_id.journal_id == self.journal_bank
+        )
+        wt_payment_line = payment_lines.filtered(
+            lambda p: p.move_id.journal_id == wt.journal_id
+        )
+        return invoice_payment_line, wt_payment_line
+
+    def test_invoice_draft_duplicate_payments(self):
+        """
+        Resetting to draft a paid invoice and linking the payment twice
+        does not create additional WT payment moves.
+        """
+        # Arrange: There is a Paid Invoice with WT Amount
+        wt = self.wt1040
+        invoice = self.invoice
+        invoice_pay_residual = 800
+        invoice_wt_amount = 200
+        self.assertIn(
+            wt,
+            invoice.withholding_tax_line_ids.mapped('withholding_tax_id')
+        )
+        self.assertEqual(invoice.withholding_tax_amount, invoice_wt_amount)
+        self.assertEqual(invoice.amount_net_pay, invoice_pay_residual)
+        self.assertEqual(invoice.amount_net_pay_residual, invoice_pay_residual)
+        self._pay_invoice(invoice, invoice_pay_residual)
+        self.assertEqual(invoice.state, 'paid')
+
+        # Act: Reset and Confirm the Invoice twice,
+        # linking the existing Payment each time
+        invoice.journal_id.update_posted = True
+        invoice.action_invoice_cancel()
+        invoice.action_invoice_draft()
+        invoice._onchange_invoice_line_wt_ids()
+        invoice.action_invoice_open()
+
+        invoice_payment_line, wt_payment_line = \
+            self._get_invoice_wt_payment_lines(invoice, wt)
+        self.assertEqual(len(invoice_payment_line), 1)
+        self.assertEqual(len(wt_payment_line), 1,
+                         msg="There should be only one WT Payment line")
+        # Link the payment
+        invoice.assign_outstanding_credit(invoice_payment_line.id)
+
+        # Reset and Confirm the Invoice again
+        invoice.journal_id.update_posted = True
+        invoice.action_invoice_cancel()
+        invoice.action_invoice_draft()
+        invoice._onchange_invoice_line_wt_ids()
+        invoice.action_invoice_open()
+
+        invoice_payment_line, wt_payment_line = \
+            self._get_invoice_wt_payment_lines(invoice, wt)
+        invoice.assign_outstanding_credit(invoice_payment_line.id)
+
+        # Assert: There is only one WT Payment
+        self.assertEqual(len(invoice_payment_line), 1)
+        self.assertEqual(len(wt_payment_line), 1,
+                         msg="There should be only one WT Payment line")
+
+    def test_pay_multiple_statements(self):
+        """Pay a bill linked to multiple statements."""
+        # Arrange
+        bill = self._create_bill(
+            withholding_taxes=self.wt1040 | self.wt_4_enasarco,
+        )
+        statements = self.env['withholding.tax.statement'].search(
+            [
+                ('move_id', '=', bill.move_id.id),
+            ],
+        )
+        to_pay_amount = bill.amount_net_pay_residual
+        payment_amount = 100
+        # pre-condition
+        self.assertGreater(len(statements), 1)
+
+        # Act
+        self._pay_invoice(bill, payment_amount)
+
+        # Assert
+        self.assertEqual(
+            bill.amount_net_pay_residual,
+            to_pay_amount - payment_amount,
+        )
