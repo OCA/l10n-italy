@@ -18,13 +18,13 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/account.py:371
+#: code:addons/l10n_it_withholding_tax/models/account.py:463
 #, python-format
 msgid " (Residual Net to pay: %s)"
 msgstr " (Netto a pagare residuo: %s)"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:84
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:85
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copia)"
@@ -222,13 +222,13 @@ msgid "Enpam Tax"
 msgstr "Contributo Enpam"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:92
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:93
 #, python-format
 msgid "Error! Rates are required"
 msgstr "Errore! Le aliquote sono obbligatorie"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:161
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:162
 #, python-format
 msgid "Error! You cannot have 2 rates that overlap!"
 msgstr "Errore, due aliquote non possono sovrapporsi!"
@@ -341,13 +341,13 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:35
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:36
 #, python-format
 msgid "MISC"
 msgstr "VARIE"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:431
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:433
 #, python-format
 msgid "Move %s is reconciled (%s). You must unreconcile it first"
 msgstr ""
@@ -555,13 +555,13 @@ msgid "W.T. Reg. on"
 msgstr "RdA registrata il"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:331
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:333
 #, python-format
 msgid "WT %s - %s"
 msgstr "RdA %s - %s"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:341
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:343
 #, python-format
 msgid "WT %s - %s - %s"
 msgstr "RdA %s - %s - %s"
@@ -602,8 +602,8 @@ msgid "WT reconciliation"
 msgstr "Riconciliazione RdA"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/account.py:179
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:447
+#: code:addons/l10n_it_withholding_tax/models/account.py:271
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:449
 #, python-format
 msgid ""
 "Warning! Only Withholding Tax moves in Due status                     can be "
@@ -613,7 +613,7 @@ msgstr ""
 "pagare»"
 
 #. module: l10n_it_withholding_tax
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:327
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:329
 #, python-format
 msgid "Warning! Wt account move already exists: %s"
 msgstr "Attenzione, movimento contabile RdA già esistente: %s"
