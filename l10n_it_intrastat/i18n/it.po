@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-08 15:36+0000\n"
+"PO-Revision-Date: 2024-02-09 09:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -19039,8 +19039,8 @@ msgid ""
 "Electric lamps and lighting fittings, used with filament lamps, n.e.s. "
 "(excl. of plastics)"
 msgstr ""
-"Apparecchi elettrici per l'illuminazione, di materie diverse dalle materie "
-"plastiche, dei tipi utilizzati per lampade e tubi ad incandescenza, n.n.a."
+"Lampade elettriche e apparecchi per l'illuminazione, utilizzati con lampade "
+"a incandescenza, n.n.a. (escl. di plastica)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94054095
@@ -42551,7 +42551,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_min_amount
 msgid "Min amount"
-msgstr "Ammontare min."
+msgstr "Importo minimo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.711233
@@ -47691,9 +47691,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.620920
 msgid "Other information technology and computer services n.e.c."
-msgstr ""
-"Altri servizi connessi alle tecnologie dell'informazione n.c.a. e "
-"all'informatica"
+msgstr "Altri servizi connessi alle tecnologie dell'informazione n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.504019
