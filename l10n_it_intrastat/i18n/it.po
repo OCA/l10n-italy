@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-09 11:35+0000\n"
+"PO-Revision-Date: 2024-02-09 15:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -22649,8 +22649,9 @@ msgid ""
 "chemically modified (excl. fish-liver oils with vitamin A content <= 2.500 "
 "international units per g, and of halibut)"
 msgstr ""
-"Olio di fegato di pesci e loro frazioni, diverso da quello delle voci 1504 "
-"10 10 e 91"
+"Oli di fegato di pesci e loro frazioni, anche raffinati ma non modificati "
+"chimicamente (escl. oli di fegato di pesci con tenore di vitamina A <= 2.500 "
+"unità internazionali per g, e di ippoglosso)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73024000
@@ -25042,16 +25043,16 @@ msgid ""
 "form of milk, cream, butter milk, sour milk, sour cream, whey, yogurt, "
 "kephir or similar goods of heading 0401 to 0404)"
 msgstr ""
-"Preparazioni alimentari a base di farina, semole, semolini, amido o estratti "
-"di malto, non contenenti materie grasse del latte, saccarosio, isoglucosio, "
-"glucosio o amido o contenenti < 1,5% di materie grasse del latte, 5% di "
-"saccarosio, isoglucosio, glucosio o amido, non contenenti cacao o contenenti "
-"cacao in proporzione in peso < 40%, calcolato su base totalmente sgrassata "
-"(escl. estratti di malto e preparazioni per alimenti per l'infanzia, "
-"destinate alla vendita al minuto, preparati e impasti per la preparazione di "
-"prodotti da forno e in polvere di latte, panna, burro di latte, latte acido, "
-"panna acida, siero di latte, yogurt, kephir o prodotti simili delle voci da "
-"0401 a 0404)"
+"Preparazioni alimentari a base di farina, semole, semolini, amido o estratto "
+"di malto, non contenenti grassi del latte, saccarosio, isoglucosio, glucosio "
+"o amido o contenenti < 1,5% di grassi del latte, 5% di saccarosio, "
+"isoglucosio, glucosio o amido, non contenenti cacao o contenenti cacao in "
+"una proporzione < 40%, in peso, calcolata su una base completamente "
+"sgrassata (escl. estratti di malto e alimenti per l'infanzia, condizionati "
+"per la vendita al minuto, miscele e impasti per la preparazione di prodotti "
+"da forno e in polvere di latte, panna , burro di latte, latte acido, panna "
+"acida, siero di latte, yogurt, kephir o prodotti simili delle voci da 0401 a "
+"0404)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_19019099
@@ -25066,16 +25067,16 @@ msgid ""
 "sale, mixes and doughs for preparation of bakers' wares and goods in "
 "subheading 1901.90.91)"
 msgstr ""
-"Preparazioni alimentari a base di farina, semole, semolini, amido o estratti "
-"di malto, non contenenti cacao o contenenti cacao in proporzione in peso < "
-"40%, calcolata su base totalmente sgrassata, e preparazioni alimentari a "
-"base di latte, panna., burro di latte, latte acido , panna. acida, siero di "
-"latte, yogurt, kephir o prodotti simili delle voci da 0401 a 0404, non "
-"contenenti cacao o contenenti cacao in proporzione in peso < 5%, calcolato "
-"su base totalmente sgrassata, n.n.a. (escl. estratti di malto e preparazioni "
-"per alimenti per l'infanzia, destinte alla vendita al minuto miscele e "
-"impasti per la preparazione di prodotti da forno e prodotti delle sottovoci "
-"1901 90 91 e 1901 90 95)"
+"Preparazioni alimentari a base di farina, semola, semolino, amido o estratto "
+"di malto, non contenenti cacao o contenenti cacao in una proporzione in peso "
+"< 40%, calcolata su una base completamente sgrassata, e preparazioni "
+"alimentari a base di latte, panna, burro di latte, latte acido , panna "
+"acida, siero di latte, yogurt, kefir o prodotti simili delle voci da 0401 a "
+"0404, non contenenti cacao o contenenti cacao in una proporzione, in peso, < "
+"5%, calcolata su una base completamente sgrassata, n.n.a. (escl. estratti di "
+"malto e preparazioni per alimenti per l'infanzia, condizionati per la "
+"vendita al minuto, miscele e impasti per la preparazione di prodotti della "
+"panetteria e prodotti della sottovoce 1901.90.91)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21069098
@@ -64357,7 +64358,7 @@ msgstr "Proiettori di profili"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_74072190
 msgid "Profiles of copper-zinc base alloys \"brass\", n.e.s."
-msgstr "Profilati di ottone"
+msgstr "Profili di leghe a base rame-zinco \"ottone\", n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_70033000
@@ -64371,7 +64372,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_76041090
 msgid "Profiles of non-alloy aluminium, n.e.s."
-msgstr "Profilati di alluminio non legato"
+msgstr "Profili di alluminio non legato, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85371091
@@ -64861,7 +64862,9 @@ msgstr "Piridina e suoi sali"
 msgid ""
 "Pyridine, quinoline, acridine, aniline bases and other basic products of the "
 "first distillation of high temperature coal tars, n.e.s."
-msgstr "Prodotti basici"
+msgstr ""
+"Basi di piridina, chinolina, acridina, anilina ed altri prodotti di base "
+"della prima distillazione di catrami di carbone ad alta temperatura, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38249025
@@ -68257,12 +68260,13 @@ msgid ""
 "diesel engine\" <= 2500 cm³ or with spark-ignition internal piston engine <= "
 "2800 cm³, and special purpose motor vehicles of heading 8705, n.e.s."
 msgstr ""
-"Ruote, loro parti ed accessori, destinati all'industria del montaggio: dei "
-"motocoltivatori della sottovoce 8701 10, degli autoveicoli della voce 8703, "
-"degli autoveicoli per il trasporto di merci, azionati da motore a pistone "
-"con accensione per compressione (diesel o semi-diesel), di cilindrata <= 2 "
-"500 cm³ o con accensione a scintilla, di cilindrata <= 2 800 cm³, degli "
-"autoveicoli per usi speciali della voce 8705"
+"Ruote stradali e loro parti ed accessori, per l'assemblaggio industriale di: "
+"trattori con conducente a terra, autoveicoli e veicoli progettati "
+"principalmente per il trasporto di persone, veicoli per il trasporto di "
+"merci con motore a combustione interna con accensione per compressione "
+"\"diesel o semi- motore diesel\" <= 2500 cm³ o con motore a pistoni interni "
+"con accensione a scintilla <= 2800 cm³, e gli autoveicoli per usi speciali "
+"della voce 8705, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87087099
@@ -69181,13 +69185,13 @@ msgid ""
 "internal piston engine <= 2800 cm³, special purpose motor vehicles of "
 "heading 8705, n.e.s"
 msgstr ""
-"Sacche gonfiabili di sicurezza con sistema di gonfiamento (airbags) e loro "
-"parti, destinati all'industria del montaggio: dei motocoltivatori della "
-"sottovoce 8701 10, degli autoveicoli della voce 8703, degli autoveicoli "
-"della voce 8704 azionati da motore a pistone con accensione per compressione "
-"(diesel o semi-diesel), di cilindrata <= 2 500 cm3 o con pistone ad "
-"accensione a scintilla di cilindrata <= 2 800 cm3 e dei veicoli speciali a "
-"motore della voce 8705 , n.n.a."
+"Airbag di sicurezza con sistema di gonfiaggio e loro parti, per "
+"l'assemblaggio industriale di: trattori con conducente a bordo, autoveicoli "
+"e veicoli progettati principalmente per il trasporto di persone, veicoli per "
+"il trasporto di merci con motore a combustione interna a pistone con "
+"accensione per compressione \"diesel o semirimorchio\" -motore diesel\" <= "
+"2500 cm³ o con motore a pistoni interni con accensione a scintilla <= 2800 "
+"cm³, autoveicoli per usi speciali della voce 8705, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87089599
@@ -69199,11 +69203,12 @@ msgid ""
 "s. (excl. those for the industrial assembly of certain motor vehicles of "
 "subheading 8708.95.10 and of closed-die forged steel)"
 msgstr ""
-"Sacche gonfiabili di sicurezza con sistema di gonfiamento («airbags»), per "
-"trattori, veicoli a motore per il trasporto di dieci o più persone, macchine "
-"e altri veicoli a motore specificamente progettati per il trasporto di "
-"persone, veicoli speciali per il trasporto di beni (escl. quelli per il "
-"montaggio dei veicoli della voce 8708 95 10), n.n.a."
+"Airbag di sicurezza con sistema di gonfiaggio e loro parti per trattori, "
+"autoveicoli per il trasporto di dieci o più persone, autoveicoli e altri "
+"autoveicoli progettati principalmente per il trasporto di persone, "
+"autoveicoli per il trasporto di merci e autoveicoli per usi speciali, n.n.a. "
+"(escl. quelli destinati all'assemblaggio industriale di alcuni autoveicoli "
+"della sottovoce 8708.95.10 e di acciaio fucinato a stampo chiuso)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87089591
@@ -69252,8 +69257,7 @@ msgstr "Valvole di troppo pieno o di sicurezza, di ghisa o di acciaio"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73194000
 msgid "Safety pins and other pins of iron or steel, n.e.s."
-msgstr ""
-"Spilli di sicurezza ed altri spilli di ferro o acciaio, non nominati altrove"
+msgstr "Spilli di sicurezza ed altri spilli di ferro o di acciaio, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_82122000
@@ -70135,10 +70139,10 @@ msgid ""
 "800 MPa (excl. screws and bolts for fixing railway track construction "
 "material)"
 msgstr ""
-"Viti, bulloni, dadi, tirafondi, ganci a vite, ribadini, copiglie, pernotti, "
-"chiavette, rondelle (comprese le rondelle destinate a funzionare da molla) "
-"ed articoli simili, di ghisa, ferro o acciaio: altre viti e bulloni, anche "
-"con i relativi dadi o rondelle: uguale o superiore a 800 MPa."
+"Viti e bulloni, di ferro o di acciai diversi da quelli inossidabili, anche "
+"con i relativi dadi e rondelle, senza testa, con resistenza alla trazione >= "
+"800 MPa (escl. viti e bulloni per il fissaggio del materiale da costruzione "
+"delle strade ferrate)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73181549
@@ -70197,8 +70201,12 @@ msgid ""
 "pruners and shears, hedge shears, two-handed pruning shears and similar two-"
 "handed shears)"
 msgstr ""
-"Utensili agricoli, orticoli o forestali, a mano, con parte operante di "
-"metalli comuni, n.n.a."
+"Falci, falci, coltelli da fieno, cunei per legname ed altri utensili a mano "
+"dei tipi utilizzati nell'agricoltura, nell'orticoltura o nella silvicoltura, "
+"con parti operanti di metalli comuni (escl. vanghe, pale, zappe, picconi, "
+"zappe, rastrelli, asce, roncole e simili utensili da taglio, cesoie per "
+"pollame, cesoie e cesoie simili a una mano e cesoie, cesoie per siepi, "
+"cesoie per potatura a due mani e cesoie simili a due mani)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.501011
@@ -72789,13 +72797,13 @@ msgid ""
 "internal piston engine <= 2800 cm³, special purpose motor vehicles of "
 "heading 8705, n.e.s"
 msgstr ""
-"Silenziatori, tubi di scappamento e loro parti destinati all'industria del "
-"montaggio: dei motocoltivatori della sottovoce 8701 10, degli autoveicoli "
-"della voce 8703, degli autoveicoli della voce 8704 azionati da motore a "
-"pistone con accensione per compressione (diesel o semi-diesel), di "
-"cilindrata <= 2 500 cm3 o con pistone ad accensione a scintilla di "
-"cilindrata <= 2 800 cm3 e dei veicoli speciali a motore della voce 8705 , n."
-"n.a."
+"Silenziatori \"marmitte\" e tubi di scappamento, e loro parti, per "
+"l'assemblaggio industriale di: trattori con conducente a terra, autoveicoli "
+"e veicoli progettati principalmente per il trasporto di persone, veicoli per "
+"il trasporto di merci con motore a combustione interna con accensione per "
+"compressione\" motore diesel o semidiesel\" <= 2500 cm³ o con motore a "
+"pistoni interni con accensione a scintilla <= 2800 cm³, autoveicoli per usi "
+"speciali della voce 8705, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87141040
@@ -72979,9 +72987,9 @@ msgid ""
 "Single cassette-deck assemblies with a total thickness <= 53 mm, of a kind "
 "used in the manufacture of sound recording and reproducing apparatus"
 msgstr ""
-"Accoppiamenti di piastre magnetofoniche singole, di spessore globale <= 53 "
-"mm, del tipo utilizzato per la fabbricazione di apparecchi per la "
-"registrazione e la riproduzione del suono, n.n.a."
+"Assemblaggi di registratori a cassette singoli con spessore totale <= 53 mm, "
+"del tipo utilizzato nella fabbricazione di apparecchi per la registrazione e "
+"la riproduzione del suono"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20093199
@@ -73542,7 +73550,7 @@ msgstr "Acquai e lavabi di acciaio inossidabile"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73269096
 msgid "Sintered articles of iron or steel, n.e.s."
-msgstr "Lavori di ferro o acciaio, sinterizzati, non nominati altrove"
+msgstr "Lavori sinterizzati di ferro o acciaio, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.390021
@@ -76044,7 +76052,8 @@ msgstr "Statuette ed altri oggetti d'ornamento, di terracotta comune, n.n.a."
 msgid ""
 "Statuettes and other ornamental articles of earthenware or fine pottery, n.e."
 "s."
-msgstr "Statuette ed altri oggetti d'ornamento, di terraglia"
+msgstr ""
+"Statuette ed altri oggetti ornamentali di maiolica o di ceramica fine, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_69131000
@@ -76239,12 +76248,12 @@ msgid ""
 "diesel engine\" <= 2500 cm³ or with spark-ignition internal piston engine <= "
 "2800 cm³, special purpose motor vehicles of heading 8705, n.e.s"
 msgstr ""
-"Volanti, colonne di guida (piantoni), scatole dello sterzo e loro parti "
-"destinati all'industria del montaggio: degli autoveicoli della voce 8703, "
-"degli autoveicoli della voce 8704 azionati da motore a pistone con "
-"accensione per compressione (diesel o semi-diesel), di cilindrata <= 2 500 "
-"cm3 o con pistone ad accensione a scintilla di cilindrata <= 2 800 cm3 e dei "
-"veicoli speciali a motore della voce 8705 , n.n.a."
+"Volanti, piantoni e scatole dello sterzo, e loro parti, per l'assemblaggio "
+"industriale di: autoveicoli e veicoli progettati principalmente per il "
+"trasporto di persone, veicoli per il trasporto di merci con motore a "
+"combustione interna con accensione per compressione \"diesel o semi- motore "
+"diesel\" <= 2500 cm³ o con motore a pistoni interni con accensione a "
+"scintilla <= 2800 cm³, autoveicoli per usi speciali della voce 8705, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90111090
@@ -78980,8 +78989,8 @@ msgid ""
 "Supported catalysts with precious metal or a precious-metal compound as the "
 "active substance, n.e.s."
 msgstr ""
-"Catalizzatori su supporti, aventi come sostanza attiva un metallo prezioso o "
-"un loro composto"
+"Catalizzatori supportati aventi come sostanza attiva un metallo prezioso o "
+"un composto di metalli preziosi, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38151990
@@ -79089,12 +79098,13 @@ msgid ""
 "internal piston engine of a cylinder capacity <= 2.800 cm³ and special "
 "purpose motor vehicles of heading 8705, n.e.s"
 msgstr ""
-"Sistemi di sospensione e loro parti (compresi gli ammortizzatori di "
-"sospensione) destinati all'industria del montaggio: degli autoveicoli della "
-"voce 8703, degli autoveicoli della voce 8704 azionati da motore a pistone "
-"con accensione per compressione (diesel o semi-diesel), di cilindrata <= 2 "
-"500 cm³ o con accensione a scintilla di cilindrata <= 2 800 cm³, degli "
-"autoveicoli della voce 8705, n.n.a."
+"Sistemi di sospensione e loro parti, incl. ammortizzatori, destinati "
+"all'assemblaggio industriale di: autoveicoli ed altri autoveicoli progettati "
+"principalmente per il trasporto di persone, veicoli per il trasporto di "
+"merci con motore a combustione interna con accensione per compressione "
+"\"motore diesel o semidiesel\" di cilindrata <= 2.500 cm³ o con motore a "
+"pistoni interni con accensione a scintilla di cilindrata <= 2.800 cm³ e "
+"autoveicoli per usi speciali della voce 8705, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87088091
@@ -83990,7 +84000,8 @@ msgid ""
 "Turtles' eggs, birds' nests and other edible products of animal origin, n.e."
 "s."
 msgstr ""
-"Prodotti commestibili di origine animale, non nominati né compresi altrove"
+"Uova di tartaruga, nidi di uccelli ed altri prodotti commestibili di origine "
+"animale, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_56075011
@@ -84765,12 +84776,12 @@ msgid ""
 "mechanical process or of which <= 10% by weight of the total fibre content "
 "consists of such fibres, weighing > 150 g/m², n.e.s."
 msgstr ""
-"Carta e cartone, non patinati nè spalmati, dei tipi utilizzati per la "
-"scrittura, la stampa o altri scopi grafici, e carta e cartone per schede o "
-"nastri da perforare, non perforati, in rotoli di qualunque formato, senza "
-"fibre ottenute con procedimento meccanico o chimico-meccanico, oppure in cui "
-"<= 10% in peso della massa fibrosa totale è costituito da tali fibre, di "
-"peso > 150 g/m2, n.n.a"
+"Carta e cartone non patinati, dei tipi utilizzati per la scrittura, la "
+"stampa o altri scopi grafici, e carta per schede e nastri perforati non "
+"perforati, in rotoli di qualsiasi dimensione, non contenenti fibre ottenute "
+"con un procedimento meccanico o chimico-meccanico o di cui <= 10% in peso "
+"del contenuto totale di fibre è costituito da tali fibre, di peso > 150 g/"
+"m², n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48026180
@@ -84832,12 +84843,12 @@ msgid ""
 "a mechanical or chemi-mechanical process or of which <= 10% by weight of the "
 "total fibre content consists of such fibres, weighing > 150 g/m², n.e.s."
 msgstr ""
-"Carta e cartone, non patinati nè spalmati, dei tipi utilizzati per la "
-"scrittura, la stampa o altri scopi grafici, e carta e cartone per schede o "
-"nastri da perforare, non perforati, in fogli di forma quadrata o "
-"rettangolare, di qualunque formato, senza fibre ottenute con procedimento "
-"meccanico o chimico-meccanico, oppure in cui <= 10% in peso della massa "
-"fibrosa totale è costituito da tali fibre, di peso > 150 g/m2, n.n.a"
+"Carta e cartone non patinati, dei tipi utilizzati per la scrittura, la "
+"stampa o altri scopi grafici, e carta per schede e nastri perforati non "
+"perforati, in fogli quadrati o rettangolari di qualsiasi dimensione, non "
+"contenenti fibre ottenute con procedimento meccanico o chimico-meccanico o "
+"di cui <= 10% in peso del contenuto totale di fibre è costituito da tali "
+"fibre, di peso > 150 g/m², n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48025680
