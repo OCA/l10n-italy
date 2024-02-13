@@ -36,6 +36,23 @@ class AccountMoveLine(models.Model):
             line.rc = is_rc
 
     rc = fields.Boolean("RC", compute="_compute_rc_flag", store=True, readonly=False)
+    currency_rate = fields.Float(
+        compute="_compute_currency_rate_rc",
+    )
+
+    def _compute_currency_rate_rc(self):
+        for line in self:
+            if line.currency_id and line.move_id.rc_original_supplier_invoice_date:
+                # RC invoices must have date of journal entry
+                # but currency rate of the original supplier invoice date
+                line.currency_rate = self.env["res.currency"]._get_conversion_rate(
+                    from_currency=line.company_currency_id,
+                    to_currency=line.currency_id,
+                    company=line.company_id,
+                    date=line.move_id.rc_original_supplier_invoice_date,
+                )
+            else:
+                line._compute_currency_rate()
 
 
 class AccountMove(models.Model):
@@ -72,6 +89,7 @@ class AccountMove(models.Model):
         copy=False,
         readonly=True,
     )
+    rc_original_supplier_invoice_date = fields.Date(readonly=True)
 
     def rc_inv_line_vals(self, line):
         return {
@@ -112,6 +130,8 @@ class AccountMove(models.Model):
             "journal_id": rc_type.journal_id.id,
             "invoice_line_ids": lines,
             "invoice_date": self.date,
+            "rc_original_supplier_invoice_date": self.rc_original_supplier_invoice_date
+            or self.invoice_date,
             "date": self.date,
             "invoice_origin": self.sequence_number,
             "rc_purchase_invoice_id": self.id,
@@ -450,6 +470,7 @@ class AccountMove(models.Model):
         # because this field has copy=False
         supplier_invoice_vals["date"] = self.date
         supplier_invoice_vals["invoice_date"] = self.date
+        supplier_invoice_vals["rc_original_supplier_invoice_date"] = self.invoice_date
         supplier_invoice_vals["invoice_origin"] = self.ref or self.name
         supplier_invoice_vals["partner_id"] = rc_type.partner_id.id
         supplier_invoice_vals["journal_id"] = rc_type.supplier_journal_id.id
