@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-09 15:33+0000\n"
+"PO-Revision-Date: 2024-02-13 11:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -56371,15 +56371,17 @@ msgid ""
 "Parts of clock and watch cases, n.e.s. (excl. for wrist-watches, pocket-"
 "watches and other watches of heading 9101 or 9102)"
 msgstr ""
-"Parti di casse e gabbie per apparecchi di orologeria, diversi dagli orologi "
-"da polso, da tasca e simili delle voci 9101 o 9102, n.n.a."
+"Parti di orologi e casse di orologi, n.n.a. (escl. orologi da polso, da "
+"tasca e altri orologi delle voci 9101 o 9102)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84549000
 msgid ""
 "Parts of converters, ladles, ingot moulds and casting machines of a kind "
 "used in metallurgy or in metal foundries, n.e.s."
-msgstr "Parti di macchine delle voci 8454"
+msgstr ""
+"Parti di convertitori, siviere, lingottiere e macchine di colata dei tipi "
+"utilizzati nella metallurgia o nelle fonderie di metalli, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84419010
@@ -56435,10 +56437,9 @@ msgid ""
 "Parts of electric filament or discharge lamps, sealed beam lamp units, "
 "ultraviolet or infra-red lamps and arc lamps, n.e.s. (excl. lamp bases)"
 msgstr ""
-"Parti di lampade e tubi elettrici ad incandescenza o a scarica, compresi gli "
-"oggetti detti «fari e proiettori sigillati» e le lampade e tubi a raggi "
-"ultravioletti o infrarossi; lampade ad arco; sorgenti luminose a diodi "
-"emettitori di luce (LED), n.n.a."
+"Parti di lampade elettriche ad incandescenza o a scarica, oggetti luminosi "
+"sigillati, lampade a raggi ultravioletti o infrarossi e lampade ad arco, "
+"n.n.a. (escl. basi per lampade)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85149000
@@ -56449,11 +56450,11 @@ msgid ""
 "dielectric loss, n.e.s. (other than for the manufacture of semiconductor "
 "devices on semiconductor wafers)"
 msgstr ""
-"Parti di forni elettrici industriali o di laboratorio, compresi quelli "
-"funzionanti ad induzione o per perdite dielettriche; altri apparecchi "
-"industriali o di laboratorio per il trattamento termico delle materie per "
-"induzione o per perdite dielettriche, diversi da quelli per la manifattura "
-"di dispositivi o wafer semiconduttori , n.n.a."
+"Parti di forni elettrici industriali o da laboratorio, incl. di quelli "
+"funzionanti a induzione o perdite dielettriche, e di apparecchi industriali "
+"o di laboratorio per il trattamento termico delle materie mediante induzione "
+"o perdite dielettriche, n.n.a. (eccetto per la fabbricazione di dispositivi "
+"a semiconduttore su wafer semiconduttori)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85109000
@@ -56540,9 +56541,7 @@ msgstr "Parti di resistenze elettriche non scaldanti"
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85309000
 msgid ""
 "Parts of electrical signalling, safety or traffic control equipment, n.e.s."
-msgstr ""
-"Parti di apparecchi elettrici di segnalazione di sicurezza e di controllo "
-"stradale"
+msgstr "Parti di resistenze elettriche, incl. reostati e potenziometri, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85099000
@@ -56800,8 +56799,8 @@ msgstr ""
 msgid ""
 "Parts of machinery for making up paper pulp, paper or paperboard, n.e.s."
 msgstr ""
-"Parti di macchine ed apparecchi per la lavorazione della pasta per carta, "
-"della carta o del cartone, escluse quelle delle tagliatrici"
+"Parti di macchine e apparecchi per la lavorazione della pasta per carta, "
+"della carta o del cartone, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84789000
@@ -56864,8 +56863,8 @@ msgid ""
 "Parts of machinery of chapter 84, not intended for a specific purpose, of "
 "cast iron, n.e.s."
 msgstr ""
-"Parti di macchine del capitolo 84, non destinati ad uno scopo specifico, di "
-"ghisa, non nominate altrove"
+"Parti di macchine del capitolo 84, non destinate ad un uso determinato, di "
+"ghisa, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84879051
@@ -56892,8 +56891,9 @@ msgid ""
 "Parts of machinery of chapter 84, not intended for a specific purpose, of "
 "open-die forged or closed-die forged iron or steel, n.e.s."
 msgstr ""
-"Parti di macchine del capitolo 84, non destinati ad uno scopo specifico, di "
-"ferro o di acciaio fucinati o stampati, non nominate altrove"
+"Parti di macchine del capitolo 84, non destinate ad un uso determinato, di "
+"ferro o di acciaio fucinato a stampo aperto o fucinato a stampo chiuso, n.n."
+"a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84314920
