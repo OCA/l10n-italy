@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-13 11:34+0000\n"
+"PO-Revision-Date: 2024-02-13 15:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -56535,7 +56535,7 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85339000
 msgid ""
 "Parts of electrical resistors, incl. rheostats and potentiometers, n.e.s."
-msgstr "Parti di resistenze elettriche non scaldanti"
+msgstr "Parti di resistenze elettriche, incl. reostati e potenziometri, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85309000
@@ -56550,7 +56550,7 @@ msgid ""
 "motor, n.e.s. (excl. of vacuum cleaners, dry and wet vacuum cleaners)"
 msgstr ""
 "Parti di apparecchi domestici elettromeccanici, con motore elettrico "
-"incorporato (escl. aspirapolvere, idropulitori e pulitori a secco), n.n.a."
+"autonomo, n.n.a. (escl. aspirapolveri, aspiraliquidi e aspiraliquidi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85429000
@@ -56667,10 +56667,8 @@ msgid ""
 "Parts of harvesting machinery, threshing machinery, mowers and machines for "
 "cleaning, sorting or grading agricultural produce, n.e.s."
 msgstr ""
-"Parti di macchine, apparecchi e congegni per la raccolta o la trebbiatura "
-"dei prodotti agricoli, comprese le presse da paglia o da foraggio; tosatrici "
-"da prato e falciatrici; macchine per pulire o selezionare uova, frutta ed "
-"altri prodotti agricoli, diversi dalle macchine e apparecchi della voce 8437"
+"Parti di macchine da raccolta, trebbiatrici, falciatrici e macchine per "
+"pulire, selezionare o calibrare i prodotti agricoli, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84509000
@@ -56783,16 +56781,16 @@ msgstr ""
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84399900
 msgid "Parts of machinery for making or finishing paper or paperboard, n.e.s."
 msgstr ""
-"Parti di macchinari per la fabbricazione o la finitura della carta o "
-"cartone, non nominate altrove"
+"Parti di macchine per la produzione o la finitura della carta o del cartone, "
+"n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84399100
 msgid ""
 "Parts of machinery for making pulp of fibrous cellulosic material, n.e.s."
 msgstr ""
-"Parti di macchinari per la fabbricazione della pasta di materie fibrose "
-"cellulosiche, non nominate altrove"
+"Parti di macchine per la produzione di pasta di materiale fibroso "
+"cellulosico, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84419090
@@ -56907,9 +56905,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84314980
 msgid "Parts of machinery of heading 8426, 8429 and 8430, n.e.s."
-msgstr ""
-"Parti di macchine, apparecchi e strumenti delle voci 8426, 8429 o 8430, n.n."
-"a. (escl. quelle di getti di ghisa, di ferro o di acciaio)"
+msgstr "Parti di macchine delle voci 8426, 8429 e 8430, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84313900
@@ -57114,7 +57110,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84679200
 msgid "Parts of pneumatic tools for working in the hand, n.e.s."
-msgstr "Parti di utensili pneumatici per l'impiego a mano"
+msgstr "Parti di utensili pneumatici per lavori manuali, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85139000
@@ -57139,13 +57135,13 @@ msgid ""
 "Parts of presses, crushers and similar machinery used in the manufacture of "
 "wine, cider, fruit juices or similar beverages, n.e.s."
 msgstr ""
-"Parti di presse, torchi, pigiatrici, macchine, apparecchi e strumenti simili "
-"per la fabbricazione di vino, sidro, succhi di frutta o bevande simili"
+"Parti di torchi, frantoi e apparecchi simili utilizzati per la fabbricazione "
+"del vino, del sidro, dei succhi di frutta o di bevande simili, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85069000
 msgid "Parts of primary cells and primary batteries, n.e.s."
-msgstr "Parti di pile e di batterie, di pile elettriche"
+msgstr "Parti di pile primarie e batterie primarie, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84059000
@@ -57166,7 +57162,7 @@ msgstr "Parti di paranchi, verricelli, argani, binde e martinetti, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84139100
 msgid "Parts of pumps for liquids, n.e.s."
-msgstr "Parti di pompe per liquidi"
+msgstr "Parti di pompe per liquidi, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_86079190
@@ -57176,7 +57172,7 @@ msgstr "Parti di locomotive ferrotranviarie, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84129020
 msgid "Parts of reaction engines, n.e.s. (excl. of turbojets)"
-msgstr "Parti di propulsori a reazione diversi dai turboreattori, n.n.a."
+msgstr "Parti di motori a reazione, n.n.a. (escl. di turbogetti)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84189990
@@ -57199,16 +57195,12 @@ msgstr "Parti di sedili dei tipi utilizzati per veicoli aerei, n.n.a."
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94019080
 msgid "Parts of seats, not of wood, n.e.s."
-msgstr ""
-"Parti di mobili per sedersi, diversi da quelli utilizzati per veicoli aerei, "
-"non di legno"
+msgstr "Parti di sedili, non in legno, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_94019030
 msgid "Parts of seats, of wood, n.e.s."
-msgstr ""
-"Parti di mobili per sedersi, diversi da quelli utilizzati per veicoli aerei, "
-"di legno"
+msgstr "Parti di sedili, di legno, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_87099000
@@ -57310,7 +57302,8 @@ msgid ""
 "Parts of trailers, semi-trailers and other vehicles not mechanically "
 "propelled, n.e.s. (excl. chassis, bodies and axles)"
 msgstr ""
-"Parti di rimorchi e semirimorchi e di altri veicoli (non automobili), n.n.a."
+"Parti di rimorchi, semirimorchi ed altri veicoli non a propulsione "
+"meccanica, n.n.a. (escl. telaio, carrozzerie e assi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85049018
@@ -57329,7 +57322,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84119100
 msgid "Parts of turbojets or turbopropellers, n.e.s."
-msgstr "Parti di turboreattori o di turbopropulsori"
+msgstr "Parti di turboreattori o turbopropulsori, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85087000
@@ -57452,10 +57445,12 @@ msgid ""
 "parts for digital cameras, aerials and aerial reflectors, and electronic "
 "assemblies)"
 msgstr ""
-"Parti di telecamere adatte unicamente o principalmente ad utilizzo con "
-"apparati di trasmissione che non incorporano apparati di ricezione "
-"radiofonica o televisiva, videoregistratori, radar, apparecchi di ausilio "
-"per la radionavigazione e apparecchi a controllo remoto, n.n.a."
+"Parti riconoscibili come destinate esclusivamente o principalmente ad "
+"apparecchi di trasmissione che non incorporano un apparecchio ricevente per "
+"la radiodiffusione o la televisione, videocamere, apparecchi radar, "
+"apparecchi di radionavigazione ed apparecchi di comando a distanza, n.n.a. ("
+"escl. gruppi e sottogruppi, parti di fotocamere digitali, antenne e "
+"riflettori per antenne e gruppi elettronici)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_66039090
