@@ -87,7 +87,7 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:353
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:354
 #, python-format
 msgid ""
 "Invoice %s, line\n"
@@ -325,7 +325,7 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:461
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:462
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -334,7 +334,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:338
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:339
 #, python-format
 msgid ""
 "There is no default credit account defined \n"
@@ -352,7 +352,7 @@ msgid "VAT Integration"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:451
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:452
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
