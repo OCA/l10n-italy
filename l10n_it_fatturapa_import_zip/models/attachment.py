@@ -2,14 +2,19 @@
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import base64
+import logging
 import tempfile
 import zipfile
 from io import BytesIO
 from pathlib import Path
 
+import lxml.etree as ET
+
 from odoo import fields, models
 
 from odoo.addons.l10n_it_fatturapa_in.wizard import efattura
+
+_logger = logging.getLogger(__name__)
 
 
 def _extract_zip_file(directory, datas):
@@ -17,6 +22,23 @@ def _extract_zip_file(directory, datas):
     zip_data = base64.b64decode(datas)
     with zipfile.ZipFile(BytesIO(zip_data)) as zip_ref:
         zip_ref.extractall(directory)
+
+
+def _is_xml_file(file_path):
+    """Check if the file at `file_path` is an XML file."""
+    try:
+        # Attempt to parse the file as XML
+        parser = ET.XMLParser(recover=True)
+        root = ET.XML(file_path.read_bytes(), parser)
+        ET.tostring(root)
+        return True  # Successfully parsed, it's an XML file
+    except Exception:
+        return False  # Failed to parse, not an XML file
+
+
+def _has_p7m_extension(file_path):
+    """Check if the file at `file_path` has a .p7m extension."""
+    return file_path.suffix.lower() == ".p7m"
 
 
 class FatturaPAAttachmentImportZIP(models.Model):
@@ -137,29 +159,36 @@ class FatturaPAAttachmentImportZIP(models.Model):
             # we don't have the received date
             self.env.company.in_invoice_registration_date = "inv_date"
 
-            for xml_file in tmp_dir.glob("*"):
-                content = xml_file.read_bytes()
-                attach_vals = {
-                    "name": xml_file.name,
-                    "datas": base64.encodebytes(content),
-                    "attachment_import_zip_id": self.id,
-                }
-                attachment = self.env["fatturapa.attachment.in"].create(attach_vals)
-                if attachment.xml_supplier_id == company_partner:
-                    attachment.unlink()
-                    attach_vals["state"] = "validated"
-                    attachment = self.env["fatturapa.attachment.out"].create(
-                        attach_vals
+            for xml_file in tmp_dir.rglob("*"):
+                # Process only files skipping non-XML/P7M files
+                if xml_file.is_file() and (
+                    _is_xml_file(xml_file) or _has_p7m_extension(xml_file)
+                ):
+                    content = xml_file.read_bytes()
+                    attach_vals = {
+                        "name": xml_file.name,
+                        "datas": base64.encodebytes(content),
+                        "attachment_import_zip_id": self.id,
+                    }
+                    attachment = self.env["fatturapa.attachment.in"].create(attach_vals)
+                    if attachment.xml_supplier_id == company_partner:
+                        attachment.unlink()
+                        attach_vals["state"] = "validated"
+                        attachment = self.env["fatturapa.attachment.out"].create(
+                            attach_vals
+                        )
+                    wizard = (
+                        self.env["wizard.import.fatturapa"]
+                        .with_context(
+                            active_ids=attachment.ids,
+                            active_model=attachment._name,
+                        )
+                        .create({})
                     )
-                wizard = (
-                    self.env["wizard.import.fatturapa"]
-                    .with_context(
-                        active_ids=attachment.ids,
-                        active_model=attachment._name,
-                    )
-                    .create({})
-                )
-                wizard.importFatturaPA()
+                    _logger.info("Importing {}".format(xml_file))
+                    wizard.importFatturaPA()
+                else:
+                    _logger.info("Skipping {}, not an XML/P7M file".format(xml_file))
             self.env.company.in_invoice_registration_date = (
                 original_in_invoice_registration_date
             )
