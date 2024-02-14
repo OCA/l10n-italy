@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-09 15:36+0000\n"
+"PO-Revision-Date: 2024-02-14 17:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -9518,7 +9518,10 @@ msgid ""
 "Casein for the manufacture of foodstuffs and fodder and other types of "
 "casein (excl. the manufacture of artificial textile fibres and other "
 "industrial uses)"
-msgstr "Caseine, diverse da quelle delle precedenti voci 3501 10 10 e 50"
+msgstr ""
+"Caseina destinata alla fabbricazione di alimenti e foraggi e altri tipi di "
+"caseina (escl. fabbricazione di fibre tessili artificiali e altri usi "
+"industriali)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_35019010
@@ -11004,9 +11007,9 @@ msgid ""
 "Chestnut purée and paste, obtained by cooking, with sugar content of > 30% "
 "by weight (excl. homogenised preparations of subheading 2007.10)"
 msgstr ""
-"Puree e paste di marroni, ottenute mediante cottura, aventi tenore, in peso, "
-"> 30% di zuccheri (escl. preparazioni omogeneizzate della sottovoce 2007 10 "
-"10)"
+"Puree e paste di castagne, ottenute mediante cottura, aventi tenore, in "
+"peso, di zuccheri > 30% (escl. preparazioni omogeneizzate della sottovoce "
+"2007.10)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_17041010
@@ -11613,8 +11616,8 @@ msgid ""
 "preparations of subheading 2007.10)"
 msgstr ""
 "Confetture, gelatine, marmellate, puree e paste di agrumi, ottenute mediante "
-"cottura, aventi tenore, in peso, > 13% ma <= 30% di zuccheri (escl. "
-"preparazioni omogeneizzate della sottovoce 2007 10 10)"
+"cottura, aventi un tenore di zuccheri > 13% ma <= 30% in peso (escl. "
+"preparazioni omogeneizzate della sottovoce 2007.10)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20079110
