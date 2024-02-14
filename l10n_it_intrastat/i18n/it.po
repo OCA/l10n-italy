@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-13 15:36+0000\n"
+"PO-Revision-Date: 2024-02-14 17:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -491,8 +491,12 @@ msgid ""
 "veterinary purposes, and products impregnated, coated or covered with "
 "perfumes, cosmetics, soaps, detergents etc.)"
 msgstr ""
-"Ovatte e manufatti di ovatta diversi da quelli delle precedenti voci 5601 "
-"10, di cotone idrofilo"
+"Ovatte di cotone assorbenti e lavori di tali ovatte (escl. assorbenti e "
+"tamponi igienici, assorbenti e salviette per neonati e articoli sanitari "
+"simili, ovatte e lavori di ovatte di cotone impregnati o spalmati con "
+"sostanze farmaceutiche o condizionati per la vendita al dettaglio per scopi "
+"medici, chirurgici, odontoiatrici o veterinari , e prodotti impregnati, "
+"spalmati o ricoperti di profumi, cosmetici, saponi, detergenti ecc.)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44034995
@@ -9537,7 +9541,10 @@ msgid ""
 "Casein for the manufacture of foodstuffs and fodder and other types of "
 "casein (excl. the manufacture of artificial textile fibres and other "
 "industrial uses)"
-msgstr "Caseine, diverse da quelle delle precedenti voci 3501 10 10 e 50"
+msgstr ""
+"Caseina destinata alla fabbricazione di alimenti e foraggi e altri tipi di "
+"caseina (escl. fabbricazione di fibre tessili artificiali e altri usi "
+"industriali)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_35019010
@@ -11022,9 +11029,9 @@ msgid ""
 "Chestnut purée and paste, obtained by cooking, with sugar content of > 30% "
 "by weight (excl. homogenised preparations of subheading 2007.10)"
 msgstr ""
-"Puree e paste di marroni, ottenute mediante cottura, aventi tenore, in peso, "
-"> 30% di zuccheri (escl. preparazioni omogeneizzate della sottovoce 2007 10 "
-"10)"
+"Puree e paste di castagne, ottenute mediante cottura, aventi tenore, in "
+"peso, di zuccheri > 30% (escl. preparazioni omogeneizzate della sottovoce "
+"2007.10)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_17041010
@@ -11633,8 +11640,8 @@ msgid ""
 "preparations of subheading 2007.10)"
 msgstr ""
 "Confetture, gelatine, marmellate, puree e paste di agrumi, ottenute mediante "
-"cottura, aventi tenore, in peso, > 13% ma <= 30% di zuccheri (escl. "
-"preparazioni omogeneizzate della sottovoce 2007 10 10)"
+"cottura, aventi un tenore di zuccheri > 13% ma <= 30% in peso (escl. "
+"preparazioni omogeneizzate della sottovoce 2007.10)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20079110
@@ -38419,11 +38426,10 @@ msgid ""
 "industrial processing)"
 msgstr ""
 "Confetture, gelatine, marmellate, puree e paste di frutta, ottenute mediante "
-"cottura, aventi tenore, in peso, > 30% di zuccheri (escl. quelle di ciliege, "
-"di fragole, di lamponi e di agrumi, puree e paste di marroni, preparazioni "
-"omogeneizzate della sottovoce 2007 10 10, nonchè puree e paste di prugne, in "
-"imballaggi immediati di contenuto netto > 100 kg e destinate alla "
-"trasformazione industriale"
+"cottura, aventi tenore di zuccheri > 30% in peso (escl. lamponi, fragole, "
+"ciliegie e agrumi, puree e paste di castagne, preparazioni omogeneizzate "
+"della sottovoce 2007.10 e puree di prugne e pasta, in imballaggi > 100 kg, "
+"per lavorazioni industriali)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_20071091
@@ -43824,7 +43830,7 @@ msgstr "Fecola di manioca"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29054300
 msgid "Mannitol"
-msgstr "Mannitolo code 290544 01/01/88 it d-glucitolo (sorbitolo)"
+msgstr "Mannitolo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90322000
@@ -49684,8 +49690,8 @@ msgid ""
 "Moulds for mineral materials (excl. moulds of graphite or other carbons, "
 "ceramic or glass moulds)"
 msgstr ""
-"Staffe per per materie minerali (escl. le staffe di grafite o di altre forme "
-"di carbone, staffe di ceramica e di vetro)"
+"Staffe per materie minerali (escl. le staffe di grafite o di altre forme di "
+"carbone, staffe di ceramica e di vetro)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84807900
@@ -52485,8 +52491,7 @@ msgid ""
 msgstr ""
 "Olio di oliva e sue frazioni ottenuti dal frutto dell'olivo unicamente "
 "attraverso estrazione meccanica o altro trattamento fisico tale da non "
-"deteriorare il prodotto (escl. olio extra vergine, vergine e chimicamente "
-"modificato)"
+"deteriorare il prodotto (escl. olio extra vergine e chimicamente modificato)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_15091090
@@ -55058,9 +55063,8 @@ msgid ""
 "Parings and other waste of leather or of composition leather, not suitable "
 "for the manufacture of leather articles; leather dust, powder and flour"
 msgstr ""
-"Ritagli e altri avanzi di cuoio o di pelli, pelli pergamenate o gregge, o di "
-"cuoio ricostituito (non utilizzabili) nella fabbricazione di prodotti di "
-"cuoio; segatura, polvere e farina di cuoio"
+"Ritagli ed altri cascami di cuoio o di cuoio ricostituito, non adatti alla "
+"fabbricazione di articoli in cuoio; polvere di cuoio, polvere e farina"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.522124
@@ -57245,8 +57249,8 @@ msgid ""
 "Parts of spinners for coating photographic emulsions on liquid crystal "
 "devices \"LCD\" substrates, n.e.s."
 msgstr ""
-"Parti di di idroestrattori per il rivestimento di substrati LCD con "
-"emulsioni fotografiche, n.n.a."
+"Parti di idroestrattori per il rivestimento di substrati LCD con emulsioni "
+"fotografiche, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85049099
@@ -58117,10 +58121,9 @@ msgid ""
 "milk proteins with a protein content > 85 % by weight, calculated on the dry "
 "matter"
 msgstr ""
-"Peptoni e loro derivati; albuminati ed altri derivati delle albumine n.n.a.; "
-"polvere di pelle, anche trattata al cromo (escl. concentrati di proteine del "
-"latte aventi tenore di proteine, calcolato inpeso sulla sostanza secca, > 85 "
-"%)."
+"Peptoni e loro derivati; altre sostanze albuminose e loro derivati, n.n.a.; "
+"polvere di pelle, anche cromata (escl. proteine concentrate del latte con un "
+"tenore proteico, in peso, calcolato sulla sostanza secca, > 85 %)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28299010
@@ -58194,8 +58197,8 @@ msgid ""
 "Perhalogenated derivatives of acyclic hydrocarbons containing two or more "
 "different halogens, n.e.s."
 msgstr ""
-"Derivati peralogenati degli idrocarburi aciclici contenenti almeno due "
-"alogeni diversi, non nominati altrove"
+"Derivati peralogenati di idrocarburi aciclici contenenti due o più alogeni "
+"diversi, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85051990
@@ -61211,14 +61214,14 @@ msgid ""
 "compressed wood, cellular wood panels, inlaid wood and sheets identifiable "
 "as furniture components)"
 msgstr ""
-"Legno compensato costituito esclusivamente da fogli di legno, di cui ciascun "
-"foglio abbia uno spessore <= 6 mm, avente almeno uno strato esterno di legno "
-"diverso dalle conifere o di legno tropicale definito nella nota di sottovoci "
-"1 di questo capitolo (escl. legno di di ontano, frassino, faggio, betulla, "
-"ciliegio, castagno, olmo, hickory, carpino, ippocastano, tiglio, acero, "
-"quercia, platano, pioppo, robinia, noce o tulipier, yellow poplar, bambù, "
-"fogli di legno pressati, pannelli cellulari, legno intarsiato o incrostato "
-"nonché pannelli riconoscibili come parti di mobili)"
+"Compensato costituito esclusivamente da fogli di legno di spessore <= 6 mm, "
+"con almeno uno strato esterno di legno diverso da quello di conifere o di "
+"altro legno tropicale indicato nella nota di sottovoci 1 di questo capitolo ("
+"escl. di ontano, frassino, faggio, betulla, ciliegio , castagno, olmo, noce "
+"americano, carpino, ippocastano, tiglio, acero, quercia, platano, pioppo, "
+"robinia, noce, pioppo giallo, bambù e fogli di legno compresso, pannelli "
+"cellulari, legno intarsiato e fogli identificabili come componenti di mobili "
+")"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_44123110
@@ -65162,11 +65165,9 @@ msgid ""
 "power, combined with sound-reproducing apparatus with laser reading system "
 "(excl. pocket-size radiocassette players)"
 msgstr ""
-"Radioricevitori che possono funzionare senza sorgente di energia esterna, "
-"incl. gli apparecchi che possono anche ricevere la radiotelefonia e la "
-"radiotelegrafia, combinati con un apparecchio per la la riproduzione del "
-"suono con sistema di lettura mediante fascio laser (escl. radiocassette "
-"tascabili)"
+"Apparecchi riceventi per la radiodiffusione in grado di funzionare senza "
+"fonte di energia esterna, combinati con apparecchi per la riproduzione del "
+"suono con sistema di lettura laser (escl. radiolettori tascabili)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85271900
@@ -65357,8 +65358,8 @@ msgid ""
 "Rails of iron or steel, for railway or tramway track, used (excl. current-"
 "conducting rails with parts of non-ferrous metal)"
 msgstr ""
-"Rotaie di ghisa, ferro o acciaio, per strade ferrate, escluse quelle della "
-"voce 7302 10 10, usate, pesanti, per metro, meno di 20 kg"
+"Rotaie di ferro o di acciaio, per ferrovie o tranvie, usate (escl. rotaie "
+"conduttrici di corrente con parti di metalli non ferrosi)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_86069900
@@ -76631,8 +76632,8 @@ msgid ""
 "2007.10)"
 msgstr ""
 "Confetture, gelatine, marmellate, puree e paste di fragole, ottenute "
-"mediante cottura, aventi tenore, in peso, > 30% di zuccheri (escl. "
-"preparazioni omogenizzate della sottovoce 2007 10 10)"
+"mediante cottura, aventi tenore di zucchero > 30% (escl. preparazioni "
+"omogeneizzate della sottovoce 2007.10)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.631122
@@ -84882,7 +84883,7 @@ msgstr ""
 "nastri da perforare, non perforati, in forma quadrata o rettangolare, in "
 "fogli di cui un lato non supera 435 mm e l'altro lato non supera 297 mm a "
 "foglio spiegato, di cui più del 10% in peso della massa fibrosa è costituito "
-"da fibre ottenute con procedimento meccanico o chimico-meccanico, nna"
+"da fibre ottenute con procedimento meccanico o chimico-meccanico, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48025700
@@ -86265,7 +86266,7 @@ msgid ""
 msgstr ""
 "Vermut ed altri vini di uve fresche preparati con piante o sostanze "
 "aromatiche, in recipienti di capacità fino a 2 litri, con titolo "
-"alcolometrico fino a 18% vol."
+"alcolometrico fino a 18% vol"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22051090
@@ -87561,7 +87562,7 @@ msgid ""
 "styrene, vinyl chloride and propylene)"
 msgstr ""
 "Cascami, ritagli e avanzi di materie plastiche (escl. quelli di polimeri di "
-"etilene, di stirene, di cloruro di vinile e di di propilene)"
+"etilene, di stirene, di cloruro di vinile e di propilene)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39151000
@@ -92333,7 +92334,7 @@ msgid ""
 "cotton or synthetic fibres, panties and swimwear)"
 msgstr ""
 "Pantaloni, tute con bretelle -salopette-, pantaloni che scendono sino al "
-"ginocchio incluso e -shorts-, a maglia, di di materie tessili, per donna o "
+"ginocchio incluso e -shorts-, a maglia, di materie tessili, per donna o "
 "ragazza (escl. di lana o di peli fini, cotone, fibre sintetiche, nonchè "
 "mutande e calzoncini da bagno)"
 
