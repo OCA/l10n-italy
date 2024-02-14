@@ -4,6 +4,26 @@
 
 from odoo import api, models
 
+from odoo.addons.l10n_it_fatturapa_out.wizard import efattura
+
+originfpaToEur = efattura.fpaToEur
+
+
+def myfpaToEur(amount, invoice, euro):
+    currency = invoice.currency_id
+    if currency != euro and invoice.rc_original_supplier_invoice_date:
+        return currency._convert(
+            amount,
+            euro,
+            invoice.company_id,
+            invoice.rc_original_supplier_invoice_date,
+            False,
+        )
+    return originfpaToEur(amount, invoice, euro)
+
+
+efattura.fpaToEur = myfpaToEur
+
 
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
