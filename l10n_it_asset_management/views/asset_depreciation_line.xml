@@ -30,7 +30,7 @@
                     <filter
                         string="Asset"
                         name="group_by_asset_id"
-                        context="{'group_by':'asset_id'}"
+                        context="{'group_by':'l10n_it_asset_id'}"
                     />
                     <filter
                         string="Asset Depreciation"
@@ -57,7 +57,7 @@
         <field name="model">asset.depreciation.line</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="asset_id" />
+                <field name="l10n_it_asset_id" />
                 <field name="depreciation_id" />
                 <field name="name" />
                 <field name="date" />
@@ -106,7 +106,7 @@
                 <sheet>
                     <group name="info" string="General Info">
                         <group>
-                            <field name="asset_id" readonly="1" />
+                            <field name="l10n_it_asset_id" readonly="1" />
                             <field name="name" />
                             <field name="date" />
                             <field name="move_type" />
@@ -134,7 +134,7 @@
                             nolabel="1"
                         >
                             <tree>
-                                <field name="asset_id" />
+                                <field name="l10n_it_asset_id" />
                                 <field name="dep_line_id" />
                                 <field name="relation_type" />
                                 <field name="move_id" />

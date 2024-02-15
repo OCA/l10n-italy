@@ -401,14 +401,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__asset_id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__asset_id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_line__asset_id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_asset__asset_id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_asset__asset_id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__asset_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__l10n_it_asset_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__l10n_it_asset_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_line__l10n_it_asset_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__l10n_it_asset_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_accounting_info_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_dep_line_search_view
 #, python-format
@@ -613,13 +609,13 @@ msgstr ""
 #. module: l10n_it_asset_management
 #: model:ir.actions.act_window,name:l10n_it_asset_management.action_asset
 #: model:ir.model,name:l10n_it_asset_management.model_asset_asset
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_bank_statement_line__asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move__asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move_line__asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_payment__asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation__asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_journal_report__asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_previsional_report__asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_bank_statement_line__l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move__l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move_line__l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_payment__l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation__l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_journal_report__l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_previsional_report__l10n_it_asset_ids
 #: model:ir.ui.menu,name:l10n_it_asset_management.menu_asset
 #: model:ir.ui.menu,name:l10n_it_asset_management.menu_asset_asset
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.view_move_form_inherit
@@ -1936,6 +1932,14 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_it_asset_management
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_asset__l10n_it_asset_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_asset__l10n_it_asset_id
+msgid "L10N It Asset"
+msgstr ""
+
+#. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__last_depreciation_date
 msgid "Last Dep."
 msgstr ""
@@ -2557,11 +2561,7 @@ msgid "Report Accounting Doc"
 msgstr ""
 
 #. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__report_asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_category__report_asset_ids
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_depreciation__report_asset_id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__report_asset_ids
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_category__report_asset_ids
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation__report_asset_id
 msgid "Report Asset"
 msgstr ""
@@ -2684,6 +2684,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_journal_report__report_footer_year
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_previsional_report__report_footer_year
 msgid "Report Footer Year"
+msgstr ""
+
+#. module: l10n_it_asset_management
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__report_l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_category__report_l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__report_l10n_it_asset_ids
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_category__report_l10n_it_asset_ids
+msgid "Report L10N It Asset"
 msgstr ""
 
 #. module: l10n_it_asset_management

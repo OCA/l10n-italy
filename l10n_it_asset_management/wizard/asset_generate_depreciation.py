@@ -29,7 +29,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
     def get_default_type_ids(self):
         return [Command.set(self.env["asset.depreciation.type"].search([]).ids)]
 
-    asset_ids = fields.Many2many(
+    l10n_it_asset_ids = fields.Many2many(
         "asset.asset",
         string="Assets",
     )
@@ -83,13 +83,13 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
 
     @api.depends(
         "date_dep",
-        "asset_ids.purchase_date",
+        "l10n_it_asset_ids.purchase_date",
     )
     def _compute_missing_fiscal_year_warning(self):
         _get_passed_years = self.env["account.fiscal.year"]._get_passed_years
         for generate_depreciation in self:
             depreciation_date = generate_depreciation.date_dep
-            for asset in generate_depreciation.asset_ids:
+            for asset in generate_depreciation.l10n_it_asset_ids:
                 asset_date = asset.purchase_date
                 passed_years = depreciation_date.year - asset_date.year + 1
                 passed_fiscal_years = _get_passed_years(asset_date, depreciation_date)
@@ -162,10 +162,10 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
             ("date_start", "<", self.date_dep),
             ("type_id", "in", self.type_ids.ids),
         ]
-        if self.asset_ids:
-            domain += [("asset_id", "in", self.asset_ids.ids)]
+        if self.l10n_it_asset_ids:
+            domain += [("l10n_it_asset_id", "in", self.l10n_it_asset_ids.ids)]
         if self.category_ids:
-            domain += [("asset_id.category_id", "in", self.category_ids.ids)]
+            domain += [("l10n_it_asset_id.category_id", "in", self.category_ids.ids)]
         if self.company_id:
             domain += [("company_id", "=", self.company_id.id)]
         return domain

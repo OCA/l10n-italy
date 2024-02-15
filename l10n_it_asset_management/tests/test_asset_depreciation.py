@@ -81,7 +81,7 @@ class TestAssetDepreciation(Common):
             sale_invoice,
             "dismiss",
             wiz_values={
-                "asset_id": asset,
+                "l10n_it_asset_id": asset,
             },
         )
 
@@ -146,7 +146,7 @@ class TestAssetDepreciation(Common):
             purchase_invoice,
             "update",
             wiz_values={
-                "asset_id": asset,
+                "l10n_it_asset_id": asset,
             },
         )
 
@@ -204,7 +204,7 @@ class TestAssetDepreciation(Common):
             sale_invoice,
             "partial_dismiss",
             wiz_values={
-                "asset_id": asset,
+                "l10n_it_asset_id": asset,
                 "depreciated_fund_amount": depreciated_fund_amount,
                 "asset_purchase_amount": asset_purchase_amount,
             },

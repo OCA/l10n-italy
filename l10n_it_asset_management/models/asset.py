@@ -19,7 +19,7 @@ class Asset(models.Model):
         return self.env.company
 
     asset_accounting_info_ids = fields.One2many(
-        "asset.accounting.info", "asset_id", string="Accounting Info"
+        "asset.accounting.info", "l10n_it_asset_id", string="Accounting Info"
     )
 
     category_id = fields.Many2one(
@@ -50,7 +50,7 @@ class Asset(models.Model):
 
     depreciation_ids = fields.One2many(
         "asset.depreciation",
-        "asset_id",
+        "l10n_it_asset_id",
         string="Depreciations",
     )
 
@@ -207,7 +207,7 @@ class Asset(models.Model):
         ctx = dict(self._context)
         ctx.update(
             {
-                "default_asset_ids": [Command.set(self.ids)],
+                "default_l10n_it_asset_ids": [Command.set(self.ids)],
                 "default_category_ids": [Command.set(self.category_id.ids)],
                 "default_company_id": self.company_id.id,
                 "default_date": fields.Date.today(),
@@ -238,8 +238,8 @@ class Asset(models.Model):
         return self.env["asset.accounting.info"].search(
             [
                 "|",
-                ("asset_id", "=", self.id),
-                ("dep_line_id.asset_id", "=", self.id),
+                ("l10n_it_asset_id", "=", self.id),
+                ("dep_line_id.l10n_it_asset_id", "=", self.id),
             ]
         )
 
