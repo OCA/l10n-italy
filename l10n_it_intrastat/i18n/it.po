@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-14 17:38+0000\n"
+"PO-Revision-Date: 2024-02-15 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -5586,7 +5586,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_74072110
 msgid "Bars and rods, of copper-zinc base alloys \"brass\", n.e.s."
-msgstr "Barre di ottone, n.n.a."
+msgstr "Barre e profilati di leghe a base di rame-zinco \"ottone\", n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72139910
@@ -18902,7 +18902,7 @@ msgid ""
 "conductors, n.e.s."
 msgstr ""
 "Conduttori elettrici, diversi da quelli delle precedenti voci 8544, per "
-"tensioni > 1 000 V, con conduttori di rame"
+"tensioni > 1 000 V, con conduttori di rame, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85444995
@@ -24987,16 +24987,16 @@ msgid ""
 "sale, mixes and doughs for preparation of bakers' wares and goods in "
 "subheading 1901.90.91)"
 msgstr ""
-"Preparazioni alimentari a base di farina, semole, semolini, amido o estratti "
-"di malto, non contenenti cacao o contenenti cacao in proporzione in peso < "
-"40%, calcolata su base totalmente sgrassata, e preparazioni alimentari a "
-"base di latte, panna., burro di latte, latte acido , panna. acida, siero di "
-"latte, yogurt, kephir o prodotti simili delle voci da 0401 a 0404, non "
-"contenenti cacao o contenenti cacao in proporzione in peso < 5%, calcolato "
-"su base totalmente sgrassata, n.n.a. (escl. estratti di malto e preparazioni "
-"per alimenti per l'infanzia, destinte alla vendita al minuto miscele e "
-"impasti per la preparazione di prodotti da forno e prodotti delle sottovoci "
-"1901 90 91 e 1901 90 95)"
+"Preparazioni alimentari a base di farina, semola, semolino, amido o estratto "
+"di malto, non contenenti cacao o contenenti cacao in una proporzione in peso "
+"< 40%, calcolata su una base completamente sgrassata, e preparazioni "
+"alimentari a base di latte, panna, burro di latte, latte acido , panna "
+"acida, siero di latte, yogurt, kefir o prodotti simili delle voci da 0401 a "
+"0404, non contenenti cacao o contenenti cacao in una proporzione, in peso, < "
+"5%, calcolata su una base completamente sgrassata, n.n.a. (escl. estratti di "
+"malto e preparazioni per alimenti per l'infanzia, condizionati per la "
+"vendita al minuto, miscele e impasti per la preparazione di prodotti della "
+"panetteria e prodotti della sottovoce 1901.90.91)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_21069098
