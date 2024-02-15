@@ -39,7 +39,7 @@ class Report(models.TransientModel):
     _inherit = "report.account_financial_report.abstract_report"
 
     # Data fields
-    asset_ids = fields.Many2many(
+    l10n_it_asset_ids = fields.Many2many(
         "asset.asset",
     )
 
@@ -68,7 +68,9 @@ class Report(models.TransientModel):
     # Report structure fields
     report_category_ids = fields.One2many("report_asset_journal_category", "report_id")
 
-    report_asset_ids = fields.One2many("report_asset_journal_asset", "report_id")
+    report_l10n_it_asset_ids = fields.One2many(
+        "report_asset_journal_asset", "report_id"
+    )
 
     report_depreciation_ids = fields.One2many(
         "report_asset_journal_depreciation", "report_id"
@@ -153,7 +155,7 @@ class Report(models.TransientModel):
 
     def generate_data(self):
         self.report_category_ids.generate_data()
-        self.report_asset_ids.generate_data()
+        self.report_l10n_it_asset_ids.generate_data()
         self.report_depreciation_ids.generate_data()
         self.report_depreciation_line_year_ids.generate_data()
         self.report_category_ids.generate_totals()
@@ -162,7 +164,7 @@ class Report(models.TransientModel):
     def generate_structure(self):
         deps = self.get_depreciations()
         dep_lines = deps.mapped("line_ids")
-        assets = deps.mapped("asset_id")
+        assets = deps.mapped("l10n_it_asset_id")
         if self.date:
             assets = assets.filtered(
                 lambda a: not a.purchase_date or a.purchase_date <= self.date
@@ -198,20 +200,20 @@ class Report(models.TransientModel):
         for report_categ in self.report_category_ids:
             report_categ.write(
                 {
-                    "report_asset_ids": [
-                        Command.create({"asset_id": a.id, "report_id": self.id})
+                    "report_l10n_it_asset_ids": [
+                        Command.create({"l10n_it_asset_id": a.id, "report_id": self.id})
                         for a in self.sort_assets(assets)
                         if a.category_id == report_categ.category_id
                     ]
                 }
             )
-        for report_asset in self.report_asset_ids:
+        for report_asset in self.report_l10n_it_asset_ids:
             report_asset.write(
                 {
                     "report_depreciation_ids": [
                         Command.create({"depreciation_id": d.id, "report_id": self.id})
                         for d in deps
-                        if d.asset_id == report_asset.asset_id
+                        if d.l10n_it_asset_id == report_asset.l10n_it_asset_id
                     ]
                 }
             )
@@ -267,10 +269,10 @@ class Report(models.TransientModel):
 
     def get_depreciations(self):
         domain = []
-        if self.asset_ids:
-            domain += [("asset_id", "in", self.asset_ids.ids)]
+        if self.l10n_it_asset_ids:
+            domain += [("l10n_it_asset_id", "in", self.l10n_it_asset_ids.ids)]
         if self.category_ids:
-            domain += [("asset_id.category_id", "in", self.category_ids.ids)]
+            domain += [("l10n_it_asset_id.category_id", "in", self.category_ids.ids)]
         if self.company_id:
             domain += [("company_id", "=", self.company_id.id)]
         if self.date:
@@ -280,14 +282,18 @@ class Report(models.TransientModel):
         if not self.show_sold_assets:
             domain += [
                 "|",
-                ("asset_id.sale_date", "=", False),
-                ("asset_id.sale_date", ">=", self.date.replace(month=1, day=1)),
+                ("l10n_it_asset_id.sale_date", "=", False),
+                ("l10n_it_asset_id.sale_date", ">=", self.date.replace(month=1, day=1)),
             ]
         if not self.show_dismissed_assets:
             domain += [
                 "|",
-                ("asset_id.dismiss_date", "=", False),
-                ("asset_id.dismiss_date", ">=", self.date.replace(month=1, day=1)),
+                ("l10n_it_asset_id.dismiss_date", "=", False),
+                (
+                    "l10n_it_asset_id.dismiss_date",
+                    ">=",
+                    self.date.replace(month=1, day=1),
+                ),
             ]
         return self.env["asset.depreciation"].search(domain)
 
@@ -322,7 +328,7 @@ class ReportCategory(models.TransientModel):
         "report_asset_journal",
     )
 
-    report_asset_ids = fields.One2many(
+    report_l10n_it_asset_ids = fields.One2many(
         "report_asset_journal_asset", "report_category_id"
     )
 
@@ -345,7 +351,9 @@ class ReportCategory(models.TransientModel):
         for categ in self:
             curr = categ.report_id.company_id.currency_id
             report_date = categ.report_id.date
-            report_deps = categ.report_asset_ids.mapped("report_depreciation_ids")
+            report_deps = categ.report_l10n_it_asset_ids.mapped(
+                "report_depreciation_ids"
+            )
             fnames = categ.env["report_asset_journal_totals"]._total_fnames
             totals_by_dep_type = {
                 t: {fname: 0 for fname in fnames}
@@ -433,7 +441,7 @@ class ReportAsset(models.TransientModel):
     _inherit = "report.account_financial_report.abstract_report"
 
     # Data fields
-    asset_id = fields.Many2one("asset.asset", ondelete="cascade", required=True)
+    l10n_it_asset_id = fields.Many2one("asset.asset", ondelete="cascade", required=True)
 
     # Report structure fields
     report_id = fields.Many2one(
@@ -472,11 +480,11 @@ class ReportAsset(models.TransientModel):
 
     def get_currency(self):
         self.ensure_one()
-        return self.asset_id.currency_id
+        return self.l10n_it_asset_id.currency_id
 
     def get_report_asset_data(self):
         self.ensure_one()
-        asset = self.asset_id
+        asset = self.l10n_it_asset_id
         states_dict = dict(asset._fields["state"].selection)
 
         vals = {
@@ -507,7 +515,7 @@ class ReportAsset(models.TransientModel):
         return vals
 
     def get_purchase_vals(self):
-        asset = self.asset_id
+        asset = self.l10n_it_asset_id
         purchase_vals = {
             "partner_name": asset.supplier_id.name or "/",
             "partner_vat": asset.supplier_id.vat or "/",
@@ -547,7 +555,7 @@ class ReportAsset(models.TransientModel):
         return purchase_vals
 
     def get_sale_vals(self):
-        asset = self.asset_id
+        asset = self.l10n_it_asset_id
         if not asset.sale_date or asset.sale_date > self.report_id.date:
             return {}
 
@@ -745,7 +753,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
         prev_year_line = report_dep.report_depreciation_year_line_ids.filtered(
             lambda line: line.sequence == self.sequence - 1
         )
-        asset = self.report_depreciation_id.report_asset_id.asset_id
+        asset = self.report_depreciation_id.report_asset_id.l10n_it_asset_id
         fy_start = self.fiscal_year_id.date_from
         fy_end = self.fiscal_year_id.date_to
         if (

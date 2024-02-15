@@ -91,7 +91,7 @@
             <h2 style="text-align: center;">
                 <t
                     t-set="domain"
-                    t-value="[('id', 'in', category_section.report_asset_ids.mapped('asset_id').ids)]"
+                    t-value="[('id', 'in', category_section.report_l10n_it_asset_ids.mapped('l10n_it_asset_id').ids)]"
                 />
                 <span style="margin: 5px; font-weight: bold;">
                     <span>Asset Category: </span>
@@ -125,7 +125,7 @@
 
     <template id="template_asset_previsional_asset">
         <t t-set="asset_counter" t-value="1" />
-        <t t-foreach="category_section.report_asset_ids" t-as="asset_section">
+        <t t-foreach="category_section.report_l10n_it_asset_ids" t-as="asset_section">
             <div class="act_as_table" style="width: 100%">
                 <div
                     class="act_as_thead"
@@ -183,7 +183,7 @@
                     </div>
                 </div>
             </t>
-            <t t-if="asset_counter &lt; len(category_section.report_asset_ids)">
+            <t t-if="asset_counter &lt; len(category_section.report_l10n_it_asset_ids)">
                 <t t-set="asset_counter" t-value="asset_counter + 1" />
                 <br />
             </t>
@@ -193,7 +193,7 @@
     <template id="template_asset_previsional_asset_title">
         <div name="asset_name">
             <h2 style="text-align: left;">
-                <t t-set="active_id" t-value="asset_section.asset_id.id" />
+                <t t-set="active_id" t-value="asset_section.l10n_it_asset_id.id" />
                 <span style="margin: 5px;">
                     <span>Asset: </span>
                     <a
@@ -228,7 +228,7 @@
 
     <template id="template_asset_previsional_asset_table_data">
         <div class="act_as_row labels">
-            <t t-set="active_id" t-value="asset_section.asset_id.id" />
+            <t t-set="active_id" t-value="asset_section.l10n_it_asset_id.id" />
             <t t-set="res_model" t-value="'asset.asset'" />
             <div class="act_as_cell" style="width: 25%;" name="code">
                 <span>

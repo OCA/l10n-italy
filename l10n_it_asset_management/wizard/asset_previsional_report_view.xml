@@ -30,7 +30,7 @@
                         />
                     </group>
                     <group name="assets" string="Assets">
-                        <field name="asset_ids" colspan="2" nolabel="1" />
+                        <field name="l10n_it_asset_ids" colspan="2" nolabel="1" />
                     </group>
                     <group name="print_options" string="Options">
                         <group>

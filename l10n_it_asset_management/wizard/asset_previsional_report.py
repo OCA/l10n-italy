@@ -48,7 +48,7 @@ class WizardAssetPrevisionalReport(models.TransientModel):
             [("print_by_default", "=", True)]
         )
 
-    asset_ids = fields.Many2many("asset.asset", string="Assets")
+    l10n_it_asset_ids = fields.Many2many("asset.asset", string="Assets")
 
     asset_order_fname = fields.Selection(
         get_asset_order_fname_selection,
@@ -92,8 +92,8 @@ class WizardAssetPrevisionalReport(models.TransientModel):
 
     @api.onchange("category_ids", "company_id", "date", "type_ids")
     def onchange_assets(self):
-        self.asset_ids = self.filter_assets()
-        return {"domain": {"asset_ids": self.get_asset_domain()}}
+        self.l10n_it_asset_ids = self.filter_assets()
+        return {"domain": {"l10n_it_asset_ids": self.get_asset_domain()}}
 
     def button_export_asset_previsional_html(self):
         self.ensure_one()
@@ -116,7 +116,7 @@ class WizardAssetPrevisionalReport(models.TransientModel):
         return report.print_report(report_type)
 
     def filter_assets(self):
-        assets = self.asset_ids
+        assets = self.l10n_it_asset_ids
         if self.category_ids:
             assets = assets.filtered(
                 lambda a: a.category_id.id in self.category_ids.ids
@@ -147,13 +147,13 @@ class WizardAssetPrevisionalReport(models.TransientModel):
             deps = self.env["asset.depreciation"].search(
                 [("type_id", "in", self.type_ids.ids)]
             )
-            asset_domain.append(("id", "in", deps.mapped("asset_id").ids))
+            asset_domain.append(("id", "in", deps.mapped("l10n_it_asset_id").ids))
         return asset_domain
 
     def prepare_report_vals(self):
         self.ensure_one()
         return {
-            "asset_ids": [Command.set(self.asset_ids.ids)],
+            "l10n_it_asset_ids": [Command.set(self.l10n_it_asset_ids.ids)],
             "asset_order_fname": self.asset_order_fname,
             "category_ids": [Command.set(self.category_ids.ids)],
             "company_id": self.company_id.id,

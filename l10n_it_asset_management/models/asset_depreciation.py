@@ -63,7 +63,7 @@ class AssetDepreciation(models.Model):
         string="Residual Amount",
     )
 
-    asset_id = fields.Many2one(
+    l10n_it_asset_id = fields.Many2one(
         "asset.asset",
         ondelete="cascade",
         readonly=True,
@@ -78,11 +78,17 @@ class AssetDepreciation(models.Model):
     )
 
     company_id = fields.Many2one(
-        "res.company", readonly=True, related="asset_id.company_id", string="Company"
+        "res.company",
+        readonly=True,
+        related="l10n_it_asset_id.company_id",
+        string="Company",
     )
 
     currency_id = fields.Many2one(
-        "res.currency", readonly=True, related="asset_id.currency_id", string="Currency"
+        "res.currency",
+        readonly=True,
+        related="l10n_it_asset_id.currency_id",
+        string="Currency",
     )
 
     date_start = fields.Date()
@@ -196,9 +202,9 @@ class AssetDepreciation(models.Model):
         for dep in self:
             dep.state = dep.get_depreciation_state()
 
-    @api.onchange("asset_id", "base_coeff")
+    @api.onchange("l10n_it_asset_id", "base_coeff")
     def onchange_base_coeff(self):
-        purchase_amount = self.asset_id.purchase_amount
+        purchase_amount = self.l10n_it_asset_id.purchase_amount
         self.amount_depreciable = self.base_coeff * purchase_amount
 
     @api.onchange("first_dep_nr")
@@ -235,8 +241,8 @@ class AssetDepreciation(models.Model):
         "line_ids.amount",
         "line_ids.balance",
         "line_ids.move_type",
-        "asset_id.sold",
-        "asset_id.dismissed",
+        "l10n_it_asset_id.sold",
+        "l10n_it_asset_id.dismissed",
     )
     def _compute_amounts(self):
         for dep in self:
@@ -275,8 +281,8 @@ class AssetDepreciation(models.Model):
             draft_names = ", ".join(
                 [
                     asset_name
-                    for asset_id, asset_name in draft_lines.mapped(
-                        "depreciation_id.asset_id"
+                    for l10n_it_asset_id, asset_name in draft_lines.mapped(
+                        "depreciation_id.l10n_it_asset_id"
                     ).name_get()
                 ]
             )
@@ -307,7 +313,7 @@ class AssetDepreciation(models.Model):
         if self.last_depreciation_date and self.last_depreciation_date > dep_date:
             return res
         dep_nr = self.get_max_depreciation_nr() + 1
-        dep = self.with_context(dep_nr=dep_nr, used_asset=self.asset_id.used)
+        dep = self.with_context(dep_nr=dep_nr, used_asset=self.l10n_it_asset_id.used)
         dep_amount = dep.get_depreciation_amount(dep_date)
         if not dep_amount:
             return res
@@ -339,7 +345,7 @@ class AssetDepreciation(models.Model):
             if f"amount_{k}" in self._fields
         }
 
-        if self.asset_id.sold or self.asset_id.dismissed:
+        if self.l10n_it_asset_id.sold or self.l10n_it_asset_id.dismissed:
             vals.update({"amount_depreciable_updated": 0, "amount_residual": 0})
         else:
             non_residual_types = self.line_ids.get_non_residual_move_types()
@@ -477,18 +483,18 @@ class AssetDepreciation(models.Model):
     def get_dismiss_account_move_line_vals(self):
         self.ensure_one()
         credit_line_vals = {
-            "account_id": self.asset_id.category_id.asset_account_id.id,
+            "account_id": self.l10n_it_asset_id.category_id.asset_account_id.id,
             "credit": self.amount_depreciated,
             "debit": 0.0,
             "currency_id": self.currency_id.id,
-            "name": _("Asset dismissal: ") + self.asset_id.make_name(),
+            "name": _("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
         }
         debit_line_vals = {
-            "account_id": self.asset_id.category_id.fund_account_id.id,
+            "account_id": self.l10n_it_asset_id.category_id.fund_account_id.id,
             "credit": 0.0,
             "debit": self.amount_depreciated,
             "currency_id": self.currency_id.id,
-            "name": _("Asset dismissal: ") + self.asset_id.make_name(),
+            "name": _("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
         }
         return [credit_line_vals, debit_line_vals]
 
@@ -496,10 +502,11 @@ class AssetDepreciation(models.Model):
         self.ensure_one()
         return {
             "company_id": self.company_id.id,
-            "date": self._context.get("dismiss_date") or self.asset_id.sale_date,
-            "journal_id": self.asset_id.category_id.journal_id.id,
+            "date": self._context.get("dismiss_date")
+            or self.l10n_it_asset_id.sale_date,
+            "journal_id": self.l10n_it_asset_id.category_id.journal_id.id,
             "line_ids": [],
-            "ref": _("Asset dismissal: ") + self.asset_id.make_name(),
+            "ref": _("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
             "move_type": "entry",
         }
 
@@ -580,7 +587,7 @@ class AssetDepreciation(models.Model):
 
     def make_name(self):
         self.ensure_one()
-        return " - ".join((self.asset_id.make_name(), self.type_id.name or ""))
+        return " - ".join((self.l10n_it_asset_id.make_name(), self.type_id.name or ""))
 
     def need_normalize_first_dep_nr(self):
         self.ensure_one()
