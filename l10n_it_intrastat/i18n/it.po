@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2024-02-14 17:35+0000\n"
+"PO-Revision-Date: 2024-02-15 16:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -5603,7 +5603,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_74072110
 msgid "Bars and rods, of copper-zinc base alloys \"brass\", n.e.s."
-msgstr "Barre di ottone, n.n.a."
+msgstr "Barre e profilati di leghe a base di rame-zinco \"ottone\", n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72139910
@@ -27374,7 +27374,7 @@ msgid ""
 "Fresh or chilled sea bream \"Sparidae\" (excl. gilt-head sea bream, Dentex "
 "dentex and Pagellus spp.)"
 msgstr ""
-"Orate fresche o refrigerate (Sparidae) (escl. orate orate, Dentex dentex e "
+"Orate \"Sparidae\" fresche o refrigerate (escl. orate, Dentex dentex e "
 "Pagellus spp.)"
 
 #. module: l10n_it_intrastat
@@ -27690,7 +27690,7 @@ msgstr "Mandorle, fresche o secche, sgusciate (escl. mandorle amare)"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08028000
 msgid "Fresh or dried areca nuts, whether or not shelled or peeled"
-msgstr "Noci di di arec fresche o secche anche sgusciate e pelate"
+msgstr "Noci di arec fresche o secche anche sgusciate e pelate"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08044000
@@ -34184,9 +34184,8 @@ msgid ""
 "Hairpins, curling pins, curling grips, hair-curlers and the like, and parts "
 "thereof, n.e.s. (excl. electro-thermic appliances of heading 8516)"
 msgstr ""
-"Spille per capelli, ferma-ricci, ondulatori, bigodini e simili, e loro "
-"parti; parti di pettini da toletta e da ornamento e di fermagli per capelli "
-"e simili"
+"Forcine, forcine, mollette, bigodini e simili, e loro parti, n.n.a. (escl. "
+"apparecchi elettrotermici della voce 8516)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_16041994
@@ -47391,9 +47390,8 @@ msgid ""
 "Mixtures and preparations of animal or vegetable fats and oils and of "
 "fractions of various fats and oils, inedible, n.e.s., in chapter 15"
 msgstr ""
-"Miscugli e preparazioni di grassi ed oli animali o vegetali nonchè di "
-"frazioni di differenti grassi ed oli di questo capitolo, non alimentari, n.n."
-"a."
+"Miscele e preparazioni di grassi e di oli animali o vegetali e di frazioni "
+"di diversi grassi e oli, non alimentari, n.n.a., nel capitolo 15"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_38249087
@@ -60697,11 +60695,11 @@ msgid ""
 "other than rectangular \"incl. square\" of a thickness of <= 0,10 mm, not "
 "biaxially oriented"
 msgstr ""
-"Lastre, fogli, strisce, pellicole, nastri di polimeri (non alveolari) di "
-"propilene (non rinforzati nè stratificati nè parimenti associati ad altre "
-"materie), senza supporto (non lavorati), oppure solamente lavorati in "
-"superficie o tagliati in forma quadrata o rettangolare, di spessore <= 0,10 "
-"mm, diversi da quelli biassialmente orientati, n.n.a."
+"Lastre, fogli, pellicole, strisce e nastri di polimeri non cellulari di "
+"propilene, non rinforzati, stratificati, supportati o similmente combinati "
+"con altre materie, non ulteriormente lavorati o lavorati soltanto in "
+"superficie e non tagliati in forme diverse da quella rettangolare \"incl. "
+"quadrato\" di spessore <= 0,10 mm, non orientato biassialmente"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39202080
@@ -60813,11 +60811,12 @@ msgid ""
 "into squares or rectangles (excl. self-adhesive products, and floor, wall "
 "and ceiling coverings of heading 3918)"
 msgstr ""
-"Lastre, piastre, fogli, pellicole, nastri e strisce di cellulosa rigenerata, "
-"non alveolare, non stampati, non rinforzati, stratificati, nè parimenti "
-"associati ad altre materie, senza supporto, non lavorati o lavorati più "
-"volte in superficie o tagliati in forma quadrata o rettangolare, di spessore "
-"> 0,10 mm, n.n.a."
+"Lastre, fogli, pellicole, strisce e nastri di cellulosa rigenerata non "
+"alveolare, non rinforzati, stratificati, supportati o similmente combinati "
+"con altre materie, senza supporto, grezzi o semplicemente lavorati in "
+"superficie o semplicemente tagliati in quadrati o rettangoli (escl. -"
+"prodotti adesivi e rivestimenti per pavimenti, pareti e soffitti della voce "
+"3918)"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39206300
@@ -86275,9 +86274,9 @@ msgid ""
 "substances, in containers holding <= 2 l, of actual alcoholic strength of > "
 "18% vol"
 msgstr ""
-"Vermut ed altri vini di uve fresche preparati con piante o sostanze "
-"aromatiche, in recipienti di capacità fino a 2 litri, con titolo "
-"alcolometrico > 18% vol."
+"Vermouth e altri vini di uve fresche, aromatizzati con piante o sostanze "
+"aromatiche, in recipienti di capacità <= 2 l, con titolo alcolometrico "
+"effettivo > 18% vol"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22059010
@@ -86286,9 +86285,9 @@ msgid ""
 "substances, in containers holding > 2 l, of actual alcoholic strength of <= "
 "18% vol"
 msgstr ""
-"Vermut ed altri vini di uve fresche preparati con piante o sostanze "
-"aromatiche, in recipienti di capacità > 2 litri, con titolo alcolometrico "
-"fino a 18% vol."
+"Vermouth e altri vini di uve fresche, aromatizzati con piante o sostanze "
+"aromatiche, in recipienti di capacità > 2 l, con titolo alcolometrico "
+"effettivo <= 18% vol"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22059090
@@ -86299,7 +86298,7 @@ msgid ""
 msgstr ""
 "Vermut ed altri vini di uve fresche preparati con piante o sostanze "
 "aromatiche, in recipienti di capacità > 2 litri, con titolo alcolometrico > "
-"18% vol."
+"18% vol"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.522216
@@ -87668,8 +87667,8 @@ msgid ""
 "Watch straps, watch bands and watch bracelets, and parts thereof, of base "
 "metal, whether or not gold- or silver-plated, n.e.s."
 msgstr ""
-"Cinturini e braccialetti per orologi, di metalli comuni, anche dorati o "
-"argentati, e loro parti"
+"Cinturini per orologi, cinturini e braccialetti per orologi, e loro parti, "
+"di metalli comuni, anche dorati o argentati, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_91131090
@@ -87677,8 +87676,8 @@ msgid ""
 "Watch straps, watch bands and watch bracelets, and parts thereof, of metal "
 "clad with precious metal, n.e.s."
 msgstr ""
-"Cinturini e braccialetti per orologi, di metalli placcati o ricoperti di "
-"metalli preziosi, e loro parti"
+"Cinturini per orologi, cinturini e braccialetti per orologi, e loro parti, "
+"di metallo placcato con metalli preziosi, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_91131010
@@ -87686,7 +87685,8 @@ msgid ""
 "Watch straps, watch bands and watch bracelets, and parts thereof, of "
 "precious metal, n.e.s."
 msgstr ""
-"Cinturini e braccialetti per orologi, di metalli preziosi, e loro parti"
+"Cinturini per orologi, cinturini e braccialetti per orologi, e loro parti, "
+"in metalli preziosi, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84243001
@@ -87888,7 +87888,7 @@ msgstr ""
 msgid ""
 "Weighing machine weights of all kinds; parts of weighing machinery, n.e.s."
 msgstr ""
-"Pesi per qualsiasi bilancia, parti di apparecchi o strumenti per pesare"
+"Pesi per pesatrici di ogni genere; parti di apparecchi per pesare, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_84238290
@@ -90045,9 +90045,9 @@ msgid ""
 "Wine of fresh grapes, incl. fortified wine, produced in the Community, in "
 "containers holding <= 2 l and of an actual alcoholic strength of > 22% vol"
 msgstr ""
-"Vini di uve fresche, compresi i vini arricchiti d'alcole, prodotti nella "
-"Comunità, in recipienti di capacità <= 2 litri e con titolo alcolometrico "
-"effettivo > 22% vol."
+"Vino di uve fresche, incl. vino liquoroso, prodotto nella Comunità, in "
+"recipienti di capacità <= 2 l e con un titolo alcolometrico effettivo > 22% "
+"vol"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22042992
@@ -90055,9 +90055,9 @@ msgid ""
 "Wine of fresh grapes, incl. fortified wine, produced in the Community, in "
 "containers holding > 2 l and of an actual alcoholic strength of > 22% vol"
 msgstr ""
-"Vini di uve fresche, compresi i vini arricchiti d'alcole, prodotti nella "
-"Comunità, in recipienti di capacità > 2 litri, con titolo alcolometrico "
-"effettivo > 22% vol."
+"Vino di uve fresche, incl. vino liquoroso, prodotto nella Comunità, in "
+"recipienti di capacità > 2 l e con un titolo alcolometrico effettivo > 22% "
+"vol"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22042910
@@ -90513,9 +90513,8 @@ msgid ""
 "Wines without PDO and PGI, produced in the Community, in containers holding "
 "<= 2 l and of an actual alcoholic strength of > 15% vol to 22% vol"
 msgstr ""
-"Vini prodotti nell'Unione europea, né a denominazione d'origine protetta "
-"(DOP) né a indicazione geografica protetta (IGP), in recipienti di capacità "
-"<= 2 litri e con titolo alcolometrico effettivo > 15% vol."
+"Vini senza DOP e IGP, prodotti nella Comunità, in recipienti di capacità <= "
+"2 l e con un titolo alcolometrico effettivo compreso tra > 15% vol e 22% vol"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_22042991
@@ -90523,9 +90522,8 @@ msgid ""
 "Wines without PDO and PGI, produced in the Community, in containers holding "
 "> 2 l and of an actual alcoholic strength of > 15% vol to 22% vol"
 msgstr ""
-"Vini, né a denominazione d'origine protetta (DOP) né a indicazione "
-"geografica protetta (IGP), in recipienti di capacità > 10 litri e con titolo "
-"alcolometrico effettivo >15% vol."
+"Vini senza DOP e IGP, prodotti nella Comunità, in recipienti di capacità > 2 "
+"l e con un titolo alcolometrico effettivo compreso tra > 15% vol e 22% vol"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72299090
@@ -94621,8 +94619,9 @@ msgid ""
 "heading 5605, of a kind used in apparel, as furnishing fabrics or for "
 "similar purposes, n.e.s."
 msgstr ""
-"Tessuti di fili di metallo e tessuti di filati metallici o di filati tessili "
-"metallizzati della voce 5605, non nominati nè compresi altrove"
+"Tessuti di fili metallici e tessuti di filati metallizzati della voce 5605, "
+"dei tipi utilizzati per l'abbigliamento, come tessuti per arredamento o per "
+"usi simili, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_50071000
@@ -95341,10 +95340,10 @@ msgid ""
 "panels and desks, screens, examination or treatment tables, chairs and the "
 "like, and general parts and accessories for apparatus of heading 9022, n.e.s."
 msgstr ""
-"Generatori di raggi X diversi da tubi a raggi X, generatori di alta "
-"tensione, quadri di comando, schermi, tavoli, poltrone e supporti simili di "
-"esame o di trattamento, parti generali ed accessori per apparecchi delle "
-"voci 9022, non nominati altrove"
+"Generatori di raggi X diversi dai tubi a raggi X, generatori di alta "
+"tensione, pannelli di controllo e scrivanie, schermi, lettini per esami o "
+"cure, sedie e simili, e parti generali ed accessori di apparecchi della voce "
+"9022, n.n.a."
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_90223000
