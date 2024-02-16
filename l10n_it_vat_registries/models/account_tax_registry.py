@@ -32,3 +32,4 @@ class AccountTaxRegistry(models.Model):
         "Layout",
         required=True,
     )
+    show_full_contact_addess = fields.Boolean()
