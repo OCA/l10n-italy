@@ -251,6 +251,12 @@ msgid "Select journals you want retrieve documents from"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__show_full_contact_addess
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__show_full_contact_addess
+msgid "Show Full Contact Addess"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__corrispettivi
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__corrispettivi
 msgid "Sums due"
