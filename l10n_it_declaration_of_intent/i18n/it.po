@@ -206,7 +206,6 @@ msgstr "Dettagli della dichiarazione d'intento"
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_select_declarations__display_name
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__display_name
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_product_product__display_name
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_sale_order__display_name
 msgid "Display Name"
@@ -262,7 +261,6 @@ msgstr "Forza riapertura"
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration_line__id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_select_declarations__id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__id
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_product_product__id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_sale_order__id
 msgid "ID"
@@ -302,7 +300,6 @@ msgstr "Movimento contabile"
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_select_declarations____last_update
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit____last_update
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_product_product____last_update
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_res_company____last_update
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_sale_order____last_update
 msgid "Last Modified on"
@@ -365,11 +362,6 @@ msgstr "Numero documento del partner"
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_search
 msgid "Partner"
 msgstr "Partner"
-
-#. module: l10n_it_declaration_of_intent
-#: model:ir.model,name:l10n_it_declaration_of_intent.model_product_product
-msgid "Product"
-msgstr "Prodotto"
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields.selection,name:l10n_it_declaration_of_intent.selection__l10n_it_declaration_of_intent_declaration__type__out
@@ -466,6 +458,9 @@ msgstr "Limite annuale per le dichiarazioni"
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.select_manually_declarations_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "Product"
+#~ msgstr "Prodotto"
 
 #, python-format
 #~ msgid ""
