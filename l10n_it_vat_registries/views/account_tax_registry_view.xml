@@ -8,6 +8,7 @@
                 <group>
                     <field name="name" />
                     <field name="layout_type" />
+                    <field name="entry_order" />
                 </group>
                 <separator string="Journals" />
                 <field name="journal_ids" />
