@@ -37,7 +37,7 @@ addon | version | maintainers | summary
 [l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 14.0.1.0.1 |  | ITA - Bolle doganali
 [l10n_it_central_journal](l10n_it_central_journal/) | 14.0.1.0.1 |  | ITA - Libro giornale
 [l10n_it_central_journal_reportlab](l10n_it_central_journal_reportlab/) | 14.0.1.0.4 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) [![Borruso](https://github.com/Borruso.png?size=30px)](https://github.com/Borruso) | ITA - Libro giornale - Reportlab
-[l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 14.0.1.1.11 |  | Gestione dichiarazioni di intento
+[l10n_it_declaration_of_intent](l10n_it_declaration_of_intent/) | 14.0.1.1.12 |  | Gestione dichiarazioni di intento
 [l10n_it_delivery_note](l10n_it_delivery_note/) | 14.0.3.0.1 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) [![aleuffre](https://github.com/aleuffre.png?size=30px)](https://github.com/aleuffre) [![renda-dev](https://github.com/renda-dev.png?size=30px)](https://github.com/renda-dev) | Crea, gestisce e fattura i DDT partendo dalle consegne
 [l10n_it_delivery_note_base](l10n_it_delivery_note_base/) | 14.0.1.0.2 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) | Crea e gestisce tabelle principali per gestire i DDT
 [l10n_it_delivery_note_batch](l10n_it_delivery_note_batch/) | 14.0.1.1.0 | [![MarcoCalcagni](https://github.com/MarcoCalcagni.png?size=30px)](https://github.com/MarcoCalcagni) [![TheMule71](https://github.com/TheMule71.png?size=30px)](https://github.com/TheMule71) [![aleuffre](https://github.com/aleuffre.png?size=30px)](https://github.com/aleuffre) [![PicchiSeba](https://github.com/PicchiSeba.png?size=30px)](https://github.com/PicchiSeba) [![renda-dev](https://github.com/renda-dev.png?size=30px)](https://github.com/renda-dev) | Crea i DDT partendo da gruppi di prelievi
@@ -53,7 +53,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 14.0.1.0.0 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 14.0.1.1.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra e-fattura in acquisto e inversione contabile
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 14.0.3.4.4 |  | Emissione fatture elettroniche
-[l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 14.0.1.0.3 |  | Dichiarazioni d'intento in fatturapa
+[l10n_it_fatturapa_out_di](l10n_it_fatturapa_out_di/) | 14.0.1.0.4 |  | Dichiarazioni d'intento in fatturapa
 [l10n_it_fatturapa_out_rc](l10n_it_fatturapa_out_rc/) | 14.0.1.3.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge
 [l10n_it_fatturapa_out_sp](l10n_it_fatturapa_out_sp/) | 14.0.1.0.4 |  | Scissione pagamenti in fatturapa
 [l10n_it_fatturapa_out_stamp](l10n_it_fatturapa_out_stamp/) | 14.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Modulo ponte tra emissione fatture elettroniche e imposta di bollo
