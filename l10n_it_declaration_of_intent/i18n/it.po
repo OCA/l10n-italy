@@ -23,6 +23,11 @@ msgid "Accounting"
 msgstr "Contabilità"
 
 #. module: l10n_it_declaration_of_intent
+#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__actual_used_amount
+msgid "Actual Used Amount"
+msgstr ""
+
+#. module: l10n_it_declaration_of_intent
 #: code:addons/l10n_it_declaration_of_intent/models/declaration.py:0
 #, python-format
 msgid ""
@@ -168,7 +173,6 @@ msgstr "Dichiarazioni d'intento"
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_account_payment__declaration_of_intent_ids
 #: model:ir.ui.menu,name:l10n_it_declaration_of_intent.declaration_of_intent_menu
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_search
-#: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_view_company_form
 msgid "Declarations of intent"
 msgstr "Dichiarazioni d'intento"
 
@@ -232,6 +236,11 @@ msgid "Expired"
 msgstr "Scaduta"
 
 #. module: l10n_it_declaration_of_intent
+#: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_view_company_form
+msgid "Exporter Plafond"
+msgstr ""
+
+#. module: l10n_it_declaration_of_intent
 #: model:ir.model,name:l10n_it_declaration_of_intent.model_account_fiscal_position
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__fiscal_position_id
 msgid "Fiscal Position"
@@ -276,6 +285,11 @@ msgstr "Impossibile eliminare un documento con fatture collegate"
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration_line__invoice_id
 msgid "Invoice"
 msgstr "Fattura"
+
+#. module: l10n_it_declaration_of_intent
+#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__used_amount
+msgid "Issued Declarations"
+msgstr ""
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields.selection,name:l10n_it_declaration_of_intent.selection__l10n_it_declaration_of_intent_declaration__type__in
@@ -323,7 +337,6 @@ msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__limit_amount
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__limit_amount
 msgid "Limit Amount"
 msgstr "Importo limite"
 
@@ -362,6 +375,11 @@ msgstr "Numero documento del partner"
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.declaration_of_intent_search
 msgid "Partner"
 msgstr "Partner"
+
+#. module: l10n_it_declaration_of_intent
+#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__limit_amount
+msgid "Plafond"
+msgstr ""
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields.selection,name:l10n_it_declaration_of_intent.selection__l10n_it_declaration_of_intent_declaration__type__out
@@ -424,7 +442,6 @@ msgstr "Tipo"
 
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__used_amount
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_yearly_limit__used_amount
 msgid "Used Amount"
 msgstr "Importo usato"
 
