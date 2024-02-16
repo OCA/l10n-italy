@@ -19,8 +19,6 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         return cls.env["l10n_it_declaration_of_intent.declaration"].create(
             {
                 "partner_id": partner.id,
-                "partner_document_number": "PartnerTest%s" % partner.id,
-                "partner_document_date": cls.today_date,
                 "date": cls.today_date,
                 "date_start": cls.today_date,
                 "date_end": cls.today_date,
