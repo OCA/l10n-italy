@@ -228,6 +228,13 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid ""
+"Block the validation of incoming DNs if the\n"
+"                                    \"Partner reference\" field is not set."
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__can_be_invoiced
 msgid "Can Be Invoiced"
 msgstr ""
@@ -1001,6 +1008,16 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__group_required_partner_ref
+msgid "Make Partner Ref. in DN Mandatory"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:res.groups,name:l10n_it_delivery_note.group_required_partner_ref
+msgid "Make Partner Ref. in DN Required"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__mrp_operation
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__mrp_operation
 msgid "Manufacturing Operation"
@@ -1518,6 +1535,13 @@ msgstr ""
 msgid ""
 "The carrier set in Delivery Note is different from the carrier set in "
 "picking(s). Are you sure you want to proceed?"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid ""
+"The field 'Partner reference' is mandatory to validate the Delivery Note."
 msgstr ""
 
 #. module: l10n_it_delivery_note
