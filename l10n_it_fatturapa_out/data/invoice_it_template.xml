@@ -553,12 +553,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                         <!--                            <Importo t-out=""/>-->
                         <!--                        </ScontoMaggiorazione>-->
                         <ImportoTotaleDocumento
-                        t-if="record.company_id.xml_divisa_value == 'keep_orig'"
                         t-out="format_numbers_two(get_importo_totale(record))"
-                    />
-                        <ImportoTotaleDocumento
-                        t-if="not record.company_id.xml_divisa_value == 'keep_orig'"
-                        t-out="format_numbers_two(fpa_to_eur(get_importo_totale(record), record))"
                     />
                         <!--                        <Arrotondamento t-out=""/>-->
                         <t t-foreach="get_causale(record)" t-as="causale">
