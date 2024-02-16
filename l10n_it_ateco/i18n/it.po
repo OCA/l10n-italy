@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: l10n-italy (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:39+0000\n"
-"PO-Revision-Date: 2018-12-16 23:58+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2024-02-16 17:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-10-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_ateco
 #: model:ir.model,name:l10n_it_ateco.model_ateco_category
@@ -98,7 +98,7 @@ msgstr "Nome"
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category_parent_id
 msgid "Parent Category"
-msgstr "Categoria madre"
+msgstr "Categoria padre"
 
 #. module: l10n_it_ateco
 #: model:ir.model,name:l10n_it_ateco.model_res_partner
