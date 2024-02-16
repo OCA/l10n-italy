@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-20 08:48+0000\n"
-"PO-Revision-Date: 2020-03-20 08:48+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2024-02-16 17:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_ateco
 #: model:ir.model,name:l10n_it_ateco.model_ateco_category
@@ -98,7 +99,7 @@ msgstr "Nome"
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__parent_id
 msgid "Parent Category"
-msgstr "Categoria madre"
+msgstr "Categoria padre"
 
 #. module: l10n_it_ateco
 #: model:ir.model.fields,field_description:l10n_it_ateco.field_ateco_category__partner_ids
