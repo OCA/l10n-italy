@@ -184,3 +184,39 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
             "different from the shipping method set in picking(s)",
             warning_context.get("default_warning_message"),
         )
+
+    def test_delivery_action_confirm_without_ref(self):
+        user = new_test_user(
+            self.env,
+            login="test",
+            groups="stock.group_stock_manager,"
+            "l10n_it_delivery_note.use_advanced_delivery_notes,"
+            "l10n_it_delivery_note.group_required_partner_ref",
+        )
+        # change user in order to activate DN advanced settings
+        self.env.user = user
+
+        picking = self.create_picking(
+            picking_type_id=self.env.ref("stock.picking_type_in").id,
+            carrier_id=self.env.ref("delivery.delivery_carrier").id,
+        )
+        picking.move_lines.quantity_done = 1
+        picking.button_validate()
+
+        dn_form = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                {"active_id": picking.id, "active_ids": picking.ids}
+            )
+        )
+        dn = dn_form.save()
+        dn.confirm()
+
+        delivery_note_id = picking.delivery_note_id
+
+        with self.assertRaises(UserError) as exc:
+            delivery_note_id.action_confirm()
+        exc_message = exc.exception.args[0]
+        self.assertIn("The field 'Partner reference' is mandatory", exc_message)
+
+        delivery_note_id.partner_ref = "Reference #1234"
+        delivery_note_id.action_confirm()
