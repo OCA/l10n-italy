@@ -138,6 +138,12 @@ class StockDeliveryNote(models.Model):
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
 
+    customer_id = fields.Many2one(
+        "res.partner",
+        string="Customer",
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+    )
+
     carrier_id = fields.Many2one(
         "res.partner",
         string="Carrier",

@@ -31,6 +31,8 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
                 [("code", "=", "outgoing")], limit=1
             )
 
+    partner_shipping_id = fields.Many2one("res.partner", required=True)
+
     date = fields.Date(default=_default_date)
     type_id = fields.Many2one(
         "stock.delivery.note.type", default=_default_type, required=True
@@ -76,17 +78,23 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
 
     def _prepare_delivery_note_vals(self, sale_order_id):
         delivery_method_id = self.selected_picking_ids.mapped("carrier_id")[:1]
+
+        partner_id = (
+            sale_order_id.partner_invoice_id
+            if sale_order_id.partner_invoice_id
+            else self.partner_id
+        )
+
         return {
             "company_id": (
                 self.selected_picking_ids.mapped("company_id")[:1].id or False
             ),
             "partner_sender_id": self.partner_sender_id.id,
-            "partner_id": (
-                sale_order_id.partner_invoice_id.id
-                if sale_order_id.partner_invoice_id
-                else self.partner_id.id
-            ),
+            "partner_id": partner_id.id,
             "partner_shipping_id": self.partner_shipping_id.id,
+            "customer_id": partner_id.id
+            if self.selected_picking_ids.mapped("sale_id")
+            else self.partner_shipping_id.id,
             "type_id": self.type_id.id,
             "date": self.date,
             "carrier_id": delivery_method_id.partner_id.id,

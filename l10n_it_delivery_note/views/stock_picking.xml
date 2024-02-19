@@ -207,13 +207,8 @@
                                                     'readonly': [('delivery_note_readonly', '=', True)]}"
                                     />
                                     <field
-                                        name="delivery_note_carrier_id"
-                                        attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
-                                        string="Carrier"
-                                    />
-                                    <field
-                                        name="delivery_method_id"
-                                        attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
+                                        name="delivery_note_date"
+                                        attrs="{'readonly': [('delivery_note_draft', '=', False)]}"
                                     />
                                 </group>
                                 <group>
@@ -223,9 +218,10 @@
                                         attrs="{'required': [('delivery_note_exists', '=', True)],
                                                     'readonly': [('delivery_note_draft', '=', False)]}"
                                     />
+                                    <field name="sale_id" invisible="1" />
                                     <field
-                                        name="delivery_note_date"
-                                        attrs="{'readonly': [('delivery_note_draft', '=', False)]}"
+                                        name="delivery_note_customer_id"
+                                        attrs="{'readonly': [('sale_id', '=', False)]}"
                                     />
                                     <label for="transport_datetime" />
                                     <div class="o_row">
@@ -250,6 +246,11 @@
                             >
                                 <group>
                                     <field
+                                        name="delivery_note_carrier_id"
+                                        attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
+                                        string="Carrier"
+                                    />
+                                    <field
                                         name="packages"
                                         attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
                                     />
@@ -269,6 +270,10 @@
                                     </div>
                                 </group>
                                 <group>
+                                    <field
+                                        name="delivery_method_id"
+                                        attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
+                                    />
                                     <label for="gross_weight" />
                                     <div class="o_row">
                                         <field

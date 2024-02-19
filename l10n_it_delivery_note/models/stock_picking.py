@@ -32,6 +32,7 @@ class StockPicking(models.Model):
     delivery_note_partner_shipping_id = fields.Many2one(
         "res.partner", related="delivery_note_id.partner_shipping_id"
     )
+    delivery_note_customer_id = fields.Many2one(related="delivery_note_id.customer_id")
 
     delivery_note_carrier_id = fields.Many2one(
         "res.partner", string="DN Carrier", related="delivery_note_id.carrier_id"
@@ -347,12 +348,14 @@ class StockPicking(models.Model):
             limit=1,
         )
         delivery_method_id = self.mapped("carrier_id")[:1]
+        partner_id = partners[2] if self.sale_id else partners[0]
         return self.env["stock.delivery.note"].create(
             {
                 "company_id": self.company_id.id,
                 "partner_sender_id": partners[0].id,
-                "partner_id": partners[2].id if self.sale_id else partners[0].id,
+                "partner_id": partner_id.id,
                 "partner_shipping_id": partners[1].id,
+                "customer_id": partner_id.id if self.sale_id else partners[1].id,
                 "type_id": type_id.id,
                 "date": self.date_done,
                 "carrier_id": delivery_method_id.partner_id.id,
