@@ -341,11 +341,6 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_it_declaration_of_intent
-#: model:ir.model,name:l10n_it_declaration_of_intent.model_product_product
-msgid "Product Variant"
-msgstr ""
-
-#. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields.selection,name:l10n_it_declaration_of_intent.selection__l10n_it_declaration_of_intent_declaration__type__out
 msgid "Received from customers"
 msgstr ""

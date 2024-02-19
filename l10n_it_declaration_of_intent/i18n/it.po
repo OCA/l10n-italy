@@ -356,11 +356,6 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: l10n_it_declaration_of_intent
-#: model:ir.model,name:l10n_it_declaration_of_intent.model_product_product
-msgid "Product Variant"
-msgstr "Variante prodotto"
-
-#. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields.selection,name:l10n_it_declaration_of_intent.selection__l10n_it_declaration_of_intent_declaration__type__out
 msgid "Received from customers"
 msgstr "Ricevuta da clienti"
@@ -456,6 +451,9 @@ msgstr "Limite annuale per le dichiarazioni"
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.select_manually_declarations_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "Product Variant"
+#~ msgstr "Variante prodotto"
 
 #, python-format
 #~ msgid ""
