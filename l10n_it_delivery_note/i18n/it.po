@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2024-02-02 09:37+0000\n"
+"PO-Revision-Date: 2024-02-19 08:41+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -256,6 +256,9 @@ msgid ""
 "Block the validation of incoming DNs if the\n"
 "                                    \"Partner reference\" field is not set."
 msgstr ""
+"Blocca la validazione di DdT in entrata se il\n"
+"                                    campo \"Riferimento partner\" non è "
+"valorizzato."
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__can_be_invoiced
@@ -1042,12 +1045,12 @@ msgstr "Allegato principale"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__group_required_partner_ref
 msgid "Make Partner Ref. in DN Mandatory"
-msgstr ""
+msgstr "Campo \"Riferimento Partner\" in DdT obbligatorio"
 
 #. module: l10n_it_delivery_note
 #: model:res.groups,name:l10n_it_delivery_note.group_required_partner_ref
 msgid "Make Partner Ref. in DN Required"
-msgstr ""
+msgstr "Campo Riferimento Partner in DdT obbligatorio"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__mrp_operation
@@ -1589,6 +1592,7 @@ msgstr ""
 msgid ""
 "The field 'Partner reference' is mandatory to validate the Delivery Note."
 msgstr ""
+"Il campo \"Riferimento partner\" è obbligatorio per poter validare il DdT."
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_picking__carrier_partner_id
