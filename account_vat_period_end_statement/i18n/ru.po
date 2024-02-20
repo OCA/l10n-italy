@@ -84,6 +84,11 @@ msgid "Accounts"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__account_ids
+msgid "Accounts filter"
+msgstr ""
+
+#. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.add_period
 msgid "Add"
 msgstr ""
