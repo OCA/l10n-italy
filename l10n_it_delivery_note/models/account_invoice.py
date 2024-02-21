@@ -75,8 +75,16 @@ class AccountInvoice(models.Model):
         }
 
     def _prepare_note_dn_value(self, sequence, delivery_note_id):
+        delivery_note_line_sequence = self.invoice_line_ids.filtered(
+            lambda x: x.delivery_note_id == delivery_note_id
+        ).mapped("sequence")
+        new_sequence = (
+            min(delivery_note_line_sequence) - 1
+            if delivery_note_line_sequence
+            else sequence
+        )
         return {
-            "sequence": sequence,
+            "sequence": new_sequence,
             "display_type": "line_note",
             "name": _("""Delivery Note "%(ddt_name)s" of %(ddt_date)s""")
             % {
@@ -144,7 +152,9 @@ class AccountInvoice(models.Model):
                     for note_line in dn.line_ids.filtered(
                         lambda line: line.invoice_status == DOMAIN_INVOICE_STATUSES[2]
                     ):
-                        for invoice_line in dn_invoice_lines:
+                        for invoice_line in dn_invoice_lines.filtered(
+                            lambda x: not x.delivery_note_id
+                        ):
                             if (
                                 note_line
                                 in invoice_line.sale_line_ids.delivery_note_line_ids

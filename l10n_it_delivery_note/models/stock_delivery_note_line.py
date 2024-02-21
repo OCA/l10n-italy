@@ -5,6 +5,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command
 
 DATE_FORMAT = "%d/%m/%Y"
 DATETIME_FORMAT = "%d/%m/%Y %H:%M:%S"
@@ -197,3 +198,21 @@ class StockDeliveryNoteLine(models.Model):
                 if invoice_status == "upselling"
                 else invoice_status
             )
+
+    def _prepare_ddt_invoice_line(self, **optional_values):
+        self.ensure_one()
+        res = {
+            "display_type": "product",
+            "sequence": self.sequence,
+            "name": self.name,
+            "product_id": self.product_id.id,
+            "product_uom_id": self.product_uom_id.id,
+            "quantity": self.product_qty,
+            "discount": self.sale_line_id.discount,
+            "price_unit": self.price_unit,
+            "tax_ids": [Command.set(self.tax_ids.ids)],
+            "sale_line_ids": [Command.link(self.sale_line_id.id)],
+            "is_downpayment": self.sale_line_id.is_downpayment,
+            "delivery_note_id": self.delivery_note_id.id,
+        }
+        return res
