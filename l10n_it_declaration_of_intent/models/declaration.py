@@ -60,10 +60,10 @@ class DeclarationOfIntent(models.Model):
     partner_id = fields.Many2one("res.partner", string="Partner", required=True)
     telematic_protocol = fields.Char(required=True)
     partner_document_number = fields.Char(
-        required=True, string="Document Number", help="Number of partner's document"
+        string="Document Number", help="Number of partner's document"
     )
     partner_document_date = fields.Date(
-        required=True, string="Document Date", help="Date of partner's document"
+        string="Document Date", help="Date of partner's document"
     )
     taxes_ids = fields.Many2many("account.tax", string="Taxes", required=True)
     used_amount = fields.Monetary(compute="_compute_amounts", store=True)

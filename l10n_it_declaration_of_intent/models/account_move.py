@@ -144,15 +144,9 @@ class AccountMove(models.Model):
                     if is_sale_document:
                         cmt = self.narration or ""
                         msg = (
-                            "Vostra dichiarazione d'intento nr %s del %s, "
-                            "nostro protocollo nr %s del %s, "
+                            "Vostra dichiarazione d'intento del %s, "
                             "protocollo telematico nr %s."
                             % (
-                                declaration.partner_document_number,
-                                format_date(
-                                    self.env, declaration.partner_document_date
-                                ),
-                                declaration.number,
                                 format_date(self.env, declaration.date),
                                 declaration.telematic_protocol,
                             )
