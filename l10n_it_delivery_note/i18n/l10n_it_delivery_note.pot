@@ -1509,6 +1509,16 @@ msgid "Summary"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__dn_supplier_date
+msgid "Supplier DN Date"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__dn_supplier_number
+msgid "Supplier DN Number"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Tax"
 msgstr ""
