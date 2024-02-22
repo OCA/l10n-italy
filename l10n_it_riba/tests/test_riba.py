@@ -405,11 +405,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # self.assertTrue(
         #     bank_past_due_line.id in [l.id for l in move_lines_for_rec])
 
-        riba_list.line_ids[0].past_due_move_id.line_ids.remove_move_reconcile()
-        self.assertEqual(riba_list.state, "credited")
-        self.assertEqual(len(riba_list.line_ids), 1)
-        self.assertEqual(riba_list.line_ids[0].state, "credited")
-
     def test_riba_fatturapa(self):
         self.partner.property_account_receivable_id = self.account_rec1_id.id
         recent_date = (

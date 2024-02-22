@@ -14,3 +14,4 @@
   - Simone Rubino \<<simone.rubino@aion-tech.it>\>
 - [TAKOBI](https://takobi.online):
   - Simone Rubino \<<sir@takobi.online>\>
+- Nextev Srl \<<odoo@nextev.it>\>

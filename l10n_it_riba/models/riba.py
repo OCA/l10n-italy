@@ -5,6 +5,7 @@
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright 2024 Nextev Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import date
@@ -376,7 +377,7 @@ class RibaListLine(models.Model):
                         line.invoice_number, line.slip_id.name, line.sequence
                     ),
                     "journal_id": journal.id,
-                    "date": line.slip_id.registration_date,
+                    "date": line.due_date,
                 }
             )
             to_be_reconciled = self.env["account.move.line"]

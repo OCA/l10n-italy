@@ -132,27 +132,6 @@ class RibaPastDue(models.TransientModel):
                     0,
                     0,
                     {
-                        "name": _("Bills"),
-                        "account_id": wizard.effects_account_id.id,
-                        "partner_id": slip_line.partner_id.id,
-                        "credit": wizard.effects_amount,
-                        "debit": 0.0,
-                    },
-                ),
-                (
-                    0,
-                    0,
-                    {
-                        "name": _("RiBa"),
-                        "account_id": wizard.riba_bank_account_id.id,
-                        "debit": wizard.riba_bank_amount,
-                        "credit": 0.0,
-                    },
-                ),
-                (
-                    0,
-                    0,
-                    {
                         "name": _("Past Due Bills"),
                         "account_id": wizard.overdue_effects_account_id.id,
                         "debit": wizard.overdue_effects_amount,
@@ -203,6 +182,7 @@ class RibaPastDue(models.TransientModel):
                             i.id
                             for i in riba_move_line.move_line_id.past_due_invoice_ids
                         ]
+                    riba_move_line.move_line_id.remove_move_reconcile()
                     move_model.browse(invoice_ids).write(
                         {
                             "past_due_move_line_ids": [(4, move_line.id)],
