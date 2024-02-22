@@ -12439,6 +12439,11 @@ msgid "Currants"
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__currency_rate
+msgid "Currency Rate"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_73021010
 msgid ""
 "Current-conducting rails of iron or steel, with parts of non-ferrous metal, "
