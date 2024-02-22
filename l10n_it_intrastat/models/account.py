@@ -240,18 +240,14 @@ class AccountMoveLine(models.Model):
     def _prepare_intrastat_line_amount(self, res):
         self.ensure_one()
         amount_currency = self.price_subtotal
-        company_currency = self.move_id.company_id.currency_id
-        invoice_currency = self.move_id.currency_id
-        amount_euro = invoice_currency._convert(
-            amount_currency,
-            company_currency,
-            self.move_id.company_id,
-            fields.Date.today(),
-        )
+        amount_euro = abs(self.balance)
+        if amount_currency < 0:
+            amount_euro = -amount_euro
         statistic_amount_euro = amount_euro
         res.update(
             {
                 "amount_currency": amount_currency,
+                "currency_rate": self.currency_rate,
                 "amount_euro": amount_euro,
                 "statistic_amount_euro": statistic_amount_euro,
             }
@@ -447,12 +443,14 @@ class AccountInvoiceIntrastat(models.Model):
         for line in self:
             company_currency = line.invoice_id.company_id.currency_id
             invoice_currency = line.invoice_id.currency_id
-            if invoice_currency:
+            if line.currency_rate:
+                line.amount_euro = line.amount_currency * (1 / line.currency_rate)
+            elif invoice_currency:
                 line.amount_euro = invoice_currency._convert(
                     line.amount_currency,
                     company_currency,
                     line.invoice_id.company_id,
-                    fields.Date.today(),
+                    line.invoice_id.invoice_date,
                 )
 
     @api.depends("invoice_id.partner_id")
@@ -574,6 +572,7 @@ class AccountInvoiceIntrastat(models.Model):
         readonly=True,
     )
     amount_currency = fields.Float(string="Amount in Currency", digits="Account")
+    currency_rate = fields.Float(readonly=True)
     transaction_nature_id = fields.Many2one(
         comodel_name="account.intrastat.transaction.nature", string="Transaction Nature"
     )
