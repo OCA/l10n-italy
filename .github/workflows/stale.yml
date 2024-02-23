@@ -43,7 +43,7 @@ jobs:
 
             If you want this issue to never become stale, please ask a PSC member to
             apply the "no stale" label.
-          operations-per-run: 100
+          operations-per-run: 200
 
       # 15+30 day stale policy for issues pending more information
       # * Issues that are pending more information
