@@ -281,3 +281,42 @@ class TestWithholdingTax(TransactionCase):
         payment_register.with_context(
             default_move_type="in_invoice"
         ).action_create_payments()
+
+    def test_wt_after_repost(self):
+        wt_statement_ids = self.env["withholding.tax.statement"].search(
+            [
+                ("invoice_id", "=", self.invoice.id),
+                ("withholding_tax_id", "=", self.wt1040.id),
+            ]
+        )
+        self.assertEqual(len(wt_statement_ids), 1)
+        ctx = {
+            "active_model": "account.move",
+            "active_ids": [self.invoice.id],
+            "active_id": self.invoice.id,
+            "default_reconciled_invoice_ids": [(4, self.invoice.id, None)],
+        }
+        register_payment_form = Form(
+            self.payment_register_model.with_context(**ctx), view=self.register_view_id
+        )
+        register_payment_form.amount = 600
+        register_payment = register_payment_form.save()
+        register_payment.action_create_payments()
+        partials = self.invoice._get_reconciled_invoices_partials()[0]
+        self.assertTrue({p[1] for p in partials} == {600, 150})
+
+        self.invoice.button_draft()
+        self.invoice.action_post()
+        wt_statement_ids = self.env["withholding.tax.statement"].search(
+            [
+                ("invoice_id", "=", self.invoice.id),
+                ("withholding_tax_id", "=", self.wt1040.id),
+            ]
+        )
+        self.assertEqual(len(wt_statement_ids), 1)
+        debit_line_id = partials[0][2].move_id.line_ids.filtered(lambda l: l.debit)
+        self.invoice.js_assign_outstanding_line(debit_line_id.id)
+        self.assertEqual(self.invoice.amount_net_pay, 800)
+        self.assertEqual(self.invoice.amount_net_pay_residual, 200)
+        self.assertEqual(self.invoice.amount_residual, 250)
+        self.assertEqual(self.invoice.state, "posted")
