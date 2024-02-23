@@ -76,7 +76,6 @@
                             <field name="purchase_date" />
                             <field
                                 name="company_id"
-                                readonly="1"
                                 options="{'no_open':1, 'no_create_edit': True}"
                                 groups="base.group_multi_company"
                             />
@@ -148,12 +147,7 @@
                                     options="{'no_open':1}"
                                     readonly="1"
                                 />
-                                <field
-                                    name="company_id"
-                                    options="{'no_open':1, 'no_create_edit': True}"
-                                    invisible="1"
-                                    readonly="1"
-                                />
+                                <field name="company_id" invisible="1" />
                                 <field
                                     name="account_id"
                                     options="{'no_open':1}"
@@ -163,12 +157,7 @@
                                 <field name="name" readonly="1" />
                                 <field name="debit" widget="monetary" readonly="1" />
                                 <field name="credit" widget="monetary" readonly="1" />
-                                <field
-                                    name="currency_id"
-                                    options="{'no_open':1}"
-                                    invisible="1"
-                                    readonly="1"
-                                />
+                                <field name="currency_id" invisible="1" />
                             </tree>
                         </field>
                     </group>

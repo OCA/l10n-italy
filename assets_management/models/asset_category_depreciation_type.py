@@ -8,6 +8,7 @@ from odoo import fields, models
 class AssetCategoryDepreciationType(models.Model):
     _name = "asset.category.depreciation.type"
     _description = "Asset Category - Depreciation Type"
+    _check_company_auto = True
 
     base_coeff = fields.Float(
         default=1,
@@ -21,6 +22,7 @@ class AssetCategoryDepreciationType(models.Model):
         readonly=True,
         required=True,
         string="Category",
+        check_company=True,
     )
 
     company_id = fields.Many2one(
@@ -31,12 +33,14 @@ class AssetCategoryDepreciationType(models.Model):
         "asset.depreciation.type",
         required=True,
         string="Type",
+        check_company=True,
     )
 
     mode_id = fields.Many2one(
         "asset.depreciation.mode",
         required=True,
         string="Dep Mode",
+        check_company=True,
     )
 
     percentage = fields.Float(string="Depreciation %")

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-
     <record id="asset_multicompany_rule" model="ir.rule">
         <field name="name">Asset multi company rule</field>
         <field name="model_id" ref="model_asset_asset" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -15,7 +14,7 @@
         <field name="model_id" ref="model_asset_accounting_info" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -24,7 +23,7 @@
         <field name="model_id" ref="model_asset_category" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -33,7 +32,7 @@
         <field name="model_id" ref="model_asset_category_depreciation_type" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -42,7 +41,7 @@
         <field name="model_id" ref="model_asset_depreciation" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -51,7 +50,7 @@
         <field name="model_id" ref="model_asset_depreciation_line" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -60,7 +59,7 @@
         <field name="model_id" ref="model_asset_depreciation_line_type" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -69,7 +68,7 @@
         <field name="model_id" ref="model_asset_depreciation_mode" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -78,7 +77,7 @@
         <field name="model_id" ref="model_asset_depreciation_mode_line" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -87,7 +86,7 @@
         <field name="model_id" ref="model_asset_depreciation_type" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
 
@@ -96,8 +95,7 @@
         <field name="model_id" ref="model_asset_tag" />
         <field name="global" eval="True" />
         <field name="domain_force">
-            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
-
 </odoo>

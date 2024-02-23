@@ -10,19 +10,23 @@ class AssetDepreciationMode(models.Model):
     _name = "asset.depreciation.mode"
     _description = "Asset Depreciation Mode"
     _order = "name"
+    _check_company_auto = True
 
     @api.model
     def get_default_company_id(self):
-        return self.env.user.company_id
+        return self.env.company
 
     company_id = fields.Many2one(
-        "res.company", default=get_default_company_id, string="Company"
+        "res.company", default=get_default_company_id, readonly=True, string="Company"
     )
 
     default = fields.Boolean(string="Default Mode")
 
     line_ids = fields.One2many(
-        "asset.depreciation.mode.line", "mode_id", string="Lines"
+        "asset.depreciation.mode.line",
+        "mode_id",
+        string="Lines",
+        check_company=True,
     )
 
     name = fields.Char(

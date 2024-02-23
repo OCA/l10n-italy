@@ -10,13 +10,17 @@ class AssetDepreciationLine(models.Model):
     _name = "asset.depreciation.line"
     _description = "Assets Depreciations Lines"
     _order = "date asc, name asc"
+    _check_company_auto = True
 
     amount = fields.Monetary(
         string="Amount",
     )
 
     asset_accounting_info_ids = fields.One2many(
-        "asset.accounting.info", "dep_line_id", string="Accounting Info"
+        "asset.accounting.info",
+        "dep_line_id",
+        string="Accounting Info",
+        check_company=True,
     )
 
     asset_id = fields.Many2one(
@@ -63,7 +67,9 @@ class AssetDepreciationLine(models.Model):
     )
 
     depreciation_line_type_id = fields.Many2one(
-        "asset.depreciation.line.type", string="Depreciation Type"
+        "asset.depreciation.line.type",
+        string="Depreciation Type",
+        check_company=True,
     )
 
     depreciation_nr = fields.Integer(
@@ -84,7 +90,11 @@ class AssetDepreciationLine(models.Model):
         string="Force Dep. Num",
     )
 
-    move_id = fields.Many2one("account.move", string="Move")
+    move_id = fields.Many2one(
+        "account.move",
+        string="Move",
+        check_company=True,
+    )
 
     move_type = fields.Selection(
         [
