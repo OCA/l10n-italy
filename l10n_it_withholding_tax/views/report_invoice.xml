@@ -46,30 +46,30 @@
             </t>
         </xpath>
 
-        <xpath expr="//t[@t-call='account.document_tax_totals']" position="attributes">
-            <attribute
-                name="t-call"
-            >l10n_it_withholding_tax.document_tax_totals_wt</attribute>
-        </xpath>
-
     </template>
 
-    <template
-        id="document_tax_totals_wt"
-        inherit_id="account.document_tax_totals"
-        primary="True"
-    >
-            <xpath expr="//tr[hasclass('o_total')]" position="after">
-                <t t-if="o.withholding_tax_in_print and o.withholding_tax">
+    <template id="document_tax_totals_wt" inherit_id="account.document_tax_totals">
+        <xpath expr="//tr[hasclass('o_total')]" position="after">
+            <t t-set="withholding_doc" t-value="o or doc" />
+            <t t-if="withholding_doc">
+                <t
+                    t-set="has_withholding_tax"
+                    t-value="'withholding_tax' in withholding_doc._fields and withholding_doc.withholding_tax"
+                />
+                <t
+                    t-set="print_withholding_tax"
+                    t-value="'withholding_tax_in_print' in withholding_doc._fields and withholding_doc.withholding_tax_in_print"
+                />
+                <t t-if="print_withholding_tax and has_withholding_tax">
                     <tr>
                         <td>
                             <span>Withholding Tax</span>
                         </td>
                         <td class="text-end">
                             <span
-                            t-field="o.withholding_tax_amount"
-                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
-                        />
+                                t-field="withholding_doc.withholding_tax_amount"
+                                t-options="{'widget': 'monetary', 'display_currency': withholding_doc.currency_id}"
+                            />
                         </td>
                     </tr>
                     <tr class="border-black">
@@ -78,13 +78,14 @@
                         </td>
                         <td class="text-end">
                             <span
-                            t-field="o.amount_net_pay"
-                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
-                        />
+                                t-field="withholding_doc.amount_net_pay"
+                                t-options="{'widget': 'monetary', 'display_currency': withholding_doc.currency_id}"
+                            />
                         </td>
                     </tr>
                 </t>
-            </xpath>
+            </t>
+        </xpath>
     </template>
 
 </odoo>
