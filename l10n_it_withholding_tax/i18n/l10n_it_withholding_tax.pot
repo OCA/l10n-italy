@@ -544,6 +544,20 @@ msgid "W.T. Reg. on"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "WT %(code)s - %(move)s"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "WT %(code)s - %(partner)s - %(move)s"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__wt_account_move_id
 msgid "WT Move"
 msgstr ""
@@ -576,20 +590,6 @@ msgstr ""
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__full_reconcile_id
 msgid "WT reconciliation"
-msgstr ""
-
-#. module: l10n_it_withholding_tax
-#. odoo-python
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
-#, python-format
-msgid "WT {0} - {1}"
-msgstr ""
-
-#. module: l10n_it_withholding_tax
-#. odoo-python
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
-#, python-format
-msgid "WT {0} - {1} - {2}"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
