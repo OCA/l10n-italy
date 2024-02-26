@@ -13,6 +13,13 @@ class AccountTaxRegistry(models.Model):
         required=True,
         default=lambda self: self.env.company,
     )
+    entry_order = fields.Selection(
+        [
+            ("date_name", "Date - Number"),
+            ("journal_date_name", "Journal - Date - Number"),
+        ],
+        default="date_name",
+    )
     journal_ids = fields.One2many(
         "account.journal", "tax_registry_id", "Journals", readonly=True
     )
