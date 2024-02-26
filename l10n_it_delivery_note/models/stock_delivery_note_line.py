@@ -201,18 +201,24 @@ class StockDeliveryNoteLine(models.Model):
 
     def _prepare_ddt_invoice_line(self, **optional_values):
         self.ensure_one()
+        sequence = optional_values["sequence"] or self.sequence
         res = {
             "display_type": "product",
-            "sequence": self.sequence,
+            "sequence": sequence,
             "name": self.name,
             "product_id": self.product_id.id,
             "product_uom_id": self.product_uom_id.id,
             "quantity": self.product_qty,
-            "discount": self.sale_line_id.discount,
             "price_unit": self.price_unit,
             "tax_ids": [Command.set(self.tax_ids.ids)],
-            "sale_line_ids": [Command.link(self.sale_line_id.id)],
-            "is_downpayment": self.sale_line_id.is_downpayment,
             "delivery_note_id": self.delivery_note_id.id,
         }
+        if self.sale_line_id:
+            res.update(
+                {
+                    "sale_line_ids": [Command.link(self.sale_line_id.id)],
+                    "is_downpayment": self.sale_line_id.is_downpayment,
+                    "discount": self.sale_line_id.discount,
+                }
+            )
         return res

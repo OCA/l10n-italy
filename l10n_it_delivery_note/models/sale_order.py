@@ -159,7 +159,12 @@ class SaleOrder(models.Model):
         return action
 
     def _create_invoices(self, grouped=False, final=False, date=None):  # noqa: C901
-        if len(self.delivery_note_ids) <= 1:
+        if (
+            not self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("l10n_it_delivery_note.delivery_note_group_by_quantity")
+        ):
+            # if len(self.delivery_note_ids) <= 1:
             invoice_ids = super()._create_invoices(
                 grouped=False, final=False, date=None
             )
@@ -176,7 +181,7 @@ class SaleOrder(models.Model):
         # 1) Create invoices.
         invoice_vals_list = []
         invoice_item_sequence = (
-            0  # Incremental sequencing to keep the lines order on the invoice.
+            10  # Incremental sequencing to keep the lines order on the invoice.
         )
         for order in self:
             order = order.with_company(order.company_id).with_context(
@@ -186,12 +191,12 @@ class SaleOrder(models.Model):
             invoice_vals = order._prepare_invoice()
             invoiceable_lines = order._get_invoiceable_lines(final)
 
-            if not any(not line.display_type for line in invoiceable_lines):
-                continue
+            # if not any(not line.display_type for line in invoiceable_lines):
+            #     continue
 
             invoice_line_vals = []
             down_payment_section_added = False
-            for line in invoiceable_lines.delivery_note_line_ids:
+            for line in invoiceable_lines.mapped("delivery_note_line_ids"):
                 if not down_payment_section_added and line.sale_line_id.is_downpayment:
                     # Create a dedicated section for the down payments
                     # (put at the end of the invoiceable_lines)
@@ -203,13 +208,13 @@ class SaleOrder(models.Model):
                         ),
                     )
                     down_payment_section_added = True
-                    invoice_item_sequence += 1
+                    invoice_item_sequence += 10
                 invoice_line_vals.append(
                     Command.create(
                         line._prepare_ddt_invoice_line(sequence=invoice_item_sequence)
                     ),
                 )
-                invoice_item_sequence += 1
+                invoice_item_sequence += 10
 
             invoice_vals["invoice_line_ids"] += invoice_line_vals
             invoice_vals_list.append(invoice_vals)
