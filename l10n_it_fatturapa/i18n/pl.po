@@ -943,7 +943,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
-msgid "Partner %(name)s must have Addresse Code. Use %(code)s if unknown"
+msgid "Partner %(name)s must have Addressee Code. Use %(code)s if unknown"
 msgstr ""
 
 #. module: l10n_it_fatturapa

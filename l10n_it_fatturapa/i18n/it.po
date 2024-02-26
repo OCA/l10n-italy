@@ -962,10 +962,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_fatturapa/models/partner.py:0
 #, python-format
-msgid "Partner %(name)s must have Addresse Code. Use %(code)s if unknown"
+msgid "Partner %(name)s must have Addressee Code. Use %(code)s if unknown"
 msgstr ""
-"Il partner %(name)s deve avere il codice destinatario. Usare %(code)s se non "
-"è conosciuto"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__payment_amount
@@ -1512,6 +1510,12 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_payment__efatt_stabile_organizzazione_cap
 msgid "ZIP Code"
 msgstr "CAP"
+
+#, python-format
+#~ msgid "Partner %(name)s must have Addresse Code. Use %(code)s if unknown"
+#~ msgstr ""
+#~ "Il partner %(name)s deve avere il codice destinatario. Usare %(code)s se "
+#~ "non è conosciuto"
 
 #, python-format
 #~ msgid "Partner %s Addressee Code must be 7 characters long."
