@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-11 07:51+0000\n"
-"PO-Revision-Date: 2024-02-23 14:38+0000\n"
+"PO-Revision-Date: 2024-02-26 12:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -560,14 +560,14 @@ msgstr "RdA registrata il"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
 #, python-format
 msgid "WT %(code)s - %(move)s"
-msgstr ""
+msgstr "RA %(code)s - %(move)s"
 
 #. module: l10n_it_withholding_tax
 #. odoo-python
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
 #, python-format
 msgid "WT %(code)s - %(partner)s - %(move)s"
-msgstr ""
+msgstr "RA %(code)s - %(partner)s - %(move)s"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__wt_account_move_id
