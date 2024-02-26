@@ -61,7 +61,7 @@ class RibaIssue(models.TransientModel):
         if (
             len(
                 {
-                    "{}{}".format(x.cig, x.cup)
+                    f"{x.cig}{x.cup}"
                     for x in move_lines.mapped("move_id.related_documents")
                 }
             )

@@ -112,5 +112,5 @@ class AccountInvoice(models.Model):
                     )
                     % invoice.name
                 )
-        res = super(AccountInvoice, self).button_draft()
+        res = super().button_draft()
         return res

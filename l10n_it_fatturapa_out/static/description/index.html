@@ -370,12 +370,14 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/16.0/l10n_it_fatturapa_out"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-16-0/l10n-italy-16-0-l10n_it_fatturapa_out"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p><strong>Italiano</strong></p>
-<p>Questo modulo consente di generare i file XML della fattura elettronica versione 1.2</p>
+<p>Questo modulo consente di generare i file XML della fattura elettronica
+versione 1.2</p>
 <p><a class="reference external" href="http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm">http://www.fatturapa.gov.it/export/fatturazione/it/normativa/f-2.htm</a></p>
 <p>da inviare al Sistema di Interscambio (SdI).</p>
 <p><a class="reference external" href="http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm">http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm</a></p>
 <p><strong>English</strong></p>
-<p>This module allows you to generate the Electronic Invoice XML files version 1.2</p>
+<p>This module allows you to generate the Electronic Invoice XML files
+version 1.2</p>
 <p><a class="reference external" href="http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm">http://www.fatturapa.gov.it/export/fatturazione/en/normativa/f-2.htm</a></p>
 <p>to be sent to the Exchange System (ES).</p>
 <p><a class="reference external" href="http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm">http://www.fatturapa.gov.it/export/fatturazione/en/sdi.htm</a></p>
@@ -397,31 +399,47 @@ ul.auto-toc {
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p><strong>Italiano</strong></p>
 <p>Consultare il file README di l10n_it_fatturapa.</p>
-<p>É possibile esportare le fatture cliente con le righe articolo con un CodiceTipo diverso dallo standard ‘ODOO’ creando un parametro ‘fatturapa.codicetipo.odoo’ (in Configurazione &gt; Funzioni tecniche &gt; Parametri &gt; Parametri di sistema) con il codice voluto (tipicamente su richiesta del cliente).
-Non è possibile impostare un diverso CodiceTipo per cliente, al momento.</p>
+<p>É possibile esportare le fatture cliente con le righe articolo con un
+CodiceTipo diverso dallo standard ‘ODOO’ creando un parametro
+‘fatturapa.codicetipo.odoo’ (in Configurazione &gt; Funzioni tecniche &gt;
+Parametri &gt; Parametri di sistema) con il codice voluto (tipicamente su
+richiesta del cliente). Non è possibile impostare un diverso CodiceTipo
+per cliente, al momento.</p>
 <p><strong>English</strong></p>
 <p>See l10n_it_fatturapa README file.</p>
-<p>It is possible to export invoices with rows with a different CodiceTipo from the default ‘ODOO’ by creating a parameter ‘fatturapa.codicetipo.odoo’ (in Settings &gt; Technical &gt; Parameters &gt; System Parameters) with the desired code (tipically on customer’s request).
-It is not possible to set a different CodiceTipo by customer, until now.</p>
+<p>It is possible to export invoices with rows with a different CodiceTipo
+from the default ‘ODOO’ by creating a parameter
+‘fatturapa.codicetipo.odoo’ (in Settings &gt; Technical &gt; Parameters &gt;
+System Parameters) with the desired code (tipically on customer’s
+request). It is not possible to set a different CodiceTipo by customer,
+until now.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <p><strong>Italiano</strong></p>
 <blockquote>
 <ul class="simple">
-<li>Compilare la fattura con i dati necessari per l’esportazione: per esempio, nella scheda “Allegati fattura elettronica”</li>
-<li>Selezionare 1 o N fatture ed eseguire la procedura guidata “Esporta fattura elettronica”</li>
-<li>Per le fatture estere, è possibile inviarle a soli fini fiscali inserendo il codice identificativo XXXXXXX (7 volte X) ed avendo cura di indicare il paese del partner.
-Le fatture vanno comunque spedite al cliente, ma si evita la predisposizione dell’esterometro.</li>
+<li>Compilare la fattura con i dati necessari per l’esportazione: per
+esempio, nella scheda “Allegati fattura elettronica”</li>
+<li>Selezionare 1 o N fatture ed eseguire la procedura guidata
+“Esporta fattura elettronica”</li>
+<li>Per le fatture estere, è possibile inviarle a soli fini fiscali
+inserendo il codice identificativo XXXXXXX (7 volte X) ed avendo
+cura di indicare il paese del partner. Le fatture vanno comunque
+spedite al cliente, ma si evita la predisposizione
+dell’esterometro.</li>
 </ul>
 </blockquote>
 <p><strong>English</strong></p>
 <blockquote>
 <ul class="simple">
-<li>Fill invoice data you need to export: For instance, in ‘Electronic Invoice Attachments’ TAB</li>
+<li>Fill invoice data you need to export: For instance, in ‘Electronic
+Invoice Attachments’ TAB</li>
 <li>Select 1 or N invoices and run ‘Export Electronic Invoice’ wizard</li>
-<li>For foreign invoices, it is possible to send them only for tax purposes with code XXXXXXX (7 times X) and assuring to set the country of the partner.
-Invoices must be sent anyway to the customer, but in this way it is not needed to prepare esterometro.</li>
+<li>For foreign invoices, it is possible to send them only for tax
+purposes with code XXXXXXX (7 times X) and assuring to set the
+country of the partner. Invoices must be sent anyway to the
+customer, but in this way it is not needed to prepare esterometro.</li>
 </ul>
 </blockquote>
 </div>

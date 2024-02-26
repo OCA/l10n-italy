@@ -10,7 +10,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestWithholdingTax(TransactionCase):
     def setUp(self):
-        super(TestWithholdingTax, self).setUp()
+        super().setUp()
 
         # Accounts
         self.wt_account_payable = self.env["account.account"].create(
@@ -140,9 +140,9 @@ class TestWithholdingTax(TransactionCase):
                 "payment_date": time.strftime("%Y") + "-07-15",
                 "amount": 800,
                 "journal_id": self.journal_bank.id,
-                "payment_method_line_id": self.journal_bank.outbound_payment_method_line_ids[
-                    0
-                ].id,
+                "payment_method_line_id": (
+                    self.journal_bank.outbound_payment_method_line_ids[0].id
+                ),
             }
         )
         register_payments.action_create_payments()
@@ -180,9 +180,9 @@ class TestWithholdingTax(TransactionCase):
                 "payment_date": time.strftime("%Y") + "-07-15",
                 "amount": 600,
                 "journal_id": self.journal_bank.id,
-                "payment_method_line_id": self.journal_bank.outbound_payment_method_line_ids[
-                    0
-                ].id,
+                "payment_method_line_id": (
+                    self.journal_bank.outbound_payment_method_line_ids[0].id
+                ),
             }
         )
         register_payments.action_create_payments()
@@ -267,7 +267,8 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(new_tax.name, "Code 1040")
 
     def test_create_payments(self):
-        """Test create payment when Register Payment wizard is open from Bill tree view"""
+        """Test create payment when Register Payment wizard
+        is open from Bill tree view"""
         ctx = {
             "active_ids": [self.invoice.id],
             "active_model": "account.move",
@@ -314,7 +315,9 @@ class TestWithholdingTax(TransactionCase):
             ]
         )
         self.assertEqual(len(wt_statement_ids), 1)
-        debit_line_id = partials[0][2].move_id.line_ids.filtered(lambda l: l.debit)
+        debit_line_id = partials[0][2].move_id.line_ids.filtered(
+            lambda line: line.debit
+        )
         self.invoice.js_assign_outstanding_line(debit_line_id.id)
         self.assertEqual(self.invoice.amount_net_pay, 800)
         self.assertEqual(self.invoice.amount_net_pay_residual, 200)

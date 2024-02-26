@@ -36,7 +36,6 @@ Modulo propedeutico alla gestione delle fatture elettroniche.
 
 Propedeutic module to handle electronic invoices.
 
-
 http://fatturapa.gov.it
 
 **Table of contents**
@@ -49,11 +48,13 @@ Configuration
 
 **Italiano**
 
-Configurare le condizioni di pagamento compilando i campi fiscali relativi a termini e metodi di pagamento
+Configurare le condizioni di pagamento compilando i campi fiscali
+relativi a termini e metodi di pagamento
 
 **English**
 
-Configure payment terms filling the fiscal fields related to payment terms and methods
+Configure payment terms filling the fiscal fields related to payment
+terms and methods
 
 Bug Tracker
 ===========
@@ -69,7 +70,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Davide Corio
 * Agile Business Group
@@ -77,18 +78,19 @@ Authors
 * Odoo Italia Network
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Davide Corio <davide.corio@abstract.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Roberto Onnis <roberto.onnis@innoviu.com>
-* Alessio Gerace <alessio.gerace@agilebg.com>
-* Sergio Zanchetta <https://github.com/primes2h>
-* Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>
-* Marco Colombo - <marco.colombo@phi.technology>
+-  Davide Corio <davide.corio@abstract.it>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Roberto Onnis <roberto.onnis@innoviu.com>
+-  Alessio Gerace <alessio.gerace@agilebg.com>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Giuseppe Borruso - Dinamiche Aziendali srl
+   <gborruso@dinamicheaziendali.it>
+-  Marco Colombo - <marco.colombo@phi.technology>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

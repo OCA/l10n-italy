@@ -30,13 +30,16 @@ ITA - Ritenuta d'acconto - Pagamenti
 
 **Italiano**
 
-Per quanto riguarda la configurazione o l'utilizzo delle ritenute seguire le istruzioni indicate nel modulo `l10n_it_withholding_tax`.
+Per quanto riguarda la configurazione o l'utilizzo delle ritenute
+seguire le istruzioni indicate nel modulo l10n_it_withholding_tax.
 
-Questo modulo permette di tenere traccia del pagamento della ritenuta d'acconto.
+Questo modulo permette di tenere traccia del pagamento della ritenuta
+d'acconto.
 
 **English**
 
-Regarding the configuration or use of withholding taxes, follow the instructions in the module `l10n_it_withholding_tax`.
+Regarding the configuration or use of withholding taxes, follow the
+instructions in the module l10n_it_withholding_tax.
 
 This module allows to keep track of the withholding tax payment.
 
@@ -52,25 +55,30 @@ Usage
 
 Per generare il pagamento di una ritenuta d'acconto:
 
-1. Aprire Fatturazione > Contabilità > Ritenuta d'acconto > Movimenti RdA.
+1. Aprire Fatturazione > Contabilità > Ritenuta d'acconto > Movimenti
+   RdA.
 2. Selezionare i movimenti di cui si vuole fare il pagamento
 3. Cliccare su Azione > Crea movimento di pagamento
 4. Nel popup, cliccare su Genera
 
-Verrà quindi visualizzato un 'Movimento di pagamento RdA' che rappresenta il pagamento delle ritenute selezionate al punto 2.
+Verrà quindi visualizzato un 'Movimento di pagamento RdA' che
+rappresenta il pagamento delle ritenute selezionate al punto 2.
 
-Confermare il Movimento di pagamento RdA e compilare i campi in Impostazioni conto:
+Confermare il Movimento di pagamento RdA e compilare i campi in
+Impostazioni conto:
 
-* Data pagamento: la data in cui è stato effettuato il pagamento.
-* Registro: il registro in cui verrà salvata la registrazione contabile.
-* Conto: il conto della banca tramite il quale si farà il pagamento.
+-  Data pagamento: la data in cui è stato effettuato il pagamento.
+-  Registro: il registro in cui verrà salvata la registrazione
+   contabile.
+-  Conto: il conto della banca tramite il quale si farà il pagamento.
 
 Ad esempio:
 
-.. image:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax_payment/static/img/withholding_tax_move_payment_configuration_it.png
-   :alt: Configurazione movimento di pagamento RdA
+|Configurazione movimento di pagamento RdA|
 
-Creare la registrazione contabile cliccando su 'Crea movimento contabile': la registrazione creata sarà accessibile tramite il campo "Movimento contabile".
+Creare la registrazione contabile cliccando su 'Crea movimento
+contabile': la registrazione creata sarà accessibile tramite il campo
+"Movimento contabile".
 
 **English**
 
@@ -81,21 +89,26 @@ In order to generate a withholding tax payment:
 3. Click Action > Create Payment Move
 4. In the pop-up, click Generate
 
-A 'WT Payment Move' will then be displayed representing the payment of the withholding taxes selected in step 2.
+A 'WT Payment Move' will then be displayed representing the payment of
+the withholding taxes selected in step 2.
 
-Confirm the RdA Payment Movement and fill in the fields in Account Setting:
+Confirm the RdA Payment Movement and fill in the fields in Account
+Setting:
 
-* Payment Date: The date the payment was made.
-* Register: the journal where the journal entry will be saved.
-* Account: the bank account through which the payment will be made.
+-  Payment Date: The date the payment was made.
+-  Register: the journal where the journal entry will be saved.
+-  Account: the bank account through which the payment will be made.
 
 Eg:
 
-.. image:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax_payment/static/img/withholding_tax_move_payment_configuration.png
-   :alt: WT Payment Move configuration
+|WT Payment Move configuration|
 
+Create the journal entry by clicking on 'Create Account Move': the
+created journal entry will be accessible through the "Account Move"
+field.
 
-Create the journal entry by clicking on 'Create Account Move': the created journal entry will be accessible through the "Account Move" field.
+.. |Configurazione movimento di pagamento RdA| image:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax_payment/static/img/withholding_tax_move_payment_configuration_it.png
+.. |WT Payment Move configuration| image:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax_payment/static/img/withholding_tax_move_payment_configuration.png
 
 Bug Tracker
 ===========
@@ -111,31 +124,31 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Openforce
 * Odoo Italia Network
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alessandro Camilli <alessandrocamilli@openforce.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Matteo Bilotta <mbilotta@linkgroup.it>
-* Nextev <web@nextev.it>
-* `Aion Tech <https://aiontech.company/>`_:
+-  Alessandro Camilli <alessandrocamilli@openforce.it>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Matteo Bilotta <mbilotta@linkgroup.it>
+-  Nextev <web@nextev.it>
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  * Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* `Odoo Italia Network <https://www.odoo-italia.net/>`_
+-  `Odoo Italia Network <https://www.odoo-italia.net/>`__
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

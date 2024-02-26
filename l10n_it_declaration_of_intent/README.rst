@@ -51,25 +51,33 @@ Creare:
 
 2. una posizione fiscale per le dichiarazioni d'intento, avente:
 
-   - il flag `Valida per dichiarazione d'intento` attivato,
-   - | una mappatura delle imposte opportuna.
-     | Ad esempio tra "IVA al 22% (debito) (Vendita)" e "Non imponibile art.8c Lettera intento".
+   -  il flag Valida per dichiarazione d'intento attivato,
 
-In Impostazioni > Utenti e aziende, selezionare un'azienda e, nella scheda Dichiarazioni d'intento, definire un plafond annuale.
+   -  | una mappatura delle imposte opportuna.
+      | Ad esempio tra "IVA al 22% (debito) (Vendita)" e "Non imponibile
+        art.8c Lettera intento".
+
+In Impostazioni > Utenti e aziende, selezionare un'azienda e, nella
+scheda Dichiarazioni d'intento, definire un plafond annuale.
 
 Usage
 =====
 
-Per ogni cliente o fornitore soggetto a dichiarazione d'intento, creare una dichiarazione d'intento inserendo tutti i dati e selezionando la posizione fiscale dedicata.
+Per ogni cliente o fornitore soggetto a dichiarazione d'intento, creare
+una dichiarazione d'intento inserendo tutti i dati e selezionando la
+posizione fiscale dedicata.
 
-Nota che il menu Fatturazione > Contabilità > Dichiarazioni d'intento è visibile solo per gli utenti nel gruppo `Mostrare funzionalità contabili complete`.
+Nota che il menu Fatturazione > Contabilità > Dichiarazioni d'intento è
+visibile solo per gli utenti nel gruppo Mostrare funzionalità contabili
+complete.
 
 In fase di fatturazione, utilizzare la posizione fiscale apposita.
 
 Known issues / Roadmap
 ======================
 
-Improve management of currency (see https://github.com/OCA/l10n-italy/issues/2428).
+Improve management of currency (see
+https://github.com/OCA/l10n-italy/issues/2428).
 
 Bug Tracker
 ===========
@@ -85,7 +93,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Francesco Apruzzese
 * Sergio Corato
@@ -93,20 +101,20 @@ Authors
 * Lara Baggio
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Francesco Apruzzese <francescoapruzzese@openforce.it>
-* Sergio Corato <info@efatto.it>
-* Glauco Prina <gprina@linkeurope.it>
-* Lorenzo Battistini <lb@takobi.online>
-* Lara Baggio <lbaggio@linkeurope.it>
-* Simone Rubino <simone.rubino@agilebg.com>
-* Arcadio Pinto <pinto.a@stesi.eu>
-* Alex Comba <alex.comba@agilebg.com>
-* Michele Rusticucci <michele.rusticucci@agilebg.com>
+-  Francesco Apruzzese <francescoapruzzese@openforce.it>
+-  Sergio Corato <info@efatto.it>
+-  Glauco Prina <gprina@linkeurope.it>
+-  Lorenzo Battistini <lb@takobi.online>
+-  Lara Baggio <lbaggio@linkeurope.it>
+-  Simone Rubino <simone.rubino@agilebg.com>
+-  Arcadio Pinto <pinto.a@stesi.eu>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Michele Rusticucci <michele.rusticucci@agilebg.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

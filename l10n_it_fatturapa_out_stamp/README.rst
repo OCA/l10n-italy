@@ -30,7 +30,8 @@ ITA - Fattura elettronica - Integrazione bollo
 
 Modulo ponte tra emissione fatture elettroniche e imposta di bollo.
 
-Con questo modulo, l'elemento XML DatiBollo verrà correttamente valorizzato.
+Con questo modulo, l'elemento XML DatiBollo verrà correttamente
+valorizzato.
 
 **Table of contents**
 
@@ -51,19 +52,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Agile Business Group
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini <https://github.com/eLBati>
-* Sergio Corato <https://github.com/sergiocorato>
-* Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Lorenzo Battistini <https://github.com/eLBati>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

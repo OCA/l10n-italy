@@ -371,50 +371,52 @@ ul.auto-toc {
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/16.0/account_vat_period_end_statement"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-16-0/l10n-italy-16-0-account_vat_period_end_statement"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p><strong>Italiano</strong></p>
 <blockquote>
-<p>Per fare la liquidazione IVA, aprire Fatturazione &gt; Contabilità &gt; Liquidazioni IVA, il menù è visibile solo quando è abilitato il gruppo ‘Mostrare funzionalità contabili complete’.
-Selezionare un registro che conterrà le registrazioni contabili della liquidazione.
-Il campo ‘Conto IVA erario’ contiene il conto dove verrà effettuata la registrazione della liquidazione IVA.</p>
-<p>L’oggetto ‘Liquidazione IVA’ permette di specificare ogni importo e il conto utilizzato dalla liquidazione.
-Di norma, gli importi di debito e credito delle imposte vengono caricati automaticamente dai periodi selezionati
-(vedere Configurazione per generare correttamente i periodi).
-I debiti e crediti precedenti vengono caricati dalle liquidazioni IVA precedenti, in base allo stato del loro pagamento.</p>
-<p>A seguito dell’introduzione della normativa OSS, per chi fa vendite online su diversi paesi, deve necessariamente escludere dalla liquidazione iva ciò che farà parte della liquidazione OSS.
-E’ stato introdotto un nuovo campo per filtrare le imposte da elaborare, quindi va indicato il conto configurato nelle imposte  “Conto utilizzato per la liquidazione IVA”.
-Quindi selezionare il conto IVA debito per elaborare liquidazione iva su tutte le imposte che hanno in configurazione il conto IVA debito.  Per la liquidazione OSS invece selezionare conto  dedicato ad esempio IVA debito OSS Francia.
-E’ necessario creare un periodo di dichiarazione IVA dedicato all’OSS .
-Per caricare invece tutte le imposte che hanno un conto per la liquidazione IVA, è sufficiente lasciare vuoto il filtro per conti.</p>
-<p>Per creare la registrazione contabile, fare clic sul pulsante ‘Crea movimento’, dentro la scheda ‘Conti’.
-Se i termini di pagamento sono impostati viene scritta anche la scadenza (o le scadenze).</p>
-<p>La scheda ‘Erario’ contiene informazioni sui pagamenti,
-qui si possono visualizzare i risultati della liquidazione (‘Importo IVA erario’)
-e l’importo residuo da pagare (‘Importo a saldo’).
-La liquidazione può essere pagata come qualunque altro debito, con la riconciliazione delle registrazioni contabili.</p>
-<p>È inoltre possibile stampare la liquidazione IVA facendo clic su Stampa &gt; Stampa liquidazione IVA.</p>
+<p>Per fare la liquidazione IVA, aprire Fatturazione &gt; Contabilità &gt;
+Liquidazioni IVA, il menù è visibile solo quando è abilitato il
+gruppo ‘Mostrare funzionalità contabili complete’. Selezionare un
+registro che conterrà le registrazioni contabili della liquidazione.
+Il campo ‘Conto IVA erario’ contiene il conto dove verrà effettuata
+la registrazione della liquidazione IVA.</p>
+<p>L’oggetto ‘Liquidazione IVA’ permette di specificare ogni importo e
+il conto utilizzato dalla liquidazione. Di norma, gli importi di
+debito e credito delle imposte vengono caricati automaticamente dai
+periodi selezionati (vedere Configurazione per generare correttamente
+i periodi). I debiti e crediti precedenti vengono caricati dalle
+liquidazioni IVA precedenti, in base allo stato del loro pagamento.</p>
+<p>Per creare la registrazione contabile, fare clic sul pulsante ‘Crea
+movimento’, dentro la scheda ‘Conti’. Se i termini di pagamento sono
+impostati viene scritta anche la scadenza (o le scadenze).</p>
+<p>La scheda ‘Erario’ contiene informazioni sui pagamenti, qui si
+possono visualizzare i risultati della liquidazione (‘Importo IVA
+erario’) e l’importo residuo da pagare (‘Importo a saldo’). La
+liquidazione può essere pagata come qualunque altro debito, con la
+riconciliazione delle registrazioni contabili.</p>
+<p>È inoltre possibile stampare la liquidazione IVA facendo clic su
+Stampa &gt; Stampa liquidazione IVA.</p>
 </blockquote>
 <p><strong>English</strong></p>
 <blockquote>
-<p>In order to create a ‘VAT Statement’, open Accounting &gt; Adviser &gt; VAT Statements, this menu is only visible when the group ‘Show Full Accounting Features’ is enabled.
-Select a Journal that will contain the journal entries of the statement.
-The field ‘Tax authority VAT’ account contains the account where the statement balance will be registered.</p>
-<p>The ‘VAT statement’ object allows to specify every amount and relative account
-used by the statement.
-By default, amounts of debit and credit taxes are automatically loaded
-from taxes of the selected periods (see Configuration to correctly generate the periods).
-Previous debit or credit is loaded from previous VAT statement, according
-to its payments status.</p>
-<p>Following the introduction of the OSS legislation, for those who make online sales in different countries, it must necessarily exclude from the VAT settlement what will be part of the OSS settlement.
-A new field has been introduced to filter the taxes to be processed, so the account configured in the taxes “Account used for VAT settlement” must be indicated.
-Then select the VAT debit account to process VAT settlement on all taxes that have the VAT debit account in setup.
-For OSS settlement, on the other hand, select a dedicated account, for example, OSS debit VAT France. It is necessary to create a VAT return period dedicated to the OSS.
-To load all taxes that have a VAT settlement account instead, just leave the filter by accounts blank.</p>
-<p>In order to generate the journal entry, click on ‘Create move’ button, inside the ‘Accounts’ tab.
-If you select a payment term, the due date(s) will be set.</p>
-<p>The ‘tax authority’ tab contains information about payment(s),
-here you can see statement’s result (‘authority VAT amount’) and residual
-amount to pay (‘Balance’).
-The statement can be paid like every other debit, by journal item
-reconciliation.</p>
-<p>It is also possible to print the ‘VAT statement’ clicking on print &gt; Print VAT period end statement.</p>
+<p>In order to create a ‘VAT Statement’, open Accounting &gt; Adviser &gt; VAT
+Statements, this menu is only visible when the group ‘Show Full
+Accounting Features’ is enabled. Select a Journal that will contain
+the journal entries of the statement. The field ‘Tax authority VAT’
+account contains the account where the statement balance will be
+registered.</p>
+<p>The ‘VAT statement’ object allows to specify every amount and
+relative account used by the statement. By default, amounts of debit
+and credit taxes are automatically loaded from taxes of the selected
+periods (see Configuration to correctly generate the periods).
+Previous debit or credit is loaded from previous VAT statement,
+according to its payments status.</p>
+<p>In order to generate the journal entry, click on ‘Create move’
+button, inside the ‘Accounts’ tab. If you select a payment term, the
+due date(s) will be set.</p>
+<p>The ‘tax authority’ tab contains information about payment(s), here
+you can see statement’s result (‘authority VAT amount’) and residual
+amount to pay (‘Balance’). The statement can be paid like every other
+debit, by journal item reconciliation.</p>
+<p>It is also possible to print the ‘VAT statement’ clicking on print &gt;
+Print VAT period end statement.</p>
 </blockquote>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -433,44 +435,58 @@ reconciliation.</p>
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p><strong>Italiano</strong></p>
 <blockquote>
-<p>Per generare i periodi della dichiarazione IVA,
-aprire Fatturazione &gt; Configurazione &gt; Contabilità &gt; Intervalli date &gt; Generazione intervalli data (visibile solo in modalità debug):</p>
+<p>Per generare i periodi della dichiarazione IVA, aprire Fatturazione &gt;
+Configurazione &gt; Contabilità &gt; Intervalli date &gt; Generazione
+intervalli data (visibile solo in modalità debug):</p>
 <ul class="simple">
-<li>prefisso nome intervallo: prefisso identificativo per i periodi da generare (tipicamente l’anno)</li>
+<li>prefisso nome intervallo: prefisso identificativo per i periodi da
+generare (tipicamente l’anno)</li>
 <li>durata: 1 mese</li>
 <li>numero di intervalli da generare: 12</li>
-<li>tipo: creare un tipo o utilizzarne uno esistente, non è richiesta una configurazione particolare</li>
-<li>data iniziale: primo giorno del primo periodo che sarà generato (tipicamente il primo giorno dell’anno i.e. 01/01/2018)</li>
+<li>tipo: creare un tipo o utilizzarne uno esistente, non è richiesta
+una configurazione particolare</li>
+<li>data iniziale: primo giorno del primo periodo che sarà generato
+(tipicamente il primo giorno dell’anno i.e. 01/01/2018)</li>
 </ul>
-<p>Per caricare l’importo corretto, un’imposta deve essere associata al conto utilizzato nella liquidazione:</p>
+<p>Per caricare l’importo corretto, un’imposta deve essere associata al
+conto utilizzato nella liquidazione:</p>
 <ol class="arabic simple">
-<li>aprire l’imposta da Fatturazione &gt; Configurazione &gt; Contabilità &gt; Imposte,</li>
-<li>nella scheda ‘Opzioni avanzate’ selezionare il conto corretto (ad esempio IVA debito)
-per il campo ‘Conto utilizzato per la liquidazione IVA’. Se si è soggetti a liquidazione OSS indicare un conto dedicato (ad esempio IVA debito OSS Francia)</li>
+<li>aprire l’imposta da Fatturazione &gt; Configurazione &gt; Contabilità &gt;
+Imposte,</li>
+<li>nella scheda ‘Opzioni avanzate’ selezionare il conto corretto (ad
+esempio IVA debito) per il campo ‘Conto utilizzato per la
+liquidazione IVA’.</li>
 </ol>
-<p>Per calcolare gli interessi, è possibile aggiungere le informazioni da utilizzare (conto e percentuale)
-nei dati aziendali, nella scheda ‘Liquidazione IVA’.</p>
+<p>Per calcolare gli interessi, è possibile aggiungere le informazioni
+da utilizzare (conto e percentuale) nei dati aziendali, nella scheda
+‘Liquidazione IVA’.</p>
 </blockquote>
 <p><strong>English</strong></p>
 <blockquote>
-<p>In order to generate VAT statement’s periods,
-open Accounting &gt; Configuration &gt; Accounting &gt; Date ranges &gt; Generate Date Ranges (visible only in debug mode):</p>
+<p>In order to generate VAT statement’s periods, open Accounting &gt;
+Configuration &gt; Accounting &gt; Date ranges &gt; Generate Date Ranges
+(visible only in debug mode):</p>
 <ul class="simple">
-<li>range name prefix: prefix identifying the periods to be generated (usually the year)</li>
+<li>range name prefix: prefix identifying the periods to be generated
+(usually the year)</li>
 <li>duration: 1 month</li>
 <li>number of ranges to generate: 12</li>
-<li>type: create a type or use an existing one, no specific configuration is required</li>
-<li>date start: first day of the first period to be generated (usually the first day of the year e.g. 01/01/2018)</li>
+<li>type: create a type or use an existing one, no specific
+configuration is required</li>
+<li>date start: first day of the first period to be generated (usually
+the first day of the year e.g. 01/01/2018)</li>
 </ul>
 <p>In order to load the correct amount from tax, the tax has to be
 associated to the account involved in the statement:</p>
 <ol class="arabic simple">
 <li>open a tax in Accounting &gt; Configuration &gt; Accounting &gt; Taxes,</li>
-<li>in the tab ‘Advanced Options’ select the correct account (for instance the account debit VAT)
-for the field ‘Account used for VAT statement’. If you are subject to OSS settlement indicate a dedicated account (for example OSS debit VAT France)</li>
+<li>in the tab ‘Advanced Options’ select the correct account (for
+instance the account debit VAT) for the field ‘Account used for
+VAT statement’.</li>
 </ol>
-<p>If you need to calculate interest, you can add default information in your
-company data (percentage and account), in the ‘VAT statement’ tab.</p>
+<p>If you need to calculate interest, you can add default information in
+your company data (percentage and account), in the ‘VAT statement’
+tab.</p>
 </blockquote>
 </div>
 <div class="section" id="bug-tracker">
@@ -505,10 +521,6 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Lara Baggio &lt;<a class="reference external" href="http://linkgroup.it/">http://linkgroup.it/</a>&gt;</li>
 <li>Gianmarco Conte &lt;<a class="reference external" href="mailto:gconte&#64;dinamicheaziendali.it">gconte&#64;dinamicheaziendali.it</a>&gt;</li>
 <li>Michele Rusticucci &lt;<a class="reference external" href="mailto:michele.rusticucci&#64;agilebg.com">michele.rusticucci&#64;agilebg.com</a>&gt;</li>
-<li><a class="reference external" href="https://takobi.online">TAKOBI</a>:<ul>
-<li>Simone Rubino &lt;<a class="reference external" href="mailto:sir&#64;takobi.online">sir&#64;takobi.online</a>&gt;</li>
-</ul>
-</li>
 </ul>
 </div>
 <div class="section" id="maintainers">

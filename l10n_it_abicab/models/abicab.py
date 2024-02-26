@@ -7,7 +7,6 @@ from odoo import fields, models
 
 
 class ResBank(models.Model):
-
     _inherit = "res.bank"
 
     abi = fields.Char(size=5, string="ABI")
@@ -15,7 +14,6 @@ class ResBank(models.Model):
 
 
 class ResPartnerBank(models.Model):
-
     _inherit = "res.partner.bank"
 
     bank_abi = fields.Char(size=5, string="ABI", related="bank_id.abi", store=True)

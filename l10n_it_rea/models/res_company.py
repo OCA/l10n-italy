@@ -61,7 +61,9 @@ class Company(models.Model):
             # using always €, as this is a registry of Italian companies
             company_registry = _(
                 "%(rea_office.code)s - %(rea_code)s / "
-                "Share Cap. %(rea_capital)s € / %(rea_member_type)s / %(rea_liquidation_state)s"
+                "Share Cap. %(rea_capital)s € / "
+                "%(rea_member_type)s / "
+                "%(rea_liquidation_state)s"
             ) % {
                 "rea_office.code": self.rea_office.code or "",
                 "rea_code": self.rea_code or "",

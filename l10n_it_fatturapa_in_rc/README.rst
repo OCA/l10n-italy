@@ -28,10 +28,12 @@ ITA - Fattura elettronica - Inversione contabile
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Modulo ponte tra ricezione fatture elettroniche fornitore e inversione contabile.
+Modulo ponte tra ricezione fatture elettroniche fornitore e inversione
+contabile.
 
-Con questo modulo, l'imposta della fattura ricevuta in inversione contabile verrà
-correttamente valorizzata e le righe soggette a inversione contabile identificate.
+Con questo modulo, l'imposta della fattura ricevuta in inversione
+contabile verrà correttamente valorizzata e le righe soggette a
+inversione contabile identificate.
 
 **Table of contents**
 
@@ -41,11 +43,16 @@ correttamente valorizzata e le righe soggette a inversione contabile identificat
 Configuration
 =============
 
-Creare la posizione fiscale, con il relativo tipo di inversione contabile, per gli acquisti soggetti ad inversione contabile effettuati verso fornitori italiani.
+Creare la posizione fiscale, con il relativo tipo di inversione
+contabile, per gli acquisti soggetti ad inversione contabile effettuati
+verso fornitori italiani.
 
-Per la configurazione del tipo di inversione contabile, si faccia riferimento alla documentazione del modulo `l10n_it_reverse_charge`.
+Per la configurazione del tipo di inversione contabile, si faccia
+riferimento alla documentazione del modulo l10n_it_reverse_charge.
 
-Nel tipo di inversione contabile impostare "Fornitori e-fattura" per far sì che tale tipo venga automaticamente utilizzato in fase di importazione di fatture elettroniche.
+Nel tipo di inversione contabile impostare "Fornitori e-fattura" per far
+sì che tale tipo venga automaticamente utilizzato in fase di
+importazione di fatture elettroniche.
 
 Bug Tracker
 ===========
@@ -61,27 +68,31 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Efatto.it di Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <info@efatto.it>
-* Lorenzo Battistini <https://github.com/eLBati>
-* Marco Colombo <https://github.com/TheMule71>
+-  Sergio Corato <info@efatto.it>
 
-* `Ooops <https://www.ooops404.com>`_:
+-  Lorenzo Battistini <https://github.com/eLBati>
 
-   * Giovanni Serra <giovanni@gslab.it>
-* Nextev Srl <odoo@nextev.it>
-* `Aion Tech <https://aiontech.company/>`_:
+-  Marco Colombo <https://github.com/TheMule71>
 
-  * Simone Rubino <simone.rubino@aion-tech.it>
+-  `Ooops <https://www.ooops404.com>`__:
+
+      -  Giovanni Serra <giovanni@gslab.it>
+
+-  Nextev Srl <odoo@nextev.it>
+
+-  `Aion Tech <https://aiontech.company/>`__:
+
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

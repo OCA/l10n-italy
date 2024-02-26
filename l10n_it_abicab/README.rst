@@ -30,11 +30,13 @@ ITA - Codici bancari ABI/CAB
 
 **Italiano**
 
-Questo modulo aggiunge a res.bank i dati ABI/CAB (numeri identificativi della banca).
+Questo modulo aggiunge a res.bank i dati ABI/CAB (numeri identificativi
+della banca).
 
 **English**
 
-This module adds to res.bank the ABI/CAB data (bank identification numbers).
+This module adds to res.bank the ABI/CAB data (bank identification
+numbers).
 
 **Table of contents**
 
@@ -55,24 +57,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Odoo Italia Network
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Odoo Italia Network <http://www.odoo-italia.net/>`_
-* Franco Tampieri <franco@tampieri.info>
-* Alessandro Camilli <alessandrocamilli@openforce.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Davide Corio <davide.corio@abstract.it>
-* Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-* Sergio Zanchetta  <https://github.com/primes2h>
-* Matteo Boscolo <https://www.omniasolutions.website>
+-  `Odoo Italia Network <http://www.odoo-italia.net/>`__
+-  Franco Tampieri <franco@tampieri.info>
+-  Alessandro Camilli <alessandrocamilli@openforce.it>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Davide Corio <davide.corio@abstract.it>
+-  Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Matteo Boscolo <https://www.omniasolutions.website>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

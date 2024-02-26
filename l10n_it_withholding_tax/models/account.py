@@ -19,7 +19,7 @@ class AccountFullReconcile(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = super(AccountFullReconcile, self).create(vals_list)
+        res = super().create(vals_list)
         wt_moves = res._get_wt_moves()
         for wt_move in wt_moves:
             if wt_move.full_reconcile_id:
@@ -79,7 +79,7 @@ class AccountPartialReconcile(models.Model):
                     vals.update({"amount": invoice.amount_net_pay})
 
             # Create reconciliation
-            reconcile = super(AccountPartialReconcile, self).create(vals)
+            reconcile = super().create(vals)
             # Avoid re-generate wt moves if the move line is an wt move.
             # It's possible if the user unreconciles a wt move under invoice
             ld = self.env["account.move.line"].browse(vals.get("debit_move_id"))
@@ -227,7 +227,7 @@ class AccountPartialReconcile(models.Model):
                 if wt_move.statement_id not in statements:
                     statements.append(wt_move.statement_id)
 
-        res = super(AccountPartialReconcile, self).unlink()
+        res = super().unlink()
         # Recompute statement values
         for st in statements:
             st._compute_total()
@@ -242,7 +242,7 @@ class AccountAbstractPayment(models.Model):
         """
         Compute amount to pay proportionally to amount total - wt
         """
-        rec = super(AccountAbstractPayment, self).default_get(fields)
+        rec = super().default_get(fields)
         invoice_defaults = self.new(
             {"reconciled_invoice_ids": rec.get("reconciled_invoice_ids")}
         ).reconciled_invoice_ids
@@ -265,9 +265,7 @@ class AccountAbstractPayment(models.Model):
             if invoice.withholding_tax:
                 original_values[invoice] = invoice.residual_signed
                 invoice.residual_signed = invoice.amount_net_pay_residual
-        res = super(AccountAbstractPayment, self)._compute_payment_amount(
-            invoices, currency
-        )
+        res = super()._compute_payment_amount(invoices, currency)
         for invoice in original_values:
             invoice.residual_signed = original_values[invoice]
         return res
@@ -622,7 +620,7 @@ class AccountMoveLine(models.Model):
                 wt_move.button_draft()
                 wt_move.unlink()
 
-        return super(AccountMoveLine, self).remove_move_reconcile()
+        return super().remove_move_reconcile()
 
     @api.model
     def _default_withholding_tax(self):

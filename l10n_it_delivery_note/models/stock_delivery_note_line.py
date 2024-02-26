@@ -93,7 +93,6 @@ class StockDeliveryNoteLine(models.Model):
     @api.onchange("product_id")
     def _onchange_product_id(self):
         if self.product_id:
-
             name = self.product_id.name
             if self.product_id.description_sale:
                 name += "\n" + self.product_id.description_sale
@@ -113,7 +112,6 @@ class StockDeliveryNoteLine(models.Model):
     def _prepare_detail_lines(self, moves):
         lines = []
         for move in moves:
-
             name = move.product_id.name
             if move.product_id.description_sale:
                 name += "\n" + move.product_id.description_sale
@@ -158,7 +156,7 @@ class StockDeliveryNoteLine(models.Model):
 
     def write(self, vals):
         if "display_type" in vals and self.filtered(
-            lambda l: l.display_type != vals["display_type"]
+            lambda note_line: note_line.display_type != vals["display_type"]
         ):
             raise UserError(
                 _(
@@ -171,7 +169,7 @@ class StockDeliveryNoteLine(models.Model):
         return super().write(vals)
 
     def sync_invoice_status(self):
-        for line in self.filtered(lambda l: l.sale_line_id):
+        for line in self.filtered(lambda note_line: note_line.sale_line_id):
             invoice_status = line.sale_line_id.invoice_status
             line.invoice_status = (
                 DOMAIN_INVOICE_STATUSES[1]

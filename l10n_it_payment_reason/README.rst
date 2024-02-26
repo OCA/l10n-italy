@@ -28,7 +28,8 @@ ITA - Causali di pagamento
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Tabelle delle causali di pagamento da usare, ad esempio, nelle ritenute d'acconto.
+Tabelle delle causali di pagamento da usare, ad esempio, nelle ritenute
+d'acconto.
 
 **Table of contents**
 
@@ -38,15 +39,16 @@ Tabelle delle causali di pagamento da usare, ad esempio, nelle ritenute d'accont
 Configuration
 =============
 
-La tabella viene aggiunta nell'area contabilità, ed è raggiungibile nella
-sezione configurazione. Occorre avere i privilegi di account manager.
+La tabella viene aggiunta nell'area contabilità, ed è raggiungibile
+nella sezione configurazione. Occorre avere i privilegi di account
+manager.
 
 Usage
 =====
 
-Installando il modulo vengono precaricati i codici disponibili.
-È possibile aggiungere nuovi codici o modificare quelli esistenti.
-Non è possibile avere più di un elemento con lo stesso codice.
+Installando il modulo vengono precaricati i codici disponibili. È
+possibile aggiungere nuovi codici o modificare quelli esistenti. Non è
+possibile avere più di un elemento con lo stesso codice.
 
 Bug Tracker
 ===========
@@ -62,19 +64,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Agile Business Group
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Alex Comba <alex.comba@agilebg.com>
-* Marco Colombo <https://github.com/TheMule71>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Marco Colombo <https://github.com/TheMule71>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

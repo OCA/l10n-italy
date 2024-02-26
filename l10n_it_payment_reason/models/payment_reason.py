@@ -19,7 +19,7 @@ class PaymentReason(models.Model):
     def name_get(self):
         res = []
         for cau in self:
-            name = "{} - {}".format(cau.code, cau.name)
+            name = f"{cau.code} - {cau.name}"
             if len(name) > 50:
                 name = name[:50] + "..."
             res.append((cau.id, name))

@@ -1,0 +1,5 @@
+- [TAKOBI](https://takobi.online):
+  - Lorenzo Battistini
+  - Simone Rubino \<<sir@takobi.online>\>
+- [Agile Business Group](https://agilebg.com):
+  - Alex Comba \<<alex.comba@agilebg.com>\>

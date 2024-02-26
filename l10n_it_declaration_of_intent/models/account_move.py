@@ -8,7 +8,6 @@ from odoo.tools.misc import format_date
 
 
 class AccountMove(models.Model):
-
     _inherit = "account.move"
 
     declaration_of_intent_ids = fields.Many2many(
@@ -33,7 +32,7 @@ class AccountMove(models.Model):
                 valid_date = invoice.invoice_date or fields.Date.context_today(invoice)
 
                 valid_declarations = all_declarations.filtered(
-                    lambda d: d.date_start <= valid_date <= d.date_end
+                    lambda d, valid_d=valid_date: d.date_start <= valid_d <= d.date_end
                 )
                 if valid_declarations:
                     invoice.fiscal_position_id = valid_declarations[
@@ -145,17 +144,17 @@ class AccountMove(models.Model):
                     if is_sale_document:
                         cmt = self.narration or ""
                         msg = (
-                            "Vostra dichiarazione d'intento nr %s del %s, "
-                            "nostro protocollo nr %s del %s, "
-                            "protocollo telematico nr %s."
-                            % (
-                                declaration.partner_document_number,
-                                format_date(
+                            "Vostra dichiarazione d'intento nr "
+                            "{partner_number} del {partner_date}, "
+                            "nostro protocollo nr {number} del {date}, "
+                            "protocollo telematico nr {protocol}.".format(
+                                partner_number=declaration.partner_document_number,
+                                partner_date=format_date(
                                     self.env, declaration.partner_document_date
                                 ),
-                                declaration.number,
-                                format_date(self.env, declaration.date),
-                                declaration.telematic_protocol,
+                                number=declaration.number,
+                                date=format_date(self.env, declaration.date),
+                                protocol=declaration.telematic_protocol,
                             )
                         )
                         # Avoid duplication
@@ -278,7 +277,9 @@ class AccountMove(models.Model):
                     declarations_amounts[declaration.id] -= amount
         for declaration in declarations:
             # exclude amount from lines with invoice_id equals to self
-            for line in declaration.line_ids.filtered(lambda l: l.invoice_id == self):
+            for line in declaration.line_ids.filtered(
+                lambda dec_line: dec_line.invoice_id == self
+            ):
                 declarations_amounts[declaration.id] += line.amount
         return declarations_amounts
 
@@ -295,7 +296,6 @@ class AccountMove(models.Model):
 
 
 class AccountMoveLine(models.Model):
-
     _inherit = "account.move.line"
 
     force_declaration_of_intent_id = fields.Many2one(

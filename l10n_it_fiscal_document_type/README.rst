@@ -34,7 +34,8 @@ Tabella con codici tipo documento previsti dall'Agenzia delle Entrate.
 
 **English**
 
-Document type table with codes as provided for by the Italian Revenue Agency.
+Document type table with codes as provided for by the Italian Revenue
+Agency.
 
 **Table of contents**
 
@@ -48,13 +49,15 @@ Configuration
 
 Per configurare i tipi di documento fiscale selezionare:
 
-Contabilità →  Configurazione →  Localizzazione italiana →  Tipi documento fiscale
+Contabilità → Configurazione → Localizzazione italiana → Tipi documento
+fiscale
 
 **Inglese**
 
 You can configure fiscal document types choosing:
 
-Accounting →  Configuration →  Italian Localization →  Fiscal document types
+Accounting → Configuration → Italian Localization → Fiscal document
+types
 
 Bug Tracker
 ===========
@@ -70,29 +73,29 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Link It srl
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alessandro Camilli <alessandrocamilli@openforce.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Sergio Zanchetta <https://github.com/primes2h>
-* Alfredo Zamora <alfredo.zamora@agilebg.com>
-* Marco Colombo <marco.colombo@phi.technology>
+-  Alessandro Camilli <alessandrocamilli@openforce.it>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Alfredo Zamora <alfredo.zamora@agilebg.com>
+-  Marco Colombo <marco.colombo@phi.technology>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Odoo Italia Network
+-  Odoo Italia Network
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

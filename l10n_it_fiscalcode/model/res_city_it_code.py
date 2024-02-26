@@ -50,6 +50,7 @@ class ResCityItCode(models.Model):
     cadastre_code_var,province_var,name_var,creation_date,var_date
         - save as csv in data/res.city.it.code.csv
     """
+
     _name = "res.city.it.code"
     _description = "National city codes"
 

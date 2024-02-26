@@ -8,7 +8,7 @@ from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACo
 
 class EInvoiceCommon(FatturaPACommon):
     def setUp(self):
-        super(EInvoiceCommon, self).setUp()
+        super().setUp()
         self.account_model = self.env["account.account"]
         self.invoice_model = self.env["account.move"]
         self.wizard_model = self.env["wizard.export.fatturapa"]

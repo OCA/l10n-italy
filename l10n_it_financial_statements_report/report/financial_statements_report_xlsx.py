@@ -485,27 +485,27 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         info = {}
         left_lines = report_data["financial_statements_report_left_lines"]
         right_lines = report_data["financial_statements_report_right_lines"]
-        l, r = left_lines.get(row), right_lines.get(row)
+        left, right = left_lines.get(row), right_lines.get(row)
 
-        if l:
+        if left:
             cols_dict = _extract_financial_statements_report_columns(
                 report_data["columns"], "left"
             )
             for c in cols_dict:
                 value, style, allow = self.get_write_data(
-                    l, cols_dict[c], report, report_data, report_result
+                    left, cols_dict[c], report, report_data, report_result
                 )
-                info[(l["account_id"], (c, row))] = value, style, allow
+                info[(left["account_id"], (c, row))] = value, style, allow
 
-        if r:
+        if right:
             cols_dict = _extract_financial_statements_report_columns(
                 report_data["columns"], "right"
             )
             for c in cols_dict:
                 value, style, allow = self.get_write_data(
-                    r, cols_dict[c], report, report_data, report_result
+                    right, cols_dict[c], report, report_data, report_result
                 )
-                info[(r["account_id"], (c, row))] = value, style, allow
+                info[(right["account_id"], (c, row))] = value, style, allow
 
         return info
 
@@ -566,11 +566,11 @@ class FinancialStatementsReportXslx(models.AbstractModel):
             allow = True
 
         if value:
-            if isinstance(value, (int, float)) and cell_type not in (
+            if isinstance(value, int | float) and cell_type not in (
                 "amount",
                 "amount_currency",
             ):
-                value = format(value, ".{}f".format(decimals))
+                value = format(value, f".{decimals}f")
             if not isinstance(value, str) and cell_type not in (
                 "amount",
                 "amount_currency",
@@ -588,13 +588,13 @@ class FinancialStatementsReportXslx(models.AbstractModel):
             allow = True
 
         if allow and isinstance(value, float) and float_is_zero(value, decimals):
-            value = format(value, ".{}f".format(decimals))
+            value = format(value, f".{decimals}f")
 
         return value, style, allow
 
     def format_value_by_lang(self, lang, value=None, decimals=None):
         """Mimics `res.lang` model's `format` method"""
-        percent = "%.{}f".format(decimals or 2)
+        percent = f"%.{decimals or 2}f"
         value = value or 0
         return lang.format(percent, value, grouping=True, monetary=True)
 
@@ -668,7 +668,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         if surplus or deficit:
             title = _("SURPLUS") if surplus else _("DEFICIT")
             bal_data = order_currency_amount(currency, balance)
-            balance_str = "{}: {} {}".format(title, bal_data[0], bal_data[1])
+            balance_str = f"{title}: {bal_data[0]} {bal_data[1]}"
             left_columns = _extract_financial_statements_report_columns(
                 report_data["columns"], "left"
             )

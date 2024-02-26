@@ -20,7 +20,8 @@ class ResPartner(models.Model):
             if partner.max_invoice_in_xml < 0:
                 raise ValidationError(
                     _(
-                        "The max number of invoice to group can't be negative for partner %s",
+                        "The max number of invoice to group "
+                        "can't be negative for partner %s",
                         partner.name,
                     )
                 )

@@ -55,7 +55,7 @@ class TestFatturapaSale(TransactionCase):
 
         # Check the invoice line
         invoice_line = invoice.invoice_line_ids.filtered(
-            lambda l: order_line in l.sale_line_ids
+            lambda line: order_line in line.sale_line_ids
         )
         self.assertEqual(
             len(invoice_line), 1, "Multiple invoice lines for sale order line"

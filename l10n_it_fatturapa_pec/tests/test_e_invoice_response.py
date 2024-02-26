@@ -1,8 +1,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import email
-
-import mock
+from unittest import mock
 
 from odoo.fields import Datetime
 from odoo.modules import get_module_resource
@@ -15,7 +14,7 @@ from .e_invoice_common import EInvoiceCommon
 @tagged("post_install", "-at_install")
 class TestEInvoiceResponse(EInvoiceCommon):
     def setUp(self):
-        super(TestEInvoiceResponse, self).setUp()
+        super().setUp()
         self.PEC_server = self._create_fetchmail_pec_server()
         self.env.company.vat = "IT03339130126"
         self.attach_in_model = self.env["fatturapa.attachment.in"]

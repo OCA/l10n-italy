@@ -77,10 +77,7 @@ class Partner(models.Model):
                 super(Partner, self - it_partners).check_vat()
             except ValidationError as ve:
                 log_message = (
-                    "Validation Error skipped during e-bill import:\n"
-                    "{exc_message}".format(
-                        exc_message=ve.args[0],
-                    )
+                    "Validation Error skipped during e-bill import:\n" f"{ve.args[0]}"
                 )
                 _logger.info(log_message)
         else:

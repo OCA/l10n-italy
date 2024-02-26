@@ -59,25 +59,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * KTec S.r.l
 * Odoo Italia Network
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Luigi Di Naro <luigi.dinaro@ktec.it>
-* Alex Comba <alex.comba@agilebg.com>
-* Lorenzo Battistini <lb@takobi.online>
-* Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>
-* Marco Colombo - <marco.colombo@phi.technology>
-* `TAKOBI <https://takobi.online>`_:
+-  Luigi Di Naro <luigi.dinaro@ktec.it>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Lorenzo Battistini <lb@takobi.online>
+-  Giuseppe Borruso - Dinamiche Aziendali srl
+   <gborruso@dinamicheaziendali.it>
+-  Marco Colombo - <marco.colombo@phi.technology>
+-  `TAKOBI <https://takobi.online>`__:
 
-  * Simone Rubino <sir@takobi.online>
+   -  Simone Rubino <sir@takobi.online>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

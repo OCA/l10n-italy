@@ -30,7 +30,8 @@ ITA - Codice IPA - Portale
 
 **Italiano**
 
-Aggiunge l'indice PA (IPA) tra i dettagli dell'utente, nel portale clienti.
+Aggiunge l'indice PA (IPA) tra i dettagli dell'utente, nel portale
+clienti.
 
 **English**
 
@@ -55,12 +56,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Agile Business Group
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

@@ -409,11 +409,15 @@ class WizardImportFatturapa(models.TransientModel):
                     p_name = partner_model.browse(partner_id).name
                     self.log_inconsistency(
                         _(
-                            "Current invoice is from {} with REA Code"
-                            " {}. Yet it seems that partners {} have the same"
+                            "Current invoice is from %(partner)s with REA Code"
+                            " %(code)s. Yet it seems that"
+                            " partners %(partners)s have the same"
                             " REA Code. This code should be unique; please fix"
-                            " it."
-                        ).format(p_name, rea_nr, rea_names)
+                            " it.",
+                            partner=p_name,
+                            code=rea_nr,
+                            partners=rea_names,
+                        )
                     )
                 else:
                     vals["rea_code"] = REA.NumeroREA
@@ -497,7 +501,8 @@ class WizardImportFatturapa(models.TransientModel):
             self.log_inconsistency(
                 _(
                     "No tax with percentage "
-                    "%(percentage)s and nature %(nature)s found. Please configure this tax.",
+                    "%(percentage)s and nature %(nature)s found. "
+                    "Please configure this tax.",
                     percentage=tax_amount,
                     nature=Natura,
                 )
@@ -657,7 +662,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         retLine.update(
             {
-                "name": "Riepilogo Aliquota {}".format(line.AliquotaIVA),
+                "name": f"Riepilogo Aliquota {line.AliquotaIVA}",
                 "sequence": nline,
                 "account_id": credit_account_id,
                 "price_unit": float(abs(line.ImponibileImporto)),
@@ -1635,7 +1640,6 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_line_model = self.env["account.move.line"]
         invoice_line_ids = []
         if self.e_invoice_detail_level == "2":
-
             Welfares = (
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiCassaPrevidenziale
             )
@@ -1756,7 +1760,6 @@ class WizardImportFatturapa(models.TransientModel):
     def _set_invoice_lines(
         self, product, invoice_line_data, invoice_lines, invoice_line_model
     ):
-
         if product:
             invoice_line_data["product_id"] = product.id
             self.adjust_accounting_data(product, invoice_line_data)
@@ -1933,7 +1936,6 @@ class WizardImportFatturapa(models.TransientModel):
 
             # 2
             for fattura in fatt.FatturaElettronicaBody:
-
                 # reset inconsistencies
                 self.reset_inconsistencies()
 

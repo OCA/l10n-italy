@@ -185,10 +185,10 @@ class FatturaPAAttachmentImportZIP(models.Model):
                         )
                         .create({})
                     )
-                    _logger.info("Importing {}".format(xml_file))
+                    _logger.info(f"Importing {xml_file}")
                     wizard.importFatturaPA()
                 else:
-                    _logger.info("Skipping {}, not an XML/P7M file".format(xml_file))
+                    _logger.info(f"Skipping {xml_file}, not an XML/P7M file")
             self.env.company.in_invoice_registration_date = (
                 original_in_invoice_registration_date
             )

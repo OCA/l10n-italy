@@ -389,54 +389,57 @@ ul.auto-toc {
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p><strong>Italiano</strong></p>
 <p>Nella configurazione delle RiBa è possibile specificare se si tratti di
-‘Salvo buon fine’ o ‘Al dopo incasso’, che hanno un flusso completamente diverso.</p>
+‘Salvo buon fine’ o ‘Al dopo incasso’, che hanno un flusso completamente
+diverso.</p>
 <ul class="simple">
-<li>Al dopo incasso: nessuna registrazione verrà effettuata automaticamente e le
-fatture risulteranno pagate solo al momento dell’effettivo incasso.</li>
-<li>Salvo buon fine: le registrazioni generate seguiranno la struttura descritta nel
-documento <a class="reference external" href="http://goo.gl/jpRhJp">http://goo.gl/jpRhJp</a></li>
+<li>Al dopo incasso: nessuna registrazione verrà effettuata
+automaticamente e le fatture risulteranno pagate solo al momento
+dell’effettivo incasso.</li>
+<li>Salvo buon fine: le registrazioni generate seguiranno la struttura
+descritta nel documento <a class="reference external" href="http://goo.gl/jpRhJp">http://goo.gl/jpRhJp</a></li>
 </ul>
-<p>È possibile specificare diverse configurazioni (dal menù
-<em>Configurazione → Pagamenti → Configurazione RiBa</em>). Per ognuna, in caso di
-‘Salvo buon fine’, è necessario specificare almeno il registro e il conto da
-utilizzare al momento dell’accettazione della distinta da parte della banca.
-Tale conto deve essere di tipo ‘Crediti’ (ad esempio “RiBa all’incasso”,
-eventualmente da creare).</p>
-<p>La configurazione relativa alla fase di accredito, verrà usata nel momento in
-cui la banca accredita l’importo della distinta.
-È possibile utilizzare un registro creato appositamente, ad esempio “Accredito RiBa”,
-e un conto chiamato ad esempio “Banche c/RiBa all’incasso”, che non deve essere di tipo
-‘Banca e cassa’.</p>
-<p>La configurazione relativa all’insoluto verrà utilizzata in caso di mancato pagamento
-da parte del cliente.
-Il conto può chiamarsi ad esempio “Crediti insoluti”.</p>
-<p>Nel caso si vogliano gestire anche le spese per ogni scadenza con ricevuta bancaria,
-si deve configurare un prodotto di tipo servizio e collegarlo in
-<em>Configurazione → Impostazioni → Contabilità → Imposte → Spese di incasso RiBa</em>.</p>
+<p>È possibile specificare diverse configurazioni (dal menù <em>Configurazione
+→ Pagamenti → Configurazione RiBa</em>). Per ognuna, in caso di ‘Salvo buon
+fine’, è necessario specificare almeno il registro e il conto da
+utilizzare al momento dell’accettazione della distinta da parte della
+banca. Tale conto deve essere di tipo ‘Crediti’ (ad esempio “RiBa
+all’incasso”, eventualmente da creare).</p>
+<p>La configurazione relativa alla fase di accredito, verrà usata nel
+momento in cui la banca accredita l’importo della distinta. È possibile
+utilizzare un registro creato appositamente, ad esempio “Accredito
+RiBa”, e un conto chiamato ad esempio “Banche c/RiBa all’incasso”, che
+non deve essere di tipo ‘Banca e cassa’.</p>
+<p>La configurazione relativa all’insoluto verrà utilizzata in caso di
+mancato pagamento da parte del cliente. Il conto può chiamarsi ad
+esempio “Crediti insoluti”.</p>
+<p>Nel caso si vogliano gestire anche le spese per ogni scadenza con
+ricevuta bancaria, si deve configurare un prodotto di tipo servizio e
+collegarlo in <em>Configurazione → Impostazioni → Contabilità → Imposte →
+Spese di incasso RiBa</em>.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <p><strong>Italiano</strong></p>
-<p>Per utilizzare il meccanismo delle RiBa è necessario configurare un termine
-di pagamento di tipo ‘RiBa’.</p>
+<p>Per utilizzare il meccanismo delle RiBa è necessario configurare un
+termine di pagamento di tipo ‘RiBa’.</p>
 <p>Per emettere una distinta è necessario andare su <em>RiBa → Emetti RiBa</em> e
-selezionare i pagamenti per i quali emettere la distinta.
-Se per il cliente è stato abilitato il raggruppamento, i pagamenti dello stesso
-cliente e con la stessa data di scadenza andranno a costituire un solo elemento
-della distinta.</p>
-<p>I possibili stati della distinta sono: <em>Bozza</em>, <em>Accettata</em>, <em>Accreditata</em>,
-<em>Pagata</em>, <em>Insoluta</em> e <em>Annullata</em>.
-Ad ogni passaggio di stato sarà possibile generare le relative registrazioni
-contabili, le quali verranno riepilogate nella scheda «Contabilità».
-Questa scheda è presente sia sulla distinta che sulle sue righe.</p>
+selezionare i pagamenti per i quali emettere la distinta. Se per il
+cliente è stato abilitato il raggruppamento, i pagamenti dello stesso
+cliente e con la stessa data di scadenza andranno a costituire un solo
+elemento della distinta.</p>
+<p>I possibili stati della distinta sono: <em>Bozza</em>, <em>Accettata</em>,
+<em>Accreditata</em>, <em>Pagata</em>, <em>Insoluta</em> e <em>Annullata</em>. Ad ogni passaggio di
+stato sarà possibile generare le relative registrazioni contabili, le
+quali verranno riepilogate nella scheda «Contabilità». Questa scheda è
+presente sia sulla distinta che sulle sue righe.</p>
 <p>La voce di menù ‘Presentazione Riba’ permette estrarre le riba fino al
 raggiungimento dell’importo massimo inserito dall’utente.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
 <p><strong>Italiano</strong></p>
-<p>Attenzione!
-Il modulo è stato migrato, ma gli script di migrazione non sono stati provati.</p>
+<p>Attenzione! Il modulo è stato migrato, ma gli script di migrazione non
+sono stati provati.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-4">Bug Tracker</a></h1>

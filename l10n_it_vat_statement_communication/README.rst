@@ -28,9 +28,11 @@ ITA - Comunicazione liquidazione IVA
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Comunicazione liquidazione IVA ed export file XML, conforme alle specifiche dell''Agenzia delle Entrate.
+Comunicazione liquidazione IVA ed export file XML, conforme alle
+specifiche dell''Agenzia delle Entrate.
 
-I dati possono essere caricati da liquidazioni IVA effettuate in odoo tramite `account_vat_period_end_statement`
+I dati possono essere caricati da liquidazioni IVA effettuate in odoo
+tramite account_vat_period_end_statement
 
 **Table of contents**
 
@@ -40,17 +42,24 @@ I dati possono essere caricati da liquidazioni IVA effettuate in odoo tramite `a
 Configuration
 =============
 
-Nella scheda dell'imposta è possibile configurare "Escludere dalle operazioni attive / passive" e/o "Escludere dall'IVA esigibile / detratta".
+Nella scheda dell'imposta è possibile configurare "Escludere dalle
+operazioni attive / passive" e/o "Escludere dall'IVA esigibile /
+detratta".
 
-La prima opzione va utilizzata ad esempio nel caso di operazioni in inversione contabile (reverse charge), per escludere l'imponibile di `22% intra UE (debito)` (usata nelle autofatture attive) dal calcolo di `VP2 Totale operazioni attive`
+La prima opzione va utilizzata ad esempio nel caso di operazioni in
+inversione contabile (reverse charge), per escludere l'imponibile di 22%
+intra UE (debito) (usata nelle autofatture attive) dal calcolo di VP2
+Totale operazioni attive
 
-Tramite la seconda opzione è invece possibile, in casi particolari, escludere il valore dell'imposta.
+Tramite la seconda opzione è invece possibile, in casi particolari,
+escludere il valore dell'imposta.
 
 Usage
 =====
 
-- Creare una nuova comunicazione.
-- Nel "Quadro VP" aggiungere una voce selezionando in alto la liquidazione, precedentemente creata, da inserire.
+-  Creare una nuova comunicazione.
+-  Nel "Quadro VP" aggiungere una voce selezionando in alto la
+   liquidazione, precedentemente creata, da inserire.
 
 Bug Tracker
 ===========
@@ -66,19 +75,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Openforce di Camilli Alessandro
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alessandro Camilli
-* Lorenzo Battistini
-* Lara Baggio
+-  Alessandro Camilli
+-  Lorenzo Battistini
+-  Lara Baggio
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

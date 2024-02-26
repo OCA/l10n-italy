@@ -29,9 +29,7 @@ class IntrastatStatementSaleSection3(models.Model):
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
-        res = super(IntrastatStatementSaleSection3, self)._prepare_statement_line(
-            inv_intra_line, statement_id
-        )
+        res = super()._prepare_statement_line(inv_intra_line, statement_id)
         res.update(
             {
                 "invoice_number": inv_intra_line.invoice_number,

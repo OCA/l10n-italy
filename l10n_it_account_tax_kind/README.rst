@@ -32,13 +32,15 @@ ITA - Natura delle aliquote IVA
 
 Questo modulo estende la funzionalità delle imposte.
 
-Con questo modulo è possibile assegnare un tipo di esenzione per ogni imposta.
+Con questo modulo è possibile assegnare un tipo di esenzione per ogni
+imposta.
 
 **English**
 
 This module extends the functionality of account tax.
 
-With this module is possibile to set a kind of exemption for every account tax you need.
+With this module is possibile to set a kind of exemption for every
+account tax you need.
 
 **Table of contents**
 
@@ -52,15 +54,17 @@ Configuration
 
 Per configurare questo modulo, è necessario:
 
-#. Andare in Fatturazione -> Configurazione -> Fiscalità italiana -> Natura esenzione imposta
-#. Creare una nuova natura esenzione imposta o modificarne una esistente
+1. Andare in Fatturazione -> Configurazione -> Fiscalità italiana ->
+   Natura esenzione imposta
+2. Creare una nuova natura esenzione imposta o modificarne una esistente
 
 **English**
 
 To configure this module, you need to:
 
-#. Go to Accounting -> Configuration -> Italian Localization -> Tax Exemption Kind
-#. Create a new exemption kind or modify existing one
+1. Go to Accounting -> Configuration -> Italian Localization -> Tax
+   Exemption Kind
+2. Create a new exemption kind or modify existing one
 
 Usage
 =====
@@ -69,15 +73,17 @@ Usage
 
 Per usare questo modulo, è necessario:
 
-#. Andare su Fatturazione -> Configurazione -> Contabilità -> Imposte
-#. Aprire l'imposta da modificare, andare nella scheda "Opzioni avanzate" e impostare un valore per natura esenzione
+1. Andare su Fatturazione -> Configurazione -> Contabilità -> Imposte
+2. Aprire l'imposta da modificare, andare nella scheda "Opzioni
+   avanzate" e impostare un valore per natura esenzione
 
 **English**
 
 To use this module, you need to:
 
-#. Go to Accounting -> Configuration -> Accounting -> Taxes
-#. Open the tax to modify, go to "Advanced Options" tab and set an Exemption Kind value
+1. Go to Accounting -> Configuration -> Accounting -> Taxes
+2. Open the tax to modify, go to "Advanced Options" tab and set an
+   Exemption Kind value
 
 Bug Tracker
 ===========
@@ -93,21 +99,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Apulia Software s.r.l
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Apruzzese Francesco <f.apruzzese@apuliasoftware.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Alex Comba <alex.comba@agilebg.com>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Marco Colombo <marco.colombo@phi.technology>
+-  Apruzzese Francesco <f.apruzzese@apuliasoftware.it>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Marco Colombo <marco.colombo@phi.technology>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

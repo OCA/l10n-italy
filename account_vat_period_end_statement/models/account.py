@@ -357,7 +357,7 @@ class AccountVatPeriodEndStatement(models.Model):
         for statement in self:
             if statement.state == "confirmed" or statement.state == "paid":
                 raise UserError(_("You cannot delete a confirmed or paid statement"))
-        res = super(AccountVatPeriodEndStatement, self).unlink()
+        res = super().unlink()
         return res
 
     def set_fiscal_year(self):
@@ -369,7 +369,7 @@ class AccountVatPeriodEndStatement(models.Model):
     def _write(self, vals):
         pre_not_reconciled = self.filtered(lambda statement: not statement.reconciled)
         pre_reconciled = self - pre_not_reconciled
-        res = super(AccountVatPeriodEndStatement, self)._write(vals)
+        res = super()._write(vals)
         reconciled = self.filtered(lambda statement: statement.reconciled)
         not_reconciled = self - reconciled
         (reconciled & pre_reconciled).filtered(
@@ -715,9 +715,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "to_date": period.date_end,
                     "registry_type": "customer",
                 }
-            )[
-                3
-            ]  # position 3 is deductible part
+            )[3]  # position 3 is deductible part
         debit_line_ids.append(
             {
                 "account_id": debit_tax.vat_statement_account_id.id,
@@ -735,9 +733,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     "to_date": period.date_end,
                     "registry_type": "supplier",
                 }
-            )[
-                3
-            ]  # position 3 is deductible part
+            )[3]  # position 3 is deductible part
         credit_line_ids.append(
             {
                 "account_id": credit_tax.vat_statement_account_id.id,
@@ -767,7 +763,6 @@ class AccountVatPeriodEndStatement(models.Model):
                     for tax_ch in tax.children_tax_ids
                     if tax_ch.cee_type in ("sale", "purchase")
                 ):
-
                     for tax_ch in tax.children_tax_ids:
                         if tax_ch.cee_type == "sale":
                             self._set_debit_lines(tax_ch, debit_line_ids, statement)

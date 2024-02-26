@@ -76,7 +76,7 @@ class AccountTax(models.Model):
         account_ids=None,
         exclude_account_ids=None,
     ):
-        balance = super(AccountTax, self).compute_balance(
+        balance = super().compute_balance(
             tax_or_base=tax_or_base,
             financial_type=financial_type,
         )
@@ -109,7 +109,7 @@ class AccountTax(models.Model):
         account_ids=None,
         exclude_account_ids=None,
     ):
-        domain = super(AccountTax, self).get_move_lines_domain(
+        domain = super().get_move_lines_domain(
             tax_or_base=tax_or_base,
             financial_type=financial_type,
         )

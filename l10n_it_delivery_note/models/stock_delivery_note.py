@@ -299,13 +299,13 @@ class StockDeliveryNote(models.Model):
             if not note.name:
                 partner_name = note.partner_id.display_name
                 create_date = note.create_date.strftime(DATETIME_FORMAT)
-                name = "{} - {}".format(partner_name, create_date)
+                name = f"{partner_name} - {create_date}"
 
             else:
                 name = note.name
 
                 if note.partner_ref and note.type_code == "incoming":
-                    name = "{} ({})".format(name, note.partner_ref)
+                    name = f"{name} ({note.partner_ref})"
             result.append((note.id, name))
 
         return result
@@ -313,7 +313,7 @@ class StockDeliveryNote(models.Model):
     @api.depends("state", "line_ids", "line_ids.invoice_status")
     def _compute_invoice_status(self):
         for note in self:
-            lines = note.line_ids.filtered(lambda l: l.sale_line_id)
+            lines = note.line_ids.filtered(lambda line: line.sale_line_id)
             invoice_status = DOMAIN_INVOICE_STATUSES[0]
             if lines:
                 if all(
@@ -527,7 +527,7 @@ class StockDeliveryNote(models.Model):
             cache[line] = line.fix_qty_to_invoice()
 
         pickings_move_ids = self.mapped("picking_ids.move_ids")
-        for line in pickings_lines.filtered(lambda l: len(l.move_ids) > 1):
+        for line in pickings_lines.filtered(lambda line: len(line.move_ids) > 1):
             move_ids = line.move_ids & pickings_move_ids
             qty_to_invoice = sum(move_ids.mapped("quantity_done"))
 
@@ -540,21 +540,26 @@ class StockDeliveryNote(models.Model):
         self.ensure_one()
 
         orders_lines = self.mapped("sale_ids.order_line").filtered(
-            lambda l: l.product_id
+            lambda order_line: order_line.product_id
         )
 
-        downpayment_lines = orders_lines.filtered(lambda l: l.is_downpayment)
-        invoiceable_lines = orders_lines.filtered(lambda l: l.is_invoiceable)
+        downpayment_lines = orders_lines.filtered(
+            lambda order_line: order_line.is_downpayment
+        )
+        invoiceable_lines = orders_lines.filtered(
+            lambda order_line: order_line.is_invoiceable
+        )
 
         cache = self._fix_quantities_to_invoice(invoiceable_lines - downpayment_lines)
 
         for downpayment in downpayment_lines:
             order = downpayment.order_id
             order_lines = order.order_line.filtered(
-                lambda l: l.product_id and not l.is_downpayment
+                lambda order_line: order_line.product_id
+                and not order_line.is_downpayment
             )
 
-            if order_lines.filtered(lambda l: l.need_to_be_invoiced):
+            if order_lines.filtered(lambda order_line: order_line.need_to_be_invoiced):
                 cache[downpayment] = downpayment.fix_qty_to_invoice()
 
         invoice_ids = self.sale_ids.filtered(
@@ -704,12 +709,12 @@ class StockDeliveryNote(models.Model):
         if warehouse and warehouse.partner_id:
             partner = warehouse.partner_id
 
-            location_address += "{}, ".format(partner.name)
+            location_address += f"{partner.name}, "
             if partner.street:
-                location_address += "{} - ".format(partner.street)
+                location_address += f"{partner.street} - "
 
-            location_address += "{} {}".format(partner.zip, partner.city)
+            location_address += f"{partner.zip} {partner.city}"
             if partner.state_id:
-                location_address += " ({})".format(partner.state_id.name)
+                location_address += f" ({partner.state_id.name})"
 
         return location_address

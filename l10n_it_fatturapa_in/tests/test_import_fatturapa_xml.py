@@ -879,7 +879,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         )
         self.assertEqual(len(invoice), 1)
         invoice_line = invoice.invoice_line_ids.filtered(
-            lambda l: l.product_id.id == product_id
+            lambda line: line.product_id.id == product_id
         )
         self.assertEqual(len(invoice_line), 1)
 
@@ -933,9 +933,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         exc_message = ve.exception.args[0]
         self.assertRegex(
             exc_message,
-            "VAT number .*{not_valid_vat}.* does not seem to be valid".format(
-                not_valid_vat=not_valid_vat,
-            ),
+            f"VAT number .*{not_valid_vat}.* does not seem to be valid",
         )
         self.wizard_model.reset_inconsistencies()
 
@@ -1060,7 +1058,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
 class TestFatturaPAEnasarco(FatturapaCommon):
     def setUp(self):
-        super(TestFatturaPAEnasarco, self).setUp()
+        super().setUp()
 
         self.invoice_model = self.env["account.move"]
 

@@ -11,7 +11,6 @@ from odoo import fields, models
 
 
 class RibaConfiguration(models.Model):
-
     _name = "riba.configuration"
     _description = "Configuration parameters for RiBa"
 

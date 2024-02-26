@@ -6,7 +6,7 @@ from odoo.addons.l10n_it_account.tools.account_tools import fpa_schema_get_enum
 
 class TestReasons(TransactionCase):
     def setUp(self):
-        super(TestReasons, self).setUp()
+        super().setUp()
         self.reason_model = self.env["payment.reason"]
         self.reason_b = self.env.ref("l10n_it_payment_reason.b")
 

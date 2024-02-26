@@ -50,7 +50,8 @@ class SdiChannel(models.Model):
             if len(elements) > 1:
                 raise exceptions.ValidationError(
                     _(
-                        "The channel %(name)s with pec server %(server_name)s already exists"
+                        "The channel %(name)s with pec server "
+                        "%(server_name)s already exists"
                     )
                     % {
                         "name": channel.name,
@@ -66,7 +67,8 @@ class SdiChannel(models.Model):
             if len(elements) > 1:
                 raise exceptions.ValidationError(
                     _(
-                        "The channel %(name)s with pec server %(server_name)s already exists"
+                        "The channel %(name)s with pec server "
+                        "%(server_name)s already exists"
                     )
                     % {
                         "name": channel.name,

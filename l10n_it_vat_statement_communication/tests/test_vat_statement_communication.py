@@ -404,7 +404,9 @@ class VatStatementCommunicationCase(TestAccountReconciliationCommon):
             {
                 "of_account_end_vat_statement_interest": True,
                 "of_account_end_vat_statement_interest_percent": 1.0,
-                "of_account_end_vat_statement_interest_account_id": self.account_interessi.id,
+                "of_account_end_vat_statement_interest_account_id": (
+                    self.account_interessi.id
+                ),
             }
         )
 

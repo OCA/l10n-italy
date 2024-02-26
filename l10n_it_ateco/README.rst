@@ -30,8 +30,8 @@ ITA - Codici Ateco
 
 This module registers a model in order to manage Ateco categories.
 
-Each partner can be referenced by one or many Ateco codes
-that specify the activities of a partner.
+Each partner can be referenced by one or many Ateco codes that specify
+the activities of a partner.
 
 **Table of contents**
 
@@ -41,12 +41,12 @@ that specify the activities of a partner.
 Known issues / Roadmap
 ======================
 
-This module needs a method to import una-tantum ateco codes
-from ISTAT web site in order maintain them up to date.
+This module needs a method to import una-tantum ateco codes from ISTAT
+web site in order maintain them up to date.
 
 See:
 
-* https://www.istat.it/it/archivio/17888
+-  https://www.istat.it/it/archivio/17888
 
 Bug Tracker
 ===========
@@ -62,20 +62,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Abstract
 * Odoo Italia Network
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Odoo Italia Network <http://www.odoo-italia.net/>`_
-* Ciro Urselli <c.urselli@apuliasoftware.it>
-* Lorenzo Battistini https://takobi.online
+-  `Odoo Italia Network <http://www.odoo-italia.net/>`__
+-  Ciro Urselli <c.urselli@apuliasoftware.it>
+-  Lorenzo Battistini https://takobi.online
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

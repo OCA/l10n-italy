@@ -148,9 +148,7 @@ class Fetchmail(models.Model):
         self.ensure_one()
         _logger.info(
             "Failure when fetching emails "
-            "using {serv_type} server {serv_name}.".format(
-                serv_type=self.server_type, serv_name=self.name
-            ),
+            f"using {self.server_type} server {self.name}.",
             exc_info=True,
         )
 
@@ -169,7 +167,8 @@ class Fetchmail(models.Model):
         self.ensure_one()
         self.notify_or_log(
             _(
-                "PEC server %(name)s has been reset. Last error message is '%(error_message)s'"
+                "PEC server %(name)s has been reset. "
+                "Last error message is '%(error_message)s'"
             )
             % {"name": self.name, "error_message": self.last_pec_error_message}
         )
@@ -195,8 +194,9 @@ class Fetchmail(models.Model):
                 }
             ).send()
             _logger.info(
-                "Notifying partners %s about PEC server %s error"
-                % (self.e_inv_notify_partner_ids.ids, self.name)
+                "Notifying partners {} about PEC server {} error".format(
+                    self.e_inv_notify_partner_ids.ids, self.name
+                )
             )
         else:
             _logger.error("Can't notify anyone about PEC server %s error" % self.name)

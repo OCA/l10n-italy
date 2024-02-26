@@ -55,7 +55,7 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         return tax_values
 
     def setUp(self):
-        super(FatturaPACommon, self).setUp()
+        super().setUp()
         # used to be in AccountTestUsers
         self.account_model = self.env["account.account"]
 
@@ -152,7 +152,8 @@ class FatturaPACommon(AccountTestInvoicingCommon):
         self.company.invalidate_recordset()
 
     def create_2nd_company(self):
-        fatturapa_fiscal_position_id = self.env.company.fatturapa_fiscal_position_id.id
+        company = self.env.company
+        fatturapa_fiscal_position_id = company.fatturapa_fiscal_position_id.id
         self.company2 = (
             self.env["res.company"]
             .sudo(True)
@@ -162,8 +163,8 @@ class FatturaPACommon(AccountTestInvoicingCommon):
                     "vat": "IT06363381002",
                     "email": "info@yourcompany.example.com",
                     "fatturapa_fiscal_position_id": fatturapa_fiscal_position_id,
-                    "country_id": self.env.company.country_id.id,
-                    "account_fiscal_country_id": self.env.company.account_fiscal_country_id.id,
+                    "country_id": company.country_id.id,
+                    "account_fiscal_country_id": company.account_fiscal_country_id.id,
                     "fatturapa_art73": True,
                 }
             )

@@ -8,7 +8,6 @@ from odoo.exceptions import UserError, ValidationError
 
 
 class DeclarationOfIntentYearlyLimit(models.Model):
-
     _name = "l10n_it_declaration_of_intent.yearly_limit"
     _description = "Yearly limit for declarations"
     _order = "company_id, year desc"
@@ -21,8 +20,8 @@ class DeclarationOfIntentYearlyLimit(models.Model):
 
     def _compute_used_amount(self):
         for record in self:
-            date_start = datetime.strptime("01-01-{}".format(record.year), "%d-%m-%Y")
-            date_end = datetime.strptime("31-12-{}".format(record.year), "%d-%m-%Y")
+            date_start = datetime.strptime(f"01-01-{record.year}", "%d-%m-%Y")
+            date_end = datetime.strptime(f"31-12-{record.year}", "%d-%m-%Y")
             declarations = self.env["l10n_it_declaration_of_intent.declaration"].search(
                 [
                     ("date_start", ">=", date_start),
@@ -34,7 +33,6 @@ class DeclarationOfIntentYearlyLimit(models.Model):
 
 
 class DeclarationOfIntent(models.Model):
-
     _name = "l10n_it_declaration_of_intent.declaration"
     _description = "Declaration of intent"
     _order = "date_start desc,date_end desc"
@@ -99,7 +97,7 @@ class DeclarationOfIntent(models.Model):
             if values.get("type", False) == "in":
                 year = fields.Date.to_date(values["date_start"]).strftime("%Y")
                 plafond = self.env.company.declaration_yearly_limit_ids.filtered(
-                    lambda r: r.year == year
+                    lambda r, y=year: r.year == y
                 )
                 if not plafond:
                     raise UserError(
@@ -108,8 +106,8 @@ class DeclarationOfIntent(models.Model):
                             "settings"
                         )
                     )
-                date_start = datetime.strptime("01-01-{}".format(year), "%d-%m-%Y")
-                date_end = datetime.strptime("31-12-{}".format(year), "%d-%m-%Y")
+                date_start = datetime.strptime(f"01-01-{year}", "%d-%m-%Y")
+                date_end = datetime.strptime(f"31-12-{year}", "%d-%m-%Y")
                 declarations = self.search(
                     [
                         ("date_start", ">=", date_start),
@@ -177,10 +175,7 @@ class DeclarationOfIntent(models.Model):
         for record in self:
             complete_name = record.number
             if record.partner_document_number:
-                complete_name = "{} ({})".format(
-                    complete_name,
-                    record.partner_document_number,
-                )
+                complete_name = f"{complete_name} ({record.partner_document_number})"
             res.append(
                 (record.id, complete_name),
             )
@@ -255,7 +250,6 @@ class DeclarationOfIntent(models.Model):
 
 
 class DeclarationOfIntentLine(models.Model):
-
     _name = "l10n_it_declaration_of_intent.declaration_line"
     _description = "Details of declaration of intent"
 

@@ -30,11 +30,13 @@ ITA - Fattura elettronica - Emissione - Scissione Pagamenti
 
 **Italiano**
 
-Modulo tecnico di integrazione tra l10n_it_split_payment e l10n_it_fatturapa_out
+Modulo tecnico di integrazione tra l10n_it_split_payment e
+l10n_it_fatturapa_out
 
 **English**
 
-Technical module for integrating l10n_it_split_payment and l10n_it_fatturapa_out
+Technical module for integrating l10n_it_split_payment and
+l10n_it_fatturapa_out
 
 **Table of contents**
 
@@ -55,17 +57,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Marco Colombo
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Marco Colombo <https://github.com/TheMule71>
+-  Marco Colombo <https://github.com/TheMule71>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

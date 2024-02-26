@@ -154,8 +154,11 @@ class WithholdingTaxMovePayment(models.Model):
         for wt_move in wt_moves:
             if wt_move.state == "paid":
                 raise ValidationError(
-                    _("WT move already paid! - {} - {} - {}").format(
-                        wt_move.partner_id.name, wt_move.date, str(wt_move.amount)
+                    _(
+                        "WT move already paid! - %(partner)s - %(date)s - %(amount)s",
+                        partner=wt_move.partner_id.name,
+                        date=wt_move.date,
+                        amount=str(wt_move.amount),
                     )
                 )
 
@@ -163,12 +166,12 @@ class WithholdingTaxMovePayment(models.Model):
                 raise ValidationError(
                     _(
                         "WT move already in a payment move! "
-                        "Paym. move {} - Ref WT: {} - {} - {}"
-                    ).format(
-                        str(wt_move.wt_move_payment_id.id),
-                        wt_move.partner_id.name,
-                        wt_move.date,
-                        str(wt_move.amount),
+                        "Paym. move %(move)s - "
+                        "Ref WT: %(partner)s - %(date)s - %(amount)s",
+                        move=str(wt_move.wt_move_payment_id.id),
+                        partner=wt_move.partner_id.name,
+                        date=wt_move.date,
+                        amount=str(wt_move.amount),
                     )
                 )
 

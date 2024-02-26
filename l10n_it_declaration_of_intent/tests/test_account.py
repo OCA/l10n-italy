@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestAccount(TransactionCase):
     def setUp(self):
-        super(TestAccount, self).setUp()
+        super().setUp()
         self.fiscal_position = (
             self.env["account.fiscal.position"]
             .sudo()

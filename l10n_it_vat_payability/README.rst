@@ -30,7 +30,8 @@ ITA - Esigibilità IVA
 
 **Italiano**
 
-Aggiunge all'imposta il campo esigibilità da usare nei dichiarativi fiscali italiani
+Aggiunge all'imposta il campo esigibilità da usare nei dichiarativi
+fiscali italiani
 
 **English**
 
@@ -55,22 +56,23 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Openforce di Camilli Alessandro
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alessandro Camilli <alessandrocamilli@openforce.it>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Gianmarco Conte <gconte@dinamicheaziendali.it>
-* Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>
-* Alex Comba <alex.comba@agilebg.com>
-* Marco Colombo <marco.colombo@phi.technology>
+-  Alessandro Camilli <alessandrocamilli@openforce.it>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Giuseppe Borruso - Dinamiche Aziendali srl
+   <gborruso@dinamicheaziendali.it>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Marco Colombo <marco.colombo@phi.technology>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
