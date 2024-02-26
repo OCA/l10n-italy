@@ -323,14 +323,23 @@ class AccountInvoice(models.Model):
         for line in self.invoice_line_ids:
             if line.price_unit >= 0:
                 return
-        # if every line is negative, change them all
+        # if every line is negative, change them all, and change move type
+        if self.fiscal_document_type_id.code == "TD01":
+            self.move_type = "in_refund"
         for line in self.invoice_line_ids:
-            line.with_context(check_move_validity=False).update(
-                {"price_unit": -line.price_unit}
-            )
-        self.with_context(check_move_validity=False)._recompute_dynamic_lines(
-            recompute_all_taxes=True
-        )
+            line = line.with_context(check_move_validity=False)
+            line.update({"price_unit": -line.price_unit})
+            line._onchange_price_subtotal()
+            line._onchange_mark_recompute_taxes()
+        self.with_context(check_move_validity=False)._onchange_invoice_line_ids()
+        for line in self.line_ids:
+            if (
+                not line.amount_currency
+                and self.company_id.currency_id.id == self.currency_id.id
+            ):
+                # force updating amount_currency,
+                # computed like in account.move.line.create
+                line.update({"amount_currency": line.balance})
 
 
 class FatturapaArticleCode(models.Model):
