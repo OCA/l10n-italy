@@ -227,7 +227,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,help:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__message_has_error
-#: model:ir.model.fields,help:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -434,11 +433,6 @@ msgid "Responsible User"
 msgstr "Utente responsabile"
 
 #. module: l10n_it_fatturapa_import_zip
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__state
 msgid "State"
 msgstr "Stato"
@@ -519,3 +513,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.view_fatturapa_in_attachment_form_zip_import
 msgid "ZIP import"
 msgstr "Importa file ZIP"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
