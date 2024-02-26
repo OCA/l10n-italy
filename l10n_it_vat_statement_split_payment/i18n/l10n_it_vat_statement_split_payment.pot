@@ -60,5 +60,5 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_vat_statement_split_payment/models/statement.py:0
 #, python-format
-msgid "from {} to {}"
+msgid "from %(start)s to %(end)s"
 msgstr ""
