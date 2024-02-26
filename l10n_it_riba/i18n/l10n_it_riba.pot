@@ -558,9 +558,7 @@ msgstr ""
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_has_error
-#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_has_sms_error
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_has_error
-#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -1188,12 +1186,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_setup_bank_manual_config__codice_sia
 #: model:ir.model.fields,field_description:l10n_it_riba.field_res_partner_bank__codice_sia
 msgid "SIA Code"
-msgstr ""
-
-#. module: l10n_it_riba
-#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_has_sms_error
-#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_it_riba
