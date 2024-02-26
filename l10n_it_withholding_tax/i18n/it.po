@@ -556,6 +556,20 @@ msgid "W.T. Reg. on"
 msgstr "RdA registrata il"
 
 #. module: l10n_it_withholding_tax
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "WT %(code)s - %(move)s"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
+#, python-format
+msgid "WT %(code)s - %(partner)s - %(move)s"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__wt_account_move_id
 msgid "WT Move"
 msgstr "Movimento RdA"
@@ -589,20 +603,6 @@ msgstr "Movimenti RdA"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move__full_reconcile_id
 msgid "WT reconciliation"
 msgstr "Riconciliazione RdA"
-
-#. module: l10n_it_withholding_tax
-#. odoo-python
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
-#, python-format
-msgid "WT {0} - {1}"
-msgstr "RA {0} - {1}"
-
-#. module: l10n_it_withholding_tax
-#. odoo-python
-#: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:0
-#, python-format
-msgid "WT {0} - {1} - {2}"
-msgstr "RA {0} - {1} - {2}"
 
 #. module: l10n_it_withholding_tax
 #. odoo-python
@@ -722,6 +722,14 @@ msgstr "Registro ritenuta d'acconto"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__wt_types
 msgid "Withholding tax type"
 msgstr "Tipologia ritenuta d'acconto"
+
+#, python-format
+#~ msgid "WT {0} - {1}"
+#~ msgstr "RA {0} - {1}"
+
+#, python-format
+#~ msgid "WT {0} - {1} - {2}"
+#~ msgstr "RA {0} - {1} - {2}"
 
 #, python-format
 #~ msgid "Move %s is reconciled (%s). You must unreconcile it first"
