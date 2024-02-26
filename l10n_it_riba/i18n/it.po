@@ -575,9 +575,7 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_has_error
-#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_has_sms_error
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_has_error
-#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -1207,12 +1205,6 @@ msgid "SIA Code"
 msgstr "Codice SIA"
 
 #. module: l10n_it_riba
-#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_has_sms_error
-#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: l10n_it_riba
 #. odoo-python
 #: code:addons/l10n_it_riba/models/account.py:0
 #, python-format
@@ -1375,6 +1367,9 @@ msgstr "del"
 #, python-format
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "Bank Statement Line"
 #~ msgstr "Riga estratto conto bancario"
