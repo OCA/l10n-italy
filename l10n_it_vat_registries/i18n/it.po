@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:26+0000\n"
-"PO-Revision-Date: 2023-10-09 05:35+0000\n"
+"PO-Revision-Date: 2024-02-26 12:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -66,7 +66,7 @@ msgstr "Fatture cliente"
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__date_name
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__entry_order__date_name
 msgid "Date - Number"
-msgstr ""
+msgstr "Data - Numero"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__date_range_id
@@ -93,7 +93,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__entry_order
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__entry_order
 msgid "Entry Order"
-msgstr ""
+msgstr "Inserire ordine"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax__exclude_from_registries
@@ -140,7 +140,7 @@ msgstr "Registro"
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__journal_date_name
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__entry_order__journal_date_name
 msgid "Journal - Date - Number"
-msgstr ""
+msgstr "Registro - Data - Numero"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__journal_ids
