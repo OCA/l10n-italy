@@ -259,8 +259,9 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
-"Current invoice is from {} with REA Code {}. Yet it seems that partners {} "
-"have the same REA Code. This code should be unique; please fix it."
+"Current invoice is from %(partner)s with REA Code %(code)s. Yet it seems "
+"that partners %(partners)s have the same REA Code. This code should be "
+"unique; please fix it."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -630,7 +631,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_error
-#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -1177,11 +1177,6 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "Rounding up"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
