@@ -9,4 +9,6 @@
 * Sergio Zanchetta <https://github.com/primes2h>
 * Simone Vanin <simone.vanin@agilebg.com>
 * Sergio Corato <https://github.com/sergiocorato>
-* Giovanni Serra <giovanni@gslab.it>
+
+* `Ooops <https://www.ooops404.com>`_:
+  * Giovanni Serra <giovanni@gslab.it>
