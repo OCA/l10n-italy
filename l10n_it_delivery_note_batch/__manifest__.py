@@ -11,7 +11,14 @@
     "version": "16.0.1.0.1",
     "category": "Localization/Italy",
     "license": "AGPL-3",
-    "maintainers": ["MarcoCalcagni", "TheMule71", "Borruso"],
+    "maintainers": [
+        "MarcoCalcagni",
+        "TheMule71",
+        "Borruso",
+        "aleuffre",
+        "PicchiSeba",
+        "renda-dev",
+    ],
     "depends": [
         "stock",
         "stock_picking_batch",
