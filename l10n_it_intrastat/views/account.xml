@@ -140,9 +140,9 @@
                             name="country_destination_id"
                             attrs="{
                                    'invisible': [
-                                       ('statement_section', 'not in', ['sale_s1'])],
+                                       ('statement_section', 'not in', ['sale_s1', 'sale_s2'])],
                                    'required': [
-                                       ('statement_section', 'in', ['sale_s1'])]}"
+                                       ('statement_section', 'in', ['sale_s1', 'sale_s2'])]}"
                         />
                            </group>
 
