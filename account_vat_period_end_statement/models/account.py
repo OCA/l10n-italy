@@ -109,6 +109,7 @@ class AccountVatPeriodEndStatement(models.Model):
     _name = "account.vat.period.end.statement"
     _description = "VAT period end statement"
     _rec_name = "date"
+    _order = "date DESC, id DESC"
 
     debit_vat_account_line_ids = fields.One2many(
         "statement.debit.account.line",
