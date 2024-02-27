@@ -744,6 +744,12 @@ msgstr "DDV izjava"
 msgid "You cannot delete a confirmed or paid statement"
 msgstr "Potrjenih ali plačanih izjav ne morete brisati"
 
+#. module: account_vat_period_end_statement
+#: code:addons/account_vat_period_end_statement/report/vat_statement.py:0
+#, python-format
+msgid "You must select documents from the same company!"
+msgstr ""
+
 #~ msgid "Account Lines"
 #~ msgstr "Kontne postavke"
 
