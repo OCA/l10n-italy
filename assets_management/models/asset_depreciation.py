@@ -299,7 +299,9 @@ class AssetDepreciation(models.Model):
 
         new_lines = self.env["asset.depreciation.line"]
         for dep in self:
-            new_lines |= dep.generate_depreciation_lines_single(dep_date)
+            new_line = dep.generate_depreciation_lines_single(dep_date)
+            if new_line:
+                new_lines |= new_line
 
         return new_lines
 
@@ -311,6 +313,8 @@ class AssetDepreciation(models.Model):
         dep_nr = self.get_max_depreciation_nr() + 1
         dep = self.with_context(dep_nr=dep_nr, used_asset=self.asset_id.used)
         dep_amount = dep.get_depreciation_amount(dep_date)
+        if not dep_amount:
+            return res
         dep = dep.with_context(dep_amount=dep_amount)
 
         vals = dep.prepare_depreciation_line_vals(dep_date)
