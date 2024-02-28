@@ -6,18 +6,28 @@ from openupgradelib import openupgrade
 
 @openupgrade.migrate()
 def migrate(env, version):
-    openupgrade.add_fields(
-        env,
-        [("amount_sp", "account.move", False, "float", False, "l10n_it_split_payment")],
-    )
-    openupgrade.logged_query(
-        env.cr,
-        """
-        update account_move
-        set
-            amount_sp = inv.amount_sp
-        from account_invoice inv
-        where
-            account_move.id = inv.move_id;
-    """,
-    )
+    if not openupgrade.column_exists(env.cr, "account_move", "amount_sp"):
+        openupgrade.add_fields(
+            env,
+            [
+                (
+                    "amount_sp",
+                    "account.move",
+                    False,
+                    "float",
+                    False,
+                    "l10n_it_split_payment",
+                )
+            ],
+        )
+        openupgrade.logged_query(
+            env.cr,
+            """
+            update account_move
+            set
+                amount_sp = inv.amount_sp
+            from account_invoice inv
+            where
+                account_move.id = inv.move_id;
+        """,
+        )
