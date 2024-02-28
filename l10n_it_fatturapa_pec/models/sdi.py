@@ -121,10 +121,10 @@ class SdiChannel(models.Model):
         self._check_fetchmail()
         self.check_first_pec_sending()
         user = self.env.user
-        company = user.company_id
         for att in attachment_out_ids:
             if not att.datas or not att.name:
                 raise UserError(_("File content and file name are mandatory"))
+            company = att.company_id
             mail_message = self.env["mail.message"].create(
                 {
                     "model": att._name,
@@ -135,8 +135,8 @@ class SdiChannel(models.Model):
                         att.name, company.email_exchange_system
                     ),
                     "attachment_ids": [(6, 0, att.ir_attachment_id.ids)],
-                    "email_from": (company.email_from_for_fatturaPA),
-                    "reply_to": (company.email_from_for_fatturaPA),
+                    "email_from": company.email_from_for_fatturaPA,
+                    "reply_to": company.email_from_for_fatturaPA,
                     "mail_server_id": company.sdi_channel_id.pec_server_id.id,
                 }
             )

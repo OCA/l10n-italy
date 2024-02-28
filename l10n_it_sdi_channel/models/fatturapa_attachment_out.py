@@ -34,8 +34,7 @@ class FatturaPAAttachmentOut(models.Model):
         if set(states) != {"ready"}:
             raise UserError(_("You can only send files in 'Ready to Send' state."))
 
-        company = self.env.company
-        sdi_channel = company.sdi_channel_id
+        sdi_channel = self.company_id.sdi_channel_id
         send_result = sdi_channel.send(self)
         return send_result
 
