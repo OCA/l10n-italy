@@ -302,7 +302,7 @@ class WizardExportFatturapa(models.TransientModel):
                 "mimetype": "application/x-pdf",
             }
         )
-        inv.write(
+        inv.sudo().write(
             {
                 "fatturapa_doc_attachments": [
                     (
