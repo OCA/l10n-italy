@@ -7,8 +7,7 @@ from odoo import fields, models
 
 
 class AccountInvoice(models.Model):
-
-    _inherit = 'account.invoice'
+    _inherit = "account.invoice"
     # we need this to be able to call l10n_it_ddt.delivery_data
-    note = fields.Text('Notes', readonly=True, related="comment")
-    date_done = fields.Datetime(string='Shipping Date')
+    note = fields.Text("Notes", readonly=True, related="comment")
+    date_done = fields.Datetime(string="Shipping Date")

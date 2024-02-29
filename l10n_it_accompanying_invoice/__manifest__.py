@@ -4,13 +4,12 @@
 
 {
     "name": "ITA - Fattura accompagnatoria",
-    'summary': 'Stampa della fattura accompagnatoria',
+    "summary": "Stampa della fattura accompagnatoria",
     "version": "12.0.1.0.0",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-italy"
-               "/tree/12.0/l10n_it_accompanying_invoice",
-    "author": "Agile Business Group, "
-              "Odoo Community Association (OCA)",
+    "/tree/12.0/l10n_it_accompanying_invoice",
+    "author": "Agile Business Group, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
