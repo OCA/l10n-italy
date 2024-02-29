@@ -23,10 +23,11 @@ class TestTax(AccountTestInvoicingCommon):
             {"name": "Fiscal year", "company_id": False, "allow_overlap": False}
         )
         generator = cls.env["date.range.generator"]
+        current_datetime = datetime(2020, month=6, day=15)
         generator = generator.create(
             {
-                "date_start": "%s-01-01" % datetime.now().year,
-                "name_prefix": "%s-" % datetime.now().year,
+                "date_start": "%s-01-01" % current_datetime.year,
+                "name_prefix": "%s-" % current_datetime.year,
                 "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
@@ -36,8 +37,8 @@ class TestTax(AccountTestInvoicingCommon):
         generator.action_apply()
         prev_year_generator = generator.create(
             {
-                "date_start": "%s-01-01" % (datetime.now().year - 1),
-                "name_prefix": "%s-" % (datetime.now().year - 1),
+                "date_start": "%s-01-01" % (current_datetime.year - 1),
+                "name_prefix": "%s-" % (current_datetime.year - 1),
                 "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
@@ -51,11 +52,13 @@ class TestTax(AccountTestInvoicingCommon):
         cls.term_line_model = cls.env["account.payment.term.line"]
         cls.invoice_model = cls.env["account.move"]
         cls.invoice_line_model = cls.env["account.move.line"]
-        today = datetime.now().date()
+        current_date = current_datetime.date()
         cls.current_period = cls.env["date.range"].search(
-            [("date_start", "<=", today), ("date_end", ">=", today)]
+            [("date_start", "<=", current_date), ("date_end", ">=", current_date)]
         )
-        cls.last_year_date = date(today.year - 1, today.month, today.day)
+        cls.last_year_date = date(
+            current_date.year - 1, current_date.month, current_date.day
+        )
         cls.last_year_period = cls.env["date.range"].search(
             [
                 ("date_start", "<=", cls.last_year_date),
@@ -86,7 +89,7 @@ class TestTax(AccountTestInvoicingCommon):
             cls.invoice_model.search(
                 [("invoice_date", "!=", False)], order="invoice_date desc", limit=1
             ).invoice_date
-            or today
+            or current_date
         )
         cls.last_year_recent_date = date(
             cls.recent_date.year - 1, cls.recent_date.month, cls.recent_date.day
