@@ -5,14 +5,12 @@ import odoo.tests
 
 class TestReport(odoo.tests.TransactionCase):
     def test_report(self):
-        report = self.env['ir.actions.report']._get_report_from_name(
-            'l10n_it_accompanying_invoice.accompanying_invoice_template'
+        report = self.env["ir.actions.report"]._get_report_from_name(
+            "l10n_it_accompanying_invoice.accompanying_invoice_template"
         )
 
-        partner1 = self.env.ref('base.res_partner_1')
-        invoice = self.env['account.invoice'].create({
-            'partner_id': partner1.id
-        })
+        partner1 = self.env.ref("base.res_partner_1")
+        invoice = self.env["account.invoice"].create({"partner_id": partner1.id})
 
         html = report.render_qweb_html([invoice.id])
 
