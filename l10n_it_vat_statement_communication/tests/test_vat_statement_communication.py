@@ -334,11 +334,11 @@ class VatStatementCommunicationCase(TestAccountReconciliationCommon):
         old_company = comunicazione_liquidazione.company_id
 
         old_company.partner_id.write(
-            {"vat": "IT12345670017", "fiscalcode": "FNCPLC19D01I168X"}
+            {"vat": "IT12345670017", "fiscalcode": "12345670017"}
         )
 
         company = self.env["res.company"].create(
-            {"name": "foo", "vat": "IT12345670017", "fiscalcode": "FNCPLC19D01I168X"}
+            {"name": "foo", "vat": "IT12345670017", "fiscalcode": "12345670017"}
         )
 
         with Form(comunicazione_liquidazione) as invoice_form:
