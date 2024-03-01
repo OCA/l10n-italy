@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-10 10:11+0000\n"
+"PO-Revision-Date: 2024-03-01 10:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -467,7 +467,7 @@ msgstr "Pagamento in corso"
 #. module: fiscal_epos_print
 #: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_payment_method__fiscalprinter_payment_type
 msgid "Payment type"
-msgstr "Tipo di pagamento"
+msgstr "Tipo pagamento"
 
 #. module: fiscal_epos_print
 #. openerp-web
