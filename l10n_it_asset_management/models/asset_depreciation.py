@@ -283,7 +283,8 @@ class AssetDepreciation(models.Model):
             raise ValidationError(
                 _(
                     "Cannot update the following assets which contain"
-                    " draft depreciation for the chosen date and types:\n%(draft_names)s",
+                    " draft depreciation for the"
+                    " chosen date and types:\n%(draft_names)s",
                     draft_names=draft_names,
                 )
             )

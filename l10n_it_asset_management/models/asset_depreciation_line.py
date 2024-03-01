@@ -343,7 +343,7 @@ class AssetDepreciationLine(models.Model):
         self.mapped("move_id").unlink()
 
     def generate_account_move(self):
-        for line in self.filtered(lambda l: l.needs_account_move()):
+        for line in self.filtered(lambda line: line.needs_account_move()):
             line.generate_account_move_single()
 
     def generate_account_move_single(self):
@@ -480,7 +480,7 @@ class AssetDepreciationLine(models.Model):
         dep.ensure_one()
         types = ("gain", "loss")
         gain_or_loss = self.filtered(
-            lambda l: l.needs_account_move() and l.move_type in types
+            lambda line: line.needs_account_move() and line.move_type in types
         )
         if gain_or_loss:
             gain_or_loss.generate_account_move_single()
@@ -491,7 +491,7 @@ class AssetDepreciationLine(models.Model):
         dep.ensure_one()
         types = ("depreciated", "gain", "loss")
         to_create_move = self.filtered(
-            lambda l: l.needs_account_move() and l.move_type in types
+            lambda line: line.needs_account_move() and line.move_type in types
         )
         if to_create_move:
             to_create_move.generate_account_move()
