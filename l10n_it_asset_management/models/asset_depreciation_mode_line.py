@@ -59,7 +59,7 @@ class AssetDepreciationModeLine(models.Model):
             return multiplier
 
         lines = self.filtered(
-            lambda l: l.from_nr <= nr and (not l.to_nr or l.to_nr >= nr)
+            lambda line: line.from_nr <= nr and (not line.to_nr or line.to_nr >= nr)
         )
         if not lines:
             return multiplier

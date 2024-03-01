@@ -54,7 +54,7 @@ class AccountMove(models.Model):
             dep_lines = aa_infos.mapped("dep_line_id")
             aa_infos.unlink()
             # Filtering needed: cannot delete dep lines with a.a.info
-            dep_lines.filtered(lambda l: not l.asset_accounting_info_ids).unlink()
+            dep_lines.filtered(lambda line: not line.asset_accounting_info_ids).unlink()
         return res
 
     @api.depends(

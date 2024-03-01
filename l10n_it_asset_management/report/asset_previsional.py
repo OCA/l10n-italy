@@ -713,7 +713,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
     type_name = fields.Char()
 
     def clean_unused(self):
-        self.filtered(lambda l: l.do_clean()).unlink()
+        self.filtered(lambda line: line.do_clean()).unlink()
 
     def do_clean(self):
         self.ensure_one()
@@ -725,7 +725,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
         ):
             previous_line = (
                 self.report_depreciation_id.report_depreciation_year_line_ids.filtered(
-                    lambda l: l.sequence == self.sequence - 1
+                    lambda line: line.sequence == self.sequence - 1
                 )
             )
             if float_is_zero(previous_line.amount_residual, digits):
@@ -796,7 +796,8 @@ class ReportDepreciationLineByYear(models.TransientModel):
             [
                 line.amount
                 for line in self.dep_line_ids.filtered(
-                    lambda l: l.move_type == "depreciated" and not l.partial_dismissal
+                    lambda line: line.move_type == "depreciated"
+                    and not line.partial_dismissal
                 )
             ]
         )
@@ -804,13 +805,14 @@ class ReportDepreciationLineByYear(models.TransientModel):
             [
                 line.amount
                 for line in self.dep_line_ids.filtered(
-                    lambda l: l.move_type == "depreciated" and l.partial_dismissal
+                    lambda line: line.move_type == "depreciated"
+                    and line.partial_dismissal
                 )
             ]
         )
 
         prev_year_line = report_dep.report_depreciation_year_line_ids.filtered(
-            lambda l: l.sequence == self.sequence - 1
+            lambda line: line.sequence == self.sequence - 1
         )
         asset = self.report_depreciation_id.report_asset_id.asset_id
         fy_start = self.fiscal_year_id.date_from
@@ -866,7 +868,8 @@ class ReportDepreciationLineByYear(models.TransientModel):
 
         type_mapping = {"in": {}, "out": {}}
         for dep_line in self.dep_line_ids.filtered(
-            lambda l: l.move_type in ("in", "out") and l.depreciation_line_type_id
+            lambda line: line.move_type in ("in", "out")
+            and line.depreciation_line_type_id
         ):
             dep_type = dep_line.depreciation_line_type_id
             if dep_type not in type_mapping[dep_line.move_type]:

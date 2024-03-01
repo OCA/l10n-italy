@@ -679,7 +679,8 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 if sign < 0 and float_compare(residual, amount, digits) < 0:
                     raise ValidationError(
                         _(
-                            "Could not update `%(asset_name)s`: not enough residual amount"
+                            "Could not update `%(asset_name)s`:"
+                            " not enough residual amount"
                             " to write off move `%(move_num)s`.\n"
                             "(Amount to write off: %(amount)s;"
                             " residual amount: %(residual)s.)\n"
@@ -714,9 +715,11 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             if balances < 0 and residual + balances < 0:
                 raise ValidationError(
                     _(
-                        "Could not update `%(asset_name)s`: not enough residual amount to"
+                        "Could not update `%(asset_name)s`:"
+                        " not enough residual amount to"
                         " write off.\n"
-                        "(Amount to write off: %(balances)s; residual amount: %(residual)s.)\n"
+                        "(Amount to write off: %(balances)s;"
+                        " residual amount: %(residual)s.)\n"
                         "Maybe you should try to dismiss this asset instead?",
                         asset_name=asset_name,
                         balances=balances,
