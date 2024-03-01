@@ -23,6 +23,7 @@ exclude: |
   # external stylesheets
   (l10n_it_fatturapa/data/Foglio_di_stile_fatturaordinaria_v1.2.2.xsl)|
   (l10n_it_fatturapa/data/FoglioStileAssoSoftware.xsl)|
+  (l10n_it_fatturapa/data/FoglioStileSouthTyrol-bilingue.xsl)|
   # XML tests should not be reformatted
   ^l10n_it_fatturapa_out/tests/data|
   ^l10n_it_fatturapa_in/tests/data|
