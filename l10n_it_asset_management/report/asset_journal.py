@@ -809,7 +809,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
         if type_mapping["in"]:
             amount_in_detail = "; ".join(
                 [
-                    "{}: {}".format(dep_type.name, self.format_amount(amount))
+                    f"{dep_type.name}: {self.format_amount(amount)}"
                     for dep_type, amount in sorted(list(type_mapping["in"].items()))
                 ]
             )
@@ -817,7 +817,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
         if type_mapping["out"]:
             amount_out_detail = "; ".join(
                 [
-                    "{}: {}".format(dep_type.name, self.format_amount(amount))
+                    f"{dep_type.name}: {self.format_amount(amount)}"
                     for dep_type, amount in sorted(list(type_mapping["out"].items()))
                 ]
             )
@@ -845,7 +845,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
         if start == end:
             year = str(start)
         else:
-            year = "{} - {}".format(start, end)
+            year = f"{start} - {end}"
 
         return {
             "amount_depreciable": amount_depreciable,

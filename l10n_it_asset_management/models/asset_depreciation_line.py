@@ -272,7 +272,7 @@ class AssetDepreciationLine(models.Model):
 
     def make_name(self):
         self.ensure_one()
-        return "{} ({})".format(self.name, self.depreciation_id.make_name())
+        return f"{self.name} ({self.depreciation_id.make_name()})"
 
     def need_normalize_depreciation_nr(self):
         """Check if numbers need to be normalized"""
@@ -314,7 +314,6 @@ class AssetDepreciationLine(models.Model):
         :param force: force normalization for every depreciations' lines
         """
         for dep in self.mapped("depreciation_id"):
-
             # Avoid if user chooses to use custom numbers
             if dep.force_all_dep_nr:
                 continue
@@ -387,7 +386,7 @@ class AssetDepreciationLine(models.Model):
         Maps line `move_type` to its own method for generating move lines.
         """
         return {
-            t: getattr(self, "get_{}_account_move_line_vals".format(t), False)
+            t: getattr(self, f"get_{t}_account_move_line_vals", False)
             for t in dict(self._fields["move_type"].selection).keys()
         }
 

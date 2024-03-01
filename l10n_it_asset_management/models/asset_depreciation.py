@@ -333,9 +333,9 @@ class AssetDepreciation(models.Model):
     def get_computed_amounts(self):
         self.ensure_one()
         vals = {
-            "amount_{}".format(k): abs(v)
+            f"amount_{k}": abs(v)
             for k, v in self.line_ids.get_balances_grouped().items()
-            if "amount_{}".format(k) in self._fields
+            if f"amount_{k}" in self._fields
         }
 
         if self.asset_id.sold or self.asset_id.dismissed:

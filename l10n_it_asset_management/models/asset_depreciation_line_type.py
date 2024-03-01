@@ -52,7 +52,7 @@ class DepLineType(models.Model):
         self.ensure_one()
         name = ""
         if self.code:
-            name += "[{}] ".format(self.code)
+            name += f"[{self.code}] "
         name += self.name
         type_name = dict(self._fields["type"].selection).get(self.type)
         if type_name:
