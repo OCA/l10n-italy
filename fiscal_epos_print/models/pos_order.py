@@ -29,7 +29,7 @@ class PosOrder(models.Model):
 
     @api.model
     def _order_fields(self, ui_order):
-        res = super(PosOrder, self)._order_fields(ui_order)
+        res = super()._order_fields(ui_order)
         res["lottery_code"] = ui_order.get("lottery_code", "")
         res["refund_date"] = ui_order.get("refund_date", False)
         res["refund_report"] = ui_order.get("refund_report", False)
@@ -53,7 +53,7 @@ class PosOrder(models.Model):
     def create_from_ui(self, orders, draft=False):
         if self.env.company.country_id.id == self.env.ref("base.it").id:
             draft = True
-        order_ids = super(PosOrder, self).create_from_ui(orders, draft)
+        order_ids = super().create_from_ui(orders, draft)
         process_order_ids = []
         for order in orders:
             if order["data"].get("pricelist_id", False):
@@ -98,7 +98,7 @@ class PosOrder(models.Model):
         return order_ids
 
     def _export_for_ui(self, order):
-        result = super(PosOrder, self)._export_for_ui(order)
+        result = super()._export_for_ui(order)
         result.update(
             {
                 "lottery_code": order.lottery_code,
