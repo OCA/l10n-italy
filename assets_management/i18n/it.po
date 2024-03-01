@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2024-01-22 10:41+0000\n"
+"PO-Revision-Date: 2024-03-01 10:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -2106,7 +2106,7 @@ msgstr "Riga movimento"
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__move_line_ids
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 msgid "Move Lines"
-msgstr "Righe di Movimento"
+msgstr "Righe movimento"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__is_move_state_ok
