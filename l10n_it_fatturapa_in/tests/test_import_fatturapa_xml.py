@@ -166,7 +166,6 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.amount_total, 9)
 
     def test_06_import_except(self):
-
         # fake Signed file is passed , generate parsing error
         with mute_logger("odoo.addons.l10n_it_fatturapa_in.models.attachment"):
             # File not exist Exception

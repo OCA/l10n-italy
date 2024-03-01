@@ -251,29 +251,29 @@ class SdiChannel(models.Model):
             error_list = parsed_notification.find("ListaErrori")
             error_str = ""
             for error in error_list:
-                error_str += "\n[%s] %s %s" % (
+                codice = (
                     error.find("Codice").text
                     if error.find("Codice") is not None
-                    else "",
+                    else ""
+                )
+                descrizione = (
                     error.find("Descrizione").text
                     if error.find("Descrizione") is not None
-                    else "",
+                    else ""
+                )
+                suggerimento = (
                     error.find("Suggerimento").text
                     if error.find("Suggerimento") is not None
-                    else "",
+                    else ""
                 )
+                error_str += f"\n[{codice}] {descrizione} {suggerimento}"
             return attachment.write(
                 {
                     "state": "sender_error",
-                    "last_sdi_response": "SdI ID: {}; "
-                    "Message ID: {};"
-                    "Receipt date: {}; "
-                    "Error: {}".format(
-                        id_sdi,
-                        message_id,
-                        receipt_dt,
-                        error_str,
-                    ),
+                    "last_sdi_response": f"SdI ID: {id_sdi}; "
+                    f"Message ID: {message_id};"
+                    f"Receipt date: {receipt_dt}; "
+                    f"Error: {error_str}",
                 }
             )
 
@@ -283,14 +283,9 @@ class SdiChannel(models.Model):
             return attachment.write(
                 {
                     "state": "recipient_error",
-                    "last_sdi_response": "SdI ID: {}; "
-                    "Message ID: {}; Receipt date: {}; "
-                    "Missed delivery note: {}".format(
-                        id_sdi,
-                        message_id,
-                        receipt_dt,
-                        missed_delivery_note,
-                    ),
+                    "last_sdi_response": f"SdI ID: {id_sdi}; "
+                    f"Message ID: {message_id}; Receipt date: {receipt_dt}; "
+                    f"Missed delivery note: {missed_delivery_note}",
                 }
             )
 
@@ -301,15 +296,10 @@ class SdiChannel(models.Model):
                 {
                     "state": "validated",
                     "delivered_date": fields.Datetime.now(),
-                    "last_sdi_response": "SdI ID: {}; "
-                    "Message ID: {}; "
-                    "Receipt date: {}; "
-                    "Delivery date: {}".format(
-                        id_sdi,
-                        message_id,
-                        receipt_dt,
-                        delivery_dt,
-                    ),
+                    "last_sdi_response": f"SdI ID: {id_sdi}; "
+                    f"Message ID: {message_id}; "
+                    f"Receipt date: {receipt_dt}; "
+                    f"Delivery date: {delivery_dt}",
                 }
             )
 
@@ -327,13 +317,9 @@ class SdiChannel(models.Model):
                     return attachment.write(
                         {
                             "state": state,
-                            "last_sdi_response": "SdI ID: {}; "
-                            "Message ID: {}; "
-                            "Response: {}".format(
-                                id_sdi,
-                                message_id,
-                                esito.text,
-                            ),
+                            "last_sdi_response": f"SdI ID: {id_sdi}; "
+                            f"Message ID: {message_id}; "
+                            f"Response: {esito.text}",
                         }
                     )
 
@@ -344,15 +330,10 @@ class SdiChannel(models.Model):
                 return attachment.write(
                     {
                         "state": "validated",
-                        "last_sdi_response": "SdI ID: {}; "
-                        "Message ID: {}; "
-                        "Receipt date: {}; "
-                        "Description: {}".format(
-                            id_sdi,
-                            message_id,
-                            receipt_dt,
-                            description.text,
-                        ),
+                        "last_sdi_response": f"SdI ID: {id_sdi}; "
+                        f"Message ID: {message_id}; "
+                        f"Receipt date: {receipt_dt}; "
+                        f"Description: {description.text}",
                     }
                 )
 
@@ -363,15 +344,10 @@ class SdiChannel(models.Model):
                 return attachment.write(
                     {
                         "state": "accepted",
-                        "last_sdi_response": "SdI ID: {}; "
-                        "Message ID: {}; "
-                        "Receipt date: {}; "
-                        "Description: {}".format(
-                            id_sdi,
-                            message_id,
-                            receipt_dt,
-                            description.text,
-                        ),
+                        "last_sdi_response": f"SdI ID: {id_sdi}; "
+                        f"Message ID: {message_id}; "
+                        f"Receipt date: {receipt_dt}; "
+                        f"Description: {description.text}",
                     }
                 )
         # Notification has not been managed
@@ -413,11 +389,7 @@ class SdiChannel(models.Model):
                     # out invoice not found, so it is an incoming invoice
                     continue
                 else:
-                    _logger.info(
-                        "Error: FatturaPA {} not found.".format(
-                            file_name,
-                        )
-                    )
+                    _logger.info(f"Error: FatturaPA {file_name} not found.")
                     # TODO Send a mail warning
                     continue
             else:
