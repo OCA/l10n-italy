@@ -17,6 +17,7 @@
                             <field name="name"/>
                             <field name="method"/>
                             <field name="description"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                         <group string="Self Invoicing">
                             <field name="partner_type"
@@ -59,6 +60,7 @@
                                     'readonly': [('method', '!=', 'selfinvoice')],
                                     'required': [('method', '=', 'selfinvoice')]}">
                                 <tree string="Tax Mapping" editable="bottom">
+                                    <field name="original_purchase_tax_id" />
                                     <field name="purchase_tax_id" domain="[('parent_id','=',False)]"/>
                                     <field name="sale_tax_id" domain="[('parent_id','=',False)]"/>
                                 </tree>

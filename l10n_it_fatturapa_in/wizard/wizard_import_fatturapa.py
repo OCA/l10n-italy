@@ -5,7 +5,6 @@ from openerp import models, api, fields, _
 from openerp.tools import float_is_zero
 from openerp.exceptions import Warning as UserError
 
-from openerp.addons.l10n_it_fatturapa.bindings import fatturapa
 from openerp.addons.base_iban.base_iban import _pretty_iban
 
 _logger = logging.getLogger(__name__)
@@ -1384,10 +1383,6 @@ class WizardImportFatturapa(models.TransientModel):
                     % (invoice.amount_untaxed, amount_untaxed)
                 )
 
-    def get_invoice_obj(self, fatturapa_attachment):
-        xml_string = fatturapa_attachment.get_xml_string()
-        return fatturapa.CreateFromDocument(xml_string)
-
     @api.multi
     def importFatturaPA(self):
         fatturapa_attachment_obj = self.env['fatturapa.attachment.in']
@@ -1403,7 +1398,13 @@ class WizardImportFatturapa(models.TransientModel):
             if fatturapa_attachment.in_invoice_ids:
                 raise UserError(
                     _("File is linked to bills yet."))
-            fatt = self.get_invoice_obj(fatturapa_attachment)
+
+            fatt = fatturapa_attachment.get_invoice_obj()
+            if not fatt:
+                raise UserError(
+                    _("Cannot import an attachment that could not be parsed.\n"
+                      "Please fix the parsing error first, then try again."))
+
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self.getCedPrest(cedentePrestatore)

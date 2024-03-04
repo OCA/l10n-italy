@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_fatturapa_out_rc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
+msgid "Fiscal Document Type"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:55
+#, python-format
+msgid "Impossible to set IdFiscaleIVA for %s"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:70
+#, python-format
+msgid "Partner %s, City is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:73
+#, python-format
+msgid "Partner %s, Country is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:67
+#, python-format
+msgid "Partner %s, Street is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:85
+#, python-format
+msgid "Partner %s, ZIP is not set."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model,name:l10n_it_fatturapa_out_rc.model_account_rc_type
+msgid "Reverse Charge Type"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:28
+#, python-format
+msgid "Selected invoices are both with and without reverse charge. You should selected a smaller set of invoices"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: code:addons/l10n_it_fatturapa_out_rc/wizard/wizard_export_e_invoice.py:33
+#, python-format
+msgid "Selected reverse charge invoices have different suppliers. Please select invoices with same supplier"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out_rc
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_rc.field_account_rc_type__fiscal_document_type_id
+msgid "To be used when sending self invoices to the exchange system"
+msgstr ""
+

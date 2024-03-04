@@ -118,6 +118,15 @@ class FatturaPACommon(TransactionCase):
                 'date_stop': '2019-12-31',
             }
         )
+        self.fiscalyear2020 = obj_acc_fiscalyear.create(
+            vals={
+                'name': '2020',
+                'code': '2020',
+                'date_start': '2020-01-01',
+                'date_stop': '2020-12-31',
+            }
+        )
+        self.fiscalyear2020.create_period()
         period_obj = self.env['account.period']
         self.period = period_obj.create({
             'name': "Period 01/2016",

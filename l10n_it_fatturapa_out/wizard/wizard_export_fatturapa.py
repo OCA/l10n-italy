@@ -878,6 +878,13 @@ class WizardExportFatturapa(models.TransientModel):
             res[invoice.partner_id.id].append(invoice.id)
         return res
 
+    @api.model
+    def get_invoices_context(self, invoice_ids):
+        partner = self.getPartnerId(invoice_ids)
+        context = self.env.context.copy()
+        context.update({'lang': partner.lang})
+        return context
+
     @api.multi
     def exportFatturaPA(self):
         invoice_obj = self.env['account.invoice']
@@ -892,13 +899,12 @@ class WizardExportFatturapa(models.TransientModel):
                 fatturapa = FatturaElettronica(versione='FPR12')
 
             company = self.env.user.company_id
-            context_partner = self.env.context.copy()
-            context_partner.update({'lang': partner.lang})
+            invoices_context = self.get_invoices_context(invoice_ids)
             try:
-                self.with_context(context_partner).setFatturaElettronicaHeader(
+                self.with_context(invoices_context).setFatturaElettronicaHeader(
                     company, partner, fatturapa)
                 for invoice_id in invoice_ids:
-                    inv = invoice_obj.with_context(context_partner).browse(
+                    inv = invoice_obj.with_context(invoices_context).browse(
                         invoice_id)
                     if inv.fatturapa_attachment_out_id:
                         raise UserError(
@@ -909,7 +915,7 @@ class WizardExportFatturapa(models.TransientModel):
                     invoice_body = FatturaElettronicaBodyType()
                     inv.preventive_checks()
                     self.with_context(
-                        context_partner
+                        invoices_context
                     ).setFatturaElettronicaBody(
                         inv, invoice_body)
                     fatturapa.FatturaElettronicaBody.append(invoice_body)
