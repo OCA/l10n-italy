@@ -601,8 +601,8 @@ class AccountMoveLine(models.Model):
             domain = [
                 (
                     "withholding_tax_generated_by_move_id",
-                    "=",
-                    account_move_line.move_id.id,
+                    "in",
+                    account_move_line._all_reconciled_lines().mapped("move_id").ids,
                 )
             ]
             wt_mls = self.env["account.move.line"].search(domain)
