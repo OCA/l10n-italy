@@ -1,6 +1,7 @@
 # Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # Copyright 2022 Simone Rubino - TAKOBI
 # Copyright 2023 Nextev Srl <odoo@nextev.it>
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import date
 
@@ -420,6 +421,46 @@ class TestAssetsManagement(TestAssets):
         self.assertEqual(asset.state, "partially_depreciated")
         self.assertAlmostEqual(
             sum(civ_dep_lines.mapped("amount")), 7000 * 0.6 + 9000 * 0.4
+        )
+
+    def test_entry_in_update_asset(self):
+        """An entry adding to the asset account
+        creates a positive accounting info."""
+        asset = self._create_asset()
+        added_amount = 100
+        entry = self._create_entry(asset.category_id.asset_account_id, added_amount)
+        # pre-condition
+        self.assertFalse(asset.asset_accounting_info_ids)
+
+        # Act
+        self._update_asset(entry, asset)
+
+        # Assert
+        accounting_info = asset.asset_accounting_info_ids
+        self.assertEqual(accounting_info.move_type, "in")
+        depreciation_info = asset.depreciation_ids
+        self.assertEqual(
+            depreciation_info.amount_residual, asset.purchase_amount + added_amount
+        )
+
+    def test_entry_out_update_asset(self):
+        """An entry removing from the asset account
+        creates a negative accounting info."""
+        asset = self._create_asset()
+        removed_amount = 100
+        entry = self._create_entry(asset.category_id.asset_account_id, -removed_amount)
+        # pre-condition
+        self.assertFalse(asset.asset_accounting_info_ids)
+
+        # Act
+        self._update_asset(entry, asset)
+
+        # Assert
+        accounting_info = asset.asset_accounting_info_ids
+        self.assertEqual(accounting_info.move_type, "out")
+        depreciation_info = asset.depreciation_ids
+        self.assertEqual(
+            depreciation_info.amount_residual, asset.purchase_amount - removed_amount
         )
 
     def _civil_depreciate_asset(self, asset):
