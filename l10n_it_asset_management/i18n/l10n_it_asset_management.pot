@@ -1054,15 +1054,6 @@ msgstr ""
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid ""
-"Could not retrieve depreciation line type from move `%(move_num)s` (type "
-"`%(move_type)s`)."
-msgstr ""
-
-#. module: l10n_it_asset_management
-#. odoo-python
-#: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
-msgid ""
 "Could not update `%(asset_name)s`: not enough residual amount to write off move `%(move_num)s`.\n"
 "(Amount to write off: %(amount)s; residual amount: %(residual)s.)\n"
 "Maybe you should try to dismiss this asset instead?"
