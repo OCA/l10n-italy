@@ -185,7 +185,6 @@
                                         name="button_unlink"
                                         type="object"
                                         string="Remove"
-                                        confirm="You confirm the removal of the current line? Depreciation line amounts will not be affected and will have to be updated manually."
                                         icon="fa-trash"
                                     />
                                 </tree>
