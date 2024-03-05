@@ -5,13 +5,14 @@ from odoo import api, fields, models
 
 SECTION_ACCOUNT_TYPES_DICT = {
     # Assets = "Receivable", "Bank and Cash", "Current Assets",
-    #          "Non-current Assets", "Fixed Assets"
+    #          "Non-current Assets", "Fixed Assets", "Prepayments"
     "assets": [
         "asset_receivable",
         "asset_cash",
         "asset_current",
         "asset_non_current",
         "asset_fixed",
+        "asset_prepayments",
     ],
     # Expenses = "Expenses", "Cost of Revenue", "Depreciation"
     "expenses": [
@@ -24,13 +25,12 @@ SECTION_ACCOUNT_TYPES_DICT = {
         "income",
         "income_other",
     ],
-    # Liabilities = "Current Year Earnings", "Payable", "Credit Card", "Prepayments",
+    # Liabilities = "Current Year Earnings", "Payable", "Credit Card",
     #               "Current Liabilities", "Non-current Liabilities", "Equity"
     "liabilities": [
         "equity_unaffected",
         "liability_payable",
         "liability_credit_card",
-        "asset_prepayments",
         "liability_current",
         "liability_non_current",
         "equity",
