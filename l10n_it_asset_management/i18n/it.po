@@ -18,6 +18,13 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_asset_management
+#. odoo-python
+#: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
+#, fuzzy, python-format
+msgid "%(year)s - Depreciation"
+msgstr "{} - Ammortamento"
+
+#. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.template_asset_journal_body
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.template_asset_previsional_body
 msgid ""
@@ -257,6 +264,7 @@ msgid "Activity Type Icon"
 msgstr "Icona tipo attività"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_line__amount
@@ -390,6 +398,7 @@ msgid "Application by"
 msgstr "Applica su"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__asset_id
@@ -468,17 +477,13 @@ msgid "Asset Dismissal"
 msgstr "Dismissione Cespite"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: model:ir.actions.act_window,name:l10n_it_asset_management.action_wizard_asset_journal_report
 #: model:ir.ui.menu,name:l10n_it_asset_management.menu_wizard_asset_journal_report
 #, python-format
 msgid "Asset Journal"
 msgstr "Registro cespiti"
-
-#. module: l10n_it_asset_management
-#: model:ir.actions.client,name:l10n_it_asset_management.act_client_asset_journal_report
-msgid "Asset Journal Report"
-msgstr "Resoconto libro cespiti"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_asset__asset_name
@@ -501,7 +506,6 @@ msgstr "Dismissione parziale Cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.actions.act_window,name:l10n_it_asset_management.action_wizard_asset_previsional_report
-#: model:ir.actions.client,name:l10n_it_asset_management.act_client_asset_previsional_report
 #: model:ir.ui.menu,name:l10n_it_asset_management.menu_wizard_asset_previsional_report
 msgid "Asset Previsional Report"
 msgstr "Registro Previsionale"
@@ -591,12 +595,14 @@ msgid "Asset depreciation type"
 msgstr "Tipo Amm. Cespite"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
 #, python-format
 msgid "Asset dismissal: "
 msgstr "Dismissione cespite: "
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
 #, python-format
 msgid "Asset: "
@@ -647,6 +653,7 @@ msgid "Assets Depreciations"
 msgstr "Ammortamenti"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #, python-format
 msgid "Assets Depreciations "
@@ -663,6 +670,7 @@ msgid "Assets Management"
 msgstr "Gestione"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
 msgid "Assets Previsional Depreciations "
@@ -684,18 +692,21 @@ msgid "Assets tag"
 msgstr "Etichetta beni"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "At least one move line is mandatory to create a new asset!"
 msgstr "È necessaria almeno una riga contabile per creare un nuovo cespite!"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "At least one move line is mandatory to dismiss an asset!"
 msgstr "È necessaria almeno una riga contabile per dismettere un cespite!"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "At least one move line is mandatory to update an asset!"
@@ -735,6 +746,7 @@ msgid "Base"
 msgstr "Imponibile"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_category.py:0
 #, python-format
 msgid ""
@@ -766,6 +778,7 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset.py:0
 #, python-format
 msgid "Cannot change category for an asset that's already been depreciated."
@@ -774,6 +787,7 @@ msgstr ""
 "ammortizzato."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
 #, python-format
 msgid "Cannot compute pro rata temporis for unknown date."
@@ -781,42 +795,49 @@ msgstr ""
 "Non è possibile calcolare il prorata temporis per una data sconosciuta."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
 #, python-format
 msgid "Cannot create a depreciation line without a date"
 msgstr "Non è possibile creare una riga di ammortamento senza data"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
 #, python-format
 msgid "Cannot create account move lines for lines of type `Historical`"
 msgstr "Non è possibile creare righe contabili per righe di tipo `Storico`"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
 #, python-format
 msgid "Cannot create account move lines for lines of type `In`"
 msgstr "Non è possibile creare righe contabili per righe di tipo `In`"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
 #, python-format
 msgid "Cannot create account move lines for lines of type `Out`"
 msgstr "Non è possibile creare righe contabili per righe di tipo `Out`"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
 #, python-format
 msgid "Cannot create account move lines: no method is specified."
 msgstr "Non è possibile creare righe contabili: nessun metodo specificato."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
 #, python-format
 msgid "Cannot create any depreciation according to current settings."
 msgstr "Non è possibile creare ammortamenti in base alle impostazioni scelte."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Cannot create asset if move lines come from different account moves!"
@@ -825,6 +846,7 @@ msgstr ""
 "movimenti!"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/account_account.py:0
 #, python-format
 msgid "Cannot delete accounts while they're still used by asset categories."
@@ -832,12 +854,14 @@ msgstr ""
 "Non è possibile eliminare conti ancora utilizzati da categorie cespiti."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_category.py:0
 #, python-format
 msgid "Cannot delete categories while they're still linked to an asset."
 msgstr "Non è possibile eliminare categorie ancora collegate a un cespite."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_mode.py:0
 #, python-format
 msgid ""
@@ -847,6 +871,7 @@ msgstr ""
 "categorie."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_mode.py:0
 #, python-format
 msgid ""
@@ -856,6 +881,7 @@ msgstr ""
 "ammortamenti."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_type.py:0
 #, python-format
 msgid ""
@@ -864,6 +890,7 @@ msgstr ""
 "Non è possibile eliminare tipi di ammortamento ancora collegati a categorie."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
 #, python-format
 msgid ""
@@ -873,22 +900,25 @@ msgstr ""
 "ammortamento collegate."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/account_journal.py:0
 #, python-format
 msgid "Cannot delete journals while they're still used by asset categories."
 msgstr "Non è possibile eliminare registri ancora usati da categorie cespite."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Cannot dismiss an asset earlier than the last depreciation date.\n"
-"(Dismiss date: {}, last depreciation date: {})."
+"(Dismiss date: %(dismiss_date)s, last depreciation date: %(max_date)s)."
 msgstr ""
 "Non è possibile dismette un cespite rpima dell'ultima data di ammortamento.\n"
 "(Data di Dismissione: {}, ultima data di ammortamento: {})."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Cannot dismiss asset if move lines come from different account moves!"
@@ -897,14 +927,16 @@ msgstr ""
 "da differenti registrazioni contabili!"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
-#, python-format
-msgid "Cannot get pro rata temporis multiplier for mode `{}`"
+#, fuzzy, python-format
+msgid "Cannot get pro rata temporis multiplier for mode `%(mode)s`"
 msgstr ""
 "Non è possibile calcolare il moltiplicatore del prorata temporis per il modo "
 "`{}`"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
 #, python-format
 msgid "Cannot get pro rata temporis multiplier for unspecified mode"
@@ -913,20 +945,23 @@ msgstr ""
 "sconosciuto"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line_type.py:0
-#, python-format
-msgid "Cannot remove type {}: there is some depreciation line linked to it."
+#, fuzzy, python-format
+msgid ""
+"Cannot remove type %(type)s: there is some depreciation line linked to it."
 msgstr ""
 "Non è possibile rimuovere il tipo {}: ci sono alcune righe di ammortamento "
 "collegate."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Cannot update the following assets which contain draft depreciation for the "
 "chosen date and types:\n"
-"{}"
+"%(draft_names)s"
 msgstr ""
 "Impossibile aggiornare i seguenti cespiti, contengono ammortamenti in bozza "
 "per data e tipologie scelte:\n"
@@ -963,6 +998,7 @@ msgid "Categories"
 msgstr "Categorie"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__category_id
@@ -989,6 +1025,7 @@ msgid "Choose Your Asset"
 msgstr "Scegli il Cespite"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__code
@@ -1043,27 +1080,35 @@ msgid "Company"
 msgstr "Azienda"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
-msgid "Could not determine how to link move lines to asset in mode `{}`."
+#, fuzzy, python-format
+msgid ""
+"Could not determine how to link move lines to asset in mode `"
+"%(management_type)s`."
 msgstr ""
 "Non è possibile determinare come collegare le righe dei movimenti al cespite "
 "nel modo `{}`."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
-msgid "Could not retrieve depreciation line type from move `{}` (type `{}`)."
+#, fuzzy, python-format
+msgid ""
+"Could not retrieve depreciation line type from move `%(move_num)s` (type `"
+"%(move_type)s`)."
 msgstr ""
 "Non è possibile recuperare il tipo delle righe di ammortamento dal movimento "
 "`{}` (tipo `{}`)."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Could not update `{}`: not enough residual amount to write off move `{}`.\n"
-"(Amount to write off: {}; residual amount: {}.)\n"
+"Could not update `%(asset_name)s`: not enough residual amount to write off "
+"move `%(move_num)s`.\n"
+"(Amount to write off: %(amount)s; residual amount: %(residual)s.)\n"
 "Maybe you should try to dismiss this asset instead?"
 msgstr ""
 "Non è possibile aggiornare `{}`: non c'è sufficiente importo residuo da "
@@ -1072,11 +1117,12 @@ msgstr ""
 "Forse si dovrebbe invece dismettere il cespite?"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Could not update `{}`: not enough residual amount to write off.\n"
-"(Amount to write off: {}; residual amount: {}.)\n"
+"Could not update `%(asset_name)s`: not enough residual amount to write off.\n"
+"(Amount to write off: %(balances)s; residual amount: %(residual)s.)\n"
 "Maybe you should try to dismiss this asset instead?"
 msgstr ""
 "Non è possibile aggiornare `{}`: non c'è sufficiente importo residuo da "
@@ -1085,6 +1131,7 @@ msgstr ""
 "Forse si dovrebbe invece dismettere il cespite?"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Couldn't determine which action should be done."
@@ -1172,6 +1219,7 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -1187,6 +1235,7 @@ msgid "Currency"
 msgstr "Valuta"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset.py:0
 #, python-format
 msgid ""
@@ -1293,6 +1342,7 @@ msgid "Dep. Num"
 msgstr "Amm.to Nr"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -1321,6 +1371,7 @@ msgid "Depreciated Fund Amount"
 msgstr "Valore fondo amm.to"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_depreciation__depreciation_id
@@ -1385,6 +1436,7 @@ msgid "Depreciation Lines"
 msgstr "Righe ammortamento"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -1397,6 +1449,7 @@ msgid "Depreciation Modes"
 msgstr "Metodi ammortamento"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__type_id
@@ -1417,6 +1470,7 @@ msgid "Depreciation Types"
 msgstr "Tipi ammortamento"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
 #, python-format
 msgid "Depreciation number can't be a negative number."
@@ -1430,12 +1484,14 @@ msgid "Depreciations"
 msgstr "Ammortamenti"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
-#, python-format
-msgid "Depreciations cannot start before {}."
+#, fuzzy, python-format
+msgid "Depreciations cannot start before %(start_date)s."
 msgstr "Gli ammortamenti non possono iniziare prima di {}."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Direct dismiss"
@@ -1458,6 +1514,7 @@ msgid "Dismiss Asset and Show"
 msgstr "Dismetti cespite e visualizza"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Dismiss Asset without Sale"
@@ -1491,11 +1548,6 @@ msgid "Dismissed assets: show"
 msgstr "Cespiti dismessi: visualizza"
 
 #. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_account__display_name
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_fiscal_year__display_name
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_journal__display_name
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__display_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__display_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category__display_name
@@ -1521,8 +1573,6 @@ msgstr "Cespiti dismessi: visualizza"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation__display_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation_line_year__display_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_totals__display_name
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_l10n_it_asset_management_report_asset_journal_xlsx__display_name
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_l10n_it_asset_management_report_asset_previsional_xlsx__display_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__display_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation__display_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_journal_report__display_name
@@ -1531,6 +1581,7 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_accounting_doc__document_date
@@ -1540,6 +1591,7 @@ msgid "Document Date"
 msgstr "Data Documento"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_accounting_doc__document_nr
@@ -1549,16 +1601,25 @@ msgid "Document Nr"
 msgstr "N° Documento"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/account_move.py:0
 #, python-format
 msgid "Every line is already linked to an asset."
 msgstr "Ogni linea è già collegata a un cespite."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Every move line must share the same account!"
 msgstr "Ogni riga di movimento deve avere lo stesso conto!"
+
+#. module: l10n_it_asset_management
+#. odoo-javascript
+#: code:addons/l10n_it_asset_management/static/src/xml/report.xml:0
+#, fuzzy, python-format
+msgid "Export"
+msgstr "Resoconto"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_asset_journal_report_form_view
@@ -1571,6 +1632,7 @@ msgid "Export Previsional Report"
 msgstr "Esporta Stampa Previsionale"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
 #, python-format
 msgid ""
@@ -1604,16 +1666,12 @@ msgid "Followers"
 msgstr "Seguito da"
 
 #. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguito da (canali)"
-
-#. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguito da (partner)"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
 #, python-format
 msgid ""
@@ -1623,15 +1681,15 @@ msgstr ""
 "non possono essere eliminati:\n"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Following lines are linked to posted account moves, and cannot be deleted:\n"
-"{}"
+"%(name_list)s"
 msgstr ""
 "Le righe seguenti sono collegate a registrazioni contabili contabilizzate, e "
-"non possono essere eliminate:\n"
-"{}"
+"non possono essere eliminati:\n"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_asset_asset__activity_type_icon
@@ -1659,6 +1717,7 @@ msgid "From Nr"
 msgstr "Dal N."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "From move(s) "
@@ -1675,6 +1734,7 @@ msgid "Gain"
 msgstr "Plusvalenza"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -1703,6 +1763,7 @@ msgid "General Info"
 msgstr "Info generali"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
@@ -1750,6 +1811,12 @@ msgid "Has Amount Detail"
 msgstr "Con dettaglio valore"
 
 #. module: l10n_it_asset_management
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__has_message
+#, fuzzy
+msgid "Has Message"
+msgstr "Messaggi"
+
+#. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation_line_year__hidden
 msgid "Hidden"
 msgstr "Nascosto"
@@ -1773,11 +1840,6 @@ msgid "Historical Amount"
 msgstr "Valore storico"
 
 #. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_account__id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_fiscal_year__id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_journal__id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move_line__id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category__id
@@ -1803,8 +1865,6 @@ msgstr "Valore storico"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation__id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation_line_year__id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_totals__id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_l10n_it_asset_management_report_asset_journal_xlsx__id
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_l10n_it_asset_management_report_asset_previsional_xlsx__id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation__id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_journal_report__id
@@ -1824,7 +1884,6 @@ msgstr "Icona per indicare un'attività eccezione."
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_asset_asset__message_needaction
-#: model:ir.model.fields,help:l10n_it_asset_management.field_asset_asset__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
@@ -1841,6 +1900,7 @@ msgid "In"
 msgstr "Rettifica attiva"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__amount_in
@@ -1849,6 +1909,7 @@ msgid "In Amount"
 msgstr "Valore rettifiche attive"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -1864,24 +1925,28 @@ msgid "In/Out Amount Type"
 msgstr "+/- Tipo operazione"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Incoherent asset data."
 msgstr "Data cespite anomala."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Incoherent company data."
 msgstr "Dati azienda anomali."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Incoherent move data."
 msgstr "Data movimento anomala."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__amount_depreciable
@@ -1890,6 +1955,7 @@ msgid "Initial Depreciable Amount"
 msgstr "Importo ammortizzabile iniziale"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
 #, python-format
 msgid "Invalid search operator!"
@@ -1922,11 +1988,6 @@ msgid "Last Dep."
 msgstr "Ultimo amm.to"
 
 #. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_account____last_update
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_fiscal_year____last_update
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_journal____last_update
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info____last_update
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset____last_update
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category____last_update
@@ -1952,8 +2013,6 @@ msgstr "Ultimo amm.to"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation____last_update
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation_line_year____last_update
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_totals____last_update
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_l10n_it_asset_management_report_asset_journal_xlsx____last_update
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_l10n_it_asset_management_report_asset_previsional_xlsx____last_update
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset____last_update
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation____last_update
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_journal_report____last_update
@@ -2124,6 +2183,7 @@ msgid "Moves"
 msgstr "Registrazioni contabili"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Multiple partners found in move lines!"
@@ -2154,6 +2214,7 @@ msgid "Needs Previsional"
 msgstr "Richiede previsionali"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
@@ -2176,25 +2237,29 @@ msgid "Next Activity Type"
 msgstr "Tipo prossima attività"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/account_fiscal_year.py:0
 #, python-format
 msgid "No fiscal year defined for date "
 msgstr "Nessun anno fiscale definito per data "
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
-#, python-format
-msgid "No fiscal year defined for date {}"
-msgstr "Nessun anno fiscale definito per data {}"
+#, fuzzy, python-format
+msgid "No fiscal year defined for date %(date)s"
+msgstr "Nessun anno fiscale definito per data "
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
-#, python-format
-msgid "No report has been defined for type `{}`."
+#, fuzzy, python-format
+msgid "No report has been defined for type `%(report_type)s`."
 msgstr "Nessuna stampa definita per tipo `{}`."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
@@ -2219,18 +2284,14 @@ msgstr "Numero di errori"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_asset_asset__message_needaction_counter
-msgid "Number of messages which requires an action"
+#, fuzzy
+msgid "Number of messages requiring action"
 msgstr "Numero di messaggi che richiedono un'azione"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_asset_asset__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Numero di messaggi con errore di consegna"
-
-#. module: l10n_it_asset_management
-#: model:ir.model.fields,help:l10n_it_asset_management.field_asset_asset__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Numero di messaggi non letti"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_account_move_mange_asset_form_view
@@ -2256,6 +2317,7 @@ msgid "Out"
 msgstr "Rettifica negativa"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__amount_out
@@ -2264,6 +2326,7 @@ msgid "Out Amount"
 msgstr "Rettifica negativa"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2291,9 +2354,10 @@ msgid "Partial Dismissal"
 msgstr "Dismissione Parziale"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
-msgid "Partial dismissal from move(s) {}"
+#, fuzzy, python-format
+msgid "Partial dismissal from move(s) %(move_nums)s"
 msgstr "Dismissione parziale da movimento/i {}"
 
 #. module: l10n_it_asset_management
@@ -2303,6 +2367,7 @@ msgid "Partially Depreciated"
 msgstr "Parzialmente Ammortizzato"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2336,12 +2401,14 @@ msgid "Percentage"
 msgstr "Percentuale"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Please choose an asset before continuing!"
 msgstr "Scegliere un cespite prima di continuare!"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid "Please choose at least one depreciation type!"
@@ -2353,6 +2420,7 @@ msgid "Portal Access URL"
 msgstr "URL accesso portale"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2381,6 +2449,7 @@ msgid "Print Previsional Report"
 msgstr "Stampa resoconto previsionale"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2399,6 +2468,7 @@ msgid "Purchase"
 msgstr "Acquisto"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__asset_purchase_amount
@@ -2429,6 +2499,7 @@ msgid "Purchase Value"
 msgstr "Valore acquisto"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2664,6 +2735,7 @@ msgid "Res Model"
 msgstr "Modello res"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2762,6 +2834,7 @@ msgid "Sold assets: show"
 msgstr "Cespiti vendiuti: visualizza"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2775,6 +2848,7 @@ msgid "State"
 msgstr "Stato"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2800,6 +2874,7 @@ msgid "Supplier"
 msgstr "Fornitore"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2827,11 +2902,7 @@ msgid "Technical Data"
 msgstr "Dati tecnici"
 
 #. module: l10n_it_asset_management
-#: model:ir.model.fields,help:l10n_it_asset_management.field_asset_accounting_info__move_id
-msgid "The move of this entry line."
-msgstr "Il movimento per questa riga di registrazione."
-
-#. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_mode.py:0
 #, python-format
 msgid "There can be no more than 1 default depreciation mode for each company."
@@ -2846,6 +2917,7 @@ msgstr ""
 "ancora!"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
@@ -2864,6 +2936,7 @@ msgid "To Nr"
 msgstr "Al Nr"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2871,6 +2944,7 @@ msgid "Total"
 msgstr "Totale"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__move_type
@@ -2901,6 +2975,7 @@ msgid "Type of the exception activity on record."
 msgstr "Tipo di attività eccezione sul record."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
@@ -2908,20 +2983,11 @@ msgid "Unknown"
 msgstr "Sconosciuto"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Unknown Asset"
 msgstr "Cespite Sconosciuto"
-
-#. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__message_unread
-msgid "Unread Messages"
-msgstr "Messaggi non letti"
-
-#. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contatore messaggi non letti"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_account_move_mange_asset_form_view
@@ -2944,6 +3010,7 @@ msgid "Updated Depreciable Amount"
 msgstr "Importo Ammortizzabile Aggiornato"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__used
@@ -2958,6 +3025,7 @@ msgid "Used Asset Coeff."
 msgstr "Coeff. cespite usato"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
@@ -2967,7 +3035,6 @@ msgstr "P.IVA"
 #. module: l10n_it_asset_management
 #: model:ir.actions.server,name:l10n_it_asset_management.clean_asset_accounting_info_cron_ir_actions_server
 #: model:ir.cron,cron_name:l10n_it_asset_management.clean_asset_accounting_info_cron
-#: model:ir.cron,name:l10n_it_asset_management.clean_asset_accounting_info_cron
 msgid "Vacuum Empty Asset Accounting Info"
 msgstr "Svuota info contabili cespiti vuote"
 
@@ -2992,6 +3059,7 @@ msgid "View Previsional Report"
 msgstr "Vedi"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset.py:0
 #: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
 #, python-format
@@ -3024,6 +3092,7 @@ msgid "Wrong"
 msgstr "Errato"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal_xlsx.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_depreciation_line_year__year
@@ -3034,7 +3103,6 @@ msgstr "Anno"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_dep_line_form_view
-#: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_form_view
 msgid ""
 "You confirm the removal of the current line? Depreciation line amounts will "
 "not be affected and will have to be updated manually."
@@ -3043,31 +3111,34 @@ msgstr ""
 "ammortamento non saranno modificati e dovranno essere aggiornati manualmente."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You need to choose move lines with account `{}` if you need them to create "
-"an asset for category `{}`!"
+"You need to choose move lines with account `%(acc_name)s` if you need them "
+"to create an asset for category `%(categ_name)s`!"
 msgstr ""
 "Si devono scegliere righe movimento con conto `{}` se servono per creare un "
 "cespite per la categoria `{}`!"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You need to choose move lines with account `{}` if you need them to dismiss "
-"asset `{}`!"
+"You need to choose move lines with account `%(ass_acc)s` if you need them to "
+"dismiss asset `%(ass_name)s`!"
 msgstr ""
 "Si devono scegliere righe movimento con conto `{}` se servono per dismettere "
 "il cespite `{}`!"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You need to choose move lines with account `{}` if you need them to update "
-"asset `{}`!"
+"You need to choose move lines with account `%(ass_acc)s` if you need them to "
+"update asset `%(ass_name)s`!"
 msgstr ""
 "Si devono scegliere righe movimento con conto `{}` se servono per aggiornare "
 "il cespite `{}`!"
@@ -3078,42 +3149,47 @@ msgid "Zero Depreciation Up To"
 msgstr "Nessun Amm.to fino al"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"`{}`: cannot change asset's company once it's already related to accounting "
-"info."
+"`%(asset)s`: cannot change asset's company once it's already related to "
+"accounting info."
 msgstr ""
 "`{}`: non è possibile cambiare l'azienda di un cespite già collegato ad "
 "informazioni contabili."
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_depreciation_line.py:0
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"`{}`: cannot change depreciation line's company once it's already related to "
-"an asset."
+"`%(dep_line)s`: cannot change depreciation line's company once it's already "
+"related to an asset."
 msgstr ""
 "`{}`: non è possibile cambiare l'azienda di una riga di amm.to già collegata "
 "a un cespite."
 
 #. module: l10n_it_asset_management
-#: code:addons/l10n_it_asset_management/models/account_move_line.py:0
-#, python-format
+#. odoo-python
+#: code:addons/l10n_it_asset_management/models/account_move.py:0
+#, fuzzy, python-format
 msgid ""
-"`{}`: cannot change move line's company once it's already related to an "
+"`%(move)s`: cannot change move's company once it's already related to an "
 "asset."
 msgstr ""
-"`{}`: non è possibile modificare l'azienda della riga già collegata a un "
+"`{}`: non è possibile cambiare l'azienda di un movimento già collegato a un "
 "cespite."
 
 #. module: l10n_it_asset_management
-#: code:addons/l10n_it_asset_management/models/account_move.py:0
-#, python-format
+#. odoo-python
+#: code:addons/l10n_it_asset_management/models/account_move_line.py:0
+#, fuzzy, python-format
 msgid ""
-"`{}`: cannot change move's company once it's already related to an asset."
+"`%(move_line)s`: cannot change move line's company once it's already related "
+"to an asset."
 msgstr ""
-"`{}`: non è possibile cambiare l'azienda di un movimento già collegato a un "
+"`{}`: non è possibile modificare l'azienda della riga già collegata a un "
 "cespite."
 
 #. module: l10n_it_asset_management
@@ -3124,17 +3200,48 @@ msgid "or"
 msgstr "o"
 
 #. module: l10n_it_asset_management
+#. odoo-python
 #: code:addons/l10n_it_asset_management/report/asset_journal.py:0
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
-msgid "to date {}"
-msgstr "alla data {}"
+msgid "to date %(to_date)s"
+msgstr ""
 
-#. module: l10n_it_asset_management
-#: code:addons/l10n_it_asset_management/models/asset_depreciation.py:0
+#~ msgid "Asset Journal Report"
+#~ msgstr "Resoconto libro cespiti"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguito da (canali)"
+
 #, python-format
-msgid "{} - Depreciation"
-msgstr "{} - Ammortamento"
+#~ msgid ""
+#~ "Following lines are linked to posted account moves, and cannot be "
+#~ "deleted:\n"
+#~ "{}"
+#~ msgstr ""
+#~ "Le righe seguenti sono collegate a registrazioni contabili "
+#~ "contabilizzate, e non possono essere eliminate:\n"
+#~ "{}"
+
+#, python-format
+#~ msgid "No fiscal year defined for date {}"
+#~ msgstr "Nessun anno fiscale definito per data {}"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Numero di messaggi non letti"
+
+#~ msgid "The move of this entry line."
+#~ msgstr "Il movimento per questa riga di registrazione."
+
+#~ msgid "Unread Messages"
+#~ msgstr "Messaggi non letti"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contatore messaggi non letti"
+
+#, python-format
+#~ msgid "to date {}"
+#~ msgstr "alla data {}"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Errore consegna SMS"
