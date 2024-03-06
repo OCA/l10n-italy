@@ -26,6 +26,12 @@
                         />
                     <thead>
                         <tr class="first_th_row">
+                            <t t-if="enable_currency">
+                                <t
+                                        t-set="columns_number"
+                                        t-value="columns_number + 1"
+                                    />
+                            </t>
                             <td
                                     t-att-colspan="columns_number"
                                     style="padding:10;"
@@ -48,13 +54,11 @@
                                     <th class="left_without_line">TIN</th>
                                 </t>
                                 <th class="left_without_line" />
-                                <th t-if="enable_currency" class="left_without_line" />
-+                               <th t-if="enable_currency" class="left_without_line" />
                                 <th class="right_without_line">TOTAL</th>
                                 <th
                                         t-if="enable_currency"
                                         class="right_without_line"
-                                    >TOTAL (currency )</th>
+                                    >TOTAL (currency)</th>
                             </tr>
                             <tr style="page-break-inside: avoid" name="vat_header_tax">
                                 <t t-if="registry_type != 'corrispettivi'">
@@ -66,15 +70,7 @@
                                 </t>
                                 <th class="left_with_line_bottom">Tax description</th>
                                 <th class="right_with_line_bottom">Taxable</th>
-                                <th
-                                        t-if="enable_currency"
-                                        class="right_with_line_bottom"
-                                    >Taxable (currency)</th>
                                 <th class="right_with_line_bottom">Tax</th>
-                                <th
-                                        t-if="enable_currency"
-                                        class="right_with_line_bottom"
-                                    >Tax (Currency)</th>
                                 <th class="right_with_line_bottom" />
                                 <th
                                         t-if="enable_currency"
@@ -191,14 +187,6 @@
                                             </t>
                                             <td class="left_without_line" />
                                             <!-- totale -->
-                                            <td
-                                                    t-if="enable_currency"
-                                                    class="right_without_line_bold"
-                                                />
-                                            <td
-                                                    t-if="enable_currency"
-                                                    class="right_without_line_bold"
-                                                />
                                             <td class="right_without_line_bold"><div
                                                         style="page-break-inside: avoid"
                                                         t-esc="company_currency_symbol + ' ' + formatLang(env, invoice_total(move))"
@@ -233,32 +221,10 @@
                                                     style="page-break-inside: avoid"
                                                     t-esc="company_currency_symbol + ' ' + formatLang(env, line['base'])"
                                                 /></td>
-                                        <td
-                                                t-if="enable_currency and show_currency(move)"
-                                                class="right_without_line"
-                                            ><div
-                                                    style="page-break-inside: avoid"
-                                                    t-esc="line['currency_symbol'] + ' ' + formatLang(env, line['base_currency'])"
-                                                /></td>
-                                        <td
-                                                t-if="enable_currency and not show_currency(move)"
-                                                class="right_without_line"
-                                            />
                                         <!-- tax -->
                                         <td class="right_without_line"><div
                                                     style="page-break-inside: avoid"
                                                     t-esc="company_currency_symbol + ' ' + formatLang(env, line['tax'])"
-                                                /></td>
-                                        <td
-                                                t-if="enable_currency and not show_currency(move)"
-                                                class="right_without_line"
-                                            />
-                                        <td
-                                                t-if="enable_currency and show_currency(move)"
-                                                class="right_without_line"
-                                            ><div
-                                                    style="page-break-inside: avoid"
-                                                    t-esc="line['currency_symbol'] + ' ' + formatLang(env, line['tax_currency'])"
                                                 /></td>
                                         <td class="left_without_line" />
                                         <td
