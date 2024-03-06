@@ -80,6 +80,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_website_portal_fatturapa',
         'odoo14-addon-l10n_it_website_portal_fiscalcode',
         'odoo14-addon-l10n_it_website_portal_ipa',
+        'odoo14-addon-l10n_it_website_sale_fatturapa',
         'odoo14-addon-l10n_it_website_sale_fiscalcode',
         'odoo14-addon-l10n_it_withholding_tax',
         'odoo14-addon-l10n_it_withholding_tax_payment',
