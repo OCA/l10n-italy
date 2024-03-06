@@ -102,6 +102,16 @@ msgid "Display Name"
 msgstr "Назва для відображення"
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__enable_currency
+msgid "Enable currency values"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__enable_currency
+msgid "Enable currency values in the report"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__entry_order
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__entry_order
 msgid "Entry Order"
@@ -333,6 +343,11 @@ msgstr ""
 #: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "TOTAL"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "TOTAL (currency)"
 msgstr ""
 
 #. module: l10n_it_vat_registries
