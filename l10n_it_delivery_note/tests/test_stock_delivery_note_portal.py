@@ -33,10 +33,10 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.sales_order_mr.action_confirm()
         self.assertEqual(len(self.sales_order_mr.picking_ids), 1)
         self.picking_mr = self.sales_order_mr.picking_ids
-        self.assertEqual(len(self.picking_mr.move_lines), 2)
+        self.assertEqual(len(self.picking_mr.move_ids), 2)
 
-        self.picking_mr.move_lines[0].quantity_done = 1
-        self.picking_mr.move_lines[1].quantity_done = 1
+        self.picking_mr.move_ids[0].quantity_done = 1
+        self.picking_mr.move_ids[1].quantity_done = 1
 
         self.picking_mr.button_validate()
         self.delivery_note_mr = self.picking_mr.delivery_note_id
@@ -57,10 +57,10 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.sales_order_ab.action_confirm()
         self.assertEqual(len(self.sales_order_ab.picking_ids), 1)
         self.picking_ab = self.sales_order_ab.picking_ids
-        self.assertEqual(len(self.picking_ab.move_lines), 2)
+        self.assertEqual(len(self.picking_ab.move_ids), 2)
 
-        self.picking_ab.move_lines[0].quantity_done = 1
-        self.picking_ab.move_lines[1].quantity_done = 1
+        self.picking_ab.move_ids[0].quantity_done = 1
+        self.picking_ab.move_ids[1].quantity_done = 1
 
         self.picking_ab.button_validate()
         self.delivery_note_ab = self.picking_ab.delivery_note_id
@@ -77,10 +77,10 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.sales_order_ab_mr.action_confirm()
         self.assertEqual(len(self.sales_order_ab_mr.picking_ids), 1)
         self.picking_ab_mr = self.sales_order_ab_mr.picking_ids
-        self.assertEqual(len(self.picking_ab_mr.move_lines), 1)
+        self.assertEqual(len(self.picking_ab_mr.move_ids), 1)
         self.picking_ab_mr.partner_id = self.user_mr.partner_id
 
-        self.picking_ab_mr.move_lines[0].quantity_done = 1
+        self.picking_ab_mr.move_ids[0].quantity_done = 1
 
         self.picking_ab_mr.button_validate()
         self.delivery_note_ab_mr = self.picking_ab_mr.delivery_note_id
@@ -98,9 +98,9 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.sales_order_azr.action_confirm()
         self.assertEqual(len(self.sales_order_azr.picking_ids), 1)
         self.picking_azr = self.sales_order_azr.picking_ids
-        self.assertEqual(len(self.picking_azr.move_lines), 1)
+        self.assertEqual(len(self.picking_azr.move_ids), 1)
 
-        self.picking_azr.move_lines[0].quantity_done = 1
+        self.picking_azr.move_ids[0].quantity_done = 1
 
         self.picking_azr.button_validate()
         self.delivery_note_azr = self.picking_azr.delivery_note_id
