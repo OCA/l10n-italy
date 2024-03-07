@@ -9,3 +9,4 @@ from . import stock_delivery_note
 from . import stock_delivery_note_line
 from . import stock_location
 from . import stock_picking
+from . import stock_picking_type

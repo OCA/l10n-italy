@@ -26,7 +26,11 @@ To configure this module, go to:
     - *Inventory → Configuration → Delivery Notes → Methods of
       Transport*
 
-3.  *Settings → User & Companies → Users*
+3.  *Inventory → Configuration → Warehouse Management → Operation Types*
 
-    In the user profile settings, "Show product information in DN lines"
-    allows showing prices in the form.
+    Checking 'Prevent DN's Create' won't make delivery notes available for every picking of that picking type.
+
+4.  *Settings → User & Companies → Users*
+
+    In the user profile settings, "Show product information in DN lines" allows showing prices in the form.
+
