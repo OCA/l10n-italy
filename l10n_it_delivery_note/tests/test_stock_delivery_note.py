@@ -114,7 +114,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         picking = self.create_picking(
             carrier_id=self.env.ref("delivery.delivery_carrier").id
         )
-        picking.move_lines.quantity_done = 1
+        picking.move_ids.quantity_done = 1
         picking.button_validate()
 
         dn_form = Form(
@@ -126,11 +126,29 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         dn.confirm()
 
         delivery_note_id = picking.delivery_note_id
-
-        new_picking = self.create_picking(
-            carrier_id=self.env.ref("delivery.normal_delivery_carrier").id
+        product_product_delivery_normal = self.env["product.product"].create(
+            {
+                "name": "Normal Delivery Charges",
+                "default_code": "Delivery_008",
+                "type": "service",
+                "categ_id": self.env.ref("delivery.product_category_deliveries").id,
+                "sale_ok": False,
+                "purchase_ok": False,
+                "invoice_policy": "order",
+                "list_price": 10.0,
+            }
         )
-        new_picking.move_lines.quantity_done = 1
+        normal_delivery_carrier = self.env["delivery.carrier"].create(
+            {
+                "name": "Normal Delivery Charges",
+                "fixed_price": 10.0,
+                "sequence": 3,
+                "delivery_type": "fixed",
+                "product_id": product_product_delivery_normal.id,
+            }
+        )
+        new_picking = self.create_picking(carrier_id=normal_delivery_carrier.id)
+        new_picking.move_ids.quantity_done = 1
         new_picking.button_validate()
 
         delivery_note_id.write({"picking_ids": [(4, new_picking.id)]})
@@ -138,7 +156,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         warning_context = delivery_note_id.action_confirm().get("context")
         self.assertTrue(warning_context)
         self.assertIn(
-            "contains pickings related to different transporters",
+            "contains pickings related to different delivery methods",
             warning_context.get("default_warning_message"),
         )
 
@@ -199,12 +217,12 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
             picking_type_id=self.env.ref("stock.picking_type_in").id,
             carrier_id=self.env.ref("delivery.delivery_carrier").id,
         )
-        picking.move_lines.quantity_done = 1
+        picking.move_ids.quantity_done = 1
         picking.button_validate()
 
         dn_form = Form(
             self.env["stock.delivery.note.create.wizard"].with_context(
-                {"active_id": picking.id, "active_ids": picking.ids}
+                **{"active_id": picking.id, "active_ids": picking.ids}
             )
         )
         dn = dn_form.save()
