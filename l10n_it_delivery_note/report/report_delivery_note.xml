@@ -158,27 +158,27 @@
                             <th class="text-start">
                                 Description
                             </th>
-                            <th class="text-end">
+                            <th class="text-start">
                                 Quantity
                             </th>
-                            <th class="text-end" groups="uom.group_uom">
+                            <th class="text-start" groups="uom.group_uom">
                                 UoM
                             </th>
                             <th
                                 t-if="doc.print_prices"
-                                class="text-end"
+                                class="text-start"
                                 style="white-space: nowrap;"
                             >
                                 Unit price
                             </th>
                             <th
                                 t-if="doc.print_prices"
-                                class="text-end"
+                                class="text-start"
                                 groups="product.group_discount_per_so_line"
                             >
                                 Discount
                             </th>
-                            <th t-if="doc.print_prices" class="text-end">
+                            <th t-if="doc.print_prices" class="text-start">
                                 Taxes
                             </th>
                             <th t-if="doc.lines_have_so_number">
@@ -211,23 +211,23 @@
                                             />
                                         </t>
                                     </td>
-                                    <td class="text-end">
+                                    <td class="text-start">
                                         <span t-field="line.product_qty" />
                                     </td>
-                                    <td class="text-end" groups="uom.group_uom">
+                                    <td class="text-start" groups="uom.group_uom">
                                         <span t-field="line.product_uom_id" />
                                     </td>
-                                    <td t-if="doc.print_prices" class="text-end">
+                                    <td t-if="doc.print_prices" class="text-start">
                                         <span t-field="line.price_unit" />
                                     </td>
                                     <td
                                         t-if="doc.print_prices"
-                                        class="text-end"
+                                        class="text-start"
                                         groups="product.group_discount_per_so_line"
                                     >
                                         <span t-field="line.discount" />%
                                     </td>
-                                    <td t-if="doc.print_prices" class="text-end">
+                                    <td t-if="doc.print_prices" class="text-start">
                                         <span
                                             t-esc="', '.join(map(lambda t: (t.description or t.name), line.tax_ids))"
                                         />

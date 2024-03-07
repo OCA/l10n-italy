@@ -691,7 +691,7 @@ class StockDeliveryNote(models.Model):
         ]
         for payment_term_id in payment_term_ids:
             sale_ids = self.mapped("sale_ids").filtered(
-                lambda s, payment_term_id: s.payment_term_id == payment_term_id
+                lambda s, pay_term_id=payment_term_id: s.payment_term_id == pay_term_id
             )
             if not sale_ids:
                 continue
@@ -722,7 +722,7 @@ class StockDeliveryNote(models.Model):
             for line, vals in cache.items():
                 line.write(vals)
 
-            orders_lines._get_to_invoice_qty()
+            orders_lines._compute_qty_to_invoice()
 
             for line in self.mapped("line_ids"):
                 line.write({"invoice_status": "invoiced"})
