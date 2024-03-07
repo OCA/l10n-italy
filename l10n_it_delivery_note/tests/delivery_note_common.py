@@ -64,7 +64,7 @@ class StockDeliveryNoteCommon(TransactionCase):
             "picking_type_id": self.env.ref("stock.picking_type_out").id,
             "location_id": self.env.ref("stock.stock_location_stock").id,
             "location_dest_id": self.env.ref("stock.stock_location_customers").id,
-            "move_lines": [
+            "move_ids": [
                 (
                     0,
                     0,
