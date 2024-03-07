@@ -3034,7 +3034,6 @@ msgstr "Anno"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_dep_line_form_view
-#: model_terms:ir.ui.view,arch_db:assets_management.asset_form_view
 msgid ""
 "You confirm the removal of the current line? Depreciation line amounts will "
 "not be affected and will have to be updated manually."
