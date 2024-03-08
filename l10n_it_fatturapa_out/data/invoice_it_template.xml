@@ -41,35 +41,35 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'order')"
                     t-as="doc"
                 >
-                <t t-set="doc.lineRef" t-value="line_counter" />
+                <t t-set="doc_lineRef" t-value="doc.setlineRef(line_counter)" />
                 <t t-set="related_orders" t-value="related_orders + doc" />
             </t>
             <t
                     t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'contract')"
                     t-as="doc"
                 >
-                <t t-set="doc.lineRef" t-value="line_counter" />
+                <t t-set="doc_lineRef" t-value="doc.setlineRef(line_counter)" />
                 <t t-set="related_contracts" t-value="related_contracts + doc" />
             </t>
             <t
                     t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'agreement')"
                     t-as="doc"
                 >
-                <t t-set="doc.lineRef" t-value="line_counter" />
+                <t t-set="doc_lineRef" t-value="doc.setlineRef(line_counter)" />
                 <t t-set="related_agreements" t-value="related_agreements + doc" />
             </t>
             <t
                     t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'reception')"
                     t-as="doc"
                 >
-                <t t-set="doc.lineRef" t-value="line_counter" />
+                <t t-set="doc_lineRef" t-value="doc.setlineRef(line_counter)" />
                 <t t-set="related_receptions" t-value="related_receptions + doc" />
             </t>
             <t
                     t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'invoice')"
                     t-as="doc"
                 >
-                <t t-set="doc.lineRef" t-value="line_counter" />
+                <t t-set="doc_lineRef" t-value="doc.setlineRef(line_counter)" />
                 <t t-set="related_invoices" t-value="related_invoices + doc" />
             </t>
         </t>
