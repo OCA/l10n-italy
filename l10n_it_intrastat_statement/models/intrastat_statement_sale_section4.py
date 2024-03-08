@@ -37,12 +37,10 @@ class IntrastatStatementSaleSection4(models.Model):
         help="The Adjustment is intended for cancellation",
     )
 
-    @api.multi
     def get_supply_method_key(self):
         self.ensure_one()
         return self.supply_method
 
-    @api.multi
     def get_payment_method_key(self):
         self.ensure_one()
         return self.payment_method
