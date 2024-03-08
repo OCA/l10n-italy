@@ -770,6 +770,80 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00016.xml")
 
+    def test_17_line_related_documents(self):
+        # this test is similar to test_2_xml_export, but the related document
+        # refers to a line, not the whole invoice
+        invoice = self.invoice_model.create(
+            {
+                "name": "INV/2016/0014",
+                "invoice_date": "2016-06-15",
+                "partner_id": self.res_partner_fatturapa_0.id,
+                "journal_id": self.sales_journal.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
+                "user_id": self.user_demo.id,
+                "move_type": "out_invoice",
+                "currency_id": self.EUR.id,
+                "narration": "prima riga\nseconda riga",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_product_10.id,
+                            "name": "Mouse, Optical",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 10,
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
+                            "sequence": 10,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_order_01.id,
+                            "name": "Zed+ Antivirus",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 4,
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
+                            "sequence": 20,
+                            "related_documents": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "type": "order",
+                                        "name": "PO123",
+                                        "cig": "123",
+                                        "cup": "456",
+                                    },
+                                )
+                            ],
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice._post()
+        # by default, lineRef is assigned from sequence, potentially a wrong guess
+        self.assertEqual(invoice.line_ids[1].related_documents[0].lineRef, 20)
+
+        res = self.run_wizard(invoice.id)
+
+        # lineRef is assigned by the template to its actual output value in the XML
+        self.assertEqual(invoice.line_ids[1].related_documents[0].lineRef, 2)
+
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00017.xml")
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT06363391001_00017.xml")
+
     def test_no_tax_fail(self):
         """
         - create an invoice with a product line without taxes
