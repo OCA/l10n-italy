@@ -16,22 +16,25 @@ class AccountMove(models.Model):
     manually_apply_tax_stamp = fields.Boolean("Apply tax stamp")
 
     def is_tax_stamp_applicable(self):
-        stamp_product_id = self.company_id.with_context(
-            lang=self.partner_id.lang
-        ).tax_stamp_product_id
-        if not stamp_product_id:
-            raise UserError(_("Missing tax stamp product in company settings!"))
-        total_tax_base = sum(
-            (
-                inv_tax.price_subtotal
-                for inv_tax in self.line_ids.filtered(
-                    lambda line: set(line.tax_ids.ids)
-                    & set(stamp_product_id.stamp_apply_tax_ids.ids)
-                )
-            ),
-            0.0,
-        )
-        return total_tax_base >= stamp_product_id.stamp_apply_min_total_base
+        if self.company_id.partner_id.country_id.code == "IT":
+            stamp_product_id = self.company_id.with_context(
+                lang=self.partner_id.lang
+            ).tax_stamp_product_id
+            if not stamp_product_id:
+                raise UserError(_("Missing tax stamp product in company settings!"))
+            total_tax_base = sum(
+                (
+                    inv_tax.price_subtotal
+                    for inv_tax in self.line_ids.filtered(
+                        lambda line: set(line.tax_ids.ids)
+                        & set(stamp_product_id.stamp_apply_tax_ids.ids)
+                    )
+                ),
+                0.0,
+            )
+            return total_tax_base >= stamp_product_id.stamp_apply_min_total_base
+        else:
+            return
 
     @api.depends(
         "invoice_line_ids.price_subtotal",
