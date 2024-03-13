@@ -164,7 +164,9 @@ class FatturaPAAttachmentImportZIP(models.Model):
                     )
                     .create({})
                 )
-                wizard.importFatturaPA()
+                wizard.with_context(
+                    fatturapa_in_skip_no_it_vat_check=True
+                ).importFatturaPA()
             self.env.company.in_invoice_registration_date = (
                 original_in_invoice_registration_date
             )
