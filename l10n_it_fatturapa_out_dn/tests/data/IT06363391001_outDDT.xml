@@ -70,7 +70,7 @@
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
             <DatiDDT>
-                <NumeroDDT>1</NumeroDDT>
+                <NumeroDDT>DDT/00001</NumeroDDT>
                 <DataDDT>2019-08-07</DataDDT>
                 <RiferimentoNumeroLinea>1</RiferimentoNumeroLinea>
             </DatiDDT>
@@ -78,7 +78,7 @@
         <DatiBeniServizi>
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
-                <Descrizione>Delivery Note "1" of 07/08/2019</Descrizione>
+                <Descrizione>Delivery Note "DDT/00001" of 07/08/2019</Descrizione>
                 <Quantita>0.00</Quantita>
                 <PrezzoUnitario>0.00000</PrezzoUnitario>
                 <PrezzoTotale>0.00</PrezzoTotale>

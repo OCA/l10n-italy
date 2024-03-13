@@ -12,46 +12,40 @@ from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import FatturaPACo
 
 @tagged("post_install", "-at_install")
 class TestFatturaOutDN(FatturaPACommon):
-    def setUp(self):
-        super().setUp()
-        product_form = Form(self.env["product.product"])
-        product_form.name = "Test product"
-        product_form.type = "product"
-        self.product = product_form.save()
-
-        delivery_note_outgoing_sequence_form = Form(self.env["ir.sequence"])
-        delivery_note_outgoing_sequence_form.code = "delivery_note_out"
-        delivery_note_outgoing_sequence_form.name = (
-            "Test outgoing delivery note sequence"
-        )
-        delivery_note_outgoing_sequence = delivery_note_outgoing_sequence_form.save()
-
-        delivery_note_outgoing_type_form = Form(self.env["stock.delivery.note.type"])
-        delivery_note_outgoing_type_form.name = "Test outgoing delivery note type"
-        delivery_note_outgoing_type_form.code = "outgoing"
-        delivery_note_outgoing_type_form.sequence_id = delivery_note_outgoing_sequence
-        self.delivery_note_outgoing_type = delivery_note_outgoing_type_form.save()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
         # See https://github.com/OCA/l10n-italy/issues/2507
         # XXX - a company named "YourCompany" alread exists
         # we move it out of the way but we should do better here
-        self.env.company.sudo().search([("name", "=", "YourCompany")]).write(
+        cls.env.company.sudo().search([("name", "=", "YourCompany")]).write(
             {"name": "YourCompany_"}
         )
 
-        self.env.company.name = "YourCompany"
-        self.env.company.vat = "IT06363391001"
-        self.env.company.fatturapa_art73 = True
-        self.env.company.partner_id.street = "Via Milano, 1"
-        self.env.company.partner_id.city = "Roma"
-        self.env.company.partner_id.state_id = self.env.ref("base.state_us_2").id
-        self.env.company.partner_id.zip = "00100"
-        self.env.company.partner_id.phone = "06543534343"
-        self.env.company.email = "info@yourcompany.example.com"
-        self.env.company.partner_id.country_id = self.env.ref("base.it").id
-        self.env.company.fatturapa_fiscal_position_id = self.env.ref(
+        cls.env.company.name = "YourCompany"
+        cls.env.company.vat = "IT06363391001"
+        cls.env.company.fatturapa_art73 = True
+        cls.env.company.partner_id.street = "Via Milano, 1"
+        cls.env.company.partner_id.city = "Roma"
+        cls.env.company.partner_id.state_id = cls.env.ref("base.state_us_2").id
+        cls.env.company.partner_id.zip = "00100"
+        cls.env.company.partner_id.phone = "06543534343"
+        cls.env.company.email = "info@yourcompany.example.com"
+        cls.env.company.partner_id.country_id = cls.env.ref("base.it").id
+        cls.env.company.fatturapa_fiscal_position_id = cls.env.ref(
             "l10n_it_fatturapa.fatturapa_RF01"
         ).id
+
+        product_form = Form(cls.env["product.product"])
+        product_form.name = "Test product"
+        product_form.type = "product"
+        cls.product = product_form.save()
+
+        cls.delivery_note_outgoing_type = cls.env["stock.delivery.note.type"].search(
+            [("code", "=", "outgoing"), ("company_id", "=", cls.env.company.id)]
+        )
+        cls.delivery_note_outgoing_type.sequence_id.prefix = "DDT/"
 
     def _create_so_dn_invoice(self, partner, products, date):
 
