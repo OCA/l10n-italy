@@ -55,7 +55,7 @@ addon | version | maintainers | summary
 [l10n_it_esigibilita_iva](l10n_it_esigibilita_iva/) | 12.0.2.0.0 |  | Italian Localization - Esigibilita' IVA
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 12.0.3.0.3 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 12.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 12.0.3.1.8 |  | Ricezione fatture elettroniche
+[l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 12.0.3.1.9 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 12.0.1.0.2 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 12.0.1.2.0 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra e-fattura in acquisto e inversione contabile
 [l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 12.0.3.2.3 |  | Emissione fatture elettroniche
@@ -73,7 +73,7 @@ addon | version | maintainers | summary
 [l10n_it_fatturapa_sdicoop](l10n_it_fatturapa_sdicoop/) | 12.0.2.2.1 |  | Invio fatture elettroniche tramite SDICoop
 [l10n_it_fiscal_document_type](l10n_it_fiscal_document_type/) | 12.0.2.2.0 |  | Italian Localization - Tipi di documento fiscale per dichiarativi
 [l10n_it_fiscal_payment_term](l10n_it_fiscal_payment_term/) | 12.0.2.0.0 |  | Condizioni di pagamento delle fatture elettroniche
-[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 12.0.1.1.4 |  | Italian Localization - Fiscal Code
+[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 12.0.1.1.5 |  | Italian Localization - Fiscal Code
 [l10n_it_fiscalcode_crm](l10n_it_fiscalcode_crm/) | 12.0.1.0.2 |  | Aggiunge il campo codice fiscale ai contatti/opportunità
 [l10n_it_fiscalcode_sale](l10n_it_fiscalcode_sale/) | 12.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Mostra il codice fiscale del cliente nella stampa del preventivo
 [l10n_it_intrastat](l10n_it_intrastat/) | 12.0.1.3.0 |  | Riclassificazione merci e servizi per dichiarazioni Intrastat
