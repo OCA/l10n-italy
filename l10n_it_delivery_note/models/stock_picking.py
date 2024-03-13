@@ -126,7 +126,9 @@ class StockPicking(models.Model):
 
         for picking in self:
             picking.use_delivery_note = (
-                not from_delivery_note and picking.state == DONE_PICKING_STATE
+                not picking.picking_type_id.prevent_dn_create
+                and not from_delivery_note
+                and picking.state == DONE_PICKING_STATE
             )
 
             picking.delivery_note_visible = use_advanced_behaviour
@@ -306,6 +308,9 @@ class StockPicking(models.Model):
             )
 
     def _must_create_delivery_note(self):
+        if self.picking_type_id.prevent_dn_create:
+            return False
+
         use_advanced_behaviour = self.user_has_groups(
             "l10n_it_delivery_note.use_advanced_delivery_notes"
         )
