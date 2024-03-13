@@ -45,6 +45,7 @@ class InvoicingTest(TestAccountInvoiceReport):
             }
         )
         self.env.company.tax_stamp_product_id = stamp_product_id
+        self.env.company.partner_id.countr_id = self.env.ref("base.it").id
 
     def test_post_invoicing(self):
         invoice_ids = self.invoices.filtered(
