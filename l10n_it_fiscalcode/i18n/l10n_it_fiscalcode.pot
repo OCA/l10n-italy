@@ -230,8 +230,15 @@ msgid "Surname"
 msgstr ""
 
 #. module: l10n_it_fiscalcode
-#: constraint:res.partner:0
-msgid "The fiscal code doesn't seem to be correct."
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:32
+#, python-format
+msgid "The fiscal code isn't valid."
+msgstr ""
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:28
+#, python-format
+msgid "The fiscal code must have 16 characters."
 msgstr ""
 
 #. module: l10n_it_fiscalcode
