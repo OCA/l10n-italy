@@ -34,6 +34,7 @@
                     />
                     <group string="Layout">
                         <field name="layout_type" />
+                        <field name="show_full_contact_addess" />
                         <field name="only_totals" />
                         <field name="fiscal_page_base" />
                     </group>

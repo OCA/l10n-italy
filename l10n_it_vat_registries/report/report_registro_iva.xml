@@ -155,14 +155,25 @@
                                                             /></td>
                                                 </t>
                                                 <!-- Ragione sociale -->
-                                                <td class="left_without_line_bold"><div
+                                                <td class="left_without_line_bold">
+                                                    <t
+                                                            t-set="partner"
+                                                            t-value="move.partner_id"
+                                                        />
+                                                    <div
                                                             style="page-break-inside: avoid"
-                                                            t-esc="move.partner_id.name"
-                                                        /></td>
+                                                            t-esc="partner.name"
+                                                        />
+                                                    <div
+                                                            t-if="show_full_contact_addess"
+                                                            style="page-break-inside: avoid"
+                                                            t-esc="partner._display_address(without_company=True)"
+                                                        />
+                                                </td>
                                                 <!-- PIVA -->
                                                 <td class="left_without_line_bold"><div
                                                             style="page-break-inside: avoid"
-                                                            t-esc="move.partner_id.vat"
+                                                            t-esc="partner.vat"
                                                         /></td>
                                             </t>
                                             <td class="left_without_line" />
