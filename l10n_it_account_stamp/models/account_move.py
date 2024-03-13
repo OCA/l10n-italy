@@ -33,8 +33,6 @@ class AccountMove(models.Model):
                 0.0,
             )
             return total_tax_base >= stamp_product_id.stamp_apply_min_total_base
-        else:
-            return
 
     @api.depends(
         "invoice_line_ids.price_subtotal",
