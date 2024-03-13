@@ -620,6 +620,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_location__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_checker_mixin__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_type__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -775,6 +776,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_location__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_checker_mixin__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_type__id
 msgid "ID"
 msgstr ""
 
@@ -959,6 +961,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_location____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_checker_mixin____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_type____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -1203,6 +1206,11 @@ msgid "Picking Checker Mixin"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__picking_type
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__picking_type
 msgid "Picking type"
@@ -1234,6 +1242,11 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__access_url
 msgid "Portal Access URL"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking_type__prevent_dn_create
+msgid "Prevent DN's Create"
 msgstr ""
 
 #. module: l10n_it_delivery_note
