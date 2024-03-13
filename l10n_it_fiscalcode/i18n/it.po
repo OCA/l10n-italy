@@ -243,14 +243,24 @@ msgid "Surname"
 msgstr "Cognome"
 
 #. module: l10n_it_fiscalcode
-#: constraint:res.partner:0
-msgid "The fiscal code doesn't seem to be correct."
-msgstr "Il codice fiscale non sembra corretto."
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:32
+#, python-format
+msgid "The fiscal code isn't valid."
+msgstr ""
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:28
+#, python-format
+msgid "The fiscal code must have 16 characters."
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__var_date
 msgid "Variation date"
 msgstr "Data variazione"
+
+#~ msgid "The fiscal code doesn't seem to be correct."
+#~ msgstr "Il codice fiscale non sembra corretto."
 
 #~ msgid "If checked the C.F. is referred to a Individual Person"
 #~ msgstr "Se selezionato, il Codice Fiscale è riferito a una persona fisica"
