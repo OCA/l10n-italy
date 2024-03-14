@@ -544,9 +544,17 @@ class StockDeliveryNote(models.Model):
                 note.date = datetime.date.today()
 
             if not note.name:
-                note.name = sequence.with_context(
-                    ir_sequence_date=note.date
-                ).next_by_id()
+                # Avoid duplicates
+                while True:
+                    name = sequence.with_context(
+                        ir_sequence_date=note.date
+                    ).next_by_id()
+                    if not self.search(
+                        [("name", "=", name), ("company_id", "=", note.company_id.id)]
+                    ):
+                        break
+
+                note.name = name
                 note.sequence_id = sequence
 
     def action_confirm(self):
