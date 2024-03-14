@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="asset_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_accounting_info_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_category_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_category_dep_type_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_dep_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_dep_line_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_dep_line_type_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_dep_mode_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_dep_mode_line_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_dep_type_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="asset_tag_multicompany_rule" model="ir.rule">
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+</odoo>
