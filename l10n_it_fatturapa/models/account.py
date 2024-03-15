@@ -197,6 +197,9 @@ class FatturapaRelatedDocumentType(models.Model):
                 vals["lineRef"] = line.sequence
         return super().create(vals_list)
 
+    def setlineRef(self, n):
+        self.lineRef = n
+
 
 class FatturapaActivityProgress(models.Model):
     # _position = ['2.1.7']
