@@ -10,3 +10,5 @@
 - Lara Baggio \<<http://linkgroup.it/>\>
 - Gianmarco Conte \<<gconte@dinamicheaziendali.it>\>
 - Michele Rusticucci \<<michele.rusticucci@agilebg.com>\>
+- [TAKOBI](https://takobi.online):
+  - Simone Rubino \<<sir@takobi.online>\>
