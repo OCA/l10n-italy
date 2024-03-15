@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
-    <record id="wizard_fatturapa_send_pec_view" model="ir.ui.view">
-        <field name="name">wizard_fatturapa_send_pec_view</field>
-        <field name="model">wizard.fatturapa.send.pec</field>
+    <record id="wizard_fatturapa_send_to_sdi_view" model="ir.ui.view">
+        <field name="name">Form view of wizard to send multiple e-invoice to SdI</field>
+        <field name="model">wizard.fatturapa.send_to_sdi</field>
         <field name="arch" type="xml">
             <form string="Send Electronic Invoice">
                 <sheet>
@@ -15,7 +19,7 @@
                 </sheet>
                 <footer>
                     <button
-                        name="send_pec"
+                        name="send_to_sdi"
                         string="Send"
                         type="object"
                         class="oe_highlight"
@@ -26,11 +30,11 @@
         </field>
     </record>
 
-    <record id="action_wizard_fatturapa_send_pec" model="ir.actions.act_window">
+    <record id="action_wizard_fatturapa_send_to_sdi" model="ir.actions.act_window">
         <field name="name">Send Electronic Invoice</field>
-        <field name="res_model">wizard.fatturapa.send.pec</field>
+        <field name="res_model">wizard.fatturapa.send_to_sdi</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="wizard_fatturapa_send_pec_view" />
+        <field name="view_id" ref="wizard_fatturapa_send_to_sdi_view" />
         <field name="target">new</field>
         <field name="type">ir.actions.act_window</field>
         <field

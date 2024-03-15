@@ -7,7 +7,7 @@
 
 {
     "name": "ITA - Fattura elettronica - Emissione",
-    "version": "16.0.1.0.17",
+    "version": "16.0.1.1.0",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "summary": "Emissione fatture elettroniche",
@@ -21,6 +21,7 @@
         "l10n_it_fiscal_document_type",
     ],
     "data": [
+        "security/res_groups.xml",
         "data/invoice_it_template.xml",
         "wizard/wizard_export_fatturapa_view.xml",
         "wizard/wizard_export_fatturapa_view_regenerate.xml",

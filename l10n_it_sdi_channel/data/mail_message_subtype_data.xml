@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <!-- Subtypes for e-invoice -->
+    <record id="e_invoice_ready" model="mail.message.subtype">
+        <field name="name">Ready to Send</field>
+        <field name="res_model">fatturapa.attachment.out</field>
+        <field name="default" eval="False" />
+        <field name="description">E-invoice Ready to Send</field>
+    </record>
+
+    <record id="e_invoice_sent" model="mail.message.subtype">
+        <field name="name">Sent</field>
+        <field name="res_model">fatturapa.attachment.out</field>
+        <field name="default" eval="False" />
+        <field name="description">E-invoice Sent</field>
+    </record>
+
+    <record id="e_invoice_sender_error" model="mail.message.subtype">
+        <field name="name">Sender Error</field>
+        <field name="res_model">fatturapa.attachment.out</field>
+        <field name="default" eval="True" />
+        <field name="description">E-invoice Sender Error</field>
+    </record>
+
+    <record id="e_invoice_recipient_error" model="mail.message.subtype">
+        <field name="name">Not delivered</field>
+        <field name="res_model">fatturapa.attachment.out</field>
+        <field name="default" eval="False" />
+        <field name="description">E-invoice Not Delivered</field>
+    </record>
+
+    <record id="e_invoice_rejected" model="mail.message.subtype">
+        <field name="name">Rejected (PA)</field>
+        <field name="res_model">fatturapa.attachment.out</field>
+        <field name="default" eval="False" />
+        <field name="description">E-invoice Rejected (PA)</field>
+    </record>
+
+    <record id="e_invoice_validated" model="mail.message.subtype">
+        <field name="name">Delivered</field>
+        <field name="res_model">fatturapa.attachment.out</field>
+        <field name="default" eval="False" />
+        <field name="description">E-invoice Delivered</field>
+    </record>
+
+    <record id="e_invoice_accepted" model="mail.message.subtype">
+        <field name="name">Accepted</field>
+        <field name="res_model">fatturapa.attachment.out</field>
+        <field name="default" eval="False" />
+        <field name="description">E-invoice Accepted</field>
+    </record>
+
+    <!-- Subtypes for e-bill -->
+    <record id="e_bill_received" model="mail.message.subtype">
+        <field name="name">E-bill received</field>
+        <field name="res_model">fatturapa.attachment.in</field>
+        <field name="default" eval="True" />
+        <field name="description">E-bill received</field>
+    </record>
+
+    <!-- Subtypes for SdI channel -->
+    <record id="sdi_channel_e_invoice_ready" model="mail.message.subtype">
+        <field name="name">E-invoice Ready to Send</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="parent_id" eval="ref('e_invoice_ready')" />
+        <field name="relation_field">channel_id</field>
+        <field name="default" eval="False" />
+    </record>
+
+    <record id="sdi_channel_e_invoice_sent" model="mail.message.subtype">
+        <field name="name">E-invoice Sent</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="parent_id" eval="ref('e_invoice_sent')" />
+        <field name="relation_field">channel_id</field>
+        <field name="default" eval="False" />
+    </record>
+
+    <record id="sdi_channel_e_invoice_sender_error" model="mail.message.subtype">
+        <field name="name">E-invoice Sender Error</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="parent_id" eval="ref('e_invoice_sender_error')" />
+        <field name="relation_field">channel_id</field>
+        <field name="default" eval="True" />
+    </record>
+
+    <record id="sdi_channel_e_invoice_recipient_error" model="mail.message.subtype">
+        <field name="name">E-invoice Not Delivered</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="parent_id" eval="ref('e_invoice_recipient_error')" />
+        <field name="relation_field">channel_id</field>
+        <field name="default" eval="False" />
+    </record>
+
+    <record id="sdi_channel_e_invoice_rejected" model="mail.message.subtype">
+        <field name="name">E-invoice Rejected (PA)</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="parent_id" eval="ref('e_invoice_rejected')" />
+        <field name="relation_field">channel_id</field>
+        <field name="default" eval="False" />
+    </record>
+
+    <record id="sdi_channel_e_invoice_validated" model="mail.message.subtype">
+        <field name="name">E-invoice Delivered</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="parent_id" eval="ref('e_invoice_validated')" />
+        <field name="relation_field">channel_id</field>
+        <field name="default" eval="False" />
+    </record>
+
+    <record id="sdi_channel_e_invoice_accepted" model="mail.message.subtype">
+        <field name="name">E-invoice Accepted</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="parent_id" eval="ref('e_invoice_accepted')" />
+        <field name="relation_field">channel_id</field>
+        <field name="default" eval="False" />
+    </record>
+
+    <record id="sdi_channel_e_bill_received" model="mail.message.subtype">
+        <field name="name">E-bill received</field>
+        <field name="res_model">sdi.channel</field>
+        <field name="parent_id" eval="ref('e_bill_received')" />
+        <field name="relation_field">channel_id</field>
+    </record>
+</odoo>

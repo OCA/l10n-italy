@@ -28,6 +28,30 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">E-bill creator</span>
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <field name="e_invoice_user_id" class="col-lg-6" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="group_sdi_channel_validate_send" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="group_sdi_channel_validate_send" />
+                            <div class="text-muted">
+                                Allow users to validate, export and send invoices to SdI in one click.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </xpath>

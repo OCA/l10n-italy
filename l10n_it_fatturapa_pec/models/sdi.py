@@ -2,8 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
+from odoo.exceptions import UserError
 
-from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
+from odoo.addons.base.models.ir_mail_server import (
+    MailDeliveryException,
+    extract_rfc2822_addresses,
+)
 
 
 class SdiChannel(models.Model):
@@ -30,12 +34,12 @@ class SdiChannel(models.Model):
     email_exchange_system = fields.Char(
         "Exchange System Email Address",
         help="The first time you send a PEC to SDI, you must use the address "
-        "sdi01@pec.fatturapa.it . The system, with the first response "
+        "sdi01@pec.fatturapa.it.\n"
+        "Odoo will automatically set this address "
+        "the first time you send an e-invoice to SdI using this channel.\n"
+        "The system, with the first response "
         "or notification, communicates the PEC address to be used for "
         "future messages",
-        default=lambda self: self.env["ir.config_parameter"].get_param(
-            "sdi.pec.first.address"
-        ),
     )
     first_invoice_sent = fields.Boolean(
         "SDI already assigned a PEC address to my company",
@@ -44,8 +48,12 @@ class SdiChannel(models.Model):
 
     @api.constrains("fetch_pec_server_id")
     def check_fetch_pec_server_id(self):
-        for channel in self:
-            domain = [("fetch_pec_server_id", "=", channel.fetch_pec_server_id.id)]
+        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+        for channel in pec_channels:
+            domain = [
+                ("fetch_pec_server_id", "=", channel.fetch_pec_server_id.id),
+                ("id", "in", pec_channels.ids),
+            ]
             elements = self.search(domain)
             if len(elements) > 1:
                 raise exceptions.ValidationError(
@@ -61,8 +69,12 @@ class SdiChannel(models.Model):
 
     @api.constrains("pec_server_id")
     def check_pec_server_id(self):
-        for channel in self:
-            domain = [("pec_server_id", "=", channel.pec_server_id.id)]
+        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+        for channel in pec_channels:
+            domain = [
+                ("pec_server_id", "=", channel.pec_server_id.id),
+                ("id", "in", pec_channels.ids),
+            ]
             elements = self.search(domain)
             if len(elements) > 1:
                 raise exceptions.ValidationError(
@@ -80,20 +92,19 @@ class SdiChannel(models.Model):
     def check_email_validity(self):
         if self.env.context.get("skip_check_email_validity"):
             return
-        for channel in self:
+        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+        for channel in pec_channels:
             if not extract_rfc2822_addresses(channel.email_exchange_system):
                 raise exceptions.ValidationError(
                     _("Email %s is not valid") % channel.email_exchange_system
                 )
 
     def check_first_pec_sending(self):
-        sdi_address = self.env["ir.config_parameter"].get_param("sdi.pec.first.address")
         if not self.first_invoice_sent:
-            if self.email_exchange_system != sdi_address:
-                raise exceptions.UserError(
-                    _("This is a first sending but SDI address is different " "from %s")
-                    % sdi_address
-                )
+            sdi_address = self.env["ir.config_parameter"].get_param(
+                "sdi.pec.first.address",
+            )
+            self.email_exchange_system = sdi_address
         else:
             if not self.email_exchange_system:
                 raise exceptions.UserError(
@@ -109,3 +120,55 @@ class SdiChannel(models.Model):
             self.with_context(
                 skip_check_email_validity=True
             ).email_exchange_system = False
+
+    @api.model
+    def _check_fetchmail(self):
+        server = self.env["fetchmail.server"].search(
+            [("is_fatturapa_pec", "=", True), ("state", "=", "done")]
+        )
+        if not server:
+            raise UserError(_("No incoming PEC server found. Please configure it."))
+
+    def send_via_pec(self, attachment_out_ids):
+        self._check_fetchmail()
+        self.check_first_pec_sending()
+        user = self.env.user
+        company = user.company_id
+        for att in attachment_out_ids:
+            if not att.datas or not att.name:
+                raise UserError(_("File content and file name are mandatory"))
+            mail_message = self.env["mail.message"].create(
+                {
+                    "model": att._name,
+                    "res_id": att.id,
+                    "subject": att.name,
+                    "body": "XML file for FatturaPA {} sent to Exchange System to "
+                    "the email address {}.".format(
+                        att.name, company.email_exchange_system
+                    ),
+                    "attachment_ids": [(6, 0, att.ir_attachment_id.ids)],
+                    "email_from": (company.email_from_for_fatturaPA),
+                    "reply_to": (company.email_from_for_fatturaPA),
+                    "mail_server_id": company.sdi_channel_id.pec_server_id.id,
+                }
+            )
+
+            mail = self.env["mail.mail"].create(
+                {
+                    "mail_message_id": mail_message.id,
+                    "body_html": mail_message.body,
+                    "email_to": company.email_exchange_system,
+                    "headers": {"Return-Path": company.email_from_for_fatturaPA},
+                }
+            )
+
+            if mail:
+                try:
+                    mail.send(raise_exception=True)
+                    att.state = "sent"
+                    att.sending_date = fields.Datetime.now()
+                    att.sending_user = user.id
+                    company.sdi_channel_id.update_after_first_pec_sending()
+                except MailDeliveryException as e:
+                    att.state = "sender_error"
+                    mail.body = str(e)

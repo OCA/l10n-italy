@@ -32,6 +32,7 @@
         "views/account_view.xml",
         "views/company_view.xml",
         "views/partner_view.xml",
+        "views/fatturapa_attachment_views.xml",
         "views/related_document_type_views.xml",
         "security/ir.model.access.csv",
     ],

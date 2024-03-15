@@ -3,11 +3,8 @@
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 
-import base64
-import io
 import logging
 import re
-import zipfile
 
 from odoo import _, api, models
 from odoo.exceptions import UserError
@@ -205,70 +202,42 @@ class MailThread(models.AbstractModel):
         return attachment_out_model.browse()
 
     def create_fatturapa_attachment_in(self, attachment, message_dict=None):
-        decoded = base64.b64decode(attachment.datas)
-        fatturapa_attachment_in = self.env["fatturapa.attachment.in"]
         fetchmail_server_id = self.env.context.get("fetchmail_server_id")
         received_date = False
         if message_dict is not None and "date" in message_dict:
             received_date = message_dict["date"]
         company_id = False
-        e_invoice_user_id = False
         # The incoming supplier e-bill doesn't carry which company
         # we must use to create the given fatturapa.attachment.in record,
         # so we expect fetchmail_server_id coming in the context
         # see fetchmail.py.
         # With this information we search which SDI is actually using it,
         # finally the SDI contain both company and user we would need to use
+        sdi_channel_model = self.env["sdi.channel"]
         if fetchmail_server_id:
-            sdi_chan = self.env["sdi.channel"].search(
+            sdi_chan = sdi_channel_model.search(
                 [("fetch_pec_server_id", "=", fetchmail_server_id)], limit=1
             )
             if sdi_chan:
                 # See check_fetch_pec_server_id
                 company_id = sdi_chan.company_id.id
-                e_invoice_user_id = sdi_chan.company_id.e_invoice_user_id.id
-        if e_invoice_user_id:
-            fatturapa_attachment_in = fatturapa_attachment_in.with_user(
-                e_invoice_user_id
-            )
-        if attachment.mimetype == "application/zip":
-            with zipfile.ZipFile(io.BytesIO(decoded)) as zf:
-                for file_name in zf.namelist():
-                    inv_file = zf.open(file_name)
-                    if fatturapa_regex.match(file_name):
-                        # check if this invoice is already
-                        # in other fatturapa.attachment.in
-                        fatturapa_atts = fatturapa_attachment_in.search(
-                            [("name", "=", file_name)]
-                        )
-                        if fatturapa_atts:
-                            _logger.info(
-                                "In invoice %s already processed"
-                                % fatturapa_atts.mapped("name")
-                            )
-                        else:
-                            fatturapa_attachment_in.create(
-                                {
-                                    "name": file_name,
-                                    "datas": base64.encodebytes(inv_file.read()),
-                                    "company_id": company_id,
-                                    "e_invoice_received_date": received_date,
-                                }
-                            )
-        else:
-            fatturapa_atts = fatturapa_attachment_in.search(
-                [("name", "=", attachment.name)]
-            )
-            if fatturapa_atts:
-                _logger.info(
-                    "Invoice xml already processed in %s"
-                    % fatturapa_atts.mapped("name")
-                )
-            else:
-                fatturapa_attachment_in.create(
-                    {
-                        "ir_attachment_id": attachment.id,
-                        "company_id": company_id,
-                        "e_invoice_received_date": received_date,
-                    }
-                )
+        file_name_content_dict = {
+            attachment.name: attachment.datas,
+        }
+        default_values = {
+            "company_id": company_id,
+            "e_invoice_received_date": received_date,
+        }
+        attachments = sdi_channel_model.receive_fe(
+            file_name_content_dict,
+            dict(),  # Not managing metadata files for now
+            **default_values,
+        )
+
+        # Notify if there was an error
+        # during automatic import of invoices from PEC.
+        for attachment in attachments:
+            parsing_error = attachment.e_invoice_parsing_error
+            if parsing_error:
+                raise Exception(parsing_error)
+        return attachments

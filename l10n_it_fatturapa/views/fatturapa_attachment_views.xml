@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="fatturapa_attachment_view_form" model="ir.ui.view">
+        <field name="name">Form view for SdI file</field>
+        <field name="model">fatturapa.attachment</field>
+        <field name="arch" type="xml">
+            <form string="SdI file">
+                <sheet>
+                    <group>
+                        <group name="preview">
+                            <field name='id' invisible="1" />
+                            <label for="datas" />
+                            <div>
+                                <div>
+                                    <field name="datas" filename="name" />
+                                </div>
+                                <div>
+                                    <button
+                                        type="object"
+                                        name="ftpa_preview"
+                                        string="Show preview"
+                                        style="margin-bottom:10px;"
+                                        attrs="{'invisible': [('id', '=', False)]}"
+                                    />
+                                </div>
+                            </div>
+                            <field name="name" invisible="True" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="history" string="History">
+                            <label for="create_uid" string="Created by" />
+                            <div name="creation_div">
+                                <field
+                                    name="create_uid"
+                                    readonly="1"
+                                    class="oe_inline"
+                                /> on
+                                <field
+                                    name="create_date"
+                                    readonly="1"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

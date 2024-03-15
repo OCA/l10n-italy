@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="view_fatturapa_out_attachment_form" model="ir.ui.view">
+        <field name="name">Add SdI channel fields to Electronic Invoice</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
+        />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="send_to_sdi"
+                    states="ready"
+                    string="Send to SdI"
+                    type="object"
+                    class="oe_highlight"
+                />
+                <button
+                    name="reset_to_ready"
+                    states="sender_error"
+                    string="Reset to ready"
+                    type="object"
+                />
+            </header>
+            <page name="history" position="inside">
+                <group
+                    name="last_sdi_response"
+                    string="Last Response from Exchange System"
+                    attrs="{'invisible':[('state', '=', 'ready')]}"
+                >
+                    <field name="last_sdi_response" nolabel="1" />
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>
