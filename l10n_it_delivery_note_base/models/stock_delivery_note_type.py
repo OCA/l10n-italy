@@ -28,6 +28,10 @@ class StockDeliveryNoteType(models.Model):
     sequence = fields.Integer(string="Sequence", index=True, default=10)
     name = fields.Char(string="Name", index=True, required=True, translate=True)
     print_prices = fields.Boolean(string="Show prices on printed DN", default=False)
+    avoid_single_dn_invoice = fields.Boolean(
+        string="Do not allow single DN invoicing", default=False
+    )
+
     code = fields.Selection(
         DELIVERY_NOTE_TYPE_CODES,
         string="Type of Operation",

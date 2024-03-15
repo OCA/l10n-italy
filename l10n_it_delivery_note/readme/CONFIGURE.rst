@@ -12,6 +12,8 @@ To configure this module, go to:
 
    Checking 'Display total in DN with prices' enables in report the 'Import' column and the list of taxes with the sum of the total.
 
+   Checking 'Do not allow single DN invoicing' roves the 'Create invoice' button in the DDT form view.
+
 2. *Inventory → Configuration → Warehouse Management → Delivery Note Types*
 
    In delivery note type you can specify if the product price have to be printed in the delivery note report/slip.
