@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:26+0000\n"
-"PO-Revision-Date: 2024-02-26 12:37+0000\n"
+"PO-Revision-Date: 2024-03-18 09:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -257,7 +257,7 @@ msgstr "Selezionare i registri dai quali prelevare i documenti"
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__show_full_contact_addess
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__show_full_contact_addess
 msgid "Show Full Contact Addess"
-msgstr ""
+msgstr "Visualizza indirizzo completo contatto"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__corrispettivi
