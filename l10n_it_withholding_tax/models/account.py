@@ -104,6 +104,10 @@ class AccountPartialReconcile(models.Model):
             invoice.withholding_tax_line_ids
             and not self._context.get("no_generate_wt_move")
             and not is_wt_move
+            and (
+                ld.account_internal_type in ("receivable", "payable")
+                or lc.account_internal_type in ("receivable", "payable")
+            )
         ):
             # and not wt_existing_moves\
             reconcile.generate_wt_moves(is_wt_move)
