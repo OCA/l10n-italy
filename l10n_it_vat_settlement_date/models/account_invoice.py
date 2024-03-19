@@ -1,7 +1,7 @@
 # Copyright (c) 2021 Marco Colombo (https://github/TheMule71)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class AccountInvoice(models.Model):
@@ -14,7 +14,13 @@ class AccountInvoice(models.Model):
         super().action_move_create()
         for invoice in self:
             if not invoice.date_vat_settlement:
-                invoice.write({"date_vat_settlement": self.date or self.date_invoice or fields.Date.context_today(self)})
+                invoice.write(
+                    {
+                        "date_vat_settlement": self.date
+                        or self.date_invoice
+                        or fields.Date.context_today(self)
+                    }
+                )
             for move in invoice.move_id:
                 move.write({"date_vat_settlement": invoice.date_vat_settlement})
 
@@ -25,5 +31,5 @@ class AccountInvoice(models.Model):
 
     def rc_inv_vals(self, partner, account, rc_type, lines, currency):
         ret = super().rc_inv_vals(partner, account, rc_type, lines, currency)
-        ret['date_vat_settlement'] = self.date_vat_settlement
+        ret["date_vat_settlement"] = self.date_vat_settlement
         return ret

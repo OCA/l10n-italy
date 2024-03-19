@@ -8,9 +8,20 @@ class WizardRegistroIva(models.TransientModel):
     _inherit = "wizard.registro.iva"
 
     def _get_move_ids(self, wizard):
-        moves = self.env['account.move'].search([
-            '|', '&', ('date_vat_settlement', '>=', self.from_date), ('date_vat_settlement', '<=', self.to_date),
-                 '&', ('date_vat_settlement', '=', None), '&', ('date', '<=', self.to_date), ('date', '>=', self.from_date),
-            ('journal_id', 'in', [j.id for j in self.journal_ids]),
-            ('state', '=', 'posted'), ], order='date, name')
+        moves = self.env["account.move"].search(
+            [
+                "|",
+                "&",
+                ("date_vat_settlement", ">=", self.from_date),
+                ("date_vat_settlement", "<=", self.to_date),
+                "&",
+                ("date_vat_settlement", "=", None),
+                "&",
+                ("date", "<=", self.to_date),
+                ("date", ">=", self.from_date),
+                ("journal_id", "in", [j.id for j in self.journal_ids]),
+                ("state", "=", "posted"),
+            ],
+            order="date, name",
+        )
         return moves.ids
