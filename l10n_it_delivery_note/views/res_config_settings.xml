@@ -29,6 +29,20 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="group_required_partner_ref" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="group_required_partner_ref" />
+                            <div class="text-muted">
+                                <p>
+                                    Block the validation of incoming DNs if the
+                                    "Partner reference" field is not set.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
                         <div class="o_setting_right_pane">
                             <label for="virtual_locations_root" />
                             <div class="text-muted">
@@ -40,6 +54,70 @@
                                 </p>
                             </div>
                             <field name="virtual_locations_root" />
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="display_ref_order_dn_report" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="display_ref_order_dn_report" />
+                            <div class="text-muted">
+                                <p>
+                                    Prints Sale Order numbers on DN report (if there are any)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="display_ref_customer_dn_report" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="display_ref_customer_dn_report" />
+                            <div class="text-muted">
+                                <p>
+                                    Prints Customer References on DN report (if there are any)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="display_carrier_dn_report" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="display_carrier_dn_report" />
+                            <div class="text-muted">
+                                <p>
+                                    Prints Carrier's name on DN report (if there is any)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="display_delivery_method_dn_report" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="display_delivery_method_dn_report" />
+                            <div class="text-muted">
+                                <p>
+                                    Prints Delivery Method on DN report (if there is any)
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

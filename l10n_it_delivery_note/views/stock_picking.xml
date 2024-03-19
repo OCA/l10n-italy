@@ -210,7 +210,6 @@
                                         <field
                                             name="delivery_note_carrier_id"
                                             attrs="{'readonly': [('delivery_note_readonly', '=', True)]}"
-                                            domain="[('is_carrier','=', True)]"
                                             string="Carrier"
                                         />
                                         <field
@@ -361,6 +360,9 @@
                 <field name="delivery_note_id" optional="show" />
                 <field name="delivery_note_state" optional="show" />
                 <field name="delivery_note_date" optional="show" />
+            </field>
+            <field name="partner_id" position="after">
+                <field name="carrier_id" string="Delivery Method" />
             </field>
         </field>
     </record>

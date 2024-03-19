@@ -19,3 +19,11 @@
 - [Ooops](https://www.ooops404.com):
 
   > - Giovanni Serra \<<giovanni@gslab.it>\>
+  > - Foresti Francesco \<<francesco.foresti@ooops404.com>\>
+
+- Nextev Srl \<<odoo@nextev.it>\>
+
+- [PyTech-SRL](https://www.pytech.it):
+
+  > - Alessandro Uffreduzzi \<<alessandro.uffreduzzi@pytech.it>\>
+  > - Sebastiano Picchi \<<sebastiano.picchi@pytech.it>\>

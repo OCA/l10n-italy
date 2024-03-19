@@ -72,25 +72,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         # change user in order to activate DN advanced settings
         self.env.user = user
 
-        picking = self.env["stock.picking"].create(
-            {
-                "partner_id": self.recipient.id,
-                "picking_type_id": self.env.ref("stock.picking_type_out").id,
-                "location_id": self.env.ref("stock.stock_location_stock").id,
-                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
-            }
-        )
-        self.env["stock.move"].create(
-            {
-                "name": self.env.ref("product.product_product_8").name,
-                "product_id": self.env.ref("product.product_product_8").id,
-                "product_uom_qty": 1,
-                "product_uom": self.env.ref("product.product_product_8").uom_id.id,
-                "picking_id": picking.id,
-                "location_id": self.env.ref("stock.stock_location_stock").id,
-                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
-            }
-        )
+        picking = self.create_picking()
 
         self.assertEqual(len(picking.move_ids), 1)
 
@@ -106,7 +88,6 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         )
         dn = dn_form.save()
         dn.confirm()
-
         self.assertTrue(picking.delivery_note_id)
         picking.delivery_note_id.action_confirm()
         self.assertEqual(picking.delivery_note_id.state, "confirm")
@@ -119,3 +100,140 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         self.assertIn("type_id", exc_message)
         self.assertIn("picking_ids", exc_message)
         self.assertIn("belongs to another company", exc_message)
+
+    def test_delivery_action_confirm(self):
+        user = new_test_user(
+            self.env,
+            login="test",
+            groups="stock.group_stock_manager,"
+            "l10n_it_delivery_note.use_advanced_delivery_notes",
+        )
+        # change user in order to activate DN advanced settings
+        self.env.user = user
+
+        picking = self.create_picking(
+            carrier_id=self.env.ref("delivery.delivery_carrier").id
+        )
+        picking.move_ids.quantity_done = 1
+        picking.button_validate()
+
+        dn_form = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                **{"active_id": picking.id, "active_ids": picking.ids}
+            )
+        )
+        dn = dn_form.save()
+        dn.confirm()
+
+        delivery_note_id = picking.delivery_note_id
+        product_product_delivery_normal = self.env["product.product"].create(
+            {
+                "name": "Normal Delivery Charges",
+                "default_code": "Delivery_008",
+                "type": "service",
+                "categ_id": self.env.ref("delivery.product_category_deliveries").id,
+                "sale_ok": False,
+                "purchase_ok": False,
+                "invoice_policy": "order",
+                "list_price": 10.0,
+            }
+        )
+        normal_delivery_carrier = self.env["delivery.carrier"].create(
+            {
+                "name": "Normal Delivery Charges",
+                "fixed_price": 10.0,
+                "sequence": 3,
+                "delivery_type": "fixed",
+                "product_id": product_product_delivery_normal.id,
+            }
+        )
+        new_picking = self.create_picking(carrier_id=normal_delivery_carrier.id)
+        new_picking.move_ids.quantity_done = 1
+        new_picking.button_validate()
+
+        delivery_note_id.write({"picking_ids": [(4, new_picking.id)]})
+
+        warning_context = delivery_note_id.action_confirm().get("context")
+        self.assertTrue(warning_context)
+        self.assertIn(
+            "contains pickings related to different delivery methods",
+            warning_context.get("default_warning_message"),
+        )
+
+        picking.carrier_id = self.env.ref("delivery.free_delivery_carrier").id
+        new_picking.carrier_id = self.env.ref("delivery.free_delivery_carrier").id
+        delivery_note_id.carrier_id = self.env.ref(
+            "l10n_it_delivery_note.partner_carrier_2"
+        ).id
+
+        warning_context = delivery_note_id.action_confirm().get("context")
+        self.assertTrue(warning_context)
+        self.assertIn(
+            "The carrier set in Delivery Note is "
+            "different from the carrier set in picking(s)",
+            warning_context.get("default_warning_message"),
+        )
+
+        delivery_note_id.delivery_method_id = self.env.ref(
+            "delivery.free_delivery_carrier"
+        ).id
+        picking.carrier_id = self.env.ref("delivery.delivery_carrier").id
+        new_picking.carrier_id = self.env.ref("delivery.free_delivery_carrier").id
+        warning_context = delivery_note_id.action_confirm().get("context")
+        self.assertTrue(warning_context)
+        self.assertIn(
+            "contains pickings related to different "
+            "delivery methods from the same transporter",
+            warning_context.get("default_warning_message"),
+        )
+
+        new_picking.carrier_id = self.env.ref("delivery.delivery_carrier").id
+        delivery_note_id.delivery_method_id = self.env.ref(
+            "delivery.free_delivery_carrier"
+        ).id
+        delivery_note_id.carrier_id = self.env.ref(
+            "l10n_it_delivery_note.partner_carrier_1"
+        ).id
+        warning_context = delivery_note_id.action_confirm().get("context")
+        self.assertTrue(warning_context)
+        self.assertIn(
+            "The shipping method set in Delivery Note is "
+            "different from the shipping method set in picking(s)",
+            warning_context.get("default_warning_message"),
+        )
+
+    def test_delivery_action_confirm_without_ref(self):
+        user = new_test_user(
+            self.env,
+            login="test",
+            groups="stock.group_stock_manager,"
+            "l10n_it_delivery_note.use_advanced_delivery_notes,"
+            "l10n_it_delivery_note.group_required_partner_ref",
+        )
+        # change user in order to activate DN advanced settings
+        self.env.user = user
+
+        picking = self.create_picking(
+            picking_type_id=self.env.ref("stock.picking_type_in").id,
+            carrier_id=self.env.ref("delivery.delivery_carrier").id,
+        )
+        picking.move_ids.quantity_done = 1
+        picking.button_validate()
+
+        dn_form = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                **{"active_id": picking.id, "active_ids": picking.ids}
+            )
+        )
+        dn = dn_form.save()
+        dn.confirm()
+
+        delivery_note_id = picking.delivery_note_id
+
+        with self.assertRaises(UserError) as exc:
+            delivery_note_id.action_confirm()
+        exc_message = exc.exception.args[0]
+        self.assertIn("The field 'Partner reference' is mandatory", exc_message)
+
+        delivery_note_id.partner_ref = "Reference #1234"
+        delivery_note_id.action_confirm()
