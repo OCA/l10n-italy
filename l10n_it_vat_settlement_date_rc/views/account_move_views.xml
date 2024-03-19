@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright (c) 2021 Marco Colombo (https://github.com/TheMule71)
+  Copyright 2024 Simone Rubino - Aion Tech
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">Add Settlement date to Journal Entry form view</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_vat_settlement_date.view_move_form" />
+        <field name="arch" type="xml">
+            <field name="l10n_it_vat_settlement_date" position="after">
+                <field
+                    name="l10n_it_vat_settlement_date"
+                    attrs="{
+                        'invisible': [
+                            ('move_type', 'not in', (
+                                    'out_invoice',
+                                    'out_receipt',
+                                    'out_refund',
+                                ),
+                            ),
+                        ],
+                    }"
+                    options="{
+                        'datepicker': {
+                            'warn_future': true,
+                        },
+                    }"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
