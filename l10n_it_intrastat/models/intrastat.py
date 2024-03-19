@@ -132,3 +132,16 @@ class AccountIntrastatTransationNatureB(models.Model):
         comodel_name='account.intrastat.transaction.nature',
         string="Transaction Nature"
     )
+
+
+class AccountIntrastatCallOffStockOperations(models.Model):
+    _name = 'account.intrastat.call.off.stock.operations'
+    _description = 'Call Off Stock Operation Type'
+
+    code = fields.Char(
+        string="Operation Type"
+    )
+
+    name = fields.Char(
+        string="Name"
+    )
