@@ -63,6 +63,14 @@ class WizardRegistroIva(models.TransientModel):
         if self.from_date:
             self.year_footer = self.from_date.year
 
+    def _get_move_ids_domain(self):
+        return [
+            ("date", ">=", self.from_date),
+            ("date", "<=", self.to_date),
+            ("journal_id", "in", [j.id for j in self.journal_ids]),
+            ("state", "=", "posted"),
+        ]
+
     def _get_move_ids(self, wizard):
         MAPPING = {
             "journal_date_name": "journal_id, date, name",
@@ -70,12 +78,7 @@ class WizardRegistroIva(models.TransientModel):
         }
         order = MAPPING[wizard.entry_order]
         moves = self.env["account.move"].search(
-            [
-                ("date", ">=", self.from_date),
-                ("date", "<=", self.to_date),
-                ("journal_id", "in", [j.id for j in self.journal_ids]),
-                ("state", "=", "posted"),
-            ],
+            self._get_move_ids_domain(),
             order=order,
         )
         return moves.ids
