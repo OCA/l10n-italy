@@ -30,11 +30,11 @@ ITA - Data competenza IVA
 
 **Italiano**
 
-   Aggiunge la data competenza IVA per le fatture fornitori.
+Aggiunge la data competenza IVA per le fatture fornitori.
 
 **English**
 
-   Add settlement date for bills.
+Add settlement date for bills.
 
 **Table of contents**
 
@@ -62,7 +62,9 @@ Authors
 Contributors
 ------------
 
+-  `Aion Tech <https://aiontech.company/>`__:
 
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------

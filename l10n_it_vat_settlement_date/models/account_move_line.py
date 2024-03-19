@@ -5,23 +5,22 @@
 from odoo import api, fields, models
 
 
-class AccountMove(models.Model):
-    _inherit = "account.move"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     l10n_it_vat_settlement_date = fields.Date(
         string="VAT Settlement Date",
         compute="_compute_l10n_it_vat_settlement_date",
+        index=True,
         store=True,
+        copy=False,
         readonly=False,
     )
 
     @api.depends(
-        "date",
-        "invoice_date",
+        "move_id.l10n_it_vat_settlement_date",
     )
     def _compute_l10n_it_vat_settlement_date(self):
-        for move in self:
-            settlement_date = (
-                move.date or move.invoice_date or fields.Date.context_today(move)
-            )
-            move.l10n_it_vat_settlement_date = settlement_date
+        for line in self:
+            move = line.move_id
+            line.l10n_it_vat_settlement_date = move.l10n_it_vat_settlement_date
