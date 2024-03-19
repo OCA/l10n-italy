@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template
+        id="report_registro_iva"
+        inherit_id="l10n_it_vat_registries.report_registro_iva"
+    >
+        <!-- Add one column to tax's and all parent tables to keep them aligned -->
+        <xpath expr="//t[@t-set='columns_number']" position="after">
+            <t t-set="columns_number" t-value="columns_number + 1" />
+        </xpath>
+        <xpath expr="//tr[@name='vat_header_invoice']" position="inside">
+            <th />
+        </xpath>
+        <xpath expr="//tr[@name='vat_header_tax']" position="inside">
+            <th class="right_with_line_bottom">
+                <span>VAT Settlement date</span>
+            </th>
+        </xpath>
+        <xpath expr="//tr[@name='vat_body_tax']" position="inside">
+            <td class="right_without_line">
+                <div t-field="move.l10n_it_vat_settlement_date" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
