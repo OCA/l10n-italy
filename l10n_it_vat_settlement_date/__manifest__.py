@@ -12,11 +12,11 @@
     "depends": [
         "account_vat_period_end_statement",
         "l10n_it_vat_registries",
-        ],
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/account_invoice_view.xml",
-        "report/report_registro_iva.xml"
+        "report/report_registro_iva.xml",
     ],
     "installable": True,
 }
