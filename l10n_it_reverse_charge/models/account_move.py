@@ -36,6 +36,14 @@ class AccountMoveLine(models.Model):
             line.rc = is_rc
 
     rc = fields.Boolean("RC", compute="_compute_rc_flag", store=True, readonly=False)
+    rc_source_line_id = fields.Many2one("account.move.line", readonly=True)
+
+    def _compute_currency_rate(self):
+        res = super()._compute_currency_rate()
+        for line in self:
+            if line.currency_id and line.rc_source_line_id:
+                line.currency_rate = line.rc_source_line_id.currency_rate
+        return res
 
 
 class AccountMove(models.Model):
@@ -81,6 +89,7 @@ class AccountMove(models.Model):
             "price_unit": line.price_unit,
             "quantity": line.quantity,
             "discount": line.discount,
+            "rc_source_line_id": line.id,
         }
 
     def rc_inv_vals(self, partner, rc_type, lines, currency):
@@ -462,6 +471,7 @@ class AccountMove(models.Model):
         invoice_line_vals = []
         for inv_line in self.invoice_line_ids:
             line_vals = inv_line.copy_data()[0]
+            line_vals["rc_source_line_id"] = inv_line.id
             line_vals["move_id"] = supplier_invoice.id
             line_tax_ids = inv_line.tax_ids
             mapped_taxes = rc_type.map_tax(

@@ -26,7 +26,7 @@
                     t-out="tax_data['Natura']"
                 />
                 <ImponibileImporto
-                    t-out="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], record), euro)"
+                    t-out="format_monetary(tax_data['ImponibileImporto'], euro)"
                 />
                 <Imposta>0.00</Imposta>
                 <EsigibilitaIVA
