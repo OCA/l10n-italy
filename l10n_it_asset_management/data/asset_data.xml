@@ -37,8 +37,8 @@
     </record>
     <record id="ad_mode_materiale_line" model="asset.depreciation.mode.line">
         <field name="mode_id" ref="ad_mode_materiale" />
-        <field name="from_nr">1</field>
-        <field name="to_nr">1</field>
+        <field name="from_year_nr">1</field>
+        <field name="to_year_nr">1</field>
         <field name="coefficient">0.5</field>
     </record>
 
