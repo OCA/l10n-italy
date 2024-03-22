@@ -1016,7 +1016,7 @@ class StockDeliveryNoteLine(models.Model):
     def _prepare_detail_lines(self, moves):
         lines = []
         for move in moves:
-
+            move = move.with_context(lang=move.picking_id.partner_id.lang)
             name = move.product_id.name
             if move.product_id.description_sale:
                 name += "\n" + move.product_id.description_sale
