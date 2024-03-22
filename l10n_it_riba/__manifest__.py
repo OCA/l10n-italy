@@ -44,5 +44,11 @@
         "views/wizard_presentation.xml",
     ],
     "demo": ["demo/riba_demo.xml"],
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
+    "pre_init_hook": "pre_absorb_old_module",
     "installable": True,
 }
