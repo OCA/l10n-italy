@@ -2,6 +2,7 @@
 asn1crypto
 codicefiscale
 elementpath
+fiscalyear
 mock
 unidecode
 xmlschema
