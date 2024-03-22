@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, fields, models
 from odoo.tools import format_date
 
@@ -100,6 +103,7 @@ class FatturaPAAttachmentIn(models.Model):
 
     @api.depends("ir_attachment_id.datas")
     def _compute_xml_data(self):
+        invoice_model = self.env["account.move"]
         for att in self:
             att.xml_supplier_id = False
             att.invoices_number = False
@@ -119,8 +123,15 @@ class FatturaPAAttachmentIn(models.Model):
             att.invoices_total = 0
             invoices_date = []
             for invoice_body in fatt.FatturaElettronicaBody:
+                amount_untaxed = invoice_model.compute_xml_amount_untaxed(invoice_body)
+                amount_tax = invoice_model.compute_xml_amount_tax(
+                    invoice_body.DatiBeniServizi.DatiRiepilogo
+                )
+                amount_total = invoice_model.compute_xml_amount_total(
+                    invoice_body, amount_untaxed, amount_tax
+                )
+                att.invoices_total += amount_total
                 dgd = invoice_body.DatiGenerali.DatiGeneraliDocumento
-                att.invoices_total += float(dgd.ImportoTotaleDocumento or 0)
                 invoice_date = format_date(
                     att.with_context(lang=att.env.user.lang).env,
                     fields.Date.from_string(dgd.Data),
