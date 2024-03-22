@@ -52,7 +52,7 @@ class StockDeliveryNoteLine(models.Model):
         string="Quantity", digits="Product Unit of Measure", default=1.0
     )
     product_uom_id = fields.Many2one("uom.uom", string="UoM", default=_default_unit_uom)
-    price_unit = fields.Monetary(string="Unit price", currency_field="currency_id")
+    price_unit = fields.Float(string="Unit price", digits="Product Price")
     currency_id = fields.Many2one(
         "res.currency", string="Currency", required=True, default=_default_currency
     )
