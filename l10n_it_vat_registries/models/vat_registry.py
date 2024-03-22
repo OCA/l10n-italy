@@ -110,9 +110,11 @@ class ReportRegistroIva(models.AbstractModel):
             if set_cee_absolute_value:
                 tax_amount = abs(tax_amount)
 
+            invoice = self._get_invoice_from_move(move)
             if (
                 'receivable' in move.move_type or
-                ('payable_refund' == move.move_type and tax_amount > 0)
+                ('payable_refund' == move.move_type and tax_amount > 0 and
+                    invoice.fiscal_position_id.rc_type_id.method == 'integration')
             ):
                 # otherwise refund would be positive and invoices
                 # negative.
