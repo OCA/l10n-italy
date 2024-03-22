@@ -140,6 +140,10 @@ Contributors
 
    -  Víctor Martínez
 
+-  `Aion Tech <https://aiontech.company/>`__:
+
+   -  Simone Rubino <simone.rubino@aion-tech.it>
+
 Maintainers
 -----------
 

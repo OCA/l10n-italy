@@ -1,6 +1,7 @@
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018-2019 Alex Comba - Agile Business Group
+# Copyright 2023 Simone Rubino - Aion Tech
 
 import base64
 import re
@@ -1010,3 +1011,71 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_post()
 
         self.assertEqual(invoice.state, "posted")
+
+    def _get_multiple_invoices(self, partner, invoices_number=2):
+        """Create `invoices_number` invoices for `partner`."""
+        invoices = self.invoice_model.browse()
+        for _ in range(invoices_number):
+            invoices |= self.init_invoice(
+                "out_invoice",
+                partner=partner,
+                amounts=[
+                    100,
+                ],
+            )
+        invoices.action_post()
+        return invoices
+
+    def test_max_invoice_number_unlimited(self):
+        """Check that when both partner and company do not have any max value,
+        only one attachment is created."""
+
+        # pre-condition: partner and company do not have any max value
+        company = self.company
+        self.assertEqual(company.max_invoice_in_xml, 0)
+        partner = self.res_partner_fatturapa_0
+        self.assertEqual(partner.max_invoice_in_xml, 0)
+
+        # Create two invoices
+        invoices = self._get_multiple_invoices(partner)
+        self.run_wizard(invoices.ids)
+
+        # Check that only one attachment is created
+        attachments_nbr = len(invoices.mapped("fatturapa_attachment_out_id"))
+        self.assertEqual(attachments_nbr, 1)
+
+    def test_max_invoice_number_partner(self):
+        """Check that when partner has a max value, company value is ignored and
+        many attachments are created."""
+
+        # pre-condition: partner has a value
+        company = self.company
+        self.assertEqual(company.max_invoice_in_xml, 0)
+        partner = self.res_partner_fatturapa_0
+        partner.max_invoice_in_xml = 1
+
+        # Create two invoices
+        invoices = self._get_multiple_invoices(partner)
+        self.run_wizard(invoices.ids)
+
+        # Check that two attachments are created
+        attachments_nbr = len(invoices.mapped("fatturapa_attachment_out_id"))
+        self.assertEqual(attachments_nbr, 2)
+
+    def test_max_invoice_number_company(self):
+        """Check that when company has a max value and partner does not,
+        many attachments are created."""
+
+        # pre-condition: only company has a value
+        company = self.company
+        company.max_invoice_in_xml = 1
+        partner = self.res_partner_fatturapa_0
+        self.assertEqual(partner.max_invoice_in_xml, 0)
+
+        # Create two invoices
+        invoices = self._get_multiple_invoices(partner)
+        self.run_wizard(invoices.ids)
+
+        # Check that two attachments are created
+        attachments_nbr = len(invoices.mapped("fatturapa_attachment_out_id"))
+        self.assertEqual(attachments_nbr, 2)
