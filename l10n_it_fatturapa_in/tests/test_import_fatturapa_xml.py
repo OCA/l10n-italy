@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from datetime import date
 
 from psycopg2 import IntegrityError
@@ -580,10 +583,17 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         res = self.run_wizard("test25", "IT05979361218_013.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
-        self.assertAlmostEqual(invoice.e_invoice_amount_untaxed, 34.67)
+        e_bill_total = 34.32
+        e_bill_rounding = -0.35
+        self.assertAlmostEqual(
+            invoice.e_invoice_amount_untaxed, e_bill_total - e_bill_rounding
+        )
         self.assertEqual(invoice.e_invoice_amount_tax, 0.0)
-        self.assertEqual(invoice.e_invoice_amount_total, 34.32)
-        self.assertEqual(invoice.efatt_rounding, -0.35)
+        self.assertEqual(invoice.e_invoice_amount_total, e_bill_total)
+        self.assertEqual(invoice.efatt_rounding, e_bill_rounding)
+        self.assertEqual(invoice.amount_total, e_bill_total)
+        self.assertEqual(invoice.amount_total_signed, -e_bill_total)
+        self.assertEqual(invoice.amount_net_pay, e_bill_total)
         invoice.action_post()
         move_line = False
         for line in invoice.line_ids:
