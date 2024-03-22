@@ -97,6 +97,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataRiferimentoTerminiPagamento>2019-08-07</DataRiferimentoTerminiPagamento>
                 <DataScadenzaPagamento>2019-09-30</DataScadenzaPagamento>
                 <ImportoPagamento>11.00</ImportoPagamento>
             </DettaglioPagamento>
