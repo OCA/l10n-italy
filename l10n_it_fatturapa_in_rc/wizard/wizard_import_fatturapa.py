@@ -46,3 +46,11 @@ class WizardImportFatturapa(models.TransientModel):
             if rc_ita_fp:
                 invoice.fiscal_position_id = rc_ita_fp
         return res
+
+    def _prepareInvoiceLineAliquota(self, credit_account_id, line, nline):
+        retLine = super(WizardImportFatturapa, self)._prepareInvoiceLineAliquota(
+            credit_account_id, line, nline
+        )
+        if float(line.AliquotaIVA) == 0.0 and line.Natura.startswith("N6"):
+            retLine["rc"] = True
+        return retLine
