@@ -7,6 +7,7 @@
 import base64
 import os
 
+from odoo.exceptions import UserError
 from odoo.tools import config
 
 from . import riba_common
@@ -553,3 +554,29 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             self.env["account.move.line"].search(domain).mapped("amount_residual")
         )
         self.assertTrue(total_amount - total_issue_amount >= 0)
+
+    def test_riba_bank_multicompany(self):
+        """Configuration parameters for RiBa
+        can only be created with data of current company."""
+        current_company = self.env.company
+        company_2 = self.company2
+        partner_bank = self.company2_bank
+        partner_bank.company_id = company_2
+        # pre-condition
+        self.assertEqual(partner_bank.company_id, company_2)
+        self.assertNotEqual(current_company, company_2)
+
+        # Act
+        with self.assertRaises(UserError) as ue:
+            self.env["riba.configuration"].create(
+                {
+                    "name": "Subject To Collection",
+                    "type": "incasso",
+                    "bank_id": partner_bank.id,
+                }
+            )
+
+        # Assert
+        exc_message = ue.exception.args[0]
+        self.assertIn(current_company.name, exc_message)
+        self.assertIn(partner_bank.display_name, exc_message)
