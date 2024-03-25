@@ -152,6 +152,7 @@
                                         <field name="date_start" />
                                         <field name="percentage" />
                                         <field name="base_coeff" />
+                                        <field name="base_max_amount" />
                                         <field name="amount_depreciable" />
                                         <field name="amount_depreciable_updated" />
                                         <field name="amount_depreciated" />

@@ -1,5 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -7,13 +8,8 @@ from odoo import fields, models
 
 class AssetCategoryDepreciationType(models.Model):
     _name = "asset.category.depreciation.type"
+    _inherit = "l10n_it_asset_management.compute.depreciable_amount"
     _description = "Asset Category - Depreciation Type"
-
-    base_coeff = fields.Float(
-        default=1,
-        help="Coeff to compute depreciable amount from purchase amount",
-        string="Dep Base Coeff",
-    )
 
     category_id = fields.Many2one(
         "asset.category",
@@ -46,8 +42,9 @@ class AssetCategoryDepreciationType(models.Model):
     def get_depreciation_vals(self, amount_depreciable=0):
         self.ensure_one()
         return {
-            "amount_depreciable": amount_depreciable * self.base_coeff,
+            "amount_depreciable": self._get_depreciable_amount(amount_depreciable),
             "base_coeff": self.base_coeff,
+            "base_max_amount": self.base_max_amount,
             "mode_id": self.mode_id.id,
             "percentage": self.percentage,
             "pro_rata_temporis": self.pro_rata_temporis,

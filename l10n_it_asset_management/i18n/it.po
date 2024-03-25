@@ -1044,12 +1044,9 @@ msgid "Code"
 msgstr "Codice"
 
 #. module: l10n_it_asset_management
-#: model:ir.model.fields,help:l10n_it_asset_management.field_asset_depreciation__base_coeff
-msgid "Coeff to compute amount depreciable from purchase amount"
-msgstr "Coefficiente per calcolo importo ammortizzabile da valore di acquisto"
-
-#. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_asset_category_depreciation_type__base_coeff
+#: model:ir.model.fields,help:l10n_it_asset_management.field_asset_depreciation__base_coeff
+#: model:ir.model.fields,help:l10n_it_asset_management.field_l10n_it_asset_management_compute_depreciable_amount__base_coeff
 msgid "Coeff to compute depreciable amount from purchase amount"
 msgstr "Coefficiente per calcolo importo ammortizzabile da valore di acquisto"
 
@@ -1086,6 +1083,11 @@ msgstr "Commento"
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_search_view
 msgid "Company"
 msgstr "Azienda"
+
+#. module: l10n_it_asset_management
+#: model:ir.model,name:l10n_it_asset_management.model_l10n_it_asset_management_compute_depreciable_amount
+msgid "Compute depreciable amount"
+msgstr ""
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -1307,6 +1309,8 @@ msgstr "Importo ammortizzabile"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category_depreciation_type__base_coeff
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__base_coeff
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_l10n_it_asset_management_compute_depreciable_amount__base_coeff
 msgid "Dep Base Coeff"
 msgstr "Coeff. base amm.to"
 
@@ -1351,11 +1355,6 @@ msgstr "Amm.to n°"
 #, python-format
 msgid "Dep. Percentage (%)"
 msgstr "Percentuale amm.to (%)"
-
-#. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__base_coeff
-msgid "Depreciable Base Coeff"
-msgstr "Coeff. base amm.to"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__asset_asset__state__totally_depreciated
@@ -2125,6 +2124,13 @@ msgstr "Gestione cespiti da movimenti conto"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__management_type
 msgid "Management Type"
 msgstr "Tipo gestione"
+
+#. module: l10n_it_asset_management
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category_depreciation_type__base_max_amount
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__base_max_amount
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_l10n_it_asset_management_compute_depreciable_amount__base_max_amount
+msgid "Maximum depreciable amount"
+msgstr ""
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_asset_depreciation_mode_line__to_year_nr
@@ -3272,6 +3278,13 @@ msgstr "o"
 #, python-format
 msgid "to date %(to_date)s"
 msgstr "alla data %(to_date)s"
+
+#~ msgid "Coeff to compute amount depreciable from purchase amount"
+#~ msgstr ""
+#~ "Coefficiente per calcolo importo ammortizzabile da valore di acquisto"
+
+#~ msgid "Depreciable Base Coeff"
+#~ msgstr "Coeff. base amm.to"
 
 #~ msgid "From Nr"
 #~ msgstr "Dal n°"
