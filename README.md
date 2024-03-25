@@ -48,7 +48,7 @@ addon | version | maintainers | summary
 [l10n_it_delivery_note_rma](l10n_it_delivery_note_rma/) | 14.0.1.1.0 | [![solo4games](https://github.com/solo4games.png?size=30px)](https://github.com/solo4games) [![CetmixGitDrone](https://github.com/CetmixGitDrone.png?size=30px)](https://github.com/CetmixGitDrone) | Add Oportunity to create RMA from DN with wizard and smart button to DN view
 [l10n_it_fatturapa](l10n_it_fatturapa/) | 14.0.2.2.1 |  | Fatture elettroniche
 [l10n_it_fatturapa_export_zip](l10n_it_fatturapa_export_zip/) | 14.0.1.0.1 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Permette di esportare in uno ZIP diversi file XML di fatture elettroniche
-[l10n_it_fatturapa_import_zip](l10n_it_fatturapa_import_zip/) | 14.0.1.0.1 |  | Permette di importare in uno ZIP diversi file XML di fatture elettroniche
+[l10n_it_fatturapa_import_zip](l10n_it_fatturapa_import_zip/) | 14.0.1.0.2 |  | Permette di importare in uno ZIP diversi file XML di fatture elettroniche
 [l10n_it_fatturapa_in](l10n_it_fatturapa_in/) | 14.0.2.2.2 |  | Ricezione fatture elettroniche
 [l10n_it_fatturapa_in_purchase](l10n_it_fatturapa_in_purchase/) | 14.0.1.0.0 |  | Modulo ponte tra ricezione fatture elettroniche e acquisti
 [l10n_it_fatturapa_in_rc](l10n_it_fatturapa_in_rc/) | 14.0.1.1.2 | [![sergiocorato](https://github.com/sergiocorato.png?size=30px)](https://github.com/sergiocorato) | Modulo ponte tra e-fattura in acquisto e inversione contabile
