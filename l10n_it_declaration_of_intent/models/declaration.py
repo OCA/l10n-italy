@@ -1,6 +1,7 @@
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import datetime as dt
 from datetime import datetime
 
 from odoo import _, api, fields, models
@@ -94,8 +95,11 @@ class DeclarationOfIntent(models.Model):
             # ----- Check if yearly plafond is enough
             #       to create an in declaration
             # Declaration issued by company are "IN"
-            if values.get("type", False) == "in":
-                year = fields.Date.to_date(values["date_start"]).strftime("%Y")
+            if values.get("type", False) == "in" and values.get("date_start"):
+                if isinstance(values["date_start"], dt.date):
+                    year = str(values["date_start"].year)
+                else:
+                    year = fields.Date.to_date(values["date_start"]).strftime("%Y")
                 plafond = self.env.company.declaration_yearly_limit_ids.filtered(
                     lambda r, y=year: r.year == y
                 )
