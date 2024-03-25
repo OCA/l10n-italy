@@ -7,7 +7,7 @@ from datetime import date
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.fields import Command, first
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 from odoo.tools.date_utils import relativedelta
 
 
@@ -641,6 +641,72 @@ class TestAssets(TransactionCase):
         self.assertAlmostEqual(
             sum(civ_dep_lines.mapped("amount")), 7000 * 0.6 + 9000 * 0.4
         )
+
+    def _create_asset_wizard(self, move, wizard_values=None):
+        """Create the asset management wizard on `move`."""
+        if wizard_values is None:
+            wizard_values = dict()
+
+        wizard_action = move.open_wizard_manage_asset()
+        wizard_model_name = wizard_action["res_model"]
+        wizard_context = wizard_action["context"]
+        wizard_model = self.env[wizard_model_name].with_context(**wizard_context)
+
+        wizard_form = Form(wizard_model)
+        for field, value in wizard_values.items():
+            setattr(wizard_form, field, value)
+        return wizard_form.save()
+
+    def _run_asset_wizard(self, move, wizard_values=None):
+        """Execute the asset management wizard on `move`."""
+        wizard = self._create_asset_wizard(move, wizard_values=wizard_values)
+        return wizard.link_asset()
+
+    def test_max_amount_depreciable(self):
+        """
+        Set max amount depreciable in category line,
+        if the asset has a higher amount, the max amount is set as depreciable instead.
+        """
+        # Arrange
+        purchase_amount = 1000
+        max_depreciable_amount = 120
+        category = self.asset_category_1
+        civ_type = self.env.ref("l10n_it_asset_management.ad_type_civilistico")
+        category_civ_depreciation_type = category.type_ids.filtered(
+            lambda x: x.depreciation_type_id == civ_type
+        )
+        category_civ_depreciation_type.update(
+            {
+                "base_max_amount": max_depreciable_amount,
+            }
+        )
+        purchase_invoice = self._create_purchase_invoice(
+            fields.Date.today(), amount=purchase_amount
+        )
+        # pre-condition
+        self.assertEqual(purchase_invoice.amount_untaxed, purchase_amount)
+        self.assertEqual(
+            category_civ_depreciation_type.base_max_amount, max_depreciable_amount
+        )
+        self.assertGreater(purchase_amount, max_depreciable_amount)
+
+        # Act
+        asset = self._run_asset_wizard(
+            purchase_invoice,
+            wizard_values={
+                "management_type": "create",
+                "name": "Test asset",
+                "category_id": category,
+            },
+        )
+
+        # Assert
+        self.assertEqual(asset.category_id, category)
+        civ_depreciation = asset.depreciation_ids.filtered(
+            lambda x: x.type_id == civ_type
+        )
+        self.assertEqual(civ_depreciation.base_max_amount, max_depreciable_amount)
+        self.assertEqual(civ_depreciation.amount_depreciable, max_depreciable_amount)
 
     def _civil_depreciate_asset(self, asset):
         # Keep only one civil depreciation
