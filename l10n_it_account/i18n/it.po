@@ -117,11 +117,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
-msgid "Include in VAT register"
-msgstr "Includere nel registro IVA"
-
-#. module: l10n_it_account
 #: code:addons/l10n_it_account/models/account_group.py:0
 #, python-format
 msgid "Incoherent balance signs for '{}' and its subgroups."
@@ -151,16 +146,6 @@ msgid "Parent Taxes"
 msgstr "Imposte padre"
 
 #. module: l10n_it_account
-#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__purchase
-msgid "Purchase"
-msgstr "Acquisto"
-
-#. module: l10n_it_account
-#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__sale
-msgid "Sale"
-msgstr "Vendita"
-
-#. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_tax
 msgid "Tax"
 msgstr "Imposta"
@@ -170,14 +155,22 @@ msgstr "Imposta"
 msgid "Undeductible Balance"
 msgstr "Saldo non deducibile"
 
-#. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
-msgid ""
-"Use in the case of tax with 'VAT integration'. This specifies the VAT "
-"register (sales / purchases) where the tax must be computed."
-msgstr ""
-"Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
-"registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+#~ msgid "Include in VAT register"
+#~ msgstr "Includere nel registro IVA"
+
+#~ msgid "Purchase"
+#~ msgstr "Acquisto"
+
+#~ msgid "Sale"
+#~ msgstr "Vendita"
+
+#~ msgid ""
+#~ "Use in the case of tax with 'VAT integration'. This specifies the VAT "
+#~ "register (sales / purchases) where the tax must be computed."
+#~ msgstr ""
+#~ "Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
+#~ "registro IVA (vendite / acquisti) nel quale deve essere calcolata "
+#~ "l'imposta."
 
 #~ msgid ""
 #~ "<br/>\n"
