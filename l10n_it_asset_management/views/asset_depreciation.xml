@@ -44,7 +44,19 @@
                         />
                         <field
                             name="base_coeff"
-                            attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
+                            attrs="{
+                                'readonly': [
+                                    ('state', '!=', 'non_depreciated'),
+                                ],
+                            }"
+                        />
+                        <field
+                            name="base_max_amount"
+                            attrs="{
+                                'readonly': [
+                                    ('state', '!=', 'non_depreciated'),
+                                ],
+                            }"
                         />
                         <field
                             name="depreciation_account_id"
