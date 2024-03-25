@@ -58,21 +58,6 @@ class VatPeriodEndStatementReport(models.AbstractModel):
                 }
             )
 
-            if tax.cee_type and tax.parent_tax_ids and len(tax.parent_tax_ids) == 1:
-                # In caso di integrazione iva l'imponibile è solo sulla
-                # padre
-                parent = tax.parent_tax_ids[0]
-
-                tax_data = parent._compute_totals_tax(
-                    {
-                        "from_date": date_range.date_start,
-                        "to_date": date_range.date_end,
-                        "registry_type": registry_type,
-                    }
-                )
-                # return tax_name, base, tax_val, deductible, undeductible
-                base = tax_data[1]
-
             res[tax_name] = {
                 "code": tax_name,
                 "vat": tax_val,
