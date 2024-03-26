@@ -70,7 +70,9 @@ class Fetchmail(models.Model):
                             except Exception as e:
                                 server.manage_pec_failure(e, error_messages)
                                 continue
-                            imap_server.store(num, '+FLAGS', '\\Seen')
+                            finally:
+                                # Mark the message as read anyway
+                                imap_server.store(num, '+FLAGS', '\\Seen')
                             # We need to commit because message is processed:
                             # Possible next exceptions, out of try, should not
                             # rollback processed messages
