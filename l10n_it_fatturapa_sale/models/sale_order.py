@@ -23,8 +23,13 @@ class SaleOrder (models.Model):
         for invoice in invoices.values():
             orders = invoice.invoice_line_ids.mapped('sale_line_ids.order_id')
             orders = orders.filtered(lambda o: o in self)
-            sale_documents = orders.mapped('related_documents')
-            invoice.update({
+            # Use sudo because current user might not be able to
+            # read/write the related documents
+            # but they should propagate to the invoice just the same
+            orders_sudo = orders.sudo()
+            sale_documents = orders_sudo.mapped('related_documents')
+            invoice_sudo = invoice.sudo()
+            invoice_sudo.update({
                 'related_documents': [
                     (4, sale_document_id)
                     for sale_document_id in sale_documents.ids],
@@ -33,7 +38,11 @@ class SaleOrder (models.Model):
 
     @api.multi
     def unlink(self):
-        related_documents = self.mapped('related_documents')
+        # Use sudo because current user might not be able to
+        # read the related documents
+        # but they should be unlinked just the same
+        self_sudo = self.sudo()
+        related_documents = self_sudo.mapped('related_documents')
         res = super().unlink()
         related_documents.check_unlink().unlink()
         return res
