@@ -27,7 +27,8 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
             return self.env['stock.delivery.note.type'] \
                        .search([('code', '=', 'outgoing')], limit=1)
 
-    partner_shipping_id = fields.Many2one('res.partner', required=True)
+    partner_shipping_id = fields.Many2one('res.partner', required=True,
+                                          compute='_compute_fields')
 
     date = fields.Date(default=_default_date)
     type_id = fields.Many2one('stock.delivery.note.type',
@@ -39,10 +40,6 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         super().check_compliance(pickings)
 
         self._check_delivery_notes(pickings)
-
-    @api.onchange('partner_id')
-    def _onchange_partner(self):
-        self.partner_shipping_id = self.partner_id
 
     def confirm(self):
         self.check_compliance(self.selected_picking_ids)
@@ -85,3 +82,9 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
 
         if self.user_has_groups('l10n_it_delivery_note.use_advanced_delivery_notes'):
             return delivery_note.goto()
+
+    @api.depends('selected_picking_ids')
+    def _compute_fields(self):
+        super()._compute_fields()
+        partners = self.selected_picking_ids.get_partners()
+        self.partner_shipping_id = partners[2]
