@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="assets" inherit_id="fiscal_epos_print.assets">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/fiscal_epos_print_pos_loyalty/static/src/js/fiscal_epos_print_pos_loyaly.js"/>
+        </xpath>
+    </template>
+</odoo>
