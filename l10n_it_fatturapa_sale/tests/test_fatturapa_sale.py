@@ -12,6 +12,9 @@ class TestFatturapaSale(TransactionCase):
             .name_create("Test partner")[0]
         self.product_id = self.env['product.product'] \
             .name_create("Test product")[0]
+        self.account_receivable = self.env['account.account'].search(
+            [('user_type_id', '=', self.env.ref(
+                'account.data_account_type_receivable').id)])[0]
 
     def _create_order(self):
         sale_order = self.env['sale.order'].create([{
@@ -53,6 +56,46 @@ class TestFatturapaSale(TransactionCase):
 
         # Check the invoice line
         invoice_line = invoice.invoice_line_ids.filtered(
+            lambda l: order_line in l.sale_line_ids)
+        self.assertEqual(len(invoice_line), 1,
+                         "Multiple invoice lines for sale order line")
+
+        self.assertEqual(
+            invoice_line.related_documents,
+            order_line.related_documents)
+        self.assertEqual(
+            invoice_line.admin_ref,
+            order_line.admin_ref)
+
+    def test_create_advance_invoice(self):
+        """
+        Generate an invoice from a sale order.
+        Check that related documents are passed
+        from the sale order (and its lines) to the invoice (and its lines).
+        """
+        order_line, sale_order = self._create_order()
+
+        # Check the invoice
+        advance_invoice_wizard = self.env['sale.advance.payment.inv'] \
+            .with_context(active_ids=sale_order.ids).create({
+                'advance_payment_method': 'percentage',
+                'amount': 5,
+                'deposit_account_id': self.account_receivable.id
+            })
+        advance_invoice_wizard.create_invoices()
+        invoices = sale_order.mapped('invoice_ids')
+        self.assertEqual(len(invoices), 1,
+                         "Multiple advance invoices for sale order")
+        invoice = invoices[0]
+        self.assertEqual(
+            invoice.related_documents,
+            sale_order.related_documents)
+        final_invoices = sale_order.action_invoice_create()
+        self.assertEqual(len(final_invoices), 1,
+                         "Multiple final invoices for sale order")
+        # Check the invoice line
+        final_invoice = self.env["account.invoice"].browse(final_invoices)
+        invoice_line = final_invoice.invoice_line_ids.filtered(
             lambda l: order_line in l.sale_line_ids)
         self.assertEqual(len(invoice_line), 1,
                          "Multiple invoice lines for sale order line")
