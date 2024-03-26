@@ -46,6 +46,9 @@ class AccountInvoice(models.Model):
     rc_self_purchase_invoice_id = fields.Many2one(
         comodel_name='account.invoice',
         string='RC Self Purchase Invoice', copy=False, readonly=True)
+    rc_original_purchase_invoice_ids = fields.One2many(
+        "account.invoice", "rc_self_purchase_invoice_id",
+        string="Original purchase invoices", copy=False, readonly=True)
 
     @api.onchange('fiscal_position_id')
     def onchange_rc_fiscal_position_id(self):
@@ -103,7 +106,8 @@ class AccountInvoice(models.Model):
             "Reference: %s\n"
             "Date: %s\n"
             "Internal reference: %s") % (
-            supplier.display_name, self.reference or '', self.date,
+            supplier.display_name,
+            self.origin or self.reference or '', self.date,
             self.number
         )
         return {
@@ -399,6 +403,7 @@ class AccountInvoice(models.Model):
         supplier_invoice.date = self.date
         supplier_invoice.date_invoice = self.date
         supplier_invoice.date_due = self.date
+        supplier_invoice.origin = self.reference or self.number
         supplier_invoice.partner_id = rc_type.partner_id.id
         supplier_invoice.journal_id = rc_type.supplier_journal_id.id
         for inv_line in supplier_invoice.invoice_line_ids:
@@ -501,9 +506,10 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_invoice_draft(self):
-        super(AccountInvoice, self).action_invoice_draft()
-        invoice_model = self.env['account.invoice']
-        for inv in self:
+        new_self = self.with_context(rc_set_to_draft=True)
+        super(AccountInvoice, new_self).action_invoice_draft()
+        invoice_model = new_self.env['account.invoice']
+        for inv in new_self:
             if inv.rc_self_invoice_id:
                 self_invoice = invoice_model.browse(
                     inv.rc_self_invoice_id.id)
