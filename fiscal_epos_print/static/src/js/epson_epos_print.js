@@ -351,9 +351,6 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             var xml = '<printerFiscalReceipt>';
             // header must be printed before beginning a fiscal receipt
             xml += this.printFiscalReceiptHeader(receipt);
-            if (!has_refund) {
-                xml += '<beginFiscalReceipt/>';
-            }
             if (has_refund)
             {
                 xml += this.printFiscalRefundDetails({
@@ -362,6 +359,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         refund_doc_num: receipt.refund_doc_num,
                         refund_cash_fiscal_serial: receipt.refund_cash_fiscal_serial});
             }
+            xml += '<beginFiscalReceipt/>';
             _.each(receipt.orderlines, function(l, i, list) {
                 if (l.price >= 0) {
                     if(l.quantity>=0) {
