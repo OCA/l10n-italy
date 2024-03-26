@@ -31,7 +31,9 @@ class TrialBalanceReportAccount(models.TransientModel):
         # lines_to_recompute will be self itself.
         for line in lines_to_recompute:
             trial_report = line.report_id
-            balance = line.final_balance
+            balance = line.period_balance if line.account_id.internal_group in [
+                "income", "expense"
+            ] else line.final_balance
             currency = line.currency_id or trial_report.company_id.currency_id
             rounding = currency.rounding
             if trial_report.hide_account_at_0 \
