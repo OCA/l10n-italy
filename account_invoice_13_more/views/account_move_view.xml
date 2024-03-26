@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_move_thirteen_form_more" model="ir.ui.view">
+        <field name="name">account.move.thirteen.form.more</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="before">
+                <field name="type" attrs="{'readonly': [('lines_count', '>', 0)]}" force_save="1"/>
+                <field name="invoice_date"
+                       attrs="{'required': [('type', 'in', ['out_invoice', 'in_invoice', 'out_refund', 'in_refund'])]}"
+                       />
+                <field name="lines_count" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="type" invisible="1" />
+                <field
+                      name="payment_term_id"
+                      attrs="{
+                      'invisible': [('type', 'not in', ['out_invoice', 'out_refund', 'in_invoice','in_refund'])],
+                      'readonly': [('state', 'not in', ['draft',])]
+                      }"
+                      />
+                <field name="partner_bank_id" attrs="{'readonly':[('type', '!=', 'entry')]}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
+

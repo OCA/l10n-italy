@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Standard view -->
+    <record id="account_duedates.view_account_move_due_dates_form" model="ir.ui.view">
+        <field name="name">view.account.move.due.dates.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="before">
+                <field name="date_effective" />
+            </xpath>
+
+            <xpath expr="//field[@name='partner_bank_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+
+
+<!--            <xpath expr="//field[@name='company_id']" position="after">-->
+<!--                <field-->
+<!--                    name="counterparty_bank_id"-->
+<!--                    attrs="{'invisible': [('type', 'not in', ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'])]}"-->
+
+<!--                />-->
+<!--                <field-->
+<!--                    name="company_bank_id"-->
+<!--                    attrs="{'invisible': [('type', 'not in', ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'])]}"-->
+<!--                />-->
+<!--            </xpath>-->
+
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='credit']" position="after">
+                <field name="calculate_field" invisible="1"/>
+                <field name="payment_method" domain="[('debit_credit', '=', calculate_field)]"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page[1]" position="after">
+                <page string="Scadenze">
+                    <field name="duedate_line_ids">
+                        <!--
+                            NB: editable="top" let's the user modify the item directly from the row, without
+                                opening a new form dialog
+                        -->
+                        <tree editable="top">
+                            <field name="due_date"/>
+                            <field name="payment_method_id"/>
+                            <field name="due_amount"/>
+                            <!-- <field name="proposed_new_value" attrs="{'invisible':[('proposed_new_value', '=', 0)]}" readonly="1"/>-->
+                            <!-- Shown in debug mode only -->
+                            <field name="move_line_id" groups="base.group_no_one" readonly="1"/>
+                        </tree>
+                    </field>
+                    <group col="2" colspan="2">
+                        <span colspan="2" col="2">
+                            <span><strong>Assegnato: </strong></span>
+                            <field name="duedates_amount_current" nolabel="1"/>
+                        </span>
+
+                        <span colspan="2" col="2">
+                            <span><strong>Residuo: </strong></span>
+                            <field name="duedates_amount_unassigned" decoration-danger="duedates_amount_unassigned != 0" decoration-success="duedates_amount_unassigned == 0" nolabel="1"/>
+                        </span>
+
+                        <span colspan="2" col="2">
+                            <span><strong>Totale fattura: </strong></span>
+                            <field name="amount" nolabel="1"/>
+                        </span>
+                    </group>
+                    <button name="action_update_duedates_and_move_lines" type="object" string="Ricalcola scadenze" class="oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+
+                    <!-- Hidden fields required to have them values to be passed as values to create and write methods -->
+                    <field name="duedate_manager_id" invisible="1"/>
+                </page>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
+

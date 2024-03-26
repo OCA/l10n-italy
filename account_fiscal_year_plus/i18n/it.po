@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_fiscal_year
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo (12.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-18 18:57+0000\n"
+"PO-Revision-Date: 2020-10-18 18:57+0000\n"
+"Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
+"Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#. module: account_fiscal_year
+#: selection:account.fiscal.year,state:0
+#: selection:account.fiscal.year,state
+#: selection:account.fiscal.year,state
+msgid "Closed"
+msgstr "Chiuso"
+
+#. module: account_fiscal_year
+#: model:ir.ui.menu,name:account_fiscal_year.menu_date_range_type_action_accounting
+msgid "Date Range Types"
+msgstr "Tipo intervallo data"
+
+#. module: account_fiscal_year
+#: model:ir.ui.menu,name:account_fiscal_year.menu_date_range_action_accounting
+msgid "Date Ranges"
+msgstr "Intervalli data"
+
+#. module: account_fiscal_year
+#: model:ir.ui.menu,name:account_fiscal_year.menu_date_range_accounting
+msgid "Date ranges"
+msgstr "Intervalli date"
+
+#. module: account_fiscal_year
+#: model:date.range.type,name:account_fiscal_year.fiscalyear
+#: model:ir.model,name:account_fiscal_year.model_account_fiscal_year
+msgid "Fiscal Year"
+msgstr "Anno fiscale"
+
+#. module: account_fiscal_year
+#: model:ir.ui.menu,name:account_fiscal_year.menu_actions_account_fiscal_year
+msgid "Fiscal Years"
+msgstr "Anni fiscali"
+
+#. module: account_fiscal_year
+#: model:ir.ui.menu,name:account_fiscal_year.menu_date_range_generator_action
+msgid "Generate Date Ranges"
+msgstr "Generare intervalli date"
+
+#. module: account_fiscal_year
+#: selection:account.fiscal.year,state:0
+#: selection:account.fiscal.year,state
+#: selection:account.fiscal.year,state
+msgid "Open"
+msgstr "Aperto"
+
+#. module: account_fiscal_year
+#: model:ir.model.fields,field_description:account_fiscal_year.field_account_fiscal_year__state
+msgid "Status"
+msgstr "Stato"
+
+

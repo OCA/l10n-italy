@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_midea_no_company,access_midea_no_company,model_midea_no_company,,1,1,1,1
+access_midea_table_wco,access_midea_table_wco,model_midea_table_wco,,1,1,1,1

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="server_action_insoluto" model="ir.actions.server">
+        <field name="name">Registra Insoluto</field>
+        <field name="model_id" ref="model_account_move_line"/>
+        <field name="state">code</field>
+        <field name="code">
+               if model._context.get('active_model') == 'account.move.line':
+               action = model.open_wizard_insoluto()
+               # end if
+        </field>
+        <field
+              name="binding_model_id"
+              ref="account_banking_common.model_account_move_line"
+              />
+    </record>
+
+</odoo>

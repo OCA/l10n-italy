@@ -1,0 +1,22 @@
+<odoo>
+
+    <record id="wizard_set_payment_method" model="ir.ui.view">
+        <field name="name">wizard.set.payment.method.form</field>
+        <field name="model">wizard.set.payment.method</field>
+        <field name="arch" type="xml">
+            <form string="Aggiorna metodi di pagamento">
+                <group>
+                    <field name="payment_method" />
+                    <field name="overwrite" />
+                </group>
+
+                <footer>
+                    <button type="object" name="update_duedates" string="Aggiorna" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+

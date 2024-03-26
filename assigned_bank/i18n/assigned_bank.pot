@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* assigned_bank
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-14 17:56+0000\n"
+"PO-Revision-Date: 2022-01-14 17:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: assigned_bank
+#: model:ir.model.fields,field_description:assigned_bank.field_res_config_settings__partner_assigned_income_bank_id
+#: model:ir.model.fields,field_description:assigned_bank.field_res_partner__assigned_income_bank
+#: model:ir.model.fields,field_description:assigned_bank.field_res_users__assigned_income_bank
+msgid "Assigned Bank for Incoming"
+msgstr ""
+
+#. module: assigned_bank
+#: model:ir.model.fields,field_description:assigned_bank.field_res_config_settings__partner_assigned_bank_id
+#: model:ir.model.fields,field_description:assigned_bank.field_res_partner__assigned_bank
+#: model:ir.model.fields,field_description:assigned_bank.field_res_users__assigned_bank
+msgid "Assigned Bank for Payment"
+msgstr ""
+
+#. module: assigned_bank
+#: model:ir.model,name:assigned_bank.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: assigned_bank
+#: model:ir.model,name:assigned_bank.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: assigned_bank
+#: model_terms:ir.ui.view,arch_db:assigned_bank.res_config_settings_view_form_accountt_extend
+msgid "Default Assigned Banks"
+msgstr ""
+
+#. module: assigned_bank
+#: model:ir.model,name:assigned_bank.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
