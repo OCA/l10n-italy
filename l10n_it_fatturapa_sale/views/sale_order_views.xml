@@ -11,16 +11,27 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
-                <group name="e_invoice" string="Electronic Invoice" groups="account.group_account_user">
+                <group name="e_invoice" string="Electronic Invoice">
                     <field name="admin_ref"/>
-                    <field name="related_documents"/>
                 </group>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="before">
                 <field name="admin_ref"/>
             </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_related_documents" model="ir.ui.view">
+        <field name="name">Add e-invoice related_documents in sale.order form view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="view_order_form"/>
+        <field name="groups_id" eval="[(4, ref('account.group_account_user'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='admin_ref'][1]" position="after">
+                <field name="related_documents"/>
+            </xpath>
             <notebook position="inside">
-                <page name="e_invoice" string="Electronic Invoice" groups="account.group_account_user">
+                <page name="e_invoice" string="Electronic Invoice">
                     <group name="related_documents">
                         <field name="related_documents"/>
                     </group>
