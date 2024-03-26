@@ -613,6 +613,19 @@ class AccountInvoice(models.Model):
                     else:
                         tax_grouped[key]['tax'] += val['tax']
                         tax_grouped[key]['base'] += val['base']
+                # recompute wt values from total base to avoid round issues
+            for key in tax_grouped:
+                tax_group = tax_grouped[key]
+                wt_tax = self.env['withholding.tax'].browse(
+                    tax_group.get('withholding_tax_id'))
+                # rebuild base in case of coeff <>1
+                base = tax_group.get('base')
+                if wt_tax.base:
+                    base = base / wt_tax.base
+                res = wt_tax.compute_tax(base)
+                tax_group.update({
+                    'tax': res.get('tax', 0)
+                })
         return tax_grouped
 
     @api.one
