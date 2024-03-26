@@ -65,7 +65,7 @@ class IntrastatStatementSection(models.AbstractModel):
             'invoice_id': invoice_id.id,
             'partner_id': partner_id.id,
             'country_partner_id': inv_intra_line.country_partner_id.id,
-            'vat_code': partner_id.vat and partner_id.vat[2:],
+            'vat_code': partner_id.compact_vat(),
             'amount_euro': amount_euro,
             'intrastat_code_id': inv_intra_line.intrastat_code_id.id,
         }

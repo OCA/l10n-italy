@@ -544,7 +544,7 @@ class AccountInvoiceIntrastat(models.Model):
         """
         res = {
             'country_partner_id': partner.country_id.id,
-            'vat_code': partner.vat and partner.vat[2:] or False,
+            'vat_code': partner.compact_vat(),
             'country_origin_id': partner.country_id.id,
             'country_good_origin_id': partner.country_id.id,
             'country_destination_id': partner.country_id.id,
