@@ -38,6 +38,12 @@ class FatturaPAAttachmentOut (models.Model):
 
         company = self.env.user.company_id
         sdi_channel = company.sdi_channel_id
+        if not sdi_channel:
+            raise UserError(_(
+                "You can only send files if you have set an "
+                "ES channel for the respective company: %s."
+                % (company.name))
+            )
         send_result = sdi_channel.send(self)
         return send_result
 

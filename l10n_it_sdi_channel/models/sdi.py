@@ -34,7 +34,7 @@ class SdiChannel(models.Model):
         default=lambda self:
         self.env['res.company']._company_default_get('sdi.channel'))
     channel_type = fields.Selection(
-        string='ES channel type', selection=[], required=True,
+        string='ES channel type', selection=[],
         help='Channels (Pec, Web, Sftp) could be provided by external modules.',
     )
 
@@ -53,10 +53,14 @@ class SdiChannel(models.Model):
         of each Electronic Invoice that has managed to send.
         """
         self.ensure_one()
-        channel_type = self.channel_type
+        channel_type = self.channel_type or 'no_channel_type'
         send_method_name = "send_via_" + channel_type
         send_method = getattr(self, send_method_name)
         return send_method(attachment_out_ids)
+
+    def send_via_no_channel_type(self, attachment_out_ids):
+        """Override this method to send the attachments to the web service."""
+        pass
 
     @api.model
     def _prepare_attachment_in_values(

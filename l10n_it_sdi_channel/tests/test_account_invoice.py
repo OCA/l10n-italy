@@ -7,12 +7,19 @@ from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import \
 
 class TestAccountInvoice (FatturaPACommon):
 
+    def setUp(self):
+        super().setUp()
+        self.sdi_coop_channel = self.env['sdi.channel'].create([{
+            'name': "Test channel"
+        }])
+
     def test_action_open_export_send_sdi(self):
         """
         Check that the "Validate, export and send to SdI" button
         validates the invoice and exports the attachment.
         """
-        # Arrange: create a draft invoice with no attachment
+        # Arrange: set the SdI channel and create a draft invoice with no attachment
+        self.env.user.company_id.sdi_channel_id = self.sdi_coop_channel
         invoice = self._create_invoice()
         self.assertEqual(invoice.state, 'draft')
         self.assertFalse(invoice.fatturapa_attachment_out_id)
