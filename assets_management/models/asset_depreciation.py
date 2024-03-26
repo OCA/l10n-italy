@@ -325,7 +325,8 @@ class AssetDepreciation(models.Model):
 
     def generate_depreciation_lines(self, dep_date):
         # Set new date within context if necessary
-        self.check_before_generate_depreciation_lines(dep_date)
+        if not self._context.get('previsional_line'):
+            self.check_before_generate_depreciation_lines(dep_date)
 
         new_lines = self.env['asset.depreciation.line']
         for dep in self:
