@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_config_settings" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.view_account_config_settings"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='supplier_fatturapa_settings']" position="inside">
+                <div class="col-12 col-lg-12 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="compute_on_einvoice_values"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="compute_on_einvoice_values"/>
+                        <div class="text-muted">
+                            This option configure vendor e-invoices import default full precision
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

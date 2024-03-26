@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<p:FatturaElettronica versione="FPR12" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.2/Schema_del_file_xml_FatturaPA_versione_1.2.xsd">
+  <FatturaElettronicaHeader>
+    <DatiTrasmissione>
+      <IdTrasmittente>
+        <IdPaese>IT</IdPaese>
+        <IdCodice>05979361218</IdCodice>
+      </IdTrasmittente>
+      <ProgressivoInvio>00020</ProgressivoInvio>
+      <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+      <CodiceDestinatario>0000000</CodiceDestinatario>
+    </DatiTrasmissione>
+    <CedentePrestatore>
+      <DatiAnagrafici>
+        <IdFiscaleIVA>
+          <IdPaese>IT</IdPaese>
+          <IdCodice>02780790107</IdCodice>
+        </IdFiscaleIVA>
+        <Anagrafica>
+          <Denominazione>SOCIETA' ALPHA SRL</Denominazione>
+        </Anagrafica>
+        <RegimeFiscale>RF01</RegimeFiscale>
+      </DatiAnagrafici>
+      <Sede>
+        <Indirizzo>VIALE ROMA 543</Indirizzo>
+        <CAP>07100</CAP>
+        <Comune>SASSARI</Comune>
+        <Provincia>SS</Provincia>
+        <Nazione>IT</Nazione>
+      </Sede>
+    </CedentePrestatore>
+    <CessionarioCommittente>
+      <DatiAnagrafici>
+        <IdFiscaleIVA>
+          <IdPaese>IT</IdPaese>
+          <IdCodice>03533590174</IdCodice>
+        </IdFiscaleIVA>
+        <Anagrafica>
+          <Denominazione>BETA GAMMA</Denominazione>
+        </Anagrafica>
+      </DatiAnagrafici>
+      <Sede>
+        <Indirizzo>VIA TORINO 38-B</Indirizzo>
+        <CAP>00145</CAP>
+        <Comune>ROMA</Comune>
+        <Provincia>RM</Provincia>
+        <Nazione>IT</Nazione>
+      </Sede>
+    </CessionarioCommittente>
+  </FatturaElettronicaHeader>
+  <FatturaElettronicaBody>
+    <DatiGenerali>
+      <DatiGeneraliDocumento>
+        <TipoDocumento>TD01</TipoDocumento>
+        <Divisa>EUR</Divisa>
+        <Data>2022-01-10</Data>
+        <Numero>415001685</Numero>
+        <ImportoTotaleDocumento>880.46</ImportoTotaleDocumento>
+        <Causale>Fatture consumi EE</Causale>
+      </DatiGeneraliDocumento>
+    </DatiGenerali>
+    <DatiBeniServizi>
+      <DettaglioLinee>
+        <NumeroLinea>12</NumeroLinea>
+        <Descrizione>Quota fissa - oneri di sistema</Descrizione>
+        <Quantita>1.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>1.11420000</PrezzoUnitario>
+        <PrezzoTotale>1.11000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>11</NumeroLinea>
+        <Descrizione>Sbilanciamento</Descrizione>
+        <Quantita>4159.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.00200000</PrezzoUnitario>
+        <PrezzoTotale>8.32000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>10</NumeroLinea>
+        <Descrizione>Aggregazione delle misure</Descrizione>
+        <Quantita>1.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.00700000</PrezzoUnitario>
+        <PrezzoTotale>0.01000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>15</NumeroLinea>
+        <Descrizione>Quota energia - trasporto e cont.</Descrizione>
+        <Quantita>4159.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.00949000</PrezzoUnitario>
+        <PrezzoTotale>39.47000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>13</NumeroLinea>
+        <Descrizione>Quota energia - oneri di sistema</Descrizione>
+        <Quantita>4159.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.02743500</PrezzoUnitario>
+        <PrezzoTotale>114.10000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>14</NumeroLinea>
+        <Descrizione>Quota fissa - trasporto e cont.</Descrizione>
+        <Quantita>1.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>2.07834170</PrezzoUnitario>
+        <PrezzoTotale>2.08000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>16</NumeroLinea>
+        <Descrizione>Quota potenza - trasporto e cont.</Descrizione>
+        <Quantita>28.70000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>2.47193330</PrezzoUnitario>
+        <PrezzoTotale>70.94000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>17</NumeroLinea>
+        <Descrizione>Quota potenza - oneri di sistema</Descrizione>
+        <Quantita>28.70000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>1.32520000</PrezzoUnitario>
+        <PrezzoTotale>38.03000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>2</NumeroLinea>
+        <Descrizione>Oneri di dispacciamento</Descrizione>
+        <Quantita>4583.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.01250400</PrezzoUnitario>
+        <PrezzoTotale>57.31000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>1</NumeroLinea>
+        <Descrizione>Imposta erariale di consumo</Descrizione>
+        <Quantita>4159.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.01250000</PrezzoUnitario>
+        <PrezzoTotale>51.99000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>3</NumeroLinea>
+        <Descrizione>Corrispettivo di commercializzazione</Descrizione>
+        <Quantita>31.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.35483870</PrezzoUnitario>
+        <PrezzoTotale>11.00000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>4</NumeroLinea>
+        <Descrizione>Costi di Generazione F1</Descrizione>
+        <Quantita>2748.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.07390000</PrezzoUnitario>
+        <PrezzoTotale>203.08000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>5</NumeroLinea>
+        <Descrizione>Costi di Generazione F2</Descrizione>
+        <Quantita>580.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.07190000</PrezzoUnitario>
+        <PrezzoTotale>41.70000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>6</NumeroLinea>
+        <Descrizione>Costi di Generazione F3</Descrizione>
+        <Quantita>831.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.06290000</PrezzoUnitario>
+        <PrezzoTotale>52.27000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>9</NumeroLinea>
+        <Descrizione>Corrispettivi per le perdite F3</Descrizione>
+        <Quantita>85.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.06290000</PrezzoUnitario>
+        <PrezzoTotale>5.35000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>8</NumeroLinea>
+        <Descrizione>Corrispettivi per le perdite F2</Descrizione>
+        <Quantita>59.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.07190000</PrezzoUnitario>
+        <PrezzoTotale>4.24000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DettaglioLinee>
+        <NumeroLinea>7</NumeroLinea>
+        <Descrizione>Corrispettivi per le perdite F1</Descrizione>
+        <Quantita>280.00000000</Quantita>
+        <DataInizioPeriodo>2021-12-01</DataInizioPeriodo>
+        <DataFinePeriodo>2021-12-31</DataFinePeriodo>
+        <PrezzoUnitario>0.07390000</PrezzoUnitario>
+        <PrezzoTotale>20.69000000</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+      </DettaglioLinee>
+      <DatiRiepilogo>
+        <AliquotaIVA>22.00</AliquotaIVA>
+        <ImponibileImporto>721.69</ImponibileImporto>
+        <Imposta>158.77</Imposta>
+        <EsigibilitaIVA>I</EsigibilitaIVA>
+      </DatiRiepilogo>
+    </DatiBeniServizi>
+    <DatiPagamento>
+      <CondizioniPagamento>TP02</CondizioniPagamento>
+      <DettaglioPagamento>
+        <ModalitaPagamento>MP19</ModalitaPagamento>
+        <DataScadenzaPagamento>2022-01-31</DataScadenzaPagamento>
+        <ImportoPagamento>880.46</ImportoPagamento>
+      </DettaglioPagamento>
+    </DatiPagamento>
+  </FatturaElettronicaBody>
+</p:FatturaElettronica>
