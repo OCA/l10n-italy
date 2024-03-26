@@ -319,6 +319,13 @@ class ComunicazioneDatiIva(models.Model):
         # ----- Get fiscalcode
         vals['cessionario_CodiceFiscale'] = \
             partner.commercial_partner_id.fiscalcode or ''
+        if (
+            not vals['cessionario_IdFiscaleIVA_IdCodice']
+            and not vals['cessionario_CodiceFiscale']
+            and partner.country_id.code
+            and partner.country_id.code != 'IT'
+        ):
+            vals['cessionario_IdFiscaleIVA_IdCodice'] = "99999999999"
         vals['cessionario_Denominazione'] = encode_for_export(partner.name or '', 80)
         # Sede
         vals['cessionario_sede_Indirizzo'] = '{} {}'.format(
