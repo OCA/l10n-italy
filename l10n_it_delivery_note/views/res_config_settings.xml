@@ -45,6 +45,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="virtual_locations_root" />
+                            <div class="text-muted">
+                                <p>
+                                    Select the root of all your virtual locations.<br />
+                                    Internal transfers between at least one virtual
+                                    locations won't generate automatically any DN
+                                    documents.
+                                </p>
+                            </div>
+                            <field name="virtual_locations_root" />
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>
