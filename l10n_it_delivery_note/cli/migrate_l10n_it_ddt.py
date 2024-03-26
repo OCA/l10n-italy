@@ -296,6 +296,12 @@ class MigrateL10nItDdt(EasyCommand):
 
         documents = Document.search([], order='id ASC')
         for document in documents:
+            # align dn_supplier_number and dn_supplier_date fields in picking
+            for picking in document.picking_ids:
+                picking.write({
+                    "dn_supplier_number": picking.ddt_supplier_number,
+                    "dn_supplier_date": picking.ddt_supplier_date,
+                })
             DeliveryNote.create(vals_getter(document))
 
         _logger.info("Documents data successfully migrated.")
