@@ -29,6 +29,7 @@
         "views/partner_view.xml",
         "views/company_view.xml",
         "data/l10n_it_fatturapa_out_data.xml",
+        "security/groups.xml",
         "security/ir.model.access.csv",
         "security/rules.xml",
     ],
