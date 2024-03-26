@@ -7,7 +7,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
 from datetime import datetime, timedelta
-from odoo.tools.misc import flatten
+from odoo.osv import expression
 
 
 class WizardGiornale(models.TransientModel):
@@ -96,25 +96,19 @@ class WizardGiornale(models.TransientModel):
             target_type = ['posted', 'draft']
         else:
             target_type = [wizard.target_move]
-        sql = """
-            SELECT aml.id FROM account_move_line aml
-            LEFT JOIN account_move am ON (am.id = aml.move_id)
-            WHERE
-            aml.date >= %(date_from)s
-            AND aml.date <= %(date_to)s
-            AND am.state in %(target_type)s
-            AND aml.journal_id in %(journal_ids)s
-            ORDER BY am.date, am.name
-        """
-        params = {
-            'date_from': wizard.date_move_line_from,
-            'date_to': wizard.date_move_line_to,
-            'target_type': tuple(target_type),
-            'journal_ids': tuple(self.journal_ids.ids),
-        }
-        self.env.cr.execute(sql, params)
-        res = self.env.cr.fetchall()
-        move_line_ids = flatten(res)
+        domains = [
+            [('move_id.state', 'in', target_type)],
+            [('date', '>=', wizard.date_move_line_from)],
+            [('date', '<=', wizard.date_move_line_to)],
+            [('journal_id', 'in', wizard.journal_ids.ids)]
+        ]
+        domain = expression.AND(domains)
+
+        def sort_key(line):
+            return line.move_id.date, line.move_id.name
+
+        move_line_ids = self.env['account.move.line'].search(domain) \
+            .sorted(key=sort_key).ids
         return move_line_ids
 
     def _prepare_datas_form(self):
