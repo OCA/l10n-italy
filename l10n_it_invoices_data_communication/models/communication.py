@@ -274,9 +274,10 @@ class ComunicazioneDatiIva(models.Model):
             partner.name.encode('utf8') or '', 80)
         # Sede
         vals['cedente_sede_Indirizzo'] = '{} {}'.format(
-            encode_for_export(partner.street and partner.street.encode('utf8') or ''),
             encode_for_export(
-                partner.street2 and partner.street2.encode('utf8') or '').strip())
+                partner.street and partner.street.encode('utf8') or '', 60),
+            encode_for_export(
+                partner.street2 and partner.street2.encode('utf8') or '', 60).strip())
         vals['cedente_sede_Cap'] = encode_for_export(
             partner.zip or '', 5, encoding='ascii')
         vals['cedente_sede_Comune'] = encode_for_export(
