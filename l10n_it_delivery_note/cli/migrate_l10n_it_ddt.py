@@ -87,7 +87,8 @@ class MigrateL10nItDdt(EasyCommand):
             ))
 
         old_sequence = self.env.ref('l10n_it_ddt.seq_ddt')
-        if old_sequence.number_next_actual == 1:
+        old_sequence_max = max(old_sequence.mapped('date_range_ids.number_next_actual'))
+        if old_sequence_max == 1:
             raise UserError(_(
                 "It seems that there are no documents to migrate. "
                 "You don't need to run this command."
@@ -234,16 +235,20 @@ class MigrateL10nItDdt(EasyCommand):
                              'sequence_id': r.sequence_id.id,
                              'default_goods_appearance_id':
                                  self._goods_descriptions[
-                                     r.default_goods_description_id].id,
+                                     r.default_goods_description_id].id
+                                 if r.default_goods_description_id else None,
                              'default_transport_reason_id':
                                  self._transportation_reasons[
-                                     r.default_transportation_reason_id].id,
+                                     r.default_transportation_reason_id].id
+                                 if r.default_transportation_reason_id else None,
                              'default_transport_condition_id':
                                  self._carriage_conditions[
-                                     r.default_carriage_condition_id].id,
+                                     r.default_carriage_condition_id].id
+                                 if r.default_carriage_condition_id else None,
                              'default_transport_method_id':
                                  self._transportation_methods[
-                                     r.default_transportation_method_id].id,
+                                     r.default_transportation_method_id].id
+                                 if r.default_transportation_method_id else None,
                              'note': r.note
                          })
 
