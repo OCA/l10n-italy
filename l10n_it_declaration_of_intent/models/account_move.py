@@ -257,6 +257,10 @@ class AccountMove(models.Model):
 
     def get_declaration_residual_amounts(self, declarations):
         """Get residual amount for every `declarations`."""
+        plafond = self.env.user.company_id.declaration_yearly_limit_ids.filtered(
+            lambda r: r.year == str(fields.first(declarations).date_start.year)
+        )
+        available_plafond = plafond.limit_amount - plafond.actual_used_amount
         declarations_amounts = {}
         # If the tax amount is 0, then there is no line representing the tax
         # so there will be no line having tax_line_id.
@@ -272,7 +276,12 @@ class AccountMove(models.Model):
 
             for declaration in declarations:
                 if declaration.id not in declarations_amounts:
-                    declarations_amounts[declaration.id] = declaration.available_amount
+                    if declaration.available_amount > available_plafond:
+                        declarations_amounts[declaration.id] = available_plafond
+                    else:
+                        declarations_amounts[
+                            declaration.id
+                        ] = declaration.available_amount
                 if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
                     declarations_amounts[declaration.id] -= amount
         for declaration in declarations:
