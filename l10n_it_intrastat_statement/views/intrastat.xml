@@ -232,6 +232,7 @@
                             <field name="vat_code" string="Buyer VAT Code" required="1"/>
                         </group>
                         <group>
+                            <field name="sequence"/>
                             <field name="transaction_nature_id" required="1"/>
                             <field name="transaction_nature_b_id" required="1"/>
                         </group>
@@ -291,6 +292,7 @@
                             <field name="vat_code" string="Buyer VAT Code" required="1"/>
                         </group>
                         <group>
+                            <field name="sequence"/>
                             <field name="transaction_nature_id" required="1"/>
                         </group>
                     </group>
@@ -342,6 +344,7 @@
                             <field name="vat_code" string="Buyer VAT Code" required="1"/>
                         </group>
                         <group>
+                            <field name="sequence"/>
                         </group>
                     </group>
                     <newline/>
@@ -393,6 +396,7 @@
                             <field name="vat_code" string="Buyer VAT Code" required="1"/>
                         </group>
                         <group>
+                            <field name="sequence"/>
                             <field name="intrastat_custom_id" required="1"/>
                             <field name="year_id" required="1"/>
                             <field name="protocol" required="1"/>
@@ -450,6 +454,7 @@
                             <field name="vat_code" string="Supplier VAT Code" required="1"/>
                         </group>
                         <group>
+                            <field name="sequence"/>
                             <field name="transaction_nature_id" required="1"/>
                             <field name="transaction_nature_b_id" required="1"/>
                         </group>
@@ -512,6 +517,7 @@
                             <field name="vat_code" string="Supplier VAT Code" required="1"/>
                         </group>
                         <group>
+                            <field name="sequence"/>
                             <field name="transaction_nature_id" required="1"/>
                         </group>
                     </group>
@@ -564,6 +570,7 @@
                             <field name="vat_code" string="Supplier VAT Code"/>
                         </group>
                         <group>
+                            <field name="sequence"/>
                         </group>
                     </group>
                     <newline/>
@@ -616,6 +623,7 @@
                             <field name="vat_code" string="Supplier VAT Code" required="1"/>
                         </group>
                         <group>
+                            <field name="sequence"/>
                             <field name="intrastat_custom_id" required="1"/>
                             <field name="year_id" required="1"/>
                             <field name="protocol" required="1"/>
