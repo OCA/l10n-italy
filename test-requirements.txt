@@ -1,0 +1,1 @@
+odoo-addon-l10n_it_declaration_of_intent @ git+https://github.com/OCA/l10n-italy@refs/pull/3026/head#subdirectory=setup/l10n_it_declaration_of_intent
