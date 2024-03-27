@@ -16,7 +16,11 @@ class ResPartner(models.Model):
 
     @api.constrains("max_invoice_in_xml")
     def _validate_max_invoice_in_xml(self):
-        if self.max_invoice_in_xml < 0:
-            raise ValidationError(
-                _("The max number of invoice to group can't be negative")
-            )
+        for partner in self:
+            if partner.max_invoice_in_xml < 0:
+                raise ValidationError(
+                    _(
+                        "The max number of invoice to group can't be negative for partner %s",
+                        partner.name,
+                    )
+                )
