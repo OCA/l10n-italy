@@ -95,9 +95,10 @@ class AccountMove(models.Model):
                     )
                 else:
                     continue
-
+            declarations_used_amounts = invoice.get_declarations_used_amounts(
+                declarations
+            )
             invoice.check_declarations_amounts(declarations)
-
             # Assign account move lines to declarations for each invoice
             # Get only lines with taxes
             lines = invoice.line_ids.filtered("tax_ids")
@@ -105,11 +106,15 @@ class AccountMove(models.Model):
                 continue
             # Group lines by tax
             grouped_lines = self.get_move_lines_by_declaration(lines)
-            invoice.update_declarations(declarations, grouped_lines)
+            invoice.update_declarations(
+                declarations, grouped_lines, declarations_used_amounts
+            )
 
         return posted
 
-    def update_declarations(self, declarations, grouped_lines):
+    def update_declarations(
+        self, declarations, grouped_lines, declarations_used_amounts
+    ):
         """
         Update the declarations adding a new line representing this invoice.
 
@@ -125,11 +130,14 @@ class AccountMove(models.Model):
                     amount *= -1
                 # Select right declaration(s)
                 if force_declaration:
-                    declarations = [force_declaration]
+                    declarations = {force_declaration.id: amount}
                 else:
-                    declarations = declarations
+                    declarations = declarations_used_amounts
 
-                for declaration in declarations:
+                for declaration_id in declarations:
+                    declaration = self.env[
+                        "l10n_it_declaration_of_intent.declaration"
+                    ].browse(declaration_id)
                     if tax not in declaration.taxes_ids:
                         continue
                     # avoid creating line with same invoice_id
@@ -137,7 +145,13 @@ class AccountMove(models.Model):
                         lambda line: line.invoice_id == self
                     ).unlink()
                     declaration.line_ids = [
-                        (0, 0, self._prepare_declaration_line(amount, lines, tax)),
+                        (
+                            0,
+                            0,
+                            self._prepare_declaration_line(
+                                declarations[declaration_id], lines, tax
+                            ),
+                        ),
                     ]
                     # Link declaration to invoice
                     self.declaration_of_intent_ids = [(4, declaration.id)]
@@ -209,6 +223,35 @@ class AccountMove(models.Model):
                 date=self.invoice_date,
             )
         return declarations
+
+    def get_declarations_used_amounts(self, declarations):
+        """Get used amount by declarations for this invoice."""
+        self.ensure_one()
+        declarations_used_amounts = {}
+        sign = 1 if self.move_type in ["out_invoice", "in_invoice"] else -1
+        for tax_line in self.line_ids.filtered("tax_ids"):
+            amount = sign * tax_line.price_subtotal
+            for declaration in declarations:
+                if declaration.id not in declarations_used_amounts:
+                    declarations_used_amounts[declaration.id] = 0
+                if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
+                    declarations_used_amounts[declaration.id] += amount
+                    amount = 0.0
+        for declaration in declarations:
+            # check refund as UserError won't be raised in check_declarations_amounts
+            if (
+                self.move_type.endswith("_refund")
+                and self.currency_id.compare_amounts(
+                    abs(declarations_used_amounts[declaration.id]),
+                    declaration.used_amount,
+                )
+                == 1
+            ):
+                raise UserError(
+                    _("Available plafond for refund insufficent.\n" "Excess value: %s")
+                    % (abs(declarations_used_amounts[declaration.id]))
+                )
+        return declarations_used_amounts
 
     def check_declarations_amounts(self, declarations):
         """
