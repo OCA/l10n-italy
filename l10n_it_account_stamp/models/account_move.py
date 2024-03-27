@@ -67,7 +67,12 @@ class AccountMove(models.Model):
                         _("Tax stamp line %s already present. Remove it first.")
                         % line.name
                     )
-            stamp_account = stamp_product_id.property_account_income_id
+            is_sale = bool(inv.move_type in ["out_invoice", "out_refund"])
+            stamp_account = (
+                stamp_product_id.property_account_income_id
+                if is_sale
+                else stamp_product_id.property_account_expense_id
+            )
             if not stamp_account:
                 raise UserError(
                     _("Missing account income configuration for %s")
@@ -76,13 +81,23 @@ class AccountMove(models.Model):
             invoice_line_vals = {
                 "move_id": inv.id,
                 "product_id": stamp_product_id.id,
-                "name": stamp_product_id.description_sale,
+                "name": stamp_product_id.description_sale
+                if is_sale
+                else stamp_product_id.description_purchase,
                 "sequence": 99999,
                 "account_id": stamp_account.id,
                 "price_unit": stamp_product_id.list_price,
                 "quantity": 1,
                 "product_uom_id": stamp_product_id.uom_id.id,
-                "tax_ids": [(6, 0, stamp_product_id.taxes_id.ids)],
+                "tax_ids": [
+                    (
+                        6,
+                        0,
+                        stamp_product_id.taxes_id.ids
+                        if is_sale
+                        else stamp_product_id.supplier_taxes_id.ids,
+                    )
+                ],
                 "analytic_account_id": None,
             }
             inv.write({"invoice_line_ids": [(0, 0, invoice_line_vals)]})
