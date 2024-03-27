@@ -59,7 +59,7 @@ class AccountInvoice(models.Model):
         for inv in self:
             if inv.efatt_rounding != 0:
                 inv.amount_total += inv.efatt_rounding
-                sign = inv.move_type in ["in_refund", "out_refund"] and -1 or 1
+                sign = inv.move_type in ["in_refund", "out_refund"] and 1 or -1
                 inv.amount_total_signed = inv.amount_total * sign
 
     def action_post(self):
