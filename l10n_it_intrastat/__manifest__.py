@@ -21,6 +21,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/rules.xml",
         "data/account.intrastat.transaction.nature.csv",
         "data/account.intrastat.transaction.nature.b.csv",
         "data/account.intrastat.transport.csv",
