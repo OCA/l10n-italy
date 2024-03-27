@@ -12,3 +12,7 @@
 * Matteo Bilotta <mbilotta@linkgroup.it>
 * Giuseppe Borruso - Dinamiche Aziendali srl <gborruso@dinamicheaziendali.it>
 * Alex Comba <alex.comba@agilebg.com>
+* [Aion Tech](https://aiontech.company/):
+  * Simone Rubino <simone.rubino@aion-tech.it>
+* Ooops404 <https://www.ooops404.com>
+  * Eduard Brahas <eduardbrhas@outlook.it>

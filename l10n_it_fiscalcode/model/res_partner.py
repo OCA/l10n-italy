@@ -1,3 +1,4 @@
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from codicefiscale import isvalid
@@ -9,7 +10,10 @@ from odoo.exceptions import ValidationError
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    @api.constrains("fiscalcode")
+    @api.constrains(
+        "fiscalcode",
+        "company_type",
+    )
     def check_fiscalcode(self):
         for partner in self:
             if not partner.fiscalcode:
