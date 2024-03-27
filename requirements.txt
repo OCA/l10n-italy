@@ -2,6 +2,7 @@
 asn1crypto
 codicefiscale
 elementpath
+num2words>=0.5.12
 openupgradelib
 unidecode
 xlrd
