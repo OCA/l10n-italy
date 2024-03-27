@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_adr_read,access_adr_read,model_product_adr_category,base.group_user,1,0,0,0
+access_adr_admin,access_adr_admin,model_product_adr_category,stock.group_stock_manager,1,1,1,1
