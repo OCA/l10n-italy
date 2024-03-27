@@ -1,41 +1,44 @@
 #  Copyright 2020 Simone Rubino - Agile Business Group
+#  Copyright 2023 Sergio Corato <https://github.com/sergiocorato>
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
+from odoo.tools import mute_logger
+from odoo.tools.safe_eval import safe_eval
 
 
-class TestFatturapaSale(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.partner = self.env["res.partner"].create({"name": "Test partner"})
-        self.product = self.env["product.product"].create(
+class TestFatturapaSale(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.product = cls.env["product.product"].create(
             {"name": "Test product", "invoice_policy": "order"}
         )
+        cls.journal_model = cls.env["account.journal"]
+        sale_journals = cls.journal_model.search([("type", "=", "sale")])
+        for sale_journal in sale_journals:
+            sale_journal.advance_fiscal_document_type_id = cls.env.ref(
+                "l10n_it_fiscal_document_type.9"
+            ).id
 
     def _create_order(self):
-        sale_order = (
-            self.env["sale.order"]
-            .with_context(tracking_disable=True)
-            .create(
-                {
-                    "partner_id": self.partner.id,
-                    "related_documents": [(0, 0, {"type": "order", "name": "order1"})],
-                }
-            )
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "related_documents": [(0, 0, {"type": "order", "name": "order1"})],
+            }
         )
-        order_line = (
-            self.env["sale.order.line"]
-            .with_context(tracking_disable=True)
-            .create(
-                {
-                    "order_id": sale_order.id,
-                    "product_id": self.product.id,
-                    "product_uom_qty": 1,
-                    "qty_delivered": 1,
-                    "admin_ref": "line admin ref",
-                    "related_documents": [(0, 0, {"type": "order", "name": "line1"})],
-                }
-            )
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": sale_order.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 1,
+                "qty_delivered": 1,
+                "admin_ref": "line admin ref",
+                "related_documents": [(0, 0, {"type": "order", "name": "line1"})],
+            }
         )
         sale_order.action_confirm()
         return order_line, sale_order
@@ -109,3 +112,43 @@ class TestFatturapaSale(TransactionCase):
         sale_order.action_cancel()
         sale_order.unlink()
         self.assertFalse(related_documents.exists())
+
+    @mute_logger("odoo.models", "odoo.models.unlink", "odoo.addons.base.ir.ir_model")
+    def test_create_percentage_advance_invoice(self):
+        order_line, sale_order = self._create_order()
+        wizard_obj = self.env["sale.advance.payment.inv"]
+        wizard_vals = wizard_obj.default_get(["advance_payment_method"])
+        wizard_vals.update({"advance_payment_method": "percentage", "amount": 10.0})
+        wizard = wizard_obj.with_context(
+            active_ids=sale_order.ids, open_invoices=True
+        ).create(wizard_vals)
+        res = wizard.create_invoices()
+        domain = safe_eval(res.get("domain"))
+        domain.append(("id", "=", res["res_id"]))
+        invoices = self.env[res["res_model"]].search(domain)
+        self.assertTrue(len(invoices), 1)
+        invoice = invoices[0]
+        self.assertEqual(
+            invoice.fiscal_document_type_id,
+            invoice.journal_id.advance_fiscal_document_type_id,
+        )
+
+    @mute_logger("odoo.models", "odoo.models.unlink", "odoo.addons.base.ir.ir_model")
+    def test_create_delivered_advance_invoice(self):
+        order_line, sale_order = self._create_order()
+        wizard_obj = self.env["sale.advance.payment.inv"]
+        wizard_vals = wizard_obj.default_get(["advance_payment_method"])
+        wizard_vals.update({"advance_payment_method": "delivered"})
+        wizard = wizard_obj.with_context(
+            active_ids=sale_order.ids, open_invoices=True
+        ).create(wizard_vals)
+        res = wizard.create_invoices()
+        domain = safe_eval(res.get("domain"))
+        domain.append(("id", "=", res["res_id"]))
+        invoices = self.env[res["res_model"]].search(domain)
+        self.assertTrue(len(invoices), 1)
+        invoice = invoices[0]
+        self.assertNotEqual(
+            invoice.fiscal_document_type_id,
+            invoice.journal_id.advance_fiscal_document_type_id,
+        )
