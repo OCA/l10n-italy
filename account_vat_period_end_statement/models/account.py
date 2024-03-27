@@ -16,6 +16,14 @@ from odoo.tools.translate import _
 class AccountVatPeriodEndStatement(models.Model):
     def _compute_authority_vat_amount(self):
         for statement in self:
+            authority_amount = (
+                statement.total_vat_statement
+                + statement.interests_debit_vat_amount
+            )
+            statement.authority_vat_amount = authority_amount
+
+    def _compute_total_vat_statement(self):
+        for statement in self:
             debit_vat_amount = 0.0
             credit_vat_amount = 0.0
             generic_vat_amount = 0.0
@@ -25,17 +33,14 @@ class AccountVatPeriodEndStatement(models.Model):
                 credit_vat_amount += credit_line.amount
             for generic_line in statement.generic_vat_account_line_ids:
                 generic_vat_amount += generic_line.amount
-            authority_amount = (
+            total_statement = (
                 debit_vat_amount
                 - credit_vat_amount
                 - generic_vat_amount
                 - statement.previous_credit_vat_amount
-                + statement.previous_debit_vat_amount
-                - statement.tax_credit_amount
-                + statement.interests_debit_vat_amount
                 - statement.advance_amount
             )
-            statement.authority_vat_amount = authority_amount
+            statement.total_vat_statement = total_statement
 
     def _compute_deductible_vat_amount(self):
         for statement in self:
@@ -266,6 +271,11 @@ class AccountVatPeriodEndStatement(models.Model):
         compute="_compute_authority_vat_amount",
         digits="Account",
     )
+    total_vat_statement = fields.Float(
+        "Total VAT Amount",
+        compute="_compute_total_vat_statement",
+        digits="Account",
+    )
     # TODO is this field needed?
     deductible_vat_amount = fields.Float(
         "Deductible VAT Amount",
@@ -436,13 +446,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 lines_to_create, move, statement, statement_date
             )
 
-            self._add_tax_credit_data(lines_to_create, move, statement, statement_date)
-
             self._add_advance_vat_data(lines_to_create, move, statement, statement_date)
-
-            self._add_previous_debit_data(
-                lines_to_create, move, statement, statement_date
-            )
 
             self._add_interests_data(lines_to_create, move, statement, statement_date)
 
@@ -518,27 +522,6 @@ class AccountVatPeriodEndStatement(models.Model):
                 )
             lines_to_create.append((0, 0, interests_data))
 
-    def _add_previous_debit_data(
-        self, lines_to_create, move, statement, statement_date
-    ):
-        if statement.previous_debit_vat_amount:
-            previous_debit_vat_data = self._prepare_account_move_line(
-                name="Previous Debits VAT",
-                account_id=statement.previous_debit_vat_account_id.id,
-                move_id=move.id,
-                statement=statement,
-                statement_date=statement_date,
-            )
-            if statement.previous_debit_vat_amount > 0:
-                previous_debit_vat_data["debit"] = math.fabs(
-                    statement.previous_debit_vat_amount
-                )
-            else:
-                previous_debit_vat_data["credit"] = math.fabs(
-                    statement.previous_debit_vat_amount
-                )
-            lines_to_create.append((0, 0, previous_debit_vat_data))
-
     def _add_advance_vat_data(self, lines_to_create, move, statement, statement_date):
         if statement.advance_amount:
             advance_vat_data = self._prepare_account_move_line(
@@ -553,21 +536,6 @@ class AccountVatPeriodEndStatement(models.Model):
             else:
                 advance_vat_data["credit"] = math.fabs(statement.advance_amount)
             lines_to_create.append((0, 0, advance_vat_data))
-
-    def _add_tax_credit_data(self, lines_to_create, move, statement, statement_date):
-        if statement.tax_credit_amount:
-            tax_credit_vat_data = self._prepare_account_move_line(
-                name="Tax Credits",
-                account_id=statement.tax_credit_account_id.id,
-                move_id=move.id,
-                statement=statement,
-                statement_date=statement_date,
-            )
-            if statement.tax_credit_amount < 0:
-                tax_credit_vat_data["debit"] = math.fabs(statement.tax_credit_amount)
-            else:
-                tax_credit_vat_data["credit"] = math.fabs(statement.tax_credit_amount)
-            lines_to_create.append((0, 0, tax_credit_vat_data))
 
     def _add_previous_credit_vat_data(
         self, lines_to_create, move, statement, statement_date
@@ -642,6 +610,7 @@ class AccountVatPeriodEndStatement(models.Model):
         credit_line_model = self.env["statement.credit.account.line"]
         for statement in self:
             statement.previous_debit_vat_amount = 0.0
+            statement.previous_credit_vat_amount = 0.0
             prev_statements = statement._get_previous_statements()
             if prev_statements and not statement.annual:
                 prev_statement = prev_statements[0]
