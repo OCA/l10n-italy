@@ -510,3 +510,7 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         else:
             payments = action["domain"][0][2]
             self.assertTrue(len(payments) > 1)
+
+    def test_copy_declaration(self):
+        declaration_copy = self.declaration4.copy()
+        self.assertTrue(declaration_copy)
