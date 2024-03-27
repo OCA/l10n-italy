@@ -1,9 +1,11 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import datetime
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import float_is_zero
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, float_is_zero
 
 
 class AccountFiscalPosition(models.Model):
@@ -250,14 +252,37 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_amount(self, res):
         self.ensure_one()
-        amount_currency = self.price_subtotal
-        company_currency = self.move_id.company_id.currency_id
-        invoice_currency = self.move_id.currency_id
-        amount_euro = invoice_currency._convert(
-            amount_currency,
-            company_currency,
-            self.move_id.company_id,
-            fields.Date.today(),
+        amount_euro = self.price_subtotal
+        invoice = self.move_id
+        invoice_currency = invoice.currency_id
+        invoice_partner = invoice.partner_id
+        invoice_partner_currency = invoice_partner.country_id.currency_id
+        partner_currency_rate = invoice.get_currency_rate_at_invoice_date()
+
+        if (
+            not (invoice_partner_currency.active or partner_currency_rate)
+            and invoice.need_amount_currency()
+        ):
+            raise UserError(
+                _(
+                    "Enable currency '{curr}' of '{country}', and set the "
+                    "conversion rate at date {inv_date}. Conversion rate can be "
+                    "found at:\n\n"
+                    "https://www.bancaditalia.it/compiti/operazioni-cambi/cambio"
+                    "\n\nChoosing the day from the list, if invoice date is on "
+                    "Saturday, Sunday or today and the rate isn't available, use "
+                    "the last value before invoice date."
+                ).format(
+                    curr=invoice_partner_currency.name,
+                    country=invoice_partner.country_id.name,
+                    inv_date=self._convert_to_user_date(invoice.invoice_date),
+                )
+            )
+        amount_currency = invoice_currency._convert(
+            amount_euro,
+            invoice_partner_currency,
+            invoice.company_id,
+            invoice.invoice_date or fields.Date.today(),
         )
         statistic_amount_euro = amount_euro
         res.update(
@@ -278,6 +303,12 @@ class AccountMoveLine(models.Model):
                 company_id.intrastat_purchase_transaction_nature_b_id
             )
             res.update({"transaction_nature_b_id": p_transaction_nature_b.id})
+
+    def _convert_to_user_date(self, invoice_date):
+        lang_obj = self.env["res.lang"].search(
+            [("code", "=", self.env.user.lang)], limit=1
+        )
+        return datetime.date.strftime(invoice_date, lang_obj.date_format)
 
 
 class AccountMove(models.Model):
@@ -340,7 +371,13 @@ class AccountMove(models.Model):
                 total_amount = sum(
                     line.amount_currency for line in invoice.intrastat_line_ids
                 )
-                subtotal = abs(invoice.amount_untaxed - excluded_amount)
+                invoice_partner_currency = invoice.partner_id.country_id.currency_id
+                subtotal = invoice.currency_id._convert(
+                    abs(invoice.amount_untaxed - excluded_amount),
+                    invoice_partner_currency,
+                    invoice.company_id,
+                    invoice.invoice_date or fields.Date.today(),
+                )
                 if not float_is_zero(
                     total_amount - subtotal, precision_digits=precision_digits
                 ):
@@ -441,6 +478,54 @@ class AccountMove(models.Model):
                 ].compute_statement_section(i_code_type, self.move_type)
                 i_line_by_code[key] = intra_line
         return i_line_by_code, lines_to_split
+
+    def get_currency_rate_at_invoice_date(self):
+        self.ensure_one()
+        if not self.invoice_date:
+            raise UserError(_("Set invoice date"))
+        # Because no change rate is published on weekend, if the weekday of
+        # invoice date is a Saturday or Sunday, need to get rate of Friday
+        # Weekday(Saturday == 5, Sunday == 6)
+        date_delta = self.get_date_delta(self.invoice_date)
+        inv_date_obj = self.invoice_date - date_delta
+        str_inv_date = inv_date_obj.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        partner_currency = self.partner_id.country_id.currency_id
+        part_curr_rate = self.get_rate_currency(partner_currency, str_inv_date)
+        # If no rate found for invoice date, try to find nearest previous date
+        # value
+        if not part_curr_rate:
+            prev_day_date_obj = self.invoice_date - datetime.timedelta(days=1)
+            date_delta = self.get_date_delta(prev_day_date_obj)
+            str_inv_date = (prev_day_date_obj - date_delta).strftime(
+                DEFAULT_SERVER_DATE_FORMAT
+            )
+            part_curr_rate = self.get_rate_currency(partner_currency, str_inv_date)
+
+        return part_curr_rate
+
+    def get_date_delta(self, date_obj):
+        if date_obj.weekday() == 6:
+            date_delta = datetime.timedelta(days=2)
+        elif date_obj.weekday() == 5:
+            date_delta = datetime.timedelta(days=1)
+        else:
+            date_delta = datetime.timedelta(days=0)
+
+        return date_delta
+
+    def get_rate_currency(self, currency, date_str):
+        return currency.rate_ids.filtered(lambda c, i_dt=date_str: c.name == i_dt)
+
+    def need_amount_currency(self):
+        self.ensure_one()
+        inv_partner_currency = self.partner_id.country_id.currency_id
+        base_currency = self.env.ref("base.EUR")
+        return all(
+            [
+                self.move_type in ("in_invoice", "in_refund"),
+                inv_partner_currency != base_currency,
+            ]
+        )
 
 
 class AccountInvoiceIntrastat(models.Model):
