@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_delivery_note_comment_template">
+        <field name="name">Delivery Notes Comments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">base.comment.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('model_ids.model', '=', 'stock.delivery.note')]</field>
+        <field
+            name="context"
+            eval="{'default_model_ids': [(4, ref('l10n_it_delivery_note.model_stock_delivery_note'))]}"
+        />
+        <field
+            name="view_id"
+            ref="base_comment_template.view_base_comment_template_tree"
+        />
+    </record>
+    <menuitem
+        name="Document Comments"
+        id="menu_base_comment_template_ddt"
+        action="l10n_it_delivery_note_comment_template.action_delivery_note_comment_template"
+        parent="stock.menu_stock_config_settings"
+        sequence="99"
+    />
+</odoo>
