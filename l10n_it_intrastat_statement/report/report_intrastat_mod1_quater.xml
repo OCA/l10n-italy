@@ -4,7 +4,13 @@
         <t t-call="web.html_container">
             <t t-translation="off">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.internal_layout">
+                    <t t-if="not o" t-set="o" t-value="doc" />
+                    <div
+                        class="article"
+                        t-att-data-oe-model="o and o._name"
+                        t-att-data-oe-id="o and o.id"
+                        t-att-data-oe-lang="o and o.env.context.get('lang')"
+                    >
                         <div class="page">
                             <div class="row">
                                 <div class="col-3">
@@ -16,8 +22,8 @@
                                 <div class="col-7 col-offset-3">
                                     <table class="table text-center table-bordered">
                                         <td>
-                                            <b>RIEPILOGO DEGLI ACQUISTI INTRACOMUNITARI
-                                            <br />DI BENI E DEI SERVIZI RICEVUTI</b>
+                                            <b>RIEPILOGO DELLE CESSIONI INTRACOMUNITARIE
+                                            <br />DI BENI E DEI SERVIZI RESI</b>
                                         </td>
                                         <td>Mod. INTRA-1 Quater</td>
                                     </table>
@@ -60,7 +66,7 @@
                                     <table class="table table-bordered">
                                         <thead class="fondo">
                                             <tr>
-                                                <!-- <th></th> -->
+                                                <th />
                                                 <th
                                                     colspan="2"
                                                     class="text-center"
@@ -76,7 +82,7 @@
                                                 <th />
                                             </tr>
                                             <tr>
-                                                <!-- <th class="text-center">PROGR.</th> -->
+                                                <th class="text-center">PROGR.</th>
                                                 <th class="text-center">STATO</th>
                                                 <th class="text-center">CODICE IVA</th>
                                                 <th
@@ -109,14 +115,14 @@
                                                 <td>7</td>
                                                 <td>8</td>
                                                 <td>9</td>
-                                                <!-- <td>10</td> -->
+                                                <td>10</td>
                                             </tr>
                                             <t t-set="total" t-value="0" />
                                             <tr
                                                 t-foreach="o.sale_section3_ids"
                                                 t-as="l"
                                             >
-                                                <!-- <td t-esc="l.progressive"></td> -->
+                                                <td t-esc="l.sequence" />
                                                 <td><span
                                                         t-field="l.country_partner_id.code"
                                                     /></td>
@@ -159,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                    </t>
+                    </div>
                 </t>
             </t>
         </t>

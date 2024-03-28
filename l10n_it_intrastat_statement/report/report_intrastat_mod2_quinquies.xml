@@ -4,7 +4,13 @@
         <t t-call="web.html_container">
             <t t-translation="off">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.internal_layout">
+                    <t t-if="not o" t-set="o" t-value="doc" />
+                    <div
+                        class="article"
+                        t-att-data-oe-model="o and o._name"
+                        t-att-data-oe-id="o and o.id"
+                        t-att-data-oe-lang="o and o.env.context.get('lang')"
+                    >
                         <div class="page">
                             <div class="row">
 
@@ -62,7 +68,7 @@
                                     <table class="table table-bordered">
                                         <thead class="fondo">
                                             <tr>
-                                                <!-- <th></th> -->
+                                                <th />
                                                 <th
                                                     colspan="4"
                                                     class="text-center"
@@ -83,7 +89,7 @@
                                                 <th />
                                             </tr>
                                             <tr>
-                                                <!-- <th class="text-center">PROGR.</th> -->
+                                                <th class="text-center">PROGR.</th>
                                                 <th
                                                     class="text-center"
                                                 >SEZIONE DOGANALE</th>
@@ -134,14 +140,14 @@
                                                 <td>12</td>
                                                 <td>13</td>
                                                 <td>14</td>
-                                                <!-- <td>15</td> -->
+                                                <td>15</td>
                                             </tr>
                                             <t t-set="total" t-value="0" />
                                             <tr
                                                 t-foreach="o.purchase_section4_ids"
                                                 t-as="l"
                                             >
-                                                <!-- <td t-esc="l.progressive"></td> -->
+                                                <td t-esc="l.sequence" />
                                                 <td><span
                                                         t-field="l.intrastat_custom_id"
                                                     /></td>
@@ -193,7 +199,7 @@
                                 </div>
                             </div>
                         </div>
-                    </t>
+                    </div>
                 </t>
             </t>
         </t>
