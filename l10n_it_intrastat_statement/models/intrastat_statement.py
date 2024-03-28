@@ -764,8 +764,8 @@ class AccountIntrastatStatement(models.Model):
 
         # Search intrastat lines
         domain = [
-            ("invoice_date", ">=", period_date_start),
-            ("invoice_date", "<=", period_date_stop),
+            ("date", ">=", period_date_start),
+            ("date", "<=", period_date_stop),
             ("intrastat", "=", True),
         ]
         inv_type = []
