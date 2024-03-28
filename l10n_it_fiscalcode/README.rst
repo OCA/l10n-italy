@@ -132,6 +132,9 @@ Contributors
    <gborruso@dinamicheaziendali.it>
 -  Alex Comba <alex.comba@agilebg.com>
 -  Marco Colombo <marco.colombo@phi.technology>
+-  `Aion Tech <https://aiontech.company/>`__:
+
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
