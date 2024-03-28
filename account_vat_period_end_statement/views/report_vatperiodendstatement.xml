@@ -14,7 +14,9 @@
                     Periods detail
                     -->
                     <t t-foreach="statement.date_range_ids" t-as="period">
-                           <h3><span>Summary</span> <span t-esc="period.name" /> </h3>
+                           <h3><span>VAT statement</span> <span
+                            t-esc="period.name"
+                        /> </h3>
 
                            <!-- Purchase -->
                            <t
