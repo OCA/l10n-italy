@@ -41,7 +41,7 @@ class WizardExportFatturapa(models.TransientModel):
         ]
 
     def _get_selection(self):
-        reports = self.env["ir.actions.actions"].sudo().search(self._domain_ir_values())
+        reports = self.env["ir.actions.report"].sudo().search(self._domain_ir_values())
         ret = [(str(r.id), r.name) for r in reports]
         return ret
 
