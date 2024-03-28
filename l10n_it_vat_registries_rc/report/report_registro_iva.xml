@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<template
+        id="report_registro_iva_rc"
+        inherit_id="l10n_it_vat_registries.report_registro_iva"
+    >
+    <xpath expr="//t[@t-set='partner']" position="after">
+        <t
+                t-set="rc_supplier"
+                t-value="move.mapped('rc_original_purchase_invoice_ids.partner_id')"
+            />
+        <t t-if="rc_supplier">
+            <t t-set="partner" t-value="rc_supplier" />
+        </t>
+    </xpath>
+</template>
+</odoo>
