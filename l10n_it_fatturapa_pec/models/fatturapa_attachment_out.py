@@ -63,15 +63,19 @@ class FatturaPAAttachmentOut(models.Model):
                 }
             )
 
-            mail = self.env["mail.mail"].create(
-                {
-                    "mail_message_id": mail_message.id,
-                    "body_html": mail_message.body,
-                    "email_to": self.env.company.email_exchange_system,
-                    "headers": {
-                        "Return-Path": self.env.company.email_from_for_fatturaPA
-                    },
-                }
+            mail = (
+                self.env["mail.mail"]
+                .sudo()
+                .create(
+                    {
+                        "mail_message_id": mail_message.id,
+                        "body_html": mail_message.body,
+                        "email_to": self.env.company.email_exchange_system,
+                        "headers": {
+                            "Return-Path": self.env.company.email_from_for_fatturaPA
+                        },
+                    }
+                )
             )
 
             if mail:
