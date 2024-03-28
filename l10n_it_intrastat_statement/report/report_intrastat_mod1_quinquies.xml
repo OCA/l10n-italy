@@ -18,7 +18,7 @@
                                     <table class="table text-center table-bordered">
                                         <td>
                                             <b>RIEPILOGO DEGLI ACQUISTI INTRACOMUNITARI
-                                            <br />DI BENI E DEI SERVIZI RICEVUTI</b>
+                                            <br />DI BENI E DEI SERVIZI RESI</b>
                                         </td>
                                         <td>Mod. INTRA-1 Quinquies</td>
                                     </table>
@@ -62,7 +62,7 @@
                                     <table class="table table-bordered">
                                         <thead class="fondo">
                                             <tr>
-                                                <!-- <th></th> -->
+                                                <th />
                                                 <th
                                                     colspan="4"
                                                     class="text-center"
@@ -82,7 +82,7 @@
                                                 <th />
                                             </tr>
                                             <tr>
-                                                <!-- <th class="text-center">PROGR.</th> -->
+                                                <th class="text-center">PROGR.</th>
                                                 <th
                                                     class="text-center"
                                                 >SEZIONE DOGANALE</th>
@@ -129,14 +129,14 @@
                                                 <td>11</td>
                                                 <td>12</td>
                                                 <td>13</td>
-                                                <!-- <td>14</td> -->
+                                                <td>14</td>
                                             </tr>
                                             <t t-set="total" t-value="0" />
                                             <tr
                                                 t-foreach="o.sale_section4_ids"
                                                 t-as="l"
                                             >
-                                                <!-- <td t-esc="l.progressive"></td> -->
+                                                <td t-esc="l.sequence" />
                                                 <td><span
                                                         t-field="l.intrastat_custom_id"
                                                     /></td>
