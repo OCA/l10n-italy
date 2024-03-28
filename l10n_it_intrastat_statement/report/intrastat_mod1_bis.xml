@@ -4,7 +4,13 @@
         <t t-call="web.html_container">
             <t t-translation="off">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.internal_layout">
+                    <t t-if="not o" t-set="o" t-value="doc" />
+                    <div
+                        class="article"
+                        t-att-data-oe-model="o and o._name"
+                        t-att-data-oe-id="o and o.id"
+                        t-att-data-oe-lang="o and o.env.context.get('lang')"
+                    >
                         <div class="page">
                             <div class="row">
                                 <div class="col-3">
@@ -189,7 +195,7 @@
                                 </div>
                             </div>
                         </div>
-                    </t>
+                    </div>
                 </t>
             </t>
         </t>
