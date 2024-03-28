@@ -459,6 +459,8 @@ class AccountMove(models.Model):
 
         if not supplier_invoice:
             supplier_invoice = self.create(supplier_invoice_vals)
+        else:
+            supplier_invoice.write(supplier_invoice_vals)
         invoice_line_vals = []
         for inv_line in self.invoice_line_ids:
             line_vals = inv_line.copy_data()[0]
