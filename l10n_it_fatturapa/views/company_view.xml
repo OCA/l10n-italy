@@ -58,6 +58,13 @@
                                     />
                                     <field name="fatturapa_preview_style" />
                                 </div>
+                                <div class="row">
+                                    <label
+                                        for="fatturapa_simple_preview_style"
+                                        class="col-lg-3 o_light_label"
+                                    />
+                                    <field name="fatturapa_simple_preview_style" />
+                                </div>
                             </div>
                         </div>
                     </div>

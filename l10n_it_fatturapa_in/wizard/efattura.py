@@ -1,3 +1,4 @@
+import decimal
 import logging
 import re
 import urllib.parse
@@ -6,7 +7,14 @@ from datetime import datetime
 
 from lxml import etree
 
-from odoo.addons.l10n_it_account.tools.account_tools import fpa_schema, fpa_schema_etree
+from odoo.exceptions import ValidationError
+from odoo.tools.translate import _
+
+from odoo.addons.l10n_it_account.tools.account_tools import (
+    fpa_schema,
+    fpa_schema_etree,
+    fpa_simple_schema,
+)
 
 _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
@@ -150,6 +158,112 @@ def CreateFromDocument(xml_string):  # noqa: C901
         def __len__(self, *attr, **kwattr):
             return self.__dict__.__len__(*attr, **kwattr)
 
+    def _convert_simple_DatiAnagrafici(CedentePrestatore):
+        DatiAnagrafici = ObjectDict()
+        if CedentePrestatore.IdFiscaleIVA:
+            DatiAnagrafici.IdFiscaleIVA = CedentePrestatore.IdFiscaleIVA
+            del CedentePrestatore.IdFiscaleIVA
+        if CedentePrestatore.CodiceFiscale:
+            DatiAnagrafici.CodiceFiscale = CedentePrestatore.CodiceFiscale
+            del CedentePrestatore.CodiceFiscale
+        if CedentePrestatore.Denominazione:
+            DatiAnagrafici.Anagrafica = ObjectDict()
+            DatiAnagrafici.Anagrafica.Denominazione = CedentePrestatore.Denominazione
+            del CedentePrestatore.Denominazione
+        elif CedentePrestatore.Nome or CedentePrestatore.Cognome:
+            DatiAnagrafici.Anagrafica = ObjectDict()
+            DatiAnagrafici.Anagrafica.Nome = CedentePrestatore.Nome
+            DatiAnagrafici.Anagrafica.Cognome = CedentePrestatore.Cognome
+            del CedentePrestatore.Nome
+            del CedentePrestatore.Cognome
+        return DatiAnagrafici
+
+    # alter the ObjectDict() created by parsing of Fattura Semplificata
+    # to look the same as the ObjectDict() created by parsing of
+    # a Fattura Ordinaria
+    def _fpa_convert_simple(od):
+        # 1 - CedentePrestatore has a different syntax
+        if od.FatturaElettronicaHeader.CedentePrestatore:
+            CedentePrestatore = od.FatturaElettronicaHeader.CedentePrestatore
+            CedentePrestatore.DatiAnagrafici = _convert_simple_DatiAnagrafici(
+                CedentePrestatore
+            )
+
+        def make_empty_riepilogo():
+            riepilogo = ObjectDict()
+            riepilogo.AliquotaIVA = decimal.Decimal(0)
+            riepilogo.ImponibileImporto = decimal.Decimal(0)
+            riepilogo.Imposta = decimal.Decimal(0)
+            # riepilogo.Natura = None
+            # riepilogo.SpeseAccessorie = 0.0
+            # riepilogo.Arrotondamento = 0.0
+            # riepilogo.EsigibilitaIVA = None
+            # riepilogo.RiferimentoNormativo = None
+            return riepilogo
+
+        def rkey(linea):
+            return "{}-{}".format(linea.AliquotaIVA, linea.Natura or "")
+
+        for FatturaElettronicaBody in od.FatturaElettronicaBody:
+            # 2 - DatiBeniServizi is a list, instead of a single object
+            #     each instance represents a line in the invoice
+            #     There's no equivalent of DatiRiepilogo
+            DettaglioLinee = []
+            DatiRiepilogo = {}
+            for nlinea, DatiBeniServizi in enumerate(
+                FatturaElettronicaBody.DatiBeniServizi
+            ):
+                linea = ObjectDict()
+                linea.NumeroLinea = nlinea + 1
+                linea.Descrizione = DatiBeniServizi.Descrizione
+                if DatiBeniServizi.DatiIVA.Aliquota is not None:
+                    linea.AliquotaIVA = decimal.Decimal(
+                        DatiBeniServizi.DatiIVA.Aliquota
+                    )
+                    linea._imponibile = decimal.Decimal(DatiBeniServizi.Importo) / (
+                        1 + decimal.Decimal(linea.AliquotaIVA) / 100
+                    )
+                    linea._imposta = DatiBeniServizi.Importo - linea._imponibile
+                if DatiBeniServizi.DatiIVA.Imposta:
+                    linea._imposta = decimal.Decimal(DatiBeniServizi.DatiIVA.Imposta)
+                    linea._imponibile = (
+                        decimal.Decimal(DatiBeniServizi.Importo) - linea._imposta
+                    )
+                    if linea.AliquotaIVA is None:
+                        linea.AliquotaIVA = linea._imposta / linea._imponibile * 100
+                if linea.AliquotaIVA is None:
+                    raise ValidationError(_("No available data to compute AliquotaIVA"))
+                linea.PrezzoUnitario = linea._imponibile
+                linea.PrezzoTotale = linea._imponibile
+
+                if DatiBeniServizi.Natura:
+                    linea.Natura = DatiBeniServizi.Natura
+                if DatiBeniServizi.RiferimentoNormativo:
+                    linea.RiferimentoNormativo = DatiBeniServizi.RiferimentoNormativo
+                DettaglioLinee.append(linea)
+
+                key = rkey(linea)
+                riepilogo = DatiRiepilogo.get(key, make_empty_riepilogo())
+                riepilogo.AliquotaIVA = linea.AliquotaIVA
+                riepilogo.ImponibileImporto += linea._imponibile
+                riepilogo.Imposta += linea._imposta
+                if linea.Natura:
+                    riepilogo.Natura = linea.Natura
+                if linea.RiferimentoNormativo:
+                    riepilogo.RiferimentoNormativo = linea.RiferimentoNormativo
+
+                del linea._imponibile
+                del linea._imposta
+                DatiRiepilogo[key] = riepilogo
+
+            DatiBeniServizi = ObjectDict()
+            DatiBeniServizi.DettaglioLinee = DettaglioLinee
+            DatiBeniServizi.DatiRiepilogo = DatiRiepilogo.values()
+
+            FatturaElettronicaBody.DatiBeniServizi = DatiBeniServizi
+
+        return od
+
     xml_string = _fix_xmlstring(xml_string)
     root = etree.fromstring(xml_string)
 
@@ -197,7 +311,19 @@ def CreateFromDocument(xml_string):  # noqa: C901
     for pec in root.xpath("//PECDestinatario"):
         pec.text = pec.text.rstrip()
 
-    validat = fpa_schema.to_dict(tree, dict_class=ObjectDict)
+    # identify the schema to use by looking at the root element tag
+    index = root.tag.rfind("}") + 1
+    root_tag = root.tag[index:]
+
+    if root_tag == "FatturaElettronicaSemplificata":
+        validat = _fpa_convert_simple(
+            fpa_simple_schema.to_dict(tree, dict_class=ObjectDict)
+        )
+    elif root_tag == "FatturaElettronica":
+        validat = fpa_schema.to_dict(tree, dict_class=ObjectDict)
+    else:
+        raise ValidationError(_("Unexpected root element: %s", root_tag))
+
     validat._xmldoctor = problems
     return validat
 
