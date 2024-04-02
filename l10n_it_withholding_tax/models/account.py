@@ -58,10 +58,19 @@ class AccountPartialReconcile(models.Model):
             paying_invoice = move_lines.filtered(lambda x: x.exists()).move_id.filtered(
                 lambda x: x.is_invoice()
             )
+
+            # If we are reconciling a vendor bill and its refund,
+            # we do not need to generate Withholding Tax Moves
+            # or change the reconciliation amount
+            in_refunding = len(paying_invoice) == 2 and set(
+                paying_invoice.mapped("move_type")
+            ) == {"in_invoice", "in_refund"}
             # XXX
             # the following code mimics 12.0 behaviour; probably it's not correct
-            if paying_invoice:
+            if not in_refunding:
                 paying_invoice = first(paying_invoice)
+            else:
+                paying_invoice = self.env["account.move"].browse()
 
             # Limit value of reconciliation
             if (

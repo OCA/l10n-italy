@@ -367,3 +367,49 @@ class TestWithholdingTax(TransactionCase):
 
         # Assert: The refund has the Withholding Tax flag enabled
         self.assertTrue(refund.withholding_tax)
+
+    def test_refund_reconciliation_amount(self):
+        """
+        When a refund is created, the amount reconciled
+        is the whole amount of the vendor bill.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+        bill_amount = bill.amount_total
+
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: The reconciliation is for the whole bill
+        reconciliation = self.env["account.partial.reconcile"].search(
+            [
+                ("debit_move_id", "in", refund.move_id.line_ids.ids),
+                ("credit_move_id", "in", bill.move_id.line_ids.ids),
+            ]
+        )
+        self.assertEqual(reconciliation.amount, bill_amount)
+
+    def test_refund_wt_moves(self):
+        """
+        When a refund is created,
+        no Withholding Tax Moves are created.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: There are no Withholding Tax Moves
+        reconciliation = self.env["account.partial.reconcile"].search(
+            [
+                ("debit_move_id", "in", refund.move_id.line_ids.ids),
+                ("credit_move_id", "in", bill.move_id.line_ids.ids),
+            ]
+        )
+        withholding_tax_moves = self.env["withholding.tax.move"].search(
+            [
+                ("reconcile_partial_id", "=", reconciliation.id),
+            ]
+        )
+        self.assertFalse(withholding_tax_moves)
