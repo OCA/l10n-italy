@@ -176,7 +176,16 @@ class TestAssets(TransactionCase):
         )
         return asset
 
-    def _depreciate_asset_wizard(self, asset, date_dep, period="year", period_count=None):
+    def _depreciate_asset_wizard(
+        self,
+        asset,
+        date_dep,
+        period="year",
+        period_count=None,
+        override_journal=None,
+    ):
+        if override_journal is None:
+            override_journal = self.env["account.journal"].browse()
         wiz_vals = asset.with_context(
             **{"allow_reload_window": True}
         ).launch_wizard_generate_depreciations()
@@ -188,13 +197,27 @@ class TestAssets(TransactionCase):
                     "date_dep": date_dep,
                     "period": period,
                     "period_count": period_count,
+                    "journal_id": override_journal.id,
                 }
             )
         )
         return wiz
 
-    def _depreciate_asset(self, asset, date_dep, period="year", period_count=None):
-        wiz = self._depreciate_asset_wizard(asset, date_dep, period=period, period_count=period_count)
+    def _depreciate_asset(
+        self,
+        asset,
+        date_dep,
+        period="year",
+        period_count=None,
+        override_journal=None,
+    ):
+        wiz = self._depreciate_asset_wizard(
+            asset,
+            date_dep,
+            period=period,
+            period_count=period_count,
+            override_journal=override_journal,
+        )
         wiz.do_generate()
 
     def _create_purchase_invoice(self, invoice_date, tax_ids=False, amount=7000):
@@ -946,3 +969,48 @@ class TestAssets(TransactionCase):
         # Assert 2: no fiscal years are missing
         depreciate_wizard = self._depreciate_asset_wizard(asset, depreciation_date)
         self.assertFalse(depreciate_wizard.missing_fiscal_year_warning)
+
+    def test_override_journal(self):
+        """
+        Set an "Override Journal" in the depreciation wizard,
+        the journal entries are created in the selected journal.
+        """
+        # Arrange
+        override_journal = self.env["account.journal"].create(
+            {
+                "name": "Test override journal",
+                "code": "TOJ",
+                "type": "general",
+            }
+        )
+        purchase_date = date(2019, 1, 1)
+        asset = self._create_asset(purchase_date)
+        depreciation_date = date(2019, 1, 31)
+        self._generate_fiscal_years(
+            asset.purchase_date,
+            depreciation_date,
+        )
+        civ_depreciation_type = self.env.ref(
+            "l10n_it_asset_management.ad_type_civilistico"
+        )
+        civ_depreciation = asset.depreciation_ids.filtered(
+            lambda x: x.type_id == civ_depreciation_type
+        )
+        civ_depreciation.percentage = 12.0
+        depreciate_asset_wizard = self._depreciate_asset_wizard(
+            asset,
+            depreciation_date,
+            period="month",
+            override_journal=override_journal,
+        )
+        # pre-condition
+        self.assertNotEqual(
+            depreciate_asset_wizard.journal_id, asset.category_id.journal_id
+        )
+
+        # Act
+        depreciate_asset_wizard.do_generate()
+
+        # Assert
+        account_move = asset.depreciation_ids.line_ids.move_id
+        self.assertEqual(account_move.journal_id, depreciate_asset_wizard.journal_id)
