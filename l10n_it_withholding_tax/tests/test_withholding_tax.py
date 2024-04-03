@@ -325,33 +325,35 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.state, "posted")
 
     def _create_bill(self):
-        bill_model = self.env["account.invoice"].with_context(type="in_invoice")
+        bill_model = self.env["account.move"].with_context(
+            default_move_type="in_invoice"
+        )
         bill_form = Form(bill_model)
-        bill_form.name = "Test Supplier Invoice WT"
         bill_form.partner_id = self.env.ref("base.res_partner_12")
+        bill_form.invoice_date = time.strftime("%Y") + "-07-15"
         with bill_form.invoice_line_ids.new() as line:
             line.name = "Advice"
             line.price_unit = 1000
             line.invoice_line_tax_wt_ids.clear()
             line.invoice_line_tax_wt_ids.add(self.wt1040)
         bill = bill_form.save()
-        bill.action_invoice_open()
+        bill.action_post()
         return bill
 
     def _get_refund(self, bill):
-        refund_wizard_model = self.env["account.invoice.refund"].with_context(
+        refund_wizard_model = self.env["account.move.reversal"].with_context(
             active_id=bill.id,
             active_ids=bill.ids,
             active_model=bill._name,
         )
         refund_wizard_form = Form(refund_wizard_model)
-        refund_wizard_form.filter_refund = "cancel"
+        refund_wizard_form.refund_method = "cancel"
         refund_wizard = refund_wizard_form.save()
-        refund_result = refund_wizard.invoice_refund()
+        refund_result = refund_wizard.reverse_moves()
 
         refund_model = refund_result.get("res_model")
-        refund_domain = refund_result.get("domain")
-        refund = self.env[refund_model].search(refund_domain, limit=1)
+        refund_id = refund_result.get("res_id")
+        refund = self.env[refund_model].browse(refund_id)
         return refund
 
     def test_refund_wt_propagation(self):
@@ -383,8 +385,8 @@ class TestWithholdingTax(TransactionCase):
         # Assert: The reconciliation is for the whole bill
         reconciliation = self.env["account.partial.reconcile"].search(
             [
-                ("debit_move_id", "in", refund.move_id.line_ids.ids),
-                ("credit_move_id", "in", bill.move_id.line_ids.ids),
+                ("debit_move_id", "in", refund.line_ids.ids),
+                ("credit_move_id", "in", bill.line_ids.ids),
             ]
         )
         self.assertEqual(reconciliation.amount, bill_amount)
@@ -403,8 +405,8 @@ class TestWithholdingTax(TransactionCase):
         # Assert: There are no Withholding Tax Moves
         reconciliation = self.env["account.partial.reconcile"].search(
             [
-                ("debit_move_id", "in", refund.move_id.line_ids.ids),
-                ("credit_move_id", "in", bill.move_id.line_ids.ids),
+                ("debit_move_id", "in", refund.line_ids.ids),
+                ("credit_move_id", "in", bill.line_ids.ids),
             ]
         )
         withholding_tax_moves = self.env["withholding.tax.move"].search(
