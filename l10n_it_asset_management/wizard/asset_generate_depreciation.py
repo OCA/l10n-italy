@@ -58,6 +58,12 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         string="Depreciation Types",
     )
 
+    journal_id = fields.Many2one(
+        comodel_name="account.journal",
+        string="Override journal",
+        help="Create move entries in this journal "
+        "instead of the category's journal.",
+    )
     period = fields.Selection(
         selection=[
             ("year", "Year"),
@@ -106,6 +112,16 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                 missing_fiscal_year_warning
             )
 
+    def _get_depreciation_context(self):
+        # Add depreciation date in context just in case
+        depreciation_context = dict(
+            dep_date=self.date_dep,
+        )
+        override_journal = self.journal_id
+        if override_journal:
+            depreciation_context["l10n_it_asset_override_journal"] = self.journal_id
+        return depreciation_context
+
     def do_generate(self):
         """
         Launches the generation of new depreciation lines for the retrieved
@@ -113,9 +129,11 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         Reloads the current window if necessary.
         """
         self.ensure_one()
-        # Add depreciation date in context just in case
-        deps = self.env["asset.depreciation"]
-        all_deps = self.with_context(dep_date=self.date_dep).get_depreciations()
+        self_with_depreciation_context = self.with_context(
+            **self._get_depreciation_context()
+        )
+        deps = self_with_depreciation_context.env["asset.depreciation"]
+        all_deps = self_with_depreciation_context.get_depreciations()
         for dep in all_deps:
             if (
                 not dep.last_depreciation_date

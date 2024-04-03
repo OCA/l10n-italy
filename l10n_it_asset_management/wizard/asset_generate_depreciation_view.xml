@@ -38,6 +38,7 @@
                         options="{'no_create': True}"
                         widget="many2many_tags"
                     />
+                    <field name="journal_id" />
                 </group>
                 <group name="filters" string="Filters">
                     <field
