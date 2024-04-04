@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-20 06:12+0000\n"
-"PO-Revision-Date: 2024-02-08 10:36+0000\n"
+"PO-Revision-Date: 2024-04-04 11:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -1003,7 +1003,7 @@ msgstr "Importo totale"
 #. module: l10n_it_ricevute_bancarie
 #: view:account.move.line:l10n_it_ricevute_bancarie.view_riba_da_emettere_tree
 msgid "Total Debit"
-msgstr "Totale debito"
+msgstr "Totale dare"
 
 #. module: l10n_it_ricevute_bancarie
 #: field:riba.distinta,type:0 field:riba.distinta.line,type:0
