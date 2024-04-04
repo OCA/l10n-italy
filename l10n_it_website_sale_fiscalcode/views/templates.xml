@@ -7,7 +7,7 @@
             <t t-if="mode[1] == 'billing'">
                 <div class="clearfix" />
                 <div
-                    t-attf-class="form-group #{error.get('fiscalcode') and 'o_has_error' or ''} col-lg-6"
+                    t-attf-class="mb-3 #{error.get('fiscalcode') and 'o_has_error' or ''} col-lg-6"
                     id="div_fiscalcode"
                 >
                     <label

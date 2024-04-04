@@ -8,9 +8,7 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 
 class WebsiteSaleFiscalCode(WebsiteSale):
     def _checkout_form_save(self, mode, checkout, all_values):
-        res = super(WebsiteSaleFiscalCode, self)._checkout_form_save(
-            mode, checkout, all_values
-        )
+        res = super()._checkout_form_save(mode, checkout, all_values)
         partner_values = dict()
         if "fiscalcode" not in checkout and "fiscalcode" in all_values:
             partner_values["fiscalcode"] = all_values["fiscalcode"]
