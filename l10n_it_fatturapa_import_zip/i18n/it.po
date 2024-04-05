@@ -312,6 +312,11 @@ msgid "Journal Entry"
 msgstr "Registrazione contabile"
 
 #. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__key
+msgid "Key"
+msgstr ""
+
+#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
@@ -456,6 +461,11 @@ msgid "Stored Filename"
 msgstr "Nome file memorizzato"
 
 #. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__theme_template_id
+msgid "Theme Template"
+msgstr ""
+
+#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__type
 msgid "Type"
 msgstr "Tipo"
@@ -469,6 +479,11 @@ msgstr "Tipo di attività eccezione sul record."
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__url
 msgid "Url"
 msgstr "URL"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__website_id
+msgid "Website"
+msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__website_message_ids
