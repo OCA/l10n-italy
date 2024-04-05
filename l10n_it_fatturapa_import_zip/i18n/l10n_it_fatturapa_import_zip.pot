@@ -306,6 +306,11 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__key
+msgid "Key"
+msgstr ""
+
+#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -446,6 +451,11 @@ msgid "Stored Filename"
 msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__theme_template_id
+msgid "Theme Template"
+msgstr ""
+
+#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__type
 msgid "Type"
 msgstr ""
@@ -458,6 +468,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__url
 msgid "Url"
+msgstr ""
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__website_id
+msgid "Website"
 msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
