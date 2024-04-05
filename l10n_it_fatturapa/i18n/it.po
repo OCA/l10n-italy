@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-09 12:26+0000\n"
-"PO-Revision-Date: 2024-03-04 09:34+0000\n"
+"PO-Revision-Date: 2024-04-05 11:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -724,7 +724,7 @@ msgstr "Movimento contabile"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__key
 msgid "Key"
-msgstr ""
+msgstr "Chiave"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_discount_rise_price____last_update
@@ -1390,7 +1390,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__theme_template_id
 msgid "Theme Template"
-msgstr ""
+msgstr "Modello del tema"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_sender_partner
@@ -1463,7 +1463,7 @@ msgstr "Immatricolazione veicolo"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__website_id
 msgid "Website"
-msgstr ""
+msgstr "Sito web"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_account_bank_statement_line__unit_weight
