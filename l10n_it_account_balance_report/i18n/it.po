@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-05 15:44+0000\n"
-"PO-Revision-Date: 2023-04-27 14:34+0000\n"
+"PO-Revision-Date: 2024-04-05 12:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_account_balance_report
 #: code:addons/l10n_it_account_balance_report/report/account_balance_report.py:190
@@ -392,7 +392,7 @@ msgstr "Da: {} A: {}"
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__fy_start_date
 msgid "Fy Start Date"
-msgstr "Data Inizio Anno Fiscale"
+msgstr "Data inizio anno fiscale"
 
 #. module: l10n_it_account_balance_report
 #: model:ir.model.fields,field_description:l10n_it_account_balance_report.field_account_balance_report__general_ledger_id
