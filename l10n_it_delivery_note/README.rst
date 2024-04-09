@@ -160,6 +160,12 @@ permessi dell'utente.
 Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle
 righe nota.
 
+Abilitare il campo "Display total in DN with prices" nelle impostazioni
+modifica il report del DDT:
+
+-  colonna Import sulle righe
+-  riquadro con la lista degli importi e somma del totale
+
 Accesso da portale
 ------------------
 
