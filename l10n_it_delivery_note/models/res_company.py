@@ -23,6 +23,10 @@ class ResCompany(models.Model):
         "Display Delivery Method in Delivery Note Report",
         default=False,
     )
+    display_total_in_dn_with_prices = fields.Boolean(
+        "Display total in DN with prices",
+        default=False,
+    )
 
     @api.model_create_multi
     def create(self, vals):
