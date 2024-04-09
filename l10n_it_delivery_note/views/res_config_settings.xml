@@ -120,6 +120,22 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="display_total_in_dn_with_prices" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="display_total_in_dn_with_prices" />
+                            <div class="text-muted">
+                                <p>
+                                    Prints Total Amount on DN report
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>

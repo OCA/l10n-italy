@@ -975,6 +975,7 @@ class StockDeliveryNoteLine(models.Model):
         default=DOMAIN_INVOICE_STATUSES[0],
         copy=False,
     )
+    amount = fields.Monetary(compute="_compute_amount", store=True)
 
     _sql_constraints = [
         (
@@ -1000,6 +1001,26 @@ class StockDeliveryNoteLine(models.Model):
             sdnl.sale_order_client_ref = (
                 sdnl.sale_line_id.order_id.client_order_ref or ""
             )
+
+    @api.depends("price_unit", "discount", "product_qty")
+    def _compute_amount(self):
+        for sdnl in self:
+            price = sdnl.price_unit * (100.0 - sdnl.discount or 0.0) / 100.0
+            taxes = 0.0
+            if sdnl.sale_line_id:
+                taxes = sdnl.sale_line_id.tax_id.compute_all(
+                    price,
+                    sdnl.sale_line_id.order_id.currency_id,
+                    sdnl.product_qty,
+                    product=sdnl.product_id,
+                    partner=sdnl.sale_line_id.order_id.partner_shipping_id,
+                ).get("taxes", [])
+            taxed_amount = (
+                taxes
+                if isinstance(taxes, float)
+                else sum(t.get("amount", 0.0) for t in taxes)
+            )
+            sdnl.amount = (price * sdnl.product_qty) + taxed_amount
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
