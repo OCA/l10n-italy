@@ -174,6 +174,12 @@
                                 >
                                     Taxes
                                 </th>
+                                <th
+                                    t-if="doc.company_id.display_total_in_dn_with_prices"
+                                    name="th_amount"
+                                >
+                                    Amount
+                                </th>
                                 <th name="th_ref_order" t-if="doc.lines_have_so_number">
                                     Ref. Order
                                 </th>
@@ -250,6 +256,13 @@
                                             t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }} {{ 'text-nowrap' if len(taxes) &lt; 10 else '' }}"
                                         >
                                             <span t-esc="taxes" />
+                                        </td>
+                                        <td
+                                            t-if="doc.company_id.display_total_in_dn_with_prices"
+                                            name="td_amount"
+                                            class="text-right"
+                                        >
+                                            <span t-esc="line.amount" />
                                         </td>
                                         <td
                                             t-if="doc.lines_have_so_number"
