@@ -288,6 +288,51 @@
                         </t>
                     </tbody>
                 </table>
+                <br />
+                <div class="clearfix" name="so_total_summary">
+                    <div id="total" class="row" name="total">
+                        <div
+                            t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto"
+                        >
+                            <table class="table table-sm">
+                                <tr class="border-black o_subtotal" style="">
+                                    <td name="td_amounts_label"><strong
+                                        >Subtotal</strong></td>
+                                    <td class="text-right">
+                                        <t t-if="doc.line_ids">
+                                            <span
+                                                t-esc="doc.line_ids[0].amount"
+                                                t-options="{'widget': 'monetary', 'display_currency': doc.company_currency_id}"
+                                            />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <t t-if="len(doc.line_ids) > 1">
+                                    <t t-foreach="doc.line_ids[1:]" t-as="line">
+                                        <tr style="">
+                                            <td />
+                                            <td class="text-right">
+                                                <span
+                                                    t-esc="line.amount"
+                                                    t-options="{'widget': 'monetary', 'display_currency': doc.company_currency_id}"
+                                                />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                                <tr class="border-black o_total">
+                                    <td name="td_amount_total_label"><strong
+                                        >Total</strong></td>
+                                    <td name="td_amount_total" class="text-right">
+                                        <strong><span
+                                                t-field="doc.amount_total"
+                                            /></strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
                 <table
                     id="parcel_info"

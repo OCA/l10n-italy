@@ -274,6 +274,18 @@ class StockDeliveryNote(models.Model):
     sale_count = fields.Integer(compute="_compute_sales")
     sales_transport_check = fields.Boolean(compute="_compute_sales", default=True)
 
+    company_currency_id = fields.Many2one(
+        "res.currency",
+        "Company Currency",
+        related="company_id.currency_id",
+    )
+    amount_total = fields.Monetary(
+        "Total Amount",
+        compute="_compute_amount_total",
+        currency_field="company_currency_id",
+        store=True,
+    )
+
     invoice_ids = fields.Many2many(
         "account.move",
         "stock_delivery_note_account_invoice_rel",
@@ -335,6 +347,11 @@ class StockDeliveryNote(models.Model):
                 ):
                     invoice_status = DOMAIN_INVOICE_STATUSES[1]
             note.invoice_status = invoice_status
+
+    @api.depends("line_ids.amount")
+    def _compute_amount_total(self):
+        for sdn in self:
+            sdn.amount_total = sum(line.amount or 0.0 for line in sdn.line_ids) or 0.0
 
     def _compute_get_pickings(self):
         for note in self:
