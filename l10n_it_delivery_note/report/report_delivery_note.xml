@@ -172,7 +172,7 @@
                                 Unit price
                             </th>
                             <th
-                                t-if="doc.print_prices"
+                                t-if="doc.print_prices and doc.show_discount"
                                 class="text-right"
                                 groups="product.group_discount_per_so_line"
                             >
@@ -221,7 +221,7 @@
                                         <span t-field="line.price_unit" />
                                     </td>
                                     <td
-                                        t-if="doc.print_prices"
+                                        t-if="doc.print_prices and doc.show_discount"
                                         class="text-right"
                                         groups="product.group_discount_per_so_line"
                                     >

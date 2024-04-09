@@ -291,6 +291,7 @@ class StockDeliveryNote(models.Model):
     can_change_number = fields.Boolean(compute="_compute_boolean_flags")
     show_product_information = fields.Boolean(compute="_compute_boolean_flags")
     company_id = fields.Many2one("res.company", required=True, default=_default_company)
+    show_discount = fields.Boolean(compute="_compute_show_discount")
 
     _sql_constraints = [
         (
@@ -358,6 +359,13 @@ class StockDeliveryNote(models.Model):
                     )
             note.gross_weight = gross_weight
             note.net_weight = net_weight
+
+    @api.depends("line_ids.discount")
+    def _compute_show_discount(self):
+        for sdn in self:
+            sdn.show_discount = any(
+                sdn.line_ids.filtered(lambda line: line.discount != 0)
+            )
 
     @api.onchange("picking_ids")
     def _onchange_picking_ids(self):
