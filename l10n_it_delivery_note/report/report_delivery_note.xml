@@ -160,7 +160,7 @@
                                     Unit Price
                                 </th>
                                 <th
-                                    t-if="doc.print_prices"
+                                    t-if="doc.print_prices and doc.show_discount"
                                     name="th_discount"
                                     t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
                                     groups="sale.group_discount_per_so_line"
@@ -230,7 +230,7 @@
                                             />
                                         </td>
                                         <td
-                                            t-if="doc.print_prices"
+                                            t-if="doc.print_prices and doc.show_discount"
                                             name="td_discount"
                                             t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
                                             groups="sale.group_discount_per_so_line"
