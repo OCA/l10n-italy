@@ -258,6 +258,7 @@ class StockDeliveryNote(models.Model):
     company_id = fields.Many2one(
         "res.company", required=True, default=lambda self: self._default_company()
     )
+    show_discount = fields.Boolean(compute="_compute_show_discount")
 
     # Sync with delivery mixin fields
     delivery_transport_reason_id = fields.Many2one(
@@ -383,6 +384,13 @@ class StockDeliveryNote(models.Model):
                     )
             note.gross_weight = gross_weight
             note.net_weight = net_weight
+
+    @api.depends("line_ids.discount")
+    def _compute_show_discount(self):
+        for sdn in self:
+            sdn.show_discount = any(
+                sdn.line_ids.filtered(lambda line: line.discount != 0)
+            )
 
     @api.onchange("picking_ids")
     def _onchange_picking_ids(self):
