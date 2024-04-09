@@ -75,6 +75,14 @@
                             </div>
                         </div>
                     </setting>
+                    <setting id="total_amount_dn_report">
+                        <field name="display_total_in_dn_with_prices" />
+                        <div class="row mt 2">
+                            <div class="text-muted">
+                                Prints Total Amount on DN report
+                            </div>
+                        </div>
+                    </setting>
                 </block>
             </xpath>
         </field>
