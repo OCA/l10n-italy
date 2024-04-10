@@ -82,7 +82,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_country_payment(self, res):
         self.ensure_one()
-        country_payment_id = self.env["res.country"].browse()
+        country_payment_id = self.env["res.country"]
         if self.move_id.is_sale_document():
             country_payment_id = self.move_id.company_id.partner_id.country_id
             if self.move_id.partner_bank_id:
@@ -105,7 +105,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_province_dest(self, company_id, res):
         self.ensure_one()
-        province_destination_id = self.env["res.country.state"].browse()
+        province_destination_id = self.env["res.country.state"]
         if self.move_id.is_sale_document():
             province_destination_id = self.move_id.partner_id.state_id
         elif self.move_id.is_purchase_document():
@@ -117,7 +117,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_country_dest(self, res):
         self.ensure_one()
-        country_destination_id = self.env["res.country"].browse()
+        country_destination_id = self.env["res.country"]
         if self.move_id.is_sale_document():
             country_destination_id = self.move_id.partner_id.country_id
         elif self.move_id.is_purchase_document():
@@ -126,7 +126,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_province_origin(self, company_id, res):
         self.ensure_one()
-        province_origin_id = self.env["res.country.state"].browse()
+        province_origin_id = self.env["res.country.state"]
         if self.move_id.is_sale_document():
             province_origin_id = (
                 company_id.intrastat_sale_province_origin_id
@@ -158,12 +158,12 @@ class AccountMoveLine(models.Model):
         elif self.move_id.is_purchase_document():
             country_good_origin_id = self.move_id.partner_id.country_id
         else:
-            country_good_origin_id = self.env["res.country"].browse()
+            country_good_origin_id = self.env["res.country"]
         res.update({"country_good_origin_id": country_good_origin_id.id})
 
     def _prepare_intrastat_line_country_origin(self, res):
         self.ensure_one()
-        country_origin_id = self.env["res.country"].browse()
+        country_origin_id = self.env["res.country"]
         if self.move_id.is_sale_document():
             country_origin_id = self.move_id.company_id.partner_id.country_id
         elif self.move_id.is_purchase_document():
