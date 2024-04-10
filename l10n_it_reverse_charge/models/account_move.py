@@ -484,6 +484,8 @@ class AccountMove(models.Model):
     def action_post(self):
         ret = super().action_post()
         for invoice in self:
+            if not invoice.is_purchase_document(include_receipts=True):
+                continue
             fp = invoice.fiscal_position_id
             rc_type = fp and fp.rc_type_id
             if not rc_type:
