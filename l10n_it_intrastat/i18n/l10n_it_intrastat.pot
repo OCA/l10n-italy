@@ -41953,6 +41953,9 @@ msgid "Origin"
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_category__intrastat_country_origin_id
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_product__intrastat_country_origin_id
+#: model:ir.model.fields,field_description:l10n_it_intrastat.field_product_template__intrastat_country_origin_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_res_company__intrastat_sale_country_origin_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_intrastat_company_form
 msgid "Origin Country"
