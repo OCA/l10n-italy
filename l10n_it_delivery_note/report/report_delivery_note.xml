@@ -192,7 +192,10 @@
 
                     <!--row delivery note-->
                     <tbody class="sale_tbody">
-                        <t t-foreach="doc.line_ids" t-as="line">
+
+                        <t t-set="lines" t-value="doc._grouped_lines()" />
+
+                        <t t-foreach="lines" t-as="line">
                             <tr
                                 t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''"
                             >

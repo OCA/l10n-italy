@@ -900,6 +900,74 @@ class StockDeliveryNote(models.Model):
 
         return location_address
 
+    def _grouped_lines(self):
+        def create_groups(show_so):
+            lines = self.env["stock.delivery.note.line"]
+            group_prod = self.line_ids.mapped("product_id")
+            for prod in group_prod:
+                filtered_lines = self.line_ids.filtered(lambda x: x.product_id == prod)
+                # for the case in which there are more discounts, price_unit, taxes
+                if len(set(filtered_lines.mapped("discount"))) > 1:
+                    lines += filtered_lines
+                    continue
+                if len(set(filtered_lines.mapped("price_unit"))) > 1:
+                    lines += filtered_lines
+                    continue
+                tax_ids = filtered_lines.mapped("tax_ids")
+                different_taxes = False
+                for line in filtered_lines:
+                    if not line.tax_ids == tax_ids:
+                        lines += filtered_lines
+                        different_taxes = True
+                        break
+                if different_taxes:
+                    continue
+                so_numbers = (
+                    {line.sale_order_number for line in filtered_lines}
+                    if show_so
+                    else {}
+                )
+
+                uom = filtered_lines.mapped("product_uom_id")
+                # chooses the reference uom in case there is more than 1
+                if len(uom) > 1:
+                    uom = uom.search(
+                        [
+                            ("category_id", "=", uom[0].category_id.id),
+                            ("uom_type", "=", "reference"),
+                        ]
+                    )
+                line = self.env["stock.delivery.note.line"].new(
+                    {
+                        "product_id": prod,
+                        "name": filtered_lines[0].name,
+                        # sums all the qty based on the uom
+                        "product_qty": sum(
+                            li.product_uom_id._compute_quantity(li.product_qty, uom)
+                            for li in filtered_lines
+                        ),
+                        "product_uom_id": uom,
+                        "price_unit": filtered_lines[0].price_unit,
+                        "tax_ids": tax_ids,
+                        "discount": filtered_lines[0].discount,
+                        "sale_order_number": ", ".join(so_numbers),
+                        "sale_order_client_ref": ", ".join(
+                            ref
+                            for ref in set(
+                                filtered_lines.mapped("sale_order_client_ref")
+                            )
+                            if ref
+                        ),
+                    }
+                )
+                lines += line
+            return lines
+
+        if self.type_id.consolidate_line_for_product_in_report:
+            return create_groups(self.company_id.display_ref_order_dn_report)
+        else:
+            return self.line_ids
+
 
 class StockDeliveryNoteLine(models.Model):
     _name = "stock.delivery.note.line"
