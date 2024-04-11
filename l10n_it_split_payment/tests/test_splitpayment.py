@@ -90,15 +90,14 @@ class TestSP(TestAccountAccount):
                         {
                             "value": "percent",
                             "value_amount": 50,
-                            "days": 15,
                         },
                     ),
                     (
                         0,
                         0,
                         {
-                            "value": "balance",
-                            "days": 30,
+                            "value": "percent",
+                            "value_amount": 50,
                         },
                     ),
                 ],
