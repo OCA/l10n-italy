@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="wizard_asset_generate_depreciation_form_view" model="ir.ui.view">
+        <field name="name">wizard.asset.generate.depreciation.form.view</field>
+        <field name="model">wizard.asset.generate.depreciation</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="depreciation_data" string="Depreciation Data">
+                    <field name="date_dep" />
+                    <field
+                        name="type_ids"
+                        options="{'no_create': True}"
+                        widget="many2many_tags"
+                    />
+                </group>
+                <group name="filters" string="Filters">
+                    <field
+                        name="company_id"
+                        groups="base.group_multi_company"
+                        options="{'no_open':1, 'no_create_edit': True}"
+                    />
+                    <field
+                        name="category_ids"
+                        options="{'no_create': True}"
+                        widget="many2many_tags"
+                    />
+                    <field name="asset_ids" options="{'no_create': True}">
+                        <tree>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="category_id" />
+                            <field name="purchase_date" />
+                            <field name="purchase_amount" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="do_generate"
+                        string="Generate"
+                        invisible="not context.get('allow_reload_window', False)"
+                        context="{'reload_window': True}"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button
+                        name="do_generate"
+                        string="Generate"
+                        invisible="context.get('allow_reload_window', False)"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    or
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record
+        id="action_wizard_asset_generate_depreciation"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Generate Depreciations</field>
+        <field name="res_model">wizard.asset.generate.depreciation</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_asset_generate_depreciation_form_view" />
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_wizard_asset_generate_depreciation"
+        name="Generate Depreciations"
+        parent="menu_asset_management"
+        action="action_wizard_asset_generate_depreciation"
+        sequence="20"
+    />
+
+</odoo>
