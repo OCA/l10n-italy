@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-l10n_it_account_stamp>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_account_tax_kind>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_appointment_code>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_asset_management>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_ateco>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_bill_of_entry>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_central_journal_reportlab>=16.0dev,<16.1dev',
