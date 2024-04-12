@@ -1084,8 +1084,8 @@ msgstr "Azienda"
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, fuzzy, python-format
 msgid ""
-"Could not determine how to link move lines to asset in mode "
-"`%(management_type)s`."
+"Could not determine how to link move lines to asset in mode `"
+"%(management_type)s`."
 msgstr ""
 "Non è possibile determinare come collegare le righe dei movimenti al cespite "
 "nel modo `{}`."
@@ -1095,8 +1095,8 @@ msgstr ""
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, fuzzy, python-format
 msgid ""
-"Could not retrieve depreciation line type from move `%(move_num)s` (type "
-"`%(move_type)s`)."
+"Could not retrieve depreciation line type from move `%(move_num)s` (type `"
+"%(move_type)s`)."
 msgstr ""
 "Non è possibile recuperare il tipo delle righe di ammortamento dal movimento "
 "`{}` (tipo `{}`)."
