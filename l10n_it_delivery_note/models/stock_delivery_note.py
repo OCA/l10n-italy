@@ -4,7 +4,7 @@
 import datetime
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 from ..mixins.picking_checker import (
     DOMAIN_PICKING_TYPES,
@@ -274,15 +274,11 @@ class StockDeliveryNote(models.Model):
     sale_count = fields.Integer(compute="_compute_sales")
     sales_transport_check = fields.Boolean(compute="_compute_sales", default=True)
 
-    company_currency_id = fields.Many2one(
-        "res.currency",
-        "Company Currency",
-        related="company_id.currency_id",
-    )
+    currency_id = fields.Many2one("res.currency", compute="_compute_currency_id")
     amount_total = fields.Monetary(
         "Total Amount",
         compute="_compute_amount_total",
-        currency_field="company_currency_id",
+        currency_field="currency_id",
         store=True,
     )
 
@@ -347,6 +343,11 @@ class StockDeliveryNote(models.Model):
                 ):
                     invoice_status = DOMAIN_INVOICE_STATUSES[1]
             note.invoice_status = invoice_status
+
+    @api.depends("line_ids.currency_id")
+    def _compute_currency_id(self):
+        for sdn in self:
+            sdn.currency_id = sdn.line_ids.mapped("currency_id")
 
     @api.depends("line_ids.amount")
     def _compute_amount_total(self):
@@ -540,6 +541,17 @@ class StockDeliveryNote(models.Model):
 
         else:
             self.delivery_method_id = False
+
+    @api.constrains("line_ids")
+    def _check_line_ids(self):
+        for rec in self:
+            if len(rec.line_ids.mapped("currency_id")) > 1:
+                raise ValidationError(
+                    _(
+                        "You cannot have different currencies in the lines of a"
+                        "Delivery Note"
+                    )
+                )
 
     def check_compliance(self, pickings):
         super().check_compliance(pickings)
