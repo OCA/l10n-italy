@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-04 18:02+0000\n"
-"PO-Revision-Date: 2024-02-19 10:37+0000\n"
+"PO-Revision-Date: 2024-04-15 06:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -36,7 +36,7 @@ msgstr "Importi"
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_category
 msgid "Asset Category"
-msgstr "Categoria Cespite"
+msgstr "Categoria cespite"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:43
@@ -48,17 +48,17 @@ msgstr "Codice Importazione Categoria Cespite"
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:53
 #, python-format
 msgid "Asset Code"
-msgstr "Codice Cespite"
+msgstr "Codice cespite"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_depreciation_mode
 msgid "Asset Depreciation Mode"
-msgstr "Modalità Ammortamento"
+msgstr "Metodo ammortamento cespite"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_depreciation_type
 msgid "Asset Depreciation Type"
-msgstr "Tipo Ammortamento"
+msgstr "Natura ammortamento cespite"
 
 #. module: l10n_it_asset_history_import
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:63
