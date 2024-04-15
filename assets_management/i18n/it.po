@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2024-03-01 10:36+0000\n"
+"PO-Revision-Date: 2024-04-15 08:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -53,7 +53,7 @@ msgstr "<span>Codice</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_year_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_totals_header
 msgid "<span>Curr. Year Dep. Fund</span>"
-msgstr "<span>Fondo Amm.to anno corrente</span>"
+msgstr "<span>Fondo amm.to anno corr.</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_year_depreciation_table_header
@@ -61,7 +61,7 @@ msgstr "<span>Fondo Amm.to anno corrente</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_year_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_totals_header
 msgid "<span>Dep. Amount</span>"
-msgstr "<span>Valore ammortizzabile</span>"
+msgstr "<span>Valore amm.</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_depreciation_table_header
@@ -79,13 +79,13 @@ msgstr "<span>Valore ammortizzabile</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_depreciation_table_header
 msgid "<span>Depreciation Mode</span>"
-msgstr "<span>Metodo</span>"
+msgstr "<span>Metodo ammortamento</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_depreciation_table_header
 msgid "<span>Depreciation Type</span>"
-msgstr "<span>Natura</span>"
+msgstr "<span>Tipo ammortamento</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_year_depreciation_table_header
@@ -93,7 +93,7 @@ msgstr "<span>Natura</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_year_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_totals_header
 msgid "<span>Depreciation</span>"
-msgstr "<span>Amm.</span>"
+msgstr "<span>Ammortamento</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_accounting_table_header
@@ -105,7 +105,7 @@ msgstr "<span>Data Documento</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_accounting_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_accounting_table_header
 msgid "<span>Document Nr</span>"
-msgstr "<span>N. Documento</span>"
+msgstr "<span>N° documento</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_year_depreciation_table_header
@@ -149,7 +149,7 @@ msgstr "<span>Fondo Amm.to anno precedente</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_depreciation_table_header
 msgid "<span>Pro Rata Temporis</span>"
-msgstr "<span>Pro Rata Temporis</span>"
+msgstr "<span>Pro rata temporis</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_table_header
@@ -175,13 +175,13 @@ msgstr "<span>Rif.</span>"
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_year_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_totals_header
 msgid "<span>Residual</span>"
-msgstr "<span>Residuo da ammortizzare</span>"
+msgstr "<span>Residuo</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_depreciation_table_header
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_previsional_asset_depreciation_table_header
 msgid "<span>Starting From</span>"
-msgstr "<span>Data inizio amm.to</span>"
+msgstr "<span>Data inizio</span>"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.template_asset_journal_asset_table_header
@@ -292,7 +292,7 @@ msgstr "Valore ammortizzato"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_depreciation_fund_curr_year
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__amount_depreciation_fund_curr_year
 msgid "Amount Depreciation Fund Curr Year"
-msgstr "F.do amm.to Anno Corrente"
+msgstr "F.do amm.to anno corrente"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_depreciation_fund_prev_year
@@ -300,7 +300,7 @@ msgstr "F.do amm.to Anno Corrente"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_depreciation_fund_prev_year
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__amount_depreciation_fund_prev_year
 msgid "Amount Depreciation Fund Prev Year"
-msgstr "F.do amm.to Anno Precedente"
+msgstr "F.do amm.to anno precedente"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_gain
@@ -314,13 +314,13 @@ msgstr "Plusvalenza"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_gain_total
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_gain_total
 msgid "Amount Gain Total"
-msgstr "Totale Plusvalenza"
+msgstr "Totale plusvalenza"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_historical
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_historical
 msgid "Amount Historical"
-msgstr "Valore Storico"
+msgstr "Valore storico"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_in
@@ -332,7 +332,7 @@ msgstr "Rettifica positiva"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_in_detail
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_in_detail
 msgid "Amount In Detail"
-msgstr "Dettaglio Rettifica positiva"
+msgstr "Dettaglio rettifica positiva"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_in_total
@@ -340,7 +340,7 @@ msgstr "Dettaglio Rettifica positiva"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_in_total
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__amount_in_total
 msgid "Amount In Total"
-msgstr "Totale Rettifica positiva"
+msgstr "Totale rettifica positiva"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_loss
@@ -354,7 +354,7 @@ msgstr "Minusvalenza"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_loss_total
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_loss_total
 msgid "Amount Loss Total"
-msgstr "Totale Minusvalenza"
+msgstr "Totale minusvalenza"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_out
@@ -366,7 +366,7 @@ msgstr "Rettifica negativa"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_out_detail
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_out_detail
 msgid "Amount Out Detail"
-msgstr "Dettaglio Rettifica negativa"
+msgstr "Dettaglio rettifica negativa"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_out_total
@@ -374,7 +374,7 @@ msgstr "Dettaglio Rettifica negativa"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation_line_year__amount_out_total
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_totals__amount_out_total
 msgid "Amount Out Total"
-msgstr "Totale Rettifica negativa"
+msgstr "Totale rettifica negativa"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation_line_year__amount_residual
@@ -409,12 +409,12 @@ msgstr "Cespite"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__asset_account_id
 msgid "Asset Account"
-msgstr "Conto Cespite"
+msgstr "Conto cespite"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_accounting_info
 msgid "Asset Accounting Relations"
-msgstr "Collegamenti contabili"
+msgstr "Collegamenti contabili cespite"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_category
@@ -424,48 +424,48 @@ msgstr "Categoria cespite"
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_category_depreciation_type
 msgid "Asset Category - Depreciation Type"
-msgstr "Categorie beni ammortizzabili - Natura ammortamento"
+msgstr "Categorie cespite - Natura ammortamento"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_asset__asset_code
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_asset__asset_code
 msgid "Asset Code"
-msgstr "Codice"
+msgstr "Codice cespite"
 
 #. module: assets_management
 #: model:ir.ui.menu,name:assets_management.menu_asset_configuration
 msgid "Asset Configuration"
-msgstr "Configurazione"
+msgstr "Configurazione cespite"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_accounting_info__relation_type__create
 msgid "Asset Creation"
-msgstr "Creazione Cespite"
+msgstr "Creazione cespite"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_dep_line_search_view
 msgid "Asset Depreciation"
-msgstr "Ammortamento"
+msgstr "Ammortamento cespite"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_depreciation_mode
 msgid "Asset Depreciation Mode"
-msgstr "Metodi ammortamento"
+msgstr "Metodo ammortamento cespite"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_depreciation_mode_line
 msgid "Asset Depreciation Mode Line"
-msgstr "Riga metodo Amm. Cespite"
+msgstr "Riga metodo amm. cespite"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_depreciation_type
 msgid "Asset Depreciation Type"
-msgstr "Natura ammortameno"
+msgstr "Natura ammortamento cespite"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_accounting_info__relation_type__dismiss
 msgid "Asset Dismissal"
-msgstr "Dismissione Cespite"
+msgstr "Dismissione cespite"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
@@ -486,7 +486,7 @@ msgstr "Resoconto libro cespiti"
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 msgid "Asset Name"
-msgstr "Nome Cespite"
+msgstr "Nome cespite"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__asset_order_fname
@@ -497,77 +497,77 @@ msgstr "Codice cespite"
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_accounting_info__relation_type__partial_dismiss
 msgid "Asset Partial Dismissal"
-msgstr "Dismissione parziale Cespite"
+msgstr "Dismissione parziale cespite"
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_wizard_asset_previsional_report
 #: model:ir.actions.client,name:assets_management.act_client_asset_previsional_report
 #: model:ir.ui.menu,name:assets_management.menu_wizard_asset_previsional_report
 msgid "Asset Previsional Report"
-msgstr "Registro Previsionale"
+msgstr "Resoconto previsionale cespite"
 
 #. module: assets_management
 #: model:ir.actions.report,name:assets_management.report_asset_previsional_html
 msgid "Asset Previsional Report HTML"
-msgstr "Registro Previsionale HTML"
+msgstr "Resoconto HTML previsionale cespite"
 
 #. module: assets_management
 #: model:ir.actions.report,name:assets_management.report_asset_previsional_pdf
 msgid "Asset Previsional Report PDF"
-msgstr "Registro Previsionale PDF"
+msgstr "Resoconto PDf previsionale cespite"
 
 #. module: assets_management
 #: model:ir.actions.report,name:assets_management.report_asset_previsional_xlsx
 msgid "Asset Previsional Report XLSX"
-msgstr "Registro Previsionale XLSX"
+msgstr "Resoconto XLSX previsionale cespite"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_journal_report__asset_order_fname
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_previsional_report__asset_order_fname
 msgid "Asset Print Order"
-msgstr "Ordine stampa beni ammortizzabili"
+msgstr "Ordine stampa cespiti"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_asset__asset_purchase_amount
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_asset__asset_purchase_amount
 msgid "Asset Purchase Amount"
-msgstr "Valore Acquisto"
+msgstr "Valore acquisto cespite"
 
 #. module: assets_management
 #: model:ir.actions.report,name:assets_management.report_asset_journal_html
 msgid "Asset Report HTML"
-msgstr "Registro beni ammortizzabili - HTML"
+msgstr "Resoconto HTML cespite"
 
 #. module: assets_management
 #: model:ir.actions.report,name:assets_management.report_asset_journal_pdf
 msgid "Asset Report PDF"
-msgstr "Registro beni ammortizzabili - PDF"
+msgstr "Resoconto PDF cespite"
 
 #. module: assets_management
 #: model:ir.actions.report,name:assets_management.report_asset_journal_xlsx
 msgid "Asset Report XLSX"
-msgstr "Registro beni ammortizzabili - XLSX"
+msgstr "Resoconto XLSX cespite"
 
 #. module: assets_management
 #: model:ir.ui.menu,name:assets_management.menu_asset_reports
 msgid "Asset Reports"
-msgstr "Registro beni ammortizzabili"
+msgstr "Resoconti cespite"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_asset__asset_state
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_asset__asset_state
 msgid "Asset State"
-msgstr "Stato"
+msgstr "Stato cespite"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_tag
 msgid "Asset Tags"
-msgstr "Tag"
+msgstr "Etichette cespite"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_accounting_info__relation_type__update
 msgid "Asset Update"
-msgstr "Aggiornamento Cespite"
+msgstr "Aggiornamento cespite"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_asset__asset_used
@@ -578,17 +578,17 @@ msgstr "Cespite usato"
 #. module: assets_management
 #: model:res.groups,name:assets_management.group_asset_user
 msgid "Asset Users"
-msgstr "Utenti"
+msgstr "Utenti cespite"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__depreciation_id
 msgid "Asset depreciation"
-msgstr "Ammortamento"
+msgstr "Ammortamento cespite"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__depreciation_type_id
 msgid "Asset depreciation type"
-msgstr "Tipo Amm. Cespite"
+msgstr "Natura ammortamento cespite"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_depreciation.py:0
@@ -629,44 +629,44 @@ msgstr "Cespiti"
 #: model:ir.model.fields,field_description:assets_management.field_account_payment__asset_accounting_info_ids
 #: model:ir.ui.menu,name:assets_management.menu_asset_accounting_info
 msgid "Assets Accounting Info"
-msgstr "Info contabili"
+msgstr "Informazioni contabili cespiti"
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_asset_depreciation_mode
 msgid "Assets Depreciation Mode"
-msgstr "Metodi ammortamento"
+msgstr "Metodo ammortamento cespiti"
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_asset_depreciation_type
 msgid "Assets Depreciation Type"
-msgstr "Natura ammortamento"
+msgstr "Natura ammortamento cespiti"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_depreciation
 msgid "Assets Depreciations"
-msgstr "Ammortamenti"
+msgstr "Ammortamenti cespiti"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal.py:0
 #, python-format
 msgid "Assets Depreciations "
-msgstr "Amm.ti Cespiti "
+msgstr "Ammortamenti cespiti "
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_depreciation_line
 msgid "Assets Depreciations Lines"
-msgstr "Linee ammortamento"
+msgstr "Righe ammortamento cespiti"
 
 #. module: assets_management
 #: model:ir.ui.menu,name:assets_management.menu_asset_management
 msgid "Assets Management"
-msgstr "Gestione"
+msgstr "Gestione cespiti"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_previsional.py:0
 #, python-format
 msgid "Assets Previsional Depreciations "
-msgstr "Previsione Amm.ti Cespiti "
+msgstr "Ammortamenti previsionali cespiti "
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_search_view
@@ -712,7 +712,7 @@ msgid ""
 "Attention! You cannot create an asset from accounting moves related to sale "
 "documents."
 msgstr ""
-"Attenzione! Non è possibile creare un Cespite da una registrazione contabile "
+"Attenzione! Non è possibile creare un cespite da una registrazione contabile "
 "collegata a documenti di vendita."
 
 #. module: assets_management
@@ -741,8 +741,8 @@ msgid ""
 "Before creating new categories, please complete the assets' configuration "
 "for both depreciation types and modes."
 msgstr ""
-"Prima di creare nuove categorie, si prega di completare la configurazione "
-"dei cespiti sia per i tipi che per i modi di ammortamento."
+"Prima di creare nuove categorie, completare la configurazione dei cespiti "
+"sia per le nature che per le modalità di ammortamento."
 
 #. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_wizard_asset_journal_report__show_sold_assets
@@ -941,7 +941,7 @@ msgstr "Plusvalenza"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__gain_account_id
 msgid "Capital Gain Account"
-msgstr "Conto Plusvalenza"
+msgstr "Conto plusvalenza"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_loss
@@ -952,7 +952,7 @@ msgstr "Minusvalenza"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__loss_account_id
 msgid "Capital Loss Account"
-msgstr "Conto Minusvalenza"
+msgstr "Conto minusvalenza"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_wizard_asset_generate_depreciation__category_ids
@@ -986,7 +986,7 @@ msgstr "Nome categoria"
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 msgid "Choose Your Asset"
-msgstr "Scegli il Cespite"
+msgstr "Scegli il cespite"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
@@ -1206,7 +1206,7 @@ msgstr "Cliente"
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__move_type__out_refund
 msgid "Customer Credit Note"
-msgstr "Nota di Credito Cliente"
+msgstr "Nota di credito cliente"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__wizard_account_move_manage_asset__move_type__out_invoice
@@ -1251,7 +1251,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation__dep_amount_depreciable
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation__dep_amount_depreciable
 msgid "Dep Amount Depreciable"
-msgstr "Importo ammortamento"
+msgstr "Importo ammortizzabile"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__base_coeff
@@ -1285,24 +1285,24 @@ msgstr "Percentuale amm.to"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation__dep_pro_rata_temporis
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation__dep_pro_rata_temporis
 msgid "Dep Pro Rata Temporis"
-msgstr "Pro Rata Temporis amm.to"
+msgstr "Pro rata temporis amm.to"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__depreciation_nr
 msgid "Dep. Num"
-msgstr "Amm.to Nr"
+msgstr "Amm.to n°"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:0
 #: code:addons/assets_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Dep. Percentage (%)"
-msgstr "Percentuale Amm.to (%)"
+msgstr "Percentuale amm.to (%)"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__base_coeff
 msgid "Depreciable Base Coeff"
-msgstr "Coeff. base Amm.to"
+msgstr "Coeff. base amm.to"
 
 #. module: assets_management
 #: model:ir.model.fields.selection,name:assets_management.selection__asset_asset__state__totally_depreciated
@@ -1364,12 +1364,12 @@ msgstr "Riga ammortamento"
 #: model:ir.actions.act_window,name:assets_management.action_asset_depreciation_line_type
 #: model:ir.ui.menu,name:assets_management.menu_asset_depreciation_line_type
 msgid "Depreciation Line Amount Types"
-msgstr "Tipi operazione"
+msgstr "Tipi valore riga ammortamento"
 
 #. module: assets_management
 #: model:ir.model,name:assets_management.model_asset_depreciation_line_type
 msgid "Depreciation Line Type"
-msgstr "Tipo riga amm.to"
+msgstr "Tipo riga ammortamento"
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_asset_dep_line
@@ -1389,7 +1389,7 @@ msgstr "Righe ammortamento"
 #: code:addons/assets_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Depreciation Mode"
-msgstr "Modo Ammortamento"
+msgstr "Modo ammortamento"
 
 #. module: assets_management
 #: model:ir.ui.menu,name:assets_management.menu_asset_depreciation_mode
@@ -1656,7 +1656,7 @@ msgstr "Forza PRIMO Nr amm.to"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode_line__from_nr
 msgid "From Nr"
-msgstr "Dal N."
+msgstr "Dal n°"
 
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:0
