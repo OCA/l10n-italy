@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-04 18:02+0000\n"
-"PO-Revision-Date: 2024-04-15 06:33+0000\n"
+"PO-Revision-Date: 2024-04-15 09:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -70,7 +70,7 @@ msgstr "Codice Import Cespite"
 #: code:addons/l10n_it_asset_history_import/wizards/asset_history_import.py:33
 #, python-format
 msgid "Asset Name"
-msgstr "Nome Cespite"
+msgstr "Nome cespite"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_asset
@@ -80,7 +80,7 @@ msgstr "Cespiti"
 #. module: l10n_it_asset_history_import
 #: model:ir.model,name:l10n_it_asset_history_import.model_asset_depreciation_line
 msgid "Assets Depreciations Lines"
-msgstr "Righe Ammortamento"
+msgstr "Righe ammortamento cespiti"
 
 #. module: l10n_it_asset_history_import
 #: model:ir.actions.act_window,name:l10n_it_asset_history_import.action_wizard_asset_history_import
