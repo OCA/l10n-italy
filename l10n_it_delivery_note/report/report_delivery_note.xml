@@ -181,7 +181,10 @@
                             <th t-if="doc.print_prices" class="text-right">
                                 Taxes
                             </th>
-                            <th t-if="doc.company_id.display_total_in_dn_with_prices">
+                            <th
+                                t-if="doc.company_id.display_total_in_dn_with_prices"
+                                class="text-right"
+                            >
                                 Amount
                             </th>
                             <th t-if="doc.lines_have_so_number">
@@ -239,7 +242,7 @@
                                         t-if="doc.company_id.display_total_in_dn_with_prices"
                                         class="text-right"
                                     >
-                                        <span t-esc="line.amount" />
+                                        <span t-field="line.untaxed_amount" />
                                     </td>
                                     <td t-if="doc.lines_have_so_number">
                                         <span t-esc="line.sale_order_number" />
@@ -301,25 +304,49 @@
                                     <td class="text-right">
                                         <t t-if="doc.line_ids">
                                             <span
-                                                t-esc="doc.line_ids[0].amount"
-                                                t-options="{'widget': 'monetary', 'display_currency': doc.company_currency_id}"
+                                                t-esc="doc.untaxed_amount_total"
+                                                t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"
                                             />
                                         </t>
                                     </td>
                                 </tr>
-                                <t t-if="len(doc.line_ids) > 1">
-                                    <t t-foreach="doc.line_ids[1:]" t-as="line">
-                                        <tr style="">
-                                            <td />
-                                            <td class="text-right">
-                                                <span
-                                                    t-esc="line.amount"
-                                                    t-options="{'widget': 'monetary', 'display_currency': doc.company_currency_id}"
+
+                                <t
+                                    t-foreach="doc.line_ids.mapped('tax_ids')"
+                                    t-as="tax"
+                                >
+                                    <t
+                                        t-value="doc.line_ids.filtered(lambda x: tax in x.tax_ids)"
+                                        t-set="lines"
+                                    />
+                                    <tr>
+                                        <td>
+                                            <t t-esc="tax.display_name" />
+                                        </td>
+                                        <td class="text-right">
+                                            <!--
+                                            Iterate through every line of the current tax
+                                            and sum up the tax amount to get the total
+                                            -->
+                                            <t t-value="0" t-set="tax_amount" />
+                                            <t
+                                                t-foreach="(line._get_taxed_amount()['taxes'] for line in lines)"
+                                                t-as="tax_line_dict"
+                                            >
+                                                <t
+                                                    t-value="tax_amount + sum(d.get('amount', 0) for d in tax_line_dict if d['id'] == tax.id)"
+                                                    t-set="tax_amount"
                                                 />
-                                            </td>
-                                        </tr>
-                                    </t>
+                                            </t>
+
+                                            <span
+                                                t-esc="tax_amount"
+                                                t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"
+                                            />
+                                        </td>
+                                    </tr>
                                 </t>
+
                                 <tr class="border-black o_total">
                                     <td name="td_amount_total_label"><strong
                                         >Total</strong></td>

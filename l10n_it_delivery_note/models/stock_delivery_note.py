@@ -275,6 +275,14 @@ class StockDeliveryNote(models.Model):
     sales_transport_check = fields.Boolean(compute="_compute_sales", default=True)
 
     currency_id = fields.Many2one("res.currency", compute="_compute_currency_id")
+
+    untaxed_amount_total = fields.Monetary(
+        "Untaxed Total Amount",
+        compute="_compute_amount_total",
+        currency_field="currency_id",
+        store=True,
+    )
+
     amount_total = fields.Monetary(
         "Total Amount",
         compute="_compute_amount_total",
@@ -349,9 +357,12 @@ class StockDeliveryNote(models.Model):
         for sdn in self:
             sdn.currency_id = sdn.line_ids.mapped("currency_id")
 
-    @api.depends("line_ids.amount")
+    @api.depends("line_ids.amount", "line_ids.untaxed_amount")
     def _compute_amount_total(self):
         for sdn in self:
+            sdn.untaxed_amount_total = (
+                sum(line.untaxed_amount or 0.0 for line in sdn.line_ids) or 0.0
+            )
             sdn.amount_total = sum(line.amount or 0.0 for line in sdn.line_ids) or 0.0
 
     def _compute_get_pickings(self):
@@ -1004,6 +1015,8 @@ class StockDeliveryNoteLine(models.Model):
         default=DOMAIN_INVOICE_STATUSES[0],
         copy=False,
     )
+
+    untaxed_amount = fields.Monetary(compute="_compute_amount", store=True)
     amount = fields.Monetary(compute="_compute_amount", store=True)
 
     _sql_constraints = [
@@ -1031,25 +1044,41 @@ class StockDeliveryNoteLine(models.Model):
                 sdnl.sale_line_id.order_id.client_order_ref or ""
             )
 
-    @api.depends("price_unit", "discount", "product_qty")
+    @api.depends(
+        "product_id",
+        "price_unit",
+        "discount",
+        "product_qty",
+        "tax_ids",
+        "currency_id",
+        "delivery_note_id.partner_shipping_id",
+    )
     def _compute_amount(self):
         for sdnl in self:
             price = sdnl.price_unit * (100.0 - sdnl.discount or 0.0) / 100.0
-            taxes = 0.0
-            if sdnl.sale_line_id:
-                taxes = sdnl.sale_line_id.tax_id.compute_all(
-                    price,
-                    sdnl.sale_line_id.order_id.currency_id,
-                    sdnl.product_qty,
-                    product=sdnl.product_id,
-                    partner=sdnl.sale_line_id.order_id.partner_shipping_id,
-                ).get("taxes", [])
-            taxed_amount = (
-                taxes
-                if isinstance(taxes, float)
-                else sum(t.get("amount", 0.0) for t in taxes)
+
+            taxed_amount_data = sdnl._get_taxed_amount()
+
+            sdnl.untaxed_amount = taxed_amount_data.get("total_excluded", price)
+            sdnl.amount = taxed_amount_data.get("total_included", price)
+
+    def _get_taxed_amount(self):
+        price = self.price_unit * (100.0 - self.discount or 0.0) / 100.0
+        res = {}
+        if self.tax_ids:
+            tax_data = self.tax_ids.compute_all(
+                price,
+                self.currency_id,
+                self.product_qty,
+                product=self.product_id,
+                partner=self.delivery_note_id.partner_shipping_id,
             )
-            sdnl.amount = (price * sdnl.product_qty) + taxed_amount
+            res.update(
+                total_excluded=tax_data.get("total_excluded"),
+                total_included=tax_data.get("total_included"),
+                taxes=tax_data.get("taxes"),
+            )
+        return res
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
