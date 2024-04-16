@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-26 05:37+0000\n"
-"PO-Revision-Date: 2024-04-15 09:34+0000\n"
+"PO-Revision-Date: 2024-04-16 16:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -1682,7 +1682,7 @@ msgstr "Esporta resoconto previsionale"
 msgid ""
 "Fields `Force All Dep. Num` and `Force First Dep. Num` cannot be both active."
 msgstr ""
-"Campi `Forza Tutti Num. Amm.ti. ` e `Forza Primo Num. Amm.to` non possono "
+"I campi `Forza tutti num. amm.ti` e `Forza primo num. amm.to` non possono "
 "essere entrambi attivi."
 
 #. module: assets_management
@@ -1820,7 +1820,7 @@ msgstr "Info generali"
 #: code:addons/assets_management/report/asset_previsional.py:295
 #, python-format
 msgid "General Total"
-msgstr "Totale generale"
+msgstr "Totale complessivo"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_generate_depreciation_form_view
@@ -1940,7 +1940,7 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #: selection:asset.depreciation.line.type,type:0
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_dep_line_search_view
 msgid "In"
-msgstr "Rettifica positiva"
+msgstr "Rettifica attiva"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:253
@@ -1950,14 +1950,14 @@ msgstr "Rettifica positiva"
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_in
 #, python-format
 msgid "In Amount"
-msgstr "Rettifica positiva"
+msgstr "Valore rettifiche attive"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:297
 #: code:addons/assets_management/report/asset_previsional_xlsx.py:295
 #, python-format
 msgid "In Amount - Detail"
-msgstr "Rettifica positiva - Dettaglio"
+msgstr "Importo rettifiche attive - Dettaglio"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_dep_line_form_view
@@ -1966,7 +1966,7 @@ msgstr "Rettifica positiva - Dettaglio"
 #: model_terms:ir.ui.view,arch_db:assets_management.view_invoice_line_form_inherit
 #: model_terms:ir.ui.view,arch_db:assets_management.view_move_line_form_inherit
 msgid "In/Out Amount Type"
-msgstr "+/- Tipo operazione"
+msgstr "Tipo valore rettifica attiva/passiva"
 
 #. module: assets_management
 #: code:addons/assets_management/models/asset_accounting_info.py:163
@@ -2178,13 +2178,13 @@ msgstr "Righe"
 #: model_terms:ir.ui.view,arch_db:assets_management.invoice_supplier_form_inherit
 #: model_terms:ir.ui.view,arch_db:assets_management.view_move_form_inherit
 msgid "Link to Asset"
-msgstr "Collegare a cespite"
+msgstr "Collega a cespite"
 
 #. module: assets_management
 #: model:ir.actions.act_window,name:assets_management.action_wizard_account_move_manage_asset
 #: model:ir.actions.act_window,name:assets_management.action_wizard_invoice_manage_asset
 msgid "Link to Assets"
-msgstr "Collegare a cespiti"
+msgstr "Collega a cespiti"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_dep_line_search_view
@@ -2231,13 +2231,13 @@ msgstr "Varie"
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__mode_id
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_mode_line__mode_id
 msgid "Mode"
-msgstr "Metodo"
+msgstr "Modo"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation__mode_name
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_depreciation__mode_name
 msgid "Mode Name"
-msgstr "Nome metodo"
+msgstr "Nome modo"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_accounting_info__move_id
@@ -2260,7 +2260,7 @@ msgstr "Righe movimento"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__is_move_state_ok
 msgid "Move State"
-msgstr "Stato movimento"
+msgstr "Stato registrazione"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_wizard_account_move_manage_asset__move_type
@@ -2412,14 +2412,14 @@ msgstr "Rettifica negativa"
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_out
 #, python-format
 msgid "Out Amount"
-msgstr "Rettifica negativa"
+msgstr "Valore rettifica negativa"
 
 #. module: assets_management
 #: code:addons/assets_management/report/asset_journal_xlsx.py:301
 #: code:addons/assets_management/report/asset_previsional_xlsx.py:299
 #, python-format
 msgid "Out Amount - Detail"
-msgstr "Rettifica negativa - Dettaglio"
+msgstr "Importo rettifica negativa - Dettaglio"
 
 #. module: assets_management
 #: selection:asset.asset,activity_state:0
@@ -2430,19 +2430,19 @@ msgstr "Scaduto"
 #: selection:wizard.account.move.manage.asset,management_type:0
 #: selection:wizard.invoice.manage.asset,management_type:0
 msgid "Partial Dismiss"
-msgstr "Dismissione Parziale"
+msgstr "Dismissione parziale"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_invoice_mange_asset_form_view
 msgid "Partial Dismiss Asset"
-msgstr "Dismissione Parziale"
+msgstr "Dismissione parziale cespite"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_invoice_mange_asset_form_view
 msgid "Partial Dismiss Asset and Show"
-msgstr "Dismetti Cespite e Mostra"
+msgstr "Dismetti parzialmente cespite e visualizza"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__partial_dismissal
@@ -2555,7 +2555,7 @@ msgstr "Riga previsionale"
 #: model:ir.model.fields,field_description:assets_management.field_asset_category__print_by_default
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_type__print_by_default
 msgid "Print By Default"
-msgstr "Stampa su registro beni ammortizzabili"
+msgstr "Stampa in modo predefinito"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_asset_journal_report_form_view
@@ -2578,7 +2578,7 @@ msgstr "Pro rata temporis"
 #: model:ir.model.fields,field_description:assets_management.field_asset_category_depreciation_type__pro_rata_temporis
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__pro_rata_temporis
 msgid "Pro-rata Temporis"
-msgstr "Pro rata temporis"
+msgstr "Pro-rata temporis"
 
 #. module: assets_management
 #: selection:wizard.account.move.manage.asset,move_type:0
@@ -2627,13 +2627,13 @@ msgstr "Valore acquisto"
 #: code:addons/assets_management/report/asset_previsional_xlsx.py:163
 #, python-format
 msgid "Purchased as New / Used"
-msgstr "Acquistato come nuovo / usato"
+msgstr "Acquisto nuovo / usato"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.asset_dep_line_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.view_asset_depreciation_form
 msgid "Regenerate Move"
-msgstr "Rigenerare registrazione"
+msgstr "Rigenera registrazione"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_accounting_info__relation_type
