@@ -169,7 +169,7 @@ class FatturaPAAttachmentImportZIP(models.Model):
         company_partner = self.env.company.partner_id
         with (
             tempfile.TemporaryDirectory() as tmp_dir_path,
-            self._set_invoice_registration_date(self.env.company),
+            self._set_invoice_registration_date(self.env.company.sudo()),
         ):
             tmp_dir = Path(tmp_dir_path)
             _extract_zip_file(tmp_dir, self.datas)
