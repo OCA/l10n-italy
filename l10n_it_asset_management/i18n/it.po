@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2024-04-15 09:35+0000\n"
+"PO-Revision-Date: 2024-04-16 16:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -1589,7 +1589,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_accounting_doc__document_date
 #, python-format
 msgid "Document Date"
-msgstr "Data Documento"
+msgstr "Data documento"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -1599,14 +1599,14 @@ msgstr "Data Documento"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_accounting_doc__document_nr
 #, python-format
 msgid "Document Nr"
-msgstr "N° Documento"
+msgstr "N° documento"
 
 #. module: l10n_it_asset_management
 #. odoo-python
 #: code:addons/l10n_it_asset_management/models/account_move.py:0
 #, python-format
 msgid "Every line is already linked to an asset."
-msgstr "Ogni linea è già collegata a un cespite."
+msgstr "Ogni riga è già collegata a un cespite."
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -1630,7 +1630,7 @@ msgstr "Esporta stampa registro"
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_asset_previsional_report_form_view
 msgid "Export Previsional Report"
-msgstr "Esporta Stampa Previsionale"
+msgstr "Esporta resoconto previsionale"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -1639,7 +1639,7 @@ msgstr "Esporta Stampa Previsionale"
 msgid ""
 "Fields `Force All Dep. Num` and `Force First Dep. Num` cannot be both active."
 msgstr ""
-"Campi `Forza Tutti Num. Amm.ti. ` e `Forza Primo Num. Amm.to` non possono "
+"I campi `Forza tutti num. amm.ti` e `Forza primo num. amm.to` non possono "
 "essere entrambi attivi."
 
 #. module: l10n_it_asset_management
@@ -1652,7 +1652,7 @@ msgstr "Filtri"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__first_dep_nr
 msgid "First Dep. Num"
-msgstr "Primo Amm.to Nr"
+msgstr "N° primo amm.to"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_account_fiscal_year
@@ -1706,12 +1706,12 @@ msgstr "Forza tutti i numeri amm.to"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_line__force_dep_nr
 msgid "Force Dep. Num"
-msgstr "Primo Nr amm.to"
+msgstr "Forza numero amm.to"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__force_first_dep_nr
 msgid "Force First Dep. Num"
-msgstr "Forza PRIMO Nr amm.to"
+msgstr "Forza primo numero amm.to"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_mode_line__from_nr
@@ -1770,7 +1770,7 @@ msgstr "Info generali"
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
 msgid "General Total"
-msgstr "Totale Complessivo"
+msgstr "Totale complessivo"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_asset_generate_depreciation_form_view
@@ -1915,7 +1915,7 @@ msgstr "Valore rettifiche attive"
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "In Amount - Detail"
-msgstr "Importo Positivo - Dettaglio"
+msgstr "Importo rettifiche attive - Dettaglio"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_dep_line_form_view
@@ -1923,28 +1923,28 @@ msgstr "Importo Positivo - Dettaglio"
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.view_asset_depreciation_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.view_move_line_form_inherit
 msgid "In/Out Amount Type"
-msgstr "+/- Tipo operazione"
+msgstr "Tipo valore rettifica attiva/passiva"
 
 #. module: l10n_it_asset_management
 #. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Incoherent asset data."
-msgstr "Data cespite anomala."
+msgstr "Dati cespite incoerenti."
 
 #. module: l10n_it_asset_management
 #. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Incoherent company data."
-msgstr "Dati azienda anomali."
+msgstr "Dati azienda incoerenti."
 
 #. module: l10n_it_asset_management
 #. odoo-python
 #: code:addons/l10n_it_asset_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Incoherent move data."
-msgstr "Data movimento anomala."
+msgstr "Dati registrazione incoerenti."
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -1965,7 +1965,7 @@ msgstr "Operatore di ricerca non valido!"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__message_is_follower
 msgid "Is Follower"
-msgstr "Sta seguendo"
+msgstr "Segue"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_account_journal
@@ -2096,12 +2096,12 @@ msgstr "Righe"
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.view_move_form_inherit
 msgid "Link to Asset"
-msgstr "Beni ammortizzabili"
+msgstr "Collega a cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.actions.act_window,name:l10n_it_asset_management.action_wizard_account_move_manage_asset
 msgid "Link to Assets"
-msgstr "Collegamento ai cespiti"
+msgstr "Collega a cespiti"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_dep_line_search_view
@@ -2142,13 +2142,13 @@ msgstr "Varie"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__mode_id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_mode_line__mode_id
 msgid "Mode"
-msgstr "Metodo"
+msgstr "Modo"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_depreciation__mode_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation__mode_name
 msgid "Mode Name"
-msgstr "Metodo"
+msgstr "Nome modo"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__move_id
@@ -2166,7 +2166,7 @@ msgstr "Riga movimento"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__move_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_account_move_mange_asset_form_view
 msgid "Move Lines"
-msgstr "Righe di Movimento"
+msgstr "Righe movimento"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__is_move_state_ok
@@ -2257,7 +2257,7 @@ msgstr "Nessun anno fiscale definito per la data %(date)s"
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
 msgid "No report has been defined for type `%(report_type)s`."
-msgstr "Nessuna stampa definita per tipo `%(report_type)s`."
+msgstr "Nessun resoconto definito per tipo `%(report_type)s`."
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2265,7 +2265,7 @@ msgstr "Nessuna stampa definita per tipo `%(report_type)s`."
 #: code:addons/l10n_it_asset_management/report/asset_previsional.py:0
 #, python-format
 msgid "No report type has been declared for current print."
-msgstr "Nessun tipo di report è stato dichiarato per la stampa corrente."
+msgstr "Nessun tipo di resoconto è stato dichiarato per la stampa corrente."
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__asset_asset__state__non_depreciated
@@ -2323,7 +2323,7 @@ msgstr "Rettifica negativa"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__amount_out
 #, python-format
 msgid "Out Amount"
-msgstr "Rettifica negativa"
+msgstr "Valore rettifica negativa"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2331,27 +2331,27 @@ msgstr "Rettifica negativa"
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Out Amount - Detail"
-msgstr "Importi Negativi - Dettaglio"
+msgstr "Importo rettifica negativa - Dettaglio"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__wizard_account_move_manage_asset__management_type__partial_dismiss
 msgid "Partial Dismiss"
-msgstr "Dismissione Parziale"
+msgstr "Dismissione parziale"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_account_move_mange_asset_form_view
 msgid "Partial Dismiss Asset"
-msgstr "Dismissione Parziale"
+msgstr "Dismissione parziale cespite"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_account_move_mange_asset_form_view
 msgid "Partial Dismiss Asset and Show"
-msgstr "Dismetti Cespite e Mostra"
+msgstr "Dismetti parzialmente cespite e visualizza"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_line__partial_dismissal
 msgid "Partial Dismissal"
-msgstr "Dismissione Parziale"
+msgstr "Dismissione parziale"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2364,7 +2364,7 @@ msgstr "Dismissione parziale da movimento/i %(move_nums)s"
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__asset_asset__state__partially_depreciated
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__asset_depreciation__state__partially_depreciated
 msgid "Partially Depreciated"
-msgstr "Parzialmente Ammortizzato"
+msgstr "Parzialmente ammortizzato"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2504,7 +2504,7 @@ msgstr "Valore acquisto"
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Purchased as New / Used"
-msgstr "Acquisto Nuovo / Usato"
+msgstr "Acquisto nuovo / usato"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_dep_line_form_view
