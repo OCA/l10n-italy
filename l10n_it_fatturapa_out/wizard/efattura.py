@@ -218,9 +218,15 @@ class EFatturaOut:
 
         if self.partner_id.commercial_partner_id.is_pa:
             # check value code
-            code = self.partner_id.ipa_code
+            code = (
+                self.partner_id.ipa_code
+                or self.partner_id.commercial_partner_id.ipa_code
+            )
         else:
-            code = self.partner_id.codice_destinatario
+            code = (
+                self.partner_id.codice_destinatario
+                or self.partner_id.commercial_partner_id.codice_destinatario
+            )
 
         # Create file content.
         template_values = {
