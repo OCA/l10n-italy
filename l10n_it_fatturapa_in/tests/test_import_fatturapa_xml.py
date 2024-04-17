@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from datetime import date
 
 from psycopg2 import IntegrityError
@@ -1069,6 +1072,29 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         attach = self.run_wizard("duplicated_vat", "IT05979361218_012.xml", mode=False)
         self.assertFalse(attach.xml_supplier_id)
         self.assertTrue(attach.inconsistencies)
+
+    def test_access_other_user_e_invoice(self):
+        """A user can see the e-invoice files created by other users."""
+        # Arrange
+        access_right_group_xmlid = "base.group_erp_manager"
+        user = self.env.user
+        user.groups_id -= self.env.ref("base.group_system")
+        user.groups_id -= self.env.ref(access_right_group_xmlid)
+        other_user = user.copy()
+        # pre-condition
+        self.assertFalse(user.has_group(access_right_group_xmlid))
+        self.assertNotEqual(user, other_user)
+
+        # Act
+        with self.with_user(other_user.login):
+            import_action = self.run_wizard(
+                "access_other_user_e_invoice", "IT01234567890_FPR03.xml"
+            )
+
+        # Assert
+        invoices = self.env[import_action["res_model"]].search(import_action["domain"])
+        e_invoice = invoices.fatturapa_attachment_in_id
+        self.assertTrue(e_invoice.ir_attachment_id.read())
 
 
 class TestFatturaPAEnasarco(FatturapaCommon):

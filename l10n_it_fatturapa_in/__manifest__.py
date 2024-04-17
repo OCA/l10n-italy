@@ -3,11 +3,12 @@
 # Copyright 2018 Lorenzo Battistini
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2022 Marco Colombo (<marco.colombo@phi.technology>)
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "ITA - Fattura elettronica - Ricezione",
-    "version": "16.0.1.0.7",
+    "version": "16.0.1.1.0",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "summary": "Ricezione fatture elettroniche",

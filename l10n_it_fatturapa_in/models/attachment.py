@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, fields, models
 from odoo.tools import format_date
 
@@ -8,7 +11,10 @@ class FatturaPAAttachmentIn(models.Model):
     _name = "fatturapa.attachment.in"
     _description = "E-bill import file"
     _inherits = {"ir.attachment": "ir_attachment_id"}
-    _inherit = ["mail.thread"]
+    _inherit = [
+        "mail.thread",
+        "l10n_it_fatturapa.attachment.e_invoice.link",
+    ]
     _order = "id desc"
 
     ir_attachment_id = fields.Many2one(
