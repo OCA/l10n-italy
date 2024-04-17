@@ -1,11 +1,12 @@
 # Copyright 2020 Lorenzo Battistini
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "ITA - Fattura elettronica - Import ZIP",
     "summary": "Permette di importare in uno ZIP diversi file XML di "
     "fatture elettroniche",
-    "version": "14.0.1.0.3",
+    "version": "14.0.1.1.0",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "TAKOBI, Odoo Community Association (OCA)",
