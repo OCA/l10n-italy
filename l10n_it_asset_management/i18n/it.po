@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2024-04-16 16:42+0000\n"
+"PO-Revision-Date: 2024-04-17 14:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -483,7 +483,7 @@ msgstr "Dismissione cespite"
 #: model:ir.ui.menu,name:l10n_it_asset_management.menu_wizard_asset_journal_report
 #, python-format
 msgid "Asset Journal"
-msgstr "Registro cespiti"
+msgstr "Registro cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_asset__asset_name
@@ -1625,7 +1625,7 @@ msgstr "Esporta"
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_asset_journal_report_form_view
 msgid "Export Journal Report"
-msgstr "Esporta stampa registro"
+msgstr "Esporta resoconto registro"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_asset_previsional_report_form_view
@@ -2563,82 +2563,82 @@ msgstr "Resoconto cespite"
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_journal
 msgid "Report Asset Journal"
-msgstr "Stampa Registro Cespiti"
+msgstr "Resoconto registro cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_journal_accounting_doc
 msgid "Report Asset Journal Accounting Doc"
-msgstr "Stampa Registro Cespiti Doc Contabili"
+msgstr "Resoconto documenti contabili registro cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_journal_asset
 msgid "Report Asset Journal Asset"
-msgstr "Stampa Registro Cespiti"
+msgstr "Resoconto registro cespite del cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_journal_category
 msgid "Report Asset Journal Category"
-msgstr "Stampa Registro Categorie Cespiti"
+msgstr "Resoconto categoria registro cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_journal_depreciation
 msgid "Report Asset Journal Depreciation"
-msgstr "Stampa Registro Amm.ti Cespiti"
+msgstr "Resoconto ammortamenti registro cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_journal_depreciation_line_year
 msgid "Report Asset Journal Depreciation Line Year"
-msgstr "Stampa Registro Amm.ti Righe Anno Cespiti"
+msgstr "Resoconto anno riga ammortamento registro cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_journal_totals
 msgid "Report Asset Journal Totals"
-msgstr "Stampa Registro Cespiti Totali"
+msgstr "Resoconto totali registro cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_l10n_it_asset_management_report_asset_journal_xlsx
 msgid "Report Asset Journal Xlsx"
-msgstr "Stampa Registro Cespiti Xlsx"
+msgstr "Resoconto XLSX registro cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_previsional
 msgid "Report Asset Previsional"
-msgstr "Stampa Registro Cespiti Previsionale"
+msgstr "Resoconto previsionale cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_previsional_accounting_doc
 msgid "Report Asset Previsional Accounting Doc"
-msgstr "Stampa Registro Cespiti Doc Contabili Previsionale"
+msgstr "Resoconto documenti contabili previsionale cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_previsional_asset
 msgid "Report Asset Previsional Asset"
-msgstr "Stampa Registro Cespiti Previsionale"
+msgstr "Resoconto previsionale cespite del cespirte"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_previsional_category
 msgid "Report Asset Previsional Category"
-msgstr "Stampa Registro Categorie Cespiti Previsionale"
+msgstr "Resoconto categoria previsionale cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_previsional_depreciation
 msgid "Report Asset Previsional Depreciation"
-msgstr "Stampa Registro Amm.ti Cespiti Previsionale"
+msgstr "Resoconto ammortamento previsionale cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_previsional_depreciation_line_year
 msgid "Report Asset Previsional Depreciation Line Year"
-msgstr "Stampa Registro Amm.ti Cespiti Anno Previsionale"
+msgstr "Resoconto anno riga ammortamento previsionale cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_asset_previsional_totals
 msgid "Report Asset Previsional Totals"
-msgstr "Stampa Registro Cespiti Previsionale Totali"
+msgstr "Resoconto totali previsionale cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model,name:l10n_it_asset_management.model_report_l10n_it_asset_management_report_asset_previsional_xlsx
 msgid "Report Asset Previsional Xlsx"
-msgstr "Stampa Registro Cespiti Previsionale Xlsx"
+msgstr "Resoconto XLSX previsionale cespite"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__report_category_ids
@@ -2664,7 +2664,7 @@ msgstr "Resoconto ammortamento"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__report_depreciation_line_year_ids
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__report_depreciation_line_year_ids
 msgid "Report Depreciation Line Year"
-msgstr "Resoconto riga ammortamento annuale"
+msgstr "Resoconto anno riga ammortamento"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_depreciation__report_depreciation_year_line_ids
@@ -2684,19 +2684,19 @@ msgstr "Anno piè di pagina resoconto"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__report_name
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__report_name
 msgid "Report Name"
-msgstr "Nome della stampa"
+msgstr "Nome resoconto"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_asset__report_purchase_doc_id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_asset__report_purchase_doc_id
 msgid "Report Purchase Doc"
-msgstr "Stampa doc. acquisto"
+msgstr "Resoconto documento acquisto"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_asset__report_sale_doc_id
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_asset__report_sale_doc_id
 msgid "Report Sale Doc"
-msgstr "Resoconto doc. vendita"
+msgstr "Resoconto documento vendita"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__report_total_ids
@@ -2704,12 +2704,12 @@ msgstr "Resoconto doc. vendita"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__report_total_ids
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_category__report_total_ids
 msgid "Report Total"
-msgstr "Resoconto totale"
+msgstr "Totale resoconto"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_line__requires_account_move
 msgid "Required Account Move"
-msgstr "Genera registrazioni contabili"
+msgstr "Registrazione contabile richiesta"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__requires_account_move
@@ -2720,7 +2720,7 @@ msgstr "Richiede registrazione contabile"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_line__requires_depreciation_nr
 msgid "Requires Dep Num"
-msgstr "Richiede Nr Amm.to"
+msgstr "Richiede n° ammortamento"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_accounting_doc__res_id
@@ -2839,7 +2839,7 @@ msgstr "Cespiti vendiuti: visualizza"
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Starting From"
-msgstr "Inizio Da"
+msgstr "Inizio da"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__state
@@ -2879,12 +2879,12 @@ msgstr "Fornitore"
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Supplier Ref"
-msgstr "Rif. Fornitore"
+msgstr "Rif. fornitore"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__supplier_ref
 msgid "Supplier Ref."
-msgstr "Rif. documento fornitore"
+msgstr "Rif. fornitore"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category__tag_ids
@@ -2928,12 +2928,12 @@ msgstr "Non c'è alcunché da stampare in base alle scelte impostate!"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_journal_report__date
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_previsional_report__date
 msgid "To Date"
-msgstr "Alla Data"
+msgstr "Alla data"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_mode_line__to_nr
 msgid "To Nr"
-msgstr "Al Nr"
+msgstr "Al n°"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2987,17 +2987,17 @@ msgstr "Sconosciuto"
 #: code:addons/l10n_it_asset_management/models/asset_accounting_info.py:0
 #, python-format
 msgid "Unknown Asset"
-msgstr "Cespite Sconosciuto"
+msgstr "Cespite sconosciuto"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_account_move_mange_asset_form_view
 msgid "Update Asset"
-msgstr "Aggiorna Cespite"
+msgstr "Aggiorna cespite"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_account_move_mange_asset_form_view
 msgid "Update Asset and Show"
-msgstr "Aggiorna Cespite e Mostra"
+msgstr "Aggiorna cespite e mostra"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__wizard_account_move_manage_asset__management_type__update
@@ -3007,7 +3007,7 @@ msgstr "Aggiorna esistente"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__amount_depreciable_updated
 msgid "Updated Depreciable Amount"
-msgstr "Importo Ammortizzabile Aggiornato"
+msgstr "Importo ammortizzabile aggiornato"
 
 #. module: l10n_it_asset_management
 #. odoo-python
