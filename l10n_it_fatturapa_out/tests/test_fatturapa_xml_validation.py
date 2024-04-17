@@ -1,6 +1,8 @@
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018-2019 Alex Comba - Agile Business Group
+# Copyright 2024 Simone Rubino - Aion Tech
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import base64
 import re
@@ -920,6 +922,21 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
             invoice1.name, invoice2.name
         )
         self.assertEqual(ue.exception.args[0], error_message)
+
+    def test_access_other_user_e_invoice(self):
+        """A user can see the e-invoice files created by other users."""
+        # Arrange
+        user = self.env.user
+        other_user = user.copy()
+        # pre-condition
+        self.assertNotEqual(user, other_user)
+
+        # Act
+        with self.with_user(other_user.login):
+            e_invoice = self._create_e_invoice()
+
+        # Assert
+        self.assertTrue(e_invoice.ir_attachment_id.with_user(user).read())
 
     def test_unlink(self):
         e_invoice = self._create_e_invoice()
