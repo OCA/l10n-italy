@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-26 05:37+0000\n"
-"PO-Revision-Date: 2024-04-16 16:40+0000\n"
+"PO-Revision-Date: 2024-04-17 14:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -484,7 +484,7 @@ msgstr "Dismissione cespite"
 #: model:ir.actions.act_window,name:assets_management.action_wizard_asset_journal_report
 #: model:ir.ui.menu,name:assets_management.menu_wizard_asset_journal_report
 msgid "Asset Journal"
-msgstr "Registro cespiti"
+msgstr "Registro cespite"
 
 #. module: assets_management
 #: model:ir.actions.client,name:assets_management.act_client_asset_journal_report
@@ -2707,7 +2707,7 @@ msgstr "Resoconto ammortamento"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__report_depreciation_line_year_ids
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional__report_depreciation_line_year_ids
 msgid "Report Depreciation Line Year"
-msgstr "Resoconto riga ammortamento annuale"
+msgstr "Resoconto anno riga ammortamento"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_depreciation__report_depreciation_year_line_ids
@@ -2727,19 +2727,19 @@ msgstr "Anno piè di pagina resoconto"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__report_name
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional__report_name
 msgid "Report Name"
-msgstr "Nome del report"
+msgstr "Nome resoconto"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_asset__report_purchase_doc_id
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_asset__report_purchase_doc_id
 msgid "Report Purchase Doc"
-msgstr "Resoconto doc. acquisto"
+msgstr "Resoconto documento acquisto"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_asset__report_sale_doc_id
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_asset__report_sale_doc_id
 msgid "Report Sale Doc"
-msgstr "Resoconto doc. vendita"
+msgstr "Resoconto documento vendita"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal__report_total_ids
@@ -2747,12 +2747,12 @@ msgstr "Resoconto doc. vendita"
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional__report_total_ids
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_previsional_category__report_total_ids
 msgid "Report Total"
-msgstr "Resoconto totale"
+msgstr "Totale resoconto"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__requires_account_move
 msgid "Required Account Move"
-msgstr "Genera registrazioni contabili"
+msgstr "Registrazione contabile richiesta"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__requires_account_move
@@ -2763,7 +2763,7 @@ msgstr "Richiede registrazione contabile"
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation_line__requires_depreciation_nr
 msgid "Requires Dep Num"
-msgstr "Richiede Nr Amm.to"
+msgstr "Richiede n° ammortamento"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_report_asset_journal_accounting_doc__res_id
@@ -2904,7 +2904,7 @@ msgstr "Fornitore"
 #: code:addons/assets_management/report/asset_previsional_xlsx.py:196
 #, python-format
 msgid "Supplier Ref"
-msgstr "Rif. documento fornitore"
+msgstr "Rif. fornitore"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__supplier_ref
@@ -3026,7 +3026,7 @@ msgstr "Sconosciuto"
 #: code:addons/assets_management/models/asset_accounting_info.py:246
 #, python-format
 msgid "Unknown Asset"
-msgstr "Cespite non definito"
+msgstr "Cespite sconosciuto"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_asset__message_unread
@@ -3042,19 +3042,19 @@ msgstr "Numero messaggi non letti"
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_invoice_mange_asset_form_view
 msgid "Update Asset"
-msgstr "Aggiorna Cespite"
+msgstr "Aggiorna cespite"
 
 #. module: assets_management
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_account_move_mange_asset_form_view
 #: model_terms:ir.ui.view,arch_db:assets_management.wizard_invoice_mange_asset_form_view
 msgid "Update Asset and Show"
-msgstr "Aggiorna Cespite e Mostra"
+msgstr "Aggiorna cespite e mostra"
 
 #. module: assets_management
 #: selection:wizard.account.move.manage.asset,management_type:0
 #: selection:wizard.invoice.manage.asset,management_type:0
 msgid "Update Existing"
-msgstr "Aggiorna Esistente"
+msgstr "Aggiorna esistente"
 
 #. module: assets_management
 #: model:ir.model.fields,field_description:assets_management.field_asset_depreciation__amount_depreciable_updated
