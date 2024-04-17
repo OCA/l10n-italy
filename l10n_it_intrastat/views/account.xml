@@ -91,6 +91,7 @@
                                <field name="amount_currency" />
                                <field name="amount_euro" />
                                <field name="statistic_amount_euro" />
+                               <field name="operation_date" />
                            </group>
                            <group>
                                <field name="invoice_type" invisible="1" />
@@ -173,6 +174,7 @@
         <record model="ir.ui.view" id="view_tree_invoice_intrastat_report_tree">
             <field name="name">account.intrastat.invoice.intrastat.report</field>
             <field name="model">account.invoice.intrastat</field>
+            <field name="priority" eval="50" />
             <field name="arch" type="xml">
                 <tree create="false">
                     <field name="partner_id" />
