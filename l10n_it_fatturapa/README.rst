@@ -165,6 +165,10 @@ Contributors
 
    * Giovanni Serra <giovanni@gslab.it>
 
+* `Aion Tech <https://aiontech.company/>`_:
+
+  * Simone Rubino <simone.rubino@aion-tech.it>
+
 Maintainers
 ~~~~~~~~~~~
 
