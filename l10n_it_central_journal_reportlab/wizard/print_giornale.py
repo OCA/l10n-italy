@@ -339,6 +339,9 @@ class WizardGiornaleReportlab(models.TransientModel):
                 if line["account_code"]
                 else line["account_name"]
             )
+            # evitiamo che i caratteri < o > vengano interpretato come tag html
+            # dalla libreria reportlab
+            account_name = account_name.replace("<", "&lt;").replace(">", "&gt;")
             account = Paragraph(account_name, style_name)
             name = Paragraph(line["name"], style_name)
             # dato che nel SQL ho la somma dei crediti e debiti potrei avere
@@ -393,6 +396,9 @@ class WizardGiornaleReportlab(models.TransientModel):
             move_name = line.move_id.name or ""
             move = Paragraph(move_name, style_name)
             account_name = self._get_account_name_reportlab(line)
+            # evitiamo che i caratteri < o > vengano interpretato come tag html
+            # dalla libreria reportlab
+            account_name = account_name.replace("<", "&lt;").replace(">", "&gt;")
             account = Paragraph(account_name, style_name)
             if line.account_id.account_type in [
                 "asset_receivable",
