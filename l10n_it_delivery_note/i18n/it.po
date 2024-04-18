@@ -146,6 +146,16 @@ msgstr "<strong>Causale di trasporto:</strong>"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "<strong>Warehouse:</strong>"
 msgstr "<strong>Magazzino:</strong>"
 
@@ -209,6 +219,12 @@ msgstr "Aggiungi una sezione"
 #: model:res.groups,name:l10n_it_delivery_note.can_change_number
 msgid "Allow to change delivery note number"
 msgstr "Consentire modifica numero documento di trasporto"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__amount
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "Amount"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__default_goods_appearance_id
@@ -408,6 +424,7 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__currency_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__currency_id
 msgid "Currency"
 msgstr "Valuta"
@@ -665,6 +682,12 @@ msgstr "Mostra Rif. Cliente nella stampa DdT"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_ref_order_dn_report
 msgid "Display Ref. Order in Delivery Note Report"
 msgstr "Mostra Rif. Ordine nella stampa DdT"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_total_in_dn_with_prices
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_total_in_dn_with_prices
+msgid "Display total in DN with prices"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
@@ -1312,6 +1335,11 @@ msgid "Prints Sale Order numbers on DN report (if there are any)"
 msgstr "Stampa Rif. Ordine su DdT (se presente)"
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid "Prints Total Amount on DN report"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Product"
@@ -1528,6 +1556,11 @@ msgstr "Indirizzo di spedizione"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_partner_form_view
 msgid "Shipping information"
 msgstr "Informazioni spedizione"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__show_discount
+msgid "Show Discount"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__show_product_information
@@ -1754,6 +1787,11 @@ msgid "Total"
 msgstr "Totale"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__amount_total
+msgid "Total Amount"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_picking
 msgid "Transfer"
 msgstr "Trasferimento"
@@ -1820,6 +1858,16 @@ msgstr "Messaggi non letti"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Numero messaggi non letti"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__untaxed_amount
+msgid "Untaxed Amount"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__untaxed_amount_total
+msgid "Untaxed Total Amount"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_uom_id
@@ -1956,6 +2004,12 @@ msgid ""
 msgstr ""
 "Non puoi cambiare il tipo della riga del DdT. Dovresti, invece, eliminare la "
 "riga corrente e creare una riga nuova del tipo corretto."
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid "You cannot have different currencies in the lines of aDelivery Note"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0

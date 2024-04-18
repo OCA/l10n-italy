@@ -66,7 +66,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid ""
 "<strong>\n"
-"                                <span class=\"fa fa-exclamation-triangle\"/>\n"
+"                                <span class=\"fa fa-exclamation-triangle\"/"
+">\n"
 "                                Warning!\n"
 "                            </strong>\n"
 "                            Inconsistent DN info in sale orders!"
@@ -76,7 +77,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid ""
 "<strong> Delivery Note: </strong>\n"
-"                    Under the terms of Italian Presidential Decree 472-96 of 14.08.1996"
+"                    Under the terms of Italian Presidential Decree 472-96 of "
+"14.08.1996"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -118,12 +120,23 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
 msgid ""
 "<strong>N.B.:</strong> there will be no way, subsequently, to restore\n"
-"                        this binding between the delivery note lines with the related sales order."
+"                        this binding between the delivery note lines with "
+"the related sales order."
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "<strong>Reason of Transport:</strong>"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Total</strong>"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -134,8 +147,8 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note_line__product_description
 msgid ""
-"A description of the Product that you want to communicate to your customers."
-" This description will be copied to every Sales Order, Delivery Order and "
+"A description of the Product that you want to communicate to your customers. "
+"This description will be copied to every Sales Order, Delivery Order and "
 "Customer Invoice/Credit Note"
 msgstr ""
 
@@ -187,6 +200,12 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:res.groups,name:l10n_it_delivery_note.can_change_number
 msgid "Allow to change delivery note number"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__amount
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "Amount"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -250,7 +269,8 @@ msgstr ""
 #, python-format
 msgid ""
 "Can't find a default virtual locations root.\n"
-"Ask your system administrator to set it from the Warehouse configurations page before continue."
+"Ask your system administrator to set it from the Warehouse configurations "
+"page before continue."
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -379,6 +399,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__currency_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__currency_id
 msgid "Currency"
 msgstr ""
@@ -638,6 +659,12 @@ msgid "Display Ref. Order in Delivery Note Report"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_total_in_dn_with_prices
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_total_in_dn_with_prices
+msgid "Display total in DN with prices"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Document"
 msgstr ""
@@ -815,7 +842,6 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
-#: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__incoming
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__incoming
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
@@ -847,7 +873,6 @@ msgid "Internal notes"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
 #: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
 #, python-format
 msgid "Internal transfer"
@@ -913,15 +938,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
 msgid ""
 "It extends the standard behaviour of DNs\n"
-"                                    management by introducing additional functions."
+"                                    management by introducing additional "
+"functions."
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
 #, python-format
 msgid ""
-"It seems that at least one delivery note has been already created. You can't"
-" migrate any data on an already used database."
+"It seems that at least one delivery note has been already created. You can't "
+"migrate any data on an already used database."
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1056,8 +1082,8 @@ msgstr ""
 #: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
 #, python-format
 msgid ""
-"Module `l10n_it_ddt` isn't installed on this database. You don't need to run"
-" this command."
+"Module `l10n_it_ddt` isn't installed on this database. You don't need to run "
+"this command."
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1168,7 +1194,6 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
-#: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__outgoing
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__outgoing
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
@@ -1177,7 +1202,6 @@ msgid "Outgoing"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
 #: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
 #, python-format
 msgid "Outgoing (with prices)"
@@ -1275,6 +1299,11 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
 msgid "Prints Sale Order numbers on DN report (if there are any)"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid "Prints Total Amount on DN report"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1430,8 +1459,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
 msgid ""
 "Select the root of all your virtual locations.<br/>\n"
-"                                    Internal transfers between at least one virtual\n"
-"                                    locations won't generate automatically any DN\n"
+"                                    Internal transfers between at least one "
+"virtual\n"
+"                                    locations won't generate automatically "
+"any DN\n"
 "                                    documents."
 msgstr ""
 
@@ -1485,6 +1516,11 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_partner_form_view
 msgid "Shipping information"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__show_discount
+msgid "Show Discount"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1619,8 +1655,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
 msgid ""
 "There appears to be one or more delivery notes in \"Draft\" state.<br/>\n"
-"                        If you proceed with the creation of an invoice (other than the downpayment one),\n"
-"                        the affected delivery note lines will be detached from the sales order and\n"
+"                        If you proceed with the creation of an invoice "
+"(other than the downpayment one),\n"
+"                        the affected delivery note lines will be detached "
+"from the sales order and\n"
 "                        will not appear linked to the generated invoice."
 msgstr ""
 
@@ -1637,15 +1675,18 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
 msgid ""
-"This behaviour just described may not be wrong in some very specific cases.<br/>\n"
-"                        Proceed only if you are absolutely sure and aware of what you're doing."
+"This behaviour just described may not be wrong in some very specific cases."
+"<br/>\n"
+"                        Proceed only if you are absolutely sure and aware of "
+"what you're doing."
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
 msgid ""
-"This delivery note contains pickings related to different delivery methods from the same transporter. Are you sure you want to proceed?\n"
+"This delivery note contains pickings related to different delivery methods "
+"from the same transporter. Are you sure you want to proceed?\n"
 "Delivery Methods: %(carriers)s"
 msgstr ""
 
@@ -1653,7 +1694,8 @@ msgstr ""
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
 msgid ""
-"This delivery note contains pickings related to different transporters. Are you sure you want to proceed?\n"
+"This delivery note contains pickings related to different transporters. Are "
+"you sure you want to proceed?\n"
 "Carrier Partners: %(carrier_partners)s"
 msgstr ""
 
@@ -1672,6 +1714,11 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Total"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__amount_total
+msgid "Total Amount"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1740,6 +1787,16 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_unread_counter
 msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__untaxed_amount
+msgid "Untaxed Amount"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__untaxed_amount_total
+msgid "Untaxed Total Amount"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1831,8 +1888,6 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
 #: code:addons/l10n_it_delivery_note/wizard/delivery_note_base.py:0
 #, python-format
@@ -1874,6 +1929,12 @@ msgstr ""
 msgid ""
 "You cannot change the type of a delivery note line. Instead you should "
 "delete the current line and create a new line of the proper type."
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid "You cannot have different currencies in the lines of aDelivery Note"
 msgstr ""
 
 #. module: l10n_it_delivery_note
