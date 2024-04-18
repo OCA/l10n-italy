@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2024-03-14 12:37+0000\n"
+"PO-Revision-Date: 2024-04-18 13:35+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -147,12 +147,12 @@ msgstr "<strong>Causale di trasporto:</strong>"
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "<strong>Subtotal</strong>"
-msgstr ""
+msgstr "<strong>Subtotale</strong>"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "<strong>Total</strong>"
-msgstr ""
+msgstr "<strong>Totale</strong>"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
@@ -224,7 +224,7 @@ msgstr "Consentire modifica numero documento di trasporto"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__amount
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Amount"
-msgstr ""
+msgstr "Importo"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__default_goods_appearance_id
@@ -687,7 +687,7 @@ msgstr "Mostra Rif. Ordine nella stampa DdT"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_total_in_dn_with_prices
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_total_in_dn_with_prices
 msgid "Display total in DN with prices"
-msgstr ""
+msgstr "Mostra totali nei DdT con prezzi"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
@@ -1337,7 +1337,7 @@ msgstr "Stampa Rif. Ordine su DdT (se presente)"
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
 msgid "Prints Total Amount on DN report"
-msgstr ""
+msgstr "Stampa gli importi totali nel report DdT"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_id
@@ -1560,7 +1560,7 @@ msgstr "Informazioni spedizione"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__show_discount
 msgid "Show Discount"
-msgstr ""
+msgstr "Mostra sconto"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__show_product_information
@@ -1789,7 +1789,7 @@ msgstr "Totale"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__amount_total
 msgid "Total Amount"
-msgstr ""
+msgstr "Importo totale"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_picking
@@ -1862,12 +1862,12 @@ msgstr "Numero messaggi non letti"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__untaxed_amount
 msgid "Untaxed Amount"
-msgstr ""
+msgstr "Imponibile"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__untaxed_amount_total
 msgid "Untaxed Total Amount"
-msgstr ""
+msgstr "Totale imponibile"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_uom_id
@@ -2009,7 +2009,7 @@ msgstr ""
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #, python-format
 msgid "You cannot have different currencies in the lines of aDelivery Note"
-msgstr ""
+msgstr "Non puoi avere valute diverse sulle righe di un DdT"
 
 #. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
