@@ -79,7 +79,6 @@ class AccountMove(models.Model):
     open_amount = fields.Float(
         digits="Account",
         compute="_compute_open_amount",
-        store=True,
         default=0.0,
         help="Amount currently only supposed to be paid, but has actually not happened",
     )

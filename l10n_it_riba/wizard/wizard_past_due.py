@@ -98,6 +98,8 @@ class RibaPastDue(models.TransientModel):
             raise UserError(_("No active ID found."))
         line_model = self.env["riba.slip.line"]
         line = line_model.browse(active_id)
+        line.acceptance_move_id.button_draft()
+        line.acceptance_move_id.unlink()
         line.state = "past_due"
         line.slip_id.state = "past_due"
         return {"type": "ir.actions.act_window_close"}
