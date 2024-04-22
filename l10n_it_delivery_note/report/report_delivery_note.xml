@@ -182,7 +182,7 @@
                                 Taxes
                             </th>
                             <th
-                                t-if="doc.company_id.display_total_in_dn_with_prices"
+                                t-if="doc.company_id.display_total_in_dn_with_prices and doc.print_prices"
                                 class="text-right"
                             >
                                 Amount
@@ -239,7 +239,7 @@
                                         />
                                     </td>
                                     <td
-                                        t-if="doc.company_id.display_total_in_dn_with_prices"
+                                        t-if="doc.company_id.display_total_in_dn_with_prices and doc.print_prices"
                                         class="text-right"
                                     >
                                         <span t-field="line.untaxed_amount" />
@@ -292,7 +292,11 @@
                     </tbody>
                 </table>
                 <br />
-                <div class="clearfix" name="so_total_summary">
+                <div
+                    class="clearfix"
+                    name="so_total_summary"
+                    t-if="doc.company_id.display_total_in_dn_with_prices and doc.print_prices"
+                >
                     <div id="total" class="row" name="total">
                         <div
                             t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto"
