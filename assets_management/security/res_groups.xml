@@ -3,12 +3,24 @@
 
     <record id="group_asset_user" model="res.groups">
         <field name="name">Asset Users</field>
-        <field name="category_id" ref="base.module_category_accounting_accounting" />
+        <field name="category_id" ref="base.module_category_hidden" />
         <field name="users" eval="[(4, ref('base.user_root'))]" />
     </record>
 
+    <record id="group_account_invoice_assets" model="res.groups">
+        <field name="name">Billing and Assets</field>
+        <field name="category_id" ref="base.module_category_accounting_accounting" />
+        <field
+            name="implied_ids"
+            eval="[
+            (4, ref('group_asset_user')),
+            (4, ref('account.group_account_invoice')),
+        ]"
+        />
+    </record>
+
     <record id="account.group_account_manager" model="res.groups">
-        <field name="implied_ids" eval="[(4, ref('group_asset_user'))]" />
+        <field name="implied_ids" eval="[(4, ref('group_account_invoice_assets'))]" />
     </record>
 
 </odoo>
