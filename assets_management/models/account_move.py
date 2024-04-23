@@ -26,6 +26,7 @@ class AccountMove(models.Model):
 
     hide_link_asset_button = fields.Boolean(
         compute="_compute_hide_link_asset_button",
+        compute_sudo=True,
         default=True,
         string="Hide Asset Button",
     )
