@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo noupdate="1">
+    <record id="sepa_cbi_credit_transfer" model="account.payment.method">
+        <field name="name">SEPA Credit Transfer Payment Request CBI</field>
+        <field name="code">sepa_cbi_credit_transfer</field>
+        <field name="payment_type">outbound</field>
+        <field name="bank_account_required" eval="True" />
+        <field name="pain_version">CBIBdyPaymentRequest.00.04.01</field>
+        <field name="warn_not_sepa" eval="True" />
+    </record>
+</odoo>
