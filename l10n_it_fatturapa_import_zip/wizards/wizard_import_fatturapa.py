@@ -106,3 +106,11 @@ class WizardImportFatturapa(models.TransientModel):
             ]
         else:
             return tax_domain
+
+    def set_payments_data(self, FatturaBody, invoice, partner_id):
+        if self._is_import_attachment_out():
+            return super().set_payments_data(
+                FatturaBody, invoice, self.env.company.partner_id.id
+            )
+        else:
+            return super().set_payments_data(FatturaBody, invoice, partner_id)
