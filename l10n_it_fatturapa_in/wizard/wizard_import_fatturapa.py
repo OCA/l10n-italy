@@ -270,7 +270,7 @@ class WizardImportFatturapa(models.TransientModel):
         if len(partners) > 1:
             for partner in partners:
                 if (
-                    commercial_partner_id
+                    not commercial_partner_id
                     and partner.commercial_partner_id.id != commercial_partner_id
                 ):
                     self.log_inconsistency(
