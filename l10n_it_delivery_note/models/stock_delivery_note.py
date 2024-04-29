@@ -734,6 +734,8 @@ class StockDeliveryNote(models.Model):
             )
             if not sale_ids:
                 continue
+
+            delivery_notes = sale_ids.mapped("delivery_note_ids") & self
             orders_lines = sale_ids.mapped("order_line").filtered(
                 lambda l: l.product_id
             )
@@ -741,7 +743,7 @@ class StockDeliveryNote(models.Model):
             downpayment_lines = orders_lines.filtered(lambda l: l.is_downpayment)
             invoiceable_lines = orders_lines.filtered(lambda l: l.is_invoiceable)
 
-            cache = self._fix_quantities_to_invoice(
+            cache = delivery_notes._fix_quantities_to_invoice(
                 invoiceable_lines - downpayment_lines, invoice_method
             )
 
@@ -754,18 +756,22 @@ class StockDeliveryNote(models.Model):
                 if order_lines.filtered(lambda l: l.need_to_be_invoiced):
                     cache[downpayment] = downpayment.fix_qty_to_invoice()
 
-            invoice_ids = sale_ids.filtered(
-                lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
-            )._create_invoices(final=True)
+            invoice_ids = (
+                sale_ids.filtered(
+                    lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
+                )
+                .with_context(skip_assign_dns=True)
+                ._create_invoices(final=True)
+            )
 
             for line, vals in cache.items():
                 line.write(vals)
 
             orders_lines._get_to_invoice_qty()
 
-            for line in self.mapped("line_ids"):
+            for line in delivery_notes.mapped("line_ids"):
                 line.write({"invoice_status": "invoiced"})
-            for delivery_note in self:
+            for delivery_note in delivery_notes:
                 ready_invoice_ids = [
                     invoice_id
                     for invoice_id in delivery_note.sale_ids.mapped("invoice_ids").ids
@@ -778,30 +784,9 @@ class StockDeliveryNote(models.Model):
                         ]
                     }
                 )
-            self._compute_invoice_status()
+            delivery_notes._compute_invoice_status()
             invoices = self.env["account.move"].browse(invoice_ids.ids)
             invoices.update_delivery_note_lines()
-
-            if all(
-                line.invoice_status == "invoiced" for line in self.mapped("line_ids")
-            ):
-                for delivery_note in self:
-                    ready_invoice_ids = [
-                        invoice_id
-                        for invoice_id in delivery_note.sale_ids.mapped(
-                            "invoice_ids"
-                        ).ids
-                        if invoice_id in invoices.ids
-                    ]
-                    delivery_note.write(
-                        {
-                            "invoice_ids": [
-                                (4, invoice_id) for invoice_id in ready_invoice_ids
-                            ]
-                        }
-                    )
-                self._compute_invoice_status()
-                invoices.update_delivery_note_lines()
 
     def action_done(self):
         self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[3]})
