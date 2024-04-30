@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2011-05-07 14:45+0000\n"
-"PO-Revision-Date: 2011-05-07 14:45+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2024-04-30 18:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_sale_report
 #: model:ir.actions.report.xml,name:l10n_it_sale_report.ddt_report_id
@@ -56,7 +57,7 @@ msgstr "Annulla"
 #. module: l10n_it_sale_report
 #: field:wizard.fattura.accompagnatoria,picking_id:0
 msgid "Picking"
-msgstr "Picking"
+msgstr "Prelievo"
 
 #. module: l10n_it_sale_report
 #: field:account.invoice,sale_order_ids:0
