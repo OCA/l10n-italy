@@ -736,6 +736,11 @@ msgid ""
 msgstr ""
 
 #. module: assets_management
+#: model:res.groups,name:assets_management.group_account_invoice_assets
+msgid "Billing and Assets"
+msgstr ""
+
+#. module: assets_management
 #: model:ir.model.fields,help:assets_management.field_wizard_asset_journal_report__show_sold_assets
 #: model:ir.model.fields,help:assets_management.field_wizard_asset_previsional_report__show_sold_assets
 msgid ""
