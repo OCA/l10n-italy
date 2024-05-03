@@ -5,7 +5,7 @@
     "name": "ITA - Fattura elettronica - Import ZIP",
     "summary": "Permette di importare in uno ZIP diversi file XML di "
     "fatture elettroniche",
-    "version": "16.0.1.0.2",
+    "version": "16.0.1.0.3",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "TAKOBI, Odoo Community Association (OCA)",
