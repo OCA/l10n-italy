@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Ritenute d'acconto",
-    "version": "14.0.1.1.9",
+    "version": "14.0.1.1.10",
     "category": "Account",
     "author": "Openforce, Odoo Italia Network, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
