@@ -1069,6 +1069,15 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # allow following tests to reuse the same XML file
         orig_invoice.ref = orig_invoice.payment_reference = "14021"
 
+    def test_01_xml_preview(self):
+        res = self.run_wizard("test_preview", "IT05979361218_001.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        preview_action = invoice.fatturapa_attachment_in_id.ftpa_preview()
+        self.assertEqual(
+            preview_action["url"], invoice.fatturapa_attachment_in_id.ftpa_preview_link
+        )
+
     def test_01_xml_zero_quantity_line(self):
         res = self.run_wizard("test_zeroq_01", "IT05979361218_q0.xml")
         invoice_id = res.get("domain")[0][2][0]
