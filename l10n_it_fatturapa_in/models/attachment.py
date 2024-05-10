@@ -181,4 +181,4 @@ class FatturaPAAttachmentIn(models.Model):
                             )
 
     def ftpa_preview(self):
-        return self.env["ir.attachment"].ftpa_preview(self)
+        return self.ir_attachment_id.ftpa_preview()
