@@ -932,6 +932,11 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         e_invoice.reset_to_ready()
         self.assertEqual(e_invoice.state, "ready")
 
+    def test_preview(self):
+        e_invoice = self._create_e_invoice()
+        preview_action = e_invoice.ftpa_preview()
+        self.assertEqual(preview_action["url"], e_invoice.ftpa_preview_link)
+
     def test_no_export_bill(self):
         invoice = self.invoice_model.create(
             {
