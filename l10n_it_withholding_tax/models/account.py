@@ -592,6 +592,33 @@ class AccountMoveLine(models.Model):
     withholding_tax_generated_by_move_id = fields.Many2one(
         "account.move", string="Withholding Tax generated from", readonly=True
     )
+    withholding_tax_amount_net_pay = fields.Float(
+        "Withholding tax amount net pay",
+        compute="_compute_withholding_tax_amount_net_pay",
+    )
+    withholding_tax_amount_net_pay_residual = fields.Float(
+        "Withholding tax amount net pay residual",
+        compute="_compute_withholding_tax_amount_net_pay",
+    )
+
+    def _compute_withholding_tax_amount_net_pay(self):
+        for record in self:
+            if record.move_id.is_invoice():
+                record.withholding_tax_amount_net_pay = (
+                    record.withholding_tax_amount + record.balance
+                )
+                record.withholding_tax_amount_net_pay_residual = (
+                    record.withholding_tax_amount_net_pay
+                )
+                reconciled_amls = record.mapped("matched_debit_ids.debit_move_id")
+                for line in reconciled_amls:
+                    if not line.withholding_tax_generated_by_move_id:
+                        record.withholding_tax_amount_net_pay_residual += (
+                            line.debit or line.credit
+                        )
+            else:
+                record.withholding_tax_amount_net_pay = 0
+                record.withholding_tax_amount_net_pay_residual = 0
 
     def remove_move_reconcile(self):
         # When unreconcile a payment with a wt move linked, it will be
