@@ -17,7 +17,7 @@ from odoo.tools.translate import _
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 
-from .efattura import EFatturaOut, format_numbers
+from .efattura import EFatturaOut, format_numbers, fpaToEur
 
 _logger = logging.getLogger(__name__)
 
@@ -87,12 +87,13 @@ class WizardExportFatturapa(models.TransientModel):
         values w/o altering the original lines"""
 
         class _Payment:
-            __slots__ = "date_maturity", "amount_currency", "debit"
+            __slots__ = "date_maturity", "amount_currency", "debit", "currency_rate"
 
-            def __init__(self, date_maturity, amount_currency, debit):
+            def __init__(self, date_maturity, amount_currency, debit, currency_rate):
                 self.date_maturity = date_maturity
                 self.amount_currency = amount_currency
                 self.debit = debit
+                self.currency_rate = currency_rate
 
         payments = []
         for line in invoice.line_ids.filtered(
@@ -100,7 +101,12 @@ class WizardExportFatturapa(models.TransientModel):
             in ("asset_receivable", "liability_payable")
         ):
             payments.append(
-                _Payment(line.date_maturity, line.amount_currency, line.debit)
+                _Payment(
+                    line.date_maturity,
+                    line.amount_currency,
+                    line.debit,
+                    line.currency_rate,
+                )
             )
         return payments
 
@@ -131,6 +137,7 @@ class WizardExportFatturapa(models.TransientModel):
         def _key(tax_id):
             return tax_id.id
 
+        euro = self.env.ref("base.EUR")
         out_computed = {}
         # existing tax lines
         tax_ids = invoice.line_ids.filtered(lambda line: line.tax_line_id)
@@ -170,7 +177,9 @@ class WizardExportFatturapa(models.TransientModel):
                         "AliquotaIVA": aliquota,
                         "Natura": tax_id.kind_id.code,
                         # 'Arrotondamento':'',
-                        "ImponibileImporto": line.price_subtotal,
+                        "ImponibileImporto": fpaToEur(
+                            line.price_subtotal, invoice, euro, rate=line.currency_rate
+                        ),
                         "Imposta": 0.0,
                         "EsigibilitaIVA": tax_id.payability,
                     }
@@ -179,7 +188,9 @@ class WizardExportFatturapa(models.TransientModel):
                             tax_id.law_reference, 100
                         )
                 else:
-                    out[key]["ImponibileImporto"] += line.price_subtotal
+                    out[key]["ImponibileImporto"] += fpaToEur(
+                        line.price_subtotal, invoice, euro, rate=line.currency_rate
+                    )
                     out[key]["Imposta"] += 0.0
         out.update(out_computed)
         return out
