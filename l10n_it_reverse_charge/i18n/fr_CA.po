@@ -253,6 +253,11 @@ msgid "RC type"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
+#: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_move_line__rc_source_line_id
+msgid "Rc Source Line"
+msgstr ""
+
+#. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_rc_type
 #: model_terms:ir.ui.view,arch_db:l10n_it_reverse_charge.view_rc_type_form
 msgid "Reverse Charge Type"
