@@ -88,7 +88,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
     def test_process_response_INVIO(self):
         """Receiving a 'Invio File' creates a new e-invoice"""
         incoming_mail = self._get_file(
-            'POSTA CERTIFICATA: Invio File 7339338.txt')
+            'POSTA CERTIFICATA_ Invio File 7339338.txt')
 
         e_invoices = self.attach_in_model.search([])
 
@@ -138,7 +138,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         """Receiving a 'Invio File' with a broken XML sends an email
         to e_inv_notify_partner_ids"""
         incoming_mail = self._get_file(
-            'POSTA CERTIFICATA: Invio File 7339338 (broken XML).txt')
+            'POSTA CERTIFICATA_ Invio File 7339338 (broken XML).txt')
         outbound_mail_model = self.env['mail.mail']
         error_mail_domain = [
             ('body_html', 'like', 'unbound_prefix'),
