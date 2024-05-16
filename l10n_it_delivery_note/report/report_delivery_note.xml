@@ -260,9 +260,11 @@
                                             <span t-field="lot_line.lot_id" />
                                         </strong>
                                         <t
-                                            t-if="'use_date' in lot_line.lot_id.fields_get()"
+                                            t-if="'use_expiration_date' in lot_line.lot_id.fields_get()"
                                         >
-                                            <t t-if="lot_line.lot_id.use_date">
+                                            <t
+                                                t-if="lot_line.lot_id.use_expiration_date"
+                                            >
                                                 best before
                                                 <strong>
                                                     <span
