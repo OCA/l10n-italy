@@ -4,7 +4,12 @@
 
 from openupgradelib import openupgrade
 
-from . import hooks
+# pylint: disable=odoo-addons-relative-import
+# because
+#   from ... import hooks
+# raises
+#   ImportError: attempted relative import with no known parent package
+from odoo.addons.l10n_it_riba import hooks
 
 
 def migrate(cr, installed_version):

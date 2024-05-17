@@ -17,6 +17,13 @@ RENAMED_MODELS = [
     ("riba.accreditation", "riba.credit"),
     ("riba.unsolved", "riba.past_due"),
 ]
+RENAMED_TABLES = [
+    ("riba_distinta", "riba_slip"),
+    ("riba_distinta_line", "riba_slip_line"),
+    ("riba_distinta_move_line", "riba_slip_move_line"),
+    ("riba_accreditation", "riba_credit"),
+    ("riba_unsolved", "riba_past_due"),
+]
 RENAMED_FIELDS = [
     [
         (
@@ -254,6 +261,10 @@ def migrate_old_module(cr):
     openupgrade.rename_models(
         cr,
         RENAMED_MODELS,
+    )
+    openupgrade.rename_tables(
+        cr,
+        RENAMED_TABLES,
     )
     field_spec = []
     for renamed_field in RENAMED_FIELDS:
