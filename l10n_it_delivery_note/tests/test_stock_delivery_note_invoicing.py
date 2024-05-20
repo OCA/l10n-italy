@@ -1308,22 +1308,22 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         sales_order.action_confirm()
         self.assertEqual(len(sales_order.picking_ids), 1)
         picking = sales_order.picking_ids
-        self.assertEqual(len(picking.move_lines), 2)
+        self.assertEqual(len(picking.move_ids), 2)
 
         # deliver only half of the first product
-        picking.move_lines[0].quantity_done = 1
+        picking.move_ids[0].quantity_done = 1
         res_dict = picking.button_validate()
         wizard = Form(
             self.env[(res_dict.get("res_model"))]
             .with_user(user)
-            .with_context(res_dict["context"])
+            .with_context(**res_dict["context"])
         ).save()
         wizard.process()
         res_dict = picking.action_delivery_note_create()
         wizard = Form(
             self.env[(res_dict.get("res_model"))]
             .with_user(user)
-            .with_context(res_dict["context"])
+            .with_context(**res_dict["context"])
         ).save()
         wizard.confirm()
         self.assertTrue(picking.delivery_note_id)
@@ -1332,16 +1332,16 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         dn.action_confirm()
         dn.action_done()
         picking_backorder = StockPicking.search([("backorder_id", "=", picking.id)])
-        self.assertEqual(len(picking_backorder.move_lines), 2)
-        picking_backorder.move_lines[0].quantity_done = 1
-        picking_backorder.move_lines[1].quantity_done = 1
+        self.assertEqual(len(picking_backorder.move_ids), 2)
+        picking_backorder.move_ids[0].quantity_done = 1
+        picking_backorder.move_ids[1].quantity_done = 1
         picking_backorder.button_validate()
         self.assertEqual(picking_backorder.state, "done")
         back_res_dict = picking_backorder.action_delivery_note_create()
         back_wizard = Form(
             self.env[(back_res_dict.get("res_model"))]
             .with_user(user)
-            .with_context(back_res_dict["context"])
+            .with_context(**back_res_dict["context"])
         ).save()
         back_wizard.confirm()
         self.assertTrue(picking_backorder.delivery_note_id)
