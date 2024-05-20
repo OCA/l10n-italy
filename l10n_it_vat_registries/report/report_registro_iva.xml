@@ -20,22 +20,17 @@
                     <t t-set="print_details" t-value="0" />
                 </t>
                 <table style="width:100%; font-size: small;" cellspacing="0">
+                    <t
+                            t-set="columns_number"
+                            t-value="4 if registry_type == 'corrispettivi' else 9"
+                        />
                     <thead>
                         <tr class="first_th_row">
-                            <t t-if="registry_type == 'corrispettivi'">
-                                <td
-                                        colspan="4"
-                                        style="padding:10;"
-                                        t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
-                                    />
-                            </t>
-                            <t t-if="registry_type != 'corrispettivi'">
-                                <td
-                                        colspan="9"
-                                        style="padding:10;"
-                                        t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
-                                    />
-                            </t>
+                            <td
+                                    t-att-colspan="columns_number"
+                                    style="padding:10;"
+                                    t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
+                                />
                         </tr>
 
                         <t t-if="print_details > 0 ">
@@ -85,7 +80,7 @@
                                 <t t-if="entry_order == 'journal_date_name'">
                                     <t t-if="move.journal_id.id != sv_journal_id">
                                         <tr>
-                                            <td colspan='9'>
+                                            <td t-att-colspan="columns_number">
                                                 <h5
                                                         style="page-break-inside: avoid;border-top:1px solid;border-bottom:1px solid; color:DimGrey;"
                                                         t-esc="move.journal_id.name"
