@@ -58,6 +58,8 @@ setuptools.setup(
         'odoo-addon-l10n_it_vat_payability>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_vat_registries>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_vat_registries_split_payment>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_vat_settlement_date>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_vat_settlement_date_rc>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_vat_statement_communication>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_vat_statement_split_payment>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_website_portal_fatturapa>=16.0dev,<16.1dev',
