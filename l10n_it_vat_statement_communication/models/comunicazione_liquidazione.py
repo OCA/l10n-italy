@@ -140,7 +140,11 @@ class ComunicazioneLiquidazione(models.Model):
         x1_Fornitura.append(x1_2_Comunicazione)
 
         xml_string = etree.tostring(
-            x1_Fornitura, encoding="utf8", method="xml", pretty_print=True
+            x1_Fornitura,
+            encoding="utf-8",
+            method="xml",
+            pretty_print=True,
+            xml_declaration=True,
         )
         return xml_string
 
