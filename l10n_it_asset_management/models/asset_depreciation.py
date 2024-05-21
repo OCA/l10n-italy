@@ -139,6 +139,51 @@ class AssetDepreciation(models.Model):
 
     zero_depreciation_until = fields.Date(string="Zero Depreciation Up To")
 
+    depreciation_account_id = fields.Many2one(
+        comodel_name="account.account",
+        compute="_compute_depreciation_account_id",
+        readonly=False,
+        store=True,
+        string="Depreciation Account",
+    )
+    gain_account_id = fields.Many2one(
+        comodel_name="account.account",
+        compute="_compute_gain_account_id",
+        readonly=False,
+        store=True,
+        string="Capital Gain Account",
+    )
+    loss_account_id = fields.Many2one(
+        comodel_name="account.account",
+        compute="_compute_loss_account_id",
+        readonly=False,
+        store=True,
+        string="Capital Loss Account",
+    )
+
+    @api.depends(
+        "asset_id.category_id",
+    )
+    def _compute_depreciation_account_id(self):
+        for dep in self:
+            dep.depreciation_account_id = (
+                dep.asset_id.category_id.depreciation_account_id
+            )
+
+    @api.depends(
+        "asset_id.category_id",
+    )
+    def _compute_gain_account_id(self):
+        for dep in self:
+            dep.gain_account_id = dep.asset_id.category_id.gain_account_id
+
+    @api.depends(
+        "asset_id.category_id",
+    )
+    def _compute_loss_account_id(self):
+        for dep in self:
+            dep.loss_account_id = dep.asset_id.category_id.loss_account_id
+
     @api.model_create_multi
     def create(self, vals_list):
         depreciations = self.browse()
