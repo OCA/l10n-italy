@@ -236,7 +236,7 @@ class RibaListLine(models.Model):
                     )
                 if not line.invoice_number:
                     line.invoice_number = str(
-                        move_line.move_line_id.move_id.move_id.name
+                        move_line.move_line_id.move_id.name
                         if move_line.move_line_id.move_id.display_name == "/"
                         else move_line.move_line_id.move_id.display_name
                     )
@@ -244,7 +244,7 @@ class RibaListLine(models.Model):
                     line.invoice_number = "{}, {}".format(
                         line.invoice_number,
                         str(
-                            move_line.move_line_id.move_id.move_id.name
+                            move_line.move_line_id.move_id.name
                             if move_line.move_line_id.move_id.display_name == "/"
                             else move_line.move_line_id.move_id.display_name
                         ),
