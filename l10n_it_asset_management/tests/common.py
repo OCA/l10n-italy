@@ -6,7 +6,7 @@
 from datetime import date
 
 from odoo.fields import Command, first
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class Common(TransactionCase):
@@ -62,6 +62,12 @@ class Common(TransactionCase):
         cls.purchase_journal = cls.env["account.journal"].search(
             [
                 ("type", "=", "purchase"),
+            ],
+            limit=1,
+        )
+        cls.sale_journal = cls.env["account.journal"].search(
+            [
+                ("type", "=", "sale"),
             ],
             limit=1,
         )
@@ -200,6 +206,27 @@ class Common(TransactionCase):
         self.assertEqual(purchase_invoice.state, "posted")
         return purchase_invoice
 
+    def _create_sale_invoice(self, asset, amount=7000, post=True):
+        sale_invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.env.ref("base.partner_demo").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "account_id": asset.category_id.asset_account_id.id,
+                            "quantity": 1,
+                            "price_unit": amount,
+                        },
+                    )
+                ],
+            }
+        )
+        if post:
+            sale_invoice.action_post()
+        return sale_invoice
+
     def _civil_depreciate_asset(self, asset):
         # Keep only one civil depreciation
         civil_depreciation = first(
@@ -270,3 +297,24 @@ class Common(TransactionCase):
         report_ids = report_result["context"]["report_action"]["context"]["active_ids"]
         report = self.env[report_model].browse(report_ids)
         return report
+
+    def _link_asset_move(self, asset, move, link_management_type, wiz_values=None):
+        """Link `asset` to `move` with mode `link_management_type`.
+
+        `wiz_values` are values to be set in the wizard.
+        """
+        if wiz_values is None:
+            wiz_values = {}
+
+        wiz_action_values = move.open_wizard_manage_asset()
+        wiz_form = Form(
+            self.env["wizard.account.move.manage.asset"].with_context(
+                **wiz_action_values["context"]
+            )
+        )
+        wiz_form.management_type = link_management_type
+        wiz_form.asset_id = asset
+        for field_name, field_value in wiz_values.items():
+            setattr(wiz_form, field_name, field_value)
+        wiz = wiz_form.save()
+        return wiz.link_asset()
