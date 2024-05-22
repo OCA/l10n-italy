@@ -481,7 +481,7 @@ class TestAssets(Common):
         self.assertFalse(asset.asset_accounting_info_ids)
 
         # Act
-        self._update_asset(entry, asset)
+        self._link_asset_move(asset, entry, "update")
 
         # Assert
         accounting_info = asset.asset_accounting_info_ids
@@ -501,7 +501,7 @@ class TestAssets(Common):
         self.assertFalse(asset.asset_accounting_info_ids)
 
         # Act
-        self._update_asset(entry, asset)
+        self._link_asset_move(asset, entry, "update")
 
         # Assert
         accounting_info = asset.asset_accounting_info_ids
