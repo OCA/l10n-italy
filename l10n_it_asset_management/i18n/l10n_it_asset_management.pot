@@ -941,6 +941,7 @@ msgstr ""
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category__gain_account_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__gain_account_id
 msgid "Capital Gain Account"
 msgstr ""
 
@@ -952,6 +953,7 @@ msgstr ""
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category__loss_account_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__loss_account_id
 msgid "Capital Loss Account"
 msgstr ""
 
@@ -1341,6 +1343,7 @@ msgstr ""
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category__depreciation_account_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__depreciation_account_id
 msgid "Depreciation Account"
 msgstr ""
 
