@@ -58,7 +58,6 @@ class RibaConfiguration(models.Model):
     bank_account_id = fields.Many2one(
         "account.account",
         "A/C Bank Account",
-        domain=[("account_type", "=", "asset_cash")],
     )
     bank_expense_account_id = fields.Many2one("account.account", "Bank Fees Account")
     past_due_journal_id = fields.Many2one(
@@ -70,7 +69,6 @@ class RibaConfiguration(models.Model):
     overdue_effects_account_id = fields.Many2one(
         "account.account",
         "Past Due Bills Account",
-        domain=[("account_type", "=", "asset_receivable")],
     )
     protest_charge_account_id = fields.Many2one(
         "account.account", "Protest Fee Account"
