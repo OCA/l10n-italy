@@ -200,8 +200,17 @@ odoo.define("fiscal_epos_print.models", function (require) {
                     if (receipt.tax_department.included_in_price === true) {
                         receipt.full_price = this.price;
                     } else {
+                        // This strategy was used because JavaScript's Math.round rounds to the nearest integer
+                        const dec_precision = this.pos.currency.decimal_places;
+                        const full_price = Number(
+                            (
+                                this.price *
+                                (1 + receipt.tax_department.tax_amount / 100)
+                            ).toFixed(dec_precision)
+                        );
+                        const rounding_factor = Math.pow(10, dec_precision);
                         receipt.full_price =
-                            this.price * (1 + receipt.tax_department.tax_amount / 100);
+                            Math.trunc(full_price * rounding_factor) / rounding_factor;
                     }
                 }
 
