@@ -85,9 +85,9 @@ class AccountPartialReconcile(models.Model):
             ld = self.env["account.move.line"].browse(vals.get("debit_move_id"))
             lc = self.env["account.move.line"].browse(vals.get("credit_move_id"))
 
-            move_ids = ld.move_id | lc.move_id
+            move_lines = ld | lc
             lines = self.env["account.move.line"].search(
-                [("withholding_tax_generated_by_move_id", "in", move_ids.ids)]
+                [("withholding_tax_generated_by_move_line_id", "in", move_lines.ids)]
             )
             if lines:
                 is_wt_move = True
@@ -592,6 +592,9 @@ class AccountMoveLine(models.Model):
     withholding_tax_generated_by_move_id = fields.Many2one(
         "account.move", string="Withholding Tax generated from", readonly=True
     )
+    withholding_tax_generated_by_move_line_id = fields.Many2one(
+        "account.move.line", string="Withholding Tax generated from", readonly=True
+    )
 
     def remove_move_reconcile(self):
         # When unreconcile a payment with a wt move linked, it will be
@@ -600,9 +603,9 @@ class AccountMoveLine(models.Model):
             rec_move_ids = self.env["account.partial.reconcile"]
             domain = [
                 (
-                    "withholding_tax_generated_by_move_id",
+                    "withholding_tax_generated_by_move_line_id",
                     "=",
-                    account_move_line.move_id.id,
+                    account_move_line.id,
                 )
             ]
             wt_mls = self.env["account.move.line"].search(domain)
