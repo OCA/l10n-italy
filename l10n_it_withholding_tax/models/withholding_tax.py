@@ -397,6 +397,9 @@ class WithholdingTaxMove(models.Model):
                 ml_vals[
                     "withholding_tax_generated_by_move_id"
                 ] = self.payment_line_id.move_id.id
+                ml_vals[
+                    "withholding_tax_generated_by_move_line_id"
+                ] = self.payment_line_id.id
                 if self.payment_line_id.credit:
                     ml_vals["credit"] = abs(self.amount)
                 else:
