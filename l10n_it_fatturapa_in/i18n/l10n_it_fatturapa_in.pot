@@ -903,6 +903,13 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/efattura.py:0
+#, python-format
+msgid "No available data to compute AliquotaIVA"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "No currency found with code %s."
@@ -1358,6 +1365,13 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__type
 msgid "Type"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/efattura.py:0
+#, python-format
+msgid "Unexpected root element: %s"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
