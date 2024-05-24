@@ -51,6 +51,13 @@ _fpa_schema_file = get_module_resource(
     "Schema_del_file_xml_FatturaPA_v1.2.2.xsd",
 )
 
+_fpa_simple_schema_file = get_module_resource(
+    "l10n_it_account",
+    "tools",
+    "xsd",
+    "Schema_VFSM10.xsd",
+)
+
 fpa_schema = xmlschema.XMLSchema(
     _fpa_schema_file,
     locations={"http://www.w3.org/2000/09/xmldsig#": _old_xsd_specs},
@@ -59,30 +66,44 @@ fpa_schema = xmlschema.XMLSchema(
     loglevel=20,
 )
 
+fpa_simple_schema = xmlschema.XMLSchema(
+    _fpa_simple_schema_file,
+    locations={"http://www.w3.org/2000/09/xmldsig#": _old_xsd_specs},
+    validation="lax",
+    allow="local",
+    loglevel=20,
+)
+
+
+# fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+#      schemaLocation="http://www.w3.org/TR/2002/
+#      REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+class _VeryOldXSDSpecResolverTYVMSdI(etree.Resolver):
+    def resolve(self, system_url, public_id, context):
+        if (
+            system_url
+            == "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"  # noqa: B950
+        ):
+            _logger.info(
+                "mapping URL for %r to local file %r",
+                system_url,
+                _old_xsd_specs,
+            )
+            return self.resolve_filename(self._old_xsd_specs, context)
+        else:
+            return super().resolve(system_url, public_id, context)
+
 
 def fpa_schema_etree():
-    # fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
-    #      schemaLocation="http://www.w3.org/TR/2002/
-    #      REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
-
-    class VeryOldXSDSpecResolverTYVMSdI(etree.Resolver):
-        def resolve(self, system_url, public_id, context):
-            if (
-                system_url
-                == "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"  # noqa: B950
-            ):
-                _logger.info(
-                    "mapping URL for %r to local file %r",
-                    system_url,
-                    _old_xsd_specs,
-                )
-                return self.resolve_filename(self._old_xsd_specs, context)
-            else:
-                return super().resolve(system_url, public_id, context)
-
     parser = etree.XMLParser()
-    parser.resolvers.add(VeryOldXSDSpecResolverTYVMSdI())
+    parser.resolvers.add(_VeryOldXSDSpecResolverTYVMSdI())
     return etree.parse(_fpa_schema_file, parser)
+
+
+def fpa_simple_schema_etree():
+    parser = etree.XMLParser()
+    parser.resolvers.add(_VeryOldXSDSpecResolverTYVMSdI())
+    return etree.parse(_fpa_simple_schema_file, parser)
 
 
 # Funzione per leggere i possibili valori dei tipi enumeration
