@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-09 12:26+0000\n"
-"PO-Revision-Date: 2024-04-05 11:08+0000\n"
+"PO-Revision-Date: 2024-05-28 09:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -547,7 +547,7 @@ msgstr "Fattura Ordinaria"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_simple_preview_style__fatturasemplificata_v1_0_xsl
 msgid "Fattura Semplificata"
-msgstr ""
+msgstr "Fattura semplificata"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
@@ -1059,13 +1059,13 @@ msgstr "Sconto pagamento anticipato"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_preview_style
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_preview_style
 msgid "Preview Format Style for Fattura Ordinaria"
-msgstr ""
+msgstr "Stile formato anteprima per fattura ordinaria"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_simple_preview_style
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_simple_preview_style
 msgid "Preview Format Style for Fattura Semplificata"
-msgstr ""
+msgstr "Stile formato anteprima per fattura semplificata"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__ftpa_preview_link
@@ -1439,7 +1439,7 @@ msgstr "Tipo"
 #: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
 #, python-format
 msgid "Unexpected root element: %s"
-msgstr ""
+msgstr "Elemento radice inatteso: %s"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__url
