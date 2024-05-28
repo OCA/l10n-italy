@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-20 09:39+0000\n"
-"PO-Revision-Date: 2024-02-29 16:33+0000\n"
+"PO-Revision-Date: 2024-03-22 09:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -230,7 +230,7 @@ msgstr "Valuta"
 #. module: l10n_it_account_balance_eu
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_balance_eu_wizard__date_range_id
 msgid "Date range"
-msgstr "Intervallo di date"
+msgstr "Intervallo date"
 
 #. module: l10n_it_account_balance_eu
 #: model:ir.model.fields,field_description:l10n_it_account_balance_eu.field_account_account__account_balance_eu_debit_id

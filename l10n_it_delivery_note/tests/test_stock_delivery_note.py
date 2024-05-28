@@ -220,3 +220,140 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
 
         delivery_note_id.partner_ref = "Reference #1234"
         delivery_note_id.action_confirm()
+
+    def test_partner_shipping_delivering_single_so(self):
+        # ⇒ "Ordine singolo: consegna a indirizzo diverso"
+        self._test_partners()
+        # ⇒ "Ordine singolo: consegna a indirizzo di consegna e fatturazione diversi"
+        self._test_partners(test_invoice_partner=True)
+
+    def _test_partners(self, test_invoice_partner=False):
+        user = new_test_user(
+            self.env,
+            login=f"test_{'invoice' if test_invoice_partner else 'shipping'}",
+            groups="stock.group_stock_manager,"
+            "l10n_it_delivery_note.use_advanced_delivery_notes",
+        )
+        self.env.user = user
+        partner_shipping = self.create_partner(
+            "Shipping Address Mario Rossi", user.company_id
+        )
+        partner_shipping.write(
+            {
+                "parent_id": self.recipient.id,
+                "type": "delivery",
+            }
+        )
+        partner_invoicing = self.create_partner("Invoicing Address", user.company_id)
+        StockPicking = self.env["stock.picking"]
+        sales_order = self.create_sales_order(
+            [
+                self.large_desk_line,  # 1
+                self.desk_combination_line,  # 1
+            ],
+        )
+        if test_invoice_partner:
+            sales_order.write(
+                {
+                    "partner_invoice_id": partner_invoicing.id,
+                }
+            )
+        self.assertEqual(len(sales_order.order_line), 2)
+        sales_order.action_confirm()
+        self.assertEqual(len(sales_order.picking_ids), 1)
+        picking = sales_order.picking_ids
+        self.assertEqual(len(picking.move_lines), 2)
+
+        # deliver only the first product
+        picking.move_lines[0].quantity_done = 1
+        res_dict = picking.button_validate()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))]
+            .with_user(user)
+            .with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+        res_dict = picking.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))]
+            .with_user(user)
+            .with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        self.assertTrue(picking.delivery_note_id)
+        if test_invoice_partner:
+            self.assertEqual(picking.delivery_note_id.partner_id, partner_invoicing)
+        else:
+            self.assertEqual(picking.delivery_note_id.partner_id, self.recipient)
+        self.assertEqual(picking.delivery_note_id.partner_shipping_id, partner_shipping)
+        picking_backorder = StockPicking.search([("backorder_id", "=", picking.id)])
+        self.assertEqual(len(picking_backorder.move_lines), 1)
+        picking_backorder.move_lines[0].quantity_done = 1
+        picking_backorder.button_validate()
+        res_dict = picking_backorder.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))]
+            .with_user(user)
+            .with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        self.assertTrue(picking_backorder.delivery_note_id)
+        if test_invoice_partner:
+            self.assertEqual(
+                picking_backorder.delivery_note_id.partner_id, partner_invoicing
+            )
+        else:
+            self.assertEqual(
+                picking_backorder.delivery_note_id.partner_id, self.recipient
+            )
+        self.assertEqual(
+            picking_backorder.delivery_note_id.partner_shipping_id,
+            partner_shipping,
+        )
+
+    def test_ddt_line_amount(self):
+        user = new_test_user(
+            self.env,
+            login="test",
+            groups="stock.group_stock_manager,"
+            "l10n_it_delivery_note.use_advanced_delivery_notes",
+        )
+
+        self.env.user = user
+
+        sales_order = self.create_sales_order(
+            [
+                self.large_desk_line,  # 1
+                self.desk_combination_line,  # 1
+            ],
+        )
+
+        tax_id = self.env["account.tax"].search(
+            [("type_tax_use", "=", "sale")], limit=1
+        )
+
+        for line in sales_order.order_line:
+            line.tax_id = [(6, 0, tax_id.ids)]
+
+        sales_order.action_confirm()
+        picking = sales_order.picking_ids
+
+        # deliver all the products
+        for move_line in picking.move_lines:
+            move_line.quantity_done = 1
+
+        picking.button_validate()
+        dn_form = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                {"active_id": picking.id, "active_ids": picking.ids}
+            )
+        )
+        dn = dn_form.save()
+        dn.confirm()
+
+        delivery_note_id = picking.delivery_note_id
+        for note_line in delivery_note_id.line_ids:
+            self.assertEqual(
+                note_line.price_unit * note_line.product_qty, note_line.untaxed_amount
+            )
+            self.assertNotEqual(note_line.untaxed_amount, note_line.amount)

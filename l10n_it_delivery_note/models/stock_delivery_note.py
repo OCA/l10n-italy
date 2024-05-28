@@ -4,7 +4,7 @@
 import datetime
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 from ..mixins.picking_checker import (
     DOMAIN_PICKING_TYPES,
@@ -274,6 +274,22 @@ class StockDeliveryNote(models.Model):
     sale_count = fields.Integer(compute="_compute_sales")
     sales_transport_check = fields.Boolean(compute="_compute_sales", default=True)
 
+    currency_id = fields.Many2one("res.currency", compute="_compute_currency_id")
+
+    untaxed_amount_total = fields.Monetary(
+        "Untaxed Total Amount",
+        compute="_compute_amount_total",
+        currency_field="currency_id",
+        store=True,
+    )
+
+    amount_total = fields.Monetary(
+        "Total Amount",
+        compute="_compute_amount_total",
+        currency_field="currency_id",
+        store=True,
+    )
+
     invoice_ids = fields.Many2many(
         "account.move",
         "stock_delivery_note_account_invoice_rel",
@@ -291,6 +307,7 @@ class StockDeliveryNote(models.Model):
     can_change_number = fields.Boolean(compute="_compute_boolean_flags")
     show_product_information = fields.Boolean(compute="_compute_boolean_flags")
     company_id = fields.Many2one("res.company", required=True, default=_default_company)
+    show_discount = fields.Boolean(compute="_compute_show_discount")
 
     _sql_constraints = [
         (
@@ -335,6 +352,19 @@ class StockDeliveryNote(models.Model):
                     invoice_status = DOMAIN_INVOICE_STATUSES[1]
             note.invoice_status = invoice_status
 
+    @api.depends("line_ids.currency_id")
+    def _compute_currency_id(self):
+        for sdn in self:
+            sdn.currency_id = sdn.line_ids.mapped("currency_id")
+
+    @api.depends("line_ids.amount", "line_ids.untaxed_amount")
+    def _compute_amount_total(self):
+        for sdn in self:
+            sdn.untaxed_amount_total = (
+                sum(line.untaxed_amount or 0.0 for line in sdn.line_ids) or 0.0
+            )
+            sdn.amount_total = sum(line.amount or 0.0 for line in sdn.line_ids) or 0.0
+
     def _compute_get_pickings(self):
         for note in self:
             note.pickings_picker = note.picking_ids
@@ -358,6 +388,13 @@ class StockDeliveryNote(models.Model):
                     )
             note.gross_weight = gross_weight
             note.net_weight = net_weight
+
+    @api.depends("line_ids.discount")
+    def _compute_show_discount(self):
+        for sdn in self:
+            sdn.show_discount = any(
+                sdn.line_ids.filtered(lambda line: line.discount != 0)
+            )
 
     @api.onchange("picking_ids")
     def _onchange_picking_ids(self):
@@ -516,6 +553,17 @@ class StockDeliveryNote(models.Model):
         else:
             self.delivery_method_id = False
 
+    @api.constrains("line_ids")
+    def _check_line_ids(self):
+        for rec in self:
+            if len(rec.line_ids.mapped("currency_id")) > 1:
+                raise ValidationError(
+                    _(
+                        "You cannot have different currencies in the lines of a"
+                        "Delivery Note"
+                    )
+                )
+
     def check_compliance(self, pickings):
         super().check_compliance(pickings)
 
@@ -544,9 +592,17 @@ class StockDeliveryNote(models.Model):
                 note.date = datetime.date.today()
 
             if not note.name:
-                note.name = sequence.with_context(
-                    ir_sequence_date=note.date
-                ).next_by_id()
+                # Avoid duplicates
+                while True:
+                    name = sequence.with_context(
+                        ir_sequence_date=note.date
+                    ).next_by_id()
+                    if not self.search(
+                        [("name", "=", name), ("company_id", "=", note.company_id.id)]
+                    ):
+                        break
+
+                note.name = name
                 note.sequence_id = sequence
 
     def action_confirm(self):
@@ -925,7 +981,7 @@ class StockDeliveryNoteLine(models.Model):
         string="Quantity", digits="Product Unit of Measure", default=1.0
     )
     product_uom_id = fields.Many2one("uom.uom", string="UoM", default=_default_unit_uom)
-    price_unit = fields.Monetary(string="Unit price", currency_field="currency_id")
+    price_unit = fields.Float(string="Unit price", digits="Product Price")
     currency_id = fields.Many2one(
         "res.currency", string="Currency", required=True, default=_default_currency
     )
@@ -960,6 +1016,9 @@ class StockDeliveryNoteLine(models.Model):
         copy=False,
     )
 
+    untaxed_amount = fields.Monetary(compute="_compute_amount", store=True)
+    amount = fields.Monetary(compute="_compute_amount", store=True)
+
     _sql_constraints = [
         (
             "move_uniq",
@@ -985,6 +1044,42 @@ class StockDeliveryNoteLine(models.Model):
                 sdnl.sale_line_id.order_id.client_order_ref or ""
             )
 
+    @api.depends(
+        "product_id",
+        "price_unit",
+        "discount",
+        "product_qty",
+        "tax_ids",
+        "currency_id",
+        "delivery_note_id.partner_shipping_id",
+    )
+    def _compute_amount(self):
+        for sdnl in self:
+            price = sdnl.price_unit * (100.0 - sdnl.discount or 0.0) / 100.0
+
+            taxed_amount_data = sdnl._get_taxed_amount()
+
+            sdnl.untaxed_amount = taxed_amount_data.get("total_excluded", price)
+            sdnl.amount = taxed_amount_data.get("total_included", price)
+
+    def _get_taxed_amount(self):
+        price = self.price_unit * (100.0 - self.discount or 0.0) / 100.0
+        res = {}
+        if self.tax_ids:
+            tax_data = self.tax_ids.compute_all(
+                price,
+                self.currency_id,
+                self.product_qty,
+                product=self.product_id,
+                partner=self.delivery_note_id.partner_shipping_id,
+            )
+            res.update(
+                total_excluded=tax_data.get("total_excluded"),
+                total_included=tax_data.get("total_included"),
+                taxes=tax_data.get("taxes"),
+            )
+        return res
+
     @api.onchange("product_id")
     def _onchange_product_id(self):
         if self.product_id:
@@ -1008,7 +1103,7 @@ class StockDeliveryNoteLine(models.Model):
     def _prepare_detail_lines(self, moves):
         lines = []
         for move in moves:
-
+            move = move.with_context(lang=move.picking_id.partner_id.lang)
             name = move.product_id.name
             if move.product_id.description_sale:
                 name += "\n" + move.product_id.description_sale

@@ -115,11 +115,6 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
-msgid "Include in VAT register"
-msgstr ""
-
-#. module: l10n_it_account
 #: code:addons/l10n_it_account/models/account_group.py:0
 #, python-format
 msgid "Incoherent balance signs for '{}' and its subgroups."
@@ -149,16 +144,6 @@ msgid "Parent Taxes"
 msgstr ""
 
 #. module: l10n_it_account
-#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__purchase
-msgid "Purchase"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__sale
-msgid "Sale"
-msgstr ""
-
-#. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_tax
 msgid "Tax"
 msgstr "Impuesto"
@@ -166,11 +151,4 @@ msgstr "Impuesto"
 #. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__undeductible_balance
 msgid "Undeductible Balance"
-msgstr ""
-
-#. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
-msgid ""
-"Use in the case of tax with 'VAT integration'. This specifies the VAT "
-"register (sales / purchases) where the tax must be computed."
 msgstr ""

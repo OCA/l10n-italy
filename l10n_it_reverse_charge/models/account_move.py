@@ -343,7 +343,7 @@ class AccountMove(models.Model):
                 )
 
             rc_lines_to_rec = line_to_reconcile | payment_line_to_reconcile
-            rc_lines_to_rec.reconcile()
+            rc_lines_to_rec.with_context(no_exchange_difference=True).reconcile()
 
     def _reconcile_rc_invoice_payment(self, rc_invoice, rc_payment):
         """Reconcile the RC Payment."""

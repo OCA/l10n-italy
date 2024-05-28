@@ -6,13 +6,7 @@ from odoo import api, fields, models
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
-    cee_type = fields.Selection(
-        [("sale", "Sale"), ("purchase", "Purchase")],
-        string="Include in VAT register",
-        help="Use in the case of tax with 'VAT integration'. This "
-        "specifies the VAT register (sales / purchases) where the "
-        "tax must be computed.",
-    )
+    # TODO remove?
     parent_tax_ids = fields.Many2many(
         "account.tax",
         "account_tax_filiation_rel",
@@ -186,24 +180,11 @@ class AccountTax(models.Model):
         else:
             # TODO remove?
             base_balance = tax.base_balance
-
             tax_balance = 0
             deductible = 0
             undeductible = 0
             for child in tax.children_tax_ids:
                 child_balance = child.balance
-                if (
-                    data["registry_type"] == "customer" and child.cee_type == "sale"
-                ) or (
-                    data["registry_type"] == "supplier" and child.cee_type == "purchase"
-                ):
-                    # Prendo la parte di competenza di ogni registro e lo
-                    # sommo sempre
-                    child_balance = child_balance
-
-                elif child.cee_type:
-                    continue
-
                 tax_balance += child_balance
                 account_ids = (
                     child.mapped("invoice_repartition_line_ids.account_id")

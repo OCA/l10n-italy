@@ -28,7 +28,9 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
     partner_id = fields.Many2one(
         "res.partner", string="Recipient", compute="_compute_fields"
     )
-    partner_shipping_id = fields.Many2one("res.partner", string="Shipping address")
+    partner_shipping_id = fields.Many2one(
+        "res.partner", string="Shipping address", compute="_compute_fields"
+    )
 
     date = fields.Date(string="Date")
     type_id = fields.Many2one(
@@ -80,6 +82,7 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
             self.error_message = False
             self.partner_sender_id = False
             self.partner_id = False
+            self.partner_shipping_id = False
             self.check_compliance(self.selected_picking_ids)
 
         except ValidationError:
@@ -98,7 +101,8 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
             self.warning_message = self._get_warning_message()
             partners = self.selected_picking_ids.get_partners()
             self.partner_sender_id = partners[0]
-            self.partner_id = partners[1]
+            self.partner_shipping_id = partners[1]
+            self.partner_id = partners[2]
 
     def confirm(self):
         raise NotImplementedError(
