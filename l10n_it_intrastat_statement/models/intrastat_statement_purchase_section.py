@@ -20,7 +20,8 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
         # Amounts
         amount_currency = 0
         if (
-            invoice_id.currency_id != invoice_id.company_id.currency_id
+            invoice_id.partner_id.country_id.currency_id
+            != invoice_id.company_id.currency_id
             and invoice_id.currency_id != self.env.ref("base.EUR")
         ):
             # Only for non-Euro countries
