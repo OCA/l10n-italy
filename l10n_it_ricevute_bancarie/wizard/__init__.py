@@ -11,3 +11,4 @@ from . import wizard_riba_file_export
 from . import wizard_accreditation
 from . import wizard_unsolved
 from . import wizard_presentation_riba
+from . import wizard_due_date_settlement
