@@ -18,3 +18,4 @@ access_riba_past_due,riba_past_due,model_riba_past_due,account.group_account_inv
 access_riba_credit,riba_credit,model_riba_credit,account.group_account_invoice,1,1,1,1
 access_riba_file_export,riba_file_export,model_riba_file_export,account.group_account_invoice,1,1,1,1
 access_presentation_riba_issue,access_presentation_riba_issue,model_presentation_riba_issue,account.group_account_invoice,1,1,1,1
+access_riba_due_date_settlement,riba_due_date_settlement,model_riba_due_date_settlement,account.group_account_invoice,1,1,1,1
