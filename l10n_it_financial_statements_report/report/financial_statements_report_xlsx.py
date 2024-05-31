@@ -566,7 +566,9 @@ class FinancialStatementsReportXslx(models.AbstractModel):
             allow = True
 
         if value:
-            if isinstance(value, int | float) and cell_type not in (
+            if (
+                isinstance(value, int) or isinstance(value, float)
+            ) and cell_type not in (
                 "amount",
                 "amount_currency",
             ):
