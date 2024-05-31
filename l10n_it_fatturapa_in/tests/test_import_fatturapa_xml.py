@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from datetime import date
 
 from psycopg2 import IntegrityError
@@ -1165,13 +1168,18 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_xml_import_summary_tax_rate(self):
         # Invoice  with positive total. Detail Level:  '1' -- Tax Rate
-        # Note: this test depends on test_14_xml_import for supplier creation
-        supplier = self.env["res.partner"].search([("vat", "=", "IT02780790107")])[0]
-        # in order to make the system create the invoice lines
-        supplier.e_invoice_detail_level = "1"
+        supplier = self.env["res.partner"].create(
+            {
+                "name": "SOCIETA' ALPHA SRL",
+                "vat": "IT39768960237",
+                # in order to make the system create the invoice lines
+                "e_invoice_detail_level": "1",
+            }
+        )
         res = self.run_wizard("test_summary_tax_rate", "IT05979361218_ripilogoiva.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id, supplier)
         self.assertEqual(invoice.amount_total, 204.16)
         self.assertEqual(len(invoice.invoice_line_ids), 2)
 

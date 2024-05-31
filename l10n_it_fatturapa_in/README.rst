@@ -213,6 +213,9 @@ Contributors
 -  Gianmarco Conte <gconte@dinamicheaziendali.it>
 -  Marco Colombo <https://github.com/TheMule71>
 -  Salvo Rapisarda <https://github.com/salvorapi>
+-  `Aion Tech <https://aiontech.company/>`__:
+
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
