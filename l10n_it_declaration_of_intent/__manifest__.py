@@ -26,4 +26,7 @@
         "views/company_view.xml",
         "views/account_invoice_view.xml",
     ],
+    "demo": [
+        "demo/declaration_of_intent.xml",
+    ],
 }
