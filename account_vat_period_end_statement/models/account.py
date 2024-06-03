@@ -467,13 +467,20 @@ class AccountVatPeriodEndStatement(models.Model):
         if statement.authority_vat_amount > 0:
             end_debit_vat_data["credit"] = math.fabs(statement.authority_vat_amount)
             if statement.payment_term_id:
-                due_list = statement.payment_term_id.compute(
-                    statement.authority_vat_amount, statement_date
+                due_list = statement.payment_term_id._compute_terms(
+                    date_ref=statement_date,
+                    currency=self.company_id.currency_id,
+                    company=self.company_id,
+                    tax_amount=0,
+                    tax_amount_currency=0,
+                    untaxed_amount=statement.authority_vat_amount,
+                    untaxed_amount_currency=0,
+                    sign=1,
                 )
                 for term in due_list:
-                    current_line = end_debit_vat_data
-                    current_line["credit"] = term[1]
-                    current_line["date_maturity"] = term[0]
+                    current_line = end_debit_vat_data.copy()
+                    current_line["credit"] = term["company_amount"]
+                    current_line["date_maturity"] = term["date"]
                     lines_to_create.append((0, 0, current_line))
             else:
                 lines_to_create.append((0, 0, end_debit_vat_data))
