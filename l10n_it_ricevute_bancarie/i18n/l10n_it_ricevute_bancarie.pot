@@ -783,6 +783,12 @@ msgid "Issue Mode"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/wizard/wizard_riba_issue.py:0
+#, python-format
+msgid "It is possible to issue C/O for posted move only!"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model:ir.model,name:l10n_it_ricevute_bancarie.model_account_move
 msgid "Journal Entry"
 msgstr ""
