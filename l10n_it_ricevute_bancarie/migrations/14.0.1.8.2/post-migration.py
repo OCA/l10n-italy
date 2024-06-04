@@ -5,7 +5,6 @@ _delete_xmlids = ["l10n_it_ricevute_bancarie.riba_config_company_rule"]
 
 @openupgrade.migrate()
 def migrate(env, version):
-
     openupgrade.load_data(
         env.cr,
         "l10n_it_ricevute_bancarie",

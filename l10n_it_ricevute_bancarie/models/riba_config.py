@@ -10,7 +10,6 @@ from odoo import fields, models
 
 
 class RibaConfiguration(models.Model):
-
     _name = "riba.configuration"
     _description = "Configuration parameters for Cash Orders"
     _check_company_auto = True
