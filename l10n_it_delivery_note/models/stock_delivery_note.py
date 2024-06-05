@@ -648,19 +648,17 @@ class StockDeliveryNote(models.Model):
                 if line.product_id.invoice_policy == "order":
                     raise UserError(
                         _(
-                            "In %(ddt_name)s there is %(product_name)s"
-                            " with invoicing policy 'order'"
+                            "In %(dn_name)s there is %(product_name)s "
+                            "with invoicing policy 'order'",
+                            dn_name=delivery_note_id.display_name,
+                            product_name=line.product_id.name,
                         )
-                        % {
-                            "ddt_name": delivery_note_id.display_name,
-                            "product_name": line.product_id.name,
-                        }
                     )
 
     def _fix_quantities_to_invoice(self, lines, invoice_method):
         cache = {}
 
-        pickings_lines = lines.retrieve_pickings_lines(self.picking_ids)
+        pickings_lines = lines.retrieve_pickings_lines(self.mapped("picking_ids"))
         other_lines = lines - pickings_lines
 
         if not invoice_method or invoice_method == "dn":
@@ -691,16 +689,17 @@ class StockDeliveryNote(models.Model):
         ]
         for payment_term_id in payment_term_ids:
             sale_ids = self.mapped("sale_ids").filtered(
-                lambda s, pay_term_id=payment_term_id: s.payment_term_id == pay_term_id
+                lambda s, payment_term_id=payment_term_id: s.payment_term_id
+                == payment_term_id
             )
             if not sale_ids:
                 continue
             orders_lines = sale_ids.mapped("order_line").filtered(
-                lambda l: l.product_id  # noqa: E741
+                lambda line: line.product_id
             )
 
-            downpayment_lines = orders_lines.filtered(lambda l: l.is_downpayment)  # noqa: E741
-            invoiceable_lines = orders_lines.filtered(lambda l: l.is_invoiceable)  # noqa: E741
+            downpayment_lines = orders_lines.filtered(lambda line: line.is_downpayment)
+            invoiceable_lines = orders_lines.filtered(lambda line: line.is_invoiceable)
 
             cache = self._fix_quantities_to_invoice(
                 invoiceable_lines - downpayment_lines, invoice_method
@@ -709,13 +708,13 @@ class StockDeliveryNote(models.Model):
             for downpayment in downpayment_lines:
                 order = downpayment.order_id
                 order_lines = order.order_line.filtered(
-                    lambda l: l.product_id and not l.is_downpayment  # noqa: E741
+                    lambda line: line.product_id and not line.is_downpayment
                 )
 
-                if order_lines.filtered(lambda l: l.need_to_be_invoiced):  # noqa: E741
+                if order_lines.filtered(lambda line: line.need_to_be_invoiced):
                     cache[downpayment] = downpayment.fix_qty_to_invoice()
 
-            invoice_ids = sale_ids.filtered(
+            invoice_ids = self.sale_ids.filtered(
                 lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
             )._create_invoices(final=True)
 
@@ -742,6 +741,27 @@ class StockDeliveryNote(models.Model):
             self._compute_invoice_status()
             invoices = self.env["account.move"].browse(invoice_ids.ids)
             invoices.update_delivery_note_lines()
+
+            if all(
+                line.invoice_status == "invoiced" for line in self.mapped("line_ids")
+            ):
+                for delivery_note in self:
+                    ready_invoice_ids = [
+                        invoice_id
+                        for invoice_id in delivery_note.sale_ids.mapped(
+                            "invoice_ids"
+                        ).ids
+                        if invoice_id in invoices.ids
+                    ]
+                    delivery_note.write(
+                        {
+                            "invoice_ids": [
+                                (4, invoice_id) for invoice_id in ready_invoice_ids
+                            ]
+                        }
+                    )
+                self._compute_invoice_status()
+                invoices.update_delivery_note_lines()
 
     def action_done(self):
         self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[3]})
