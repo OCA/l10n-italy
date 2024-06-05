@@ -39,6 +39,25 @@ class DeclarationOfIntent(models.Model):
     _order = "date_start desc,date_end desc"
 
     @api.model
+    def update_taxes_from_templates(self):
+        from odoo.addons.account.models.chart_template import (
+            update_taxes_from_templates,
+        )
+
+        coa_xmlids = [
+            "l10n_it.l10n_it_chart_template_generic",
+            "l10n_generic_coa.configurable_chart_template",
+        ]
+        for coa_xmlid in coa_xmlids:
+            if self.env.ref(coa_xmlid):
+                break
+        else:
+            coa_xmlid = False
+
+        if coa_xmlid:
+            update_taxes_from_templates(self.env.cr, coa_xmlid)
+
+    @api.model
     def _default_currency(self):
         return self.env.company.currency_id
 
