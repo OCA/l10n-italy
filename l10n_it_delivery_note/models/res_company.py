@@ -20,3 +20,7 @@ class ResCompany(models.Model):
         "Display Delivery Method in Delivery Note Report",
         default=False,
     )
+    delivery_note_group_by_quantity = fields.Boolean(
+        "Group Delivery note invoices by quantity",
+        default=False,
+    )
