@@ -813,6 +813,11 @@ msgid "Line Ref."
 msgstr "Rif. riga"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model,name:l10n_it_fatturapa.model_l10n_it_fatturapa_attachment_e_invoice_link
+msgid "Link attachment in current record"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__max_payment_date
 msgid "Maximum Date for Payment"
 msgstr "Data massima per il pagamento"
