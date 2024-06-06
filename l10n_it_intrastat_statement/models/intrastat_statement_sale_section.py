@@ -537,3 +537,137 @@ class IntrastatStatementSaleSection4(models.Model):
 
         rcd += "\r\n"
         return rcd
+
+
+class IntrastatStatementSaleSection5(models.Model):
+    _name = 'account.intrastat.statement.sale.section5'
+    _inherit = 'account.intrastat.statement.sale.section'
+    _description = 'Intrastat Statement - Sales Section 5'
+
+    call_off_stock_code = fields.Many2one(
+        comodel_name='account.intrastat.call.off.stock.operations',
+        string="Call Off Stock Code"
+    )
+
+    call_off_stock_op_code = fields.Char(
+        related='call_off_stock_code.code',
+        string="Call Off Stock op. Code"
+    )
+
+    current_partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Current receiver'
+    )
+
+    current_partner_country_id = fields.Many2one(
+        comodel_name='res.country',
+        string="Current receiver country"
+    )
+
+    current_partner_vat = fields.Char(
+        string='Current receiver vat'
+    )
+
+    new_partner_id = fields.Many2one('res.partner', string='Partner')
+
+    new_partner_country_id = fields.Many2one(
+        comodel_name='res.country',
+        string="New receiver country"
+    )
+
+    new_partner_vat = fields.Char(
+        string="New receiver vat"
+    )
+
+    @api.model
+    def get_section_number(self):
+        return 5
+
+    @api.onchange('current_partner_id')
+    def onchange_current_partner_id(self):
+        if self.current_partner_id:
+            cur_partner = self.current_partner_id
+            self.current_partner_country_id = cur_partner.country_id
+            if cur_partner.vat:
+                self.current_partner_vat = cur_partner.vat[2:]
+            else:
+                self.current_partner_vat = False
+
+    @api.onchange('new_partner_id')
+    def onchange_new_partner_id(self):
+        if self.new_partner_id:
+            new_partner = self.new_partner_id
+            self.new_partner_country_id = new_partner.country_id
+            if new_partner.vat:
+                self.new_partner_vat = new_partner.vat[2:]
+            else:
+                self.new_partner_vat = False
+
+    @api.model
+    def _prepare_statement_line(self, inv_intra_line):
+        company_id = self._context.get(
+            'company_id', self.env.user.company_id)
+
+        cur_partner = self.current_partner_id
+        new_partner = self.new_partner_id
+
+        if cur_partner.vat:
+            cur_partner_vat = cur_partner.vat[2:]
+        else:
+            cur_partner_vat = False
+
+        if new_partner.vat:
+            new_partner_vat = new_partner.vat[2:]
+        else:
+            new_partner_vat = False
+
+        res = {
+            'company_id': company_id.id,
+            'current_partner_id': cur_partner.id,
+            'current_partner_country_id': cur_partner.country_id.id,
+            'current_partner_vat': cur_partner_vat,
+            'call_off_stock_code': self.call_off_stock_code.id,
+            'new_partner_id': new_partner.id,
+            'new_partner_country_id': new_partner.country_id.id,
+            'new_partner_vat': new_partner_vat,
+        }
+        return res
+
+    def _export_line_checks(self, section_label, section_number):
+        if not self.current_partner_vat:
+            raise ValidationError(
+                _("Missing current receiver partner VAT number")
+            )
+        if not self.new_partner_vat and self.call_off_stock_op_code == '3':
+            raise ValidationError(
+                _("Missing new receiver partner VAT number")
+            )
+
+    def _prepare_export_line(self):
+        # Controls
+        self._export_line_checks(_("Sales"), self.get_section_number())
+
+        rcd = ''
+
+        # Codice dello Stato membro dell’acquirente
+        self.current_partner_country_id.with_context(control_ISO_code=True).\
+            intrastat_validate()
+        rcd += format_x(self.current_partner_country_id.code, 2)
+        # Codice IVA dell’acquirente
+        rcd += format_x(self.current_partner_vat.replace(' ', '') or '', 12)
+        # Codice del tipo di operazione
+        rcd += format_x(self.call_off_stock_op_code, 1)
+        if self.call_off_stock_op_code.strip() == '3':
+            # Codice dello Stato membro del ricevente
+            self.new_partner_country_id.with_context(control_ISO_code=True).\
+                intrastat_validate()
+            rcd += format_x(self.new_partner_country_id.code, 2)
+            # Codice IVA dell’acquirente
+            rcd += format_x(self.new_partner_vat.replace(' ', '') or '', 12)
+        else:
+            rcd += format_x('', 2)
+            rcd += format_x('', 12)
+
+        # ... new line
+        rcd += "\r\n"
+        return rcd
