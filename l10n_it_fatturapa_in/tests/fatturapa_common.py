@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 import base64
 import operator
 import tempfile
@@ -275,7 +278,7 @@ class FatturapaCommon(SingleTransactionCase):
     def create_attachment(self, name, file_name, module_name=None):
         if module_name is None:
             module_name = "l10n_it_fatturapa_in"
-        attach = self.attach_model.create(
+        attach = self.env["fatturapa.attachment.in"].create(
             {"name": name, "datas": self.getFile(file_name, module_name=module_name)[1]}
         )
         return attach

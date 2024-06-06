@@ -3,6 +3,7 @@
 # Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
 # Copyright 2018 Sergio Corato
 # Copyright 2022 Marco Colombo <marco.colombo@phi.technology>
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {

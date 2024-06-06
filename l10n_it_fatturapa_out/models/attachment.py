@@ -1,5 +1,7 @@
 # Copyright 2014 Davide Corio
 # Copyright 2016-2018 Lorenzo Battistini - Agile Business Group
+# Copyright 2024 Simone Rubino - Aion Tech
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -9,7 +11,10 @@ class FatturaPAAttachment(models.Model):
     _name = "fatturapa.attachment.out"
     _description = "E-invoice Export File"
     _inherits = {"ir.attachment": "ir_attachment_id"}
-    _inherit = ["mail.thread"]
+    _inherit = [
+        "mail.thread",
+        "l10n_it_fatturapa.attachment.e_invoice.link",
+    ]
     _order = "id desc"
 
     ir_attachment_id = fields.Many2one(

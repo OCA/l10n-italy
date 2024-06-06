@@ -94,6 +94,9 @@ Contributors
 
 -  Giuseppe Borruso - Dinamiche Aziendali srl
    <gborruso@dinamicheaziendali.it>
+-  `Aion Tech <https://aiontech.company/>`__:
+
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
