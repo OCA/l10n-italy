@@ -1,3 +1,4 @@
+import math
 from odoo import models, api, _
 from odoo.tools import float_compare
 
@@ -19,6 +20,15 @@ class InvoiceLine(models.Model):
 
 class Invoice(models.Model):
     _inherit = 'account.invoice'
+
+    def fix_decimals_using_int_representation(self, in_value, rounding_value):
+        round_value = 0.01
+        if rounding_value:
+            round_value = rounding_value
+        rounding_digits = int(math.ceil(math.log10(1 / round_value)))
+        rounding_factor = math.pow(10, rounding_digits)
+        fixed_value = math.trunc(in_value * rounding_factor)
+        return fixed_value / rounding_factor
 
     def e_inv_check_amount_tax(self):
         if (
@@ -51,7 +61,10 @@ class Invoice(models.Model):
         ):
             error_message = ''
             amount_added_for_rc = self.get_tax_amount_added_for_rc()
-            amount_total = self.amount_total - amount_added_for_rc
+            amount_total = self.fix_decimals_using_int_representation(
+                self.amount_total - amount_added_for_rc,
+                self.currency_id.rounding
+            )
             if float_compare(
                 amount_total, self.e_invoice_amount_total,
                 precision_rounding=self.currency_id.rounding
