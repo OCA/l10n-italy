@@ -42,7 +42,7 @@ class DeclarationOfIntent(models.Model):
         return self.env.company.currency_id
 
     number = fields.Char(copy=False)
-    date = fields.Date(required=True)
+    date = fields.Date(required=True, string="Telematic Protocol Date")
     date_start = fields.Date(required=True)
     date_end = fields.Date(required=True)
     type = fields.Selection(
