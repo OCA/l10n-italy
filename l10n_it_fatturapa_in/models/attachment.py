@@ -1,3 +1,5 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 
 from odoo import _, api, fields, models
@@ -11,9 +13,14 @@ SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21", "TD27", "T
 
 
 class FatturaPAAttachmentIn(models.Model):
-    _inherit = "fatturapa.attachment"
     _name = "fatturapa.attachment.in"
     _description = "Electronic Invoice"
+    _inherits = {"ir.attachment": "ir_attachment_id"}
+    _inherit = [
+        "fatturapa.attachment",
+        "l10n_it_fatturapa.attachment.e_invoice.link",
+    ]
+    _order = "id desc"
 
     in_invoice_ids = fields.One2many(
         "account.move",

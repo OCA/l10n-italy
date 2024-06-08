@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 import base64
 import tempfile
 
@@ -263,7 +266,7 @@ class FatturapaCommon(SingleTransactionCase):
         if module_name is None:
             module_name = "l10n_it_fatturapa_in"
 
-        attach_form = Form(self.attach_model)
+        attach_form = Form(self.env["fatturapa.attachment.in"])
         attach_form.name = name
         attach_form.datas = self.getFile(file_name, module_name=module_name)[1]
         attach = attach_form.save()
