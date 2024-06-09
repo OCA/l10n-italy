@@ -26,6 +26,9 @@ class StockPicking(models.Model):
     delivery_note_state = fields.Selection(string="DN State",
                                            related='delivery_note_id.state')
     delivery_note_partner_ref = fields.Char(related='delivery_note_id.partner_ref')
+    delivery_note_partner_id = fields.Many2one(
+        "res.partner", string="Recipient", related="delivery_note_id.partner_id"
+    )
     delivery_note_partner_shipping_id = \
         fields.Many2one('res.partner',
                         related='delivery_note_id.partner_shipping_id')
@@ -249,9 +252,18 @@ class StockPicking(models.Model):
 
     def _create_delivery_note(self):
         partners = self.get_partners()
+        partner_id = (
+            self.sale_id.partner_id.id
+            if self.sale_id.partner_id
+            else self.partner_id.id
+        )
+        if not partner_id:
+            raise UserError(
+                _("You have to set a contact for internal transfers.")
+            )
         return self.env['stock.delivery.note'].create({
             'partner_sender_id': partners[0].id,
-            'partner_id': partners[1].id,
+            'partner_id': partner_id,
             'partner_shipping_id': partners[1].id
         })
 
@@ -355,3 +367,13 @@ class StockPicking(models.Model):
         for backorder in backorders:
             backorder.backorder_id.delivery_note_id.update_detail_lines()
         return backorders
+
+    @api.onchange("picking_type_id")
+    def _set_partner_if_internal(self):
+        for picking in self:
+            if picking.picking_type_code == "internal" and picking.location_dest_id:
+                wh_id = self.env["stock.warehouse"].search(
+                    [("lot_stock_id", "=", picking.location_dest_id.id)]
+                )
+                if wh_id:
+                    picking.partner_id = wh_id.partner_id
