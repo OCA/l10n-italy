@@ -5,7 +5,7 @@
 import logging
 
 from odoo.exceptions import UserError, ValidationError
-from odoo import _
+from odoo import _, fields
 
 from .core import EasyCommand
 
@@ -87,7 +87,17 @@ class MigrateL10nItDdt(EasyCommand):
             ))
 
         old_sequence = self.env.ref('l10n_it_ddt.seq_ddt')
-        if old_sequence.number_next_actual == 1:
+        number_next_actual = old_sequence.number_next_actual
+        if old_sequence.use_date_range:
+            dt = fields.Date.today()
+            seq_date = self.env['ir.sequence.date_range'].search([
+                ('sequence_id', '=', old_sequence.id), ('date_from', '<=', dt),
+                ('date_to', '>=', dt)
+            ], limit=1)
+            if seq_date:
+                number_next_actual = seq_date.with_context(
+                    ir_sequence_date_range=seq_date.date_from).number_next_actual
+        if number_next_actual == 1:
             raise UserError(_(
                 "It seems that there are no documents to migrate. "
                 "You don't need to run this command."
