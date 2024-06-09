@@ -287,3 +287,19 @@ class TestDichiarazioneIntento(TransactionCase):
         declaration = self._create_dichiarazione(self.partner1, 'out')
         self.assertEqual(declaration_model.search([]), declaration)
         self.assertEqual(self.env.user.company_id, declaration.company_id)
+
+    def test_multiple_valid(self):
+        dichiarazione_model = self.env['dichiarazione.intento'].sudo()
+        post_used_amount2 = self.dichiarazione2.used_amount
+        post_used_amount3 = self.dichiarazione3.used_amount
+        self.assertAlmostEqual(post_used_amount2, 0.0, 2)
+        self.assertAlmostEqual(post_used_amount3, 0.0, 2)
+        records = dichiarazione_model.get_valid(
+            type_d='out', partner_id=self.partner2.id, date=self.today_date)
+        self.assertEquals(len(records), 2)
+        invoice6 = self._create_invoice(self.partner2, tax=self.tax1)
+        invoice6.action_invoice_open()
+        new_post_used_amount2 = self.dichiarazione2.used_amount
+        new_post_used_amount3 = self.dichiarazione3.used_amount
+        self.assertAlmostEqual(new_post_used_amount2, 900.0, 2)
+        self.assertAlmostEqual(new_post_used_amount3, 0.0, 2)
