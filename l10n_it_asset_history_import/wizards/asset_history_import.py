@@ -249,6 +249,26 @@ HEADERS = (
         tmpl_default=0,
         type='float',
     ),
+    Header(
+        name=_('Supplier VAT'),
+        col=22,
+        model='res.partner',
+        field='vat',
+        apply_on='asset.asset',
+        required=False,
+        tmpl_default='',
+        type='str'
+    ),
+    Header(
+        name=_('Supplier Doc Ref'),
+        col=23,
+        model='asset.asset',
+        field='supplier_ref',
+        apply_on='asset.asset',
+        required=False,
+        tmpl_default='',
+        type='str'
+    ),
 )
 
 
@@ -437,11 +457,29 @@ class AssetHistoryImport(models.TransientModel):
                 _("Could not find currency for name '{}'.\n"
                   "Is it in its ISO 4217 format?")
             )
+        supplier_vat_col = get_header_by_model_and_field(
+            'res.partner', 'vat').col
+        supplier_vat = asset_dict[supplier_vat_col]
+        partner = self.env['res.partner']
+        if supplier_vat:
+            partner = partner.search([
+                ('vat', 'ilike', supplier_vat)
+            ])[:1]
+            if not partner:
+                raise ValidationError(
+                    _("Could not find Supplier with VAT {}".format(
+                        supplier_vat))
+                )
 
+        supplier_doc_ref_col = get_header_by_model_and_field(
+            'asset.asset', 'supplier_ref').col
+        supplier_doc_ref = asset_dict[supplier_doc_ref_col]
         vals.update({
             'category_id': categ.id,
             'company_id': self.company_id.id,
             'currency_id': curr.id,
+            'supplier_id': partner and partner.id or False,
+            'supplier_ref': supplier_doc_ref,
         })
 
         return vals
