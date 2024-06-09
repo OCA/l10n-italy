@@ -44,6 +44,9 @@ class TestAccountStamp (AccountingTestCase):
         })
 
     def test_automatic_stamp(self):
+        report_invoice = self.env['ir.actions.report']._get_report_from_name(
+            'account.report_invoice')
+        report_invoice.attachment = False
         invoice = self.invoice_model.create({
             'partner_id': self.partner.id,
             'name': 'Test invoice automatic stamp',
@@ -85,3 +88,20 @@ class TestAccountStamp (AccountingTestCase):
             lambda line: line.account_id
             == stamp_product.property_account_expense_id)
         self.assertEqual(len(expense_stamp_line), 1)
+
+        # Check the tax stamp line is removed when tax stamp is no more applicable
+        invoice.journal_id.update_posted = True
+        invoice.action_invoice_cancel()
+        self.assertEqual(invoice.state, 'cancel')
+        invoice.action_invoice_draft()
+        self.assertEqual(invoice.state, 'draft')
+        invoice.add_tax_stamp_line()
+        self.assertTrue(any(x.is_stamp_line for x in invoice.invoice_line_ids))
+        line = invoice.invoice_line_ids.filtered(lambda x: x.product_id == self.product)
+        line.price_unit = 5.0
+        invoice.compute_taxes()
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(invoice.move_id.state, 'posted')
+        self.assertFalse(invoice.is_tax_stamp_applicable())
+        self.assertFalse(all(x.is_stamp_line for x in invoice.invoice_line_ids))
