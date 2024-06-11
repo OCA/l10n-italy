@@ -251,13 +251,23 @@ msgstr "Cognome"
 #. module: l10n_it_fiscalcode
 #: code:addons/l10n_it_fiscalcode/model/res_partner.py:0
 #, python-format
-msgid "The fiscal code doesn't seem to be correct."
-msgstr "Il codice fiscale non sembra corretto."
+msgid "The fiscal code isn't valid."
+msgstr ""
+
+#. module: l10n_it_fiscalcode
+#: code:addons/l10n_it_fiscalcode/model/res_partner.py:0
+#, python-format
+msgid "The fiscal code must have 16 characters."
+msgstr ""
 
 #. module: l10n_it_fiscalcode
 #: model:ir.model.fields,field_description:l10n_it_fiscalcode.field_res_city_it_code__var_date
 msgid "Variation date"
 msgstr "Data variazione"
+
+#, python-format
+#~ msgid "The fiscal code doesn't seem to be correct."
+#~ msgstr "Il codice fiscale non sembra corretto."
 
 #~ msgid "Compute F.C."
 #~ msgstr "Calcola C.F."
