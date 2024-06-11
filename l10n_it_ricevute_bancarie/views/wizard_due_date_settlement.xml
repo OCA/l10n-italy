@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="riba_due_date_settlement" model="ir.ui.view">
+        <field name="name">riba.due.date.settlement.wizard</field>
+        <field name="model">riba.due.date.settlement</field>
+        <field name="arch" type="xml">
+            <form>
+                <separator
+                    string="This wizard will set 'Paid' all C/O details selected by due date"
+                    colspan="4"
+                />
+                <group>
+                    <field name="due_date" />
+                </group>
+                <footer>
+                    <button
+                        string="Confirm"
+                        name="due_date_settlement_confirm"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_riba_due_date_settlement" model="ir.actions.server">
+        <field name="name">C/O Due Date Settlement</field>
+        <field name="model_id" ref="l10n_it_ricevute_bancarie.model_riba_distinta" />
+        <field
+            name="binding_model_id"
+            ref="l10n_it_ricevute_bancarie.model_riba_distinta"
+        />
+        <field name="state">code</field>
+        <field name="code">action = records.action_riba_due_date_settlement()</field>
+    </record>
+
+</odoo>
