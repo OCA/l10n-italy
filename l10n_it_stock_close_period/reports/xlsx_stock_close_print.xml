@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="report_xlsx_stock_close_print"
+        model="stock.close.period.line"
+        string="Export Stock Close Period to XLSX"
+        report_type="xlsx"
+        name="l10n_it_stock_close_period.report_xlsx_stock_close_print"
+        file="l10n_it_stock_close_period.report_xlsx_stock_close_print"
+        attachment_use="False"
+    />
+
+</odoo>
+
