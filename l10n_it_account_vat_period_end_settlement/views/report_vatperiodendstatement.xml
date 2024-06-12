@@ -96,7 +96,11 @@
                     <!-- tot statement -->
                     <tr>
                         <td class="text-start">
-                            <strong>Total Statement</strong>
+                            <strong> Total Statement <t
+                                t-if="total_statement >= 0"
+                            >(debit)</t>
+                                <t t-else="">(credit)</t>
+                            </strong>
                         </td>
                         <td class="text-end">
                             <strong>
@@ -207,8 +211,7 @@
                 <td />
                 <td class="text-start"> Down payment <t
                     t-if="statement.advance_computation_method"
-                >
-                    &amp;nbsp;(<span
+                > &amp;nbsp;(<span
                     t-field="statement.advance_computation_method"
                 />) </t>
                 </td>
