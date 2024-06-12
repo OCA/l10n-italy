@@ -361,3 +361,29 @@ class TestTax(TransactionCase):
             other_statement.previous_credit_vat_amount,
             -other_last_year_statement.authority_vat_amount,
         )
+
+    def test_set_lock_date(self):
+        """
+        Confirming the statement sets the lock date.
+        """
+        # Arrange
+        period = self.current_period
+        paid_vat_account = self.account_model.browse(self.paid_vat_account)
+        statement = self._get_statement(
+            period,
+            fields.Date.today(),
+            paid_vat_account,
+        )
+        company = statement.company_id
+        company.account_vat_period_end_statement_set_lock_date = True
+        # pre-condition
+        self.assertFalse(company.period_lock_date)
+
+        # Act
+        statement.create_move()
+
+        # Assert
+        self.assertEqual(
+            period.date_end,
+            company.period_lock_date,
+        )

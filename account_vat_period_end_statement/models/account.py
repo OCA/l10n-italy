@@ -1,7 +1,7 @@
 # Copyright 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
 # Copyright 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
-# Copyright 2022 Simone Rubino - TAKOBI
+# Copyright 2022 ~ 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import math
@@ -331,10 +331,33 @@ class AccountVatPeriodEndStatement(models.Model):
         for statement in self:
             statement.state = 'paid'
 
+    def _get_end_date(self):
+        self.ensure_one()
+        periods = self.date_range_ids
+        end_date = max(
+            periods.mapped('date_end'),
+            default=None,
+        )
+        return end_date
+
+    def _set_company_lock_date(self):
+        self.ensure_one()
+        company = self.company_id or self.env.user.company_id
+        if company.account_vat_period_end_statement_set_lock_date:
+            end_date = self._get_end_date()
+            if end_date:
+                lock_date_values = {
+                    'period_lock_date': end_date,
+                }
+                company._check_lock_dates(lock_date_values)
+                company.update(lock_date_values)
+        return True
+
     @api.multi
     def statement_confirmed(self):
         for statement in self:
             statement.state = 'confirmed'
+            statement._set_company_lock_date()
 
     @api.multi
     def create_move(self):
@@ -533,7 +556,7 @@ class AccountVatPeriodEndStatement(models.Model):
 
             move.line_ids = lines_to_create
             move.post()
-            statement.state = 'confirmed'
+            statement.statement_confirmed()
 
         return True
 
