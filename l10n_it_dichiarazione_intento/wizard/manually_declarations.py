@@ -17,7 +17,8 @@ class SelectManuallyDeclarations(models.TransientModel):
         domain = [('partner_id', '=', invoice.partner_id.commercial_partner_id.id),
                   ('type', '=', invoice.type.split('_')[0]),
                   ('date_start', '<=', invoice.date_invoice),
-                  ('date_end', '>=', invoice.date_invoice)
+                  ('date_end', '>=', invoice.date_invoice),
+                  ("state", "not in", ("close", "expired")),
                   ]
         return self.env['dichiarazione.intento'].search(domain)
 
@@ -36,6 +37,7 @@ class SelectManuallyDeclarations(models.TransientModel):
         if not invoice_id:
             return res
         invoice = self.env['account.invoice'].browse(invoice_id)
+        invoice.dichiarazione_intento_ids = [(6, 0, [])]
         for declaration in self.declaration_ids:
             invoice.dichiarazione_intento_ids = [
                 (4, declaration.id)]
