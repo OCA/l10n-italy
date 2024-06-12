@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2011-08-22 08:03+0000\n"
-"PO-Revision-Date: 2024-04-10 14:41+0000\n"
+"PO-Revision-Date: 2024-06-12 21:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -204,7 +204,7 @@ msgstr "Se incerti, utilizzare il conto vendite"
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:0
 msgid "Residual Amount"
-msgstr "Ammontare residuo"
+msgstr "Importo residuo"
 
 #. module: l10n_it_corrispettivi
 #: view:account.invoice:0
