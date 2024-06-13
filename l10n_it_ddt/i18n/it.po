@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: l10n-italy (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-29 10:06+0000\n"
-"PO-Revision-Date: 2024-04-30 18:38+0000\n"
+"PO-Revision-Date: 2024-06-13 13:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-l10n-italy-8-0/"
 "language/it/)\n"
@@ -352,7 +352,7 @@ msgstr "Fatturato"
 #. module: l10n_it_ddt
 #: field:stock.ddt.type,message_is_follower:0
 msgid "Is a Follower"
-msgstr "È un Follower"
+msgstr "Segue"
 
 #. module: l10n_it_ddt
 #: field:ddt.create.invoice,journal_id:0
