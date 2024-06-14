@@ -114,3 +114,13 @@ class WizardImportFatturapa(models.TransientModel):
             )
         else:
             return super().set_payments_data(FatturaBody, invoice, partner_id)
+
+    def invoiceCreate(self, fatt, fatturapa_attachment, FatturaBody, partner_id):
+        invoice = super().invoiceCreate(
+            fatt, fatturapa_attachment, FatturaBody, partner_id
+        )
+        invoice._onchange_journal_id()
+        invoice._onchange_partner_id()
+        invoice._onchange_date()
+        invoice.line_ids._compute_tax_ids()
+        return invoice
