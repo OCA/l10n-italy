@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-20 09:39+0000\n"
-"PO-Revision-Date: 2024-03-22 09:34+0000\n"
+"PO-Revision-Date: 2024-06-15 22:56+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -385,7 +385,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: l10n_it_account_balance_eu
 #: model:ir.model.fields.selection,name:l10n_it_account_balance_eu.selection__account_balance_eu__zone_bal__pp
 msgid "Liabilities"
-msgstr "Passivo"
+msgstr "Passività"
 
 #. module: l10n_it_account_balance_eu
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_balance_eu.view_account_form_balance_ue
