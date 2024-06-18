@@ -965,11 +965,6 @@ msgid "Progressive to Adjust"
 msgstr ""
 
 #. module: l10n_it_intrastat_statement
-#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__progressive_to_modify_id
-msgid "Progressive to Adjust ID"
-msgstr ""
-
-#. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section4__protocol
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__protocol
 msgid "Protocol Number"
