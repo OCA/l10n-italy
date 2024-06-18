@@ -49,23 +49,38 @@ in subdirectories, ignoring unrecognized files.
 .. contents::
    :local:
 
+Configuration
+=============
+
+**Italiano**
+
+Impostare la partita IVA o il codice fiscale dell'azienda corrente: le
+fatture elettroniche importate risulteranno attive quando il nodo
+CedentePrestatore identifica il partner dell'azienda corrente.
+
+**English**
+
+Set the VAT number or the fiscal code of the current company: the
+imported electronic invoices will be active when the CedentePrestatore
+node identifies the partner of the current company.
+
 Usage
 =====
 
 **Italiano**
 
-   -  Andare in Fatturazione -> Configurazione -> Fiscalità italiana ->
-      Import E-bill ZIP Files
-   -  Caricare un file ZIP contenente i file XML di fatture elettroniche
-      (OUT/IN)
-   -  Eseguire "Import Invoices" per creare le fatture in bozza
+-  Andare in Fatturazione -> Configurazione -> Fiscalità italiana ->
+   Import E-bill ZIP Files
+-  Caricare un file ZIP contenente i file XML di fatture elettroniche
+   (OUT/IN)
+-  Eseguire "Import Invoices" per creare le fatture in bozza
 
 **English**
 
-   -  Go to Accounting -> Configuration -> Italian Localization ->
-      Import E-bill ZIP Files
-   -  Upload ZIP file including XML e-invoice files (OUT/IN)
-   -  Run "Import Invoices" to create a draft invoices/bills
+-  Go to Accounting -> Configuration -> Italian Localization -> Import
+   E-bill ZIP Files
+-  Upload ZIP file including XML e-invoice files (OUT/IN)
+-  Run "Import Invoices" to create a draft invoices/bills
 
 Bug Tracker
 ===========
