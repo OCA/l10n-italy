@@ -7,16 +7,18 @@
         priority="100"
     >
         <xpath expr="t" position="replace">
+            <t t-translation="off">
             <DatiBollo
-                t-if="record.tax_stamp and record.company_id.tax_stamp_product_id"
-            >
+                    t-if="record.tax_stamp and record.company_id.tax_stamp_product_id"
+                >
                 <BolloVirtuale>SI</BolloVirtuale>
                 <t
-                    t-set="stamp_price"
-                    t-value="format_numbers_two(record.company_id.tax_stamp_product_id.list_price)"
-                />
+                        t-set="stamp_price"
+                        t-value="format_numbers_two(record.company_id.tax_stamp_product_id.list_price)"
+                    />
                 <ImportoBollo t-if="stamp_price != '0.00'" t-out="stamp_price" />
             </DatiBollo>
+            </t>
         </xpath>
     </template>
 
