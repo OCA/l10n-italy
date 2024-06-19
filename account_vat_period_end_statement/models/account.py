@@ -3,6 +3,7 @@
 # Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 # Copyright 2021 Gianmarco Conte - Dinamiche Aziendali Srl (<www.dinamicheaziendali.it>)
 # Copyright 2022 Simone Rubino - TAKOBI
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import math
@@ -455,6 +456,37 @@ class AccountVatPeriodEndStatement(models.Model):
 
         return True
 
+    def _split_vat_data_payment_term(
+        self,
+        payment_term,
+        move,
+        statement_date,
+        end_debit_vat_data,
+    ):
+        self.ensure_one()
+        company = self.env.company
+        currency = company.currency_id
+        tax_amount = tax_amount_currency = self.authority_vat_amount
+        untaxed_amount = untaxed_amount_currency = 0
+        sign = 1 if move.is_inbound(include_receipts=True) else -1
+        due_list = payment_term._compute_terms(
+            statement_date,
+            currency,
+            company,
+            tax_amount,
+            tax_amount_currency,
+            sign,
+            untaxed_amount,
+            untaxed_amount_currency,
+        )
+        payment_term_lines = []
+        for term in due_list:
+            current_line = end_debit_vat_data.copy()
+            current_line["credit"] = term["company_amount"]
+            current_line["date_maturity"] = term["date"]
+            payment_term_lines.append((0, 0, current_line))
+        return payment_term_lines
+
     def _add_end_debit_vat_data(self, lines_to_create, move, statement, statement_date):
         end_debit_vat_data = self._prepare_account_move_line(
             name="Tax Authority VAT",
@@ -466,15 +498,15 @@ class AccountVatPeriodEndStatement(models.Model):
         )
         if statement.authority_vat_amount > 0:
             end_debit_vat_data["credit"] = math.fabs(statement.authority_vat_amount)
-            if statement.payment_term_id:
-                due_list = statement.payment_term_id.compute(
-                    statement.authority_vat_amount, statement_date
+            payment_term = statement.payment_term_id
+            if payment_term:
+                payment_term_lines = self._split_vat_data_payment_term(
+                    payment_term,
+                    move,
+                    statement_date,
+                    end_debit_vat_data,
                 )
-                for term in due_list:
-                    current_line = end_debit_vat_data
-                    current_line["credit"] = term[1]
-                    current_line["date_maturity"] = term[0]
-                    lines_to_create.append((0, 0, current_line))
+                lines_to_create.extend(payment_term_lines)
             else:
                 lines_to_create.append((0, 0, end_debit_vat_data))
         elif statement.authority_vat_amount < 0:
