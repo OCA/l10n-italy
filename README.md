@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 16.0.1.2.2 |  | Allow to create the 'VAT Statement'.
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 16.0.1.2.3 |  | Allow to create the 'VAT Statement'.
 [currency_rate_update_boi](currency_rate_update_boi/) | 16.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Update exchange rates using www.bancaditalia.it
 [l10n_it_abicab](l10n_it_abicab/) | 16.0.1.0.1 | [![Borruso](https://github.com/Borruso.png?size=30px)](https://github.com/Borruso) | Base Bank ABI/CAB codes
 [l10n_it_account](l10n_it_account/) | 16.0.1.1.0 |  | Modulo base usato come dipendenza di altri moduli contabili
