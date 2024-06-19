@@ -228,11 +228,6 @@ msgid "E-invoice file name"
 msgstr "Nome file e-fattura"
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "EAN"
-msgstr "EAN"
-
-#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Electronic Invoice"
 msgstr "Fattura elettronica"
@@ -345,11 +340,6 @@ msgstr "Cronologia"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa__id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "INVCONT"
-msgstr "INVCONT"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_needaction
@@ -511,11 +501,6 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione
-msgid "MG"
-msgstr "MG"
-
-#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Allegato principale"
@@ -617,11 +602,6 @@ msgid "Print report not found"
 msgstr "Stampa resoconto non trovata"
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore
-msgid "RF01"
-msgstr "RF01"
-
-#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view_regenerate
 msgid "Re-Export"
 msgstr "Riesporta"
@@ -685,16 +665,6 @@ msgid "Results"
 msgstr "Risultati"
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione
-msgid "SC"
-msgstr "SC"
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body
-msgid "SI"
-msgstr "SI"
-
-#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__fatturapa_attachment_out__state__sender_error
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_search
 msgid "Sender Error"
@@ -725,11 +695,6 @@ msgstr "Stato"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__store_fname
 msgid "Stored Filename"
 msgstr "Nome file memorizzato"
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export
-msgid "TZ"
-msgstr "TZ"
 
 #. module: l10n_it_fatturapa_out
 #. odoo-python
@@ -825,11 +790,6 @@ msgid "User %s uploaded a new e-invoice file"
 msgstr "L'utente %s ha caricato un nuovo file e-fattura"
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "Valuta"
-msgstr "Valuta"
-
-#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_id
 msgid "Website"
 msgstr "Sito web"
@@ -877,6 +837,30 @@ msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "on"
 msgstr "il"
+
+#~ msgid "EAN"
+#~ msgstr "EAN"
+
+#~ msgid "INVCONT"
+#~ msgstr "INVCONT"
+
+#~ msgid "MG"
+#~ msgstr "MG"
+
+#~ msgid "RF01"
+#~ msgstr "RF01"
+
+#~ msgid "SC"
+#~ msgstr "SC"
+
+#~ msgid "SI"
+#~ msgstr "SI"
+
+#~ msgid "TZ"
+#~ msgstr "TZ"
+
+#~ msgid "Valuta"
+#~ msgstr "Valuta"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Errore consegna SMS"
