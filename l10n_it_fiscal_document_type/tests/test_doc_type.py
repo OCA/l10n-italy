@@ -1,6 +1,7 @@
 # Copyright 2017 Lorenzo Battistini
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
+from odoo import fields
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -16,6 +17,7 @@ class TestDocType(AccountTestInvoicingCommon):
 
         cls.doc_type_model = cls.env["fiscal.document.type"]
         cls.TD01 = cls.doc_type_model.search([("code", "=", "TD01")], limit=1)
+        cls.TD02 = cls.doc_type_model.search([("code", "=", "TD02")], limit=1)
         cls.TD01.journal_ids = cls.journalrec
         cls.TD04 = cls.doc_type_model.search([("code", "=", "TD04")], limit=1)
         cls.inv_model = cls.env["account.move"]
@@ -144,6 +146,42 @@ class TestDocType(AccountTestInvoicingCommon):
         td02 = self.doc_type_model.search([("code", "=", "TD02")], limit=1)
         invoice = self._set_recompute_document_type(invoice, td02)
         self.assertEqual(invoice.fiscal_document_type_id, td02)
+
+    def test_downpayment(self):
+        product = self.env.ref("product.product_product_5")
+        so = (
+            self.env["sale.order"]
+            .with_context(tracking_disable=True)
+            .create(
+                {
+                    "partner_id": self.partner3.id,
+                    "order_line": [
+                        fields.Command.create(
+                            {
+                                "product_id": product.id,
+                                "product_uom_qty": 10.0,
+                                "price_unit": 10.0,
+                                "tax_id": False,
+                            }
+                        ),
+                    ],
+                }
+            )
+        )
+        so.action_confirm()
+        dp = (
+            self.env["sale.advance.payment.inv"]
+            .with_context(active_model="sale.order", active_ids=so.ids, active_id=so.id)
+            .create(
+                {
+                    "advance_payment_method": "fixed",
+                    "fixed_amount": 50.0,
+                }
+            )
+        )
+        dp.create_invoices()
+        self.assertEqual(len(so.invoice_ids), 1)
+        self.assertEqual(so.invoice_ids.fiscal_document_type_id, self.TD02)
 
     def test_compare_with_fpa_schema(self):
         """Check that the values we define in this module are

@@ -12,7 +12,7 @@
     "author": "Link It srl, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",  # Depends on AGPL modules
-    "depends": ["l10n_it_account"],
+    "depends": ["sale", "l10n_it_account"],
     "data": [
         "views/fiscal_document_type_view.xml",
         "views/res_partner_view.xml",

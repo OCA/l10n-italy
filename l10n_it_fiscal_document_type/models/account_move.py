@@ -30,6 +30,8 @@ class AccountMove(models.Model):
     def _get_document_fiscal_type(
         self, move_type=None, partner=None, fiscal_position=None, journal=None
     ):
+        self.ensure_one()
+
         dt = []
         doc_id = False
         if not move_type:
@@ -71,6 +73,12 @@ class AccountMove(models.Model):
                     dt[0] = fdt.refund_fiscal_document_type_id.id
                 else:
                     dt.append(fdt.refund_fiscal_document_type_id.id)
+
+        if self.is_sale_document() and self._is_downpayment():
+            td02 = self.env["fiscal.document.type"].search(
+                [("code", "=", "TD02")], limit=1
+            )
+            dt.insert(0, td02.id)
 
         if doc_id:
             dt.append(doc_id)
