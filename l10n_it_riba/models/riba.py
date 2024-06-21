@@ -134,6 +134,16 @@ class RibaList(models.Model):
             "context": self.env.context,
         }
 
+    def action_riba_due_date_settlement(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "C/O Due Date Settlement",
+            "res_model": "riba.due.date.settlement",
+            "view_mode": "form",
+            "target": "new",
+            "context": self.env.context,
+        }
+
     @api.ondelete(at_uninstall=False)
     def _unlink_if_not_confirmed(self):
         for riba_list in self:
