@@ -187,6 +187,11 @@ msgid "Bills Amount"
 msgstr ""
 
 #. module: l10n_it_riba
+#: model:ir.actions.server,name:l10n_it_riba.action_wizard_riba_due_date_settlement
+msgid "C/O Due Date Settlement"
+msgstr ""
+
+#. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__cig
 msgid "CIG"
 msgstr ""
@@ -198,6 +203,7 @@ msgstr ""
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_credit
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_due_date_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_issue_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
@@ -258,6 +264,11 @@ msgid "Configuration parameters for RiBa"
 msgstr ""
 
 #. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_due_date_settlement
+msgid "Confirm"
+msgstr ""
+
+#. module: l10n_it_riba
 #: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip_line__state__confirmed
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_slip_riba_filter
@@ -280,6 +291,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__create_uid
@@ -293,6 +305,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__create_date
@@ -416,6 +429,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__display_name
@@ -434,6 +448,7 @@ msgid "Draft"
 msgstr ""
 
 #. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__due_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__due_date
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
 msgid "Due Date"
@@ -535,6 +550,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__id
@@ -665,6 +681,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due____last_update
@@ -678,6 +695,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__write_uid
@@ -691,6 +709,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__write_date
@@ -803,6 +822,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_due_date_settlement.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
 #, python-format
@@ -1183,6 +1203,11 @@ msgid "RiBa configuration to be used."
 msgstr ""
 
 #. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_due_date_settlement
+msgid "Riba Due Date Settlement"
+msgstr ""
+
+#. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_setup_bank_manual_config__codice_sia
 #: model:ir.model.fields,field_description:l10n_it_riba.field_res_partner_bank__codice_sia
 msgid "SIA Code"
@@ -1277,6 +1302,11 @@ msgstr ""
 msgid ""
 "This wizard will generate the journal entry related to credit received from "
 "the bank"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_due_date_settlement
+msgid "This wizard will set 'Paid' all C/O details selected by due date"
 msgstr ""
 
 #. module: l10n_it_riba
