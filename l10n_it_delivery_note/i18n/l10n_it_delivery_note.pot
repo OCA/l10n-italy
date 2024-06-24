@@ -896,24 +896,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"It seems that at least one delivery note has been already created. You can't"
-" migrate any data on an already used database."
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"It seems that there are no documents to migrate. You don't need to run this "
-"command."
-msgstr ""
-
-#. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_account_move
 msgid "Journal Entry"
 msgstr ""
@@ -1017,15 +999,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.stock_picking_transport_method_action
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_picking_transport_method_menu
 msgid "Methods of transport"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"Module `l10n_it_ddt` isn't installed on this database. You don't need to run"
-" this command."
 msgstr ""
 
 #. module: l10n_it_delivery_note
