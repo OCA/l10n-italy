@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
+from odoo.tools import float_compare
 
 
 class AccountMove(models.Model):
@@ -39,4 +40,37 @@ class AccountMove(models.Model):
                 move.amount_total = move.amount_untaxed
             else:
                 move.amount_sp = 0.0
+        return res
+
+    def write(self, vals):
+        res = super().write(vals)
+        if self.env.context.get("skip_split_payment_computation"):
+            return res
+        for move in self:
+            if move.split_payment:
+                split_payment_total = 0
+                for line in move.line_ids:
+                    if line.display_type == "tax" and not line.is_split_payment:
+                        write_off_line_vals = line._build_writeoff_line()
+                        split_payment_total += write_off_line_vals["debit"]
+                        line_sp = fields.first(
+                            line.move_id.line_ids.filtered(
+                                lambda move_line: move_line.is_split_payment
+                            )
+                        )
+                        if line_sp:
+                            if (
+                                float_compare(
+                                    line_sp.price_unit,
+                                    write_off_line_vals["price_unit"],
+                                    precision_rounding=line.move_id.currency_id.rounding,
+                                )
+                                != 0
+                            ):
+                                line_sp.write(write_off_line_vals)
+                        else:
+                            if line.move_id.amount_sp:
+                                line.move_id.with_context(
+                                    skip_split_payment_computation=True
+                                ).line_ids = [(0, 0, write_off_line_vals)]
         return res
