@@ -340,6 +340,9 @@ class AccountInvoice(models.Model):
 
     def process_negative_lines(self):
         self.ensure_one()
+        if not self.invoice_line_ids:
+            return
+
         for line in self.invoice_line_ids:
             if line.price_unit >= 0:
                 return

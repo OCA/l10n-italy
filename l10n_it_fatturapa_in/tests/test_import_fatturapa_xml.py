@@ -413,6 +413,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(len(invoices) == 2)
         for invoice in invoices:
             self.assertTrue(len(invoice.invoice_line_ids) == 0)
+            self.assertTrue(invoice.type == "in_invoice")
 
     def test_03_xml_import(self):
         # Testing CAdES signature
