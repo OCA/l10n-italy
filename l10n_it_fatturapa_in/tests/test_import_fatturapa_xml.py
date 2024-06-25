@@ -440,6 +440,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertTrue(len(invoices) == 2)
         for invoice in invoices:
             self.assertTrue(len(invoice.invoice_line_ids) == 0)
+            self.assertTrue(invoice.move_type == "in_invoice")
         # allow following tests to reuse the same XML file
         invoices[0].ref = invoices[0].payment_reference = "14165"
         invoices[1].ref = invoices[1].payment_reference = "14166"
