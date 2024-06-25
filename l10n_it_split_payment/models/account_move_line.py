@@ -6,13 +6,19 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import float_compare
 
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    is_split_payment = fields.Boolean()
+    is_split_payment = fields.Boolean(compute="_compute_is_split_payment", store=True)
+
+    @api.depends("account_id", "company_id.sp_account_id")
+    def _compute_is_split_payment(self):
+        for line in self:
+            line.is_split_payment = False
+            if line.account_id == line.company_id.sp_account_id:
+                line.is_split_payment = True
 
     def _build_writeoff_line(self):
         self.ensure_one()
@@ -36,7 +42,6 @@ class AccountMoveLine(models.Model):
             "debit": self.credit,
             "credit": self.debit,
             "display_type": "tax",
-            "is_split_payment": True,
         }
         if self.move_id.move_type == "out_refund":
             vals["amount_currency"] = -self.debit
@@ -60,35 +65,3 @@ class AccountMoveLine(models.Model):
                     container={"records": line.move_id, "self": line.move_id}
                 )
         return lines
-
-    def write(self, vals):
-        res = super().write(vals)
-        for line in self:
-            if (
-                line.move_id.split_payment
-                and line.display_type == "tax"
-                and not line.is_split_payment
-            ):
-                write_off_line_vals = line._build_writeoff_line()
-                line_sp = fields.first(
-                    line.move_id.line_ids.filtered(
-                        lambda move_line: move_line.is_split_payment
-                    )
-                )
-                if line_sp:
-                    if (
-                        float_compare(
-                            line_sp.price_unit,
-                            write_off_line_vals["price_unit"],
-                            precision_rounding=line.move_id.currency_id.rounding,
-                        )
-                        != 0
-                    ):
-                        line_sp.write(write_off_line_vals)
-                else:
-                    if line.move_id.amount_sp:
-                        line.move_id.line_ids = [(0, 0, write_off_line_vals)]
-                line.move_id._sync_dynamic_lines(
-                    container={"records": line.move_id, "self": line.move_id}
-                )
-        return res
