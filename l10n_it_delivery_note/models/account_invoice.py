@@ -177,6 +177,16 @@ class AccountInvoice(models.Model):
             dn.state = "confirm"
         return res
 
+    def button_cancel(self):  # pylint: disable=missing-return
+        super().button_cancel()
+        dn_lines = (
+            self.invoice_line_ids.sale_line_ids.delivery_note_line_ids
+            | self.delivery_note_ids.line_ids
+        )
+        dn_lines.sync_invoice_status()
+        dn_lines.delivery_note_id._compute_invoice_status()
+        dn_lines.delivery_note_id.state = "confirm"
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.move.line"
