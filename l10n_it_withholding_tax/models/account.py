@@ -624,6 +624,32 @@ class AccountMoveLine(models.Model):
 
         return super(AccountMoveLine, self).remove_move_reconcile()
 
+    def _prepare_reconciliation_partials(self):
+        wt_move_lines = self.filtered(lambda x: x.withholding_tax_amount != 0)
+        if not wt_move_lines:
+            return super()._prepare_reconciliation_partials()
+        credit_lines = self.filtered(lambda line: line.credit)
+        debit_line = self - credit_lines
+        partials_vals_list = []
+        for credit_line in credit_lines:
+            total_amount_payment = debit_line.balance
+            residual_amount = credit_line.move_id.amount_net_pay_residual
+            if total_amount_payment > residual_amount:
+                total_amount_payment -= residual_amount
+            else:
+                residual_amount = total_amount_payment
+            partials_vals_list.append(
+                {
+                    "amount": residual_amount,
+                    "debit_amount_currency": residual_amount,
+                    "credit_amount_currency": residual_amount,
+                    "debit_move_id": debit_line.id,
+                    "credit_move_id": credit_line.id,
+                }
+            )
+
+        return partials_vals_list
+
     @api.model
     def _default_withholding_tax(self):
         result = []
