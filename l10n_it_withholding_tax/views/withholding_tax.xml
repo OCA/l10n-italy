@@ -119,7 +119,6 @@
                     <field name="wt_type" />
                     <field name="partner_id" />
                     <field name="date" />
-                    <field name="move_id" />
                     <field name="invoice_id" />
                     <field name="withholding_tax_id" />
                     <field name="company_id" groups="base.group_multi_company" />
@@ -152,7 +151,6 @@
                             </group>
                             <group>
                                 <field name="date" />
-                                <field name="move_id" />
                                 <field name="invoice_id" />
                                 <field
                                 name="company_id"
