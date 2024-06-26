@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [l10n_it_account_balance_eu](l10n_it_account_balance_eu/) | 14.0.1.0.1 | [![mktsrl](https://github.com/mktsrl.png?size=30px)](https://github.com/mktsrl) | ITA - Bilancio UE con XBRL
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 14.0.1.1.4 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_tax_kind](l10n_it_account_tax_kind/) | 14.0.1.1.1 |  | Gestione natura delle aliquote IVA
+[l10n_it_amount_to_text](l10n_it_amount_to_text/) | 14.0.1.0.0 |  | Localizza le valute in italiano per amount_to_text
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 14.0.1.0.1 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_asset_history_import](l10n_it_asset_history_import/) | 14.0.1.0.0 |  | Cespiti: importazione storico dati
 [l10n_it_asset_history_import_queue](l10n_it_asset_history_import_queue/) | 14.0.1.0.0 | [![GSLabit](https://github.com/GSLabit.png?size=30px)](https://github.com/GSLabit) | Cespiti: importazione storico dati in background
