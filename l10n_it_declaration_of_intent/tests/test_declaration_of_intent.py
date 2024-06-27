@@ -523,3 +523,25 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         else:
             payments = action["domain"][0][2]
             self.assertTrue(len(payments) > 1)
+
+    def test_multiple_valid(self):
+        """
+        Check multi declarations validation for same partner.
+        """
+        declaration_model = self.env["l10n_it_declaration_of_intent.declaration"].sudo()
+        post_used_amount2 = self.declaration2.used_amount
+        post_used_amount3 = self.declaration3.used_amount
+        self.assertAlmostEqual(post_used_amount2, 0.0, 2)
+        self.assertAlmostEqual(post_used_amount3, 0.0, 2)
+        valid_declarations = declaration_model.get_valid(
+            type_d="out", partner_id=self.partner2.id, date=self.today_date
+        )
+        self.assertEqual(valid_declarations, self.declaration2 | self.declaration3)
+        invoice6 = self._create_invoice(
+            "test_multiple_valid", self.partner2, tax=self.tax1
+        )
+        invoice6.action_post()
+        new_post_used_amount2 = self.declaration2.used_amount
+        new_post_used_amount3 = self.declaration3.used_amount
+        self.assertAlmostEqual(new_post_used_amount2, 900.0, 2)
+        self.assertAlmostEqual(new_post_used_amount3, 0.0, 2)
