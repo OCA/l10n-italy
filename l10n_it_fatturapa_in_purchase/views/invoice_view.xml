@@ -38,6 +38,7 @@
                 position="attributes"
             >
                 <attribute name="invisible" />
+                <attribute name="optional">show</attribute>
                 <attribute
                     name="attrs"
                 >{'column_invisible': [('parent.move_type', 'not in', ('in_invoice', 'in_refund'))]}</attribute>
