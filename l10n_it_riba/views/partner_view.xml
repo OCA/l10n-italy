@@ -18,6 +18,18 @@
                     <field name="group_riba" />
                 </group>
             </group>
+            <field name="property_supplier_payment_term_id" position="after">
+                <field name="is_supplier_payment_riba" invisible="True" />
+                <field
+                    name="property_riba_supplier_company_bank_id"
+                    string="Company Bank Account"
+                    attrs="{
+                        'invisible': [
+                            ('is_supplier_payment_riba','=', False),
+                        ],
+                    }"
+                />
+            </field>
         </field>
     </record>
 
