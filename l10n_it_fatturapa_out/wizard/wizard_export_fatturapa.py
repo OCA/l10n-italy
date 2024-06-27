@@ -257,7 +257,11 @@ class WizardExportFatturapa(models.TransientModel):
 
         # generate attachments (PDF version of invoice)
         for inv in invoice_ids:
-            if not attach and inv.fatturapa_attachment_out_id:
+            if (
+                not attach
+                and inv.fatturapa_attachment_out_id
+                and not context.get("skip_check_xml", False)
+            ):
                 raise UserError(
                     _("E-invoice export file still present for invoice %s.")
                     % (inv.name or "")
