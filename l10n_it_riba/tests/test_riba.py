@@ -580,3 +580,26 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         exc_message = ue.exception.args[0]
         self.assertIn(current_company.name, exc_message)
         self.assertIn(partner_bank.display_name, exc_message)
+
+    def test_supplier_company_bank_account_domain(self):
+        """The domain for Company Bank Account for Supplier
+        only shows bank accounts of current company."""
+        # Arrange
+        current_company, other_company = self.env.company, self.company2
+        current_bank_account = self.company_bank
+        other_bank_account = self.company2_bank
+        # pre-condition: Bank accounts belong to different companies
+        self.assertNotEqual(current_company, other_company)
+        self.assertEqual(current_bank_account.partner_id, current_company.partner_id)
+        self.assertEqual(other_bank_account.partner_id, other_company.partner_id)
+
+        # Act: Search bank accounts
+        domain = self.env["res.partner"].fields_get(
+            allfields=["property_riba_supplier_company_bank_id"],
+            attributes=["domain"],
+        )["property_riba_supplier_company_bank_id"]["domain"]
+        bank_accounts = self.env["res.partner.bank"].search(domain)
+
+        # Assert: only the bank account of current company is found
+        self.assertIn(current_bank_account, bank_accounts)
+        self.assertNotIn(other_bank_account, bank_accounts)
