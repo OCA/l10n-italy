@@ -28,7 +28,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
     def get_default_type_ids(self):
         return [Command.set(self.env["asset.depreciation.type"].search([]).ids)]
 
-    asset_ids = fields.Many2many(
+    l10n_it_asset_ids = fields.Many2many(
         "asset.asset",
         string="Assets",
     )
@@ -91,10 +91,10 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
             ("date_start", "<", self.date_dep),
             ("type_id", "in", self.type_ids.ids),
         ]
-        if self.asset_ids:
-            domain += [("asset_id", "in", self.asset_ids.ids)]
+        if self.l10n_it_asset_ids:
+            domain += [("l10n_it_asset_id", "in", self.l10n_it_asset_ids.ids)]
         if self.category_ids:
-            domain += [("asset_id.category_id", "in", self.category_ids.ids)]
+            domain += [("l10n_it_asset_id.category_id", "in", self.category_ids.ids)]
         if self.company_id:
             domain += [("company_id", "=", self.company_id.id)]
         return domain

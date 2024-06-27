@@ -576,7 +576,7 @@ class AssetJournalXslx(models.AbstractModel):
         for categ_section in report.report_category_ids:
             self.write_all(report_data, categ_section, "category_data")
 
-            for asset_section in categ_section.report_asset_ids:
+            for asset_section in categ_section.report_l10n_it_asset_ids:
                 self.write_all(report_data, asset_section, "asset_data")
 
                 if asset_section.report_purchase_doc_id:

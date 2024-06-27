@@ -27,7 +27,7 @@
                     groups="l10n_it_asset_management.group_asset_user"
                     string="Assets"
                 >
-                    <field name="asset_ids" nolabel="1">
+                    <field name="l10n_it_asset_ids" nolabel="1">
                         <tree>
                             <field name="name" />
                             <field name="code" />
@@ -63,7 +63,7 @@
                         string="Assets"
                         groups="l10n_it_asset_management.group_asset_user"
                     >
-                        <field name="asset_ids" nolabel="1">
+                        <field name="l10n_it_asset_ids" nolabel="1">
                             <tree>
                                 <field name="name" />
                                 <field name="code" />

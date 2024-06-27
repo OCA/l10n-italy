@@ -15,7 +15,7 @@ class AccountMoveLine(models.Model):
         "asset.accounting.info", "move_line_id", string="Assets Accounting Info"
     )
 
-    asset_ids = fields.Many2many(
+    l10n_it_asset_ids = fields.Many2many(
         "asset.asset", compute="_compute_asset_data", store=True, string="Assets"
     )
 
@@ -41,19 +41,19 @@ class AccountMoveLine(models.Model):
 
     @api.depends(
         "asset_accounting_info_ids",
-        "asset_accounting_info_ids.asset_id",
+        "asset_accounting_info_ids.l10n_it_asset_id",
         "asset_accounting_info_ids.dep_line_id",
     )
     def _compute_asset_data(self):
         for line in self:
             aa_info = line.get_linked_aa_info_records()
-            assets = aa_info.mapped("asset_id")
+            assets = aa_info.mapped("l10n_it_asset_id")
             dep_lines = aa_info.mapped("dep_line_id")
             if dep_lines:
-                assets += dep_lines.mapped("asset_id")
+                assets += dep_lines.mapped("l10n_it_asset_id")
             line.update(
                 {
-                    "asset_ids": [Command.set(assets.ids)],
+                    "l10n_it_asset_ids": [Command.set(assets.ids)],
                     "dep_line_ids": [Command.set(dep_lines.ids)],
                 }
             )

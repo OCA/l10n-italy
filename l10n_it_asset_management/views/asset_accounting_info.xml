@@ -11,9 +11,9 @@
         <field name="arch" type="xml">
             <search>
                 <field
-                    name="asset_id"
+                    name="l10n_it_asset_id"
                     string="Asset"
-                    filter_domain="['|', ('asset_id.name', 'ilike', self), ('asset_id.code', 'ilike', self)]"
+                    filter_domain="['|', ('l10n_it_asset_id.name', 'ilike', self), ('l10n_it_asset_id.code', 'ilike', self)]"
                 />
                 <field
                     name="move_id"
@@ -24,7 +24,7 @@
                     <filter
                         string="Asset"
                         name="group_by_asset"
-                        context="{'group_by': 'asset_id'}"
+                        context="{'group_by': 'l10n_it_asset_id'}"
                     />
                     <filter
                         string="Move"
@@ -41,7 +41,7 @@
         <field name="model">asset.accounting.info</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="asset_id" />
+                <field name="l10n_it_asset_id" />
                 <field name="dep_line_id" />
                 <field name="relation_type" />
                 <field name="move_id" />
@@ -60,15 +60,15 @@
                     <group>
                         <group name="asset_info">
                             <field
-                                name="asset_id"
+                                name="l10n_it_asset_id"
                                 options="{'no_create_edit': 1}"
                                 required="1"
                             />
                             <field
                                 name="dep_line_id"
                                 options="{'no_create_edit': 1}"
-                                domain="[('asset_id', '=', asset_id)]"
-                                attrs="{'invisible': [('asset_id', '=', False)]}"
+                                domain="[('l10n_it_asset_id', '=', l10n_it_asset_id)]"
+                                attrs="{'invisible': [('l10n_it_asset_id', '=', False)]}"
                             />
                             <field name="relation_type" />
                             <field

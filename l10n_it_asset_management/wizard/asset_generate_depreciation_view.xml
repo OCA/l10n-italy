@@ -25,7 +25,7 @@
                         options="{'no_create': True}"
                         widget="many2many_tags"
                     />
-                    <field name="asset_ids" options="{'no_create': True}">
+                    <field name="l10n_it_asset_ids" options="{'no_create': True}">
                         <tree>
                             <field name="name" />
                             <field name="code" />
