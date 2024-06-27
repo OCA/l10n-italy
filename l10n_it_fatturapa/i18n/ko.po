@@ -1403,6 +1403,11 @@ msgid "Show preview"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_preview_style__fogliostilesouthtyrol-bilingue_xsl
+msgid "South-Tyrol"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__fatturapa_summary_data__payability__s
 msgid "Split payment"
 msgstr ""
