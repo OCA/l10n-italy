@@ -362,10 +362,14 @@ class AssetDepreciationLine(models.Model):
 
     def get_account_move_vals(self):
         self.ensure_one()
+        journal = self.env.context.get(
+            "l10n_it_asset_override_journal",
+            self.asset_id.category_id.journal_id,
+        )
         return {
             "company_id": self.company_id.id,
             "date": self.date,
-            "journal_id": self.asset_id.category_id.journal_id.id,
+            "journal_id": journal.id,
             "line_ids": [],
             "ref": _("Asset: ") + self.asset_id.make_name(),
             "move_type": "entry",
