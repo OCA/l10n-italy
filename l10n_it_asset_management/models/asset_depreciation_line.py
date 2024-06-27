@@ -396,7 +396,7 @@ class AssetDepreciationLine(models.Model):
         # Asset depreciation
         if not self.partial_dismissal:
             credit_account_id = self.asset_id.category_id.fund_account_id.id
-            debit_account_id = self.asset_id.category_id.depreciation_account_id.id
+            debit_account_id = self.depreciation_id.depreciation_account_id.id
 
         # Asset partial dismissal
         else:
@@ -423,7 +423,7 @@ class AssetDepreciationLine(models.Model):
     def get_gain_account_move_line_vals(self):
         self.ensure_one()
         credit_line_vals = {
-            "account_id": self.asset_id.category_id.gain_account_id.id,
+            "account_id": self.depreciation_id.gain_account_id.id,
             "credit": self.amount,
             "debit": 0.0,
             "currency_id": self.currency_id.id,
@@ -458,7 +458,7 @@ class AssetDepreciationLine(models.Model):
             "name": " - ".join((self.asset_id.make_name(), self.name)),
         }
         debit_line_vals = {
-            "account_id": self.asset_id.category_id.loss_account_id.id,
+            "account_id": self.depreciation_id.loss_account_id.id,
             "credit": 0.0,
             "debit": self.amount,
             "currency_id": self.currency_id.id,
