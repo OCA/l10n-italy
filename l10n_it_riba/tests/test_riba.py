@@ -862,3 +862,26 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # Assert: only the bank account of current company is found
         self.assertIn(current_bank_account, bank_accounts)
         self.assertNotIn(other_bank_account, bank_accounts)
+
+    def test_supplier_to_bill_company_bank_account(self):
+        """A supplier has a company bank account,
+        it is propagated to its vendor bill."""
+        # Arrange
+        bank_account = self.company_bank
+        payment_term = self.payment_term1
+        supplier = self.partner
+        supplier.property_supplier_payment_term_id = payment_term
+        supplier.property_riba_supplier_company_bank_id = bank_account
+        self.assertTrue(payment_term.riba)
+
+        # Act: Create the vendor bill
+        bill = self.env["account.move"].create(
+            {
+                "move_type": "in_invoice",
+                "partner_id": supplier.id,
+                "invoice_payment_term_id": payment_term.id,
+            }
+        )
+
+        # Assert
+        self.assertEqual(bill.riba_supplier_company_bank_id, bank_account)
