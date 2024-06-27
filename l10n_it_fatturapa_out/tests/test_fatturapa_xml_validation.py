@@ -1027,3 +1027,89 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_post()
 
         self.assertEqual(invoice.state, "posted")
+
+    def test_18_xml_export(self):
+        vals = {
+            "name": "Azienda Sanmarinese",
+            "is_company": "1",
+            "street": "Piazza della Libertà",
+            "is_pa": False,
+            "city": "Città di San Marino",
+            "zip": "47890",
+            "country_id": self.env.ref("base.sm").id,
+            "email": "asm@example.com",
+            "vat": "SM00123",
+            "codice_destinatario": "2R4GTO8",
+        }
+        partner_sm = self.env["res.partner"].create(vals)
+
+        tax_kind = self.env["account.tax.kind"].search([("code", "=", "N3.3")], limit=1)
+        self.assertTrue(tax_kind)
+
+        vals = {
+            "name": "0% SM",
+            "amount": 0.0,
+            "amount_type": "percent",
+            "description": "Non Imponibile Art. 71",
+            "kind_id": tax_kind.id,
+        }
+        tax_id = self.env["account.tax"].create(vals)
+
+        self.env.company.fatturapa_pub_administration_ref = "F000000111"
+        invoice = self.invoice_model.create(
+            {
+                "name": "INV/2016/0013",
+                "company_id": self.env.company.id,
+                "invoice_date": "2016-01-07",
+                "partner_id": partner_sm.id,
+                "journal_id": self.sales_journal.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
+                "user_id": self.user_demo.id,
+                "move_type": "out_invoice",
+                "currency_id": self.EUR.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_product_10.id,
+                            "name": "Mouse\nOptical",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 10,
+                            "tax_ids": [(6, 0, [tax_id.id])],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_order_01.id,
+                            "name": "Zed+ Antivirus",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 4,
+                            "tax_ids": [(6, 0, [tax_id.id])],
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice._post()
+        self.assertFalse(self.attach_model.file_name_exists("00001"))
+        res = self.run_wizard(invoice.id)
+
+        self.assertTrue(res)
+        attachment = self.attach_model.browse(res["res_id"])
+        file_name_match = "^%s_[A-Za-z0-9]{5}.xml$" % self.env.company.vat
+        # Checking file name randomly generated
+        self.assertTrue(re.search(file_name_match, attachment.name))
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00018.xml")
+        self.assertTrue(self.attach_model.file_name_exists("00018"))
+
+        # XML doc to be validated
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT06363391001_00018.xml")
