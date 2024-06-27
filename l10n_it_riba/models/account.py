@@ -39,6 +39,14 @@ class ResPartnerBankAdd(models.Model):
         help="Identification Code of the Company in the Interbank System.",
     )
 
+    @api.model
+    def _domain_riba_partner_bank_id(self):
+        """Domain to select bank accounts linked to the current company."""
+        company = self.env.company
+        return [
+            ("partner_id", "=", company.partner_id.id),
+        ]
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
