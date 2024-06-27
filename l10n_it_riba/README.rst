@@ -97,6 +97,10 @@ presente sia sulla distinta che sulle sue righe.
 La voce di menù 'Presentazione Riba' permette estrarre le riba fino al
 raggiungimento dell'importo massimo inserito dall'utente.
 
+Nella lista delle fatture è presente una colonna per monitorare l'
+esposizione, cioè l'importo dovuto dal cliente a fronte dell'emissione
+della RiBa non ancora scaduta.
+
 Known issues / Roadmap
 ======================
 
@@ -136,6 +140,8 @@ Contributors
 -  `Aion Tech <https://aiontech.company/>`__:
 
    -  Simone Rubino <simone.rubino@aion-tech.it>
+
+-  Nextev Srl <odoo@nextev.it>
 
 Maintainers
 -----------

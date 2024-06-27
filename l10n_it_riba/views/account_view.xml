@@ -163,6 +163,7 @@
         <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
             <field name="move_type" position="after">
+                <field name="open_amount" widget="monetary" />
                 <field name="is_past_due" string="Past Due" />
             </field>
         </field>

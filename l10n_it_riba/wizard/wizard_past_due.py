@@ -98,6 +98,8 @@ class RibaPastDue(models.TransientModel):
             raise UserError(_("No active ID found."))
         line_model = self.env["riba.slip.line"]
         line = line_model.browse(active_id)
+        line.acceptance_move_id.button_draft()
+        line.acceptance_move_id.unlink()
         line.state = "past_due"
         line.slip_id.state = "past_due"
         return {"type": "ir.actions.act_window_close"}
@@ -128,27 +130,6 @@ class RibaPastDue(models.TransientModel):
             "journal_id": wizard.past_due_journal_id.id,
             "date": slip_line.due_date,
             "line_ids": [
-                (
-                    0,
-                    0,
-                    {
-                        "name": _("Bills"),
-                        "account_id": wizard.effects_account_id.id,
-                        "partner_id": slip_line.partner_id.id,
-                        "credit": wizard.effects_amount,
-                        "debit": 0.0,
-                    },
-                ),
-                (
-                    0,
-                    0,
-                    {
-                        "name": _("RiBa"),
-                        "account_id": wizard.riba_bank_account_id.id,
-                        "debit": wizard.riba_bank_amount,
-                        "credit": 0.0,
-                    },
-                ),
                 (
                     0,
                     0,
@@ -203,6 +184,7 @@ class RibaPastDue(models.TransientModel):
                             i.id
                             for i in riba_move_line.move_line_id.past_due_invoice_ids
                         ]
+                    riba_move_line.move_line_id.remove_move_reconcile()
                     move_model.browse(invoice_ids).write(
                         {
                             "past_due_move_line_ids": [(4, move_line.id)],
