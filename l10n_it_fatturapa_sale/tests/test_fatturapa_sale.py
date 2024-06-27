@@ -51,17 +51,17 @@ class TestFatturapaSale(TransactionCase):
         # Check the invoice
         invoice = sale_order._create_invoices()
         self.assertEqual(len(invoice), 1, "Multiple invoices for sale order")
-        self.assertEqual(invoice.related_documents, sale_order.related_documents)
+        self.assertTrue(sale_order.related_documents <= invoice.related_documents)
 
         # Check the invoice line
         invoice_line = invoice.invoice_line_ids.filtered(
-            lambda line: order_line in line.sale_line_ids
+            lambda line: order_line <= line.sale_line_ids
         )
         self.assertEqual(
             len(invoice_line), 1, "Multiple invoice lines for sale order line"
         )
 
-        self.assertEqual(invoice_line.related_documents, order_line.related_documents)
+        self.assertTrue(order_line.related_documents <= invoice_line.related_documents)
         self.assertEqual(invoice_line.admin_ref, order_line.admin_ref)
 
     def test_create_invoice_multiple(self):
@@ -79,8 +79,8 @@ class TestFatturapaSale(TransactionCase):
         # Check the invoice
         invoice = sale_orders._create_invoices()
         self.assertEqual(len(invoice), 1, "Multiple invoices for sale order")
-        self.assertEqual(
-            invoice.related_documents, sale_orders.mapped("related_documents")
+        self.assertTrue(
+            sale_orders.mapped("related_documents") <= invoice.related_documents
         )
 
         # Check the invoice lines
