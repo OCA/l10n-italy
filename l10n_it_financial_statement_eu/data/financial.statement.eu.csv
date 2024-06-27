@@ -1,0 +1,283 @@
+id,code,name,long_desc,zone_bal,parent_id:id,sequence,sign_calculation,sign_display,tag_xbrl
+PA,PA,Attivo,STATO PATRIMONIALE ATTIVO,PA,,1,,+,TotaleAttivo
+PA_A,PA.A,Crediti Verso Soci,A) Crediti verso soci per versamenti ancora dovuti,PA,PA,2,,+,TotaleCreditiVersoSociVersamentiAncoraDovuti
+PA_A1,PA.A1,Parte richiamata,Parte richiamata,PA,PA_A,3,,+,CreditiVersoSociVersamentiAncoraDovutiParteRichiamata
+PA_A2,PA.A2,Parte da richiamare,Parte da richiamare,PA,PA_A,4,,+,CreditiVersoSociVersamentiAncoraDovutiParteRichiamare
+PA_B,PA.B,Immobilizzazioni,"B) Immobilizzazioni, con separata indicazione di quelle concesse in locazione finanziaria",PA,PA,5,,+,TotaleImmobilizzazioni
+PA_B1,PA.B1,Immobilizzazioni Immateriali,I. Immateriali,PA,PA_B,6,,+,TotaleImmobilizzazioniImmateriali
+PA_B11,PA.B11,Costi di Impianto ed Ampliamento,1) Costi di impianto e di ampliamento,PA,PA_B1,7,,+,ImmobilizzazioniImmaterialiCostiImpiantoAmpliamento
+PA_B11a,PA.B11a,Costo storico,Costo storico,PA,PA_B11,8,,+,
+PA_B11b,PA.B11b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B11,9,,+,
+PA_B11c,PA.B11c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B11,10,,+,
+PA_B12,PA.B12,Costi di Sviluppo,2) Costi di sviluppo,PA,PA_B1,11,,+,ImmobilizzazioniImmaterialiCostiSviluppo
+PA_B12a,PA.B12a,Costo storico,Costo storico,PA,PA_B12,12,,+,
+PA_B12b,PA.B12b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B12,13,,+,
+PA_B12c,PA.B12c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B12,14,,+,
+PA_B13,PA.B13,Brevetti e Diritti Utilizzo Opere dell'Ingegno,3) Diritti di brevetto industriale e di utilizzazione delle opere dell'ingegno,PA,PA_B1,15,,+,ImmobilizzazioniImmaterialiDirittiBrevettoIndustrialeDirittiUtilizzazioneOpereIngegno
+PA_B13a,PA.B13a,Costo storico,Costo storico,PA,PA_B13,16,,+,
+PA_B13b,PA.B13b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B13,17,,+,
+PA_B13c,PA.B13c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B13,18,,+,
+PA_B14,PA.B14,"Concessioni, Licenze, Marchi","4) Concessioni, licenze, marchi e diritti simili",PA,PA_B1,19,,+,ImmobilizzazioniImmaterialiConcessioniLicenzeMarchiDirittiSimili
+PA_B14a,PA.B14a,Costo storico,Costo storico,PA,PA_B14,20,,+,
+PA_B14b,PA.B14b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B14,21,,+,
+PA_B14c,PA.B14c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B14,22,,+,
+PA_B18,PA.B18,Differenza da consolidamento,Differenza da consolidamento,PA,PA_B1,23,,+,
+PA_B15,PA.B15,Avviamento,5) Avviamento,PA,PA_B1,24,,+,ImmobilizzazioniImmaterialiAvviamento
+PA_B15a,PA.B15a,Costo storico,Costo storico,PA,PA_B15,25,,+,
+PA_B15b,PA.B15b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B15,26,,+,
+PA_B15c,PA.B15c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B15,27,,+,
+PA_B16,PA.B16,Immobilizzazioni in Corso e Acconti,6) Immobilizzazioni immateriali in corso e acconti,PA,PA_B1,28,,+,ImmobilizzazioniImmaterialiImmobilizzazioniCorsoAcconti
+PA_B17,PA.B17,Altre,7) Altre,PA,PA_B1,29,,+,ImmobilizzazioniImmaterialiAltre
+PA_B17a,PA.B17a,Costo storico,Costo storico,PA,PA_B17,30,,+,
+PA_B17b,PA.B17b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B17,31,,+,
+PA_B17c,PA.B17c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B17,32,,+,
+PA_B2,PA.B2,Immobilizzazioni Materiali,II. Materiali,PA,PA_B,33,,+,TotaleImmobilizzazioniMateriali
+PA_B21,PA.B21,Terreni e Fabbricati,1) Terreni e fabbricati,PA,PA_B2,34,,+,ImmobilizzazioniMaterialiTerreniFabbricati
+PA_B21a,PA.B21a,Costo storico,Costo storico,PA,PA_B21,35,,+,
+PA_B21b,PA.B21b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B21,36,,+,
+PA_B21c,PA.B21c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B21,37,,+,
+PA_B22,PA.B22,Impianti e Macchinario,2) Impianti e macchinario,PA,PA_B2,38,,+,ImmobilizzazioniMaterialiImpiantiMacchinario
+PA_B22a,PA.B22a,Costo storico,Costo storico,PA,PA_B22,39,,+,
+PA_B22b,PA.B22b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B22,40,,+,
+PA_B22c,PA.B22c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B22,41,,+,
+PA_B23,PA.B23,Attrezzature Industriali e Commerciali,3) Attrezzature industriali e commerciali,PA,PA_B2,42,,+,ImmobilizzazioniMaterialiAttrezzatureIndustrialiCommerciali
+PA_B23a,PA.B23a,Costo storico,Costo storico,PA,PA_B23,43,,+,
+PA_B23b,PA.B23b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B23,44,,+,
+PA_B23c,PA.B23c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B23,45,,+,
+PA_B24,PA.B24,Altri Beni,4) Altri beni,PA,PA_B2,46,,+,ImmobilizzazioniMaterialiAltriBeni
+PA_B24a,PA.B24a,Costo storico,Costo storico,PA,PA_B24,47,,+,
+PA_B24b,PA.B24b,(Fondo ammortamenti),(Fondo ammortamenti),PA,PA_B24,48,,+,
+PA_B24c,PA.B24c,(Fondo svalutazioni),(Fondo svalutazioni),PA,PA_B24,49,,+,
+PA_B25,PA.B25,Immobilizzazioni in Corso e Acconti,5) Immobilizzazioni in corso e acconti,PA,PA_B2,50,,+,ImmobilizzazioniMaterialiImmobilizzazioniCorsoAcconti
+PA_B3,PA.B3,Immobilizzazioni Finanziarie,III. Finanziarie,PA,PA_B,51,,+,TotaleImmobilizzazioniFinanziarie
+PA_B31,PA.B31,Partecipazioni,1) Partecipazioni in:,PA,PA_B3,52,,+,ImmobilizzazioniFinanziariePartecipazioniTotalePartecipazioni
+PA_B31a,PA.B31a,Partecipazioni in Imprese Controllate,a) imprese controllate,PA,PA_B31,53,,+,ImmobilizzazioniFinanziariePartecipazioniImpreseControllate
+PA_B31b,PA.B31b,Partecipazioni in Imprese Collegate,b) imprese collegate,PA,PA_B31,54,,+,ImmobilizzazioniFinanziariePartecipazioniImpreseCollegate
+PA_B31c,PA.B31c,Partecipazioni in Imprese Controllanti,c) imprese controllanti,PA,PA_B31,55,,+,ImmobilizzazioniFinanziariePartecipazioniImpreseControllanti
+PA_B31e,PA.B31e,Partecipazioni in Imprese sottoposte al controllo delle controllanti,c) imprese sottoposte al controllo delle controllanti,PA,PA_B31,56,,+,ImmobilizzazioniFinanziariePartecipazioniImpreseSottoposteControlloControllanti
+PA_B31d,PA.B31d,Partecipazioni in altre Imprese,d) altre imprese,PA,PA_B31,57,,+,ImmobilizzazioniFinanziariePartecipazioniAltreImprese
+PA_B32,PA.B32,Crediti,2) Crediti,PA,PA_B3,58,,+,ImmobilizzazioniFinanziarieCreditiTotaleCrediti
+PA_B32a,PA.B32a,Crediti verso Imprese Controllate,a) verso imprese controllate,PA,PA_B32,59,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseControllateTotaleCreditiVersoImpreseControllate
+PA_B32a1,PA.B32a1,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_B32a,60,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseControllateEsigibiliEntroEsercizioSuccessivo
+PA_B32a2,PA.B32a2,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_B32a,61,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseControllateEsigibiliOltreEsercizioSuccessivo
+PA_B32b,PA.B32b,Crediti Verso Imprese Collegate,b) verso imprese collegate,PA,PA_B32,62,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseCollegateTotaleCreditiVersoImpreseCollegate
+PA_B32b1,PA.B32b1,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_B32b,63,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseCollegateEsigibiliEntroEsercizioSuccessivo
+PA_B32b2,PA.B32b2,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_B32b,64,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseCollegateEsigibiliOltreEsercizioSuccessivo
+PA_B32c,PA.B32c,Crediti Verso Imprese Controllanti,c) verso imprese controllanti,PA,PA_B32,65,,+,ImmobilizzazioniFinanziarieCreditiVersoControllantiTotaleCreditiVersoControllanti
+PA_B32c1,PA.B32c1,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_B32c,66,,+,ImmobilizzazioniFinanziarieCreditiVersoControllantiEsigibiliEntroEsercizioSuccessivo
+PA_B32c2,PA.B32c2,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_B32c,67,,+,ImmobilizzazioniFinanziarieCreditiVersoControllantiEsigibiliOltreEsercizioSuccessivo
+PA_B32e,PA.B32e,Crediti Verso Imprese sottoposte al controllo delle Controllanti,c) verso imprese sottoposte al controllo delle controllanti,PA,PA_B32,68,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseSottoposteControlloControllantiTotaleCreditiVersoImpreseSottoposteControlloControllanti
+PA_B32e1,PA.B32e1,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_B32e,69,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseSottoposteControlloControllantiEsigibiliEntroEsercizioSuccessivo
+PA_B32e2,PA.B32e2,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_B32e,70,,+,ImmobilizzazioniFinanziarieCreditiVersoImpreseSottoposteControlloControllantiEsigibiliOltreEsercizioSuccessivo
+PA_B32d,PA.B32d,Crediti Verso altri,d) verso altri,PA,PA_B32,71,,+,ImmobilizzazioniFinanziarieCreditiVersoAltriTotaleCreditiVersoAltri
+PA_B32d1,PA.B32d1,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_B32d,72,,+,ImmobilizzazioniFinanziarieCreditiVersoAltriEsigibiliEntroEsercizioSuccessivo
+PA_B32d2,PA.B32d2,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_B32d,73,,+,ImmobilizzazioniFinanziarieCreditiVersoAltriEsigibiliOltreEsercizioSuccessivo
+PA_B33,PA.B33,Altri Titoli,3) Altri titoli,PA,PA_B3,74,,+,ImmobilizzazioniFinanziarieAltriTitoli
+PA_B35,PA.B35,Strumenti finanziari derivati attivi,4) strumenti finanziari derivati attivi,PA,PA_B3,75,,+,ImmobilizzazioniFinanziarieStrumentiFinanziariDerivatiAttivi
+PA_C,PA.C,Attivo Circolante,C) Attivo circolante,PA,PA,76,,+,TotaleAttivoCircolante
+PA_C1,PA.C1,Rimanenze,I. Rimanenze,PA,PA_C,77,,+,TotaleRimanenze
+PA_C11,PA.C11,"Materie prime, sussidiarie e di consumo","1) Materie prime, sussidiarie e di consumo",PA,PA_C1,78,,+,RimanenzeMateriePrimeSussidiarieConsumo
+PA_C12,PA.C12,Prodotti in corso di lavorazione,2) Prodotti in corso di lavorazione e semilavorati,PA,PA_C1,79,,+,RimanenzeProdottiCorsoLavorazioneSemilavorati
+PA_C13,PA.C13,Lavori in corso su Ordinazione,3) Lavori in corso su ordinazione,PA,PA_C1,80,,+,RimanenzeLavoriCorsoOrdinazione
+PA_C14,PA.C14,Prodotti Finiti e Merci,4) Prodotti finiti e merci,PA,PA_C1,81,,+,RimanenzeProdottiFinitiMerci
+PA_C15,PA.C15,Acconti,5) Acconti,PA,PA_C1,82,,+,RimanenzeAcconti
+PA_C5,PA.C5,Immobilizzazioni materiali destinate alla vendita,Immobilizzazioni materiali destinate alla vendita,PA,PA_C,83,,+,ImmobilizzazioniMaterialiDestinateAllaVendita
+PA_C2,PA.C2,Crediti,II. Crediti,PA,PA_C,84,,+,TotaleCrediti
+PA_C21,PA.C21,Crediti Verso Clienti,1) verso clienti,PA,PA_C2,85,,+,CreditiVersoClientiTotaleCreditiVersoClienti
+PA_C21a,PA.C21a,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_C21,86,,+,CreditiVersoClientiEsigibiliEntroEsercizioSuccessivo
+PA_C21b,PA.C21b,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_C21,87,,+,CreditiVersoClientiEsigibiliOltreEsercizioSuccessivo
+PA_C22,PA.C22,Crediti Verso Imprese Controllate,2) verso imprese controllate,PA,PA_C2,88,,+,CreditiVersoImpreseControllateTotaleCreditiVersoImpreseControllate
+PA_C22a,PA.C22a,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_C22,89,,+,CreditiVersoImpreseControllateEsigibiliEntroEsercizioSuccessivo
+PA_C22b,PA.C22b,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_C22,90,,+,CreditiVersoImpreseControllateEsigibiliOltreEsercizioSuccessivo
+PA_C23,PA.C23,Crediti Verso Imprese Collegate,3) verso imprese collegate,PA,PA_C2,91,,+,CreditiVersoImpreseCollegateTotaleCreditiVersoImpreseCollegate
+PA_C23a,PA.C23a,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_C23,92,,+,CreditiVersoImpreseCollegateEsigibiliEntroEsercizioSuccessivo
+PA_C23b,PA.C23b,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_C23,93,,+,CreditiVersoImpreseCollegateEsigibiliOltreEsercizioSuccessivo
+PA_C24,PA.C24,Crediti Verso Controllanti,4) verso controllanti,PA,PA_C2,94,,+,CreditiVersoControllantiTotaleCreditiVersoControllanti
+PA_C24a,PA.C24a,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_C24,95,,+,CreditiVersoControllantiEsigibiliEntroEsercizioSuccessivo
+PA_C24b,PA.C24b,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_C24,96,,+,CreditiVersoControllantiEsigibiliOltreEsercizioSuccessivo
+PA_C26,PA.C26,Crediti Verso imprese sottoposte al controllo delle controllanti,4) verso imprese sottoposte al controllo delle controllanti,PA,PA_C2,97,,+,CreditiVersoImpreseSottoposteControlloControllantiTotaleCreditiVersoImpreseSottoposteControlloControllanti
+PA_C26a,PA.C26a,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_C26,98,,+,CreditiVersoImpreseSottoposteControlloControllantiEsigibiliEntroEsercizioSuccessivo
+PA_C26b,PA.C26b,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_C26,99,,+,CreditiVersoImpreseSottoposteControlloControllantiEsigibiliOltreEsercizioSuccessivo
+PA_C2B,PA.C2B,Crediti Tributari,5-bis) crediti tributari,PA,PA_C2,100,,+,CreditiCreditiTributariTotaleCreditiTributari
+PA_C2Ba,PA.C2Ba,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_C2B,101,,+,CreditiCreditiTributariEsigibiliEntroEsercizioSuccessivo
+PA_C2Bb,PA.C2Bb,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_C2B,102,,+,CreditiCreditiTributariEsigibiliOltreEsercizioSuccessivo
+PA_C2T,PA.C2T,Imposte Anticipate,5-ter) Imposte anticipate,PA,PA_C2,103,,+,CreditiImposteAnticipateTotaleImposteAnticipate
+PA_C25,PA.C25,Crediti Verso Altri,5-quater) verso altri,PA,PA_C2,104,,+,CreditiVersoAltriTotaleCreditiVersoAltri
+PA_C25a,PA.C25a,Esigibili entro l'esercizio successivo,- entro esercizio successivo,PA,PA_C25,105,,+,CreditiVersoAltriEsigibiliEntroEsercizioSuccessivo
+PA_C25b,PA.C25b,Esigibili oltre l'esercizio successivo,- oltre esercizio successivo,PA,PA_C25,106,,+,CreditiVersoAltriEsigibiliOltreEsercizioSuccessivo
+PA_C3,PA.C3,Attività Finanziarie che non costit. immobilizz.,III. Attività finanziarie che non costituiscono immobilizzazioni,PA,PA_C,107,,+,TotaleAttivitaFinanziarieNonCostituisconoImmobilizzazioni
+PA_C31,PA.C31,Partecipazioni in Imprese Controllate,1) Partecipazioni in imprese controllate,PA,PA_C3,108,,+,AttivitaFinanziarieNonCostituisconoImmobilizzazioniPartecipazioniImpreseControllate
+PA_C32,PA.C32,Partecipazioni in Imprese Collegate,2) Partecipazioni in imprese collegate,PA,PA_C3,109,,+,AttivitaFinanziarieNonCostituisconoImmobilizzazioniPartecipazioniImpreseCollegate
+PA_C33,PA.C33,Partecipazioni in Imprese Controllanti,3) Partecipazioni in imprese controllanti,PA,PA_C3,110,,+,AttivitaFinanziarieNonCostituisconoImmobilizzazioniPartecipazioniImpreseControllanti
+PA_C37,PA.C37,Partecipazioni in imprese sottoposte al controllo delle controllanti,3 bis) Partecipazioni in imprese sottoposte al controllo delle controllanti,PA,PA_C3,111,,+,AttivitaFinanziarieNonCostituisconoImmobilizzazioniPartecipazioniImpreseSottoposteControlloControllanti
+PA_C34,PA.C34,Altre Partecipazioni,4) Altre partecipazioni,PA,PA_C3,112,,+,AttivitaFinanziarieNonCostituisconoImmobilizzazioniAltrePartecipazioni
+PA_C38,PA.C38,Strumenti finanziari derivati attivi,5) Strumenti finanziari derivati attivi,PA,PA_C3,113,,+,AttivitaFinanziarieNonCostituisconoImmobilizzazioniStrumentiFinanziariDerivatiAttivi
+PA_C36,PA.C36,Altri Titoli,6) Altri titoli,PA,PA_C3,114,,+,AttivitaFinanziarieNonCostituisconoImmobilizzazioniAltriTitoli
+PA_C3T,PA.C3T,attività finanziarie per la gestione accentrata della tesoreria,attività finanziarie per la gestione accentrata della tesoreria,PA,PA_C3,115,,+,AttivitaFinanziarieNonCostituisconoImmobilizzazioniAttivitaFinanziarieLaGestioneAccentrataTesoreria
+PA_C4,PA.C4,Disponibilità Liquide,IV. Disponibilità liquide,PA,PA_C,116,,+,TotaleDisponibilitaLiquide
+PA_C41,PA.C41,Depositi Bancari e Postali,1) Depositi bancari e postali,PA,PA_C4,117,,+,DisponibilitaLiquideDepositiBancariPostali
+PA_C42,PA.C42,Assegni,2) Assegni,PA,PA_C4,118,,+,DisponibilitaLiquideAssegni
+PA_C43,PA.C43,Denaro e Valori in Cassa,3) Denaro e valori in cassa,PA,PA_C4,119,,+,DisponibilitaLiquideDanaroValoriCassa
+PA_D,PA.D,Ratei e Risconti,D) Ratei e risconti,PA,PA,120,,+,AttivoRateiRisconti
+PP,PP,Passivo,STATO PATRIMONIALE PASSIVO,PP,,121,,-,TotalePassivo
+PP_A,PP.A,Patrimonio Netto,A) Patrimonio netto,PP,PP,122,,-,TotalePatrimonioNetto
+PP_A1,PP.A1,Capitale,I. Capitale,PP,PP_A,123,,-,PatrimonioNettoCapitale
+PP_A2,PP.A2,Riserva da Sovrapprezzo delle Azioni,II. Riserva da sovrapprezzo delle azioni,PP,PP_A,124,,-,PatrimonioNettoRiservaSoprapprezzoAzioni
+PP_A3,PP.A3,Riserva di Rivalutazione,III. Riserva di rivalutazione,PP,PP_A,125,,-,PatrimonioNettoRiserveRivalutazione
+PP_A4,PP.A4,Riserva Legale,IV. Riserva legale,PP,PP_A,126,,-,PatrimonioNettoRiservaLegale
+PP_A6,PP.A6,Riserve Statutarie,V. Riserve statutarie,PP,PP_A,127,,-,PatrimonioNettoRiserveStatutarie
+PP_A7,PP.A7,Altre Riserve,"VI. Altre riserve, distintamente indicate:",PP,PP_A,128,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateTotaleAltreRiserve
+PP_A7a,PP.A7a,Riserva straordinaria,Riserva straordinaria,PP,PP_A7,129,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateRiservaStraordinaria
+PP_A7o,PP.A7o,Riserva da deroghe ex art. 2423 Cod.Civ.,Riserva da deroghe ex art. 2423 Cod.Civ.,PP,PP_A7,130,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateRiservaDerogheExArticolo2423CodiceCivile
+PP_A7p,PP.A7p,Riserva azioni (quote) della società controllante,Riserva azioni (quote) della società controllante,PP,PP_A7,131,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateRiservaAzioniQuoteSocietaControllante
+PP_A7q,PP.A7q,Riserva da rivalutazione delle partecipazioni,Riserva da rivalutazione delle partecipazioni,PP,PP_A7,132,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateRiservaRivalutazionePartecipazioni
+PP_A7r,PP.A7r,Versamenti in conto aumento di capitale,Versamenti in conto aumento di capitale,PP,PP_A7,133,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateVersamentiContoAumentoCapitale
+PP_A7s,PP.A7s,Versamenti in conto futuro aumento di capitale,Versamenti in conto futuro aumento di capitale,PP,PP_A7,134,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateVersamentiContoFuturoAumentoCapitale
+PP_A7b,PP.A7b,Versamenti in conto capitale,- Versamenti in conto capitale,PP,PP_A7,135,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateVersamentiContoCapitale
+PP_A7t,PP.A7t,Versamenti a copertura perdite,Versamenti a copertura perdite,PP,PP_A7,136,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateVersamentiCoperturaPerdite
+PP_A7u,PP.A7u,Riserva da riduzione capitale sociale,Riserva da riduzione capitale sociale,PP,PP_A7,137,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateRiservaRiduzioneCapitaleSociale
+PP_A7v,PP.A7v,Riserva avanzo di fusione,Riserva avanzo di fusione,PP,PP_A7,138,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateRiservaAvanzoFusione
+PP_A7w,PP.A7w,Riserva per utili su cambi non realizzati,Riserva per utili su cambi non realizzati,PP,PP_A7,139,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateRiservaUtiliCambiNonRealizzati
+PP_A7x,PP.A7x,Riserva da conguaglio utili in corso,Riserva da conguaglio utili in corso,PP,PP_A7,140,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateRiservaConguaglioUtiliCorso
+PP_A7j,PP.A7j,Varie altre riserve,Varie altre riserve,PP,PP_A7,141,,-,PatrimonioNettoAltreRiserveDistintamenteIndicateVarieAltreRiserve
+PP_A7j1,PP.A7j1,varie altre riserve,varie altre riserve,PP,PP_A7j,142,,-,
+PP=A7j2,PP=A7j2,da arrotondamento automatico,- da arrotondamento automatico in Euro (2 decimali),PP,PP_A7j,143,,-,
+PP_AB,PP.AB,Riserva per operazioni di copertura dei flussi finanziari attesi,VII. Riserva per operazioni di copertura dei flussi finanziari attesi,PP,PP_A,146,,-,PatrimonioNettoRiservaOperazioniCoperturaFlussiFinanziariAttesi
+PP_A8,PP.A8,Utili (Perdite) Portati a Nuovo,VIII. Utili (perdite) portati a nuovo,PP,PP_A,147,,-,PatrimonioNettoUtiliPerditePortatiNuovo
+PP=A9,PP=A9,Utile (Perdita) dell'esercizio,IX. Utile (perdita) dell'esercizio,PP,PP_A,148,,-,PatrimonioNettoUtilePerditaEsercizio
+PP_AD,PP.AD,Perdita ripianata nell'esercizio,Perdita ripianata nell'esercizio,PP,PP_A,149,,-,PatrimonioNettoPerditaRipianataEsercizio
+PP_AC,PP.AC,Riserva negativa per azioni proprie in portafoglio,X. Riserva negativa per azioni proprie in portafoglio,PP,PP_A,150,,-,PatrimonioNettoRiservaNegativaAzioniPropriePortafoglio
+PP_B,PP.B,Fondi per Rischi e Oneri,B) Fondi per rischi e oneri,PP,PP,154,,-,TotaleFondiRischiOneri
+PP_B1,PP.B1,Fondi per trattamento di quiescenza e obblighi simili,1) per trattamento di quiescenza e obblighi simili,PP,PP_B,155,,-,FondiRischiOneriTrattamentoQuiescenzaObblighiSimili
+PP_B2,PP.B2,"Fondo per Imposte, anche differite","2) per imposte, anche differite",PP,PP_B,156,,-,FondiRischiOneriImposteAncheDifferite
+PP_B5,PP.B5,Strumenti finanziari derivati passivi,3) Strumenti finanziari derivati passivi,PP,PP_B,158,,-,FondiRischiOneriStrumentiFinanziariDerivatiPassivi
+PP_B3,PP.B3,Altri Fondi,4) Altri fondi,PP,PP_B,159,,-,FondiRischiOneriAltri
+PP_C,PP.C,Trattamento di fine rapporto di lavoro subordinato,C) Trattamento di fine rapporto di lavoro subordinato,PP,PP,160,,-,TrattamentoFineRapportoLavoroSubordinato
+PP_D,PP.D,Debiti,D) Debiti,PP,PP,161,,-,TotaleDebiti
+PP_D1,PP.D1,Obbligazioni,1) Obbligazioni,PP,PP_D,162,,-,DebitiObbligazioniTotaleObbligazioni
+PP_D1a,PP.D1a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D1,163,,-,DebitiObbligazioniEsigibiliEntroEsercizioSuccessivo
+PP_D1b,PP.D1b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D1,164,,-,DebitiObbligazioniEsigibiliOltreEsercizioSuccessivo
+PP_D2,PP.D2,Obbligazioni Convertibili,2) Obbligazioni convertibili,PP,PP_D,165,,-,DebitiObbligazioniConvertibiliTotaleObbligazioniConvertibili
+PP_D2a,PP.D2a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D2,166,,-,DebitiObbligazioniConvertibiliEsigibiliEntroEsercizioSuccessivo
+PP_D2b,PP.D2b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D2,167,,-,DebitiObbligazioniConvertibiliEsigibiliOltreEsercizioSuccessivo
+PP_DF,PP.DF,Debiti verso soci per finanziamenti,3) Debiti verso soci per finanziamenti,PP,PP_D,168,,-,DebitiDebitiVersoSociFinanziamentiTotaleDebitiVersoSociFinanziamenti
+PP_DFa,PP.DFa,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_DF,169,,-,DebitiDebitiVersoSociFinanziamentiEsigibiliEntroEsercizioSuccessivo
+PP_DFb,PP.DFb,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_DF,170,,-,DebitiDebitiVersoSociFinanziamentiEsigibiliOltreEsercizioSuccessivo
+PP_D3,PP.D3,Debiti verso banche,4) Debiti verso banche,PP,PP_D,171,,-,DebitiDebitiVersoBancheTotaleDebitiVersoBanche
+PP_D3a,PP.D3a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D3,172,,-,DebitiDebitiVersoBancheEsigibiliEntroEsercizioSuccessivo
+PP_D3b,PP.D3b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D3,173,,-,DebitiDebitiVersoBancheEsigibiliOltreEsercizioSuccessivo
+PP_D4,PP.D4,Debiti verso altri finanziatori,5) Debiti verso altri finanziatori,PP,PP_D,174,,-,DebitiDebitiVersoAltriFinanziatoriTotaleDebitiVersoAltriFinanziatori
+PP_D4a,PP.D4a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D4,175,,-,DebitiDebitiVersoAltriFinanziatoriEsigibiliEntroEsercizioSuccessivo
+PP_D4b,PP.D4b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D4,176,,-,DebitiDebitiVersoAltriFinanziatoriEsigibiliOltreEsercizioSuccessivo
+PP_D5,PP.D5,Acconti,6) Acconti,PP,PP_D,177,,-,DebitiAccontiTotaleAcconti
+PP_D5a,PP.D5a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D5,178,,-,DebitiAccontiEsigibiliEntroEsercizioSuccessivo
+PP_D5b,PP.D5b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D5,179,,-,DebitiAccontiEsigibiliOltreEsercizioSuccessivo
+PP_D6,PP.D6,Debiti verso fornitori,7) Debiti verso fornitori,PP,PP_D,180,,-,DebitiDebitiVersoFornitoriTotaleDebitiVersoFornitori
+PP_D6a,PP.D6a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D6,181,,-,DebitiDebitiVersoFornitoriEsigibiliEntroEsercizioSuccessivo
+PP_D6b,PP.D6b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D6,182,,-,DebitiDebitiVersoFornitoriEsigibiliOltreEsercizioSuccessivo
+PP_D7,PP.D7,Debiti rappresentati da titoli di credito,8) Debiti rappresentati da titoli di credito,PP,PP_D,183,,-,DebitiDebitiRappresentatiTitoliCreditoTotaleDebitiRappresentatiTitoliCredito
+PP_D7a,PP.D7a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D7,184,,-,DebitiDebitiRappresentatiTitoliCreditoEsigibiliEntroEsercizioSuccessivo
+PP_D7b,PP.D7b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D7,185,,-,DebitiDebitiRappresentatiTitoliCreditoEsigibiliOltreEsercizioSuccessivo
+PP_D8,PP.D8,Debiti verso Imprese Controllate,9) Debiti verso imprese controllate,PP,PP_D,186,,-,DebitiDebitiVersoImpreseControllateTotaleDebitiVersoImpreseControllate
+PP_D8a,PP.D8a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D8,187,,-,DebitiDebitiVersoImpreseControllateEsigibiliEntroEsercizioSuccessivo
+PP_D8b,PP.D8b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D8,188,,-,DebitiDebitiVersoImpreseControllateEsigibiliOltreEsercizioSuccessivo
+PP_D9,PP.D9,Debiti verso Imprese Collegate,10) Debiti verso imprese collegate,PP,PP_D,189,,-,DebitiDebitiVersoImpreseCollegateTotaleDebitiVersoImpreseCollegate
+PP_D9a,PP.D9a,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_D9,190,,-,DebitiDebitiVersoImpreseCollegateEsigibiliEntroEsercizioSuccessivo
+PP_D9b,PP.D9b,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_D9,191,,-,DebitiDebitiVersoImpreseCollegateEsigibiliOltreEsercizioSuccessivo
+PP_DA,PP.DA,Debiti verso Imprese Controllanti,11) Debiti verso controllanti,PP,PP_D,192,,-,DebitiDebitiVersoControllantiTotaleDebitiVersoControllanti
+PP_DAa,PP.DAa,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_DA,193,,-,DebitiDebitiVersoControllantiEsigibiliEntroEsercizioSuccessivo
+PP_DAb,PP.DAb,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_DA,194,,-,DebitiDebitiVersoControllantiEsigibiliOltreEsercizioSuccessivo
+PP_DE,PP.DE,Debiti verso imprese sottoposte al controllo delle controllanti,11 bis) Debiti verso imprese sottoposte al controllo delle controllanti,PP,PP_D,195,,-,DebitiDebitiVersoImpreseSottoposteControlloControllantiTotaleDebitiVersoImpreseSottoposteControlloControllanti
+PP_DEa,PP.DEa,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_DE,196,,-,DebitiDebitiVersoImpreseSottoposteControlloControllantiEsigibiliEntroEsercizioSuccessivo
+PP_DEb,PP.DEb,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_DE,197,,-,DebitiDebitiVersoImpreseSottoposteControlloControllantiEsigibiliOltreEsercizioSuccessivo
+PP_DB,PP.DB,Debiti Tributari,12) Debiti tributari,PP,PP_D,198,,-,DebitiDebitiTributariTotaleDebitiTributari
+PP_DBa,PP.DBa,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_DB,199,,-,DebitiDebitiTributariEsigibiliEntroEsercizioSuccessivo
+PP_DBb,PP.DBb,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_DB,200,,-,DebitiDebitiTributariEsigibiliOltreEsercizioSuccessivo
+PP_DC,PP.DC,Debiti Verso Istituti di Previdenza,13) Debiti verso istituti di previdenza e sicurezza sociale,PP,PP_D,201,,-,DebitiDebitiVersoIstitutiPrevidenzaSicurezzaSocialeTotaleDebitiVersoIstitutiPrevidenzaSicurezzaSociale
+PP_DCa,PP.DCa,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_DC,202,,-,DebitiDebitiVersoIstitutiPrevidenzaSicurezzaSocialeEsigibiliEntroEsercizioSuccessivo
+PP_DCb,PP.DCb,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_DC,203,,-,DebitiDebitiVersoIstitutiPrevidenzaSicurezzaSocialeEsigibiliOltreEsercizioSuccessivo
+PP_DD,PP.DD,Altri Debiti,14) Altri debiti,PP,PP_D,204,,-,DebitiAltriDebitiTotaleAltriDebiti
+PP_DDa,PP.DDa,Esigibili entro l'esercizio successivo,- entro l'esercizio successivo,PP,PP_DD,205,,-,DebitiAltriDebitiEsigibiliEntroEsercizioSuccessivo
+PP_DDb,PP.DDb,Esigibili oltre l'esercizio successivo,- oltre l'esercizio successivo,PP,PP_DD,206,,-,DebitiAltriDebitiEsigibiliOltreEsercizioSuccessivo
+PP_E,PP.E,Ratei e Risconti Passivi,E) Ratei e risconti,PP,PP,207,,-,PassivoRateiRisconti
+E,E,CONTO ECONOMICO,CONTO ECONOMICO,EC,,208,,-,
+E_A,E.A,Valore della Produzione,A) Valore della produzione,EC,E,209,,-,TotaleValoreProduzione
+E_A1,E.A1,Ricavi delle Vendite e delle Prestazioni,1) Ricavi delle vendite e delle prestazioni,EC,E_A,210,,-,ValoreProduzioneRicaviVenditePrestazioni
+E_A2,E.A2,Variazioni delle Rimanenze di Semilavorati e Finiti,"2) Variazioni delle rimanenze di prodotti in corso di lavorazione, semilavorati e finiti",EC,E_A,211,,-,ValoreProduzioneVariazioniRimanenzeProdottiCorsoLavorazioneSemilavoratiFiniti
+E_A3,E.A3,Variazione dei Lavori in Corso su Ordinazione,3) Variazione dei lavori in corso su ordinazione,EC,E_A,212,,-,ValoreProduzioneVariazioniLavoriCorsoOrdinazione
+E_A4,E.A4,Incrementi di Immobilizzazioni per Lavori Interni,4) Incrementi di immobilizzazioni per lavori interni,EC,E_A,213,,-,ValoreProduzioneIncrementiImmobilizzazioniLavoriInterni
+E_A5,E.A5,Altri Ricavi e Proventi,5) Altri ricavi e proventi:,EC,E_A,214,,-,ValoreProduzioneAltriRicaviProventiTotaleAltriRicaviProventi
+E_A52,E.A52,Contributi in conto esercizio,- Contributi in conto esercizio,EC,E_A5,215,,-,ValoreProduzioneAltriRicaviProventiContributiContoEsercizio
+E_A51,E.A51,Altri,- Altri,EC,E_A5,216,,-,ValoreProduzioneAltriRicaviProventiAltri
+E_A511,E.A511,Altri,- Altri,EC,E_A51,217,,-,
+E_A512,E=A512,Da arrotondamento automatico,- da arrotondamento automatico in Euro (2 decimali),EC,E_A51,218,,-,
+E_B,E.B,Costi della Produzione,B) Costi della produzione,EC,E,219,,+,TotaleCostiProduzione
+E_B1,E.B1,"Per Materie Prime, Sussidiarie, di Consumo, Merci","6) per materie prime, sussidiarie, di consumo e di merci",EC,E_B,220,,+,CostiProduzioneMateriePrimeSussidiarieConsumoMerci
+E_B2,E.B2,Per Servizi,7) per servizi,EC,E_B,221,,+,CostiProduzioneServizi
+E_B3,E.B3,Per Godimento Beni di Terzi,8) per godimento di beni di terzi,EC,E_B,222,,+,CostiProduzioneGodimentoBeniTerzi
+E_B4,E.B4,Per il Personale,9) per il personale,EC,E_B,223,,+,CostiProduzionePersonaleTotaleCostiPersonale
+E_B41,E.B41,Salari e Stipendi,a) Salari e stipendi,EC,E_B4,224,,+,CostiProduzionePersonaleSalariStipendi
+E_B42,E.B42,Oneri Sociali,b) Oneri sociali,EC,E_B4,225,,+,CostiProduzionePersonaleOneriSociali
+E_B43,E.B43,Trattamento di fine rapporto,c) Trattamento di fine rapporto,EC,E_B4,226,,+,CostiProduzionePersonaleTrattamentoFineRapporto
+E_B44,E.B44,Trattamento di Quiescenza e simili,d) Trattamento di quiescenza e simili,EC,E_B4,227,,+,CostiProduzionePersonaleTrattamentoQuiescenzaSimili
+E_B45,E.B45,Altri costi,e) Altri costi,EC,E_B4,228,,+,CostiProduzionePersonaleAltriCosti
+E_B5,E.B5,Ammortamenti e Svalutazioni,10) Ammortamenti e svalutazioni,EC,E_B,229,,+,CostiProduzioneAmmortamentiSvalutazioniTotaleAmmortamentiSvalutazioni
+E_B51,E.B51,Ammortamento Immobilizzazioni Immateriali,a) Ammortamento delle immobilizzazioni immateriali,EC,E_B5,230,,+,CostiProduzioneAmmortamentiSvalutazioniAmmortamentoImmobilizzazioniImmateriali
+E_B52,E.B52,Ammortamento Immobilizzazioni Materiali,b) Ammortamento delle immobilizzazioni materiali,EC,E_B5,231,,+,CostiProduzioneAmmortamentiSvalutazioniAmmortamentoImmobilizzazioniMateriali
+E_B53,E.B53,Altre Svalutazioni delle Immobilizzazioni,c) Altre svalutazioni delle immobilizzazioni,EC,E_B5,232,,+,CostiProduzioneAmmortamentiSvalutazioniAltreSvalutazioniImmobilizzazioni
+E_B54,E.B54,Svalutazione Attivo Circolante,d) svalutazioni dei crediti compresi nell'attivo circolante e delle disponibilità liquide,EC,E_B5,233,,+,CostiProduzioneAmmortamentiSvalutazioniSvalutazioniCreditiCompresiAttivoCircolanteDisponibilitaLiquide
+E_B6,E.B6,"Var Rimanenze di Materie Prime, Sussid., Consumo, MVar","11) Variazioni delle rimanenze di materie prime, sussidiarie, di consumo e merci",EC,E_B,234,,+,CostiProduzioneVariazioniRimanenzeMateriePrimeSussidiarieConsumoMerci
+E_B7,E.B7,Accantonamenti per Rischi,12) Accantonamenti per rischi,EC,E_B,235,,+,CostiProduzioneAccantonamentiRischi
+E_B8,E.B8,Altri Accantonamenti,13) Altri accantonamenti,EC,E_B,236,,+,CostiProduzioneAltriAccantonamenti
+E_B9,E.B9,Oneri Diversi di Gestione,14) Oneri diversi di gestione,EC,E_B,237,,+,CostiProduzioneOneriDiversiGestione
+E=B,E=B,Differenza tra Valore e Costo della Produzione,Differenza tra Valore e Costo della Produzione,EC,E,238,,+,DifferenzaValoreCostiProduzione
+E_C,E.C,Proventi e Oneri Finanziari,C) Proventi e oneri finanziari,EC,E,239,,+,TotaleProventiOneriFinanziari
+E_C1,E.C1,Proventi da Partecipazioni,15) Proventi da partecipazioni,EC,E_C,240,,-,ProventiOneriFinanziariProventiPartecipazioniTotaleProventiPartecipazioni
+E_C11,E.C11,Imprese Controllate,- da imprese Controllate,EC,E_C1,241,,-,ProventiOneriFinanziariProventiPartecipazioniImpreseControllate
+E_C12,E.C12,Imprese Collegate,- da imprese Collegate,EC,E_C1,242,,-,ProventiOneriFinanziariProventiPartecipazioniImpreseCollegate
+E_C14,E.C14,Imprese Controllanti,- da imprese Controllanti,EC,E_C1,243,,-,ProventiOneriFinanziariProventiPartecipazioniImpreseControllanti
+E_C15,E.C15,imprese sottoposte al controllo delle controllanti,- da imprese sottoposte al controllo delle Controllanti,EC,E_C1,244,,-,ProventiOneriFinanziariProventiPartecipazioniImpreseSottoposteControlloControllanti
+E_C13,E.C13,Altri,- Altri,EC,E_C1,245,,-,ProventiOneriFinanziariProventiPartecipazioniAltri
+E_C2,E.C2,Altri Proventi Finanziari,16) Altri proventi finanziari,EC,E_C,246,,-,ProventiOneriFinanziariAltriProventiFinanziariTotaleAltriProventiFinanziari
+E_C21,E.C21,da crediti iscritti nelle immobilizzazioni,a) da crediti iscritti nelle immobilizzazioni,EC,E_C2,247,,-,ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniTotaleProventiFinanziariCreditiIscrittiImmobilizzazioni
+E_C211,E.C211,Da Imprese Controllate,- da imprese Controllate,EC,E_C21,248,,-,ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseControllate
+E_C212,E.C212,Da Imprese Collegate,- da imprese Collegate,EC,E_C21,249,,-,ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseCollegate
+E_C213,E.C213,Da Imprese Controllanti,- da imprese Controllanti,EC,E_C21,250,,-,ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseControllanti
+E_C216,E.C216,Da imprese sottoposte al controllo delle controllanti,- da imprese sottoposte al controllo delle Controllanti,EC,E_C21,251,,-,ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseSottoposteControlloControllanti
+E_C215,E.C215,Altri,- Altri,EC,E_C21,252,,-,ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniAltri
+E_C22,E.C22,da titoli iscritti nelle immobilizzazioni che non costituiscono partecipazioni,b) da titoli iscritti nelle immobilizzazioni che non costituiscono partecipazioni,EC,E_C2,253,,-,ProventiOneriFinanziariAltriProventiFinanziariTitoliIscrittiImmobilizzazioniNonCostituisconoPartecipazioni
+E_C23,E.C23,da titoli iscritti nell'attivo circolante che non costituiscono partecipazioni,c) da titoli iscritti nell'attivo circolante che non costituiscono partecipazioni,EC,E_C2,254,,-,ProventiOneriFinanziariAltriProventiFinanziariTitoliIscrittiAttivoCircolanteNonCostituisconoPartecipazioni
+E_C24,E.C24,proventi diversi dai precedenti,d) proventi diversi dai precedenti,EC,E_C2,255,,-,ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiTotaleProventiDiversiPrecedenti
+E_C241,E.C241,Da Imprese Controllate,- da imprese Controllate,EC,E_C24,256,,-,ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseControllate
+E_C245,E.C245,Da Imprese Collegate,- da imprese Collegate,EC,E_C24,257,,-,ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseCollegate
+E_C242,E.C242,Da Imprese Controllanti,- da imprese Controllanti,EC,E_C24,258,,-,ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseControllanti
+E_C246,E.C246,Da imprese sottoposte al controllo delle controllanti,- da imprese sottoposte al controllo delle Controllanti,EC,E_C24,259,,-,ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseSottoposteControlloControllanti
+E_C244,E.C244,Altri,- Altri,EC,E_C24,260,,-,ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiAltri
+E_C3,E.C3,Interessi ed altri Oneri Finanziari,17) Interessi e altri oneri finanziari,EC,E_C,261,-,+,ProventiOneriFinanziariInteressiAltriOneriFinanziariTotaleInteressiAltriOneriFinanziari
+E_C31,E.C31,verso Imprese Controllate,- verso imprese Controllate,EC,E_C3,262,,+,ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseControllate
+E_C32,E.C32,verso Imprese Collegate,- verso imprese Collegate,EC,E_C3,263,,+,ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseCollegate
+E_C33,E.C33,verso Imprese Controllanti,- verso imprese Controllanti,EC,E_C3,264,,+,ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseControllanti
+E_C36,E.C36,verso imprese sottoposte al controllo delle controllanti,- verso imprese sottoposte al controllo delle Controllanti,EC,E_C3,265,,+,ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseSottoposteControlloControllanti
+E_C35,E.C35,Altri,- Altri,EC,E_C3,266,,+,ProventiOneriFinanziariInteressiAltriOneriFinanziariAltri
+E_C4,E.C4,Utili (perdite) su cambi,17-bis) Utili e perdite su cambi,EC,E_C,267,,-,ProventiOneriFinanziariUtiliPerditeCambi
+E_D,E.D,Rettifiche di valore di attività e passività finanziarie,D) Rettifiche di valore di attività e passività finanziarie,EC,E,268,,+,TotaleRettificheValoreAttivitaPassivitaFinanziarie
+E_D1,E.D1,Rivalutazioni,18) Rivalutazioni,EC,E_D,269,,-,RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniTotaleRivalutazioni
+E_D11,E.D11,Di Partecipazioni,a) di partecipazioni,EC,E_D1,270,,-,RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniPartecipazioni
+E_D12,E.D12,Di Immobilizzazioni Finanziarie,b) di immobilizzazioni finanziarie che non costituiscono partecipazioni,EC,E_D1,271,,-,RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniImmobilizzazioniFinanziarieNonCostituisconoPartecipazioni
+E_D13,E.D13,Di Titoli Circ. non Partecipazioni,c) di titoli iscritti all'attivo circolante che non costituiscono partecipazioni,EC,E_D1,272,,-,RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniTitoliIscrittiAttivoCircolanteNonCostituisconoPartecipazioni
+E_D14,E.D14,Di strumenti finanziari derivati,d) di strumenti finanziari derivati,EC,E_D1,273,,-,RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniStrumentiFinanziariDerivati
+E_D1T,E.D1T,di attività finanziarie per la gestione accentrata della tesoreria,di attività finanziarie per la gestione accentrata della tesoreria,EC,E_D1,274,,-,RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniAttivitaFinanziarieLaGestioneAccentrataTesoreria
+E_D2,E.D2,Svalutazioni,19) Svalutazioni,EC,E_D,275,-,+,RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniTotaleSvalutazioni
+E_D21,E.D21,Di Partecipazioni,a) di partecipazioni,EC,E_D2,276,,+,RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniPartecipazioni
+E_D22,E.D22,Di Immobilizzazioni Finanziarie,b) di immobilizzazioni finanziarie che non costituiscono partecipazioni,EC,E_D2,277,,+,RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniImmobilizzazioniFinanziarieNonCostituisconoPartecipazioni
+E_D23,E.D23,Di Titoli Circ. non Partecipazioni,c) di titoli inscritti nell'attivo circolante che non costituiscono partecipazioni,EC,E_D2,278,,+,RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniTitoliIscrittiAttivoCircolanteNonCostituisconoPartecipazioni
+E_D24,E.D24,Di strumenti finanziari derivati,d) di strumenti finanziari derivati,EC,E_D2,279,,+,RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniStrumentiFinanziariDerivati
+E_D2T,E.D2T,Di attività finanziarie per la gestione accentrata della tesoreria,di attività finanziarie per la gestione accentrata della tesoreria,EC,E_D2,280,,+,RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniAttivitaFinanziarieLaGestioneAccentrataTesoreria
+E=E,E=E,Risultato Prima delle Imposte,Risultato prima delle imposte,EC,E,281,,+,RisultatoPrimaImposte
+E_F,E.F,Imposte sul Reddito dell' Esercizio,20) Imposte sul reddito dell'esercizio,EC,E,282,,+,ImposteRedditoEsercizioCorrentiDifferiteAnticipateTotaleImposteRedditoEsercizioCorrentiDifferiteAnticipate
+E_F1,E.F1,Imposte correnti,Imposte correnti,EC,E_F,283,,+,ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteCorrenti
+E_F5,E.F5,imposte relative a esercizi precedenti,imposte relative a esercizi precedenti,EC,E_F,284,,+,ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteRelativeEserciziPrecedenti
+E_F6,E.F6,Imposte differite e anticipate,Imposte differite e anticipate,EC,E_F,285,,+,ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteDifferiteAnticipate
+E_F4,E.F4,Proventi (oneri) da adesione al regime di consolidato fiscale / trasparenza fiscale,d) Proventi (oneri) da adesione al regime di consolidato fiscale / trasparenza fiscale,EC,E_F,286,,+,ImposteRedditoEsercizioCorrentiDifferiteAnticipateProventiOneriAdesioneRegimeConsolidatoFiscaleTrasparenzaFiscale
+E=F,E=F,Utile (Perdita) dell' Esercizio,21) Utile (Perdita) dell'esercizio,EC,E,287,,+,UtilePerditaEsercizio
+--,--,Ignorare,Conti da ignorare (devono avere saldo zero),--,,999,,+,
