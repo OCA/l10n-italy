@@ -3,6 +3,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2018 Sergio Corato
 # Copyright 2019 Alex Comba - Agile Business Group
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -217,11 +218,13 @@ class WizardExportFatturapa(models.TransientModel):
             if invoice.partner_id not in res:
                 res[invoice.partner_id] = []
             res[invoice.partner_id].append(invoice.id)
+
+        company = self.env.company
+        company_max_invoice = company.max_invoice_in_xml
         for partner_id in res.keys():
-            if partner_id.max_invoice_in_xml:
-                res[partner_id] = list(
-                    split_list(res[partner_id], partner_id.max_invoice_in_xml)
-                )
+            max_invoice = partner_id.max_invoice_in_xml or company_max_invoice
+            if max_invoice:
+                res[partner_id] = list(split_list(res[partner_id], max_invoice))
             else:
                 res[partner_id] = [res[partner_id]]
         # The returned dictionary contains a plain res.partner object as key
