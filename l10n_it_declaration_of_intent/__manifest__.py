@@ -12,6 +12,7 @@
     "author": "Francesco Apruzzese, Sergio Corato, Glauco Prina, Lara Baggio, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
+    "maintainers": ["MarcoCalcagni", "Borruso"],
     "depends": [
         "account",
         "sale",
