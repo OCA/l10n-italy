@@ -40,13 +40,14 @@ class FatturaPAAttachmentOut(models.Model):
 
     def send_via_pec(self):
         self._check_fetchmail()
-        self.env.company.sdi_channel_id.check_first_pec_sending()
         states = self.mapped("state")
         if set(states) != {"ready"}:
             raise UserError(_("You can only send files in 'Ready to Send' state."))
         for att in self:
             if not att.datas or not att.name:
                 raise UserError(_("File content and file name are mandatory"))
+            company_id = att.company_id
+            company_id.sdi_channel_id.check_first_pec_sending()
             mail_message = self.env["mail.message"].create(
                 {
                     "model": self._name,
@@ -54,12 +55,12 @@ class FatturaPAAttachmentOut(models.Model):
                     "subject": att.name,
                     "body": "XML file for FatturaPA {} sent to Exchange System to "
                     "the email address {}.".format(
-                        att.name, self.env.company.email_exchange_system
+                        att.name, company_id.email_exchange_system
                     ),
                     "attachment_ids": [(6, 0, att.ir_attachment_id.ids)],
-                    "email_from": self.env.company.email_from_for_fatturaPA,
-                    "reply_to": self.env.company.email_from_for_fatturaPA,
-                    "mail_server_id": self.env.company.sdi_channel_id.pec_server_id.id,
+                    "email_from": company_id.email_from_for_fatturaPA,
+                    "reply_to": company_id.email_from_for_fatturaPA,
+                    "mail_server_id": company_id.sdi_channel_id.pec_server_id.id,
                 }
             )
 
@@ -67,10 +68,8 @@ class FatturaPAAttachmentOut(models.Model):
                 {
                     "mail_message_id": mail_message.id,
                     "body_html": mail_message.body,
-                    "email_to": self.env.company.email_exchange_system,
-                    "headers": {
-                        "Return-Path": self.env.company.email_from_for_fatturaPA
-                    },
+                    "email_to": company_id.email_exchange_system,
+                    "headers": {"Return-Path": company_id.email_from_for_fatturaPA},
                 }
             )
 
@@ -80,7 +79,7 @@ class FatturaPAAttachmentOut(models.Model):
                     att.state = "sent"
                     att.sending_date = fields.Datetime.now()
                     att.sending_user = self.env.user.id
-                    self.env.company.sdi_channel_id.update_after_first_pec_sending()
+                    company_id.sdi_channel_id.update_after_first_pec_sending()
                 except MailDeliveryException as e:
                     att.state = "sender_error"
                     mail.body = str(e)
