@@ -82,7 +82,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_country_payment(self, res):
         self.ensure_one()
-        country_payment_id = self.env["res.country"].browse()
+        country_payment_id = self.env["res.country"]
         if self.move_id.is_sale_document():
             country_payment_id = self.move_id.company_id.partner_id.country_id
             if self.move_id.partner_bank_id:
@@ -105,7 +105,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_province_dest(self, company_id, res):
         self.ensure_one()
-        province_destination_id = self.env["res.country.state"].browse()
+        province_destination_id = self.env["res.country.state"]
         if self.move_id.is_sale_document():
             province_destination_id = self.move_id.partner_id.state_id
         elif self.move_id.is_purchase_document():
@@ -117,7 +117,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_country_dest(self, res):
         self.ensure_one()
-        country_destination_id = self.env["res.country"].browse()
+        country_destination_id = self.env["res.country"]
         if self.move_id.is_sale_document():
             country_destination_id = self.move_id.partner_id.country_id
         elif self.move_id.is_purchase_document():
@@ -126,7 +126,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_province_origin(self, company_id, res):
         self.ensure_one()
-        province_origin_id = self.env["res.country.state"].browse()
+        province_origin_id = self.env["res.country.state"]
         if self.move_id.is_sale_document():
             province_origin_id = (
                 company_id.intrastat_sale_province_origin_id
@@ -143,16 +143,27 @@ class AccountMoveLine(models.Model):
 
     def _prepare_intrastat_line_country_good_origin(self, res):
         self.ensure_one()
-        country_good_origin_id = self.env["res.country"].browse()
-        if self.move_id.is_sale_document():
+        if self.mapped("product_id.product_tmpl_id.intrastat_country_origin_id"):
+            country_good_origin_id = (
+                self.product_id.product_tmpl_id.intrastat_country_origin_id
+            )
+        elif self.mapped(
+            "product_id.product_tmpl_id.categ_id.intrastat_country_origin_id"
+        ):
+            country_good_origin_id = (
+                self.product_id.product_tmpl_id.categ_id.intrastat_country_origin_id
+            )
+        elif self.move_id.is_sale_document():
             country_good_origin_id = self.move_id.company_id.partner_id.country_id
         elif self.move_id.is_purchase_document():
             country_good_origin_id = self.move_id.partner_id.country_id
+        else:
+            country_good_origin_id = self.env["res.country"]
         res.update({"country_good_origin_id": country_good_origin_id.id})
 
     def _prepare_intrastat_line_country_origin(self, res):
         self.ensure_one()
-        country_origin_id = self.env["res.country"].browse()
+        country_origin_id = self.env["res.country"]
         if self.move_id.is_sale_document():
             country_origin_id = self.move_id.company_id.partner_id.country_id
         elif self.move_id.is_purchase_document():
@@ -229,7 +240,7 @@ class AccountMoveLine(models.Model):
         self.ensure_one()
         intrastat_data = product_template.get_intrastat_data()
         intrastat_code_model = self.env["report.intrastat.code"]
-        intrastat_code = intrastat_code_model.browse()
+        intrastat_code = intrastat_code_model
         if intrastat_data["intrastat_code_id"]:
             intrastat_code = intrastat_code_model.browse(
                 intrastat_data["intrastat_code_id"]
@@ -412,23 +423,23 @@ class AccountMove(models.Model):
             intra_line = line._prepare_intrastat_line()
             i_code_id = intra_line["intrastat_code_id"]
             i_code_type = intra_line["intrastat_code_type"]
+            i_country_good_origin = intra_line["country_good_origin_id"]
 
-            if i_code_id in i_line_by_code:
-                i_line_by_code[i_code_id]["amount_currency"] += intra_line[
-                    "amount_currency"
-                ]
-                i_line_by_code[i_code_id]["statistic_amount_euro"] += intra_line[
+            key = ";".join(filter(None, [str(i_code_id), str(i_country_good_origin)]))
+            if key in i_line_by_code.keys():
+                i_line_by_code[key]["amount_currency"] += intra_line["amount_currency"]
+                i_line_by_code[key]["statistic_amount_euro"] += intra_line[
                     "statistic_amount_euro"
                 ]
-                i_line_by_code[i_code_id]["weight_kg"] += intra_line["weight_kg"]
-                i_line_by_code[i_code_id]["additional_units"] += intra_line[
+                i_line_by_code[key]["weight_kg"] += intra_line["weight_kg"]
+                i_line_by_code[key]["additional_units"] += intra_line[
                     "additional_units"
                 ]
             else:
                 intra_line["statement_section"] = self.env[
                     "account.invoice.intrastat"
                 ].compute_statement_section(i_code_type, self.move_type)
-                i_line_by_code[i_code_id] = intra_line
+                i_line_by_code[key] = intra_line
         return i_line_by_code, lines_to_split
 
 
