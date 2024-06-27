@@ -11,16 +11,85 @@
                 <page string="Intrastat">
                     <group colspan="4">
                         <group>
-                            <field name="intrastat_ua_code" />
-                            <field name="intrastat_uom_kg_id" />
-                            <field name="intrastat_additional_unit_from" />
-                            <field name="intrastat_exclude_free_line" />
-                            <field name="intrastat_delegated_name" />
-                            <field name="intrastat_delegated_vat" />
-                            <field name="intrastat_export_file_name" />
-                            <field name="intrastat_min_amount" />
+                            <!-- Intrastat Main Settings -->
+                            <group string="General Settings">
+                                <field name="intrastat_ua_code" string="UA Code" />
+                                <field
+                                    name="intrastat_uom_kg_id"
+                                    string="Unit of Measure (Kg)"
+                                />
+                                <field
+                                    name="intrastat_additional_unit_from"
+                                    string="Additional Unit From"
+                                />
+                                <field
+                                    name="intrastat_exclude_free_line"
+                                    string="Exclude Free Line"
+                                />
+                                <field
+                                    name="intrastat_delegated_name"
+                                    string="Delegated Name"
+                                />
+                                <field
+                                    name="intrastat_delegated_vat"
+                                    string="Delegated VAT"
+                                />
+                                <field
+                                    name="intrastat_export_file_name"
+                                    string="Export File Name"
+                                />
+                                <field
+                                    name="intrastat_min_amount"
+                                    string="Minimum Amount"
+                                />
+                            </group>
+                            <!-- Intrastat Thresholds & Fiscal Positions -->
+                            <group string="Intrastat Settings">
+                                <field
+                                    name="intrastat_goods_sale_threshold"
+                                    string="Goods Sale Threshold"
+                                />
+                                <field
+                                    name="intrastat_goods_purchase_threshold"
+                                    string="Goods Purchase Threshold"
+                                />
+                                <field
+                                    name="intrastat_service_sale_threshold"
+                                    string="Service Sale Threshold"
+                                />
+                                <field
+                                    name="intrastat_service_purchase_threshold"
+                                    string="Service Purchase Threshold"
+                                />
+                                <field
+                                    name="fiscal_position_goods_sale_id"
+                                    string="Fiscal Position Goods Sale"
+                                />
+                                <field
+                                    name="fiscal_position_goods_purchase_id"
+                                    string="Fiscal Position Goods Purchase"
+                                />
+                                <field
+                                    name="fiscal_position_service_sale_id"
+                                    string="Fiscal Position Service Sale"
+                                />
+                                <field
+                                    name="fiscal_position_service_purchase_id"
+                                    string="Fiscal Position Service Purchase"
+                                />
+                                <field
+                                    name="intrastat_email_recipients"
+                                    string="Email Recipients"
+                                />
+                                <field
+                                    name="intrastat_email_enabled"
+                                    string="Email Enabled"
+                                />
+                            </group>
                         </group>
+
                     </group>
+
                     <group colspan="4">
                         <group string="Sales Default Values">
                             <field
@@ -85,5 +154,6 @@
 
         </field>
     </record>
+
 
 </odoo>

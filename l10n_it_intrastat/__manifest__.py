@@ -30,6 +30,10 @@
         "views/product.xml",
         "views/account.xml",
         "views/config.xml",
+        "views/template_mail_intrastat_excedeed.xml",
     ],
     "demo": ["demo/product_demo.xml"],
+    "external_dependencies": {
+        "python": ["fiscalyear"],
+    },
 }
