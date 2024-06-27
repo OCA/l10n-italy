@@ -141,7 +141,10 @@ class AccountMove(models.Model):
             # ---- Apply Collection Fees on invoice only on first due date of the month
             # ---- Get Date of first due date
             move_line = self.env["account.move.line"].search(
-                [("partner_id", "=", invoice.partner_id.id)]
+                [
+                    ("partner_id", "=", invoice.partner_id.id),
+                    ("id", "not in", invoice.line_ids.ids),
+                ]
             )
             if not any(line.due_cost_line for line in move_line):
                 move_line = self.env["account.move.line"]
