@@ -323,3 +323,44 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay_residual, 200)
         self.assertEqual(self.invoice.amount_residual, 250)
         self.assertEqual(self.invoice.state, "posted")
+
+    def _get_payment_wizard(self, invoice):
+        wizard_action = invoice.action_register_payment()
+        wizard_model = wizard_action["res_model"]
+        wizard_context = wizard_action["context"]
+        wizard = self.env[wizard_model].with_context(**wizard_context).create({})
+        return wizard
+
+    def test_payment_reset_net_pay_residual(self):
+        """The amount to pay is reset to the Residual Net To Pay
+        when amount and Journal are changed."""
+        # Arrange: Pay an invoice
+        invoice = self.invoice
+        wizard = self._get_payment_wizard(invoice)
+        user_set_amount = 20
+        # pre-condition
+        self.assertEqual(
+            wizard.amount,
+            invoice.amount_net_pay_residual,
+        )
+        self.assertTrue(
+            invoice.withholding_tax_amount,
+        )
+
+        # Act: Change amount
+        wizard.amount = user_set_amount
+
+        # Assert: User's change is kept
+        self.assertEqual(
+            wizard.amount,
+            user_set_amount,
+        )
+
+        # Act: Change Journal
+        wizard.journal_id = self.journal_bank
+
+        # Assert: Amount is reset to the Residual Net To Pay
+        self.assertEqual(
+            wizard.amount,
+            invoice.amount_net_pay_residual,
+        )
