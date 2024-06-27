@@ -3,6 +3,7 @@
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Marco Calcagni - Dinamiche Aziendali srl
 # Copyright 2023 Simone Rubino - TAKOBI
+# Copyright 2024 Nextev Srl
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
@@ -180,16 +181,17 @@ class AccountMove(models.Model):
         The result is converted and rounded based on Company Currency
         because this value is used for credit/debit.
         """
-        rc_tax_amount = self.get_tax_amount_added_for_rc()
+        rc_tax_amount_ic = self.get_tax_amount_added_for_rc()
+        rc_tax_amount_cc = rc_tax_amount_ic
 
         invoice_currency = self.currency_id
         company_currency = self.company_currency_id
         if invoice_currency != company_currency:
-            rc_tax_amount = invoice_currency._convert(
-                rc_tax_amount, company_currency, self.company_id, self.invoice_date
+            rc_tax_amount_cc = invoice_currency._convert(
+                rc_tax_amount_ic, company_currency, self.company_id, self.invoice_date
             )
 
-        return rc_tax_amount
+        return rc_tax_amount_ic, rc_tax_amount_cc
 
     def rc_payment_vals(self, rc_type):
         """Values for the RC Payment Move."""
@@ -199,15 +201,20 @@ class AccountMove(models.Model):
             "date": self.date,
         }
 
-    def _rc_line_values(self, account, credit, debit):
+    def _rc_line_values(self, account, credit, debit, amount_currency):
         """Base Values for the RC Payment Move lines."""
-        return {
+        values = {
             "name": self.name,
             "credit": credit,
             "debit": debit,
             "account_id": account.id,
             "currency_id": self.currency_id.id,
         }
+        if amount_currency:
+            sign = 1 if debit else -1
+            amount_currency = abs(amount_currency) * sign
+            values["amount_currency"] = amount_currency
+        return values
 
     def _rc_credit_line_amounts(self, amount):
         if self.is_inbound():
@@ -230,7 +237,9 @@ class AccountMove(models.Model):
         )
         account = line_to_reconcile.account_id
 
-        line_values = self._rc_line_values(account, credit, debit)
+        line_values = self._rc_line_values(
+            account, credit, debit, line_to_reconcile.amount_currency
+        )
         line_values.update(
             {
                 "partner_id": self.partner_id.id,
@@ -244,16 +253,18 @@ class AccountMove(models.Model):
             abs(line_to_reconcile.balance),
         )
 
-        line_values = self._rc_line_values(account, credit, debit)
+        line_values = self._rc_line_values(
+            account, credit, debit, line_to_reconcile.amount_currency
+        )
         return line_values
 
-    def rc_credit_line_vals(self, account, amount):
-        credit, debit = self._rc_credit_line_amounts(amount)
-        return self._rc_line_values(account, credit, debit)
+    def rc_credit_line_vals(self, account, amount_ic, amount_cc):
+        credit, debit = self._rc_credit_line_amounts(amount_cc)
+        return self._rc_line_values(account, credit, debit, amount_ic)
 
-    def rc_debit_line_vals(self, account, amount):
-        credit, debit = self._rc_debit_line_amounts(amount)
-        line_values = self._rc_line_values(account, credit, debit)
+    def rc_debit_line_vals(self, account, amount_ic, amount_cc):
+        credit, debit = self._rc_debit_line_amounts(amount_cc)
+        line_values = self._rc_line_values(account, credit, debit, amount_ic)
         line_values.update(
             {
                 "partner_id": self.partner_id.id,
@@ -277,6 +288,7 @@ class AccountMove(models.Model):
         line_to_reconcile = self._rc_get_move_line_to_reconcile()
         payment_debit_line_data = self.rc_debit_line_vals(
             line_to_reconcile.account_id,
+            payment_credit_line_data["amount_currency"],
             payment_credit_line_data["credit"],
         )
         rc_payment_data["line_ids"] = [
@@ -318,15 +330,17 @@ class AccountMove(models.Model):
         )
 
         # Lines to be reconciled with the original supplier Invoice (self)
-        rc_tax_amount = self.compute_rc_amount_tax_main_currency()
+        rc_tax_amount_ic, rc_tax_amount_cc = self.compute_rc_amount_tax_main_currency()
         payment_credit_line_data = self.rc_credit_line_vals(
             rc_type.transitory_account_id,
-            rc_tax_amount,
+            rc_tax_amount_ic,
+            rc_tax_amount_cc,
         )
         line_to_reconcile = self._rc_get_move_line_to_reconcile()
         payment_debit_line_data = self.rc_debit_line_vals(
             line_to_reconcile.account_id,
-            rc_tax_amount,
+            rc_tax_amount_ic,
+            rc_tax_amount_cc,
         )
 
         rc_payment_data["line_ids"] = [
