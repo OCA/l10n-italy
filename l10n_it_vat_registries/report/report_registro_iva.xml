@@ -131,11 +131,15 @@
                                                         t-if="move.journal_id.type == 'purchase'"
                                                     >
                                                     <!-- Numero fattura (fornitore)-->
+                                                    <t
+                                                            t-set="move_ref"
+                                                            t-value="move.ref"
+                                                        />
                                                     <td
                                                             class="left_without_line_bold"
                                                         ><div
                                                                 style="page-break-inside: avoid"
-                                                                t-esc="move.ref"
+                                                                t-esc="move_ref"
                                                             /></td>
                                                 </t>
                                                 <t
