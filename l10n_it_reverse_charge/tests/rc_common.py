@@ -35,6 +35,7 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         cls._create_rc_types()
         cls._create_rc_type_taxes()
         cls._create_fiscal_position()
+        cls._create_currency_rate(cls.env.ref("base.EUR").id, 1.1)
 
         cls.supplier_extraEU = cls.partner_model.create(
             {
@@ -102,9 +103,14 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         )
 
     @classmethod
-    def create_invoice(cls, partner, amounts, taxes=None, post=True):
+    def create_invoice(cls, partner, amounts, taxes=None, post=True, currency=None):
         invoice = cls.init_invoice(
-            "in_invoice", partner=partner, post=post, amounts=amounts, taxes=taxes
+            "in_invoice",
+            partner=partner,
+            post=post,
+            amounts=amounts,
+            taxes=taxes,
+            currency=currency,
         )
         for line in invoice.invoice_line_ids:
             line.account_id = cls.invoice_line_account.id
@@ -276,4 +282,15 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
 
         cls.fiscal_position_exempt = model_fiscal_position.create(
             {"name": "Intra EU exempt", "rc_type_id": cls.rc_type_exempt.id}
+        )
+
+    @classmethod
+    def _create_currency_rate(cls, currency_id, rate, date="2016-01-01"):
+        cls.env["res.currency.rate"].create(
+            {
+                "name": date,
+                "currency_id": currency_id,
+                "rate": rate,
+                "company_id": cls.env.company.id,
+            }
         )
