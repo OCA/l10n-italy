@@ -171,6 +171,28 @@ class TestReverseCharge(ReverseChargeCommon):
         payments_lines = (self_purchase_payment | self_purchase_rc_payment).line_ids
         self.assertTrue(all(payments_lines.mapped("reconciled")))
 
+    def test_supplier_extraEU_no_outstanding_payment_different_currencies(self):
+        """
+        Self invoice from Extra EU partner in a different currency
+        """
+        invoice = self.create_invoice(
+            self.supplier_extraEU,
+            amounts=[100],
+            taxes=self.tax_0_pur,
+            currency=self.env.ref("base.EUR"),
+        )
+
+        self_purchase_invoice = invoice.rc_self_purchase_invoice_id
+        self_purchase_payment = self_purchase_invoice.rc_payment_move_id
+        self.assertTrue(self_purchase_payment)
+
+        self_purchase_rc_invoice = self_purchase_invoice.rc_self_invoice_id
+        self_purchase_rc_payment = self_purchase_rc_invoice.rc_payment_move_id
+        self.assertTrue(self_purchase_rc_payment)
+
+        payments_lines = (self_purchase_payment | self_purchase_rc_payment).line_ids
+        self.assertTrue(all(payments_lines.mapped("reconciled")))
+
     def test_extra_EU_draft_and_reconfirm(self):
         """Check that an invoice with RC Self Purchase Invoice
         can be reset to draft and confirmed again."""
