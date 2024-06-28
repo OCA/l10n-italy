@@ -117,6 +117,7 @@ class AssetDepreciation(models.Model):
     percentage = fields.Float(string="Depreciation (%)")
 
     pro_rata_temporis = fields.Boolean(string="Pro-rata Temporis")
+    date_end = fields.Date()
 
     requires_account_move = fields.Boolean(
         readonly=True,
@@ -414,13 +415,6 @@ class AssetDepreciation(models.Model):
     def get_depreciation_amount_multiplier(self, dep_date):
         self.ensure_one()
 
-        # Base multiplier
-        multiplier = self.percentage / 100
-
-        # Update multiplier from depreciation mode data
-        multiplier *= self.mode_id.get_depreciation_amount_multiplier()
-
-        # Update multiplier from pro-rata temporis
         date_start = self.date_start
         if dep_date < date_start:
             dt_start_str = fields.Date.from_string(date_start).strftime("%d-%m-%Y")
@@ -430,15 +424,40 @@ class AssetDepreciation(models.Model):
                     start_date=dt_start_str,
                 )
             )
+        fiscal_year_obj = self.env["account.fiscal.year"]
+        fy_start = fiscal_year_obj.get_fiscal_year_by_date(
+            date_start, company=self.company_id
+        )
+        fy_dep = fiscal_year_obj.get_fiscal_year_by_date(
+            dep_date, company=self.company_id
+        )
 
-        if self.pro_rata_temporis or self._context.get("force_prorata"):
-            fiscal_year_obj = self.env["account.fiscal.year"]
-            fy_start = fiscal_year_obj.get_fiscal_year_by_date(
-                date_start, company=self.company_id
+        # Base multiplier
+        multiplier = self.percentage / 100
+
+        # Set multiplier from pro-rata temporis with date_end
+        if (
+            self.pro_rata_temporis or self._context.get("force_prorata")
+        ) and self.date_end:
+            fy_end = fiscal_year_obj.get_fiscal_year_by_date(
+                self.date_end, company=self.company_id
             )
-            fy_dep = fiscal_year_obj.get_fiscal_year_by_date(
-                dep_date, company=self.company_id
-            )
+            total_days = (self.date_end - self.date_start).days + 1
+            dep_year_days = (fy_dep.date_to - fy_dep.date_from).days + 1
+
+            if fy_dep == fy_start:
+                dep_year_days = (fy_start.date_to - self.date_start).days + 1
+            elif fy_dep == fy_end:
+                dep_year_days = (self.date_end - fy_end.date_from).days + 1
+            multiplier = dep_year_days / total_days
+
+        # Update multiplier from depreciation mode data
+        multiplier *= self.mode_id.get_depreciation_amount_multiplier()
+
+        # Update multiplier from pro-rata temporis without date_end
+        if (
+            self.pro_rata_temporis or self._context.get("force_prorata")
+        ) and not self.date_end:
             if fy_dep == fy_start:
                 # If current depreciation lies within the same fiscal year in
                 # which the asset was registered, compute multiplier as a

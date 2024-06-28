@@ -601,6 +601,7 @@ class ReportDepreciation(models.TransientModel):
     # Fields to be printed
     dep_amount_depreciable = fields.Float()
     dep_date_start = fields.Char()
+    dep_date_end = fields.Char()
     dep_percentage = fields.Float()
     dep_pro_rata_temporis = fields.Char()
     mode_name = fields.Char()
@@ -630,6 +631,7 @@ class ReportDepreciation(models.TransientModel):
         return {
             "dep_amount_depreciable": dep.amount_depreciable,
             "dep_date_start": format_date(dep, "date_start", "%d-%m-%Y"),
+            "dep_date_end": format_date(dep, "date_end", "%d-%m-%Y"),
             "dep_percentage": dep.percentage,
             "dep_pro_rata_temporis": dep_pro_rata_temporis,
             "mode_name": dep.mode_id.name_get()[0][-1] if dep.mode_id else "",
