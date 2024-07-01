@@ -85,6 +85,7 @@ ITA - Liquidazione IVA
 
     It is also possible to print the 'VAT statement' clicking on print > Print VAT period end statement.
 
+
 **Table of contents**
 
 .. contents::
@@ -134,6 +135,7 @@ Configuration
     If you need to calculate interest, you can add default information in your
     company data (percentage and account), in the 'VAT statement' tab.
 
+
 Bug Tracker
 ===========
 
@@ -170,6 +172,7 @@ Contributors
 * `TAKOBI <https://takobi.online>`_:
 
   * Simone Rubino <sir@takobi.online>
+
 
 Maintainers
 ~~~~~~~~~~~
