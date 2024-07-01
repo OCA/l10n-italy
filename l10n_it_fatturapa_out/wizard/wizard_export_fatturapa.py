@@ -116,7 +116,10 @@ class WizardExportFatturapa(models.TransientModel):
         # report (there are cases in which the partner does not have to
         # paid the VAT, yet its amount has to be printed out and included
         # in the total amount of the invoice)
-        return invoice.amount_total
+        if invoice.company_id.xml_divisa_value == "keep_orig":
+            return invoice.amount_total
+        else:
+            return abs(invoice.amount_total_signed)
 
     @api.model
     def getAllTaxes(self, invoice):
