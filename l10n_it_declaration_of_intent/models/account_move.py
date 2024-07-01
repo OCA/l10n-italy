@@ -106,8 +106,58 @@ class AccountMove(models.Model):
             # Group lines by tax
             grouped_lines = self.get_move_lines_by_declaration(lines)
             invoice.update_declarations(declarations, grouped_lines)
-
+            invoice._check_di_line_tax()
         return posted
+
+    def _check_di_line_tax(self):
+        di_kind_id = self.env.ref("l10n_it_account_tax_kind.n3_5")
+        # We raise an error if there isn't a di declaration neither in the line with
+        # a tax of di type, neither in the general di field in the invoice
+        if any(
+            di_kind_id in line.mapped("tax_ids.kind_id")
+            and not line.force_declaration_of_intent_id
+            and not self.declaration_of_intent_ids
+            for line in self.invoice_line_ids
+        ):
+            raise UserError(
+                _("Missing declaration of intent for invoice %s") % self.name
+            )
+        # Forbid use of forced declaration of intent on the line if the tax has not
+        # N3.5 nature
+        if any(
+            di_kind_id not in line.mapped("tax_ids.kind_id")
+            and line.force_declaration_of_intent_id
+            for line in self.invoice_line_ids
+        ):
+            raise UserError(
+                _("Declaration of intent not needed for line %s of invoice %s")
+                % (
+                    " ".join(
+                        line.name
+                        for line in self.invoice_line_ids
+                        if di_kind_id not in line.mapped("tax_ids.kind_id")
+                        and line.force_declaration_of_intent_id
+                    ),
+                    self.name,
+                )
+            )
+        # Forbid use of general di if there aren't lines which needs it
+        for di in self.declaration_of_intent_ids:
+            if all(
+                di_kind_id not in line.mapped("tax_ids.kind_id")
+                and (
+                    not line.force_declaration_of_intent_id
+                    or line.force_declaration_of_intent_id != di
+                )
+                for line in self.invoice_line_ids
+            ):
+                raise UserError(
+                    _("Declaration of intent %s not used for invoice %s")
+                    % (
+                        di.telematic_protocol,
+                        self.name,
+                    )
+                )
 
     def update_declarations(self, declarations, grouped_lines):
         """

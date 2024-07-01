@@ -65,7 +65,12 @@ class DeclarationOfIntent(models.Model):
     partner_document_date = fields.Date(
         string="Document Date", help="Date of partner's document"
     )
-    taxes_ids = fields.Many2many("account.tax", string="Taxes", required=True)
+    taxes_ids = fields.Many2many(
+        "account.tax",
+        string="Taxes",
+        required=True,
+        domain=lambda self: self._get_tax_domain(),
+    )
     used_amount = fields.Monetary(compute="_compute_amounts", store=True)
     limit_amount = fields.Monetary(required=True)
     available_amount = fields.Monetary(compute="_compute_amounts", store=True)
@@ -94,6 +99,10 @@ class DeclarationOfIntent(models.Model):
         inverse_name="declaration_id",
         string="Lines",
     )
+
+    def _get_tax_domain(self):
+        di_kind_id = self.env.ref("l10n_it_account_tax_kind.n3_5")
+        return [("kind_id", "=", di_kind_id.id)]
 
     @api.model
     def create(self, values):
