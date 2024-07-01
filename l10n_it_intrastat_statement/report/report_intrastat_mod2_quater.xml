@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" ?>
 <odoo>
-    <template id="report_intrastat_mod1_bis">
+    <template id="report_intrastat_mod2_quater">
         <t t-call="web.html_container">
             <t t-translation="off">
                 <t t-foreach="docs" t-as="o">
@@ -13,6 +13,7 @@
                     >
                         <div class="page">
                             <div class="row">
+
                                 <div class="col-3">
                                     <p class="text-right"><img
                                             src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
@@ -22,18 +23,18 @@
                                 <div class="col-7 col-offset-3">
                                     <table class="table text-center table-bordered">
                                         <td>
-                                            <b>RIEPILOGO DELLE CESSIONI INTRACOMUNITARIE
-                                            <br />DI BENI E DEI SERVIZI RESI</b>
+                                            <b>RIEPILOGO DEGLI ACQUISTI INTRACOMUNITARI
+                                            <br />DI BENI E DEI SERVIZI RICEVUTI</b>
                                         </td>
-                                        <td>Mod.INTRA-1 Bis</td>
+                                        <td>Mod. INTRA-2 Quater</td>
                                     </table>
-                                </div>
-                            </div>
 
+                            </div>
+                        </div>
                             <div class="row">
                                 <span class="text-center col-7 col-offset-3">
                                     <strong
-                                    >SEZIONE 1. CESSIONI DI BENI REGISTRATE NEL PERIODO</strong>
+                                    >SEZIONE 3. SERVIZI RICEVUTI REGISTRATI NEL PERIODO</strong>
                                     <p />
                                 </span>
                             </div>
@@ -61,10 +62,9 @@
                                     <strong><span t-esc="o.company_id.vat" /></strong>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
-                                    <p />
+                                   <p />
                                     <table class="table table-bordered">
                                         <thead class="fondo">
                                             <tr>
@@ -72,15 +72,13 @@
                                                 <th
                                                     colspan="2"
                                                     class="text-center"
-                                                >ACQUIRENTE</th>
+                                                >FORNITORE</th>
                                                 <th />
                                                 <th />
-                                                <th />
-                                                <th />
-                                                <th />
-                                                <th />
-                                                <th />
-                                                <th />
+                                                <th
+                                                    colspan="2"
+                                                    class="text-center"
+                                                >RIFERIMENTO FATTURA</th>
                                                 <th />
                                                 <th />
                                                 <th />
@@ -95,25 +93,21 @@
                                                 >AMMONTARE DELLE OPERAZIONI IN EURO</th>
                                                 <th
                                                     class="text-center"
-                                                >NATURA TRANS.</th>
+                                                >AMMONTARE DELLE OPERAZIONI IN VALUTA</th>
+                                                <th class="text-center">NUMERO</th>
+                                                <th class="text-center">DATA</th>
                                                 <th
                                                     class="text-center"
-                                                >NATURA TRANS. B</th>
+                                                >CODICE SERVIZIO</th>
                                                 <th
                                                     class="text-center"
-                                                >NOMENCLATURA COMBINATA</th>
-                                                <th class="text-center">MASSA NETTA</th>
+                                                >MODALITA’ DI EROGAZIONE</th>
                                                 <th
                                                     class="text-center"
-                                                >UNITA' SUPPLEMENTARE</th>
+                                                >MODALITA’ DI INCASSO</th>
                                                 <th
                                                     class="text-center"
-                                                >VALORE STATISTICO IN EURO</th>
-                                                <th class="text-center">COND. CONS.</th>
-                                                <th class="text-center">MODO TRASP.</th>
-                                                <th class="text-center">PAESE DEST.</th>
-                                                <th class="text-center">PROV. ORIG.</th>
-                                                <th class="text-center">PAESE ORIG.</th>
+                                                >PAESE DI PAGAMENTO</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -129,17 +123,13 @@
                                                 <td>9</td>
                                                 <td>10</td>
                                                 <td>11</td>
-                                                <td>12</td>
-                                                <td>13</td>
-                                                <td>14</td>
-                                                <td>15</td>
                                             </tr>
                                             <t t-set="total" t-value="0" />
                                             <tr
-                                                t-foreach="o.sale_section1_ids"
+                                                t-foreach="o.purchase_section3_ids"
                                                 t-as="l"
                                             >
-                                                <td><span t-field="l.sequence" /></td>
+                                                <td t-esc="l.sequence" />
                                                 <td><span
                                                         t-field="l.country_partner_id.code"
                                                     /></td>
@@ -148,35 +138,26 @@
                                                         t-field="l.amount_euro"
                                                     /></td>
                                                 <td><span
-                                                        t-field="l.transaction_nature_id.code"
+                                                        t-if="l.amount_currency"
+                                                        t-field="l.amount_currency"
                                                     /></td>
                                                 <td><span
-                                                        t-field="l.transaction_nature_b_id.code"
+                                                        t-field="l.invoice_number"
                                                     /></td>
                                                 <td><span
-                                                        t-field="l.intrastat_code_id.name"
-                                                    /></td>
-                                                <td><span t-field="l.weight_kg" /></td>
-                                                <td><span
-                                                        t-field="l.additional_units"
+                                                        t-field="l.invoice_date"
                                                     /></td>
                                                 <td><span
-                                                        t-field="l.statistic_amount_euro"
+                                                        t-field="l.intrastat_code_id"
                                                     /></td>
                                                 <td><span
-                                                        t-field="l.delivery_code_id.code"
+                                                        t-esc="l.get_supply_method_key()"
                                                     /></td>
                                                 <td><span
-                                                        t-field="l.transport_code_id.code"
+                                                        t-esc="l.get_payment_method_key()"
                                                     /></td>
                                                 <td><span
-                                                        t-field="l.country_destination_id.code"
-                                                    /></td>
-                                                <td><span
-                                                        t-field="l.province_origin_id.code"
-                                                    /></td>
-                                                <td><span
-                                                        t-field="l.country_origin_id.code"
+                                                        t-field="l.country_payment_id.code"
                                                     /></td>
                                                 <t
                                                     t-set="total"
@@ -185,7 +166,7 @@
                                             </tr>
                                             <tr>
                                                 <td
-                                                    colspan="3"
+                                                    colspan="2"
                                                     class="text-right"
                                                 >TOTALE</td>
                                                 <td><t t-esc="total" /></td>
