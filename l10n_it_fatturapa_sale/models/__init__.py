@@ -2,6 +2,8 @@
 
 from . import account_move
 from . import account_move_line
+from . import journal
 from . import related_document
+from . import sale_make_invoice_advance
 from . import sale_order
 from . import sale_order_line

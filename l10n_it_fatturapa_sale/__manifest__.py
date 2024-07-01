@@ -12,11 +12,13 @@
     "auto_install": True,
     "depends": [
         "l10n_it_fatturapa",
+        "l10n_it_fiscal_document_type",
         "sale_management",
     ],
     "data": [
         "security/ir.model.access.csv",
         "views/related_document_type_views.xml",
+        "views/journal.xml",
         "views/sale_order_line_views.xml",
         "views/sale_order_views.xml",
     ],
