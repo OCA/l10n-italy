@@ -768,17 +768,28 @@ class AccountIntrastatStatement(models.Model):
         period_date_start, period_date_stop = self.get_dates_start_stop()
 
         # Search intrastat lines
-        domain = [
-            ("date", ">=", period_date_start),
-            ("date", "<=", period_date_stop),
-            ("intrastat", "=", True),
-        ]
         inv_type = []
         if self.sale:
             inv_type += ["out_invoice", "out_refund"]
         if self.purchase:
             inv_type += ["in_invoice", "in_refund"]
-        domain.append(("move_type", "in", inv_type))
+
+        domain = [
+            "&",
+            ("invoice_id.intrastat", "=", True),
+            ("invoice_id.move_type", "in", inv_type),
+            "|",
+            "&",
+            ("operation_date", "=", False),
+            "&",
+            ("invoice_id.date", ">=", period_date_start),
+            ("invoice_id.date", "<=", period_date_stop),
+            "&",
+            ("operation_date", "!=", False),
+            "&",
+            ("operation_date", ">=", period_date_start),
+            ("operation_date", "<=", period_date_stop),
+        ]
 
         statement_data = {}
         section_field_reverse = {}
@@ -793,9 +804,9 @@ class AccountIntrastatStatement(models.Model):
                     section_number,
                 )
 
-        invoices = self.env["account.move"].search(domain)
+        inv_intra_lines = self.env["account.invoice.intrastat"].search(domain)
 
-        for inv_intra_line in invoices.mapped("intrastat_line_ids"):
+        for inv_intra_line in inv_intra_lines:
             section_details = section_field_reverse[inv_intra_line.statement_section]
             statement_section_model_name = self.get_section_model(*section_details)
             st_line = self.env[statement_section_model_name]._prepare_statement_line(
