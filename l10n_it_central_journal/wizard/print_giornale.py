@@ -80,7 +80,7 @@ class WizardGiornale(models.TransientModel):
             self.date_move_line_to = date_end
             if self.daterange_id.progressive_line_number != 0:
                 self.start_row = self.daterange_id.progressive_line_number + 1
-            else:
+            if self.daterange_id.progressive_line_number == 0 and not self.start_row:
                 self.start_row = self.daterange_id.progressive_line_number
             self.progressive_debit2 = self.daterange_id.progressive_debit
             self.progressive_credit = self.daterange_id.progressive_credit
