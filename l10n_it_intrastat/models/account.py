@@ -107,7 +107,10 @@ class AccountMoveLine(models.Model):
         self.ensure_one()
         province_destination_id = self.env["res.country.state"]
         if self.move_id.is_sale_document():
-            province_destination_id = self.move_id.partner_id.state_id
+            if hasattr(self.move_id, "partner_shipping_id"):
+                province_destination_id = self.move_id.partner_shipping_id.state_id
+            else:
+                province_destination_id = self.move_id.partner_id.state_id
         elif self.move_id.is_purchase_document():
             province_destination_id = (
                 company_id.intrastat_purchase_province_destination_id
@@ -119,7 +122,10 @@ class AccountMoveLine(models.Model):
         self.ensure_one()
         country_destination_id = self.env["res.country"]
         if self.move_id.is_sale_document():
-            country_destination_id = self.move_id.partner_id.country_id
+            if hasattr(self.move_id, "partner_shipping_id"):
+                country_destination_id = self.move_id.partner_shipping_id.country_id
+            else:
+                country_destination_id = self.move_id.partner_id.country_id
         elif self.move_id.is_purchase_document():
             country_destination_id = self.move_id.company_id.partner_id.country_id
         res.update({"country_destination_id": country_destination_id.id})
