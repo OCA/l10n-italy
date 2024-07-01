@@ -408,7 +408,9 @@ class WizardImportFatturapa(models.TransientModel):
                     vals["phone"] = cedPrest.Contatti.Telefono
                 if cedPrest.Contatti.Email:
                     vals["email"] = cedPrest.Contatti.Email
-            partner_model.browse(partner_id).write(vals)
+            partner = partner_model.browse(partner_id)
+            partner.write(vals)
+            partner.flush()
         return partner_id
 
     def getCarrirerPartner(self, Carrier):
