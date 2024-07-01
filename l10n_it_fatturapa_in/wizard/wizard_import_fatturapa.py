@@ -1183,6 +1183,31 @@ class WizardImportFatturapa(models.TransientModel):
         self.set_e_invoice_lines(FatturaBody, invoice_data)
         return invoice_data
 
+    @api.model
+    def _new_write_vals(self, invoice):
+        """
+        Update changing values only
+        """
+        to_return = invoice._convert_to_write(invoice._cache)
+        to_remove = set()
+        for field, val in to_return.items():
+            is_multi_field = invoice._fields[field].type in ["many2many", "one2many"]
+            if (
+                is_multi_field
+                and (
+                    (
+                        val[0][0] == 6 and val[0][2] == invoice[field].ids
+                    )  # REPLACE with the same items
+                    or (
+                        val[0][0] == 5 and not invoice[field]
+                    )  # REMOVE when there are no items
+                )
+            ) or invoice[field] == val:
+                to_remove.add(field)
+        for field in to_remove:
+            del to_return[field]
+        return to_return
+
     def invoiceCreate(self, fatt, fatturapa_attachment, FatturaBody, partner_id):
         partner_model = self.env["res.partner"]
         partner = partner_model.browse(partner_id)
@@ -1227,7 +1252,8 @@ class WizardImportFatturapa(models.TransientModel):
 
         invoice._onchange_invoice_line_wt_ids()
         invoice._recompute_dynamic_lines()
-        invoice.write(invoice._convert_to_write(invoice._cache))
+        write_vals = self._new_write_vals(invoice)
+        invoice.write(write_vals)
 
         rel_docs_dict = {
             # 2.1.2
