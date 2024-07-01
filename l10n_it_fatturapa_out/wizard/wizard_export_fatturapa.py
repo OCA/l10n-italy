@@ -205,10 +205,11 @@ class WizardExportFatturapa(models.TransientModel):
                 res[invoice.partner_id] = []
             res[invoice.partner_id].append(invoice.id)
         for partner_id in res.keys():
-            if partner_id.max_invoice_in_xml:
-                res[partner_id] = list(
-                    split_list(res[partner_id], partner_id.max_invoice_in_xml)
-                )
+            max_invoice_in_xml = (
+                partner_id.max_invoice_in_xml or self.env.company.max_invoice_in_xml
+            )
+            if max_invoice_in_xml:
+                res[partner_id] = list(split_list(res[partner_id], max_invoice_in_xml))
             else:
                 res[partner_id] = [res[partner_id]]
         # The returned dictionary contains a plain res.partner object as key

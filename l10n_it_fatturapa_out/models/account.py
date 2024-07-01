@@ -49,10 +49,24 @@ class AccountInvoice(models.Model):
 
     def preventive_checks(self):
         for invoice in self:
+            if invoice.state != "posted":
+                raise UserError(
+                    _("Impossible to generate XML: invoice not posted: %s")
+                    % invoice.name
+                )
+
             if not invoice.is_sale_document():
                 raise UserError(
                     _("Impossible to generate XML: not a customer invoice: %s")
                     % invoice.name
+                )
+
+            if not invoice.fiscal_document_type_id:
+                raise UserError(
+                    _(
+                        "Invoice %s fiscal document type must be set",
+                        invoice.name,
+                    )
                 )
 
             if (
@@ -78,6 +92,28 @@ class AccountInvoice(models.Model):
                         " set for the selected payment term %s",
                         invoice.name,
                         invoice.invoice_payment_term_id.name,
+                    )
+                )
+
+            if not invoice.partner_id.city:
+                raise UserError(_("Invoice %s partner city must be set", invoice.name))
+
+            if not invoice.company_id.partner_id.city:
+                raise UserError(
+                    _(
+                        "Invoice %s city in our company's partner must be set",
+                        invoice.name,
+                    )
+                )
+
+            if (
+                invoice.company_id.fatturapa_stabile_organizzazione
+                and not invoice.company_id.fatturapa_stabile_organizzazione.city
+            ):
+                raise UserError(
+                    _(
+                        "Invoice %s city in our company's Stable Organization must be set",
+                        invoice.name,
                     )
                 )
 
