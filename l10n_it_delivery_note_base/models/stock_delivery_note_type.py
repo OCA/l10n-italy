@@ -55,6 +55,8 @@ class StockDeliveryNoteType(models.Model):
     )
     note = fields.Html(string="Internal note")
 
+    consolidate_line_for_product_in_report = fields.Boolean(default=False)
+
     _sql_constraints = [
         (
             "name_uniq",

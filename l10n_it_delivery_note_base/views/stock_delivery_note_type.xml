@@ -26,6 +26,7 @@
                             <field name="sequence_id" />
                             <field name="next_sequence_number" />
                             <field name="code" />
+                            <field name="consolidate_line_for_product_in_report" />
                         </group>
                         <group>
                             <field
