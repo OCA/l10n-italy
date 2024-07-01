@@ -15,3 +15,14 @@ class ResPartner(models.Model):
     group_riba = fields.Boolean(
         "Group C/O", help="Group C/O by customer while issuing."
     )
+    riba_exclude_expenses = fields.Boolean(
+        string="Exclude expenses Ri.Ba.",
+    )
+    riba_policy_expenses = fields.Selection(
+        [
+            ("one_a_month", "More invoices, one expense per Month"),
+            ("unlimited", "One expense per maturity"),
+        ],
+        default="one_a_month",
+        string="Ri.Ba. Policy expenses",
+    )
