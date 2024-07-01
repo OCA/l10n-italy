@@ -10129,6 +10129,7 @@ msgstr ""
 
 #. module: l10n_it_intrastat
 #: model:ir.model.fields,field_description:l10n_it_intrastat.field_account_invoice_intrastat__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.view_invoice_intrastat_search
 msgid "Company"
 msgstr ""
 
