@@ -896,15 +896,20 @@ class StockDeliveryNote(models.Model):
             lines_move_ids = note.mapped("line_ids.move_id").ids
             pickings_move_ids = note.mapped("picking_ids.valid_move_ids").ids
 
+            force_update = self.env.context.get("force_update_detail_lines")
             move_ids_to_create = [
-                line for line in pickings_move_ids if line not in lines_move_ids
+                line
+                for line in pickings_move_ids
+                if line not in lines_move_ids or force_update
             ]
             move_ids_to_delete = [
-                line for line in lines_move_ids if line not in pickings_move_ids
+                line
+                for line in lines_move_ids
+                if line not in pickings_move_ids or force_update
             ]
 
-            note._create_detail_lines(move_ids_to_create)
             note._delete_detail_lines(move_ids_to_delete)
+            note._create_detail_lines(move_ids_to_create)
 
     @api.model
     def create(self, vals):
