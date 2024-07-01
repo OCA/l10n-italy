@@ -53,6 +53,19 @@ class TestWithholdingTax(TransactionCase):
         }
         self.payment_term_15 = self.env["account.payment.term"].create(vals_payment)
 
+        self.account_expense, self.account_expense1 = self.env[
+            "account.account"
+        ].search(
+            [
+                (
+                    "user_type_id",
+                    "=",
+                    self.env.ref("account.data_account_type_expenses").id,
+                )
+            ],
+            limit=2,
+        )
+
         # Withholding tax
         wt_vals = {
             "name": "Code 1040",
@@ -82,18 +95,7 @@ class TestWithholdingTax(TransactionCase):
                 0,
                 {
                     "quantity": 1.0,
-                    "account_id": self.env["account.account"]
-                    .search(
-                        [
-                            (
-                                "user_type_id",
-                                "=",
-                                self.env.ref("account.data_account_type_expenses").id,
-                            )
-                        ],
-                        limit=1,
-                    )
-                    .id,
+                    "account_id": self.account_expense.id,
                     "name": "Advice",
                     "price_unit": 1000.00,
                     "invoice_line_tax_wt_ids": [(6, 0, [self.wt1040.id])],
@@ -240,18 +242,7 @@ class TestWithholdingTax(TransactionCase):
                 0,
                 {
                     "quantity": 1.0,
-                    "account_id": self.env["account.account"]
-                    .search(
-                        [
-                            (
-                                "user_type_id",
-                                "=",
-                                self.env.ref("account.data_account_type_expenses").id,
-                            )
-                        ],
-                        limit=1,
-                    )
-                    .id,
+                    "account_id": self.account_expense.id,
                     "name": "Advice",
                     "price_unit": 1000.00,
                     "tax_ids": False,
@@ -443,3 +434,64 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay_residual, 200)
         self.assertEqual(self.invoice.amount_residual, 250)
         self.assertEqual(self.invoice.state, "posted")
+
+    def _create_invoice(self, amount):
+        invoice_form = Form(
+            self.env["account.move"].with_context(default_move_type="in_invoice")
+        )
+        invoice_form.invoice_date = fields.Date.today().replace(month=7, day=15)
+        invoice_form.name = "Test Supplier Invoice WT"
+        invoice_form.journal_id = self.env["account.journal"].search(
+            [("type", "=", "purchase")], limit=1
+        )
+        invoice_form.partner_id = self.env.ref("base.res_partner_12")
+        with invoice_form.invoice_line_ids.new() as line:
+            line.quantity = 1.0
+            line.account_id = self.account_expense
+            line.name = "Service"
+            line.price_unit = amount
+            line.invoice_line_tax_wt_ids.add(self.wt1040)
+            line.tax_ids.remove(index=0)
+        invoice = invoice_form.save()
+        # invoice._onchange_invoice_line_wt_ids()
+        invoice.action_post()
+
+        wt_statement_ids = self.env["withholding.tax.statement"].search(
+            [
+                ("invoice_id", "=", invoice.id),
+                ("withholding_tax_id", "=", self.wt1040.id),
+            ]
+        )
+        self.assertEqual(len(wt_statement_ids), 1)
+        return invoice
+
+    def test_multi_invoice_with_payment(self):
+        invoice = self._create_invoice(477.19)  # wt 95.44 net 486.73
+        invoice1 = self._create_invoice(13.10)  # wt 2.62  net 13.36
+        # total to pay is 500.09, we add 0.50 for bank expenses
+        ctx = {
+            "active_model": "account.move",
+            "active_ids": (invoice | invoice1).ids,
+        }
+        register_payments = (
+            self.env["account.payment.register"]
+            .with_context(ctx)
+            .create(
+                {
+                    "payment_date": fields.Date.today().replace(month=7, day=15),
+                    "amount": 500.59,
+                    "group_payment": True,
+                    "payment_difference_handling": "reconcile",
+                    "writeoff_account_id": self.account_expense1.id,
+                    "writeoff_label": "Bank expense",
+                    "journal_id": self.journal_bank.id,
+                    "payment_method_id": self.env.ref(
+                        "account.account_payment_method_manual_out"
+                    ).id,
+                }
+            )
+        )
+        payment_action = register_payments.action_create_payments()
+        payment_id = payment_action["res_id"]
+        payment = self.env["account.payment"].browse(payment_id)
+        self.assertEqual(payment.reconciled_bill_ids.ids, (invoice | invoice1).ids)
