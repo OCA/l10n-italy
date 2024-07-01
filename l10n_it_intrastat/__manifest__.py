@@ -20,6 +20,7 @@
         "web_widget_char_size",
     ],
     "data": [
+        "security/intrastat_rules.xml",
         "security/ir.model.access.csv",
         "data/account.intrastat.transaction.nature.csv",
         "data/account.intrastat.transaction.nature.b.csv",
