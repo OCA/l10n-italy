@@ -170,6 +170,10 @@ Contributors
 
    -  Simone Rubino <simone.rubino@aion-tech.it>
 
+-  `Stesi Consulting Srl <https://www.stesi.consulting/>`__:
+
+   -  Michele Di Croce <dicroce.m@stesi.consulting>
+
 Maintainers
 -----------
 
