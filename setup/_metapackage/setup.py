@@ -69,6 +69,7 @@ setuptools.setup(
         'odoo-addon-l10n_it_website_portal_ipa>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_website_sale_fiscalcode>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_withholding_tax>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_it_withholding_tax_financial_report>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_withholding_tax_payment>=16.0dev,<16.1dev',
         'odoo-addon-l10n_it_withholding_tax_reason>=16.0dev,<16.1dev',
     ],
