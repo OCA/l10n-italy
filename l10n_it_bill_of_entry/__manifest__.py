@@ -8,7 +8,7 @@
 
 {
     "name": "ITA - Bolle doganali",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "category": "Localization/Italy",
     "author": "Agile Business Group, CQ Creativi Quadrati, TAKOBI, "
     "Odoo Community Association (OCA)",
