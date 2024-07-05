@@ -29,6 +29,7 @@ msgid "- REA:"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu_wizard__values_precision__d
 #, python-format
@@ -55,6 +56,7 @@ msgid "ASSETS (Balance Sheet)"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
 #, python-format
 msgid "ASSETS codes must starting by PA"
@@ -131,6 +133,7 @@ msgid "City"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__code
 #, python-format
@@ -192,6 +195,7 @@ msgid "Debit (Financial statement EU)"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__name
 #, python-format
@@ -199,13 +203,9 @@ msgid "Description"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_account_account__display_name
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__display_name
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__display_name
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__display_name
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_html_report__display_name
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_xbrl_report__display_name
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_xlsx_report__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -226,18 +226,18 @@ msgstr ""
 
 #. module: l10n_it_financial_statement_eu
 #. odoo-javascript
-#. odoo-python
-#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
 #: code:addons/l10n_it_financial_statement_eu/static/src/xml/report.xml:0
+#: code:addons/l10n_it_financial_statement_eu/static/src/xml/report.xml:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
 #, python-format
 msgid "Export XBRL"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
 #. odoo-javascript
-#. odoo-python
-#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
 #: code:addons/l10n_it_financial_statement_eu/static/src/xml/report.xml:0
+#: code:addons/l10n_it_financial_statement_eu/static/src/xml/report.xml:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
 #, python-format
 msgid "Export XLSX"
 msgstr ""
@@ -248,8 +248,9 @@ msgid "Financial statement"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
-#: code:addons/l10n_it_financial_statement_eu/wizards/financial_statement_eu_wizard.py:0
+#: code:addons/l10n_it_financial_statement_eu/wizard/financial_statement_eu_wizard.py:0
 #: model:ir.actions.report,name:l10n_it_financial_statement_eu.action_report_financial_statement_eu_xlsx
 #: model:ir.actions.report,name:l10n_it_financial_statement_eu.action_report_financial_statement_eu_xml
 #: model:ir.ui.menu,name:l10n_it_financial_statement_eu.financial_statement_eu_wizard_menu
@@ -286,6 +287,7 @@ msgid "From date"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__hide_acc_amount_0
 #, python-format
@@ -293,13 +295,9 @@ msgid "Hide account with amount 0"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_account_account__id
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__id
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__id
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__id
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_html_report__id
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_xbrl_report__id
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_xlsx_report__id
 msgid "ID"
 msgstr ""
 
@@ -309,6 +307,7 @@ msgid "INCOME STATEMENT"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
 #, python-format
 msgid "INCOME STATEMENT codes must starting by E"
@@ -320,6 +319,7 @@ msgid "Ignore"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__ignore_closing_move
 #, python-format
@@ -337,19 +337,16 @@ msgid "LIABILITIES (Balance Sheet)"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
 #, python-format
 msgid "LIABILITIES codes must starting by PP"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_account_account____last_update
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu____last_update
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log____last_update
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard____last_update
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_html_report____last_update
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_xbrl_report____last_update
-#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_report_l10n_it_financial_statement_eu_fseu_xlsx_report____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -378,6 +375,7 @@ msgid "Link to Financial statement EU"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
@@ -431,6 +429,7 @@ msgid "Share Capital"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #, python-format
 msgid "Share capital Euro "
@@ -457,12 +456,14 @@ msgid "Subtract"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
 #, python-format
 msgid "There are accounts not linked to any financial statement line:"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
 #, python-format
 msgid "There are accounts to ignore but with non-zero amount:"
@@ -479,11 +480,12 @@ msgid "UNBALANCED"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
 #, python-format
-msgid "Unbalanced financial statements: "
-"%(tot_assets)s (Assets) - %(tot_liabilities)s (Liabilities)"
-" = %(diff)s"
+msgid ""
+"Unbalanced financial statements: %(tot_assets)s (Assets) - "
+"%(tot_liabilities)s (Liabilities) = %(diff)s"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
@@ -497,6 +499,7 @@ msgid "Unlinked account in Financial statement EU"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__only_posted_move
 #, python-format
@@ -514,6 +517,7 @@ msgid "VAT number nation"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__values_precision
 #, python-format
@@ -536,6 +540,12 @@ msgid "Wizard for Financial statement EU calculation"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#: model:ir.actions.report,name:l10n_it_financial_statement_eu.action_report_financial_statement_eu_xbrl
+msgid "XBRL-financial-statements"
+msgstr ""
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
@@ -554,6 +564,7 @@ msgid "Zone"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu_wizard__values_precision__u
 #, python-format
@@ -561,6 +572,7 @@ msgid "euro units"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
 #, python-format
@@ -573,6 +585,7 @@ msgid "or"
 msgstr ""
 
 #. module: l10n_it_financial_statement_eu
+#. odoo-python
 #: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
 #, python-format
