@@ -1017,12 +1017,6 @@ msgstr ""
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:0
 #, python-format
-msgid "Could not retrieve depreciation line type from move `{}` (type `{}`)."
-msgstr ""
-
-#. module: assets_management
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:0
-#, python-format
 msgid ""
 "Could not update `{}`: not enough residual amount to write off move `{}`.\n"
 "(Amount to write off: {}; residual amount: {}.)\n"
