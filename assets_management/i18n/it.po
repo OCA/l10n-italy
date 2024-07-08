@@ -1058,14 +1058,6 @@ msgstr ""
 #. module: assets_management
 #: code:addons/assets_management/wizard/account_move_manage_asset.py:0
 #, python-format
-msgid "Could not retrieve depreciation line type from move `{}` (type `{}`)."
-msgstr ""
-"Non è possibile recuperare il tipo delle righe di ammortamento dal movimento "
-"`{}` (tipo `{}`)."
-
-#. module: assets_management
-#: code:addons/assets_management/wizard/account_move_manage_asset.py:0
-#, python-format
 msgid ""
 "Could not update `{}`: not enough residual amount to write off move `{}`.\n"
 "(Amount to write off: {}; residual amount: {}.)\n"
@@ -3139,6 +3131,13 @@ msgstr "alla data {}"
 #, python-format
 msgid "{} - Depreciation"
 msgstr "{} - Ammortamento"
+
+#, python-format
+#~ msgid ""
+#~ "Could not retrieve depreciation line type from move `{}` (type `{}`)."
+#~ msgstr ""
+#~ "Non è possibile recuperare il tipo delle righe di ammortamento dal "
+#~ "movimento `{}` (tipo `{}`)."
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Errore consegna SMS"
