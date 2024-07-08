@@ -1,7 +1,8 @@
 # Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.tests import new_test_user
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import Form, SavepointCase
 
 
 class TestAssets(SavepointCase):
@@ -118,6 +119,13 @@ class TestAssets(SavepointCase):
         )
         cls.loss_account_company_2 = cls.loss_account_company_1.copy(
             {"company_id": cls.company_2.id}
+        )
+        cls.bank_account = cls.env["account.account"].create(
+            {
+                "code": "TBA",
+                "name": "Test Bank Account",
+                "user_type_id": cls.env.ref("account.data_account_type_liquidity").id,
+            }
         )
         # Journals
         cls.journal_company_1 = cls.env["account.journal"].search(
@@ -251,7 +259,7 @@ class TestAssets(SavepointCase):
             }
         )
 
-    def _create_asset(self, asset_date):
+    def _create_asset(self, asset_date=None):
         asset = self.env["asset.asset"].create(
             {
                 "name": "Test asset",
@@ -308,3 +316,32 @@ class TestAssets(SavepointCase):
         purchase_invoice.action_post()
         self.assertEqual(purchase_invoice.state, "posted")
         return purchase_invoice
+
+    def _create_entry(self, account, amount, post=True):
+        """Create an entry that adds `amount` to `account`."""
+        entry_form = Form(self.env["account.move"])
+        with entry_form.line_ids.new() as asset_line:
+            asset_line.account_id = account
+            asset_line.debit = amount
+        with entry_form.line_ids.new() as bank_line:
+            bank_line.account_id = self.bank_account
+        entry = entry_form.save()
+
+        if post:
+            entry.action_post()
+
+        self.assertEqual(entry.move_type, "entry")
+        return entry
+
+    def _update_asset(self, entry, asset):
+        """Execute the wizard on `entry` to update `asset`."""
+        wizard_action = entry.open_wizard_manage_asset()
+        wizard_model = self.env[wizard_action["res_model"]]
+        wizard_context = wizard_action["context"]
+
+        wizard_form = Form(wizard_model.with_context(**wizard_context))
+        wizard_form.management_type = "update"
+        wizard_form.asset_id = asset
+        wizard = wizard_form.save()
+
+        return wizard.link_asset()
