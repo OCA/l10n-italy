@@ -13,6 +13,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "depends": [
         "account",
+        "l10n_it_account_tax_kind",
         "sale",
     ],
     "data": [
