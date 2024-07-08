@@ -37,5 +37,4 @@ class StockDeliveryNoteInvoiceWizard(models.TransientModel):
         delivery_note_ids.action_invoice(self.invoice_method)
         for invoice in delivery_note_ids.mapped("invoice_ids"):
             invoice.invoice_date = self.invoice_date
-            invoice._onchange_invoice_date()
         return True
