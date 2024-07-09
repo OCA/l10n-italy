@@ -61,7 +61,13 @@
                     <field name="past_due_journal_id" />
                     <field name="settlement_journal_id" />
                 </group>
-
+                <group
+                    string="Acceptance"
+                    attrs="{'required':[('type','=','incasso')]}"
+                >
+                    <field name="acceptance_journal_id" />
+                    <field name="acceptance_account_id" />
+                </group>
             </form>
         </field>
     </record>

@@ -141,7 +141,7 @@
                         type='object'
                         string="Mark as Accepted"
                         class="oe_highlight"
-                        attrs="{'invisible':['|',('state','!=','draft'),('type','=','incasso')]}"
+                        attrs="{'invisible':['|',('state','!=','draft'),('type','not in',('incasso', 'sbf'))]}"
                     />
                     <button
                         name="%(riba_credit_action)d"
@@ -223,12 +223,23 @@
                         </group>
                     </page>
                     <page string="Accounting">
-                        <separator colspan="4" string="Acceptance Entries" />
-                        <field name='acceptance_move_ids' colspan="4" nolabel="1" />
-                        <separator colspan="4" string="Credit Entry" />
-                        <field name='credit_move_id' colspan="4" nolabel="1" />
-                        <separator colspan="4" string="Payments" />
-                        <field name='payment_ids' colspan="4" nolabel="1">
+                        <group
+                            string="Acceptance Entries"
+                            attrs="{'invisible':[('type', 'not in', ('incasso', 'sbf'))]}"
+                        >
+                            <field name='acceptance_move_ids' nolabel="1" />
+                        </group>
+                        <group
+                            string="Credit Entry"
+                            attrs="{'invisible':[('type', '!=', 'sbf')]}"
+                        >
+                            <field name='credit_move_id' nolabel="1" />
+                        </group>
+                        <group
+                            string="Payments"
+                            attrs="{'invisible':[('type', '!=', 'sbf')]}"
+                        >
+                            <field name='payment_ids' nolabel="1">
                             <tree>
                                 <field name="date" />
                                 <field name="move_id" />
@@ -241,8 +252,17 @@
                                 <field name="currency_id" />
                             </tree>
                         </field>
-                        <separator colspan="4" string="Past Dues" />
-                        <field name='past_due_move_ids' colspan="4" nolabel="1" />
+                        </group>
+                        <group
+                            colspan="4"
+                            string="Past Dues"
+                            attrs="{'invisible':[('type', '!=', 'sbf')]}"
+                        >
+                            <field
+                                name='past_due_move_ids'
+                                colspan="4"
+                                nolabel="1"
+                            /></group>
                     </page>
                 </notebook>
             </form>
