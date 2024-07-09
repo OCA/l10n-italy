@@ -1085,22 +1085,11 @@ msgstr "Azienda"
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid ""
-"Could not determine how to link move lines to asset in mode `"
-"%(management_type)s`."
+"Could not determine how to link move lines to asset in mode "
+"`%(management_type)s`."
 msgstr ""
 "Non è possibile determinare come collegare le righe dei movimenti al cespite "
 "nel modo `%(management_type)s`."
-
-#. module: l10n_it_asset_management
-#. odoo-python
-#: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
-msgid ""
-"Could not retrieve depreciation line type from move `%(move_num)s` (type `"
-"%(move_type)s`)."
-msgstr ""
-"Non è possibile recuperare il tipo delle righe di ammortamento dal movimento "
-"`%(move_num)s` (tipo `%(move_type)s`)."
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -3206,6 +3195,14 @@ msgstr "o"
 #, python-format
 msgid "to date %(to_date)s"
 msgstr "alla data %(to_date)s"
+
+#, python-format
+#~ msgid ""
+#~ "Could not retrieve depreciation line type from move `%(move_num)s` (type "
+#~ "`%(move_type)s`)."
+#~ msgstr ""
+#~ "Non è possibile recuperare il tipo delle righe di ammortamento dal "
+#~ "movimento `%(move_num)s` (tipo `%(move_type)s`)."
 
 #~ msgid "Asset Journal Report"
 #~ msgstr "Resoconto libro cespiti"
