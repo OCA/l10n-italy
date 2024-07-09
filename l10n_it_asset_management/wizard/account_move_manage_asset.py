@@ -642,17 +642,6 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             for move, lines in grouped_move_lines.items():
                 move_num = move.name
 
-                move_type = "in" if move.is_outbound() else "out"
-                if not move_type:
-                    raise ValidationError(
-                        _(
-                            "Could not retrieve depreciation line type from"
-                            " move `%(move_num)s` (type `%(move_type)s`).",
-                            move_num=move_num,
-                            move_type=move_type,
-                        )
-                    )
-
                 # Compute amount and sign to preview how much the line
                 # balance will be: if it's going to write off the
                 # whole residual amount and more, making it become lower
@@ -660,23 +649,19 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 # todo probabilmente si può evitare questo calcolo
                 amount = 0
                 if lines:
-                    amount = abs(
-                        sum(
-                            line.currency_id._convert(
-                                line.debit - line.credit,
-                                dep.currency_id,
-                                line.company_id,
-                                line.date,
-                            )
-                            for line in lines
+                    amount = sum(
+                        line.currency_id._convert(
+                            line.debit - line.credit,
+                            dep.currency_id,
+                            line.company_id,
+                            line.date,
                         )
+                        for line in lines
                     )
-                sign = 1
-                if move_type == "out":
-                    sign = -1
+                sign = 1 if float_compare(amount, 0, digits) > 0 else -1
                 # Block updates if the amount to be written off is higher than
                 # the residual amount
-                if sign < 0 and float_compare(residual, amount, digits) < 0:
+                if sign < 0 and float_compare(residual, abs(amount), digits) < 0:
                     raise ValidationError(
                         _(
                             "Could not update `%(asset_name)s`:"
@@ -692,9 +677,10 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                             residual=residual,
                         )
                     )
-                balances += sign * amount
+                balances += amount
                 # end todo
 
+                dep_type = "in" if sign > 0 else "out"
                 dep_line_vals = {
                     "asset_accounting_info_ids": [
                         Command.create(
@@ -705,9 +691,9 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                         )
                         for line in lines
                     ],
-                    "amount": amount,
+                    "amount": abs(amount),
                     "date": move.date,
-                    "move_type": move_type,
+                    "move_type": dep_type,
                     "name": _("From move(s) ") + move_num,
                 }
                 dep_vals["line_ids"].append(Command.create(dep_line_vals))
