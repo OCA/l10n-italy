@@ -86,11 +86,13 @@ funzionalità contabili complete.
 
 L'assoggettamento ad Intrastat può essere gestito anche a livello
 generale di singolo partner, associandogli una posizione fiscale che
-abbia l'apposita casella "Soggetta a Intrastat" selezionata.
+abbia le apposite caselle "Soggetta a Intrastat (vendite)" e/o
+"Soggetta a Intrastat (acquisti)" selezionate.
 
 Tutte le fatture create per il partner che ha una posizione fiscale
 marcata come soggetta ad Intrastat avranno l’apposito campo "Soggetta a
-Intrastat" selezionato automaticamente.
+Intrastat" selezionato automaticamente, in base alla tipologia del
+documento (vendita o acquisto).
 
 **Prodotti e categorie**
 
