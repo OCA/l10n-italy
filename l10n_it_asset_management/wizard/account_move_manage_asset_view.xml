@@ -55,6 +55,7 @@
                                 placeholder="Asset Name"
                                 attrs="{'invisible': [('management_type', '!=', 'create')], 'required': [('management_type', '=', 'create')]}"
                             />
+                            <field name="allowed_asset_ids" invisible="True" />
                             <field
                                 name="asset_id"
                                 placeholder="Choose Your Asset"
@@ -122,6 +123,28 @@
                             <field
                                 name="depreciated_fund_amount"
                                 attrs="{'required': [('management_type', '=', 'partial_dismiss')]}"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        name="partial_recharge_asset_settings"
+                        attrs="{'invisible': ['|', '|', ('move_type', '=', 'wrong'), ('is_move_state_ok', '=', False), ('management_type', '!=', 'partial_recharge')]}"
+                    >
+                        <group>
+                            <field
+                                name="recharge_date"
+                                string="Date"
+                                attrs="{'required': [('management_type', '=', 'partial_recharge')]}"
+                            />
+                            <field
+                                name="recharge_purchase_amount"
+                                string="Purchase amount"
+                                attrs="{'required': [('management_type', '=', 'partial_recharge')]}"
+                            />
+                            <field
+                                name="recharge_fund_amount"
+                                string="Fund amount"
+                                attrs="{'required': [('management_type', '=', 'partial_recharge')]}"
                             />
                         </group>
                     </group>
@@ -242,6 +265,22 @@
                         type="object"
                         string="Dismiss Asset"
                         attrs="{'invisible': [('dismiss_asset_without_sale', '=', False), '|', ('move_type', 'not in', ('general', 'sale')), ('management_type', '!=', 'dismiss')]}"
+                        context="{'show_asset': 0}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Partially Recharge Asset and Show"
+                        attrs="{'invisible': ['|', ('move_type', 'not in', ('general', 'sale')), ('management_type', '!=', 'partial_recharge')]}"
+                        context="{'show_asset': 1}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="link_asset"
+                        type="object"
+                        string="Partially Recharge Asset"
+                        attrs="{'invisible': ['|', ('move_type', 'not in', ('general', 'sale')), ('management_type', '!=', 'partial_recharge')]}"
                         context="{'show_asset': 0}"
                         class="oe_highlight"
                     />

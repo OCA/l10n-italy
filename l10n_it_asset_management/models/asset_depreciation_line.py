@@ -100,6 +100,7 @@ class AssetDepreciationLine(models.Model):
     )
 
     partial_dismissal = fields.Boolean()
+    partial_recharge = fields.Boolean()
 
     percentage = fields.Float(string="%")
 
@@ -265,9 +266,8 @@ class AssetDepreciationLine(models.Model):
     def is_depreciation_nr_required(self):
         """Defines if a line requires to be numbered"""
         self.ensure_one()
-        return (
-            self.move_type in self.get_numbered_move_types()
-            and not self.partial_dismissal
+        return self.move_type in self.get_numbered_move_types() and not (
+            self.partial_dismissal or self.partial_recharge
         )
 
     def make_name(self):
@@ -398,14 +398,21 @@ class AssetDepreciationLine(models.Model):
         self.ensure_one()
 
         # Asset depreciation
-        if not self.partial_dismissal:
+        if not (self.partial_dismissal or self.partial_recharge):
             credit_account_id = self.asset_id.category_id.fund_account_id.id
             debit_account_id = self.depreciation_id.depreciation_account_id.id
 
-        # Asset partial dismissal
         else:
+            # Asset partial dismissal
             debit_account_id = self.asset_id.category_id.fund_account_id.id
             credit_account_id = self.asset_id.category_id.asset_account_id.id
+
+            # Asset partial recharge
+            if self.partial_recharge:
+                credit_account_id, debit_account_id = (
+                    debit_account_id,
+                    credit_account_id,
+                )
 
         amt = abs(self.amount)
         credit_line_vals = {
@@ -499,3 +506,6 @@ class AssetDepreciationLine(models.Model):
         )
         if to_create_move:
             to_create_move.generate_account_move()
+
+    def post_partial_recharge_asset(self):
+        return self.post_partial_dismiss_asset()

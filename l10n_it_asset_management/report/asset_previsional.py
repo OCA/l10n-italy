@@ -245,7 +245,9 @@ class Report(models.TransientModel):
                         if fyear.date_to >= dep.date_start:
                             prev = not lines or not any(
                                 line.move_type == "depreciated"
-                                and not line.partial_dismissal
+                                and not (
+                                    line.partial_dismissal or line.partial_recharge
+                                )
                                 for line in lines
                             )
                             sequence += 1
@@ -797,7 +799,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
                 line.amount
                 for line in self.dep_line_ids.filtered(
                     lambda line: line.move_type == "depreciated"
-                    and not line.partial_dismissal
+                    and not (line.partial_dismissal or line.partial_recharge)
                 )
             ]
         )
@@ -806,7 +808,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
                 line.amount
                 for line in self.dep_line_ids.filtered(
                     lambda line: line.move_type == "depreciated"
-                    and line.partial_dismissal
+                    and (line.partial_dismissal or line.partial_recharge)
                 )
             ]
         )
