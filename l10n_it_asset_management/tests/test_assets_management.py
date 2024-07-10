@@ -2,6 +2,8 @@
 # Copyright 2022 Simone Rubino - TAKOBI
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+import datetime
 from datetime import date
 
 from odoo import fields
@@ -481,7 +483,13 @@ class TestAssets(Common):
         self.assertFalse(asset.asset_accounting_info_ids)
 
         # Act
-        self._update_asset(entry, asset)
+        self._link_asset_move(
+            entry,
+            "update",
+            wiz_values={
+                "asset_id": asset,
+            },
+        )
 
         # Assert
         accounting_info = asset.asset_accounting_info_ids
@@ -501,7 +509,13 @@ class TestAssets(Common):
         self.assertFalse(asset.asset_accounting_info_ids)
 
         # Act
-        self._update_asset(entry, asset)
+        self._link_asset_move(
+            entry,
+            "update",
+            wiz_values={
+                "asset_id": asset,
+            },
+        )
 
         # Assert
         accounting_info = asset.asset_accounting_info_ids
@@ -672,3 +686,132 @@ class TestAssets(Common):
         # Assert
         account_move = asset.depreciation_ids.line_ids.move_id
         self.assertEqual(account_move.journal_id, depreciate_asset_wizard.journal_id)
+
+    def test_purchase_sale_refund_recharge(self):
+        """A sale refund can be used to restore asset value."""
+        # Create with purchase
+        purchase_amount = 2500
+        purchase_invoice = self._create_purchase_invoice(
+            datetime.date(2020, month=1, day=1), amount=purchase_amount
+        )
+        asset = self._link_asset_move(
+            purchase_invoice,
+            "create",
+            {
+                "category_id": self.asset_category_1,
+                "name": "Test recharge asset",
+            },
+        )
+        civ_depreciation = asset.depreciation_ids.filtered(
+            lambda x: x.type_id
+            == self.env.ref("l10n_it_asset_management.ad_type_civilistico")
+        )
+        self.assertEqual(civ_depreciation.amount_depreciable_updated, purchase_amount)
+
+        # Partial dismiss with sale
+        asset_account_amount = asset_fund_amount = 1000
+        sale_invoice = self._create_sale_invoice(
+            asset, amount=8000, invoice_date=datetime.date(2020, month=3, day=1)
+        )
+        self._link_asset_move(
+            sale_invoice,
+            "partial_dismiss",
+            wiz_values={
+                "asset_id": asset,
+                "depreciated_fund_amount": asset_account_amount,
+                "asset_purchase_amount": asset_fund_amount,
+            },
+        )
+        civ_depreciation_lines = civ_depreciation.line_ids
+        self.assertRecordValues(
+            civ_depreciation_lines.sorted("move_type"),
+            [
+                {
+                    "move_type": "depreciated",
+                    "amount": -1000.0,
+                },
+                {
+                    "move_type": "gain",
+                    "amount": 8000.0,
+                },
+                {
+                    "move_type": "out",
+                    "amount": 1000.0,
+                },
+            ],
+        )
+        civ_depreciation_move_lines = civ_depreciation_lines.filtered(
+            lambda cdl: cdl.move_type == "depreciated"
+        ).move_id.line_ids
+        self.assertRecordValues(
+            civ_depreciation_move_lines.sorted("balance"),
+            [
+                {
+                    "account_id": asset.category_id.asset_account_id.id,
+                    "balance": -1000,
+                },
+                {
+                    "account_id": asset.category_id.fund_account_id.id,
+                    "balance": 1000,
+                },
+            ],
+        )
+        self.assertEqual(
+            civ_depreciation.amount_depreciable_updated,
+            purchase_amount - asset_account_amount,
+        )
+
+        # Refund and recharge
+        sale_refund = self._refund_move(
+            sale_invoice, ref_date=datetime.date(2020, month=7, day=1)
+        )
+        recharge_purchase_amount = recharge_fund_amount = 1000
+        wizard = self._get_move_asset_wizard(
+            sale_refund,
+            "partial_recharge",
+            wiz_values={
+                "recharge_purchase_amount": recharge_purchase_amount,
+                "recharge_fund_amount": recharge_fund_amount,
+            },
+        )
+        wizard.link_asset()
+        self.assertEqual(wizard.asset_id, asset)
+        self.assertEqual(wizard.allowed_asset_ids, asset)
+        civ_depreciation_lines = civ_depreciation.line_ids - civ_depreciation_lines
+        self.assertRecordValues(
+            civ_depreciation_lines.sorted("move_type"),
+            [
+                {
+                    "move_type": "depreciated",
+                    "amount": 1000.0,
+                },
+                {
+                    "move_type": "in",
+                    "amount": 1000.0,
+                },
+                {
+                    "move_type": "loss",
+                    "amount": 8000.0,
+                },
+            ],
+        )
+        civ_depreciation_move_lines = civ_depreciation_lines.filtered(
+            lambda cdl: cdl.move_type == "depreciated"
+        ).move_id.line_ids
+        self.assertRecordValues(
+            civ_depreciation_move_lines.sorted("balance"),
+            [
+                {
+                    "account_id": asset.category_id.fund_account_id.id,
+                    "balance": -1000,
+                },
+                {
+                    "account_id": asset.category_id.asset_account_id.id,
+                    "balance": 1000,
+                },
+            ],
+        )
+        self.assertEqual(
+            civ_depreciation.amount_depreciable_updated,
+            purchase_amount,
+        )
