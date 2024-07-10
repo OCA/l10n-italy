@@ -3,7 +3,7 @@
 {
     "name": "ITA - Ritenute d'acconto - Financial Reports",
     "summary": "Integrazione Ritenute d'acconto e Rendiconti contabili",
-    "version": "16.0.1.0.0",
+    "version": "14.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
