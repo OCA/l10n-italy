@@ -112,11 +112,6 @@ msgid "Currency"
 msgstr "Valuta"
 
 #. module: l10n_it_declaration_of_intent
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__date
-msgid "Date"
-msgstr "Data"
-
-#. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__date_end
 msgid "Date End"
 msgstr "Data fine"
@@ -430,6 +425,11 @@ msgid "Telematic Protocol"
 msgstr "Protocollo telematico"
 
 #. module: l10n_it_declaration_of_intent
+#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__date
+msgid "Telematic Protocol Date"
+msgstr ""
+
+#. module: l10n_it_declaration_of_intent
 #: code:addons/l10n_it_declaration_of_intent/models/declaration.py:0
 #, python-format
 msgid "Total of documents exceed yearly limit"
@@ -475,6 +475,9 @@ msgstr "Limite annuale per le dichiarazioni"
 #: model_terms:ir.ui.view,arch_db:l10n_it_declaration_of_intent.select_manually_declarations_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "Date"
+#~ msgstr "Data"
 
 #~ msgid "Product"
 #~ msgstr "Prodotto"
