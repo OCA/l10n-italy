@@ -6,9 +6,11 @@
 
 import base64
 import re
+from unittest.mock import Mock
 
 from psycopg2 import IntegrityError
 
+import odoo
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import Form, tagged
@@ -885,6 +887,56 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
             invoice.name
         )
         self.assertEqual(ue.exception.args[0], error_message)
+
+    def test_partner_no_address_fail(self):
+        """
+        - create an XML invoice where the customer has no address or city
+
+        expect to fail with a proper message
+        """
+        invoice = self._create_invoice()
+        invoice.partner_id.street = False
+        invoice.partner_id.city = False
+        invoice._post()
+        wizard = self.wizard_model.create({})
+        with self.assertRaises(UserError) as ue:
+            wizard.with_context({"active_ids": [invoice.id]}).exportFatturaPA()
+        error_msg = ue.exception.args[0]
+        error_fragments = (
+            f"Error processing invoice(s) {invoice.name}",
+            "Indirizzo",
+            "Comune",
+            "Activate debug mode to see the full error",
+        )
+        for fragment in error_fragments:
+            self.assertIn(fragment, error_msg)
+
+        try:
+            # Enter debug mode and add details
+            odoo.http._request_stack.push(
+                Mock(
+                    db=self.env.cr.dbname,
+                    env=self.env,
+                    debug=True,
+                    website=False,  # compatibility with website module
+                    is_frontend=False,
+                )
+            )
+            wizard = self.wizard_model.create({})
+            with self.assertRaises(UserError) as ue:
+                wizard.with_context({"active_ids": [invoice.id]}).exportFatturaPA()
+            debug_error_msg = ue.exception.args[0]
+            debug_error_fragments = (
+                "Full error follows",
+                "Reason: value doesn't match any pattern of",
+                "p{IsBasicLatin}",
+                "<Comune xmlns:ns1",
+            )
+            for fragment in error_fragments[:-1] + debug_error_fragments:
+                self.assertIn(fragment, debug_error_msg)
+        finally:
+            # Remove from the stack to not interfere with other tests
+            odoo.http._request_stack.pop()
 
     def test_multicompany_fail(self):
         """
