@@ -14,6 +14,8 @@ reg_whitespace = re.compile(r"\s+")
 
 
 def encode_for_export(string_to_encode, max_chars, encoding="latin"):
+    if not string_to_encode:
+        return ""
     return (
         reg_whitespace.sub(" ", string_to_encode)
         .encode(encoding, errors="replace")
