@@ -89,7 +89,7 @@ addon | version | maintainers | summary
 [l10n_it_vat_payability](l10n_it_vat_payability/) | 14.0.1.0.2 |  | ITA - Esigibilità IVA
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 14.0.1.1.0 |  | ITA - Registri IVA
 [l10n_it_vat_registries_split_payment](l10n_it_vat_registries_split_payment/) | 14.0.1.1.1 |  | Modulo di congiunzione tra registri IVA e scissione dei pagamenti
-[l10n_it_vat_statement_communication](l10n_it_vat_statement_communication/) | 14.0.1.0.0 |  | Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate
+[l10n_it_vat_statement_communication](l10n_it_vat_statement_communication/) | 14.0.1.0.1 |  | Comunicazione liquidazione IVA ed esportazione file xmlconforme alle specifiche dell'Agenzia delle Entrate
 [l10n_it_vat_statement_split_payment](l10n_it_vat_statement_split_payment/) | 14.0.1.0.2 |  | Migliora la liquidazione dell'IVA tenendo in considerazione la scissione dei pagamenti
 [l10n_it_website_portal_fatturapa](l10n_it_website_portal_fatturapa/) | 14.0.1.0.0 |  | Add fatturapa fields and checks in frontend user's details
 [l10n_it_website_portal_fiscalcode](l10n_it_website_portal_fiscalcode/) | 14.0.1.0.1 |  | Add fiscal code to details of frontend user
