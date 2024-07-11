@@ -1126,6 +1126,28 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         e_invoice = invoices.fatturapa_attachment_in_id
         self.assertTrue(e_invoice.ir_attachment_id.read())
 
+    def test_access_other_user_e_invoice_attachments(self):
+        """A user can see the e-invoice attachments created by other users."""
+        # Arrange
+        access_right_group_xmlid = "base.group_erp_manager"
+        user = self.env.user
+        user.groups_id -= self.env.ref("base.group_system")
+        user.groups_id -= self.env.ref(access_right_group_xmlid)
+        other_user = user.copy(default={"login": "attachment_user"})
+        # pre-condition
+        self.assertFalse(user.has_group(access_right_group_xmlid))
+        self.assertNotEqual(user, other_user)
+        import_action = self.run_wizard(
+            "access_other_user_e_invoice_attachments", "IT02780790107_11004.xml"
+        )
+        # Assert
+        with self.with_user(other_user.login):
+            invoices = self.env[import_action["res_model"]].search(
+                import_action["domain"]
+            )
+            e_invoice = invoices.fatturapa_doc_attachments
+            self.assertTrue(e_invoice.ir_attachment_id.read())
+
 
 class TestFatturaPAEnasarco(FatturapaCommon):
     def setUp(self):
