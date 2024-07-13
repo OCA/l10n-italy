@@ -158,18 +158,10 @@ class AccountMove(models.Model):
                     if is_sale_document:
                         cmt = self.narration or ""
                         msg = (
-                            "Vostra dichiarazione d'intento nr "
-                            "{partner_number} del {partner_date}, "
-                            "nostro protocollo nr {number} del {date}, "
-                            "protocollo telematico nr {protocol}.".format(
-                                partner_number=declaration.partner_document_number,
-                                partner_date=format_date(
-                                    self.env, declaration.partner_document_date
-                                ),
-                                number=declaration.number,
-                                date=format_date(self.env, declaration.date),
-                                protocol=declaration.telematic_protocol,
-                            )
+                            f"Vostra dichiarazione d'intento del "
+                            f"{format_date(self.env, declaration.date)}, "
+                            f"protocollo telematico nr "
+                            f"{declaration.telematic_protocol}."
                         )
                         # Avoid duplication
                         if msg not in cmt:
