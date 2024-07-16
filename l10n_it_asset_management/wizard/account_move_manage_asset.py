@@ -33,6 +33,9 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     code = fields.Char(
         default="",
     )
+    code_sequence_id = fields.Many2one(
+        related="category_id.code_sequence_id",
+    )
 
     company_id = fields.Many2one(
         "res.company",
