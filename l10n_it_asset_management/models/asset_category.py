@@ -94,6 +94,11 @@ class AssetCategory(models.Model):
         " printing assets' reports.",
     )
 
+    code_sequence_id = fields.Many2one(
+        comodel_name="ir.sequence",
+        help="Sequence to generate the Code of new assets.",
+    )
+
     tag_ids = fields.Many2many(
         "asset.tag",
         string="Tag",

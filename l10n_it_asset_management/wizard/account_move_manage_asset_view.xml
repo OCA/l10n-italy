@@ -73,7 +73,33 @@
                                 options="{'no_create': True}"
                                 attrs="{'required': [('management_type', '=', 'create')]}"
                             />
-                            <field name="code" />
+                            <field
+                                name="code"
+                                attrs="{
+                                    'invisible': [
+                                        ('code_sequence_id', '!=', False),
+                                    ],
+                                }"
+                            />
+                            <!-- Invisibility domain of `code_sequence_details` could be simpler,
+                            but like this it is easier to maintain and more obvious that it is
+                            the opposite of `code`'s invisibility domain. -->
+                            <div
+                                name="code_sequence_details"
+                                class="text-muted"
+                                colspan="2"
+                                attrs="{
+                                    'invisible': [
+                                        '!',
+                                            ('code_sequence_id', '!=', False),
+                                    ],
+                                }"
+                            >
+                                The Code will be generated from the Category's Code Sequence <field
+                                    name="code_sequence_id"
+                                    class="d-inline"
+                                />
+                            </div>
                             <field name="used" />
                         </group>
                         <group>

@@ -31,6 +31,9 @@ class Asset(models.Model):
     code = fields.Char(
         default="",
     )
+    code_sequence_id = fields.Many2one(
+        related="category_id.code_sequence_id",
+    )
 
     company_id = fields.Many2one(
         "res.company",
@@ -114,6 +117,9 @@ class Asset(models.Model):
             asset = super().create(vals)
             if create_deps_from_categ:
                 asset.onchange_category_id()
+            code_sequence = asset.code_sequence_id
+            if code_sequence and not asset.code:
+                asset.code = code_sequence.next_by_id()
             assets |= asset
         return assets
 
