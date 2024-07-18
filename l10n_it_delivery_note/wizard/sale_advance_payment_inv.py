@@ -11,7 +11,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
     _inherit = "sale.advance.payment.inv"
 
     def _default_step(self):
-        states = self.sale_order_ids.mapped("delivery_note_ids.state")
+        states = self.sale_order_ids.mapped("picking_ids.delivery_note_id.state")
 
         if any(s == "draft" for s in states):
             return DOMAIN_WIZARD_STEPS[1]
