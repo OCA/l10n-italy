@@ -13,7 +13,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
     def _default_step(self):
         active_ids = self.env.context.get("active_ids", [])
         sale_order_ids = self.env["sale.order"].browse(active_ids)
-        states = sale_order_ids.mapped("delivery_note_ids.state")
+        states = sale_order_ids.mapped("picking_ids.delivery_note_id.state")
 
         if any(s == "draft" for s in states):
             return DOMAIN_WIZARD_STEPS[1]
