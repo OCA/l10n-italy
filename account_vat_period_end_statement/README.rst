@@ -182,6 +182,7 @@ Contributors
 -  Lara Baggio <http://linkgroup.it/>
 -  Gianmarco Conte <gconte@dinamicheaziendali.it>
 -  Michele Rusticucci <michele.rusticucci@agilebg.com>
+-  Salvo Rapisarda <sdrapisarda@gmail.com>
 -  `TAKOBI <https://takobi.online>`__:
 
    -  Simone Rubino <sir@takobi.online>
