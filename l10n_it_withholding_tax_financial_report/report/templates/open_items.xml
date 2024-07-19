@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_open_items_lines_header_wt"
+        inherit_id="account_financial_report.report_open_items_lines_header"
+    >
+        <xpath expr="//div[@style='width: 15.07%;']" position="attributes">
+            <attribute name="style">width:11.93%</attribute>
+        </xpath>
+        <xpath expr="//div[@style='width: 24.5%;']" position="attributes">
+            <attribute name="style">width:14.5%</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='foreign_currency']" position="after">
+            <div class="act_as_cell" style="width: 6.57%;">Net to pay</div>
+            <div class="act_as_cell" style="width: 6.57%;">Residual net to pay</div>
+        </xpath>
+    </template>
+    <template
+        id="report_open_items_lines_wt"
+        inherit_id="account_financial_report.report_open_items_lines"
+    >
+        <xpath expr="//t[@t-if='foreign_currency']" position="after">
+            <div class="act_as_cell amount">
+                <span
+                    t-if="line.get('amount_net_pay', False)"
+                    t-esc="line['amount_net_pay']"
+                    t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                />
+            </div>
+            <div class="act_as_cell amount">
+                <span
+                    t-if="line.get('amount_net_pay_residual', False)"
+                    t-esc="line['amount_net_pay_residual']"
+                    t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                />
+            </div>
+        </xpath>
+    </template>
+    <template
+        id="report_open_items_ending_cumul_wt"
+        inherit_id="account_financial_report.report_open_items_ending_cumul"
+    >
+        <xpath expr="//div[hasclass('act_as_row')]/t[1]/div[1]" position="attributes">
+            <attribute name="style">width:23.2%</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('act_as_row')]/t[2]/div[1]" position="attributes">
+            <attribute name="style">width:23.2%</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='foreign_currency']" position="after">
+            <div class="act_as_cell amount" style="width: 6.57%;" />
+            <div class="act_as_cell amount" style="width: 6.57%;">
+                <t t-if='type == "account_type"'>
+                    <span
+                        t-esc="total_amount[account_id]['amount_net_pay_residual']"
+                        t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                    />
+                </t>
+                <t t-if='type == "partner_type"'>
+                    <span
+                        t-esc="total_amount[account_id][partner_id]['amount_net_pay_residual']"
+                        t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                    />
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>
