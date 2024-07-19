@@ -21,16 +21,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_account_config_settings_riba
 msgid ""
 "<span class=\"o_form_label\">RiBa Collection Fees</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title="
-"\"Product used as Service for RiBa Collection Fees\" aria-label=\"Product "
-"used as Service for RiBa Collection Fees\" groups=\"base.group_multi_company"
-"\" role=\"img\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Product used as Service for RiBa Collection Fees\" aria-"
+"label=\"Product used as Service for RiBa Collection Fees\" groups=\"base."
+"group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Spese di incasso RiBa</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title="
-"\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label="
-"\"Prodotto usato come servizio per le spese di incasso RiBa\" groups=\"base."
-"group_multi_company\" role=\"img\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-"
+"label=\"Prodotto usato come servizio per le spese di incasso RiBa\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
@@ -658,6 +658,13 @@ msgstr "Emetti RiBa"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
 msgid "Issued RiBas"
 msgstr "RiBa emesse"
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_issue.py:0
+#, python-format
+msgid "It is possible to issue C/O for posted move only!"
+msgstr ""
 
 #. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_account_move
