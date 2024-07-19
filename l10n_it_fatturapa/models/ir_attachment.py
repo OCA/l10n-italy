@@ -41,7 +41,6 @@ class Attachment(models.Model):
                 att.get_base_url() + "/fatturapa/preview/%s" % att.id
             )
 
-    @staticmethod
     def ftpa_preview(self):
         return {
             "type": "ir.actions.act_url",
