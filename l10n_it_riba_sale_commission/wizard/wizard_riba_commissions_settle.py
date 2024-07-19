@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import date, timedelta
+from datetime import timedelta
 
 from odoo import models
 
@@ -17,31 +17,32 @@ class SaleCommissionMakeSettle(models.TransientModel):
         """
         # removes invoice lines with flag "no_commission" and that have
         # payment term set on Ri.Ba from those get with the original method
-        all_agent_lines = super()._get_agent_lines(agent, date_to_agent)
-        agent_lines = all_agent_lines.filtered(
-            lambda al: not al.invoice_id.no_commission
-        ).filtered(lambda r: r.invoice_id.invoice_payment_term_id.riba)
+        agent_lines = super()._get_agent_lines(agent, date_to_agent)
         for line in agent_lines:
-            # removes lines if RiBa is past due or in case it is subject to collection
-            # and at least the safety days have not passed since the payment due date,
-            # to keep a margin and verify that it has been paid.
-            riba_mv_lines = self.env["riba.distinta.move.line"].search(
-                [("move_line_id.move_id", "=", line.invoice_id.id)]
-            )
-            for riba_mv_line in riba_mv_lines:
-                riba_type = riba_mv_line.riba_line_id.type
-                if line.commission_id.invoice_state == "paid" and (
-                    line.invoice_id.is_unsolved
-                    or (
-                        (
-                            riba_mv_line.riba_line_id.due_date
-                            + timedelta(
-                                days=riba_mv_line.riba_line_id.config_id.safety_days
+            if (
+                not line.invoice_id.no_commission
+                and line.invoice_id.invoice_payment_term_id.riba
+            ):
+                # removes lines if RiBa is past due or in case it is subject to collection
+                # and at least the safety days have not passed since the payment due date,
+                # to keep a margin and verify that it has been paid.
+                riba_mv_lines = self.env["riba.distinta.move.line"].search(
+                    [("move_line_id.move_id", "=", line.invoice_id.id)]
+                )
+                for riba_mv_line in riba_mv_lines:
+                    riba_type = riba_mv_line.riba_line_id.type
+                    if line.commission_id.invoice_state == "paid" and (
+                        line.invoice_id.is_unsolved
+                        or (
+                            (
+                                riba_mv_line.riba_line_id.due_date
+                                + timedelta(
+                                    days=riba_mv_line.riba_line_id.config_id.safety_days
+                                )
+                                > self.date_payment_to
                             )
-                            > date.today()
+                            and riba_type == "sbf"
                         )
-                        and riba_type == "sbf"
-                    )
-                ):
-                    all_agent_lines -= line
-        return all_agent_lines
+                    ):
+                        agent_lines -= line
+        return agent_lines
