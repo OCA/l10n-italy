@@ -120,7 +120,7 @@
         <field name="search_view_id" ref="riba_filter" />
         <field
             name="domain"
-        >['&amp;','|',('riba','=','True'),('past_due_invoice_ids','!=',False),('account_id.account_type','=','asset_receivable')]</field>
+        >['&amp;', ('parent_state', '=', 'posted'), '&amp;',('riba','=','True'), '|',('past_due_invoice_ids','!=',False),('account_id.account_type','=','asset_receivable')]</field>
         <field
             name="context"
         >{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
