@@ -26,3 +26,16 @@ where at least the "Safety Days" have not passed from the due date.
 
 It is possible to set "Without commissions" flag in invoices, in this way
 no agent commissions are generated.
+
+When generating agent settlements, select a payment date until which commissions should be settled.
+Invoices with RiBa payment will be taken into consideration only if the number of days set in the "Safety days for commission" field in RiBa configuration from due date set in RiBa payment have passed from settlement payment date.
+
+
+Eg:
+
+- Invoice 0001 is paid with RiBa
+- RiBa due date: January 1st
+- "Safety days for commission" set in RiBa configuration: 10
+- In settlement wizard:
+    - Settle commissions until payment date: January 5th => commission is not settled for RiBa
+    - Settle commissions until payment date: January 15th => commission is settled for RiBa
