@@ -6,7 +6,7 @@
 
 {
     "name": "ITA - Fattura elettronica - Base",
-    "version": "16.0.1.2.0",
+    "version": "16.0.1.2.1",
     "category": "Localization/Italy",
     "summary": "Fatture elettroniche",
     "author": "Davide Corio, Agile Business Group, Innoviu, "
