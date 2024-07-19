@@ -643,6 +643,13 @@ msgid "Issued RiBas"
 msgstr ""
 
 #. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_issue.py:0
+#, python-format
+msgid "It is possible to issue C/O for posted move only!"
+msgstr ""
+
+#. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_account_move
 msgid "Journal Entry"
 msgstr ""
