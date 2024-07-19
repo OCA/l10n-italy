@@ -8,7 +8,7 @@ class ResCompany(models.Model):
 
     fatturapa_fiscal_position_id = fields.Many2one(
         "fatturapa.fiscal_position",
-        "Fiscal Position",
+        "Electronic Invoice Fiscal Position",
         help="Fiscal position used by electronic invoice",
     )
     fatturapa_art73 = fields.Boolean("Art. 73")
