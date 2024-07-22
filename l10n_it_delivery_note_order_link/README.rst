@@ -103,10 +103,19 @@ promote its widespread use.
 .. |maintainer-andreampiovesana| image:: https://github.com/andreampiovesana.png?size=40px
     :target: https://github.com/andreampiovesana
     :alt: andreampiovesana
+.. |maintainer-aleuffre| image:: https://github.com/aleuffre.png?size=40px
+    :target: https://github.com/aleuffre
+    :alt: aleuffre
+.. |maintainer-renda-dev| image:: https://github.com/renda-dev.png?size=40px
+    :target: https://github.com/renda-dev
+    :alt: renda-dev
+.. |maintainer-PicchiSeba| image:: https://github.com/PicchiSeba.png?size=40px
+    :target: https://github.com/PicchiSeba
+    :alt: PicchiSeba
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-andreampiovesana| 
+|maintainer-andreampiovesana| |maintainer-aleuffre| |maintainer-renda-dev| |maintainer-PicchiSeba| 
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_delivery_note_order_link>`_ project on GitHub.
 
