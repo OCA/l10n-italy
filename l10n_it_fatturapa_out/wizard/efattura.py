@@ -263,7 +263,26 @@ class EFatturaOut:
             # i controlli precedenti dovrebbero escludere errori di sintassi XML
             # with open("/tmp/fatturaout.xml", "wb") as o:
             #    o.write(etree.tostring(root, xml_declaration=True, encoding="utf-8"))
-            raise UserError("\n".join(str(e) for e in errors))
+            # Print error paths, as they can be helpful even for non-technical people
+            error_path_string = "\n- ".join(
+                err.path[err.path.index(":") + 1 :] for err in errors
+            )
+            error_msg = _(
+                "Error processing invoice(s) %(invoices)s.\n\n"
+                "Errors in the following fields:\n- %(error_path_string)s\n\n",
+                invoices=", ".join(
+                    inv.display_name for inv in template_values["invoices"]
+                ),
+                error_path_string=error_path_string,
+            )
+            # add details in debug mode
+            if env.user.user_has_groups("base.group_no_one"):
+                error_msg += _("Full error follows:\n\n") + "\n".join(
+                    str(e) for e in errors
+                )
+            else:
+                error_msg += _("Activate debug mode to see the full error.")
+            raise UserError(error_msg)
         content = etree.tostring(root, xml_declaration=True, encoding="utf-8")
         return content
 
