@@ -54,7 +54,7 @@ msgstr ""
 
 #. module: l10n_it_riba_sale_commission
 #: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__safety_days
-msgid "Safety days"
+msgid "Safety days for commission"
 msgstr ""
 
 #. module: l10n_it_riba_sale_commission
