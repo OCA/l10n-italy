@@ -14,23 +14,8 @@ class OpenItemsReport(models.AbstractModel):
         amount_net_pay_residual = amount_net_pay_residual
         return amount_net_pay, amount_net_pay_residual
 
-    def _get_data(
-        self,
-        account_ids,
-        partner_ids,
-        date_at_object,
-        only_posted_moves,
-        company_id,
-        date_from,
-    ):
-        res = super()._get_data(
-            account_ids,
-            partner_ids,
-            date_at_object,
-            only_posted_moves,
-            company_id,
-            date_from,
-        )
+    def _get_data(self, *args, **kwargs):
+        res = super()._get_data(*args, **kwargs)
         for move_line_vals in res[0]:
             move_line = self.env["account.move.line"].browse(move_line_vals["id"])
             if move_line.move_id.withholding_tax:
