@@ -16,16 +16,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_config_settings
 msgid ""
 "<span class=\"o_form_label\">Transmitter</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title="
-"\"Values set here are company-specific.\" aria-label=\"Values set here are "
-"company-specific.\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Values set here are company-specific.\" aria-label=\"Values set here "
+"are company-specific.\"/>"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -42,6 +42,12 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_needaction
 msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid "Activate debug mode to see the full error."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -258,6 +264,17 @@ msgid "Error"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid ""
+"Error processing invoice(s) %(invoices)s.\n"
+"\n"
+"Errors in the following fields:\n"
+"- %(error_path_string)s\n"
+"\n"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Export"
 msgstr ""
@@ -314,6 +331,14 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__res_company__xml_divisa_value__force_eur
 msgid "Force euro"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid ""
+"Full error follows:\n"
+"\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
