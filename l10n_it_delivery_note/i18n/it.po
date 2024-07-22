@@ -497,7 +497,6 @@ msgstr "Metodo di consegna"
 #: model:ir.actions.report,name:l10n_it_delivery_note.delivery_note_report_action
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__delivery_note_id
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order__delivery_note_ids
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__delivery_note_id
@@ -533,7 +532,6 @@ msgstr "Conferma DdT"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_bank_statement_line__delivery_note_count
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__delivery_note_count
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_payment__delivery_note_count
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order__delivery_note_count
 msgid "Delivery Note Count"
 msgstr "Conto DdT"
 
