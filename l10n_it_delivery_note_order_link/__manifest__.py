@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "version": "14.0.1.0.1",
     "license": "AGPL-3",
-    "maintainers": ["andreampiovesana"],
+    "maintainers": ["andreampiovesana", "aleuffre", "renda-dev", "PicchiSeba"],
     "category": "Localization/Italy",
     "depends": [
         "purchase_stock",
