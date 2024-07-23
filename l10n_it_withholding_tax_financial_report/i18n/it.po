@@ -6,52 +6,54 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-07-23 11:58+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_withholding_tax_financial_report
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_financial_report.field_report_a_f_r_report_open_items_xlsx__display_name
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_financial_report.field_report_account_financial_report_open_items__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: l10n_it_withholding_tax_financial_report
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_financial_report.field_report_a_f_r_report_open_items_xlsx__id
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_financial_report.field_report_account_financial_report_open_items__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_withholding_tax_financial_report
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_financial_report.field_report_a_f_r_report_open_items_xlsx____last_update
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_financial_report.field_report_account_financial_report_open_items____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: l10n_it_withholding_tax_financial_report
 #: code:addons/l10n_it_withholding_tax_financial_report/report/open_items_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_financial_report.report_open_items_lines_header_wt
 #, python-format
 msgid "Net to pay"
-msgstr ""
+msgstr "Netto a pagare"
 
 #. module: l10n_it_withholding_tax_financial_report
 #: model:ir.model,name:l10n_it_withholding_tax_financial_report.model_report_account_financial_report_open_items
 msgid "Open Items Report"
-msgstr ""
+msgstr "Resoconto partite aperte"
 
 #. module: l10n_it_withholding_tax_financial_report
 #: model:ir.model,name:l10n_it_withholding_tax_financial_report.model_report_a_f_r_report_open_items_xlsx
 msgid "Open Items XLSX Report"
-msgstr ""
+msgstr "Resoconto XLSX partite aperte"
 
 #. module: l10n_it_withholding_tax_financial_report
 #: code:addons/l10n_it_withholding_tax_financial_report/report/open_items_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_financial_report.report_open_items_lines_header_wt
 #, python-format
 msgid "Residual net to pay"
-msgstr ""
+msgstr "Netto a pagare residuo"
