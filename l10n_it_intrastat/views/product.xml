@@ -17,6 +17,7 @@
                             attrs="{'invisible':[('intrastat_type','!=', 'good'),('intrastat_type','!=', 'service')],
                                     'required':[('intrastat_type','in', ['good', 'service'])]}"
                         />
+                            <field name="intrastat_country_origin_id" />
                       </group>
 
                     </group>
@@ -38,6 +39,7 @@
                             attrs="{'invisible':[('intrastat_type','!=', 'good'),('intrastat_type','!=', 'service')],
                                     'required':[('intrastat_type','in', ['good', 'service'])]}"
                         />
+                            <field name="intrastat_country_origin_id" />
                         </group>
                     </group>
                 </xpath>
