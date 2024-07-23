@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2023-11-06 15:41+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2024-07-23 11:58+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_config_settings
@@ -50,7 +50,7 @@ msgstr "Azione richiesta"
 #: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
 #, python-format
 msgid "Activate debug mode to see the full error."
-msgstr ""
+msgstr "Attiva la modalità sviluppatore per vedere l'errore completo."
 
 #. module: l10n_it_fatturapa_out
 #: model:res.groups,name:l10n_it_fatturapa_out.group_force_e_inv_export_state
@@ -279,6 +279,11 @@ msgid ""
 "- %(error_path_string)s\n"
 "\n"
 msgstr ""
+"Errore nell'elaborazione delle fatture %(invoices)s.\n"
+"\n"
+"Errori nei seguenti campi:\n"
+"- %(error_path_string)s\n"
+"\n"
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
@@ -346,6 +351,8 @@ msgid ""
 "Full error follows:\n"
 "\n"
 msgstr ""
+"Errore completo:\n"
+"\n"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_bank_statement_line__has_pdf_invoice_print
