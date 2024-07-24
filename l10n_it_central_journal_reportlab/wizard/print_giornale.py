@@ -1,5 +1,6 @@
 # Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
 # Copyright 2022 Giuseppe Borruso (gborruso@dinamicheaziendali.it)
+# Copyright 2024 Simone Rubino - Aion Tech
 
 import base64
 import io
@@ -330,18 +331,21 @@ class WizardGiornaleReportlab(models.TransientModel):
             (self.progressive_debit2, self.progressive_credit),
         ]
         for line in list_grupped_line:
-            start_row += 1
-            row = Paragraph(str(start_row), style_name)
-            date = Paragraph(format_date(self.env, line["date"]), style_name)
-            move = Paragraph(line["move_name"], style_name)
             account_name = (
                 line["account_code"] + " - " + line["account_name"]
                 if line["account_code"]
                 else line["account_name"]
             )
+            if not account_name:
+                continue
             # evitiamo che i caratteri < o > vengano interpretato come tag html
             # dalla libreria reportlab
             account_name = account_name.replace("<", "&lt;").replace(">", "&gt;")
+
+            start_row += 1
+            row = Paragraph(str(start_row), style_name)
+            date = Paragraph(format_date(self.env, line["date"]), style_name)
+            move = Paragraph(line["move_name"], style_name)
             account = Paragraph(account_name, style_name)
             name = Paragraph(line["name"], style_name)
             # dato che nel SQL ho la somma dei crediti e debiti potrei avere
