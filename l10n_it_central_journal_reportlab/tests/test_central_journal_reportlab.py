@@ -1,4 +1,5 @@
 # Copyright 2022 Giuseppe Borruso
+# Copyright 2024 Simone Rubino - Aion Tech
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import base64
@@ -59,3 +60,42 @@ class TestCentralJournalReportlab(TransactionCase):
         self.minimal_reader_buffer = io.BytesIO(decode_giornale)
         self.minimal_pdf_reader = pdf.OdooPdfFileReader(self.minimal_reader_buffer)
         self.assertTrue(self.minimal_reader_buffer)
+
+    def test_grouped_move_line_no_account(self):
+        """Move lines without account are excluded from grouped report."""
+        # Arrange
+        out_invoice = Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
+        )
+        out_invoice.partner_id = self.env.ref("base.res_partner_1")
+        out_invoice.invoice_date = self.today
+        with out_invoice.invoice_line_ids.new() as note_line:
+            note_line.display_type = "line_note"
+            note_line.name = "Test note"
+        with out_invoice.invoice_line_ids.new() as line:
+            line.name = "Test line"
+            line.price_unit = 100
+        out_invoice = out_invoice.save()
+        out_invoice.action_post()
+        # pre-condition
+        account_lines = out_invoice.invoice_line_ids.filtered("account_id")
+        self.assertTrue(account_lines)
+        no_account_lines = out_invoice.invoice_line_ids - account_lines
+        self.assertTrue(no_account_lines)
+
+        # Act
+        wizard_form = Form(self.wizard_model)
+        wizard_form.daterange_id = self.current_period
+        wizard_form.group_by_account = True
+        wizard = wizard_form.save()
+
+        # Assert
+        wizard.print_giornale_reportlab()
+        giornale_pdf_content = base64.b64decode(wizard.report_giornale)
+        giornale_content = pdf.PdfFileReader(io.BytesIO(giornale_pdf_content))
+        has_move = False
+        for page in giornale_content.pages:
+            page_content = page.extractText()
+            if not has_move and out_invoice.name in page_content:
+                has_move = True
+        self.assertTrue(has_move)
