@@ -1169,6 +1169,12 @@ class WizardImportFatturapa(models.TransientModel):
         received_date = received_date.date()
         return received_date
 
+    def _get_payment_term(self, partner):
+        payment_term_id = False
+        if partner.property_supplier_payment_term_id:
+            payment_term_id = partner.property_supplier_payment_term_id.id
+        return payment_term_id
+
     def _prepare_invoice_values(self, fatt, fatturapa_attachment, FatturaBody, partner):
         company = self.env.company
         currency = self._get_currency(FatturaBody)
@@ -1199,6 +1205,7 @@ class WizardImportFatturapa(models.TransientModel):
             partner,
             delivery=delivery_partner,
         )
+        payment_term_id = self._get_payment_term(partner)
 
         invoice_data = {
             "e_invoice_received_date": e_invoice_received_date,
@@ -1214,7 +1221,7 @@ class WizardImportFatturapa(models.TransientModel):
             "journal_id": purchase_journal.id,
             # 'origin': xmlData.datiOrdineAcquisto,
             "fiscal_position_id": fiscal_position.id,
-            "invoice_payment_term_id": partner.property_supplier_payment_term_id.id,
+            "invoice_payment_term_id": payment_term_id,
             "company_id": company.id,
             "fatturapa_attachment_in_id": fatturapa_attachment.id,
             "narration": comment,
