@@ -243,8 +243,11 @@ class AccountInvoice(models.Model):
                     }
                     # ---- Update Line Value with tax if is set on product
                     if invoice.company_id.due_cost_service_id.taxes_id:
-                        service_tax_ids = invoice.company_id.due_cost_service_id.taxes_id
-                        taxes = invoice.fiscal_position_id.map_tax(service_tax_ids, service_prod, invoice.partner_id)
+                        service_tax_ids =\
+                            invoice.company_id.due_cost_service_id.taxes_id
+                        taxes = invoice.fiscal_position_id.map_tax(
+                            service_tax_ids, service_prod, invoice.partner_id
+                        )
                         line_vals.update({
                             'invoice_line_tax_ids': [(4, tax.id) for tax in taxes]
                         })
