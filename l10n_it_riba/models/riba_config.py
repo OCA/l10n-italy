@@ -21,6 +21,10 @@ class RibaConfiguration(models.Model):
         "Issue Mode",
         required=True,
     )
+    sbf_collection_type = fields.Selection(
+        [("immediate", "Immediate"), ("maturation", "At currency maturation")],
+        "Collection Type",
+    )
     bank_id = fields.Many2one(
         "res.partner.bank",
         "Bank Account",

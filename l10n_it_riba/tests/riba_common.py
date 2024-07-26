@@ -123,8 +123,12 @@ class TestRibaCommon(common.TransactionCase):
             ],
             limit=1,
         )
+        self.account_payment_term_riba = self.env.ref(
+            "l10n_it_riba.account_payment_term_riba"
+        )
         self.invoice = self._create_invoice()
         self.invoice2 = self._create_invoice()
+        self.invoice_sbf = self._create_sbf_invoice()
         self.sbf_effects = self.env["account.account"].create(
             {
                 "code": "STC",
@@ -156,11 +160,9 @@ class TestRibaCommon(common.TransactionCase):
                 "company_id": self.company2.id,
             }
         )
-        self.riba_config = self.create_config()
+        self.riba_config_sbf_maturation = self.create_config("maturation")
+        self.riba_config_sbf_immediate = self.create_config("immediate")
         self.riba_config_incasso = self.create_config_incasso()
-        self.account_payment_term_riba = self.env.ref(
-            "l10n_it_riba.account_payment_term_riba"
-        )
         self.company_bank.codice_sia = "AA555"
 
     def _create_service_due_cost(self):
@@ -210,6 +212,37 @@ class TestRibaCommon(common.TransactionCase):
                             "price_unit": 100.00,
                             "account_id": self.sale_account.id,
                             "tax_ids": [[6, 0, self.tax_22.ids]],
+                        },
+                    )
+                ],
+            }
+        )
+
+    def _create_sbf_invoice(self):
+        self.partner.property_account_receivable_id = self.account_rec1_id.id
+        recent_date = (
+            self.env["account.move"]
+            .search([("invoice_date", "!=", False)], order="invoice_date desc", limit=1)
+            .invoice_date
+        )
+        return self.env["account.move"].create(
+            {
+                "invoice_date": recent_date,
+                "move_type": "out_invoice",
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "invoice_payment_term_id": self.account_payment_term_riba.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "product1",
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 450.00,
+                            "account_id": self.sale_account.id,
+                            "tax_ids": [[6, 0, []]],
                         },
                     )
                 ],
@@ -266,11 +299,12 @@ class TestRibaCommon(common.TransactionCase):
             }
         )
 
-    def create_config(self):
+    def create_config(self, sbf_collection_type):
         return self.env["riba.configuration"].create(
             {
                 "name": "Subject To Collection",
                 "type": "sbf",
+                "sbf_collection_type": sbf_collection_type,
                 "bank_id": self.company_bank.id,
                 "acceptance_journal_id": self.bank_journal.id,
                 "credit_journal_id": self.bank_journal.id,
