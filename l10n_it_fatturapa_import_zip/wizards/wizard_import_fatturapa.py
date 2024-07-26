@@ -114,3 +114,13 @@ class WizardImportFatturapa(models.TransientModel):
             )
         else:
             return super().set_payments_data(FatturaBody, invoice, partner_id)
+
+    def _get_payment_term(self, partner):
+        payment_term_id = False
+        if self._is_import_attachment_out():
+            if partner.property_payment_term_id:
+                payment_term_id = partner.property_payment_term_id.id
+        else:
+            if partner.property_supplier_payment_term_id:
+                payment_term_id = partner.property_supplier_payment_term_id.id
+        return payment_term_id
