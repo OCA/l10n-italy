@@ -107,8 +107,9 @@ class SaleOrder(models.Model):
     def _create_invoices(self, grouped=False, final=False, date=None):
         invoice_ids = super()._create_invoices(grouped=grouped, final=final, date=date)
 
-        self._assign_delivery_notes_invoices(invoice_ids.ids)
-        self._generate_delivery_note_lines(invoice_ids.ids)
+        if not self.env.context.get("skip_assign_dns", False):
+            self._assign_delivery_notes_invoices(invoice_ids.ids)
+            self._generate_delivery_note_lines(invoice_ids.ids)
 
         return invoice_ids
 
