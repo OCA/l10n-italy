@@ -732,3 +732,35 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         file_content = base64.decodebytes(export_wizard.riba_txt).decode()
         self.assertNotIn("Via di là", file_content)
         self.assertIn("Via di la", file_content)
+
+    def test_riba_inv_no_bank(self):
+        """
+        Test that a riba invoice without a bank defined
+        cannot be confirmed (e.g. via the list view)
+        """
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.riba_partner_bank_id = False
+        with self.assertRaises(UserError) as err:
+            self.invoice.action_post()
+        err_msg = err.exception.args[0]
+        self.assertIn("Cannot post invoices", err_msg)
+        self.assertIn(self.invoice.partner_id.display_name, err_msg)
+        # We have to add back a taxed collection fee for each payment term line
+        # because they have been added during `action_post`
+        # and recorded in the exception message,
+        # but `assertRaises` rolls them back
+        collection_fees = self.invoice.invoice_payment_term_id.riba_payment_cost
+        collection_fees_tax = self.invoice.fiscal_position_id.map_tax(
+            self.service_due_cost.taxes_id
+        )
+        taxed_collection_fees = collection_fees_tax.compute_all(collection_fees)[
+            "total_included"
+        ]
+        self.assertIn(
+            str(
+                self.invoice.amount_total
+                + len(self.invoice.invoice_payment_term_id.line_ids)
+                * taxed_collection_fees
+            ),
+            err_msg,
+        )
