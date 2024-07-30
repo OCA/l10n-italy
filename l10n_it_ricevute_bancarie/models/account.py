@@ -121,6 +121,31 @@ class AccountMove(models.Model):
                 return True
         return False
 
+    def _post(self, soft=True):
+        inv_riba_no_bank = self.filtered(
+            lambda x: x.is_riba_payment
+            and x.move_type == "out_invoice"
+            and not x.riba_partner_bank_id
+        )
+        if inv_riba_no_bank:
+            inv_details = (
+                _(
+                    'Invoice %(name)s for customer "%(customer_name)s", total %(amount)s',
+                    name=inv.display_name,
+                    customer_name=inv.partner_id.display_name,
+                    amount=inv.amount_total,
+                )
+                for inv in inv_riba_no_bank
+            )
+            raise UserError(
+                _(
+                    "Cannot post invoices with C/O payments without bank. "
+                    "Please check the following invoices:\n\n- "
+                    + "\n- ".join(inv_details)
+                )
+            )
+        return super()._post(soft=soft)
+
     def action_post(self):
         for invoice in self:
             # ---- Add a line with collection fees for each due date only for first due
