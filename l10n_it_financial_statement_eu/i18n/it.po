@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-20 09:39+0000\n"
-"PO-Revision-Date: 2024-07-16 11:58+0000\n"
+"PO-Revision-Date: 2024-07-30 16:28+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -168,7 +168,7 @@ msgstr "Descrizione Completa"
 #. module: l10n_it_financial_statement_eu
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__complete_name
 msgid "Complete Name"
-msgstr "Nome Completo"
+msgstr "Nome completo"
 
 #. module: l10n_it_financial_statement_eu
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__create_uid
