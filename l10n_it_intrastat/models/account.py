@@ -480,7 +480,9 @@ class AccountInvoiceIntrastat(models.Model):
                 if not line.invoice_id.payment_reference:
                     continue
                 line.invoice_number = (
-                    line.invoice_id.payment_reference or line.invoice_id.name
+                    line.invoice_id.ref
+                    or line.invoice_id.payment_reference
+                    or line.invoice_id.name
                 )
                 if line.invoice_id.invoice_date:
                     line.invoice_date = line.invoice_id.invoice_date
