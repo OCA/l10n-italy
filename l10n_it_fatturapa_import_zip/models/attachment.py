@@ -152,7 +152,7 @@ class FatturaPAAttachmentImportZIP(models.Model):
                 ),
             )
 
-    def action_import(self):
+    def action_import(self, with_invoice=True):
         self.ensure_one()
         company_partner = self.env.company.partner_id
         with tempfile.TemporaryDirectory() as tmp_dir_path:
@@ -182,16 +182,17 @@ class FatturaPAAttachmentImportZIP(models.Model):
                         attachment = self.env["fatturapa.attachment.out"].create(
                             attach_vals
                         )
-                    wizard = (
-                        self.env["wizard.import.fatturapa"]
-                        .with_context(
-                            active_ids=attachment.ids,
-                            active_model=attachment._name,
+                    if with_invoice:
+                        wizard = (
+                            self.env["wizard.import.fatturapa"]
+                            .with_context(
+                                active_ids=attachment.ids,
+                                active_model=attachment._name,
+                            )
+                            .create({})
                         )
-                        .create({})
-                    )
-                    _logger.info(f"Importing {xml_file}")
-                    wizard.importFatturaPA()
+                        _logger.info(f"Importing {xml_file}")
+                        wizard.importFatturaPA()
                 else:
                     _logger.info(f"Skipping {xml_file}, not an XML/P7M file")
             self.env.company.in_invoice_registration_date = (
@@ -200,39 +201,13 @@ class FatturaPAAttachmentImportZIP(models.Model):
 
         self.state = "done"
 
+    def action_import_with_invoice(self):
+        self.ensure_one()
+        self.action_import(with_invoice=True)
+
     def action_import_no_invoice(self):
         self.ensure_one()
-        company_partner = self.env.company.partner_id
-        with tempfile.TemporaryDirectory() as tmp_dir_path:
-            tmp_dir = Path(tmp_dir_path)
-            _extract_zip_file(tmp_dir, self.datas)
-            original_in_invoice_registration_date = (
-                self.env.company.in_invoice_registration_date
-            )
-            # we don't have the received date
-            self.env.company.in_invoice_registration_date = "inv_date"
-
-            for xml_file in tmp_dir.rglob("*"):
-                # Process only files skipping non-XML/P7M files
-                if xml_file.is_file() and (
-                    _is_xml_file(xml_file) or _has_p7m_extension(xml_file)
-                ):
-                    content = xml_file.read_bytes()
-                    attach_vals = {
-                        "name": xml_file.name,
-                        "datas": base64.encodebytes(content),
-                        "attachment_import_zip_id": self.id,
-                    }
-                    attachment = self.env["fatturapa.attachment.in"].create(attach_vals)
-                    if attachment.xml_supplier_id == company_partner:
-                        attachment.unlink()
-                        attach_vals["state"] = "validated"
-                        attachment = self.env["fatturapa.attachment.out"].create(
-                            attach_vals
-                        )
-                else:
-                    _logger.info(f"Skipping {xml_file}, not an XML/P7M file")
-        self.state = "done"
+        self.action_import(with_invoice=False)
 
 
 class FatturaPAAttachmentIn(models.Model):

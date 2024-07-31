@@ -121,6 +121,50 @@ class WizardImportFatturapa(models.TransientModel):
             if partner.property_payment_term_id:
                 payment_term_id = partner.property_payment_term_id.id
         else:
-            if partner.property_supplier_payment_term_id:
-                payment_term_id = partner.property_supplier_payment_term_id.id
+            payment_term_id = super()._get_payment_term(partner=partner)
         return payment_term_id
+
+    def get_credit_account(self, product=None):
+        if self._is_import_attachment_out():
+            ret = self.get_debit_account(product=product)
+        else:
+            ret = super().get_credit_account(product=product)
+        return ret
+
+    # function to mimics get_credit_account() for outgoing invoices
+    def get_debit_account(self, product=None):
+        debit_account = self.env["account.account"]
+
+        if product:
+            template = product.product_tmpl_id
+            accounts_dict = template.get_product_accounts()
+            debit_account = accounts_dict["income"]
+
+        company = self.env.company
+        # Search in journal
+        journal = self.get_journal(company)
+        if not debit_account:
+            debit_account = journal.default_account_id
+
+        # Search in company defaults
+        if not debit_account:
+            debit_account = (
+                self.env["ir.property"]
+                .with_company(company)
+                ._get("property_account_income_categ_id", "product.category")
+            )
+
+        if not debit_account:
+            raise UserError(
+                _(
+                    "Please configure Default Debit Account "
+                    "in Journal '{journal}' "
+                    "or check default income account "
+                    "for company '{company}'."
+                ).format(
+                    journal=journal.display_name,
+                    company=company.display_name,
+                )
+            )
+
+        return debit_account

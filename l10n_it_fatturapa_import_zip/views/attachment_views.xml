@@ -8,7 +8,7 @@
             <form string="Import e-bill ZIP" duplicate="false">
                 <header>
                     <button
-                        name="action_import"
+                        name="action_import_with_invoice"
                         type="object"
                         states="draft"
                         string="Import invoices"
@@ -183,10 +183,16 @@
     <record id="action_wizard_import_fatturapa_out" model="ir.actions.act_window">
         <field name="name">Import Electronic Invoice Out</field>
         <field name="res_model">wizard.import.fatturapa</field>
-        <field name="binding_model_id" ref="l10n_it_fatturapa_out.model_fatturapa_attachment_out" />
+        <field
+            name="binding_model_id"
+            ref="l10n_it_fatturapa_out.model_fatturapa_attachment_out"
+        />
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="view_id" ref="l10n_it_fatturapa_in.wizard_import_fatturapa_form_view" />
+        <field
+            name="view_id"
+            ref="l10n_it_fatturapa_in.wizard_import_fatturapa_form_view"
+        />
     </record>
 
 </odoo>
