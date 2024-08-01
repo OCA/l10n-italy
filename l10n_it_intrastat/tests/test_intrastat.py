@@ -1,5 +1,8 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from unittest import mock
 
 from odoo.tests import tagged
 
@@ -82,3 +85,14 @@ class TestIntrastat(AccountTestInvoicingCommon):
         invoice.action_post()
         invoice.compute_intrastat_lines()
         self.assertEqual(invoice.intrastat, True)
+
+    def test_propagate_action_post_result(self):
+        """The result of posting an invoice is propagated."""
+        expected_post_result = "Test post result"
+        from odoo.addons.account.models.account_move import AccountMove
+
+        with mock.patch.object(AccountMove, "action_post") as core_post_method:
+            core_post_method.return_value = expected_post_result
+            invoice = self.init_invoice("out_invoice")
+            post_result = invoice.action_post()
+        self.assertEqual(post_result, expected_post_result)
