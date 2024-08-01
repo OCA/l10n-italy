@@ -1,4 +1,5 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -323,7 +324,7 @@ class AccountMove(models.Model):
         for invoice in self:
             if not invoice.intrastat_line_ids and invoice.intrastat:
                 invoice.compute_intrastat_lines()
-        super().action_post()
+        res = super().action_post()
         precision_digits = self.env["decimal.precision"].precision_get("Account")
         for invoice in self:
             if invoice.intrastat:
@@ -347,7 +348,7 @@ class AccountMove(models.Model):
                     raise UserError(
                         _("Intrastat total must be equal to invoice untaxed total")
                     )
-        return True
+        return res
 
     def compute_intrastat_lines(self):
         for inv in self:
