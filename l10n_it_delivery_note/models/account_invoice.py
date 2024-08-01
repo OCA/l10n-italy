@@ -75,11 +75,12 @@ class AccountInvoice(models.Model):
         }
 
     def _prepare_note_dn_value(self, sequence, delivery_note_id):
-        delivery_note_line_sequence = self.invoice_line_ids.filtered(
-            lambda x: x.delivery_note_id == delivery_note_id
-        ).mapped("sequence")
-        if delivery_note_line_sequence:
-            sequence = min(delivery_note_line_sequence) - 1
+        if self.env.company.invoice_lines_grouped_by_dn:
+            delivery_note_line_sequence = self.invoice_line_ids.filtered(
+                lambda x: x.delivery_note_id == delivery_note_id
+            ).mapped("sequence")
+            if delivery_note_line_sequence:
+                sequence = min(delivery_note_line_sequence) - 1
         return {
             "sequence": sequence,
             "display_type": "line_note",

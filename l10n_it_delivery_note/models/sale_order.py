@@ -125,11 +125,7 @@ class SaleOrder(models.Model):
         invoices.update_delivery_note_lines()
 
     def _create_invoices(self, grouped=False, final=False, date=None):  # noqa: C901
-        if (
-            not self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("l10n_it_delivery_note.delivery_note_group_by_quantity")
-        ):
+        if not self.env.company.invoice_lines_grouped_by_dn:
             # if len(self.delivery_note_ids) <= 1:
             invoice_ids = super()._create_invoices(grouped, final, date)
             self._assign_delivery_notes_invoices(invoice_ids.ids)

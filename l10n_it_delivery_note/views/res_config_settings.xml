@@ -120,18 +120,18 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <h2>Group Delivery Notes by quantity</h2>
-                <div class="row mt16 o_settings_container">
-                    <div class="col-12 col-lg-6 o_setting_box">
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
                         <div class="o_setting_left_pane">
-                            <field name="delivery_note_group_by_quantity" />
+                            <field name="invoice_lines_grouped_by_dn" />
                         </div>
                         <div class="o_setting_right_pane">
-                            <label for="delivery_note_group_by_quantity" />
+                            <label for="invoice_lines_grouped_by_dn" />
                             <div class="text-muted">
                                 <p>
-                                    Group delivery note invoices by quantity
+                                    Group Invoice Lines by Delivery Note which generated them
                                 </p>
                             </div>
                         </div>
