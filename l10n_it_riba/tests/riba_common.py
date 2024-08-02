@@ -64,6 +64,11 @@ class TestRibaCommon(common.TransactionCase):
                 ],
             }
         )
+        self.company2 = self.env["res.company"].create(
+            {
+                "name": "company 2",
+            }
+        )
         self.service_due_cost = self._create_service_due_cost()
         self.account_model = self.env["account.account"]
         self.move_line_model = self.env["account.move.line"]
@@ -144,7 +149,15 @@ class TestRibaCommon(common.TransactionCase):
             }
         )
         self.company_bank = self.env.ref("l10n_it_riba.company_bank")
+        self.company2_bank = self.env["res.partner.bank"].create(
+            {
+                "acc_number": "IT000000000000000000",
+                "partner_id": self.company2.partner_id.id,
+                "company_id": self.company2.id,
+            }
+        )
         self.riba_config = self.create_config()
+        self.riba_config_incasso = self.create_config_incasso()
         self.account_payment_term_riba = self.env.ref(
             "l10n_it_riba.account_payment_term_riba"
         )
@@ -268,5 +281,16 @@ class TestRibaCommon(common.TransactionCase):
                 "past_due_journal_id": self.bank_journal.id,
                 "overdue_effects_account_id": self.past_due_account.id,
                 "protest_charge_account_id": self.expenses_account.id,
+            }
+        )
+
+    def create_config_incasso(self):
+        return self.env["riba.configuration"].create(
+            {
+                "name": "After Collection",
+                "type": "incasso",
+                "bank_id": self.company_bank.id,
+                "acceptance_journal_id": self.bank_journal.id,
+                "acceptance_account_id": self.sbf_effects.id,
             }
         )

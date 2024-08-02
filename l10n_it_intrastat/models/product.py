@@ -10,6 +10,9 @@ class ProductCategory(models.Model):
     intrastat_code_id = fields.Many2one(
         "report.intrastat.code", string="Nomenclature Code"
     )
+    intrastat_country_origin_id = fields.Many2one(
+        "res.country", string="Origin Country"
+    )
     intrastat_type = fields.Selection(
         [
             ("good", "Goods"),
@@ -25,6 +28,9 @@ class ProductTemplate(models.Model):
 
     intrastat_code_id = fields.Many2one(
         comodel_name="report.intrastat.code", string="Intrastat Code"
+    )
+    intrastat_country_origin_id = fields.Many2one(
+        "res.country", string="Origin Country"
     )
     intrastat_type = fields.Selection(
         selection=[
@@ -42,12 +48,20 @@ class ProductTemplate(models.Model):
         - Intrastat Code on product template
         - Intrastat Code on product category
         """
-        res = {"intrastat_code_id": False, "intrastat_type": False}
+        res = {
+            "intrastat_code_id": False,
+            "intrastat_country_origin_id": False,
+            "intrastat_type": False,
+        }
         # From Product
         if self.intrastat_type:
             res["intrastat_code_id"] = self.intrastat_code_id.id
+            res["intrastat_country_origin_id"] = self.intrastat_country_origin_id.id
             res["intrastat_type"] = self.intrastat_type
         elif self.categ_id and self.categ_id.intrastat_code_id:
             res["intrastat_code_id"] = self.categ_id.intrastat_code_id.id
+            res[
+                "intrastat_country_origin_id"
+            ] = self.categ_id.intrastat_country_origin_id.id
             res["intrastat_type"] = self.categ_id.intrastat_type
         return res

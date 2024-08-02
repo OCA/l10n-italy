@@ -7,6 +7,7 @@ from datetime import date
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.fields import Command, first
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 from odoo.tools.date_utils import relativedelta
 
@@ -153,8 +154,16 @@ class TestAssets(TransactionCase):
                 ],
             }
         )
+        cls.bank_account = cls.env["account.account"].create(
+            {
+                "code": "TBA",
+                "name": "Test Bank Account",
+                "account_type": "asset_cash",
+            }
+        )
+        cls.env.user.groups_id += cls.env.ref("account.group_account_readonly")
 
-    def _create_asset(self, asset_date):
+    def _create_asset(self, asset_date=None):
         asset = self.env["asset.asset"].create(
             {
                 "name": "Test asset",
@@ -209,6 +218,35 @@ class TestAssets(TransactionCase):
         purchase_invoice.action_post()
         self.assertEqual(purchase_invoice.state, "posted")
         return purchase_invoice
+
+    def _create_entry(self, account, amount, post=True):
+        """Create an entry that adds `amount` to `account`."""
+        entry_form = Form(self.env["account.move"])
+        with entry_form.line_ids.new() as asset_line:
+            asset_line.account_id = account
+            asset_line.debit = amount
+        with entry_form.line_ids.new() as bank_line:
+            bank_line.account_id = self.bank_account
+        entry = entry_form.save()
+
+        if post:
+            entry.action_post()
+
+        self.assertEqual(entry.move_type, "entry")
+        return entry
+
+    def _update_asset(self, entry, asset):
+        """Execute the wizard on `entry` to update `asset`."""
+        wizard_action = entry.open_wizard_manage_asset()
+        wizard_model = self.env[wizard_action["res_model"]]
+        wizard_context = wizard_action["context"]
+
+        wizard_form = Form(wizard_model.with_context(**wizard_context))
+        wizard_form.management_type = "update"
+        wizard_form.asset_id = asset
+        wizard = wizard_form.save()
+
+        return wizard.link_asset()
 
     def test_00_create_asset_depreciate_and_sale(self):
         today = fields.Date.today()
@@ -640,6 +678,46 @@ class TestAssets(TransactionCase):
         self.assertEqual(asset.state, "partially_depreciated")
         self.assertAlmostEqual(
             sum(civ_dep_lines.mapped("amount")), 7000 * 0.6 + 9000 * 0.4
+        )
+
+    def test_entry_in_update_asset(self):
+        """An entry adding to the asset account
+        creates a positive accounting info."""
+        asset = self._create_asset()
+        added_amount = 100
+        entry = self._create_entry(asset.category_id.asset_account_id, added_amount)
+        # pre-condition
+        self.assertFalse(asset.asset_accounting_info_ids)
+
+        # Act
+        self._update_asset(entry, asset)
+
+        # Assert
+        accounting_info = asset.asset_accounting_info_ids
+        self.assertEqual(accounting_info.move_type, "in")
+        depreciation_info = asset.depreciation_ids
+        self.assertEqual(
+            depreciation_info.amount_residual, asset.purchase_amount + added_amount
+        )
+
+    def test_entry_out_update_asset(self):
+        """An entry removing from the asset account
+        creates a negative accounting info."""
+        asset = self._create_asset()
+        removed_amount = 100
+        entry = self._create_entry(asset.category_id.asset_account_id, -removed_amount)
+        # pre-condition
+        self.assertFalse(asset.asset_accounting_info_ids)
+
+        # Act
+        self._update_asset(entry, asset)
+
+        # Assert
+        accounting_info = asset.asset_accounting_info_ids
+        self.assertEqual(accounting_info.move_type, "out")
+        depreciation_info = asset.depreciation_ids
+        self.assertEqual(
+            depreciation_info.amount_residual, asset.purchase_amount - removed_amount
         )
 
     def _civil_depreciate_asset(self, asset):

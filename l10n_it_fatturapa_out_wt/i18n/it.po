@@ -17,19 +17,15 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: l10n_it_fatturapa_out_wt
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_wt.wt_account_invoice_it_dati_cassa_previdenziale
-msgid "0.00"
-msgstr "0.00"
-
-#. module: l10n_it_fatturapa_out_wt
 #: model:ir.model,name:l10n_it_fatturapa_out_wt.model_wizard_export_fatturapa
 msgid "Export E-invoice"
 msgstr "Esporta e-fattura"
 
-#. module: l10n_it_fatturapa_out_wt
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_wt.wt_account_invoice_line_ritenuta
-msgid "SI"
-msgstr "SI"
+#~ msgid "0.00"
+#~ msgstr "0.00"
+
+#~ msgid "SI"
+#~ msgstr "SI"
 
 #, python-format
 #~ msgid "Missing payment reason for withholding tax %s!"

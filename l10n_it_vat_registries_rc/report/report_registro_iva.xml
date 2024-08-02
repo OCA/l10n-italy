@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<template
+        id="report_registro_iva_rc"
+        inherit_id="l10n_it_vat_registries.report_registro_iva"
+    >
+
+    <!-- for supplier self invoices -->
+    <xpath expr="//t[@t-set='partner']" position="after">
+        <t
+                t-set="rc_supplier"
+                t-value="move.mapped('rc_original_purchase_invoice_ids.partner_id')"
+            />
+        <t t-if="rc_supplier">
+            <t t-set="partner" t-value="rc_supplier" />
+        </t>
+    </xpath>
+
+    <!-- for customer self invoices -->
+    <xpath expr="//div[@t-if='show_full_contact_addess']" position="after">
+        <t
+                t-set="original_invoice"
+                t-value="move.rc_purchase_invoice_id.rc_original_purchase_invoice_ids"
+            />
+        <t t-if="original_invoice">
+            <t t-set="original_supplier" t-value="original_invoice.partner_id" />
+            <t
+                    t-set="reference"
+                    t-value="original_invoice.ref or original_invoice.name or ''"
+                />
+            <t t-if="original_supplier.id != partner.id">
+                <div>Supplier: <span t-esc="original_supplier.display_name" /></div>
+                <div t-if="reference">Reference: <span t-esc="reference" /></div>
+            </t>
+        </t>
+    </xpath>
+
+</template>
+</odoo>

@@ -1,4 +1,5 @@
 #  Copyright 2023 Simone Rubino - TAKOBI
+#  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from datetime import date
@@ -100,3 +101,26 @@ class TestImportZIP(FatturapaCommon):
                             f"Field {field} of invoice {invoice.display_name} "
                             f"does not match",
                         )
+
+    def test_access_other_user_zip(self):
+        """A user can see the zip files imported by other users."""
+        # Arrange
+        user = self.env.user
+        other_user = user.copy()
+        # pre-condition
+        self.assertNotEqual(user, other_user)
+
+        # Act
+        wizard_attachment_import = self.attachment_import_model.with_user(
+            other_user
+        ).create(
+            {
+                "name": "Test other user XML import",
+                "datas": self.getFile("xml_import.zip")[1],
+            }
+        )
+
+        # Assert
+        self.assertTrue(
+            wizard_attachment_import.ir_attachment_id.with_user(user).read()
+        )

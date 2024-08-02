@@ -16,16 +16,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: l10n_it_fatturapa
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" groups="
-"\"base.group_multi_company\" role=\"img\"/>"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -494,6 +494,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_fiscal_position
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_fiscal_position_id
 msgid "Electronic Invoice Fiscal Position"
 msgstr ""
 
@@ -539,6 +540,11 @@ msgid "Fattura Ordinaria"
 msgstr ""
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_simple_preview_style__fatturasemplificata_v1_0_xsl
+msgid "Fattura Semplificata"
+msgstr ""
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
 msgid "File Content (base64)"
 msgstr ""
@@ -554,8 +560,8 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_fiscal_position_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_fiscal_position_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
 msgid "Fiscal Position"
 msgstr ""
 
@@ -791,6 +797,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_ddt__lineRef
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type__lineRef
 msgid "Line Ref."
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model,name:l10n_it_fatturapa.model_l10n_it_fatturapa_attachment_e_invoice_link
+msgid "Link attachment in current record"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1030,7 +1041,13 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_preview_style
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_preview_style
-msgid "Preview Format Style"
+msgid "Preview Format Style for Fattura Ordinaria"
+msgstr ""
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_simple_preview_style
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_simple_preview_style
+msgid "Preview Format Style for Fattura Semplificata"
 msgstr ""
 
 #. module: l10n_it_fatturapa
@@ -1385,6 +1402,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__type
 msgid "Type"
 msgstr "Typ"
+
+#. module: l10n_it_fatturapa
+#. odoo-python
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
+#, python-format
+msgid "Unexpected root element: %s"
+msgstr ""
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__url

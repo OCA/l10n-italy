@@ -38,7 +38,8 @@
             <field name="model">withholding.tax.move.payment</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name" />
+                    <field name="name" optional="show" />
+                    <field name="description" optional="show" />
                     <field name="date" />
                     <field name="date_start" />
                     <field name="date_stop" />

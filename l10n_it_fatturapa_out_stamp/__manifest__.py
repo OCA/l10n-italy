@@ -3,7 +3,7 @@
 {
     "name": "ITA - Fattura elettronica - Integrazione bollo",
     "summary": "Modulo ponte tra emissione fatture elettroniche e imposta di bollo",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",

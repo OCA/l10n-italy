@@ -134,6 +134,16 @@ class RibaList(models.Model):
             "context": self.env.context,
         }
 
+    def action_riba_due_date_settlement(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "C/O Due Date Settlement",
+            "res_model": "riba.due.date.settlement",
+            "view_mode": "form",
+            "target": "new",
+            "context": self.env.context,
+        }
+
     @api.ondelete(at_uninstall=False)
     def _unlink_if_not_confirmed(self):
         for riba_list in self:
@@ -219,24 +229,18 @@ class RibaListLine(models.Model):
             line.invoice_number = ""
             for move_line in line.move_line_ids:
                 line.amount += move_line.amount
+                move_date = move_line.move_line_id.move_id.invoice_date
+                if move_date:
+                    move_date = str(
+                        fields.Date.from_string(move_date).strftime("%d/%m/%Y")
+                    )
                 if not line.invoice_date:
-                    line.invoice_date = str(
-                        fields.Date.from_string(
-                            move_line.move_line_id.move_id.invoice_date
-                        ).strftime("%d/%m/%Y")
-                    )
+                    line.invoice_date = move_date
                 else:
-                    line.invoice_date = "{}, {}".format(
-                        line.invoice_date,
-                        str(
-                            fields.Date.from_string(
-                                move_line.move_line_id.move_id.invoice_date
-                            ).strftime("%d/%m/%Y")
-                        ),
-                    )
+                    line.invoice_date = f"{line.invoice_date}, {move_date}"
                 if not line.invoice_number:
                     line.invoice_number = str(
-                        move_line.move_line_id.move_id.move_id.name
+                        move_line.move_line_id.move_id.name
                         if move_line.move_line_id.move_id.display_name == "/"
                         else move_line.move_line_id.move_id.display_name
                     )
@@ -244,7 +248,7 @@ class RibaListLine(models.Model):
                     line.invoice_number = "{}, {}".format(
                         line.invoice_number,
                         str(
-                            move_line.move_line_id.move_id.move_id.name
+                            move_line.move_line_id.move_id.name
                             if move_line.move_line_id.move_id.display_name == "/"
                             else move_line.move_line_id.move_id.display_name
                         ),

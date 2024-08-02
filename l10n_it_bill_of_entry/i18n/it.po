@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-31 11:08+0000\n"
-"PO-Revision-Date: 2024-01-15 11:37+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2024-07-08 11:58+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_bill_of_entry
 #: model_terms:ir.ui.view,arch_db:l10n_it_bill_of_entry.view_boe_config_settings
@@ -248,14 +248,16 @@ msgstr "Nessuna bolla doganale trovata per questa fattura"
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Please set 'Bill of entry partner' in accounting configuration"
-msgstr "Prego impostare 'Partner dogana' in configurazione contabilità"
+msgstr ""
+"Impostare \"Partner bolla doganale\" nella configurazione della contabilità"
 
 #. module: l10n_it_bill_of_entry
 #. odoo-python
 #: code:addons/l10n_it_bill_of_entry/models/account_move.py:0
 #, python-format
 msgid "Please set 'Bill of entry tax' in accounting configuration"
-msgstr "Prego impostare 'Imposta dogana' in configurazione contabilità"
+msgstr ""
+"Impostare \"Imposta bolla doganale\" nella configurazione della contabilità"
 
 #. module: l10n_it_bill_of_entry
 #: model:product.template,name:l10n_it_bill_of_entry.product_product_stamp_duties_product_template

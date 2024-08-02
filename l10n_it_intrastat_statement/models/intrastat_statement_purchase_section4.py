@@ -19,10 +19,6 @@ class IntrastatStatementPurchaseSection4(models.Model):
     quarterly = fields.Integer(string="Ref. Quarter")
     year_id = fields.Integer(string="Ref. Year")
     protocol = fields.Integer(string="Protocol Number")
-    progressive_to_modify_id = fields.Many2one(
-        comodel_name="account.intrastat.statement.purchase.section1",
-        string="Progressive to Adjust ID",
-    )
     progressive_to_modify = fields.Integer(string="Progressive to Adjust")
     invoice_number = fields.Char()
     invoice_date = fields.Date()
@@ -98,7 +94,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
         # Protocollo della dichiarazione da rettificare
         rcd += format_9(self.protocol, 6)
         # Progressivo della sezione 3 da rettificare
-        rcd += format_9(self.progressive_to_modify_id.sequence, 5)
+        rcd += format_9(self.progressive_to_modify, 5)
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
         rcd += format_x(country_id.code, 2)

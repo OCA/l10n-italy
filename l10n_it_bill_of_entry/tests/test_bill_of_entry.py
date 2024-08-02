@@ -47,6 +47,10 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         demo_data_company = self.env.ref("base.main_company")
         self.env.user.company_ids |= demo_data_company
         self.env.user.company_id = demo_data_company
+        # Now that current user can access the company,
+        # log the user *only* in this company so that
+        # searching, reading and other operations behave as expected
+        self.env.user.company_ids = demo_data_company
 
         # Default accounts for invoice line account_id
         self.account_revenue = self.account_model.search(

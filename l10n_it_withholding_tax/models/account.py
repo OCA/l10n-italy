@@ -189,7 +189,7 @@ class AccountPartialReconcile(models.Model):
                 line_to_reconcile = line
                 break
         if line_to_reconcile:
-            if lines.move_id.move_type in ["in_refund", "out_invoice"]:
+            if line_to_reconcile.move_id.move_type in ["in_refund", "out_invoice"]:
                 debit_move_id = rec_line_statement.id
                 credit_move_id = line_to_reconcile.id
             else:
@@ -257,19 +257,6 @@ class AccountAbstractPayment(models.Model):
                 rec["amount"] = invoice["amount_net_pay_residual"] * coeff_net
         return rec
 
-    def _compute_payment_amount(self, invoices=None, currency=None):
-        if not invoices:
-            invoices = self.invoice_ids
-        original_values = {}
-        for invoice in invoices:
-            if invoice.withholding_tax:
-                original_values[invoice] = invoice.residual_signed
-                invoice.residual_signed = invoice.amount_net_pay_residual
-        res = super()._compute_payment_amount(invoices, currency)
-        for invoice in original_values:
-            invoice.residual_signed = original_values[invoice]
-        return res
-
 
 class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
@@ -285,74 +272,6 @@ class AccountFiscalPosition(models.Model):
 
 class AccountMove(models.Model):
     _inherit = "account.move"
-
-    def _prepare_wt_values(self):
-        self.ensure_one()
-        partner = False
-        wt_competence = {}
-        # First : Partner and WT competence
-        for line in self.line_id:
-            if line.partner_id:
-                partner = line.partner_id
-                if partner.property_account_position:
-                    for wt in partner.property_account_position.withholding_tax_ids:
-                        wt_competence[wt.id] = {
-                            "withholding_tax_id": wt.id,
-                            "partner_id": partner.id,
-                            "date": self.date,
-                            "account_move_id": self.id,
-                            "wt_account_move_line_id": False,
-                            "base": 0,
-                            "amount": 0,
-                        }
-                break
-        # After : Loking for WT lines
-        wt_amount = 0
-        for line in self.line_id:
-            domain = []
-            # WT line
-            if line.credit:
-                domain.append(("account_payable_id", "=", line.account_id.id))
-                amount = line.credit
-            else:
-                domain.append(("account_receivable_id", "=", line.account_id.id))
-                amount = line.debit
-            wt_ids = self.pool["withholding.tax"].search(
-                self.env.cr, self.env.uid, domain
-            )
-            if wt_ids:
-                wt_amount += amount
-                if (
-                    wt_competence
-                    and wt_competence[wt_ids[0]]
-                    and "amount" in wt_competence[wt_ids[0]]
-                ):
-                    wt_competence[wt_ids[0]]["wt_account_move_line_id"] = line.id
-                    wt_competence[wt_ids[0]]["amount"] = wt_amount
-                    wt_competence[wt_ids[0]]["base"] = self.pool[
-                        "withholding.tax"
-                    ].get_base_from_tax(self.env.cr, self.env.uid, wt_ids[0], wt_amount)
-
-        wt_codes = []
-        if wt_competence:
-            for _key, val in wt_competence.items():
-                wt_codes.append(val)
-        res = {
-            "partner_id": partner and partner.id or False,
-            "move_id": self.id,
-            "invoice_id": False,
-            "date": self.date,
-            "base": wt_codes and wt_codes[0]["base"] or 0,
-            "tax": wt_codes and wt_codes[0]["amount"] or 0,
-            "withholding_tax_id": (
-                wt_codes and wt_codes[0]["withholding_tax_id"] or False
-            ),
-            "wt_account_move_line_id": (
-                wt_codes and wt_codes[0]["wt_account_move_line_id"] or False
-            ),
-            "amount": wt_codes[0]["amount"],
-        }
-        return res
 
     @api.depends(
         "invoice_line_ids.price_subtotal",

@@ -223,11 +223,6 @@ msgid "E-invoice file name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "EAN"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Electronic Invoice"
 msgstr ""
@@ -340,11 +335,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa__id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "INVCONT"
-msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_needaction
@@ -497,11 +487,6 @@ msgid "Last Updated on"
 msgstr "Последний раз обновлено"
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione
-msgid "MG"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_main_attachment_id
 msgid "Main Attachment"
 msgstr ""
@@ -601,11 +586,6 @@ msgid "Print report not found"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore
-msgid "RF01"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view_regenerate
 msgid "Re-Export"
 msgstr ""
@@ -669,16 +649,6 @@ msgid "Results"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione
-msgid "SC"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body
-msgid "SI"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__fatturapa_attachment_out__state__sender_error
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_search
 msgid "Sender Error"
@@ -708,11 +678,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__store_fname
 msgid "Stored Filename"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export
-msgid "TZ"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -797,11 +762,6 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_out/models/attachment.py:0
 #, python-format
 msgid "User %s uploaded a new e-invoice file"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "Valuta"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out

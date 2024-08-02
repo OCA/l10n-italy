@@ -1,0 +1,26 @@
+<template>
+    <!-- Buttons of the Control Panel -->
+    <t
+        t-name="info.ReportAction"
+        t-inherit="web.ReportAction"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//button" position="after">
+            <button
+                t-if="isFinancialStatementEU"
+                type="button"
+                t-on-click="export_fseu_xlsx"
+                class="btn btn-secondary o_report_xlsx"
+                title="Export XLSX"
+            >Export XLSX</button>
+            <button
+                t-if="isFinancialStatementEU"
+                type="button"
+                t-on-click="export_fseu_xbrl"
+                class="btn btn-secondary o_report_xbrl"
+                title="Export XBRL"
+            >Export XBRL</button>
+        </xpath>
+    </t>
+</template>

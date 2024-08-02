@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-09 12:26+0000\n"
-"PO-Revision-Date: 2024-04-05 11:08+0000\n"
+"PO-Revision-Date: 2024-06-12 21:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -21,8 +21,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" groups="
-"\"base.group_multi_company\" role=\"img\"/>"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
 "specifici per azienda.\" aria-label=\"I valori impostati qui sono specifici "
@@ -500,6 +500,7 @@ msgstr "Dati fattura elettronica completi"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model,name:l10n_it_fatturapa.model_fatturapa_fiscal_position
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_fiscal_position_id
 msgid "Electronic Invoice Fiscal Position"
 msgstr "Posizione fiscale fattura elettronica"
 
@@ -545,6 +546,11 @@ msgid "Fattura Ordinaria"
 msgstr "Fattura Ordinaria"
 
 #. module: l10n_it_fatturapa
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa.selection__res_company__fatturapa_simple_preview_style__fatturasemplificata_v1_0_xsl
+msgid "Fattura Semplificata"
+msgstr "Fattura semplificata"
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__datas
 msgid "File Content (base64)"
 msgstr "Contenuto file (base64)"
@@ -560,8 +566,8 @@ msgid "File Size"
 msgstr "Dimensione file"
 
 #. module: l10n_it_fatturapa
-#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_fiscal_position_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_fiscal_position_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa.view_account_config_settings
 msgid "Fiscal Position"
 msgstr "Posizione fiscale"
 
@@ -806,6 +812,11 @@ msgstr "Numero riga"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_related_document_type__lineRef
 msgid "Line Ref."
 msgstr "Rif. riga"
+
+#. module: l10n_it_fatturapa
+#: model:ir.model,name:l10n_it_fatturapa.model_l10n_it_fatturapa_attachment_e_invoice_link
+msgid "Link attachment in current record"
+msgstr "Link allegato al record corrrente"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_payment_detail__max_payment_date
@@ -1053,8 +1064,14 @@ msgstr "Sconto pagamento anticipato"
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_preview_style
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_preview_style
-msgid "Preview Format Style"
-msgstr "Stile formato di anteprima"
+msgid "Preview Format Style for Fattura Ordinaria"
+msgstr "Stile formato anteprima per fattura ordinaria"
+
+#. module: l10n_it_fatturapa
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_company__fatturapa_simple_preview_style
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_res_config_settings__fatturapa_simple_preview_style
+msgid "Preview Format Style for Fattura Semplificata"
+msgstr "Stile formato anteprima per fattura semplificata"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__ftpa_preview_link
@@ -1424,6 +1441,13 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: l10n_it_fatturapa
+#. odoo-python
+#: code:addons/l10n_it_fatturapa/models/ir_attachment.py:0
+#, python-format
+msgid "Unexpected root element: %s"
+msgstr "Elemento radice inatteso: %s"
+
+#. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__url
 msgid "Url"
 msgstr "URL"
@@ -1532,6 +1556,9 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_fatturapa.field_account_payment__efatt_stabile_organizzazione_cap
 msgid "ZIP Code"
 msgstr "CAP"
+
+#~ msgid "Preview Format Style"
+#~ msgstr "Stile formato di anteprima"
 
 #, python-format
 #~ msgid "Partner %(name)s must have Addresse Code. Use %(code)s if unknown"

@@ -102,11 +102,6 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_it_declaration_of_intent
-#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__date
-msgid "Date"
-msgstr ""
-
-#. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__date_end
 msgid "Date End"
 msgstr ""
@@ -386,6 +381,11 @@ msgstr ""
 #. module: l10n_it_declaration_of_intent
 #: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__telematic_protocol
 msgid "Telematic Protocol"
+msgstr ""
+
+#. module: l10n_it_declaration_of_intent
+#: model:ir.model.fields,field_description:l10n_it_declaration_of_intent.field_l10n_it_declaration_of_intent_declaration__date
+msgid "Telematic Protocol Date"
 msgstr ""
 
 #. module: l10n_it_declaration_of_intent

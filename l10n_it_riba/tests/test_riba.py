@@ -7,7 +7,9 @@
 import base64
 import os
 
-from odoo.tools import config
+from odoo.exceptions import UserError
+from odoo.tests import Form
+from odoo.tools import config, safe_eval
 
 from . import riba_common
 
@@ -236,6 +238,40 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         to_reconcile.remove_move_reconcile()
         self.assertEqual(riba_list.state, "credited")
         self.assertEqual(riba_list.line_ids[0].state, "credited")
+
+    def test_riba_incasso_flow(self):
+        """
+        RiBa of type 'After Collection' pays invoice when accepted.
+        """
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+        self.assertEqual(self.invoice.state, "posted")
+
+        to_issue_action = self.env.ref("l10n_it_riba.action_riba_to_issue")
+        to_issue_model = self.env[to_issue_action.res_model]
+        to_issue_domain = safe_eval.safe_eval(to_issue_action.domain)
+        to_issue_records = (
+            to_issue_model.search(to_issue_domain) & self.invoice.line_ids
+        )
+        self.assertTrue(to_issue_records)
+
+        issue_wizard_context = {
+            "active_model": to_issue_records._name,
+            "active_ids": to_issue_records.ids,
+        }
+        issue_wizard_model = self.env["riba.issue"].with_context(**issue_wizard_context)
+        issue_wizard_form = Form(issue_wizard_model)
+        issue_wizard_form.configuration_id = self.riba_config_incasso
+        issue_wizard = issue_wizard_form.save()
+        issue_result = issue_wizard.create_list()
+
+        riba_list_id = issue_result["res_id"]
+        riba_list_model = issue_result["res_model"]
+        riba_list = self.env[riba_list_model].browse(riba_list_id)
+        riba_list.confirm()
+
+        self.assertEqual(riba_list.state, "accepted")
+        self.assertEqual(self.invoice.payment_state, "paid")
 
     def test_past_due_riba(self):
         # create another invoice to test past due RiBa
@@ -553,3 +589,69 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             self.env["account.move.line"].search(domain).mapped("amount_residual")
         )
         self.assertTrue(total_amount - total_issue_amount >= 0)
+
+    def test_riba_bank_multicompany(self):
+        """Configuration parameters for RiBa
+        can only be created with data of current company."""
+        current_company = self.env.company
+        company_2 = self.company2
+        partner_bank = self.company2_bank
+        partner_bank.company_id = company_2
+        # pre-condition
+        self.assertEqual(partner_bank.company_id, company_2)
+        self.assertNotEqual(current_company, company_2)
+
+        # Act
+        with self.assertRaises(UserError) as ue:
+            self.env["riba.configuration"].create(
+                {
+                    "name": "Subject To Collection",
+                    "type": "incasso",
+                    "bank_id": partner_bank.id,
+                }
+            )
+
+        # Assert
+        exc_message = ue.exception.args[0]
+        self.assertIn(current_company.name, exc_message)
+        self.assertIn(partner_bank.display_name, exc_message)
+
+    def test_riba_line_date_no_move(self):
+        """
+        The RiBa line can compute the date when the linked move has been deleted.
+        """
+        # Arrange: Create RiBa for an invoice
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+        self.assertEqual(self.invoice.state, "posted")
+
+        to_issue_action = self.env.ref("l10n_it_riba.action_riba_to_issue")
+        to_issue_model = self.env[to_issue_action.res_model]
+        to_issue_domain = safe_eval.safe_eval(to_issue_action.domain)
+        to_issue_records = (
+            to_issue_model.search(to_issue_domain) & self.invoice.line_ids
+        )
+        self.assertTrue(to_issue_records)
+
+        issue_wizard_context = {
+            "active_model": to_issue_records._name,
+            "active_ids": to_issue_records.ids,
+        }
+        issue_wizard_model = self.env["riba.issue"].with_context(**issue_wizard_context)
+        issue_wizard_form = Form(issue_wizard_model)
+        issue_wizard_form.configuration_id = self.riba_config_incasso
+        issue_wizard = issue_wizard_form.save()
+        issue_result = issue_wizard.create_list()
+
+        # Act: Delete the invoice
+        self.invoice.button_draft()
+        self.invoice.unlink()
+
+        # Assert: The dates on RiBa lines are empty
+        riba_list_id = issue_result["res_id"]
+        riba_list_model = issue_result["res_model"]
+        riba_list = self.env[riba_list_model].browse(riba_list_id)
+        self.assertEqual(
+            riba_list.line_ids.mapped("invoice_date"),
+            [False] * 2,
+        )

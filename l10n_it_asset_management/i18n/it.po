@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2024-04-17 14:36+0000\n"
+"PO-Revision-Date: 2024-06-06 21:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -1085,22 +1085,11 @@ msgstr "Azienda"
 #: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
 #, python-format
 msgid ""
-"Could not determine how to link move lines to asset in mode `"
-"%(management_type)s`."
+"Could not determine how to link move lines to asset in mode "
+"`%(management_type)s`."
 msgstr ""
 "Non è possibile determinare come collegare le righe dei movimenti al cespite "
 "nel modo `%(management_type)s`."
-
-#. module: l10n_it_asset_management
-#. odoo-python
-#: code:addons/l10n_it_asset_management/wizard/account_move_manage_asset.py:0
-#, python-format
-msgid ""
-"Could not retrieve depreciation line type from move `%(move_num)s` (type `"
-"%(move_type)s`)."
-msgstr ""
-"Non è possibile recuperare il tipo delle righe di ammortamento dal movimento "
-"`%(move_num)s` (tipo `%(move_type)s`)."
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2454,7 +2443,7 @@ msgstr "Stampa resoconto previsionale"
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Pro Rata Temporis"
-msgstr "Pro rata temporis"
+msgstr "Pro-rata temporis"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category_depreciation_type__pro_rata_temporis
@@ -3206,6 +3195,14 @@ msgstr "o"
 #, python-format
 msgid "to date %(to_date)s"
 msgstr "alla data %(to_date)s"
+
+#, python-format
+#~ msgid ""
+#~ "Could not retrieve depreciation line type from move `%(move_num)s` (type "
+#~ "`%(move_type)s`)."
+#~ msgstr ""
+#~ "Non è possibile recuperare il tipo delle righe di ammortamento dal "
+#~ "movimento `%(move_num)s` (tipo `%(move_type)s`)."
 
 #~ msgid "Asset Journal Report"
 #~ msgstr "Resoconto libro cespiti"

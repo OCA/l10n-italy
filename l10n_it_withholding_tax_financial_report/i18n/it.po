@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_withholding_tax_financial_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-07-08 11:58+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: l10n_it_withholding_tax_financial_report
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax_financial_report/report/open_items_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_financial_report.report_open_items_lines_header_wt
+#, python-format
+msgid "Net to pay"
+msgstr "Netto a pagare"
+
+#. module: l10n_it_withholding_tax_financial_report
+#: model:ir.model,name:l10n_it_withholding_tax_financial_report.model_report_account_financial_report_open_items
+msgid "Open Items Report"
+msgstr "Resoconto partite aperte"
+
+#. module: l10n_it_withholding_tax_financial_report
+#: model:ir.model,name:l10n_it_withholding_tax_financial_report.model_report_a_f_r_report_open_items_xlsx
+msgid "Open Items XLSX Report"
+msgstr "Resoconto XLSX partite aperte"
+
+#. module: l10n_it_withholding_tax_financial_report
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax_financial_report/report/open_items_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_financial_report.report_open_items_lines_header_wt
+#, python-format
+msgid "Residual net to pay"
+msgstr "Netto a pagare residuo"

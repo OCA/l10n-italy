@@ -16,28 +16,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.14.1\n"
 
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-msgid "0.00"
-msgstr "0.00"
+#~ msgid "0.00"
+#~ msgstr "0.00"
 
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-msgid "Altre lettere d'intento"
-msgstr "Altre lettere d'intento"
+#~ msgid "Altre lettere d'intento"
+#~ msgstr "Altre lettere d'intento"
 
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-msgid "Esclusa ex. Art. 15"
-msgstr "Esclusa ex. Art. 15"
+#~ msgid "Esclusa ex. Art. 15"
+#~ msgstr "Esclusa ex. Art. 15"
 
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_line_it_FatturaPA
-msgid "INTENTO"
-msgstr "INTENTO"
+#~ msgid "INTENTO"
+#~ msgstr "INTENTO"
 
-#. module: l10n_it_fatturapa_out_di
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_di.declaration_of_intent_fattura_elettronica_body
-msgid "N1"
-msgstr "N1"
+#~ msgid "N1"
+#~ msgstr "N1"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 20:32+0000\n"
-"PO-Revision-Date: 2024-04-05 11:08+0000\n"
+"PO-Revision-Date: 2024-05-28 09:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -971,6 +971,13 @@ msgstr "Natura"
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/efattura.py:0
+#, python-format
+msgid "No available data to compute AliquotaIVA"
+msgstr "Dati non disponibili per il calcolo dell'aliquota IVA"
+
+#. module: l10n_it_fatturapa_in
+#. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid "No currency found with code %s."
@@ -1455,6 +1462,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__type
 msgid "Type"
 msgstr "Tipo"
+
+#. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/efattura.py:0
+#, python-format
+msgid "Unexpected root element: %s"
+msgstr "Elemento radice inatteso: %s"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__unit_price

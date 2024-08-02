@@ -1,3 +1,6 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
@@ -39,29 +42,6 @@ class AccountMove(models.Model):
     e_invoice_force_validation = fields.Boolean(string="Force E-Invoice Validation")
 
     e_invoice_received_date = fields.Date(string="E-Bill Received Date")
-
-    @api.depends(
-        "line_ids.matched_debit_ids.debit_move_id.move_id.line_ids.amount_residual",
-        "line_ids.matched_debit_ids.debit_move_id.move_id.line_ids.amount_residual_currency",  # noqa: B950
-        "line_ids.matched_credit_ids.credit_move_id.move_id.line_ids.amount_residual",
-        "line_ids.matched_credit_ids.credit_move_id.move_id.line_ids.amount_residual_currency",  # noqa: B950
-        "line_ids.debit",
-        "line_ids.credit",
-        "line_ids.currency_id",
-        "line_ids.amount_currency",
-        "line_ids.amount_residual",
-        "line_ids.amount_residual_currency",
-        "line_ids.payment_id.state",
-        "line_ids.full_reconcile_id",
-    )
-    def _compute_amount(self):
-        super()._compute_amount()
-        for inv in self:
-            if inv.efatt_rounding != 0:
-                inv.amount_total += inv.efatt_rounding
-                sign = inv.move_type in ["in_refund", "out_refund"] and -1 or 1
-                inv.amount_total_signed = inv.amount_total * sign
-        return  # fix W8110
 
     def action_post(self):
         for invoice in self:
@@ -122,12 +102,13 @@ class AccountMove(models.Model):
 
     def e_inv_check_amount_total(self):
         error_message = ""
+        bill_total = self.amount_total
+        e_bill_total = self.e_invoice_amount_total or 0
         if (
-            self.e_invoice_amount_total
-            and float_compare(
-                self.amount_total - self.efatt_rounding,
-                abs(self.e_invoice_amount_total),
-                precision_rounding=self.currency_id.rounding,
+            e_bill_total
+            and self.currency_id.compare_amounts(
+                bill_total,
+                abs(e_bill_total),
             )
             != 0
         ):
@@ -136,8 +117,8 @@ class AccountMove(models.Model):
                 "does not match with "
                 "e-bill total amount ({e_bill_amount_total})"
             ).format(
-                bill_amount_total=self.amount_total or 0,
-                e_bill_amount_total=self.e_invoice_amount_total,
+                bill_amount_total=bill_total or 0,
+                e_bill_amount_total=e_bill_total,
             )
         return error_message
 
@@ -320,6 +301,9 @@ class AccountMove(models.Model):
 
     def process_negative_lines(self):
         self.ensure_one()
+        if not self.invoice_line_ids:
+            return
+
         for line in self.invoice_line_ids:
             if line.price_unit >= 0:
                 return

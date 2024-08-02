@@ -44,16 +44,16 @@
                                 name="telematic_protocol"
                                 attrs="{'readonly':[('state','!=','valid')]}"
                             />
+                            <field
+                                name="date"
+                                attrs="{'readonly':[('state','!=','valid')]}"
+                            />
                             <field name="force_close" invisible="1" />
                         </group>
                         <group />
                     </group>
                     <group>
                         <group name="main_ref" string="Refs">
-                            <field
-                                name="date"
-                                attrs="{'readonly':[('state','!=','valid')]}"
-                            />
                             <field
                                 name="partner_document_number"
                                 attrs="{'readonly':[('state','!=','valid')]}"

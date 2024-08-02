@@ -17,3 +17,7 @@
 - [Ooops](https://www.ooops404.com):
 
   > - Giovanni Serra \<<giovanni@gslab.it>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>
+- [Stesi Consulting](https://www.stesi.consulting):
+  - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
