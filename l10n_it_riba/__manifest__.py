@@ -38,6 +38,7 @@
         "views/partner_view.xml",
         "views/wizard_riba_issue.xml",
         "views/wizard_riba_file_export.xml",
+        "views/wizard_riba_payment_date.xml",
         "views/account_config_view.xml",
         "views/slip_report.xml",
         "views/riba_detail_view.xml",

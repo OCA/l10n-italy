@@ -23,3 +23,9 @@ raggiungimento dell'importo massimo inserito dall'utente.
 Nella lista delle fatture è presente una colonna per monitorare l'
 esposizione, cioè l'importo dovuto dal cliente a fronte dell'emissione 
 della RiBa non ancora scaduta.
+
+In maniera predefinita la data delle registrazioni dei pagamenti viene
+impostata con la data di scadenza della RiBa, ma è possibile modificarla
+successivamente a pagamento effettivamente avvenuto selezionando la
+registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta data
+di pagamento RiBa".

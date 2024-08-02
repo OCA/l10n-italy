@@ -8,7 +8,6 @@
 # Copyright 2024 Nextev Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import date
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -497,7 +496,7 @@ class RibaListLine(models.Model):
                     "journal_id": (
                         riba_line.slip_id.config_id.settlement_journal_id.id
                     ),
-                    "date": date.today().strftime("%Y-%m-%d"),
+                    "date": riba_line.due_date.strftime("%Y-%m-%d"),
                     "ref": move_ref,
                 }
             )

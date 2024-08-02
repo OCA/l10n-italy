@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Nextev Srl
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="wizard_riba_payment_date" model="ir.ui.view">
+        <field name="name">Set RiBa Payment Date</field>
+        <field name="model">riba.payment.date</field>
+        <field name="arch" type="xml">
+            <form string="Set RiBa Payment Date">
+                <group col="4">
+                    <group colspan="4">
+                        <field name="date" />
+                    </group>
+                    <footer colspan="4">
+                        <button
+                            name="set_riba_payment_date"
+                            string="Confirm"
+                            type="object"
+                        />
+                        <button special="cancel" string="Close" />
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_riba_payment_date" model="ir.actions.server">
+        <field name="name">RiBa Payment Date</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="state">code</field>
+        <field name="code">action = records.action_riba_payment_date()</field>
+    </record>
+
+</odoo>
