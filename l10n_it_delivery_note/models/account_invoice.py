@@ -125,10 +125,7 @@ class AccountInvoice(models.Model):
             else:
                 sequence = 1
                 done_invoice_lines = self.env["account.move.line"]
-                for dn in invoice.mapped(
-                    "invoice_line_ids.sale_line_ids.delivery_note_line_ids."
-                    "delivery_note_id"
-                ).sorted(key="name"):
+                for dn in invoice.mapped("delivery_note_ids").sorted(key="name"):
                     dn_invoice_lines = invoice.invoice_line_ids.filtered(
                         lambda x: x not in done_invoice_lines
                         and dn
@@ -157,9 +154,10 @@ class AccountInvoice(models.Model):
                                 self._prepare_note_dn_value(sequence, dn),
                             )
                         )
-                    for invoice_line in dn_invoice_lines:
                         sequence += 1
+                    for invoice_line in dn_invoice_lines:
                         invoice_line.sequence = sequence
+                        sequence += 1
 
             invoice.write({"line_ids": new_lines})
 
