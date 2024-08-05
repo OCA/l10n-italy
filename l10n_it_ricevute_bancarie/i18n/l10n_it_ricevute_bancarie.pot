@@ -21,6 +21,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.invoice_form
+msgid "<span class=\"oe_read_only\">&amp;nbsp;- </span>"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "<strong>Total</strong>"
 msgstr ""
@@ -343,6 +348,16 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_it_ricevute_bancarie.selection__riba_distinta__state__cancel
 #: model:ir.model.fields.selection,name:l10n_it_ricevute_bancarie.selection__riba_distinta_line__state__cancel
 msgid "Canceled"
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account.py:0
+#, python-format
+msgid ""
+"Cannot post invoices with C/O payments without bank. Please check the following invoices:\n"
+"\n"
+"- \n"
+"- "
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
@@ -738,6 +753,12 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta__message_has_error
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_line__message_has_error
 msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account.py:0
+#, python-format
+msgid "Invoice %(name)s for customer \"%(customer_name)s\", total %(amount)s"
 msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
