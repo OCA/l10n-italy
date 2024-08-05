@@ -97,17 +97,20 @@ class AccountMove(models.Model):
 
     @api.onchange("partner_id", "invoice_payment_term_id", "move_type")
     def _onchange_riba_partner_bank_id(self):
+        allowed_banks = (
+            self.partner_id.bank_ids or self.partner_id.commercial_partner_id.bank_ids
+        )
         if (
             not self.riba_partner_bank_id
-            or self.riba_partner_bank_id not in self.partner_id.bank_ids
+            or self.riba_partner_bank_id not in allowed_banks
         ):
             bank_ids = self.env["res.partner.bank"]
             if (
                 self.partner_id
-                and self.invoice_payment_term_id.riba
+                and self.is_riba_payment
                 and self.move_type in ["out_invoice", "out_refund"]
             ):
-                bank_ids = self.partner_id.bank_ids
+                bank_ids = allowed_banks
             self.riba_partner_bank_id = bank_ids[0] if bank_ids else None
 
     def month_check(self, invoice_date_due, all_date_due):
@@ -120,6 +123,31 @@ class AccountMove(models.Model):
             if invoice_date_due[:7] == str(d.strftime("%Y-%m")):
                 return True
         return False
+
+    def _post(self, soft=True):
+        inv_riba_no_bank = self.filtered(
+            lambda x: x.is_riba_payment
+            and x.move_type == "out_invoice"
+            and not x.riba_partner_bank_id
+        )
+        if inv_riba_no_bank:
+            inv_details = (
+                _(
+                    'Invoice %(name)s for customer "%(customer_name)s", total %(amount)s',
+                    name=inv.display_name,
+                    customer_name=inv.partner_id.display_name,
+                    amount=inv.amount_total,
+                )
+                for inv in inv_riba_no_bank
+            )
+            raise UserError(
+                _(
+                    "Cannot post invoices with C/O payments without bank. "
+                    "Please check the following invoices:\n\n- "
+                    + "\n- ".join(inv_details)
+                )
+            )
+        return super()._post(soft=soft)
 
     def action_post(self):
         for invoice in self:

@@ -550,3 +550,17 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         exc_message = ue.exception.args[0]
         self.assertIn(self.env.company.name, exc_message)
         self.assertIn(self.company2_bank.acc_number, exc_message)
+
+    def test_riba_inv_no_bank(self):
+        """
+        Test that a riba invoice without a bank defined
+        cannot be confirmed (e.g. via the list view)
+        """
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.riba_partner_bank_id = False
+        with self.assertRaises(UserError) as err:
+            self.invoice.action_post()
+        err_msg = err.exception.args[0]
+        self.assertIn("Cannot post invoices", err_msg)
+        self.assertIn(self.invoice.partner_id.display_name, err_msg)
+        self.assertIn(str(self.invoice.amount_total), err_msg)
