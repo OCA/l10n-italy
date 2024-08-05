@@ -24,16 +24,21 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_account_config_settings_riba
 msgid ""
 "<span class=\"o_form_label\">C/O Collection Fees</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title="
-"\"Product used as Service for C/O Collection Fees\" aria-label=\"Product "
-"used as Service for C/O Collection Fees\" groups=\"base.group_multi_company"
-"\" role=\"img\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Product used as Service for C/O Collection Fees\" aria-"
+"label=\"Product used as Service for C/O Collection Fees\" groups=\"base."
+"group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Spese di incasso RiBa</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title="
-"\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-label="
-"\"Product used as Service for C/O Collection Fees\" groups=\"base."
+"                        <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-"
+"label=\"Product used as Service for C/O Collection Fees\" groups=\"base."
 "group_multi_company\" role=\"img\"/>"
+
+#. module: l10n_it_ricevute_bancarie
+#: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.invoice_form
+msgid "<span class=\"oe_read_only\">&amp;nbsp;- </span>"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
@@ -361,6 +366,17 @@ msgstr "Annulla"
 #: model:ir.model.fields.selection,name:l10n_it_ricevute_bancarie.selection__riba_distinta_line__state__cancel
 msgid "Canceled"
 msgstr "Annullato"
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account.py:0
+#, python-format
+msgid ""
+"Cannot post invoices with C/O payments without bank. Please check the "
+"following invoices:\n"
+"\n"
+"- \n"
+"- "
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
@@ -759,6 +775,12 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 #: model:ir.model.fields,help:l10n_it_ricevute_bancarie.field_riba_distinta_line__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
+
+#. module: l10n_it_ricevute_bancarie
+#: code:addons/l10n_it_ricevute_bancarie/models/account.py:0
+#, python-format
+msgid "Invoice %(name)s for customer \"%(customer_name)s\", total %(amount)s"
+msgstr ""
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__invoice_date
