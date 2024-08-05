@@ -1379,3 +1379,97 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
             f'Delivery Note "{back_dn.name}" of {back_dn.date.strftime(DATE_FORMAT)}',
             invoice.invoice_line_ids.mapped("name"),
         )
+
+    def test_invoicing_multi_dn_multi_so_same_product(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "l10n_it_delivery_note.group_use_advanced_delivery_notes", True
+        )
+        # SO 1
+        so_1 = self.create_sales_order([self.right_corner_desk_line])  # qty 2
+        so_1.action_confirm()
+
+        picking = so_1.picking_ids
+        picking.move_lines[0].quantity_done = 1
+        res_dict = picking.button_validate()
+        # create backorder
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+        # create delivery note
+        res_dict = picking.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_1 = picking.delivery_note_id
+        self.assertTrue(dn_1)
+        self.assertEqual(dn_1.partner_id, self.recipient)
+        dn_1.action_confirm()
+        dn_1.action_done()
+
+        # partial invoice for SO 1
+        so_1_line = so_1.order_line
+        so_1._create_invoices()
+        self.assertEqual(so_1_line.invoice_status, "no")
+        self.assertEqual(so_1_line.qty_invoiced, 1)
+
+        inv_1 = so_1.invoice_ids
+        inv_1.action_post()
+        self.assertEqual(len(inv_1.invoice_line_ids), 2)
+        label_line, product_line = inv_1.invoice_line_ids.sorted("sequence")
+        self.assertIn(dn_1.name, label_line.name)
+        self.assertIn(dn_1.date.strftime(DATE_FORMAT), label_line.name)
+        self.assertEqual(product_line.product_id, so_1_line.product_id)
+        self.assertEqual(product_line.quantity, 1)
+
+        # deliver backorder
+        backorder_so_1 = picking.backorder_ids
+        backorder_so_1.move_lines[0].quantity_done = 1
+        backorder_so_1.button_validate()
+        res_dict = backorder_so_1.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_backorder = backorder_so_1.delivery_note_id
+        self.assertTrue(dn_backorder)
+        self.assertEqual(dn_backorder.partner_id, self.recipient)
+        dn_backorder.action_confirm()
+        dn_backorder.action_done()
+
+        # SO 2 and full delivery
+        so_2 = self.create_sales_order([self.right_corner_desk_line])  # qty 2
+        so_2.action_confirm()
+        picking = so_2.picking_ids
+        picking.move_lines[0].quantity_done = 2
+        picking.button_validate()
+        res_dict = picking.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_2 = picking.delivery_note_id
+        self.assertTrue(dn_2)
+        self.assertEqual(dn_2.partner_id, self.recipient)
+        dn_2.action_confirm()
+        dn_2.action_done()
+
+        # invoice backorder of so_1 and full so_2 together
+        (so_1 | so_2)._create_invoices()
+        inv_2 = so_2.invoice_ids
+        inv_2.action_post()
+        (
+            label_so_1,
+            product_line_1,
+            label_so_2,
+            product_line_2,
+        ) = inv_2.invoice_line_ids.sorted("sequence")
+        self.assertIn(dn_backorder.name, label_so_1.name)
+        self.assertIn(dn_backorder.date.strftime(DATE_FORMAT), label_so_1.name)
+        self.assertEqual(product_line_1.product_id, so_1_line.product_id)
+        self.assertEqual(product_line_1.quantity, 1)
+        self.assertIn(dn_2.name, label_so_2.name)
+        self.assertIn(dn_2.date.strftime(DATE_FORMAT), label_so_2.name)
+        self.assertEqual(product_line_2.product_id, so_2.order_line.product_id)
+        self.assertEqual(product_line_2.quantity, 2)
