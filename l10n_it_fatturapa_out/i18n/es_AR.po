@@ -24,9 +24,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_config_settings
 msgid ""
 "<span class=\"o_form_label\">Transmitter</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title="
-"\"Values set here are company-specific.\" aria-label=\"Values set here are "
-"company-specific.\"/>"
+"                            <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Values set here are company-specific.\" aria-label=\"Values set here "
+"are company-specific.\"/>"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -502,7 +502,10 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_partner__max_invoice_in_xml
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_users__max_invoice_in_xml
-msgid "Maximum number of invoices to group in a single XML file. 0=Unlimited"
+msgid ""
+"Maximum number of invoices to group in a single XML file.\n"
+"If this is 0, then the number configured in the account settings is "
+"considered."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
