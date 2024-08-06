@@ -140,7 +140,7 @@ class ComunicazioneLiquidazione(models.Model):
 
         xml_string = etree.tostring(
             x1_Fornitura,
-            encoding="utf8",
+            encoding="utf-8",
             method="xml",
             pretty_print=True,
             xml_declaration=True,
