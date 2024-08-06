@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <!-- Template Email per Superamento Soglia Vendite Beni -->
+        <record id="email_template_intrastat_goods_sale_exceeded" model="mail.template">
+            <field name="name">Superamento Soglia Intrastat - Vendite di Beni</field>
+            <field name="email_from">noreply@example.com</field>
+            <field
+            name="subject"
+        >Allerta: Soglia Intrastat Vendite di Beni Superata</field>
+            <field name="model_id" ref="account.model_account_move" />
+            <field
+            name="body_html"
+        ><![CDATA[
+                <p>Gentile Responsabile,</p>
+                <p>La soglia Intrastat per le vendite di beni è stata superata.</p>
+                <p>Dettagli:</p>
+                <!-- Aggiungi altri dettagli qui -->
+            ]]></field>
+        </record>
+
+        <!-- Template Email per Superamento Soglia Acquisti Beni -->
+        <record
+        id="email_template_intrastat_goods_purchase_exceeded"
+        model="mail.template"
+    >
+            <field name="name">Superamento Soglia Intrastat - Acquisti di Beni</field>
+            <field name="email_from">noreply@example.com</field>
+            <field
+            name="subject"
+        >Allerta: Soglia Intrastat Acquisti di Beni Superata</field>
+            <field name="model_id" ref="account.model_account_move" />
+            <field
+            name="body_html"
+        ><![CDATA[
+                <p>Gentile Responsabile,</p>
+                <p>La soglia Intrastat per gli acquisti di beni è stata superata.</p>
+                <p>Dettagli:</p>
+                <!-- Aggiungi altri dettagli qui -->
+            ]]></field>
+        </record>
+
+        <!-- Template Email per Superamento Soglia Vendite Servizi -->
+        <record
+        id="email_template_intrastat_service_sale_exceeded"
+        model="mail.template"
+    >
+            <field name="name">Superamento Soglia Intrastat - Vendite di Servizi</field>
+            <field name="email_from">noreply@example.com</field>
+            <field
+            name="subject"
+        >Allerta: Soglia Intrastat Vendite di Servizi Superata</field>
+            <field name="model_id" ref="account.model_account_move" />
+            <field
+            name="body_html"
+        ><![CDATA[
+                <p>Gentile Responsabile,</p>
+                <p>La soglia Intrastat per le vendite di servizi è stata superata.</p>
+                <p>Dettagli:</p>
+                <!-- Aggiungi altri dettagli qui -->
+            ]]></field>
+        </record>
+
+        <!-- Template Email per Superamento Soglia Acquisti Servizi -->
+        <record
+        id="email_template_intrastat_service_purchase_exceeded"
+        model="mail.template"
+    >
+            <field
+            name="name"
+        >Superamento Soglia Intrastat - Acquisti di Servizi</field>
+            <field name="email_from">noreply@example.com</field>
+            <field
+            name="subject"
+        >Allerta: Soglia Intrastat Acquisti di Servizi Superata</field>
+            <field name="model_id" ref="account.model_account_move" />
+            <field
+            name="body_html"
+        ><![CDATA[
+                <p>Gentile Responsabile,</p>
+                <p>La soglia Intrastat per gli acquisti di servizi è stata superata.</p>
+                <p>Dettagli:</p>
+                <!-- Aggiungi altri dettagli qui -->
+            ]]></field>
+        </record>
+</odoo>
