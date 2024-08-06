@@ -129,7 +129,7 @@ class AccountInvoice(models.Model):
                         ),
                     )
                 )
-            else:
+            elif self.env.company.invoice_lines_grouped_by_dn:
                 sequence = 1
                 done_invoice_lines = self.env["account.move.line"]
                 delivery_notes = invoice.mapped(
@@ -167,9 +167,24 @@ class AccountInvoice(models.Model):
                             self._prepare_note_dn_value(sequence, dn),
                         )
                     )
-                    # for invoice_line in dn_invoice_lines:
-                    #     sequence += 1
-                    #     invoice_line.sequence = sequence
+            else:
+                for line in invoice.invoice_line_ids:
+                    sequence = line.sequence - 1
+                    delivery_note_line = invoice.mapped(
+                        "delivery_note_ids.line_ids"
+                    ) & line.mapped("sale_line_ids.delivery_note_line_ids")
+                    for delivery_note_id in delivery_note_line.filtered(
+                        lambda l: l.invoice_status  # noqa: E741
+                        == DOMAIN_INVOICE_STATUSES[2]
+                    ).mapped("delivery_note_id"):
+                        line.delivery_note_id = delivery_note_id.id
+                        new_lines.append(
+                            (
+                                0,
+                                False,
+                                self._prepare_note_dn_value(sequence, delivery_note_id),
+                            )
+                        )
 
             invoice.write({"line_ids": new_lines})
 
