@@ -8,6 +8,7 @@ import base64
 import os
 
 from odoo.exceptions import UserError
+from odoo.fields import first
 from odoo.tests import Form
 from odoo.tools import config, safe_eval
 
@@ -655,3 +656,55 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             riba_list.line_ids.mapped("invoice_date"),
             [False] * 2,
         )
+
+    def test_file_substitute_forbidden_chars(self):
+        """Forbidden characters are substituted in generated file."""
+        # Arrange
+        company = self.env.company
+        payment_term = self.payment_term1
+        product = self.product1
+        partner = self.partner
+        partner.street = "Via di là"
+        company.due_cost_service_id = self.service_due_cost
+
+        invoice_form = Form(
+            self.env["account.move"].with_context(
+                default_move_type="out_invoice",
+                default_name="Test invoice",
+            )
+        )
+        invoice_form.partner_id = partner
+        invoice_form.invoice_payment_term_id = payment_term
+        invoice_form.riba_partner_bank_id = first(partner.bank_ids)
+        with invoice_form.invoice_line_ids.new() as line:
+            line.product_id = product
+        invoice = invoice_form.save()
+        invoice.action_post()
+
+        to_issue_action = self.env.ref("l10n_it_riba.action_riba_to_issue")
+        to_issue_records = self.env[to_issue_action.res_model].search(
+            safe_eval.safe_eval(to_issue_action.domain)
+        )
+        invoice_to_issue_records = to_issue_records & invoice.line_ids
+        self.assertTrue(invoice_to_issue_records)
+
+        issue_wizard_model = self.env["riba.issue"].with_context(
+            active_model=invoice_to_issue_records._name,
+            active_ids=invoice_to_issue_records.ids,
+        )
+        issue_wizard_form = Form(issue_wizard_model)
+        issue_wizard_form.configuration_id = self.riba_config_incasso
+        issue_wizard = issue_wizard_form.save()
+        issue_result = issue_wizard.create_list()
+        slip = self.env[issue_result["res_model"]].browse(issue_result["res_id"])
+
+        # Act
+        export_wizard = (
+            self.env["riba.file.export"].with_context(active_ids=slip.ids).create({})
+        )
+        export_wizard.act_getfile()
+
+        # Assert
+        file_content = base64.decodebytes(export_wizard.riba_txt).decode()
+        self.assertNotIn("Via di là", file_content)
+        self.assertIn("Via di la", file_content)
