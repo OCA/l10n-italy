@@ -472,7 +472,7 @@ class AccountMove(models.Model):
         supplier_invoice_vals["partner_bank_id"] = None
         # because this field has copy=False
         supplier_invoice_vals["date"] = self.date
-        supplier_invoice_vals["invoice_date"] = self.date
+        supplier_invoice_vals["invoice_date"] = self.invoice_date
         supplier_invoice_vals["invoice_origin"] = self.ref or self.name
         supplier_invoice_vals["partner_id"] = rc_type.partner_id.id
         supplier_invoice_vals["journal_id"] = rc_type.supplier_journal_id.id
