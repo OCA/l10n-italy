@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 09:34+0000\n"
-"PO-Revision-Date: 2024-02-23 14:42+0000\n"
+"PO-Revision-Date: 2024-08-23 12:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa
 #: model:account.tax,name:l10n_it_fatturapa.tax_22_acq
@@ -352,7 +352,7 @@ msgstr ""
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_document_type,type:0
 msgid "Document Type"
-msgstr "Tipo Documento"
+msgstr "Tipo documento"
 
 #. module: l10n_it_fatturapa
 #: field:fatturapa.related_ddt,name:0
