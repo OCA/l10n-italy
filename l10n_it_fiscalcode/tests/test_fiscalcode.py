@@ -1,3 +1,4 @@
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -49,7 +50,7 @@ class TestFiscalCode(TransactionCase):
             'name': 'Person',
             'company_name': 'Company',
             'is_company': False,
-            'fiscalcode': '123456789',
+            'fiscalcode': '12345670017',
         })
         # Invalid FC
         with self.assertRaises(ValidationError):
@@ -60,3 +61,25 @@ class TestFiscalCode(TransactionCase):
                     "fiscalcode": "AAAMRA00H04H5010",
                 }
             )
+
+    def test_company_fiscal_code(self):
+        base_company_partner_values = {
+            'name': 'Company',
+            'is_company': True,
+        }
+
+        wrong_fiscal_code_partner_values = dict(
+            **base_company_partner_values,
+            fiscalcode='123456789',
+        )
+        with self.assertRaises(ValidationError):
+            self.env['res.partner'].create(wrong_fiscal_code_partner_values)
+
+        correct_fiscal_code_partner_values = dict(
+            **base_company_partner_values,
+            fiscalcode='12345670017',
+        )
+        self.env['res.partner'].create(correct_fiscal_code_partner_values)
+
+        empty_fiscal_code_partner_values = base_company_partner_values.copy()
+        self.env['res.partner'].create(empty_fiscal_code_partner_values)
