@@ -175,7 +175,7 @@
                                                         t-field="l.country_origin_id.code"
                                                     /></td>
                                                 <td><span
-                                                        t-field="l.country_origin_id.code"
+                                                        t-field="l.country_good_origin_id.code"
                                                     /></td>
                                                 <td><span
                                                         t-field="l.province_destination_id.code"
