@@ -69,15 +69,42 @@
                                                 LE INFORMAZIONI DELLE SEZIONI 1 e/o 3 SONO DA RIFERIRSI A (Barrare la casella):
                                             </tr>
                                             <tr>
-                                            <td width="8%" />
+                                                <td
+                                                    width="8%"
+                                                    class="align-middle text-center"
+                                                >
+                                                    <span
+                                                        t-if="o.period_type == 'T' and o.content_type == '8'"
+                                                    >
+                                                        X
+                                                    </span>
+                                                </td>
                                             <td
                                                     width="25%"
                                                 >SOLO 1° MESE DEL TRIMESTRE</td>
-                                            <td width="8%" />
+                                                <td
+                                                    width="8%"
+                                                    class="align-middle text-center"
+                                                >
+                                                    <span
+                                                        t-if="o.period_type == 'T' and o.content_type == '9'"
+                                                    >
+                                                        X
+                                                    </span>
+                                                </td>
                                             <td
                                                     width="25%"
                                                 >1° E 2° MESE DEL TRIMESTRE</td>
-                                            <td width="8%" />
+                                                <td
+                                                    width="8%"
+                                                    class="align-middle text-center"
+                                                >
+                                                    <span
+                                                        t-if="o.period_type == 'T' and o.content_type == '0'"
+                                                    >
+                                                        X
+                                                    </span>
+                                                </td>
                                             <td width="25%">3° TRIMESTRE COMPLETO</td>
                                             </tr>
                                         </table>
@@ -111,11 +138,19 @@
                                         /></td>
                                 </tr>
                                 <tr>
-                                    <td width="10%" />
+                                    <td width="10%" class="align-middle text-center">
+                                        <span t-if="o.special_cases == '7'">
+                                            X
+                                        </span>
+                                    </td>
                                     <td
                                         width="40%"
                                     >BARRARE LA CASELLA NEL CASO NON SIANO STATI PRESENTATI IN PRECEDENZA ELENCHI RIEPILOGATIVI (Mod. INTRA-1 od INTRA-2)</td>
-                                    <td width="10%" />
+                                    <td width="10%" class="align-middle text-center">
+                                        <span t-if="o.special_cases in ('8', '9')">
+                                            X
+                                        </span>
+                                    </td>
                                     <td
                                         width="40%"
                                     >BARRARE LA CASELLA IN CASO DI CESSAZIONE DI ATTIVITÀ OVVERO DI VARIAZIONE DELLA PARTITA IVA</td>
