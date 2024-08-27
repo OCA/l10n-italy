@@ -8,10 +8,6 @@
         id="report_registro_iva"
         inherit_id="l10n_it_vat_registries.report_registro_iva"
     >
-        <!-- Add one column to tax's and all parent tables to keep them aligned -->
-        <xpath expr="//t[@t-set='columns_number']" position="after">
-            <t t-set="columns_number" t-value="columns_number + 1" />
-        </xpath>
         <xpath expr="//tr[@name='vat_header_invoice']" position="inside">
             <th />
         </xpath>

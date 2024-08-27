@@ -5,7 +5,7 @@ import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import Command
+from odoo.cli import Command
 from odoo.tests import Form, tagged
 from odoo.tools import format_date
 
