@@ -5,7 +5,6 @@ import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from odoo.cli import Command
 from odoo.tests import Form, tagged
 from odoo.tools import format_date
 
@@ -31,7 +30,7 @@ class TestVATRegistry(AccountTestInvoicingCommon):
                 "name": "Supplier",
                 "layout_type": "supplier",
                 "journal_ids": [
-                    Command.set(cls.supplier_journal.ids),
+                    (6, 0, cls.supplier_journal.ids),
                 ],
             }
         )
@@ -53,11 +52,10 @@ class TestVATRegistry(AccountTestInvoicingCommon):
         report_name = report_action["report_name"]
         report_context = report_action["context"]
         report_data = report_action["data"]
-        html, _report_type = (
-            self.env["ir.actions.report"]
-            .with_context(**report_context)
-            ._render_qweb_html(report_name, wizard.ids, data=report_data)
-        )
+        report = self.env["ir.actions.report"]._get_report_from_name(report_name)
+        html = report.with_context(**report_context)._render_qweb_html(
+            wizard.ids, data=report_data
+        )[0]
         return html
 
     def test_report(self):

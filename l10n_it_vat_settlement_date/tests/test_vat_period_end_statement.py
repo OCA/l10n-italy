@@ -56,7 +56,7 @@ class TestVATPeriodEndStatement(TestVATStatementCommon):
             new_authority_vat_amount,
             "This assertion and the cache invalidation can be removed",
         )
-        tax.invalidate_recordset(
+        tax.invalidate_cache(
             fnames=[
                 "deductible_balance",
             ],
@@ -76,9 +76,10 @@ class TestVATPeriodEndStatement(TestVATStatementCommon):
         report_action = self.env.ref(
             "account_vat_period_end_statement.report_vat_statement"
         )
-        html, _report_type = self.env["ir.actions.report"]._render_qweb_html(
-            report_action.report_name, statement.ids
+        report = self.env["ir.actions.report"]._get_report_from_name(
+            report_action.report_name
         )
+        html = report._render_qweb_html(statement.ids)[0]
         return html
 
     def test_report(self):
@@ -110,7 +111,7 @@ class TestVATPeriodEndStatement(TestVATStatementCommon):
         # Act
         # Invalidate the tax's cache otherwise the same (correct) values
         # computed by the statement are printed in the report
-        tax.invalidate_recordset(
+        tax.invalidate_cache(
             fnames=[
                 "deductible_balance",
             ],

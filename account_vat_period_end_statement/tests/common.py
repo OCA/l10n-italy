@@ -68,7 +68,13 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         cls.paid_vat_account = (
             cls.env["account.account"]
             .search(
-                [("account_type", "=", "asset_current")],
+                [
+                    (
+                        "user_type_id",
+                        "=",
+                        cls.env.ref("account.data_account_type_current_assets").id,
+                    )
+                ],
                 limit=1,
             )
             .id
@@ -76,7 +82,13 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         cls.received_vat_account = (
             cls.env["account.account"]
             .search(
-                [("account_type", "=", "liability_current")],
+                [
+                    (
+                        "user_type_id",
+                        "=",
+                        cls.env.ref("account.data_account_type_current_liabilities").id,
+                    )
+                ],
                 limit=1,
             )
             .id
@@ -117,7 +129,7 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
                 "code": "VAT.AUTH",
                 "name": "VAT Authority",
                 "reconcile": True,
-                "account_type": "liability_payable",
+                "user_type_id": cls.env.ref("account.data_account_type_payable").id,
             }
         )
 
