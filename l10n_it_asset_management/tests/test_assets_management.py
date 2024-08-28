@@ -162,6 +162,12 @@ class TestAssets(TransactionCase):
             }
         )
         cls.env.user.groups_id += cls.env.ref("account.group_account_readonly")
+        cls.sale_journal = cls.env["account.journal"].search(
+            [
+                ("type", "=", "sale"),
+            ],
+            limit=1,
+        )
 
     def _create_asset(self, asset_date=None):
         asset = self.env["asset.asset"].create(
@@ -251,6 +257,28 @@ class TestAssets(TransactionCase):
         purchase_invoice.action_post()
         self.assertEqual(purchase_invoice.state, "posted")
         return purchase_invoice
+
+    def _create_sale_invoice(self, asset, amount=7000, invoice_date=None, post=True):
+        sale_invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "invoice_date": invoice_date,
+                "partner_id": self.env.ref("base.partner_demo").id,
+                "journal_id": self.sale_journal.id,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "account_id": asset.category_id.asset_account_id.id,
+                            "quantity": 1,
+                            "price_unit": amount,
+                        },
+                    )
+                ],
+            }
+        )
+        if post:
+            sale_invoice.action_post()
+        return sale_invoice
 
     def _create_entry(self, account, amount, post=True):
         """Create an entry that adds `amount` to `account`."""
@@ -1014,3 +1042,79 @@ class TestAssets(TransactionCase):
         # Assert
         account_move = asset.depreciation_ids.line_ids.move_id
         self.assertEqual(account_move.journal_id, depreciate_asset_wizard.journal_id)
+
+    def _get_move_asset_wizard(self, move, link_management_type, wiz_values=None):
+        """Get the wizard that links `move` to an asset
+        with mode `link_management_type`.
+        `wiz_values` are values to be set in the wizard.
+        """
+        if wiz_values is None:
+            wiz_values = {}
+
+        wiz_action_values = move.open_wizard_manage_asset()
+        wiz_form = Form(
+            self.env["wizard.account.move.manage.asset"].with_context(
+                **wiz_action_values["context"]
+            )
+        )
+        wiz_form.management_type = link_management_type
+        for field_name, field_value in wiz_values.items():
+            setattr(wiz_form, field_name, field_value)
+        wiz = wiz_form.save()
+        return wiz
+
+    def _link_asset_move(self, move, link_management_type, wiz_values=None):
+        """Link `move` to an asset with mode `link_management_type`.
+        `wiz_values` are values to be set in the wizard.
+        """
+        wiz = self._get_move_asset_wizard(
+            move, link_management_type, wiz_values=wiz_values
+        )
+        return wiz.link_asset()
+
+    def test_same_asset_report_residual_partial_depreciation(self):
+        """
+        Partially depreciate an asset,
+        the residual value in the asset and in the report are the same.
+        """
+        # Arrange
+        purchase_date = date(2019, 1, 1)
+        purchase_amount = 1000
+        sale_date = date(2020, 6, 15)
+        sale_amount = 500
+        partial_dismiss_purchase_amount = 600
+        partial_dismiss_fund_amount = 0
+        report_date = date(2021, 12, 31)
+        expected_residual_amount = 400
+
+        asset = self._create_asset(asset_date=purchase_date)
+        sale_invoice = self._create_sale_invoice(
+            asset, amount=sale_amount, invoice_date=sale_date
+        )
+        self._link_asset_move(
+            sale_invoice,
+            "partial_dismiss",
+            wiz_values={
+                "asset_id": asset,
+                "asset_purchase_amount": partial_dismiss_purchase_amount,
+                "depreciated_fund_amount": partial_dismiss_fund_amount,
+            },
+        )
+        # pre-condition
+        self.assertEqual(asset.purchase_amount, purchase_amount)
+        self.assertEqual(
+            asset.depreciation_ids.amount_residual, expected_residual_amount
+        )
+
+        # Act
+        self._generate_fiscal_years(purchase_date, report_date)
+        report = self._get_report(report_date, "journal")
+
+        # Assert
+        asset_report = report.report_asset_ids.filtered(lambda ar: ar.asset_id == asset)
+        asset_report_depreciation_line = (
+            asset_report.report_depreciation_ids.report_depreciation_year_line_ids
+        )
+        self.assertEqual(
+            asset_report_depreciation_line.amount_residual, expected_residual_amount
+        )
