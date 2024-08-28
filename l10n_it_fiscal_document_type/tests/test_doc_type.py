@@ -16,89 +16,74 @@ class TestDocType(AccountTestInvoicingCommon):
 
         cls.doc_type_model = cls.env["fiscal.document.type"]
         cls.TD01 = cls.doc_type_model.search([("code", "=", "TD01")], limit=1)
+        cls.TD10 = cls.doc_type_model.search([("code", "=", "TD10")], limit=1)
         cls.TD01.journal_ids = cls.journalrec
         cls.TD04 = cls.doc_type_model.search([("code", "=", "TD04")], limit=1)
         cls.inv_model = cls.env["account.move"]
         cls.partner3 = cls.env.ref("base.res_partner_3")
+        cls.partner4 = cls.env.ref("base.res_partner_4")
         cls.fp = cls.env["account.fiscal.position"].create(
             {
                 "name": "FP",
                 "fiscal_document_type_id": cls.TD01.id,
             }
         )
+        cls.fp_td10 = cls.env["account.fiscal.position"].create(
+            {
+                "name": "FP",
+                "fiscal_document_type_id": cls.TD10.id,
+            }
+        )
+        cls.partner4.property_account_position_id = cls.fp_td10
 
     def test_doc_type(self):
-        invoice = self.inv_model.create({"partner_id": self.partner3.id})
+        invoice = self.inv_model.with_context(default_move_type="out_invoice").create(
+            {"partner_id": self.partner3.id}
+        )
+        self.assertEqual(invoice.move_type, "out_invoice")
         self.assertEqual(invoice.fiscal_document_type_id.id, self.TD01.id)
 
-        invoice2 = self.inv_model.create({"partner_id": self.partner3.id})
+        invoice2 = self.inv_model.with_context(default_move_type="in_invoice").create(
+            {"partner_id": self.partner3.id}
+        )
+        self.assertEqual(invoice2.move_type, "in_invoice")
         self.assertEqual(invoice2.fiscal_document_type_id.id, self.TD01.id)
 
     def test_doc_type_on_invoice_create(self):
         """Check document type on invoice create based invoice type."""
-        revenue_account = self.company_data["default_account_revenue"]
         product = self.env.ref("product.product_product_5")
-        invoice = self.inv_model.create(
-            {
-                "partner_id": self.partner3.id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": product.id,
-                            "quantity": 10.0,
-                            "account_id": revenue_account.id,
-                            "name": "product test 5",
-                            "price_unit": 100.00,
-                        },
-                    )
-                ],
-            }
+        # Create a standard vendor invoice
+        invoice = self.init_invoice(
+            "in_invoice", partner=self.partner3, products=product
         )
+        self.assertEqual(invoice.move_type, "in_invoice")
         self.assertEqual(invoice.fiscal_document_type_id, self.TD01)
-
-        invoice = self.inv_model.create(
-            {
-                "partner_id": self.partner3.id,
-                "move_type": "out_refund",
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": product.id,
-                            "quantity": 10.0,
-                            "account_id": revenue_account.id,
-                            "name": "product test 5",
-                            "price_unit": 100.00,
-                        },
-                    )
-                ],
-            }
+        # Create a standard customer refund
+        invoice = self.init_invoice(
+            "out_refund", partner=self.partner3, products=product
         )
+        self.assertEqual(invoice.move_type, "out_refund")
         self.assertEqual(invoice.fiscal_document_type_id, self.TD04)
-
-        invoice = self.inv_model.create(
-            {
-                "move_type": "out_invoice",
-                "partner_id": self.partner3.id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": product.id,
-                            "quantity": 10.0,
-                            "account_id": revenue_account.id,
-                            "name": "product test 5",
-                            "price_unit": 100.00,
-                        },
-                    )
-                ],
-            }
+        # Create a customer invoice for a partner with a fiscal position with TD10,
+        # which is not applicable for "out_invoice" so it's applied the default TD01
+        invoice = self.init_invoice(
+            "out_invoice", partner=self.partner4, products=product
         )
-        invoice.action_post()
+        self.assertEqual(invoice.move_type, "out_invoice")
+        self.assertEqual(invoice.fiscal_document_type_id, self.TD01)
+        # Create a vendor invoice for a partner with a fiscal position with TD10,
+        # which is applied as applicable for "in_invoice".
+        invoice = self.init_invoice(
+            "in_invoice", partner=self.partner4, products=product
+        )
+        self.assertEqual(invoice.move_type, "in_invoice")
+        self.assertEqual(invoice.fiscal_document_type_id, self.TD10)
+        # Create a standard customer invoice and a linked refund
+        invoice = self.init_invoice(
+            "out_invoice", partner=self.partner3, products=product, post=True
+        )
+        self.assertEqual(invoice.move_type, "out_invoice")
+        self.assertEqual(invoice.fiscal_document_type_id, self.TD01)
 
         move_reversal = (
             self.env["account.move.reversal"]
