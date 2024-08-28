@@ -43,6 +43,12 @@
                 <field name="partner_id" />
                 <field name="due_date" />
                 <field name="config_id" />
+                <filter
+                    name="due_date"
+                    string="Due Date"
+                    domain="[]"
+                    context="{'group_by': 'due_date'}"
+                />
             </search>
         </field>
     </record>

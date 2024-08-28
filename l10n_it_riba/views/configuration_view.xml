@@ -17,6 +17,10 @@
                     <field name="name" />
                     <field name="type" />
                     <field
+                        name="sbf_collection_type"
+                        attrs="{'required': [('type','=','sbf')], 'invisible': [('type','!=','sbf')]}"
+                    />
+                    <field
                         name="bank_id"
                         domain="[('partner_id.ref_company_ids', 'in', allowed_company_ids)]"
                     />

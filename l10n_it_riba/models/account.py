@@ -5,6 +5,7 @@
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2018 Lorenzo Battistini - Agile Business Group
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright 2024 Nextev Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -58,9 +59,30 @@ class AccountMove(models.Model):
             if len(invoice.past_due_move_line_ids) != reconciled_past_due:
                 invoice.is_past_due = True
 
+    def _compute_open_amount(self):
+        today = fields.Date.today()
+        for invoice in self:
+            if invoice.is_riba_payment:
+                open_amount_line_ids = invoice.line_ids.filtered(
+                    lambda line, today=today: line.riba
+                    and line.display_type == "payment_term"
+                    and line.date_maturity > today
+                )
+                invoice.open_amount = sum(open_amount_line_ids.mapped("balance"))
+            else:
+                invoice.open_amount = 0.0
+
     riba_credited_ids = fields.One2many(
         "riba.slip", "credit_move_id", "Credited RiBa Slips", readonly=True
     )
+
+    open_amount = fields.Float(
+        digits="Account",
+        compute="_compute_open_amount",
+        default=0.0,
+        help="Amount currently only supposed to be paid, but has actually not happened",
+    )
+
     riba_past_due_ids = fields.One2many(
         "riba.slip.line", "past_due_move_id", "Past Due RiBa Slips", readonly=True
     )
@@ -257,6 +279,16 @@ class AccountMove(models.Model):
 
     def get_due_cost_line_ids(self):
         return self.invoice_line_ids.filtered(lambda line: line.due_cost_line).ids
+
+    def action_riba_payment_date(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "RiBa Payment Date",
+            "res_model": "riba.payment.date",
+            "view_mode": "form",
+            "target": "new",
+            "context": self.env.context,
+        }
 
 
 # se slip_line_ids == None allora non è stata emessa

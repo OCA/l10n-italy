@@ -8,6 +8,7 @@
 
 from . import wizard_riba_issue
 from . import wizard_riba_file_export
+from . import wizard_riba_payment_date
 from . import wizard_credit
 from . import wizard_past_due
 from . import wizard_presentation_riba
