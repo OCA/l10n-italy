@@ -37,6 +37,13 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid "Activate debug mode to see the full error."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Attached report"
 msgstr ""
@@ -249,6 +256,18 @@ msgid "Error"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid ""
+"Error processing invoice(s) %(invoices)s.\n"
+"\n"
+"Errors in the following fields:\n"
+"- %(error_path_string)s\n"
+"\n"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view
 msgid "Export"
 msgstr ""
@@ -301,6 +320,15 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__res_company__xml_divisa_value__force_eur
 msgid "Force euro"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid ""
+"Full error follows:\n"
+"\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
