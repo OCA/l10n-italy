@@ -111,6 +111,12 @@ stata versata all’erario
 .. |image4| image:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/pagamento-ritenuta.png
 .. |image5| image:: https://raw.githubusercontent.com/OCA/l10n-italy/16.0/l10n_it_withholding_tax/static/img/foto-3-1-1024x505.png
 
+Known issues / Roadmap
+======================
+
+The Residual Net To Pay set in the Payment wizard should be converted in
+the wizard's currency when it changes
+
 Bug Tracker
 ===========
 
