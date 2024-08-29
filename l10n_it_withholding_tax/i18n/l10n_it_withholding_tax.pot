@@ -271,7 +271,7 @@ msgstr ""
 
 #. module: l10n_it_withholding_tax
 #. odoo-python
-#: code:addons/l10n_it_withholding_tax/models/account.py:0
+#: code:addons/l10n_it_withholding_tax/wizards/account_payment_register.py:0
 #, python-format
 msgid "Invoices must have the same currency"
 msgstr ""
@@ -427,6 +427,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax__rate_ids
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax.view_withholding_tax_form
 msgid "Rates"
+msgstr ""
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model,name:l10n_it_withholding_tax.model_account_payment_register
+msgid "Register Payment"
 msgstr ""
 
 #. module: l10n_it_withholding_tax
