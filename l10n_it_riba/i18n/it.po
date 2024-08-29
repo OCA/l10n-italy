@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 10:26+0000\n"
-"PO-Revision-Date: 2024-07-29 16:58+0000\n"
+"PO-Revision-Date: 2024-08-29 12:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -134,11 +134,13 @@ msgstr "Importo"
 msgid ""
 "Amount currently only supposed to be paid, but has actually not happened"
 msgstr ""
+"Importo che al momento dovrebbe essere pagato, ma in realtà non è stato "
+"ancora effettuato"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_configuration__sbf_collection_type__maturation
 msgid "At currency maturation"
-msgstr ""
+msgstr "A maturazione valuta"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_attachment_count
@@ -259,7 +261,7 @@ msgstr "Servizio spese di incasso"
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__sbf_collection_type
 msgid "Collection Type"
-msgstr ""
+msgstr "Tipo riscossione"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_account_payment_term__riba_payment_cost
@@ -624,7 +626,7 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #. module: l10n_it_riba
 #: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_configuration__sbf_collection_type__immediate
 msgid "Immediate"
-msgstr ""
+msgstr "Immediata"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__invoice_date
@@ -929,7 +931,7 @@ msgstr "Numero di messaggi con errore di consegna"
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__open_amount
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__open_amount
 msgid "Open Amount"
-msgstr ""
+msgstr "Valore scoperto"
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
@@ -1233,7 +1235,7 @@ msgstr "Emissione RiBa"
 #: model:ir.actions.server,name:l10n_it_riba.action_riba_payment_date
 #: model:ir.model,name:l10n_it_riba.model_riba_payment_date
 msgid "RiBa Payment Date"
-msgstr ""
+msgstr "Data pagamento RiBa"
 
 #. module: l10n_it_riba
 #: model:ir.actions.act_window,name:l10n_it_riba.slip_riba_action
@@ -1288,7 +1290,7 @@ msgstr "Codice SIA"
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_payment_date
 msgid "Set RiBa Payment Date"
-msgstr ""
+msgstr "Imposta data pagamento RiBa"
 
 #. module: l10n_it_riba
 #. odoo-python
@@ -1302,7 +1304,7 @@ msgstr ""
 #. module: l10n_it_riba
 #: model:ir.actions.server,name:l10n_it_riba.riba_line_settle_action_server
 msgid "Settle RiBa Line"
-msgstr ""
+msgstr "Sistema riga RiBa"
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
@@ -1348,7 +1350,7 @@ msgstr "Riga distinta"
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
 msgid "Slip lines"
-msgstr ""
+msgstr "Righe distinta"
 
 #. module: l10n_it_riba
 #: model:ir.ui.menu,name:l10n_it_riba.menu_riba_distinte
