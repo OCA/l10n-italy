@@ -24,14 +24,14 @@ msgstr ""
 "fornitori italiani"
 
 #. module: l10n_it_fatturapa_in_rc
-#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_fatturapa_attachment_in
-msgid "E-bill import file"
-msgstr "File importazione e-fattura"
-
-#. module: l10n_it_fatturapa_in_rc
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type__e_invoice_suppliers
 msgid "E-invoice suppliers"
 msgstr "Fornitori fattura elettronica"
+
+#. module: l10n_it_fatturapa_in_rc
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_fatturapa_attachment_in
+msgid "Electronic Invoice"
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa_in_rc
 #: model:ir.model,name:l10n_it_fatturapa_in_rc.model_wizard_import_fatturapa
@@ -75,11 +75,11 @@ msgstr ""
 "L'importo totale ({bill_amount_total}) non corrisponde con l'importo totale "
 "della fattura elettronica ({e_bill_amount_total})"
 
+#~ msgid "E-bill import file"
+#~ msgstr "File importazione e-fattura"
+
 #~ msgid "Display Name"
 #~ msgstr "Nome visualizzato"
-
-#~ msgid "Electronic Invoice"
-#~ msgstr "Fattura elettronica"
 
 #~ msgid "ID"
 #~ msgstr "ID"
