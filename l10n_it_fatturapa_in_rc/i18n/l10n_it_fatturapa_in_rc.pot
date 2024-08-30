@@ -19,13 +19,13 @@ msgid "Automatically used when importing e-invoices from Italian suppliers"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in_rc
-#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_fatturapa_attachment_in
-msgid "E-bill import file"
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type__e_invoice_suppliers
+msgid "E-invoice suppliers"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in_rc
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in_rc.field_account_rc_type__e_invoice_suppliers
-msgid "E-invoice suppliers"
+#: model:ir.model,name:l10n_it_fatturapa_in_rc.model_fatturapa_attachment_in
+msgid "Electronic Invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in_rc
