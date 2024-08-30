@@ -129,11 +129,6 @@ msgid "E-bill ZIP import"
 msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
-#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_in
-msgid "E-bill import file"
-msgstr ""
-
-#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_bank_statement_line__attachment_out_import_zip_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_move__attachment_out_import_zip_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_payment__attachment_out_import_zip_id
@@ -141,15 +136,16 @@ msgid "E-bills ZIP import"
 msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
-#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_out
-msgid "E-invoice Export File"
-msgstr ""
-
-#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_bank_statement_line__attachment_in_import_zip_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_move__attachment_in_import_zip_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_payment__attachment_in_import_zip_id
 msgid "E-invoices ZIP import"
+msgstr ""
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_in
+#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_out
+msgid "Electronic Invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
@@ -399,11 +395,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_import_zip
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.fatturapa_attachment_import_zip_form
 msgid "Out invoices"
-msgstr ""
-
-#. module: l10n_it_fatturapa_import_zip
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__ftpa_preview_link
-msgid "Preview link"
 msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
