@@ -59,20 +59,16 @@ msgid "Download ZIP e-invoice XML"
 msgstr ""
 
 #. module: l10n_it_fatturapa_export_zip
-#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_in
-msgid "E-bill import file"
-msgstr ""
-
-#. module: l10n_it_fatturapa_export_zip
-#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_out
-msgid "E-invoice Export File"
-msgstr ""
-
-#. module: l10n_it_fatturapa_export_zip
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_export_zip/wizard/export_fatturapa.py:0
 #, python-format
 msgid "E-invoice-export"
+msgstr ""
+
+#. module: l10n_it_fatturapa_export_zip
+#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_in
+#: model:ir.model,name:l10n_it_fatturapa_export_zip.model_fatturapa_attachment_out
+msgid "Electronic Invoice"
 msgstr ""
 
 #. module: l10n_it_fatturapa_export_zip
