@@ -1227,7 +1227,6 @@ class WizardImportFatturapa(models.TransientModel):
 
         invoice._onchange_invoice_line_wt_ids()
         invoice._recompute_dynamic_lines()
-        invoice.write(invoice._convert_to_write(invoice._cache))
 
         rel_docs_dict = {
             # 2.1.2
