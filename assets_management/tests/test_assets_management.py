@@ -6,7 +6,7 @@
 from datetime import date
 
 from odoo import fields
-from odoo.exceptions import ValidationError
+from odoo.exceptions import AccessError, ValidationError
 from odoo.fields import first
 from odoo.tools.date_utils import relativedelta
 
@@ -561,3 +561,36 @@ class TestAssetsManagement(TestAssets):
         total = report.report_total_ids
         self.assertEqual(total.amount_depreciation_fund_curr_year, 1000)
         self.assertEqual(total.amount_depreciation_fund_prev_year, 1000)
+
+    def test_open_manage_asset_wiz(self):
+        manager_user = self.user
+        account_user = self.account_user
+        forbidden_user = self.env.ref("base.user_demo")
+
+        invoice = self.env["account.move"].search([("line_ids", "!=", False)])[0]
+        with self.assertRaises(AccessError):
+            invoice.with_user(forbidden_user).open_wizard_manage_asset()
+        invoice.with_user(manager_user).open_wizard_manage_asset()
+        invoice.with_user(account_user).open_wizard_manage_asset()
+
+        asset_category = self.env["asset.category"].search([])[0]
+        asset_category.asset_account_id = invoice.invoice_line_ids.mapped("account_id")
+        asset_wiz = (
+            self.env["wizard.account.move.manage.asset"]
+            .with_context(show_asset=True)
+            .create(
+                [
+                    {
+                        "name": "Test Asset Name",
+                        "category_id": asset_category.id,
+                        "management_type": "create",
+                        "move_ids": [(6, 0, invoice.ids)],
+                        "move_line_ids": [(6, 0, invoice.invoice_line_ids.ids)],
+                    }
+                ]
+            )
+        )
+        with self.assertRaises(AccessError):
+            asset_wiz.with_user(forbidden_user).link_asset()
+        asset_wiz.with_user(manager_user).link_asset()
+        asset_wiz.with_user(account_user).link_asset()

@@ -24,6 +24,20 @@ class TestAssets(SavepointCase):
             company_id=cls.company_1.id,
             company_ids=[(6, 0, [cls.company_1.id, cls.company_2.id])],
         )
+        groups = ",".join(
+            [
+                "base.group_multi_company",
+                "account.group_account_user",
+                "assets_management.group_asset_user",
+            ]
+        )
+        cls.account_user = new_test_user(
+            cls.env,
+            "user_account",
+            groups=groups,
+            company_id=cls.company_1.id,
+            company_ids=[(6, 0, [cls.company_1.id, cls.company_2.id])],
+        )
         # Asset depreciation types
         cls.ad_type_civ_company_1 = cls.env.ref("assets_management.ad_type_civilistico")
         cls.ad_type_fis_company_1 = cls.env.ref("assets_management.ad_type_fiscale")
