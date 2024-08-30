@@ -29,6 +29,7 @@
             >
                 <field
                     name="force_declaration_of_intent_id"
+                    optional="show"
                     domain="[('partner_id', '=', parent.partner_id), ('state', '!=', 'close'), ('date_start', '&lt;=', parent.invoice_date), ('date_end', '&gt;=', parent.invoice_date)]"
                 />
             </xpath>
