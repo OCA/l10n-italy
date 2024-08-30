@@ -164,6 +164,25 @@ msgid "Cancel"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
+#, python-format
+msgid ""
+"Cannot import an attachment that could not be parsed.\n"
+"Please fix the parsing error first, then try again."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:0
+#: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:0
+#, python-format
+msgid ""
+"Cannot link an attachment that could not be parsed.\n"
+"Please fix the parsing error first, then try again."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__checksum
 msgid "Checksum/SHA1"
 msgstr ""
@@ -247,11 +266,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice__create_date
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice_line__create_date
 msgid "Created on"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "Creation"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -387,6 +401,11 @@ msgid "Document type %s not handled."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__e_invoice_parsing_error
+msgid "E Invoice Parsing Error"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_bank_statement_line__e_invoice_validation_error
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move__e_invoice_validation_error
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_payment__e_invoice_validation_error
@@ -484,16 +503,6 @@ msgid "E-bill description"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
-msgid "E-bill file name"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
-msgid "E-bill import file"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users__e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__e_invoice_detail_level
@@ -553,6 +562,11 @@ msgid "Electronic Bill Import"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
+msgid "Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
@@ -606,11 +620,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__has_message
 msgid "Has Message"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "History"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -668,6 +677,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_import_fatturapa
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "Import Electronic Bill"
 msgstr ""
 
@@ -679,8 +689,10 @@ msgid "Import Inconsistencies"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "Import e-bill"
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:0
+#, python-format
+msgid "Impossible to parse XML for {att_name}: {error_msg}"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1197,15 +1209,15 @@ msgid "Sale Provision Type"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
+msgid "SdI file name"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid ""
 "Set default date used to register vendor invoices: date of invoice or "
 "received date."
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "Show preview"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
@@ -1522,9 +1534,4 @@ msgstr ""
 #: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:0
 #, python-format
 msgid "You can select only one XML file to link."
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "on"
 msgstr ""
