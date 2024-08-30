@@ -5,7 +5,7 @@
 from datetime import date
 
 from odoo import fields
-from odoo.exceptions import ValidationError
+from odoo.exceptions import AccessError, ValidationError
 from odoo.fields import Command
 from odoo.tools.date_utils import relativedelta
 
@@ -777,3 +777,42 @@ class TestAssets(Common):
         self.assertEqual(
             asset_report_depreciation_line.amount_residual, expected_residual_amount
         )
+
+    def test_open_manage_asset_wiz(self):
+        manager_user = self.user
+        account_user = self.account_user
+        forbidden_user = self.env.ref("base.user_demo")
+        forbidden_user.groups_id -= self.env.ref(
+            "l10n_it_asset_management.group_asset_user"
+        ) | self.env.ref("account.group_account_manager")
+        self.assertFalse(
+            forbidden_user.has_group("l10n_it_asset_management.group_asset_user")
+        )
+
+        invoice = self.env["account.move"].search([("line_ids", "!=", False)])[0]
+        with self.assertRaises(AccessError):
+            invoice.with_user(forbidden_user).open_wizard_manage_asset()
+        invoice.with_user(manager_user).open_wizard_manage_asset()
+        invoice.with_user(account_user).open_wizard_manage_asset()
+
+        asset_category = self.env["asset.category"].search([])[0]
+        asset_category.asset_account_id = invoice.invoice_line_ids.mapped("account_id")
+        asset_wiz = (
+            self.env["wizard.account.move.manage.asset"]
+            .with_context(show_asset=True)
+            .create(
+                [
+                    {
+                        "name": "Test Asset Name",
+                        "category_id": asset_category.id,
+                        "management_type": "create",
+                        "move_ids": [(6, 0, invoice.ids)],
+                        "move_line_ids": [(6, 0, invoice.invoice_line_ids.ids)],
+                    }
+                ]
+            )
+        )
+        with self.assertRaises(AccessError):
+            asset_wiz.with_user(forbidden_user).link_asset()
+        asset_wiz.with_user(manager_user).link_asset()
+        asset_wiz.with_user(account_user).link_asset()
