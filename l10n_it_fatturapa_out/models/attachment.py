@@ -8,21 +8,10 @@ from odoo.exceptions import UserError
 
 
 class FatturaPAAttachment(models.Model):
+    _inherit = "fatturapa.attachment"
     _name = "fatturapa.attachment.out"
-    _description = "E-invoice Export File"
-    _inherits = {"ir.attachment": "ir_attachment_id"}
-    _inherit = [
-        "mail.thread",
-        "l10n_it_fatturapa.attachment.e_invoice.link",
-    ]
-    _order = "id desc"
+    _description = "Electronic Invoice"
 
-    ir_attachment_id = fields.Many2one(
-        "ir.attachment", "Attachment", required=True, ondelete="cascade"
-    )
-    att_name = fields.Char(
-        string="E-invoice file name", related="ir_attachment_id.name", store=True
-    )
     out_invoice_ids = fields.One2many(
         "account.move",
         "fatturapa_attachment_out_id",
@@ -53,6 +42,10 @@ class FatturaPAAttachment(models.Model):
         ],
         default="ready",
         tracking=True,
+    )
+    sending_user = fields.Many2one(
+        comodel_name="res.users",
+        readonly=True,
     )
     sending_date = fields.Datetime("Sent Date", readonly=True)
     delivered_date = fields.Datetime(readonly=True)
@@ -121,9 +114,6 @@ class FatturaPAAttachment(models.Model):
                 # has caused a break, this means all the invoices have at least
                 # one attachment having is_pdf_invoice_print = True
                 attachment_out.has_pdf_invoice_print = True
-
-    def ftpa_preview(self):
-        return self.ir_attachment_id.ftpa_preview()
 
     def reset_to_ready(self):
         for attachment_out in self:

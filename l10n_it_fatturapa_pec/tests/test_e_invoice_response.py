@@ -30,7 +30,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         e-invoice to 'validated'"""
         e_invoice = self._create_e_invoice()
         self.set_e_invoice_file_id(e_invoice, "IT03339130126_00009.xml")
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
 
         incoming_mail = self._get_file(
             "POSTA CERTIFICATA_ Ricevuta di consegna 6782414.txt"
@@ -45,7 +45,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         """Receiving a 'CONSEGNA' posts a mail.message in the e-invoice"""
         e_invoice = self._create_e_invoice()
         self.set_e_invoice_file_id(e_invoice, "IT03339130126_00009.xml")
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
 
         incoming_mail = self._get_file("CONSEGNA_ IT03339130126_00009.xml.txt")
 
@@ -70,7 +70,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         """Receiving a 'ACCETTAZIONE' posts a mail.message in the e-invoice"""
         e_invoice = self._create_e_invoice()
         self.set_e_invoice_file_id(e_invoice, "IT03339130126_00009.xml")
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
 
         incoming_mail = self._get_file("ACCETTAZIONE_ IT03339130126_00009.xml.txt")
 
@@ -137,7 +137,10 @@ class TestEInvoiceResponse(EInvoiceCommon):
             instance.stat.return_value = (1, 1)
             instance.retr.return_value = ("", [incoming_mail], "")
 
-            with mute_logger("odoo.addons.l10n_it_fatturapa_pec.models.fetchmail"):
+            with mute_logger(
+                "odoo.addons.l10n_it_fatturapa_in.models.attachment",
+                "odoo.addons.l10n_it_fatturapa_pec.models.fetchmail",
+            ):
                 self.PEC_server.fetch_mail()
 
         error_mails = outbound_mail_model.search(error_mail_domain)
@@ -151,7 +154,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         self.env.company.vat = "IT14627831002"
         e_invoice = self._create_e_invoice()
         self.set_e_invoice_file_id(e_invoice, "IT14627831002_02621.xml")
-        e_invoice.send_via_pec()
+        e_invoice.send_to_sdi()
 
         incoming_mail = self._get_file("POSTA CERTIFICATA_mancata_consegna.txt")
 

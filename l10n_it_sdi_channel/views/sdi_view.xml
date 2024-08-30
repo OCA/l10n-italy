@@ -33,6 +33,13 @@
                         <newline />
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        help="Follow this channel to automatically be notified of the events associated to attachments and notifications received by this channel."
+                    />
+                </div>
             </form>
         </field>
     </record>

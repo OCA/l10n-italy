@@ -284,16 +284,10 @@ class FatturapaCommon(SingleTransactionCase):
         return attach
 
     def run_wizard(
-        self,
-        name,
-        file_name,
-        mode="import",
-        wiz_values=None,
-        module_name=None,
+        self, name, file_name, mode="import", wiz_values=None, module_name=None
     ):
         if module_name is None:
             module_name = "l10n_it_fatturapa_in"
-
         attach = self.create_attachment(name, file_name, module_name=module_name)
         attach.e_invoice_received_date = fields.Datetime.now()
         attach_id = attach.id
