@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 20:32+0000\n"
-"PO-Revision-Date: 2024-05-28 09:37+0000\n"
+"PO-Revision-Date: 2024-08-31 12:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -194,6 +194,8 @@ msgid ""
 "Cannot import an attachment that could not be parsed.\n"
 "Please fix the parsing error first, then try again."
 msgstr ""
+"Non si può importare un allegato che non può essere elaborato.\n"
+"Correggere l'errore di elaborazione e riprovare."
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
@@ -203,6 +205,8 @@ msgid ""
 "Cannot link an attachment that could not be parsed.\n"
 "Please fix the parsing error first, then try again."
 msgstr ""
+"Non si può collegare un allegato che non può essere elaborato.\n"
+"Correggere l'errore di elaborazione e riprovare."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__checksum
@@ -449,7 +453,7 @@ msgstr "Tipo documento %s non gestito."
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__e_invoice_parsing_error
 msgid "E Invoice Parsing Error"
-msgstr ""
+msgstr "Errore elaborazione e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_bank_statement_line__e_invoice_validation_error
@@ -615,7 +619,7 @@ msgstr "Importazione fattura elettronica"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
 msgid "Electronic Invoice"
-msgstr ""
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
@@ -747,7 +751,7 @@ msgstr "Incongruenze nell'importazione"
 #: code:addons/l10n_it_fatturapa_in/models/attachment.py:0
 #, python-format
 msgid "Impossible to parse XML for {att_name}: {error_msg}"
-msgstr ""
+msgstr "Impossible elaborare XML per {att_name}: {error_msg}"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__in_invoice_ids
@@ -1288,7 +1292,7 @@ msgstr "Tipo cessione prestazione"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
 msgid "SdI file name"
-msgstr ""
+msgstr "Nome file SdI"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
