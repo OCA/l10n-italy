@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-30 11:49+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-08-31 12:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa_pec
 #: selection:account.invoice,fatturapa_state:0
@@ -155,7 +155,7 @@ msgstr "Ultimo messaggio di errore PEC"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_last_sdi_response
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "Last Response from Exchange System"
-msgstr "Ultima risposta dal sistema di interscambio"
+msgstr "Ultima risposta dal Sistema di Interscambio"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_write_uid
@@ -252,7 +252,7 @@ msgstr "Reimposta a pronto"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Selected files will be sent to the Exchange System"
-msgstr "I file selezionati verranno inviati al sistema di interscambio"
+msgstr "I file selezionati verranno inviati al Sistema di Interscambio"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
