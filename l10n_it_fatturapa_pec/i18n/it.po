@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-07-20 06:19+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2024-08-31 12:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
@@ -39,7 +39,7 @@ msgstr "Accettato"
 #. module: l10n_it_fatturapa_pec
 #: model:res.groups,name:l10n_it_fatturapa_pec.group_force_e_inv_export_state
 msgid "Allow to force e-invoice export state"
-msgstr "Consentire forzatura dello stato di esportazione e-fattura"
+msgstr "Consentire forzatura stato di esportazione e-fattura"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
@@ -170,7 +170,7 @@ msgstr "Ultimo messaggio di errore PEC"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out_last_sdi_response
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
 msgid "Last Response from Exchange System"
-msgstr "Ultima risposta dal sistema di interscambio"
+msgstr "Ultima risposta dal Sistema di Interscambio"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec_write_uid
@@ -249,7 +249,7 @@ msgstr "Reimposta a pronto"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
 msgid "Selected files will be sent to the Exchange System"
-msgstr "I file selezionati verranno inviati al sistema di interscambio"
+msgstr "I file selezionati verranno inviati al Sistema di Interscambio"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
