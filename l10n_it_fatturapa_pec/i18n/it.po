@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-09-08 10:38+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-08-31 12:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
@@ -79,7 +79,7 @@ msgstr "Tipo canale SdI"
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
 msgid "Electronic Invoice"
-msgstr ""
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa_pec
 #. odoo-python
@@ -254,6 +254,12 @@ msgid ""
 "The system, with the first response or notification, communicates the PEC "
 "address to be used for future messages"
 msgstr ""
+"La prima volta che si invia una e-mail PEC allo SDI, bisogna utilizzare "
+"l'indirizzo sdi01@pec.fatturapa.it.\n"
+"Odoo imposterà automaticamente questo indirizzo la prima volta che si "
+"invierà una fattura elettronica allo SdI utilizzando questo canale.\n"
+"Il sistema, con la prima notifica di risposta, comunica l'indirizzo PEC da "
+"utilizzare per i successivi messaggi"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_sdi_channel__first_invoice_sent
