@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 15:51+0000\n"
-"PO-Revision-Date: 2024-01-22 10:36+0000\n"
+"PO-Revision-Date: 2024-08-31 12:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
@@ -450,7 +450,7 @@ msgstr "Procedura guidata per inviare e-fatture multiple a SdI"
 #: code:addons/l10n_it_sdi_channel/models/fatturapa_attachment_out.py:36
 #, python-format
 msgid "You can only send files in 'Ready to Send' state."
-msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
+msgstr "È possibile inviare solo file con stato «Pronta per l'invio»."
 
 #~ msgid "E-invoice PEC server"
 #~ msgstr "Server PEC e-fattura"
