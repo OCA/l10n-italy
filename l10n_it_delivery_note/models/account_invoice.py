@@ -5,10 +5,11 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from collections import defaultdict
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
-from .stock_delivery_note import DATE_FORMAT, DOMAIN_INVOICE_STATUSES
+from .stock_delivery_note import DATE_FORMAT
 
 
 class AccountInvoice(models.Model):
@@ -74,22 +75,32 @@ class AccountInvoice(models.Model):
             **kwargs,
         }
 
-    def _prepare_note_dn_value(self, sequence, delivery_note_id):
+    @api.model
+    def _prepare_note_dn_label(self, delivery_note_ids):
+        prefix = _("Delivery Note ")
+        dn_names = _(" and ").join(
+            _(
+                '"%(dn_name)s" of %(dn_date)s',
+                dn_name=dn.name,
+                dn_date=dn.date.strftime(DATE_FORMAT),
+            )
+            for dn in delivery_note_ids
+        )
+        return prefix + dn_names
+
+    @api.model
+    def _prepare_note_dn_value(self, sequence, delivery_note_ids):
         return {
             "sequence": sequence,
             "display_type": "line_note",
-            "name": _("""Delivery Note "{}" of {}""").format(
-                delivery_note_id.name,
-                delivery_note_id.date.strftime(DATE_FORMAT),
-            ),
+            "name": self._prepare_note_dn_label(delivery_note_ids),
             "note_dn": True,
-            "delivery_note_id": delivery_note_id.id,
+            "delivery_note_ids": [(6, 0, delivery_note_ids.ids)],
             "quantity": 0,
         }
 
     def update_delivery_note_lines(self):
         context = {}
-
         for invoice in self.filtered(lambda i: i.delivery_note_ids):
             new_lines = []
             old_lines = invoice.invoice_line_ids.filtered(lambda l: l.note_dn)
@@ -124,63 +135,52 @@ class AccountInvoice(models.Model):
                 )
             else:
                 sequence = 1
-                done_invoice_lines = self.env["account.move.line"]
-                for dn in invoice.mapped("delivery_note_ids").sorted(key="name"):
-                    dn_invoice_lines = invoice.invoice_line_ids.filtered(
-                        lambda x: x not in done_invoice_lines
-                        and dn
-                        in x.mapped(
-                            "sale_line_ids.delivery_note_line_ids.delivery_note_id"
-                        )
-                        # fixme test invoice from 2 sale lines
+                # Build a dictionary {delivery.note(1, 2): account.move.line(3, 5)}
+                inv_line_by_dn = defaultdict(self.env["account.move.line"].browse)
+                for inv_line in invoice.invoice_line_ids:
+                    inv_line.delivery_note_line_ids = inv_line.sale_line_ids.mapped(
+                        "delivery_note_line_ids"
                     )
-                    done_invoice_lines |= dn_invoice_lines
-                    for note_line in dn.line_ids.filtered(
-                        lambda l: l.invoice_status == DOMAIN_INVOICE_STATUSES[2]
-                    ):
-                        for invoice_line in dn_invoice_lines:
-                            if (
-                                note_line
-                                in invoice_line.sale_line_ids.delivery_note_line_ids
-                            ):
-                                invoice_line.delivery_note_id = (
-                                    note_line.delivery_note_id.id
-                                )
-                    if dn_invoice_lines:
-                        new_lines.append(
-                            (
-                                0,
-                                False,
-                                self._prepare_note_dn_value(sequence, dn),
-                            )
-                        )
-                        sequence += 1
-                    for invoice_line in dn_invoice_lines:
-                        invoice_line.sequence = sequence
-                        sequence += 1
+                    dn_ids = inv_line.delivery_note_line_ids.mapped("delivery_note_id")
+                    inv_line_by_dn[dn_ids] |= inv_line
 
+                for dnotes, invoce_lines in inv_line_by_dn.items():
+                    new_lines.append(
+                        (
+                            0,
+                            False,
+                            self._prepare_note_dn_value(sequence, dnotes),
+                        )
+                    )
+                    sequence += 1
+                    for inv_line in invoce_lines:
+                        inv_line.sequence = sequence
+                        sequence += 1
             invoice.write({"line_ids": new_lines})
 
     def unlink(self):
-        # Ripristino il valore delle delivery note
-        # per poterle rifatturare
-        inv_lines = self.mapped("invoice_line_ids")
-        all_dnls = inv_lines.mapped("sale_line_ids").mapped("delivery_note_line_ids")
-        inv_dnls = self.mapped("delivery_note_ids").mapped("line_ids")
-        dnls_to_unlink = all_dnls & inv_dnls
+        dn_lines = self._get_related_delivery_note_lines()
         res = super().unlink()
-        dnls_to_unlink.sync_invoice_status()
-        dnls_to_unlink.mapped("delivery_note_id")._compute_invoice_status()
-        for dn in dnls_to_unlink.mapped("delivery_note_id"):
-            dn.state = "confirm"
+        self._set_back_delivery_note_status(dn_lines)
         return res
 
-    def button_cancel(self):  # pylint: disable=missing-return
-        super().button_cancel()
-        dn_lines = (
-            self.invoice_line_ids.sale_line_ids.delivery_note_line_ids
-            | self.delivery_note_ids.line_ids
+    def button_cancel(self):
+        res = super().button_cancel()
+        dn_lines = self._get_related_delivery_note_lines()
+        self._set_back_delivery_note_status(dn_lines)
+        return res
+
+    def _get_related_delivery_note_lines(self):
+        return self.mapped("invoice_line_ids.delivery_note_line_ids") or self.mapped(
+            "delivery_note_ids.line_ids"
         )
+
+    @api.model
+    def _set_back_delivery_note_status(self, dn_lines):
+        """
+        Allow re-invoicing of delivery note lines after
+        deleting/canceling/etc
+        """
         dn_lines.sync_invoice_status()
         dn_lines.delivery_note_id._compute_invoice_status()
         dn_lines.delivery_note_id.state = "confirm"
@@ -189,7 +189,29 @@ class AccountInvoice(models.Model):
 class AccountInvoiceLine(models.Model):
     _inherit = "account.move.line"
 
-    delivery_note_id = fields.Many2one(
+    delivery_note_line_ids = fields.Many2many(
+        "stock.delivery.note.line",
+        string="Delivery Note Line",
+        readonly=True,
+        copy=False,
+    )
+    # only populated for lines with display_type == "line_note"
+    delivery_note_ids = fields.Many2many(
         "stock.delivery.note", string="Delivery Note", readonly=True, copy=False
     )
     note_dn = fields.Boolean(string="Note DN")
+
+    # TODO: remove during migration, only kept for retrocompatibility
+    delivery_note_id = fields.Many2one(
+        "stock.delivery.note", compute="_compute_delivery_note_id", store=True
+    )
+
+    @api.depends(
+        "display_type", "delivery_note_line_ids.delivery_note_id", "delivery_note_ids"
+    )
+    def _compute_delivery_note_id(self):
+        for aml in self:
+            if aml.display_type:
+                aml.delivery_note_id = aml.delivery_note_ids[:1]
+            else:
+                aml.delivery_note_id = aml.delivery_note_line_ids.delivery_note_id[:1]
