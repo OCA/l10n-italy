@@ -3,8 +3,10 @@
 #  Copyright 2023 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import re
+
 from odoo import fields
-from odoo.tests import tagged
+from odoo.tests import Form, tagged
 
 from .common import TestVATStatementCommon
 
@@ -259,3 +261,70 @@ class TestTax(TestVATStatementCommon):
         # Assert
         move = statement.move_id
         self.assertEqual(move.amount_total, 22)
+
+    def test_report_multiple_payment_info(self):
+        """
+        If there are multiple payments for a statement,
+        payment info is only printed once.
+        """
+        # Arrange
+        tax = self.account_tax_22_credit
+        tax_statement_account = tax.vat_statement_account_id
+        last_year_bill = self.init_invoice(
+            "in_invoice",
+            invoice_date=self.last_year_recent_date,
+            amounts=[100],
+            taxes=tax,
+            post=True,
+        )
+        self.assertEqual(last_year_bill.state, "posted")
+        last_year_period = self.last_year_period
+        self._get_statement(
+            last_year_period,
+            self.last_year_date,
+            tax_statement_account,
+        )
+
+        date_range = self.current_period
+        self.init_invoice(
+            "out_invoice",
+            invoice_date=self.recent_date,
+            amounts=[
+                1000,
+            ],
+            taxes=self.account_tax_22,
+            post=True,
+        )
+        statement = self._get_statement(
+            date_range,
+            self.last_year_date,
+            self.env["account.account"].browse(),
+            payment_term=self.env.ref("account.account_payment_term_advance_60days"),
+        )
+
+        statement.create_move()
+        move = statement.move_id
+
+        reverse_action = move.action_reverse()
+        reverse_wizard_form = Form(
+            self.env[reverse_action["res_model"]].with_context(
+                active_model=move._name,
+                active_ids=move.ids,
+            )
+        )
+        reverse_wizard = reverse_wizard_form.save()
+        reverse_wizard.reverse_moves()
+        # pre-condition
+        self.assertEqual(len(statement.payment_ids), 2)
+
+        # Act
+        report_content, report_type = self.env["ir.actions.report"]._render_qweb_html(
+            "account_vat_period_end_statement.report_vat_statement", statement.ids
+        )
+
+        # Assert
+        payment_infos = re.findall(
+            "Reverse charge: ",
+            report_content.decode(),
+        )
+        self.assertEqual(len(payment_infos), 1)

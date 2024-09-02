@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright 2019 Simone Rubino - Agile Business Group
+  Copyright 2024 Simone Rubino - Aion Tech
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
   -->
 <odoo>
@@ -115,13 +116,13 @@
                                     t-esc="formatLang(env, payment_line.debit)"
                                 />
                                </tr>
-                               <tr>
-                                   <td colspan="2">
-                                   Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.
-    Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE
-                                   </td>
-                               </tr>
                            </t>
+                           <tr>
+                               <td colspan="2">
+                               Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.
+Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE
+                               </td>
+                           </tr>
                            </table>
                       </t>
 
