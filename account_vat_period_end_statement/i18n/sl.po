@@ -558,18 +558,12 @@ msgstr "Konto za DDV izjavo"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
-#, fuzzy
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
 "Italia, Beni FUE in Italia, Cell., Microproc.\n"
-"    Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge "
-"UE, Cell. UE, Microproc. UE"
+"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, "
+"Cell. UE, Microproc. UE"
 msgstr ""
-"Obrnjena davčna obveznost: vsebuje RevCharge, Op.SM, Op.Vat., Op.FUE, "
-"dobrine EU v Italiiji, Dobrine izven EU v Italiiji, Mobilniki, "
-"Mikroprocesorji.\n"
-"Operacije EU: Storitve za Intra, Storitve brez Intra, Dobrine EU, Rev.Charge "
-"EU, mobilniki EU, Mikroprocesorji EU"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
@@ -736,6 +730,19 @@ msgstr "DDV izjava"
 #, python-format
 msgid "You cannot delete a confirmed or paid statement"
 msgstr "Potrjenih ali plačanih izjav ne morete brisati"
+
+#, fuzzy
+#~ msgid ""
+#~ "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
+#~ "Italia, Beni FUE in Italia, Cell., Microproc.\n"
+#~ "    Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev."
+#~ "Charge UE, Cell. UE, Microproc. UE"
+#~ msgstr ""
+#~ "Obrnjena davčna obveznost: vsebuje RevCharge, Op.SM, Op.Vat., Op.FUE, "
+#~ "dobrine EU v Italiiji, Dobrine izven EU v Italiiji, Mobilniki, "
+#~ "Mikroprocesorji.\n"
+#~ "Operacije EU: Storitve za Intra, Storitve brez Intra, Dobrine EU, Rev."
+#~ "Charge EU, mobilniki EU, Mikroprocesorji EU"
 
 #~ msgid "Account Lines"
 #~ msgstr "Kontne postavke"
