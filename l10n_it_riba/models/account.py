@@ -121,17 +121,20 @@ class AccountMove(models.Model):
 
     @api.onchange("partner_id", "invoice_payment_term_id", "move_type")
     def _onchange_riba_partner_bank_id(self):
+        allowed_banks = (
+            self.partner_id.bank_ids or self.partner_id.commercial_partner_id.bank_ids
+        )
         if (
             not self.riba_partner_bank_id
-            or self.riba_partner_bank_id not in self.partner_id.bank_ids
+            or self.riba_partner_bank_id not in allowed_banks
         ):
             bank_ids = self.env["res.partner.bank"]
             if (
                 self.partner_id
-                and self.invoice_payment_term_id.riba
+                and self.is_riba_payment
                 and self.move_type in ["out_invoice", "out_refund"]
             ):
-                bank_ids = self.partner_id.bank_ids
+                bank_ids = allowed_banks
             self.riba_partner_bank_id = bank_ids[0] if bank_ids else None
 
     def month_check(self, invoice_date_due, all_date_due):

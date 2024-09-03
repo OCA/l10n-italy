@@ -143,10 +143,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_payment_term_id']" position="after">
                 <field name="is_riba_payment" invisible="1" />
+                <field name="commercial_partner_id" invisible="1" />
                  <field
                     name="riba_partner_bank_id"
                     attrs="{'invisible': ['|',('is_riba_payment','=', False),('move_type','!=','out_invoice')], 'required': ['&amp;',('is_riba_payment','=', True),('move_type','=', 'out_invoice')]}"
-                    domain="[('partner_id','=', partner_id)]"
+                    domain="[('partner_id','=', commercial_partner_id)]"
                 />
                 <field
                     name="is_past_due"
