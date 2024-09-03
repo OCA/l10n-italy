@@ -16,7 +16,7 @@ from odoo import api, fields, models
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
-from odoo.tools.float_utils import float_round
+from odoo.tools.float_utils import float_round, float_repr
 
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     FatturaElettronica,
@@ -706,9 +706,10 @@ class WizardExportFatturapa(models.TransientModel):
             NumeroLinea=str(line_no),
             Descrizione=encode_for_export(line.name, 1000),
             PrezzoUnitario='{prezzo:.{precision}f}'.format(
-                prezzo=prezzo_unitario, precision=price_precision),
+                prezzo=prezzo_unitario,
+                precision=price_precision if prezzo_unitario else 2),
             Quantita='{qta:.{precision}f}'.format(
-                qta=quantity, precision=uom_precision),
+                qta=quantity, precision=uom_precision if quantity else 2),
             UnitaMisura=line.uom_id and (
                 unidecode(line.uom_id.name)) or None,
             PrezzoTotale='%.2f' % float_round(
@@ -769,10 +770,35 @@ class WizardExportFatturapa(models.TransientModel):
     def setScontoMaggiorazione(self, line):
         res = []
         if line.discount:
-            res.append(ScontoMaggiorazioneType(
-                Tipo='SC',
-                Percentuale='%.2f' % float_round(line.discount, 8)
-            ))
+            str_number = str(line.discount)
+            number = str_number[::-1].find(".")
+            if number <= 2:
+                net_discount = False
+            else:
+                net_discount = line.price_unit * line.discount / 100
+            if net_discount:
+                price_precision = self.env['decimal.precision'].precision_get(
+                    'Product Price for XML e-invoices')
+                if net_discount >= 0:
+                    tipo = 'SC'
+                else:
+                    tipo = 'MG'
+                res.append(ScontoMaggiorazioneType(
+                    Tipo=tipo,
+                    Importo=float_repr(
+                        float_round(net_discount, price_precision),
+                        price_precision,
+                    )
+                ))
+            else:
+                if line.discount >= 0:
+                    tipo = 'SC'
+                else:
+                    tipo = 'MG'
+                res.append(ScontoMaggiorazioneType(
+                    Tipo=tipo,
+                    Percentuale='%.2f' % float_round(line.discount, 8)
+                ))
         return res
 
     def setDatiRiepilogo(self, invoice, body):
