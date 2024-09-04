@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-09 12:56+0000\n"
-"PO-Revision-Date: 2023-12-24 17:36+0000\n"
+"PO-Revision-Date: 2024-09-04 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields.selection,name:account_vat_period_end_statement.selection__account_vat_period_end_statement__advance_computation_method__4
@@ -556,6 +556,10 @@ msgid ""
 "Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, "
 "Cell. UE, Microproc. UE"
 msgstr ""
+"Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
+"Italia, Beni FUE in Italia, Cell., Microproc.\n"
+"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, "
+"Cell. UE, Microproc. UE"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
