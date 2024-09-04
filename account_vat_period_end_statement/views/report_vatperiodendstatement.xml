@@ -17,10 +17,78 @@
                     <t t-foreach="statement.date_range_ids" t-as="period">
                            <h3><span>Summary</span> <span t-esc="period.name" /> </h3>
 
+                    <t t-set="grouped_purchase_tax_code_amounts" t-value="{}" />
+                    <t t-set="grouped_sale_tax_code_amounts" t-value="{}" />
+                    <t t-foreach="statement.journal_group_ids" t-as="journal_group">
+                        <t
+                            t-set="group_journals"
+                            t-value="journal_group.included_journal_ids"
+                        />
+                        <t
+                            t-set="purchase_group_journals"
+                            t-value="group_journals.filtered(lambda j: j.type == 'purchase')"
+                        />
+                        <t
+                            t-set="sale_group_journals"
+                            t-value="group_journals.filtered(lambda j: j.type == 'sale')"
+                        />
+                        <t
+                            t-set="other_group_journals"
+                            t-value="group_journals - (purchase_group_journals + sale_group_journals)"
+                        />
+                        <t
+                            t-foreach="purchase_group_journals + sale_group_journals + other_group_journals"
+                            t-as="journal"
+                        >
+                            <h3>
+                                <span t-esc="journal.name" />
+                                [<span t-esc="journal_group.name" />]
+                            </h3>
+                            <!-- Purchase -->
+                            <t
+                                t-set="tax_code_amounts"
+                                t-value="tax_amounts(period.id, tax_ids=[l.tax_id.id for l in statement.credit_vat_account_line_ids], registry_type='supplier', journal_ids=journal.ids)"
+                            />
+                            <t t-set="tax_code_type" t-value="'credit'" />
+                            <t t-set="tax_code_section" t-value="'purchase'" />
+                            <t
+                                t-if="journal.type == 'purchase'"
+                                t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"
+                            />
+                            <t
+                                t-set="grouped_purchase_tax_code_amounts"
+                                t-value="sum_tax_code_amounts(grouped_purchase_tax_code_amounts, tax_code_amounts)"
+                            />
+
+                            <!-- Sale -->
+                            <t
+                                t-set="tax_code_amounts"
+                                t-value="tax_amounts(period.id, tax_ids=[l.tax_id.id for l in statement.debit_vat_account_line_ids], registry_type='customer', journal_ids=journal.ids)"
+                            />
+                            <t t-set="tax_code_type" t-value="'debit'" />
+                            <t t-set="tax_code_section" t-value="'sale'" />
+                            <t
+                                t-if="journal.type == 'sale'"
+                                t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"
+                            />
+                            <t
+                                t-set="grouped_sale_tax_code_amounts"
+                                t-value="sum_tax_code_amounts(grouped_sale_tax_code_amounts, tax_code_amounts)"
+                            />
+                        </t>
+                    </t>
+
+                    <h3 t-if="statement.journal_group_ids">All Journals</h3>
                            <!-- Purchase -->
                            <t
+                        t-if="not statement.journal_group_ids"
                         t-set="tax_code_amounts"
                         t-value="tax_amounts(period.id, [l.tax_id.id for l in statement.credit_vat_account_line_ids], 'supplier')"
+                    />
+                           <t
+                        t-else=""
+                        t-set="tax_code_amounts"
+                        t-value="grouped_purchase_tax_code_amounts"
                     />
                            <t t-set="tax_code_type" t-value="'credit'" />
                            <t t-set="tax_code_section" t-value="'purchase'" />
@@ -30,8 +98,14 @@
 
                            <!-- Sale -->
                            <t
+                        t-if="not statement.journal_group_ids"
                         t-set="tax_code_amounts"
                         t-value="tax_amounts(period.id, [l.tax_id.id for l in statement.debit_vat_account_line_ids], 'customer')"
+                    />
+                           <t
+                        t-else=""
+                        t-set="tax_code_amounts"
+                        t-value="grouped_sale_tax_code_amounts"
                     />
                            <t t-set="tax_code_type" t-value="'debit'" />
                            <t t-set="tax_code_section" t-value="'sale'" />
@@ -98,6 +172,7 @@
 
                        <t t-set="total_to_pay" t-value="(total_statement)" />
                     <t
+                    t-if="not statement.journal_group_ids or statement.journal_group_ids == all_journal_groups"
                     t-call="account_vat_period_end_statement.report_vat_period_end_statement_to_pay"
                 />
 
