@@ -1,4 +1,5 @@
 # Copyright 2022 Simone Rubino - TAKOBI
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -26,9 +27,16 @@ class AccountTax(models.Model):
     undeductible_balance = fields.Float(compute="_compute_undeductible_balance")
 
     @api.depends_context(
+        "l10n_it_account_journal_ids",
+    )
+    def _compute_balance(self):
+        return super()._compute_balance()
+
+    @api.depends_context(
         "from_date",
         "to_date",
         "company_ids",
+        "l10n_it_account_journal_ids",
         "target_move",
     )
     def _compute_deductible_balance(self):
@@ -49,6 +57,7 @@ class AccountTax(models.Model):
         "from_date",
         "to_date",
         "company_ids",
+        "l10n_it_account_journal_ids",
         "target_move",
     )
     def _compute_undeductible_balance(self):
@@ -148,6 +157,24 @@ class AccountTax(models.Model):
             name = self.parent_tax_ids[0].name
         return name
 
+    def get_balance_domain(self, state_list, type_list):
+        domain = super().get_balance_domain(state_list, type_list)
+        journal_ids = self.env.context.get("l10n_it_account_journal_ids")
+        if journal_ids:
+            domain.append(
+                ("move_id.journal_id", "in", journal_ids),
+            )
+        return domain
+
+    def get_base_balance_domain(self, state_list, type_list):
+        domain = super().get_base_balance_domain(state_list, type_list)
+        journal_ids = self.env.context.get("l10n_it_account_journal_ids")
+        if journal_ids:
+            domain.append(
+                ("move_id.journal_id", "in", journal_ids),
+            )
+        return domain
+
     def _compute_totals_tax(self, data):
         """
         Args:
@@ -163,7 +190,7 @@ class AccountTax(models.Model):
         }
         registry_type = data.get("registry_type", "customer")
         if data.get("journal_ids"):
-            context["vat_registry_journal_ids"] = data["journal_ids"]
+            context["l10n_it_account_journal_ids"] = data["journal_ids"]
 
         tax = self.env["account.tax"].with_context(**context).browse(self.id)
         tax_name = tax._get_tax_name()
