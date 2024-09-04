@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2024-04-30 18:35+0000\n"
+"PO-Revision-Date: 2024-09-04 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_ddt
 #: model:mail.template,body_html:l10n_it_ddt.email_template_edi_ddt
@@ -132,7 +132,7 @@ msgstr "Creare DDT in modo automatico"
 #. module: l10n_it_ddt
 #: selection:stock.picking.package.preparation,show_deadline_date:0
 msgid "Best before Date"
-msgstr "Data di scadenza"
+msgstr "Da consumarsi preferibilmente entro la data"
 
 #. module: l10n_it_ddt
 #: selection:res.partner,ddt_invoicing_group:0
