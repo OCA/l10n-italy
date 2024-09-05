@@ -11,6 +11,8 @@ import base64
 import datetime
 import re
 
+from unidecode import unidecode
+
 from odoo import _, fields, models
 from odoo.exceptions import UserError
 
@@ -303,7 +305,7 @@ class RibaFileExport(models.TransientModel):
         issued_date = datetime.datetime.now().strftime("%d%m%y")
         support_name = datetime.datetime.now().strftime("%d%m%y%H%M%S") + credit_sia
         creditor_address = order_obj.config_id.company_id.partner_id
-        creditor_city = creditor_address.city or ""
+        creditor_city = unidecode(creditor_address.city or "")
         if (
             not order_obj.config_id.company_id.partner_id.vat
             and not order_obj.config_id.company_id.partner_id.fiscalcode
@@ -322,10 +324,10 @@ class RibaFileExport(models.TransientModel):
             issued_date,
             support_name,
             "E",
-            company_name,
-            creditor_address.street or "",
+            unidecode(company_name),
+            unidecode(creditor_address.street or ""),
             creditor_address.zip or "" + " " + creditor_city,
-            order_obj.config_id.company_id.partner_id.ref or "",
+            unidecode(order_obj.config_id.company_id.partner_id.ref or ""),
             (
                 order_obj.config_id.company_id.partner_id.vat
                 and order_obj.config_id.company_id.partner_id.vat[2:]
@@ -336,7 +338,7 @@ class RibaFileExport(models.TransientModel):
         for line in order_obj.line_ids:
             debit_bank = line.bank_id
             debtor_address = line.partner_id
-            debtor_street = debtor_address.street or ""
+            debtor_street = unidecode(debtor_address.street or "")
             debtor_zip = debtor_address.zip or ""
             if debit_bank.bank_abi and debit_bank.bank_cab:
                 debit_abi = debit_bank.bank_abi
@@ -352,10 +354,10 @@ class RibaFileExport(models.TransientModel):
                         partner=line.partner_id.name,
                     )
                 )
-            debtor_city = (
+            debtor_city = unidecode(
                 debtor_address.city and debtor_address.city.ljust(23)[0:23] or ""
             )
-            debtor_province = (
+            debtor_province = unidecode(
                 debtor_address.state_id and debtor_address.state_id.code or ""
             )
             if not line.due_date:  # ??? VERIFICARE
@@ -386,12 +388,12 @@ class RibaFileExport(models.TransientModel):
                 debtor_province,
                 debit_abi,
                 debit_cab,
-                debit_bank.bank_name and debit_bank.bank_name[:50] or "",
-                line.partner_id.ref and line.partner_id.ref[:16] or "",
-                line.invoice_number[:40],
+                unidecode(debit_bank.bank_name and debit_bank.bank_name[:50] or ""),
+                unidecode(line.partner_id.ref and line.partner_id.ref[:16] or ""),
+                unidecode(line.invoice_number[:40]),
                 line.invoice_date,
-                "CIG: %s " % line.cig if line.cig else "",
-                "CUP: %s " % line.cup if line.cup else "",
+                unidecode("CIG: %s " % line.cig if line.cig else ""),
+                unidecode("CUP: %s " % line.cup if line.cup else ""),
             ]
             array_riba.append(riba)
 
