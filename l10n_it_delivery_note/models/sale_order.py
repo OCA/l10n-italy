@@ -76,11 +76,12 @@ class SaleOrder(models.Model):
         if not invoice_ids:
             return
 
+        delivery_note_ids = self.env.context.get("delivery_note_ids")
         self._cancel_delivery_note_lines()
 
         all_invoice_lines = invoice_ids.invoice_line_ids
         for sol in self.order_line:
-            if not (sol.is_invoiced and sol.delivery_note_line_ids):
+            if not (sol.qty_invoiced and sol.delivery_note_line_ids):
                 continue
             dn_lines = sol.delivery_note_line_ids.filtered(
                 lambda l: l.is_invoiceable
@@ -92,6 +93,12 @@ class SaleOrder(models.Model):
             )
             if not dn_lines:
                 continue
+
+            if dn_lines and delivery_note_ids:
+                dn_lines = dn_lines.filtered(
+                    lambda l: l.delivery_note_id in delivery_note_ids
+                )
+
             inv_lines = all_invoice_lines.filtered(
                 lambda line, s=sol: s in line.sale_line_ids
             ).with_context(check_move_validity=False)
