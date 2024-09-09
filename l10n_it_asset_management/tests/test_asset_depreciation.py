@@ -205,8 +205,8 @@ class TestAssetDepreciation(Common):
             "partial_dismiss",
             wiz_values={
                 "asset_id": asset,
-                "depreciated_fund_amount": depreciated_fund_amount,
                 "asset_purchase_amount": asset_purchase_amount,
+                "depreciated_fund_amount": depreciated_fund_amount,
             },
         )
 
