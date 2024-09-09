@@ -41,11 +41,13 @@ class TestGenerateFile(AccountTestInvoicingCommon):
             {
                 "name": "Test supplier",
                 "bank_ids": [
-                    Command.create(
+                    (
+                        0,
+                        0,
                         {
                             "acc_number": "IT48N0300203280543765183341",
                             "bank_id": cls.supplier_bank.id,
-                        }
+                        },
                     ),
                 ],
             }
@@ -108,6 +110,8 @@ class TestGenerateFile(AccountTestInvoicingCommon):
         # Assert
         payment_tree = etree.fromstring(base64.b64decode(payment_att.datas))
         namespaces = payment_tree.nsmap
+        if None in namespaces:
+            namespaces["default"] = namespaces.pop(None)
         bills_refs_node = payment_tree.find(
             ".//PMRQ:RmtInf//PMRQ:Ustrd",
             namespaces=namespaces,
@@ -157,6 +161,8 @@ class TestGenerateFile(AccountTestInvoicingCommon):
         # Assert
         payment_tree = etree.fromstring(base64.b64decode(payment_att.datas))
         namespaces = payment_tree.nsmap
+        if None in namespaces:
+            namespaces["default"] = namespaces.pop(None)
         bills_refs_node = payment_tree.find(
             ".//PMRQ:RmtInf//PMRQ:Ustrd",
             namespaces=namespaces,
