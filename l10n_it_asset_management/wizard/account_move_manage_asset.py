@@ -47,7 +47,11 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         string="Currency",
     )
 
-    depreciated_fund_amount = fields.Monetary()
+    depreciated_fund_amount = fields.Monetary(
+        compute="_compute_depreciated_fund_amount",
+        store=True,
+        readonly=False,
+    )
 
     depreciation_type_ids = fields.Many2many(
         "asset.depreciation.type", string="Depreciation Types"
@@ -121,6 +125,35 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         "partial_dismiss": lambda w: w.partial_dismiss_asset(),
         "update": lambda w: w.update_asset(),
     }
+
+    @api.depends(
+        "asset_id",
+        "asset_purchase_amount",
+        "management_type",
+    )
+    def _compute_depreciated_fund_amount(self):
+        civil_depreciation_type = self.env.ref(
+            "l10n_it_asset_management.ad_type_civilistico",
+            raise_if_not_found=False,
+        )
+        for wizard in self:
+            depreciated_fund_amount = 0
+            if civil_depreciation_type and wizard.management_type == "partial_dismiss":
+                asset = wizard.asset_id
+                civil_depreciation = asset.depreciation_ids.filtered(
+                    lambda dep: dep.type_id == civil_depreciation_type
+                )
+                civil_depreciable_amount = civil_depreciation.amount_depreciable
+                if civil_depreciation and civil_depreciable_amount:
+                    # Resolve
+                    # depreciated : depreciable = fund_amount : purchase_amount
+                    # for fund_amount
+                    depreciated_fund_amount = (
+                        wizard.asset_purchase_amount
+                        * civil_depreciation.amount_depreciated
+                        / civil_depreciable_amount
+                    )
+            wizard.depreciated_fund_amount = depreciated_fund_amount
 
     @api.onchange("asset_id", "management_type")
     def onchange_depreciation_type_ids(self):
