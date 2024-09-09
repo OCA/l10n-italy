@@ -232,6 +232,17 @@ msgid "Canceled"
 msgstr ""
 
 #. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/account.py:0
+#, python-format
+msgid ""
+"Cannot post invoices with C/O payments without bank. Please check the following invoices:\n"
+"\n"
+"- \n"
+"- "
+msgstr ""
+
+#. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_file_export
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_payment_date
 msgid "Close"
@@ -607,6 +618,13 @@ msgstr ""
 #. module: l10n_it_riba
 #: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_configuration__sbf_collection_type__immediate
 msgid "Immediate"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/account.py:0
+#, python-format
+msgid "Invoice %(name)s for customer \"%(customer_name)s\", total %(amount)s"
 msgstr ""
 
 #. module: l10n_it_riba
