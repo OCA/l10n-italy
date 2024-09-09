@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-02 08:45+0000\n"
-"PO-Revision-Date: 2024-07-02 08:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +15,6 @@ msgstr ""
 
 #. module: l10n_it_sct_cbi
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_sct_cbi/models/account_payment_order.py:0
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
@@ -27,7 +24,6 @@ msgstr ""
 
 #. module: l10n_it_sct_cbi
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_sct_cbi/models/account_payment_order.py:0
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
@@ -37,7 +33,6 @@ msgstr ""
 
 #. module: l10n_it_sct_cbi
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_sct_cbi/models/account_payment_order.py:0
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid "Bank account '%(partner_bank)s' must have a valid IBAN"
@@ -45,7 +40,6 @@ msgstr ""
 
 #. module: l10n_it_sct_cbi
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_sct_cbi/models/account_payment_order.py:0
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
@@ -65,7 +59,6 @@ msgstr ""
 
 #. module: l10n_it_sct_cbi
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_sct_cbi/models/account_payment_order.py:0
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
@@ -90,7 +83,6 @@ msgstr ""
 
 #. module: l10n_it_sct_cbi
 #. odoo-python
-#: code:addons/l10n-italy/l10n_it_sct_cbi/models/account_payment_order.py:0
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
