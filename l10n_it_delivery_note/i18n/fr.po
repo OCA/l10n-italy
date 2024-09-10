@@ -472,7 +472,6 @@ msgstr ""
 #: model:ir.actions.report,name:l10n_it_delivery_note.delivery_note_report_action
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__delivery_note_id
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__delivery_note_line_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__delivery_note_id
@@ -1131,13 +1130,6 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_search_view
 msgid "No DN"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/sale_order.py:0
-#, python-format
-msgid ""
-"No unique matching move line was found for %(sol)s in Stock Move %(move)s"
 msgstr ""
 
 #. module: l10n_it_delivery_note
