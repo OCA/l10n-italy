@@ -6,11 +6,9 @@
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from collections import defaultdict
-
 from odoo import _, fields, models
 
-from .stock_delivery_note import DATE_FORMAT
+from .stock_delivery_note import DATE_FORMAT, DOMAIN_INVOICE_STATUSES
 
 
 class AccountInvoice(models.Model):
@@ -89,27 +87,13 @@ class AccountInvoice(models.Model):
             "quantity": 0,
         }
 
-    def _has_dn_line_note(self, delivery_note):
-        self.ensure_one()
-        return bool(
-            self.invoice_line_ids.filtered(
-                lambda line, dn=delivery_note: line.display_type == "line_note"
-                and line.delivery_note_id == dn
-            )
-        )
-
     def update_delivery_note_lines(self):
         context = {}
 
         for invoice in self.filtered(lambda i: i.delivery_note_ids):
-            sequence = 1
             new_lines = []
-
-            # Build a dictionary {delivery.note(1, 2): account.move.line(3, 5)}
-            inv_line_by_dn = defaultdict(self.env["account.move.line"].browse)
-            for inv_line in invoice.invoice_line_ids:
-                dn = inv_line.delivery_note_line_id.delivery_note_id
-                inv_line_by_dn[dn] |= inv_line
+            old_lines = invoice.invoice_line_ids.filtered(lambda l: l.note_dn)
+            old_lines.unlink()
 
             #
             # TODO: Come bisogna comportarsi nel caso in
@@ -127,9 +111,7 @@ class AccountInvoice(models.Model):
             #
             context["lang"] = invoice.partner_id.lang
 
-            if len(invoice.delivery_note_ids) == 1 and not invoice._has_dn_line_note(
-                invoice.delivery_note_ids[0]
-            ):
+            if len(invoice.delivery_note_ids) == 1:
                 sequence = invoice.invoice_line_ids[0].sequence - 1
                 new_lines.append(
                     (
@@ -141,20 +123,40 @@ class AccountInvoice(models.Model):
                     )
                 )
             else:
-                for dn in inv_line_by_dn:
-                    if not dn or invoice._has_dn_line_note(dn):
-                        continue
-                    new_lines_vals = self._prepare_note_dn_value(sequence, dn)
-                    new_lines.append(
-                        (
-                            0,
-                            False,
-                            new_lines_vals,
+                sequence = 1
+                done_invoice_lines = self.env["account.move.line"]
+                for dn in invoice.mapped("delivery_note_ids").sorted(key="name"):
+                    dn_invoice_lines = invoice.invoice_line_ids.filtered(
+                        lambda x: x not in done_invoice_lines
+                        and dn
+                        in x.mapped(
+                            "sale_line_ids.delivery_note_line_ids.delivery_note_id"
                         )
+                        # fixme test invoice from 2 sale lines
                     )
-                    sequence += 1
-                    for line in inv_line_by_dn[dn]:
-                        line.sequence = sequence
+                    done_invoice_lines |= dn_invoice_lines
+                    for note_line in dn.line_ids.filtered(
+                        lambda l: l.invoice_status == DOMAIN_INVOICE_STATUSES[2]
+                    ):
+                        for invoice_line in dn_invoice_lines:
+                            if (
+                                note_line
+                                in invoice_line.sale_line_ids.delivery_note_line_ids
+                            ):
+                                invoice_line.delivery_note_id = (
+                                    note_line.delivery_note_id.id
+                                )
+                    if dn_invoice_lines:
+                        new_lines.append(
+                            (
+                                0,
+                                False,
+                                self._prepare_note_dn_value(sequence, dn),
+                            )
+                        )
+                        sequence += 1
+                    for invoice_line in dn_invoice_lines:
+                        invoice_line.sequence = sequence
                         sequence += 1
 
             invoice.write({"line_ids": new_lines})
@@ -189,8 +191,5 @@ class AccountInvoiceLine(models.Model):
 
     delivery_note_id = fields.Many2one(
         "stock.delivery.note", string="Delivery Note", readonly=True, copy=False
-    )
-    delivery_note_line_id = fields.Many2one(
-        "stock.delivery.note.line", string="Delivery Note", readonly=True, copy=False
     )
     note_dn = fields.Boolean(string="Note DN")
