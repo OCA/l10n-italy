@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-02 08:46+0000\n"
-"PO-Revision-Date: 2024-07-02 08:46+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-09-11 09:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_sct_cbi
 #. odoo-python
@@ -59,12 +60,12 @@ msgstr ""
 #. module: l10n_it_sct_cbi
 #: model:ir.model.fields.selection,name:l10n_it_sct_cbi.selection__account_payment_method__pain_version__cbibdycrossborderpaymentrequest_00_01_01
 msgid "CBIBdyCrossBorderPaymentRequest.00.01.01"
-msgstr ""
+msgstr "CBIBdyCrossBorderPaymentRequest.00.01.01"
 
 #. module: l10n_it_sct_cbi
 #: model:ir.model.fields.selection,name:l10n_it_sct_cbi.selection__account_payment_method__pain_version__cbibdypaymentrequest_00_04_01
 msgid "CBIBdyPaymentRequest.00.04.01"
-msgstr ""
+msgstr "CBIBdyPaymentRequest.00.04.01"
 
 #. module: l10n_it_sct_cbi
 #. odoo-python
