@@ -6,24 +6,29 @@ from odoo import _, api, exceptions, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    @api.constrains("stamp_apply_tax_ids", "is_stamp")
+    @api.constrains("l10n_it_account_stamp_tax_stamp_apply_tax_ids", "l10n_it_account_stamp_is_stamp")
     def _check_stamp_apply_tax(self):
         for template in self:
-            if template.stamp_apply_tax_ids and not template.is_stamp:
+            if template.l10n_it_account_stamp_tax_stamp_apply_tax_ids and not template.l10n_it_account_stamp_is_stamp:
                 raise exceptions.ValidationError(
                     _("The product %s must be a stamp to apply set taxes!")
                     % template.name
                 )
 
-    stamp_apply_tax_ids = fields.Many2many(
-        "account.tax",
-        "product_tax_account_tax__rel",
-        "product_id",
-        "tax_id",
+    l10n_it_account_stamp_tax_stamp_apply_tax_ids = fields.Many2many(
+        comodel_name="account.tax",
+        relation="l10n_it_account_stamp_product_tax_account_tax_rel",
+        column1="product_id",
+        column2="tax_id",
         string="Stamp taxes",
     )
-    stamp_apply_min_total_base = fields.Float(
-        "Stamp applicability min total base", digits="Account"
+    l10n_it_account_stamp_tax_apply_min_total_base = fields.Float(
+        string="Stamp applicability min total base",
+        digits="Account",
     )
-    is_stamp = fields.Boolean("Is a stamp")
-    auto_compute = fields.Boolean("Auto-compute")
+    l10n_it_account_stamp_is_stamp = fields.Boolean(
+        string="Is a stamp",
+    )
+    l10n_it_account_stamp_auto_compute = fields.Boolean(
+        string="Auto-compute",
+    )

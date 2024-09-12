@@ -12,27 +12,27 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='invoice_line_ids']/tree/field[@name='sequence']"
+                expr="//field[@name='invoice_line_ids']/list/field[@name='sequence']"
                 position="after"
             >
-                <field name="is_stamp_line" invisible="1" />
+                <field name="is_stamp_line" column_invisible="True"/>
             </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']/tree" position="attributes">
+            <xpath expr="//field[@name='invoice_line_ids']/list" position="attributes">
                 <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
             </xpath>
             <xpath expr="//group[@id='header_right_group']" position="inside">
-                <field name="auto_compute_stamp" invisible="1" />
-                <field name="tax_stamp" string="Tax stamp" invisible="1" />
+                <field name="l10n_it_account_stamp_auto_compute_tax_stamp" invisible="1" />
+                <field name="l10n_it_account_stamp_is_tax_stamp_applied" string="Tax stamp" invisible="1" />
                 <field
-                    name="manually_apply_tax_stamp"
-                    attrs="{'invisible': [('auto_compute_stamp', '=', True)]}"
+                    name="l10n_it_account_stamp_manually_apply_tax_stamp"
+                    invisible="l10n_it_account_stamp_auto_compute_tax_stamp"
                 />
-                <field name="tax_stamp_line_present" invisible="1" />
+                <field name="l10n_it_account_stamp_is_tax_stamp_present" invisible="1" />
             </xpath>
             <field name="narration" position="before">
                 <div
                     name="stamp_applicability"
-                    attrs="{'invisible': [('tax_stamp', '=', False)]}"
+                    invisible="not l10n_it_account_stamp_is_tax_stamp_applied"
                     colspan="2"
                 >
                     <img
@@ -40,21 +40,21 @@
                         alt="Tax stamp"
                     />
                     <span
-                        attrs="{'invisible': [('tax_stamp_line_present', '=', True)]}"
+                        invisible="l10n_it_account_stamp_is_tax_stamp_present"
                     >
-                        <span attrs="{'invisible': [('state', 'not in', 'draft')]}">
+                        <span invisible="state != 'draft'">
                             <button
                                 type="object"
                                 string="Charge stamp to customer"
                                 name="add_tax_stamp_line"
                             />
                         </span>
-                        <span attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <span invisible="state == 'draft'">
                             Stamp can only be charged to customer when invoice is in draft state
                         </span>
                     </span>
                     <span
-                        attrs="{'invisible': [('tax_stamp_line_present', '=', False)]}"
+                        invisible="not l10n_it_account_stamp_is_tax_stamp_present"
                     >
                         Stamp charged to customer
                     </span>
@@ -66,7 +66,7 @@
                 expr="//form/sheet/notebook/page[@id='invoice_tab']/field/form/sheet/group/field[@name='product_id']"
                 position="after"
             >
-                <field name="is_stamp_line" invisible="1" />
+                <field name="is_stamp_line" column_invisible="True"/>
             </xpath>
         </field>
     </record>

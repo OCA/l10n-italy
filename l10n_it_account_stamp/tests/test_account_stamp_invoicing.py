@@ -18,7 +18,7 @@ class InvoicingTest(TestAccountInvoiceReport):
 
         account_revenue_id = self.env["account.account"].search(
             [
-                ("company_id", "=", self.env.company.id),
+                ("company_ids", "child_of", self.env.company.id),
                 (
                     "account_type",
                     "=",
@@ -29,7 +29,7 @@ class InvoicingTest(TestAccountInvoiceReport):
         )
         account_expense_id = self.env["account.account"].search(
             [
-                ("company_id", "=", self.env.company.id),
+                ("company_ids", "child_of", self.env.company.id),
                 (
                     "account_type",
                     "=",
@@ -40,12 +40,12 @@ class InvoicingTest(TestAccountInvoiceReport):
         )
         stamp_product_id.write(
             {
-                "stamp_apply_tax_ids": [(6, 0, [self.tax_id.id])],
+                "l10n_it_account_stamp_tax_stamp_apply_tax_ids": [(6, 0, [self.tax_id.id])],
                 "property_account_income_id": account_revenue_id.id,
                 "property_account_expense_id": account_expense_id.id,
             }
         )
-        self.env.company.tax_stamp_product_id = stamp_product_id
+        self.env.company.l10n_it_account_stamp_tax_stamp_product_id = stamp_product_id
 
     def test_post_invoicing(self):
         invoice = first(
@@ -59,7 +59,7 @@ class InvoicingTest(TestAccountInvoiceReport):
         self.assertEqual(
             len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 0
         )
-        self.assertTrue(invoice.tax_stamp)
+        self.assertTrue(invoice.l10n_it_account_stamp_is_tax_stamp_applied)
         invoice.action_post()
 
         self.assertEqual(
@@ -84,18 +84,19 @@ class InvoicingTest(TestAccountInvoiceReport):
         invoice.action_post()
 
         # Add stamp and check that edited description is kept
+        invoice.button_draft()
         invoice.add_tax_stamp_line()
         self.assertEqual(invoice.invoice_line_ids[0].name, edited_descr)
 
     def test_amount_total_changing_currency(self):
         """Modify invoice currency and check that amount_total does not change after
         action_post"""
-        self.env.company.tax_stamp_product_id.auto_compute = False
+        self.env.company.l10n_it_account_stamp_tax_stamp_product_id.l10n_it_account_stamp_auto_compute = False
         invoice = first(
             self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
         )
         invoice_form = Form(invoice)
-        invoice_form.manually_apply_tax_stamp = False
+        invoice_form.l10n_it_account_stamp_manually_apply_tax_stamp = False
         invoice_form.currency_id = self.env.ref("base.USD")
         invoice = invoice_form.save()
         total = invoice.amount_total
@@ -114,15 +115,16 @@ class InvoicingTest(TestAccountInvoiceReport):
             ],
         )
         # pre-condition
-        self.assertTrue(invoice.tax_stamp)
-        self.assertFalse(invoice.tax_stamp_line_present)
+        self.assertTrue(invoice.l10n_it_account_stamp_is_tax_stamp_applied)
+        self.assertFalse(invoice.l10n_it_account_stamp_is_tax_stamp_present)
 
         # Act
         invoice.add_tax_stamp_line()
+        invoice.action_post()
 
         # Assert
-        self.assertTrue(invoice.tax_stamp_line_present)
+        self.assertTrue(invoice.l10n_it_account_stamp_is_tax_stamp_present)
 
         # Resetting to draft removes the stamp
         invoice.button_draft()
-        self.assertFalse(invoice.tax_stamp_line_present)
+        self.assertFalse(invoice.l10n_it_account_stamp_is_tax_stamp_present)
