@@ -1,10 +1,10 @@
+import json
 
-from odoo import _, api, exceptions, fields, models
-from odoo.tools import config
-from odoo.exceptions import UserError
 import requests
-from requests import HTTPError, Timeout, TooManyRedirects
-from urllib.parse import urljoin
+from requests import Timeout, TooManyRedirects
+
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class SdiChannel(models.Model):
@@ -17,68 +17,68 @@ class SdiChannel(models.Model):
         string="GovWay URL",
     )
 
-    @api.constrains("fetch_pec_server_id")
-    def check_fetch_pec_server_id(self):
-        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
-        for channel in pec_channels:
-            domain = [
-                ("fetch_pec_server_id", "=", channel.fetch_pec_server_id.id),
-                ("id", "in", pec_channels.ids),
-            ]
-            elements = self.search(domain)
-            if len(elements) > 1:
-                raise exceptions.ValidationError(
-                    _("The channel %s with pec server %s already exists")
-                    % (channel.name, channel.fetch_pec_server_id.name)
-                )
-
-    @api.constrains("pec_server_id")
-    def check_pec_server_id(self):
-        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
-        for channel in pec_channels:
-            domain = [
-                ("pec_server_id", "=", channel.pec_server_id.id),
-                ("id", "in", pec_channels.ids),
-            ]
-            elements = self.search(domain)
-            if len(elements) > 1:
-                raise exceptions.ValidationError(
-                    _("The channel %s with pec server %s already exists")
-                    % (channel.name, channel.pec_server_id.name)
-                )
-
-    @api.constrains("email_exchange_system")
-    def check_email_validity(self):
-        if self.env.context.get("skip_check_email_validity"):
-            return
-        pec_channels = self.filtered(lambda c: c.channel_type == "pec")
-        for channel in pec_channels:
-            if not extract_rfc2822_addresses(channel.email_exchange_system):
-                raise exceptions.ValidationError(
-                    _("Email %s is not valid") % channel.email_exchange_system
-                )
-
-    def check_first_pec_sending(self):
-        if not self.first_invoice_sent:
-            sdi_address = self.env["ir.config_parameter"].get_param(
-                "sdi.pec.first.address",
-            )
-            self.email_exchange_system = sdi_address
-        else:
-            if not self.email_exchange_system:
-                raise exceptions.UserError(
-                    _(
-                        "SDI PEC address not set. Please update it with the "
-                        "address indicated by SDI after the first sending"
-                    )
-                )
-
-    def update_after_first_pec_sending(self):
-        if not self.first_invoice_sent:
-            self.first_invoice_sent = True
-            self.with_context(
-                skip_check_email_validity=True
-            ).email_exchange_system = False
+    # @api.constrains("fetch_pec_server_id")
+    # def check_fetch_pec_server_id(self):
+    #     pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+    #     for channel in pec_channels:
+    #         domain = [
+    #             ("fetch_pec_server_id", "=", channel.fetch_pec_server_id.id),
+    #             ("id", "in", pec_channels.ids),
+    #         ]
+    #         elements = self.search(domain)
+    #         if len(elements) > 1:
+    #             raise exceptions.ValidationError(
+    #                 _("The channel %s with pec server %s already exists")
+    #                 % (channel.name, channel.fetch_pec_server_id.name)
+    #             )
+    #
+    # @api.constrains("pec_server_id")
+    # def check_pec_server_id(self):
+    #     pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+    #     for channel in pec_channels:
+    #         domain = [
+    #             ("pec_server_id", "=", channel.pec_server_id.id),
+    #             ("id", "in", pec_channels.ids),
+    #         ]
+    #         elements = self.search(domain)
+    #         if len(elements) > 1:
+    #             raise exceptions.ValidationError(
+    #                 _("The channel %s with pec server %s already exists")
+    #                 % (channel.name, channel.pec_server_id.name)
+    #             )
+    #
+    # @api.constrains("email_exchange_system")
+    # def check_email_validity(self):
+    #     if self.env.context.get("skip_check_email_validity"):
+    #         return
+    #     pec_channels = self.filtered(lambda c: c.channel_type == "pec")
+    #     for channel in pec_channels:
+    #         if not extract_rfc2822_addresses(channel.email_exchange_system):
+    #             raise exceptions.ValidationError(
+    #                 _("Email %s is not valid") % channel.email_exchange_system
+    #             )
+    #
+    # def check_first_pec_sending(self):
+    #     if not self.first_invoice_sent:
+    #         sdi_address = self.env["ir.config_parameter"].get_param(
+    #             "sdi.pec.first.address",
+    #         )
+    #         self.email_exchange_system = sdi_address
+    #     else:
+    #         if not self.email_exchange_system:
+    #             raise exceptions.UserError(
+    #                 _(
+    #                     "SDI PEC address not set. Please update it with the "
+    #                     "address indicated by SDI after the first sending"
+    #                 )
+    #             )
+    #
+    # def update_after_first_pec_sending(self):
+    #     if not self.first_invoice_sent:
+    #         self.first_invoice_sent = True
+    #         self.with_context(
+    #             skip_check_email_validity=True
+    #         ).email_exchange_system = False
 
     def send_via_govway(self, attachment_out_ids):
         if not self.govway_url:

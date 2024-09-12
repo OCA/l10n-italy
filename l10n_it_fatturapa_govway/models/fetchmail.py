@@ -148,9 +148,7 @@ class Fetchmail(models.Model):
         self.ensure_one()
         _logger.info(
             "Failure when fetching emails "
-            "using {serv_type} server {serv_name}.".format(
-                serv_type=self.server_type, serv_name=self.name
-            ),
+            f"using {self.server_type} server {self.name}.",
             exc_info=True,
         )
 
