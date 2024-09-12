@@ -221,3 +221,22 @@ class TestFatturaPAXMLValidation(TestItEdi):
                 },
             ],
         )
+
+    def test_create_partner(self):
+        """If partner does not exist, it is created during import."""
+        partner_name = "SOCIETA' ALPHA SRL"
+        # pre-condition
+        partner = self.env["res.partner"].search(
+            [
+                ("name", "=", partner_name),
+            ],
+            limit=1,
+        )
+        self.assertFalse(partner)
+
+        # Act
+        invoice = self._assert_import_invoice("IT02780790107_11004.xml", [{}])
+
+        # Assert
+        partner = invoice.partner_id
+        self.assertEqual(partner.name, partner_name)
