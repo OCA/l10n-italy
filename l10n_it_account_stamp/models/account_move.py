@@ -8,25 +8,28 @@ from odoo.exceptions import UserError
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    tax_stamp = fields.Boolean(
+    l10n_it_account_stamp_is_tax_stamp_applied = fields.Boolean(
+        string="Tax stamp",
         help="Tax stamp is applied to this invoice.",
         readonly=False,
-        compute="_compute_tax_stamp",
+        compute="_compute_l10n_it_account_stamp_is_tax_stamp_applied",
         store=True,
     )
-    tax_stamp_line_present = fields.Boolean(
+    l10n_it_account_stamp_is_tax_stamp_present = fields.Boolean(
         string="Stamp line is present in invoice",
-        compute="_compute_tax_stamp_line_present",
+        compute="_compute_l10n_it_account_stamp_is_tax_stamp_present",
     )
-    auto_compute_stamp = fields.Boolean(
-        related="company_id.tax_stamp_product_id.auto_compute"
+    l10n_it_account_stamp_auto_compute_tax_stamp = fields.Boolean(
+        related="company_id.l10n_it_account_stamp_tax_stamp_product_id.l10n_it_account_stamp_auto_compute",
     )
-    manually_apply_tax_stamp = fields.Boolean("Apply tax stamp")
+    l10n_it_account_stamp_manually_apply_tax_stamp = fields.Boolean(
+        string="Apply tax stamp",
+    )
 
     def is_tax_stamp_applicable(self):
         stamp_product_id = self.company_id.with_context(
             lang=self.partner_id.lang
-        ).tax_stamp_product_id
+        ).l10n_it_account_stamp_tax_stamp_product_id
         if not stamp_product_id:
             raise UserError(_("Missing tax stamp product in company settings!"))
         total_tax_base = sum(
@@ -34,12 +37,17 @@ class AccountMove(models.Model):
                 inv_tax.price_subtotal
                 for inv_tax in self.line_ids.filtered(
                     lambda line: set(line.tax_ids.ids)
-                    & set(stamp_product_id.stamp_apply_tax_ids.ids)
+                    & set(
+                        stamp_product_id.l10n_it_account_stamp_tax_stamp_apply_tax_ids.ids
+                    )
                 )
             ),
             0.0,
         )
-        return total_tax_base >= stamp_product_id.stamp_apply_min_total_base
+        return (
+            total_tax_base
+            >= stamp_product_id.l10n_it_account_stamp_tax_apply_min_total_base
+        )
 
     @api.depends(
         "invoice_line_ids.price_subtotal",
@@ -48,29 +56,31 @@ class AccountMove(models.Model):
         "company_id",
         "invoice_date",
         "move_type",
-        "manually_apply_tax_stamp",
+        "l10n_it_account_stamp_manually_apply_tax_stamp",
         "invoice_line_ids.tax_ids",
     )
-    def _compute_tax_stamp(self):
+    def _compute_l10n_it_account_stamp_is_tax_stamp_applied(self):
         for invoice in self:
-            invoice.tax_stamp = False
-            if invoice.auto_compute_stamp:
-                invoice.tax_stamp = invoice.is_tax_stamp_applicable()
+            invoice.l10n_it_account_stamp_is_tax_stamp_applied = False
+            if invoice.l10n_it_account_stamp_auto_compute_tax_stamp:
+                invoice.l10n_it_account_stamp_is_tax_stamp_applied = (
+                    invoice.is_tax_stamp_applicable()
+                )
             else:
-                if invoice.manually_apply_tax_stamp:
-                    invoice.tax_stamp = True
+                if invoice.l10n_it_account_stamp_manually_apply_tax_stamp:
+                    invoice.l10n_it_account_stamp_is_tax_stamp_applied = True
 
     def add_tax_stamp_line(self):
         for inv in self:
-            if not inv.tax_stamp:
+            if not inv.l10n_it_account_stamp_is_tax_stamp_applied:
                 raise UserError(_("Tax stamp is not applicable"))
             stamp_product_id = inv.company_id.with_context(
                 lang=inv.partner_id.lang
-            ).tax_stamp_product_id
+            ).l10n_it_account_stamp_tax_stamp_product_id
             if not stamp_product_id:
                 raise UserError(_("Missing tax stamp product in company settings!"))
             for line in inv.invoice_line_ids:
-                if line.product_id and line.product_id.is_stamp:
+                if line.product_id and line.product_id.l10n_it_account_stamp_is_stamp:
                     raise UserError(
                         _("Tax stamp line %s already present. Remove it first.")
                         % line.name
@@ -106,15 +116,17 @@ class AccountMove(models.Model):
     @api.depends(
         "invoice_line_ids",
         "invoice_line_ids.product_id",
-        "invoice_line_ids.product_id.is_stamp",
+        "invoice_line_ids.product_id.l10n_it_account_stamp_is_stamp",
     )
-    def _compute_tax_stamp_line_present(self):
+    def _compute_l10n_it_account_stamp_is_tax_stamp_present(self):
         for invoice in self:
-            invoice.tax_stamp_line_present = invoice.is_tax_stamp_line_present()
+            invoice.l10n_it_account_stamp_is_tax_stamp_present = (
+                invoice.is_tax_stamp_line_present()
+            )
 
     def is_tax_stamp_product_present(self):
         product_stamp = self.invoice_line_ids.filtered(
-            lambda line: line.product_id.is_stamp
+            lambda line: line.product_id.l10n_it_account_stamp_is_stamp
         )
         if product_stamp:
             return True
@@ -168,7 +180,7 @@ class AccountMove(models.Model):
         for inv in self:
             posted = False
             if (
-                inv.tax_stamp
+                inv.l10n_it_account_stamp_is_tax_stamp_applied
                 and not inv.is_tax_stamp_line_present()
                 and not inv.is_tax_stamp_product_present()
             ):
@@ -178,7 +190,7 @@ class AccountMove(models.Model):
                 line_model = self.env["account.move.line"]
                 stamp_product_id = inv.company_id.with_context(
                     lang=inv.partner_id.lang
-                ).tax_stamp_product_id
+                ).l10n_it_account_stamp_tax_stamp_product_id
                 if not stamp_product_id:
                     raise UserError(_("Missing tax stamp product in company settings!"))
                 income_vals, expense_vals = inv._build_tax_stamp_lines(stamp_product_id)

@@ -9,25 +9,26 @@
 
             <xpath expr="//group[@name='payables']" position="after">
                 <group string="Tax stamp">
-                    <field name="is_stamp" />
+                    <field name="l10n_it_account_stamp_is_stamp" />
                     <field
-                        name="auto_compute"
-                        attrs="{'invisible': [('is_stamp', '=', False)]}"
+                        name="l10n_it_account_stamp_auto_compute"
+                        invisible="not l10n_it_account_stamp_is_stamp"
                     />
                     <p
-                        attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)]}"
+                        invisible="(not l10n_it_account_stamp_auto_compute) or (not l10n_it_account_stamp_is_stamp)"
                         colspan="2"
                     >
                         For each invoice, the base amount for each selected tax will be added up and used to determine
                         the application of the account stamp.
                     </p>
                     <field
-                        name="stamp_apply_min_total_base"
-                        attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)], 'required': [('auto_compute', '=', True)]}"
+                        name="l10n_it_account_stamp_tax_apply_min_total_base"
+                        invisible="(not l10n_it_account_stamp_auto_compute) or (not l10n_it_account_stamp_is_stamp)"
+                        required="l10n_it_account_stamp_auto_compute"
                     />
                     <field
-                        name="stamp_apply_tax_ids"
-                        attrs="{'invisible': ['|',('auto_compute', '=', False), ('is_stamp', '=', False)]}"
+                        name="l10n_it_account_stamp_tax_stamp_apply_tax_ids"
+                        invisible="(not l10n_it_account_stamp_auto_compute) or (not l10n_it_account_stamp_is_stamp)"
                         widget="many2many_tags"
                     />
                 </group>
@@ -37,15 +38,14 @@
                 expr="//field[@name='property_account_income_id']"
                 position="attributes"
             >
-                <attribute name="attrs">{'required': [('is_stamp', '=', True)]}
-                </attribute>
+                <attribute name="required">l10n_it_account_stamp_is_stamp</attribute>
             </xpath>
 
             <xpath
                 expr="//field[@name='property_account_expense_id']"
                 position="attributes"
             >
-                <attribute name="attrs">{'required': [('is_stamp', '=', True)]}
+                <attribute name="required">l10n_it_account_stamp_is_stamp
                 </attribute>
             </xpath>
 

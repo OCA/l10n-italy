@@ -24,7 +24,7 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
 msgid ""
-"<span attrs=\"{'invisible': [('tax_stamp_line_present', '=', False)]}\">\n"
+"<span attrs=\"{'invisible': [('l10n_it_account_stamp_is_tax_stamp_present', '=', False)]}\">\n"
 "                        Stamp charged to customer\n"
 "                    </span>"
 msgstr ""
