@@ -80,34 +80,6 @@ class SdiChannel(models.Model):
                 skip_check_email_validity=True
             ).email_exchange_system = False
 
-    @api.model
-    def _check_server_govway(self):
-        govway_url = self.env.user.company.govway_url
-        # call API /status
-        url = urljoin(govway_url, "/status")
-        try:
-            response = requests.get(
-                url=url,
-                params=params,
-                headers=headers,
-                timeout=60)
-            response_data = json.loads(response.text)
-            status = response_data.get("status")
-            if status and status.get("error_code", False):
-                raise Exception(
-                    _(
-                        "Failed to fetch from CoinMarketCap with error code: "
-                        "%s and error message: %s"
-                    )
-                    % (status.get("error_code"), status.get("error_message"))
-                )
-        except (ConnectionError, Timeout, TooManyRedirects) as e:
-            raise UserError(_(
-                "GovWay server not available for %s. Please configure it.")
-                % str(e)
-            )
-        return response_data.get("data", {})
-
     def send_via_govway(self, attachment_out_ids):
         if not self.govway_url:
             raise UserError(_("Missing GovWay URL"))

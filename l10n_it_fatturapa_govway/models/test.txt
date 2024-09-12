@@ -1,9 +1,0 @@
-curl -k -X POST -basic -u "SdIRiceviFile:cq7dP4axLyA3RfCtwwH94FNz" \
---data-binary @IT04366690248_00006.xml \
--H "Content-Type: application/xml" \
-"https://testgovway.pretecno.com/govway/sdi/out/xml2soap/Pretecno/CentroServiziFatturaPA/SdIRiceviFile/v1?Versione=FPR12&TipoFile=XML&IdPaese=IT&IdCodice=04366690248"
-
-
-https://testgovway.pretecno.com/govway/Pretecno/
-
-https://testgovway.pretecno.com/govway/sdi/in/Pretecno/TrasmissioneFatture/v1
