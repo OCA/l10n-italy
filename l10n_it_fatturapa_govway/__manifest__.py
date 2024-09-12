@@ -18,12 +18,11 @@
     "data": [
         # "security/ir.model.access.csv",
         # "views/fetchmail_view.xml",
-        "views/company_view.xml",
         "views/sdi_view.xml",
-        "views/ir_mail_server.xml",
-        "data/fetchmail_data.xml",
-        "data/config_parameter.xml",
-        "data/sdi_channel_demo.xml",
+        #"views/sdi_view.xml",
+        #"views/ir_mail_server.xml",
+        #"data/fetchmail_data.xml",
+        #"data/sdi_channel_demo.xml",
     ],
     "installable": True,
 }

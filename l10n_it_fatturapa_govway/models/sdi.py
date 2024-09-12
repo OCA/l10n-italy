@@ -13,6 +13,9 @@ class SdiChannel(models.Model):
     channel_type = fields.Selection(
         selection_add=[("govway", "GovWay")], ondelete={"govway": "cascade"}
     )
+    govway_url = fields.Char(
+        string="GovWay URL",
+    )
 
     @api.constrains("fetch_pec_server_id")
     def check_fetch_pec_server_id(self):
