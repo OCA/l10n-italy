@@ -6,7 +6,7 @@ _logger = logging.getLogger()
 class FatturaPAGovWay(Controller):
     # incoming invoices
     @route(["/fatturapa/govway/ricevi_fattura"], type="http", auth="user", website=True)
-    def ricevi_fattura(self):
+    def ricevi_fattura(self, *args, **post):
         # headers
         # - GovWay-SDI-FormatoArchivioBase64
         # - GovWay-SDI-FormatoArchivioInvioFattura
@@ -31,7 +31,7 @@ class FatturaPAGovWay(Controller):
         _logger.debug("ricevi_fattura(): post={}".format(repr(post)))
 
     @route(["/fatturapa/govway/ricevi_ndt"], type="http", auth="user", website=True)
-    def ricevi_ndt(self):
+    def ricevi_ndt(self, *args, **post):
         # headers
         # - GovWay-SDI-IdentificativoSdI
         # - GovWay-SDI-NomeFile
