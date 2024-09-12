@@ -86,4 +86,5 @@ class FatturaPAGovWay(Controller):
         )
         _logger.debug(f"ricevi_notifica(): args={repr(args)}")
         _logger.debug(f"ricevi_notifica(): post={repr(post)}")
-        # request.env["sdi.channel"].sdi_channel_model.receive_notification({ sdi_nomefile: post })
+        # request.env["sdi.channel"].sdi_channel_model.receive_notification(
+        # { sdi_nomefile: post })
