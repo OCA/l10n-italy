@@ -15,7 +15,7 @@
                 <header>
                     <button
                         name="create_move"
-                        attrs="{'invisible': ['|', ('annual', '=', True), ('state', '!=', 'draft')]}"
+                        invisible="annual or state != 'draft'"
                         type="object"
                         string="Create Move"
                         class="oe_highlight"
@@ -23,49 +23,51 @@
                     <button
                         name="statement_draft"
                         type="object"
-                        states="confirmed,paid"
+                        invisible="state not in ('confirmed', 'paid')"
                         string="Set to draft"
                     />
                     <button
                         type="object"
                         name="compute_amounts"
                         string="Recompute amounts"
-                        states="draft"
+                        invisible="state != 'draft'"
                     />
-                    <field
-                        name="state"
-                        widget="statusbar"
-                        attrs="{'invisible': [('annual', '=', True)]}"
-                    />
+                    <field name="state" widget="statusbar" invisible="annual" />
                 </header>
                 <group>
-                    <field name="journal_id" widget="selection" />
-                    <field name="date" />
-                    <field name="annual" />
                     <field
-                        name="move_id"
-                        attrs="{'invisible': [('annual', '=', True)]}"
+                        name="journal_id"
+                        widget="selection"
+                        readonly="state in ('confirmed', 'paid')"
                     />
+                    <field name="date" readonly="state in ('confirmed', 'paid')" />
+                    <field name="annual" />
+                    <field name="move_id" invisible="annual" />
                     <field
                         name="payment_term_id"
-                        attrs="{'invisible': [('annual', '=', True)]}"
+                        invisible="annual"
+                        readonly="state in ('confirmed', 'paid')"
                     />
                     <field
                         name="authority_partner_id"
+                        readonly="state in ('confirmed', 'paid')"
                         widget="res_partner_many2one"
                         context="{'res_partner_search_mode': 'supplier', 'default_is_company': True}"
-                        attrs="{'invisible': [('annual', '=', True)]}"
+                        invisible="annual"
                     />
                     <field
                         name="authority_vat_account_id"
-                        attrs="{'invisible': [('annual', '=', True)], 'required': [('annual', '=', False)]}"
+                        invisible="annual"
+                        required="not annual"
+                        readonly="state in ('confirmed', 'paid')"
                     />
                     <field name="company_id" groups="base.group_multi_company" />
                     <field name="interest" />
                     <field name="account_ids" widget="many2many_tags" />
                     <field
                         name="interest_percent"
-                        attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"
+                        invisible="not interest"
+                        required="interest"
                     />
                 </group>
                 <notebook>
@@ -76,7 +78,7 @@
                                 name="%(action_add_period)d"
                                 string="Add period"
                                 colspan="2"
-                                attrs="{'invisible': [('state', 'in', ('confirmed', 'paid'))]}"
+                                invisible="state in ('confirmed', 'paid')"
                                 icon="fa-plus"
                             />
                             <span>&amp;nbsp;</span>
@@ -85,7 +87,7 @@
                                 name="%(action_remove_period)d"
                                 string="Remove period"
                                 colspan="2"
-                                attrs="{'invisible': [('state', 'in', ('confirmed', 'paid'))]}"
+                                invisible="state in ('confirmed', 'paid')"
                                 icon="fa-minus"
                             />
                         </div>
@@ -101,11 +103,11 @@
                                 <separator string="Debit Account Lines" />
                                 <separator string="Credit Account Lines" />
                                 <field name="debit_vat_account_line_ids" nolabel="1">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="tax_id" />
                                         <field name="account_id" />
                                         <field name="amount" />
-                                    </tree>
+                                    </list>
                                     <form>
                                         <group>
                                             <field name="tax_id" />
@@ -115,11 +117,11 @@
                                     </form>
                                 </field>
                                 <field name="credit_vat_account_line_ids" nolabel="1">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="tax_id" />
                                         <field name="account_id" />
                                         <field name="amount" />
-                                    </tree>
+                                    </list>
                                     <form>
                                         <group>
                                             <field name="tax_id" />
@@ -133,37 +135,63 @@
                                 <separator colspan="3" string="Previous Credits VAT" />
                                 <field
                                     name="previous_credit_vat_account_id"
-                                    attrs="{'required':[('previous_credit_vat_amount','!=',0)]}"
+                                    required="previous_credit_vat_amount != 0"
+                                    readonly="state in ('confirmed', 'paid')"
                                 />
-                                <field name="previous_credit_vat_amount" nolabel="1" />
+                                <field
+                                    name="previous_credit_vat_amount"
+                                    nolabel="1"
+                                    readonly="state in ('confirmed', 'paid')"
+                                />
                                 <field name="previous_year_credit" />
                                 <separator colspan="3" string="Previous Debits VAT" />
                                 <field
                                     name="previous_debit_vat_account_id"
-                                    attrs="{'required':[('previous_debit_vat_amount','!=',0)]}"
+                                    required="previous_debit_vat_amount != 0"
+                                    readonly="state in ('confirmed', 'paid')"
                                 />
-                                <field name="previous_debit_vat_amount" nolabel="1" />
+                                <field
+                                    name="previous_debit_vat_amount"
+                                    nolabel="1"
+                                    readonly="state in ('confirmed', 'paid')"
+                                />
                                 <separator colspan="3" string="Due interests" />
                                 <field
                                     name="interests_debit_vat_account_id"
-                                    attrs="{'required':[('interests_debit_vat_amount','!=',0)]}"
+                                    required="interests_debit_vat_amount != 0"
+                                    readonly="state in ('confirmed', 'paid')"
                                 />
-                                <field name="interests_debit_vat_amount" nolabel="1" />
+                                <field
+                                    name="interests_debit_vat_amount"
+                                    nolabel="1"
+                                    readonly="state in ('confirmed', 'paid')"
+                                />
                                 <separator colspan="3" string="Tax credits" />
                                 <field
                                     name="tax_credit_account_id"
-                                    attrs="{'required':[('tax_credit_amount','!=',0)]}"
+                                    required="tax_credit_amount != 0"
+                                    readonly="state in ('confirmed', 'paid')"
                                 />
-                                <field name="tax_credit_amount" nolabel="1" />
+                                <field
+                                    name="tax_credit_amount"
+                                    nolabel="1"
+                                    readonly="state in ('confirmed', 'paid')"
+                                />
                                 <separator colspan="3" string="Down payment" />
                                 <field
                                     name="advance_account_id"
-                                    attrs="{'required':[('advance_amount','!=',0)]}"
+                                    required="advance_amount != 0"
+                                    readonly="state in ('confirmed', 'paid')"
                                 />
-                                <field name="advance_amount" nolabel="1" />
+                                <field
+                                    name="advance_amount"
+                                    nolabel="1"
+                                    readonly="state in ('confirmed', 'paid')"
+                                />
                                 <field
                                     name="advance_computation_method"
                                     string="Computation method"
+                                    readonly="state in ('confirmed', 'paid')"
                                 />
                             </group>
                             <separator
@@ -172,14 +200,15 @@
                             />
                             <field
                                 name="generic_vat_account_line_ids"
+                                readonly="state in ('confirmed', 'paid')"
                                 colspan="3"
                                 nolabel="1"
                             >
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="account_id" />
                                     <field name="name" />
                                     <field name="amount" />
-                                </tree>
+                                </list>
                                 <form>
                                     <field name="account_id" />
                                     <field name="name" />
@@ -187,14 +216,11 @@
                                 </form>
                             </field>
                         </group>
-                        <group attrs="{'invisible': [('annual', '=', True)]}">
+                        <group invisible="annual">
                             <field name="reconciled" />
                         </group>
                     </page>
-                    <page
-                        string="Tax Authority"
-                        attrs="{'invisible': [('annual', '=', True)]}"
-                    >
+                    <page string="Tax Authority" invisible="annual">
                         <group>
                             <field name="authority_vat_amount" />
                             <field name="residual" />
@@ -240,9 +266,9 @@
     <record id="view_account_vat_period_end_statement_tree" model="ir.ui.view">
         <field name="name">account.vat.period.end.statement.tree</field>
         <field name="model">account.vat.period.end.statement</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="date" />
                 <field name="journal_id" />
                 <field name="previous_credit_vat_amount" />
@@ -254,7 +280,7 @@
                 <field name="annual" />
                 <field name="state" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 

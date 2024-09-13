@@ -7,8 +7,7 @@ from datetime import date, datetime
 
 from dateutil.rrule import MONTHLY
 
-from odoo.tests import tagged
-from odoo.tests.common import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -26,8 +25,8 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         current_datetime = datetime(2020, month=6, day=15)
         generator = generator.create(
             {
-                "date_start": "%s-01-01" % current_datetime.year,
-                "name_prefix": "%s-" % current_datetime.year,
+                "date_start": f"{current_datetime.year}-01-01",
+                "name_prefix": f"{current_datetime.year}-",
                 "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
@@ -37,8 +36,8 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         generator.action_apply()
         prev_year_generator = generator.create(
             {
-                "date_start": "%s-01-01" % (current_datetime.year - 1),
-                "name_prefix": "%s-" % (current_datetime.year - 1),
+                "date_start": f"{current_datetime.year - 1}-01-01",
+                "name_prefix": f"{current_datetime.year - 1}-",
                 "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
@@ -130,7 +129,8 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         )
         cls.term_line_model.create(
             {
-                "value": "balance",
+                "delay_type": "days_after",
+                "value": "fixed",
                 "days": 16,
                 "payment_id": cls.account_payment_term.id,
             }
