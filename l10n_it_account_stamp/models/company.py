@@ -6,19 +6,19 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    l10n_it_account_stamp_tax_stamp_product_id = fields.Many2one(
+    l10n_it_account_stamp_stamp_duty_product_id = fields.Many2one(
         comodel_name="product.product",
-        string="Tax Stamp Product",
-        help="Product used as Tax Stamp in customer invoices.",
+        string="Stamp Duty Product",
+        help="Product used as stamp duty in customer invoices.",
     )
 
 
 class AccountConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
-    l10n_it_account_stamp_tax_stamp_product_id = fields.Many2one(
-        related="company_id.l10n_it_account_stamp_tax_stamp_product_id",
-        string="Tax Stamp Product",
-        help="Product used as Tax Stamp in customer invoices.",
+    l10n_it_account_stamp_stamp_duty_product_id = fields.Many2one(
+        related="company_id.l10n_it_account_stamp_stamp_duty_product_id",
+        string="Stamp Duty Product",
+        help="Product used as stamp duty in customer invoices.",
         readonly=False,
     )

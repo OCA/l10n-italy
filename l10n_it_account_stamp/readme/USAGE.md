@@ -9,8 +9,8 @@ verrà addebitata al cliente.
 
 **English**
 
-In invoice or receipt form, when applicable, click 'Add tax stamp line'
-button to add tax stamp as invoice line, thus charging customer.
+In invoice or receipt form, when applicable, click 'Add stamp duty line'
+button to add stamp duty as invoice line, thus charging customer.
 
-Otherwise, tax stamp will be anyway accounted, without charging
+Otherwise, stamp duty will be anyway accounted, without charging
 customer.
