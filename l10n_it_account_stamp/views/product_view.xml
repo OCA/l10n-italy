@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.product_template_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='payables']" position="after">
-                <group string="Tax stamp">
+                <group string="Stamp Duty">
                     <field name="l10n_it_account_stamp_is_stamp" />
                     <field
                         name="l10n_it_account_stamp_auto_compute"
@@ -25,7 +25,7 @@
                         required="l10n_it_account_stamp_auto_compute"
                     />
                     <field
-                        name="l10n_it_account_stamp_tax_stamp_apply_tax_ids"
+                        name="l10n_it_account_stamp_stamp_duty_apply_tax_ids"
                         invisible="(not l10n_it_account_stamp_auto_compute) or (not l10n_it_account_stamp_is_stamp)"
                         widget="many2many_tags"
                     />

@@ -8,10 +8,10 @@
             <block name="default_taxes_setting_container" position="inside">
                 <setting
                     id="l10n_it_account_stamp_stamp_product"
-                    title="Configuration for Tax stamp"
+                    title="Configuration for stamp duty"
                     company_dependent="1"
                 >
-                    <field name="l10n_it_account_stamp_tax_stamp_product_id" />
+                    <field name="l10n_it_account_stamp_stamp_duty_product_id" />
                 </setting>
             </block>
         </field>

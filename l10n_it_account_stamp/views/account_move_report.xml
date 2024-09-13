@@ -6,8 +6,8 @@
     >
         <xpath expr="//div[@name='incoterm_id']" position="before">
             <div
-                t-if="o.l10n_it_account_stamp_is_tax_stamp_applied"
-                name="l10n_it_account_stamp_is_tax_stamp_applied"
+                t-if="o.l10n_it_account_stamp_is_stamp_duty_applied"
+                name="l10n_it_account_stamp_is_stamp_duty_applied"
                 class="col"
             >
                 Imposta di bollo assolta in modo virtuale ai sensi dell'articolo 15 del DPR 642/1972 e del DM 17/06/2014
