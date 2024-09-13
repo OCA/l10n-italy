@@ -117,10 +117,10 @@ class CreateFinancialStatementWizard(models.TransientModel):
         self.company_name = self.env.company.name
         self.address = self.env.company.street
         self.city = self.env.company.zip + " " + self.env.company.city
-        self.rea_office = self.env.company.rea_office.code or ""
-        self.rea_num = self.env.company.rea_code or ""
-        self.rea_capital = self.env.company.rea_capital
-        self.fiscalcode = self.env.company.fiscalcode
+        self.rea_office = self.env.company.l10n_it_eco_index_office.code or ""
+        self.rea_num = self.env.company.l10n_it_eco_index_number or ""
+        self.rea_capital = self.env.company.l10n_it_eco_index_share_capital
+        self.fiscalcode = self.env.company.l10n_it_codice_fiscale
         self.vat_code = self.env.company.vat or ""
         self.vat_code_nation = ""
         if (len(self.vat_code) == 13) and self.vat_code.startswith("IT"):

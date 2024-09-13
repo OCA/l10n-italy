@@ -1,11 +1,8 @@
 #  Copyright 2023 MKT SRL
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import SUPERUSER_ID, api
 
-
-def _l10n_it_financial_statement_eu_post_init(cr, registry):
-    env = api.Environment(cr, SUPERUSER_ID, {})
+def _l10n_it_financial_statement_eu_post_init(env):
     fse = env["financial.statement.eu"]
     fse.financial_statement_eu_account_assoc_code("1101%", "PA.B11a", False)
     fse.financial_statement_eu_account_assoc_code("1106%", "PA.B13a", False)

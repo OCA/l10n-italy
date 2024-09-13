@@ -42,7 +42,7 @@
                         or
                         <button special="cancel" string="Cancel" class="oe_link" />
                         <div
-                            attrs="{'invisible': [('log_warnings', '=', '')]}"
+                            invisible="log_warnings == ''"
                             style="flex-basis: 100%; border: solid 1px; color: #721c24;
                                 background-color: #f8d7da; border-color: #f5c6cb;
                                 padding-left: 10px;padding-top:5px;padding-bottom:5px; margin-top: 10px;"
@@ -53,13 +53,13 @@
                         <field
                             name="financial_statement_log_ids"
                             string=""
-                            mode="tree,kanban"
-                            attrs="{'invisible': [('state','!=','UNLINKED_ACCOUNTS')]}"
+                            mode="list,kanban"
+                            invisible="state != 'UNLINKED_ACCOUNTS'"
                         >
-                            <tree create="false">
+                            <list create="false">
                                 <field name="account_id" />
                                 <field name="amount" />
-                            </tree>
+                            </list>
                         </field>
                     </footer>
                 </sheet>

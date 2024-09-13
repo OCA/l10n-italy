@@ -215,7 +215,7 @@ class FinancialStatementEU(models.Model):
     ):
         currency_precision = currency_id.decimal_places
         domain = []
-        domain.append(("company_id", "=", company_id))
+        domain.append(("company_ids", "in", company_id))
         self.add_calc_type_domain(domain, calc_type, financial_statement_eu_id)
         acc_model = self.env["account.account"]
         account_ids = acc_model.read_group(

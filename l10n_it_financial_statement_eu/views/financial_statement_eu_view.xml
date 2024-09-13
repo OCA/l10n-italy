@@ -61,22 +61,22 @@
     </record>
 
     <record id="financial_statement_eu_tree_view" model="ir.ui.view">
-        <field name="name">financial.statement.eu.tree</field>
+        <field name="name">financial.statement.eu.list</field>
         <field name="model">financial.statement.eu</field>
         <field name="arch" type="xml">
-            <tree create="false" edit="false" default_order="sequence,zone_bal,code">
+            <list create="false" edit="false" default_order="sequence,zone_bal,code">
                 <field name="sequence" invisible="True" />
                 <field name="zone_bal" invisible="True" />
                 <field name="code" invisible="True" />
                 <field name="complete_name" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="financial_statement_eu_act_window" model="ir.actions.act_window">
         <field name="name">Financial statement EU lines</field>
         <field name="res_model">financial.statement.eu</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>

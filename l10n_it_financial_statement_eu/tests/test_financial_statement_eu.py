@@ -18,7 +18,7 @@ class TestFinancialStatementEU(TransactionCase):
 
     def _find_or_create_account_account(self, company_id, code, name, code_fs_eu):
         acc_id = self.env["account.account"].search(
-            [("company_id", "=", company_id), ("code", "=", code)]
+            [("company_ids", "in", company_id), ("code", "=", code)]
         )
         if not acc_id:
             acc_id = self.env["account.account"].create(
