@@ -9,6 +9,8 @@
                 <xpath expr="//newline" position="after">
                     <group attrs="{'invisible': [('channel_type', '!=', 'govway')]}">
                         <field name="govway_url" />
+                        <field name="govway_user" password="True" />
+                        <field name="govway_password" password="True" />
                     </group>
                 </xpath>
         </field>
