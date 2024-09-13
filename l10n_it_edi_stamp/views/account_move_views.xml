@@ -1,0 +1,16 @@
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="account_invoice_form_l10n_it" model="ir.ui.view">
+        <field name="name">Add stamp to EDI form view</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it"/>
+        <field name="arch" type="xml">
+            <field name="l10n_it_stamp_duty" position="attributes">
+                <attribute name="readonly"/>
+            </field>
+        </field>
+    </record>
+</odoo>

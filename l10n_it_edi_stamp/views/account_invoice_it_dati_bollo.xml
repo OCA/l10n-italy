@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="account_invoice_it_dati_bollo"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_dati_bollo"
+        priority="100"
+    >
+        <xpath expr="t" position="replace">
+            <t t-translation="off">
+            <DatiBollo
+                    t-if="record.stamp_duty and record.company_id.stamp_duty_product_id"
+                >
+                <BolloVirtuale>SI</BolloVirtuale>
+                <t
+                        t-set="stamp_price"
+                        t-value="format_numbers_two(record.company_id.stamp_duty_product_id.list_price)"
+                    />
+                <ImportoBollo t-if="stamp_price != '0.00'" t-out="stamp_price" />
+            </DatiBollo>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

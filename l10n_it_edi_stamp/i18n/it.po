@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_out_stamp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-24 15:04+0000\n"
+"PO-Revision-Date: 2022-03-04 11:54+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#~ msgid "SI"
+#~ msgstr "SI"
+
+#~ msgid "Export E-invoice"
+#~ msgstr "Esporta e-fattura"
+
+#~ msgid "Tax Stamp Product not set for company %s"
+#~ msgstr "Prodotto imposta di bollo non impostato per l'azienda %s"
