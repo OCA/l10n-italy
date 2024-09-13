@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.5alpha1\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-23 15:50+0000\n"
+"PO-Revision-Date: 2024-09-23 15:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,47 +18,32 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
 msgid ""
-"<span attrs=\"{'invisible': [('state', '=', 'draft')]}\">\n"
-"                            Stamp can only be charged to customer when invoice is in draft state\n"
-"                        </span>"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
-msgid ""
-"<span attrs=\"{'invisible': [('l10n_it_account_stamp_is_tax_stamp_present', '=', False)]}\">\n"
+"<span invisible=\"not l10n_it_account_stamp_is_stamp_duty_present\">\n"
 "                        Stamp charged to customer\n"
 "                    </span>"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
 msgid ""
-"<span class=\"o_form_label\">Configuration for Tax stamp\n"
-"                        </span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"<span invisible=\"state == 'draft'\">\n"
+"                            Stamp can only be charged to customer when invoice is in draft state\n"
+"                        </span>"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.report_invoice_document_custom_fields_ext
-msgid ""
-"<span>Imposta di bollo assolta in modo virtuale ai sensi dell'articolo 15 "
-"del DPR 642/1972 e del DM 17/06/2014</span>"
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_manually_apply_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_manually_apply_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_manually_apply_stamp_duty
+msgid "Apply stamp duty"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__manually_apply_tax_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__manually_apply_tax_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__manually_apply_tax_stamp
-msgid "Apply tax stamp"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__auto_compute_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__auto_compute_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__auto_compute_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__auto_compute
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__auto_compute
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_auto_compute_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_auto_compute_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_auto_compute_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__l10n_it_account_stamp_auto_compute
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__l10n_it_account_stamp_auto_compute
 msgid "Auto-compute"
 msgstr ""
 
@@ -77,7 +64,7 @@ msgstr ""
 
 #. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
-msgid "Configuration for Tax stamp"
+msgid "Configuration for stamp duty"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -88,13 +75,20 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.report_invoice_document_custom_fields_ext
+msgid ""
+"Imposta di bollo assolta in modo virtuale ai sensi dell'articolo 15 del DPR "
+"642/1972 e del DM 17/06/2014"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line__is_stamp_line
 msgid "Is Stamp Line"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__is_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__is_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__l10n_it_account_stamp_is_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__l10n_it_account_stamp_is_stamp
 msgid "Is a stamp"
 msgstr ""
 
@@ -111,17 +105,13 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#, python-format
 msgid "Missing account income configuration for %s"
 msgstr ""
 
 #. module: l10n_it_account_stamp
 #. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#, python-format
-msgid "Missing tax stamp product in company settings!"
+msgid "Missing stamp duty product in company settings!"
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -132,25 +122,70 @@ msgstr ""
 #. module: l10n_it_account_stamp
 #. odoo-python
 #: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#, python-format
 msgid "Product %s must have income and expense accounts"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
-msgid "Product used as Tax Stamp in customer invoices"
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_company__l10n_it_account_stamp_stamp_duty_product_id
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_config_settings__l10n_it_account_stamp_stamp_duty_product_id
+msgid "Product used as stamp duty in customer invoices."
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_company__tax_stamp_product_id
-#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_config_settings__tax_stamp_product_id
-msgid "Product used as Tax Stamp in customer invoices."
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_is_stamp_duty_applied
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_is_stamp_duty_applied
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_is_stamp_duty_applied
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
+msgid "Stamp Duty"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_min_total_base
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_min_total_base
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Stamp Duty Expense"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Stamp Duty Income"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__l10n_it_account_stamp_stamp_duty_product_id
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__l10n_it_account_stamp_stamp_duty_product_id
+msgid "Stamp Duty Product"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__l10n_it_account_stamp_tax_apply_min_total_base
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__l10n_it_account_stamp_tax_apply_min_total_base
 msgid "Stamp applicability min total base"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:product.template,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid "Stamp duty 2 euro"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_is_stamp_duty_applied
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_is_stamp_duty_applied
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_is_stamp_duty_applied
+msgid "Stamp duty is applied to this invoice."
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Stamp duty is not applicable"
+msgstr ""
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Stamp duty line %s already present. Remove it first."
 msgstr ""
 
 #. module: l10n_it_account_stamp
@@ -162,81 +197,20 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__tax_stamp_line_present
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__tax_stamp_line_present
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__tax_stamp_line_present
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_is_stamp_duty_present
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_is_stamp_duty_present
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_is_stamp_duty_present
 msgid "Stamp line is present in invoice"
 msgstr ""
 
 #. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__stamp_apply_tax_ids
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__stamp_apply_tax_ids
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__l10n_it_account_stamp_stamp_duty_apply_tax_ids
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__l10n_it_account_stamp_stamp_duty_apply_tax_ids
 msgid "Stamp taxes"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__tax_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__tax_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__tax_stamp
-msgid "Tax Stamp"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model:product.template,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
-msgid "Tax Stamp 2 euro"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#. odoo-python
-#: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#, python-format
-msgid "Tax Stamp Expense"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#. odoo-python
-#: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#, python-format
-msgid "Tax Stamp Income"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__tax_stamp_product_id
-#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__tax_stamp_product_id
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
-msgid "Tax Stamp Product"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
-#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
-msgid "Tax stamp"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_bank_statement_line__tax_stamp
-#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_move__tax_stamp
-#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_payment__tax_stamp
-msgid "Tax stamp is applied to this invoice."
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#. odoo-python
-#: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#, python-format
-msgid "Tax stamp is not applicable"
-msgstr ""
-
-#. module: l10n_it_account_stamp
-#. odoo-python
-#: code:addons/l10n_it_account_stamp/models/account_move.py:0
-#, python-format
-msgid "Tax stamp line %s already present. Remove it first."
 msgstr ""
 
 #. module: l10n_it_account_stamp
 #. odoo-python
 #: code:addons/l10n_it_account_stamp/models/product.py:0
-#, python-format
 msgid "The product %s must be a stamp to apply set taxes!"
 msgstr ""

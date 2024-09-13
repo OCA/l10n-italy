@@ -21,32 +21,32 @@
                 <attribute name="colors">CadetBlue:is_stamp_line==True;</attribute>
             </xpath>
             <xpath expr="//group[@id='header_right_group']" position="inside">
-                <field name="l10n_it_account_stamp_auto_compute_tax_stamp" invisible="1" />
-                <field name="l10n_it_account_stamp_is_tax_stamp_applied" string="Tax stamp" invisible="1" />
+                <field name="l10n_it_account_stamp_auto_compute_stamp_duty" invisible="1" />
+                <field name="l10n_it_account_stamp_is_stamp_duty_applied" string="Stamp Duty" invisible="1" />
                 <field
-                    name="l10n_it_account_stamp_manually_apply_tax_stamp"
-                    invisible="l10n_it_account_stamp_auto_compute_tax_stamp"
+                    name="l10n_it_account_stamp_manually_apply_stamp_duty"
+                    invisible="l10n_it_account_stamp_auto_compute_stamp_duty"
                 />
-                <field name="l10n_it_account_stamp_is_tax_stamp_present" invisible="1" />
+                <field name="l10n_it_account_stamp_is_stamp_duty_present" invisible="1" />
             </xpath>
             <field name="narration" position="before">
                 <div
                     name="stamp_applicability"
-                    invisible="not l10n_it_account_stamp_is_tax_stamp_applied"
+                    invisible="not l10n_it_account_stamp_is_stamp_duty_applied"
                     colspan="2"
                 >
                     <img
                         src="/l10n_it_account_stamp/static/description/icon.png"
-                        alt="Tax stamp"
+                        alt="Stamp Duty"
                     />
                     <span
-                        invisible="l10n_it_account_stamp_is_tax_stamp_present"
+                        invisible="l10n_it_account_stamp_is_stamp_duty_present"
                     >
                         <span invisible="state != 'draft'">
                             <button
                                 type="object"
                                 string="Charge stamp to customer"
-                                name="add_tax_stamp_line"
+                                name="add_stamp_duty_line"
                             />
                         </span>
                         <span invisible="state == 'draft'">
@@ -54,7 +54,7 @@
                         </span>
                     </span>
                     <span
-                        invisible="not l10n_it_account_stamp_is_tax_stamp_present"
+                        invisible="not l10n_it_account_stamp_is_stamp_duty_present"
                     >
                         Stamp charged to customer
                     </span>

@@ -5,4 +5,4 @@ fatture e nelle ricevute.
 
 **English**
 
-This module adds Italian Tax Stamp support in invoices and receipts.
+This module adds Italian Stamp Duty support in invoices and receipts.
