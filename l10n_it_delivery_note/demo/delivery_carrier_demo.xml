@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="delivery.delivery_carrier" model="delivery.carrier">
+        <field name="partner_id" ref="l10n_it_delivery_note.partner_carrier_1" />
+    </record>
+
+    <record id="delivery.free_delivery_carrier" model="delivery.carrier">
+        <field name="partner_id" ref="l10n_it_delivery_note.partner_carrier_1" />
+    </record>
+</odoo>
