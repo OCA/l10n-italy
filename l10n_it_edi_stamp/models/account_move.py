@@ -13,15 +13,15 @@ class AccountMove (models.Model):
     )
 
     @api.depends(
-        "l10n_it_account_stamp_is_tax_stamp_applied",
-        "company_id.l10n_it_account_stamp_tax_stamp_product_id.list_price",
+        "l10n_it_account_stamp_is_stamp_duty_applied",
+        "company_id.l10n_it_account_stamp_stamp_duty_product_id.list_price",
     )
     def _compute_l10n_it_stamp_duty(self):
         for invoice in self:
             if invoice.state != "draft":
                 continue
-            elif invoice.l10n_it_account_stamp_is_tax_stamp_applied:
-                stamp_duty_amount = invoice.company_id.l10n_it_account_stamp_tax_stamp_product_id.list_price
+            elif invoice.l10n_it_account_stamp_is_stamp_duty_applied:
+                stamp_duty_amount = invoice.company_id.l10n_it_account_stamp_stamp_duty_product_id.list_price
             else:
                 stamp_duty_amount = 0
             invoice.l10n_it_stamp_duty = stamp_duty_amount
