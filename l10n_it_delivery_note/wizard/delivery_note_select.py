@@ -68,5 +68,4 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
         if sale_order_id:
             sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids)
 
-        if self.user_has_groups("l10n_it_delivery_note.use_advanced_delivery_notes"):
-            return self.delivery_note_id.goto()
+        return self.delivery_note_id.goto()

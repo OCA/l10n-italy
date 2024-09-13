@@ -580,11 +580,6 @@ msgid "Delivery Note Types"
 msgstr "Tipi DdT"
 
 #. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_visible
-msgid "Delivery Note Visible"
-msgstr "DdT visibile"
-
-#. module: l10n_it_delivery_note
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.stock_delivery_note_action
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_bank_statement_line__delivery_note_ids
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__delivery_note_ids
@@ -1758,17 +1753,6 @@ msgstr "UdM"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Update to now"
 msgstr "Aggiorna ad adesso"
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__use_advanced_behaviour
-msgid "Use Advanced Behaviour"
-msgstr "Usa funzioni avanzate"
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__group_use_advanced_delivery_notes
-#: model:res.groups,name:l10n_it_delivery_note.use_advanced_delivery_notes
-msgid "Use Advanced DN Features"
-msgstr "Usa Funzioni Avanzate DdT"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__use_delivery_note

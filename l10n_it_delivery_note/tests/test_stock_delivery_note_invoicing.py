@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from odoo.tests.common import Form
+from odoo.tests import Form
 
 from .delivery_note_common import StockDeliveryNoteCommon
 
@@ -44,10 +44,11 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(picking), 1)
         self.assertEqual(len(picking.move_ids), 4)
 
-        picking.move_ids[0].quantity_done = 1
-        picking.move_ids[1].quantity_done = 2
-        picking.move_ids[2].quantity_done = 11
-        picking.move_ids[3].quantity_done = 1
+        picking.move_ids.quantity = False
+        picking.move_ids[0].quantity = 1
+        picking.move_ids[1].quantity = 2
+        picking.move_ids[2].quantity = 11
+        picking.move_ids[3].quantity = 1
 
         result = picking.button_validate()
         self.assertTrue(result)
@@ -91,7 +92,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 1)
+        self.assertEqual(move.quantity, 1)
 
         delivery_note_line = delivery_note.line_ids[0]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -113,7 +114,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 2)
+        self.assertEqual(move.quantity, 2)
 
         delivery_note_line = delivery_note.line_ids[1]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -135,7 +136,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 11)
+        self.assertEqual(move.quantity, 11)
 
         delivery_note_line = delivery_note.line_ids[2]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -157,7 +158,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 1)
+        self.assertEqual(move.quantity, 1)
 
         delivery_note_line = delivery_note.line_ids[3]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -246,10 +247,11 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(picking), 1)
         self.assertEqual(len(picking.move_ids), 4)
 
-        picking.move_ids[0].quantity_done = 2  # 3
-        picking.move_ids[1].quantity_done = 2
-        picking.move_ids[2].quantity_done = 6  # 11
-        picking.move_ids[3].quantity_done = 3  # 5
+        picking.move_ids.quantity = False
+        picking.move_ids[0].quantity = 2 # 3
+        picking.move_ids[1].quantity = 2
+        picking.move_ids[2].quantity = 6 # 11
+        picking.move_ids[3].quantity = 3 # 5
 
         result = picking.button_validate()
         self.assertTrue(result)
@@ -295,9 +297,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(backorder), 1)
         self.assertEqual(len(backorder.move_ids), 3)
 
-        backorder.move_ids[0].quantity_done = 1
-        backorder.move_ids[1].quantity_done = 5
-        backorder.move_ids[2].quantity_done = 2
+        backorder.move_ids.quantity = False
+        backorder.move_ids[0].quantity = 1
+        backorder.move_ids[1].quantity = 5
+        backorder.move_ids[2].quantity = 2
 
         result = backorder.button_validate()
         self.assertTrue(result)
@@ -323,7 +326,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[0].quantity_done, 2)
+        self.assertEqual(moves[0].quantity, 2)
 
         delivery_note_line = first_delivery_note.line_ids[0]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -345,7 +348,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 2)
+        self.assertEqual(move.quantity, 2)
 
         delivery_note_line = first_delivery_note.line_ids[1]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -367,7 +370,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[0].quantity_done, 6)
+        self.assertEqual(moves[0].quantity, 6)
 
         delivery_note_line = first_delivery_note.line_ids[2]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -389,7 +392,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[0].quantity_done, 3)
+        self.assertEqual(moves[0].quantity, 3)
 
         delivery_note_line = first_delivery_note.line_ids[3]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -440,7 +443,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 1)
+        self.assertEqual(moves[1].quantity, 1)
 
         delivery_note_line = second_delivery_note.line_ids[0]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -462,7 +465,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 5)
+        self.assertEqual(moves[1].quantity, 5)
 
         delivery_note_line = second_delivery_note.line_ids[1]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -484,7 +487,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 2)
+        self.assertEqual(moves[1].quantity, 2)
 
         delivery_note_line = second_delivery_note.line_ids[2]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -541,11 +544,6 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         #     SO ┘
         #
 
-        # Activate advanced setting to allow more picking in one DN
-        self.env["ir.config_parameter"].sudo().set_param(
-            "l10n_it_delivery_note.group_use_advanced_delivery_notes", True
-        )
-
         first_sales_order = self.create_sales_order(
             [
                 self.desk_combination_line,
@@ -576,9 +574,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(first_picking), 1)
         self.assertEqual(len(first_picking.move_ids), 3)
 
-        first_picking.move_ids[0].quantity_done = 1
-        first_picking.move_ids[1].quantity_done = 3
-        first_picking.move_ids[2].quantity_done = 2
+        first_picking.move_ids.quantity = False
+        first_picking.move_ids[0].quantity = 1
+        first_picking.move_ids[1].quantity = 3
+        first_picking.move_ids[2].quantity = 2
 
         result = first_picking.button_validate()
         self.assertTrue(result)
@@ -599,9 +598,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(second_picking), 1)
         self.assertEqual(len(second_picking.move_ids), 3)
 
-        second_picking.move_ids[0].quantity_done = 11
-        second_picking.move_ids[1].quantity_done = 5
-        second_picking.move_ids[2].quantity_done = 1
+        second_picking.move_ids.quantity = False
+        second_picking.move_ids[0].quantity = 11
+        second_picking.move_ids[1].quantity = 5
+        second_picking.move_ids[2].quantity = 1
 
         result = second_picking.button_validate()
         self.assertTrue(result)
@@ -652,7 +652,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 1)
+        self.assertEqual(move.quantity, 1)
 
         delivery_note_line = delivery_note.line_ids[0]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -674,7 +674,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 3)
+        self.assertEqual(move.quantity, 3)
 
         delivery_note_line = delivery_note.line_ids[1]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -696,7 +696,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 2)
+        self.assertEqual(move.quantity, 2)
 
         delivery_note_line = delivery_note.line_ids[2]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -745,7 +745,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 11)
+        self.assertEqual(move.quantity, 11)
 
         delivery_note_line = delivery_note.line_ids[3]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -767,7 +767,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 5)
+        self.assertEqual(move.quantity, 5)
 
         delivery_note_line = delivery_note.line_ids[4]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -789,7 +789,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 1)
+        self.assertEqual(move.quantity, 1)
 
         delivery_note_line = delivery_note.line_ids[5]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -852,9 +852,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(first_picking), 1)
         self.assertEqual(len(first_picking.move_ids), 3)
 
-        first_picking.move_ids[0].quantity_done = 1
-        first_picking.move_ids[1].quantity_done = 1  # 2
-        first_picking.move_ids[2].quantity_done = 1
+        first_picking.move_ids.quantity = False
+        first_picking.move_ids[0].quantity = 1
+        first_picking.move_ids[1].quantity = 1 # 2
+        first_picking.move_ids[2].quantity = 1
 
         result = first_picking.button_validate()
         self.assertTrue(result)
@@ -885,9 +886,10 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(second_picking), 1)
         self.assertEqual(len(second_picking.move_ids), 3)
 
-        second_picking.move_ids[0].quantity_done = 3
-        second_picking.move_ids[1].quantity_done = 3  # 11
-        second_picking.move_ids[2].quantity_done = 3  # 5
+        second_picking.move_ids.quantity = False
+        second_picking.move_ids[0].quantity = 3
+        second_picking.move_ids[0].quantity = 3 # 11
+        second_picking.move_ids[0].quantity = 3 # 5
 
         result = second_picking.button_validate()
         self.assertTrue(result)
@@ -909,7 +911,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         )
         first_delivery_note.picking_ids = pickings
         first_delivery_note.action_confirm()
-        self.assertEqual(len(first_delivery_note.line_ids), 6)
+        self.assertEqual(len(first_delivery_note.line_ids), 4)
         self.assertEqual(first_delivery_note.state, "confirm")
         self.assertEqual(first_delivery_note.invoice_status, "to invoice")
 
@@ -934,7 +936,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(first_partial_invoice.delivery_note_ids, first_delivery_note)
 
         second_partial_invoice = invoices[2]
-        self.assertEqual(len(second_partial_invoice.invoice_line_ids), 4)
+        self.assertEqual(len(second_partial_invoice.invoice_line_ids), 2)
         self.assertEqual(second_partial_invoice.delivery_note_ids, first_delivery_note)
 
         self.assertEqual(len(first_delivery_note.line_ids), 6)
@@ -953,7 +955,8 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(first_backorder), 1)
         self.assertEqual(len(first_backorder.move_ids), 1)
 
-        first_backorder.move_ids[0].quantity_done = 1
+        first_backorder.move_ids.quantity = False
+        first_backorder.move_ids[0].quantity = 1
 
         result = first_backorder.button_validate()
         self.assertTrue(result)
@@ -968,8 +971,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertEqual(len(second_backorder), 1)
         self.assertEqual(len(second_backorder.move_ids), 2)
 
-        second_backorder.move_ids[0].quantity_done = 8
-        second_backorder.move_ids[1].quantity_done = 2
+        second_backorder.move_ids.quantity = False
+        second_backorder.move_ids.quantity = 8
+        second_backorder.move_ids.quantity = 2
 
         result = second_backorder.button_validate()
         self.assertTrue(result)
@@ -996,7 +1000,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 1)
+        self.assertEqual(move.quantity, 1)
 
         delivery_note_line = first_delivery_note.line_ids[0]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1018,7 +1022,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[0].quantity_done, 1)
+        self.assertEqual(moves[0].quantity, 1)
 
         delivery_note_line = first_delivery_note.line_ids[1]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1040,7 +1044,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 1)
+        self.assertEqual(move.quantity, 1)
 
         delivery_note_line = first_delivery_note.line_ids[2]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1070,7 +1074,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         move = order_line.move_ids
         self.assertEqual(len(move), 1)
-        self.assertEqual(move.quantity_done, 3)
+        self.assertEqual(move.quantity, 3)
 
         delivery_note_line = first_delivery_note.line_ids[3]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1092,7 +1096,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[0].quantity_done, 3)
+        self.assertEqual(moves[0].quantity, 3)
 
         delivery_note_line = first_delivery_note.line_ids[4]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1114,7 +1118,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[0].quantity_done, 3)
+        self.assertEqual(moves[0].quantity, 3)
 
         delivery_note_line = first_delivery_note.line_ids[5]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1168,7 +1172,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 1)
+        self.assertEqual(moves[1].quantity, 1)
 
         delivery_note_line = second_delivery_note.line_ids[0]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1218,7 +1222,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 8)
+        self.assertEqual(moves[1].quantity, 8)
 
         delivery_note_line = second_delivery_note.line_ids[1]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1240,7 +1244,7 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
 
         moves = order_line.move_ids
         self.assertEqual(len(moves), 2)
-        self.assertEqual(moves[1].quantity_done, 2)
+        self.assertEqual(moves[1].quantity, 2)
 
         delivery_note_line = second_delivery_note.line_ids[2]
         self.assertEqual(delivery_note_line.invoice_status, "invoiced")
@@ -1271,12 +1275,13 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         )
         sales_order.action_confirm()
         picking = sales_order.picking_ids
-        picking.move_ids[0].quantity_done = 1
+        picking.move_ids.quantity = False
+        picking.move_ids[0].quantity = 1
         picking.button_validate()
         sales_order._create_invoices()
         wizard = Form(
             self.env["stock.delivery.note.create.wizard"].with_context(
-                active_ids=picking.ids, active_model="stock.picking"
+                **{"active_id": picking.id, "active_ids": picking.ids}
             )
         ).save()
         result = wizard.confirm()

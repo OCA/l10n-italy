@@ -1,16 +1,13 @@
 from odoo import _
+from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
 from odoo.exceptions import AccessError, MissingError
+from odoo.osv.expression import OR
 from odoo.http import request, route
-
-from odoo.addons.portal.controllers.portal import CustomerPortal
-from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 
 class DNCustomerPortal(CustomerPortal):
-    def _get_delivery_note_domain(self, search_in=False):
+    def _get_delivery_note_domain(self):
         domain = [("state", "in", ["confirm", "invoiced", "done"])]
-        if search_in:
-            domain += search_in
         return domain
 
     def _prepare_home_portal_values(self, counters):
@@ -27,13 +24,18 @@ class DNCustomerPortal(CustomerPortal):
         values["dn_count"] = dn_count
         return values
 
-    @route(
-        ["/my/delivery-notes", "/my/delivery-notes/page/<int:page>"],
-        type="http",
-        auth="user",
-        website=True,
-    )
-    def portal_my_delivery_notes(
+    def _get_delivery_notes_searchbar_sortings(self):
+        return {
+            "date": {"label": _("Delivery Note Date"), "order": "date desc"},
+            "name": {"label": _("Delivery Note #"), "order": "name"},
+        }
+
+    def _get_delivery_notes_searchbar_inputs(self):
+        return {
+            "name": {"input": "name", "label": _("Search in Description")},
+        }
+
+    def _prepare_my_delivery_notes_values(
         self,
         page=1,
         date_begin=None,
@@ -41,47 +43,49 @@ class DNCustomerPortal(CustomerPortal):
         sortby=None,
         search="",
         search_in="name",
-        **kw,
+        **kwargs,
     ):
         values = self._prepare_portal_layout_values()
         DeliveryNote = request.env["stock.delivery.note"]
 
-        searchbar_sortings = {
-            "date": {"label": _("Delivery Note Date"), "order": "date desc"},
-            "name": {"label": _("Delivery Note #"), "order": "name"},
-        }
-        searchbar_inputs = {
-            "name": {
-                "input": "name",
-                "label": _('Search <span class="nolabel"> Name</span>'),
-                "domain": [("name", "ilike", search)],
-            },
-        }
+        url = "/my/delivery-notes"
+        _items_per_page = 100
 
-        search_domain = searchbar_inputs[search_in]["domain"] if search_in else []
         # default sortby order
         if not sortby:
             sortby = "date"
-        sort_order = searchbar_sortings[sortby]["order"]
 
-        # count for pager
-        dn_count = DeliveryNote.search_count(
-            self._get_delivery_note_domain(search_domain)
-        )
-        # make pager
-        pager = portal_pager(
-            url="/my/delivery-notes",
-            url_args={"sortby": sortby, "search_in": search_in, "search": "search"},
-            total=dn_count,
+        searchbar_sortings = self._get_delivery_notes_searchbar_sortings()
+        searchbar_inputs = self._get_delivery_notes_searchbar_inputs()
+
+        sort_order = searchbar_sortings[sortby]["order"]
+        domain = self._get_delivery_note_domain()
+
+        if date_begin and date_end:
+            domain += [("date", ">", date_begin), ("date", "<=", date_end)]
+
+        if search and search_in:
+            search_domain = []
+            if search_in == "name":
+                search_domain = OR([search_domain, [("name", "ilike", search)]])
+            domain += search_domain
+
+        pager_values = portal_pager(
+            url=url,
+            total=DeliveryNote.search_count(domain),
             page=page,
-            step=self._items_per_page,
+            step=_items_per_page,
+            url_args={
+                "date_begin": date_begin,
+                "date_end": date_end,
+                "sortby": sortby,
+                "search_in": search_in,
+                "search": search,
+            },
         )
-        # search the count to display, according to the pager data
+
         delivery_note = DeliveryNote.search(
-            self._get_delivery_note_domain(search_domain),
-            order=sort_order,
-            limit=self._items_per_page,
-            offset=pager["offset"],
+            domain, order=sort_order, limit=_items_per_page, offset=pager_values["offset"]
         )
 
         values.update(
@@ -89,8 +93,8 @@ class DNCustomerPortal(CustomerPortal):
                 "date": date_begin,
                 "delivery_notes": delivery_note,
                 "page_name": "delivery_notes",
-                "pager": pager,
-                "default_url": "/my/delivery-notes",
+                "default_url": url,
+                "pager": pager_values,
                 "searchbar_sortings": searchbar_sortings,
                 "searchbar_inputs": searchbar_inputs,
                 "search_in": search_in,
@@ -98,6 +102,17 @@ class DNCustomerPortal(CustomerPortal):
                 "sortby": sortby,
             }
         )
+        return values
+
+    @route(
+        ["/my/delivery-notes", "/my/delivery-notes/page/<int:page>"],
+        type="http",
+        auth="user",
+        website=True,
+    )
+    def portal_my_delivery_notes(self, **kwargs):
+        values = self._prepare_my_delivery_notes_values(**kwargs)
+        request.session["my_delivery_notes_history"] = values["delivery_notes"].ids[:100]
         return request.render("l10n_it_delivery_note.portal_my_delivery_notes", values)
 
     def _dn_get_page_view_values(self, dn, access_token, **kwargs):
@@ -111,11 +126,11 @@ class DNCustomerPortal(CustomerPortal):
 
     @route(["/my/delivery-notes/<int:dn_id>"], type="http", auth="user", website=True)
     def portal_my_delivery_note_detail(
-        self, dn_id, access_token=None, report_type=None, download=False, **kw
+        self, dn_id, access_token=None, report_type=None, download=False, **kwargs
     ):
         try:
             delivery_note_sudo = self._document_check_access(
-                "stock.delivery.note", dn_id, access_token
+                "stock.delivery.note", dn_id, access_token=access_token
             )
         except (AccessError, MissingError):
             return request.redirect("/my")
@@ -128,6 +143,8 @@ class DNCustomerPortal(CustomerPortal):
                 download=download,
             )
 
-        values = self._dn_get_page_view_values(delivery_note_sudo, access_token, **kw)
+        values = self._dn_get_page_view_values(
+            delivery_note_sudo, access_token, **kwargs
+        )
 
         return request.render("l10n_it_delivery_note.portal_delivery_note_page", values)

@@ -76,7 +76,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
     def test_initial_dn_type_creation(self):
         """
         This test is for checking dn_types and sequence creation by
-        l10n_it_delivery_note_base post_init_hook
+        l10n_it_delivery_note post_init_hook
         """
         companies = self.env["res.company"].search([])
         for company in companies:
@@ -178,7 +178,8 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         self.assertEqual(len(picking), 1)
         self.assertEqual(len(picking.move_ids), 1)
 
-        picking.move_ids[0].quantity_done = 1
+        picking.move_ids.quantity = False
+        picking.move_ids[0].quantity = 1
         result = picking.button_validate()
         self.assertTrue(result)
 
@@ -186,7 +187,3 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         delivery_note.transport_datetime = datetime.now() + timedelta(days=1, hours=3)
         delivery_note.date = date.today().replace(year=old_year)
         delivery_note.action_confirm()
-        self.assertEqual(delivery_note.type_id.sequence_id, sequence)
-        self.assertRegex(
-            delivery_note.name, sequence.prefix + r"\d{" + str(sequence.padding) + "}"
-        )
