@@ -35,7 +35,7 @@ fatture e nelle ricevute.
 
 **English**
 
-This module adds Italian Tax Stamp support in invoices and receipts.
+This module adds Italian Stamp Duty support in invoices and receipts.
 
 **Table of contents**
 
@@ -58,7 +58,7 @@ necessario abilitare le funzioni complete per la contabilità:
 Modalità automatica:
 
 -  andare sul prodotto "Imposta di bollo 2 euro" e configurare "Imposte
-   marca da bollo" (Imposte in esenzione).
+   per bollo" (Imposte in esenzione).
 -  per ciascuna fattura o ricevuta, l'applicabilità dell'imposta di
    bollo verrà calcolata in modo automatico in base alla somma degli
    imponibili relativi alle imposte selezionate.
@@ -77,7 +77,7 @@ generalmente ricavo="Debiti per bolli" e costo="Valori bollati".
 
 **English**
 
-In order to change Tax Stamp 2 euro product settings, enable full
+In order to change 'Stamp duty 2 euro' product settings, enable full
 accounting features:
 
 1. Settings -> Users & Companies -> Groups
@@ -86,7 +86,7 @@ accounting features:
 
 Automatic mode:
 
--  Go to 'Tax Stamp 2 euro' product and configure 'Stamp taxes'
+-  Go to 'Stamp duty 2 euro' product and configure 'Stamp taxes'
    (exemption taxes).
 -  For each invoice or receipt, the base amount for each selected tax
    will be added up and used to determine the application of the account
@@ -94,9 +94,9 @@ Automatic mode:
 
 Manual mode:
 
--  Go to 'Tax Stamp 2 euro' product and deselect 'Auto-compute'
+-  Go to 'Stamp duty 2 euro' product and deselect 'Auto-compute'
    checkbox.
--  For each invoice or receipt, manually enable 'Tax Stamp' checkbox.
+-  For each invoice or receipt, manually enable 'Stamp Duty' checkbox.
 
 Also set income/expense accounts, typically income = 'Debiti per bolli'
 and expense = 'Valori bollati'.
@@ -115,11 +115,24 @@ verrà addebitata al cliente.
 
 **English**
 
-In invoice or receipt form, when applicable, click 'Add tax stamp line'
-button to add tax stamp as invoice line, thus charging customer.
+In invoice or receipt form, when applicable, click 'Add stamp duty line'
+button to add stamp duty as invoice line, thus charging customer.
 
-Otherwise, tax stamp will be anyway accounted, without charging
+Otherwise, stamp duty will be anyway accounted, without charging
 customer.
+
+Known issues / Roadmap
+======================
+
+\*\* Italiano \*\*
+
+Sono stati aggiunti gli script di migrazione, da provare quando saranno
+rilasciati quelli relativi ad ``account``.
+
+\*\* English \*\*
+
+Migration scripts have been added, to be tested when ``account`` related
+ones will be released.
 
 Bug Tracker
 ===========

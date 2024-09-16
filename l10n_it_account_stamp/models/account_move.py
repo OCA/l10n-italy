@@ -192,8 +192,12 @@ class AccountMove(models.Model):
                     lang=inv.partner_id.lang
                 ).l10n_it_account_stamp_stamp_duty_product_id
                 if not stamp_product_id:
-                    raise UserError(_("Missing stamp duty product in company settings!"))
-                income_vals, expense_vals = inv._build_stamp_duty_lines(stamp_product_id)
+                    raise UserError(
+                        _("Missing stamp duty product in company settings!")
+                    )
+                income_vals, expense_vals = inv._build_stamp_duty_lines(
+                    stamp_product_id
+                )
                 income_vals["move_id"] = inv.id
                 expense_vals["move_id"] = inv.id
                 line_model.with_context(check_move_validity=False).create(income_vals)
