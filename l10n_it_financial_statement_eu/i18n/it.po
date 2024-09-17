@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-20 09:39+0000\n"
-"PO-Revision-Date: 2024-09-11 09:06+0000\n"
+"PO-Revision-Date: 2024-09-17 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -294,7 +294,7 @@ msgstr "Codice fiscale"
 #. module: l10n_it_financial_statement_eu
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__date_from
 msgid "From date"
-msgstr "Data inizio"
+msgstr "Dalla data"
 
 #. module: l10n_it_financial_statement_eu
 #. odoo-python
@@ -480,7 +480,7 @@ msgstr "Sono presenti conti da ignorare ma che hanno saldo diverso da zero:"
 #. module: l10n_it_financial_statement_eu
 #: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__date_to
 msgid "To date"
-msgstr "Data fine"
+msgstr "Alla data"
 
 #. module: l10n_it_financial_statement_eu
 #: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu_wizard__state__unbalanced
