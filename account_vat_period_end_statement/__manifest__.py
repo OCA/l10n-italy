@@ -18,7 +18,6 @@
         "account_tax_balance",
         "date_range",
         "l10n_it_account",
-        "l10n_it_fiscalcode",
         "web",
     ],
     "data": [
