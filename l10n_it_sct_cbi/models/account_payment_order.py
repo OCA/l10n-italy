@@ -349,7 +349,7 @@ class AccountPaymentOrder(models.Model):
         payment_identification_CtgyPurp_Cd = etree.SubElement(
             payment_identification_CtgyPurp, "Cd"
         )
-        payment_identification_CtgyPurp_Cd.text = "SEPA"
+        payment_identification_CtgyPurp_Cd.text = "SUPP"
         instruction_identification = etree.SubElement(payment_identification, "InstrId")
         instruction_identification.text = self._prepare_field(
             "Instruction Identification",
