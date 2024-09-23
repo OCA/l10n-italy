@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="group_force_e_inv_export_state" model="res.groups">
+        <field name="name">Allow to force e-invoice export state</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>

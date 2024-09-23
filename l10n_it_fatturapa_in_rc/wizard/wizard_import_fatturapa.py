@@ -4,10 +4,14 @@ from odoo import models
 class WizardImportFatturapa(models.TransientModel):
     _inherit = "wizard.import.fatturapa"
 
+    def _is_in_reverse_charge_line(self, line):
+        """The e-invoice line `line` should be imported as reverse charge."""
+        return float(line.AliquotaIVA) == 0.0 and line.Natura.startswith("N6")
+
     def _prepare_generic_line_data(self, line):
         retLine = {}
         account_tax_model = self.env["account.tax"]
-        if float(line.AliquotaIVA) == 0.0 and line.Natura.startswith("N6"):
+        if self._is_in_reverse_charge_line(line):
             # search reversed tax
             account_rc_type_tax = self.env["account.rc.type.tax"].search(
                 [("rc_type_id.e_invoice_suppliers", "=", True)]
@@ -27,12 +31,12 @@ class WizardImportFatturapa(models.TransientModel):
                 retLine["tax_ids"] = [(6, 0, [account_taxes[0].id])]
             return retLine
         else:
-            return super(WizardImportFatturapa, self)._prepare_generic_line_data(line)
+            return super()._prepare_generic_line_data(line)
 
     def set_invoice_line_ids(
         self, FatturaBody, credit_account_id, partner, wt_found, invoice
     ):
-        res = super(WizardImportFatturapa, self).set_invoice_line_ids(
+        res = super().set_invoice_line_ids(
             FatturaBody, credit_account_id, partner, wt_found, invoice
         )
         if not invoice.invoice_line_ids:

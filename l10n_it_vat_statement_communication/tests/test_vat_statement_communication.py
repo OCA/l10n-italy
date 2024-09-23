@@ -8,7 +8,7 @@ from odoo.tests.common import Form, tagged
 from odoo.addons.account.tests.common import TestAccountReconciliationCommon
 
 
-@tagged("post_install")
+@tagged("-at_install", "post_install")
 class VatStatementCommunicationCase(TestAccountReconciliationCommon):
     @classmethod
     def setUpClass(cls):
@@ -404,7 +404,9 @@ class VatStatementCommunicationCase(TestAccountReconciliationCommon):
             {
                 "of_account_end_vat_statement_interest": True,
                 "of_account_end_vat_statement_interest_percent": 1.0,
-                "of_account_end_vat_statement_interest_account_id": self.account_interessi.id,
+                "of_account_end_vat_statement_interest_account_id": (
+                    self.account_interessi.id
+                ),
             }
         )
 

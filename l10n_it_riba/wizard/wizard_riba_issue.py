@@ -57,11 +57,13 @@ class RibaIssue(models.TransientModel):
         # group by partner and due date
         grouped_lines = {}
         move_lines = move_line_obj.search([("id", "in", self._context["active_ids"])])
+        if any(line.parent_state != "posted" for line in move_lines):
+            raise UserError(_("It is possible to issue C/O for posted move only!"))
         do_group_riba = True
         if (
             len(
                 {
-                    "{}{}".format(x.cig, x.cup)
+                    f"{x.cig}{x.cup}"
                     for x in move_lines.mapped("move_id.related_documents")
                 }
             )

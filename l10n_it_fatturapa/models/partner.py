@@ -114,9 +114,11 @@ class ResPartner(models.Model):
                 if not partner.is_pa and not partner.codice_destinatario:
                     raise ValidationError(
                         _(
-                            "Partner %(name)s must have Addresse Code. Use %(code)s if unknown"
+                            "Partner %(name)s must have Addressee Code. "
+                            "Use %(code)s if unknown",
+                            name=partner.name,
+                            code=STANDARD_ADDRESSEE_CODE,
                         )
-                        % {"name": partner.name, "code": STANDARD_ADDRESSEE_CODE}
                     )
                 if (
                     not partner.is_pa

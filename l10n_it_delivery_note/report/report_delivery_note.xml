@@ -89,6 +89,21 @@
                         </p>
                     </div>
                 </div>
+                <div
+                    id="carrier"
+                    t-if="doc.carrier_id and doc.company_id.display_carrier_dn_report"
+                >
+                    <strong>Carrier:</strong>
+                    <t t-esc="doc.carrier_id.name" />
+                </div>
+                <div
+                    id="delivery_method"
+                    t-if="doc.delivery_method_id and doc.company_id.display_delivery_method_dn_report"
+                >
+                    <strong>Delivery Method:</strong>
+                    <t t-esc="doc.delivery_method_id.name" />
+                </div>
+
                 <div id="dn_terms">
                     <strong> Delivery Note: </strong>
                     Under the terms of Italian Presidential Decree 472-96 of 14.08.1996
@@ -115,7 +130,17 @@
                         <strong>Carriage Condition:</strong>
                         <p t-field="doc.transport_condition_id" class="m-0" />
                     </div>
-                    <div t-if="doc.transport_method_id" class="col-3 bm-2">
+                    <div
+                        t-if="doc.transport_method_id and doc.company_id.display_carrier_dn_report"
+                        class="col-3 bm-2"
+                    >
+                        <strong>Method of Transport:</strong>
+                        <p t-field="doc.transport_method_id" class="m-0" />
+                    </div>
+                    <div
+                        t-if="doc.transport_method_id and not doc.company_id.display_carrier_dn_report"
+                        class="col-3 bm-2"
+                    >
                         <strong>Method of Transport / Carrier:</strong>
                         <span t-field="doc.transport_method_id" class="m-0" />
                         <t t-if="doc.transport_method_id and doc.carrier_id"> / </t>
@@ -133,28 +158,34 @@
                             <th class="text-start">
                                 Description
                             </th>
-                            <th class="text-end">
+                            <th class="text-start">
                                 Quantity
                             </th>
-                            <th class="text-end" groups="uom.group_uom">
+                            <th class="text-start" groups="uom.group_uom">
                                 UoM
                             </th>
                             <th
                                 t-if="doc.print_prices"
-                                class="text-end"
+                                class="text-start"
                                 style="white-space: nowrap;"
                             >
                                 Unit price
                             </th>
                             <th
                                 t-if="doc.print_prices"
-                                class="text-end"
+                                class="text-start"
                                 groups="product.group_discount_per_so_line"
                             >
                                 Discount
                             </th>
-                            <th t-if="doc.print_prices" class="text-end">
+                            <th t-if="doc.print_prices" class="text-start">
                                 Taxes
+                            </th>
+                            <th t-if="doc.lines_have_so_number">
+                                Ref. Order
+                            </th>
+                            <th t-if="doc.lines_have_customer_ref">
+                                Ref. Customer
                             </th>
                         </tr>
                     </thead>
@@ -180,26 +211,32 @@
                                             />
                                         </t>
                                     </td>
-                                    <td class="text-end">
+                                    <td class="text-start">
                                         <span t-field="line.product_qty" />
                                     </td>
-                                    <td class="text-end" groups="uom.group_uom">
+                                    <td class="text-start" groups="uom.group_uom">
                                         <span t-field="line.product_uom_id" />
                                     </td>
-                                    <td t-if="doc.print_prices" class="text-end">
+                                    <td t-if="doc.print_prices" class="text-start">
                                         <span t-field="line.price_unit" />
                                     </td>
                                     <td
                                         t-if="doc.print_prices"
-                                        class="text-end"
+                                        class="text-start"
                                         groups="product.group_discount_per_so_line"
                                     >
                                         <span t-field="line.discount" />%
                                     </td>
-                                    <td t-if="doc.print_prices" class="text-end">
+                                    <td t-if="doc.print_prices" class="text-start">
                                         <span
                                             t-esc="', '.join(map(lambda t: (t.description or t.name), line.tax_ids))"
                                         />
+                                    </td>
+                                    <td t-if="doc.lines_have_so_number">
+                                        <span t-esc="line.sale_order_number" />
+                                    </td>
+                                    <td t-if="doc.lines_have_customer_ref">
+                                        <span t-esc="line.sale_order_client_ref" />
                                     </td>
                                 </t>
                                 <t t-else="">
@@ -223,9 +260,11 @@
                                             <span t-field="lot_line.lot_id" />
                                         </strong>
                                         <t
-                                            t-if="'use_date' in lot_line.lot_id.fields_get()"
+                                            t-if="'use_expiration_date' in lot_line.lot_id.fields_get()"
                                         >
-                                            <t t-if="lot_line.lot_id.use_date">
+                                            <t
+                                                t-if="lot_line.lot_id.use_expiration_date"
+                                            >
                                                 best before
                                                 <strong>
                                                     <span
@@ -269,7 +308,7 @@
                                 style="font-size:10px;"
                             >Gross Weight</div>
                             <div
-                                class="text-end"
+                                class="text-left"
                                 style="font-size:12px;"
                                 t-field="doc.gross_weight"
                             />
@@ -280,7 +319,7 @@
                                 style="font-size:10px;"
                             >Net Weight</div>
                             <div
-                                class="text-end"
+                                class="text-left"
                                 style="font-size:12px;"
                                 t-field="doc.net_weight"
                             />
@@ -289,7 +328,7 @@
                             <div
                                 name="transport_date"
                                 style="font-size:10px;"
-                            >DN date</div>
+                            >Transport date</div>
                             <div
                                 class="m-0"
                                 style="font-size:12px;"
@@ -299,7 +338,7 @@
                         <td>
                             <div name="packages" style="font-size:10px;">Packages</div>
                             <div
-                                class="text-end"
+                                class="text-left"
                                 style="font-size:12px;"
                                 t-field="doc.packages"
                             />

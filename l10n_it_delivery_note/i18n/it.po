@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2024-01-22 10:38+0000\n"
+"PO-Revision-Date: 2024-08-22 11:07+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid "%s hasn't sale order!"
+msgstr "%s non ha un ordine di vendita!"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid "%s is already invoiced!"
+msgstr "%s è già fatturato!"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid "%s is in draft!"
+msgstr "%s è in bozza!"
 
 #. module: l10n_it_delivery_note
 #: model:ir.actions.report,print_report_name:l10n_it_delivery_note.delivery_note_report_action
@@ -23,9 +44,24 @@ msgid "'Delivery Note - %s' % object.display_name"
 msgstr "'Documento di trasporto - %s' % object.display_name"
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_delivery_note_page
+msgid "<i class=\"fa fa-download\"/> Download"
+msgstr "<i class=\"fa fa-download\"/> Download"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_delivery_note_page
+msgid "<i class=\"fa fa-print\"/> Print"
+msgstr "<i class=\"fa fa-print\"/> Stampa"
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
 msgid "<i>(e.g. link multiple pickings to a single DN)</i>"
 msgstr "<i>(es. unisce molteplici trasferimenti in un singolo DdT)</i>"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_select_form_view
+msgid "<span class=\"fa fa-warning\" title=\"Warning!\"/>"
+msgstr "<span class=\"fa fa-warning\" title=\"Attenzione!\"/>"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
@@ -67,8 +103,18 @@ msgstr "<strong>Condizione di Trasporto:</strong>"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Carrier:</strong>"
+msgstr "<strong>Vettore:</strong>"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "<strong>Customer:</strong>"
 msgstr "<strong>Cliente:</strong>"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Delivery Method:</strong>"
+msgstr "<strong>Metodo di consegna:</strong>"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
@@ -79,6 +125,11 @@ msgstr "<strong>Indirizzo di consegna:</strong>"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "<strong>Method of Transport / Carrier:</strong>"
 msgstr "<strong>Metodo di trasporto / Vettore:</strong>"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Method of Transport:</strong>"
+msgstr "<strong>Metodo di trasporto:</strong>"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
@@ -111,6 +162,11 @@ msgstr ""
 "Una descrizione del prodotto che si vuole comunicare al cliente. Questa "
 "descrizione verrà copiata in ogni ordine di vendita, ordine di spedizione e "
 "fattura/nota di credito del cliente"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__access_warning
+msgid "Access warning"
+msgstr "Avviso accesso"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_needaction
@@ -200,6 +256,16 @@ msgid "Attachment Count"
 msgstr "Numero allegati"
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid ""
+"Block the validation of incoming DNs if the\n"
+"                                    \"Partner reference\" field is not set."
+msgstr ""
+"Blocca la validazione di DdT in entrata se il\n"
+"                                    campo \"Riferimento partner\" non è "
+"valorizzato."
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__can_be_invoiced
 msgid "Can Be Invoiced"
 msgstr "Può essere fatturato"
@@ -223,10 +289,12 @@ msgstr ""
 "configurazioni del magazzino prima di continuare."
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_confirm_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_create_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_select_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.view_stock_delivery_note_invoice_wizard
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -252,6 +320,11 @@ msgstr "Firma del vettore"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 msgid "Carriers"
 msgstr "Vettori"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_res_company
+msgid "Companies"
+msgstr "Aziende"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__company_id
@@ -281,6 +354,7 @@ msgstr "Impostazioni di configurazione"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__sale_advance_payment_inv__step__confirm
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_confirm_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_create_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_select_form_view
 msgid "Confirm"
@@ -290,6 +364,11 @@ msgstr "Conferma"
 #: model:ir.model,name:l10n_it_delivery_note.model_res_partner
 msgid "Contact"
 msgstr "Contatto"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.view_stock_delivery_note_invoice_wizard
+msgid "Create Invoice"
+msgstr "Crea fattura"
 
 #. module: l10n_it_delivery_note
 #. odoo-python
@@ -306,13 +385,20 @@ msgid "Create invoice"
 msgstr "Crea fattura"
 
 #. module: l10n_it_delivery_note
+#: model:ir.actions.act_window,name:l10n_it_delivery_note.action_stock_delivery_note_invoice_wizard
+msgid "Create invoices"
+msgstr "Crea fatture"
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Create new"
 msgstr "Crea nuovo"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__create_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__create_uid
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard__create_uid
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__create_uid
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__create_uid
 msgid "Created by"
@@ -320,7 +406,9 @@ msgstr "Creato da"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__create_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__create_date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard__create_date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__create_date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__create_date
 msgid "Created on"
@@ -335,6 +423,16 @@ msgstr "Valuta"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_advance_payment_inv__step
 msgid "Current step"
 msgstr "Passo corrente"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__access_url
+msgid "Customer Portal URL"
+msgstr "URL portale cliente"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__sale_order_client_ref
+msgid "Customer Reference"
+msgstr "Riferimento cliente"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_carrier_id
@@ -367,11 +465,6 @@ msgid "DN Volume"
 msgstr "Volume DdT"
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "DN date"
-msgstr "Data Traporto"
-
-#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_base_wizard__date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__date
@@ -385,10 +478,17 @@ msgid "Dates"
 msgstr "Date"
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_tree_view
+msgid "Delivery Method"
+msgstr "Metodo di consegna"
+
+#. module: l10n_it_delivery_note
 #: model:ir.actions.report,name:l10n_it_delivery_note.delivery_note_report_action
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_sale_order__delivery_note_ids
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__delivery_note_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_id
@@ -400,13 +500,26 @@ msgstr "DdT"
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/models/account_invoice.py:0
 #, python-format
-msgid "Delivery Note \"{}\" of {}"
-msgstr "DdT \"{}\" del {}"
+msgid "Delivery Note \"%(ddt_name)s\" of %(ddt_date)s"
+msgstr "DdT \"%(ddt_name)s\" del %(ddt_date)s"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/controllers/portal.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_delivery_notes
+#, python-format
+msgid "Delivery Note #"
+msgstr "N° DdT"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note_base_wizard
 msgid "Delivery Note Base"
 msgstr "Base DdT"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note_confirm_wizard
+msgid "Delivery Note Confirm"
+msgstr "Conferma DdT"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_bank_statement_line__delivery_note_count
@@ -422,6 +535,14 @@ msgid "Delivery Note Creator"
 msgstr "Autore DdT"
 
 #. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/controllers/portal.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_delivery_notes
+#, python-format
+msgid "Delivery Note Date"
+msgstr "Data DdT"
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_draft
 msgid "Delivery Note Draft"
 msgstr "DdT in bozza"
@@ -430,6 +551,11 @@ msgstr "DdT in bozza"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_exists
 msgid "Delivery Note Exists"
 msgstr "Esiste DdT"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note_invoice_wizard
+msgid "Delivery Note Invoice"
+msgstr "Fattura DdT"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_stock_delivery_note_line
@@ -466,6 +592,9 @@ msgstr "DdT visibile"
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_delivery_note_config_menu
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_delivery_note_menu
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.account_view_move_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_delivery_notes
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_home_menu_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Delivery Notes"
@@ -500,12 +629,38 @@ msgid "Discount"
 msgstr "Sconto"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_carrier_dn_report
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_carrier_dn_report
+msgid "Display Carrier in Delivery Note Report"
+msgstr "Mostra vettore nella stampa DdT"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_delivery_method_dn_report
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_delivery_method_dn_report
+msgid "Display Delivery Method in Delivery Note Report"
+msgstr "Mostra metodo di consegna nella stampa DdT"
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_ref_customer_dn_report
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_ref_customer_dn_report
+msgid "Display Ref. Customer in Delivery Note Report"
+msgstr "Mostra Rif. Cliente nella stampa DdT"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_company__display_ref_order_dn_report
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__display_ref_order_dn_report
+msgid "Display Ref. Order in Delivery Note Report"
+msgstr "Mostra Rif. Ordine nella stampa DdT"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
@@ -523,6 +678,11 @@ msgstr "Documento:"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Done"
 msgstr "Completato"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_delivery_note_page
+msgid "Download"
+msgstr "Scarica"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__state__draft
@@ -618,8 +778,15 @@ msgid "Has Message"
 msgstr "Ha un messaggio"
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_delivery_note_page
+msgid "History"
+msgstr "Storico"
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__id
 msgid "ID"
@@ -642,7 +809,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_has_error
-#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -650,6 +816,15 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_wizard_error_message_template
 msgid "If these problems persist, don't hesitate to contact the helpdesk."
 msgstr "Se questi problemi persistono, non esitate a contattare l'helpdesk."
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid "In %(ddt_name)s there is %(product_name)s with invoicing policy 'order'"
+msgstr ""
+"In %(ddt_name)s c'è il prodotto %(product_name)s con politica di "
+"fatturazione \"ordinato\""
 
 #. module: l10n_it_delivery_note
 #. odoo-python
@@ -697,6 +872,11 @@ msgid "Inventory Locations"
 msgstr "Ubicazioni di inventario"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard__invoice_method
+msgid "Invoice Method"
+msgstr "Metodo fatturazione"
+
+#. module: l10n_it_delivery_note
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/wizard/sale_advance_payment_inv.py:0
 #, python-format
@@ -715,6 +895,11 @@ msgid "Invoice statuses"
 msgstr "Stati fatturazione"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard__invoice_date
+msgid "Invoice/Bill Date"
+msgstr "Data fattura/conto"
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__state__invoiced
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
@@ -726,12 +911,6 @@ msgstr "Fatturate"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Invoices"
 msgstr "Fatture"
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_partner__is_carrier
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_users__is_carrier
-msgid "Is Carrier"
-msgstr "È trasportatore"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_is_follower
@@ -749,28 +928,6 @@ msgstr ""
 "                                    DdT introducendo funzionalità aggiuntive."
 
 #. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"It seems that at least one delivery note has been already created. You can't "
-"migrate any data on an already used database."
-msgstr ""
-"Sembra che sia stato già creato almeno un DdT. Non puoi migrare nessun dato "
-"se il database è già in uso."
-
-#. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"It seems that there are no documents to migrate. You don't need to run this "
-"command."
-msgstr ""
-"Sembra che non ci siano documenti da migrare. Non si necessita di eseguire "
-"questo comando."
-
-#. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_account_move
 msgid "Journal Entry"
 msgstr "Registrazione contabile"
@@ -782,7 +939,9 @@ msgstr "Movimento contabile"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard____last_update
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard____last_update
 msgid "Last Modified on"
@@ -790,7 +949,9 @@ msgstr "Ultima modifica il"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__write_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__write_uid
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard__write_uid
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__write_uid
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__write_uid
 msgid "Last Updated by"
@@ -798,7 +959,9 @@ msgstr "Ultimo aggiornamento di"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__write_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__write_date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_invoice_wizard__write_date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__write_date
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__write_date
 msgid "Last Updated on"
@@ -815,9 +978,29 @@ msgid "Lines"
 msgstr "Righe"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__lines_have_customer_ref
+msgid "Lines Have Customer Ref"
+msgstr "Righe hanno Rif. Cliente"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__lines_have_so_number
+msgid "Lines Have So Number"
+msgstr "Righe hanno numero SO"
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Allegato principale"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__group_required_partner_ref
+msgid "Make Partner Ref. in DN Mandatory"
+msgstr "Campo \"Riferimento Partner\" in DdT obbligatorio"
+
+#. module: l10n_it_delivery_note
+#: model:res.groups,name:l10n_it_delivery_note.group_required_partner_ref
+msgid "Make Partner Ref. in DN Required"
+msgstr "Campo Riferimento Partner in DdT obbligatorio"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__mrp_operation
@@ -849,17 +1032,6 @@ msgstr "Metodo di trasporto"
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_picking_transport_method_menu
 msgid "Methods of transport"
 msgstr "Metodi di trasporto"
-
-#. module: l10n_it_delivery_note
-#. odoo-python
-#: code:addons/l10n_it_delivery_note/cli/migrate_l10n_it_ddt.py:0
-#, python-format
-msgid ""
-"Module `l10n_it_ddt` isn't installed on this database. You don't need to run "
-"this command."
-msgstr ""
-"Il modulo `l10n_it_ddt` non è installato in questo database. Non si "
-"necessita di eseguire questo comando."
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__my_activity_date_deadline
@@ -916,6 +1088,11 @@ msgid "Note"
 msgstr "Nota"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move_line__note_dn
+msgid "Note DN"
+msgstr "Nota DdT"
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Notes"
 msgstr "Note"
@@ -948,6 +1125,11 @@ msgid "Number of messages with delivery error"
 msgstr "Numero di messaggi con errore di consegna"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_invoice_wizard__invoice_method__dn
+msgid "Only DN"
+msgstr "Solo DdT"
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Open picking"
 msgstr "Apri consegna"
@@ -972,13 +1154,9 @@ msgstr "In uscita (con prezzi)"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__packages
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_delivery_notes
 msgid "Packages"
 msgstr "Colli"
-
-#. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
-msgid "Partner document"
-msgstr "Contatto del documento"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__partner_ref
@@ -1000,7 +1178,7 @@ msgstr "Mescola Controllore del Prelievo"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__picking_type
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__picking_type
 msgid "Picking type"
-msgstr "Tipologia prelievo"
+msgstr "Tipo prelievo"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
@@ -1026,10 +1204,36 @@ msgid "Please, check and solve these problems before trying again."
 msgstr "Prego, controllare e risolvere questi problemi prima di riprovare."
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__access_url
+msgid "Portal Access URL"
+msgstr "URL accesso portale"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_delivery_note_page
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Print"
 msgstr "Stampa"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid "Prints Carrier's name on DN report (if there is any)"
+msgstr "Stampa nome vettore su stampa DdT (se presente)"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid "Prints Customer References on DN report (if there are any)"
+msgstr "Stampa Rif. Cliente su DdT (se presente)"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid "Prints Delivery Method on DN report (if there is any)"
+msgstr "Stampa metodo di consegna su stampa DdT (se presente)"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.res_config_settings_form_view
+msgid "Prints Sale Order numbers on DN report (if there are any)"
+msgstr "Stampa Rif. Ordine su DdT (se presente)"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__product_id
@@ -1077,6 +1281,16 @@ msgid "Recipients"
 msgstr "Destinatari"
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "Ref. Customer"
+msgstr "Rif. Cliente"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "Ref. Order"
+msgstr "Rif. Ordine"
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Reset to draft"
@@ -1086,11 +1300,6 @@ msgstr "Reimposta a bozza"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__activity_user_id
 msgid "Responsible User"
 msgstr "Utente responsabile"
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__sale_ids
@@ -1106,6 +1315,21 @@ msgstr "Numero vendite"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__sale_line_id
 msgid "Sale Line"
 msgstr "Riga di vendita"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_line__sale_order_number
+msgid "Sale Order Number"
+msgstr "Numero ordine di vendita"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid ""
+"Sale orders related to %s have return! For invoicing, go to sale orders."
+msgstr ""
+"Gli ordini di vendita relazionati a %s hanno un reso! Per la fatturazione, "
+"passa dagli ordini di vendita."
 
 #. module: l10n_it_delivery_note
 #: model:ir.model,name:l10n_it_delivery_note.model_sale_advance_payment_inv
@@ -1138,6 +1362,13 @@ msgid "Sales orders"
 msgstr "Ordini di vendita"
 
 #. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/controllers/portal.py:0
+#, python-format
+msgid "Search <span class=\"nolabel\"> Name</span>"
+msgstr "Cerca <span class=\"nolabel\"> nome</span>"
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_line__display_type__line_section
 msgid "Section"
 msgstr "Sezione"
@@ -1146,6 +1377,11 @@ msgstr "Sezione"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Section name (e.g. Products, Services)"
 msgstr "Nome sezione (es. Prodotti, Servizi)"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__access_token
+msgid "Security Token"
+msgstr "Token di sicurezza"
 
 #. module: l10n_it_delivery_note
 #. odoo-python
@@ -1291,6 +1527,31 @@ msgstr "Il DDT deve avere un numero univoco."
 
 #. module: l10n_it_delivery_note
 #. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid ""
+"The carrier set in Delivery Note is different from the carrier set in "
+"picking(s). Are you sure you want to proceed?"
+msgstr ""
+"Il vettore impostato nel DdT è differente dal vettore impostato nei "
+"trasferimenti. Confermi di voler procedere?"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid ""
+"The field 'Partner reference' is mandatory to validate the Delivery Note."
+msgstr ""
+"Il campo \"Riferimento partner\" è obbligatorio per poter validare il DdT."
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_picking__carrier_partner_id
+msgid "The partner that is doing the delivery service."
+msgstr "Il partner che effettua il servizio di consegna."
+
+#. module: l10n_it_delivery_note
+#. odoo-python
 #: code:addons/l10n_it_delivery_note/mixins/picking_checker.py:0
 #, python-format
 msgid ""
@@ -1327,6 +1588,25 @@ msgid "The pickings you've selected don't seem to have any type."
 msgstr "I prelievi che hai selezionato non sembrano avere nessun tipo."
 
 #. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/wizard/delivery_note_select.py:0
+#, python-format
+msgid "The selected pickings have different delivery methods: %(carriers)s"
+msgstr ""
+"I trasferimenti selezionati hanno metodi di consegna differenti: %(carriers)s"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid ""
+"The shipping method set in Delivery Note is different from the shipping "
+"method set in picking(s). Are you sure you want to proceed?"
+msgstr ""
+"Il metodo di consegna impostato nel DdT è differente dal metodo di consegna "
+"impostato nei trasferimenti. Confermi di voler procedere?"
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.sale_advance_payment_inv_form_view
 msgid ""
 "There appears to be one or more delivery notes in \"Draft\" state.<br/>\n"
@@ -1342,6 +1622,11 @@ msgstr ""
 "                        le righe interessate di suddetti DdT verranno "
 "scollegate dall'ordine di vendita e\n"
 "                        non risulteranno associate alla fattura generata."
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_delivery_notes
+msgid "There are currently no delivery notes for your account."
+msgstr "Al momento non ci sono DdT sul tuo conto."
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_wizard_error_message_template
@@ -1360,6 +1645,32 @@ msgstr ""
 "alcuni casi molto specifici.<br/>\n"
 "                        Procedi solo se sei assolutamente sicuro e "
 "consapevole di quello che stai facendo."
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid ""
+"This delivery note contains pickings related to different delivery methods "
+"from the same transporter. Are you sure you want to proceed?\n"
+"Delivery Methods: %(carriers)s"
+msgstr ""
+"Questo DdT contiene trasferimenti relazionati a diversi metodi di consegna "
+"dello stesso vettore. Confermi di voler procedere?\n"
+"Metodi di consegna: %(carriers)s"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#, python-format
+msgid ""
+"This delivery note contains pickings related to different transporters. Are "
+"you sure you want to proceed?\n"
+"Carrier Partners: %(carrier_partners)s"
+msgstr ""
+"Questo DdT contiene trasferimenti relazionati a diversi vettori. Confermi di "
+"voler procedere?\n"
+"Vettori: %(carrier_partners)s"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__invoice_status__to_invoice
@@ -1386,8 +1697,14 @@ msgstr "Trasferimento"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__transport_datetime
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__transport_datetime
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Transport date"
 msgstr "Data di trasporto"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__carrier_partner_id
+msgid "Transporter"
+msgstr "Vettore"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__type_id
@@ -1506,6 +1823,21 @@ msgstr "Movimento di magazzino"
 #. module: l10n_it_delivery_note
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_base_wizard__warning_message
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_create_wizard__warning_message
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__warning_message
+#, python-format
+msgid "Warning"
+msgstr "Attenzione"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_confirm_wizard__warning_message
+msgid "Warning Message"
+msgstr "Messaggio di avviso"
+
+#. module: l10n_it_delivery_note
+#. odoo-python
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
 #: code:addons/l10n_it_delivery_note/wizard/delivery_note_base.py:0
 #, python-format
@@ -1521,6 +1853,11 @@ msgstr "Messaggi sito web"
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__website_message_ids
 msgid "Website communication history"
 msgstr "Cronologia comunicazioni sito web"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_invoice_wizard__invoice_method__service
+msgid "With Service"
+msgstr "Con servizio"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.constraint,message:l10n_it_delivery_note.constraint_stock_delivery_note_line_move_uniq
@@ -1681,6 +2018,50 @@ msgstr "di:"
 msgid "qty"
 msgstr "q.tà"
 
+#, python-format
+#~ msgid ""
+#~ "It seems that at least one delivery note has been already created. You "
+#~ "can't migrate any data on an already used database."
+#~ msgstr ""
+#~ "Sembra che sia stato già creato almeno un DdT. Non puoi migrare nessun "
+#~ "dato se il database è già in uso."
+
+#, python-format
+#~ msgid ""
+#~ "It seems that there are no documents to migrate. You don't need to run "
+#~ "this command."
+#~ msgstr ""
+#~ "Sembra che non ci siano documenti da migrare. Non si necessita di "
+#~ "eseguire questo comando."
+
+#, python-format
+#~ msgid ""
+#~ "Module `l10n_it_ddt` isn't installed on this database. You don't need to "
+#~ "run this command."
+#~ msgstr ""
+#~ "Il modulo `l10n_it_ddt` non è installato in questo database. Non si "
+#~ "necessita di eseguire questo comando."
+
+#, python-format
+#~ msgid "Delivery Note \"%(name)s\" of %(date)s"
+#~ msgstr "DDT \"%(name)s\" del %(date)s"
+
+#~ msgid "Is Carrier"
+#~ msgstr "È trasportatore"
+
+#~ msgid "DN date"
+#~ msgstr "Data Traporto"
+
+#~ msgid "Partner document"
+#~ msgstr "Contatto del documento"
+
+#, python-format
+#~ msgid "Delivery Note \"{}\" of {}"
+#~ msgstr "DdT \"{}\" del {}"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
+
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Numero di messaggi che richiedono un'azione"
 
@@ -1704,9 +2085,6 @@ msgstr "q.tà"
 
 #~ msgid "Carriage Condition"
 #~ msgstr "Condizione di trasporto"
-
-#~ msgid "Companies"
-#~ msgstr "Aziende"
 
 #~ msgid ""
 #~ "It allows to prompt a confirmation to the user\n"

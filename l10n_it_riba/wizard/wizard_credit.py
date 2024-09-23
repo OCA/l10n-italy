@@ -75,7 +75,9 @@ class RibaCredit(models.TransientModel):
         active_id = self.env.context.get("active_id") or False
         if not active_id:
             raise UserError(_("No active ID found."))
-        self.env["riba.slip"].browse(active_id).state = "credited"
+        riba_slip = self.env["riba.slip"].browse(active_id)
+        riba_slip.state = "credited"
+        riba_slip.line_ids.state = "credited"
         return {"type": "ir.actions.act_window_close"}
 
     def create_move(self):

@@ -526,10 +526,10 @@ class AccountIntrastatStatement(models.Model):
         else:
             return "{}{}{}.{}{}".format(
                 self.company_id.intrastat_ua_code or "",
-                "{:2s}".format(str(self.date.month).zfill(2)),
-                "{:2s}".format(str(self.date.day).zfill(2)),
+                f"{str(self.date.month).zfill(2):2s}",
+                f"{str(self.date.day).zfill(2):2s}",
                 "I",  # doc intrastat
-                "{:2s}".format(str(prg).zfill(2)),
+                f"{str(prg).zfill(2):2s}",
             )
 
     def _prepare_export_head(self):
@@ -670,16 +670,10 @@ class AccountIntrastatStatement(models.Model):
         # Partita IVA del soggetto delegato
         rcd += format_9(self.intrastat_vat_delegate, 11)
         for section_number in range(1, 5):
-            section_op_number_field = "{}_section{}_operation_number".format(
-                kind,
-                section_number,
-            )
+            section_op_number_field = f"{kind}_section{section_number}_operation_number"
             rcd += format_9(self[section_op_number_field], 5)
 
-            section_op_amount_field = "{}_section{}_operation_amount".format(
-                kind,
-                section_number,
-            )
+            section_op_amount_field = f"{kind}_section{section_number}_operation_amount"
             amount = self[section_op_amount_field]
             if section_number == 2:
                 amount = self._format_negative_number_frontispiece(amount)
@@ -788,7 +782,7 @@ class AccountIntrastatStatement(models.Model):
             for section_type in ["purchase", "sale"]:
                 for section_number in range(1, 5):
                     section_details = (section_type, section_number)
-                    statement_section = "%s_s%s" % section_details
+                    statement_section = "{}_s{}".format(*section_details)
                     if inv_intra_line.statement_section != statement_section:
                         continue
                     statement_section_model_name = self.get_section_model(
@@ -830,14 +824,11 @@ class AccountIntrastatStatement(models.Model):
 
     @staticmethod
     def get_section_model(section_type, section_number):
-        return "account.intrastat.statement.{}.section{}".format(
-            section_type,
-            section_number,
-        )
+        return f"account.intrastat.statement.{section_type}.section{section_number}"
 
     @staticmethod
     def get_section_field_name(section_type, section_number):
-        return "{}_section{}_ids".format(section_type, section_number)
+        return f"{section_type}_section{section_number}_ids"
 
     def refund_line(self, line, to_ref_obj):
         """Refund line into sale if period ref is the same of the statement"""

@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_withholding_tax_financial_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_withholding_tax_financial_report
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax_financial_report/report/open_items_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_financial_report.report_open_items_lines_header_wt
+#, python-format
+msgid "Net to pay"
+msgstr ""
+
+#. module: l10n_it_withholding_tax_financial_report
+#: model:ir.model,name:l10n_it_withholding_tax_financial_report.model_report_account_financial_report_open_items
+msgid "Open Items Report"
+msgstr ""
+
+#. module: l10n_it_withholding_tax_financial_report
+#: model:ir.model,name:l10n_it_withholding_tax_financial_report.model_report_a_f_r_report_open_items_xlsx
+msgid "Open Items XLSX Report"
+msgstr ""
+
+#. module: l10n_it_withholding_tax_financial_report
+#. odoo-python
+#: code:addons/l10n_it_withholding_tax_financial_report/report/open_items_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_financial_report.report_open_items_lines_header_wt
+#, python-format
+msgid "Residual net to pay"
+msgstr ""

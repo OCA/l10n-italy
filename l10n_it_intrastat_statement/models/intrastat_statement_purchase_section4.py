@@ -19,10 +19,6 @@ class IntrastatStatementPurchaseSection4(models.Model):
     quarterly = fields.Integer(string="Ref. Quarter")
     year_id = fields.Integer(string="Ref. Year")
     protocol = fields.Integer(string="Protocol Number")
-    progressive_to_modify_id = fields.Many2one(
-        comodel_name="account.intrastat.statement.purchase.section1",
-        string="Progressive to Adjust ID",
-    )
     progressive_to_modify = fields.Integer(string="Progressive to Adjust")
     invoice_number = fields.Char()
     invoice_date = fields.Date()
@@ -42,9 +38,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
 
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
-        res = super(IntrastatStatementPurchaseSection4, self)._prepare_statement_line(
-            inv_intra_line, statement_id
-        )
+        res = super()._prepare_statement_line(inv_intra_line, statement_id)
         # Period Ref
         ref_period = statement_id._get_period_ref()
 
@@ -64,9 +58,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
         return res
 
     def _export_line_checks(self, section_label, section_number):
-        res = super(IntrastatStatementPurchaseSection4, self)._export_line_checks(
-            section_label, section_number
-        )
+        res = super()._export_line_checks(section_label, section_number)
         if not self.year_id:
             raise ValidationError(
                 _("Missing reference year on 'Purchases - Section 4'")
@@ -102,7 +94,7 @@ class IntrastatStatementPurchaseSection4(models.Model):
         # Protocollo della dichiarazione da rettificare
         rcd += format_9(self.protocol, 6)
         # Progressivo della sezione 3 da rettificare
-        rcd += format_9(self.progressive_to_modify_id.sequence, 5)
+        rcd += format_9(self.progressive_to_modify, 5)
         # Codice dello Stato membro dell’acquirente
         country_id = self.country_partner_id or self.partner_id.country_id
         rcd += format_x(country_id.code, 2)

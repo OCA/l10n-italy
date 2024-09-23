@@ -12,5 +12,5 @@ class AccountTaxKind(models.Model):
     def name_get(self):
         res = []
         for tax_kind in self:
-            res.append((tax_kind.id, "[{}] {}".format(tax_kind.code, tax_kind.name)))
+            res.append((tax_kind.id, f"[{tax_kind.code}] {tax_kind.name}"))
         return res

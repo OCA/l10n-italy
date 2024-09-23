@@ -17,8 +17,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields.selection,name:account_vat_period_end_statement.selection__account_vat_period_end_statement__advance_computation_method__4
@@ -26,7 +26,7 @@ msgid "\"4\" (soggetti particolari)"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "&amp;nbsp;("
 msgstr ""
 
@@ -41,7 +41,7 @@ msgid "<span>Summary</span>"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "<strong>Total Credit</strong>"
 msgstr ""
 
@@ -51,7 +51,7 @@ msgid "<strong>Total Statement</strong>"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "<strong>Total To Pay</strong>"
 msgstr ""
 
@@ -282,7 +282,7 @@ msgstr ""
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__advance_account_id
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Down payment"
 msgstr ""
@@ -304,7 +304,7 @@ msgstr ""
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__interests_debit_vat_account_id
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Due interests"
 msgstr ""
@@ -486,12 +486,12 @@ msgid "Previous Debits VAT Amount"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "Previous credit vat"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "Previous debit vat"
 msgstr ""
 
@@ -552,8 +552,8 @@ msgstr ""
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
 "Italia, Beni FUE in Italia, Cell., Microproc.\n"
-"    Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge "
-"UE, Cell. UE, Microproc. UE"
+"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, "
+"Cell. UE, Microproc. UE"
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -600,7 +600,7 @@ msgstr ""
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__tax_credit_account_id
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Tax credits"
 msgstr ""

@@ -10,7 +10,7 @@
 
 {
     "name": "ITA - Ricevute bancarie",
-    "version": "16.0.1.2.0",
+    "version": "16.0.1.6.3",
     "development_status": "Beta",
     "author": "Odoo Community Association (OCA)",
     "category": "Localization/Italy",
@@ -38,10 +38,12 @@
         "views/partner_view.xml",
         "views/wizard_riba_issue.xml",
         "views/wizard_riba_file_export.xml",
+        "views/wizard_riba_payment_date.xml",
         "views/account_config_view.xml",
         "views/slip_report.xml",
         "views/riba_detail_view.xml",
         "views/wizard_presentation.xml",
+        "views/wizard_due_date_settlement.xml",
     ],
     "demo": ["demo/riba_demo.xml"],
     "installable": True,

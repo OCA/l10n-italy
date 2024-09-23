@@ -1,4 +1,5 @@
 #  Copyright 2023 Simone Rubino - TAKOBI
+#  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from datetime import date
@@ -13,7 +14,7 @@ class TestImportZIP(FatturapaCommon):
         cls.env.company.vat = "IT06363391001"
 
     def setUp(self):
-        super(TestImportZIP, self).setUp()
+        super().setUp()
         self.attachment_import_model = self.env["fatturapa.attachment.import.zip"]
         self.cleanPartners()
         self.create_wt()
@@ -88,10 +89,38 @@ class TestImportZIP(FatturapaCommon):
             expected_invoices_values = check_invoices_values.get(attachment.name)
             if expected_invoices_values is not None:
                 invoices = attachment.out_invoice_ids
-                for invoice, expected_values in zip(invoices, expected_invoices_values):
+                for invoice, expected_values in zip(
+                    invoices,
+                    expected_invoices_values,
+                    strict=True,
+                ):
                     for field, expected_value in expected_values.items():
                         self.assertEqual(
                             getattr(invoice, field),
                             expected_value,
-                            f"Field {field} of invoice {invoice.display_name} does not match",
+                            f"Field {field} of invoice {invoice.display_name} "
+                            f"does not match",
                         )
+
+    def test_access_other_user_zip(self):
+        """A user can see the zip files imported by other users."""
+        # Arrange
+        user = self.env.user
+        other_user = user.copy()
+        # pre-condition
+        self.assertNotEqual(user, other_user)
+
+        # Act
+        wizard_attachment_import = self.attachment_import_model.with_user(
+            other_user
+        ).create(
+            {
+                "name": "Test other user XML import",
+                "datas": self.getFile("xml_import.zip")[1],
+            }
+        )
+
+        # Assert
+        self.assertTrue(
+            wizard_attachment_import.ir_attachment_id.with_user(user).read()
+        )

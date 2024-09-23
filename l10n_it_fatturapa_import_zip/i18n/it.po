@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-19 16:10+0000\n"
-"PO-Revision-Date: 2023-12-19 15:34+0000\n"
+"PO-Revision-Date: 2024-09-17 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__access_token
@@ -135,11 +135,6 @@ msgid "E-bill ZIP import"
 msgstr "Importazione file ZIP fattura elettronica"
 
 #. module: l10n_it_fatturapa_import_zip
-#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_in
-msgid "E-bill import file"
-msgstr "File importato e-fattura"
-
-#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_bank_statement_line__attachment_out_import_zip_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_move__attachment_out_import_zip_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_payment__attachment_out_import_zip_id
@@ -147,16 +142,17 @@ msgid "E-bills ZIP import"
 msgstr "Importa file ZIP fatture elettorniche"
 
 #. module: l10n_it_fatturapa_import_zip
-#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_out
-msgid "E-invoice Export File"
-msgstr "File esportato e-fattura"
-
-#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_bank_statement_line__attachment_in_import_zip_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_move__attachment_in_import_zip_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_account_payment__attachment_in_import_zip_id
 msgid "E-invoices ZIP import"
 msgstr "Importa file ZIP fatture elettroniche"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_in
+#: model:ir.model,name:l10n_it_fatturapa_import_zip.model_fatturapa_attachment_out
+msgid "Electronic Invoice"
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__messages
@@ -178,7 +174,7 @@ msgstr "Contenuto file (base64)"
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__raw
 msgid "File Content (raw)"
-msgstr "Contenuto file (grezzo)"
+msgstr "Contenuto file (raw)"
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__file_size
@@ -227,7 +223,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,help:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__message_has_error
-#: model:ir.model.fields,help:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -311,6 +306,11 @@ msgstr "È un documento pubblico"
 #: model:ir.model,name:l10n_it_fatturapa_import_zip.model_account_move
 msgid "Journal Entry"
 msgstr "Registrazione contabile"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__key
+msgid "Key"
+msgstr "Chiave"
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip____last_update
@@ -404,11 +404,6 @@ msgid "Out invoices"
 msgstr "Fatture emesse"
 
 #. module: l10n_it_fatturapa_import_zip
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__ftpa_preview_link
-msgid "Preview link"
-msgstr "Collegamento di anteprima"
-
-#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__res_field
 msgid "Resource Field"
 msgstr "Campo risorsa"
@@ -434,11 +429,6 @@ msgid "Responsible User"
 msgstr "Utente responsabile"
 
 #. module: l10n_it_fatturapa_import_zip
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__state
 msgid "State"
 msgstr "Stato"
@@ -462,6 +452,11 @@ msgid "Stored Filename"
 msgstr "Nome file memorizzato"
 
 #. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__theme_template_id
+msgid "Theme Template"
+msgstr "Modello del tema"
+
+#. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__type
 msgid "Type"
 msgstr "Tipo"
@@ -475,6 +470,11 @@ msgstr "Tipo di attività eccezione sul record."
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__url
 msgid "Url"
 msgstr "URL"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__website_id
+msgid "Website"
+msgstr "Sito web"
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__website_message_ids
@@ -519,3 +519,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.view_fatturapa_in_attachment_form_zip_import
 msgid "ZIP import"
 msgstr "Importa file ZIP"
+
+#~ msgid "E-bill import file"
+#~ msgstr "File importato e-fattura"
+
+#~ msgid "E-invoice Export File"
+#~ msgstr "File esportato e-fattura"
+
+#~ msgid "Preview link"
+#~ msgstr "Collegamento di anteprima"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"

@@ -14,8 +14,6 @@ from odoo.tools.translate import _
 
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
 
-from . import efattura
-
 _logger = logging.getLogger(__name__)
 
 WT_CODES_MAPPING = {
@@ -409,11 +407,15 @@ class WizardImportFatturapa(models.TransientModel):
                     p_name = partner_model.browse(partner_id).name
                     self.log_inconsistency(
                         _(
-                            "Current invoice is from {} with REA Code"
-                            " {}. Yet it seems that partners {} have the same"
+                            "Current invoice is from %(partner)s with REA Code"
+                            " %(code)s. Yet it seems that"
+                            " partners %(partners)s have the same"
                             " REA Code. This code should be unique; please fix"
-                            " it."
-                        ).format(p_name, rea_nr, rea_names)
+                            " it.",
+                            partner=p_name,
+                            code=rea_nr,
+                            partners=rea_names,
+                        )
                     )
                 else:
                     vals["rea_code"] = REA.NumeroREA
@@ -497,7 +499,8 @@ class WizardImportFatturapa(models.TransientModel):
             self.log_inconsistency(
                 _(
                     "No tax with percentage "
-                    "%(percentage)s and nature %(nature)s found. Please configure this tax.",
+                    "%(percentage)s and nature %(nature)s found. "
+                    "Please configure this tax.",
                     percentage=tax_amount,
                     nature=Natura,
                 )
@@ -657,7 +660,7 @@ class WizardImportFatturapa(models.TransientModel):
 
         retLine.update(
             {
-                "name": "Riepilogo Aliquota {}".format(line.AliquotaIVA),
+                "name": f"Riepilogo Aliquota {line.AliquotaIVA}",
                 "sequence": nline,
                 "account_id": credit_account_id,
                 "price_unit": float(abs(line.ImponibileImporto)),
@@ -1635,7 +1638,6 @@ class WizardImportFatturapa(models.TransientModel):
         invoice_line_model = self.env["account.move.line"]
         invoice_line_ids = []
         if self.e_invoice_detail_level == "2":
-
             Welfares = (
                 FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiCassaPrevidenziale
             )
@@ -1756,7 +1758,6 @@ class WizardImportFatturapa(models.TransientModel):
     def _set_invoice_lines(
         self, product, invoice_line_data, invoice_lines, invoice_line_model
     ):
-
         if product:
             invoice_line_data["product_id"] = product.id
             self.adjust_accounting_data(product, invoice_line_data)
@@ -1836,10 +1837,6 @@ class WizardImportFatturapa(models.TransientModel):
                     }
                 )
 
-    def get_invoice_obj(self, fatturapa_attachment):
-        xml_string = fatturapa_attachment.ir_attachment_id.get_xml_string()
-        return efattura.CreateFromDocument(xml_string)
-
     def create_and_get_line_id(self, invoice_line_ids, invoice_line_model, upd_vals):
         invoice_line_id = (
             invoice_line_model.with_context(check_move_validity=False)
@@ -1911,7 +1908,15 @@ class WizardImportFatturapa(models.TransientModel):
             self.reset_inconsistencies()
             self._check_attachment(fatturapa_attachment)
 
-            fatt = self.get_invoice_obj(fatturapa_attachment)
+            fatt = fatturapa_attachment.get_invoice_obj()
+            if not fatt:
+                raise UserError(
+                    _(
+                        "Cannot import an attachment that could not be parsed.\n"
+                        "Please fix the parsing error first, then try again."
+                    )
+                )
+
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             # 1.2
             partner_id = self._get_invoice_partner_id(fatt)
@@ -1933,7 +1938,6 @@ class WizardImportFatturapa(models.TransientModel):
 
             # 2
             for fattura in fatt.FatturaElettronicaBody:
-
                 # reset inconsistencies
                 self.reset_inconsistencies()
 

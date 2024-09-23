@@ -63,6 +63,12 @@ msgid "Customer Invoices"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__date_name
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__entry_order__date_name
+msgid "Date - Number"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__date_range_id
 msgid "Date range"
 msgstr ""
@@ -82,6 +88,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__display_name
 msgid "Display Name"
 msgstr "Visnings navn"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__entry_order
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__entry_order
+msgid "Entry Order"
+msgstr ""
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax__exclude_from_registries
@@ -122,6 +134,12 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_account_journal
 msgid "Journal"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__journal_date_name
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__entry_order__journal_date_name
+msgid "Journal - Date - Number"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -231,6 +249,12 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__journal_ids
 msgid "Select journals you want retrieve documents from"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__show_full_contact_addess
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__show_full_contact_addess
+msgid "Show Full Contact Addess"
 msgstr ""
 
 #. module: l10n_it_vat_registries

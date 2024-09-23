@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="financial_statement_eu_wizard_view" model="ir.ui.view">
+        <field name="name">financial.statement.eu.wizard.form</field>
+        <field name="model">financial.statement.eu.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_range_id" />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                        <group>
+                            <field name="values_precision" />
+                            <field name="hide_acc_amount_0" />
+                            <field name="only_posted_move" />
+                            <field name="ignore_closing_move" />
+                        </group>
+                    </group>
+                    <footer>
+                        <button
+                            type="object"
+                            name="financial_statement_eu_html_report"
+                            string="View"
+                            class="oe_highlight"
+                            default_focus="1"
+                        />
+                        or
+                        <button
+                            type="object"
+                            name="financial_statement_eu_xlsx_report"
+                            string="Export XLSX"
+                        />
+                        or
+                        <button
+                            type="object"
+                            name="financial_statement_eu_xbrl_report"
+                            string="Export XBRL"
+                        />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                        <div
+                            attrs="{'invisible': [('log_warnings', '=', '')]}"
+                            style="flex-basis: 100%; border: solid 1px; color: #721c24;
+                                background-color: #f8d7da; border-color: #f5c6cb;
+                                padding-left: 10px;padding-top:5px;padding-bottom:5px; margin-top: 10px;"
+                        >
+                            <field name="log_warnings" readonly="1" />
+                        </div>
+                        <field name="state" invisible="1" />
+                        <field
+                            name="financial_statement_log_ids"
+                            string=""
+                            mode="tree,kanban"
+                            attrs="{'invisible': [('state','!=','UNLINKED_ACCOUNTS')]}"
+                        >
+                            <tree create="false">
+                                <field name="account_id" />
+                                <field name="amount" />
+                            </tree>
+                        </field>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_financial_statement_eu_wizard" model="ir.actions.act_window">
+        <field name="name">Calculate Financial statement EU</field>
+        <field name="res_model">financial.statement.eu.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="financial_statement_eu_wizard_menu" model="ir.ui.menu">
+        <field name="name">Financial statement EU</field>
+        <field name="parent_id" ref="account.menu_finance_reports" />
+        <field name="action" ref="action_financial_statement_eu_wizard" />
+        <field name="sequence" eval="75" />
+    </record>
+
+    <record id="financial_statement_eu_log_view" model="ir.ui.view">
+        <field name="name">financial.statement.eu.log.form</field>
+        <field name="model">financial.statement.eu.log</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <group>
+                    <field name="account_id" />
+                </group>
+                <group>
+                    <field name="amount" />
+                </group>
+                <footer />
+            </form>
+        </field>
+    </record>
+
+</odoo>

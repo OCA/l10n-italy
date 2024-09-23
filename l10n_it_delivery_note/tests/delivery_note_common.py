@@ -6,8 +6,15 @@ DOWNPAYMENT_METHODS = ["fixed", "percentage"]
 
 
 class StockDeliveryNoteCommon(TransactionCase):
-    def create_partner(self, name, **kwargs):
-        return self.env["res.partner"].create({"name": name, **kwargs})
+    def create_commercial_partner(self, name, **kwargs):
+        return self.env["res.partner"].create(
+            {"name": name, "is_company": True, **kwargs}
+        )
+
+    def create_partner(self, name, company, **kwargs):
+        return self.env["res.partner"].create(
+            {"name": name, "parent_id": company.id, **kwargs}
+        )
 
     def create_sales_order(self, lines, **kwargs):
         vals = {"partner_id": self.recipient.id}
@@ -51,6 +58,36 @@ class StockDeliveryNoteCommon(TransactionCase):
 
         return self.env["stock.delivery.note"].create(vals)
 
+    def create_picking(self, **kwargs):
+        picking_data = {
+            "partner_id": self.recipient.id,
+            "picking_type_id": self.env.ref("stock.picking_type_out").id,
+            "location_id": self.env.ref("stock.stock_location_stock").id,
+            "location_dest_id": self.env.ref("stock.stock_location_customers").id,
+            "move_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": self.env.ref("product.product_product_8").name,
+                        "product_id": self.env.ref("product.product_product_8").id,
+                        "product_uom_qty": 1,
+                        "product_uom": self.env.ref(
+                            "product.product_product_8"
+                        ).uom_id.id,
+                        "location_id": self.env.ref("stock.stock_location_stock").id,
+                        "location_dest_id": self.env.ref(
+                            "stock.stock_location_customers"
+                        ).id,
+                    },
+                )
+            ],
+        }
+
+        picking_data.update(kwargs)
+
+        return self.env["stock.picking"].create(picking_data)
+
     def setUp(self):
         super().setUp()
 
@@ -78,7 +115,8 @@ class StockDeliveryNoteCommon(TransactionCase):
         )
 
         self.sender = self.env.ref("base.main_partner")
-        self.recipient = self.create_partner("Mario Rossi")
+        company = self.create_commercial_partner("Azienda Rossi")
+        self.recipient = self.create_partner("Mario Rossi", company)
 
         try:
             self.desk_combination_line = self.prepare_sales_order_line(

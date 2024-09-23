@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 14:10+0000\n"
-"PO-Revision-Date: 2023-12-24 17:36+0000\n"
+"PO-Revision-Date: 2024-02-26 12:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -216,17 +216,19 @@ msgstr "Movimenti di pagamento RdA"
 #. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
-msgid "WT move already in a payment move! Paym. move {} - Ref WT: {} - {} - {}"
+msgid ""
+"WT move already in a payment move! Paym. move %(move)s - Ref WT: %(partner)s "
+"- %(date)s - %(amount)s"
 msgstr ""
-"Movimento RdA già presente in un movimento di pagamento {} - Rif. RdA: {} - "
-"{} - {}"
+"Movimento RA già in un movimento di pagamento! Movimento pagamento %(move)s -"
+" Rif RA: %(partner)s - %(date)s - %(amount)s"
 
 #. module: l10n_it_withholding_tax_payment
 #. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
-msgid "WT move already paid! - {} - {} - {}"
-msgstr "Movimento RdA già pagato - {} - {} - {}"
+msgid "WT move already paid! - %(partner)s - %(date)s - %(amount)s"
+msgstr "Movimento RA già pagato! - %(partner)s - %(date)s - %(amount)s"
 
 #. module: l10n_it_withholding_tax_payment
 #. odoo-python
@@ -293,6 +295,17 @@ msgstr "Pagamento ritenuta di acconto {}"
 #, python-format
 msgid "You can only delete draft payments"
 msgstr "È possibile eliminare solo pagamenti in bozza"
+
+#, python-format
+#~ msgid ""
+#~ "WT move already in a payment move! Paym. move {} - Ref WT: {} - {} - {}"
+#~ msgstr ""
+#~ "Movimento RdA già presente in un movimento di pagamento {} - Rif. RdA: {} "
+#~ "- {} - {}"
+
+#, python-format
+#~ msgid "WT move already paid! - {} - {} - {}"
+#~ msgstr "Movimento RdA già pagato - {} - {} - {}"
 
 #~ msgid "Date Payment"
 #~ msgstr "Data versamento"

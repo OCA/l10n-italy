@@ -10,7 +10,6 @@ class AccountVatPeriodEndStatement(models.Model):
     _inherit = "account.vat.period.end.statement"
 
     def compute_amounts(self):
-
         AccountMoveLine = self.env["account.move.line"]
         StatementGenericAccountLine = self.env["statement.generic.account.line"]
 
@@ -47,7 +46,11 @@ class AccountVatPeriodEndStatement(models.Model):
                 date_start_str = date_range.date_start
                 date_end_str = date_range.date_end
 
-                date_string = _("from {} to {}").format(date_start_str, date_end_str)
+                date_string = _(
+                    "from %(start)s to %(end)s",
+                    start=date_start_str,
+                    end=date_end_str,
+                )
 
                 for group_key in grouped_lines:
                     amount = 0.0
@@ -55,9 +58,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     for line in grouped_lines[group_key]:
                         amount += line.credit - line.debit
 
-                    name = "{} {} - {}".format(
-                        basename, group_key[1].description, date_string
-                    )
+                    name = f"{basename} {group_key[1].description} - {date_string}"
 
                     account = statement.company_id.sp_account_id or group_key[0]
 

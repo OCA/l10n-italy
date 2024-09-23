@@ -218,14 +218,16 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
-msgid "WT move already in a payment move! Paym. move {} - Ref WT: {} - {} - {}"
+msgid ""
+"WT move already in a payment move! Paym. move %(move)s - Ref WT: %(partner)s "
+"- %(date)s - %(amount)s"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment
 #. odoo-python
 #: code:addons/l10n_it_withholding_tax_payment/models/withholding_tax.py:0
 #, python-format
-msgid "WT move already paid! - {} - {} - {}"
+msgid "WT move already paid! - %(partner)s - %(date)s - %(amount)s"
 msgstr ""
 
 #. module: l10n_it_withholding_tax_payment

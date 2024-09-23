@@ -171,6 +171,53 @@ class TestReverseCharge(ReverseChargeCommon):
         payments_lines = (self_purchase_payment | self_purchase_rc_payment).line_ids
         self.assertTrue(all(payments_lines.mapped("reconciled")))
 
+    def test_supplier_extraEU_no_outstanding_payment_different_currencies(self):
+        """
+        Self invoice from Extra EU partner in a different currency
+        """
+        invoice = self.create_invoice(
+            self.supplier_extraEU_EUR,
+            amounts=[100],
+            taxes=self.tax_22ae,
+            currency=self.env.ref("base.EUR"),
+        )
+
+        self_invoice = invoice.rc_self_invoice_id
+        self_payment = self_invoice.rc_payment_move_id
+        # check self payment creation
+        self.assertTrue(self_payment)
+        # check self payment amount total
+        self.assertEqual(self_payment.amount_total, 144.0)
+        # check self payment amount total in currency
+        self.assertEqual(self_payment.amount_total_signed, 130.91)
+        # check self payment lines amount currency setting
+        self.assertTrue(all(self_payment.line_ids.mapped("amount_currency")))
+
+        # check self invoice amount
+        invoices_amounts_sum = (
+            invoice.amount_untaxed_signed + self_invoice.amount_untaxed_signed
+        )
+        self.assertEqual(invoices_amounts_sum, 0.0)
+
+        # check amount conversion
+        invoice_amount_untaxed_usd = invoice.currency_id._convert(
+            invoice.amount_untaxed,
+            invoice.company_id.currency_id,
+            invoice.company_id,
+            invoice.invoice_date,
+        )
+        self_invoice_test_line = self_invoice.line_ids.filtered(
+            lambda x: x.name == "test line"
+        )
+        self.assertEqual(
+            invoice_amount_untaxed_usd, abs(self_invoice_test_line.balance)
+        )
+
+        # check amount_currency setting
+        self.assertEqual(
+            invoice.amount_untaxed, abs(self_invoice_test_line.amount_currency)
+        )
+
     def test_extra_EU_draft_and_reconfirm(self):
         """Check that an invoice with RC Self Purchase Invoice
         can be reset to draft and confirmed again."""

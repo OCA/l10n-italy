@@ -1,0 +1,3 @@
+- Nicola Malcontenti \<<nicola.malcontenti@agilebg.com>\>
+- Alessio Gerace \<<alessio.gerace@agilebg.com>\>
+- Giuseppe Borruso - Dinamiche Aziendali srl \<<gborruso@dinamicheaziendali.it>\>

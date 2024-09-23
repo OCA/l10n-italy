@@ -22,9 +22,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_account_config_settings
 msgid ""
 "<span class=\"o_form_label\">Transmitter</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title="
-"\"Values set here are company-specific.\" aria-label=\"Values set here are "
-"company-specific.\"/>"
+"                            <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Values set here are company-specific.\" aria-label=\"Values set here "
+"are company-specific.\"/>"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -41,6 +41,18 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_needaction
 msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid "Activate debug mode to see the full error."
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model:res.groups,name:l10n_it_fatturapa_out.group_force_e_inv_export_state
+msgid "Allow to force e-invoice export state"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -115,7 +127,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__create_uid
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa__create_uid
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Created by"
 msgstr "Креирано од"
 
@@ -151,6 +162,7 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__account_move__fatturapa_state__delivered
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__fatturapa_attachment_out__state__validated
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "Delivered"
 msgstr ""
 
@@ -177,7 +189,6 @@ msgid "E-bill Transmitter"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_bank_statement_line__fatturapa_attachment_out_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_move__fatturapa_attachment_out_id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_account_payment__fatturapa_attachment_out_id
@@ -216,16 +227,7 @@ msgid "E-invoice export file still present for invoice %s."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__att_name
-msgid "E-invoice file name"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "EAN"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
+#: model:ir.model,name:l10n_it_fatturapa_out.model_fatturapa_attachment_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_invoice_form_fatturapa
 msgid "Electronic Invoice"
 msgstr ""
@@ -258,6 +260,18 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__account_move__fatturapa_state__error
 msgid "Error"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid ""
+"Error processing invoice(s) %(invoices)s.\n"
+"\n"
+"Errors in the following fields:\n"
+"- %(error_path_string)s\n"
+"\n"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -316,6 +330,15 @@ msgid "Force euro"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_out/wizard/efattura.py:0
+#, python-format
+msgid ""
+"Full error follows:\n"
+"\n"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__has_message
 msgid "Has Message"
 msgstr ""
@@ -329,20 +352,10 @@ msgid "Has Pdf Invoice Print"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
-msgid "History"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa__id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "INVCONT"
-msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_needaction
@@ -351,7 +364,6 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_has_error
-#: model:ir.model.fields,help:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -473,6 +485,11 @@ msgid "Keep original"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__key
+msgid "Key"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out____last_update
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_wizard_export_fatturapa____last_update
 msgid "Last Modified on"
@@ -491,11 +508,6 @@ msgid "Last Updated on"
 msgstr "Последно ажурирање на"
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione
-msgid "MG"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_main_attachment_id
 msgid "Main Attachment"
 msgstr ""
@@ -511,7 +523,10 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_partner__max_invoice_in_xml
 #: model:ir.model.fields,help:l10n_it_fatturapa_out.field_res_users__max_invoice_in_xml
-msgid "Maximum number of invoices to group in a single XML file. 0=Unlimited"
+msgid ""
+"Maximum number of invoices to group in a single XML file.\n"
+"If this is 0, then the number configured in the account settings is "
+"considered."
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -595,11 +610,6 @@ msgid "Print report not found"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore
-msgid "RF01"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.wizard_export_fatturapa_form_view_regenerate
 msgid "Re-Export"
 msgstr ""
@@ -663,24 +673,19 @@ msgid "Results"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione
-msgid "SC"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body
-msgid "SI"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__message_has_sms_error
-msgid "SMS Delivery error"
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__att_name
+msgid "SdI file name"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_out.selection__fatturapa_attachment_out__state__sender_error
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_search
 msgid "Sender Error"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__sending_user
+msgid "Sending User"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -696,7 +701,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
-msgid "Show preview"
+msgid "Sent by"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -707,11 +712,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__store_fname
 msgid "Stored Filename"
-msgstr ""
-
-#. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export
-msgid "TZ"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -748,6 +748,11 @@ msgstr ""
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.constraint,message:l10n_it_fatturapa_out.constraint_fatturapa_attachment_out_ftpa_attachment_out_name_uniq
 msgid "The name of the e-invoice file must be unique!"
+msgstr ""
+
+#. module: l10n_it_fatturapa_out
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__theme_template_id
+msgid "Theme Template"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
@@ -794,8 +799,8 @@ msgid "User %s uploaded a new e-invoice file"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA
-msgid "Valuta"
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__website_id
+msgid "Website"
 msgstr ""
 
 #. module: l10n_it_fatturapa_out

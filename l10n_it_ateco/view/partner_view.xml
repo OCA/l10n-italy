@@ -9,14 +9,11 @@
             <field name="arch" type="xml">
                 <notebook position="inside">
                     <page string="Ateco">
-                        <group colspan="4" name="Ateco categories">
-                            <field
-                            colspan="4"
-                            name="ateco_category_ids"
-                            nolabel="1"
-                            options="{'no_create': True}"
-                        />
-                        </group>
+                        <field
+                        name="ateco_category_ids"
+                        nolabel="1"
+                        options="{'no_create': True}"
+                    />
                     </page>
                 </notebook>
             </field>

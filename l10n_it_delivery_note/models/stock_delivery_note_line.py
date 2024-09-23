@@ -52,7 +52,7 @@ class StockDeliveryNoteLine(models.Model):
         string="Quantity", digits="Product Unit of Measure", default=1.0
     )
     product_uom_id = fields.Many2one("uom.uom", string="UoM", default=_default_unit_uom)
-    price_unit = fields.Monetary(string="Unit price", currency_field="currency_id")
+    price_unit = fields.Float(string="Unit price", digits="Product Price")
     currency_id = fields.Many2one(
         "res.currency", string="Currency", required=True, default=_default_currency
     )
@@ -68,6 +68,15 @@ class StockDeliveryNoteLine(models.Model):
     )
     sale_line_id = fields.Many2one(
         "sale.order.line", related="move_id.sale_line_id", store=True, copy=False
+    )
+    sale_order_number = fields.Char(
+        compute="_compute_sale_order_number",
+        store=True,
+    )
+    sale_order_client_ref = fields.Char(
+        "Customer Reference",
+        compute="_compute_sale_order_client_ref",
+        store=True,
     )
     invoice_status = fields.Selection(
         INVOICE_STATUSES,
@@ -90,10 +99,21 @@ class StockDeliveryNoteLine(models.Model):
     def is_invoiceable(self):
         return self.invoice_status == DOMAIN_INVOICE_STATUSES[1]
 
+    @api.depends("sale_line_id.order_id.name")
+    def _compute_sale_order_number(self):
+        for sdnl in self:
+            sdnl.sale_order_number = sdnl.sale_line_id.order_id.name or ""
+
+    @api.depends("sale_line_id.order_id.client_order_ref")
+    def _compute_sale_order_client_ref(self):
+        for sdnl in self:
+            sdnl.sale_order_client_ref = (
+                sdnl.sale_line_id.order_id.client_order_ref or ""
+            )
+
     @api.onchange("product_id")
     def _onchange_product_id(self):
         if self.product_id:
-
             name = self.product_id.name
             if self.product_id.description_sale:
                 name += "\n" + self.product_id.description_sale
@@ -113,7 +133,6 @@ class StockDeliveryNoteLine(models.Model):
     def _prepare_detail_lines(self, moves):
         lines = []
         for move in moves:
-
             name = move.product_id.name
             if move.product_id.description_sale:
                 name += "\n" + move.product_id.description_sale
@@ -158,7 +177,7 @@ class StockDeliveryNoteLine(models.Model):
 
     def write(self, vals):
         if "display_type" in vals and self.filtered(
-            lambda l: l.display_type != vals["display_type"]
+            lambda note_line: note_line.display_type != vals["display_type"]
         ):
             raise UserError(
                 _(
@@ -171,7 +190,7 @@ class StockDeliveryNoteLine(models.Model):
         return super().write(vals)
 
     def sync_invoice_status(self):
-        for line in self.filtered(lambda l: l.sale_line_id):
+        for line in self.filtered(lambda note_line: note_line.sale_line_id):
             invoice_status = line.sale_line_id.invoice_status
             line.invoice_status = (
                 DOMAIN_INVOICE_STATUSES[1]

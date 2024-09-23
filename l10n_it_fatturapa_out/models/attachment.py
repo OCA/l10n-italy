@@ -1,23 +1,17 @@
 # Copyright 2014 Davide Corio
 # Copyright 2016-2018 Lorenzo Battistini - Agile Business Group
+# Copyright 2024 Simone Rubino - Aion Tech
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
 class FatturaPAAttachment(models.Model):
+    _inherit = "fatturapa.attachment"
     _name = "fatturapa.attachment.out"
-    _description = "E-invoice Export File"
-    _inherits = {"ir.attachment": "ir_attachment_id"}
-    _inherit = ["mail.thread"]
-    _order = "id desc"
+    _description = "Electronic Invoice"
 
-    ir_attachment_id = fields.Many2one(
-        "ir.attachment", "Attachment", required=True, ondelete="cascade"
-    )
-    att_name = fields.Char(
-        string="E-invoice file name", related="ir_attachment_id.name", store=True
-    )
     out_invoice_ids = fields.One2many(
         "account.move",
         "fatturapa_attachment_out_id",
@@ -49,6 +43,10 @@ class FatturaPAAttachment(models.Model):
         default="ready",
         tracking=True,
     )
+    sending_user = fields.Many2one(
+        comodel_name="res.users",
+        readonly=True,
+    )
     sending_date = fields.Datetime("Sent Date", readonly=True)
     delivered_date = fields.Datetime(readonly=True)
 
@@ -79,7 +77,7 @@ class FatturaPAAttachment(models.Model):
 
     def file_name_exists(self, file_id):
         vat = self.get_file_vat()
-        partial_fname = r"{}\_{}.".format(vat, file_id)  # escaping _ SQL
+        partial_fname = rf"{vat}\_{file_id}."  # escaping _ SQL
         # Not trying to perfect match file extension, because user could have
         # downloaded, signed and uploaded again the file, thus having changed
         # file extension
@@ -117,9 +115,6 @@ class FatturaPAAttachment(models.Model):
                 # one attachment having is_pdf_invoice_print = True
                 attachment_out.has_pdf_invoice_print = True
 
-    def ftpa_preview(self):
-        return self.env["ir.attachment"].ftpa_preview(self)
-
     def reset_to_ready(self):
         for attachment_out in self:
             if attachment_out.state != "sender_error":
@@ -127,7 +122,7 @@ class FatturaPAAttachment(models.Model):
             attachment_out.state = "ready"
 
     def write(self, vals):
-        res = super(FatturaPAAttachment, self).write(vals)
+        res = super().write(vals)
         if "datas" in vals and "message_ids" not in vals:
             for attachment in self:
                 attachment.message_post(
@@ -147,7 +142,7 @@ class FatturaPAAttachment(models.Model):
                 invoice.fatturapa_doc_attachments.filtered(
                     "is_pdf_invoice_print"
                 ).unlink()
-        return super(FatturaPAAttachment, self).unlink()
+        return super().unlink()
 
 
 class FatturaAttachments(models.Model):

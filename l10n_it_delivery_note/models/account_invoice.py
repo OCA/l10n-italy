@@ -74,12 +74,26 @@ class AccountInvoice(models.Model):
             **kwargs,
         }
 
+    def _prepare_note_dn_value(self, sequence, delivery_note_id):
+        return {
+            "sequence": sequence,
+            "display_type": "line_note",
+            "name": _("""Delivery Note "%(ddt_name)s" of %(ddt_date)s""")
+            % {
+                "ddt_name": delivery_note_id.name,
+                "ddt_date": delivery_note_id.date.strftime(DATE_FORMAT),
+            },
+            "note_dn": True,
+            "delivery_note_id": delivery_note_id.id,
+            "quantity": 0,
+        }
+
     def update_delivery_note_lines(self):
         context = {}
 
         for invoice in self.filtered(lambda i: i.delivery_note_ids):
             new_lines = []
-            old_lines = invoice.invoice_line_ids.filtered(lambda l: l.delivery_note_id)
+            old_lines = invoice.invoice_line_ids.filtered(lambda line: line.note_dn)
             old_lines.unlink()
 
             #
@@ -98,32 +112,33 @@ class AccountInvoice(models.Model):
             #
             context["lang"] = invoice.partner_id.lang
 
-            for line in invoice.invoice_line_ids:
-                for sale in line.sale_line_ids:
-                    delivery_note_line = (
-                        invoice.delivery_note_ids.mapped("line_ids")
-                        & sale.delivery_note_line_ids
+            if len(invoice.delivery_note_ids) == 1:
+                sequence = invoice.invoice_line_ids[0].sequence - 1
+                new_lines.append(
+                    (
+                        0,
+                        False,
+                        self._prepare_note_dn_value(
+                            sequence, invoice.delivery_note_ids[0]
+                        ),
                     )
-                    for note_line in delivery_note_line.filtered(
-                        lambda l: l.invoice_status == DOMAIN_INVOICE_STATUSES[2]
-                    ):
+                )
+            else:
+                for line in invoice.invoice_line_ids:
+                    sequence = line.sequence - 1
+                    delivery_note_line = invoice.mapped(
+                        "delivery_note_ids.line_ids"
+                    ) & line.mapped("sale_line_ids.delivery_note_line_ids")
+                    for delivery_note_id in delivery_note_line.filtered(
+                        lambda l: l.invoice_status  # noqa: E741
+                        == DOMAIN_INVOICE_STATUSES[2]
+                    ).mapped("delivery_note_id"):
+                        line.delivery_note_id = delivery_note_id.id
                         new_lines.append(
                             (
                                 0,
                                 False,
-                                {
-                                    "sequence": line.sequence - 1,
-                                    "display_type": "line_note",
-                                    "name": _("""Delivery Note "{}" of {}""").format(
-                                        note_line.delivery_note_id.name,
-                                        note_line.delivery_note_id.date.strftime(
-                                            DATE_FORMAT
-                                        ),
-                                    ),
-                                    "delivery_note_id": note_line.delivery_note_id.id,
-                                    "quantity": 0,
-                                    "currency_id": line.currency_id.id,
-                                },
+                                self._prepare_note_dn_value(sequence, delivery_note_id),
                             )
                         )
 
@@ -142,3 +157,13 @@ class AccountInvoice(models.Model):
         for dn in dnls_to_unlink.mapped("delivery_note_id"):
             dn.state = "confirm"
         return res
+
+    def button_cancel(self):  # pylint: disable=missing-return
+        super().button_cancel()
+        dn_lines = (
+            self.invoice_line_ids.sale_line_ids.delivery_note_line_ids
+            | self.delivery_note_ids.line_ids
+        )
+        dn_lines.sync_invoice_status()
+        dn_lines.delivery_note_id._compute_invoice_status()
+        dn_lines.delivery_note_id.state = "confirm"

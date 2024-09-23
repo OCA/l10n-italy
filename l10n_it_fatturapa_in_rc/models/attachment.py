@@ -20,7 +20,7 @@ class Attachment(models.Model):
         for attachment in attachments:
             if attachment.linked_invoice_id_xml and attachment.is_self_invoice:
                 rc_invoice = rc_invoices.filtered(
-                    lambda i: i.name == attachment.linked_invoice_id_xml
+                    lambda i, att=attachment: i.name == att.linked_invoice_id_xml
                 )
                 if len(rc_invoice) == 1:
                     rc_invoice.fatturapa_attachment_in_id = attachment

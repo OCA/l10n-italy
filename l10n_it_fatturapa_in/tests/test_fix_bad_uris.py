@@ -10,7 +10,9 @@ class TestFixBadURIs(TransactionCase):
         bad_strings = [
             b'<FatturaElettronica xmlns:ds="http://www.w3.org/2000/09/xmldsig#&quot;"/>',
             b"<FatturaElettronica xmlns:ds='http://www.w3.org/2000/09/xmldsig#&quot;'/>",
-            b'<FatturaElettronica xmlns:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 fatturaordinaria_v1.2.xsd"/>',  # noqa: B950
+            b"<FatturaElettronica xmlns:schemaLocation="
+            b'"http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 '
+            b'fatturaordinaria_v1.2.xsd"/>',
         ]
         for bad_string in bad_strings:
             with self.assertRaises(etree.XMLSyntaxError):

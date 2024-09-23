@@ -7,38 +7,28 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-09-08 10:38+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-08-31 12:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
 msgid ""
 "<span class=\"o_form_label\">Supplier Bills</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title="
-"\"Values set here are company-specific.\" aria-label=\"Values set here are "
-"company-specific.\"/>"
+"                            <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Values set here are company-specific.\" aria-label=\"Values set here "
+"are company-specific.\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Fatture fornitore</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
 "valori impostati qui sono specifici per azienda.\" aria-label=\"Values set "
 "here are company-specific.\"/>"
-
-#. module: l10n_it_fatturapa_pec
-#: model:res.groups,name:l10n_it_fatturapa_pec.group_force_e_inv_export_state
-msgid "Allow to force e-invoice export state"
-msgstr "Consentire forzatura dello stato di esportazione e-fattura"
-
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
-msgid "Cancel"
-msgstr "Annulla"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_sdi_channel__channel_type
@@ -66,40 +56,9 @@ msgid "Contacts to notify when PEC message can't be processed"
 msgstr "Contatti da notificare quando non è possibile elaborare i messaggi PEC"
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_uid
-msgid "Created by"
-msgstr "Creato da"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__create_date
-msgid "Created on"
-msgstr "Creato il"
-
-#. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
 msgid "Default user used in electronic supplier bills"
 msgstr "Utente predefinito usato nelle fatture elettroniche fornitore"
-
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Delivered"
-msgstr "Consegnato"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
-msgid "E-bill creator"
-msgstr "Creatore e-fattura"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
-msgid "E-invoice Export File"
-msgstr "File e-fattura esportato"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__is_fatturapa_pec
@@ -116,6 +75,11 @@ msgstr "Canale SdI"
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel__channel_type
 msgid "ES channel type"
 msgstr "Tipo canale SdI"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
+msgid "Electronic Invoice"
+msgstr "Fattura elettronica"
 
 #. module: l10n_it_fatturapa_pec
 #. odoo-python
@@ -145,15 +109,10 @@ msgstr "Errore fetchmail server PEC [%s]"
 
 #. module: l10n_it_fatturapa_pec
 #. odoo-python
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
+#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
 #, python-format
 msgid "File content and file name are mandatory"
 msgstr "Il contenuto e il nome del file sono obbligatori"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__id
-msgid "ID"
-msgstr "ID"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
@@ -166,30 +125,9 @@ msgid "Incoming PEC server"
 msgstr "Server PEC in arrivo"
 
 #. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__last_pec_error_message
 msgid "Last PEC Error Message"
 msgstr "Ultimo messaggio di errore PEC"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__last_sdi_response
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Last Response from Exchange System"
-msgstr "Ultima risposta dal sistema di interscambio"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__write_uid
-msgid "Last Updated by"
-msgstr "Ultimo aggiornamento di"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_wizard_fatturapa_send_pec__write_date
-msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
@@ -203,7 +141,7 @@ msgstr "Server di posta"
 
 #. module: l10n_it_fatturapa_pec
 #. odoo-python
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
+#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
 #, python-format
 msgid "No incoming PEC server found. Please configure it."
 msgstr "Nessun server PEC in ingresso trovato, configurarne uno."
@@ -266,11 +204,6 @@ msgstr ""
 "'%(error_message)s'"
 
 #. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Reset to ready"
-msgstr "Reimposta a pronto"
-
-#. module: l10n_it_fatturapa_pec
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
 #, python-format
@@ -287,42 +220,11 @@ msgid "SDI already assigned a PEC address to my company"
 msgstr "SdI ha già assegnato un indirizzo PEC all'azienda"
 
 #. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
-msgid "Selected files will be sent to the Exchange System"
-msgstr "I file selezionati verranno inviati al sistema di interscambio"
-
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
-msgid "Send"
-msgstr "Invia"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.actions.act_window,name:l10n_it_fatturapa_pec.action_wizard_fatturapa_send_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.wizard_fatturapa_send_pec_view
-msgid "Send Electronic Invoice"
-msgstr "Invia fattura elettronica"
-
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Send Via PEC"
-msgstr "Invia con PEC"
-
-#. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_ir_mail_server__email_from_for_fatturaPA
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__email_from_for_fatturaPA
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__email_from_for_fatturaPA
 msgid "Sender Email Address"
 msgstr "Indirizzo e-mail mittente"
-
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fatturapa_attachment_out__sending_user
-msgid "Sending User"
-msgstr "Utente trasmittente"
-
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "Sent by"
-msgstr "Inviato da"
 
 #. module: l10n_it_fatturapa_pec
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_sdi_channel_form
@@ -346,48 +248,110 @@ msgstr "Il canale %(name)s con server PEC %(server_name)s esiste già"
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_sdi_channel__email_exchange_system
 msgid ""
 "The first time you send a PEC to SDI, you must use the address sdi01@pec."
-"fatturapa.it . The system, with the first response or notification, "
-"communicates the PEC address to be used for future messages"
+"fatturapa.it.\n"
+"Odoo will automatically set this address the first time you send an e-"
+"invoice to SdI using this channel.\n"
+"The system, with the first response or notification, communicates the PEC "
+"address to be used for future messages"
 msgstr ""
-"Il primo invio di una PEC al SdI deve essere effettuato usando l'indirizzo "
-"sdi01@pec.fatturapa.it . Con la prima risposta del sistema verrà indicato "
-"l'indirizzo PEC da usare per i messaggi successivi"
-
-#. module: l10n_it_fatturapa_pec
-#. odoo-python
-#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
-#, python-format
-msgid "This is a first sending but SDI address is different from %s"
-msgstr "Questo è il primo invio ma l'indirizzo SdI è diverso da %s"
+"La prima volta che si invia una e-mail PEC allo SDI, bisogna utilizzare "
+"l'indirizzo sdi01@pec.fatturapa.it.\n"
+"Odoo imposterà automaticamente questo indirizzo la prima volta che si "
+"invierà una fattura elettronica allo SdI utilizzando questo canale.\n"
+"Il sistema, con la prima notifica di risposta, comunica l'indirizzo PEC da "
+"utilizzare per i successivi messaggi"
 
 #. module: l10n_it_fatturapa_pec
 #: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_sdi_channel__first_invoice_sent
 msgid "This is set after having sent the first e-invoice to SDI"
 msgstr "Questo viene impostato dopo aver inviato la prima e-fattura allo SDI"
 
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_company__e_invoice_user_id
-#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_config_settings__e_invoice_user_id
-msgid "This user will be used at supplier e-bill creation."
-msgstr ""
-"Questo utente viene utilizzato per la creazione delle e-fatture fornitore."
+#~ msgid "Allow to force e-invoice export state"
+#~ msgstr "Consentire forzatura dello stato di esportazione e-fattura"
 
-#. module: l10n_it_fatturapa_pec
-#: model:ir.model,name:l10n_it_fatturapa_pec.model_wizard_fatturapa_send_pec
-msgid "Wizard to send multiple e-invoice PEC"
-msgstr "Procedura per inviare PEC e-fattura multiple"
+#~ msgid "Cancel"
+#~ msgstr "Annulla"
 
-#. module: l10n_it_fatturapa_pec
-#. odoo-python
-#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
+#~ msgid "Created by"
+#~ msgstr "Creato da"
+
+#~ msgid "Created on"
+#~ msgstr "Creato il"
+
+#~ msgid "Delivered"
+#~ msgstr "Consegnato"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "E-bill creator"
+#~ msgstr "Creatore e-fattura"
+
+#~ msgid "E-invoice Export File"
+#~ msgstr "File e-fattura esportato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Last Response from Exchange System"
+#~ msgstr "Ultima risposta dal sistema di interscambio"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Ultimo aggiornamento di"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Ultimo aggiornamento il"
+
+#~ msgid "Reset to ready"
+#~ msgstr "Reimposta a pronto"
+
+#~ msgid "Selected files will be sent to the Exchange System"
+#~ msgstr "I file selezionati verranno inviati al sistema di interscambio"
+
+#~ msgid "Send"
+#~ msgstr "Invia"
+
+#~ msgid "Send Electronic Invoice"
+#~ msgstr "Invia fattura elettronica"
+
+#~ msgid "Send Via PEC"
+#~ msgstr "Invia con PEC"
+
+#~ msgid "Sending User"
+#~ msgstr "Utente trasmittente"
+
+#~ msgid "Sent by"
+#~ msgstr "Inviato da"
+
+#~ msgid ""
+#~ "The first time you send a PEC to SDI, you must use the address sdi01@pec."
+#~ "fatturapa.it . The system, with the first response or notification, "
+#~ "communicates the PEC address to be used for future messages"
+#~ msgstr ""
+#~ "Il primo invio di una PEC al SdI deve essere effettuato usando "
+#~ "l'indirizzo sdi01@pec.fatturapa.it . Con la prima risposta del sistema "
+#~ "verrà indicato l'indirizzo PEC da usare per i messaggi successivi"
+
 #, python-format
-msgid "You can only send files in 'Ready to Send' state."
-msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
+#~ msgid "This is a first sending but SDI address is different from %s"
+#~ msgstr "Questo è il primo invio ma l'indirizzo SdI è diverso da %s"
 
-#. module: l10n_it_fatturapa_pec
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_fatturapa_out_pec_attachment_form
-msgid "on"
-msgstr "il"
+#~ msgid "This user will be used at supplier e-bill creation."
+#~ msgstr ""
+#~ "Questo utente viene utilizzato per la creazione delle e-fatture fornitore."
+
+#~ msgid "Wizard to send multiple e-invoice PEC"
+#~ msgstr "Procedura per inviare PEC e-fattura multiple"
+
+#, python-format
+#~ msgid "You can only send files in 'Ready to Send' state."
+#~ msgstr "È possibile inviare solo file con stato «Pronto per l'invio»."
+
+#~ msgid "on"
+#~ msgstr "il"
 
 #, python-format
 #~ msgid ""

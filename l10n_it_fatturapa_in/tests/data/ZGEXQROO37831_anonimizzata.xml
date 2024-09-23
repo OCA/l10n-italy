@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FatturaElettronica xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" versione="FPR12" xmlns="http://ivaservizi.agenziaentrate.gov.it/ docs/xsd/fatture/v1.2">
+    <FatturaElettronicaHeader xmlns="">
+        <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>12345670017</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>0006299335</ProgressivoInvio>
+            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+            <CodiceDestinatario>0000000</CodiceDestinatario>
+        </DatiTrasmissione>
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>12345670017</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>Pippolo S.p.A.</Denominazione>
+                </Anagrafica>
+                <RegimeFiscale>RF01</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>Via Tal dei tali</Indirizzo>
+                <CAP>20123</CAP>
+                <Comune>Milano</Comune>
+                <Provincia>MI</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CedentePrestatore>
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>11531111117</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>11531111117</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>Mkt s.r.l.</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>Via talaltri</Indirizzo>
+                <CAP>20145</CAP>
+                <Comune>Milano</Comune>
+                <Provincia>MI</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
+        <TerzoIntermediarioOSoggettoEmittente>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>03331111116</IdCodice>
+                </IdFiscaleIVA>
+                <CodiceFiscale>03331111116</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>RossiDati Srl</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+        </TerzoIntermediarioOSoggettoEmittente>
+        <SoggettoEmittente>TZ</SoggettoEmittente>
+    </FatturaElettronicaHeader>
+    <FatturaElettronicaBody xmlns="">
+        <DatiGenerali>
+            <DatiGeneraliDocumento>
+                <TipoDocumento>TD01</TipoDocumento>
+                <Divisa>EUR</Divisa>
+                <Data>2022-03-10</Data>
+                <Numero>17606</Numero>
+                <ImportoTotaleDocumento>109.80</ImportoTotaleDocumento>
+                <Causale>DA PAGARE</Causale>
+            </DatiGeneraliDocumento>
+        </DatiGenerali>
+        <DatiBeniServizi>
+            <DettaglioLinee>
+                <NumeroLinea>1</NumeroLinea>
+                <Descrizione>Op. 3367462 - Canone annuo F@X IN Periodo: 2022-03-05 / 2023-03-05
+Numero: 0114121701</Descrizione>
+                <Quantita>1.00000000</Quantita>
+                <PrezzoUnitario>30.00000000</PrezzoUnitario>
+                <PrezzoTotale>30.00000000</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DettaglioLinee>
+                <NumeroLinea>2</NumeroLinea>
+                <Descrizione>Op. 3368479 - Canone annuo F@X IN Periodo: 2022-03-01 / 2023-03-01
+Numero: 03311570073</Descrizione>
+                <Quantita>1.00000000</Quantita>
+                <PrezzoUnitario>30.00000000</PrezzoUnitario>
+                <PrezzoTotale>30.00000000</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DettaglioLinee>
+                <NumeroLinea>3</NumeroLinea>
+                <Descrizione>Op. 3369124 - Canone annuo F@X IN Periodo: 2022-02-27 / 2023-02-27
+Numero: 0293650722</Descrizione>
+                <Quantita>1.00000000</Quantita>
+                <PrezzoUnitario>30.00000000</PrezzoUnitario>
+                <PrezzoTotale>30.00000000</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DatiRiepilogo>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <ImponibileImporto>90.00</ImponibileImporto>
+                <Imposta>19.80</Imposta>
+                <EsigibilitaIVA>I</EsigibilitaIVA>
+            </DatiRiepilogo>
+        </DatiBeniServizi>
+        <DatiPagamento>
+            <CondizioniPagamento>TP02</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2022-03-10</DataScadenzaPagamento>
+                <ImportoPagamento>109.80</ImportoPagamento>
+                <IstitutoFinanziario>Banca Sella Via Vincenzo Monti, 33 Milano</IstitutoFinanziario>
+                <IBAN>IT90B0326801602111111111111</IBAN>
+                <ABI>03268</ABI>
+                <CAB>01602</CAB>
+            </DettaglioPagamento>
+        </DatiPagamento>
+    </FatturaElettronicaBody>
+</FatturaElettronica>

@@ -55,6 +55,7 @@
                 <field name="date_accepted" />
                 <field name="date_paid" />
                 <field name="state" />
+                <field name="total_amount" widget="monetary" />
             </tree>
         </field>
     </record>
@@ -67,61 +68,63 @@
         <field name="model">riba.slip.line</field>
         <field name="arch" type="xml">
             <form string="Detail">
-                <notebook colspan="4">
-                    <page string="General">
-                        <group>
+                <sheet>
+                    <notebook colspan="4">
+                        <page string="General">
                             <group>
-                                <field name="state" />
-                                <field name="type" />
-                                <field name="invoice_number" />
-                                <field name="invoice_date" />
-                                <field name="partner_id" />
-                                <field name="amount" />
-                                <field name="due_date" />
+                                <group>
+                                    <field name="state" />
+                                    <field name="type" />
+                                    <field name="invoice_number" />
+                                    <field name="invoice_date" />
+                                    <field name="partner_id" />
+                                    <field name="amount" />
+                                    <field name="due_date" />
 
-                            </group>
-                            <group>
-                                <field name="amount" />
-                                <field name="due_date" />
-                                <field name="state" />
-                            </group>
-                        </group>
-                    </page>
-                    <page string="Accounting">
-                        <separator string="Invoice Entries" colspan="4" />
-                        <field name="move_line_ids" nolabel="1" colspan="4">
-                            <tree>
-                                <field name="amount" />
-                                <field name="move_line_id" />
-                            </tree>
-                            <form string="Move Line">
+                                </group>
                                 <group>
                                     <field name="amount" />
-                                    <field name="move_line_id" />
+                                    <field name="due_date" />
+                                    <field name="state" />
                                 </group>
-                            </form>
-                        </field>
-                        <group>
-                        <field name="acceptance_move_id" />
-                        <field name="past_due_move_id" />
-                        </group>
-                        <separator string="Payments" colspan="4" />
-                        <field name="payment_ids" nolabel="1" colspan="4">
-                            <tree>
-                                <field name="date" />
-                                <field name="move_id" />
-                                <field name="ref" />
-                                <field name="name" />
-                                <field name="journal_id" groups="base.group_user" />
-                                <field name="debit" />
-                                <field name="credit" />
-                                <field name="amount_currency" />
-                                <field name="currency_id" />
-                            </tree>
-                        </field>
-                        <field name="past_due_move_id" />
-                    </page>
-                </notebook>
+                            </group>
+                        </page>
+                        <page string="Accounting">
+                            <separator string="Invoice Entries" colspan="4" />
+                            <field name="move_line_ids" nolabel="1" colspan="4">
+                                <tree>
+                                    <field name="amount" />
+                                    <field name="move_line_id" />
+                                </tree>
+                                <form string="Move Line">
+                                    <group>
+                                        <field name="amount" />
+                                        <field name="move_line_id" />
+                                    </group>
+                                </form>
+                            </field>
+                            <group>
+                            <field name="acceptance_move_id" />
+                            <field name="past_due_move_id" />
+                            </group>
+                            <separator string="Payments" colspan="4" />
+                            <field name="payment_ids" nolabel="1" colspan="4">
+                                <tree>
+                                    <field name="date" />
+                                    <field name="move_id" />
+                                    <field name="ref" />
+                                    <field name="name" />
+                                    <field name="journal_id" groups="base.group_user" />
+                                    <field name="debit" />
+                                    <field name="credit" />
+                                    <field name="amount_currency" />
+                                    <field name="currency_id" />
+                                </tree>
+                            </field>
+                            <field name="past_due_move_id" />
+                        </page>
+                    </notebook>
+                </sheet>
             </form>
         </field>
     </record>
@@ -141,7 +144,7 @@
                         type='object'
                         string="Mark as Accepted"
                         class="oe_highlight"
-                        attrs="{'invisible':['|',('state','!=','draft'),('type','=','incasso')]}"
+                        attrs="{'invisible':['|',('state','!=','draft'),('type','not in',('incasso', 'sbf'))]}"
                     />
                     <button
                         name="%(riba_credit_action)d"
@@ -171,80 +174,92 @@
                     />
                     <field name="state" widget="statusbar" />
                 </header>
-                <group>
-                    <field name="name" />
-                    <field name="config_id" widget="selection" />
-                    <field name="registration_date" />
-                </group>
-                <notebook colspan="4">
-                    <page string="General">
-                        <field name="line_ids" nolabel="1" colspan="4">
-                            <tree>
-                                <field name="sequence" />
-                                <field name="invoice_number" />
-                                <field name="invoice_date" />
-                                <field name="partner_id" />
-                                <field name="iban" />
-                                <field name="amount" sum="Amount" />
-                                <field name="due_date" />
-                                <field name="state" />
-                                <button
-                                    name="%(riba_past_due_action)d"
-                                    type='action'
-                                    attrs="{'invisible':['|',('type','=','incasso'),('state','!=','credited')]}"
-                                    string="Mark as Past Due"
-                                    icon="fa-exclamation-triangle"
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                            type="object"
+                            name="action_open_lines"
+                            string="Slip lines"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        />
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="config_id" widget="selection" />
+                        <field name="registration_date" />
+                    </group>
+                    <notebook colspan="4">
+                        <page string="General">
+                            <field name="line_ids" nolabel="1" colspan="4">
+                                <tree>
+                                    <field name="sequence" />
+                                    <field name="invoice_number" />
+                                    <field name="invoice_date" />
+                                    <field name="partner_id" />
+                                    <field name="iban" />
+                                    <field name="amount" sum="Amount" />
+                                    <field name="due_date" />
+                                    <field name="state" />
+                                    <button
+                                        name="%(riba_past_due_action)d"
+                                        type='action'
+                                        attrs="{'invisible':['|',('type','=','incasso'),('state','!=','credited')]}"
+                                        string="Mark as Past Due"
+                                        icon="fa-exclamation-triangle"
+                                    />
+                                    <button
+                                        name="riba_line_settlement"
+                                        type='object'
+                                        attrs="{'invisible':['|',('type','=','incasso'),('state','!=','credited')]}"
+                                        string="Mark as Settled"
+                                        icon="fa-check"
+                                    />
+                                    <field name="type" invisible="1" />
+                                </tree>
+                            </field>
+                            <field name="type" invisible="1" />
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="user_id" />
+                                <field name="date_created" />
+                                <field
+                                    name="date_accepted"
+                                    attrs="{'readonly':[('state','!=','draft')]}"
                                 />
-                                <button
-                                    name="riba_line_settlement"
-                                    type='object'
-                                    attrs="{'invisible':['|',('type','=','incasso'),('state','!=','credited')]}"
-                                    string="Mark as Settled"
-                                    icon="fa-check"
+                                <field
+                                    name="date_credited"
+                                    attrs="{'readonly':[('state','!=','draft'), ('state','!=','accepted')]}"
                                 />
-                                <field name="type" invisible="1" />
-                            </tree>
-                        </field>
-                        <field name="type" invisible="1" />
-                    </page>
-                    <page string="Other Info">
-                        <group>
-                            <field name="user_id" />
-                            <field name="date_created" />
-                            <field
-                                name="date_accepted"
-                                attrs="{'readonly':[('state','!=','draft')]}"
-                            />
-                            <field
-                                name="date_credited"
-                                attrs="{'readonly':[('state','!=','draft'), ('state','!=','accepted')]}"
-                            />
-                            <field name="date_paid" />
-                        </group>
-                    </page>
-                    <page string="Accounting">
-                        <separator colspan="4" string="Acceptance Entries" />
-                        <field name='acceptance_move_ids' colspan="4" nolabel="1" />
-                        <separator colspan="4" string="Credit Entry" />
-                        <field name='credit_move_id' colspan="4" nolabel="1" />
-                        <separator colspan="4" string="Payments" />
-                        <field name='payment_ids' colspan="4" nolabel="1">
-                            <tree>
-                                <field name="date" />
-                                <field name="move_id" />
-                                <field name="ref" />
-                                <field name="name" />
-                                <field name="journal_id" groups="base.group_user" />
-                                <field name="debit" />
-                                <field name="credit" />
-                                <field name="amount_currency" />
-                                <field name="currency_id" />
-                            </tree>
-                        </field>
-                        <separator colspan="4" string="Past Dues" />
-                        <field name='past_due_move_ids' colspan="4" nolabel="1" />
-                    </page>
-                </notebook>
+                                <field name="date_paid" />
+                                <field name="total_amount" widget="monetary" />
+                            </group>
+                        </page>
+                        <page string="Accounting">
+                            <separator colspan="4" string="Acceptance Entries" />
+                            <field name='acceptance_move_ids' colspan="4" nolabel="1" />
+                            <separator colspan="4" string="Credit Entry" />
+                            <field name='credit_move_id' colspan="4" nolabel="1" />
+                            <separator colspan="4" string="Payments" />
+                            <field name='payment_ids' colspan="4" nolabel="1">
+                                <tree>
+                                    <field name="date" />
+                                    <field name="move_id" />
+                                    <field name="ref" />
+                                    <field name="name" />
+                                    <field name="journal_id" groups="base.group_user" />
+                                    <field name="debit" />
+                                    <field name="credit" />
+                                    <field name="amount_currency" />
+                                    <field name="currency_id" />
+                                </tree>
+                            </field>
+                            <separator colspan="4" string="Past Dues" />
+                            <field name='past_due_move_ids' colspan="4" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
             </form>
         </field>
     </record>
@@ -258,6 +273,17 @@
         <field name="res_model">riba.slip</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_slip_riba_filter" />
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     RIBA SLIP LINE ACTION               -->
+    <!-- ====================================================== -->
+    <record id="riba_line_settle_action_server" model="ir.actions.server">
+        <field name="name">Settle RiBa Line</field>
+        <field name="model_id" ref="l10n_it_riba.model_riba_slip_line" />
+        <field name="binding_model_id" ref="l10n_it_riba.model_riba_slip_line" />
+        <field name="state">code</field>
+        <field name="code">action = records.settle_riba_line()</field>
     </record>
 
     <!-- ====================================================== -->

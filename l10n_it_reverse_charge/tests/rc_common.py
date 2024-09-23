@@ -35,11 +35,19 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         cls._create_rc_types()
         cls._create_rc_type_taxes()
         cls._create_fiscal_position()
+        cls._create_currency_rate(cls.env.ref("base.EUR").id, 1.1)
 
         cls.supplier_extraEU = cls.partner_model.create(
             {
                 "name": "Extra EU supplier",
                 "property_account_position_id": cls.fiscal_position_extra.id,
+            }
+        )
+        cls.supplier_extraEU_EUR = cls.partner_model.create(
+            {
+                "name": "Extra EU Euro supplier",
+                "property_account_position_id": cls.fiscal_position_extra_no_si.id,
+                "currency_id": cls.env.ref("base.EUR"),
             }
         )
         cls.supplier_intraEU = cls.partner_model.create(
@@ -102,9 +110,14 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
         )
 
     @classmethod
-    def create_invoice(cls, partner, amounts, taxes=None, post=True):
+    def create_invoice(cls, partner, amounts, taxes=None, post=True, currency=None):
         invoice = cls.init_invoice(
-            "in_invoice", partner=partner, post=post, amounts=amounts, taxes=taxes
+            "in_invoice",
+            partner=partner,
+            post=post,
+            amounts=amounts,
+            taxes=taxes,
+            currency=currency,
         )
         for line in invoice.invoice_line_ids:
             line.account_id = cls.invoice_line_account.id
@@ -224,6 +237,20 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
             }
         )
 
+        cls.rc_type_eeu_no_selfinvoice_extra = rc_type_model.create(
+            {
+                "name": "Extra EU (selfinvoice)",
+                "method": "selfinvoice",
+                "partner_type": "other",
+                "with_supplier_self_invoice": False,
+                "partner_id": cls.env.ref("base.main_partner").id,
+                "journal_id": cls.journal_selfinvoice_extra.id,
+                "supplier_journal_id": cls.journal_cee_extra.id,
+                "payment_journal_id": cls.journal_reconciliation.id,
+                "transitory_account_id": cls.account_selfinvoice.id,
+            }
+        )
+
         cls.rc_type_exempt = rc_type_model.create(
             {
                 "name": "Intra EU (exempt)",
@@ -255,6 +282,14 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
             }
         )
 
+        cls.rc_type_tax_eeu_no_selfinvoice_extra = rc_type_tax_model.create(
+            {
+                "rc_type_id": cls.rc_type_eeu_no_selfinvoice_extra.id,
+                "purchase_tax_id": cls.tax_22ae.id,
+                "sale_tax_id": cls.tax_22ve.id,
+            }
+        )
+
         cls.rc_type_tax_exempt = rc_type_tax_model.create(
             {
                 "rc_type_id": cls.rc_type_exempt.id,
@@ -274,6 +309,24 @@ class ReverseChargeCommon(AccountTestInvoicingCommon):
             {"name": "Extra EU", "rc_type_id": cls.rc_type_eeu.id}
         )
 
+        cls.fiscal_position_extra_no_si = model_fiscal_position.create(
+            {
+                "name": "Extra EU no extra self invoice",
+                "rc_type_id": cls.rc_type_eeu_no_selfinvoice_extra.id,
+            }
+        )
+
         cls.fiscal_position_exempt = model_fiscal_position.create(
             {"name": "Intra EU exempt", "rc_type_id": cls.rc_type_exempt.id}
+        )
+
+    @classmethod
+    def _create_currency_rate(cls, currency_id, rate, date="2016-01-01"):
+        cls.env["res.currency.rate"].create(
+            {
+                "name": date,
+                "currency_id": currency_id,
+                "rate": rate,
+                "company_id": cls.env.company.id,
+            }
         )

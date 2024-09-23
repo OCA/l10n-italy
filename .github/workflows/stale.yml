@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Stale PRs and issues policy
-        uses: actions/stale@v4
+        uses: actions/stale@v9
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           # General settings.
@@ -43,13 +43,13 @@ jobs:
 
             If you want this issue to never become stale, please ask a PSC member to
             apply the "no stale" label.
-          operations-per-run: 100
+          operations-per-run: 200
 
       # 15+30 day stale policy for issues pending more information
       # * Issues that are pending more information
       # * Except Issues marked as "no stale"
       - name: Needs more information stale issues policy
-        uses: actions/stale@v4
+        uses: actions/stale@v9
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ascending: true

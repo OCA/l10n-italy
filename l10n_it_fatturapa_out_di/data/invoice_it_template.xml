@@ -8,10 +8,11 @@
             <t t-set="force_declaration_of_intent_ids" t-value="[]" />
         </xpath>
         <xpath expr="//DatiBeniServizi/t[@t-as='line']" position="after">
+        <t t-translation="off">
             <t
-                t-set="to_add"
-                t-value="record.declaration_of_intent_ids - record.declaration_of_intent_ids.browse(force_declaration_of_intent_ids)"
-            />
+                    t-set="to_add"
+                    t-value="record.declaration_of_intent_ids - record.declaration_of_intent_ids.browse(force_declaration_of_intent_ids)"
+                />
             <DettaglioLinee t-if="to_add">
                 <t t-set="line_counter" t-value="line_counter + 1" />
                 <NumeroLinea t-out="line_counter" />
@@ -23,13 +24,15 @@
                 <AltriDatiGestionali t-foreach="to_add" t-as="dec">
                     <TipoDato>INTENTO</TipoDato>
                     <RiferimentoTesto
-                        t-out="encode_for_export(dec.telematic_protocol, 60)"
-                    />
+                            t-out="encode_for_export(dec.telematic_protocol, 60)"
+                        />
                     <RiferimentoData t-out="format_date(dec.date)" />
                 </AltriDatiGestionali>
             </DettaglioLinee>
+        </t>
         </xpath>
         <xpath expr="//DatiBeniServizi/t[@t-as='tax_data']" position="after">
+        <t t-translation="off">
             <DatiRiepilogo t-if="to_add">
                 <AliquotaIVA>0.00</AliquotaIVA>
                 <Natura>N1</Natura>
@@ -37,6 +40,7 @@
                 <Imposta>0.00</Imposta>
                 <RiferimentoNormativo>Esclusa ex. Art. 15</RiferimentoNormativo>
             </DatiRiepilogo>
+        </t>
         </xpath>
     </template>
     <template
@@ -44,20 +48,22 @@
         inherit_id="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
     >
         <xpath expr="//DettaglioLinee">
+        <t t-translation="off">
             <!-- see: https://www.agenziaentrate.gov.it/portale/documents/20143/3844127/Provvedimento+del+28+ottobre+2021_Antifrode.pdf/33cec057-3e07-f618-969d-dce631777b56 -->
             <AltriDatiGestionali t-if="line.force_declaration_of_intent_id">
                 <t
-                    t-set="foo"
-                    t-value="force_declaration_of_intent_ids.append(line.force_declaration_of_intent_id.id)"
-                />
+                        t-set="foo"
+                        t-value="force_declaration_of_intent_ids.append(line.force_declaration_of_intent_id.id)"
+                    />
                 <TipoDato>INTENTO</TipoDato>
                 <RiferimentoTesto
-                    t-out="encode_for_export(line.force_declaration_of_intent_id.telematic_protocol, 60)"
-                />
+                        t-out="encode_for_export(line.force_declaration_of_intent_id.telematic_protocol, 60)"
+                    />
                 <RiferimentoData
-                    t-out="format_date(line.force_declaration_of_intent_id.date)"
-                />
+                        t-out="format_date(line.force_declaration_of_intent_id.date)"
+                    />
             </AltriDatiGestionali>
+        </t>
         </xpath>
     </template>
 </odoo>

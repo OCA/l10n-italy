@@ -45,7 +45,7 @@
         </xpath>
         <xpath expr="//DatiRiepilogo/ImponibileImporto" position="attributes">
             <attribute name="t-out">
-                format_monetary(fpa_to_eur(get_sign(record) * tax_data['ImponibileImporto'], record), euro)
+                format_monetary(get_sign(record) * tax_data['ImponibileImporto'], euro)
             </attribute>
         </xpath>
         <xpath expr="//DatiRiepilogo/Imposta" position="attributes">
@@ -66,7 +66,7 @@
         </xpath>
         <xpath expr="//PrezzoTotale" position="attributes">
             <attribute name="t-out">
-                format_monetary(fpa_to_eur(get_sign(line.move_id) * line.price_subtotal, record), euro)
+                format_monetary(fpa_to_eur(get_sign(line.move_id) * line.price_subtotal, record, line.currency_rate), euro)
             </attribute>
         </xpath>
     </template>

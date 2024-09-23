@@ -1,3 +1,4 @@
+# Copyright 2023 Simone Rubino - Aion Tech
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from odoo import _, api, fields, models
@@ -7,14 +8,23 @@ from odoo.exceptions import UserError
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    tax_stamp = fields.Boolean(readonly=False, compute="_compute_tax_stamp", store=True)
+    tax_stamp = fields.Boolean(
+        help="Tax stamp is applied to this invoice.",
+        readonly=False,
+        compute="_compute_tax_stamp",
+        store=True,
+    )
+    tax_stamp_line_present = fields.Boolean(
+        string="Stamp line is present in invoice",
+        compute="_compute_tax_stamp_line_present",
+    )
     auto_compute_stamp = fields.Boolean(
         related="company_id.tax_stamp_product_id.auto_compute"
     )
     manually_apply_tax_stamp = fields.Boolean("Apply tax stamp")
 
     def is_tax_stamp_applicable(self):
-        stamp_product_id = self.env.company.with_context(
+        stamp_product_id = self.company_id.with_context(
             lang=self.partner_id.lang
         ).tax_stamp_product_id
         if not stamp_product_id:
@@ -54,7 +64,7 @@ class AccountMove(models.Model):
         for inv in self:
             if not inv.tax_stamp:
                 raise UserError(_("Tax stamp is not applicable"))
-            stamp_product_id = self.env.company.with_context(
+            stamp_product_id = inv.company_id.with_context(
                 lang=inv.partner_id.lang
             ).tax_stamp_product_id
             if not stamp_product_id:
@@ -74,6 +84,7 @@ class AccountMove(models.Model):
             invoice_line_vals = {
                 "move_id": inv.id,
                 "product_id": stamp_product_id.id,
+                "is_stamp_line": True,
                 "name": stamp_product_id.description_sale,
                 "sequence": 99999,
                 "account_id": stamp_account.id,
@@ -86,10 +97,20 @@ class AccountMove(models.Model):
             inv.write({"invoice_line_ids": [(0, 0, invoice_line_vals)]})
 
     def is_tax_stamp_line_present(self):
+        self.ensure_one()
         for line in self.line_ids:
             if line.is_stamp_line:
                 return True
         return False
+
+    @api.depends(
+        "invoice_line_ids",
+        "invoice_line_ids.product_id",
+        "invoice_line_ids.product_id.is_stamp",
+    )
+    def _compute_tax_stamp_line_present(self):
+        for invoice in self:
+            invoice.tax_stamp_line_present = invoice.is_tax_stamp_line_present()
 
     def is_tax_stamp_product_present(self):
         product_stamp = self.invoice_line_ids.filtered(
@@ -143,7 +164,7 @@ class AccountMove(models.Model):
         return income_vals, expense_vals
 
     def _post(self, soft=True):
-        res = super(AccountMove, self)._post(soft=soft)
+        res = super()._post(soft=soft)
         for inv in self:
             posted = False
             if (
@@ -155,7 +176,7 @@ class AccountMove(models.Model):
                     posted = True
                     inv.state = "draft"
                 line_model = self.env["account.move.line"]
-                stamp_product_id = self.env.company.with_context(
+                stamp_product_id = inv.company_id.with_context(
                     lang=inv.partner_id.lang
                 ).tax_stamp_product_id
                 if not stamp_product_id:
@@ -170,7 +191,7 @@ class AccountMove(models.Model):
         return res
 
     def button_draft(self):
-        res = super(AccountMove, self).button_draft()
+        res = super().button_draft()
         for account_move in self:
             move_line_tax_stamp_ids = account_move.line_ids.filtered(
                 lambda line: line.is_stamp_line

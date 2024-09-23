@@ -1,12 +1,16 @@
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
 # Copyright 2018-2019 Alex Comba - Agile Business Group
+# Copyright 2023 Simone Rubino - Aion Tech
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import base64
 import re
+from unittest.mock import Mock
 
 from psycopg2 import IntegrityError
 
+import odoo
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import Form, tagged
@@ -39,7 +43,7 @@ class TestDuplicatedAttachment(FatturaPACommon):
 @tagged("post_install", "-at_install")
 class TestFatturaPAXMLValidation(FatturaPACommon):
     def setUp(self):
-        super(TestFatturaPAXMLValidation, self).setUp()
+        super().setUp()
         self.company = self.env.company = self.sales_journal.company_id
 
         # XXX - a company named "YourCompany" alread exists
@@ -770,6 +774,80 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00016.xml")
 
+    def test_17_line_related_documents(self):
+        # this test is similar to test_2_xml_export, but the related document
+        # refers to a line, not the whole invoice
+        invoice = self.invoice_model.create(
+            {
+                "name": "INV/2016/0014",
+                "invoice_date": "2016-06-15",
+                "partner_id": self.res_partner_fatturapa_0.id,
+                "journal_id": self.sales_journal.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
+                "user_id": self.user_demo.id,
+                "move_type": "out_invoice",
+                "currency_id": self.EUR.id,
+                "narration": "prima riga\nseconda riga",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_product_10.id,
+                            "name": "Mouse, Optical",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 10,
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
+                            "sequence": 10,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_order_01.id,
+                            "name": "Zed+ Antivirus",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 4,
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
+                            "sequence": 20,
+                            "related_documents": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "type": "order",
+                                        "name": "PO123",
+                                        "cig": "123",
+                                        "cup": "456",
+                                    },
+                                )
+                            ],
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice._post()
+        # by default, lineRef is assigned from sequence, potentially a wrong guess
+        self.assertEqual(invoice.line_ids[1].related_documents[0].lineRef, 20)
+
+        res = self.run_wizard(invoice.id)
+
+        # lineRef is assigned by the template to its actual output value in the XML
+        self.assertEqual(invoice.line_ids[1].related_documents[0].lineRef, 2)
+
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00017.xml")
+
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT06363391001_00017.xml")
+
     def test_no_tax_fail(self):
         """
         - create an invoice with a product line without taxes
@@ -794,10 +872,57 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         wizard = self.wizard_model.create({})
         with self.assertRaises(UserError) as ue:
             wizard.with_context(active_ids=[invoice.id]).exportFatturaPA()
-        error_message = "Invoice {} contains product lines w/o taxes".format(
-            invoice.name
-        )
+        error_message = f"Invoice {invoice.name} contains product lines w/o taxes"
         self.assertEqual(ue.exception.args[0], error_message)
+
+    def test_partner_no_address_fail(self):
+        """
+        - create an XML invoice where the customer has no address or city
+
+        expect to fail with a proper message
+        """
+        invoice = self._create_invoice()
+        invoice.partner_id.street = False
+        invoice.partner_id.city = False
+        invoice._post()
+        wizard = self.wizard_model.create({})
+        with self.assertRaises(UserError) as ue:
+            wizard.with_context(**{"active_ids": [invoice.id]}).exportFatturaPA()
+        error_msg = ue.exception.args[0]
+        error_fragments = (
+            f"Error processing invoice(s) {invoice.name}",
+            "Indirizzo",
+            "Comune",
+            "Activate debug mode to see the full error",
+        )
+        for fragment in error_fragments:
+            self.assertIn(fragment, error_msg)
+
+        try:
+            # Enter debug mode and add details
+            mock_request = Mock(
+                db=self.env.cr.dbname,
+                env=self.env,
+                website=False,  # compatibility with website module
+                is_frontend=False,
+            )
+            mock_request.session.debug = "assets"
+            odoo.http._request_stack.push(mock_request)
+            wizard = self.wizard_model.create({})
+            with self.assertRaises(UserError) as ue:
+                wizard.with_context(**{"active_ids": [invoice.id]}).exportFatturaPA()
+            debug_error_msg = ue.exception.args[0]
+            debug_error_fragments = (
+                "Full error follows",
+                "Reason: value doesn't match any pattern of",
+                "p{IsBasicLatin}",
+                "<Comune xmlns:ns1",
+            )
+            for fragment in error_fragments[:-1] + debug_error_fragments:
+                self.assertIn(fragment, debug_error_msg)
+        finally:
+            # Remove from the stack to not interfere with other tests
+            odoo.http._request_stack.pop()
 
     def test_multicompany_fail(self):
         """
@@ -849,6 +974,21 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         )
         self.assertEqual(ue.exception.args[0], error_message)
 
+    def test_access_other_user_e_invoice(self):
+        """A user can see the e-invoice files created by other users."""
+        # Arrange
+        user = self.env.user
+        other_user = user.copy()
+        # pre-condition
+        self.assertNotEqual(user, other_user)
+
+        # Act
+        with self.with_user(other_user.login):
+            e_invoice = self._create_e_invoice()
+
+        # Assert
+        self.assertTrue(e_invoice.ir_attachment_id.with_user(user).read())
+
     def test_unlink(self):
         e_invoice = self._create_e_invoice()
         e_invoice.unlink()
@@ -859,6 +999,11 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         e_invoice.state = "sender_error"
         e_invoice.reset_to_ready()
         self.assertEqual(e_invoice.state, "ready")
+
+    def test_preview(self):
+        e_invoice = self._create_e_invoice()
+        preview_action = e_invoice.ftpa_preview()
+        self.assertEqual(preview_action["url"], e_invoice.ftpa_preview_link)
 
     def test_no_export_bill(self):
         invoice = self.invoice_model.create(
@@ -938,3 +1083,157 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         invoice.action_post()
 
         self.assertEqual(invoice.state, "posted")
+
+    def test_18_xml_export(self):
+        vals = {
+            "name": "Azienda Sanmarinese",
+            "is_company": "1",
+            "street": "Piazza della Libertà",
+            "is_pa": False,
+            "city": "Città di San Marino",
+            "zip": "47890",
+            "country_id": self.env.ref("base.sm").id,
+            "email": "asm@example.com",
+            "vat": "SM00123",
+            "codice_destinatario": "2R4GTO8",
+        }
+        partner_sm = self.env["res.partner"].create(vals)
+
+        tax_kind = self.env["account.tax.kind"].search([("code", "=", "N3.3")], limit=1)
+        self.assertTrue(tax_kind)
+
+        vals = {
+            "name": "0% SM",
+            "amount": 0.0,
+            "amount_type": "percent",
+            "description": "Non Imponibile Art. 71",
+            "kind_id": tax_kind.id,
+        }
+        tax_id = self.env["account.tax"].create(vals)
+
+        self.env.company.fatturapa_pub_administration_ref = "F000000111"
+        invoice = self.invoice_model.create(
+            {
+                "name": "INV/2016/0013",
+                "company_id": self.env.company.id,
+                "invoice_date": "2016-01-07",
+                "partner_id": partner_sm.id,
+                "journal_id": self.sales_journal.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
+                "user_id": self.user_demo.id,
+                "move_type": "out_invoice",
+                "currency_id": self.EUR.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_product_10.id,
+                            "name": "Mouse\nOptical",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 10,
+                            "tax_ids": [(6, 0, [tax_id.id])],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_order_01.id,
+                            "name": "Zed+ Antivirus",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 4,
+                            "tax_ids": [(6, 0, [tax_id.id])],
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice._post()
+        self.assertFalse(self.attach_model.file_name_exists("00001"))
+        res = self.run_wizard(invoice.id)
+
+        self.assertTrue(res)
+        attachment = self.attach_model.browse(res["res_id"])
+        file_name_match = "^%s_[A-Za-z0-9]{5}.xml$" % self.env.company.vat
+        # Checking file name randomly generated
+        self.assertTrue(re.search(file_name_match, attachment.name))
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00018.xml")
+        self.assertTrue(self.attach_model.file_name_exists("00018"))
+
+        # XML doc to be validated
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT06363391001_00018.xml")
+
+    def _get_multiple_invoices(self, partner, invoices_number=2):
+        """Create `invoices_number` invoices for `partner`."""
+        invoices = self.invoice_model.browse()
+        for _ in range(invoices_number):
+            invoices |= self.init_invoice(
+                "out_invoice",
+                partner=partner,
+                amounts=[
+                    100,
+                ],
+            )
+        invoices.action_post()
+        return invoices
+
+    def test_max_invoice_number_unlimited(self):
+        """Check that when both partner and company do not have any max value,
+        only one attachment is created."""
+
+        # pre-condition: partner and company do not have any max value
+        company = self.company
+        self.assertEqual(company.max_invoice_in_xml, 0)
+        partner = self.res_partner_fatturapa_0
+        self.assertEqual(partner.max_invoice_in_xml, 0)
+
+        # Create two invoices
+        invoices = self._get_multiple_invoices(partner)
+        self.run_wizard(invoices.ids)
+
+        # Check that only one attachment is created
+        attachments_nbr = len(invoices.mapped("fatturapa_attachment_out_id"))
+        self.assertEqual(attachments_nbr, 1)
+
+    def test_max_invoice_number_partner(self):
+        """Check that when partner has a max value, company value is ignored and
+        many attachments are created."""
+
+        # pre-condition: partner has a value
+        company = self.company
+        self.assertEqual(company.max_invoice_in_xml, 0)
+        partner = self.res_partner_fatturapa_0
+        partner.max_invoice_in_xml = 1
+
+        # Create two invoices
+        invoices = self._get_multiple_invoices(partner)
+        self.run_wizard(invoices.ids)
+
+        # Check that two attachments are created
+        attachments_nbr = len(invoices.mapped("fatturapa_attachment_out_id"))
+        self.assertEqual(attachments_nbr, 2)
+
+    def test_max_invoice_number_company(self):
+        """Check that when company has a max value and partner does not,
+        many attachments are created."""
+
+        # pre-condition: only company has a value
+        company = self.company
+        company.max_invoice_in_xml = 1
+        partner = self.res_partner_fatturapa_0
+        self.assertEqual(partner.max_invoice_in_xml, 0)
+
+        # Create two invoices
+        invoices = self._get_multiple_invoices(partner)
+        self.run_wizard(invoices.ids)
+
+        # Check that two attachments are created
+        attachments_nbr = len(invoices.mapped("fatturapa_attachment_out_id"))
+        self.assertEqual(attachments_nbr, 2)

@@ -10,7 +10,7 @@
                 <field name="kind_id" />
                 <field
                     name="law_reference"
-                    attrs="{'required': [('kind_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': ['|',('kind_id', '=', False),('type_tax_use', '=', 'purchase')]}"
+                    attrs="{'required': [('kind_id', '!=', False),('type_tax_use', '!=', 'purchase')], 'invisible': [('type_tax_use', '=', 'purchase')]}"
                 />
             </xpath>
         </field>

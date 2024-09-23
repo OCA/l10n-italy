@@ -94,3 +94,23 @@ class WizardImportFatturapa(models.TransientModel):
         else:
             invoice_type = super()._get_invoice_type(fiscal_document_type)
         return invoice_type
+
+    def _get_account_tax_domain(self, amount):
+        tax_domain = super()._get_account_tax_domain(amount)
+        if self._is_import_attachment_out():
+            return [
+                ("type_tax_use", "=", "sale")
+                if item == ("type_tax_use", "=", "purchase")
+                else item
+                for item in tax_domain
+            ]
+        else:
+            return tax_domain
+
+    def set_payments_data(self, FatturaBody, invoice, partner_id):
+        if self._is_import_attachment_out():
+            return super().set_payments_data(
+                FatturaBody, invoice, self.env.company.partner_id.id
+            )
+        else:
+            return super().set_payments_data(FatturaBody, invoice, partner_id)

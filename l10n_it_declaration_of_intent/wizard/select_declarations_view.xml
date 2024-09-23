@@ -5,9 +5,7 @@
         <field name="model">l10n_it_declaration_of_intent.select_declarations</field>
         <field name="arch" type="xml">
             <form string="Select Manually Declarations">
-                <group>
-                    <field name="declaration_ids" nolabel="1" />
-                </group>
+                <field name="declaration_ids" nolabel="1" />
                 <footer>
                     <button
                         name="confirm"

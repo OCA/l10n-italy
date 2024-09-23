@@ -17,6 +17,10 @@
                     <field name="name" />
                     <field name="type" />
                     <field
+                        name="sbf_collection_type"
+                        attrs="{'required': [('type','=','sbf')], 'invisible': [('type','!=','sbf')]}"
+                    />
+                    <field
                         name="bank_id"
                         domain="[('partner_id.ref_company_ids', 'in', allowed_company_ids)]"
                     />
@@ -25,6 +29,11 @@
                         widget="selection"
                         groups="base.group_multi_company"
                         readonly="1"
+                    />
+                    <field
+                        name="company_id"
+                        groups="!base.group_multi_company"
+                        invisible="True"
                     />
                 </group>
 
@@ -56,8 +65,28 @@
                     <field name="past_due_journal_id" />
                     <field name="settlement_journal_id" />
                 </group>
-
+                <group
+                    string="Acceptance"
+                    attrs="{'required':[('type','=','incasso')]}"
+                >
+                    <field name="acceptance_journal_id" />
+                    <field name="acceptance_account_id" />
+                </group>
             </form>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!-- 				CONFIGURAZIONE RIBA TREE 				-->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_riba_configuration_tree">
+        <field name="name">riba.configuration.tree</field>
+        <field name="model">riba.configuration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
         </field>
     </record>
 

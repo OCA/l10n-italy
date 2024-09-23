@@ -11,7 +11,6 @@ from odoo import api, fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-
     _inherit = "res.config.settings"
 
     due_cost_service_id = fields.Many2one(
@@ -31,7 +30,6 @@ class ResConfigSettings(models.TransientModel):
 
 
 class ResCompany(models.Model):
-
     _inherit = "res.company"
 
     due_cost_service_id = fields.Many2one("product.product", "Collection Fees Service")

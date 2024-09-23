@@ -12,7 +12,6 @@ class ComunicazioneLiquidazioneExportFile(models.TransientModel):
     name = fields.Char("File Name", readonly=True, default="liquidazione.xml")
 
     def export(self):
-
         comunicazione_ids = self._context.get("active_ids")
         if not comunicazione_ids:
             raise UserError(_("No communication selected"))

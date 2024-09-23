@@ -9,6 +9,8 @@
                 <group>
                     <field name="name" />
                     <field name="layout_type" />
+                    <field name="entry_order" />
+                    <field name="show_full_contact_addess" />
                 </group>
                 <separator string="Journals" />
                 <field name="journal_ids" />

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Nicola Malcontenti - Agile Business Group
+     Copyright 2019 Simone Rubino -->
+<odoo>
+    <template id="l10n_it_website_sale_fiscalcode" inherit_id="website_sale.address">
+        <xpath expr="//div[@id='div_phone']" position="after">
+            <t t-if="mode[1] == 'billing'">
+                <div class="clearfix" />
+                <div
+                    t-attf-class="mb-3 #{error.get('fiscalcode') and 'o_has_error' or ''} col-lg-6"
+                    id="div_fiscalcode"
+                >
+                    <label
+                        class="col-form-label label-optional"
+                        for="fiscalcode"
+                    >Fiscal Code</label>
+                    <input
+                        type="text"
+                        name="fiscalcode"
+                        t-attf-class="form-control #{error.get('fiscalcode') and 'is-invalid' or ''}"
+                        t-att-value="'fiscalcode' in checkout and checkout['fiscalcode']"
+                    />
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

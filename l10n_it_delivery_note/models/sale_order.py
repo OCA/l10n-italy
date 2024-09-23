@@ -70,11 +70,12 @@ class SaleOrder(models.Model):
 
     def _assign_delivery_notes_invoices(self, invoice_ids):
         order_lines = self.mapped("order_line").filtered(
-            lambda l: l.is_invoiced and l.delivery_note_line_ids
+            lambda order_line: order_line.is_invoiced
+            and order_line.delivery_note_line_ids
         )
 
         delivery_note_lines = order_lines.mapped("delivery_note_line_ids").filtered(
-            lambda l: l.is_invoiceable
+            lambda dn_line: dn_line.is_invoiceable
         )
         delivery_notes = delivery_note_lines.mapped("delivery_note_id")
 
@@ -104,9 +105,15 @@ class SaleOrder(models.Model):
         )
 
         ready_delivery_note_lines.write({"invoice_status": DOMAIN_INVOICE_STATUSES[2]})
-        ready_delivery_notes.write(
-            {"invoice_ids": [(4, invoice_id) for invoice_id in invoice_ids]}
-        )
+        for ready_delivery_note in ready_delivery_notes:
+            ready_invoice_ids = [
+                invoice_id
+                for invoice_id in ready_delivery_note.sale_ids.mapped("invoice_ids").ids
+                if invoice_id in invoice_ids
+            ]
+            ready_delivery_note.write(
+                {"invoice_ids": [(4, invoice_id) for invoice_id in ready_invoice_ids]}
+            )
 
         ready_delivery_notes._compute_invoice_status()
 

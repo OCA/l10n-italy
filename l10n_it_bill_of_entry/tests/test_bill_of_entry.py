@@ -47,6 +47,10 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         demo_data_company = self.env.ref("base.main_company")
         self.env.user.company_ids |= demo_data_company
         self.env.user.company_id = demo_data_company
+        # Now that current user can access the company,
+        # log the user *only* in this company so that
+        # searching, reading and other operations behave as expected
+        self.env.user.company_ids = demo_data_company
 
         # Default accounts for invoice line account_id
         self.account_revenue = self.account_model.search(
@@ -222,7 +226,6 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         self.assertEqual(bill_of_entry.state, "draft")
 
     def test_storno_create(self):
-
         # Validate bill of entry
         self.bill_of_entry.action_post()
 
@@ -247,7 +250,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
 
         # Customs Expense account.move.lines
         boe_payable_lines = self.bill_of_entry.line_ids.filtered(
-            lambda l: l.account_type == "liability_payable"
+            lambda line: line.account_type == "liability_payable"
         )
         boe_account = first(boe_payable_lines).account_id
         move_line_domain = [
@@ -273,12 +276,12 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
 
         # Storno - BoE reconciliation (supplier debit account)
         storno_reconcile_ids = (
-            storno.line_ids.filtered(lambda l: l.full_reconcile_id)
+            storno.line_ids.filtered(lambda line: line.full_reconcile_id)
             .mapped("full_reconcile_id")
             .ids
         )
         boe_reconcile_ids = (
-            self.bill_of_entry.line_ids.filtered(lambda l: l.full_reconcile_id)
+            self.bill_of_entry.line_ids.filtered(lambda line: line.full_reconcile_id)
             .mapped("full_reconcile_id")
             .ids
         )

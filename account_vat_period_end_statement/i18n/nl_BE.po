@@ -25,7 +25,7 @@ msgid "\"4\" (soggetti particolari)"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "&amp;nbsp;("
 msgstr ""
 
@@ -40,7 +40,7 @@ msgid "<span>Summary</span>"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "<strong>Total Credit</strong>"
 msgstr ""
 
@@ -50,7 +50,7 @@ msgid "<strong>Total Statement</strong>"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "<strong>Total To Pay</strong>"
 msgstr ""
 
@@ -281,7 +281,7 @@ msgstr "Schermnaam"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__advance_account_id
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Down payment"
 msgstr ""
@@ -303,7 +303,7 @@ msgstr ""
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__interests_debit_vat_account_id
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Due interests"
 msgstr ""
@@ -485,12 +485,12 @@ msgid "Previous Debits VAT Amount"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "Previous credit vat"
 msgstr ""
 
 #. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "Previous debit vat"
 msgstr ""
 
@@ -551,8 +551,8 @@ msgstr ""
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
 "Italia, Beni FUE in Italia, Cell., Microproc.\n"
-"    Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge "
-"UE, Cell. UE, Microproc. UE"
+"Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, "
+"Cell. UE, Microproc. UE"
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -599,7 +599,7 @@ msgstr ""
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__tax_credit_account_id
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "Tax credits"
 msgstr ""

@@ -26,7 +26,7 @@ class StockPicking(models.Model):
         "ir.sequence", related="delivery_note_id.sequence_id"
     )
     delivery_note_state = fields.Selection(
-        string="DN State", related="delivery_note_id.state"
+        string="DN State", related="delivery_note_id.state", store=True
     )
     delivery_note_partner_ref = fields.Char(related="delivery_note_id.partner_ref")
     delivery_note_partner_shipping_id = fields.Many2one(
@@ -41,10 +41,14 @@ class StockPicking(models.Model):
     )
 
     delivery_note_type_id = fields.Many2one(
-        "stock.delivery.note.type", related="delivery_note_id.type_id"
+        "stock.delivery.note.type",
+        related="delivery_note_id.type_id",
+        check_company=True,
     )
     delivery_note_type_code = fields.Selection(related="delivery_note_type_id.code")
-    delivery_note_date = fields.Date(string="DN Date", related="delivery_note_id.date")
+    delivery_note_date = fields.Date(
+        string="DN Date", related="delivery_note_id.date", store=True
+    )
     delivery_note_note = fields.Html(related="delivery_note_id.note")
 
     transport_condition_id = fields.Many2one(
@@ -85,6 +89,8 @@ class StockPicking(models.Model):
     picking_type_code = fields.Selection(
         string="DN Operation Type", related="picking_type_id.code"
     )
+
+    carrier_partner_id = fields.Many2one("res.partner", related="carrier_id.partner_id")
 
     use_delivery_note = fields.Boolean(compute="_compute_boolean_flags")
     use_advanced_behaviour = fields.Boolean(compute="_compute_boolean_flags")
@@ -138,6 +144,10 @@ class StockPicking(models.Model):
                     picking.delivery_note_id.state == DOMAIN_DELIVERY_NOTE_STATES[3]
                 )
                 picking.can_be_invoiced = bool(picking.delivery_note_id.sale_ids)
+
+    @api.onchange("delivery_method_id")
+    def _onchange_delivery_method_id(self):
+        self.delivery_note_carrier_id = self.delivery_method_id.partner_id
 
     @api.onchange("delivery_note_type_id")
     def _onchange_delivery_note_type(self):
@@ -335,8 +345,10 @@ class StockPicking(models.Model):
             ],
             limit=1,
         )
+        delivery_method_id = self.mapped("carrier_id")[:1]
         return self.env["stock.delivery.note"].create(
             {
+                "company_id": self.company_id.id,
                 "partner_sender_id": partners[0].id,
                 "partner_id": self.sale_id.partner_id.id
                 if self.sale_id
@@ -344,7 +356,8 @@ class StockPicking(models.Model):
                 "partner_shipping_id": partners[1].id,
                 "type_id": type_id.id,
                 "date": self.date_done,
-                "delivery_method_id": self.partner_id.property_delivery_carrier_id.id,
+                "carrier_id": delivery_method_id.partner_id.id,
+                "delivery_method_id": delivery_method_id.id,
                 "transport_condition_id": (
                     self.sale_id.default_transport_condition_id.id
                     or partners[1].default_transport_condition_id.id
@@ -443,7 +456,8 @@ class StockPicking(models.Model):
 
     def _create_backorder(self):
         """When we make a backorder of a picking the delivery note lines needed
-        to be updated otherwise stock_delivery_note_line_move_uniq constraint is raised"""
+        to be updated otherwise stock_delivery_note_line_move_uniq
+        constraint is raised"""
         backorders = super()._create_backorder()
         for backorder in backorders:
             backorder.backorder_id.delivery_note_id.update_detail_lines()

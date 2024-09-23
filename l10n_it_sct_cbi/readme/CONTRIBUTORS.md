@@ -1,0 +1,6 @@
+- Alessandro Camilli \<<alessandro.camilli@openforce.it>\>
+- Andrea Colangelo \<<andrea.colangelo@openforce.it>\>
+- Lorenzo Battistini \<<lorenzo.battistini@agilebg.com>\>
+- Alex Comba \<<alex.comba@agilebg.com>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>

@@ -6,7 +6,7 @@ from odoo.addons.l10n_it_fatturapa_in.tests.fatturapa_common import FatturapaCom
 
 class TestInvoiceRC(FatturapaCommon):
     def setUp(self):
-        super(TestInvoiceRC, self).setUp()
+        super().setUp()
         self.invoice_model = self.env["account.move"]
         self.invoice_line_model = self.env["account.move.line"]
         self.partner_model = self.env["res.partner"]
@@ -109,7 +109,8 @@ class TestInvoiceRC(FatturapaCommon):
         res = self.run_wizard(
             "test0", "IT01234567890_FPR04.xml", module_name="l10n_it_fatturapa_in_rc"
         )
-        # Trigger pending computations as if they were done during the attachment import,
+        # Trigger pending computations
+        # as if they were done during the attachment import,
         # in the UX this happens right before going back to the client.
         # Otherwise account.move.line.rc field is computed on demand
         # and its check on the context fails.

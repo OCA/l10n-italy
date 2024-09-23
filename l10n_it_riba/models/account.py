@@ -5,6 +5,7 @@
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2018 Lorenzo Battistini - Agile Business Group
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright 2024 Nextev Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -58,9 +59,30 @@ class AccountMove(models.Model):
             if len(invoice.past_due_move_line_ids) != reconciled_past_due:
                 invoice.is_past_due = True
 
+    def _compute_open_amount(self):
+        today = fields.Date.today()
+        for invoice in self:
+            if invoice.is_riba_payment:
+                open_amount_line_ids = invoice.line_ids.filtered(
+                    lambda line, today=today: line.riba
+                    and line.display_type == "payment_term"
+                    and line.date_maturity > today
+                )
+                invoice.open_amount = sum(open_amount_line_ids.mapped("balance"))
+            else:
+                invoice.open_amount = 0.0
+
     riba_credited_ids = fields.One2many(
         "riba.slip", "credit_move_id", "Credited RiBa Slips", readonly=True
     )
+
+    open_amount = fields.Float(
+        digits="Account",
+        compute="_compute_open_amount",
+        default=0.0,
+        help="Amount currently only supposed to be paid, but has actually not happened",
+    )
+
     riba_past_due_ids = fields.One2many(
         "riba.slip.line", "past_due_move_id", "Past Due RiBa Slips", readonly=True
     )
@@ -99,17 +121,20 @@ class AccountMove(models.Model):
 
     @api.onchange("partner_id", "invoice_payment_term_id", "move_type")
     def _onchange_riba_partner_bank_id(self):
+        allowed_banks = (
+            self.partner_id.bank_ids or self.partner_id.commercial_partner_id.bank_ids
+        )
         if (
             not self.riba_partner_bank_id
-            or self.riba_partner_bank_id not in self.partner_id.bank_ids
+            or self.riba_partner_bank_id not in allowed_banks
         ):
             bank_ids = self.env["res.partner.bank"]
             if (
                 self.partner_id
-                and self.invoice_payment_term_id.riba
+                and self.is_riba_payment
                 and self.move_type in ["out_invoice", "out_refund"]
             ):
-                bank_ids = self.partner_id.bank_ids
+                bank_ids = allowed_banks
             self.riba_partner_bank_id = bank_ids[0] if bank_ids else None
 
     def month_check(self, invoice_date_due, all_date_due):
@@ -122,6 +147,32 @@ class AccountMove(models.Model):
             if invoice_date_due.month == d.month and invoice_date_due.year == d.year:
                 return True
         return False
+
+    def _post(self, soft=True):
+        inv_riba_no_bank = self.filtered(
+            lambda x: x.is_riba_payment
+            and x.move_type == "out_invoice"
+            and not x.riba_partner_bank_id
+        )
+        if inv_riba_no_bank:
+            inv_details = (
+                _(
+                    'Invoice %(name)s for customer "%(customer_name)s", '
+                    "total %(amount)s",
+                    name=inv.display_name,
+                    customer_name=inv.partner_id.display_name,
+                    amount=inv.amount_total,
+                )
+                for inv in inv_riba_no_bank
+            )
+            raise UserError(
+                _(
+                    "Cannot post invoices with C/O payments without bank. "
+                    "Please check the following invoices:\n\n- "
+                    + "\n- ".join(inv_details)
+                )
+            )
+        return super()._post(soft=soft)
 
     def action_post(self):
         for invoice in self:
@@ -146,7 +197,7 @@ class AccountMove(models.Model):
             if not any(line.due_cost_line for line in move_line):
                 move_line = self.env["account.move.line"]
             # ---- Filtered recordset with date_maturity
-            move_line = move_line.filtered(lambda l: l.date_maturity is not False)
+            move_line = move_line.filtered(lambda line: line.date_maturity is not False)
             # ---- Sorted
             move_line = move_line.sorted(key=lambda r: r.date_maturity)
             # ---- Get date
@@ -256,7 +307,17 @@ class AccountMove(models.Model):
         return invoice
 
     def get_due_cost_line_ids(self):
-        return self.invoice_line_ids.filtered(lambda l: l.due_cost_line).ids
+        return self.invoice_line_ids.filtered(lambda line: line.due_cost_line).ids
+
+    def action_riba_payment_date(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "RiBa Payment Date",
+            "res_model": "riba.payment.date",
+            "view_mode": "form",
+            "target": "new",
+            "context": self.env.context,
+        }
 
 
 # se slip_line_ids == None allora non è stata emessa

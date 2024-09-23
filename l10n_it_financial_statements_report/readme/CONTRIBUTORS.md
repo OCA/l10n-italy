@@ -1,0 +1,6 @@
+- Silvio Gregorini \<<https://github.com/SilvioGregorini>\>
+- [Ooops](https://www.ooops404.com)
+- [TAKOBI](https://takobi.online):
+  - Simone Rubino \<<sir@takobi.online>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>

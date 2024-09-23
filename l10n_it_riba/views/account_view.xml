@@ -120,7 +120,7 @@
         <field name="search_view_id" ref="riba_filter" />
         <field
             name="domain"
-        >['&amp;','|',('riba','=','True'),('past_due_invoice_ids','!=',False),('account_id.account_type','=','asset_receivable')]</field>
+        >['&amp;', ('parent_state', '=', 'posted'), '&amp;',('riba','=','True'), '|',('past_due_invoice_ids','!=',False),('account_id.account_type','=','asset_receivable')]</field>
         <field
             name="context"
         >{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
@@ -143,10 +143,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_payment_term_id']" position="after">
                 <field name="is_riba_payment" invisible="1" />
+                <field name="commercial_partner_id" invisible="1" />
                  <field
                     name="riba_partner_bank_id"
                     attrs="{'invisible': ['|',('is_riba_payment','=', False),('move_type','!=','out_invoice')], 'required': ['&amp;',('is_riba_payment','=', True),('move_type','=', 'out_invoice')]}"
-                    domain="[('partner_id','=', partner_id)]"
+                    domain="[('partner_id','=', commercial_partner_id)]"
                 />
                 <field
                     name="is_past_due"
@@ -163,6 +164,7 @@
         <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
             <field name="move_type" position="after">
+                <field name="open_amount" widget="monetary" />
                 <field name="is_past_due" string="Past Due" />
             </field>
         </field>

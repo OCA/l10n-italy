@@ -16,8 +16,41 @@ msgstr ""
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
 msgid ""
+"<span class=\"o_form_label\">E-bill creator</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
+msgid ""
 "<span class=\"o_form_label\">ES Channel</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_accepted
+msgid "Accepted"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__group_sdi_channel_validate_send
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
+msgid "Allow users to validate, export and send invoices to SdI in one click."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
+msgid "Cancel"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
@@ -44,17 +77,80 @@ msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__create_uid
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__create_date
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_validated
+msgid "Delivered"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__display_name
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__e_invoice_user_id
+msgid "E-bill creator"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,description:l10n_it_sdi_channel.e_bill_received
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.e_bill_received
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.sdi_channel_e_bill_received
+msgid "E-bill received"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,description:l10n_it_sdi_channel.e_invoice_accepted
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.sdi_channel_e_invoice_accepted
+msgid "E-invoice Accepted"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,description:l10n_it_sdi_channel.e_invoice_validated
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.sdi_channel_e_invoice_validated
+msgid "E-invoice Delivered"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,description:l10n_it_sdi_channel.e_invoice_recipient_error
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.sdi_channel_e_invoice_recipient_error
+msgid "E-invoice Not Delivered"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,description:l10n_it_sdi_channel.e_invoice_ready
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.sdi_channel_e_invoice_ready
+msgid "E-invoice Ready to Send"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,description:l10n_it_sdi_channel.e_invoice_rejected
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.sdi_channel_e_invoice_rejected
+msgid "E-invoice Rejected (PA)"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,description:l10n_it_sdi_channel.e_invoice_sender_error
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.sdi_channel_e_invoice_sender_error
+msgid "E-invoice Sender Error"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,description:l10n_it_sdi_channel.e_invoice_sent
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.sdi_channel_e_invoice_sent
+msgid "E-invoice Sent"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
@@ -70,6 +166,9 @@ msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model,name:l10n_it_sdi_channel.model_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment__channel_id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_in__channel_id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out__channel_id
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__sdi_channel_id
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_id
 msgid "ES channel"
@@ -83,26 +182,220 @@ msgid "ES channel type"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_fatturapa_attachment_out
+msgid "Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_sdi_channel_form
+msgid ""
+"Follow this channel to automatically be notified of the events associated to"
+" attachments and notifications received by this channel."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__id
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__id
 msgid "ID"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel____last_update
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out__last_sdi_response
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_fatturapa_out_attachment_form
+msgid "Last Response from Exchange System"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__write_uid
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__write_date
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_wizard_fatturapa_send_to_sdi__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_ids
+msgid "Messages"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__name
 msgid "Name"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_recipient_error
+msgid "Not delivered"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_ready
+msgid "Ready to Send"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#. odoo-python
+#: code:addons/l10n_it_sdi_channel/models/sdi.py:0
+#, python-format
+msgid "Received new e-bill: {att_name}"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_rejected
+msgid "Rejected (PA)"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_fatturapa_out_attachment_form
+msgid "Reset to ready"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_fatturapa_attachment
+msgid "SdI file"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
+msgid "Selected files will be sent to the Exchange System"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
+msgid "Send"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.actions.act_window,name:l10n_it_sdi_channel.action_wizard_fatturapa_send_to_sdi
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.wizard_fatturapa_send_to_sdi_view
+msgid "Send Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_fatturapa_out_attachment_form
+msgid "Send to SdI"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_sender_error
+msgid "Sender Error"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_sent
+msgid "Sent"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company__e_invoice_user_id
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__e_invoice_user_id
+msgid "This user will be used at supplier e-bill creation."
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__group_sdi_channel_validate_send
+#: model:res.groups,name:l10n_it_sdi_channel.res_groups_validate_send
+msgid "Validate, export and send invoices"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_invoice_form_fatturapa
+msgid "Validate, export and send to SdI"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#: model:ir.model,name:l10n_it_sdi_channel.model_wizard_fatturapa_send_to_sdi
+msgid "Wizard to send multiple e-invoice to SdI"
+msgstr ""
+
+#. module: l10n_it_sdi_channel
+#. odoo-python
+#: code:addons/l10n_it_sdi_channel/models/fatturapa_attachment_out.py:0
+#, python-format
+msgid "You can only send files in 'Ready to Send' state."
 msgstr ""

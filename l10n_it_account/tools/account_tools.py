@@ -14,6 +14,8 @@ reg_whitespace = re.compile(r"\s+")
 
 
 def encode_for_export(string_to_encode, max_chars, encoding="latin"):
+    if not string_to_encode:
+        return ""
     return (
         reg_whitespace.sub(" ", string_to_encode)
         .encode(encoding, errors="replace")
@@ -25,8 +27,10 @@ def encode_for_export(string_to_encode, max_chars, encoding="latin"):
 # Contiene un riferimento ad un'antica spec di xmldsig-core-schema.xsd, non presente
 # nei vari XML Catalog recenti, es. sulla mia Fedora 33
 # $ fgrep xmldsig-core-schema.xsd /etc/xml/catalog
-#   <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/> # noqa: B950
-#   <uri name="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/> # noqa: B950
+#   <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"
+#    uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/>
+#   <uri name="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"
+#    uri="file:///usr/share/xml/xmldsig-core-schema.xsd"/>
 # L'assenza dell'entry nel Catalog fa sì che il documento venga scaricato
 # ogni volta, e - a giudicare dalla lentezza nella risposta - qualcuno
 # al w3.org ha notato la cosa (la lentezza è relativa a quel solo URL).
@@ -49,6 +53,13 @@ _fpa_schema_file = get_module_resource(
     "Schema_del_file_xml_FatturaPA_v1.2.2.xsd",
 )
 
+_fpa_simple_schema_file = get_module_resource(
+    "l10n_it_account",
+    "tools",
+    "xsd",
+    "Schema_VFSM10.xsd",
+)
+
 fpa_schema = xmlschema.XMLSchema(
     _fpa_schema_file,
     locations={"http://www.w3.org/2000/09/xmldsig#": _old_xsd_specs},
@@ -57,29 +68,44 @@ fpa_schema = xmlschema.XMLSchema(
     loglevel=20,
 )
 
+fpa_simple_schema = xmlschema.XMLSchema(
+    _fpa_simple_schema_file,
+    locations={"http://www.w3.org/2000/09/xmldsig#": _old_xsd_specs},
+    validation="lax",
+    allow="local",
+    loglevel=20,
+)
+
+
+# fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+#      schemaLocation="http://www.w3.org/TR/2002/
+#      REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+class _VeryOldXSDSpecResolverTYVMSdI(etree.Resolver):
+    def resolve(self, system_url, public_id, context):
+        if (
+            system_url
+            == "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"  # noqa: B950
+        ):
+            _logger.info(
+                "mapping URL for %r to local file %r",
+                system_url,
+                _old_xsd_specs,
+            )
+            return self.resolve_filename(self._old_xsd_specs, context)
+        else:
+            return super().resolve(system_url, public_id, context)
+
 
 def fpa_schema_etree():
-    # fix <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
-    #      schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" /> # noqa: B950
-
-    class VeryOldXSDSpecResolverTYVMSdI(etree.Resolver):
-        def resolve(self, system_url, public_id, context):
-            if (
-                system_url
-                == "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"  # noqa: B950
-            ):
-                _logger.info(
-                    "mapping URL for %r to local file %r",
-                    system_url,
-                    _old_xsd_specs,
-                )
-                return self.resolve_filename(self._old_xsd_specs, context)
-            else:
-                return super().resolve(system_url, public_id, context)
-
     parser = etree.XMLParser()
-    parser.resolvers.add(VeryOldXSDSpecResolverTYVMSdI())
+    parser.resolvers.add(_VeryOldXSDSpecResolverTYVMSdI())
     return etree.parse(_fpa_schema_file, parser)
+
+
+def fpa_simple_schema_etree():
+    parser = etree.XMLParser()
+    parser.resolvers.add(_VeryOldXSDSpecResolverTYVMSdI())
+    return etree.parse(_fpa_simple_schema_file, parser)
 
 
 # Funzione per leggere i possibili valori dei tipi enumeration

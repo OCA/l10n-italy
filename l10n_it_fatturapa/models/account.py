@@ -88,7 +88,7 @@ class WelfareFundType(models.Model):
     def name_get(self):
         res = []
         for record in self:
-            res.append((record.id, "[{}] {}".format(record.name, record.description)))
+            res.append((record.id, f"[{record.name}] {record.description}"))
         return res
 
 
@@ -195,7 +195,10 @@ class FatturapaRelatedDocumentType(models.Model):
             if vals.get("invoice_line_id"):
                 line = line_obj.browse(vals["invoice_line_id"])
                 vals["lineRef"] = line.sequence
-        return super(FatturapaRelatedDocumentType, self).create(vals_list)
+        return super().create(vals_list)
+
+    def setlineRef(self, n):
+        self.lineRef = n
 
 
 class FatturapaActivityProgress(models.Model):
@@ -214,6 +217,7 @@ class FatturaAttachments(models.Model):
     _name = "fatturapa.attachments"
     _description = "E-invoice attachments"
     _inherits = {"ir.attachment": "ir_attachment_id"}
+    _inherit = ["l10n_it_fatturapa.attachment.e_invoice.link"]
 
     ir_attachment_id = fields.Many2one(
         "ir.attachment", "Attachment", required=True, ondelete="cascade"
@@ -247,7 +251,7 @@ class FatturapaRelatedDdt(models.Model):
             if vals.get("invoice_line_id"):
                 line = line_obj.browse(vals["invoice_line_id"])
                 vals["lineRef"] = line.sequence
-        return super(FatturapaRelatedDdt, self).create(vals_list)
+        return super().create(vals_list)
 
 
 class AccountInvoiceLine(models.Model):

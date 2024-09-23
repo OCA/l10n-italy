@@ -41,6 +41,7 @@ DOMAIN_INVOICE_STATUSES = [s[0] for s in INVOICE_STATUSES]
 class StockDeliveryNote(models.Model):
     _name = "stock.delivery.note"
     _inherit = [
+        "portal.mixin",
         "mail.thread",
         "mail.activity.mixin",
         "stock.picking.checker.mixin",
@@ -48,13 +49,18 @@ class StockDeliveryNote(models.Model):
     ]
     _description = "Delivery Note"
     _order = "date DESC, id DESC"
+    _check_company_auto = True
 
     def _default_company(self):
         return self.env.company
 
     def _default_type(self):
         return self.env["stock.delivery.note.type"].search(
-            [("code", "=", DOMAIN_PICKING_TYPES[1])], limit=1
+            [
+                ("code", "=", DOMAIN_PICKING_TYPES[1]),
+                ("company_id", "=", self.env.company.id),
+            ],
+            limit=1,
         )
 
     def _default_volume_uom(self):
@@ -135,7 +141,6 @@ class StockDeliveryNote(models.Model):
         string="Carrier",
         states=DONE_READONLY_STATE,
         tracking=True,
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     delivery_method_id = fields.Many2one(
         "delivery.carrier",
@@ -236,14 +241,24 @@ class StockDeliveryNote(models.Model):
         store=True,
         copy=False,
     )
+    lines_have_so_number = fields.Boolean(
+        compute="_compute_lines_have_so_number",
+    )
+    lines_have_customer_ref = fields.Boolean(
+        compute="_compute_lines_have_customer_ref",
+    )
 
     picking_ids = fields.One2many(
-        "stock.picking", "delivery_note_id", string="Pickings"
+        "stock.picking",
+        "delivery_note_id",
+        string="Pickings",
+        check_company=True,
     )
     pickings_picker = fields.Many2many(
         "stock.picking",
         compute="_compute_get_pickings",
         inverse="_inverse_set_pickings",
+        check_company=True,
     )
 
     picking_type = fields.Selection(
@@ -290,13 +305,13 @@ class StockDeliveryNote(models.Model):
             if not note.name:
                 partner_name = note.partner_id.display_name
                 create_date = note.create_date.strftime(DATETIME_FORMAT)
-                name = "{} - {}".format(partner_name, create_date)
+                name = f"{partner_name} - {create_date}"
 
             else:
                 name = note.name
 
                 if note.partner_ref and note.type_code == "incoming":
-                    name = "{} ({})".format(name, note.partner_ref)
+                    name = f"{name} ({note.partner_ref})"
             result.append((note.id, name))
 
         return result
@@ -304,7 +319,7 @@ class StockDeliveryNote(models.Model):
     @api.depends("state", "line_ids", "line_ids.invoice_status")
     def _compute_invoice_status(self):
         for note in self:
-            lines = note.line_ids.filtered(lambda l: l.sale_line_id)
+            lines = note.line_ids.filtered(lambda line: line.sale_line_id)
             invoice_status = DOMAIN_INVOICE_STATUSES[0]
             if lines:
                 if all(
@@ -345,6 +360,10 @@ class StockDeliveryNote(models.Model):
     @api.onchange("picking_ids")
     def _onchange_picking_ids(self):
         self._compute_weights()
+
+    @api.onchange("delivery_method_id")
+    def _onchange_delivery_method_id(self):
+        self.carrier_id = self.delivery_method_id.partner_id
 
     def _inverse_set_pickings(self):
         for note in self:
@@ -394,6 +413,26 @@ class StockDeliveryNote(models.Model):
         for note in self:
             note.can_change_number = note.state == "draft" and can_change_number
             note.show_product_information = show_product_information
+
+    def _compute_access_url(self):
+        res = super()._compute_access_url()
+        for dn in self:
+            dn.access_url = "/my/delivery-notes/%s" % (dn.id)
+        return res
+
+    def _compute_lines_have_so_number(self):
+        for sdn in self:
+            sdn.lines_have_so_number = (
+                sdn.company_id.display_ref_order_dn_report
+                and any(line.sale_order_number for line in sdn.line_ids)
+            )
+
+    def _compute_lines_have_customer_ref(self):
+        for sdn in self:
+            sdn.lines_have_customer_ref = (
+                sdn.company_id.display_ref_customer_dn_report
+                and any(line.sale_order_client_ref for line in sdn.line_ids)
+            )
 
     @api.onchange("picking_type")
     def _onchange_picking_type(self):
@@ -496,7 +535,7 @@ class StockDeliveryNote(models.Model):
         self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[0]})
         self.line_ids.sync_invoice_status()
 
-    def action_confirm(self):
+    def _action_confirm(self):
         for note in self:
             sequence = note.type_id.sequence_id
 
@@ -508,17 +547,132 @@ class StockDeliveryNote(models.Model):
                 note.name = sequence.next_by_id()
                 note.sequence_id = sequence
 
-    def _fix_quantities_to_invoice(self, lines):
+    def action_confirm(self):
+        for note in self:
+            if (
+                note.type_code == "incoming"
+                and not note.partner_ref
+                and self.env.user.has_group(
+                    "l10n_it_delivery_note.group_required_partner_ref"
+                )
+            ):
+                raise UserError(
+                    _(
+                        "The field 'Partner reference' is "
+                        "mandatory to validate the Delivery Note."
+                    )
+                )
+
+            warning_message = False
+            carrier_ids = note.mapped("picking_ids.carrier_id")
+            carrier_partner_ids = carrier_ids.mapped("partner_id")
+            if len(carrier_partner_ids) > 1:
+                warning_message = _(
+                    "This delivery note contains pickings "
+                    "related to different transporters. "
+                    "Are you sure you want to proceed?\n"
+                    "Carrier Partners: %(carrier_partners)s",
+                    carrier_partners=", ".join(carrier_partner_ids.mapped("name")),
+                )
+            elif len(carrier_ids) > 1:
+                warning_message = _(
+                    "This delivery note contains pickings related to different "
+                    "delivery methods from the same transporter. "
+                    "Are you sure you want to proceed?\n"
+                    "Delivery Methods: %(carriers)s",
+                    carriers=", ".join(carrier_ids.mapped("name")),
+                )
+            elif (
+                carrier_partner_ids
+                and note.carrier_id
+                and note.carrier_id != carrier_partner_ids
+            ):
+                warning_message = _(
+                    "The carrier set in Delivery Note is different "
+                    "from the carrier set in picking(s). "
+                    "Are you sure you want to proceed?"
+                )
+            elif (
+                carrier_ids
+                and note.delivery_method_id
+                and carrier_ids != note.delivery_method_id
+            ):
+                warning_message = _(
+                    "The shipping method set in Delivery Note is different "
+                    "from the shipping method set in picking(s). "
+                    "Are you sure you want to proceed?"
+                )
+            if warning_message:
+                return {
+                    "type": "ir.actions.act_window",
+                    "name": _("Warning"),
+                    "res_model": "stock.delivery.note.confirm.wizard",
+                    "view_type": "form",
+                    "target": "new",
+                    "view_mode": "form",
+                    "context": {
+                        "default_delivery_note_id": note.id,
+                        "default_warning_message": warning_message,
+                        **self._context,
+                    },
+                }
+            else:
+                note._action_confirm()
+
+    def _check_delivery_notes_before_invoicing(self):
+        for delivery_note_id in self:
+            if not delivery_note_id.sale_ids:
+                raise UserError(
+                    _("%s hasn't sale order!") % delivery_note_id.display_name
+                )
+            if (
+                len(
+                    delivery_note_id.mapped("sale_ids.picking_ids.picking_type_id.code")
+                )
+                > 1
+            ):
+                raise UserError(
+                    _(
+                        "Sale orders related to %s have return! "
+                        "For invoicing, go to sale orders."
+                    )
+                    % delivery_note_id.display_name
+                )
+            if delivery_note_id.invoice_status == "invoiced":
+                raise UserError(
+                    _("%s is already invoiced!") % delivery_note_id.display_name
+                )
+            if delivery_note_id.state == "draft":
+                raise UserError(_("%s is in draft!") % delivery_note_id.display_name)
+            for line in delivery_note_id.line_ids:
+                if line.product_id.invoice_policy == "order":
+                    raise UserError(
+                        _(
+                            "In %(ddt_name)s there is %(product_name)s"
+                            " with invoicing policy 'order'"
+                        )
+                        % {
+                            "ddt_name": delivery_note_id.display_name,
+                            "product_name": line.product_id.name,
+                        }
+                    )
+
+    def _fix_quantities_to_invoice(self, lines, invoice_method):
         cache = {}
 
         pickings_lines = lines.retrieve_pickings_lines(self.picking_ids)
         other_lines = lines - pickings_lines
 
-        for line in other_lines:
-            cache[line] = line.fix_qty_to_invoice()
+        if not invoice_method or invoice_method == "dn":
+            for line in other_lines:
+                cache[line] = line.fix_qty_to_invoice()
+        elif invoice_method == "service":
+            for line in other_lines:
+                if line.product_id.type != "service":
+                    cache[line] = line.fix_qty_to_invoice()
 
         pickings_move_ids = self.mapped("picking_ids.move_ids")
-        for line in pickings_lines.filtered(lambda l: len(l.move_ids) > 1):
+        for line in pickings_lines.filtered(lambda line: len(line.move_ids) > 1):
             move_ids = line.move_ids & pickings_move_ids
             qty_to_invoice = sum(move_ids.mapped("quantity_done"))
 
@@ -527,42 +681,64 @@ class StockDeliveryNote(models.Model):
 
         return cache
 
-    def action_invoice(self):
-        self.ensure_one()
+    def action_invoice(self, invoice_method=False):
+        self._check_delivery_notes_before_invoicing()
 
-        orders_lines = self.mapped("sale_ids.order_line").filtered(
-            lambda l: l.product_id
-        )
-
-        downpayment_lines = orders_lines.filtered(lambda l: l.is_downpayment)
-        invoiceable_lines = orders_lines.filtered(lambda l: l.is_invoiceable)
-
-        cache = self._fix_quantities_to_invoice(invoiceable_lines - downpayment_lines)
-
-        for downpayment in downpayment_lines:
-            order = downpayment.order_id
-            order_lines = order.order_line.filtered(
-                lambda l: l.product_id and not l.is_downpayment
+        payment_term_ids = [self.env["account.payment.term"]]
+        payment_term_ids += [
+            payment_term_id
+            for payment_term_id in self.mapped("sale_ids.payment_term_id")
+        ]
+        for payment_term_id in payment_term_ids:
+            sale_ids = self.mapped("sale_ids").filtered(
+                lambda s, pay_term_id=payment_term_id: s.payment_term_id == pay_term_id
+            )
+            if not sale_ids:
+                continue
+            orders_lines = sale_ids.mapped("order_line").filtered(
+                lambda l: l.product_id  # noqa: E741
             )
 
-            if order_lines.filtered(lambda l: l.need_to_be_invoiced):
-                cache[downpayment] = downpayment.fix_qty_to_invoice()
+            downpayment_lines = orders_lines.filtered(lambda l: l.is_downpayment)  # noqa: E741
+            invoiceable_lines = orders_lines.filtered(lambda l: l.is_invoiceable)  # noqa: E741
 
-        invoice_ids = self.sale_ids.filtered(
-            lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
-        )._create_invoices(final=True)
-
-        for line, vals in cache.items():
-            line.write(vals)
-
-        orders_lines._compute_qty_to_invoice()
-
-        for line in self.line_ids:
-            line.write({"invoice_status": "invoiced"})
-        if all(line.invoice_status == "invoiced" for line in self.line_ids):
-            self.write(
-                {"invoice_ids": [(4, invoice_id) for invoice_id in invoice_ids.ids]}
+            cache = self._fix_quantities_to_invoice(
+                invoiceable_lines - downpayment_lines, invoice_method
             )
+
+            for downpayment in downpayment_lines:
+                order = downpayment.order_id
+                order_lines = order.order_line.filtered(
+                    lambda l: l.product_id and not l.is_downpayment  # noqa: E741
+                )
+
+                if order_lines.filtered(lambda l: l.need_to_be_invoiced):  # noqa: E741
+                    cache[downpayment] = downpayment.fix_qty_to_invoice()
+
+            invoice_ids = sale_ids.filtered(
+                lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
+            )._create_invoices(final=True)
+
+            for line, vals in cache.items():
+                line.write(vals)
+
+            orders_lines._compute_qty_to_invoice()
+
+            for line in self.mapped("line_ids"):
+                line.write({"invoice_status": "invoiced"})
+            for delivery_note in self:
+                ready_invoice_ids = [
+                    invoice_id
+                    for invoice_id in delivery_note.sale_ids.mapped("invoice_ids").ids
+                    if invoice_id in invoice_ids.ids
+                ]
+                delivery_note.write(
+                    {
+                        "invoice_ids": [
+                            (4, invoice_id) for invoice_id in ready_invoice_ids
+                        ]
+                    }
+                )
             self._compute_invoice_status()
             invoices = self.env["account.move"].browse(invoice_ids.ids)
             invoices.update_delivery_note_lines()
@@ -598,6 +774,10 @@ class StockDeliveryNote(models.Model):
             "packages",
             "volume",
         ]
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return f"Delivery Note - {self.name}"
 
     def update_transport_datetime(self):
         self.transport_datetime = datetime.datetime.now()
@@ -695,12 +875,12 @@ class StockDeliveryNote(models.Model):
         if warehouse and warehouse.partner_id:
             partner = warehouse.partner_id
 
-            location_address += "{}, ".format(partner.name)
+            location_address += f"{partner.name}, "
             if partner.street:
-                location_address += "{} - ".format(partner.street)
+                location_address += f"{partner.street} - "
 
-            location_address += "{} {}".format(partner.zip, partner.city)
+            location_address += f"{partner.zip} {partner.city}"
             if partner.state_id:
-                location_address += " ({})".format(partner.state_id.name)
+                location_address += f" ({partner.state_id.name})"
 
         return location_address

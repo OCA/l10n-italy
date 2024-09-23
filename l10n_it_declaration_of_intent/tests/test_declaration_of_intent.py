@@ -1,4 +1,5 @@
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
@@ -19,8 +20,6 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         return cls.env["l10n_it_declaration_of_intent.declaration"].create(
             {
                 "partner_id": partner.id,
-                "partner_document_number": "PartnerTest%s" % partner.id,
-                "partner_document_date": cls.today_date,
                 "date": cls.today_date,
                 "date_start": cls.today_date,
                 "date_end": cls.today_date,
@@ -343,6 +342,15 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         self.invoice4._onchange_date_invoice()
         self.assertEqual(self.invoice4.fiscal_position_id.id, self.fiscal_position2.id)
 
+    def test_multiple_invoices(self):
+        """Check that validating multiple invoices
+        when there is no valid declaration raises an error."""
+        self.declaration1.unlink()
+        invoices = self.invoice1 | self.invoice2
+        with self.assertRaises(UserError) as ue:
+            invoices.action_post()
+        self.assertIn("Declaration of intent not found", ue.exception.args[0])
+
     def test_invoice_vendor_with_no_effect_on_declaration(self):
         previous_used_amount = self.declaration4.used_amount
         self.assertAlmostEqual(previous_used_amount, 0.0, 2)
@@ -414,6 +422,26 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
                 )
             ),
             1,
+        )
+
+    def test_invoice_delete(self):
+        invoice = self._create_invoice(
+            "test_invoice_repost", self.partner1, tax=self.tax1
+        )
+        invoice_form = Form(invoice)
+        for tax in (self.tax2, self.tax22):
+            self._add_invoice_line_id(invoice_form, tax=tax)
+        invoice = invoice_form.save()
+        invoice.action_post()
+        invoice.button_draft()
+        invoice.unlink()
+        self.assertEqual(
+            len(
+                self.declaration1.line_ids.filtered(
+                    lambda line: line.invoice_id == invoice
+                )
+            ),
+            0,
         )
 
     def test_multi_company(self):
@@ -503,3 +531,25 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         else:
             payments = action["domain"][0][2]
             self.assertTrue(len(payments) > 1)
+
+    def test_multiple_valid(self):
+        """
+        Check multi declarations validation for same partner.
+        """
+        declaration_model = self.env["l10n_it_declaration_of_intent.declaration"].sudo()
+        post_used_amount2 = self.declaration2.used_amount
+        post_used_amount3 = self.declaration3.used_amount
+        self.assertAlmostEqual(post_used_amount2, 0.0, 2)
+        self.assertAlmostEqual(post_used_amount3, 0.0, 2)
+        valid_declarations = declaration_model.get_valid(
+            type_d="out", partner_id=self.partner2.id, date=self.today_date
+        )
+        self.assertEqual(valid_declarations, self.declaration2 | self.declaration3)
+        invoice6 = self._create_invoice(
+            "test_multiple_valid", self.partner2, tax=self.tax1
+        )
+        invoice6.action_post()
+        new_post_used_amount2 = self.declaration2.used_amount
+        new_post_used_amount3 = self.declaration3.used_amount
+        self.assertAlmostEqual(new_post_used_amount2, 900.0, 2)
+        self.assertAlmostEqual(new_post_used_amount3, 0.0, 2)

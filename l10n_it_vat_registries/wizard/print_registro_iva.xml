@@ -23,6 +23,7 @@
                     <separator string="Journals" colspan="2" />
                     <group>
                         <field name="tax_registry_id" />
+                        <field name="entry_order" />
                     </group>
                     <field
                         name="journal_ids"
@@ -33,6 +34,7 @@
                     />
                     <group string="Layout">
                         <field name="layout_type" />
+                        <field name="show_full_contact_addess" />
                         <field name="only_totals" />
                         <field name="fiscal_page_base" />
                     </group>

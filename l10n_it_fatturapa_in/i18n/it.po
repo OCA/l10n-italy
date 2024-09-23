@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 20:32+0000\n"
-"PO-Revision-Date: 2023-10-28 15:47+0000\n"
+"PO-Revision-Date: 2024-09-17 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,14 +15,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" groups="
-"\"base.group_multi_company\" role=\"img\"/>"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
 "specifici per azienda.\" aria-label=\"I valori impostati qui sono specifici "
@@ -32,15 +32,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
 msgid ""
 "<span class=\"o_form_label\">Supplier Invoices</span>\n"
-"                            <span class=\"fa fa-lg fa-building-o\" title="
-"\"Values set here are company-specific.\" aria-label=\"Values set here are "
-"company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"                            <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Values set here are company-specific.\" aria-label=\"Values set here "
+"are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Fatture fornitori</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
 "valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
-"impostati qui sono specifici per azienda.\" groups=\"base.group_multi_company"
-"\" role=\"img\"/>"
+"impostati qui sono specifici per azienda.\" groups=\"base."
+"group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__access_token
@@ -187,6 +187,28 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
+#, python-format
+msgid ""
+"Cannot import an attachment that could not be parsed.\n"
+"Please fix the parsing error first, then try again."
+msgstr ""
+"Non si può importare un allegato che non può essere elaborato.\n"
+"Correggere l'errore di elaborazione e riprovare."
+
+#. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/link_to_existing_invoice.py:0
+#, python-format
+msgid ""
+"Cannot link an attachment that could not be parsed.\n"
+"Please fix the parsing error first, then try again."
+msgstr ""
+"Non si può collegare un allegato che non può essere elaborato.\n"
+"Correggere l'errore di elaborazione e riprovare."
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__checksum
 msgid "Checksum/SHA1"
 msgstr "Checksum/SHA1"
@@ -277,21 +299,17 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "Creation"
-msgstr "Creazione"
-
-#. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
 msgid ""
-"Current invoice is from {} with REA Code {}. Yet it seems that partners {} "
-"have the same REA Code. This code should be unique; please fix it."
+"Current invoice is from %(partner)s with REA Code %(code)s. Yet it seems "
+"that partners %(partners)s have the same REA Code. This code should be "
+"unique; please fix it."
 msgstr ""
-"La fattura corrente viene da {} con codice REA {}. Tuttavia sembra che i "
-"partner {} abbiano lo stesso codice REA. questo codice dovrebbe essere "
-"unico; prego correggere."
+"La fattura corrente viene da %(partner)s con codice REA %(code)s. Tuttavia "
+"sembra che i partner %(partners)s abbiano lo stesso codice REA. Questo "
+"codice dovrebbe essere unico; correggere il dato."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__name
@@ -433,6 +451,11 @@ msgid "Document type %s not handled."
 msgstr "Tipo documento %s non gestito."
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__e_invoice_parsing_error
+msgid "E Invoice Parsing Error"
+msgstr "Errore elaborazione e-fattura"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_bank_statement_line__e_invoice_validation_error
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_move__e_invoice_validation_error
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_account_payment__e_invoice_validation_error
@@ -535,16 +558,6 @@ msgid "E-bill description"
 msgstr "Descrizione e-fattura"
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
-msgid "E-bill file name"
-msgstr "Nome file e-fattura"
-
-#. module: l10n_it_fatturapa_in
-#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
-msgid "E-bill import file"
-msgstr "File importato e-fattura"
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_partner__e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_users__e_invoice_detail_level
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__e_invoice_detail_level
@@ -604,6 +617,11 @@ msgid "Electronic Bill Import"
 msgstr "Importazione fattura elettronica"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model,name:l10n_it_fatturapa_in.model_fatturapa_attachment_in
+msgid "Electronic Invoice"
+msgstr "Fattura elettronica"
+
+#. module: l10n_it_fatturapa_in
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
 #, python-format
@@ -618,7 +636,7 @@ msgstr "Contenuto file (base64)"
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__raw
 msgid "File Content (raw)"
-msgstr "Contenuto file (grezzo)"
+msgstr "Contenuto file (raw)"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__file_size
@@ -660,11 +678,6 @@ msgid "Has Message"
 msgstr "Ha un messaggio"
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "History"
-msgstr "Cronologia"
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line_other_data__id
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_article_code__id
@@ -682,7 +695,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_error
-#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -723,6 +735,7 @@ msgstr "Importa e-fattura"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.actions.act_window,name:l10n_it_fatturapa_in.action_wizard_import_fatturapa
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "Import Electronic Bill"
 msgstr "Importa fattura elettronica"
 
@@ -734,9 +747,11 @@ msgid "Import Inconsistencies"
 msgstr "Incongruenze nell'importazione"
 
 #. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "Import e-bill"
-msgstr "Importa e-fattura"
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/models/attachment.py:0
+#, python-format
+msgid "Impossible to parse XML for {att_name}: {error_msg}"
+msgstr "Impossible elaborare XML per {att_name}: {error_msg}"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__in_invoice_ids
@@ -804,6 +819,11 @@ msgstr "Registrazione contabile"
 #: model:ir.model,name:l10n_it_fatturapa_in.model_account_move_line
 msgid "Journal Item"
 msgstr "Movimento contabile"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__key
+msgid "Key"
+msgstr "Chiave"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line____last_update
@@ -963,6 +983,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__tax_kind
 msgid "Nature"
 msgstr "Natura"
+
+#. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/efattura.py:0
+#, python-format
+msgid "No available data to compute AliquotaIVA"
+msgstr "Dati non disponibili per il calcolo dell'aliquota IVA"
 
 #. module: l10n_it_fatturapa_in
 #. odoo-python
@@ -1258,14 +1285,14 @@ msgid "Rounding up"
 msgstr "Arrotondamento attivo"
 
 #. module: l10n_it_fatturapa_in
-#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__service_type
 msgid "Sale Provision Type"
 msgstr "Tipo cessione prestazione"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__att_name
+msgid "SdI file name"
+msgstr "Nome file SdI"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_account_config_settings_ftpa_in
@@ -1275,11 +1302,6 @@ msgid ""
 msgstr ""
 "Imposta la data predefinita usata per registrare le fatture fornitore: data "
 "della fattura o data ricezione."
-
-#. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "Show preview"
-msgstr "Mostra anteprima"
 
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
@@ -1313,8 +1335,8 @@ msgstr "Dati fornitore"
 msgid ""
 "Surname field contains '%(surname)s'. Your System contains '%(lastname)s'"
 msgstr ""
-"Il campo cognome contiene \"%(surname)s\". Il sistema contiene \"%(lastname)s"
-"\""
+"Il campo cognome contiene \"%(surname)s\". Il sistema contiene "
+"\"%(lastname)s\""
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields.selection,name:l10n_it_fatturapa_in.selection__res_partner__e_invoice_detail_level__1
@@ -1393,6 +1415,11 @@ msgid "The name of the e-bill file must be unique!"
 msgstr "Il nome del file della e-fattura deve essere unico!"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__theme_template_id
+msgid "Theme Template"
+msgstr "Modello del tema"
+
+#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_search
 msgid "To Register"
 msgstr "Da registrare"
@@ -1452,6 +1479,13 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/efattura.py:0
+#, python-format
+msgid "Unexpected root element: %s"
+msgstr "Elemento radice inatteso: %s"
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__unit_price
 msgid "Unit Price"
 msgstr "Prezzo unitario"
@@ -1509,6 +1543,11 @@ msgid ""
 msgstr ""
 "Il riferimento fornitore ({bill_vendor_ref}) non corrisponde con il "
 "riferimento fornitore della fattura elettronica ({e_bill_vendor_ref})"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_id
+msgid "Website"
+msgstr "Sito web"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__website_message_ids
@@ -1610,10 +1649,38 @@ msgstr ""
 msgid "You can select only one XML file to link."
 msgstr "È possibile selezionare solo un file XML da collegare."
 
-#. module: l10n_it_fatturapa_in
-#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
-msgid "on"
-msgstr "il"
+#~ msgid "Creation"
+#~ msgstr "Creazione"
+
+#~ msgid "E-bill file name"
+#~ msgstr "Nome file e-fattura"
+
+#~ msgid "E-bill import file"
+#~ msgstr "File importato e-fattura"
+
+#~ msgid "History"
+#~ msgstr "Cronologia"
+
+#~ msgid "Import e-bill"
+#~ msgstr "Importa e-fattura"
+
+#~ msgid "Show preview"
+#~ msgstr "Mostra anteprima"
+
+#~ msgid "on"
+#~ msgstr "il"
+
+#, python-format
+#~ msgid ""
+#~ "Current invoice is from {} with REA Code {}. Yet it seems that partners "
+#~ "{} have the same REA Code. This code should be unique; please fix it."
+#~ msgstr ""
+#~ "La fattura corrente viene da {} con codice REA {}. Tuttavia sembra che i "
+#~ "partner {} abbiano lo stesso codice REA. questo codice dovrebbe essere "
+#~ "unico; prego correggere."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #, python-format
 #~ msgid "File is linked to bills yet."

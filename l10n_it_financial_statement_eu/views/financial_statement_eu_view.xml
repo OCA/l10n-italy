@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 MKT srl
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="financial_statement_eu_form_view" model="ir.ui.view">
+        <field name="name">financial.statement.eu.form</field>
+        <field name="model">financial.statement.eu</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="zone_bal" readonly="1" />
+                    <field name="code" readonly="1" />
+                    <field name="name" />
+                    <field name="long_desc" />
+                    <field name="tag_xbrl" />
+                    <field name="sign_calculation" />
+                    <field name="sign_display" />
+                    <field
+                        name="parent_id"
+                        widget="selection"
+                        options="{'no_create': True}"
+                        readonly="1"
+                    />
+                    <field name="child_ids" readonly="1" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="financial_statement_eu_search_view" model="ir.ui.view">
+        <field name="name">financial.statement.eu.search</field>
+        <field name="model">financial.statement.eu</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="complete_name" />
+                <field name="name" />
+                <field name="code" />
+                <filter
+                    string="ASSETS (Balance Sheet)"
+                    name="Assets"
+                    domain="[('zone_bal','=','PA')]"
+                />
+                <filter
+                    string="LIABILITIES (Balance Sheet)"
+                    name="Liabilities"
+                    domain="[('zone_bal','=','PP')]"
+                />
+                <filter
+                    string="INCOME STATEMENT"
+                    name="Economico"
+                    domain="[('zone_bal','=','EC')]"
+                />
+                <separator />
+                <filter
+                    string="No childs only"
+                    name="foglie"
+                    domain="[('child_ids','=',False)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="financial_statement_eu_tree_view" model="ir.ui.view">
+        <field name="name">financial.statement.eu.tree</field>
+        <field name="model">financial.statement.eu</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" default_order="sequence,zone_bal,code">
+                <field name="sequence" invisible="True" />
+                <field name="zone_bal" invisible="True" />
+                <field name="code" invisible="True" />
+                <field name="complete_name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="financial_statement_eu_act_window" model="ir.actions.act_window">
+        <field name="name">Financial statement EU lines</field>
+        <field name="res_model">financial.statement.eu</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="financial_statement_eu_menu" model="ir.ui.menu">
+        <field name="name">Financial statement EU lines</field>
+        <field name="parent_id" ref="account.account_account_menu" />
+        <field name="action" ref="financial_statement_eu_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+
+    <record id="view_form_account_financial_statement_eu" model="ir.ui.view">
+        <field name="name">view.form.financial.statement.eu</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <separator string="Link to Financial statement EU" />
+                <group name="gr_bil_ue">
+                    <group>
+                        <field name="financial_statement_eu_debit_id" />
+                    </group>
+                    <group>
+                        <field name="financial_statement_eu_credit_id" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

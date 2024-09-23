@@ -8,7 +8,6 @@ from odoo.tools.misc import format_date
 
 
 class AccountMove(models.Model):
-
     _inherit = "account.move"
 
     declaration_of_intent_ids = fields.Many2many(
@@ -33,7 +32,7 @@ class AccountMove(models.Model):
                 valid_date = invoice.invoice_date or fields.Date.context_today(invoice)
 
                 valid_declarations = all_declarations.filtered(
-                    lambda d: d.date_start <= valid_date <= d.date_end
+                    lambda d, valid_d=valid_date: d.date_start <= valid_d <= d.date_end
                 )
                 if valid_declarations:
                     invoice.fiscal_position_id = valid_declarations[
@@ -98,6 +97,9 @@ class AccountMove(models.Model):
                     continue
 
             invoice.check_declarations_amounts(declarations)
+            declarations_used_amounts = invoice.get_declarations_used_amounts(
+                declarations
+            )
 
             # Assign account move lines to declarations for each invoice
             # Get only lines with taxes
@@ -106,11 +108,11 @@ class AccountMove(models.Model):
                 continue
             # Group lines by tax
             grouped_lines = self.get_move_lines_by_declaration(lines)
-            invoice.update_declarations(declarations, grouped_lines)
+            invoice.update_declarations(declarations_used_amounts, grouped_lines)
 
         return posted
 
-    def update_declarations(self, declarations, grouped_lines):
+    def update_declarations(self, declarations_used_amounts, grouped_lines):
         """
         Update the declarations adding a new line representing this invoice.
 
@@ -126,11 +128,14 @@ class AccountMove(models.Model):
                     amount *= -1
                 # Select right declaration(s)
                 if force_declaration:
-                    declarations = [force_declaration]
+                    declaration_id_to_amount_dict = {force_declaration.id: amount}
                 else:
-                    declarations = declarations
+                    declaration_id_to_amount_dict = declarations_used_amounts
 
-                for declaration in declarations:
+                for declaration_id in declaration_id_to_amount_dict:
+                    declaration = self.env[
+                        "l10n_it_declaration_of_intent.declaration"
+                    ].browse(declaration_id)
                     if tax not in declaration.taxes_ids:
                         continue
                     # avoid creating line with same invoice_id
@@ -138,25 +143,25 @@ class AccountMove(models.Model):
                         lambda line: line.invoice_id == self
                     ).unlink()
                     declaration.line_ids = [
-                        (0, 0, self._prepare_declaration_line(amount, lines, tax)),
+                        (
+                            0,
+                            0,
+                            self._prepare_declaration_line(
+                                declaration_id_to_amount_dict[declaration_id],
+                                lines,
+                                tax,
+                            ),
+                        ),
                     ]
                     # Link declaration to invoice
                     self.declaration_of_intent_ids = [(4, declaration.id)]
                     if is_sale_document:
                         cmt = self.narration or ""
                         msg = (
-                            "Vostra dichiarazione d'intento nr %s del %s, "
-                            "nostro protocollo nr %s del %s, "
-                            "protocollo telematico nr %s."
-                            % (
-                                declaration.partner_document_number,
-                                format_date(
-                                    self.env, declaration.partner_document_date
-                                ),
-                                declaration.number,
-                                format_date(self.env, declaration.date),
-                                declaration.telematic_protocol,
-                            )
+                            f"Vostra dichiarazione d'intento del "
+                            f"{format_date(self.env, declaration.date)}, "
+                            f"protocollo telematico nr "
+                            f"{declaration.telematic_protocol}."
                         )
                         # Avoid duplication
                         if msg not in cmt:
@@ -217,6 +222,21 @@ class AccountMove(models.Model):
             )
         return declarations
 
+    def get_declarations_used_amounts(self, declarations):
+        """Get used amount by declarations for this invoice."""
+        self.ensure_one()
+        declarations_used_amounts = {}
+        sign = 1 if self.move_type in ["out_invoice", "in_invoice"] else -1
+        for tax_line in self.line_ids.filtered("tax_ids"):
+            amount = sign * tax_line.price_subtotal
+            for declaration in declarations:
+                if declaration.id not in declarations_used_amounts:
+                    declarations_used_amounts[declaration.id] = 0
+                if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
+                    declarations_used_amounts[declaration.id] += amount
+                    amount = 0.0
+        return declarations_used_amounts
+
     def check_declarations_amounts(self, declarations):
         """
         Compare this invoice's tax amounts and `declarations` plafond.
@@ -230,7 +250,7 @@ class AccountMove(models.Model):
         declarations_residual = sum(
             [declarations_amounts[da] for da in declarations_amounts]
         )
-        if declarations_residual < 0:
+        if self.currency_id.compare_amounts(declarations_residual, 0) == -1:
             raise UserError(
                 _("Available plafond insufficent.\n" "Excess value: %s")
                 % (abs(declarations_residual))
@@ -242,7 +262,12 @@ class AccountMove(models.Model):
             declaration = declaration_model.browse(declaration_id)
             # declarations_amounts contains residual, so, if > limit_amount,
             # used_amount went < 0
-            if declarations_amounts[declaration_id] > declaration.limit_amount:
+            if (
+                self.currency_id.compare_amounts(
+                    declarations_amounts[declaration_id], declaration.limit_amount
+                )
+                == 1
+            ):
                 excess = abs(
                     declarations_amounts[declaration_id] - declaration.limit_amount
                 )
@@ -273,7 +298,9 @@ class AccountMove(models.Model):
                     declarations_amounts[declaration.id] -= amount
         for declaration in declarations:
             # exclude amount from lines with invoice_id equals to self
-            for line in declaration.line_ids.filtered(lambda l: l.invoice_id == self):
+            for line in declaration.line_ids.filtered(
+                lambda dec_line: dec_line.invoice_id == self
+            ):
                 declarations_amounts[declaration.id] += line.amount
         return declarations_amounts
 
@@ -290,7 +317,6 @@ class AccountMove(models.Model):
 
 
 class AccountMoveLine(models.Model):
-
     _inherit = "account.move.line"
 
     force_declaration_of_intent_id = fields.Many2one(
