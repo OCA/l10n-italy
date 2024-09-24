@@ -14,6 +14,7 @@ import string
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import float_is_zero
 from odoo.tools.translate import _
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
@@ -146,14 +147,28 @@ class WizardExportFatturapa(models.TransientModel):
             tax_line_id = tax_id.tax_line_id
             aliquota = format_numbers(tax_line_id.amount)
             key = _key(tax_line_id)
-            out_computed[key] = {
-                "AliquotaIVA": aliquota,
-                "Natura": tax_line_id.kind_id.code,
-                # 'Arrotondamento':'',
-                "ImponibileImporto": tax_id.tax_base_amount,
-                "Imposta": abs(tax_id.balance),
-                "EsigibilitaIVA": tax_line_id.payability,
-            }
+            tax_amount = 0
+            dp = self.env["decimal.precision"].precision_get("Account")
+            if invoice.move_type == "out_invoice":
+                if float_is_zero(tax_id.credit, dp) and tax_id.debit:
+                    tax_amount = -tax_id.balance
+                if tax_id.credit and float_is_zero(tax_id.debit, dp):
+                    tax_amount = abs(tax_id.balance)
+            else:
+                tax_amount = abs(tax_id.balance)
+            if key not in out_computed:
+                out_computed[key] = {
+                    "AliquotaIVA": aliquota,
+                    "Natura": tax_line_id.kind_id.code,
+                    # 'Arrotondamento':'',
+                    "ImponibileImporto": tax_id.tax_base_amount,
+                    "Imposta": tax_amount,
+                    "EsigibilitaIVA": tax_line_id.payability,
+                }
+            else:
+                out_computed[key]["ImponibileImporto"] += tax_id.tax_base_amount
+                out_computed[key]["Imposta"] += tax_amount
+
             if tax_line_id.law_reference:
                 out_computed[key]["RiferimentoNormativo"] = encode_for_export(
                     tax_line_id.law_reference, 100
