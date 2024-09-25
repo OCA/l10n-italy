@@ -20,8 +20,8 @@ class PosOrder(models.Model):
     fiscal_receipt_date = fields.Date("Fiscal receipt date")
     fiscal_z_rep_number = fields.Integer("Fiscal closure number")
     fiscal_printer_serial = fields.Char()
-    fiscal_printer_debug_info = fields.Text("Debug info", readonly=True)
-    fiscal_operator_number = fields.Text("Fiscal Operator", readonly=True)
+    fiscal_printer_debug_info = fields.Text("Debug info")
+    fiscal_operator_number = fields.Text("Fiscal Operator")
 
     # TODO allow to save code on customer and load customer, if present
     lottery_code = fields.Char()

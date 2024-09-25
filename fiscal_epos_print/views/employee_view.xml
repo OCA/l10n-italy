@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="hr.view_employee_form" />
         <field name="arch" type="xml">
             <field name="pin" position="before">
-                <field name="fiscal_operator_number" />
+                <field name="fiscal_operator_number" readonly="True" />
             </field>
         </field>
     </record>
