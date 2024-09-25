@@ -1,99 +1,86 @@
-odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
-    "use strict";
+/** @odoo-module **/
 
-    var core = require("web.core");
-    var epson_epos_print = require("fiscal_epos_print.epson_epos_print");
-    var _t = core._t;
-    var eposDriver = epson_epos_print.eposDriver;
-    const Registries = require("point_of_sale.Registries");
-    const PaymentScreen = require("point_of_sale.PaymentScreen");
+import { useState } from "@odoo/owl";
+import { PaymentScreen } from "@point_of_sale/app/screens/payment_screen/payment_screen";
+import { _t } from "@web/core/l10n/translation";
+import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
+import { patch } from "@web/core/utils/patch";
+import { EpsonEposPrint } from "../../epson_epos_print";
 
-    // eslint-disable-next-line
-    const MyPaymentScreen = (PaymentScreen) =>
-        class extends PaymentScreen {
-            setup() {
-                super.setup();
-                if (this.env.pos.config.printer_ip) {
-                    var currentOrder = this.env.pos.get_order();
-                    var printer_options = currentOrder.getPrinterOptions();
-                    var fp90 = new eposDriver(printer_options, this);
-                    var amount = this.env.pos.format_currency(
-                        currentOrder.get_total_with_tax()
-                    );
-                    fp90.printDisplayText(_t("SubTotal") + " " + amount);
-                }
-            }
 
-            async sendToFP90Printer(order) {
-                if (this.env.pos.config.printer_ip && !order.is_to_invoice()) {
-                    // TODO self.chrome does not exists
-                    // this.chrome.loading_show();
-                    // this.chrome.loading_message(_t('Connecting to the fiscal printer'));
-                    if (
-                        order.has_refund &&
-                        this.env.pos.context &&
-                        this.env.pos.context.refund_details
-                    ) {
-                        order.refund_date = this.env.pos.context.refund_date;
-                        order.refund_report = this.env.pos.context.refund_report;
-                        order.refund_doc_num = this.env.pos.context.refund_doc_num;
-                        order.refund_cash_fiscal_serial =
-                            this.env.pos.context.refund_cash_fiscal_serial;
-                    }
+patch(PaymentScreen.prototype, {
+    setup() {
+        super.setup();
+        this.state = useState({
+            order: this.pos.get_order(),
+        });
 
-                    var printer_options = order.getPrinterOptions();
-                    printer_options.order = order;
-                    var receipt = order.export_for_printing();
-                    var fp90 = new eposDriver(printer_options, this);
-                    await fp90.printFiscalReceipt(receipt);
-                    await new Promise((resolve) => setTimeout(resolve, 2000));
-                    // This line causes problems on bill split. What's the sense of deleting the actual pos context?!
-                    // It regenerates orders which are already partly paid using split function...
-                    // this.env.pos.context = {};
-                }
-            }
+        // Print Subtotal on screen if printer IP is configured
+        if (this.pos.config.printer_ip) {
+            const currentOrder = this.state.order;
+            const printer_options = currentOrder.getPrinterOptions();
+            this.fp90 = new EpsonEposPrint(printer_options, this);
+            const amount = this.env.utils.formatCurrency(parseFloat(currentOrder.get_total_with_tax()));
+            this.fp90.printDisplayText(_t("SubTotal") + " " + amount);
+        }
+    },
 
-            async _finalizeValidation() {
-                var currentOrder = this.currentOrder;
-                await this.sendToFP90Printer(currentOrder);
-                await super._finalizeValidation();
-            }
+    async sendToFP90Printer(order) {
+        // If there is a printer IP and it's not an invoice, send the order to the fiscal printer
+        if (this.pos.config.printer_ip && !order.is_to_invoice()) {
 
-            _isOrderValid(isForceValidate) {
-                if (this.env.pos.config.iface_tax_included === "subtotal") {
-                    this.showPopup("ErrorPopup", {
-                        title: _t("Wrong tax configuration"),
-                        body: _t(
-                            "Product prices on receipts must be set to 'Tax-Included Price' in POS configuration"
-                        ),
-                    });
-                    return false;
-                }
-                var receipt = this.env.pos.get_order();
-                if (
-                    receipt.has_refund &&
-                    (receipt.refund_date === null ||
-                        receipt.refund_date === "" ||
-                        receipt.refund_doc_num === null ||
-                        receipt.refund_doc_num === "" ||
-                        receipt.refund_cash_fiscal_serial === null ||
-                        receipt.refund_cash_fiscal_serial === "" ||
-                        receipt.refund_report === null ||
-                        receipt.refund_report === "")
-                ) {
-                    this.showPopup("ErrorPopup", {
-                        title: _t("Refund Information Not Present"),
-                        body: _t(
-                            "The refund information aren't present. Please insert them before printing the receipt"
-                        ),
-                    });
-                    return false;
-                }
-                return super._isOrderValid(isForceValidate);
-            }
-        };
+            // TODO
+            // if (order.has_refund && this.pos.context && this.pos.context.refund_details) {
+            //     order.refund_date = this.pos.context.refund_date;
+            //     order.refund_report = this.pos.context.refund_report;
+            //     order.refund_doc_num = this.pos.context.refund_doc_num;
+            //     order.refund_cash_fiscal_serial = this.pos.context.refund_cash_fiscal_serial;
+            // }
 
-    Registries.Component.extend(PaymentScreen, MyPaymentScreen);
+            const receipt = order.export_as_JSON();
+            this.fp90.order = order
+            await this.fp90.printFiscalReceipt(receipt);
 
-    return PaymentScreen;
+            // TODO loading screen
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+    },
+
+    async _finalizeValidation() {
+        const currentOrder = this.state.order;
+        await this.sendToFP90Printer(currentOrder);
+        await super._finalizeValidation();
+    },
+
+    _isOrderValid(isForceValidate) {
+        // Validate tax configuration
+        if (this.pos.config.iface_tax_included === "subtotal") {
+            this.popup.add(ErrorPopup, {
+                title: _t("Wrong tax configuration"),
+                body: _t("Product prices on receipts must be set to 'Tax-Included Price' in POS configuration"),
+            });
+            return false;
+        }
+
+        const receipt = this.state.order;
+
+        // TODO
+        // // Validate refund information
+        // if (
+        //     receipt.has_refund &&
+        //     (!receipt.refund_date ||
+        //         !receipt.refund_doc_num ||
+        //         !receipt.refund_cash_fiscal_serial ||
+        //         !receipt.refund_report)
+        // ) {
+        //     this.popup.add(ErrorPopup, {
+        //         title: _t("Refund Information Not Present"),
+        //         body: _t("The refund information isn't present. Please insert them before printing the receipt."),
+        //     });
+        //     return false;
+        // }
+
+        return super._isOrderValid(isForceValidate);
+    },
 });
+
