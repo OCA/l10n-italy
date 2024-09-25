@@ -92,6 +92,10 @@ class RibaUnsolved(models.TransientModel):
         "account.account", "Bank Fees Account", default=_get_bank_expense_account_id
     )
     expense_amount = fields.Float("Fees Amount")
+    date = fields.Date(
+        help="If empty, the due date in the line will be used.",
+        readonly=False,
+    )
 
     def skip(self):
         active_id = self.env.context.get("active_id")
@@ -125,6 +129,8 @@ class RibaUnsolved(models.TransientModel):
             or not wizard.bank_expense_account_id
         ):
             raise UserError(_("Every account is mandatory."))
+
+        date = self.date or distinta_line.due_date
         line_ids = [
             (
                 0,
@@ -135,7 +141,7 @@ class RibaUnsolved(models.TransientModel):
                     "debit": wizard.overdue_effects_amount,
                     "credit": 0.0,
                     "partner_id": distinta_line.partner_id.id,
-                    "date_maturity": distinta_line.due_date,
+                    "date_maturity": date,
                 },
             ),
             (
@@ -182,7 +188,7 @@ class RibaUnsolved(models.TransientModel):
                 "sequence": distinta_line.sequence,
             },
             "journal_id": wizard.unsolved_journal_id.id,
-            "date": distinta_line.due_date,
+            "date": date,
             "line_ids": line_ids,
         }
 

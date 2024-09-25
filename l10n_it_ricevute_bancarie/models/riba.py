@@ -95,7 +95,16 @@ class RibaList(models.Model):
     )
     date_accepted = fields.Date("Acceptance Date")
     date_accreditation = fields.Date("Credit Date")
-    date_paid = fields.Date("Payment Date", readonly=True)
+    date_paid = fields.Date(
+        string="Payment Date",
+        help="Default date for payments.",
+        readonly=True,
+        states={
+            "credited": [
+                ("readonly", False),
+            ],
+        },
+    )
     date_unsolved = fields.Date("Past Due Date", readonly=True)
     company_id = fields.Many2one(
         "res.company",
@@ -187,10 +196,15 @@ class RibaList(models.Model):
             distinta.state = "cancel"
 
     def settle_all_line(self):
-        for riba_list in self:
-            for line in riba_list.line_ids:
-                if line.state == "accredited":
-                    line.riba_line_settlement()
+        payment_wizard_action = self.env["ir.actions.actions"]._for_xml_id(
+            "l10n_it_ricevute_bancarie.riba_payment_multiple_action"
+        )
+        context = dict(self.env.context)
+        context.update(
+            active_ids=self.ids,
+        )
+        payment_wizard_action["context"] = context
+        return payment_wizard_action
 
     @api.onchange("date_accepted", "date_accreditation")
     def _onchange_date(self):
@@ -228,7 +242,7 @@ class RibaList(models.Model):
 
     def action_open_lines(self):
         action = self.env.ref("l10n_it_ricevute_bancarie.detail_riba_action").read()[0]
-        action["domain"] = [("slip_id", "=", self.id)]
+        action["domain"] = [("distinta_id", "=", self.id)]
         return action
 
 
@@ -475,7 +489,23 @@ class RibaListLine(models.Model):
             if not line.distinta_id.date_accepted:
                 line.distinta_id.date_accepted = fields.Date.context_today(self)
 
-    def riba_line_settlement(self):
+    def button_settle(self):
+        payment_wizard_action = self.env["ir.actions.actions"]._for_xml_id(
+            "l10n_it_ricevute_bancarie.riba_payment_multiple_action"
+        )
+        context = dict(self.env.context)
+        context.update(
+            active_ids=self.distinta_id.ids,
+            default_riba_line_ids=self.ids,
+        )
+        payment_wizard_action["context"] = context
+        return payment_wizard_action
+
+    def riba_line_settlement(self, date=None):
+        """Create payment the acceptance move of each line in `self`.
+
+        :param date: The created payment's date.
+        """
         for riba_line in self:
             if not riba_line.distinta_id.config_id.settlement_journal_id:
                 raise UserError(_("Please define a Settlement Journal."))
@@ -498,12 +528,13 @@ class RibaListLine(models.Model):
                 riba_line.distinta_id.name,
                 riba_line.partner_id.name,
             )
+            move_date = date or riba_line.due_date.strftime("%Y-%m-%d")
             settlement_move = move_model.create(
                 {
                     "journal_id": (
                         riba_line.distinta_id.config_id.settlement_journal_id.id
                     ),
-                    "date": riba_line.due_date.strftime("%Y-%m-%d"),
+                    "date": move_date,
                     "ref": move_ref,
                 }
             )
