@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 
 class RibaDueDateSettlement(models.TransientModel):
     _name = "riba.due.date.settlement"
+    _inherit = "riba.payment.multiple"
     _description = "Riba Due Date Settlement"
 
     due_date = fields.Date()
@@ -15,8 +16,9 @@ class RibaDueDateSettlement(models.TransientModel):
         active_ids = self.env.context.get("active_ids", False)
         if not active_ids:
             raise UserError(_("No active ID found."))
-        riba_ids = self.env["riba.slip"].browse(active_ids)
-        riba_lines = riba_ids.mapped("line_ids").filtered(
-            lambda rl: rl.state == "credited" and rl.due_date == self.due_date
+        riba_lines = self.riba_line_ids.filtered(
+            lambda rl: rl.due_date == self.due_date
         )
-        riba_lines.riba_line_settlement()
+        riba_lines.riba_line_settlement(
+            date=self.payment_date,
+        )
