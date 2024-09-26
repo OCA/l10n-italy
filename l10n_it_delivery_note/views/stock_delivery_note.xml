@@ -35,7 +35,7 @@
                         string="Validate"
                     />
                     <button
-                        name="action_invoice"
+                        name="action_invoice_wizard"
                         type="object"
                         class="oe_highlight"
                         attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('sale_ids', '=', [])]}"
@@ -126,11 +126,10 @@
                     >
                         <p class="text-center mb0">
                             <strong>
-                                <span class="fa fa-exclamation-triangle" />
-                                Warning!
-                            </strong>
-                            Inconsistent DN info in sale orders!
-                        </p>
+                                <span
+                                    class="fa fa-exclamation-triangle"
+                                /> Warning! </strong>
+                            Inconsistent DN info in sale orders! </p>
                     </div>
                     <group>
                         <group>

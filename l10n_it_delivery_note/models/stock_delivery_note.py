@@ -1,12 +1,13 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright (c) 2024, Nextev Srl <odoo@nextev.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import datetime
 
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import Command, _, api, fields, models
+from odoo.exceptions import AccessError, UserError
 
 from ..mixins.delivery_mixin import (
     _default_volume_uom,
@@ -693,6 +694,21 @@ class StockDeliveryNote(models.Model):
             else:
                 note._action_confirm()
 
+    def action_invoice_wizard(self):
+        self.ensure_one()
+
+        return {
+            "name": _("Create invoices"),
+            "type": "ir.actions.act_window",
+            "res_model": "stock.delivery.note.invoice.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "active_ids": self.ids,
+                "active_model": "stock.delivery.note",
+            },
+        }
+
     def _check_delivery_notes_before_invoicing(self):
         for delivery_note_id in self:
             if not delivery_note_id.sale_ids:
@@ -709,110 +725,199 @@ class StockDeliveryNote(models.Model):
                     )
                     % delivery_note_id.display_name
                 )
-            if delivery_note_id.invoice_status == "invoiced":
-                raise UserError(
-                    _("%s is already invoiced!") % delivery_note_id.display_name
+
+    def _prepare_invoice(self, sale_orders):
+        """Create invoice header data"""
+        invoice_vals = (
+            sale_orders[0]
+            .with_company(sale_orders[0].company_id)
+            .with_context(lang=sale_orders[0].partner_invoice_id.lang)
+            ._prepare_invoice()
+        )
+        return invoice_vals
+
+    def _prepare_invoice_lines(self, sale_orders, invoice_method, final):
+        """Creates invoice lines from delivery note lines,
+        sorting delivery notes by date and name.
+        For each delivery note adds:
+        - A section line with delivery note data
+        - Product lines from the delivery note
+        If sale_orders is passed:
+        - Only includes lines related to those sale orders
+        - Adds order lines not yet in delivery notes
+        If requested (invoice_method == "service"):
+        - Adds service type lines from orders
+        If it's the final invoice (final == True):
+        - Adds down payment lines
+        Sets the created lines in the invoice values dictionary"""
+        vals_list = []
+        sequence = 1
+        account_move = self.env["account.move"]
+
+        # Add delivery note lines as sections
+        for dn in self.sorted(key=lambda d: (d.date, d.name)):
+            vals_list.append(
+                Command.create(account_move._prepare_note_dn_value(sequence, dn))
+            )
+            sequence += 1
+
+            # Get delivery note lines, filtered by sale_orders if provided
+            dn_line_ids = dn.line_ids
+            if sale_orders:
+                dn_line_ids = dn_line_ids.filtered(
+                    lambda line: line.sale_line_id
+                    and line.sale_line_id.order_id in sale_orders
                 )
-            if delivery_note_id.state == "draft":
-                raise UserError(_("%s is in draft!") % delivery_note_id.display_name)
-            for line in delivery_note_id.line_ids:
-                if line.product_id.invoice_policy == "order":
-                    raise UserError(
-                        _(
-                            "In %(ddt_name)s there is %(product_name)s"
-                            " with invoicing policy 'order'"
+
+            # Add delivery note lines
+            for line in dn_line_ids:
+                vals = line._prepare_invoice_line(sequence=sequence)
+                vals_list.append(Command.create(vals))
+                sequence += 1
+
+        # Add remaining SO lines not in delivery notes
+        if sale_orders:
+            sale_lines = sale_orders.mapped("order_line").filtered(
+                lambda ol: not ol.delivery_note_line_ids
+                and ol.product_id.type != "service"
+                and ol.qty_to_invoice > 0
+            )
+            for line in sale_lines:
+                vals = line._prepare_invoice_line(sequence=sequence)
+                vals["sale_line_ids"] = [(4, line.id)]
+                vals_list.append(Command.create(vals))
+                sequence += 1
+
+        # Add service lines if requested
+        if invoice_method == "service":
+            service_lines = sale_orders.mapped("order_line").filtered(
+                lambda ol: ol.product_id.type == "service"
+                and ol.qty_to_invoice > 0
+                and not ol.is_downpayment
+            )
+            for line in service_lines:
+                vals = line._prepare_invoice_line(sequence=sequence)
+                vals["sale_line_ids"] = [(4, line.id)]
+                vals_list.append(Command.create(vals))
+                sequence += 1
+
+        # Add downpayment lines if final invoice
+        if final:
+            downpayment_lines = sale_orders.mapped("order_line").filtered(
+                lambda ol: ol.product_id and ol.is_downpayment and ol.qty_to_invoice < 0
+            )
+            if downpayment_lines:
+                # Add downpayment section
+                vals_list.append(
+                    Command.create(
+                        sale_orders[0]._prepare_down_payment_section_line(
+                            sequence=sequence
                         )
-                        % {
-                            "ddt_name": delivery_note_id.display_name,
-                            "product_name": line.product_id.name,
-                        }
+                    ),
+                )
+                sequence += 1
+                # Add downpayment lines
+                for line in downpayment_lines:
+                    vals_list.append(
+                        Command.create(line._prepare_invoice_line(sequence=sequence))
                     )
+                    sequence += 1
 
-    def _fix_quantities_to_invoice(self, lines, invoice_method):
-        cache = {}
+        return vals_list
 
-        pickings_lines = lines.retrieve_pickings_lines(self.picking_ids)
-        other_lines = lines - pickings_lines
+    def _update_invoice_statuses(self, invoice, sale_orders):
+        """Update invoice statuses after invoice creation"""
+        # Get all delivery note lines with sale orders
+        delivery_note_lines = self.mapped("line_ids").filtered(
+            lambda line: line.sale_line_id and line.is_invoiceable
+        )
 
-        if not invoice_method or invoice_method == "dn":
-            for line in other_lines:
-                cache[line] = line.fix_qty_to_invoice()
-        elif invoice_method == "service":
-            for line in other_lines:
-                if line.product_id.type != "service":
-                    cache[line] = line.fix_qty_to_invoice()
-
-        pickings_move_ids = self.mapped("picking_ids.move_ids")
-        for line in pickings_lines.filtered(lambda line: len(line.move_ids) > 1):
-            move_ids = line.move_ids & pickings_move_ids
-            qty_to_invoice = sum(move_ids.mapped("quantity_done"))
-
-            if qty_to_invoice < line.qty_to_invoice:
-                cache[line] = line.fix_qty_to_invoice(qty_to_invoice)
-
-        return cache
-
-    def action_invoice(self, invoice_method=False):
-        self._check_delivery_notes_before_invoicing()
-
-        payment_term_ids = [self.env["account.payment.term"]]
-        payment_term_ids += [
-            payment_term_id
-            for payment_term_id in self.mapped("sale_ids.payment_term_id")
-        ]
-        for payment_term_id in payment_term_ids:
-            sale_ids = self.mapped("sale_ids").filtered(
-                lambda s, pay_term_id=payment_term_id: s.payment_term_id == pay_term_id
+        # If sale_orders specified, filter only those lines
+        if sale_orders:
+            delivery_note_lines = delivery_note_lines.filtered(
+                lambda line: line.sale_line_id.order_id in sale_orders
             )
-            if not sale_ids:
+
+        # Mark lines as invoiced
+        delivery_note_lines.write({"invoice_status": DOMAIN_INVOICE_STATUSES[2]})
+
+        # Link invoice to delivery notes
+        for delivery_note in self:
+            delivery_note.write({"invoice_ids": [(4, invoice.id)]})
+
+        # Recompute overall invoice status
+        self._compute_invoice_status()
+
+    def action_invoice(self, invoice_method=False, final=False, sale_orders=None):
+        delivery_note_ids = self.filtered(
+            lambda dn: dn.state == "confirm" and dn.invoice_status == "to invoice"
+        )
+        delivery_note_ids._check_delivery_notes_before_invoicing()
+
+        # If not passed explicitly, get all sale orders from delivery notes
+        if sale_orders is None:
+            sale_orders = delivery_note_ids.sale_ids
+
+        # Group by payment term (include empty payment term)
+        payment_terms = sale_orders.payment_term_id or [False]
+        for payment_term_id in payment_terms:
+            # Filter sale orders by payment term and invoice status
+            if payment_term_id:
+                filtered_sales = sale_orders.filtered(
+                    lambda so, pt=payment_term_id: so.payment_term_id == pt
+                    and so.invoice_status == "to invoice"
+                )
+            else:
+                # No payment term filter when payment_term_id is False
+                filtered_sales = sale_orders.filtered(
+                    lambda so: not so.payment_term_id
+                    and so.invoice_status == "to invoice"
+                )
+            if not filtered_sales:
                 continue
-            orders_lines = sale_ids.mapped("order_line").filtered(
-                lambda l: l.product_id  # noqa: E741
+
+            # Check if the user has access rights to create invoices
+            if not self.env["account.move"].check_access_rights("create", False):
+                try:
+                    self.check_access_rights("write")
+                    self.check_access_rule("write")
+                except AccessError:
+                    return self.env["account.move"]
+
+            # Filter delivery notes related to the sale orders
+            filter_delivery_notes = delivery_note_ids.filtered(
+                lambda dn, so=filtered_sales: all(
+                    so_id in so.ids for so_id in dn.sale_ids.ids
+                )
+                or all(so_id in dn.sale_ids.ids for so_id in so.ids)
             )
 
-            downpayment_lines = orders_lines.filtered(lambda l: l.is_downpayment)  # noqa: E741
-            invoiceable_lines = orders_lines.filtered(lambda l: l.is_invoiceable)  # noqa: E741
+            # Prepare invoice
+            invoice_vals = filter_delivery_notes._prepare_invoice(filtered_sales)
 
-            cache = self._fix_quantities_to_invoice(
-                invoiceable_lines - downpayment_lines, invoice_method
+            # Prepare invoice lines
+            vals_list = filter_delivery_notes._prepare_invoice_lines(
+                filtered_sales, invoice_method, final
             )
 
-            for downpayment in downpayment_lines:
-                order = downpayment.order_id
-                order_lines = order.order_line.filtered(
-                    lambda l: l.product_id and not l.is_downpayment  # noqa: E741
-                )
+            # invoice creation
+            invoice_vals["invoice_line_ids"] = vals_list
+            invoice_id = (
+                self.env["account.move"]
+                .sudo()
+                .with_context(default_move_type="out_invoice")
+                .create(invoice_vals)
+            )
 
-                if order_lines.filtered(lambda l: l.need_to_be_invoiced):  # noqa: E741
-                    cache[downpayment] = downpayment.fix_qty_to_invoice()
+            # Update statuses
+            filter_delivery_notes._update_invoice_statuses(invoice_id, filtered_sales)
 
-            invoice_ids = sale_ids.filtered(
-                lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
-            )._create_invoices(final=True)
-
-            for line, vals in cache.items():
-                line.write(vals)
-
-            orders_lines._compute_qty_to_invoice()
-
-            for line in self.mapped("line_ids"):
-                line.write({"invoice_status": "invoiced"})
-            for delivery_note in self:
-                ready_invoice_ids = [
-                    invoice_id
-                    for invoice_id in delivery_note.sale_ids.mapped("invoice_ids").ids
-                    if invoice_id in invoice_ids.ids
-                ]
-                delivery_note.write(
-                    {
-                        "invoice_ids": [
-                            (4, invoice_id) for invoice_id in ready_invoice_ids
-                        ]
-                    }
-                )
-            self._compute_invoice_status()
-            invoices = self.env["account.move"].browse(invoice_ids.ids)
-            invoices.update_delivery_note_lines()
+            # Some moves might actually be refunds: convert them if the total amount is
+            # negative.
+            # We do this after the moves have been created since we need taxes, etc.
+            # to know if the total is actually negative or not
+            if final and invoice_id.amount_total < 0:
+                invoice_id.sudo().action_switch_invoice_into_refund_credit_note()
 
     def action_done(self):
         self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[3]})

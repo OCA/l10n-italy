@@ -10,6 +10,21 @@
                         <field name="invoice_date" />
                         <field name="invoice_method" widget="radio" />
                     </group>
+                    <group>
+                        <field name="has_down_payments" invisible="1" />
+                        <label
+                            for="deduct_down_payments"
+                            string=""
+                            attrs="{'invisible': [('has_down_payments', '=', False)]}"
+                        />
+                        <div
+                            attrs="{'invisible': [('has_down_payments', '=', False)]}"
+                            id="down_payment_details"
+                        >
+                            <field name="deduct_down_payments" nolabel="1" />
+                            <label for="deduct_down_payments" />
+                        </div>
+                    </group>
                 </sheet>
                 <footer>
                     <button
