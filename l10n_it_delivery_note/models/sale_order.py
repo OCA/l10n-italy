@@ -122,12 +122,21 @@ class SaleOrder(models.Model):
         invoices.update_delivery_note_lines()
 
     def _create_invoices(self, grouped=False, final=False, date=None):
-        invoice_ids = super()._create_invoices(grouped=grouped, final=final, date=date)
-
-        self._assign_delivery_notes_invoices(invoice_ids.ids)
-        self._generate_delivery_note_lines(invoice_ids.ids)
-
-        return invoice_ids
+        # TODO: Consider adding an 'invoice_policy' selection field on sale.order
+        # to allow choosing between 'delivered' (standard) and 'delivery_note' modes.
+        # In 'delivery_note' mode:
+        # - invoice_status should be computed based on delivery notes, not delivered qty
+        # - "Create Invoice" button should appear only when new delivery notes exist
+        # This would avoid bypassing standard invoicing when delivery notes exist
+        # but user wants to invoice directly (e.g., for multi-delivery orders).
+        if self.delivery_note_ids:
+            self.delivery_note_ids.action_invoice(
+                invoice_method="service", final=final, sale_orders=self
+            )
+            # Assign delivery notes to invoices and update statuses
+            self._assign_delivery_notes_invoices(self.invoice_ids.ids)
+            return self.invoice_ids
+        return super()._create_invoices(grouped=grouped, final=final, date=date)
 
     def goto_delivery_notes(self, **kwargs):
         delivery_notes = self.mapped("delivery_note_ids")

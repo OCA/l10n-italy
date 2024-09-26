@@ -247,7 +247,17 @@ class StockPicking(models.Model):
     def action_delivery_note_invoice(self):
         self.ensure_one()
 
-        return self.delivery_note_id.action_invoice()
+        return {
+            "name": _("Create invoices"),
+            "type": "ir.actions.act_window",
+            "res_model": "stock.delivery.note.invoice.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "active_ids": self.delivery_note_id.ids,
+                "active_model": "stock.delivery.note",
+            },
+        }
 
     def action_delivery_note_done(self):
         self.ensure_one()

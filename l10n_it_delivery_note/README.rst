@@ -44,8 +44,8 @@ installed together.
 
 There are two available settings:
 
-- Base (default): one picking, one DN.
-- Advanced: more picking in one DN.
+-  Base (default): one picking, one DN.
+-  Advanced: more picking in one DN.
 
 **Italiano**
 
@@ -62,8 +62,8 @@ Non è possibile avere installati contemporaneamente ``l10n_it_ddt`` e
 
 Ci sono due impostazioni possibili.
 
-- Base (predefinita): un prelievo, un DDT.
-- Avanzata: più prelievi in un DDT.
+-  Base (predefinita): un prelievo, un DDT.
+-  Avanzata: più prelievi in un DDT.
 
 **Table of contents**
 
@@ -96,11 +96,14 @@ To configure this module, go to:
    In delivery note type you can specify if the product price have to be
    printed in the delivery note report/slip.
 
-   - *Inventory → Configuration → Delivery Notes → Conditions of
-     Transport*
-   - *Inventory → Configuration → Delivery Notes → Appearances of Goods*
-   - *Inventory → Configuration → Delivery Notes → Reasons of Transport*
-   - *Inventory → Configuration → Delivery Notes → Methods of Transport*
+   -  *Inventory → Configuration → Delivery Notes → Conditions of
+      Transport*
+   -  *Inventory → Configuration → Delivery Notes → Appearances of
+      Goods*
+   -  *Inventory → Configuration → Delivery Notes → Reasons of
+      Transport*
+   -  *Inventory → Configuration → Delivery Notes → Methods of
+      Transport*
 
 3. *Settings → User & Companies → Users*
 
@@ -138,10 +141,10 @@ Funzionalità avanzata
 
 Vengono attivate varie funzionalità aggiuntive:
 
-- più prelievi per un DDT
-- selezione multipla di prelievi e generazione dei DDT
-- aggiunta righe nota e righe sezione descrittive.
-- lista dei DDT.
+-  più prelievi per un DDT
+-  selezione multipla di prelievi e generazione dei DDT
+-  aggiunta righe nota e righe sezione descrittive.
+-  lista dei DDT.
 
 Il report DDT stampa in righe aggiuntive i lotti/seriali e le scadenze
 del prodotto.
@@ -152,6 +155,15 @@ permessi dell'utente.
 
 Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle
 righe nota.
+
+Fatturazione da DN
+------------------
+
+E' possibile creare una fattura selezionando una o più DN dello stesso
+partner dalla tree view tramite il wizard "crea fattura". Si può
+scegliere se includere anche i servizi non ancora fatturati dell'ordine
+di vendita correlato o considerare solo le righe nei DN. In maniera
+predefinita vengono dedotti gli eventuali anticipi fatturati.
 
 Accesso da portale
 ------------------
@@ -183,39 +195,39 @@ Authors
 Contributors
 ------------
 
-- Riccardo Bellanova <r.bellanova@apuliasoftware.it>
+-  Riccardo Bellanova <r.bellanova@apuliasoftware.it>
 
-- Matteo Bilotta <mbilotta@linkeurope.it>
+-  Matteo Bilotta <mbilotta@linkeurope.it>
 
-- Giuseppe Borruso <gconte@dinamicheaziendali.it>
+-  Giuseppe Borruso <gconte@dinamicheaziendali.it>
 
-- Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
 
-- Marco Colombo <marco.colombo@gmail.com>
+-  Marco Colombo <marco.colombo@gmail.com>
 
-- Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
 
-- Letizia Freda <letizia.freda@netfarm.it>
+-  Letizia Freda <letizia.freda@netfarm.it>
 
-- Andrea Piovesana <andrea.m.piovesana@gmail.com>
+-  Andrea Piovesana <andrea.m.piovesana@gmail.com>
 
-- Alex Comba <alex.comba@agilebg.com>
+-  Alex Comba <alex.comba@agilebg.com>
 
-- `Ooops <https://www.ooops404.com>`__:
+-  `Ooops <https://www.ooops404.com>`__:
 
-     - Giovanni Serra <giovanni@gslab.it>
-     - Foresti Francesco <francesco.foresti@ooops404.com>
+      -  Giovanni Serra <giovanni@gslab.it>
+      -  Foresti Francesco <francesco.foresti@ooops404.com>
 
-- Nextev Srl <odoo@nextev.it>
+-  Nextev Srl <odoo@nextev.it>
 
-- `PyTech-SRL <https://www.pytech.it>`__:
+-  `PyTech-SRL <https://www.pytech.it>`__:
 
-     - Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
-     - Sebastiano Picchi <sebastiano.picchi@pytech.it>
+      -  Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
+      -  Sebastiano Picchi <sebastiano.picchi@pytech.it>
 
-- `Aion Tech <https://aiontech.company/>`__:
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
