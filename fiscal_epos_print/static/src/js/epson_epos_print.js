@@ -26,6 +26,10 @@ export class EpsonEposPrint {
         }
     }
 
+    getStatusField(tag) {
+        return tag === "printerStatus" || tag === "fsStatus";
+    }
+
     // Method to handle successful receipt
     onReceive(res, tagListNames, addInfo) {
         let tagStatus = tagListNames ? tagListNames.filter(this.getStatusField) : [];
