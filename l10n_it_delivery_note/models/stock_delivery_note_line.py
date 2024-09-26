@@ -1,9 +1,10 @@
 # Copyright 2022 Dinamiche Aziendali srl
 # (http://www.dinamicheaziendali.it/)
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+# Copyright 2024 Nextev srl <odoo@nextev.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 
 DATE_FORMAT = "%d/%m/%Y"
@@ -197,3 +198,45 @@ class StockDeliveryNoteLine(models.Model):
                 if invoice_status == "upselling"
                 else invoice_status
             )
+
+    def _prepare_invoice_line(self, **optional_values):
+        """Prepare the values to create the new invoice line for a DN line.
+
+        :param optional_values: any parameter that should be added to the
+        returned invoice line
+        :rtype: dict
+        """
+        self.ensure_one()
+        res = {
+            "display_type": "product",
+            "name": self.name,
+            "product_id": self.product_id.id,
+            "product_uom_id": self.product_uom_id.id,
+            "quantity": self.product_qty,
+            "discount": self.discount,
+            "price_unit": self.price_unit,
+            "tax_ids": [Command.set(self.tax_ids.ids)],
+            "sale_line_ids": [Command.link(self.sale_line_id.id)],
+            "delivery_note_line_id": self.id,
+        }
+        if optional_values.get("sequence"):
+            res["sequence"] = optional_values["sequence"]
+        analytic_account_id = self.sale_line_id.order_id.analytic_account_id.id
+        if (
+            self.sale_line_id.analytic_distribution
+            and not self.sale_line_id.display_type
+        ):
+            res["analytic_distribution"] = self.sale_line_id.analytic_distribution
+        if analytic_account_id and not self.sale_line_id.display_type:
+            analytic_account_id = str(analytic_account_id)
+            if "analytic_distribution" in res:
+                res["analytic_distribution"][analytic_account_id] = (
+                    res["analytic_distribution"].get(analytic_account_id, 0) + 100
+                )
+            else:
+                res["analytic_distribution"] = {analytic_account_id: 100}
+        if optional_values:
+            res.update(optional_values)
+        if self.display_type:
+            res["account_id"] = False
+        return res
