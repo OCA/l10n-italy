@@ -1,60 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_pos_config_printer_form" model="ir.ui.view">
         <field name="name">pos.config.form.view</field>
         <field name="model">pos.config</field>
         <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//form/sheet/div[3]" position="after">
-                <h2 name="fiscal_epos_print">Fiscal printer</h2>
-                <div id="fiscal_epos_print" class="row mt16 o_settings_container">
-                    <setting>
-                            <field name="printer_ip" />
-                    </setting>
-                </div>
-                <!-- <div
-                    class="row mt16 o_settings_container"
-                    invisible="not context.get('pos_config_create_mode', False)"
-                >
-                    <div class="col-12 col-lg-6 o_setting_box" id="epos_printer_ip">
-                        <div class="o_setting_right_pane">
-                            <span class="o_form_label">Printer address</span>
-                            <div class="text-muted">
-                                The hostname or IP address of the fiscal printer
+                <block title="Fiscal printer" id="fiscal_epos_print" >
+                    <div class="row mt16 o_settings_container">
+                        <setting string="Printer address" help="The hostname or IP address of the fiscal printer">
+                            <div class="row mt16">
+                                <field name="printer_ip" colspan="4" nolabel="1" readonly="False" />
                             </div>
-                            <div class="content-group mt16">
-                                <field name="printer_ip" colspan="4" nolabel="1" />
-                            </div>
-                        </div>
-                        <div class="o_setting_left_pane">
-                            <field name="use_https" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="use_https" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane">
-                            <field name="show_receipt_when_printing" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="show_receipt_when_printing" />
-                        </div>
-                        <br />
-                        <div class="o_setting_left_pane">
-                            <field name="fiscal_cashdrawer" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="fiscal_cashdrawer" />
-                        </div>
-                    </div>
-                    <div
-                        class="col-12 col-lg-6 o_setting_box"
-                        id="fiscal_printer_serial"
-                    >
-                        <div class="o_setting_right_pane">
-                            <span class="o_form_label">Fiscal Printer Serial</span>
+                        </setting>
+                        <setting> 
+                            <field name="show_receipt_when_printing" readonly="False" />
+                        </setting>
+                        <setting>
+                            <field name="use_https" string="Use https" readonly="False" />
+                        </setting>
+                        <setting> 
+                            <field name="fiscal_cashdrawer" readonly="False" />
+                        </setting>     
+                        <setting string="Fiscal Printer Serial">
                             <div class="content-group mt16">
                                 <field
                                     name="fiscal_printer_serial"
@@ -62,9 +30,9 @@
                                     nolabel="1"
                                 />
                             </div>
-                        </div>
+                        </setting>
                     </div>
-                </div> -->
+                </block>
             </xpath>
         </field>
     </record>

@@ -4,7 +4,7 @@ import { Order, Orderline, Payment } from "@point_of_sale/app/store/models";
 import { patch } from "@web/core/utils/patch";
 import { _t } from "@web/core/l10n/translation";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
-import { round_pr } from "@web/core/utils/numbers";
+import { roundPrecision as round_pr } from "@web/core/utils/numbers";
 
 // vedi PosStore, forse
 // class FiscalEposPrintPosGlobalState extends PosGlobalState {
