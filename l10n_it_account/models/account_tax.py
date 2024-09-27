@@ -158,7 +158,7 @@ class AccountTax(models.Model):
         if data.get("journal_ids"):
             context["vat_registry_journal_ids"] = data["journal_ids"]
 
-        tax = self.env["account.tax"].with_context(context).browse(self.id)
+        tax = self.env["account.tax"].with_context(**context).browse(self.id)
         tax_name = tax._get_tax_name()
         if not tax.children_tax_ids:
             base_balance = tax.base_balance
