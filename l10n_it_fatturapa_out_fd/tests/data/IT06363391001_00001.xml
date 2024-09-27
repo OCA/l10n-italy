@@ -66,7 +66,7 @@
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2020-01-01</Data>
-                <Numero>INV/2020/0001</Numero>
+                <Numero>INV/2020/01/0001</Numero>
                 <ImportoTotaleDocumento>1195.60</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
