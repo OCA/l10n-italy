@@ -2,12 +2,11 @@
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "ITA - Fattura elettronica - Emissione - Sconto fisso",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Emissione di fattura elettronica con sconto fisso",
     "author": "TAKOBI, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy"
-               "/tree/12.0/l10n_it_fatturapa_out_fd",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
         "l10n_it_fatturapa_out",
