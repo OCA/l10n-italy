@@ -8,6 +8,10 @@
         id="report_registro_iva"
         inherit_id="l10n_it_vat_registries.report_registro_iva"
     >
+        <xpath expr="//tr[@class='first_th_row']/t[2]/td" position="attributes">
+            <attribute name="colspan">10</attribute>
+        </xpath>
+
         <xpath expr="//tr[@name='vat_header_invoice']" position="inside">
             <th />
         </xpath>
