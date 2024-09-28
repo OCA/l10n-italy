@@ -134,7 +134,7 @@ class WizardGiornaleReportlab(models.TransientModel):
                 am.name AS move_name,
                 aa.code AS account_code,
                 aa.name AS account_name,
-                COALESCE(am.ref, '') AS name,
+                COALESCE(am.ref, '') AS ref,
                 SUM(aml.debit) AS debit,
                 SUM(aml.credit) AS credit
             FROM
@@ -155,7 +155,8 @@ class WizardGiornaleReportlab(models.TransientModel):
             ORDER BY
                 am.date,
                 am.name,
-                aa.code
+                aa.code,
+                am.ref;
         """
         params = {
             "date_from": wizard.date_move_line_from,
@@ -319,6 +320,12 @@ class WizardGiornaleReportlab(models.TransientModel):
         ]
         return initial_balance_data
 
+    def _compute_aml_grouped_name(self, line):
+        """
+        When the account move lines are grouped, the "Name" column is left empty.
+        This method can be inherited to compute it as desired."""
+        return ""
+
     def get_grupped_final_tables_report_giornale(
         self, list_grupped_line, tables, start_row, width_available
     ):
@@ -345,11 +352,12 @@ class WizardGiornaleReportlab(models.TransientModel):
                 continue
 
             start_row += 1
-            row = Paragraph(escape(str(start_row)), style_name)
-            date = Paragraph(escape(format_date(self.env, line["date"])), style_name)
-            move = Paragraph(escape(line["move_name"]), style_name)
-            account = Paragraph(escape(account_name), style_name)
-            name = Paragraph(escape(line["name"]), style_name)
+            row = Paragraph(str(start_row), style_name)
+            date = Paragraph(format_date(self.env, line["date"]), style_name)
+            move = Paragraph(line["move_name"], style_name)
+            account = Paragraph(account_name, style_name)
+            name = Paragraph(self._compute_aml_grouped_name(line), style_name)
+            ref = Paragraph(line["ref"], style_name)
             # dato che nel SQL ho la somma dei crediti e debiti potrei avere
             # che un conto ha sia debito che credito
             lines_data = []
@@ -359,14 +367,18 @@ class WizardGiornaleReportlab(models.TransientModel):
                 )
                 credit = Paragraph(escape(formatLang(self.env, 0)), style_number)
                 list_balance.append((line["debit"], 0))
-                lines_data.append([[row, date, move, account, name, debit, credit]])
+                lines_data.append(
+                    [[row, date, ref, move, account, name, debit, credit]]
+                )
             if line["credit"] > 0:
                 debit = Paragraph(escape(formatLang(self.env, 0)), style_number)
                 credit = Paragraph(
                     escape(formatLang(self.env, line["credit"])), style_number
                 )
                 list_balance.append((0, line["credit"]))
-                lines_data.append([[row, date, move, account, name, debit, credit]])
+                lines_data.append(
+                    [[row, date, ref, move, account, name, debit, credit]]
+                )
             for line_data in lines_data:
                 if previous_move_name != line["move_name"]:
                     previous_move_name = line["move_name"]
