@@ -14,7 +14,8 @@ class PosConfig(models.Model):
         default=False,
     )
     show_receipt_when_printing = fields.Boolean(
-        string="Show receipt on screen when printing", default=True
+        string="Show receipt on screen when printing",
+        default=True
     )
     fiscal_printer_serial = fields.Char()
 

@@ -10,18 +10,18 @@
                     <div class="row mt16 o_settings_container">
                         <setting string="Printer address" help="The hostname or IP address of the fiscal printer">
                             <div class="row mt16">
-                                <field name="printer_ip" colspan="4" nolabel="1" readonly="False" />
+                                <field name="printer_ip" colspan="4" nolabel="1" />
                             </div>
                         </setting>
-                        <setting> 
-                            <field name="show_receipt_when_printing" readonly="False" />
+                        <setting>
+                            <field name="show_receipt_when_printing" />
                         </setting>
                         <setting>
-                            <field name="use_https" string="Use https" readonly="False" />
+                            <field name="use_https" string="Use https" />
                         </setting>
-                        <setting> 
-                            <field name="fiscal_cashdrawer" readonly="False" />
-                        </setting>     
+                        <setting>
+                            <field name="fiscal_cashdrawer" />
+                        </setting>
                         <setting string="Fiscal Printer Serial">
                             <div class="content-group mt16">
                                 <field
@@ -46,18 +46,18 @@
                 <block title="Fiscal printer" id="fiscal_epos_print" >
                     <setting string="Printer address" help="The hostname or IP address of the fiscal printer">
                         <div class="row mt16">
-                            <field name="printer_ip" colspan="4" nolabel="1" readonly="False" />
+                            <field name="printer_ip" colspan="4" nolabel="1" />
                         </div>
                     </setting>
-                    <setting> 
-                        <field name="show_receipt_when_printing" readonly="False" />
+                    <setting>
+                        <field name="show_receipt_when_printing" />
                     </setting>
                     <setting>
-                        <field name="use_https" string="Use https" readonly="False" />
+                        <field name="use_https" string="Use https" />
                     </setting>
-                    <setting> 
-                        <field name="fiscal_cashdrawer" readonly="False" />
-                    </setting>     
+                    <setting>
+                        <field name="fiscal_cashdrawer" />
+                    </setting>
                     <setting string="Fiscal Printer Serial">
                         <div class="content-group mt16">
                             <field
