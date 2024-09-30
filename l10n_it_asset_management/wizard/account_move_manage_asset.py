@@ -21,7 +21,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     def get_default_move_ids(self):
         return self._context.get("move_ids")
 
-    asset_id = fields.Many2one("asset.asset", string="Asset")
+    l10n_it_asset_id = fields.Many2one("asset.asset", string="Asset")
 
     asset_purchase_amount = fields.Monetary(string="Purchase Amount")
 
@@ -122,21 +122,22 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         "update": lambda w: w.update_asset(),
     }
 
-    @api.onchange("asset_id", "management_type")
+    @api.onchange("l10n_it_asset_id", "management_type")
     def onchange_depreciation_type_ids(self):
         if self.management_type == "update":
-            if self.asset_id:
-                self.depreciation_type_ids = self.asset_id.mapped(
+            if self.l10n_it_asset_id:
+                self.depreciation_type_ids = self.l10n_it_asset_id.mapped(
                     "depreciation_ids.type_id"
                 )
             else:
                 self.depreciation_type_ids = False
         else:
             self.depreciation_type_ids = False
-        if self.asset_id:
+        if self.l10n_it_asset_id:
             self.move_line_ids = self.move_ids.mapped("line_ids").filtered(
                 lambda line: not line.asset_accounting_info_ids
-                and line.account_id == self.asset_id.category_id.asset_account_id
+                and line.account_id
+                == self.l10n_it_asset_id.category_id.asset_account_id
             )
 
     @api.onchange("category_id")
@@ -186,7 +187,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             if self._context.get("remove_asset_without_sale"):
                 self.dismiss_asset_without_sale = True
                 self.management_type = "dismiss"
-                self.asset_id = self._context.get("asset_ids")[0]
+                self.l10n_it_asset_id = self._context.get("l10n_it_asset_ids")[0]
 
     def link_asset(self):
         self.ensure_one()
@@ -257,7 +258,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     def check_pre_dismiss_asset(self):
         self.ensure_one()
-        if not self.asset_id:
+        if not self.l10n_it_asset_id:
             raise ValidationError(_("Please choose an asset before continuing!"))
 
         if not self.move_line_ids and not self.dismiss_asset_without_sale:
@@ -279,14 +280,17 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         if (
             not all(
                 [
-                    line.account_id == self.asset_id.category_id.asset_account_id
+                    line.account_id
+                    == self.l10n_it_asset_id.category_id.asset_account_id
                     for line in self.move_line_ids
                 ]
             )
             and not self.dismiss_asset_without_sale
         ):
-            ass_name = self.asset_id.make_name()
-            ass_acc = self.asset_id.category_id.asset_account_id.name_get()[0][-1]
+            ass_name = self.l10n_it_asset_id.make_name()
+            ass_acc = self.l10n_it_asset_id.category_id.asset_account_id.name_get()[0][
+                -1
+            ]
             raise ValidationError(
                 _(
                     "You need to choose move lines with account `%(ass_acc)s`"
@@ -306,7 +310,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     def check_pre_update_asset(self):
         self.ensure_one()
-        if not self.asset_id:
+        if not self.l10n_it_asset_id:
             raise ValidationError(_("Please choose an asset before continuing!"))
 
         if not self.depreciation_type_ids:
@@ -319,12 +323,14 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
         if not all(
             [
-                line.account_id == self.asset_id.category_id.asset_account_id
+                line.account_id == self.l10n_it_asset_id.category_id.asset_account_id
                 for line in self.move_line_ids
             ]
         ):
-            ass_name = self.asset_id.make_name()
-            ass_acc = self.asset_id.category_id.asset_account_id.name_get()[0][-1]
+            ass_name = self.l10n_it_asset_id.make_name()
+            ass_acc = self.l10n_it_asset_id.category_id.asset_account_id.name_get()[0][
+                -1
+            ]
             raise ValidationError(
                 _(
                     "You need to choose move lines with account `%(ass_acc)s`"
@@ -344,15 +350,15 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         """Dismisses asset and returns it"""
         self.ensure_one()
         self.check_pre_dismiss_asset()
-        old_dep_lines = self.asset_id.mapped("depreciation_ids.line_ids")
-        self.asset_id.write(self.get_dismiss_asset_vals())
+        old_dep_lines = self.l10n_it_asset_id.mapped("depreciation_ids.line_ids")
+        self.l10n_it_asset_id.write(self.get_dismiss_asset_vals())
 
-        for dep in self.asset_id.depreciation_ids:
+        for dep in self.l10n_it_asset_id.depreciation_ids:
             (dep.line_ids - old_dep_lines).with_context(
                 **{"dismiss_date": self.dismiss_date}
             ).post_dismiss_asset()
 
-        return self.asset_id
+        return self.l10n_it_asset_id
 
     def get_create_asset_vals(self):
         self.ensure_one()
@@ -387,8 +393,8 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     def get_dismiss_asset_vals(self):
         self.ensure_one()
-        asset = self.asset_id
-        currency = self.asset_id.currency_id
+        asset = self.l10n_it_asset_id
+        currency = self.l10n_it_asset_id.currency_id
         dismiss_date = self.dismiss_date
         digits = self.env["decimal.precision"].precision_get("Account")
 
@@ -506,8 +512,8 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     def get_partial_dismiss_asset_vals(self):
         self.ensure_one()
-        asset = self.asset_id
-        currency = self.asset_id.currency_id
+        asset = self.l10n_it_asset_id
+        currency = self.l10n_it_asset_id.currency_id
         dismiss_date = self.dismiss_date
         digits = self.env["decimal.precision"].precision_get("Account")
         fund_amt = self.depreciated_fund_amount
@@ -620,7 +626,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     def get_update_asset_vals(self):
         self.ensure_one()
-        asset = self.asset_id
+        asset = self.l10n_it_asset_id
         asset_name = asset.make_name()
         digits = self.env["decimal.precision"].precision_get("Account")
 
@@ -721,17 +727,17 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         """Dismisses asset partially and returns it"""
         self.ensure_one()
         self.check_pre_dismiss_asset()
-        old_dep_lines = self.asset_id.mapped("depreciation_ids.line_ids")
-        self.asset_id.write(self.get_partial_dismiss_asset_vals())
+        old_dep_lines = self.l10n_it_asset_id.mapped("depreciation_ids.line_ids")
+        self.l10n_it_asset_id.write(self.get_partial_dismiss_asset_vals())
 
-        for dep in self.asset_id.depreciation_ids:
+        for dep in self.l10n_it_asset_id.depreciation_ids:
             (dep.line_ids - old_dep_lines).post_partial_dismiss_asset()
 
-        return self.asset_id
+        return self.l10n_it_asset_id
 
     def update_asset(self):
         """Updates asset and returns it"""
         self.ensure_one()
         self.check_pre_update_asset()
-        self.asset_id.write(self.get_update_asset_vals())
-        return self.asset_id
+        self.l10n_it_asset_id.write(self.get_update_asset_vals())
+        return self.l10n_it_asset_id

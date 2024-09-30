@@ -30,7 +30,9 @@ class AssetAccountingInfo(models.Model):
     _description = "Asset Accounting Relations"
     _table = "asset_accounting_info"
 
-    asset_id = fields.Many2one("asset.asset", ondelete="set null", string="Asset")
+    l10n_it_asset_id = fields.Many2one(
+        "asset.asset", ondelete="set null", string="Asset"
+    )
 
     company_id = fields.Many2one(
         "res.company",
@@ -102,7 +104,7 @@ class AssetAccountingInfo(models.Model):
     @api.model
     def get_main_fields(self):
         return [
-            "asset_id",
+            "l10n_it_asset_id",
             "dep_line_id",
             "move_id",
             "move_line_id",
@@ -143,12 +145,13 @@ class AssetAccountingInfo(models.Model):
     def check_data_coherence(self):
         self.ensure_one()
 
-        # If dep_line_id and asset_id are set, check whether the depreciation
+        # If dep_line_id and l10n_it_asset_id are set, check whether the depreciation
         # line belongs to the given asset
         if (
-            self.asset_id
+            self.l10n_it_asset_id
             and self.dep_line_id
-            and self.asset_id != self.dep_line_id.depreciation_id.asset_id
+            and self.l10n_it_asset_id
+            != self.dep_line_id.depreciation_id.l10n_it_asset_id
         ):
             raise ValidationError(_("Incoherent asset data."))
 
@@ -179,8 +182,8 @@ class AssetAccountingInfo(models.Model):
         vals = {}
 
         # Set asset as dep line's asset if dep line is set
-        if not self.asset_id and self.dep_line_id:
-            vals["asset_id"] = self.dep_line_id.asset_id.id
+        if not self.l10n_it_asset_id and self.dep_line_id:
+            vals["l10n_it_asset_id"] = self.dep_line_id.l10n_it_asset_id.id
 
         # Set move_id as move line's move if move line is set
         if not self.move_id and self.move_line_id:
@@ -206,7 +209,7 @@ class AssetAccountingInfo(models.Model):
             [
                 "|",
                 "&",
-                ("asset_id", "=", False),
+                ("l10n_it_asset_id", "=", False),
                 ("dep_line_id", "=", False),
                 "&",
                 ("move_id", "=", False),
@@ -216,8 +219,8 @@ class AssetAccountingInfo(models.Model):
 
     def make_name(self):
         self.ensure_one()
-        if self.asset_id:
-            name = self.asset_id.make_name()
+        if self.l10n_it_asset_id:
+            name = self.l10n_it_asset_id.make_name()
         else:
             name = _("Unknown Asset")
         relation_name = dict(self._fields["relation_type"].selection).get(
