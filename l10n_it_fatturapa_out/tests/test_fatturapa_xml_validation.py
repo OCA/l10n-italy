@@ -1,6 +1,6 @@
 # Copyright 2014 Davide Corio
 # Copyright 2015-2016 Lorenzo Battistini - Agile Business Group
-# Copyright 2018-2019 Alex Comba - Agile Business Group
+# Copyright 2018-2024 Alex Comba - Agile Business Group
 # Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -8,6 +8,7 @@ import base64
 import re
 from unittest.mock import Mock
 
+from lxml import etree
 from psycopg2 import IntegrityError
 
 import odoo
@@ -937,6 +938,39 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         finally:
             # Remove from the stack to not interfere with other tests
             odoo.http._request_stack.pop()
+
+    def test_invalid_char_fail(self):
+        """
+        - create an invoice with a product line with invalid char
+          as the https://en.wikipedia.org/wiki/List_of_Unicode_characters#Control_codes
+
+        expect to fail with a proper message
+        """
+        invoice = self._create_invoice()
+        # Set invoice line label to https://www.ascii-code.com/character/%E2%90%82
+        CHAR_CODE = 2
+        invoice.invoice_line_ids.name = chr(CHAR_CODE)
+        try:
+            invoice._post()
+        except etree.XMLSyntaxError as e:
+            entry = e.error_log.last_error
+            if entry.type_name == "ERR_INVALID_CHAR":
+                # just passing in order to not break the test execution
+                # due to the exception raised by account_edi_xml_cii_facturx.py/_export_invoice
+                # (https://github.com/odoo/odoo/blob/14.0/addons/account_edi_ubl_cii/
+                #  models/account_edi_xml_cii_facturx.py#L242)
+                pass
+        wizard = self.wizard_model.create({})
+        with self.assertRaises(UserError) as ue:
+            wizard.with_context({"active_ids": [invoice.id]}).exportFatturaPA()
+        error_msg = ue.exception.args[0]
+        error_fragments = (
+            f"Error processing invoice(s) {invoice.name}",
+            f"PCDATA invalid Char value {CHAR_CODE}",
+            "Line affected",
+        )
+        for fragment in error_fragments:
+            self.assertIn(fragment, error_msg)
 
     def test_multicompany_fail(self):
         """

@@ -1,5 +1,6 @@
 # Copyright 2020 Giuseppe Borruso
 # Copyright 2020 Marco Colombo
+# Copyright 2024 Alex Comba - Agile Business Group
 import logging
 import os
 from datetime import datetime
@@ -254,10 +255,30 @@ class EFatturaOut:
         content = env.ref(
             "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
         )._render(template_values)
-        # 14.0 - occorre rimuovere gli spazi tra i tag
-        root = etree.fromstring(content, parser=etree.XMLParser(remove_blank_text=True))
-        # già che ci siamo, validiamo con l'XMLSchema dello SdI
-        errors = list(fpa_schema.iter_errors(root))
+        try:
+            # 14.0 - occorre rimuovere gli spazi tra i tag
+            root = etree.fromstring(
+                content, parser=etree.XMLParser(remove_blank_text=True)
+            )
+            # già che ci siamo, validiamo con l'XMLSchema dello SdI
+            errors = list(fpa_schema.iter_errors(root))
+        except etree.XMLSyntaxError as e:
+            entry = e.error_log.last_error
+            error_msg = _(
+                "Error processing invoice(s) %(invoices)s.\n\n"
+                "Error message: %(error)s\n\n",
+                invoices=", ".join(
+                    inv.display_name for inv in template_values["invoices"]
+                ),
+                error=entry.message,
+            )
+            # when there is a char that belongs to
+            # https://en.wikipedia.org/wiki/List_of_Unicode_characters#Control_codes
+            if entry.type_name == "ERR_INVALID_CHAR":
+                lines = [line for line in content.decode().split("\n")]
+                line = lines[entry.line - 1]
+                error_msg += _("Line affected:  %(line)s\n", line=line)
+            raise UserError(error_msg)
         if errors:
             # XXX - da migliorare?
             # i controlli precedenti dovrebbero escludere errori di sintassi XML
