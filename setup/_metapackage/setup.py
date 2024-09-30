@@ -76,6 +76,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_vat_payability',
         'odoo14-addon-l10n_it_vat_registries',
         'odoo14-addon-l10n_it_vat_registries_split_payment',
+        'odoo14-addon-l10n_it_vat_settlement_date',
         'odoo14-addon-l10n_it_vat_statement_communication',
         'odoo14-addon-l10n_it_vat_statement_split_payment',
         'odoo14-addon-l10n_it_website_portal_fatturapa',
