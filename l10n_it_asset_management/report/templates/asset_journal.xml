@@ -426,9 +426,16 @@
             <div class="act_as_cell" style="width: 16.667%;" name="date_start">
                 <span>Starting From</span>
             </div>
-            <div class="act_as_cell" style="width: 16.667%;" name="percentage">
-                <span>Dep. Percentage (%)</span>
-            </div>
+            <t t-if="dep_section.dep_date_end">
+                <div class="act_as_cell" style="width: 16.667%;" name="date_end">
+                    <span>Ending On</span>
+                </div>
+            </t>
+            <t t-if="not dep_section.dep_date_end">
+                <div class="act_as_cell" style="width: 16.667%;" name="percentage">
+                    <span>Dep. Percentage</span>
+                </div>
+            </t>
             <div class="act_as_cell" style="width: 16.667%;" name="pro_rata_temporis">
                 <span>Pro Rata Temporis</span>
             </div>
@@ -491,14 +498,26 @@
             </div>
             <div class="act_as_cell" style="width: 16.667%;" name="percentage">
                 <span>
-                    <a
-                        t-att-res-id="active_id"
-                        view-type="form"
-                        t-att-res-model="res_model"
-                        class="o_account_financial_reports_web_action"
-                    >
-                        <t t-out="dep_section.dep_percentage" />
-                    </a>
+                    <t t-if="not dep_section.dep_date_end">
+                        <a
+                            t-att-res-id="active_id"
+                            view-type="form"
+                            t-att-res-model="res_model"
+                            class="o_account_financial_reports_web_action"
+                        >
+                            <t t-out="dep_section.dep_percentage" />
+                        </a>
+                    </t>
+                    <t t-if="dep_section.dep_date_end">
+                        <a
+                            t-att-res-id="active_id"
+                            view-type="form"
+                            t-att-res-model="res_model"
+                            class="o_account_financial_reports_web_action"
+                        >
+                            <t t-out="dep_section.dep_date_end" />
+                        </a>
+                    </t>
                 </span>
             </div>
             <div class="act_as_cell" style="width: 16.667%;" name="pro_rata_temporis">

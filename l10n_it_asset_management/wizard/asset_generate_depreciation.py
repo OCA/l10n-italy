@@ -88,7 +88,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
         domain = [
             ("amount_residual", ">", 0),
             ("date_start", "!=", False),
-            ("date_start", "<", self.date_dep),
+            ("date_start", "<=", self.date_dep),
             ("type_id", "in", self.type_ids.ids),
         ]
         if self.asset_ids:
