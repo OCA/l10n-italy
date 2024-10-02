@@ -2,7 +2,6 @@
 
 import { _t } from "@web/core/l10n/translation";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
-import { roundPrecision as round_pr } from "@web/core/utils/numbers";
 
 export class EpsonEposPrint {
     constructor(...args) {
@@ -73,7 +72,7 @@ export class EpsonEposPrint {
             const old = addInfo.responseData.slice(13, 17).join("");
             const rejected = addInfo.responseData.slice(17, 21).join("");
             const msg = `${_t("Files waiting to be sent: ")}${toBeSent}; ${_t("Old files: ")}${old}; ${_t("Rejected files: ")}${rejected}`;
-            
+
             this.popup.add(ErrorPopup, {
                 title: _t("IRA files"),
                 body: msg,
@@ -90,7 +89,8 @@ export class EpsonEposPrint {
                 order.fiscal_receipt_number = parseInt(addInfo.fiscalReceiptNumber, 10);
                 order.fiscal_receipt_amount = parseFloat(addInfo.fiscalReceiptAmount.replace(",", "."));
                 const fiscalReceiptDate = new Date(addInfo.fiscalReceiptDate.replace(/(\d{1,2})\/(\d{1,2})\/(\d{4})/, "$3/$2/$1"));
-                order.fiscal_receipt_date = moment(fiscalReceiptDate).format("YYYY-MM-DD");
+                //TODO moment non vien più utilizzato
+                //order.fiscal_receipt_date = moment(fiscalReceiptDate).format("YYYY-MM-DD");
                 order.fiscal_z_rep_number = addInfo.zRepNumber;
                 order.fiscal_printer_serial = this.pos.config.fiscal_printer_serial;
 
@@ -105,7 +105,7 @@ export class EpsonEposPrint {
 
             if (!this.pos.config.show_receipt_when_printing) {
                 // Navigate to the next screen
-                // this.env.chrome.screens['receipt'].click_next();
+                //document.querySelector("div[name='done']").click();
             }
             return;
         }
@@ -132,7 +132,7 @@ export class EpsonEposPrint {
     }
 
     printRecItem(args) {
-        const tag = `<printRecItem description="${this.encodeXml(args.description || "")}" quantity="${args.quantity || "1"}" unitPrice="${args.unitPrice || ""}" department="${args.department || "1"}" justification="${args.justification || "1"}" operator="${args.operator || "1"}" />`;
+        const tag = `<printRecItem description="${this.encodeXml(args.description || "")}" quantity="${args.quantity || "0"}" unitPrice="${args.unitPrice || ""}" department="${args.department || "1"}" justification="${args.justification || "1"}" operator="${args.operator || "1"}" />`;
         return tag;
     }
 
@@ -176,7 +176,7 @@ export class EpsonEposPrint {
                     xml += this.printRecItem({
                         description: l.product_name,
                         quantity: l.qty,
-                        unitPrice: round_pr(l.price_unit_incl, this.pos.currency.rounding),
+                        unitPrice: l.price_unit_incl.toFixed(2),
                         department: l.tax_department.code,
                         operator: fiscalOperator,
                     });
@@ -185,10 +185,7 @@ export class EpsonEposPrint {
                         xml += this.printRecItemAdjustment({
                             adjustmentType: 0,
                             description: `${_t("Discount")} ${l.discount}%`,
-                            amount: round_pr(
-                                l.qty * l.price_unit_incl - l.price_display,
-                                this.pos.currency.rounding
-                            ),
+                            amount: ((l.qty * l.price_unit_incl) / 100.0 * l.discount).toFixed(2),
                             operator: fiscalOperator,
                         });
                     }
@@ -198,7 +195,7 @@ export class EpsonEposPrint {
                 //     xml += this.printRecRefund({
                 //         description: `${_t("Refund: ")} ${l.product_name}`,
                 //         quantity: l.quantity * -1.0,
-                //         unitPrice: round_pr(l.price, this.pos.currency.rounding),
+                //         unitPrice: round_pr(l.price, this.pos.currency.rounding), // TODO sostituire round_pr con toFixed
                 //         department: l.tax_department.code,
                 //         operator: fiscalOperator,
                 //     });
@@ -227,7 +224,7 @@ export class EpsonEposPrint {
         // if (receipt.rounding_applied !== 0 && !hasRefund) {
         //     xml += this.printRounding({
         //         amount: Math.abs(
-        //             round_pr(receipt.rounding_applied, this.pos.currency.rounding)
+        //             round_pr(receipt.rounding_applied, this.pos.currency.rounding) // TODO sostituire round_pr con toFixed
         //         ),
         //         operator: fiscalOperator,
         //     });
@@ -268,22 +265,22 @@ export class EpsonEposPrint {
     // Helper methods like printFiscalReceiptHeader, printFiscalVoidDetails, etc.
     printFiscalReceiptHeader(receipt) {
         let msg = "";
-    
+
         // Check if the receipt header is not empty
         if (receipt.header && receipt.header.length > 0) {
             const hdr = receipt.header.split(/\r\n|\r|\n/);
-            
+
             // Map each line of the header to the XML message string
-            msg = hdr.map((m, i) => 
-                `<printRecMessage 
-                    messageType="1" 
-                    message="${this.encodeXml(m)}" 
-                    font="1" 
-                    index="${i + 1}" 
+            msg = hdr.map((m, i) =>
+                `<printRecMessage
+                    messageType="1"
+                    message="${this.encodeXml(m)}"
+                    font="1"
+                    index="${i + 1}"
                     operator="${receipt.fiscal_operator_number || "1"}" />`
             ).join("");  // Join the array of strings into one string
         }
-        
+
         return msg;
     }
 
@@ -292,27 +289,27 @@ export class EpsonEposPrint {
     }
 
     printFiscalRefundDetails(args) {
-        const message = 
+        const message =
             "REFUND " +
             this.addPadding(args.refund_report) + " " +
             this.addPadding(args.refund_doc_num) + " " +
             // Day
-            args.refund_date.substr(8, 2) + 
+            args.refund_date.substr(8, 2) +
             // Month
-            args.refund_date.substr(5, 2) + 
+            args.refund_date.substr(5, 2) +
             // Year
             args.refund_date.substr(0, 4) + " " +
             args.refund_cash_fiscal_serial;
-    
+
         const tag =
-            `<printRecMessage 
-                messageType="4" 
-                message="${this.encodeXml(message)}" 
-                font="1" 
-                index="1" 
-                operator="${args.operator || "1"}" 
+            `<printRecMessage
+                messageType="4"
+                message="${this.encodeXml(message)}"
+                font="1"
+                index="1"
+                operator="${args.operator || "1"}"
             />`;
-        
+
         return tag;
     }
 
@@ -342,7 +339,28 @@ export class EpsonEposPrint {
     }
 
     printRecItemAdjustment(args) {
-        // Implement the logic for printing a receipt item adjustment
+        var tag =
+                "<printRecItemAdjustment" +
+                ' operator="' +
+                (args.operator || "1") +
+                '"' +
+                ' adjustmentType="' +
+                (args.adjustmentType || 0) +
+                '"' +
+                ' description="' +
+                this.encodeXml(args.description || "") +
+                '"' +
+                ' amount="' +
+                (args.amount || "") +
+                '"' +
+                ' department="' +
+                (args.department || "") +
+                '"' +
+                ' justification="' +
+                (args.justification || "2") +
+                '"' +
+                " />";
+            return tag;
     }
 
     printRecTotal(args) {
@@ -377,22 +395,22 @@ export class EpsonEposPrint {
 
     printFiscalReceiptFooter(receipt) {
         let msg = "";
-    
+
         // Check if the receipt header is not empty
         if (receipt.footer && receipt.footer.length > 0) {
             const hdr = receipt.footer.split(/\r\n|\r|\n/);
-            
+
             // Map each line of the header to the XML message string
-            msg = hdr.map((m, i) => 
-                `<printRecMessage 
-                    messageType="3" 
-                    message="${this.encodeXml(m)}" 
-                    font="1" 
-                    index="${i + 1}" 
+            msg = hdr.map((m, i) =>
+                `<printRecMessage
+                    messageType="3"
+                    message="${this.encodeXml(m)}"
+                    font="1"
+                    index="${i + 1}"
                     operator="${receipt.fiscal_operator_number || "1"}" />`
             ).join("");  // Join the array of strings into one string
         }
-        
+
         return msg;
     }
 
@@ -412,4 +430,104 @@ export class EpsonEposPrint {
         // Implement the logic for printing payment info for customer
     }
 
+    decodeFpStatus(printerStatus) {
+        var printer = "";
+        var ej = "";
+        var receipt = "";
+
+        switch (printerStatus.substring(0, 1)) {
+            case "0":
+                printer = false;
+                break;
+            case "2":
+                printer = _t("Paper running low");
+                break;
+            case "3":
+                printer = _t("Offline (end of paper or open cover)");
+                break;
+            default:
+                printer = _t("Wrong answer");
+        }
+
+        switch (printerStatus.substring(1, 2)) {
+            case "0":
+                ej = false;
+                break;
+            case "1":
+                ej = _t("Running low");
+                break;
+            case "2":
+                ej = _t("To format");
+                break;
+            case "3":
+                ej = _t("Previous");
+                break;
+            case "4":
+                ej = _t("From other measurement device");
+                break;
+            case "5":
+                ej = _t("Finished");
+                break;
+            default:
+                ej = _t("Wrong answer");
+        }
+
+        switch (printerStatus.substring(3, 4)) {
+            case "0":
+                receipt = _t("Fiscal open");
+                break;
+            case "1":
+                receipt = false;
+                // Receipt = "Fiscale/Non fiscale chiuso";
+                break;
+            case "2":
+                receipt = _t("Non fiscal open");
+                break;
+            case "3":
+                receipt = _t("Payment in progress");
+                break;
+            case "4":
+                receipt = _t(
+                    "Error on last ESC/POS command with Fiscal/Non fiscal closed"
+                );
+                break;
+            case "5":
+                receipt = _t("Negative receipt");
+                break;
+            case "6":
+                receipt = _t("Error on last ESC/POS command with Non fiscal open");
+                break;
+            case "7":
+                receipt = _t("Waiting for receipt closing in JAVAPOS mode");
+                break;
+            case "8":
+                receipt = _t("Fiscal document open");
+                break;
+            case "A":
+                receipt = _t("Title open");
+                break;
+            case "B":
+                receipt = _t("Title closed");
+                break;
+            default:
+                receipt = _t("Wrong answer");
+        }
+
+        return printer || ej || receipt;
+    }
+
+    isErrorStatus(printerStatus) {
+        var error = false;
+        switch (printerStatus.substring(0, 2)) {
+            case "00":
+            case "01":
+            case "20":
+            case "21":
+                error = false;
+                break;
+            default:
+                error = true;
+        }
+        return error;
+    }
 }
