@@ -87,6 +87,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_withholding_tax',
         'odoo14-addon-l10n_it_withholding_tax_financial_report',
         'odoo14-addon-l10n_it_withholding_tax_payment',
+        'odoo14-addon-l10n_it_withholding_tax_payment_order',
         'odoo14-addon-l10n_it_withholding_tax_reason',
     ],
     classifiers=[
