@@ -21,6 +21,14 @@ class IntrastatStatementPurchaseSection3(models.Model):
         comodel_name="res.country", string="Payment Country"
     )
 
+    def get_supply_method_key(self):
+        self.ensure_one()
+        return self.supply_method
+
+    def get_payment_method_key(self):
+        self.ensure_one()
+        return self.payment_method
+
     @api.model
     def get_section_number(self):
         return 3

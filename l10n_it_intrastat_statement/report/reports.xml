@@ -109,4 +109,72 @@
             ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
         />
     </record>
+
+    <!-- Mod. Intra-1 quater -->
+    <report
+        string="INTRA-1 Quater Model"
+        id="print_intrastat_mod1_quater"
+        model="account.intrastat.statement"
+        report_type="qweb-pdf"
+        name="l10n_it_intrastat_statement.report_intrastat_mod1_quater"
+        file="l10n_it_intrastat_statement.report_intrastat_mod1_quater"
+    />
+
+    <record id="print_intrastat_mod1_quater" model="ir.actions.report">
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
+    </record>
+
+    <!-- Mod. Intra-1 quinquies -->
+    <report
+        string="INTRA-1 Quinquies Model"
+        id="print_intrastat_mod1_quinquies"
+        model="account.intrastat.statement"
+        report_type="qweb-pdf"
+        name="l10n_it_intrastat_statement.report_intrastat_mod1_quinquies"
+        file="l10n_it_intrastat_statement.report_intrastat_mod1_quinquies"
+    />
+
+    <record id="print_intrastat_mod1_quinquies" model="ir.actions.report">
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
+    </record>
+
+    <!-- Mod. Intra-2 quater -->
+    <report
+        string="INTRA-2 Quater Model"
+        id="print_intrastat_mod2_quater"
+        model="account.intrastat.statement"
+        report_type="qweb-pdf"
+        name="l10n_it_intrastat_statement.report_intrastat_mod2_quater"
+        file="l10n_it_intrastat_statement.report_intrastat_mod2_quater"
+    />
+
+    <record id="print_intrastat_mod2_quater" model="ir.actions.report">
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
+    </record>
+
+    <!-- Mod. Intra-2 quinquies -->
+    <report
+        string="INTRA-2 Quinquies Model"
+        id="print_intrastat_mod2_quinquies"
+        model="account.intrastat.statement"
+        report_type="qweb-pdf"
+        name="l10n_it_intrastat_statement.report_intrastat_mod2_quinquies"
+        file="l10n_it_intrastat_statement.report_intrastat_mod2_quinquies"
+    />
+
+    <record id="print_intrastat_mod2_quinquies" model="ir.actions.report">
+        <field
+            name="paperformat_id"
+            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+        />
+    </record>
 </odoo>
