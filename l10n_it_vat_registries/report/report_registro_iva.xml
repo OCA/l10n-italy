@@ -82,6 +82,19 @@
                                     t-value="total_used_taxes | used_taxes"
                                 />
                             <t t-foreach="inv_taxes" t-as="line">
+                                <t t-if="entry_order == 'journal_date_name'">
+                                    <t t-if="move.journal_id.id != sv_journal_id">
+                                        <tr>
+                                            <td colspan='9'>
+                                                <h5
+                                                        style="page-break-inside: avoid;border-top:1px solid;border-bottom:1px solid; color:DimGrey;"
+                                                        t-esc="move.journal_id.name"
+                                                    />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                                <t t-set="sv_journal_id" t-value="move.journal_id.id" />
                                 <t t-if="print_details > 0 ">
                                     <t
                                             t-set="line_class_left"
@@ -142,14 +155,25 @@
                                                             /></td>
                                                 </t>
                                                 <!-- Ragione sociale -->
-                                                <td class="left_without_line_bold"><div
+                                                <td class="left_without_line_bold">
+                                                    <t
+                                                            t-set="partner"
+                                                            t-value="move.partner_id"
+                                                        />
+                                                    <div
                                                             style="page-break-inside: avoid"
-                                                            t-esc="move.partner_id.name"
-                                                        /></td>
+                                                            t-esc="partner.name"
+                                                        />
+                                                    <div
+                                                            t-if="show_full_contact_addess"
+                                                            style="page-break-inside: avoid"
+                                                            t-esc="partner._display_address(without_company=True)"
+                                                        />
+                                                </td>
                                                 <!-- PIVA -->
                                                 <td class="left_without_line_bold"><div
                                                             style="page-break-inside: avoid"
-                                                            t-esc="move.partner_id.vat"
+                                                            t-esc="partner.vat"
                                                         /></td>
                                             </t>
                                             <td class="left_without_line" />

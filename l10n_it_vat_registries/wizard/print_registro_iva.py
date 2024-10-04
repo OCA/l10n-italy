@@ -21,7 +21,15 @@ class WizardRegistroIva(models.TransientModel):
         required=True,
         default="customer",
     )
+    show_full_contact_addess = fields.Boolean()
     tax_registry_id = fields.Many2one("account.tax.registry", "VAT registry")
+    entry_order = fields.Selection(
+        [
+            ("date_name", "Date - Number"),
+            ("journal_date_name", "Journal - Date - Number"),
+        ],
+        default="date_name",
+    )
     journal_ids = fields.Many2many(
         "account.journal",
         "registro_iva_journals_rel",
@@ -41,6 +49,8 @@ class WizardRegistroIva(models.TransientModel):
     def on_change_tax_registry_id(self):
         self.journal_ids = self.tax_registry_id.journal_ids
         self.layout_type = self.tax_registry_id.layout_type
+        self.entry_order = self.tax_registry_id.entry_order
+        self.show_full_contact_addess = self.tax_registry_id.show_full_contact_addess
 
     @api.onchange("date_range_id")
     def on_change_date_range_id(self):
@@ -54,6 +64,11 @@ class WizardRegistroIva(models.TransientModel):
             self.year_footer = self.from_date.year
 
     def _get_move_ids(self, wizard):
+        MAPPING = {
+            "journal_date_name": "journal_id, date, name",
+            "date_name": "date, name",
+        }
+        order = MAPPING[wizard.entry_order]
         moves = self.env["account.move"].search(
             [
                 ("date", ">=", self.from_date),
@@ -61,7 +76,7 @@ class WizardRegistroIva(models.TransientModel):
                 ("journal_id", "in", [j.id for j in self.journal_ids]),
                 ("state", "=", "posted"),
             ],
-            order="date, name",
+            order=order,
         )
         return moves.ids
 
@@ -96,6 +111,8 @@ class WizardRegistroIva(models.TransientModel):
         else:
             datas_form["tax_registry_name"] = ""
         datas_form["only_totals"] = wizard.only_totals
+        datas_form["entry_order"] = wizard.entry_order
+        datas_form["show_full_contact_addess"] = wizard.show_full_contact_addess
         # report_name = 'l10n_it_vat_registries.report_registro_iva'
         report_name = "l10n_it_vat_registries.action_report_registro_iva"
         datas = {"ids": move_ids, "model": "account.move", "form": datas_form}

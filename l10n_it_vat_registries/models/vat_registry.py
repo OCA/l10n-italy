@@ -36,6 +36,8 @@ class ReportRegistroIva(models.AbstractModel):
             "compute_totals_tax": self._compute_totals_tax,
             "l10n_it_count_fiscal_page_base": data["form"]["fiscal_page_base"],
             "only_totals": data["form"]["only_totals"],
+            "entry_order": data["form"].get("entry_order"),
+            "show_full_contact_addess": data["form"]["show_full_contact_addess"],
             "date_format": date_format,
             "year_footer": data["form"]["year_footer"],
         }
