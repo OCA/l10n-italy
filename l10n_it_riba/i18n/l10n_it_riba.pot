@@ -109,6 +109,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__total_amount
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__amount
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__amount
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_payment_multiple_view_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
@@ -220,6 +221,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_due_date_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_issue_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_payment_multiple_view_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_presentation_riba
 msgid "Cancel"
@@ -328,6 +330,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__create_uid
@@ -343,6 +346,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__create_date
@@ -430,6 +434,11 @@ msgid "Customer"
 msgstr ""
 
 #. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__date
+msgid "Date"
+msgstr ""
+
+#. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_to_issue_tree
 msgid "Debit Total"
 msgstr ""
@@ -447,6 +456,19 @@ msgstr ""
 #. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_res_config_settings__due_cost_service_id
 msgid "Default Service for RiBa Collection Fees on invoice."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__date_paid
+msgid "Default date for payments."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_due_date_settlement__payment_date
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_payment_multiple__payment_date
+msgid ""
+"Defaults to the 'Payment date' in the RiBas.\n"
+"If empty, the due date in each line will be used."
 msgstr ""
 
 #. module: l10n_it_riba
@@ -468,6 +490,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__display_name
@@ -591,6 +614,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__id
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__id
@@ -613,6 +637,11 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_has_error
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_has_error
 msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_past_due__date
+msgid "If empty, the due date in the line will be used."
 msgstr ""
 
 #. module: l10n_it_riba
@@ -742,6 +771,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line____last_update
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line____last_update
@@ -757,6 +787,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__write_uid
@@ -772,6 +803,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__write_date
@@ -796,11 +828,6 @@ msgstr ""
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
-msgid "Mark All as Settled"
-msgstr ""
-
-#. module: l10n_it_riba
-#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
 msgid "Mark as Accepted"
 msgstr ""
 
@@ -818,6 +845,11 @@ msgstr ""
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
 msgid "Mark as Settled"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Mark lines as Settled"
 msgstr ""
 
 #. module: l10n_it_riba
@@ -1049,7 +1081,19 @@ msgid "Past Dues"
 msgstr ""
 
 #. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_payment_multiple_view_form
+msgid "Pay"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_payment_multiple
+msgid "Pay multiple RiBa lines"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__payment_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__payment_date
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__date_paid
 msgid "Payment Date"
 msgstr ""
@@ -1072,6 +1116,13 @@ msgstr ""
 #: code:addons/l10n_it_riba/models/riba.py:0
 #, python-format
 msgid "Please define a Settlement Journal."
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_multiple_payment.py:0
+#, python-format
+msgid "Please select the RiBa lines to be paid"
 msgstr ""
 
 #. module: l10n_it_riba
@@ -1277,6 +1328,12 @@ msgid "RiBa configuration to be used."
 msgstr ""
 
 #. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__riba_line_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__riba_line_ids
+msgid "RiBa lines to be paid"
+msgstr ""
+
+#. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_riba_due_date_settlement
 msgid "Riba Due Date Settlement"
 msgstr ""
@@ -1285,6 +1342,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba.field_account_setup_bank_manual_config__codice_sia
 #: model:ir.model.fields,field_description:l10n_it_riba.field_res_partner_bank__codice_sia
 msgid "SIA Code"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__riba_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__riba_ids
+msgid "Selected RiBas"
 msgstr ""
 
 #. module: l10n_it_riba
@@ -1302,6 +1365,20 @@ msgstr ""
 #. module: l10n_it_riba
 #: model:ir.actions.server,name:l10n_it_riba.riba_line_settle_action_server
 msgid "Settle RiBa Line"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/riba.py:0
+#, python-format
+msgid "Settle line"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/riba.py:0
+#, python-format
+msgid "Settle lines"
 msgstr ""
 
 #. module: l10n_it_riba
