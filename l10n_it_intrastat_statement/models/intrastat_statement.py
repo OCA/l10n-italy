@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.osv import expression
 from odoo.tools import float_round
 
 
@@ -768,17 +769,25 @@ class AccountIntrastatStatement(models.Model):
         period_date_start, period_date_stop = self.get_dates_start_stop()
 
         # Search intrastat lines
-        domain = [
-            ("date", ">=", period_date_start),
-            ("date", "<=", period_date_stop),
-            ("intrastat", "=", True),
-        ]
-        inv_type = []
+        # filter on invoice_date for sales as date is autocompiled on invoice_date, but
+        # it's invisible to the user
+        domain_sale = []
+        domain_purchase = []
         if self.sale:
-            inv_type += ["out_invoice", "out_refund"]
+            domain_sale = [
+                ("intrastat", "=", True),
+                ("invoice_date", ">=", period_date_start),
+                ("invoice_date", "<=", period_date_stop),
+                ("move_type", "in", ["out_invoice", "out_refund"]),
+            ]
         if self.purchase:
-            inv_type += ["in_invoice", "in_refund"]
-        domain.append(("move_type", "in", inv_type))
+            domain_purchase = [
+                ("intrastat", "=", True),
+                ("date", ">=", period_date_start),
+                ("date", "<=", period_date_stop),
+                ("move_type", "in", ["in_invoice", "in_refund"]),
+            ]
+        domain = expression.OR([domain_sale, domain_purchase])
 
         statement_data = {}
         section_field_reverse = {}
@@ -794,6 +803,18 @@ class AccountIntrastatStatement(models.Model):
                 )
 
         invoices = self.env["account.move"].search(domain)
+        if any(invoice.state != "posted" for invoice in invoices):
+            raise ValidationError(
+                _(
+                    "Some invoices in the date range selected are in 'draft' or "
+                    "'cancel' state! Post them or remove the date to proceed: %s"
+                )
+                % " ".join(
+                    invoices.filtered(lambda x: x.state == "draft").mapped(
+                        "partner_id.name"
+                    )
+                )
+            )
 
         for inv_intra_line in invoices.mapped("intrastat_line_ids"):
             section_details = section_field_reverse[inv_intra_line.statement_section]
