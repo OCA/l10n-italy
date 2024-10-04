@@ -258,6 +258,7 @@ msgstr "Provincia de Destino"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__display_name
+#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_res_company__display_name
 msgid "Display Name"
 msgstr "Nombre a Mostrar"
@@ -406,6 +407,7 @@ msgstr "Aquí está el archivo exportado:"
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section__id
+#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_res_company__id
 msgid "ID"
 msgstr "ID"
@@ -520,6 +522,15 @@ msgid "Intrastat export file"
 msgstr "Archivo de exportación Intrastat"
 
 #. module: l10n_it_intrastat_statement
+#: code:addons/l10n_it_intrastat_statement/models/account.py:0
+#, python-format
+msgid ""
+"Intrastat statement already exists for the date range of the invoice %s you "
+"are trying to post! Post it in another date or delete the intrastat "
+"statement to proceed."
+msgstr ""
+
+#. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1__invoice_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section2__invoice_id
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section3__invoice_id
@@ -561,6 +572,11 @@ msgstr ""
 "factura para la empresa %s"
 
 #. module: l10n_it_intrastat_statement
+#: model:ir.model,name:l10n_it_intrastat_statement.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_export_file____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_purchase_section1____last_update
@@ -574,6 +590,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section4____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_sale_section____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement_section____last_update
+#: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_res_company____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
@@ -1132,6 +1149,14 @@ msgstr "Compra de servicios - Sección 3"
 #: model_terms:ir.ui.view,arch_db:l10n_it_intrastat_statement.account_intrastat_statement_form_view
 msgid "Services Sale - Section 3"
 msgstr "Venta de servicios - Sección 3"
+
+#. module: l10n_it_intrastat_statement
+#: code:addons/l10n_it_intrastat_statement/models/intrastat_statement.py:0
+#, python-format
+msgid ""
+"Some invoices in the date range selected are in 'draft' or 'cancel' state! "
+"Post them or remove the date to proceed: %s"
+msgstr ""
 
 #. module: l10n_it_intrastat_statement
 #: model:ir.model.fields,field_description:l10n_it_intrastat_statement.field_account_intrastat_statement__special_cases
