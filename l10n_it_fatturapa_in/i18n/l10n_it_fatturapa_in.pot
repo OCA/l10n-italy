@@ -133,15 +133,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
-#. odoo-python
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, python-format
-msgid ""
-"Bill total %(amount_total)s is different from document total amount "
-"%(document_total_amount)s"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "Bills"
 msgstr ""
@@ -608,13 +599,6 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "General Data"
-msgstr ""
-
-#. module: l10n_it_fatturapa_in
-#. odoo-python
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, python-format
-msgid "Global bill discount from document general data"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
