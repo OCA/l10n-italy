@@ -642,6 +642,9 @@ class AccountInvoiceIntrastat(models.Model):
     invoice_date = fields.Date(
         string="Invoice Date", compute="_compute_invoice_ref", store=True
     )
+    operation_date = fields.Date(
+        help="Operation date for goods transfer, to be considered in statement"
+    )
     supply_method = fields.Selection(
         selection=[("I", "Instant"), ("R", "Repeated")], string="Supply Method"
     )
