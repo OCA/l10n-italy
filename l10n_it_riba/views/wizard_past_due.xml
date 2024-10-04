@@ -25,6 +25,7 @@
                     <field name="bank_amount" />
                     <field name="bank_expense_account_id" />
                     <field name="expense_amount" />
+                    <field name="date" />
                 </group>
                 <footer>
                     <button

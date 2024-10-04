@@ -12,6 +12,8 @@
                 />
                 <group>
                     <field name="due_date" />
+                    <field name="riba_ids" invisible="True" />
+                    <field name="payment_date" />
                 </group>
                 <footer>
                     <button
