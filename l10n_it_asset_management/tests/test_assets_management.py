@@ -176,14 +176,47 @@ class TestAssets(TransactionCase):
         )
         return asset
 
-    def _depreciate_asset(self, asset, date_dep):
+    def _depreciate_asset_wizard(
+        self,
+        asset,
+        date_dep,
+        period="year",
+        period_count=None,
+        override_journal=None,
+    ):
+        if override_journal is None:
+            override_journal = self.env["account.journal"].browse()
         wiz_vals = asset.with_context(
             **{"allow_reload_window": True}
         ).launch_wizard_generate_depreciations()
         wiz = (
             self.env["wizard.asset.generate.depreciation"]
             .with_context(**wiz_vals["context"])
-            .create({"date_dep": date_dep})
+            .create(
+                {
+                    "date_dep": date_dep,
+                    "period": period,
+                    "period_count": period_count,
+                    "journal_id": override_journal.id,
+                }
+            )
+        )
+        return wiz
+
+    def _depreciate_asset(
+        self,
+        asset,
+        date_dep,
+        period="year",
+        period_count=None,
+        override_journal=None,
+    ):
+        wiz = self._depreciate_asset_wizard(
+            asset,
+            date_dep,
+            period=period,
+            period_count=period_count,
+            override_journal=override_journal,
         )
         wiz.do_generate()
 
@@ -250,11 +283,18 @@ class TestAssets(TransactionCase):
 
     def test_00_create_asset_depreciate_and_sale(self):
         today = fields.Date.today()
+        asset = self._create_asset(today + relativedelta(years=-1))
         first_depreciation_date = today.replace(month=12, day=31) + relativedelta(
             years=-1
         )
         second_depreciation_date = today.replace(month=12, day=31)
-        asset = self._create_asset(today + relativedelta(years=-1))
+        self._generate_fiscal_years(
+            asset.purchase_date,
+            max(
+                first_depreciation_date,
+                second_depreciation_date,
+            ),
+        )
         civ_type = self.env.ref("l10n_it_asset_management.ad_type_civilistico")
         depreciation_id = asset.depreciation_ids.filtered(
             lambda x: x.type_id == civ_type
@@ -513,6 +553,24 @@ class TestAssets(TransactionCase):
         third_depreciation_date = today.replace(month=12, day=31) + relativedelta(
             years=-3
         )
+        # create depreciation for year -2 or -1 should do nothing as asset is totally
+        # depreciated
+        fourth_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-2
+        )
+        # create depreciation for current year should depreciate totally (as computed
+        # value 9000*40% = 3600 is greater than residual value)
+        current_year_depreciation_date = today.replace(month=12, day=31)
+        self._generate_fiscal_years(
+            asset.purchase_date,
+            max(
+                first_depreciation_date,
+                second_depreciation_date,
+                third_depreciation_date,
+                fourth_depreciation_date,
+                current_year_depreciation_date,
+            ),
+        )
         civ_type = self.env.ref("l10n_it_asset_management.ad_type_civilistico")
         depreciation_id = asset.depreciation_ids.filtered(
             lambda x: x.type_id == civ_type
@@ -559,16 +617,8 @@ class TestAssets(TransactionCase):
         )
         wiz.link_asset()
         self.assertAlmostEqual(depreciation_id.amount_depreciable_updated, 9000)
-        # create depreciation for year -2 or -1 should do nothing as asset is totally
-        # depreciated
-        fourth_depreciation_date = today.replace(month=12, day=31) + relativedelta(
-            years=-2
-        )
         self._depreciate_asset(asset, fourth_depreciation_date)
         self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 7000)
-        # create depreciation for current year should depreciate totally (as computed
-        # value 9000*40% = 3600 is greater than residual value)
-        current_year_depreciation_date = today.replace(month=12, day=31)
         self._depreciate_asset(asset, current_year_depreciation_date)
         dep_lines = asset.depreciation_ids.line_ids
         civ_dep_lines = dep_lines.filtered(
@@ -611,6 +661,23 @@ class TestAssets(TransactionCase):
         )
         second_depreciation_date = today.replace(month=12, day=31) + relativedelta(
             years=-3
+        )
+        # create depreciation for year -4 should do nothing as asset is already
+        # depreciated in a later date
+        third_depreciation_date = today.replace(month=12, day=31) + relativedelta(
+            years=-4
+        )
+        # create depreciation for current year should depreciate totally (as computed
+        # value 9000*40% = 3600 is greater than residual value)
+        current_year_depreciation_date = today.replace(month=12, day=31)
+        self._generate_fiscal_years(
+            asset.purchase_date,
+            max(
+                first_depreciation_date,
+                second_depreciation_date,
+                third_depreciation_date,
+                current_year_depreciation_date,
+            ),
         )
         civ_type = self.env.ref("l10n_it_asset_management.ad_type_civilistico")
         depreciation_id = asset.depreciation_ids.filtered(
@@ -657,16 +724,8 @@ class TestAssets(TransactionCase):
         )
         wiz.link_asset()
         self.assertAlmostEqual(depreciation_id.amount_depreciable_updated, 9000)
-        # create depreciation for year -4 should do nothing as asset is already
-        # depreciated in a later date
-        third_depreciation_date = today.replace(month=12, day=31) + relativedelta(
-            years=-4
-        )
         self._depreciate_asset(asset, third_depreciation_date)
         self.assertAlmostEqual(sum(civ_dep_lines.mapped("amount")), 7000 * 0.6)
-        # create depreciation for current year should depreciate totally (as computed
-        # value 9000*40% = 3600 is greater than residual value)
-        current_year_depreciation_date = today.replace(month=12, day=31)
         self._depreciate_asset(asset, current_year_depreciation_date)
         dep_lines = asset.depreciation_ids.line_ids
         self.assertEqual(len(dep_lines), 4)
@@ -756,7 +815,7 @@ class TestAssets(TransactionCase):
     def _generate_fiscal_years(self, start_date, end_date):
         fiscal_years = range(
             start_date.year,
-            end_date.year,
+            end_date.year + 1,
         )
         fiscal_years_values = list()
         for fiscal_year in fiscal_years:
@@ -816,3 +875,142 @@ class TestAssets(TransactionCase):
         total = report.report_total_ids
         self.assertEqual(total.amount_depreciation_fund_curr_year, 1000)
         self.assertEqual(total.amount_depreciation_fund_prev_year, 1000)
+
+    def test_monthly_depreciation(self):
+        """
+        Monthly depreciation uses 1/12 of the coefficient
+        of the year the depreciation is in.
+        """
+        # Arrange
+        purchase_date = date(2019, 1, 1)
+        asset = self._create_asset(purchase_date)
+        first_depreciation_date = date(2019, 1, 31)
+        second_depreciation_date = date(2020, 1, 31)
+        third_depreciation_date = date(2021, 1, 31)
+        self._generate_fiscal_years(
+            asset.purchase_date,
+            max(
+                first_depreciation_date,
+                second_depreciation_date,
+                third_depreciation_date,
+            ),
+        )
+        civ_depreciation_type = self.env.ref(
+            "l10n_it_asset_management.ad_type_civilistico"
+        )
+        civ_depreciation = asset.depreciation_ids.filtered(
+            lambda x: x.type_id == civ_depreciation_type
+        )
+        civ_depreciation.percentage = 12.0
+        depreciation_mode = asset.category_id.type_ids.mode_id
+        # pre-condition
+        self.assertEqual(asset.purchase_date, purchase_date)
+        self.assertEqual(civ_depreciation.amount_depreciable, 1000)
+        self.assertRecordValues(
+            depreciation_mode.line_ids,
+            [
+                {
+                    "from_year_nr": 1,
+                    "to_year_nr": 1,
+                    "application": "coefficient",
+                    "coefficient": 0.5,
+                },
+            ],
+        )
+
+        # Act
+        self._depreciate_asset(asset, first_depreciation_date, period="month")
+        self._depreciate_asset(asset, second_depreciation_date, period="month")
+        self._depreciate_asset(
+            asset, third_depreciation_date, period="month", period_count=2
+        )
+
+        # Assert
+        self.assertRecordValues(
+            civ_depreciation.line_ids,
+            [
+                {
+                    "date": first_depreciation_date,
+                    "amount": 5,
+                },
+                {
+                    "date": second_depreciation_date,
+                    "amount": 10,
+                },
+                {
+                    "date": third_depreciation_date,
+                    "amount": 20,
+                },
+            ],
+        )
+
+    def test_missing_fiscal_year_warning(self):
+        """
+        If some years are not configured as fiscal years,
+        the wizard shows a warning.
+        """
+        # Arrange
+        purchase_date = date(2019, 1, 1)
+        asset = self._create_asset(purchase_date)
+        depreciation_date = date(2020, 1, 1)
+
+        # Act
+        depreciate_wizard = self._depreciate_asset_wizard(asset, depreciation_date)
+
+        # Assert 1: some fiscal years are missing
+        self.assertTrue(depreciate_wizard.missing_fiscal_year_warning)
+
+        # Act 2: Generate missing years
+        self._generate_fiscal_years(
+            asset.purchase_date,
+            depreciation_date,
+        )
+
+        # Assert 2: no fiscal years are missing
+        depreciate_wizard = self._depreciate_asset_wizard(asset, depreciation_date)
+        self.assertFalse(depreciate_wizard.missing_fiscal_year_warning)
+
+    def test_override_journal(self):
+        """
+        Set an "Override Journal" in the depreciation wizard,
+        the journal entries are created in the selected journal.
+        """
+        # Arrange
+        override_journal = self.env["account.journal"].create(
+            {
+                "name": "Test override journal",
+                "code": "TOJ",
+                "type": "general",
+            }
+        )
+        purchase_date = date(2019, 1, 1)
+        asset = self._create_asset(purchase_date)
+        depreciation_date = date(2019, 1, 31)
+        self._generate_fiscal_years(
+            asset.purchase_date,
+            depreciation_date,
+        )
+        civ_depreciation_type = self.env.ref(
+            "l10n_it_asset_management.ad_type_civilistico"
+        )
+        civ_depreciation = asset.depreciation_ids.filtered(
+            lambda x: x.type_id == civ_depreciation_type
+        )
+        civ_depreciation.percentage = 12.0
+        depreciate_asset_wizard = self._depreciate_asset_wizard(
+            asset,
+            depreciation_date,
+            period="month",
+            override_journal=override_journal,
+        )
+        # pre-condition
+        self.assertNotEqual(
+            depreciate_asset_wizard.journal_id, asset.category_id.journal_id
+        )
+
+        # Act
+        depreciate_asset_wizard.do_generate()
+
+        # Assert
+        account_move = asset.depreciation_ids.line_ids.move_id
+        self.assertEqual(account_move.journal_id, depreciate_asset_wizard.journal_id)

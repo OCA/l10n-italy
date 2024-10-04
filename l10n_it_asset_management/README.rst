@@ -99,8 +99,7 @@ Contributors
 -  Nextev Srl <odoo@nextev.it>
 
 Base icon made by `surang <https://www.flaticon.com/authors/surang>`__
-from
-[`www.flaticon.com](https://www.flaticon.com/) <http://www.flaticon.com](https://www.flaticon.com/)>`__.
+from `www.flaticon.com <http://www.flaticon.com>`__.
 
 Maintainers
 -----------

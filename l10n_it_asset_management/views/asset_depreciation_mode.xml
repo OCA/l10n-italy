@@ -47,8 +47,8 @@
                     >
                         <tree editable="bottom">
                             <field name="mode_id" invisible="1" />
-                            <field name="from_nr" />
-                            <field name="to_nr" />
+                            <field name="from_year_nr" />
+                            <field name="to_year_nr" />
                             <field name="application" />
                             <field
                                 name="coefficient"
