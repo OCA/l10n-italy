@@ -43,7 +43,11 @@ class AccountMove(models.Model):
                 doc_id = partner.in_fiscal_document_type.id or False
         # Fiscal Position
         if not doc_id and fiscal_position:
-            doc_id = fiscal_position.fiscal_document_type_id.id or False
+            doc = fiscal_position.fiscal_document_type_id
+            if doc and hasattr(doc, move_type) and doc[move_type]:
+                doc_id = doc.id
+            else:
+                doc_id = False
         # Journal
         if not doc_id and journal:
             dt = (
