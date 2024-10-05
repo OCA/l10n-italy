@@ -61,7 +61,7 @@
                 <page string="Bills">
                     <field
                         name="in_invoice_ids"
-                        context="{'form_view_ref': 'account.invoice_supplier_form', 'tree_view_ref': 'account.invoice_supplier_tree'}"
+                        context="{'form_view_ref': 'account.view_move_form', 'tree_view_ref': 'account.view_in_invoice_tree'}"
                     >
                         <tree>
                             <field name="partner_id" />
@@ -75,7 +75,7 @@
                                 type="object"
                                 string="Open full-screen"
                                 icon="fa-external-link"
-                                context="{'form_view_ref': 'account.invoice_supplier_form'}"
+                                context="{'form_view_ref': 'account.view_move_form'}"
                             />
                             <button
                                 name="remove_attachment_link"
@@ -148,6 +148,18 @@
     </record>
 
     <!-- Extend purchase invoice  -->
+
+    <record id="view_invoice_tree_fatturapa_in" model="ir.ui.view">
+        <field name="name">view_invoice_tree_fatturapa_in</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_date" position="after">
+                <field name="e_invoice_received_date" />
+            </field>
+        </field>
+    </record>
+
     <record id="view_invoice_form_fatturapa_in" model="ir.ui.view">
         <field name="name">account.invoice.fatturapa_in</field>
         <field name="model">account.move</field>
