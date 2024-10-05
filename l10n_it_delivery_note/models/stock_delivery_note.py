@@ -915,11 +915,61 @@ class StockDeliveryNote(models.Model):
 
         return res
 
+    @api.model
+    def _orphan_invoice_line_error_msg(self, invoice, invoice_lines):
+        to_return = "- '%(inv_name)s': [%(line_names)s]" % {
+            "inv_name": invoice.name,
+            "line_names": ", ".join("" + line.name for line in invoice_lines),
+        }
+        return to_return
+
+    @api.model
+    def _orphan_invoice_error_msg(self, invoices, line_groups):
+        to_return = "<br/".join(
+            self._orphan_invoice_line_error_msg(inv, line_groups[inv])
+            for inv in invoices
+        )
+        return to_return
+
+    def _check_ddt_in_invoice_line(self):
+        self.ensure_one()
+        linked_invoice_lines = self.env["account.move.line"].search(
+            [("delivery_note_id", "=", self.id)]
+        )
+        orphan_lines = linked_invoice_lines.filtered(
+            lambda line: line.move_id not in self.invoice_ids
+        )
+        if orphan_lines:
+            parent_invoices = orphan_lines.mapped("move_id")
+            grouped_lines = {
+                inv: orphan_lines.filtered(lambda line: line.move_id)
+                for inv in parent_invoices
+            }
+            error_message = self._orphan_invoice_error_msg(
+                parent_invoices, grouped_lines
+            )
+            raise UserError(
+                _(
+                    "You cannot confirm the Delivery Note '%(ddt_name)s' because it is"
+                    " referenced in some Invoice Lines not linked to it.\n"
+                    "Check the following invoices and their highlighted lines:\n"
+                    "%(error_message)s"
+                )
+                % {
+                    "ddt_name": self.name,
+                    "error_message": error_message,
+                }
+            )
+
     def write(self, vals):
         res = super().write(vals)
 
         if "picking_ids" in vals:
             self.update_detail_lines()
+
+        if vals.get("state") == "done":
+            for ddt in self:
+                ddt._check_ddt_in_invoice_line()
 
         return res
 
