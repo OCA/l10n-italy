@@ -4,6 +4,7 @@ codicefiscale
 elementpath
 num2words>=0.5.12
 openupgradelib
+phonenumbers
 unidecode
 xlrd
 xlsxwriter

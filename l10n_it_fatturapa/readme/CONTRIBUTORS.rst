@@ -6,6 +6,7 @@
 * Gianluigi Tiesi <https://github.com/sherpya>
 * Roberto Fichera <https://github.com/robyf70>
 * Marco Colombo <https://github.com/TheMule71>
+* Salvo Rapisarda <https://github.com/salvorapi>
 * `Ooops <https://www.ooops404.com>`_:
 
    * Giovanni Serra <giovanni@gslab.it>
