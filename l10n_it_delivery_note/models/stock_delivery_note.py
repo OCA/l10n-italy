@@ -83,6 +83,17 @@ class StockDeliveryNote(models.Model):
 
         return [("category_id", "=", uom_category_id.id)]
 
+    def _default_shipping_from(self):
+        if self.picking_ids:
+            picking = self.picking_ids[0]
+            if self.type_code == "incoming":
+                picking.delivery_note_shipping_from = picking.partner_id
+            elif picking.location_id:
+                warehouse = self.env["stock.warehouse"].search(
+                    [("lot_stock_id", "=", picking.location_id.id)]
+                )
+                picking.delivery_note_shipping_from = warehouse.partner_id
+
     active = fields.Boolean(default=True)
     name = fields.Char(
         string="Name",
@@ -110,9 +121,9 @@ class StockDeliveryNote(models.Model):
 
     partner_sender_id = fields.Many2one(
         "res.partner",
-        string="Sender",
+        string="Shipping from",
         states=DRAFT_EDITABLE_STATE,
-        default=_default_company,
+        default=_default_shipping_from,
         readonly=True,
         required=True,
         tracking=True,
@@ -302,7 +313,7 @@ class StockDeliveryNote(models.Model):
     print_prices = fields.Boolean(
         string="Show prices on printed DN", related="type_id.print_prices", store=True
     )
-    note = fields.Html(string="Internal note", states=DONE_READONLY_STATE)
+    note = fields.Html(string="DN Notes", states=DONE_READONLY_STATE)
 
     can_change_number = fields.Boolean(compute="_compute_boolean_flags")
     show_product_information = fields.Boolean(compute="_compute_boolean_flags")
@@ -585,6 +596,20 @@ class StockDeliveryNote(models.Model):
 
     def _action_confirm(self):
         for note in self:
+            if not (
+                note.transport_condition_id
+                and note.goods_appearance_id
+                and note.transport_reason_id
+                and note.transport_method_id
+            ):
+                raise UserError(
+                    _(
+                        "You cannot validate a delivery note without setting "
+                        "these fields:\n"
+                        "condition of transport, appearance of goods, "
+                        "reason of transport and method of transport"
+                    )
+                )
             sequence = note.type_id.sequence_id
 
             note.state = DOMAIN_DELIVERY_NOTE_STATES[1]
@@ -947,6 +972,23 @@ class StockDeliveryNote(models.Model):
                 location_address += " ({})".format(partner.state_id.name)
 
         return location_address
+
+    @api.model
+    def get_partner_address(self, partner_id):
+        partner_address = ""
+
+        if partner_id:
+            if partner_id.parent_id:
+                partner_address += "{}, ".format(partner_id.parent_id.name)
+            partner_address += "{}, ".format(partner_id.name)
+            if partner_id.street:
+                partner_address += "{} - ".format(partner_id.street)
+
+            partner_address += "{} {}".format(partner_id.zip, partner_id.city)
+            if partner_id.state_id:
+                partner_address += " ({})".format(partner_id.state_id.name)
+
+        return partner_address
 
 
 class StockDeliveryNoteLine(models.Model):
