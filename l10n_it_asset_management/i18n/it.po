@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2024-09-28 17:06+0000\n"
+"PO-Revision-Date: 2024-10-05 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -27,7 +27,7 @@ msgstr "%(year)s - Ammortamento"
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_asset_generate_depreciation_form_view
 msgid "<i class=\"fa fa-warning\" title=\"Missing fiscal years\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-warning\" title=\"Manca anno fiscale\"/>"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.template_asset_journal_body
@@ -1151,6 +1151,7 @@ msgstr "Crea nuovo"
 #: model:ir.model.fields,help:l10n_it_asset_management.field_wizard_asset_generate_depreciation__journal_id
 msgid "Create move entries in this journal instead of the category's journal."
 msgstr ""
+"Crea voci movimento in questo registro anziché nel registro della categoria."
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__create_uid
@@ -1715,7 +1716,7 @@ msgstr "Forza primo numero amm.to"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_mode_line__from_year_nr
 msgid "From Year"
-msgstr ""
+msgstr "Dall'anno"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2128,6 +2129,8 @@ msgid ""
 "Maximum number of fiscal years passed from asset purchase date to apply this "
 "line."
 msgstr ""
+"Numero massimo di anni fiscali trascorsi dalla data di acquisto del cespite "
+"per applicare questa riga."
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__message_has_error
@@ -2137,7 +2140,7 @@ msgstr "Errore di consegna messaggio"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_wizard_asset_generate_depreciation__missing_fiscal_year_warning
 msgid "Message to warn the user that some fiscal years are missing."
-msgstr ""
+msgstr "Messaggio per avvisare l'utente che mancano alcuni anni fiscali."
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_asset__message_ids
@@ -2150,6 +2153,8 @@ msgid ""
 "Minimum number of fiscal years passed from asset purchase date to apply this "
 "line."
 msgstr ""
+"Numero minimo di anni fiscali trascorsi dalla data di acquisto del cespite "
+"per applicare questa riga."
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__wizard_account_move_manage_asset__move_type__general
@@ -2159,7 +2164,7 @@ msgstr "Varie"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation__missing_fiscal_year_warning
 msgid "Missing Fiscal Year Warning"
-msgstr ""
+msgstr "Avviso anno fiscale mancante"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__mode_id
@@ -2176,7 +2181,7 @@ msgstr "Nome modo"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__wizard_asset_generate_depreciation__period__month
 msgid "Month"
-msgstr ""
+msgstr "Mese"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_accounting_info__move_id
@@ -2324,7 +2329,7 @@ msgstr "Numero di messaggi con errore di consegna"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation__period_count
 msgid "Number of periods"
-msgstr ""
+msgstr "Numero di periodi"
 
 #. module: l10n_it_asset_management
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.wizard_account_move_mange_asset_form_view
@@ -2369,7 +2374,7 @@ msgstr "Importo rettifica negativa - Dettaglio"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation__journal_id
 msgid "Override journal"
-msgstr ""
+msgstr "Ignora registro"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__wizard_account_move_manage_asset__management_type__partial_dismiss
@@ -2441,7 +2446,7 @@ msgstr "Percentuale"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_asset_generate_depreciation__period
 msgid "Period"
-msgstr ""
+msgstr "Periodo"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2885,6 +2890,10 @@ msgid ""
 "configured fiscal year and will not be counted for depreciation.\n"
 "Please configure every fiscal year that has to be counted for depreciation."
 msgstr ""
+"Alcuni anni tra %(asset_date)s e %(depreciation_date)s non hanno un anno "
+"fiscale configurato e non saranno conteggiati per l'ammortamento.\n"
+"Si prega di configurare ogni anno fiscale che deve essere conteggiato per "
+"l'ammortamento."
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -2986,7 +2995,7 @@ msgstr "Alla data"
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation_mode_line__to_year_nr
 msgid "To Year"
-msgstr ""
+msgstr "All'anno"
 
 #. module: l10n_it_asset_management
 #. odoo-python
