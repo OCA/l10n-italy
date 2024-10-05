@@ -65,11 +65,12 @@ class TestIntrastat(AccountTestInvoicingCommon):
         )
         self.assertEqual(total_intrastat_amount, invoice.amount_untaxed)
 
-    def test_invoice_fiscal_postion(self):
+    def test_invoice_fiscal_position(self):
         self.partner01.property_account_position_id = self.fp_model.create(
             {
                 "name": "F.P subjected to intrastat",
-                "intrastat": True,
+                "intrastat_sale": True,
+                "intrastat_purchase": False,
             }
         )
         invoice = self.init_invoice(
@@ -82,3 +83,14 @@ class TestIntrastat(AccountTestInvoicingCommon):
         invoice.action_post()
         invoice.compute_intrastat_lines()
         self.assertEqual(invoice.intrastat, True)
+
+        invoice_purchase = self.init_invoice(
+            "in_invoice",
+            partner=self.partner01,
+            products=self.product01,
+            taxes=self.tax22,
+        )
+        # Compute intrastat lines
+        invoice_purchase.action_post()
+        invoice_purchase.compute_intrastat_lines()
+        self.assertEqual(invoice_purchase.intrastat, False)
