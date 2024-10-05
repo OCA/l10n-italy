@@ -1,5 +1,6 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
 # Copyright 2023 Simone Rubino - TAKOBI
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import time
@@ -443,3 +444,95 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_net_pay_residual, 200)
         self.assertEqual(self.invoice.amount_residual, 250)
         self.assertEqual(self.invoice.state, "posted")
+
+    def _create_bill(self):
+        bill_model = self.env["account.move"].with_context(
+            default_move_type="in_invoice",
+        )
+        bill_form = Form(bill_model)
+        bill_form.invoice_date = fields.Date.from_string("2020-01-01")
+        bill_form.partner_id = self.env.ref("base.res_partner_12")
+        with bill_form.invoice_line_ids.new() as line:
+            line.name = "Advice"
+            line.price_unit = 1000
+            line.invoice_line_tax_wt_ids.clear()
+            line.invoice_line_tax_wt_ids.add(self.wt1040)
+        bill = bill_form.save()
+        bill.action_post()
+        return bill
+
+    def _get_refund(self, bill):
+        refund_wizard_model = self.env["account.move.reversal"].with_context(
+            active_id=bill.id,
+            active_ids=bill.ids,
+            active_model=bill._name,
+        )
+        refund_wizard_form = Form(refund_wizard_model)
+        refund_wizard_form.refund_method = "cancel"
+        refund_wizard = refund_wizard_form.save()
+        refund_result = refund_wizard.reverse_moves()
+
+        refund_model = refund_result.get("res_model")
+        refund_id = refund_result.get("res_id")
+        refund = self.env[refund_model].browse(refund_id)
+        return refund
+
+    def test_refund_wt_propagation(self):
+        """
+        When a Refund is created, the Withholding Tax is propagated to it.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+        self.assertTrue(bill.withholding_tax)
+
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: The refund has the Withholding Tax flag enabled
+        self.assertTrue(refund.withholding_tax)
+
+    def test_refund_reconciliation_amount(self):
+        """
+        When a refund is created, the amount reconciled
+        is the whole amount of the vendor bill.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+        bill_amount = bill.amount_total
+
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: The reconciliation is for the whole bill
+        reconciliation = self.env["account.partial.reconcile"].search(
+            [
+                ("debit_move_id", "in", refund.line_ids.ids),
+                ("credit_move_id", "in", bill.line_ids.ids),
+            ]
+        )
+        self.assertEqual(reconciliation.amount, bill_amount)
+
+    def test_refund_wt_moves(self):
+        """
+        When a refund is created,
+        no Withholding Tax Moves are created.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: There are no Withholding Tax Moves
+        reconciliation = self.env["account.partial.reconcile"].search(
+            [
+                ("debit_move_id", "in", refund.line_ids.ids),
+                ("credit_move_id", "in", bill.line_ids.ids),
+            ]
+        )
+        withholding_tax_moves = self.env["withholding.tax.move"].search(
+            [
+                ("reconcile_partial_id", "=", reconciliation.id),
+            ]
+        )
+        self.assertFalse(withholding_tax_moves)
