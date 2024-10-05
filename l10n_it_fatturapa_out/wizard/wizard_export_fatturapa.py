@@ -17,7 +17,7 @@ from odoo.tools.translate import _
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 
-from .efattura import EFatturaOut, format_numbers
+from .efattura import EFatturaOut, format_numbers, fpaToEur
 
 _logger = logging.getLogger(__name__)
 
@@ -101,7 +101,11 @@ class WizardExportFatturapa(models.TransientModel):
             lambda line: line.account_id.user_type_id.type in ("receivable", "payable")
         ):
             payments.append(
-                _Payment(line.date_maturity, line.amount_currency, line.debit)
+                _Payment(
+                    line.date_maturity,
+                    line.amount_currency,
+                    line.debit,
+                )
             )
         return payments
 
@@ -129,6 +133,7 @@ class WizardExportFatturapa(models.TransientModel):
         def _key(tax_id):
             return tax_id.id
 
+        euro = self.env.ref("base.EUR")
         out_computed = {}
         # existing tax lines
         tax_ids = invoice.line_ids.filtered(lambda line: line.tax_line_id)
@@ -141,7 +146,7 @@ class WizardExportFatturapa(models.TransientModel):
                 "Natura": tax_line_id.kind_id.code,
                 # 'Arrotondamento':'',
                 "ImponibileImporto": tax_id.tax_base_amount,
-                "Imposta": tax_id.price_total,
+                "Imposta": fpaToEur(tax_id.price_total, invoice, euro),
                 "EsigibilitaIVA": tax_line_id.payability,
             }
             if tax_line_id.law_reference:
@@ -168,7 +173,9 @@ class WizardExportFatturapa(models.TransientModel):
                         "AliquotaIVA": aliquota,
                         "Natura": tax_id.kind_id.code,
                         # 'Arrotondamento':'',
-                        "ImponibileImporto": line.price_subtotal,
+                        "ImponibileImporto": fpaToEur(
+                            line.price_subtotal, invoice, euro
+                        ),
                         "Imposta": 0.0,
                         "EsigibilitaIVA": tax_id.payability,
                     }
@@ -177,7 +184,9 @@ class WizardExportFatturapa(models.TransientModel):
                             tax_id.law_reference, 100
                         )
                 else:
-                    out[key]["ImponibileImporto"] += line.price_subtotal
+                    out[key]["ImponibileImporto"] += fpaToEur(
+                        line.price_subtotal, invoice, euro
+                    )
                     out[key]["Imposta"] += 0.0
         out.update(out_computed)
         return out
