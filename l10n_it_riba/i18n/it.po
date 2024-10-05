@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 10:26+0000\n"
-"PO-Revision-Date: 2024-09-11 09:06+0000\n"
+"PO-Revision-Date: 2024-10-05 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -461,7 +461,7 @@ msgstr "Cliente"
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_to_issue_tree
@@ -486,7 +486,7 @@ msgstr "Servizio predefinito per le spese di incasso RiBa nella fattura."
 #. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__date_paid
 msgid "Default date for payments."
-msgstr ""
+msgstr "Data predefinita per i pagamenti."
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_due_date_settlement__payment_date
@@ -495,6 +495,8 @@ msgid ""
 "Defaults to the 'Payment date' in the RiBas.\n"
 "If empty, the due date in each line will be used."
 msgstr ""
+"Il valore predefinito è 'Data di pagamento' nelle RiBa.\n"
+"Se vuoto, verrà utilizzata la data di scadenza in ogni riga."
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__name
@@ -667,7 +669,7 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #. module: l10n_it_riba
 #: model:ir.model.fields,help:l10n_it_riba.field_riba_past_due__date
 msgid "If empty, the due date in the line will be used."
-msgstr ""
+msgstr "Se vuoto, verrà utilizzata la data di scadenza indicata nella riga."
 
 #. module: l10n_it_riba
 #: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_configuration__sbf_collection_type__immediate
@@ -876,7 +878,7 @@ msgstr "Segna come pagata"
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
 msgid "Mark lines as Settled"
-msgstr ""
+msgstr "Segna le righe come pagate"
 
 #. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_ir_ui_menu
@@ -1107,12 +1109,12 @@ msgstr "Insoluti"
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_payment_multiple_view_form
 msgid "Pay"
-msgstr ""
+msgstr "Paga"
 
 #. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_riba_payment_multiple
 msgid "Pay multiple RiBa lines"
-msgstr ""
+msgstr "Paga righe RiBa multiple"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__payment_date
@@ -1147,7 +1149,7 @@ msgstr "Definire un registro pagamenti."
 #: code:addons/l10n_it_riba/wizard/wizard_riba_multiple_payment.py:0
 #, python-format
 msgid "Please select the RiBa lines to be paid"
-msgstr ""
+msgstr "Selezionare le righe RiBa da pagare"
 
 #. module: l10n_it_riba
 #: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__presentation_amount
@@ -1355,7 +1357,7 @@ msgstr "Configurazione RiBa da utilizzare."
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__riba_line_ids
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__riba_line_ids
 msgid "RiBa lines to be paid"
-msgstr ""
+msgstr "Righe RiBa da pagare"
 
 #. module: l10n_it_riba
 #: model:ir.model,name:l10n_it_riba.model_riba_due_date_settlement
@@ -1372,7 +1374,7 @@ msgstr "Codice SIA"
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__riba_ids
 #: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__riba_ids
 msgid "Selected RiBas"
-msgstr ""
+msgstr "RiBa selezionate"
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_payment_date
@@ -1391,21 +1393,21 @@ msgstr ""
 #. module: l10n_it_riba
 #: model:ir.actions.server,name:l10n_it_riba.riba_line_settle_action_server
 msgid "Settle RiBa Line"
-msgstr "Sistema riga RiBa"
+msgstr "Paga riga RiBa"
 
 #. module: l10n_it_riba
 #. odoo-python
 #: code:addons/l10n_it_riba/models/riba.py:0
 #, python-format
 msgid "Settle line"
-msgstr ""
+msgstr "Paga riga"
 
 #. module: l10n_it_riba
 #. odoo-python
 #: code:addons/l10n_it_riba/models/riba.py:0
 #, python-format
 msgid "Settle lines"
-msgstr ""
+msgstr "Paga righe"
 
 #. module: l10n_it_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
