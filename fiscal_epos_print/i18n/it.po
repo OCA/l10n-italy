@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-01 10:36+0000\n"
+"PO-Revision-Date: 2024-10-05 18:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -372,14 +372,14 @@ msgstr "Manca l'IVA sul prodotto"
 #: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
 #, python-format
 msgid "Max 4 numbers"
-msgstr "Max 4 numeri"
+msgstr "Massimo 4 numeri"
 
 #. module: fiscal_epos_print
 #. openerp-web
 #: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
 #, python-format
 msgid "Negative receipt"
-msgstr "Scontrino in negativo"
+msgstr "Ricevuta in negativo"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -648,7 +648,7 @@ msgstr "File rifiutati: "
 #: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
 #, python-format
 msgid "Reports"
-msgstr "Rendiconti"
+msgstr "Resoconti"
 
 #. module: fiscal_epos_print
 #. openerp-web
@@ -760,8 +760,8 @@ msgid ""
 "The refund information aren't present. Please insert them before printing "
 "the receipt"
 msgstr ""
-"Le informazioni del reso non sono presenti, inserirle prima di stampare lo "
-"scontrino"
+"Le informazioni del rimborso non sono presenti, inserirle prima di stampare "
+"lo scontrino"
 
 #. module: fiscal_epos_print
 #: model:ir.model.fields.selection,name:fiscal_epos_print.selection__pos_payment_method__fiscalprinter_payment_type__3
