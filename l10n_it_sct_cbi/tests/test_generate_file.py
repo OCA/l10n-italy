@@ -3,6 +3,8 @@
 
 import base64
 
+from lxml import etree
+
 from odoo import Command
 from odoo.tests import Form, tagged
 
@@ -105,9 +107,20 @@ class TestGenerateFile(AccountTestInvoicingCommon):
         payment_att = self._get_payment_attachment(bills)
 
         # Assert
-        payment_att_content = base64.b64decode(payment_att.datas).decode()
-        self.assertIn(bill_1.ref, payment_att_content)
-        self.assertIn(bill_2.ref, payment_att_content)
+        payment_tree = etree.fromstring(base64.b64decode(payment_att.datas))
+        namespaces = payment_tree.nsmap
+        bills_refs_node = payment_tree.find(
+            ".//PMRQ:RmtInf//PMRQ:Ustrd",
+            namespaces=namespaces,
+        )
+        self.assertIn(bill_1.ref, bills_refs_node.text)
+        self.assertIn(bill_2.ref, bills_refs_node.text)
+
+        category_purpose_code_node = payment_tree.find(
+            ".//PMRQ:CtgyPurp//PMRQ:Cd",
+            namespaces=namespaces,
+        )
+        self.assertEqual(category_purpose_code_node.text, "SUPP")
 
     def test_multiple_payment_priority(self):
         """Generate a payment file for a vendor bill
@@ -143,5 +156,10 @@ class TestGenerateFile(AccountTestInvoicingCommon):
         payment_att = self._get_record_from_action(payment_file_action)
 
         # Assert
-        payment_att_content = base64.b64decode(payment_att.datas).decode()
-        self.assertIn(bill.ref, payment_att_content)
+        payment_tree = etree.fromstring(base64.b64decode(payment_att.datas))
+        namespaces = payment_tree.nsmap
+        bills_refs_node = payment_tree.find(
+            ".//PMRQ:RmtInf//PMRQ:Ustrd",
+            namespaces=namespaces,
+        )
+        self.assertIn(bill.ref, bills_refs_node.text)
