@@ -3,15 +3,13 @@
 .pos .epson-fp81ii-widget {
     z-index: 100000;
     position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 236px;
+    right: 48px;
+    top: 48px;
+    width: 260px;
     font-size: 14px;
-
     background: rgba(0, 0, 0, 0.82) !important;
     color: white;
     padding-bottom: 10px;
-    cursor: move;
     -webkit-transform: translate3d(0, 0, 0);
 }
 .pos .pos-rightheader .header-button > img {
