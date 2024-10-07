@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template
+        id="account_invoice_line_it_sconto_maggiorazione"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_line_it_sconto_maggiorazione"
+    >
+        <ScontoMaggiorazione position="after">
+            <t
+                t-set="triple_ScontoMaggiorazione_values_list"
+                t-value="get_triple_ScontoMaggiorazione_values_list(line)"
+            />
+            <t
+                t-foreach="triple_ScontoMaggiorazione_values_list"
+                t-as="ScontoMaggiorazione_values"
+            >
+                <ScontoMaggiorazione t-translation="off">
+                    <Tipo t-out="ScontoMaggiorazione_values['Tipo']" />
+                    <Percentuale t-out="ScontoMaggiorazione_values['Percentuale']" />
+                </ScontoMaggiorazione>
+            </t>
+        </ScontoMaggiorazione>
+    </template>
+</odoo>
