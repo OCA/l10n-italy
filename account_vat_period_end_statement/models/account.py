@@ -7,6 +7,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import math
+from contextlib import contextmanager, nullcontext
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
@@ -347,12 +348,44 @@ class AccountVatPeriodEndStatement(models.Model):
         string="Accounts filter",
         domain=lambda self: self._get_domain_account(),
     )
+    journal_group_ids = fields.Many2many(
+        comodel_name="account.journal.group",
+        string="Journal groups",
+        help="The report will show amounts for the groups and journals selected.",
+    )
 
     def _get_domain_account(self):
         domain = [("vat_statement_account_id", "!=", False)]
         tax_ids = self.env["account.tax"].search(domain)
         account_ids = tax_ids.mapped("vat_statement_account_id")
         return [("id", "in", account_ids.ids)]
+
+    @contextmanager
+    def _recompute_amounts_on_change(self, field_name):
+        """Recompute statement amounts when `field_name` changes."""
+        statement_to_previous_value = {
+            statement: statement[field_name] for statement in self
+        }
+
+        yield
+
+        statements_to_recompute = self.browse()
+        for statement in self:
+            previous_value = statement_to_previous_value.get(statement)
+            if statement[field_name] != previous_value:
+                statements_to_recompute |= statement
+
+        if statements_to_recompute:
+            statements_to_recompute.compute_amounts()
+
+    def write(self, vals):
+        if "journal_group_ids" in vals:
+            recompute_context = self._recompute_amounts_on_change("journal_group_ids")
+        else:
+            recompute_context = nullcontext()
+
+        with recompute_context:
+            return super().write(vals)
 
     def unlink(self):
         for statement in self:
@@ -740,12 +773,14 @@ class AccountVatPeriodEndStatement(models.Model):
 
     def _set_debit_lines(self, debit_tax, debit_line_ids, statement):
         total = 0.0
+        selected_journals = statement.journal_group_ids.included_journal_ids
         for period in statement.date_range_ids:
             total += debit_tax._compute_totals_tax(
                 {
                     "from_date": period.date_start,
                     "to_date": period.date_end,
                     "registry_type": "customer",
+                    "journal_ids": selected_journals.ids,
                 }
             )[3]  # position 3 is deductible part
         debit_line_ids.append(
@@ -758,12 +793,14 @@ class AccountVatPeriodEndStatement(models.Model):
 
     def _set_credit_lines(self, credit_tax, credit_line_ids, statement):
         total = 0.0
+        selected_journals = statement.journal_group_ids.included_journal_ids
         for period in statement.date_range_ids:
             total += credit_tax._compute_totals_tax(
                 {
                     "from_date": period.date_start,
                     "to_date": period.date_end,
                     "registry_type": "supplier",
+                    "journal_ids": selected_journals.ids,
                 }
             )[3]  # position 3 is deductible part
         credit_line_ids.append(
