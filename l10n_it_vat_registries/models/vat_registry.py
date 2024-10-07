@@ -30,6 +30,8 @@ class ReportRegistroIva(models.AbstractModel):
             "to_date": self._format_date(data["form"]["to_date"], date_format),
             "registry_type": data["form"]["registry_type"],
             "invoice_total": self._get_move_total,
+            "currency_total": self._get_currency_move_total,
+            "show_currency": self._show_currency,
             "tax_registry_name": data["form"]["tax_registry_name"],
             "env": self.env,
             "formatLang": formatLang,
@@ -40,8 +42,15 @@ class ReportRegistroIva(models.AbstractModel):
             "show_full_contact_addess": data["form"]["show_full_contact_addess"],
             "date_format": date_format,
             "year_footer": data["form"]["year_footer"],
+            "enable_currency": data["form"]["enable_currency"],
+            "company_currency_symbol": self.env.company.currency_id.symbol,
         }
         return docargs
+
+    def _show_currency(self, move):
+        if move.currency_id != self.env.company.currency_id:
+            return True
+        return False
 
     def _get_move(self, move_ids):
         move_list = self.env["account.move"].browse(move_ids)
@@ -99,23 +108,32 @@ class ReportRegistroIva(models.AbstractModel):
                 res[tax.id] = {
                     "name": tax.name,
                     "base": 0,
+                    "base_currency": 0,
                     "tax": 0,
+                    "tax_currency": 0,
                 }
             tax_amount = move_line.debit - move_line.credit
+            tax_amount_currency = move_line.amount_currency
 
             if set_cee_absolute_value:
                 tax_amount = abs(tax_amount)
+                tax_amount_currency = abs(tax_amount_currency)
             if "receivable" in move.financial_type:
                 # otherwise refund would be positive and invoices
                 # negative.
                 tax_amount = -tax_amount
+                tax_amount_currency = -tax_amount_currency
 
             if is_base:
                 # recupero il valore dell'imponibile
                 res[tax.id]["base"] += tax_amount
+                res[tax.id]["base_currency"] += tax_amount_currency
             else:
                 # recupero il valore dell'imposta
                 res[tax.id]["tax"] += tax_amount
+                res[tax.id]["tax_currency"] += tax_amount_currency
+
+            res[tax.id]["currency_symbol"] = move_line.currency_id.symbol
 
         return res
 
@@ -154,6 +172,9 @@ class ReportRegistroIva(models.AbstractModel):
                 "tax_code_name": tax._get_tax_name(),
                 "base": amounts_by_tax_id[tax_id]["base"],
                 "tax": amounts_by_tax_id[tax_id]["tax"],
+                "base_currency": amounts_by_tax_id[tax_id]["base_currency"],
+                "tax_currency": amounts_by_tax_id[tax_id]["tax_currency"],
+                "currency_symbol": amounts_by_tax_id[tax_id]["currency_symbol"],
                 "index": index,
                 "invoice_type": invoice_type,
                 "invoice_date": (move.invoice_date or move.date or ""),
@@ -192,6 +213,24 @@ class ReportRegistroIva(models.AbstractModel):
         if "refund" in move.move_type:
             total = -total
         return total
+
+    def _get_currency_move_total(self, move):
+        total_currency = 0.0
+        receivable_payable_found = False
+        for move_line in move.line_ids:
+            if move_line.account_id.account_type == "asset_receivable":
+                total_currency += move_line.amount_currency
+                receivable_payable_found = True
+            elif move_line.account_id.account_type == "liability_payable":
+                total_currency += move_line.amount_currency
+                receivable_payable_found = True
+        if receivable_payable_found:
+            total_currency = abs(total_currency)
+        else:
+            total_currency = abs(move.amount_currency)
+        if "refund" in move.move_type:
+            total_currency = -total_currency
+        return total_currency
 
     def _compute_totals_tax(self, tax, data):
         """
