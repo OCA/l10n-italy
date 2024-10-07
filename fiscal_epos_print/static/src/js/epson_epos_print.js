@@ -335,7 +335,7 @@ export class EpsonEposPrint {
         (args.operator || "1") +
         '"' +
         " />";
-    return tag;
+        return tag;
     }
 
     printRecItemAdjustment(args) {
@@ -430,6 +430,46 @@ export class EpsonEposPrint {
         // Implement the logic for printing payment info for customer
     }
 
+    /*
+    It prints report and fiscal closure both
+    */
+    printFiscalZReport(fiscal_op) {
+        var xml = "<printerFiscalReport>";
+        xml +=
+            '<displayText operator="' +
+            fiscal_op +
+            '" data="Stampa chiusura giornaliera" />';
+        xml += '<printZReport operator="' + fiscal_op + '" timeout="" />';
+        xml += "</printerFiscalReport>";
+        this.fiscalPrinter.send(this.url, xml);
+    }
+
+    // printOpenCashDrawer() {
+    //     var xml = "<printerCommand>";
+    //     xml += '<openDrawer operator="1"/>';
+    //     xml += "</printerCommand>";
+    //     this.fiscalPrinter.send(this.url, xml);
+    // }
+
+    // resetPrinter() {
+    //     var xml = "<printerCommand>";
+    //     xml += '<displayText operator="" data="Welcome" />';
+    //     xml += '<resetPrinter operator="1" />';
+    //     xml += "</printerCommand>";
+    //     this.fiscalPrinter.send(this.url, xml);
+    // }
+
+    /*
+    It need to be logged in to print the duplicate, the pw in data is 0212345 plus 93 spaces, total 100 chars
+    */
+    // printFiscalReprintLast (f_op) {
+    //     var xml = "<printerCommand>";
+    //     xml +=
+    //         '<directIO command="4038" data="0212345" comment="Login password 0212345 followed by 93 spaces for a length of 100" />';
+    //     xml += '<printDuplicateReceipt operator="' + f_op + '" />';
+    //     xml += "</printerCommand>";
+    //     this.fiscalPrinter.send(this.url, xml);
+    // }
     decodeFpStatus(printerStatus) {
         var printer = "";
         var ej = "";

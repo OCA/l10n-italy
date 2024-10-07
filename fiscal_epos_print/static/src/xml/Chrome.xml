@@ -2,11 +2,11 @@
 <templates id="template" xml:space="preserve">
 
     <t
-        t-name="Chrome"
-        t-inherit="point_of_sale.Chrome"
+        t-name="fiscal_epos_print.Chrome"
+        t-inherit="point_of_sale.Navbar"
         t-inherit-mode="extension"
     >
-        <xpath expr="//div[hasclass('status-buttons')]" position="inside">
+        <xpath expr="//SyncNotification" position="after">
             <EpsonEPOSButton />
             <EpsonFP81IIComponent />
         </xpath>
