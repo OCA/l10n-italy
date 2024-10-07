@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_central_journal_account_journal_form" model="ir.ui.view">
+        <field name="name">view.central.journal.account.journal.form</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='group_invoice_lines']" position="before">
+                <field name="central_journal_exclude_reportlab"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

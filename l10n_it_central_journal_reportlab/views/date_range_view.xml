@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_date_range_form_inherit_view" model="ir.ui.view">
+        <field name="name">date.range.form</field>
+        <field name="model">date.range</field>
+        <field name="inherit_id" ref="date_range.view_date_range_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/group" position="after">
+                <separator string="General Journal Info"/>
+                <group>
+                    <field name="date_last_print_reportlab"/>
+                    <field name="progressive_page_number_reportlab"/>
+                    <field name="progressive_line_number_reportlab"/>
+                    <field name="progressive_credit_reportlab"/>
+                    <field name="progressive_debit_reportlab"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_date_range_inherit_tree" model="ir.ui.view">
+        <field name="name">date.range.tree.inherit</field>
+        <field name="model">date.range</field>
+        <field name="inherit_id" ref="date_range.view_date_range_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="editable"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
