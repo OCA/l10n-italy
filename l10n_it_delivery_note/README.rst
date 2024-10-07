@@ -156,6 +156,15 @@ permessi dell'utente.
 Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle
 righe nota.
 
+Fatturazione da DN
+------------------
+
+E' possibile creare una fattura selezionando una o più DN dello stesso
+partner dalla tree view tramite il wizard "crea fattura". Si può
+scegliere se includere anche i servizi non ancora fatturati dell'ordine
+di vendita correlato o considerare solo le righe nei DN. In maniera
+predefinita vengono dedotti gli eventuali anticipi fatturati.
+
 Accesso da portale
 ------------------
 
