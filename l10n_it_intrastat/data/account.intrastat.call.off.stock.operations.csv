@@ -1,0 +1,4 @@
+id,name,code
+cos_1, Trasferimento di beni,1
+cos_2, Cancellazione di un precedente trasferimento di beni (per beni tornati al mittente),2
+cos_3, Cancellazione di un precedente trasferimento di beni che sono stati spediti ad altro soggetto (in questa evenienza occorre indicare gli estremi del soggetto nellecolonne 5 e 6 del modello INTRA-1 Sexies),3

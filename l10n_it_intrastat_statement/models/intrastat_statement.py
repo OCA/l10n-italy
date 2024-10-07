@@ -122,6 +122,12 @@ class AccountIntrastatStatement(models.Model):
     def _compute_amount_sale_s4(self):
         self._compute_amount_section('sale', 4)
 
+    @api.multi
+    @api.depends('sale_section5_ids')
+    def _compute_operation_number_s5(self):
+        for rec in self:
+            rec.sale_section5_operation_number = len(rec.sale_section5_ids)
+
     @api.depends('purchase_section1_ids.amount_euro')
     def _compute_amount_purchase_s1(self):
         self._compute_amount_section('purchase', 1)
@@ -148,7 +154,10 @@ class AccountIntrastatStatement(models.Model):
     def recompute_sequence_lines(self):
         for statement in self:
             for section_type in ['purchase', 'sale']:
-                for section_number in range(1, 5):
+                total_sections = self.get_total_sections(
+                    section_type=section_type
+                )
+                for section_number in range(1, total_sections):
                     section_field = self.get_section_field_name(
                         section_type, section_number)
                     section = statement[section_field]
@@ -326,6 +335,15 @@ class AccountIntrastatStatement(models.Model):
         store=True,
         readonly=True,
         compute='_compute_amount_sale_s4')
+    sale_section5_ids = fields.One2many(
+        comodel_name='account.intrastat.statement.sale.section5',
+        inverse_name='statement_id',
+        string="Sales - Section 5")
+    sale_section5_operation_number = fields.Integer(
+        string="Operation Count - Sales Section 5",
+        store=True,
+        readonly=True,
+        compute='_compute_operation_number_s5')
 
     purchase_statement_sequence = fields.Integer(
         string="Purchases Statement Sequence",
@@ -417,6 +435,17 @@ class AccountIntrastatStatement(models.Model):
             statement.date_start = fields.Date.to_date(period_date_start)
             statement.date_stop = fields.Date.to_date(period_date_stop)
 
+    def get_total_sections(self, section_type):
+        sections = []
+        section_number = 1
+        for field in self._fields:
+            section_field = f"{section_type}_section{section_number}_ids"
+            if section_field in field:
+                sections.append(field)
+                section_number += 1
+        total_sections = len(sections) + 1
+        return total_sections
+
     @api.multi
     def get_dates_start_stop(self):
         self.ensure_one()
@@ -480,6 +509,7 @@ class AccountIntrastatStatement(models.Model):
             self.sale_section2_ids.unlink()
             self.sale_section3_ids.unlink()
             self.sale_section4_ids.unlink()
+            self.sale_section5_ids.unlink()
         # purchase
         if section_type in ['all', 'purchase']:
             self.purchase_section1_ids.unlink()
@@ -547,22 +577,24 @@ class AccountIntrastatStatement(models.Model):
         rcd += format_x("", 1)
         # Numero di record presenti nel flusso
         tot_lines = (
-            self.sale_section1_operation_number +
-            self.sale_section2_operation_number +
-            self.sale_section3_operation_number +
-            self.sale_section4_operation_number +
-            self.purchase_section1_operation_number +
-            self.purchase_section2_operation_number +
-            self.purchase_section3_operation_number +
-            self.purchase_section4_operation_number +
-            1
-        )  # this rec
+            self.sale_section1_operation_number
+            + self.sale_section2_operation_number
+            + self.sale_section3_operation_number
+            + self.sale_section4_operation_number
+            + self.sale_section5_operation_number
+            + self.purchase_section1_operation_number
+            + self.purchase_section2_operation_number
+            + self.purchase_section3_operation_number
+            + self.purchase_section4_operation_number
+            + 1
+        )
         # Add frontispiece sale
         if (
                 self.sale_section1_operation_number
                 or self.sale_section2_operation_number
                 or self.sale_section3_operation_number
                 or self.sale_section4_operation_number
+                or self.sale_section5_operation_number
         ):
             tot_lines += 1
         # Add frontispiece purchase
@@ -605,6 +637,7 @@ class AccountIntrastatStatement(models.Model):
         #  2 = righe dettaglio sezione 2
         #  3 = righe dettaglio sezione 3
         #  4 = righe dettaglio sezione 4
+        #  5 = righe dettaglio sezione 5
         if is_frontispiece:
             record_type = 0
         else:
@@ -612,7 +645,7 @@ class AccountIntrastatStatement(models.Model):
         prefix += format_9(record_type, 1)
 
         # Numero progressivo di riga dettaglio all’interno
-        # delle sezioni 1, 2, 3 e 4, viene impostato a zero
+        # delle sezioni 1, 2, 3, 4 e 5, viene impostato a zero
         # solo nel record frontespizio
         if is_frontispiece:
             prog_number = 0
@@ -669,9 +702,9 @@ class AccountIntrastatStatement(models.Model):
             if section_number == 2:
                 amount = self._format_negative_number_frontispiece(amount)
             rcd += format_9(amount, 13)
-        # Aggiunti segnaposti per sezione 5. non supportata
+
         if kind == 'sale':
-            rcd += format_9(0, 5)
+            rcd += format_9(self.sale_section5_operation_number, 5)
 
         rcd += "\r\n"
         return rcd
@@ -713,7 +746,8 @@ class AccountIntrastatStatement(models.Model):
                 (self.sale_section1_operation_number
                  or self.sale_section2_operation_number
                  or self.sale_section3_operation_number
-                 or self.sale_section4_operation_number)
+                 or self.sale_section4_operation_number
+                 or self.sale_section5_operation_number)
                 and content_sale):
             ref_number = self.sale_statement_sequence
             # frontispiece
@@ -724,6 +758,7 @@ class AccountIntrastatStatement(models.Model):
                 self.sale_section2_ids,
                 self.sale_section3_ids,
                 self.sale_section4_ids,
+                self.sale_section5_ids,
             ]
             for section_lines in sale_lines:
                 for line in section_lines:
@@ -738,6 +773,7 @@ class AccountIntrastatStatement(models.Model):
                 and not self.sale_section2_ids \
                 and not self.sale_section3_ids \
                 and not self.sale_section4_ids \
+                and not self.sale_section5_ids \
                 and not self.purchase_section1_ids \
                 and not self.purchase_section2_ids \
                 and not self.purchase_section3_ids \
