@@ -1,27 +1,33 @@
-odoo.define("fiscal_epos_print.EpsonEPOSButton", function (require) {
-    "use strict";
+/** @odoo-module **/
 
-    const PosComponent = require("point_of_sale.PosComponent");
-    const Registries = require("point_of_sale.Registries");
+import { _t } from "@web/core/l10n/translation";
+import { Component, useState } from "@odoo/owl";
+import { Navbar } from "@point_of_sale/app/navbar/navbar";
+import { patch } from "@web/core/utils/patch";
 
-    class EpsonEPOSButton extends PosComponent {
-        /**
-         * Method that manage EpsonFP81IIComponent visibility through onClick
-         *  Handler
-         */
-        async onClick() {
-            var epsonFP81IIComponent = $(".status-buttons .epson-fp81ii-widget");
-            if (epsonFP81IIComponent.hasClass("oe_hidden")) {
-                epsonFP81IIComponent.removeClass("oe_hidden");
-            } else {
-                epsonFP81IIComponent.addClass("oe_hidden");
-            }
-        }
+
+export class EpsonEPOSButton extends Component {
+    setup() {
+        super.setup();
+        this.state = useState({
+            isVisible: false,
+        });
     }
 
-    EpsonEPOSButton.template = "EpsonEPOSButton";
+    onClick() {
+        this.state.isVisible = !this.state.isVisible;
+        const epsonFP81IIComponent = document.querySelector(".status-buttons .epson-fp81ii-widget");
+        if (this.state.isVisible) {
+            epsonFP81IIComponent.classList.remove("visually-hidden");
+        } else {
+            epsonFP81IIComponent.classList.add("visually-hidden");
+        }
+    }
+}
 
-    Registries.Component.add(EpsonEPOSButton);
+EpsonEPOSButton.template = 'fiscal_epos_print.EpsonEPOSButton';
 
-    return EpsonEPOSButton;
+// Add the EpsonEPOSButton to Navbar components
+patch(Navbar, {
+    components: { ...Navbar.components, EpsonEPOSButton },
 });

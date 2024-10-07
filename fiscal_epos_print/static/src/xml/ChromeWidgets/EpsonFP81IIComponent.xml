@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
 
-    <t t-name="EpsonFP81IIComponent" >
-        <div class="epson-fp81ii-widget oe_hidden">
-            <h1>Epson ePOS</h1>
-
+    <t t-name="fiscal_epos_print.EpsonFP81IIComponent" >
+        <div class="epson-fp81ii-widget visually-hidden">
             <div class="toggle" t-on-click="onToggleComponent">
                 <i class='fa fa-times' />
             </div>
 
             <div class="content">
-                <p class="category">Operations</p>
+                <!-- <p class="category">Operations</p>
                 <ul name="epos_operations">
                     <li>
                         <div
@@ -48,10 +46,11 @@
                             </span>
                         </div>
                     </li>
-                </ul>
+                </ul> -->
                 <p class="category">Reports</p>
                 <ul name="epos_reports">
-                    <li>
+                    <!-- TODO: Port 16.0 methods to 17.0 -->
+                    <!-- <li>
                         <div
                             class="button show_ade_status"
                             style="padding-top:5px"
@@ -68,12 +67,12 @@
                                 IRA status
                             </span>
                         </div>
-                    </li>
+                    </li> -->
                     <li>
                         <div
                             class="button fiscal_closing"
                             style="padding-top:5px"
-                            t-on-click="fiscalClosing"
+                            t-on-click="zClosure"
                         >
                             <span>
                                 <img
@@ -83,11 +82,12 @@
                                 />
                             </span>
                             <span class="category-label">
-                                Closure Report Z (Fiscal)
+                                Closure Report Z
                             </span>
                         </div>
                     </li>
-                    <li>
+                    <!-- TODO: Port 16.0 methods to 17.0 -->
+                    <!-- <li>
                         <div
                             class="button fiscal_xreport"
                             style="padding-top:5px"
@@ -104,7 +104,7 @@
                                 Financial Report X
                             </span>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
