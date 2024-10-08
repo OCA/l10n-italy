@@ -4,6 +4,9 @@ To configure this module, go to:
 
     Checking 'Use Advanced DN Features' allows you to manage more
     picking on one delivery note.
+    Checking 'Group Invoice Lines by Delivery Note which generated them' too,
+    you will have invoice lines grouped and it can be useful if you invoice
+    many DNs with same product and you want to show the details to your customer.
 
     Checking 'Display Ref. Order in Delivery Note Report' or 'Display Ref. Customer in Delivery Note Report" enables in report fields relating DN line to SO (if applicable).
 

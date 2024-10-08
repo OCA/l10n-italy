@@ -3,7 +3,7 @@
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 INVOICE_STATUSES = [
     ("no", "Nothing to invoice"),
@@ -35,6 +35,19 @@ class StockDeliveryNoteInvoiceWizard(models.TransientModel):
             self._context.get("active_ids", [])
         )
         delivery_note_ids.action_invoice(self.invoice_method)
-        for invoice in delivery_note_ids.mapped("invoice_ids"):
-            invoice.invoice_date = self.invoice_date
-        return True
+        invoice_ids = delivery_note_ids.mapped("invoice_ids")
+        if invoice_ids:
+            for invoice in invoice_ids:
+                invoice.invoice_date = self.invoice_date
+            form_id = self.env.ref("account.view_move_form").id
+            tree_id = self.env.ref("account.view_move_tree").id
+            return {
+                "name": _("Invoices from TD"),
+                "view_mode": "form,tree",
+                "res_model": "account.move",
+                "domain": [("id", "in", invoice_ids.ids)],
+                "view_id": False,
+                "views": [(tree_id, "tree"), (form_id, "form")],
+                "context": "{'move_type': 'out_invoice'}",
+                "type": "ir.actions.act_window",
+            }

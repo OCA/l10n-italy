@@ -1286,3 +1286,150 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         delivery_note.action_draft()
         self.assertEqual(delivery_note.invoice_status, "no")
         self.assertEqual(delivery_note.state, "draft")
+
+    # ⇒ "DdT multipli: fatturazione completa"
+    def test_complete_invoicing_multiple_dn(self):
+        #
+        #     SO -- Picking -- DdT ┐
+        #                          |
+        #                          ├ Fattura
+        #                          |
+        #     SO -- Picking -- DdT ┘
+        #
+
+        # Activate advanced setting to allow more picking in one DN
+        self.env["ir.config_parameter"].sudo().set_param(
+            "l10n_it_delivery_note.group_use_advanced_delivery_notes", True
+        )
+        # Activate "Group Invoice Lines by Delivery Note"
+        self.env.company.invoice_lines_grouped_by_dn = True
+
+        # 1° SO
+        first_sales_order = self.create_sales_order(
+            [
+                self.desk_combination_line,
+                self.customizable_desk_line,
+            ]
+        )
+        self.assertEqual(len(first_sales_order.order_line), 2)
+
+        first_sales_order.action_confirm()
+
+        first_picking = first_sales_order.picking_ids
+        self.assertEqual(len(first_picking), 1)
+        self.assertEqual(len(first_picking.move_ids), 2)
+
+        first_picking.move_ids[0].quantity_done = 1
+        first_picking.move_ids[1].quantity_done = 3
+
+        result = first_picking.button_validate()
+        self.assertTrue(result)
+
+        # 2° SO
+        second_sales_order = self.create_sales_order(
+            [self.large_cabinet_line, self.storage_box_line]
+        )
+        self.assertEqual(len(second_sales_order.order_line), 2)
+
+        second_sales_order.action_confirm()
+
+        second_picking = second_sales_order.picking_ids
+        self.assertEqual(len(second_picking), 1)
+        self.assertEqual(len(second_picking.move_ids), 2)
+
+        second_picking.move_ids[0].quantity_done = 11
+        second_picking.move_ids[1].quantity_done = 5
+
+        result = second_picking.button_validate()
+        self.assertTrue(result)
+
+        # 1° DdT
+        wizard = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                active_ids=first_picking.ids, active_model="stock.picking"
+            )
+        ).save()
+        result = wizard.confirm()
+        first_delivery_note = self.env["stock.delivery.note"].browse(result["res_id"])
+        first_delivery_note.action_confirm()
+        self.assertEqual(len(first_delivery_note.line_ids), 2)
+        self.assertEqual(first_delivery_note.invoice_status, "to invoice")
+
+        # 2° DdT
+        wizard = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                active_ids=second_picking.ids, active_model="stock.picking"
+            )
+        ).save()
+        result = wizard.confirm()
+        second_delivery_note = self.env["stock.delivery.note"].browse(result["res_id"])
+        second_delivery_note.action_confirm()
+        self.assertEqual(len(second_delivery_note.line_ids), 2)
+        self.assertEqual(second_delivery_note.invoice_status, "to invoice")
+
+        # Create invoice
+        delivery_notes = first_delivery_note | second_delivery_note
+        delivery_notes.action_invoice()
+
+        self.assertEqual(first_delivery_note.state, "invoiced")
+        self.assertEqual(second_delivery_note.state, "invoiced")
+
+        invoices = delivery_notes.mapped("invoice_ids")
+        self.assertEqual(len(invoices), 1)
+
+        self.assertEqual(invoices.delivery_note_ids, delivery_notes)
+        self.assertEqual(len(invoices.invoice_line_ids), 6)
+
+        # Check invoice lines
+        lines_note = invoices.invoice_line_ids.filtered(
+            lambda line: line.display_type == "line_note"
+        )
+        lines_product = invoices.invoice_line_ids.filtered(
+            lambda line: line.display_type == "product"
+        )
+        # Note 1 DdT 1: 'Delivery Note "DDT/C1/00001" of 05/08/2024'
+        line_note_dn_1 = lines_note.filtered(lambda line: line.sequence == 0)
+        self.assertEqual(
+            line_note_dn_1.name,
+            f'Delivery Note "{first_delivery_note.name}" of '
+            f'{first_delivery_note.date.strftime("%d/%m/%Y")}',
+        )
+        # Product Line 1 DdT 1
+        line_product_dn_1 = lines_product.filtered(lambda line: line.sequence == 1)
+        self.assertEqual(
+            line_product_dn_1.product_id, first_delivery_note.line_ids[0].product_id
+        )
+        self.assertEqual(
+            line_product_dn_1.quantity, first_delivery_note.line_ids[0].product_qty
+        )
+        # Product Line 2 DdT 1
+        line_product_dn_2 = lines_product.filtered(lambda line: line.sequence == 2)
+        self.assertEqual(
+            line_product_dn_2.product_id, first_delivery_note.line_ids[1].product_id
+        )
+        self.assertEqual(
+            line_product_dn_2.quantity, first_delivery_note.line_ids[1].product_qty
+        )
+        # Note 1 DdT 2: 'Delivery Note "DDT/C1/00002" of 05/08/2024'
+        line_note_dn_2 = lines_note.filtered(lambda line: line.sequence == 2)
+        self.assertEqual(
+            line_note_dn_2.name,
+            f'Delivery Note "{second_delivery_note.name}" of '
+            f'{second_delivery_note.date.strftime("%d/%m/%Y")}',
+        )
+        # Product Line 1 DdT 2
+        line_product_dn_3 = lines_product.filtered(lambda line: line.sequence == 3)
+        self.assertEqual(
+            line_product_dn_3.product_id, second_delivery_note.line_ids[0].product_id
+        )
+        self.assertEqual(
+            line_product_dn_3.quantity, second_delivery_note.line_ids[0].product_qty
+        )
+        # Product Line 2 DdT 2
+        line_product_dn_4 = lines_product.filtered(lambda line: line.sequence == 4)
+        self.assertEqual(
+            line_product_dn_4.product_id, second_delivery_note.line_ids[1].product_id
+        )
+        self.assertEqual(
+            line_product_dn_4.quantity, second_delivery_note.line_ids[1].product_qty
+        )

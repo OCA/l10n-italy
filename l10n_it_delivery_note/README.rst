@@ -78,7 +78,10 @@ To configure this module, go to:
 1. *Inventory → Configuration → Settings - Delivery Notes*
 
    Checking 'Use Advanced DN Features' allows you to manage more picking
-   on one delivery note.
+   on one delivery note. Checking 'Group Invoice Lines by Delivery Note
+   which generated them' too, you will have invoice lines grouped and it
+   can be useful if you invoice many DNs with same product and you want
+   to show the details to your customer.
 
    Checking 'Display Ref. Order in Delivery Note Report' or 'Display
    Ref. Customer in Delivery Note Report" enables in report fields
@@ -155,6 +158,13 @@ permessi dell'utente.
 
 Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle
 righe nota.
+
+Raggruppa righe fattura per DDT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Attivando le funzionalità avanzate viene mostrata l'opzione per
+abilitare il raggruppamento delle righe fattura in base al DDT che le ha
+generate ("Raggruppa righe fattura per le DN che le hanno generate").
 
 Accesso da portale
 ------------------

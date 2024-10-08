@@ -39,6 +39,12 @@ permessi dell'utente.
 Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle
 righe nota.
 
+### Raggruppa righe fattura per DDT
+
+Attivando le funzionalità avanzate viene mostrata l'opzione per abilitare
+il raggruppamento delle righe fattura in base al DDT che le ha generate
+("Raggruppa righe fattura per le DN che le hanno generate").
+
 ## Accesso da portale
 
 Gli utenti portal hanno la possibilità di scaricare i report dei DDT di cui loro o la loro azienda padre sono impostati come destinatari o indirizzo di spedizione.
