@@ -31,32 +31,30 @@
     ],
     "assets": {
         "point_of_sale._assets_pos": [
-            "fiscal_epos_print/static/lib/pikaday/pikaday.min.css",
             "fiscal_epos_print/static/src/css/pos.css",
             "fiscal_epos_print/static/lib/fiscalprint/fiscalprint.js",
-            "fiscal_epos_print/static/lib/pikaday/pikaday.min.js",  # ma serve ancora?
             "fiscal_epos_print/static/src/js/epson_epos_print.js",
             "fiscal_epos_print/static/src/js/models.js",
             # # ChromeWidgets
             "fiscal_epos_print/static/src/js/ChromeWidgets/EpsonEPOSButton.js",
             "fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js",
             # "fiscal_epos_print/static/src/js/ChromeWidgets/SetLotteryCodeButton.js",
-            # "fiscal_epos_print/static/src/js/ChromeWidgets/SetRefundInfoButton.js",
+            "fiscal_epos_print/static/src/js/ChromeWidgets/SetRefundInfoButton.js",
             # # Popups
             # "fiscal_epos_print/static/src/js/Popups/LotteryCodePopup.js",
-            # "fiscal_epos_print/static/src/js/Popups/RefundInfoPopup.js",
+            "fiscal_epos_print/static/src/js/Popups/RefundInfoPopup.js",
             # # Screens
             "fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js",
             #"fiscal_epos_print/static/src/js/Screens/ReceiptScreen/ReceiptScreen.js",
             # # Popups
             # "fiscal_epos_print/static/src/xml/Popups/LotteryCodePopup.xml",
-            # "fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml",
+            "fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml",
             # # Others
             "fiscal_epos_print/static/src/xml/Chrome.xml",
             "fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonEPOSButton.xml",
             "fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml",
             # "fiscal_epos_print/static/src/xml/ChromeWidgets/SetLotteryCodeButton.xml",
-            # "fiscal_epos_print/static/src/xml/ChromeWidgets/SetRefundInfoButton.xml",
+            "fiscal_epos_print/static/src/xml/ChromeWidgets/SetRefundInfoButton.xml",
         ],
     },
     "installable": True,
