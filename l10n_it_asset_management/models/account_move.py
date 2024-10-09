@@ -107,6 +107,7 @@ class AccountMove(models.Model):
             {
                 "default_company_id": self.company_id.id,
                 "default_dismiss_date": self.invoice_date or self.invoice_date_due,
+                "default_recharge_date": self.invoice_date or self.invoice_date_due,
                 "default_move_ids": [Command.set(self.ids)],
                 "default_move_line_ids": [Command.set(lines.ids)],
                 "default_purchase_date": self.invoice_date or self.invoice_date_due,

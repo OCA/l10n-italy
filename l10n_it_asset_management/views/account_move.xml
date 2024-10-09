@@ -100,9 +100,19 @@
                                 />
                                 <field name="force_dep_nr" invisible="1" />
                                 <field name="partial_dismissal" invisible="1" />
+                                <field name="partial_recharge" invisible="1" />
                                 <field
                                     name="depreciation_nr"
-                                    attrs="{'invisible': [('force_dep_nr', '=', False), '|', ('partial_dismissal', '=', True), ('move_type', 'not in', ('depreciated', 'historical'))]}"
+                                    attrs="{
+                                        'invisible': [
+                                            ('force_dep_nr', '=', False),
+                                            '|',
+                                                '|',
+                                                    ('partial_dismissal', '=', True),
+                                                    ('partial_recharge', '=', True),
+                                                ('move_type', 'not in', ('depreciated', 'historical')),
+                                            ],
+                                        }"
                                 />
                                 <field name="amount" widget="monetary" />
                                 <field name="requires_account_move" invisible="1" />
