@@ -5,38 +5,18 @@ import { patch } from "@web/core/utils/patch";
 import { _t } from "@web/core/l10n/translation";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
 import { roundPrecision as round_pr } from "@web/core/utils/numbers";
+import { PosStore } from "@point_of_sale/app/store/pos_store";
 
-// vedi PosStore, forse
-// class FiscalEposPrintPosGlobalState extends PosGlobalState {
-//     set_refund_data(refund_date, refund_report, refund_doc_num, refund_cash_fiscal_serial, refund_full_refund) {
-//         const selectedOrder = this.get_order();
-//         selectedOrder.refund_date = refund_date;
-//         selectedOrder.refund_report = refund_report;
-//         selectedOrder.refund_doc_num = refund_doc_num;
-//         selectedOrder.refund_cash_fiscal_serial = refund_cash_fiscal_serial;
-//         selectedOrder.refund_full_refund = refund_full_refund;
-//     }
-
-//     set_lottery_code_data(lottery_code) {
-//         const selectedOrder = this.get_order();
-//         selectedOrder.lottery_code = lottery_code;
-//     }
-
-//     reset_cashier() {
-//         this.cashier = {
-//             name: null,
-//             id: null,
-//             barcode: null,
-//             user_id: null,
-//             pin: null,
-//             role: null,
-//             fiscal_operator_number: null,
-//         };
-//     }
-// }
-
-// Register the extended PosGlobalState class
-//registry.category("models").add("PosGlobalState", FiscalEposPrintPosGlobalState);
+patch(PosStore.prototype, {
+    set_refund_data(refund_date, refund_report, refund_doc_num, refund_cash_fiscal_serial, refund_full_refund) {
+        const selectedOrder = this.get_order();
+        selectedOrder.refund_date = refund_date;
+        selectedOrder.refund_report = refund_report;
+        selectedOrder.refund_doc_num = refund_doc_num;
+        selectedOrder.refund_cash_fiscal_serial = refund_cash_fiscal_serial;
+        selectedOrder.refund_full_refund = refund_full_refund;
+    },
+});
 
 patch(Order.prototype, {
     setup() {
