@@ -16,3 +16,20 @@ class ResPartner(models.Model):
     group_riba = fields.Boolean(
         "Group RiBa", help="Group RiBa by customer while issuing."
     )
+    is_supplier_payment_riba = fields.Boolean(
+        string="Is RiBa Payment",
+        related="property_supplier_payment_term_id.riba",
+        readonly=True,
+    )
+
+    def _domain_property_riba_supplier_company_bank_id(self):
+        """Allow to select bank accounts linked to the current company."""
+        return self.env["res.partner.bank"]._domain_riba_partner_bank_id()
+
+    property_riba_supplier_company_bank_id = fields.Many2one(
+        comodel_name="res.partner.bank",
+        company_dependent=True,
+        string="Company Bank Account for Supplier",
+        domain=_domain_property_riba_supplier_company_bank_id,
+        help="Bank account used for the RiBa of this supplier.",
+    )
