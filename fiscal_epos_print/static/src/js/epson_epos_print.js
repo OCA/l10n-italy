@@ -176,7 +176,7 @@ export class EpsonEposPrint {
             if (l.price_unit_incl >= 0) {
                 if (l.qty >= 0 && l.discount < 100) {
                     xml += this.printRecItem({
-                        description: l.product_name,
+                        description: l.full_product_name,
                         quantity: l.qty,
                         unitPrice: l.price_unit_incl.toFixed(2),
                         department: l.tax_department.code,
@@ -251,8 +251,7 @@ export class EpsonEposPrint {
             });
         });
 
-        // ?
-        //xml += this.printOrderId(receipt);
+        xml += this.printOrderId(receipt);
 
         // if (receipt.ticket) {
         //     xml += this.printInfoPaymentCustomer(receipt);
@@ -469,7 +468,17 @@ export class EpsonEposPrint {
     }
 
     printOrderId(receipt) {
-        // Implement the logic for printing the order ID
+        var message = receipt.name;
+        var tag =
+            "<printRecMessage" +
+            ' messageType="3" message="' +
+            this.encodeXml(message) +
+            '" font="1" index="4"' +
+            ' operator="' +
+            (receipt.fiscal_operator_number || "1") +
+            '"' +
+            " />";
+        return tag;
     }
 
     printInfoPaymentCustomer(receipt) {
