@@ -27,7 +27,7 @@ Header = namedtuple(
         "required",  # Defines whether the field is required in Odoo
         "tmpl_default",  # Defines the default value when creating templates
         "type",
-    ]  # Defines the type of the value we expect (and how
+    ],  # Defines the type of the value we expect (and how
     #   to manage it)
 )
 HEADERS = (
@@ -376,10 +376,8 @@ class AssetHistoryImport(models.TransientModel):
         return {
             "name": "Download Template File",
             "type": "ir.actions.act_url",
-            "url": "/web/content/{res_model}/{res_id}/template_file/"
-            "Import%20File%20Template.xlsx?download=true".format(
-                res_model=self._name, res_id=self.id
-            ),
+            "url": f"/web/content/{self._name}/{self.id}/template_file/"
+            "Import%20File%20Template.xlsx?download=true",
         }
 
     def import_file(self):

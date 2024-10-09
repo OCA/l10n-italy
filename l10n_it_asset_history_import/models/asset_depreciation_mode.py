@@ -49,7 +49,7 @@ class DepreciationMode(models.Model):
     @api.model
     def get_by_import_code(self, code):
         self._cr.execute(
-            "SELECT id FROM {} WHERE import_code = %s".format(self._table), (code,)
+            f"SELECT id FROM {self._table} WHERE import_code = %s", (code,)
         )
         res = [x[0] for x in self._cr.fetchall()]
         return self.browse(res)
@@ -57,6 +57,6 @@ class DepreciationMode(models.Model):
     def assign_import_code(self):
         self.ensure_one()
         self._cr.execute(
-            "UPDATE {} SET import_code = %s WHERE id = %s".format(self._table),
+            f"UPDATE {self._table} SET import_code = %s WHERE id = %s",
             (f"DEP-MODE-{self.id}", self.id),
         )
