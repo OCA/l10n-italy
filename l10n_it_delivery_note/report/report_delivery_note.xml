@@ -54,18 +54,42 @@
                     <h4>
                         <strong>Delivery address:</strong>
                     </h4>
-                    <div
-                        t-field="doc.partner_shipping_id"
-                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
-                    />
-                    <p t-if="doc.partner_shipping_id.vat"><t
-                            t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
-                        />: <span t-field="doc.partner_shipping_id.vat" /></p>
+                    <t t-if="doc.partner_id.id == doc.partner_sender_id.id">
+                        <div
+                            t-field="doc.partner_shipping_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                        />
+                        <p t-if="doc.partner_shipping_id.vat"><t
+                                t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                            />: <span t-field="doc.partner_shipping_id.vat" /></p>
+                    </t>
+                    <t t-if="doc.partner_id.id != doc.partner_sender_id.id">
+                        <t
+                            t-if="doc.partner_sender_id.id != doc.partner_shipping_id.id"
+                        >
+                            <div
+                                t-field="doc.partner_shipping_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                            />
+                            <p t-if="doc.partner_shipping_id.vat"><t
+                                    t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                                />: <span t-field="doc.partner_shipping_id.vat" /></p>
+                        </t>
+                        <t t-else="">
+                            <div
+                                t-field="doc.partner_sender_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                            />
+                            <p t-if="doc.partner_sender_id.vat"><t
+                                    t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
+                                />: <span t-field="doc.partner_sender_id.vat" /></p>
+                        </t>
+                    </t>
                 </t>
                 <t t-if="doc.picking_ids and doc.picking_ids[0].location_id.id">
                     <t t-set="information_block">
                         <h4>
-                            <strong>Warehouse:</strong>
+                            <strong>Shipping from:</strong>
                         </h4>
                         <p>
                             <t
@@ -81,7 +105,7 @@
                     <div
                         t-if="doc.type_code=='outgoing' and doc.picking_ids and doc.picking_ids[0].location_id.id"
                     >
-                        <strong>Warehouse:</strong>
+                        <strong>Shipping from:</strong>
                         <p>
                             <t
                                 t-esc="doc.get_location_address(doc.picking_ids[0].location_id.id)"
