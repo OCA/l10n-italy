@@ -809,6 +809,10 @@ class AccountIntrastatStatement(models.Model):
             (2, 1),  # Sale (Purchase) section 2 refunds section 1
             (4, 3),  # Sale (Purchase) section 4 refunds section 3
         ]
+
+        period_date_start = fields.Date.to_date(period_date_start)
+        period_date_stop = fields.Date.to_date(period_date_stop)
+
         for section_type in ["purchase", "sale"]:
             for section_number, refund_section_number in refund_map:
                 section_details = (section_type, section_number)
@@ -819,7 +823,14 @@ class AccountIntrastatStatement(models.Model):
                         *refund_section_details
                     )
                     to_refund_model = self.env[refund_section_model]
-                    self.refund_line(line, to_refund_model)
+                    if not (
+                        line.invoice_id.reversed_entry_id
+                        and (
+                            line.invoice_id.reversed_entry_id.date < period_date_start
+                            or line.invoice_id.reversed_entry_id.date > period_date_stop
+                        )
+                    ):
+                        self.refund_line(line, to_refund_model)
         return True
 
     @staticmethod
