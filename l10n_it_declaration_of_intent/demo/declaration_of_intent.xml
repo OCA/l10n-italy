@@ -36,9 +36,13 @@
         ]"
         />
     </record>
-    <record id="l10n_it_esportatore_abituale" model="account.fiscal.position">
+    <record id="l10n_it_esportatore_abituale" model="account.fiscal.position.template">
         <field name="name">Esportatore Abituale (Dichiarazione Intento)</field>
-        <field name="chart_template_id" ref="l10n_it.l10n_it_chart_template_generic" />
+        <field
+            name="chart_template_id"
+            model="account.chart.template"
+            eval="ref('l10n_it.l10n_it_chart_template_generic', raise_if_not_found=False) or ref('l10n_generic_coa.configurable_chart_template', raise_if_not_found=False) or obj().env['account.chart.template'].search([], limit=1)"
+        />
         <field name="sequence">6</field>
         <field name="auto_apply">1</field>
         <field name="vat_required">1</field>
@@ -54,6 +58,6 @@
         <field name="city">Monopoli</field>
         <field name="zip">00000</field>
         <field name="country_id" ref="base.it" />
-        <field name="fiscal_position_id" ref="l10n_it_esportatore_abituale" />
+        <field name="property_account_position_id" ref="l10n_it_esportatore_abituale" />
     </record>
 </odoo>
