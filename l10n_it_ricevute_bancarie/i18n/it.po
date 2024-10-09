@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:18+0000\n"
-"PO-Revision-Date: 2024-07-29 08:58+0000\n"
+"PO-Revision-Date: 2024-10-09 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -563,7 +563,7 @@ msgstr "Riga fattura"
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line_invoice_number
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
 msgid "Invoice Number"
-msgstr "Numero Fattura"
+msgstr "Numero fattura"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.view_riba_distinta_line_form
