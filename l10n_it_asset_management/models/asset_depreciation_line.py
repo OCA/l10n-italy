@@ -119,7 +119,7 @@ class AssetDepreciationLine(models.Model):
     _numbered_move_types = ("depreciated", "historical")
     # Non-default parameter: set which `move_types` do not concur to
     # asset.depreciation's `amount_residual` field compute
-    _non_residual_move_types = ("gain",)
+    _non_residual_move_types = ("gain", "loss")
     # Non-default parameter: set which `move_types` get to update the
     # depreciable amount
     _update_move_types = ("in", "out")
