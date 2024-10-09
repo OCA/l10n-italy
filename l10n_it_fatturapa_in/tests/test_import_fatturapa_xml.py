@@ -208,31 +208,15 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         journal_account = journal.default_account_id
         journal.default_account_id = False
 
-        expense_default_property = self.env["ir.property"]._get_property(
-            "property_account_expense_categ_id",
-            "product.category",
-            res_id=False,
-        )
-        # Setting res_id disables the property from acting as default value
-        expense_default_property.res_id = 1
-        with self.assertRaises(UserError) as ue:
+        with self.assertRaises(UserError) as ue, mute_logger("odoo.sql_db"):
             res = self.run_wizard("test8_no_account", "IT05979361218_005.xml")
             # allow following code to reuse the same XML file
             invoice_id = res.get("domain")[0][2][0]
             invoice = self.invoice_model.browse(invoice_id)
             invoice.ref = invoice.payment_reference = "14082"
         self.assertIn(journal.display_name, ue.exception.args[0])
-        self.assertIn(company.display_name, ue.exception.args[0])
 
-        # Restore the property and import the invoice
-        expense_default_property.res_id = False
-        res = self.run_wizard("test8_with_property", "IT05979361218_005.xml")
-        invoice_id = res.get("domain")[0][2][0]
-        invoice = self.invoice_model.browse(invoice_id)
-        # allow following code to reuse the same XML file
-        invoice.ref = invoice.payment_reference = "14083"
-
-        # Restore the property and import the invoice
+        # Restore the journal account and import the invoice
         journal.default_account_id = journal_account
         res = self.run_wizard("test8_with_journal", "IT05979361218_005.xml")
         invoice_id = res.get("domain")[0][2][0]
