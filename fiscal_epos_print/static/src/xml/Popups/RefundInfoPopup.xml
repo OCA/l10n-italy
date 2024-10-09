@@ -3,8 +3,8 @@
 
     <t t-name="RefundInfoPopup" >
 
-        <div class="modal-dialog">
-            <div class="popup popup-text">
+        <div class="popup">
+            <main class="modal-body">
 
                 <p class="title">
                    <t t-esc=" props.title || '' " />
@@ -37,7 +37,7 @@
                     <input
                         id="refund_date"
                         class="detail refund_date"
-                        type='text'
+                        type='date'
                         t-att-value="props.refund_date || ''"
                         t-ref="inputRefundDate"
                         placeholder="YYYY-MM-DD"
@@ -65,11 +65,11 @@
                     />
                 </div>
 
-                <div class="footer">
-                    <div class="button confirm" t-on-click="clickConfirmRefund">
-                        Apply
+                <div class="footer footer-flex modal-footer">
+                    <div class="button confirm highlight btn btn-lg btn-primary" t-on-click="clickConfirmRefund">
+                        <t t-esc="props.confirmText" />
                     </div>
-                    <div class="button cancel" t-on-click="cancel">
+                    <div class="button cancel btn btn-lg btn-secondary" t-on-click="cancel">
                             <t t-esc="props.cancelText" />
                         </div>
                     <div
@@ -79,7 +79,7 @@
                         Some fields are empty.
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
 
     </t>

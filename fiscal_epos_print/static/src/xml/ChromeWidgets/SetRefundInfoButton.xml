@@ -2,10 +2,10 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="SetRefundInfoButton" >
-        <div id="refund_info_button" class='control-button' t-on-click="onClickRefund">
+        <button id="refund_info_button" class='control-button btn btn-light rounded-0 fw-bolder' t-on-click="() => this.onClickRefund()">
             <i class='fa fa-pencil-square-o' />
             Refund Data
-        </div>
+        </button>
     </t>
 
 </templates>

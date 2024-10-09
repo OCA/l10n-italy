@@ -29,6 +29,11 @@ export class EpsonEposPrint {
         return tag === "printerStatus" || tag === "fsStatus";
     }
 
+    addPadding(str, padding = 4) {
+        var pad = new Array(padding).fill(0).join("") + str;
+        return pad.substring(pad.length - padding);
+    }
+
     // Method to handle successful receipt
     onReceive(res, tagListNames, addInfo) {
         let tagStatus = tagListNames ? tagListNames.filter(this.getStatusField) : [];
@@ -50,8 +55,9 @@ export class EpsonEposPrint {
                     JSON.stringify(tagListNames) +
                     "\n" +
                     JSON.stringify(addInfo);
+
                 // Save the order
-                // this.pos.push_single_order(order);
+                //this.pos.push_single_order(order);
             }
 
             if (tagStatus.length > 0) {
@@ -89,13 +95,10 @@ export class EpsonEposPrint {
                 order.fiscal_receipt_number = parseInt(addInfo.fiscalReceiptNumber, 10);
                 order.fiscal_receipt_amount = parseFloat(addInfo.fiscalReceiptAmount.replace(",", "."));
                 const fiscalReceiptDate = new Date(addInfo.fiscalReceiptDate.replace(/(\d{1,2})\/(\d{1,2})\/(\d{4})/, "$3/$2/$1"));
-                //TODO moment non vien più utilizzato
-                //order.fiscal_receipt_date = moment(fiscalReceiptDate).format("YYYY-MM-DD");
+                order.fiscal_receipt_date = fiscalReceiptDate.toISOString().slice(0, 10);
                 order.fiscal_z_rep_number = addInfo.zRepNumber;
                 order.fiscal_printer_serial = this.pos.config.fiscal_printer_serial;
-
-                // Save the order
-                // this.pos.push_single_order(order);
+                //this.pos.push_single_order(order);
             }
 
             if (this.pos.config.fiscal_cashdrawer) {
@@ -137,7 +140,7 @@ export class EpsonEposPrint {
     }
 
     printFiscalReceipt(receipt) {
-        //const hasRefund = receipt.orderlines.every((line) => line.quantity < 0);
+        const hasRefund = receipt.lines.every((line) => line[2].qty < 0);
         let xml = "<printerFiscalReceipt>";
         const fiscalOperator = receipt.fiscal_operator_number || "1";
 
@@ -146,25 +149,24 @@ export class EpsonEposPrint {
             xml += this.printFiscalReceiptHeader(receipt);
         }
 
-        // TODO
         // If the receipt has refund
-        // if (hasRefund) {
-        //     xml += receipt.refund_full_refund
-        //         ? this.printFiscalVoidDetails({
-        //               refund_date: receipt.refund_date,
-        //               refund_report: receipt.refund_report,
-        //               refund_doc_num: receipt.refund_doc_num,
-        //               refund_cash_fiscal_serial: receipt.refund_cash_fiscal_serial,
-        //               operator: fiscalOperator,
-        //           })
-        //         : this.printFiscalRefundDetails({
-        //               refund_date: receipt.refund_date,
-        //               refund_report: receipt.refund_report,
-        //               refund_doc_num: receipt.refund_doc_num,
-        //               refund_cash_fiscal_serial: receipt.refund_cash_fiscal_serial,
-        //               operator: fiscalOperator,
-        //           });
-        // }
+        if (hasRefund) {
+            xml += receipt.refund_full_refund
+                ? this.printFiscalVoidDetails({
+                      refund_date: receipt.refund_date,
+                      refund_report: receipt.refund_report,
+                      refund_doc_num: receipt.refund_doc_num,
+                      refund_cash_fiscal_serial: receipt.refund_cash_fiscal_serial,
+                      operator: fiscalOperator, //TODO: fiscalOperator or receipt.fiscal_operator_number?
+                  })
+                : this.printFiscalRefundDetails({
+                      refund_date: receipt.refund_date,
+                      refund_report: receipt.refund_report,
+                      refund_doc_num: receipt.refund_doc_num,
+                      refund_cash_fiscal_serial: receipt.refund_cash_fiscal_serial,
+                      operator: fiscalOperator, //TODO: fiscalOperator or receipt.fiscal_operator_number?
+                  });
+        }
 
         xml += `<beginFiscalReceipt operator="${fiscalOperator}" />`;
 
@@ -190,16 +192,16 @@ export class EpsonEposPrint {
                         });
                     }
                 }
-                // TODO
-                // else {
-                //     xml += this.printRecRefund({
-                //         description: `${_t("Refund: ")} ${l.product_name}`,
-                //         quantity: l.quantity * -1.0,
-                //         unitPrice: round_pr(l.price, this.pos.currency.rounding), // TODO sostituire round_pr con toFixed
-                //         department: l.tax_department.code,
-                //         operator: fiscalOperator,
-                //     });
-                // }
+                else {
+                    var product_name = l.product_name || l.full_product_name || "";
+                    xml += this.printRecRefund({
+                        description: `${_t("Refund: ")} ${product_name}`,
+                        quantity: l.qty * -1.0,
+                        unitPrice: l.price_unit_incl.toFixed(2),
+                        department: l.tax_department.code,
+                        operator: fiscalOperator,
+                    });
+                }
             } else {
                 xml += this.printRecItemAdjustment({
                     adjustmentType: 3,
@@ -284,8 +286,32 @@ export class EpsonEposPrint {
         return msg;
     }
 
-    printFiscalVoidDetails(details) {
-        // Implement the logic for printing void details
+    printFiscalVoidDetails(args) {
+        var message =
+            "VOID " +
+            this.addPadding(args.refund_report) +
+            " " +
+            this.addPadding(args.refund_doc_num) +
+            " " +
+            // Day
+            args.refund_date.substr(8, 2) +
+            // Month
+            args.refund_date.substr(5, 2) +
+            // Year
+            args.refund_date.substr(0, 4) +
+            " " +
+            args.refund_cash_fiscal_serial;
+
+        var tag =
+            "<printRecMessage" +
+            ' messageType="4" message="' +
+            this.encodeXml(message) +
+            '" font="1" index="1"' +
+            ' operator="' +
+            (args.operator || "1") +
+            '"' +
+            " />";
+        return tag;
     }
 
     printFiscalRefundDetails(args) {
@@ -384,13 +410,33 @@ export class EpsonEposPrint {
             " />";
         return tag;
     }
-
+    /*
+    Prints a sale refund item line.
+    Prints refund items on a commercial refund document if flag SET 14/58 = 1 (from display 3333 > 14 > 58 > X).
+    */
     printRecRefund(args) {
-        // Implement the logic for printing refund receipt items
-    }
-
-    printRounding(args) {
-        // Implement rounding print logic
+        var tag =
+            "<printRecRefund" +
+            ' description="' +
+            this.encodeXml(args.description || "") +
+            '"' +
+            ' quantity="' +
+            (args.quantity || "1") +
+            '"' +
+            ' unitPrice="' +
+            (args.unitPrice || "") +
+            '"' +
+            ' department="' +
+            (args.department || "1") +
+            '"' +
+            ' justification="' +
+            (args.justification || "1") +
+            '"' +
+            ' operator="' +
+            (args.operator || "1") +
+            '"' +
+            " />";
+        return tag;
     }
 
     printFiscalReceiptFooter(receipt) {
