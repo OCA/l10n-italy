@@ -456,6 +456,7 @@ class FatturapaCommon(SingleTransactionCase):
         user = mail_new_test_user(
             cls.env,
             login="it_account_manager",
+            password="it_account_manager",
             groups=",".join(groups_xml_id_dict.values()),
         )
 
@@ -477,6 +478,10 @@ class FatturapaCommon(SingleTransactionCase):
             country_id=cls.env.ref("base.it").id,
         )
         it_company = cls.company_data_it["company"]
+        cls.other_company_data = AccountTestInvoicingCommon.setup_company_data(
+            "Other company",
+        )
+        cls.other_company = cls.other_company_data["company"]
         cls.env.user.company_id = it_company
         cls.env.user.company_ids = it_company
         cls.env["res.lang"]._activate_lang("it_IT")
