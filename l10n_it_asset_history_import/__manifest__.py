@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Gestione cespiti - Importazione storico",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Accounting",
     "summary": "Cespiti: importazione storico dati",
     "author": "Openforce, Odoo Community Association (OCA)",
