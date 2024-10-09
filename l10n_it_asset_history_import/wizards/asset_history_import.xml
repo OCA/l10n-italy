@@ -6,11 +6,9 @@
         <field name="model">wizard.asset.history.import</field>
         <field name="arch" type="xml">
             <form>
-                <group name="file" string="File">
+                <sheet>
                     <field name="file" filename="filename" nolabel="1" />
                     <field name="filename" invisible="1" />
-                </group>
-                <group name="template_file">
                     <div class="oe_inline">
                         <p>
                             Files will be imported following the position of every single column.
@@ -30,15 +28,13 @@
                             />
                         </p>
                     </div>
-                </group>
-                <group name="settings">
                     <group name="company" groups="base.group_multi_company">
                         <field
                             name="company_id"
                             options="{'no_open': 1, 'no_create_edit': True}"
                         />
                     </group>
-                </group>
+                </sheet>
                 <footer>
                     <button
                         name="import_file"
@@ -64,7 +60,7 @@
         id="menu_wizard_asset_history_import"
         name="Assets History Import"
         action="action_wizard_asset_history_import"
-        parent="assets_management.menu_asset_management"
+        parent="l10n_it_asset_management.menu_asset_management"
         sequence="10"
     />
 

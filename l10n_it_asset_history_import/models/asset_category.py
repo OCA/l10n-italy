@@ -21,7 +21,6 @@ class AssetCategory(models.Model):
         copy=False,
         help="Used to import data from xls(x) files. Must be unique.",
         readonly=True,
-        string="Import Code",
     )
 
     @api.model_create_multi

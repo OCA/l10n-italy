@@ -30,7 +30,6 @@ class Asset(models.Model):
         copy=False,
         help="Used to import data from xls(x) files. Must be unique.",
         readonly=True,
-        string="Import Code",
     )
 
     @api.model_create_multi
@@ -100,7 +99,7 @@ class Asset(models.Model):
             template_data_list = [
                 line.get_template_file_data(file_headers)
                 for line in self.mapped("depreciation_ids.line_ids").sorted(
-                    key=lambda l: (l.asset_id, l.depreciation_id, l.date)
+                    key=lambda ln: (ln.asset_id, ln.depreciation_id, ln.date)
                 )
             ]
             for template_data in template_data_list:

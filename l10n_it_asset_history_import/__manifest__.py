@@ -16,7 +16,7 @@
         ],
     },
     "depends": [
-        "assets_management",
+        "l10n_it_asset_management",
     ],
     "data": [
         "security/ir.model.access.csv",

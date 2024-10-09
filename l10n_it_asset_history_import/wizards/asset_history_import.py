@@ -262,7 +262,11 @@ def get_header_by_model_and_field(model, field):
         if h.model == model and h.field == field:
             return h
     raise ValueError(
-        _("No file column for model `{}` and field `{}`").format(model, field)
+        _(
+            "No file column for model `%(model)s` and field `%(field)s`",
+            model=model,
+            field=field,
+        )
     )
 
 
@@ -278,11 +282,11 @@ def to_date(v, w, s):
     try:
         if not v:
             return fields.Date.to_date(v)
-        if isinstance(v, (int, float)):
+        if isinstance(v, (int | float)):
             return date(*xlrd.xldate_as_tuple(v, w.datemode)[:3])
         return datetime.strptime(v, "%d/%m/%Y").date()
-    except Exception:
-        raise ValidationError(_(f"Invalid date {v}"))
+    except Exception as exc:
+        raise ValidationError(_(f"Invalid date {v}")) from exc
 
 
 def to_float(v, w, s):
@@ -290,8 +294,8 @@ def to_float(v, w, s):
         if not v:
             return 0
         return float(v)
-    except Exception:
-        raise ValidationError(_(f"Invalid float number {v}"))
+    except Exception as exc:
+        raise ValidationError(_(f"Invalid float number {v}")) from exc
 
 
 def to_selection(v, w, s):
@@ -345,11 +349,11 @@ class AssetHistoryImport(models.TransientModel):
         string="Company",
     )
 
-    file = fields.Binary(string="File")
+    file = fields.Binary()
 
     filename = fields.Char(string="File Name")
 
-    template_file = fields.Binary(string="Template File")
+    template_file = fields.Binary()
 
     def download_template_file(self):
         """
@@ -392,7 +396,7 @@ class AssetHistoryImport(models.TransientModel):
 
     def launch_view(self, asset_ids):
         """Opens tree view upon assets"""
-        act = self.env.ref("assets_management.action_asset").read(load="")[0]
+        act = self.env.ref("l10n_it_asset_management.action_asset").read(load="")[0]
         act.update({"domain": [("id", "in", asset_ids)]})
         return act
 
@@ -458,8 +462,10 @@ class AssetHistoryImport(models.TransientModel):
             raise ValidationError(
                 _(
                     "Could not retrieve depreciation mode and type by codes"
-                    " '{}' and '{}'."
-                ).format(mode_code, type_code)
+                    " '%(mode_code)s' and '%(type_code)s'.",
+                    mode_code=mode_code,
+                    type_code=type_code,
+                )
             )
 
         vals.update(
@@ -500,9 +506,11 @@ class AssetHistoryImport(models.TransientModel):
             if missing_h:
                 raise ValidationError(
                     _(
-                        "Line {} misses required info on column(s) {}."
-                        " Aborting import."
-                    ).format(str(n), ", ".join(missing_h))
+                        "Line %(nr)s misses required info on column(s) %(missing)s."
+                        " Aborting import.",
+                        nr=str(n),
+                        missing=", ".join(missing_h),
+                    )
                 )
 
             key = tuple(row[h.col] for h in HEADERS if h.field == "import_code")
@@ -529,8 +537,9 @@ class AssetHistoryImport(models.TransientModel):
                 }
             )
 
-        ctx = dict(self._context or [], skip_depreciation_creation=True)
-        asset_obj = self.env["asset.asset"].with_context(ctx)
+        asset_obj = self.env["asset.asset"].with_context(
+            skip_depreciation_creation=True
+        )
         dep_obj = self.env["asset.depreciation"]
         dep_line_obj = self.env["asset.depreciation.line"]
         asset_ids = set()
@@ -586,8 +595,10 @@ class AssetHistoryImport(models.TransientModel):
         try:
             workbook = xlrd.open_workbook(file_contents=base64.decodebytes(self.file))
             sheet = workbook.sheet_by_index(0)
-        except xlrd.XLRDError:
-            raise ValidationError(_("Attention! Invalid xls(x) file. Aborting import."))
+        except xlrd.XLRDError as exc:
+            raise ValidationError(
+                _("Attention! Invalid xls(x) file. Aborting import.")
+            ) from exc
 
         file_headers = sheet.row_values(0)
         if not file_headers:

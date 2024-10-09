@@ -6,7 +6,7 @@
         <field name="model">asset.depreciation.mode</field>
         <field
             name="inherit_id"
-            ref="assets_management.asset_depreciation_mode_form_view"
+            ref="l10n_it_asset_management.asset_depreciation_mode_form_view"
         />
         <field name="arch" type="xml">
             <xpath expr="//group/group/field[@name='name']" position="after">
@@ -20,7 +20,7 @@
         <field name="model">asset.depreciation.mode</field>
         <field
             name="inherit_id"
-            ref="assets_management.asset_depreciation_mode_tree_view"
+            ref="l10n_it_asset_management.asset_depreciation_mode_tree_view"
         />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
