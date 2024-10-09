@@ -1,5 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import warnings
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -72,51 +74,60 @@ class WizardRegistroIva(models.TransientModel):
         ]
 
     def _get_move_ids(self, wizard):
+        if wizard:
+            warnings.warn(
+                "`wizard` parameter will be removed because is the same as `self`.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+
         MAPPING = {
             "journal_date_name": "journal_id, date, name",
             "date_name": "date, name",
         }
-        order = MAPPING[wizard.entry_order]
+        order = MAPPING[self.entry_order]
         moves = self.env["account.move"].search(
             self._get_move_ids_domain(),
             order=order,
         )
         return moves.ids
 
-    def print_registro(self):
+    def _get_registro_data(self):
         self.ensure_one()
-        wizard = self
-        if not wizard.journal_ids:
+        if not self.journal_ids:
             raise UserError(
                 _(
                     "No journals found in the current selection.\n"
                     "Please load them before to retry!"
                 )
             )
-        move_ids = self._get_move_ids(wizard)
-
-        datas_form = {}
-        datas_form["from_date"] = wizard.from_date
-        datas_form["to_date"] = wizard.to_date
-        datas_form["journal_ids"] = [j.id for j in wizard.journal_ids]
-        datas_form["fiscal_page_base"] = wizard.fiscal_page_base
-        datas_form["registry_type"] = wizard.layout_type
-        datas_form["year_footer"] = wizard.year_footer
 
         lang_code = self.env.company.partner_id.lang
-        lang = self.env["res.lang"]
-        lang_id = lang._lang_get(lang_code)
-        date_format = lang_id.date_format
-        datas_form["date_format"] = date_format
-
-        if wizard.tax_registry_id:
-            datas_form["tax_registry_name"] = wizard.tax_registry_id.name
+        lang = self.env["res.lang"]._lang_get(lang_code)
+        datas_form = {
+            "from_date": self.from_date,
+            "to_date": self.to_date,
+            "journal_ids": self.journal_ids.ids,
+            "fiscal_page_base": self.fiscal_page_base,
+            "registry_type": self.layout_type,
+            "year_footer": self.year_footer,
+            "date_format": lang.date_format,
+            "only_totals": self.only_totals,
+            "entry_order": self.entry_order,
+            "show_full_contact_addess": self.show_full_contact_addess,
+        }
+        if self.tax_registry_id:
+            datas_form["tax_registry_name"] = self.tax_registry_id.name
         else:
             datas_form["tax_registry_name"] = ""
-        datas_form["only_totals"] = wizard.only_totals
-        datas_form["entry_order"] = wizard.entry_order
-        datas_form["show_full_contact_addess"] = wizard.show_full_contact_addess
-        # report_name = 'l10n_it_vat_registries.report_registro_iva'
+        return {
+            "ids": self._get_move_ids(self.browse()),
+            "model": "account.move",
+            "form": datas_form,
+        }
+
+    def print_registro(self):
+        self.ensure_one()
+        datas = self._get_registro_data()
         report_name = "l10n_it_vat_registries.action_report_registro_iva"
-        datas = {"ids": move_ids, "model": "account.move", "form": datas_form}
         return self.env.ref(report_name).report_action(self, data=datas)
