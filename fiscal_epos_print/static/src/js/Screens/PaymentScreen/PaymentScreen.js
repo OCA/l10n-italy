@@ -20,7 +20,7 @@ patch(PaymentScreen.prototype, {
             const currentOrder = this.state.order;
             const printer_options = currentOrder.getPrinterOptions();
             this.fp90 = new EpsonEposPrint(printer_options, this);
-            const amount = parseFloat(currentOrder.get_total_with_tax()) + " €";
+            const amount = currentOrder.get_total_with_tax().toFixed(2) + " €";
             this.fp90.printDisplayText(_t("SubTotal") + " " + amount);
         }
     },
