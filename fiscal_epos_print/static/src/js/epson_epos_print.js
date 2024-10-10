@@ -98,7 +98,6 @@ export class EpsonEposPrint {
                 order.fiscal_receipt_date = fiscalReceiptDate.toISOString().slice(0, 10);
                 order.fiscal_z_rep_number = addInfo.zRepNumber;
                 order.fiscal_printer_serial = this.pos.config.fiscal_printer_serial;
-                //this.pos.push_single_order(order);
             }
 
             if (this.pos.config.fiscal_cashdrawer) {
@@ -259,7 +258,7 @@ export class EpsonEposPrint {
 
         xml += `<endFiscalReceipt operator="${fiscalOperator}" /></printerFiscalReceipt>`;
 
-        this.fiscalPrinter.send(this.url, xml);
+        this.fiscalPrinter.send(this.url, xml, 0, "sync");
         console.log(xml);
     }
 
