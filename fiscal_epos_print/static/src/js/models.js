@@ -20,7 +20,6 @@ patch(PosStore.prototype, {
 
 patch(Order.prototype, {
     setup() {
-        super.setup(...arguments);
         this.lottery_code = null;
         this.refund_report = null;
         this.refund_date = null;
@@ -32,8 +31,13 @@ patch(Order.prototype, {
         this.fiscal_receipt_amount = null;
         this.fiscal_receipt_date = null;
         this.fiscal_z_rep_number = null;
-        this.fiscal_printer_serial = this.pos.config.fiscal_printer_serial || null;
         this.fiscal_printer_debug_info = null;
+
+        super.setup(...arguments);
+        
+        if (!this.fiscal_printer_serial) {
+            this.fiscal_printer_serial = this.pos.config.fiscal_printer_serial || null;
+        }
 
         try {
             if (this.pos.config.module_pos_hr) {
@@ -89,6 +93,33 @@ patch(Order.prototype, {
                 this.pos.cashier.fiscal_operator_number || null;
         } catch (error) {}
         return json;
+    },
+
+    init_from_JSON(json) {
+        var res = super.init_from_JSON(...arguments);
+        this.lottery_code = json.lottery_code;
+        this.refund_report = json.refund_report;
+        this.refund_date = json.refund_date;
+        this.refund_doc_num = json.refund_doc_num;
+        this.refund_cash_fiscal_serial = json.refund_cash_fiscal_serial;
+        this.refund_full_refund = json.refund_full_refund;
+        this.check_order_has_refund();
+        this.fiscal_receipt_number = json.fiscal_receipt_number;
+        this.fiscal_receipt_amount = json.fiscal_receipt_amount;
+        this.fiscal_receipt_date = json.fiscal_receipt_date;
+        this.fiscal_z_rep_number = json.fiscal_z_rep_number;
+        this.fiscal_printer_serial = json.fiscal_printer_serial;
+        this.fiscal_printer_debug_info = json.fiscal_printer_debug_info;
+        return res;
+    },
+
+
+    check_order_has_refund() {
+        const order = this.pos.get_order();
+        if (order) {
+            const lines = order.orderlines;
+            order.has_refund = lines.some(line => line.quantity < 0);
+        }
     },
 
     getPrinterOptions() {
