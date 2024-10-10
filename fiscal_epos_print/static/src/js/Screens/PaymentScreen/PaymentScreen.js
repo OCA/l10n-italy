@@ -42,13 +42,15 @@ patch(PaymentScreen.prototype, {
             await this.fp90.printFiscalReceipt(receipt);
 
             // TODO loading screen
-            await new Promise(resolve => setTimeout(resolve, 2000));
         }
     },
 
     async _finalizeValidation() {
         const currentOrder = this.state.order;
+        // TODO funziona?
+        //this.ui.block();
         await this.sendToFP90Printer(currentOrder);
+        //this.ui.unblock();
         await super._finalizeValidation();
     },
 
