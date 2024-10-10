@@ -22,7 +22,6 @@ export class RefundInfoPopup extends AbstractAwaitablePopup {
         this.inputRefundDocNum = useRef("inputRefundDocNum");
         this.inputRefundCashFiscalSerial = useRef("inputRefundCashFiscalSerial");
         this.inputRefundFullRefund = useRef("inputRefundFullRefund");
-        this.inputDatePicker = this.initializeDatePicker();
     }
     clickConfirmRefund() {
         this.$el = $(this.el);
@@ -68,16 +67,6 @@ export class RefundInfoPopup extends AbstractAwaitablePopup {
             this.confirm();
         } else {
             this.$el.find("#error-message-dialog").show();
-        }
-    }
-    initializeDatePicker() {
-        this.$el = $(this.el);
-        var element = this.$el.find("#refund_date").get(0);
-        if (element && !this.datepicker) {
-            // eslint-disable-next-line
-            this.datepicker = new Pikaday({
-                field: element,
-            });
         }
     }
 }

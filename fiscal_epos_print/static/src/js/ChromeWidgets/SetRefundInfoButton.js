@@ -45,11 +45,11 @@ export class SetRefundInfoButton extends Component {
         // }
         await this.popup.add(RefundInfoPopup, {
             title: _t("Refund Information Details"),
-            // refund_date: yyyy + "-" + mm + "-" + dd,
-            // refund_report: current_order.refund_report,
-            // refund_doc_num: current_order.refund_doc_num,
-            // refund_cash_fiscal_serial: current_order.refund_cash_fiscal_serial,
-            // refund_full_refund: current_order.refund_full_refund,
+            refund_date: current_order.refund_date,
+            refund_report: current_order.refund_report,
+            refund_doc_num: current_order.refund_doc_num,
+            refund_cash_fiscal_serial: current_order.refund_cash_fiscal_serial,
+            refund_full_refund: current_order.refund_full_refund,
         }).then(async () => {
             this.update_refund_info_button();
         });
