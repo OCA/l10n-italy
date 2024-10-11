@@ -255,7 +255,10 @@ class EFatturaOut:
             "l10n_it_fatturapa_out.account_invoice_it_FatturaPA_export"
         )._render(template_values)
         # 14.0 - occorre rimuovere gli spazi tra i tag
-        root = etree.fromstring(content, parser=etree.XMLParser(remove_blank_text=True))
+        root = etree.fromstring(
+            content,
+            parser=etree.XMLParser(remove_blank_text=True, recover=True),
+        )
         # già che ci siamo, validiamo con l'XMLSchema dello SdI
         errors = list(fpa_schema.iter_errors(root))
         if errors:
