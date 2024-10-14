@@ -16,14 +16,17 @@ class AccountMove(models.Model):
         passed yet, I exclude the payment from the partials list where commissions
         will be generated.
         """
-        res = super()._get_reconciled_invoices_partials()
+        (
+            invoice_partials,
+            exchange_diff_moves,
+        ) = super()._get_reconciled_invoices_partials()
         to_remove = []
         for (
             partial,
             amount,
             counterpart_line,
-        ) in res:
-            riba_mv_line = self.env["riba.distinta.move.line"].search(
+        ) in invoice_partials:
+            riba_mv_line = self.env["riba.slip.move.line"].search(
                 [("move_line_id", "=", partial.debit_move_id.id)]
             )
             if riba_mv_line:
@@ -34,7 +37,7 @@ class AccountMove(models.Model):
                     > date.today()
                 ) and riba_type == "sbf":
                     to_remove.append((partial, amount, counterpart_line))
-        return [item for item in res if item not in to_remove]
+        return [item for item in invoice_partials if item not in to_remove]
 
 
 class AccountInvoiceLineAgent(models.Model):

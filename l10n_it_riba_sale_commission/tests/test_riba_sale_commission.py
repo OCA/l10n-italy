@@ -1,20 +1,19 @@
 # Copyright 2023 Nextev
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestRibaCommission(SavepointCase):
+class TestRibaCommission(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.distinta_model = cls.env["riba.distinta"]
-        cls.commission_model = cls.env["sale.commission"]
+        cls.distinta_model = cls.env["riba.slip"]
+        cls.commission_model = cls.env["commission"]
         cls.account_model = cls.env["account.account"]
         cls.move_line_model = cls.env["account.move.line"]
 
@@ -49,10 +48,11 @@ class TestRibaCommission(SavepointCase):
         cls.sale_account = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
-                )
+                    "income_other",
+                ),
+                ("company_id", "=", cls.env.company.id),
             ],
             limit=1,
         )
@@ -63,72 +63,69 @@ class TestRibaCommission(SavepointCase):
         cls.expenses_account = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_expenses").id,
-                )
+                    "expense",
+                ),
+                ("company_id", "=", cls.env.company.id),
             ],
             limit=1,
         )
         cls.bank_account = cls.env["account.account"].search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_liquidity").id,
-                )
+                    "asset_cash",
+                ),
+                ("company_id", "=", cls.env.company.id),
             ],
             limit=1,
         )
-        cls.account_user_type = cls.env.ref("account.data_account_type_receivable")
         cls.unsolved_account = cls.env["account.account"].create(
             {
-                "code": "Past Due",
+                "code": "PastDue",
                 "name": "Past Due Bills Account (test)",
                 "reconcile": True,
-                "user_type_id": cls.account_user_type.id,
+                "account_type": "asset_receivable",
             }
         )
         cls.account_rec1_id = cls.account_model.create(
             dict(
-                code="cust_acc",
+                code="custacc",
                 name="customer account",
-                user_type_id=cls.account_user_type.id,
+                account_type="asset_receivable",
                 reconcile=True,
             )
-        )
-        cls.account_asset_user_type = cls.env.ref(
-            "account.data_account_type_fixed_assets"
         )
         cls.sbf_effects = cls.env["account.account"].create(
             {
                 "code": "STC",
                 "name": "STC Bills (test)",
                 "reconcile": True,
-                "user_type_id": cls.account_user_type.id,
+                "account_type": "asset_receivable",
             }
         )
         cls.riba_account = cls.env["account.account"].create(
             {
-                "code": "C/O",
-                "name": "C/O Account (test)",
-                "user_type_id": cls.account_asset_user_type.id,
+                "code": "RiBa",
+                "name": "RiBa Account (test)",
+                "account_type": "asset_fixed",
             }
         )
-        cls.company_bank = cls.env.ref("l10n_it_ricevute_bancarie.company_bank")
+        cls.company_bank = cls.env.ref("l10n_it_riba.company_bank")
         cls.riba_config = cls.env["riba.configuration"].create(
             {
                 "name": "Subject To Collection",
                 "type": "sbf",
-                "safety_days": 5,
                 "bank_id": cls.company_bank.id,
                 "acceptance_journal_id": cls.bank_journal.id,
-                "accreditation_journal_id": cls.bank_journal.id,
+                "credit_journal_id": cls.bank_journal.id,
                 "acceptance_account_id": cls.sbf_effects.id,
-                "accreditation_account_id": cls.riba_account.id,
+                "credit_account_id": cls.riba_account.id,
                 "bank_account_id": cls.bank_account.id,
                 "bank_expense_account_id": cls.expenses_account.id,
-                "unsolved_journal_id": cls.bank_journal.id,
+                "past_due_journal_id": cls.bank_journal.id,
                 "overdue_effects_account_id": cls.unsolved_account.id,
                 "protest_charge_account_id": cls.expenses_account.id,
             }
@@ -139,9 +136,9 @@ class TestRibaCommission(SavepointCase):
         cls.partner.write({"agent": False})
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
-        cls.settle_model = cls.env["sale.commission.settlement"]
-        cls.make_settle_model = cls.env["sale.commission.make.settle"]
-        cls.make_inv_model = cls.env["sale.commission.make.invoice"]
+        cls.settle_model = cls.env["commission.settlement"]
+        cls.make_settle_model = cls.env["commission.make.settle"]
+        cls.make_inv_model = cls.env["commission.make.invoice"]
         cls.product = cls.env.ref("product.product_product_5")
         cls.product.list_price = 5  # for testing specific commission section
         cls.commission_product = cls.env["product.product"].create(
@@ -162,13 +159,6 @@ class TestRibaCommission(SavepointCase):
             }
         )
 
-        cls.income_account = cls.env["account.account"].search(
-            [
-                ("company_id", "=", cls.company.id),
-                ("user_type_id.name", "=", "Income"),
-            ],
-            limit=1,
-        )
         cls.payment_term = cls._create_riba_pterm(cls)
         cls.partial_payment_term = cls._create_riba_partials_pterm(cls)
         cls.env["res.partner.bank"].create(
@@ -227,7 +217,7 @@ class TestRibaCommission(SavepointCase):
                         0,
                         {
                             "value": "balance",
-                            "option": "day_following_month",
+                            "months": 1,
                             "days": 1,
                         },
                     )
@@ -248,8 +238,8 @@ class TestRibaCommission(SavepointCase):
                         {
                             "value": "percent",
                             "value_amount": 30,
-                            "option": "day_after_invoice_date",
-                            "days": 0,
+                            "months": 0,
+                            "days": 30,
                         },
                     ),
                     (
@@ -257,7 +247,7 @@ class TestRibaCommission(SavepointCase):
                         0,
                         {
                             "value": "balance",
-                            "option": "day_after_invoice_date",
+                            "months": 0,
                             "days": 60,
                         },
                     ),
@@ -273,7 +263,7 @@ class TestRibaCommission(SavepointCase):
             )
             if period
             else date,
-            "date_payment_to": date_payment_to,
+            "settlement_type": "sale_invoice",
         }
         if agent:
             vals["agent_ids"] = [(4, agent.id)]
@@ -292,20 +282,18 @@ class TestRibaCommission(SavepointCase):
             if move_line.account_id.id == self.account_rec1_id.id:
                 riba_move_line_id = move_line.id
         action = wizard_riba_issue.with_context(
-            {"active_ids": [riba_move_line_id]}
+            active_ids=[riba_move_line_id]
         ).create_list()
         riba_list_id = action and action["res_id"] or False
         riba_list = self.distinta_model.browse(riba_list_id)
         riba_list.confirm()
         riba_list._compute_acceptance_move_ids()
         wiz_accreditation = (
-            self.env["riba.accreditation"]
+            self.env["riba.credit"]
             .with_context(
-                {
-                    "active_model": "riba.distinta",
-                    "active_ids": [riba_list_id],
-                    "active_id": riba_list_id,
-                }
+                active_model="riba.slip",
+                active_ids=[riba_list_id],
+                active_id=riba_list_id,
             )
             .create(
                 {
@@ -322,11 +310,11 @@ class TestRibaCommission(SavepointCase):
         )
         self.register_payment(invoice)
         invoice_not_settle = self._create_invoice(
-            date - relativedelta(days=4), self.payment_term, self.commission_net_paid
+            date - relativedelta(days=8), self.payment_term, self.commission_net_paid
         )
         self.register_payment(invoice_not_settle)
-        self._settle_agent(self.agent_monthly, 1, date_payment_to=datetime.now())
-        settlements = self.env["sale.commission.settlement"].search(
+        self._settle_agent(self.agent_monthly, 1)
+        settlements = self.env["commission.settlement"].search(
             [
                 (
                     "agent_id",
@@ -342,11 +330,13 @@ class TestRibaCommission(SavepointCase):
     def test_riba_partial_settlement(self):
         date = fields.Date.today()
         invoice = self._create_invoice(
-            date, self.partial_payment_term, self.partial_commission_net_paid
+            date - relativedelta(days=100),
+            self.partial_payment_term,
+            self.partial_commission_net_paid,
         )
         self.register_payment(invoice)
-        self._settle_agent(self.agent_monthly, 1, date_payment_to=datetime.now())
-        settlements = self.env["sale.commission.settlement"].search(
+        self._settle_agent(self.agent_monthly, 1)
+        settlements = self.env["commission.settlement"].search(
             [
                 (
                     "agent_id",
