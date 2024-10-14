@@ -51,7 +51,9 @@ patch(PaymentScreen.prototype, {
         //this.ui.block();
         await this.sendToFP90Printer(currentOrder);
         //this.ui.unblock();
-        await super._finalizeValidation();
+        if (currentOrder._printed) {
+            await super._finalizeValidation();
+        }
     },
 
     _isOrderValid(isForceValidate) {
