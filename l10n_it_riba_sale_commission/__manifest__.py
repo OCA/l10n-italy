@@ -2,7 +2,7 @@
 {
     "name": "ITA - Integrazione tra RiBa e provvigioni su vendite",
     "summary": "Modulo ponte tra provvigioni agenti e RiBa",
-    "version": "14.0.1.1.0",
+    "version": "16.0.1.0.0",
     "development_status": "Alpha",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",
@@ -13,7 +13,7 @@
     "installable": True,
     "depends": [
         "sale_commission",
-        "l10n_it_ricevute_bancarie",
+        "l10n_it_riba",
     ],
     "data": [
         "views/invoice_no_commission.xml",

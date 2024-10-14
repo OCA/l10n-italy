@@ -3,10 +3,7 @@
     <record model="ir.ui.view" id="riba_safety_days">
         <field name="name">riba.conf.form.safety.days</field>
         <field name="model">riba.configuration</field>
-        <field
-            name="inherit_id"
-            ref="l10n_it_ricevute_bancarie.view_riba_configuration_form"
-        />
+        <field name="inherit_id" ref="l10n_it_riba.view_riba_configuration_form" />
         <field name="arch" type="xml">
             <field name="type" position="after">
                 <field

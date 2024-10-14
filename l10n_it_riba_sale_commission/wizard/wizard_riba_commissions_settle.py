@@ -6,7 +6,7 @@ from odoo import models
 
 
 class SaleCommissionMakeSettle(models.TransientModel):
-    _inherit = "sale.commission.make.settle"
+    _inherit = "commission.make.settle"
 
     def _get_agent_lines(self, agent, date_to_agent):
         """
@@ -25,13 +25,13 @@ class SaleCommissionMakeSettle(models.TransientModel):
             # removes lines if RiBa is past due or in case it is subject to collection
             # and at least the safety days have not passed since the payment due date,
             # to keep a margin and verify that it has been paid.
-            riba_mv_lines = self.env["riba.distinta.move.line"].search(
+            riba_mv_lines = self.env["riba.slip.move.line"].search(
                 [("move_line_id.move_id", "=", line.invoice_id.id)]
             )
             for riba_mv_line in riba_mv_lines:
                 riba_type = riba_mv_line.riba_line_id.type
                 if line.commission_id.invoice_state == "paid" and (
-                    line.invoice_id.is_unsolved
+                    line.invoice_id.is_past_due
                     or (
                         (
                             riba_mv_line.riba_line_id.due_date
