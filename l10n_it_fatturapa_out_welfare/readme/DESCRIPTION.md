@@ -1,6 +1,7 @@
 **Italiano**
 
-Aggiungere la cassa previdenziale alla fattura e alla fattura elettronica.
+Aggiungere la cassa previdenziale alla fattura e alla fattura
+elettronica.
 
 **English**
 

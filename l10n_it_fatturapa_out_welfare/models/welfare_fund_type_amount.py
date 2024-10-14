@@ -6,16 +6,16 @@ from odoo.exceptions import UserError
 from odoo.fields import first
 
 
-class WelfareFundTypeAmount (models.Model):
-    _name = 'welfare.fund.type.amount'
-    _description = 'Welfare Fund Type Amount'
+class WelfareFundTypeAmount(models.Model):
+    _name = "welfare.fund.type.amount"
+    _description = "Welfare Fund Type Amount"
 
     name = fields.Char(
-        compute='_compute_name',
+        compute="_compute_name",
         store=True,
     )
     welfare_fund_type_id = fields.Many2one(
-        comodel_name='welfare.fund.type',
+        comodel_name="welfare.fund.type",
         required=True,
     )
     amount = fields.Float(
@@ -25,15 +25,15 @@ class WelfareFundTypeAmount (models.Model):
 
     _sql_constraints = [
         (
-            'welfare_amount_unique',
-            'UNIQUE(welfare_fund_type_id, amount)',
+            "welfare_amount_unique",
+            "UNIQUE(welfare_fund_type_id, amount)",
             "Welfare Type and amount must be unique.",
         ),
     ]
 
     @api.depends(
-        'welfare_fund_type_id.name',
-        'amount',
+        "welfare_fund_type_id.name",
+        "amount",
     )
     def _compute_name(self):
         for welfare_amount in self:
@@ -52,9 +52,10 @@ class WelfareFundTypeAmount (models.Model):
         for invoice_line in invoice_lines:
             if self not in invoice_line.welfare_fund_type_amount_ids:
                 raise UserError(
-                    _("Welfare '{welfare}' should be present "
-                      "in Invoice Line '{line}'")
-                    .format(
+                    _(
+                        "Welfare '{welfare}' should be present "
+                        "in Invoice Line '{line}'"
+                    ).format(
                         welfare=self.display_name,
                         line=invoice_line.display_name,
                     )
@@ -62,17 +63,17 @@ class WelfareFundTypeAmount (models.Model):
 
         first_line = first(invoice_lines)
         return {
-            'name': self.display_name,
-            'account_id': first_line.account_id.id,
-            'invoice_line_tax_ids': [
+            "name": self.display_name,
+            "account_id": first_line.account_id.id,
+            "invoice_line_tax_ids": [
                 (6, 0, first_line.invoice_line_tax_ids.ids),
             ],
-            'invoice_id': first_line.invoice_id.id,
-            'welfare_grouping_fund_type_amount_id': self.id,
-            'welfare_grouped_invoice_line_ids': [
+            "invoice_id": first_line.invoice_id.id,
+            "welfare_grouping_fund_type_amount_id": self.id,
+            "welfare_grouped_invoice_line_ids": [
                 (6, 0, invoice_lines.ids),
             ],
-            'price_unit': self._get_welfare_amount(invoice_lines),
+            "price_unit": self._get_welfare_amount(invoice_lines),
         }
 
     def _get_welfare_amount(self, invoice_lines):
@@ -80,5 +81,5 @@ class WelfareFundTypeAmount (models.Model):
         Calculate the Welfare Amount of invoice_lines`.
         """
         self.ensure_one()
-        lines_subtotal = sum(invoice_lines.mapped('price_subtotal'))
+        lines_subtotal = sum(invoice_lines.mapped("price_subtotal"))
         return self.amount * lines_subtotal / 100
