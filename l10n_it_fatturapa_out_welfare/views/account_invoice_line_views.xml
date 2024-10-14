@@ -3,27 +3,30 @@
   ~ Copyright 2022 Simone Rubino - TAKOBI
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
-
 <odoo>
     <!-- Views -->
     <record id="view_invoice_line_form" model="ir.ui.view">
-        <field name="name">Add Welfare Fund Type Amount to Invoice Line Form View</field>
+        <field
+            name="name"
+        >Add Welfare Fund Type Amount to Invoice Line Form View</field>
         <field name="model">account.invoice.line</field>
-        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="inherit_id" ref="account.view_invoice_line_form" />
         <field name="arch" type="xml">
             <field name="invoice_line_tax_ids" position="after">
-                <field name="welfare_fund_type_amount_ids" widget="many2many_tags"/>
+                <field name="welfare_fund_type_amount_ids" widget="many2many_tags" />
             </field>
         </field>
     </record>
 
     <record id="view_invoice_line_tree" model="ir.ui.view">
-        <field name="name">Add Welfare Fund Type Amount to Invoice Line Tree View</field>
+        <field
+            name="name"
+        >Add Welfare Fund Type Amount to Invoice Line Tree View</field>
         <field name="model">account.invoice.line</field>
-        <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+        <field name="inherit_id" ref="account.view_invoice_line_tree" />
         <field name="arch" type="xml">
             <field name="price_subtotal" position="before">
-                <field name="welfare_fund_type_amount_ids" widget="many2many_tags"/>
+                <field name="welfare_fund_type_amount_ids" widget="many2many_tags" />
             </field>
         </field>
     </record>

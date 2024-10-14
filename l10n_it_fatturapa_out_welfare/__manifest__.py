@@ -3,7 +3,7 @@
 {
     "name": "ITA - Fattura elettronica - Cassa previdenziale",
     "summary": "Registrazione della cassa previdenziale "
-               "nelle fatture elettroniche in uscita",
+    "nelle fatture elettroniche in uscita",
     "version": "12.0.1.0.1",
     "development_status": "Beta",
     "category": "Localization/Italy",

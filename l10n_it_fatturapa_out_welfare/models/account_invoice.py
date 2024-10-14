@@ -5,17 +5,17 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
-class AccountInvoice (models.Model):
-    _inherit = 'account.invoice'
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
 
     should_regenerate_welfare_lines = fields.Boolean(
-        compute='_compute_should_regenerate_welfare_lines',
+        compute="_compute_should_regenerate_welfare_lines",
         store=True,
     )
 
     @api.depends(
-        'invoice_line_ids.welfare_grouped_invoice_line_ids',
-        'invoice_line_ids.welfare_fund_type_amount_ids',
+        "invoice_line_ids.welfare_grouped_invoice_line_ids",
+        "invoice_line_ids.welfare_fund_type_amount_ids",
     )
     def _compute_should_regenerate_welfare_lines(self):
         for invoice in self:
@@ -31,19 +31,18 @@ class AccountInvoice (models.Model):
         self.ensure_one()
         invoice_lines = self.invoice_line_ids
         # Remove previous grouping lines
-        grouping_lines = invoice_lines.filtered(
-            'welfare_grouping_fund_type_amount_id'
-        )
+        grouping_lines = invoice_lines.filtered("welfare_grouping_fund_type_amount_id")
         grouping_lines.unlink()
         invoice_lines = invoice_lines.exists()
 
         # Create new grouping lines
         welfare_grouped_lines = invoice_lines.welfare_group_lines()
-        grouping_lines_sequence = max(invoice_lines.mapped('sequence')) + 1
+        grouping_lines_sequence = max(invoice_lines.mapped("sequence")) + 1
         welfare_grouping_lines_values = list()
         for welfare_amount, welfare_lines in welfare_grouped_lines.items():
-            welfare_grouping_line_values = \
+            welfare_grouping_line_values = (
                 welfare_amount._prepare_grouping_invoice_line(welfare_lines)
+            )
             welfare_grouping_line_values.update(
                 sequence=grouping_lines_sequence,
             )
@@ -56,13 +55,12 @@ class AccountInvoice (models.Model):
         return welfare_grouping_lines
 
     def action_invoice_open(self):
-        need_welfare_invoices = self.filtered('should_regenerate_welfare_lines')
+        need_welfare_invoices = self.filtered("should_regenerate_welfare_lines")
         if need_welfare_invoices:
             raise UserError(
-                _("Please regenerate Welfare Lines for invoices: {invoices}")
-                .format(
-                    invoices=', '.join(
-                        need_welfare_invoices.mapped('display_name'),
+                _("Please regenerate Welfare Lines for invoices: {invoices}").format(
+                    invoices=", ".join(
+                        need_welfare_invoices.mapped("display_name"),
                     )
                 )
             )

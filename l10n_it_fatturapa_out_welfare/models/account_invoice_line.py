@@ -4,32 +4,32 @@
 from odoo import fields, models
 
 
-class AccountInvoiceLine (models.Model):
-    _inherit = 'account.invoice.line'
+class AccountInvoiceLine(models.Model):
+    _inherit = "account.invoice.line"
 
     welfare_fund_type_amount_ids = fields.Many2many(
-        comodel_name='welfare.fund.type.amount',
+        comodel_name="welfare.fund.type.amount",
         string="Welfare Fund Type Amounts",
-        help="Welfare Amounts to be applied on this Invoice Line."
+        help="Welfare Amounts to be applied on this Invoice Line.",
     )
     welfare_grouping_fund_type_amount_id = fields.Many2one(
-        comodel_name='welfare.fund.type.amount',
+        comodel_name="welfare.fund.type.amount",
         string="Grouped Welfare Amount",
-        help="Welfare Amount represented by this Invoice Line."
+        help="Welfare Amount represented by this Invoice Line.",
     )
     welfare_grouping_invoice_line_ids = fields.Many2many(
-        comodel_name='account.invoice.line',
-        relation='welfare_group_invoice_line_rel',
-        column1='grouping_line',
-        column2='grouped_line',
+        comodel_name="account.invoice.line",
+        relation="welfare_group_invoice_line_rel",
+        column1="grouping_line",
+        column2="grouped_line",
         string="Grouping Welfare Invoice Lines",
-        help="Invoice Lines that represent this Line's Welfare Amount."
+        help="Invoice Lines that represent this Line's Welfare Amount.",
     )
     welfare_grouped_invoice_line_ids = fields.Many2many(
-        comodel_name='account.invoice.line',
-        relation='welfare_group_invoice_line_rel',
-        column1='grouped_line',
-        column2='grouping_line',
+        comodel_name="account.invoice.line",
+        relation="welfare_group_invoice_line_rel",
+        column1="grouped_line",
+        column2="grouping_line",
         string="Grouped Welfare Invoice Lines",
         help="Invoice Lines whose Welfare Amount is represented by this Line.",
     )
@@ -53,8 +53,8 @@ class AccountInvoiceLine (models.Model):
         Get invoice lines of `self` whose Welfare Amount
         has to be represented by another invoice line.
         """
-        grouped_lines = self.mapped('welfare_grouped_invoice_line_ids')
-        welfare_lines = self.filtered('welfare_fund_type_amount_ids')
+        grouped_lines = self.mapped("welfare_grouped_invoice_line_ids")
+        welfare_lines = self.filtered("welfare_fund_type_amount_ids")
 
         to_be_grouped_lines = welfare_lines - grouped_lines
         return to_be_grouped_lines

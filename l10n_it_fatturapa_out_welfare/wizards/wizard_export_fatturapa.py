@@ -4,20 +4,21 @@
 from odoo import api, models
 from odoo.fields import first
 from odoo.tools.float_utils import float_is_zero, float_round
+
 from odoo.addons.l10n_it_fatturapa.bindings.fatturapa import (
     DatiCassaPrevidenzialeType,
 )
 
 
 def formatRateType(amount):
-    return '%.2f' % float_round(abs(amount), 2)
+    return "%.2f" % float_round(abs(amount), 2)
 
 
 def formatAmount2DecimalType(amount):
-    return '%.2f' % float_round(amount, 2)
+    return "%.2f" % float_round(amount, 2)
 
 
-class WizardExportFatturapa (models.TransientModel):
+class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
     def _get_DatiCassaPrevidenziale(self, invoice_line):
@@ -41,15 +42,16 @@ class WizardExportFatturapa (models.TransientModel):
 
             # Optional fields
             grouped_lines = invoice_line.welfare_grouped_invoice_line_ids
-            grouped_lines_subtotal = sum(grouped_lines.mapped('price_subtotal'))
+            grouped_lines_subtotal = sum(grouped_lines.mapped("price_subtotal"))
             if not float_is_zero(grouped_lines_subtotal, 2):
                 grouped_lines_subtotal = formatAmount2DecimalType(
-                    grouped_lines_subtotal)
+                    grouped_lines_subtotal
+                )
                 DatiCassaPrevidenziale.ImponibileCassa = grouped_lines_subtotal
 
             withholding_taxes = invoice_line.invoice_line_tax_wt_ids
             if withholding_taxes:
-                DatiCassaPrevidenziale.Ritenuta = 'SI'
+                DatiCassaPrevidenziale.Ritenuta = "SI"
 
             tax_kind = tax.kind_id
             if tax_kind:
@@ -57,8 +59,9 @@ class WizardExportFatturapa (models.TransientModel):
 
             administration_reference = welfare_amount.administration_reference
             if administration_reference:
-                DatiCassaPrevidenziale.RiferimentoAmministrazione = \
+                DatiCassaPrevidenziale.RiferimentoAmministrazione = (
                     administration_reference
+                )
         return DatiCassaPrevidenziale
 
     def setDatiCassaPrevidenziale(self, invoice, body):
@@ -73,13 +76,13 @@ class WizardExportFatturapa (models.TransientModel):
             )
             if DatiCassaPrevidenziale:
                 DatiCassaPrevidenziale_list.append(DatiCassaPrevidenziale)
-        body.DatiGenerali.DatiGeneraliDocumento.DatiCassaPrevidenziale = \
+        body.DatiGenerali.DatiGeneraliDocumento.DatiCassaPrevidenziale = (
             DatiCassaPrevidenziale_list
+        )
         return body.DatiGenerali.DatiGeneraliDocumento.DatiCassaPrevidenziale
 
     def setDatiGeneraliDocumento(self, invoice, body):
-        res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
-            invoice, body)
+        res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(invoice, body)
         self.setDatiCassaPrevidenziale(invoice, body)
         return res
 
@@ -89,7 +92,5 @@ class WizardExportFatturapa (models.TransientModel):
         # Exclude Welfare Grouping Lines
         # from the Invoice Lines
         # that will become Electronic Invoice Lines
-        welfare_lines = invoice_lines.filtered(
-            'welfare_grouping_fund_type_amount_id'
-        )
+        welfare_lines = invoice_lines.filtered("welfare_grouping_fund_type_amount_id")
         return invoice_lines - welfare_lines
