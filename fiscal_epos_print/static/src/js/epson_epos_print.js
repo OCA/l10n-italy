@@ -8,6 +8,53 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
     var _t = core._t;
     var round_pr = utils.round_precision;
 
+    /*
+        These two functions are courtesy of https://gist.github.com/smeijer/6580740a0ff468960a5257108af1384e.
+        Usage:
+            parseTpl('${name} is now master of the ${galaxy}', {
+              name: 'John',
+              galaxy: 'Milky Way',
+            });
+    */
+    function _get(path, obj, fb = `$\{${path}}`) {
+        return path.split('.').reduce((res, key) => res[key] || fb, obj);
+    }
+    function parseTpl(template, map, fallback) {
+        return template.replace(/\$\{.+?}/g, (match) => {
+            const path = match.substr(2, match.length - 3).trim();
+            return _get(path, map, fallback);
+        });
+    }
+
+
+
+    /**
+    * Return true if the fiscal printer will print a fiscal receipt for `order`.
+    */
+    function eposWillPrintReceipt(order) {
+        return order.pos.config.printer_ip && !order.is_to_invoice();
+    };
+    /**
+    * Return true if the fiscal printer will print a courtesy receipt for `order`.
+    */
+    function eposWillPrintCourtesyReceipt(order) {
+        return order.pos.config.printer_ip && order.is_to_invoice() && order.pos.config.epos_print_courtesy_receipt;
+    };
+    /**
+    * Send `receipt` to the fiscal `printer`,
+    * this might print a receipt (fiscal or not) for `receipt`.
+    */
+    function eposPrint(printer, receipt) {
+        var order = printer.order;
+        var result;
+        if (eposWillPrintReceipt(order)) {
+            result = printer.printFiscalReceipt(receipt);
+        } else if (eposWillPrintCourtesyReceipt(order)) {
+            result = printer.printNonFiscalReceipt(receipt);
+        }
+        return result
+    }
+
     function addPadding(str, padding=4) {
         var pad = new Array(padding).fill(0).join('') + str;
         return pad.substr(pad.length - padding, padding);
@@ -436,6 +483,226 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             console.log(xml);
         },
 
+        addNonFiscalNode: function(xml, data, {font="1", operator="1"}) {
+            var node = xml.createElement("printNormal");
+            node.setAttribute("data", data);
+            node.setAttribute("font", font);
+            node.setAttribute("operator", operator);
+            xml.documentElement.appendChild(node);
+        },
+
+        formatAmountCurrency: function(amount, currency) {
+            if (currency.position === "after") {
+                return amount + " " + (currency.symbol || "");
+            } else {
+                return (currency.symbol || "") + " " + amount;
+            }
+        },
+
+        addNonFiscalEmptyLine: function(xml) {
+            var node = xml.createElement("printNormal");
+            node.setAttribute("data", "");
+            node.setAttribute("font", "1");
+            node.setAttribute("operator", "1");
+            xml.documentElement.appendChild(node);
+        },
+
+        addXMLNonFiscalHeader: function(xml, receipt) {
+            var beginNonFiscal = xml.createElement("beginNonFiscal");
+            beginNonFiscal.setAttribute("operator", receipt.operator || "1");
+            xml.documentElement.appendChild(beginNonFiscal);
+
+            this.addNonFiscalNode(
+                xml,
+                _t("Courtesy receipt"),
+                {
+                    font: "3",
+                    operator: receipt.operator,
+                },
+            );
+
+            var invoice = receipt.epos_invoice;
+            this.addNonFiscalNode(
+                xml,
+                parseTpl(_t("Copy of invoice ${invoice.number} of ${invoice.date}"), {invoice: invoice}),
+                {
+                    operator: receipt.operator,
+                },
+            );
+        },
+
+        addXMLNonFiscalClient: function(xml, receipt) {
+            var client = this.order.get_client();
+
+            var clientName = client.name;
+            this.addNonFiscalNode(
+                xml,
+                parseTpl(_t("Customer: ${clientName}"), {clientName: clientName}),
+                {
+                    operator: receipt.operator,
+                },
+            );
+
+            var clientAddress = client.address;
+            if (clientAddress) {
+                this.addNonFiscalNode(
+                    xml,
+                    parseTpl(_t("Address: ${clientAddress}"), {clientAddress: clientAddress}),
+                    {
+                        operator: receipt.operator,
+                    },
+                );
+            }
+
+            var clientVAT = client.vat;
+            if (clientVAT) {
+                this.addNonFiscalNode(
+                    xml,
+                    parseTpl(_t("VAT: ${clientVAT}"), {clientVAT: clientVAT}),
+                    {
+                        operator: receipt.operator,
+                    },
+                );
+            }
+        },
+
+        addXMLNonFiscalOrderLine: function(xml, line, receipt) {
+            this.addNonFiscalNode(
+                xml,
+                line.product_name,
+                {
+                    operator: receipt.operator,
+                },
+            );
+            var currency = receipt.currency;
+            var unit_amount = this.formatAmountCurrency(line.full_price, currency);
+            var total_amount = this.formatAmountCurrency(line.price_display, currency);
+            this.addNonFiscalNode(
+                xml,
+                parseTpl(_t("${line.quantity} x ${unit_amount} = ${total_amount}"), {line: line, unit_amount: unit_amount, total_amount: total_amount,}),
+                {
+                    operator: receipt.operator,
+                },
+            );
+            var tax_amount = this.formatAmountCurrency(line.tax, currency);
+            this.addNonFiscalNode(
+                xml,
+                parseTpl(_t("Tax code ${line.tax_department.code}: ${tax_amount}"), {line: line, tax_amount: tax_amount}),
+                {
+                    operator: receipt.operator,
+                },
+            );
+        },
+
+        addXMLNonFiscalTaxDetail: function(xml, tax_detail, receipt) {
+            this.addNonFiscalNode(
+                xml,
+                parseTpl(_t("Tax code ${tax_detail.tax.fpdeptax}: ${tax_detail.name}"), {tax_detail: tax_detail}),
+                {
+                    operator: receipt.operator,
+                },
+            );
+            this.addNonFiscalNode(
+                xml,
+                this.formatAmountCurrency(tax_detail.amount, receipt.currency),
+                {
+                    operator: receipt.operator,
+                },
+            );
+        },
+
+        addXMLNonFiscalTotal: function(xml, receipt) {
+            var invoice = this.order.epos_invoice;
+            this.addNonFiscalNode(
+                xml,
+                _t("Totals"),
+                {
+                    operator: receipt.operator,
+                },
+            );
+            var currency = receipt.currency;
+            this.addNonFiscalNode(
+                xml,
+                parseTpl(_t("Base: ${base}"), {base: this.formatAmountCurrency(invoice.amount_untaxed, currency)}),
+                {
+                    operator: receipt.operator,
+                },
+            );
+            this.addNonFiscalNode(
+                xml,
+                parseTpl(_t("Tax: ${tax}"), {tax: this.formatAmountCurrency(invoice.amount_tax, currency)}),
+                {
+                    operator: receipt.operator,
+                },
+            );
+            this.addNonFiscalNode(
+                xml,
+                parseTpl(_t("Total: ${total}"), {total: this.formatAmountCurrency(invoice.amount_total, currency)}),
+                {
+                    operator: receipt.operator,
+                },
+            );
+        },
+
+        addXMLNonFiscalFooter: function(xml, receipt) {
+            this.addNonFiscalNode(
+                xml,
+                _t("Courtesy copy not valid for tax purposes. " +
+                "The original invoice has been sent to the SdI " +
+                "and can be consulted on the Revenue Agency website, " +
+                "in the Reserved Area."),
+                {
+                    operator: receipt.operator,
+                },
+            );
+
+            var endNonFiscal = xml.createElement("endNonFiscal");
+            endNonFiscal.setAttribute("operator", receipt.operator || "1");
+            xml.documentElement.appendChild(endNonFiscal);
+        },
+
+        prepareXMLNonFiscalReceipt: function(receipt) {
+            var xml = document.implementation.createDocument(null, "printerNonFiscal");
+
+            this.addXMLNonFiscalHeader(xml, receipt);
+            this.addNonFiscalEmptyLine(xml);
+
+            this.addXMLNonFiscalClient(xml, receipt);
+            this.addNonFiscalEmptyLine(xml);
+
+            for (let line of receipt.orderlines) {
+                this.addXMLNonFiscalOrderLine(xml, line, receipt);
+                this.addNonFiscalEmptyLine(xml);
+            }
+            this.addNonFiscalEmptyLine(xml);
+
+            this.addNonFiscalNode(
+                xml,
+                _t("Taxes summary"),
+                {
+                    operator: receipt.operator,
+                },
+            );
+            for (let tax_detail of receipt.tax_details) {
+                this.addXMLNonFiscalTaxDetail(xml, tax_detail, receipt);
+                this.addNonFiscalEmptyLine(xml);
+            }
+            this.addNonFiscalEmptyLine(xml);
+
+            this.addXMLNonFiscalTotal(xml, receipt);
+            this.addNonFiscalEmptyLine(xml);
+
+            this.addXMLNonFiscalFooter(xml, receipt);
+            return xml;
+        },
+
+        printNonFiscalReceipt: function(receipt) {
+            var xml = this.prepareXMLNonFiscalReceipt(receipt);
+            var xmlString = new XMLSerializer().serializeToString(xml);
+            this.fiscalPrinter.send(this.url, xmlString);
+            console.log(xmlString);
+        },
+
         printFiscalReport: function() {
             var xml = '<printerFiscalReport>';
             xml += '<printZReport operator="" />';
@@ -474,7 +741,10 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
     });
 
     return {
-        eposDriver: eposDriver
+        eposDriver: eposDriver,
+        eposWillPrintReceipt: eposWillPrintReceipt,
+        eposWillPrintCourtesyReceipt: eposWillPrintCourtesyReceipt,
+        eposPrint: eposPrint,
     }
 
 });

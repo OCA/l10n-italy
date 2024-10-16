@@ -7,6 +7,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
     var _t = core._t;
     var round_pr = utils.round_precision;
     var OrderSuper = models.Order;
+    var epson_epos_print = require('fiscal_epos_print.epson_epos_print');
 
     models.load_fields("account.journal",
         ["fiscalprinter_payment_type", "fiscalprinter_payment_index"]);
@@ -92,6 +93,7 @@ odoo.define('fiscal_epos_print.models', function (require) {
             receipt.fiscal_z_rep_number = this.fiscal_z_rep_number;
             receipt.fiscal_printer_serial = this.fiscal_printer_serial;
             receipt.fiscal_printer_debug_info = this.fiscal_printer_debug_info;
+            receipt.epos_invoice = this.epos_invoice;
 
             return receipt
         },
@@ -203,6 +205,39 @@ odoo.define('fiscal_epos_print.models', function (require) {
             var tax_model = _.find(this.models, function(model){ return model.model === 'account.tax'; });
             tax_model.fields.push('fpdeptax');
             return _super_posmodel.initialize.call(this, session, attributes);
+        },
+        push_and_invoice_order: function(order) {
+            var self = this;
+            var invoiced = _super_posmodel.push_and_invoice_order.apply(this, arguments);
+            invoiced.done(function(){
+                // Get invoice from PoS `order`
+                self.chrome._rpc({
+                    model: "pos.order",
+                    method: "search_read",
+                    args: [[["pos_reference", "=", order.name]], ["invoice_id",]],
+                }).then(function (server_orders) {
+                    if (server_orders.length) {
+                        var invoice_id = server_orders[0].invoice_id[0];
+                        // Read invoice fields
+                        self.chrome._rpc({
+                            model: "account.invoice",
+                            method: "read",
+                            args: [invoice_id],
+                        }).then(function (server_invoices) {
+                            if (server_invoices.length) {
+                                // Update `order` and print courtesy receipt
+                                order.epos_invoice = server_invoices[0];
+                                var printer_options = order.getPrinterOptions();
+                                printer_options.order = order;
+                                var receipt = order.export_for_printing();
+                                var fp90 = new epson_epos_print.eposDriver(printer_options, order.pos.gui.current_screen);
+                                return epson_epos_print.eposPrint(fp90, receipt);
+                            }
+                        });
+                    }
+                });
+            });
+            return invoiced;
         },
     });
 

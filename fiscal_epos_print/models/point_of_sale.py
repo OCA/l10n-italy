@@ -21,6 +21,10 @@ class PosConfig(models.Model):
     fiscal_printer_serial = fields.Char(string='Fiscal Printer Serial')
 
     fiscal_cashdrawer = fields.Boolean(string='Fiscal Printer Open CashDrawer')
+    epos_print_courtesy_receipt = fields.Boolean(
+        string="Print courtesy receipt",
+        help="Print a courtesy receipt when the order has to be invoiced",
+    )
 
     @api.constrains('printer_ip', 'iface_reprint_done_order')
     def _check_fiscal_epos_reprint(self):
