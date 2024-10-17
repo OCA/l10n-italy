@@ -1356,10 +1356,12 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         invoice.action_post()
         self.assertEqual(invoice.state, "posted")
         self.assertEqual(
-            invoice.invoice_line_ids.filtered(
-                lambda inv_line: inv_line.product_id.id
-                == self.right_corner_desk_line[2]["product_id"]
-            ).quantity,
+            sum(
+                invoice.invoice_line_ids.filtered(
+                    lambda inv_line: inv_line.product_id.id
+                    == self.right_corner_desk_line[2]["product_id"]
+                ).mapped("quantity")
+            ),
             2,
         )
         self.assertEqual(
@@ -1379,6 +1381,20 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
             f'Delivery Note "{back_dn.name}" of {back_dn.date.strftime(DATE_FORMAT)}',
             invoice.invoice_line_ids.mapped("name"),
         )
+        invoice_lines = invoice.invoice_line_ids.sorted("sequence")
+        for delivery_note in invoice_lines.mapped("delivery_note_id"):
+            inv_dn_lines = invoice_lines.filtered(
+                lambda l, dn=delivery_note: l.delivery_note_id == dn
+            )
+            note_line = inv_dn_lines.filtered(lambda l: l.note_dn)
+            self.assertEqual(len(note_line), 1)
+            # Check that the first line of a particular dn is a note
+            self.assertEqual(inv_dn_lines[0], note_line)
+            # Check that all lines of a particular dn are neighbouring each other
+            self.assertEqual(
+                len(inv_dn_lines),
+                int(inv_dn_lines[-1].sequence) - int(inv_dn_lines[0].sequence) + 1,
+            )
 
     def test_invoicing_multi_dn_multi_so_same_product(self):
         self.env["ir.config_parameter"].sudo().set_param(
@@ -1473,3 +1489,225 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertIn(dn_2.date.strftime(DATE_FORMAT), label_so_2.name)
         self.assertEqual(product_line_2.product_id, so_2.order_line.product_id)
         self.assertEqual(product_line_2.quantity, 2)
+
+    def test_invoicing_multi_partial_dn_multi_so_same_product(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "l10n_it_delivery_note.group_use_advanced_delivery_notes", True
+        )
+        # SO 1
+        so_1 = self.create_sales_order([self.right_corner_desk_line])  # qty 2
+        so_1.action_confirm()
+
+        # create picking 1.1
+        picking_1_1 = so_1.picking_ids
+        picking_1_1.move_lines[0].quantity_done = 1
+        res_dict = picking_1_1.button_validate()
+
+        # create picking 1.2
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+
+        # create delivery note 1.1
+        res_dict = picking_1_1.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_1_1 = picking_1_1.delivery_note_id
+        self.assertTrue(dn_1_1)
+        self.assertEqual(dn_1_1.partner_id, self.recipient)
+        dn_1_1.action_confirm()
+        dn_1_1.action_done()
+
+        # deliver picking 1.2 (but not confirm)
+        picking_1_2 = picking_1_1.backorder_ids
+        picking_1_2.move_lines[0].quantity_done = 1
+        picking_1_2.button_validate()
+        res_dict = picking_1_2.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_common = picking_1_2.delivery_note_id
+
+        # SO 2
+        so_2 = self.create_sales_order([self.right_corner_desk_line])  # qty 2
+        so_2.action_confirm()
+
+        # picking 2.1
+        picking_2_1 = so_2.picking_ids
+        picking_2_1.move_lines[0].quantity_done = 1
+        res_dict = picking_2_1.button_validate()
+
+        # picking 2.2
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+        picking_2_2 = picking_2_1.backorder_ids
+
+        # create delivery note 2.1
+        res_dict = picking_2_1.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_2_1 = picking_2_1.delivery_note_id
+        dn_2_1.action_confirm()
+        dn_2_1.action_done()
+
+        # deliver 2.2
+        picking_2_2.move_lines[0].quantity_done = 1
+        picking_2_2.button_validate()
+        picking_2_2.delivery_note_id = dn_common
+        dn_common.action_confirm()
+        dn_common.action_done()
+        self.assertEqual(picking_1_2.delivery_note_id, picking_2_2.delivery_note_id)
+
+        # invoice backorder of so_1 and so_2 together
+        (so_1 | so_2)._create_invoices()
+        self.assertEqual(so_1.invoice_ids, so_2.invoice_ids)
+        invoice_lines = so_1.invoice_ids.invoice_line_ids.sorted("sequence")
+        dn_inv_lines = invoice_lines.filtered(lambda l: l.note_dn)
+        product_inv_lines = invoice_lines - dn_inv_lines
+        self.assertEqual(len(dn_inv_lines), 3)
+        self.assertEqual(len(product_inv_lines), 4)
+        self.assertTrue(all(ln == 1 for ln in product_inv_lines.mapped("quantity")))
+
+    def test_invoicing_multi_partial_dn_multi_so_same_product_not_invoiced(self):
+        # Create a sale order with 2 rows with the same product and deliver partly first
+        # row and invoice it, than deliver partly again the first row two times and
+        # deliver partly the second row, all in different delivery notes. Then invoice
+        # all but the second delivery note of the first line.
+        self.env["ir.config_parameter"].sudo().set_param(
+            "l10n_it_delivery_note.group_use_advanced_delivery_notes", "True"
+        )
+        # SO 1
+        so_1 = self.create_sales_order(
+            [
+                self.prepare_sales_order_line(
+                    self.env.ref("product.product_product_5"), 10
+                ),
+                self.prepare_sales_order_line(
+                    self.env.ref("product.product_product_5"), 10
+                ),
+            ]
+        )
+        so_1.action_confirm()
+
+        # create picking 1.1
+        picking_1_1 = so_1.picking_ids
+        self.assertEqual(len(so_1.picking_ids), 1)
+        picking_1_1.move_lines[0].quantity_done = 2
+        res_dict = picking_1_1.button_validate()
+
+        # create picking 1.2
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+
+        # create delivery note 1.1
+        res_dict = picking_1_1.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_1_1 = picking_1_1.delivery_note_id
+        self.assertTrue(dn_1_1)
+        self.assertEqual(dn_1_1.partner_id, self.recipient)
+        dn_1_1.action_confirm()
+        dn_1_1.action_done()
+
+        # invoice delivery note 1.1
+        so_1._create_invoices()
+        self.assertTrue(len(so_1.invoice_ids), 1)
+        invoice_lines = so_1.invoice_ids.invoice_line_ids.sorted("sequence")
+        dn_inv_lines = invoice_lines.filtered(lambda l: l.note_dn)
+        product_inv_lines = invoice_lines - dn_inv_lines
+        self.assertEqual(len(dn_inv_lines), 1)
+        self.assertEqual(len(product_inv_lines), 1)
+        self.assertTrue(all(ln == 2 for ln in product_inv_lines.mapped("quantity")))
+
+        # create and validate second delivery note, to do not be invoiced
+        # validate picking 1.2
+        self.assertEqual(len(so_1.picking_ids), 2)
+        picking_1_2 = so_1.picking_ids - picking_1_1
+        picking_1_2.move_lines[0].quantity_done = 3
+        res_dict = picking_1_2.button_validate()
+
+        # create picking 1.3
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+
+        # create delivery note 1.2
+        res_dict = picking_1_2.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_1_2 = picking_1_2.delivery_note_id
+        self.assertTrue(dn_1_2)
+        self.assertEqual(dn_1_2.partner_id, self.recipient)
+        dn_1_2.action_confirm()
+        dn_1_2.action_done()
+
+        # create and validate third delivery note
+        # validate picking 1.3
+        self.assertEqual(len(so_1.picking_ids), 3)
+        picking_1_3 = so_1.picking_ids - (picking_1_1 | picking_1_2)
+        picking_1_3.move_lines[0].quantity_done = 4
+        res_dict = picking_1_3.button_validate()
+
+        # create picking 1.4
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+
+        # create delivery note 1.3
+        res_dict = picking_1_3.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_1_3 = picking_1_3.delivery_note_id
+        self.assertTrue(dn_1_3)
+        self.assertEqual(dn_1_3.partner_id, self.recipient)
+        dn_1_3.action_confirm()
+        dn_1_3.action_done()
+
+        # create and validate fourth delivery note
+        # validate picking 1.4
+        self.assertEqual(len(so_1.picking_ids), 4)
+        picking_1_4 = so_1.picking_ids - (picking_1_1 | picking_1_2 | picking_1_3)
+        picking_1_4.move_lines[1].quantity_done = 4
+        res_dict = picking_1_4.button_validate()
+
+        # create picking 1.5
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.process()
+
+        # create delivery note 1.4
+        res_dict = picking_1_4.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn_1_4 = picking_1_4.delivery_note_id
+        self.assertTrue(dn_1_4)
+        self.assertEqual(dn_1_4.partner_id, self.recipient)
+        dn_1_4.action_confirm()
+        dn_1_4.action_done()
+
+        dn_to_invoice = dn_1_3 | dn_1_4
+        self.assertTrue(all(dti.state == "done" for dti in dn_to_invoice))
+        dn_to_invoice.action_invoice()
+        self.assertTrue(all(dti.state == "invoiced" for dti in dn_to_invoice))
+        self.assertEqual(dn_1_2.state, "done")
