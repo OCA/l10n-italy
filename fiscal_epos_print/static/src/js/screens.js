@@ -26,7 +26,7 @@ odoo.define("fiscal_epos_print.screens", function (require) {
 
         sendToFP90Printer: function(receipt, printer_options) {
             var fp90 = new eposDriver(printer_options, this);
-            fp90.printFiscalReceipt(receipt);
+            return epson_epos_print.eposPrint(printer_options["order"], receipt);
         },
 
         render_receipt: function() {
@@ -59,7 +59,7 @@ odoo.define("fiscal_epos_print.screens", function (require) {
         },
         sendToFP90Printer: function(receipt, printer_options) {
             var fp90 = new eposDriver(printer_options, this);
-            fp90.printFiscalReceipt(receipt);
+            return epson_epos_print.eposPrint(fp90, receipt);
         },
         finalize_validation: function() {
             // we need to get currentOrder before calling the _super()
@@ -67,7 +67,7 @@ odoo.define("fiscal_epos_print.screens", function (require) {
             // the receipt preview
             var currentOrder = this.pos.get('selectedOrder');
             this._super.apply(this, arguments);
-            if (this.pos.config.printer_ip && !currentOrder.is_to_invoice()) {
+            if (epson_epos_print.eposWillPrint(currentOrder)) {
                 this.chrome.loading_show();
                 this.chrome.loading_message(_t('Connecting to the fiscal printer'));
                 var printer_options = currentOrder.getPrinterOptions();

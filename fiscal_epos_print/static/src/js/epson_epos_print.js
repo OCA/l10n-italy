@@ -8,6 +8,39 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
     var _t = core._t;
     var round_pr = utils.round_precision;
 
+    /**
+    * Return true if the fiscal printer will print a fiscal receipt for `order`.
+    */
+    function eposWillPrintReceipt(order) {
+        return order.pos.config.printer_ip && !order.is_to_invoice();
+    };
+    /**
+    * Return true if the fiscal printer will print a courtesy receipt for `order`.
+    */
+    function eposWillPrintCourtesyReceipt(order) {
+        return order.pos.config.printer_ip && order.is_to_invoice() && order.pos.config.epos_print_courtesy_receipt;
+    };
+    /**
+    * Return true if the fiscal printer will print a receipt for `order`.
+    */
+    function eposWillPrint(order) {
+        return eposWillPrintReceipt(order) || eposWillPrintCourtesyReceipt(order);
+    };
+    /**
+    * Send `receipt` to the fiscal `printer`,
+    * this might print a receipt (fiscal or not) for `receipt`.
+    */
+    function eposPrint(printer, receipt) {
+        var order = printer.order;
+        var result;
+        if (eposWillPrintReceipt(order)) {
+            result = printer.printFiscalReceipt(receipt);
+        } else if (eposWillPrintCourtesyReceipt(order)) {
+            result = printer.printNonFiscalReceipt(receipt);
+        }
+        return result
+    }
+
     function addPadding(str, padding=4) {
         var pad = new Array(padding).fill(0).join('') + str;
         return pad.substr(pad.length - padding, padding);
@@ -436,6 +469,41 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             console.log(xml);
         },
 
+        prepareXMLNonFiscalReceipt: function(receipt) {
+            var xml = document.implementation.createDocument(null, "printerNonFiscal");
+
+            var beginNonFiscal = xml.createElement("beginNonFiscal");
+            beginNonFiscal.setAttribute("operator", receipt.operator || "1");
+            xml.documentElement.appendChild(beginNonFiscal);
+
+            var printNormal = xml.createElement("printNormal");
+            printNormal.setAttribute("data", _t("Courtesy receipt"));
+            printNormal.setAttribute("font", "3");
+            printNormal.setAttribute("operator", receipt.operator || "1");
+            xml.documentElement.appendChild(printNormal);
+
+            for (let line of receipt.orderlines) {
+                printNormal = xml.createElement("printNormal");
+                printNormal.setAttribute("data", line.product_name);
+                printNormal.setAttribute("font", "1");
+                printNormal.setAttribute("operator", receipt.operator || "1");
+                xml.documentElement.appendChild(printNormal);
+            }
+
+            var endNonFiscal = xml.createElement("endNonFiscal");
+            endNonFiscal.setAttribute("operator", receipt.operator || "1");
+            xml.documentElement.appendChild(endNonFiscal);
+
+            return xml;
+        },
+
+        printNonFiscalReceipt: function(receipt) {
+            var xml = this.prepareXMLNonFiscalReceipt(receipt);
+            var xmlString = new XMLSerializer().serializeToString(xml);
+            this.fiscalPrinter.send(this.url, xmlString);
+            console.log(xmlString);
+        },
+
         printFiscalReport: function() {
             var xml = '<printerFiscalReport>';
             xml += '<printZReport operator="" />';
@@ -474,7 +542,11 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
     });
 
     return {
-        eposDriver: eposDriver
+        eposDriver: eposDriver,
+        eposWillPrintReceipt: eposWillPrintReceipt,
+        eposWillPrintCourtesyReceipt: eposWillPrintCourtesyReceipt,
+        eposWillPrint: eposWillPrint,
+        eposPrint: eposPrint,
     }
 
 });

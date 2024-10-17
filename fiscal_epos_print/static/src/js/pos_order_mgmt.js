@@ -31,10 +31,10 @@ odoo.define("fiscal_epos_print.pos_order_mgmt", function (require) {
         // copiato da screens.PaymentScreenWidget
         sendToFP90Printer: function(receipt, printer_options) {
             var fp90 = new eposDriver(printer_options, this);
-            fp90.printFiscalReceipt(receipt);
+            return epson_epos_print.eposPrint(fp90, receipt);
         },
         action_print: function (order_data, order) {
-            if (this.pos.config.printer_ip) {
+            if (epson_epos_print.eposWillPrint(currentOrder)) {
                 if (order_data.fiscal_receipt_number) {
                     this.pos.gui.show_popup('error', {
                         'title': _t('Order already printed'),
