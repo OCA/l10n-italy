@@ -146,13 +146,19 @@ class StockDeliveryNoteType(models.Model):
         already exist
         """
         dn_type = self.env["stock.delivery.note.type"].search(
-            self._check_existing_dn_type_domain(name, company_id)
+            self._check_existing_dn_type_domain(_(name), company_id)
         )
+        if not dn_type:
+            dn_type = self.env["stock.delivery.note.type"].with_context(
+                lang="en_US"
+            ).search(
+                self._check_existing_dn_type_domain(name, company_id)
+            )
         if not dn_type:
             sequence_id = self._get_or_create_sequence(sequence_code, company_id)
             self.env["stock.delivery.note.type"].create(
                 {
-                    "name": name,
+                    "name": _(name),
                     "sequence_id": sequence_id,
                     "print_prices": print_prices,
                     "code": code,
@@ -165,28 +171,28 @@ class StockDeliveryNoteType(models.Model):
         This method sets values needed to search and create dn types
         """
         self._set_or_create_dn_types(
-            _("Incoming"),
+            "Incoming",
             "stock.delivery.note.din",
             False,
             "incoming",
             company_id,
         )
         self._set_or_create_dn_types(
-            _("Outgoing"),
+            "Outgoing",
             "stock.delivery.note.ddt",
             False,
             "outgoing",
             company_id,
         )
         self._set_or_create_dn_types(
-            _("Outgoing (with prices)"),
+            "Outgoing (with prices)",
             "stock.delivery.note.ddt",
             True,
             "outgoing",
             company_id,
         )
         self._set_or_create_dn_types(
-            _("Internal transfer"),
+            "Internal transfer",
             "stock.delivery.note.int",
             False,
             "internal",

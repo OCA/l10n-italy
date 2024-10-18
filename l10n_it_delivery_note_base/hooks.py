@@ -2,7 +2,7 @@
 from odoo import SUPERUSER_ID, api
 
 
-def post_init_hook(cr, sequence):
+def post_init_hook(cr, registry):
     """
     Create DN types and their sequences after installing the module
     if they're not already exist
