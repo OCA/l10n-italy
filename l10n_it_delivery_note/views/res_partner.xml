@@ -4,7 +4,6 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-
     <record id="res_partner_form_view" model="ir.ui.view">
         <field name="name">res.partner.form</field>
         <field name="model">res.partner</field>
@@ -20,5 +19,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
