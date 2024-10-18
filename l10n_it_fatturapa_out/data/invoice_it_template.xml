@@ -222,29 +222,6 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
         </t>
     </template>
 
-    <template id="account_invoice_line_it_dati_riepilogo">
-        <t t-translation="off">
-        <t t-set="tax" t-value="tax_line.tax_line_id" />
-        <DatiRiepilogo>
-            <!--2.2.2-->
-            <AliquotaIVA t-esc="format_numbers(tax.amount)" />
-            <Natura t-if="tax.kind_id.code" t-esc="tax.kind_id.code" />
-            <!--                <SpeseAccessorie t-esc=""/>-->
-            <!--                <Arrotondamento t-esc=""/>-->
-            <ImponibileImporto
-                    t-esc="format_monetary(fpa_to_eur(tax_line.tax_base_amount, record), euro)"
-                />
-            <Imposta
-                    t-esc="format_monetary(fpa_to_eur(tax_line.price_total, record), euro)"
-                />
-            <EsigibilitaIVA t-if="tax.payability" t-esc="tax.payability" />
-            <RiferimentoNormativo
-                    t-if="tax.law_reference"
-                    t-esc="encode_for_export(tax.law_reference, 100)"
-                />
-        </DatiRiepilogo>
-        </t>
-    </template>
     <template id="account_invoice_it_FatturaPA_sede">
         <t t-translation="off">
         <t t-set="indirizzo"><t
@@ -604,10 +581,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             <!--                <SpeseAccessorie t-esc=""/>-->
                             <!--                <Arrotondamento t-esc=""/>-->
                             <ImponibileImporto
-                                t-esc="format_monetary(fpa_to_eur(tax_data['ImponibileImporto'], record), euro)"
+                                t-esc="format_monetary(tax_data['ImponibileImporto'], euro)"
                             />
                             <Imposta
-                                t-esc="format_monetary(fpa_to_eur(tax_data['Imposta'], record), euro)"
+                                t-esc="format_monetary(tax_data['Imposta'], euro)"
                             />
                             <EsigibilitaIVA
                                 t-if="tax_data.get('EsigibilitaIVA', False)"
