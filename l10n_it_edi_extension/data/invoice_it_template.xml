@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="account_invoice_it_FatturaPA_export_causale" inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export">
+        <xpath expr="//DatiGeneraliDocumento/ImportoTotaleDocumento" position="after">
+            <t t-foreach="causale" t-as="c">
+                <Causale t-out="c" />
+            </t>
+        </xpath>
+    </template>
+</odoo>
