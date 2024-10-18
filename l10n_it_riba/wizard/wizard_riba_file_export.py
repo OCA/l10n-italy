@@ -398,7 +398,7 @@ class RibaFileExport(models.TransientModel):
             array_riba.append(riba)
 
         out = base64.encodebytes(
-            self._createFile(array_header, array_riba).encode("utf8")
+            self._createFile(array_header, array_riba).encode("ascii", errors="replace")
         )
         self.write(
             {"state": "get", "riba_txt": out, "file_name": "%s.txt" % order_obj.name}
