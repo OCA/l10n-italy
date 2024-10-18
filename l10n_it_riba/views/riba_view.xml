@@ -5,7 +5,7 @@
   -->
 <odoo>
 
-    <menuitem name="RiBa" parent="account.menu_finance" id="menu_riba" />
+    <menuitem name="RiBa" parent="l10n_it_account.menu_account" id="menu_riba" />
 
     <!-- ====================================================== -->
     <!--                     RIBA SLIP - FILTERS             -->
