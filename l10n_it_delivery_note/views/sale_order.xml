@@ -4,7 +4,6 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-
     <record id="sale_order_form_view" model="ir.ui.view">
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
@@ -16,7 +15,6 @@
                 <field name="default_transport_reason_id" widget="selection" />
                 <field name="default_transport_method_id" widget="selection" />
             </xpath>
-       </field>
+        </field>
     </record>
-
 </odoo>
