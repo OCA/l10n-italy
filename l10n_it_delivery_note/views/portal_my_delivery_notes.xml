@@ -7,15 +7,18 @@
         priority="30"
     >
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
-            <li t-attf-class="breadcrumb-item #{'active ' if not dn else ''}">
+            <li
+                t-if="page_name == 'delivery_note'"
+                t-attf-class="breadcrumb-item #{'active ' if not dn else ''}"
+            >
                 <a
-                    t-if="page_name == 'delivery_note'"
+                    t-if="dn"
                     t-attf-href="/my/delivery-notes?{{ keep_query() }}"
                 >Delivery Notes</a>
-                <t t-if="page_name == 'delivery_notes'">Delivery Notes</t>
+                <t t-else="">Delivery Notes</t>
             </li>
-            <li t-if="page_name == 'delivery_note'" class="breadcrumb-item active">
-                <t t-esc="dn.name" />
+            <li t-if="dn" class="breadcrumb-item active">
+                <t t-out="dn.name" />
             </li>
         </xpath>
     </template>
@@ -28,7 +31,9 @@
                 <t t-set="title">Delivery Notes</t>
             </t>
             <t t-if="not delivery_notes">
-                <p>There are currently no delivery notes for your account.</p>
+                <p class="alert alert-warning">
+                    There are currently no delivery notes for your account.
+                </p>
             </t>
             <t t-if="delivery_notes" t-call="portal.portal_table">
                 <thead>
@@ -38,18 +43,18 @@
                         <th class="text-right">Packages</th>
                     </tr>
                 </thead>
-                <t t-foreach="delivery_notes" t-as="ddt">
+                <t t-foreach="delivery_notes" t-as="dn">
                     <tr>
                         <td>
-                            <a t-att-href="'/my/delivery-notes/%s' % ddt.id">
-                                <t t-esc="ddt.name" />
+                            <a t-att-href="dn.get_portal_url()" t-att-title="dn.name">
+                                <t t-out="dn.name" />
                             </a>
                         </td>
                         <td class="text-right">
-                            <span t-field="ddt.date" />
+                            <span t-field="dn.date" />
                         </td>
                         <td class="text-right">
-                            <span t-field="ddt.packages" />
+                            <span t-field="dn.packages" />
                         </td>
                     </tr>
                 </t>
@@ -68,77 +73,73 @@
                 <t t-call="portal.portal_back_in_edit_mode">
                     <t
                         t-set="backend_url"
-                        t-value="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (dn._name, dn.id, dn.env.ref('l10n_it_delivery_note.stock_delivery_note_action').id)"
+                        t-value="'/odoo/action-l10n_it_delivery_note.stock_delivery_note_action/' % dn.id"
                     />
                 </t>
             </t>
 
-            <div class="row mt16 o_portal_dn_sidebar">
+            <div class="row o_portal_dn_sidebar">
                 <!-- Sidebar -->
                 <t t-call="portal.portal_record_sidebar">
-                    <t t-set="classes" t-value="'col-lg-auto d-print-none'" />
+                    <t t-set="classes" t-value="'col-lg-4 col-xxl-3 d-print-none'" />
                     <t t-set="title">
-                        <h2 class="mb-0">
+                        <h2 class="mb-0 text-break">
                             <b t-field="dn.name" />
                         </h2>
                         <div class="small">
-                            <span t-field="dn.date" />
+                            <i class="fa fa-clock-o" />
+                            <span
+                                class="o_portal_sidebar_timeago ml4"
+                                t-att-datetime="dn.date"
+                            />
                         </div>
                     </t>
 
                     <t t-set="entries">
-                        <ul
-                            class="list-group list-group-flush flex-wrap flex-row flex-lg-column"
-                        >
-                            <li class="list-group-item flex-grow-1">
-                                <div class="o_download_pdf btn-toolbar flex-sm-nowrap">
-                                    <div class="btn-group flex-grow-1 mr-1 mb-1">
-                                        <a
-                                            class="btn btn-secondary btn-block o_download_btn"
-                                            t-att-href="dn.get_portal_url(report_type='pdf', download=True)"
-                                            title="Download"
-                                        ><i class="fa fa-download" /> Download</a>
-                                    </div>
-                                    <div class="btn-group flex-grow-1 mb-1">
-                                        <a
-                                            class="btn btn-secondary btn-block o_print_btn o_portal_dn_print"
-                                            t-att-href="dn.get_portal_url(report_type='pdf')"
-                                            id="print_dn_report"
-                                            title="Print"
-                                            target="_blank"
-                                        ><i class="fa fa-print" /> Print</a>
-                                    </div>
+                        <div class="d-flex flex-column gap-4 mt-3">
+                            <div class="d-flex flex-column gap-2">
+                                <div
+                                    class="o_download_pdf d-flex flex-lg-column flex-xl-row flex-wrap gap-2"
+                                >
+                                    <a
+                                        class="btn btn-light o_download_btn flex-grow-1"
+                                        t-att-href="dn.get_portal_url(report_type='pdf', download=True)"
+                                        title="Download"
+                                        role="button"
+                                    >
+                                        <i class="fa fa-download" /> Download
+                                    </a>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </t>
                 </t>
 
                 <!-- Page Content -->
-                <div id="dn_content" class="col-12 col-lg">
-                    <div class="o_portal_html_view shadow p-3">
-                        <div class="o_portal_html_loader text-center">
-                            <i
-                                class="fa fa-circle-o-notch fa-spin fa-2x fa-fw text-black-50"
-                            />
-                        </div>
-                        <iframe
-                            id="dn_html"
-                            class="mt8 mb8"
-                            width="100%"
-                            height="100%"
-                            frameborder="0"
-                            scrolling="no"
-                            t-att-src="dn.get_portal_url(report_type='html')"
+                <div
+                    class="o_portal_html_view position-relative bg-white shadow p-3 overflow-hidden"
+                >
+                    <div class="o_portal_html_loader text-center">
+                        <i
+                            class="fa fa-circle-o-notch fa-spin fa-2x fa-fw text-black-50"
                         />
                     </div>
-                    <!-- chatter -->
-                    <div id="dn_communication" class="mt-4">
-                        <h2>History</h2>
-                        <t t-call="portal.message_thread">
-                            <t t-set="object" t-value="dn" />
-                        </t>
-                    </div>
+                    <iframe
+                        id="dn_html"
+                        class="position-relative my-2"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        scrolling="no"
+                        t-att-src="dn.get_portal_url(report_type='html')"
+                    />
+                </div>
+                <!-- chatter -->
+                <div id="dn_communication" class="mt-4">
+                    <h3>Communication history</h3>
+                    <t t-call="portal.message_thread">
+                        <t t-set="object" t-value="dn" />
+                    </t>
                 </div>
             </div>
         </xpath>

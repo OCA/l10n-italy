@@ -1,7 +1,7 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 
 DONE_PICKING_STATE = "done"
@@ -23,7 +23,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
     def _check_pickings(self, pickings):
         if not pickings:
             raise ValidationError(
-                _(
+                self.env._(
                     "You shouldn't be able to launch this wizard "
                     "without selecting any pickings."
                 )
@@ -33,7 +33,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
     def _check_pickings_state(self, pickings):
         if pickings.filtered(lambda p: p.state != DONE_PICKING_STATE):
             raise ValidationError(
-                _(
+                self.env._(
                     "At least one picking you've selected doesn't "
                     "appear to be completed."
                 )
@@ -45,12 +45,12 @@ class StockPickingCheckerMixin(models.AbstractModel):
 
         if not types:
             raise ValidationError(
-                _("The pickings you've selected don't seem to have any type.")
+                self.env._("The pickings you've selected don't seem to have any type.")
             )
 
         if len(types) > 1:
             raise ValidationError(
-                _("You need to select pickings with all the same type.")
+                self.env._("You need to select pickings with all the same type.")
             )
 
     @api.model
@@ -63,7 +63,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
 
         if not partners:
             raise ValidationError(
-                _(
+                self.env._(
                     "The pickings you've selected don't seem to have any partner"
                     " or the selected warehouse doesn't have a valid address."
                 )
@@ -71,7 +71,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
 
         if len(partners) > 1:
             raise ValidationError(
-                _("You need to select pickings with all the same recipient.")
+                self.env._("You need to select pickings with all the same recipient.")
             )
 
     @api.model
@@ -80,7 +80,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
 
         if not src_locations:
             raise ValidationError(
-                _(
+                self.env._(
                     "The pickings you've selected don't seem to "
                     "have any location of departure."
                 )
@@ -88,7 +88,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
 
         if len(src_locations) > 1:
             raise ValidationError(
-                _(
+                self.env._(
                     "You need to select pickings with all the same "
                     "location of departure."
                 )
@@ -100,7 +100,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
 
         if not dest_locations:
             raise ValidationError(
-                _(
+                self.env._(
                     "The pickings you've selected don't seem to have any "
                     "location of destination."
                 )
@@ -108,7 +108,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
 
         if len(dest_locations) > 1:
             raise ValidationError(
-                _(
+                self.env._(
                     "You need to select pickings with all the same location "
                     "of destination."
                 )
@@ -118,7 +118,7 @@ class StockPickingCheckerMixin(models.AbstractModel):
     def _check_delivery_notes(self, pickings):
         if pickings.filtered(lambda p: p.delivery_note_id):
             raise ValidationError(
-                _(
+                self.env._(
                     "At least one picking you've selected appears to"
                     " be already related to another delivery note."
                 )
