@@ -26,6 +26,12 @@
                         />
                     <thead>
                         <tr class="first_th_row">
+                            <t t-if="enable_currency">
+                                <t
+                                        t-set="columns_number"
+                                        t-value="columns_number + 1"
+                                    />
+                            </t>
                             <td
                                     t-att-colspan="columns_number"
                                     style="padding:10;"
@@ -49,6 +55,10 @@
                                 </t>
                                 <th class="left_without_line" />
                                 <th class="right_without_line">TOTAL</th>
+                                <th
+                                        t-if="enable_currency"
+                                        class="right_without_line"
+                                    >TOTAL (currency)</th>
                             </tr>
                             <tr style="page-break-inside: avoid" name="vat_header_tax">
                                 <t t-if="registry_type != 'corrispettivi'">
@@ -62,6 +72,10 @@
                                 <th class="right_with_line_bottom">Taxable</th>
                                 <th class="right_with_line_bottom">Tax</th>
                                 <th class="right_with_line_bottom" />
+                                <th
+                                        t-if="enable_currency"
+                                        class="right_with_line_bottom"
+                                    />
                             </tr>
                         </t>
                     </thead>
@@ -175,7 +189,14 @@
                                             <!-- totale -->
                                             <td class="right_without_line_bold"><div
                                                         style="page-break-inside: avoid"
-                                                        t-esc="formatLang(env, invoice_total(move))"
+                                                        t-esc="company_currency_symbol + ' ' + formatLang(env, invoice_total(move))"
+                                                    /></td>
+                                            <td
+                                                    t-if="enable_currency and show_currency(move)"
+                                                    class="right_without_line_bold"
+                                                ><div
+                                                        style="page-break-inside: avoid"
+                                                        t-esc="line['currency_symbol'] + ' ' + formatLang(env, currency_total(move))"
                                                     /></td>
                                         </tr>
                                     </t>
@@ -198,14 +219,18 @@
                                         <!-- base -->
                                         <td class="right_without_line"><div
                                                     style="page-break-inside: avoid"
-                                                    t-esc="formatLang(env, line['base'])"
+                                                    t-esc="company_currency_symbol + ' ' + formatLang(env, line['base'])"
                                                 /></td>
                                         <!-- tax -->
                                         <td class="right_without_line"><div
                                                     style="page-break-inside: avoid"
-                                                    t-esc="formatLang(env, line['tax'])"
+                                                    t-esc="company_currency_symbol + ' ' + formatLang(env, line['tax'])"
                                                 /></td>
                                         <td class="left_without_line" />
+                                        <td
+                                                t-if="enable_currency"
+                                                class="right_without_line"
+                                            />
                                     </tr>
                                 </t>
                             </t>
