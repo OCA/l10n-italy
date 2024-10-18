@@ -4,13 +4,14 @@
 import base64
 
 from odoo.exceptions import UserError
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.l10n_it_fatturapa_out.tests.fatturapa_common import (
     FatturaPACommon,
 )
 
 
+@tagged("post_install", "-at_install")
 class TestFatturaPAOUTWelfare(FatturaPACommon):
     def _get_welfare_amount(self, welfare, amount):
         """
@@ -30,9 +31,7 @@ class TestFatturaPAOUTWelfare(FatturaPACommon):
         payable_account_form = Form(account_model)
         payable_account_form.name = "Withholding Credit"
         payable_account_form.code = "WTPAY"
-        payable_account_form.user_type_id = self.env.ref(
-            "account.data_account_type_payable"
-        )
+        payable_account_form.account_type = "liability_payable"
         payable_account = payable_account_form.save()
         return payable_account
 
@@ -46,8 +45,8 @@ class TestFatturaPAOUTWelfare(FatturaPACommon):
         withholding_tax_form.code = "TWT"
         withholding_tax_form.account_receivable_id = receivable_account
         withholding_tax_form.account_payable_id = payable_account
-        withholding_tax_form.causale_pagamento_id = self.env.ref(
-            "l10n_it_causali_pagamento.a"
+        withholding_tax_form.payment_reason_id = self.env.ref(
+            "l10n_it_payment_reason.a"
         )
         withholding_tax_form.payment_term = self.env.ref(
             "account.account_payment_term_immediate"
@@ -71,68 +70,92 @@ class TestFatturaPAOUTWelfare(FatturaPACommon):
                 ("state", "=", "open"),
             ],
         )
-        journals = open_invoices.mapped("journal_id")
-        journals.update(
+        open_invoices.button_cancel()
+
+        invoice = self.invoice_model.create(
             {
-                "update_posted": True,
+                "invoice_date": "2024-01-01",
+                "partner_id": self.res_partner_fatturapa_0.id,
+                "journal_id": self.sales_journal.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
+                "user_id": self.user_demo.id,
+                "move_type": "out_invoice",
+                "currency_id": self.EUR.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_product_10.id,
+                            "price_unit": 100,
+                            "tax_ids": [(6, 0, [self.tax_22.id])],
+                            "welfare_fund_type_amount_ids": [(5, 0, 0)],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_product_10.id,
+                            "price_unit": 100,
+                            "tax_ids": [(6, 0, [self.tax_22.id])],
+                            "invoice_line_tax_wt_ids": [
+                                (6, 0, [self.withholding_tax.id])
+                            ],
+                            "welfare_fund_type_amount_ids": [
+                                (6, 0, [self.welfare_amount_INPS_10.id])
+                            ],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_product_10.id,
+                            "price_unit": 100,
+                            "tax_ids": [(6, 0, [self.tax_22.id])],
+                            "invoice_line_tax_wt_ids": [
+                                (6, 0, [self.withholding_tax.id])
+                            ],
+                            "welfare_fund_type_amount_ids": [
+                                (
+                                    6,
+                                    0,
+                                    [
+                                        self.welfare_amount_ENPAM_20.id,
+                                        self.welfare_amount_INPS_10.id,
+                                    ],
+                                )
+                            ],
+                        },
+                    ),
+                ],
             }
         )
-        open_invoices.action_cancel()
-
-        date_invoice = "2023-01-01"
-        self.set_sequences(1, date_invoice)
-        # Explicitly request the customer invoice form view,
-        # otherwise the supplier form view is automatically picked up
-        invoice_form = Form(
-            self.invoice_model,
-            "account.invoice_form",
-        )
-        invoice_form.partner_id = self.res_partner_fatturapa_0
-        invoice_form.date_invoice = date_invoice
-        with invoice_form.invoice_line_ids.new() as invoice_line:
-            invoice_line.product_id = self.product_product_10
-            invoice_line.price_unit = 100
-            invoice_line.invoice_line_tax_ids.clear()
-            invoice_line.invoice_line_tax_ids.add(
-                self.tax_22,
-            )
-            invoice_line.welfare_fund_type_amount_ids.clear()
-
-        with invoice_form.invoice_line_ids.new() as invoice_line:
-            invoice_line.product_id = self.product_product_10
-            invoice_line.price_unit = 100
-            invoice_line.invoice_line_tax_ids.clear()
-            invoice_line.invoice_line_tax_ids.add(
-                self.tax_22,
-            )
-            invoice_line.welfare_fund_type_amount_ids.clear()
-            invoice_line.welfare_fund_type_amount_ids.add(
-                self.welfare_amount_INPS_10,
-            )
-            invoice_line.invoice_line_tax_wt_ids.clear()
-            invoice_line.invoice_line_tax_wt_ids.add(
-                self.withholding_tax,
-            )
-
-        with invoice_form.invoice_line_ids.new() as invoice_line:
-            invoice_line.product_id = self.product_product_10
-            invoice_line.price_unit = 100
-            invoice_line.invoice_line_tax_ids.clear()
-            invoice_line.invoice_line_tax_ids.add(
-                self.tax_22,
-            )
-            invoice_line.welfare_fund_type_amount_ids.clear()
-            invoice_line.welfare_fund_type_amount_ids.add(
-                self.welfare_amount_ENPAM_20,
-            )
-            invoice_line.welfare_fund_type_amount_ids.add(
-                self.welfare_amount_INPS_10,
-            )
-        invoice = invoice_form.save()
         return invoice
 
     def setUp(self):
         super().setUp()
+        self.company = self.env.company = self.sales_journal.company_id
+
+        # XXX - a company named "YourCompany" alread exists
+        # we move it out of the way but we should do better here
+        self.env.company.sudo().search([("name", "=", "YourCompany")]).write(
+            {"name": "YourCompany_"}
+        )
+        self.env.company.name = "YourCompany"
+        self.env.company.vat = "IT06363391001"
+        self.env.company.fatturapa_art73 = True
+        self.env.company.partner_id.street = "Via Milano, 1"
+        self.env.company.partner_id.city = "Roma"
+        self.env.company.partner_id.state_id = self.env.ref("base.state_us_2").id
+        self.env.company.partner_id.zip = "00100"
+        self.env.company.partner_id.phone = "06543534343"
+        self.env.company.email = "info@yourcompany.example.com"
+        self.env.company.partner_id.country_id = self.env.ref("base.it").id
+        self.env.company.fatturapa_fiscal_position_id = self.env.ref(
+            "l10n_it_fatturapa.fatturapa_RF01"
+        ).id
         self.welfare_amount_INPS_10 = self._get_welfare_amount(
             self.env.ref("l10n_it_fatturapa.21"),
             10,
@@ -158,14 +181,15 @@ class TestFatturaPAOUTWelfare(FatturaPACommon):
         # Check that Welfare Lines have to be generated
         # before validating the invoice
         with self.assertRaises(UserError) as ue:
-            invoice.action_invoice_open()
+            invoice.action_post()
         exc_message = ue.exception.args[0]
         self.assertIn("regenerate Welfare Lines", exc_message)
         self.assertIn(invoice.display_name, exc_message)
 
         # Export the Electronic Invoice
+        invoice._onchange_invoice_line_wt_ids()
         invoice.button_regenerate_welfare_lines()
-        invoice.action_invoice_open()
+        invoice.action_post()
         res = self.run_wizard(invoice.id)
         attachment = self.attach_model.browse(res["res_id"])
         self.set_e_invoice_file_id(attachment, "IT06363391001_random.xml")

@@ -65,10 +65,10 @@ class WelfareFundTypeAmount(models.Model):
         return {
             "name": self.display_name,
             "account_id": first_line.account_id.id,
-            "invoice_line_tax_ids": [
-                (6, 0, first_line.invoice_line_tax_ids.ids),
+            "tax_ids": [
+                (6, 0, first_line.tax_ids.ids),
             ],
-            "invoice_id": first_line.invoice_id.id,
+            "move_id": first_line.move_id.id,
             "welfare_grouping_fund_type_amount_id": self.id,
             "welfare_grouped_invoice_line_ids": [
                 (6, 0, invoice_lines.ids),

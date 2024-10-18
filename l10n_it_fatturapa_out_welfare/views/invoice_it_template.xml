@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Alex Comba - Agile Business Group
+     Copyright 2023 Simone Rubino - TAKOBI
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <template
+        id="wt_account_invoice_it_dati_cassa_previdenziale"
+        inherit_id="l10n_it_fatturapa_out_wt.wt_account_invoice_it_dati_cassa_previdenziale"
+        priority="900"
+    >
+        <DatiCassaPrevidenziale position="after">
+            <!--2.1.1.7-->
+            <DatiCassaPrevidenziale
+                t-foreach="set_dati_cassa_previdenziale(record)"
+                t-as="dc_line"
+            >
+                  <TipoCassa t-out="dc_line['TipoCassa']" />
+                  <AlCassa t-out="dc_line['AlCassa']" />
+                  <ImportoContributoCassa t-out="dc_line['ImportoContributoCassa']" />
+                  <ImponibileCassa
+                    t-if="dc_line['ImponibileCassa']"
+                    t-out="dc_line['ImponibileCassa']"
+                />
+                  <AliquotaIVA
+                    t-if="dc_line['AliquotaIVA']"
+                    t-out="dc_line['AliquotaIVA']"
+                />
+                  <Ritenuta t-if="dc_line['Ritenuta']">SI</Ritenuta>
+                  <Natura t-if="dc_line['Natura']" t-out="dc_line['Natura']" />
+                  <RiferimentoAmministrazione
+                    t-if="dc_line['RiferimentoAmministrazione']"
+                    t-out="dc_line['RiferimentoAmministrazione']"
+                />
+            </DatiCassaPrevidenziale>
+        </DatiCassaPrevidenziale>
+    </template>
+
+    <template
+        id="account_invoice_it_fattura_elettronica_body_welfare"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
+        priority="900"
+    >
+        <xpath expr="//DatiBeniServizi/t[@t-as='line']" position="attributes">
+            <attribute
+                name="t-foreach"
+            >record.invoice_line_ids.filtered(lambda l: not l.welfare_grouping_fund_type_amount_id).sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)</attribute>
+        </xpath>
+
+    </template>
+
+</odoo>
