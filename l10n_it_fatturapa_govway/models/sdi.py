@@ -127,38 +127,38 @@ class SdiChannel(models.Model):
                     % str(e)
                 )
             return {"result": "ok"}  # response_data.get("data", {})
-        #   mail_message = self.env["mail.message"].create(
-        #         {
-        #             "model": att._name,
-        #             "res_id": att.id,
-        #             "subject": att.name,
-        #             "body": "XML file for FatturaPA {} sent to Exchange System to "
-        #             "the email address {}.".format(
-        #                 att.name, company.email_exchange_system
-        #             ),
-        #             "attachment_ids": [(6, 0, att.ir_attachment_id.ids)],
-        #             "email_from": company.email_from_for_fatturaPA,
-        #             "reply_to": company.email_from_for_fatturaPA,
-        #             "mail_server_id": company.sdi_channel_id.pec_server_id.id,
-        #         }
-        #     )
-        #
-        #     mail = self.env["mail.mail"].create(
-        #         {
-        #             "mail_message_id": mail_message.id,
-        #             "body_html": mail_message.body,
-        #             "email_to": company.email_exchange_system,
-        #             "headers": {"Return-Path": company.email_from_for_fatturaPA},
-        #         }
-        #     )
-        #
-        #     if mail:
-        #         try:
-        #             mail.send(raise_exception=True)
-        #             att.state = "sent"
-        #             att.sending_date = fields.Datetime.now()
-        #             att.sending_user = user.id
-        #             company.sdi_channel_id.update_after_first_pec_sending()
-        #         except MailDeliveryException as e:
-        #             att.state = "sender_error"
-        #             mail.body = str(e)
+          mail_message = self.env["mail.message"].create(
+                {
+                    "model": att._name,
+                    "res_id": att.id,
+                    "subject": att.name,
+                    "body": "XML file for FatturaPA {} sent to Exchange System to "
+                    "the email address {}.".format(
+                        att.name, company.email_exchange_system
+                    ),
+                    "attachment_ids": [(6, 0, att.ir_attachment_id.ids)],
+                    "email_from": company.email_from_for_fatturaPA,
+                    "reply_to": company.email_from_for_fatturaPA,
+                    "mail_server_id": company.sdi_channel_id.pec_server_id.id,
+                }
+            )
+
+            mail = self.env["mail.mail"].create(
+                {
+                    "mail_message_id": mail_message.id,
+                    "body_html": mail_message.body,
+                    "email_to": company.email_exchange_system,
+                    "headers": {"Return-Path": company.email_from_for_fatturaPA},
+                }
+            )
+
+            if mail:
+                try:
+                    mail.send(raise_exception=True)
+                    att.state = "sent"
+                    att.sending_date = fields.Datetime.now()
+                    att.sending_user = user.id
+                    company.sdi_channel_id.update_after_first_pec_sending()
+                except MailDeliveryException as e:
+                    att.state = "sender_error"
+                    mail.body = str(e)
