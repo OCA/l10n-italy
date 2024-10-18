@@ -48,6 +48,11 @@ class StockDeliveryNoteType(models.Model):
         "stock.picking.transport.method", string="Method of transport"
     )
 
+    transport_reason_inconsistency_ids = fields.Many2many(
+        "stock.picking.transport.reason",
+        string="Inconsistent reasons of transport",
+    )
+
     sequence_id = fields.Many2one("ir.sequence", string="Numeration", required=True)
     next_sequence_number = fields.Integer(related="sequence_id.number_next_actual")
     company_id = fields.Many2one(

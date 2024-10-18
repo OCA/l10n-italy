@@ -298,6 +298,29 @@ class StockDeliveryNote(models.Model):
         )
     ]
 
+    @api.constrains(
+        "type_id", "type_id.transport_reason_inconsistency_ids", "transport_reason_id"
+    )
+    def _check_transport_reason_inconsistency(self):
+        for note in self:
+            if (
+                note.transport_reason_id
+                and note.transport_reason_id
+                in note.type_id.transport_reason_inconsistency_ids
+            ):
+                raise UserError(
+                    _(
+                        "Check this delivery note %(note_name)s! \n"
+                        "You cannot set this delivery note type (%(note_type_name)s)"
+                        " with this reason of transport (%(note_reason_name)s)."
+                    )
+                    % {
+                        "note_name": note.display_name,
+                        "note_type_name": note.type_id.display_name,
+                        "note_reason_name": note.transport_reason_id.display_name,
+                    }
+                )
+
     @api.depends("name", "partner_id", "partner_ref", "partner_id.display_name")
     def name_get(self):
         result = []
