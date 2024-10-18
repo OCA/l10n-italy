@@ -181,12 +181,16 @@
                                 <tree editable="bottom">
                                     <field name="account_id" />
                                     <field name="name" />
+                                    <field name="previous_year_credit" />
                                     <field name="amount" />
-                               </tree>
+                                </tree>
                                 <form>
-                                    <field name="account_id" />
-                                    <field name="name" />
-                                    <field name="amount" />
+                                    <group>
+                                        <field name="account_id" />
+                                        <field name="name" />
+                                        <field name="previous_year_credit" />
+                                        <field name="amount" />
+                                    </group>
                                </form>
                             </field>
                         </group>

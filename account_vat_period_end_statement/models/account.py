@@ -821,6 +821,7 @@ class StatementGenericAccountLine(models.Model):
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
     amount = fields.Float("Amount", required=True, digits="Account")
     name = fields.Char("Description")
+    previous_year_credit = fields.Boolean("Previous year credits")
 
 
 class AccountTax(models.Model):

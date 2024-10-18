@@ -687,6 +687,12 @@ class ComunicazioneLiquidazioneVp(models.Model):
                 # 2 - Decremento iva detratta con righe negative
                 for line in liq.generic_vat_account_line_ids:
                     if line.amount > 0:
-                        quadro.iva_esigibile -= line.amount
+                        if line.previous_year_credit:
+                            quadro.credito_anno_precedente -= line.amount
+                        else:
+                            quadro.iva_esigibile -= line.amount
                     else:
-                        quadro.iva_detratta += line.amount
+                        if line.previous_year_credit:
+                            quadro.credito_anno_precedente += line.amount
+                        else:
+                            quadro.iva_detratta += line.amount
