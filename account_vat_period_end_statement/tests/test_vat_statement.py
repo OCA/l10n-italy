@@ -3,7 +3,10 @@
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields
+from odoo.exceptions import UserError
 from odoo.tests import tagged
+from odoo.tools.date_utils import relativedelta
+from odoo.tools.misc import format_date
 
 from .common import TestVATStatementCommon
 
@@ -24,6 +27,16 @@ class TestTax(TestVATStatementCommon):
                 limit=1,
             )
             .id
+        )
+        expenses_invoice_line_account = self.env["account.account"].search(
+            [
+                (
+                    "user_type_id",
+                    "=",
+                    self.env.ref("account.data_account_type_expenses").id,
+                )
+            ],
+            limit=1,
         )
 
         out_invoice = self.invoice_model.create(
@@ -141,6 +154,58 @@ class TestTax(TestVATStatementCommon):
                 self.assertEqual(line.debit, 100)
         self.assertTrue(vat_auth_found)
         # TODO payment
+        # test account for an invoice line is writable
+        out_invoice.button_draft()
+        invoice_line = out_invoice.line_ids.filtered(
+            lambda x: x.account_id.id == in_invoice_line_account
+        )[0]
+        invoice_line.account_id = expenses_invoice_line_account
+        # test account for a tax line is not writable
+        tax_line = out_invoice.line_ids.filtered(lambda x: x.tax_line_id)[0]
+        with self.assertRaises(UserError) as ue:
+            tax_line.account_id = expenses_invoice_line_account
+        error_message = (
+            "The operation is refused as it would impact already issued "
+            "tax statements on %s.\n"
+            "Please restore the journal entry date or reset VAT statement "
+            "to draft to proceed."
+        ) % format_date(self.env, self.vat_statement.date)
+        self.assertEqual(ue.exception.args[0], error_message)
+        # test invoice date cannot be changed
+        with self.assertRaises(UserError) as ue:
+            out_invoice.date = out_invoice.date + relativedelta(days=1)
+        self.assertEqual(ue.exception.args[0], error_message)
+        # test an invoice in a date range without VAT statement can be modified
+        out_invoice = self.invoice_model.create(
+            {
+                "invoice_date": self.current_period.date_end + relativedelta(days=1),
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.env.ref("base.res_partner_3").id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "service",
+                            "price_unit": 100,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, [self.account_tax_22.id])],
+                        },
+                    )
+                ],
+            }
+        )
+        out_invoice._recompute_tax_lines()
+        out_invoice.action_post()
+        out_invoice.button_draft()
+        invoice_line = out_invoice.line_ids.filtered(
+            lambda x: x.account_id.id == in_invoice_line_account
+        )[0]
+        invoice_line.account_id = expenses_invoice_line_account
+        tax_line = out_invoice.line_ids.filtered(lambda x: x.tax_line_id)[0]
+        tax_line.account_id = expenses_invoice_line_account
+        out_invoice.date = out_invoice.date + relativedelta(days=1)
 
     def test_different_previous_vat_statements(self):
         """
