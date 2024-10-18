@@ -32,10 +32,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
             <t t-set="related_receptions" t-value="record.related_documents.browse()" />
             <t t-set="related_invoices" t-value="record.related_documents.browse()" />
             <t t-set="line_counter" t-value="0" />
-            <t
-                t-foreach="record.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"
-                t-as="line"
-            >
+            <t t-foreach="wizard.get_e_invoice_lines(record)" t-as="line">
                 <t t-set="line_counter" t-value="line_counter + 1" />
                 <t
                     t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'order')"
@@ -579,10 +576,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <DatiBeniServizi>
                     <!-- Invoice lines. -->
                     <t t-set="line_counter" t-value="0" />
-                    <t
-                        t-foreach="record.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"
-                        t-as="line"
-                    >
+                    <t t-foreach="wizard.get_e_invoice_lines(record)" t-as="line">
                         <t t-set="line_counter" t-value="line_counter + 1" />
                         <t
                             t-call="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
