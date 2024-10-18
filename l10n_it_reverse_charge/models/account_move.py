@@ -99,11 +99,13 @@ class AccountMove(models.Model):
         else:
             move_type = "out_refund"
         supplier = self.partner_id
+        reference_date = self.invoice_date
         original_invoice = self.search(
             [("rc_self_purchase_invoice_id", "=", self.id)], limit=1
         )
         if original_invoice:
             supplier = original_invoice.partner_id
+            reference_date = original_invoice.invoice_date
 
         narration = _(
             "Reverse charge self invoice.\n"
@@ -113,7 +115,7 @@ class AccountMove(models.Model):
             "Internal reference: %(internal_reference)s",
             supplier=supplier.display_name,
             reference=self.invoice_origin or self.ref or "",
-            date=self.date,
+            date=reference_date,
             internal_reference=self.name,
         )
         return {
