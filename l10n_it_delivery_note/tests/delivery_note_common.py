@@ -91,19 +91,6 @@ class StockDeliveryNoteCommon(TransactionCase):
     def setUp(self):
         super().setUp()
 
-        self.env.user.write(
-            {
-                "groups_id": [
-                    (
-                        4,
-                        self.env.ref(
-                            "l10n_it_delivery_note.use_advanced_delivery_notes"
-                        ).id,
-                    )
-                ]
-            }
-        )
-
         self.account_manager = mail_new_test_user(
             self.env,
             name="Adviser",

@@ -2,7 +2,7 @@
 
 - Matteo Bilotta \<<mbilotta@linkeurope.it>\>
 
-- Giuseppe Borruso \<<gconte@dinamicheaziendali.it>\>
+- Giuseppe Borruso \<<gborruso@dinamicheaziendali.it>\>
 
 - Marco Calcagni \<<mcalcagni@dinamicheaziendali.it>\>
 

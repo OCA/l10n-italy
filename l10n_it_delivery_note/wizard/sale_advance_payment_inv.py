@@ -1,7 +1,7 @@
 # Copyright (c) 2020, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 WIZARD_STEPS = [("initial", "Initial"), ("confirm", "Confirm")]
 DOMAIN_WIZARD_STEPS = [s[0] for s in WIZARD_STEPS]
@@ -31,7 +31,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
         self.ensure_one()
 
         return {
-            "name": _("Invoice Order"),
+            "name": self.env._("Invoice Order"),
             "type": "ir.actions.act_window",
             "res_model": self._name,
             "res_id": self.id,

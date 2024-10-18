@@ -9,22 +9,19 @@
         <field name="model">stock.delivery.note.select.wizard</field>
         <field name="arch" type="xml">
             <form>
-                <div attrs="{'invisible': [('error_message', '=', False)]}">
+                <div invisible="not error_message">
                     <field name="error_message" />
                 </div>
                 <field name="selected_picking_ids" invisible="True" />
                 <p
                     class="text-center alert alert-warning"
                     role="alert"
-                    attrs="{'invisible': [('warning_message', '=', False)]}"
+                    invisible="not warning_message"
                 >
                     <span class="fa fa-warning" title="Warning!" />
                     <field name="warning_message" />
                 </p>
-                <div
-                    class="oe_title"
-                    attrs="{'invisible': [('error_message', '!=', False)]}"
-                >
+                <div class="oe_title" invisible="error_message">
                     <label for="delivery_note_id" />
                     <h1>
                         <field
@@ -35,10 +32,7 @@
                         />
                     </h1>
                 </div>
-                <group
-                    string="Summary"
-                    attrs="{'invisible': [('error_message', '!=', False)]}"
-                >
+                <group string="Summary" invisible="error_message">
                     <group>
                         <field name="partner_sender_id" />
                         <field name="partner_id" />
@@ -49,10 +43,10 @@
                         <field name="date" />
                     </group>
                 </group>
-                <notebook attrs="{'invisible': [('error_message', '!=', False)]}">
+                <notebook invisible="error_message">
                     <page name="pickings" string="Pickings">
                         <field name="picking_ids">
-                            <tree
+                            <list
                                 decoration-success="id in parent.selected_picking_ids"
                             >
                                 <field name="name" />
@@ -64,7 +58,7 @@
                                 <field name="origin" />
                                 <field name="backorder_id" />
                                 <field name="state" />
-                            </tree>
+                            </list>
                         </field>
                     </page>
                 </notebook>
@@ -74,20 +68,20 @@
                         type="object"
                         class="btn-primary"
                         string="Confirm"
-                        attrs="{'invisible': [('error_message', '!=', False)]}"
+                        invisible="error_message"
                     />
                     <button
                         special="cancel"
                         class="btn-primary"
                         string="Cancel"
-                        attrs="{'invisible': [('error_message', '=', False)]}"
+                        invisible="not error_message"
                         style="float: right;"
                     />
                     <button
                         special="cancel"
                         class="btn-secondary"
                         string="Cancel"
-                        attrs="{'invisible': [('error_message', '!=', False)]}"
+                        invisible="error_message"
                     />
                 </footer>
             </form>
@@ -98,12 +92,11 @@
         <field name="name">Select an existing delivery note</field>
         <field name="res_model">stock.delivery.note.select.wizard</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="stock_delivery_note_select_form_view" />
-        <field name="target">new</field>
         <field
-            name="groups_id"
-            eval="[(4, ref('l10n_it_delivery_note.use_advanced_delivery_notes'))]"
+            name="view_id"
+            ref="l10n_it_delivery_note.stock_delivery_note_select_form_view"
         />
+        <field name="target">new</field>
         <field name="binding_model_id" ref="stock.model_stock_picking" />
         <field name="binding_view_types">list</field>
     </record>

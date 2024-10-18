@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import date, datetime, timedelta
 
-from odoo import _
+from odoo.tests import Form
 from odoo.tests.common import users
 from odoo.tools.date_utils import relativedelta
 
@@ -26,7 +26,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         )
         self.assertTrue(
             dn_types.filtered(
-                lambda d: d.name == _("Incoming")
+                lambda d: d.name == self.env._("Incoming")
                 and d.sequence_id
                 == self.env["ir.sequence"].search(
                     [
@@ -38,7 +38,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         )
         self.assertTrue(
             dn_types.filtered(
-                lambda d: d.name == _("Outgoing")
+                lambda d: d.name == self.env._("Outgoing")
                 and d.sequence_id
                 == self.env["ir.sequence"].search(
                     [
@@ -50,7 +50,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         )
         self.assertTrue(
             dn_types.filtered(
-                lambda d: d.name == _("Outgoing (with prices)")
+                lambda d: d.name == self.env._("Outgoing (with prices)")
                 and d.sequence_id
                 == self.env["ir.sequence"].search(
                     [
@@ -62,7 +62,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         )
         self.assertTrue(
             dn_types.filtered(
-                lambda d: d.name == _("Internal transfer")
+                lambda d: d.name == self.env._("Internal transfer")
                 and d.sequence_id
                 == self.env["ir.sequence"].search(
                     [
@@ -76,7 +76,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
     def test_initial_dn_type_creation(self):
         """
         This test is for checking dn_types and sequence creation by
-        l10n_it_delivery_note_base post_init_hook
+        l10n_it_delivery_note post_init_hook
         """
         companies = self.env["res.company"].search([])
         for company in companies:
@@ -85,7 +85,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
             )
             self.assertTrue(
                 dn_types.filtered(
-                    lambda d, c=company: d.name == _("Incoming")
+                    lambda d, c=company: d.name == self.env._("Incoming")
                     and d.sequence_id
                     == self.env["ir.sequence"].search(
                         [
@@ -97,7 +97,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
             )
             self.assertTrue(
                 dn_types.filtered(
-                    lambda d, c=company: d.name == _("Outgoing")
+                    lambda d, c=company: d.name == self.env._("Outgoing")
                     and d.sequence_id
                     == self.env["ir.sequence"].search(
                         [
@@ -109,7 +109,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
             )
             self.assertTrue(
                 dn_types.filtered(
-                    lambda d, c=company: d.name == _("Outgoing (with prices)")
+                    lambda d, c=company: d.name == self.env._("Outgoing (with prices)")
                     and d.sequence_id
                     == self.env["ir.sequence"].search(
                         [
@@ -121,7 +121,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
             )
             self.assertTrue(
                 dn_types.filtered(
-                    lambda d, c=company: d.name == _("Internal transfer")
+                    lambda d, c=company: d.name == self.env._("Internal transfer")
                     and d.sequence_id
                     == self.env["ir.sequence"].search(
                         [
@@ -178,15 +178,24 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         self.assertEqual(len(picking), 1)
         self.assertEqual(len(picking.move_ids), 1)
 
-        picking.move_ids[0].quantity_done = 1
+        picking.move_ids.quantity = False
+        picking.move_ids[0].quantity = 1
         result = picking.button_validate()
         self.assertTrue(result)
 
+        dn_form = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                active_ids=picking.ids,
+            )
+        )
+        wizard = dn_form.save()
+        wizard.confirm()
         delivery_note = picking.delivery_note_id
         delivery_note.transport_datetime = datetime.now() + timedelta(days=1, hours=3)
         delivery_note.date = date.today().replace(year=old_year)
         delivery_note.action_confirm()
+
         self.assertEqual(delivery_note.type_id.sequence_id, sequence)
-        self.assertRegex(
-            delivery_note.name, sequence.prefix + r"\d{" + str(sequence.padding) + "}"
+        self.assertEqual(
+            delivery_note.name, f"{sequence.prefix}{50:0{sequence.padding}d}"
         )
