@@ -152,7 +152,7 @@ class FatturaPAAttachmentImportZIP(models.Model):
                 ),
             )
 
-    def action_import(self):
+    def action_import(self, with_invoice=True):
         self.ensure_one()
         company_partner = self.env.company.partner_id
         with tempfile.TemporaryDirectory() as tmp_dir_path:
@@ -182,16 +182,17 @@ class FatturaPAAttachmentImportZIP(models.Model):
                         attachment = self.env["fatturapa.attachment.out"].create(
                             attach_vals
                         )
-                    wizard = (
-                        self.env["wizard.import.fatturapa"]
-                        .with_context(
-                            active_ids=attachment.ids,
-                            active_model=attachment._name,
+                    if with_invoice:
+                        wizard = (
+                            self.env["wizard.import.fatturapa"]
+                            .with_context(
+                                active_ids=attachment.ids,
+                                active_model=attachment._name,
+                            )
+                            .create({})
                         )
-                        .create({})
-                    )
-                    _logger.info(f"Importing {xml_file}")
-                    wizard.importFatturaPA()
+                        _logger.info(f"Importing {xml_file}")
+                        wizard.importFatturaPA()
                 else:
                     _logger.info(f"Skipping {xml_file}, not an XML/P7M file")
             self.env.company.in_invoice_registration_date = (
@@ -199,6 +200,14 @@ class FatturaPAAttachmentImportZIP(models.Model):
             )
 
         self.state = "done"
+
+    def action_import_with_invoice(self):
+        self.ensure_one()
+        self.action_import(with_invoice=True)
+
+    def action_import_no_invoice(self):
+        self.ensure_one()
+        self.action_import(with_invoice=False)
 
 
 class FatturaPAAttachmentIn(models.Model):
