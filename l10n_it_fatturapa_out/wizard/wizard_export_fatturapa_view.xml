@@ -14,6 +14,7 @@
                         <field
                             name="report_print_menu"
                             string="Attached report"
+                            domain="[('binding_model_id','=',context.get('active_model'))]"
                             widget="selection"
                         />
                     </group>
