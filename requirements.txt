@@ -5,4 +5,6 @@ elementpath
 mock
 openupgradelib
 unidecode
+xlrd
+xlsxwriter
 xmlschema
