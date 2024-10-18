@@ -1,7 +1,7 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -84,7 +84,7 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
 
         except ValidationError:
             values = {
-                "title": _("Warning!"),
+                "title": self.env._("Warning!"),
                 "errors": self._get_validation_errors(self.selected_picking_ids),
             }
 

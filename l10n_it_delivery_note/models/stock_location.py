@@ -2,7 +2,7 @@
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 
@@ -27,7 +27,7 @@ class StockLocation(models.Model):
 
         if not virtual_locations_root:
             raise UserError(
-                _(
+                self.env._(
                     "Can't find a default virtual locations root.\n"
                     "Ask your system administrator"
                     " to set it from the Warehouse"

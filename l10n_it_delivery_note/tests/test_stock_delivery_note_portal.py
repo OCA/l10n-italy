@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import AccessError
-from odoo.tests import HttpCase, new_test_user
+from odoo.tests import Form, HttpCase, new_test_user
 
 from .delivery_note_common import StockDeliveryNoteCommon
 
@@ -18,8 +18,6 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
             groups="base.group_portal",
         )
         self.user_mr.partner_id = self.recipient
-        # change user in order to automatically create delivery note
-        # when picking is validated
         self.env.user = self.user_mr
 
         # Mario Rossi SO
@@ -35,10 +33,15 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.picking_mr = self.sales_order_mr.picking_ids
         self.assertEqual(len(self.picking_mr.move_ids), 2)
 
-        self.picking_mr.move_ids[0].quantity_done = 1
-        self.picking_mr.move_ids[1].quantity_done = 1
+        self.picking_mr.move_ids.quantity = False
+        self.picking_mr.move_ids[0].quantity = 1
+        self.picking_mr.move_ids[1].quantity = 1
 
         self.picking_mr.button_validate()
+        dn = Form.from_action(
+            self.env, self.picking_mr.action_delivery_note_create()
+        ).save()
+        dn.confirm()
         self.delivery_note_mr = self.picking_mr.delivery_note_id
         self.assertTrue(self.delivery_note_mr)
         self.delivery_note_mr.action_confirm()
@@ -50,7 +53,7 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.sales_order_ab = self.create_sales_order(
             [
                 self.desk_combination_line,  # 1
-                self.customizable_desk_line,  # 1
+                self.customizable_desk_line,  # 3
             ],
         )
         self.assertEqual(len(self.sales_order_ab.order_line), 2)
@@ -59,10 +62,15 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.picking_ab = self.sales_order_ab.picking_ids
         self.assertEqual(len(self.picking_ab.move_ids), 2)
 
-        self.picking_ab.move_ids[0].quantity_done = 1
-        self.picking_ab.move_ids[1].quantity_done = 1
+        self.picking_ab.move_ids.quantity = False
+        self.picking_ab.move_ids[0].quantity = 1
+        self.picking_ab.move_ids[1].quantity = 3
 
         self.picking_ab.button_validate()
+        dn = Form.from_action(
+            self.env, self.picking_ab.action_delivery_note_create()
+        ).save()
+        dn.confirm()
         self.delivery_note_ab = self.picking_ab.delivery_note_id
         self.assertTrue(self.delivery_note_ab)
         self.delivery_note_ab.action_confirm()
@@ -80,9 +88,14 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.assertEqual(len(self.picking_ab_mr.move_ids), 1)
         self.picking_ab_mr.partner_id = self.user_mr.partner_id
 
-        self.picking_ab_mr.move_ids[0].quantity_done = 1
+        self.picking_ab_mr.move_ids.quantity = False
+        self.picking_ab_mr.move_ids[0].quantity = 1
 
         self.picking_ab_mr.button_validate()
+        dn = Form.from_action(
+            self.env, self.picking_ab_mr.action_delivery_note_create()
+        ).save()
+        dn.confirm()
         self.delivery_note_ab_mr = self.picking_ab_mr.delivery_note_id
         self.assertTrue(self.delivery_note_ab_mr)
         self.delivery_note_ab_mr.action_confirm()
@@ -100,9 +113,14 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.picking_azr = self.sales_order_azr.picking_ids
         self.assertEqual(len(self.picking_azr.move_ids), 1)
 
-        self.picking_azr.move_ids[0].quantity_done = 1
+        self.picking_azr.move_ids.quantity = False
+        self.picking_azr.move_ids[0].quantity = 1
 
         self.picking_azr.button_validate()
+        dn = Form.from_action(
+            self.env, self.picking_azr.action_delivery_note_create()
+        ).save()
+        dn.confirm()
         self.delivery_note_azr = self.picking_azr.delivery_note_id
         self.assertTrue(self.delivery_note_azr)
         self.delivery_note_azr.action_confirm()

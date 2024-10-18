@@ -3,7 +3,7 @@
 
 import datetime
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from ..mixins.picking_checker import (
@@ -26,9 +26,6 @@ DOMAIN_DELIVERY_NOTE_STATES = [s[0] for s in DELIVERY_NOTE_STATES]
 
 LINE_DISPLAY_TYPES = [("line_section", "Section"), ("line_note", "Note")]
 DOMAIN_LINE_DISPLAY_TYPES = [t[0] for t in LINE_DISPLAY_TYPES]
-
-DRAFT_EDITABLE_STATE = {"draft": [("readonly", False)]}
-DONE_READONLY_STATE = {"done": [("readonly", True)]}
 
 INVOICE_STATUSES = [
     ("no", "Nothing to invoice"),
@@ -94,7 +91,6 @@ class StockDeliveryNote(models.Model):
         string="Partner reference",
         index=True,
         copy=False,
-        states=DONE_READONLY_STATE,
         tracking=True,
     )
 
@@ -109,7 +105,6 @@ class StockDeliveryNote(models.Model):
     partner_sender_id = fields.Many2one(
         "res.partner",
         string="Sender",
-        states=DRAFT_EDITABLE_STATE,
         default=_default_company,
         readonly=True,
         required=True,
@@ -120,7 +115,6 @@ class StockDeliveryNote(models.Model):
     partner_id = fields.Many2one(
         "res.partner",
         string="Recipient",
-        states=DRAFT_EDITABLE_STATE,
         readonly=True,
         required=True,
         index=True,
@@ -130,7 +124,6 @@ class StockDeliveryNote(models.Model):
     partner_shipping_id = fields.Many2one(
         "res.partner",
         string="Shipping address",
-        states=DONE_READONLY_STATE,
         required=True,
         tracking=True,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
@@ -139,22 +132,19 @@ class StockDeliveryNote(models.Model):
     carrier_id = fields.Many2one(
         "res.partner",
         string="Carrier",
-        states=DONE_READONLY_STATE,
         tracking=True,
     )
     delivery_method_id = fields.Many2one(
         "delivery.carrier",
         string="Delivery method",
-        states=DONE_READONLY_STATE,
         tracking=True,
     )
 
-    date = fields.Date(states=DRAFT_EDITABLE_STATE, copy=False)
+    date = fields.Date(copy=False)
     type_id = fields.Many2one(
         "stock.delivery.note.type",
         string="Type",
         default=_default_type,
-        states=DRAFT_EDITABLE_STATE,
         readonly=True,
         required=True,
         index=True,
@@ -165,69 +155,58 @@ class StockDeliveryNote(models.Model):
     type_code = fields.Selection(
         string="Type of Operation", related="type_id.code", store=True
     )
-    packages = fields.Integer(states=DONE_READONLY_STATE)
-    volume = fields.Float(states=DONE_READONLY_STATE)
+    packages = fields.Integer()
+    volume = fields.Float()
 
     volume_uom_id = fields.Many2one(
         "uom.uom",
         string="Volume UoM",
         default=_default_volume_uom,
         domain=_domain_volume_uom,
-        states=DONE_READONLY_STATE,
     )
     gross_weight = fields.Float(
         string="Gross weight",
         store=True,
         readonly=False,
         compute="_compute_weights",
-        states=DONE_READONLY_STATE,
     )
     gross_weight_uom_id = fields.Many2one(
         "uom.uom",
         string="Gross weight UoM",
         default=_default_weight_uom,
         domain=_domain_weight_uom,
-        states=DONE_READONLY_STATE,
     )
     net_weight = fields.Float(
         string="Net weight",
         store=True,
         readonly=False,
         compute="_compute_weights",
-        states=DONE_READONLY_STATE,
     )
     net_weight_uom_id = fields.Many2one(
         "uom.uom",
         string="Net weight UoM",
         default=_default_weight_uom,
         domain=_domain_weight_uom,
-        states=DONE_READONLY_STATE,
     )
 
     transport_condition_id = fields.Many2one(
         "stock.picking.transport.condition",
         string="Condition of transport",
-        states=DONE_READONLY_STATE,
     )
     goods_appearance_id = fields.Many2one(
         "stock.picking.goods.appearance",
         string="Appearance of goods",
-        states=DONE_READONLY_STATE,
     )
     transport_reason_id = fields.Many2one(
         "stock.picking.transport.reason",
         string="Reason of transport",
-        states=DONE_READONLY_STATE,
     )
     transport_method_id = fields.Many2one(
         "stock.picking.transport.method",
         string="Method of transport",
-        states=DONE_READONLY_STATE,
     )
 
-    transport_datetime = fields.Datetime(
-        string="Transport date", states=DONE_READONLY_STATE
-    )
+    transport_datetime = fields.Datetime(string="Transport date")
 
     line_ids = fields.One2many(
         "stock.delivery.note.line", "delivery_note_id", string="Lines"
@@ -284,7 +263,7 @@ class StockDeliveryNote(models.Model):
     print_prices = fields.Boolean(
         string="Show prices on printed DN", related="type_id.print_prices", store=True
     )
-    note = fields.Html(string="Internal note", states=DONE_READONLY_STATE)
+    note = fields.Html(string="Internal note")
 
     can_change_number = fields.Boolean(compute="_compute_boolean_flags")
     show_product_information = fields.Boolean(compute="_compute_boolean_flags")
@@ -299,22 +278,20 @@ class StockDeliveryNote(models.Model):
     ]
 
     @api.depends("name", "partner_id", "partner_ref", "partner_id.display_name")
-    def name_get(self):
-        result = []
+    def _compute_display_name(self):
         for note in self:
             if not note.name:
-                partner_name = note.partner_id.display_name
-                create_date = note.create_date.strftime(DATETIME_FORMAT)
-                name = f"{partner_name} - {create_date}"
+                name = f"{note.partner_id.display_name}"
+                if note.create_date:
+                    create_date = note.create_date.strftime(DATETIME_FORMAT)
+                    name += f" - {create_date}"
 
             else:
                 name = note.name
 
                 if note.partner_ref and note.type_code == "incoming":
-                    name = f"{name} ({note.partner_ref})"
-            result.append((note.id, name))
-
-        return result
+                    name += f" ({note.partner_ref})"
+            note.display_name = name
 
     @api.depends("state", "line_ids", "line_ids.invoice_status")
     def _compute_invoice_status(self):
@@ -403,11 +380,11 @@ class StockDeliveryNote(models.Model):
             note.sales_transport_check = all([len(x) < 2 for x in [tc, ga, tr, tm]])
 
     def _compute_boolean_flags(self):
-        can_change_number = self.user_has_groups(
+        can_change_number = self.env.user.has_group(
             "l10n_it_delivery_note.can_change_number"
         )
-        show_product_information = self.user_has_groups(
-            "l10n_it_delivery_note_base.show_product_related_fields"
+        show_product_information = self.env.user.has_group(
+            "l10n_it_delivery_note.show_product_related_fields"
         )
 
         for note in self:
@@ -417,7 +394,7 @@ class StockDeliveryNote(models.Model):
     def _compute_access_url(self):
         res = super()._compute_access_url()
         for dn in self:
-            dn.access_url = "/my/delivery-notes/%s" % (dn.id)
+            dn.access_url = f"/my/delivery-notes/{dn.id}"
         return res
 
     def _compute_lines_have_so_number(self):
@@ -449,14 +426,14 @@ class StockDeliveryNote(models.Model):
         if self.type_id:
             if self.name and self.type_id.sequence_id != self.sequence_id:
                 raise UserError(
-                    _(
+                    self.env._(
                         "You cannot set this delivery note type due"
                         " of a different numerator configuration."
                     )
                 )
             if self.picking_type and self.type_id.code != self.picking_type:
                 raise UserError(
-                    _(
+                    self.env._(
                         "You cannot set this delivery note type due"
                         " of a different type with related pickings."
                     )
@@ -465,7 +442,7 @@ class StockDeliveryNote(models.Model):
             if self._update_generic_shipping_information(self.type_id):
                 return {
                     "warning": {
-                        "title": _("Warning!"),
+                        "title": self.env._("Warning!"),
                         "message": "Some of the shipping configuration have "
                         "been overwritten with"
                         " the default ones of the selected delivery"
@@ -502,7 +479,7 @@ class StockDeliveryNote(models.Model):
             if changed:
                 return {
                     "warning": {
-                        "title": _("Warning!"),
+                        "title": self.env._("Warning!"),
                         "message": "Some of the shipping configuration have "
                         "been overwritten with"
                         " the default ones of the selected "
@@ -524,7 +501,7 @@ class StockDeliveryNote(models.Model):
     def ensure_annulability(self):
         if self.mapped("invoice_ids"):
             raise UserError(
-                _(
+                self.env._(
                     "You cannot cancel this delivery note. "
                     "There is at least one invoice"
                     " related to this delivery note."
@@ -544,7 +521,9 @@ class StockDeliveryNote(models.Model):
                 note.date = datetime.date.today()
 
             if not note.name:
-                note.name = sequence.next_by_id()
+                note.name = sequence.with_context(
+                    ir_sequence_date=note.date
+                ).next_by_id()
                 note.sequence_id = sequence
 
     def action_confirm(self):
@@ -557,7 +536,7 @@ class StockDeliveryNote(models.Model):
                 )
             ):
                 raise UserError(
-                    _(
+                    note.env._(
                         "The field 'Partner reference' is "
                         "mandatory to validate the Delivery Note."
                     )
@@ -567,7 +546,7 @@ class StockDeliveryNote(models.Model):
             carrier_ids = note.mapped("picking_ids.carrier_id")
             carrier_partner_ids = carrier_ids.mapped("partner_id")
             if len(carrier_partner_ids) > 1:
-                warning_message = _(
+                warning_message = note.env._(
                     "This delivery note contains pickings "
                     "related to different transporters. "
                     "Are you sure you want to proceed?\n"
@@ -575,7 +554,7 @@ class StockDeliveryNote(models.Model):
                     carrier_partners=", ".join(carrier_partner_ids.mapped("name")),
                 )
             elif len(carrier_ids) > 1:
-                warning_message = _(
+                warning_message = note.env._(
                     "This delivery note contains pickings related to different "
                     "delivery methods from the same transporter. "
                     "Are you sure you want to proceed?\n"
@@ -587,7 +566,7 @@ class StockDeliveryNote(models.Model):
                 and note.carrier_id
                 and note.carrier_id != carrier_partner_ids
             ):
-                warning_message = _(
+                warning_message = note.env._(
                     "The carrier set in Delivery Note is different "
                     "from the carrier set in picking(s). "
                     "Are you sure you want to proceed?"
@@ -597,7 +576,7 @@ class StockDeliveryNote(models.Model):
                 and note.delivery_method_id
                 and carrier_ids != note.delivery_method_id
             ):
-                warning_message = _(
+                warning_message = note.env._(
                     "The shipping method set in Delivery Note is different "
                     "from the shipping method set in picking(s). "
                     "Are you sure you want to proceed?"
@@ -605,7 +584,7 @@ class StockDeliveryNote(models.Model):
             if warning_message:
                 return {
                     "type": "ir.actions.act_window",
-                    "name": _("Warning"),
+                    "name": note.env._("Warning"),
                     "res_model": "stock.delivery.note.confirm.wizard",
                     "view_type": "form",
                     "target": "new",
@@ -623,7 +602,8 @@ class StockDeliveryNote(models.Model):
         for delivery_note_id in self:
             if not delivery_note_id.sale_ids:
                 raise UserError(
-                    _("%s hasn't sale order!") % delivery_note_id.display_name
+                    delivery_note_id.env._("%s hasn't sale order!")
+                    % delivery_note_id.display_name
                 )
             if (
                 len(
@@ -632,7 +612,7 @@ class StockDeliveryNote(models.Model):
                 > 1
             ):
                 raise UserError(
-                    _(
+                    delivery_note_id.env._(
                         "Sale orders related to %s have return! "
                         "For invoicing, go to sale orders."
                     )
@@ -640,14 +620,18 @@ class StockDeliveryNote(models.Model):
                 )
             if delivery_note_id.invoice_status == "invoiced":
                 raise UserError(
-                    _("%s is already invoiced!") % delivery_note_id.display_name
+                    delivery_note_id.env._("%s is already invoiced!")
+                    % delivery_note_id.display_name
                 )
             if delivery_note_id.state == "draft":
-                raise UserError(_("%s is in draft!") % delivery_note_id.display_name)
+                raise UserError(
+                    delivery_note_id.env._("%s is in draft!")
+                    % delivery_note_id.display_name
+                )
             for line in delivery_note_id.line_ids:
                 if line.product_id.invoice_policy == "order":
                     raise UserError(
-                        _(
+                        delivery_note_id.env._(
                             "In %(ddt_name)s there is %(product_name)s"
                             " with invoicing policy 'order'"
                         )
@@ -674,7 +658,7 @@ class StockDeliveryNote(models.Model):
         pickings_move_ids = self.mapped("picking_ids.move_ids")
         for line in pickings_lines.filtered(lambda line: len(line.move_ids) > 1):
             move_ids = line.move_ids & pickings_move_ids
-            qty_to_invoice = sum(move_ids.mapped("quantity_done"))
+            qty_to_invoice = sum(move_ids.mapped("quantity"))
 
             if qty_to_invoice < line.qty_to_invoice:
                 cache[line] = line.fix_qty_to_invoice(qty_to_invoice)

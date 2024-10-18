@@ -3,7 +3,7 @@
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 DATE_FORMAT = "%d/%m/%Y"
@@ -141,7 +141,7 @@ class StockDeliveryNoteLine(models.Model):
                 "move_id": move.id,
                 "name": name,
                 "product_id": move.product_id.id,
-                "product_qty": move.quantity_done,
+                "product_qty": move.quantity,
                 "product_uom_id": move.product_uom.id,
             }
 
@@ -180,7 +180,7 @@ class StockDeliveryNoteLine(models.Model):
             lambda note_line: note_line.display_type != vals["display_type"]
         ):
             raise UserError(
-                _(
+                self.env._(
                     "You cannot change the type of a delivery note line. "
                     "Instead you should delete the current line"
                     " and create a new line of the proper type."

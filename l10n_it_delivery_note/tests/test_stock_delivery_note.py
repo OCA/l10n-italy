@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests import new_test_user
-from odoo.tests.common import Form
+from odoo.tests import Form, new_test_user
 
 from .delivery_note_common import StockDeliveryNoteCommon
 
@@ -24,8 +23,6 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
             login="test",
             groups="stock.group_stock_manager",
         )
-        # change user in order to automatically create delivery note
-        # when picking is validated
         self.env.user = user
         StockPicking = self.env["stock.picking"]
 
@@ -42,19 +39,25 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         self.assertEqual(len(picking.move_ids), 2)
 
         # deliver only the first product
-        picking.move_ids[0].quantity_done = 1
+        picking.move_ids.quantity = False
+        picking.move_ids[0].quantity = 1
 
-        res_dict = picking.button_validate()
-        wizard = Form(
-            self.env[(res_dict.get("res_model"))].with_context(**res_dict["context"])
-        ).save()
+        wizard = Form.from_action(self.env, picking.button_validate()).save()
         self.assertEqual(wizard._name, "stock.backorder.confirmation")
         wizard.process()
+
+        dn = Form.from_action(self.env, picking.action_delivery_note_create()).save()
+        dn.confirm()
         self.assertTrue(picking.delivery_note_id)
         picking_backorder = StockPicking.search([("backorder_id", "=", picking.id)])
         self.assertEqual(len(picking_backorder.move_ids), 1)
-        picking_backorder.move_ids[0].quantity_done = 1
+        picking_backorder.move_ids.quantity = False
+        picking_backorder.move_ids[0].quantity = 1
         picking_backorder.button_validate()
+        dn = Form.from_action(
+            self.env, picking_backorder.action_delivery_note_create()
+        ).save()
+        dn.confirm()
         self.assertTrue(picking_backorder.delivery_note_id)
 
     # ⇒ "Consegna senza ordine"
@@ -66,10 +69,8 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         user = new_test_user(
             self.env,
             login="test",
-            groups="stock.group_stock_manager,"
-            "l10n_it_delivery_note.use_advanced_delivery_notes",
+            groups="stock.group_stock_manager",
         )
-        # change user in order to activate DN advanced settings
         self.env.user = user
 
         picking = self.create_picking()
@@ -77,16 +78,11 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         self.assertEqual(len(picking.move_ids), 1)
 
         # deliver product
-        picking.move_ids.quantity_done = 1
+        picking.move_ids.quantity = False
+        picking.move_ids.quantity = 1
         picking.button_validate()
 
-        # create delivery note with advanced mode
-        dn_form = Form(
-            self.env["stock.delivery.note.create.wizard"].with_context(
-                **{"active_id": picking.id, "active_ids": picking.ids}
-            )
-        )
-        dn = dn_form.save()
+        dn = Form.from_action(self.env, picking.action_delivery_note_create()).save()
         dn.confirm()
         self.assertTrue(picking.delivery_note_id)
         picking.delivery_note_id.action_confirm()
@@ -105,24 +101,19 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         user = new_test_user(
             self.env,
             login="test",
-            groups="stock.group_stock_manager,"
-            "l10n_it_delivery_note.use_advanced_delivery_notes",
+            groups="stock.group_stock_manager",
         )
-        # change user in order to activate DN advanced settings
         self.env.user = user
 
         picking = self.create_picking(
             carrier_id=self.env.ref("delivery.delivery_carrier").id
         )
-        picking.move_ids.quantity_done = 1
+
+        picking.move_ids.quantity = False
+        picking.move_ids.quantity = 1
         picking.button_validate()
 
-        dn_form = Form(
-            self.env["stock.delivery.note.create.wizard"].with_context(
-                **{"active_id": picking.id, "active_ids": picking.ids}
-            )
-        )
-        dn = dn_form.save()
+        dn = Form.from_action(self.env, picking.action_delivery_note_create()).save()
         dn.confirm()
 
         delivery_note_id = picking.delivery_note_id
@@ -148,7 +139,8 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
             }
         )
         new_picking = self.create_picking(carrier_id=normal_delivery_carrier.id)
-        new_picking.move_ids.quantity_done = 1
+        picking.move_ids.quantity = False
+        picking.move_ids.quantity = 1
         new_picking.button_validate()
 
         delivery_note_id.write({"picking_ids": [(4, new_picking.id)]})
@@ -207,25 +199,19 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
             self.env,
             login="test",
             groups="stock.group_stock_manager,"
-            "l10n_it_delivery_note.use_advanced_delivery_notes,"
             "l10n_it_delivery_note.group_required_partner_ref",
         )
-        # change user in order to activate DN advanced settings
         self.env.user = user
 
         picking = self.create_picking(
             picking_type_id=self.env.ref("stock.picking_type_in").id,
             carrier_id=self.env.ref("delivery.delivery_carrier").id,
         )
-        picking.move_ids.quantity_done = 1
+        picking.move_ids.quantity = False
+        picking.move_ids.quantity = 1
         picking.button_validate()
 
-        dn_form = Form(
-            self.env["stock.delivery.note.create.wizard"].with_context(
-                **{"active_id": picking.id, "active_ids": picking.ids}
-            )
-        )
-        dn = dn_form.save()
+        dn = Form.from_action(self.env, picking.action_delivery_note_create()).save()
         dn.confirm()
 
         delivery_note_id = picking.delivery_note_id
