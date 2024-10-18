@@ -1,7 +1,7 @@
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class StockDeliveryNoteSelectWizard(models.TransientModel):
@@ -45,7 +45,7 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
         res = super()._get_warning_message()
         carrier_ids = self.picking_ids.mapped("carrier_id")
         if len(carrier_ids.mapped("partner_id")) > 1:
-            res = _(
+            res = self.env._(
                 "The selected pickings have different delivery methods: %(carriers)s",
                 carriers=", ".join(
                     f'"{i.name:s}: {i.partner_id.name:s}"' for i in carrier_ids
@@ -68,5 +68,4 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
         if sale_order_id:
             sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids)
 
-        if self.user_has_groups("l10n_it_delivery_note.use_advanced_delivery_notes"):
-            return self.delivery_note_id.goto()
+        return self.delivery_note_id.goto()

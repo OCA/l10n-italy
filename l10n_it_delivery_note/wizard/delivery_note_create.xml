@@ -10,13 +10,10 @@
         <field name="arch" type="xml">
             <form>
                 <field name="picking_type" invisible="True" />
-                <div attrs="{'invisible': [('error_message', '=', False)]}">
+                <div invisible="not error_message">
                     <field name="error_message" />
                 </div>
-                <group
-                    attrs="{'invisible': [('error_message', '!=', False)]}"
-                    string="Summary"
-                >
+                <group invisible="error_message" string="Summary">
                     <group>
                         <field name="partner_sender_id" />
                         <field name="partner_id" />
@@ -30,10 +27,10 @@
                         <field name="date" />
                     </group>
                 </group>
-                <notebook attrs="{'invisible': [('error_message', '!=', False)]}">
+                <notebook invisible="error_message">
                     <page name="pickings" string="Pickings">
                         <field name="selected_picking_ids">
-                            <tree decoration-success="True">
+                            <list decoration-success="True">
                                 <field name="name" />
                                 <field
                                     name="location_dest_id"
@@ -43,7 +40,7 @@
                                 <field name="origin" />
                                 <field name="backorder_id" />
                                 <field name="state" />
-                            </tree>
+                            </list>
                         </field>
                     </page>
                 </notebook>
@@ -53,20 +50,20 @@
                         type="object"
                         class="btn-primary"
                         string="Confirm"
-                        attrs="{'invisible': [('error_message', '!=', False)]}"
+                        invisible="error_message"
                     />
                     <button
                         special="cancel"
                         class="btn-primary"
                         string="Cancel"
-                        attrs="{'invisible': [('error_message', '=', False)]}"
+                        invisible="not error_message"
                         style="float: right;"
                     />
                     <button
                         special="cancel"
                         class="btn-secondary"
                         string="Cancel"
-                        attrs="{'invisible': [('error_message', '!=', False)]}"
+                        invisible="error_message"
                     />
                 </footer>
             </form>
@@ -77,14 +74,12 @@
         <field name="name">Create a new delivery note</field>
         <field name="res_model">stock.delivery.note.create.wizard</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="stock_delivery_note_create_form_view" />
-        <field name="target">new</field>
         <field
-            name="groups_id"
-            eval="[(4, ref('l10n_it_delivery_note.use_advanced_delivery_notes'))]"
+            name="view_id"
+            ref="l10n_it_delivery_note.stock_delivery_note_create_form_view"
         />
+        <field name="target">new</field>
         <field name="binding_model_id" ref="stock.model_stock_picking" />
         <field name="binding_view_types">list</field>
-        <field name="type">ir.actions.act_window</field>
     </record>
 </odoo>
