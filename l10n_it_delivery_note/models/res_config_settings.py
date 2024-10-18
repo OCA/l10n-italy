@@ -12,11 +12,6 @@ class ResConfigSettings(models.TransientModel):
             "stock.stock_location_locations_virtual", raise_if_not_found=False
         )
 
-    group_use_advanced_delivery_notes = fields.Boolean(
-        string="Use Advanced DN Features",
-        implied_group="l10n_it_delivery_note.use_advanced_delivery_notes",
-    )
-
     group_required_partner_ref = fields.Boolean(
         string="Make Partner Ref. in DN Mandatory",
         implied_group="l10n_it_delivery_note.group_required_partner_ref",

@@ -550,11 +550,6 @@ msgid "Delivery Note Types"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_visible
-msgid "Delivery Note Visible"
-msgstr ""
-
-#. module: l10n_it_delivery_note
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.stock_delivery_note_action
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_bank_statement_line__delivery_note_ids
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_account_move__delivery_note_ids
@@ -1680,17 +1675,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Update to now"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__use_advanced_behaviour
-msgid "Use Advanced Behaviour"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_res_config_settings__group_use_advanced_delivery_notes
-#: model:res.groups,name:l10n_it_delivery_note.use_advanced_delivery_notes
-msgid "Use Advanced DN Features"
 msgstr ""
 
 #. module: l10n_it_delivery_note

@@ -6,7 +6,7 @@
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 from .stock_delivery_note import DATE_FORMAT, DOMAIN_INVOICE_STATUSES
 
@@ -78,7 +78,7 @@ class AccountInvoice(models.Model):
         return {
             "sequence": sequence,
             "display_type": "line_note",
-            "name": _("""Delivery Note "%(ddt_name)s" of %(ddt_date)s""")
+            "name": self.env._("""Delivery Note "%(ddt_name)s" of %(ddt_date)s""")
             % {
                 "ddt_name": delivery_note_id.name,
                 "ddt_date": delivery_note_id.date.strftime(DATE_FORMAT),
