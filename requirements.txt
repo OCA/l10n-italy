@@ -4,5 +4,6 @@ codicefiscale
 elementpath
 mock
 openupgradelib
+phonenumbers
 unidecode
 xmlschema
