@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_bank_rec_widget" model="ir.ui.view">
+        <field name="name">account.move.line.list.bank_rec_widget.tax_residual</field>
+        <field name="model">account.move.line</field>
+        <field
+            name="inherit_id"
+            ref="account_accountant.view_account_move_line_list_bank_rec_widget"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_residual']" position="after">
+                <field
+                    name="withholding_tax_amount_net_pay_residual"
+                    string="Net to pay"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
