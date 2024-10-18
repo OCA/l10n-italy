@@ -4,7 +4,6 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-
     <record id="sale_advance_payment_inv_form_view" model="ir.ui.view">
         <field name="name">sale.advance.payment.inv.form</field>
         <field name="model">sale.advance.payment.inv</field>
@@ -30,20 +29,20 @@
                     <div class="o_horizontal_separator" />
                     <p>
                         There appears to be one or more delivery notes in "Draft" state.<br
-                        />
+                    />
                         If you proceed with the creation of an invoice (other than the downpayment one),
                         the affected delivery note lines will be detached from the sales order and
                         will not appear linked to the generated invoice.
                     </p>
                     <p>
                         This behaviour just described may not be wrong in some very specific cases.<br
-                        />
+                    />
                         Proceed only if you are absolutely sure and aware of what you're doing.
                     </p>
                     <div class="o_horizontal_separator" />
                     <p>
                         <strong
-                        >N.B.:</strong> there will be no way, subsequently, to restore
+                    >N.B.:</strong> there will be no way, subsequently, to restore
                         this binding between the delivery note lines with the related sales order.
                     </p>
                 </div>
@@ -80,5 +79,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
