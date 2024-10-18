@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_riba_sale_commission
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model,name:l10n_it_riba_sale_commission.model_account_invoice_line_agent
+msgid "Agent detail of commission line in invoice lines"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model,name:l10n_it_riba_sale_commission.model_riba_configuration
+msgid "Configuration parameters for Cash Orders"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_invoice_line_agent__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_invoice_line_agent__id
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__id
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model,name:l10n_it_riba_sale_commission.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_invoice_line_agent____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_sale_commission_make_settle____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_riba_configuration__safety_days
+msgid "Safety days"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_bank_statement_line__no_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_move__no_commission
+#: model:ir.model.fields,field_description:l10n_it_riba_sale_commission.field_account_payment__no_commission
+msgid "Without commissions"
+msgstr ""
+
+#. module: l10n_it_riba_sale_commission
+#: model:ir.model,name:l10n_it_riba_sale_commission.model_sale_commission_make_settle
+msgid "Wizard for settling commissions in invoices"
+msgstr ""
