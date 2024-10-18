@@ -14,6 +14,7 @@
         "l10n_it_edi",
     ],
     "data": [
+        "data/invoice_it_template.xml",
         "views/l10n_it_view.xml",
     ],
     "installable": True,
