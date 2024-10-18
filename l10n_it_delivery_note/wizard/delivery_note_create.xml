@@ -4,7 +4,6 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-
     <record id="stock_delivery_note_create_form_view" model="ir.ui.view">
         <field name="name">stock.delivery.note.create.form</field>
         <field name="model">stock.delivery.note.create.wizard</field>
@@ -88,5 +87,4 @@
         <field name="binding_view_types">list</field>
         <field name="type">ir.actions.act_window</field>
     </record>
-
 </odoo>

@@ -4,7 +4,6 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-
     <record id="stock_picking_form_view" model="ir.ui.view">
         <field name="name">stock.picking.form</field>
         <field name="model">stock.picking</field>
@@ -464,5 +463,4 @@
         name="Methods of transport"
         sequence="50"
     />
-
 </odoo>

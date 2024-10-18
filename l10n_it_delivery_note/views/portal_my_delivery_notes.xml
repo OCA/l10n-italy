@@ -45,7 +45,9 @@
                                 <t t-esc="ddt.name" />
                             </a>
                         </td>
-                        <td class="text-right"><span t-field="ddt.date" /></td>
+                        <td class="text-right">
+                            <span t-field="ddt.date" />
+                        </td>
                         <td class="text-right">
                             <span t-field="ddt.packages" />
                         </td>
@@ -79,7 +81,9 @@
                         <h2 class="mb-0">
                             <b t-field="dn.name" />
                         </h2>
-                        <div class="small"><span t-field="dn.date" /></div>
+                        <div class="small">
+                            <span t-field="dn.date" />
+                        </div>
                     </t>
 
                     <t t-set="entries">
@@ -139,5 +143,4 @@
             </div>
         </xpath>
     </template>
-
 </odoo>
