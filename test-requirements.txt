@@ -1,0 +1,1 @@
+odoo-addon-delivery_carrier_partner @ git+https://github.com/OCA/delivery-carrier.git@refs/pull/893/head#subdirectory=delivery_carrier_partner

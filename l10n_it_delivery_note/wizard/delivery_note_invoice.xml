@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_stock_delivery_note_invoice_wizard" model="ir.ui.view">
+        <field name="name">stock.delivery.note.invoice.form</field>
+        <field name="model">stock.delivery.note.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="invoice_date" />
+                        <field name="invoice_method" widget="radio" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="create_invoices"
+                        type="object"
+                        class="btn-primary"
+                        string="Create Invoice"
+                    />
+                    <button special="cancel" class="btn-secondary" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record
+        id="action_stock_delivery_note_invoice_wizard"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Create invoices</field>
+        <field name="res_model">stock.delivery.note.invoice.wizard</field>
+        <field name="view_mode">form</field>
+        <field
+            name="view_id"
+            ref="l10n_it_delivery_note.view_stock_delivery_note_invoice_wizard"
+        />
+        <field name="target">new</field>
+        <field
+            name="binding_model_id"
+            ref="l10n_it_delivery_note.model_stock_delivery_note"
+        />
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>
