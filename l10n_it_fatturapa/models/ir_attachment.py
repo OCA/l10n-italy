@@ -117,7 +117,7 @@ class FatturaPAAttachment(models.Model):
         except binascii.Error as e:
             raise UserError(_("Corrupted attachment %s.") % e.args) from e
 
-        if is_base64(data):
+        while is_base64(data):
             try:
                 data = base64.b64decode(data)
             except binascii.Error as e:
