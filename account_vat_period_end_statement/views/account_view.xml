@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright 2019 Simone Rubino - Agile Business Group
+  Copyright 2024 Simone Rubino - Aion Tech
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
   -->
 <odoo>
@@ -63,6 +64,15 @@
                     <field name="company_id" groups="base.group_multi_company" />
                     <field name="interest" />
                     <field name="account_ids" widget="many2many_tags" />
+                    <field name="journal_group_ids">
+                        <tree create="false" delete="false" edit="false" no_open="true">
+                            <field name="name" />
+                            <field
+                                name="included_journal_ids"
+                                widget="many2many_tags"
+                            />
+                        </tree>
+                    </field>
                 <field
                         name="interest_percent"
                         attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"

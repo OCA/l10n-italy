@@ -5,7 +5,7 @@
 
 import re
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import Form, tagged
 
 from .common import TestVATStatementCommon
@@ -328,3 +328,102 @@ class TestTax(TestVATStatementCommon):
             report_content.decode(),
         )
         self.assertEqual(len(payment_infos), 1)
+
+    def test_report_journal_groups(self):
+        """Journal groups are shown in the report."""
+        date_range = self.current_period
+        bill = self.init_invoice(
+            "in_invoice",
+            invoice_date=self.recent_date,
+            amounts=[500],
+            taxes=self.account_tax_22_credit,
+            post=True,
+        )
+        bill_journal = bill.journal_id
+        invoice = self.init_invoice(
+            "out_invoice",
+            invoice_date=self.recent_date,
+            amounts=[1000],
+            taxes=self.account_tax_22,
+            post=True,
+        )
+        invoice_journal = invoice.journal_id
+        journal_group = self.env["account.journal.group"].create(
+            {
+                "name": "Test group",
+                "included_journal_ids": [
+                    Command.set((bill_journal + invoice_journal).ids),
+                ],
+            }
+        )
+        statement = self._get_statement(
+            date_range,
+            self.last_year_date,
+            self.env["account.account"].browse(),
+        )
+        statement.journal_group_ids = journal_group
+        # pre-condition
+        self.assertEqual(
+            statement.journal_group_ids.included_journal_ids,
+            bill_journal + invoice_journal,
+        )
+
+        # Act
+        report_content, report_type = self.env["ir.actions.report"]._render_qweb_html(
+            "account_vat_period_end_statement.report_vat_statement", statement.ids
+        )
+
+        # Assert
+        report_content = report_content.decode()
+        self.assertIn(bill_journal.name, report_content)
+        self.assertIn(invoice_journal.name, report_content)
+        self.assertIn(journal_group.name, report_content)
+
+    def test_recompute_amounts_for_journal_groups(self):
+        """Statement amounts are recomputed based on the selected groups."""
+        # Arrange
+        self.init_invoice(
+            "in_invoice",
+            invoice_date=self.recent_date,
+            amounts=[500],
+            taxes=self.account_tax_22_credit,
+            post=True,
+        )
+        self.init_invoice(
+            "out_invoice",
+            invoice_date=self.recent_date,
+            amounts=[1000],
+            taxes=self.account_tax_22,
+            post=True,
+        )
+
+        new_journal_form = Form(self.env["account.journal"])
+        new_journal_form.name = "Test Journal"
+        new_journal_form.code = "TJ"
+        new_journal_form.type = "general"
+        new_journal = new_journal_form.save()
+
+        journal_group = self.env["account.journal.group"].create(
+            {
+                "name": "Test group",
+                "included_journal_ids": [
+                    Command.set(new_journal.ids),
+                ],
+            }
+        )
+        statement = self._get_statement(
+            self.current_period,
+            self.last_year_date,
+            self.env["account.account"].browse(),
+        )
+        # pre-condition
+        self.assertFalse(statement.journal_group_ids)
+        self.assertTrue(sum(statement.credit_vat_account_line_ids.mapped("amount")))
+        self.assertTrue(sum(statement.debit_vat_account_line_ids.mapped("amount")))
+
+        # Act
+        statement.journal_group_ids = journal_group
+
+        # Assert
+        self.assertFalse(sum(statement.credit_vat_account_line_ids.mapped("amount")))
+        self.assertFalse(sum(statement.debit_vat_account_line_ids.mapped("amount")))

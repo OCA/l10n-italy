@@ -1,0 +1,2 @@
+# https://github.com/OCA/account-invoicing/pull/1793
+odoo-addon-account_journal_group_included @ git+https://github.com/OCA/account-invoicing.git@refs/pull/1793/head#subdirectory=setup/account_journal_group_included
