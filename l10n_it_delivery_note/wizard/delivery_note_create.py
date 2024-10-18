@@ -115,6 +115,7 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
                 or self.partner_id.default_transport_method_id.id
                 or self.type_id.default_transport_method_id.id
             ),
+            "note": self.type_id.note,
         }
 
     def confirm(self):

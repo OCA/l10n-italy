@@ -58,6 +58,22 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         delivery_note = self.create_delivery_note()
         delivery_note.transport_datetime = datetime.now() + timedelta(days=1, hours=3)
         delivery_note.picking_ids = picking
+        delivery_note.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ).id,
+            }
+        )
         delivery_note.action_confirm()
         self.assertEqual(len(delivery_note.line_ids), 4)
         self.assertEqual(delivery_note.state, "confirm")
@@ -268,6 +284,22 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
             days=1, hours=3
         )
         first_delivery_note.picking_ids = picking
+        first_delivery_note.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ).id,
+            }
+        )
         first_delivery_note.action_confirm()
         self.assertEqual(len(first_delivery_note.line_ids), 4)
         self.assertEqual(first_delivery_note.state, "confirm")
@@ -310,6 +342,22 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
             days=1, hours=3
         )
         second_delivery_note.picking_ids = backorder
+        second_delivery_note.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ).id,
+            }
+        )
         second_delivery_note.action_confirm()
         self.assertEqual(len(second_delivery_note.line_ids), 3)
         self.assertEqual(second_delivery_note.state, "confirm")
@@ -617,6 +665,22 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         delivery_note = self.create_delivery_note()
         delivery_note.transport_datetime = datetime.now() + timedelta(days=1, hours=3)
         delivery_note.picking_ids = pickings
+        delivery_note.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ).id,
+            }
+        )
         delivery_note.action_confirm()
         self.assertEqual(len(delivery_note.line_ids), 6)
         self.assertEqual(delivery_note.state, "confirm")
@@ -911,6 +975,22 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
             days=1, hours=3
         )
         first_delivery_note.picking_ids = pickings
+        first_delivery_note.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ).id,
+            }
+        )
         first_delivery_note.action_confirm()
         self.assertEqual(len(first_delivery_note.line_ids), 6)
         self.assertEqual(first_delivery_note.state, "confirm")
@@ -983,6 +1063,22 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
             days=1, hours=3
         )
         second_delivery_note.picking_ids = backorders
+        second_delivery_note.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ).id,
+            }
+        )
         second_delivery_note.action_confirm()
         self.assertEqual(len(second_delivery_note.line_ids), 3)
         self.assertEqual(second_delivery_note.state, "confirm")
@@ -1284,6 +1380,22 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         ).save()
         result = wizard.confirm()
         delivery_note = self.env["stock.delivery.note"].browse(result["res_id"])
+        delivery_note.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PAF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_SFU"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_RES"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_COR"
+                ).id,
+            }
+        )
         delivery_note.action_confirm()
         delivery_note.action_cancel()
         delivery_note.action_draft()
