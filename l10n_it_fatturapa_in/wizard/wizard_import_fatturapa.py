@@ -11,6 +11,7 @@ from odoo.exceptions import UserError
 from odoo.fields import first
 from odoo.osv import expression
 from odoo.tools import float_is_zero, frozendict
+from odoo.tools.safe_eval import safe_eval
 from odoo.tools.translate import _
 
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
@@ -213,11 +214,107 @@ class WizardImportFatturapa(models.TransientModel):
                 }
             )
 
-    def getPartnerBase(self, DatiAnagrafici):  # noqa: C901
-        if not DatiAnagrafici:
-            return False
+    def _get_partner_domains_by_vat_fc(self, vat, fc):
+        """Return domains for searching partner using VAT and FC.
+
+        Search by VAT first, then by FC.
+        Security rule `res.partner company` is used if it is enabled.
+        """
+        vat_domain = [("vat", "=", vat)]
+        fc_domain = [("fiscalcode", "=", fc)]
+        domains = list()
+        if vat and fc:
+            # The partner must match exactly (both VAT and FC)
+            domains.append(expression.AND([vat_domain, fc_domain]))
+            # Or it is missing either FC or VAT
+            no_vat_domain = [("vat", "=", False)]
+            no_fc_domain = [("fiscalcode", "=", False)]
+            vat_domain = expression.AND([vat_domain, no_fc_domain])
+            fc_domain = expression.AND([no_vat_domain, fc_domain])
+
+        if vat:
+            domains.append(vat_domain)
+        if fc:
+            domains.append(fc_domain)
+
+        # Inject the multi-company partners sharing rule, if enabled
+        res_partner_rule = self.sudo().env.ref(
+            "base.res_partner_rule", raise_if_not_found=False
+        )
+        att = self.env.context.get("from_attachment")
+        if att and res_partner_rule and res_partner_rule.active:
+            partner_rule_domain = res_partner_rule.domain_force
+            partner_rule_domain = partner_rule_domain.replace(
+                "user.company_id",
+                "company_id",
+            )
+            partner_rule_domain = safe_eval(
+                partner_rule_domain,
+                locals_dict={
+                    "company_ids": att.company_id.ids,
+                },
+            )
+            for domain_index in range(len(domains)):
+                domain = domains[domain_index]
+                domains[domain_index] = expression.AND(
+                    [
+                        domain,
+                        partner_rule_domain,
+                    ]
+                )
+        return domains
+
+    def _search_partner_by_vat_fc(self, vat, fc):
+        """Search partner using VAT and FC."""
+        domains = self._get_partner_domains_by_vat_fc(vat, fc)
         partner_model = self.env["res.partner"]
-        cf = DatiAnagrafici.CodiceFiscale or False
+        for domain in domains:
+            partners = partner_model.search(domain)
+            if partners:
+                break
+        else:
+            partners = partner_model.browse()
+        return partners
+
+    def _get_commercial_partner(self, partners):
+        """Get the common commercial partner from `partners`."""
+        if len(partners) > 1:
+            # Ensure that all found partners have the same commercial partner
+            same_vat_cf_partners = self.env["res.partner"].browse()
+            commercial_partner = self.env["res.partner"].browse()
+            for partner in partners:
+                partner_commercial_partner = partner.commercial_partner_id
+                if (
+                    commercial_partner
+                    and partner_commercial_partner != commercial_partner
+                ):
+                    same_vat_cf_partners = (
+                        partner_commercial_partner | commercial_partner
+                    )
+                commercial_partner = partner_commercial_partner
+
+            if same_vat_cf_partners:
+                same_vat_cf_partner = first(same_vat_cf_partners)
+                self.log_inconsistency(
+                    _(
+                        "Two distinct partners {partners} with "
+                        "VAT number {vat} or Fiscal Code {cf} already "
+                        "present in db."
+                    ).format(
+                        partners=", ".join(same_vat_cf_partners.mapped("display_name")),
+                        vat=same_vat_cf_partner.vat,
+                        cf=same_vat_cf_partner.fiscalcode,
+                    )
+                )
+                commercial_partner = self.env["res.partner"].browse()
+        elif len(partners) == 1:
+            commercial_partner = first(partners).commercial_partner_id
+        else:
+            commercial_partner = self.env["res.partner"].browse()
+        return commercial_partner
+
+    def _extract_vat(self, DatiAnagrafici):
+        """Extract VAT from node DatiAnagrafici."""
         vat = False
         if DatiAnagrafici.IdFiscaleIVA:
             id_paese = DatiAnagrafici.IdFiscaleIVA.IdPaese.upper()
@@ -229,93 +326,51 @@ class WizardImportFatturapa(models.TransientModel):
             # XXX maybe San Marino needs special formatting too?
             else:
                 vat = id_codice
-        partners = partner_model
-        res_partner_rule = self.sudo().env.ref(
-            "base.res_partner_rule", raise_if_not_found=False
-        )
-        if vat:
-            domain = [("vat", "=", vat)]
-            if (
-                self.env.context.get("from_attachment")
-                and res_partner_rule
-                and res_partner_rule.active
-            ):
-                att = self.env.context.get("from_attachment")
-                domain.extend(
-                    [
-                        "|",
-                        ("company_id", "child_of", att.company_id.id),
-                        ("company_id", "=", False),
-                    ]
-                )
-            partners = partner_model.search(domain)
-        if not partners and cf:
-            domain = [("fiscalcode", "=", cf)]
-            if (
-                self.env.context.get("from_attachment")
-                and res_partner_rule
-                and res_partner_rule.active
-            ):
-                att = self.env.context.get("from_attachment")
-                domain.extend(
-                    [
-                        "|",
-                        ("company_id", "child_of", att.company_id.id),
-                        ("company_id", "=", False),
-                    ]
-                )
-            partners = partner_model.search(domain)
-        commercial_partner_id = False
-        if len(partners) > 1:
-            for partner in partners:
-                if (
-                    commercial_partner_id
-                    and partner.commercial_partner_id.id != commercial_partner_id
-                ):
-                    self.log_inconsistency(
-                        _(
-                            "Two distinct partners with "
-                            "VAT number %(vat)s or Fiscal Code %(fiscalcode)s already "
-                            "present in db."
-                        )
-                        % {"vat": vat, "fiscalcode": cf}
-                    )
-                    return False
-                commercial_partner_id = partner.commercial_partner_id.id
-        if partners:
-            if not commercial_partner_id:
-                commercial_partner_id = partners[0].commercial_partner_id.id
+        return vat
+
+    def _prepare_partner_values(self, DatiAnagrafici, cf, vat):
+        country_id = False
+        if DatiAnagrafici.IdFiscaleIVA:
+            CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
+            countries = self.CountryByCode(CountryCode)
+            if countries:
+                country_id = countries[0].id
+            else:
+                raise UserError(_("Country Code %s not found in system.") % CountryCode)
+        vals = {
+            "vat": vat,
+            "fiscalcode": cf,
+            "is_company": (DatiAnagrafici.Anagrafica.Denominazione and True or False),
+            "eori_code": DatiAnagrafici.Anagrafica.CodEORI or "",
+            "country_id": country_id,
+        }
+        if DatiAnagrafici.Anagrafica.Nome:
+            vals["firstname"] = DatiAnagrafici.Anagrafica.Nome
+        if DatiAnagrafici.Anagrafica.Cognome:
+            vals["lastname"] = DatiAnagrafici.Anagrafica.Cognome
+        if DatiAnagrafici.Anagrafica.Denominazione:
+            vals["name"] = DatiAnagrafici.Anagrafica.Denominazione
+        return vals
+
+    def getPartnerBase(self, DatiAnagrafici):  # noqa: C901
+        if not DatiAnagrafici:
+            return False
+        partner_model = self.env["res.partner"]
+        cf = DatiAnagrafici.CodiceFiscale or False
+        vat = self._extract_vat(DatiAnagrafici)
+        partners = self._search_partner_by_vat_fc(vat, cf)
+        commercial_partner = self._get_commercial_partner(partners)
+        if len(partners) > 1 and not commercial_partner:
+            found_partner = partner_model.browse()
+        elif commercial_partner:
+            commercial_partner_id = commercial_partner.id
             self.check_partner_base_data(commercial_partner_id, DatiAnagrafici)
-            return commercial_partner_id
+            found_partner = commercial_partner
         else:
             # partner to be created
-            country_id = False
-            if DatiAnagrafici.IdFiscaleIVA:
-                CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
-                countries = self.CountryByCode(CountryCode)
-                if countries:
-                    country_id = countries[0].id
-                else:
-                    raise UserError(
-                        _("Country Code %s not found in system.") % CountryCode
-                    )
-            vals = {
-                "vat": vat,
-                "fiscalcode": cf,
-                "is_company": (
-                    DatiAnagrafici.Anagrafica.Denominazione and True or False
-                ),
-                "eori_code": DatiAnagrafici.Anagrafica.CodEORI or "",
-                "country_id": country_id,
-            }
-            if DatiAnagrafici.Anagrafica.Nome:
-                vals["firstname"] = DatiAnagrafici.Anagrafica.Nome
-            if DatiAnagrafici.Anagrafica.Cognome:
-                vals["lastname"] = DatiAnagrafici.Anagrafica.Cognome
-            if DatiAnagrafici.Anagrafica.Denominazione:
-                vals["name"] = DatiAnagrafici.Anagrafica.Denominazione
-
-            return partner_model.create(vals).id
+            vals = self._prepare_partner_values(DatiAnagrafici, cf, vat)
+            found_partner = partner_model.create(vals)
+        return found_partner.id
 
     def getCedPrest(self, cedPrest):
         partner_model = self.env["res.partner"]
