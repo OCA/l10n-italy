@@ -728,7 +728,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
                 line.amount
                 for line in self.dep_line_ids.filtered(
                     lambda line: line.move_type == "depreciated"
-                    and not line.partial_dismissal
+                    and not (line.partial_dismissal or line.partial_recharge)
                 )
             ]
         )
@@ -737,7 +737,7 @@ class ReportDepreciationLineByYear(models.TransientModel):
                 line.amount
                 for line in self.dep_line_ids.filtered(
                     lambda line: line.move_type == "depreciated"
-                    and line.partial_dismissal
+                    and (line.partial_dismissal or line.partial_recharge)
                 )
             ]
         )
