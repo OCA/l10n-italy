@@ -6,6 +6,7 @@ import base64
 import logging
 import tempfile
 import zipfile
+from contextlib import contextmanager
 from io import BytesIO
 from pathlib import Path
 
@@ -152,17 +153,26 @@ class FatturaPAAttachmentImportZIP(models.Model):
                 ),
             )
 
+    @contextmanager
+    def _set_invoice_registration_date(self, company, registration_date="inv_date"):
+        """Temporary set `registration_date` in `company`."""
+        original_in_invoice_registration_date = company.in_invoice_registration_date
+        # we don't have the received date
+        company.in_invoice_registration_date = registration_date
+
+        yield
+
+        company.in_invoice_registration_date = original_in_invoice_registration_date
+
     def action_import(self, with_invoice=True):
         self.ensure_one()
         company_partner = self.env.company.partner_id
-        with tempfile.TemporaryDirectory() as tmp_dir_path:
+        with (
+            tempfile.TemporaryDirectory() as tmp_dir_path,
+            self._set_invoice_registration_date(self.env.company.sudo()),
+        ):
             tmp_dir = Path(tmp_dir_path)
             _extract_zip_file(tmp_dir, self.datas)
-            original_in_invoice_registration_date = (
-                self.env.company.in_invoice_registration_date
-            )
-            # we don't have the received date
-            self.env.company.in_invoice_registration_date = "inv_date"
 
             for xml_file in tmp_dir.rglob("*"):
                 # Process only files skipping non-XML/P7M files
@@ -195,9 +205,6 @@ class FatturaPAAttachmentImportZIP(models.Model):
                         wizard.importFatturaPA()
                 else:
                     _logger.info(f"Skipping {xml_file}, not an XML/P7M file")
-            self.env.company.in_invoice_registration_date = (
-                original_in_invoice_registration_date
-            )
 
         self.state = "done"
 
