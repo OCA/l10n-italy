@@ -446,7 +446,7 @@
         <field name="state_id" ref="base.state_us_2" />
         <field name="street">Via Milano, 1</field>
         <field name="email">info@mycompany.it</field>
-        <field name="phone">123456789</field>
+        <field name="phone">063456789</field>
         <field name="fiscalcode">03297040366</field>
         <field name="vat">IT03297040366</field>
     </record>

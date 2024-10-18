@@ -4,6 +4,7 @@ import logging
 import os
 from datetime import datetime
 
+import phonenumbers
 from lxml import etree
 from unidecode import unidecode
 
@@ -56,9 +57,25 @@ class EFatturaOut:
         def format_phone(number):
             if not number:
                 return False
-            number = number.replace(" ", "").replace("/", "").replace(".", "")
-            if len(number) > 4 and len(number) < 13:
-                return number
+            pn = phonenumbers.parse(number, "IT")
+
+            if not phonenumbers.is_valid_number_for_region(pn, "IT"):
+                number = (
+                    "0"
+                    + phonenumbers.format_number(
+                        pn, phonenumbers.PhoneNumberFormat.E164
+                    )[1:]
+                )
+                if len(number) > 4 and len(number) < 13:
+                    return number
+                else:
+                    return False
+
+            str_national_number = phonenumbers.format_number(
+                pn, phonenumbers.PhoneNumberFormat.NATIONAL
+            ).replace(" ", "")
+            if len(str_national_number) > 4 and len(str_national_number) < 13:
+                return str_national_number
             return False
 
         def format_price(line, sign=1, original_currency=False):
