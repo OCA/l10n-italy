@@ -9,7 +9,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
-from ..mixins.picking_checker import DOMAIN_PICKING_TYPES, DONE_PICKING_STATE
+from ..mixins.picking_checker import DONE_PICKING_STATE
 from .stock_delivery_note import DOMAIN_DELIVERY_NOTE_STATES
 
 CANCEL_MOVE_STATE = "cancel"
@@ -93,11 +93,9 @@ class StockPicking(models.Model):
     carrier_partner_id = fields.Many2one("res.partner", related="carrier_id.partner_id")
 
     use_delivery_note = fields.Boolean(compute="_compute_boolean_flags")
-    use_advanced_behaviour = fields.Boolean(compute="_compute_boolean_flags")
     delivery_note_exists = fields.Boolean(compute="_compute_boolean_flags")
     delivery_note_draft = fields.Boolean(compute="_compute_boolean_flags")
     delivery_note_readonly = fields.Boolean(compute="_compute_boolean_flags")
-    delivery_note_visible = fields.Boolean(compute="_compute_boolean_flags")
     can_be_invoiced = fields.Boolean(compute="_compute_boolean_flags")
 
     @property
@@ -118,17 +116,11 @@ class StockPicking(models.Model):
 
     def _compute_boolean_flags(self):
         from_delivery_note = self.env.context.get("from_delivery_note")
-        use_advanced_behaviour = self.user_has_groups(
-            "l10n_it_delivery_note.use_advanced_delivery_notes"
-        )
 
         for picking in self:
             picking.use_delivery_note = (
                 not from_delivery_note and picking.state == DONE_PICKING_STATE
             )
-
-            picking.delivery_note_visible = use_advanced_behaviour
-            picking.use_advanced_behaviour = use_advanced_behaviour
 
             picking.delivery_note_draft = False
             picking.delivery_note_readonly = True
@@ -303,83 +295,6 @@ class StockPicking(models.Model):
                     "field value."
                 )
             )
-
-    def _must_create_delivery_note(self):
-        use_advanced_behaviour = self.user_has_groups(
-            "l10n_it_delivery_note.use_advanced_delivery_notes"
-        )
-        if use_advanced_behaviour:
-            return False
-
-        type_code = list(set(self.mapped("picking_type_code")))[0]
-        if type_code == DOMAIN_PICKING_TYPES[0]:
-            return False
-
-        elif type_code != DOMAIN_PICKING_TYPES[1]:
-            src_location_id = self.mapped("location_id")
-            dest_location_id = self.mapped("location_dest_id")
-
-            if src_location_id.is_virtual() or dest_location_id.is_virtual():
-                return False
-
-        return True
-
-    def button_validate(self):
-        delivery_note_to_create = self._must_create_delivery_note()
-        if not self.delivery_note_id and delivery_note_to_create:
-            self._check_delivery_note_consistency()
-        res = super().button_validate()
-        if delivery_note_to_create and not self.delivery_note_id:
-            delivery_note = self._create_delivery_note()
-            self.write({"delivery_note_id": delivery_note.id})
-            if self.sale_id:
-                self.sale_id._assign_delivery_notes_invoices(self.sale_id.invoice_ids)
-        return res
-
-    def _create_delivery_note(self):
-        partners = self._get_partners()
-        type_id = self.env["stock.delivery.note.type"].search(
-            [
-                ("code", "=", self.picking_type_code),
-                ("company_id", "=", self.company_id.id),
-            ],
-            limit=1,
-        )
-        delivery_method_id = self.mapped("carrier_id")[:1]
-        return self.env["stock.delivery.note"].create(
-            {
-                "company_id": self.company_id.id,
-                "partner_sender_id": partners[0].id,
-                "partner_id": self.sale_id.partner_id.id
-                if self.sale_id
-                else partners[0].id,
-                "partner_shipping_id": partners[1].id,
-                "type_id": type_id.id,
-                "date": self.date_done,
-                "carrier_id": delivery_method_id.partner_id.id,
-                "delivery_method_id": delivery_method_id.id,
-                "transport_condition_id": (
-                    self.sale_id.default_transport_condition_id.id
-                    or partners[1].default_transport_condition_id.id
-                    or type_id.default_transport_condition_id.id
-                ),
-                "goods_appearance_id": (
-                    self.sale_id.default_goods_appearance_id.id
-                    or partners[1].default_goods_appearance_id.id
-                    or type_id.default_goods_appearance_id.id
-                ),
-                "transport_reason_id": (
-                    self.sale_id.default_transport_reason_id.id
-                    or partners[1].default_transport_reason_id.id
-                    or type_id.default_transport_reason_id.id
-                ),
-                "transport_method_id": (
-                    self.sale_id.default_transport_method_id.id
-                    or partners[1].default_transport_method_id.id
-                    or type_id.default_transport_method_id.id
-                ),
-            }
-        )
 
     def delivery_note_update_transport_datetime(self):
         self.delivery_note_id.update_transport_datetime()

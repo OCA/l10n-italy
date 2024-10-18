@@ -4,9 +4,12 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-    <record id="use_advanced_delivery_notes" model="res.groups">
-        <field name="name">Use Advanced DN Features</field>
-        <field name="category_id" ref="base.module_category_hidden" />
+    <record id="show_product_related_fields" model="res.groups">
+        <field name="name">Show product information in delivery note lines</field>
+        <field
+            name="category_id"
+            ref="l10n_it_delivery_note.module_category_inventory_checkboxes"
+        />
     </record>
 
     <record id="group_required_partner_ref" model="res.groups">
@@ -18,7 +21,7 @@
         <field name="name">Allow to change delivery note number</field>
         <field
             name="category_id"
-            ref="l10n_it_delivery_note_base.module_category_inventory_checkboxes"
+            ref="l10n_it_delivery_note.module_category_inventory_checkboxes"
         />
     </record>
 </odoo>

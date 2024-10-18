@@ -6,352 +6,412 @@
 <odoo>
     <template id="delivery_note_report_template">
         <t t-call="web.external_layout">
-            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+            <t t-set="doc" t-value="doc.with_context(lang=lang)" />
 
-            <!--if is an outgoing move -->
-            <t id="partner_outgoing" t-if="doc.type_code=='outgoing'">
-                <t t-set="address">
-                    <h4>
-                        <strong>Delivery address:</strong>
-                    </h4>
-                    <div
-                        t-field="doc.partner_shipping_id"
-                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
-                    />
-                    <p t-if="doc.partner_shipping_id.vat"><t
-                        t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
-                    />: <span t-field="doc.partner_shipping_id.vat" /></p>
-                </t>
-                <t t-set="information_block">
-                    <h4>
-                        <strong>Customer:</strong>
-                    </h4>
-                    <t t-if="doc.sale_ids">
-                        <div
-                            t-field="doc.sale_ids[0].partner_id"
-                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
-                        />
-                        <p t-if="doc.sale_ids[0].partner_id.vat"><t
-                            t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
-                        />: <span t-field="doc.sale_ids[0].partner_id.vat" /></p>
-                    </t>
-                    <t t-else="">
-                        <div
-                            t-field="doc.partner_id"
-                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
-                        />
-                        <p t-if="doc.partner_id.vat"><t
-                            t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
-                        />: <span t-field="doc.partner_id.vat" /></p>
-                    </t>
-                </t>
-            </t>
-
-            <!--if is an internal move -->
-            <t id="partner_outgoing" t-if="doc.type_code=='internal'">
-                <t t-set="address">
-                    <h4>
-                        <strong>Delivery address:</strong>
-                    </h4>
-                    <div
-                        t-field="doc.partner_shipping_id"
-                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
-                    />
-                    <p t-if="doc.partner_shipping_id.vat"><t
-                        t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"
-                    />: <span t-field="doc.partner_shipping_id.vat" /></p>
-                </t>
-                <t t-if="doc.picking_ids and doc.picking_ids[0].location_id.id">
-                    <t t-set="information_block">
-                        <h4>
-                            <strong>Warehouse:</strong>
-                        </h4>
-                        <p>
-                            <t
-                                t-esc="doc.get_location_address(doc.picking_ids[0].location_id.id)"
-                            />
-                        </p>
-                    </t>
-                </t>
-            </t>
-
-            <div class="page">
-                <div id="warehouse_outgoing">
-                    <div
-                        t-if="doc.type_code=='outgoing' and doc.picking_ids and doc.picking_ids[0].location_id.id"
-                    >
-                        <strong>Warehouse:</strong>
-                        <p>
-                            <t
-                                t-esc="doc.get_location_address(doc.picking_ids[0].location_id.id)"
-                            />
-                        </p>
+            <div class="row">
+                <!--if is an outgoing move -->
+                <t id="partner_outgoing" t-if="doc.type_code=='outgoing'">
+                    <div class="col-6">
+                        <t t-set="information_block">
+                            <h4>Customer</h4>
+                            <t t-if="doc.sale_ids">
+                                <address
+                                    class="mb-0"
+                                    t-field="doc.sale_ids[0].partner_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                                />
+                                <div t-if="doc.sale_ids[0].partner_id.vat">
+                                    <t
+                                    t-if="doc.company_id.account_fiscal_country_id.vat_label"
+                                    t-out="doc.company_id.account_fiscal_country_id.vat_label"
+                                />
+                                    <t t-else="">Tax ID</t>: <span
+                                    t-field="doc.sale_ids[0].partner_id.vat"
+                                />
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <address
+                                    class="mb-0"
+                                    t-field="doc.partner_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                                />
+                                <div t-if="doc.partner_id.vat">
+                                    <t
+                                    t-if="doc.company_id.account_fiscal_country_id.vat_label"
+                                    t-out="doc.company_id.account_fiscal_country_id.vat_label"
+                                />
+                                    <t t-else="">Tax ID</t>: <span
+                                    t-field="doc.partner_id.vat"
+                                />
+                                </div>
+                            </t>
+                        </t>
                     </div>
-                </div>
-                <div
-                    id="carrier"
-                    t-if="doc.carrier_id and doc.company_id.display_carrier_dn_report"
-                >
-                    <strong>Carrier:</strong>
-                    <t t-esc="doc.carrier_id.name" />
-                </div>
-                <div
-                    id="delivery_method"
-                    t-if="doc.delivery_method_id and doc.company_id.display_delivery_method_dn_report"
-                >
-                    <strong>Delivery Method:</strong>
-                    <t t-esc="doc.delivery_method_id.name" />
-                </div>
+                    <div class="col-6">
+                        <t t-set="address">
+                            <h4>Delivery address</h4>
+                            <address
+                                class="mb-0"
+                                t-field="doc.partner_shipping_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                            />
+                            <div t-if="doc.partner_shipping_id.vat">
+                                <t
+                                t-if="doc.company_id.account_fiscal_country_id.vat_label"
+                                t-out="doc.company_id.account_fiscal_country_id.vat_label"
+                            />
+                                <t t-else="">Tax ID</t>: <span
+                                t-field="doc.partner_shipping_id.vat"
+                            />
+                            </div>
+                        </t>
+                    </div>
+                </t>
 
-                <div id="dn_terms">
-                    <strong> Delivery Note: </strong>
-                    Under the terms of Italian Presidential Decree 472-96 of 14.08.1996
-                </div>
+                <!--if is an internal move -->
+                <t id="partner_outgoing" t-if="doc.type_code=='internal'">
+                    <t t-set="address">
+                        <h4>Delivery address</h4>
+                        <address
+                            class="mb-0"
+                            t-field="doc.partner_shipping_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
+                        />
+                        <div t-if="doc.partner_shipping_id.vat">
+                            <t
+                            t-if="doc.company_id.account_fiscal_country_id.vat_label"
+                            t-out="doc.company_id.account_fiscal_country_id.vat_label"
+                        />
+                            <t t-else="">Tax ID</t>: <span
+                            t-field="doc.partner_shipping_id.vat"
+                        />
+                        </div>
+                    </t>
+                    <t t-if="doc.picking_ids and doc.picking_ids[0].location_id.id">
+                        <t t-set="information_block">
+                            <h4>Warehouse</h4>
+                            <p
+                                t-out="doc.get_location_address(doc.picking_ids[0].location_id.id)"
+                            />
+                        </t>
+                    </t>
+                </t>
+            </div>
 
-                <h2 id="document_title">
-                    <span t-if="doc.state in ['draft']">Draft document:</span>
-                    <span t-if="doc.state not in ['draft']">Document:</span>
-                    <small>
+            <div class="clearfix delivery_note_main">
+                <div class="page mb-4">
+                    <t t-set="layout_document_title">
+                        <span t-if="doc.state in ['draft']">Draft document:</span>
+                        <span t-if="doc.state not in ['draft']">Document:</span>
                         <span t-field="doc.display_name" />
-                    </small>
-                    <span t-if="doc.date"> of: </span>
-                    <small>
+                        <span t-if="doc.date"> of: </span>
                         <span t-field="doc.date" />
-                    </small>
-                </h2>
+                    </t>
 
-                <div id="delivery_data_information" class="row mt32 mb32">
-                    <div t-if="doc.transport_reason_id" class="col-3 bm-2">
-                        <strong>Reason of Transport:</strong>
-                        <p t-field="doc.transport_reason_id" class="m-0" />
-                    </div>
-                    <div t-if="doc.transport_condition_id" class="col-3 bm-2">
-                        <strong>Carriage Condition:</strong>
-                        <p t-field="doc.transport_condition_id" class="m-0" />
+                    <div id="warehouse_outgoing">
+                        <div
+                            t-if="doc.type_code=='outgoing' and doc.picking_ids and doc.picking_ids[0].location_id.id"
+                        >
+                            <strong>Warehouse:</strong>
+                            <p
+                                t-out="doc.get_location_address(doc.picking_ids[0].location_id.id)"
+                            />
+                        </div>
                     </div>
                     <div
-                        t-if="doc.transport_method_id and doc.company_id.display_carrier_dn_report"
-                        class="col-3 bm-2"
+                        id="carrier"
+                        t-if="doc.carrier_id and doc.company_id.display_carrier_dn_report"
                     >
-                        <strong>Method of Transport:</strong>
-                        <p t-field="doc.transport_method_id" class="m-0" />
+                        <strong>Carrier:</strong>
+                        <t t-esc="doc.carrier_id.name" />
                     </div>
                     <div
-                        t-if="doc.transport_method_id and not doc.company_id.display_carrier_dn_report"
-                        class="col-3 bm-2"
+                        id="delivery_method"
+                        t-if="doc.delivery_method_id and doc.company_id.display_delivery_method_dn_report"
                     >
-                        <strong>Method of Transport / Carrier:</strong>
-                        <span t-field="doc.transport_method_id" class="m-0" />
-                        <t t-if="doc.transport_method_id and doc.carrier_id"> / </t>
-                        <span t-field="doc.carrier_id" class="m-0" />
+                        <strong>Delivery Method:</strong>
+                        <t t-esc="doc.delivery_method_id.name" />
                     </div>
-                </div>
 
-                <table id="product_data" class="mt32 mb32 o_main_table table table-sm">
-                    <thead>
-                        <tr>
-                            <t t-set="colspan" t-value="5" />
-                            <th class="text-start">
-                                Product
-                            </th>
-                            <th class="text-start">
-                                Description
-                            </th>
-                            <th class="text-start">
-                                Quantity
-                            </th>
-                            <th class="text-start" groups="uom.group_uom">
-                                UoM
-                            </th>
-                            <th
-                                t-if="doc.print_prices"
-                                class="text-start"
-                                style="white-space: nowrap;"
-                            >
-                                Unit price
-                            </th>
-                            <th
-                                t-if="doc.print_prices"
-                                class="text-start"
-                                groups="product.group_discount_per_so_line"
-                            >
-                                Discount
-                            </th>
-                            <th t-if="doc.print_prices" class="text-start">
-                                Taxes
-                            </th>
-                            <th t-if="doc.lines_have_so_number">
-                                Ref. Order
-                            </th>
-                            <th t-if="doc.lines_have_customer_ref">
-                                Ref. Customer
-                            </th>
-                        </tr>
-                    </thead>
+                    <div id="dn_terms">
+                        <strong> Delivery Note: </strong>
+                        Under the terms of Italian Presidential Decree 472-96 of 14.08.1996
+                    </div>
 
-                    <!--row delivery note-->
-                    <tbody class="sale_tbody">
-                        <t t-foreach="doc.line_ids" t-as="line">
-                            <tr
-                                t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''"
-                            >
-                                <t t-if="not line.display_type">
-                                    <td class="text-start">
-                                        <span t-field="line.product_id.default_code" />
-                                    </td>
-                                    <td class="text-start">
-                                        <span t-field="line.name" />
-                                        <t
-                                            t-foreach="line.product_id.product_template_attribute_value_ids"
-                                            t-as="attrib_value"
+                    <div id="delivery_data_information" class="row mb-4">
+                        <div
+                            class="col"
+                            t-if="doc.transport_reason_id"
+                            name="transport_reason"
+                        >
+                            <strong>Reason of Transport</strong>
+                            <div t-field="doc.transport_reason_id" />
+                        </div>
+                        <div class="col" t-if="doc.transport_condition_id">
+                            <strong>Carriage Condition</strong>
+                            <div t-field="doc.transport_condition_id" />
+                        </div>
+                        <div
+                            class="col"
+                            t-if="doc.transport_method_id and doc.company_id.display_carrier_dn_report"
+                        >
+                            <strong>Method of Transport:</strong>
+                            <div t-field="doc.transport_method_id" />
+                        </div>
+                        <div
+                            class="col"
+                            t-if="doc.transport_method_id and not doc.company_id.display_carrier_dn_report"
+                        >
+                            <strong>Method of Transport / Carrier</strong>
+                            <div t-field="doc.transport_method_id" />
+                            <t t-if="doc.transport_method_id and doc.carrier_id"> / </t>
+                            <div t-field="doc.carrier_id" />
+                        </div>
+                    </div>
+
+                    <table class="table o_main_table table-sm" name="product_data">
+                        <thead>
+                            <tr>
+                                <t t-set="colspan" t-value="5" />
+                                <th name="th_product" class="text-start">Product</th>
+                                <th
+                                    name="th_description"
+                                    class="text-start"
+                                >Description</th>
+                                <th name="th_quantity" class="text-start">Quantity</th>
+                                <th
+                                    t-if="doc.print_prices"
+                                    name="th_priceunit"
+                                    t-attf-class="text-end text-nowrap {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                                >
+                                    Unit Price
+                                </th>
+                                <th
+                                    t-if="doc.print_prices"
+                                    name="th_discount"
+                                    t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                                    groups="sale.group_discount_per_so_line"
+                                >
+                                    Discount
+                                </th>
+                                <th
+                                    t-if="doc.print_prices"
+                                    name="th_taxes"
+                                    t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                                >
+                                    Taxes
+                                </th>
+                                <th name="th_ref_order" t-if="doc.lines_have_so_number">
+                                    Ref. Order
+                                </th>
+                                <th
+                                    name="th_ref_customer"
+                                    t-if="doc.lines_have_customer_ref"
+                                >
+                                    Ref. Customer
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <!--row delivery note-->
+                        <tbody class="sale_tbody">
+                            <t t-foreach="doc.line_ids" t-as="line">
+                                <tr
+                                    t-att-class="'fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''"
+                                >
+                                    <t t-if="not line.display_type">
+                                        <td name="td_product" class="text-start">
+                                            <span
+                                                t-field="line.product_id.default_code"
+                                            />
+                                        </td>
+                                        <td name="td_name" class="text-start">
+                                            <span
+                                                t-field="line.name"
+                                                t-options="{'widget': 'text'}"
+                                            />
+                                            <t
+                                                t-foreach="line.product_id.product_template_attribute_value_ids"
+                                                t-as="attrib_value"
+                                            >
+                                                <span
+                                                    t-esc=" '%s: %s' % (attrib_value.attribute_id.name,attrib_value.name)"
+                                                />
+                                            </t>
+                                        </td>
+                                        <td name="td_quantity" class="text-start">
+                                            <span t-field="line.product_qty" />
+                                            <span
+                                                t-field="line.product_uom_id"
+                                                groups="uom.group_uom"
+                                            />
+                                        </td>
+                                        <td
+                                            t-if="doc.print_prices"
+                                            name="td_price_unit"
+                                            t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
                                         >
                                             <span
-                                                t-esc=" '%s: %s' % (attrib_value.attribute_id.name,attrib_value.name)"
+                                                class="text-nowrap"
+                                                t-field="line.price_unit"
                                             />
-                                        </t>
-                                    </td>
-                                    <td class="text-start">
-                                        <span t-field="line.product_qty" />
-                                    </td>
-                                    <td class="text-start" groups="uom.group_uom">
-                                        <span t-field="line.product_uom_id" />
-                                    </td>
-                                    <td t-if="doc.print_prices" class="text-start">
-                                        <span t-field="line.price_unit" />
-                                    </td>
-                                    <td
-                                        t-if="doc.print_prices"
-                                        class="text-start"
-                                        groups="product.group_discount_per_so_line"
-                                    >
-                                        <span t-field="line.discount" />%
-                                    </td>
-                                    <td t-if="doc.print_prices" class="text-start">
-                                        <span
-                                            t-esc="', '.join(map(lambda t: (t.description or t.name), line.tax_ids))"
-                                        />
-                                    </td>
-                                    <td t-if="doc.lines_have_so_number">
-                                        <span t-esc="line.sale_order_number" />
-                                    </td>
-                                    <td t-if="doc.lines_have_customer_ref">
-                                        <span t-esc="line.sale_order_client_ref" />
-                                    </td>
-                                </t>
-                                <t t-else="">
-                                    <td colspan="6" class="text-start">
-                                        <span t-field="line.name" />
-                                    </td>
-                                </t>
-                            </tr>
-                            <tr t-if="line.product_id.tracking != 'none'">
-                                <td
-                                    colspan="99"
-                                    style="font-size:10px;"
-                                    class="text-start"
-                                >
-                                    <t
-                                        t-foreach="line.move_id.move_line_ids"
-                                        t-as="lot_line"
-                                    >
-                                        lot / sn :
-                                        <strong>
-                                        <span t-field="lot_line.lot_id" />
-                                    </strong>
-                                        <t
-                                        t-if="'use_expiration_date' in lot_line.lot_id.fields_get()"
-                                    >
-                                        <t t-if="lot_line.lot_id.use_expiration_date">
-                                                best before
-                                                <strong>
+                                        </td>
+                                        <td
+                                            t-if="doc.print_prices"
+                                            name="td_discount"
+                                            t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                                            groups="sale.group_discount_per_so_line"
+                                        >
                                             <span
-                                                t-field="lot_line.lot_id.use_date"
-                                                t-options='{"format": "dd/MM/yyyy"}'
+                                            class="text-nowrap"
+                                            t-field="line.discount"
+                                        />%
+                                        </td>
+                                        <t
+                                            t-set="taxes"
+                                            t-value="', '.join([(tax.invoice_label or tax.name) for tax in line.tax_ids])"
+                                        />
+                                        <td
+                                            t-if="doc.print_prices"
+                                            name="td_taxes"
+                                            t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }} {{ 'text-nowrap' if len(taxes) &lt; 10 else '' }}"
+                                        >
+                                            <span t-esc="taxes" />
+                                        </td>
+                                        <td
+                                            t-if="doc.lines_have_so_number"
+                                            name="td_rif_order"
+                                        >
+                                            <span t-esc="line.sale_order_number" />
+                                        </td>
+                                        <td
+                                            t-if="doc.lines_have_customer_ref"
+                                            name="td_rif_customer"
+                                        >
+                                            <span t-esc="line.sale_order_client_ref" />
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td colspan="99">
+                                            <span
+                                                t-field="line.name"
+                                                t-options="{'widget': 'text'}"
                                             />
-                                        </strong>
-                                            </t>
+                                        </td>
                                     </t>
-                                        <t t-if="line.product_qty != lot_line.qty_done">
-                                            qty
-                                            <span t-field="lot_line.qty_done" />
-                                        </t>
-                                        ;
-                                    </t>
-                                </td>
-                            </tr>
-                        </t>
-                    </tbody>
-                </table>
+                                </tr>
 
-                <table
-                    id="parcel_info"
-                    class="table table-condensed table-bordered delivery_data"
-                    style="page-break-inside: avoid"
-                >
-                    <tr>
-                        <td>
+                                <tr t-if="line.product_id.tracking != 'none'">
+                                    <td
+                                        colspan="99"
+                                        style="font-size:10px;"
+                                        class="text-start"
+                                    >
+                                        <t
+                                            t-foreach="line.move_id.move_line_ids"
+                                            t-as="lot_line"
+                                        >
+                                            lot / sn :
+                                            <strong>
+                                            <span t-field="lot_line.lot_id" />
+                                        </strong>
+                                            <t
+                                            t-if="'use_expiration_date' in lot_line.lot_id.fields_get()"
+                                        >
+                                            <t
+                                                t-if="lot_line.lot_id.use_expiration_date"
+                                            >
+                                                    best before
+                                                    <strong>
+                                                <span
+                                                    t-field="lot_line.lot_id.use_date"
+                                                    t-options='{"format": "dd/MM/yyyy"}'
+                                                />
+                                            </strong>
+                                                </t>
+                                        </t>
+                                            <t
+                                            t-if="line.product_qty != lot_line.qty_done"
+                                        >
+                                                qty
+                                                <span t-field="lot_line.qty_done" />
+                                            </t>
+                                            ;
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div id="parcel_info" class="row">
+                        <div class="col border" name="good_description">
                             <div
-                                name="good_description"
+                                class="px-2 pt-2"
                                 style="font-size:10px;"
                             >Goods Description</div>
                             <div
+                                class="px-2 pb-2"
                                 style="font-size:12px;"
                                 t-field="doc.goods_appearance_id"
                             />
-                        </td>
-                        <td>
+                        </div>
+                        <div class="col border border-start-0" name="gross_weight">
                             <div
-                                name="gross_weight"
+                                class="px-2 pt-2"
                                 style="font-size:10px;"
                             >Gross Weight</div>
                             <div
-                                class="text-left"
-                                style="font-size:12px;"
+                                class="px-2 pb-2"
+                                style="font-size:10px;"
                                 t-field="doc.gross_weight"
                             />
-                        </td>
-                        <td>
+                        </div>
+                        <div class="col border border-start-0" name="net_weight">
                             <div
-                                name="net_weight"
+                                class="px-2 pt-2"
                                 style="font-size:10px;"
                             >Net Weight</div>
                             <div
-                                class="text-left"
-                                style="font-size:12px;"
+                                class="px-2 pb-2"
+                                style="font-size:10px;"
                                 t-field="doc.net_weight"
                             />
-                        </td>
-                        <td>
+                        </div>
+                        <div class="col border border-start-0" name="transport_date">
                             <div
-                                name="transport_date"
+                                class="px-2 pt-2"
                                 style="font-size:10px;"
                             >Transport date</div>
                             <div
-                                class="m-0"
+                                class="px-2 pb-2"
                                 style="font-size:12px;"
                                 t-field="doc.transport_datetime"
                             />
-                        </td>
-                        <td>
-                            <div name="packages" style="font-size:10px;">Packages</div>
+                        </div>
+                        <div class="col border border-start-0" name="packages">
                             <div
-                                class="text-left"
+                                class="px-2 pt-2"
+                                style="font-size:10px;"
+                            >Packages</div>
+                            <div
+                                class="px-2 pb-2"
                                 style="font-size:12px;"
                                 t-field="doc.packages"
                             />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" class="notes">
-                            <div name="notes" style="font-size:10px;">Notes</div>
-                            <br />
+                        </div>
+                    </div>
+                    <div id="parcel_note_info" class="row">
+                        <div class="col border border-bottom-0" name="note">
+                            <div class="px-2 pt-2" style="font-size:10px;">Notes</div>
                             <div
                                 class="signature"
                                 style="font-size:12px;"
                                 t-field="doc.note"
                             />
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
                     <tr>
                         <td colspan="5">
                             <table class="table table-condensed delivery_data">
@@ -393,8 +453,7 @@
                             </table>
                         </td>
                     </tr>
-                </table>
-                <div class="oe_structure" />
+                </div>
             </div>
         </t>
     </template>
