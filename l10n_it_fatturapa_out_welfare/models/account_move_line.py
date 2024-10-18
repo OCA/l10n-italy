@@ -4,8 +4,8 @@
 from odoo import fields, models
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     welfare_fund_type_amount_ids = fields.Many2many(
         comodel_name="welfare.fund.type.amount",
@@ -18,7 +18,7 @@ class AccountInvoiceLine(models.Model):
         help="Welfare Amount represented by this Invoice Line.",
     )
     welfare_grouping_invoice_line_ids = fields.Many2many(
-        comodel_name="account.invoice.line",
+        comodel_name="account.move.line",
         relation="welfare_group_invoice_line_rel",
         column1="grouping_line",
         column2="grouped_line",
@@ -26,7 +26,7 @@ class AccountInvoiceLine(models.Model):
         help="Invoice Lines that represent this Line's Welfare Amount.",
     )
     welfare_grouped_invoice_line_ids = fields.Many2many(
-        comodel_name="account.invoice.line",
+        comodel_name="account.move.line",
         relation="welfare_group_invoice_line_rel",
         column1="grouped_line",
         column2="grouping_line",

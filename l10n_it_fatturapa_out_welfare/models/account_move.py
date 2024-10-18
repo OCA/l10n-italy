@@ -5,8 +5,8 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     should_regenerate_welfare_lines = fields.Boolean(
         compute="_compute_should_regenerate_welfare_lines",
@@ -51,10 +51,9 @@ class AccountInvoice(models.Model):
         welfare_grouping_lines = self.env[invoice_lines._name].create(
             welfare_grouping_lines_values,
         )
-        self.compute_taxes()
         return welfare_grouping_lines
 
-    def action_invoice_open(self):
+    def action_post(self):
         need_welfare_invoices = self.filtered("should_regenerate_welfare_lines")
         if need_welfare_invoices:
             raise UserError(
@@ -64,4 +63,4 @@ class AccountInvoice(models.Model):
                     )
                 )
             )
-        return super().action_invoice_open()
+        return super().action_post()

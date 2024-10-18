@@ -64,11 +64,11 @@
             <DatiGeneraliDocumento>
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
-                <Data>2023-01-01</Data>
-                <Numero>INV/2023/0001</Numero>
+                <Data>2024-01-01</Data>
+                <Numero>INV/2024/00001</Numero>
                 <DatiRitenuta>
                     <TipoRitenuta>RT02</TipoRitenuta>
-                    <ImportoRitenuta>20.00</ImportoRitenuta>
+                    <ImportoRitenuta>40.00</ImportoRitenuta>
                     <AliquotaRitenuta>20.00</AliquotaRitenuta>
                     <CausalePagamento>A</CausalePagamento>
                 </DatiRitenuta>
@@ -94,8 +94,8 @@
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
                 <Descrizione>Cabinet with Doors</Descrizione>
-                <Quantita>1.000</Quantita>
-                <UnitaMisura>Unit(s)</UnitaMisura>
+                <Quantita>1.00</Quantita>
+                <UnitaMisura>Units</UnitaMisura>
                 <PrezzoUnitario>100.00000</PrezzoUnitario>
                 <PrezzoTotale>100.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
@@ -103,8 +103,8 @@
             <DettaglioLinee>
                 <NumeroLinea>2</NumeroLinea>
                 <Descrizione>Cabinet with Doors</Descrizione>
-                <Quantita>1.000</Quantita>
-                <UnitaMisura>Unit(s)</UnitaMisura>
+                <Quantita>1.00</Quantita>
+                <UnitaMisura>Units</UnitaMisura>
                 <PrezzoUnitario>100.00000</PrezzoUnitario>
                 <PrezzoTotale>100.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
@@ -113,11 +113,12 @@
             <DettaglioLinee>
                 <NumeroLinea>3</NumeroLinea>
                 <Descrizione>Cabinet with Doors</Descrizione>
-                <Quantita>1.000</Quantita>
-                <UnitaMisura>Unit(s)</UnitaMisura>
+                <Quantita>1.00</Quantita>
+                <UnitaMisura>Units</UnitaMisura>
                 <PrezzoUnitario>100.00000</PrezzoUnitario>
                 <PrezzoTotale>100.00</PrezzoTotale>
                 <AliquotaIVA>22.00</AliquotaIVA>
+                <Ritenuta>SI</Ritenuta>
             </DettaglioLinee>
             <DatiRiepilogo>
                 <AliquotaIVA>22.00</AliquotaIVA>
@@ -125,5 +126,13 @@
                 <Imposta>74.80</Imposta>
             </DatiRiepilogo>
         </DatiBeniServizi>
+        <DatiPagamento>
+            <CondizioniPagamento>TP02</CondizioniPagamento>
+            <DettaglioPagamento>
+                <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataScadenzaPagamento>2024-02-29</DataScadenzaPagamento>
+                <ImportoPagamento>374.80</ImportoPagamento>
+            </DettaglioPagamento>
+        </DatiPagamento>
     </FatturaElettronicaBody>
 </ns1:FatturaElettronica>
