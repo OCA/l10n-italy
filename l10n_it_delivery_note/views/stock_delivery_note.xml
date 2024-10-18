@@ -7,7 +7,6 @@
     <record id="stock_delivery_note_form_view" model="ir.ui.view">
         <field name="name">stock.delivery.note.form</field>
         <field name="model">stock.delivery.note</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
                 <field name="company_id" invisible="True" />
@@ -22,14 +21,14 @@
                     <button
                         name="action_draft"
                         type="object"
-                        states="cancel"
+                        invisible="state != 'cancel'"
                         class="oe_highlight"
                         string="Reset to draft"
                     />
                     <button
                         name="action_confirm"
                         type="object"
-                        states="draft"
+                        invisible="state != 'draft'"
                         class="oe_highlight"
                         string="Validate"
                     />
@@ -37,35 +36,34 @@
                         name="action_invoice"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('sale_ids', '=', [])]}"
+                        invisible="state != 'confirm' or not sale_ids"
                         groups="account.group_account_invoice"
                         string="Create invoice"
                     />
                     <button
                         name="action_done"
                         type="object"
+                        invisible="state != 'invoiced' and (state != 'confirm' or not sale_ids)"
                         class="oe_highlight"
-                        attrs="{'invisible': ['&amp;', ('state', '!=', 'invoiced'),
-                                                  '|', ('state', '!=', 'confirm'), ('sale_ids', '!=', [])]}"
                         string="Set done"
                     />
                     <button
                         name="action_print"
                         type="object"
-                        states="draft,confirm,invoiced"
+                        invisible="state not in ['draft', 'confirm', 'invoiced']"
                         string="Print"
                     />
                     <button
                         name="action_print"
                         type="object"
                         class="oe_highlight"
-                        states="done"
+                        invisible="state != 'done'"
                         string="Print"
                     />
                     <button
                         name="action_cancel"
                         type="object"
-                        states="confirm,invoiced,done"
+                        invisible="state not in ['confirm', 'invoiced', 'done']"
                         string="Cancel"
                     />
                     <field
@@ -81,7 +79,7 @@
                             class="oe_stat_button"
                             name="goto_sales"
                             icon="fa-pencil-square-o"
-                            attrs="{'invisible': [('sale_count', '=', 0)]}"
+                            invisible="not sale_count"
                         >
                             <field
                                 name="sale_count"
@@ -94,32 +92,36 @@
                         name="web_ribbon"
                         text="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_title">
-                        <field name="active" invisible="1" />
-                        <div attrs="{'invisible': [('name', 'not in', [False, ''])]}">
+                        <field name="active" invisible="True" />
+                        <div invisible="not name">
                             <label for="name" string="Draft document" />
                         </div>
-                        <div attrs="{'invisible': [('name', 'in', [False, ''])]}">
+                        <div invisible="not name">
                             <h1>
                                 <label for="name" string="Document" />
                                 <field
                                     name="name"
                                     class="oe_inline"
-                                    attrs="{'readonly': [('can_change_number', '=', False)]}"
+                                    readonly="not can_change_number"
                                 />
                             </h1>
                         </div>
-                        <div attrs="{'invisible': [('type_code', '!=', 'incoming')]}">
+                        <div invisible="type_code != 'incoming'">
                             <h2>
                                 <label for="partner_ref" />
-                                <field name="partner_ref" class="oe_inline" />
+                                <field
+                                    name="partner_ref"
+                                    readonly="state == 'done'"
+                                    class="oe_inline"
+                                />
                             </h2>
                         </div>
                     </div>
                     <div
-                        attrs="{'invisible': [('sales_transport_check', '=', True)]}"
+                        invisible="sales_transport_check"
                         class="alert alert-warning mb0"
                         role="alert"
                     >
@@ -135,32 +137,45 @@
                         <group>
                             <field
                                 name="partner_sender_id"
-                                attrs="{'readonly': [('pickings_picker', '!=', [])]}"
+                                readonly="state != 'draft' or pickings_picker"
                             />
                             <field
                                 name="partner_id"
-                                attrs="{'readonly': [('pickings_picker', '!=', [])]}"
+                                readonly="state != 'draft' or pickings_picker"
                             />
-                            <field name="partner_shipping_id" />
+                            <field
+                                name="partner_shipping_id"
+                                readonly="state == 'done'"
+                            />
                         </group>
                         <group>
-                            <field name="type_id" widget="selection" />
-                            <field name="date" />
+                            <field
+                                name="type_id"
+                                readonly="state != 'draft'"
+                                widget="selection"
+                            />
+                            <field name="date" readonly="state != 'draft'" />
                         </group>
                     </group>
                     <group>
                         <group>
-                            <field name="carrier_id" />
-                            <field name="delivery_method_id" />
+                            <field name="carrier_id" readonly="state == 'done'" />
+                            <field
+                                name="delivery_method_id"
+                                readonly="state == 'done'"
+                            />
                         </group>
                         <group>
                             <label for="transport_datetime" />
                             <div class="o_row">
-                                <field name="transport_datetime" />
+                                <field
+                                    name="transport_datetime"
+                                    readonly="state == 'done'"
+                                />
                                 <button
                                     type="object"
                                     name="update_transport_datetime"
-                                    attrs="{'invisible': [('state', '=', 'done')]}"
+                                    invisible="state == 'done'"
                                     class="btn-secondary"
                                     icon="fa-clock-o"
                                     aria-label="Update to now"
@@ -170,7 +185,7 @@
                             <field
                                 name="company_id"
                                 options="{'no_create': True}"
-                                attrs="{'readonly': [('pickings_picker', '!=', [])]}"
+                                readonly="pickings_picker"
                                 groups="base.group_multi_company"
                                 domain="[('id', 'in', allowed_company_ids)]"
                             />
@@ -178,12 +193,13 @@
                     </group>
                     <group>
                         <group>
-                            <field name="packages" />
+                            <field name="packages" readonly="state == 'done'" />
                             <label for="volume" />
                             <div class="o_row">
-                                <field name="volume" />
+                                <field name="volume" readonly="state == 'done'" />
                                 <field
                                     name="volume_uom_id"
+                                    readonly="state == 'done'"
                                     groups="uom.group_uom"
                                     widget="selection"
                                 />
@@ -192,18 +208,20 @@
                         <group>
                             <label for="gross_weight" />
                             <div class="o_row">
-                                <field name="gross_weight" />
+                                <field name="gross_weight" readonly="state == 'done'" />
                                 <field
                                     name="gross_weight_uom_id"
+                                    readonly="state == 'done'"
                                     groups="uom.group_uom"
                                     widget="selection"
                                 />
                             </div>
                             <label for="net_weight" />
                             <div class="o_row">
-                                <field name="net_weight" />
+                                <field name="net_weight" readonly="state == 'done'" />
                                 <field
                                     name="net_weight_uom_id"
+                                    readonly="state == 'done'"
                                     groups="uom.group_uom"
                                     widget="selection"
                                 />
@@ -212,26 +230,51 @@
                     </group>
                     <group>
                         <group>
-                            <field name="goods_appearance_id" widget="selection" />
-                            <field name="transport_reason_id" widget="selection" />
+                            <field
+                                name="goods_appearance_id"
+                                readonly="state == 'done'"
+                                widget="selection"
+                            />
+                            <field
+                                name="transport_reason_id"
+                                readonly="state == 'done'"
+                                widget="selection"
+                            />
                         </group>
                         <group>
-                            <field name="transport_condition_id" widget="selection" />
-                            <field name="transport_method_id" widget="selection" />
+                            <field
+                                name="transport_condition_id"
+                                readonly="state == 'done'"
+                                widget="selection"
+                            />
+                            <field
+                                name="transport_method_id"
+                                readonly="state == 'done'"
+                                widget="selection"
+                            />
                         </group>
                     </group>
                     <notebook>
                         <page name="details" string="Details">
                             <field name="line_ids" widget="section_and_note_one2many">
-                                <tree
+                                <list
                                     editable="bottom"
                                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                                 >
-                                    <field name="currency_id" invisible="True" />
-                                    <field name="display_type" invisible="True" />
-                                    <field name="move_id" invisible="True" />
-                                    <field name="sale_line_id" invisible="True" />
-                                    <field name="invoice_status" invisible="True" />
+                                    <field name="currency_id" column_invisible="True" />
+                                    <field
+                                        name="display_type"
+                                        column_invisible="True"
+                                    />
+                                    <field name="move_id" column_invisible="True" />
+                                    <field
+                                        name="sale_line_id"
+                                        column_invisible="True"
+                                    />
+                                    <field
+                                        name="invoice_status"
+                                        column_invisible="True"
+                                    />
                                     <control>
                                         <create
                                             string="Add a section"
@@ -243,15 +286,9 @@
                                         />
                                     </control>
                                     <field name="sequence" widget="handle" />
-                                    <field
-                                        name="product_id"
-                                        attrs="{'readonly': [('move_id', '!=', False)]}"
-                                    />
+                                    <field name="product_id" readonly="move_id" />
                                     <field name="name" widget="section_and_note_text" />
-                                    <field
-                                        name="product_qty"
-                                        attrs="{'readonly': [('move_id', '!=', False)]}"
-                                    />
+                                    <field name="product_qty" readonly="move_id" />
                                     <field
                                         name="product_uom_id"
                                         groups="uom.group_uom"
@@ -259,64 +296,40 @@
                                     />
                                     <field
                                         name="price_unit"
-                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
-                                                   'readonly': [('sale_line_id', '!=', False)]}"
+                                        column_invisible="not parent.show_product_information"
+                                        readonly="sale_line_id"
                                     />
                                     <field
                                         name="discount"
-                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
-                                                   'readonly': [('sale_line_id', '!=', False)]}"
-                                        groups="product.group_discount_per_so_line"
+                                        column_invisible="not parent.show_product_information"
+                                        readonly="sale_line_id"
+                                        groups="sale.group_discount_per_so_line"
                                     />
                                     <field
                                         name="tax_ids"
                                         domain="[('company_id', 'in', [company_id, False])]"
-                                        attrs="{'column_invisible': [('parent.show_product_information', '=', False)],
-                                                   'readonly': [('sale_line_id', '!=', False)]}"
+                                        column_invisible="not parent.show_product_information"
+                                        readonly="sale_line_id"
                                         widget="many2many_tags"
                                     />
                                     <field
                                         name="sale_order_number"
-                                        attrs="
-                                        {
-                                            'column_invisible': [(
-                                                'parent.show_product_information',
-                                                '=',
-                                                False
-                                            )],
-                                            'readonly': [(
-                                                'sale_line_id',
-                                                '!=',
-                                                False
-                                            )]
-                                        }"
+                                        column_invisible="not parent.show_product_information"
+                                        readonly="sale_line_id"
                                         optional="hide"
                                     />
                                     <field
                                         name="sale_order_client_ref"
-                                        attrs="
-                                        {
-                                            'column_invisible': [(
-                                                'parent.show_product_information',
-                                                '=',
-                                                False
-                                            )],
-                                            'readonly': [(
-                                                'sale_line_id',
-                                                '!=',
-                                                False
-                                            )]
-                                        }"
+                                        column_invisible="not parent.show_product_information"
+                                        readonly="sale_line_id"
                                         optional="hide"
                                     />
-                                    <field name="company_id" invisible="1" />
-                                </tree>
+                                    <field name="company_id" column_invisible="True" />
+                                </list>
                                 <form>
                                     <field name="currency_id" invisible="True" />
                                     <field name="display_type" invisible="True" />
-                                    <div
-                                        attrs="{'invisible': [('product_id', '=', False)]}"
-                                    >
+                                    <div invisible="not product_id">
                                         <label
                                             for="product_id"
                                             style="margin-bottom: 5px;"
@@ -331,32 +344,28 @@
                                             <field name="product_description" />
                                         </div>
                                     </div>
-                                    <div
-                                        attrs="{'invisible': [('product_id', '!=', False)]}"
-                                    >
+                                    <div invisible="product_id">
                                         <label
                                             for="name"
                                             string="Section name (e.g. Products, Services)"
-                                            attrs="{'invisible': [('display_type', '!=', 'line_section')]}"
+                                            invisible="display_type != 'line_section'"
                                             style="margin-bottom: 5px;"
                                         />
                                         <label
                                             for="name"
                                             string="Note"
-                                            attrs="{'invisible': [('display_type', '!=', 'line_note')]}"
+                                            invisible="display_type != 'line_note'"
                                             style="margin-bottom: 5px;"
                                         />
                                         <div>
                                             <field name="name" />
                                         </div>
                                     </div>
-                                    <group
-                                        attrs="{'invisible': [('display_type', '!=', False)]}"
-                                    >
+                                    <group invisible="display_type">
                                         <group>
                                             <field
                                                 name="price_unit"
-                                                attrs="{'invisible': [('parent.show_product_information', '=', False)]}"
+                                                invisible="not parent.show_product_information"
                                             />
                                             <label for="product_qty" />
                                             <div class="o_row">
@@ -369,18 +378,18 @@
                                             </div>
                                         </group>
                                         <group
-                                            attrs="{'invisible': [('parent.show_product_information', '=', False)]}"
+                                            invisible="not parent.show_product_information"
                                         >
                                             <field
                                                 name="discount"
-                                                groups="product.group_discount_per_so_line"
+                                                groups="sale.group_discount_per_so_line"
                                             />
                                             <field
                                                 name="tax_ids"
                                                 domain="[('company_id', 'in', [company_id, False])]"
                                                 widget="many2many_tags"
                                             />
-                                            <field name="company_id" invisible="1" />
+                                            <field name="company_id" invisible="True" />
                                         </group>
                                     </group>
                                 </form>
@@ -399,7 +408,7 @@
                                                  ('picking_type_code', '=', 'internal'),
                                             ]"
                             >
-                                <tree
+                                <list
                                     decoration-success="id not in parent.picking_ids"
                                     editable="bottom"
                                 >
@@ -423,18 +432,18 @@
                                     <field name="carrier_partner_id" />
                                     <field name="backorder_id" />
                                     <field name="state" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page
                             name="invoices"
                             string="Invoices"
-                            attrs="{'invisible': [('invoice_ids', '=', [])]}"
+                            invisible="not invoice_ids"
                             groups="account.group_account_invoice"
                         >
                             <field name="invoice_ids">
-                                <tree editable="bottom">
-                                    <field name="currency_id" invisible="True" />
+                                <list editable="bottom">
+                                    <field name="currency_id" column_invisible="True" />
                                     <button
                                         type="object"
                                         name="goto_invoice"
@@ -462,19 +471,15 @@
                                         sum="Total"
                                     />
                                     <field name="state" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page name="internal_notes" string="Internal notes">
-                            <field name="note" />
+                            <field name="note" readonly="state == 'done'" />
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -483,7 +488,7 @@
         <field name="name">stock.delivery.note.tree</field>
         <field name="model">stock.delivery.note</field>
         <field name="arch" type="xml">
-            <tree decoration-muted="state == 'cancel'">
+            <list decoration-muted="state == 'cancel'">
                 <field name="display_name" string="Name" />
                 <field name="partner_sender_id" />
                 <field name="partner_id" />
@@ -491,7 +496,7 @@
                 <field name="state" />
                 <field name="type_code" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -622,15 +627,17 @@
     <record id="stock_delivery_note_action" model="ir.actions.act_window">
         <field name="name">Delivery Notes</field>
         <field name="res_model">stock.delivery.note</field>
-        <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="stock_delivery_note_search_view" />
+        <field name="view_mode">list,form</field>
+        <field
+            name="search_view_id"
+            ref="l10n_it_delivery_note.stock_delivery_note_search_view"
+        />
     </record>
 
     <menuitem
         id="stock_delivery_note_menu"
         parent="stock.menu_stock_warehouse_mgmt"
-        action="stock_delivery_note_action"
-        groups="l10n_it_delivery_note.use_advanced_delivery_notes"
+        action="l10n_it_delivery_note.stock_delivery_note_action"
         name="Delivery Notes"
         sequence="10"
     />
@@ -645,14 +652,13 @@
     <record id="stock_delivery_note_type_action" model="ir.actions.act_window">
         <field name="name">Delivery Note Types</field>
         <field name="res_model">stock.delivery.note.type</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem
         id="stock_delivery_note_type_menu"
         parent="stock.menu_warehouse_config"
-        action="stock_delivery_note_type_action"
+        action="l10n_it_delivery_note.stock_delivery_note_type_action"
         name="Delivery Note Types"
         sequence="10"
     />
