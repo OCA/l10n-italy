@@ -2,7 +2,7 @@
 * Lorenzo Battistini <https://github.com/eLBati>
 * Roberto Onnis
 * Alessio Gerace
-* Alex Comba
+* Alex Comba <alex.comba@agilebg.com>
 * Sergio Zanchetta <https://github.com/primes2h>
 * Marco Colombo <https://github.com/TheMule71>
 * Giovanni Serra <giovanni@gslab.it>
