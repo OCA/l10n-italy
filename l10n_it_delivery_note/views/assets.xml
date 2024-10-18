@@ -4,7 +4,6 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-
     <template id="assets_backend" name="assets" inherit_id="web.assets_backend">
         <xpath expr="link[last()]" position="after">
             <link
@@ -22,5 +21,4 @@
             />
         </xpath>
     </template>
-
 </odoo>
