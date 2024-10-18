@@ -4,6 +4,7 @@
 # @author: Gianmarco Conte <gconte@dinamicheaziendali.it>
 # Copyright (c) 2019, Link IT Europe Srl
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
+# Copyright (c) 2024, Nextev Srl <odoo@nextev.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, fields, models
@@ -148,13 +149,11 @@ class AccountInvoice(models.Model):
         # Ripristino il valore delle delivery note
         # per poterle rifatturare
         inv_lines = self.mapped("invoice_line_ids")
-        all_dnls = inv_lines.mapped("sale_line_ids").mapped("delivery_note_line_ids")
-        inv_dnls = self.mapped("delivery_note_ids").mapped("line_ids")
-        dnls_to_unlink = all_dnls & inv_dnls
+        inv_dnls = inv_lines.mapped("delivery_note_line_id")
         res = super().unlink()
-        dnls_to_unlink.sync_invoice_status()
-        dnls_to_unlink.mapped("delivery_note_id")._compute_invoice_status()
-        for dn in dnls_to_unlink.mapped("delivery_note_id"):
+        inv_dnls.sync_invoice_status()
+        inv_dnls.mapped("delivery_note_id")._compute_invoice_status()
+        for dn in inv_dnls.mapped("delivery_note_id"):
             dn.state = "confirm"
         return res
 
