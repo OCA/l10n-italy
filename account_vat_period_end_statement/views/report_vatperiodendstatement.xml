@@ -46,7 +46,6 @@
                     <t t-set="total_statement" t-value="(0)" />
 
                     <h3>Total Statement</h3>
-
                     <table class="table table-condensed">
                         <!-- tot debit -->
                            <t
@@ -87,12 +86,19 @@
                            </t>
 
                            <!-- tot statement -->
-                           <tr>
-                              <td class="text-start"><strong
-                            >Total Statement</strong></td>
-                              <td class="text-end"><strong><span
-                                    t-esc="formatLang(env, total_statement)"
-                                /></strong></td>
+                            <tr>
+                                <td class="text-start">
+                                    <strong>
+                                        Total Statement
+                                        <t t-if="total_statement >= 0">(debit)</t>
+                                        <t
+                                    t-if="not (total_statement >= 0)"
+                                >(credit)</t>
+                                    </strong>
+                                </td>
+                                <td class="text-end"><strong>
+                                    <span t-esc="formatLang(env, total_statement)" />
+                                </strong></td>
                           </tr>
                        </table>
 
