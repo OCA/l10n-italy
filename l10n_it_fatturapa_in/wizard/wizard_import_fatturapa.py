@@ -823,7 +823,8 @@ class WizardImportFatturapa(models.TransientModel):
             ).create(line_vals)
         return True
 
-    def _createPaymentsLine(self, payment_id, line, partner_id, invoice):
+    def _createPaymentsLine(self, payment, line, partner_id, invoice_id):
+        invoice = self.env["account.move"].browse(invoice_id)
         details = line.DettaglioPagamento or False
         if details:
             PaymentModel = self.env["fatturapa.payment.detail"]
@@ -865,7 +866,7 @@ class WizardImportFatturapa(models.TransientModel):
                     "penalty_amount": dline.PenalitaPagamentiRitardati or 0.0,
                     "penalty_date": dline.DataDecorrenzaPenale or False,
                     "payment_code": dline.CodicePagamento or "",
-                    "payment_data_id": payment_id,
+                    "payment_data_id": payment.id,
                 }
                 bank = False
                 payment_bank_id = False
@@ -893,7 +894,14 @@ class WizardImportFatturapa(models.TransientModel):
                     iban = dline.IBAN.strip()
                     SearchDom = [
                         ("acc_number", "=", pretty_iban(iban)),
-                        ("partner_id", "=", partner_id),
+                        (
+                            "partner_id",
+                            "in",
+                            (
+                                partner_id,
+                                invoice.company_id.partner_id.id,
+                            ),
+                        ),
                     ]
                     payment_bank_id = False
                     payment_banks = PartnerBankModel.search(SearchDom)
@@ -913,7 +921,7 @@ class WizardImportFatturapa(models.TransientModel):
                     elif not payment_banks and bank:
                         existing_account = PartnerBankModel.search(
                             [
-                                ("acc_number", "=", iban),
+                                ("acc_number", "=", pretty_iban(iban)),
                                 ("company_id", "=", invoice.company_id.id),
                             ]
                         )
@@ -1539,8 +1547,8 @@ class WizardImportFatturapa(models.TransientModel):
                     term_id = terms[0].id
                 PayDataId = PaymentDataModel.create(
                     {"payment_terms": term_id, "invoice_id": invoice_id}
-                ).id
-                self._createPaymentsLine(PayDataId, PaymentLine, partner_id, invoice)
+                )
+                self._createPaymentsLine(PayDataId, PaymentLine, partner_id, invoice_id)
 
     def set_withholding_tax(self, FatturaBody, invoice_data):
         Withholdings = FatturaBody.DatiGenerali.DatiGeneraliDocumento.DatiRitenuta
