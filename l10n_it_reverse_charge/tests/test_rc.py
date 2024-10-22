@@ -236,3 +236,51 @@ class TestReverseCharge(ReverseChargeCommon):
 
         # Assert
         self.assertEqual(invoice.state, "posted")
+
+    def test_description_lines(self):
+        """A Reverse Charge Bill can be confirmed
+        when contains notes and sections."""
+        # Arrange: Create a Reverse Charge Bill with notes and sections
+        bill = self.create_invoice(
+            self.supplier_extraEU,
+            amounts=[100],
+            taxes=self.tax_0_pur,
+            post=False,
+        )
+        bill.invoice_line_ids = [
+            (
+                0,
+                0,
+                {
+                    "display_type": "line_note",
+                    "name": "Test note",
+                },
+            ),
+            (
+                0,
+                0,
+                {
+                    "display_type": "line_section",
+                    "name": "Test section",
+                },
+            ),
+        ]
+
+        # Act
+        bill.action_post()
+
+        # Assert
+        self.assertEqual(bill.state, "posted")
+
+    def test_negative_lines(self):
+        """A Reverse Charge Bill can be confirmed
+        when contains negative lines."""
+        # Arrange: Create a Reverse Charge Bill with negative lines
+        bill = self.create_invoice(
+            self.supplier_extraEU,
+            amounts=[100, -10],
+            taxes=self.tax_0_pur,
+        )
+
+        # Assert
+        self.assertEqual(bill.state, "posted")
