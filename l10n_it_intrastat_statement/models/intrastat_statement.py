@@ -820,6 +820,7 @@ class AccountIntrastatStatement(models.Model):
                     )
                     to_refund_model = self.env[refund_section_model]
                     self.refund_line(line, to_refund_model)
+        self.recompute_sequence_lines()
         return True
 
     @staticmethod
