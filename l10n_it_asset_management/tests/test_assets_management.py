@@ -523,6 +523,52 @@ class TestAssets(Common):
             depreciation_info.amount_residual, asset.purchase_amount - removed_amount
         )
 
+    def test_max_amount_depreciable(self):
+        """
+        Set max amount depreciable in category line,
+        if the asset has a higher amount, the max amount is set as depreciable instead.
+        """
+        # Arrange
+        purchase_amount = 1000
+        max_depreciable_amount = 120
+        category = self.asset_category_1
+        civ_type = self.env.ref("l10n_it_asset_management.ad_type_civilistico")
+        category_civ_depreciation_type = category.type_ids.filtered(
+            lambda x: x.depreciation_type_id == civ_type
+        )
+        category_civ_depreciation_type.update(
+            {
+                "base_max_amount": max_depreciable_amount,
+            }
+        )
+        purchase_invoice = self._create_purchase_invoice(
+            fields.Date.today(), amount=purchase_amount
+        )
+        # pre-condition
+        self.assertEqual(purchase_invoice.amount_untaxed, purchase_amount)
+        self.assertEqual(
+            category_civ_depreciation_type.base_max_amount, max_depreciable_amount
+        )
+        self.assertGreater(purchase_amount, max_depreciable_amount)
+
+        # Act
+        asset = self._link_asset_move(
+            purchase_invoice,
+            "create",
+            wiz_values={
+                "name": "Test asset",
+                "category_id": category,
+            },
+        )
+
+        # Assert
+        self.assertEqual(asset.category_id, category)
+        civ_depreciation = asset.depreciation_ids.filtered(
+            lambda x: x.type_id == civ_type
+        )
+        self.assertEqual(civ_depreciation.base_max_amount, max_depreciable_amount)
+        self.assertEqual(civ_depreciation.amount_depreciable, max_depreciable_amount)
+
     def test_journal_prev_year(self):
         """
         Previous year depreciation considers depreciation of all previous years

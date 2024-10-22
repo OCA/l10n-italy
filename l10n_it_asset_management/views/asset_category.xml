@@ -40,6 +40,7 @@
                                 <field name="depreciation_type_id" />
                                 <field name="pro_rata_temporis" />
                                 <field name="base_coeff" />
+                                <field name="base_max_amount" />
                                 <field name="percentage" />
                                 <field name="mode_id" />
                             </tree>

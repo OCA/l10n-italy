@@ -179,7 +179,9 @@ class Asset(models.Model):
     def onchange_purchase_amount(self):
         if self.purchase_amount:
             for dep in self.depreciation_ids:
-                dep.amount_depreciable = self.purchase_amount * dep.base_coeff
+                dep.amount_depreciable = dep._get_depreciable_amount(
+                    self.purchase_amount
+                )
             if self.depreciation_ids.mapped("line_ids").filtered(
                 lambda line: line.move_type == "depreciated"
             ):
