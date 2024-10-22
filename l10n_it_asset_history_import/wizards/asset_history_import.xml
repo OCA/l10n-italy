@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="wizard_wizard_asset_history_import" model="ir.ui.view">
+        <field name="name">wizard.asset.history.import.form.view</field>
+        <field name="model">wizard.asset.history.import</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="file" filename="filename" nolabel="1" />
+                    <field name="filename" invisible="1" />
+                    <div class="oe_inline">
+                        <p>
+                            Files will be imported following the position of every single column.
+                        </p>
+                        <p>
+                            Wrong column positioning can result in errors that might block the import,
+                            or that may require later manual work to fix.
+                        </p>
+                        <p>
+                            If you are unsure whether your file respects or not the column positioning required by Odoo to make a correct import,
+                            please download this template file and use it to create your own import file:
+                            <button
+                                name="download_template_file"
+                                type="object"
+                                string="Download Template File"
+                                class="oe_link"
+                            />
+                        </p>
+                    </div>
+                    <group name="company" groups="base.group_multi_company">
+                        <field
+                            name="company_id"
+                            options="{'no_open': 1, 'no_create_edit': True}"
+                        />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="import_file"
+                        type="object"
+                        string="Import File"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_asset_history_import" model="ir.actions.act_window">
+        <field name="name">Assets History Import</field>
+        <field name="res_model">wizard.asset.history.import</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_wizard_asset_history_import" />
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_wizard_asset_history_import"
+        name="Assets History Import"
+        action="action_wizard_asset_history_import"
+        parent="l10n_it_asset_management.menu_asset_management"
+        sequence="10"
+    />
+
+</odoo>
