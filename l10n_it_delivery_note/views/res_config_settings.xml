@@ -120,6 +120,22 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="invoice_lines_grouped_by_dn" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="invoice_lines_grouped_by_dn" />
+                            <div class="text-muted">
+                                <p>
+                                    Group Invoice Lines by Delivery Note which generated them
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>
