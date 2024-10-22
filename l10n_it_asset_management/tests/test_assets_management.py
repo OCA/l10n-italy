@@ -6,7 +6,8 @@ from datetime import date
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.fields import Command
+from odoo.fields import Command, first
+from odoo.tests import Form
 from odoo.tools.date_utils import relativedelta
 
 from .common import Common
@@ -730,4 +731,65 @@ class TestAssets(Common):
         )
         self.assertEqual(
             asset_report_depreciation_line.amount_residual, expected_residual_amount
+        )
+
+    def test_wizard_compute_depreciated_fund(self):
+        """
+        When partially dismissing an asset,
+        the fund amount in wizard is computed based on
+        the purchased amount and civil depreciation amounts.
+        """
+        # Arrange
+        civil_depreciation_type = self.env.ref(
+            "l10n_it_asset_management.ad_type_civilistico"
+        )
+        purchase_date = date(2019, 1, 1)
+        depreciation_date = date(2020, 1, 1)
+        civil_depreciable_amount = 1000
+        civil_depreciated_amount = 250
+        purchase_amount = 300
+
+        asset = self._create_asset(purchase_date)
+        civil_depreciation = first(
+            asset.depreciation_ids.filtered(
+                lambda d: d.type_id == civil_depreciation_type
+            )
+        )
+        civil_depreciation.mode_id.line_ids.unlink()
+        civil_depreciation.percentage = 25.0
+        self._depreciate_asset(asset, depreciation_date)
+
+        invoice_form = Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
+        )
+        invoice_form.partner_id = self.env.ref("base.partner_demo")
+        with invoice_form.invoice_line_ids.new() as line:
+            line.account_id = asset.category_id.asset_account_id
+            line.price_unit = 100
+        invoice = invoice_form.save()
+        invoice.action_post()
+
+        self.assertEqual(
+            civil_depreciation.amount_depreciable, civil_depreciable_amount
+        )
+        self.assertEqual(
+            civil_depreciation.amount_depreciated, civil_depreciated_amount
+        )
+
+        # Act
+        wizard_action = invoice.open_wizard_manage_asset()
+        wizard_form = Form(
+            self.env[wizard_action["res_model"]].with_context(
+                **wizard_action["context"]
+            )
+        )
+        wizard_form.management_type = "partial_dismiss"
+        wizard_form.asset_id = asset
+        wizard_form.asset_purchase_amount = purchase_amount
+        wizard = wizard_form.save()
+
+        # Assert
+        self.assertEqual(
+            wizard.depreciated_fund_amount,
+            purchase_amount * civil_depreciated_amount / civil_depreciable_amount,
         )
