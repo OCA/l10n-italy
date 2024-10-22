@@ -282,15 +282,15 @@
             <field name="model">account.intrastat.statement.sale.section1</field>
             <field name="arch" type="xml">
                 <tree>
-                   <field name="sequence" />
-                   <field name="invoice_id" />
-                   <field name="partner_id" string="Buyer" />
-                   <field name="country_partner_id" string="Buyer State" />
-                   <field name="intrastat_code_id" string="Goods Code" />
-                   <field name="weight_kg" />
-                   <field name="country_destination_id" />
-                   <field name="province_origin_id" />
-                   <field name="amount_euro" sum="Total" />
+                    <field name="sequence" />
+                    <field name="invoice_id" />
+                    <field name="partner_id" string="Buyer" />
+                    <field name="country_partner_id" string="Buyer State" />
+                    <field name="intrastat_code_id" string="Goods Code" />
+                    <field name="weight_kg" />
+                    <field name="country_destination_id" />
+                    <field name="province_origin_id" />
+                    <field name="amount_euro" sum="Total" />
                </tree>
             </field>
         </record>
@@ -355,16 +355,17 @@
             <field name="model">account.intrastat.statement.sale.section2</field>
             <field name="arch" type="xml">
                 <tree>
-                   <field name="sequence" />
-                   <field name="year_id" />
-                   <field name="quarterly" />
-                   <field name="month" />
-                   <field name="country_partner_id" string="Buyer State" />
-                   <field name="partner_id" string="Buyer" />
-                   <field name="vat_code" string="Buyer VAT Code" />
-                   <field name="intrastat_code_id" string="Goods Code" />
-                   <field name="sign_variation" />
-                   <field name="amount_euro" sum="Total" />
+                    <field name="sequence" />
+                    <field name="invoice_id" />
+                    <field name="year_id" />
+                    <field name="quarterly" />
+                    <field name="month" />
+                    <field name="country_partner_id" string="Buyer State" />
+                    <field name="partner_id" string="Buyer" />
+                    <field name="vat_code" string="Buyer VAT Code" />
+                    <field name="intrastat_code_id" string="Goods Code" />
+                    <field name="sign_variation" />
+                    <field name="amount_euro" sum="Total" />
                 </tree>
             </field>
         </record>

@@ -1,7 +1,7 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from dateutil.relativedelta import relativedelta
 
@@ -451,7 +451,7 @@ class AccountIntrastatStatement(models.Model):
             month = self.period_number
             period_date_start = date(year, month, 1)
             period_date_stop = (
-                datetime(year, month, 1) + relativedelta(months=1) - timedelta(days=1)
+                period_date_start + relativedelta(months=1) - timedelta(days=1)
             )
         elif self.period_type == "T":
             quarter = self.period_number
@@ -815,11 +815,21 @@ class AccountIntrastatStatement(models.Model):
                 refund_section_details = (section_type, refund_section_number)
                 section_field = self.get_section_field_name(*section_details)
                 for line in self[section_field]:
-                    refund_section_model = self.get_section_model(
-                        *refund_section_details
-                    )
-                    to_refund_model = self.env[refund_section_model]
-                    self.refund_line(line, to_refund_model)
+                    # Compensation can happen only if the credit note has been issued
+                    # for invoices belonging the considered period. Here we check
+                    # if the reversed entry of the Sale/Purchase section 2 line
+                    # respect this constraint otherwise no compensation should
+                    # happen
+                    refund_date = line.invoice_id.reversed_entry_id.invoice_date
+                    if (
+                        refund_date
+                        and period_date_start <= refund_date <= period_date_stop
+                    ):
+                        refund_section_model = self.get_section_model(
+                            *refund_section_details
+                        )
+                        to_refund_model = self.env[refund_section_model]
+                        self.refund_line(line, to_refund_model)
         return True
 
     @staticmethod
