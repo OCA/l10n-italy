@@ -71,6 +71,7 @@ setuptools.setup(
         'odoo14-addon-l10n_it_reverse_charge',
         'odoo14-addon-l10n_it_riba_sale_commission',
         'odoo14-addon-l10n_it_ricevute_bancarie',
+        'odoo14-addon-l10n_it_sct_cbi',
         'odoo14-addon-l10n_it_sdi_channel',
         'odoo14-addon-l10n_it_split_payment',
         'odoo14-addon-l10n_it_vat_payability',
