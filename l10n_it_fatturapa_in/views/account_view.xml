@@ -200,7 +200,7 @@
                 <field name="fatturapa_attachment_in_id" invisible="1" />
             </field>
             <field name="analytic_distribution" position="after">
-                <field name="admin_ref" />
+                <field name="admin_ref" optional="show" />
             </field>
             <field name="tax_totals" position="before">
                 <field

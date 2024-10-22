@@ -15,6 +15,7 @@
     "author": "Agile Business Group, Innoviu, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy" "l10n_it_fatturapa_in",
     "license": "AGPL-3",
+    "maintainers": ["MarcoCalcagni", "Borruso"],
     "depends": [
         "base_vat",
         "mail",
