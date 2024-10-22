@@ -324,43 +324,94 @@ class TestWithholdingTax(TransactionCase):
         self.assertEqual(self.invoice.amount_residual, 250)
         self.assertEqual(self.invoice.state, "posted")
 
-    def _get_payment_wizard(self, invoice):
-        wizard_action = invoice.action_register_payment()
-        wizard_model = wizard_action["res_model"]
-        wizard_context = wizard_action["context"]
-        wizard = self.env[wizard_model].with_context(**wizard_context).create({})
-        return wizard
-
-    def test_payment_reset_net_pay_residual(self):
-        """The amount to pay is reset to the Residual Net To Pay
-        when amount and Journal are changed."""
-        # Arrange: Pay an invoice
-        invoice = self.invoice
-        wizard = self._get_payment_wizard(invoice)
-        user_set_amount = 20
-        # pre-condition
-        self.assertEqual(
-            wizard.amount,
-            invoice.amount_net_pay_residual,
+    def _create_bill(self):
+        bill_model = self.env["account.move"].with_context(
+            default_move_type="in_invoice"
         )
-        self.assertTrue(
-            invoice.withholding_tax_amount,
+        bill_form = Form(bill_model)
+        bill_form.partner_id = self.env.ref("base.res_partner_12")
+        bill_form.invoice_date = time.strftime("%Y") + "-07-15"
+        with bill_form.invoice_line_ids.new() as line:
+            line.name = "Advice"
+            line.price_unit = 1000
+            line.invoice_line_tax_wt_ids.clear()
+            line.invoice_line_tax_wt_ids.add(self.wt1040)
+        bill = bill_form.save()
+        bill.action_post()
+        return bill
+
+    def _get_refund(self, bill):
+        refund_wizard_model = self.env["account.move.reversal"].with_context(
+            active_id=bill.id,
+            active_ids=bill.ids,
+            active_model=bill._name,
         )
+        refund_wizard_form = Form(refund_wizard_model)
+        refund_wizard_form.refund_method = "cancel"
+        refund_wizard = refund_wizard_form.save()
+        refund_result = refund_wizard.reverse_moves()
 
-        # Act: Change amount
-        wizard.amount = user_set_amount
+        refund_model = refund_result.get("res_model")
+        refund_id = refund_result.get("res_id")
+        refund = self.env[refund_model].browse(refund_id)
+        return refund
 
-        # Assert: User's change is kept
-        self.assertEqual(
-            wizard.amount,
-            user_set_amount,
+    def test_refund_wt_propagation(self):
+        """
+        When a Refund is created, the Withholding Tax is propagated to it.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+        self.assertTrue(bill.withholding_tax)
+
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: The refund has the Withholding Tax flag enabled
+        self.assertTrue(refund.withholding_tax)
+
+    def test_refund_reconciliation_amount(self):
+        """
+        When a refund is created, the amount reconciled
+        is the whole amount of the vendor bill.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
+        bill_amount = bill.amount_total
+
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: The reconciliation is for the whole bill
+        reconciliation = self.env["account.partial.reconcile"].search(
+            [
+                ("debit_move_id", "in", refund.line_ids.ids),
+                ("credit_move_id", "in", bill.line_ids.ids),
+            ]
         )
+        self.assertEqual(reconciliation.amount, bill_amount)
 
-        # Act: Change Journal
-        wizard.journal_id = self.journal_bank
+    def test_refund_wt_moves(self):
+        """
+        When a refund is created,
+        no Withholding Tax Moves are created.
+        """
+        # Arrange: Create a bill
+        bill = self._create_bill()
 
-        # Assert: Amount is reset to the Residual Net To Pay
-        self.assertEqual(
-            wizard.amount,
-            invoice.amount_net_pay_residual,
+        # Act: Create a refund
+        refund = self._get_refund(bill)
+
+        # Assert: There are no Withholding Tax Moves
+        reconciliation = self.env["account.partial.reconcile"].search(
+            [
+                ("debit_move_id", "in", refund.line_ids.ids),
+                ("credit_move_id", "in", bill.line_ids.ids),
+            ]
         )
+        withholding_tax_moves = self.env["withholding.tax.move"].search(
+            [
+                ("reconcile_partial_id", "=", reconciliation.id),
+            ]
+        )
+        self.assertFalse(withholding_tax_moves)
