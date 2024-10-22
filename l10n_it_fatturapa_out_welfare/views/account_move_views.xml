@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <!-- Views -->
+    <record id="view_move_welfare_form" model="ir.ui.view">
+        <field
+            name="name"
+        >Add Welfare Fund Type Amount to Invoice Line Form View</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']"
+                position="before"
+            >
+                <field name="welfare_grouping_fund_type_amount_id" invisible="True" />
+                <field
+                    name="welfare_fund_type_amount_ids"
+                    widget="many2many_tags"
+                    attrs="{
+                        'readonly': [
+                            ('welfare_grouping_fund_type_amount_id', '!=', False),
+                        ],
+                    }"
+                />
+            </xpath>
+            <notebook position="after">
+                <field name="should_regenerate_welfare_lines" invisible="True" />
+                <button
+                    name="button_regenerate_welfare_lines"
+                    type="object"
+                    string="Generate Welfare Lines"
+                    help="Existing Grouping Welfare Invoice Lines will be deleted, and new ones will be created."
+                    attrs="{
+                        'invisible': [
+                            ('should_regenerate_welfare_lines', '=', False),
+                        ],
+                    }"
+                />
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_move_line_welfare_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >Add Welfare Fund Type Amount to Invoice Line Tree View</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree" />
+        <field name="arch" type="xml">
+            <field name="tax_ids" position="after">
+                <field name="welfare_fund_type_amount_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+</odoo>
