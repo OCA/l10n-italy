@@ -144,7 +144,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 "user_id": self.user_demo.id,
                 "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
-                "narration": "prima riga\nseconda riga",
+                "causale": "prima riga\nseconda riga",
                 "invoice_line_ids": [
                     (
                         0,
@@ -207,7 +207,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 "user_id": self.user_demo.id,
                 "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
-                "narration": "prima riga\nseconda riga",
+                "causale": "prima riga\nseconda riga",
                 "invoice_line_ids": [
                     (
                         0,
@@ -410,7 +410,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
                 "user_id": self.user_demo.id,
                 "move_type": "out_invoice",
                 "currency_id": self.EUR.id,
-                "narration": "first line\n\nsecond line",
+                "causale": "first line\n\nsecond line",
                 "invoice_line_ids": [
                     (
                         0,

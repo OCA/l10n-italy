@@ -156,7 +156,7 @@ class AccountMove(models.Model):
                     # Link declaration to invoice
                     self.declaration_of_intent_ids = [(4, declaration.id)]
                     if is_sale_document:
-                        cmt = self.narration or ""
+                        cmt = self.causale or ""
                         msg = (
                             f"Vostra dichiarazione d'intento del "
                             f"{format_date(self.env, declaration.date)}, "
@@ -169,7 +169,7 @@ class AccountMove(models.Model):
                                 cmt += "\n\n" + msg
                             else:
                                 cmt = msg
-                        self.narration = cmt
+                        self.causale = cmt
 
     def _prepare_declaration_line(self, amount, lines, tax):
         """Dictionary used to create declaration line for this invoice."""

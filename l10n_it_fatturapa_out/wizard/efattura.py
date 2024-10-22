@@ -140,7 +140,7 @@ class EFatturaOut:
 
         def get_causale(invoice):
             res = []
-            if invoice.narration:
+            if invoice.causale:
                 # see: OCA/server-tools/html_text/models/ir_fields_converter.py
                 # after server_tools/html_text is ported to 16.0 we could use:
                 # narration_text = self.env["ir.fields.converter"]
@@ -151,7 +151,7 @@ class EFatturaOut:
                 try:
                     narration_text = "\n".join(
                         text.strip()
-                        for text in html.fromstring(invoice.narration).xpath("//text()")
+                        for text in html.fromstring(invoice.causale).xpath("//text()")
                     )
                 except Exception:
                     narration_text = ""
