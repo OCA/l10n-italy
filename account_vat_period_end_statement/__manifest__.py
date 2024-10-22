@@ -4,6 +4,7 @@
 #  Copyright 2015 Associazione Odoo Italia (<http://www.odoo-italia.org>)
 #  Copyright 2021 Gianmarco Conte
 #                 - Dinamiche Aziendali Srl (<www.dinamicheaziendali.it>)
+#  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
@@ -16,6 +17,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "depends": [
         "account",
+        "account_journal_group_included",
         "account_tax_balance",
         "date_range",
         "l10n_it_account",

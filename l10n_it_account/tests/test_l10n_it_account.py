@@ -1,4 +1,5 @@
 # Copyright 2022 Simone Rubino - TAKOBI
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import datetime
@@ -256,3 +257,63 @@ class TestAccount(AccountTestInvoicingCommon):
         )
         self.assertEqual(tax.deductible_balance, deductible)
         self.assertEqual(tax.undeductible_balance, not_deductible)
+
+    def test_compute_totals_tax_journal_change(self):
+        """Compute the amount of a tax for specific journals: it changes."""
+        # Arrange
+        invoice_date = datetime.date(2020, month=1, day=1)
+        tax = self.iva_22I5
+        bill = self.init_invoice(
+            "in_invoice",
+            invoice_date=invoice_date,
+            amounts=[100],
+            post=True,
+            taxes=tax,
+        )
+
+        # Assert
+        bill_journal = bill.journal_id
+        other_journals = self.env["account.journal"].search(
+            [("id", "!=", bill_journal.id)]
+        )
+        date_context = {
+            "from_date": invoice_date,
+            "to_date": invoice_date,
+        }
+        self.assertRecordValues(
+            tax.with_context(**date_context),
+            [
+                {
+                    "base_balance": -100,
+                    "balance": -22,
+                    "deductible_balance": -11,
+                    "undeductible_balance": -11,
+                }
+            ],
+        )
+        self.assertRecordValues(
+            tax.with_context(
+                **date_context, l10n_it_account_journal_ids=bill_journal.ids
+            ),
+            [
+                {
+                    "base_balance": -100,
+                    "balance": -22,
+                    "deductible_balance": -11,
+                    "undeductible_balance": -11,
+                }
+            ],
+        )
+        self.assertRecordValues(
+            tax.with_context(
+                **date_context, l10n_it_account_journal_ids=other_journals.ids
+            ),
+            [
+                {
+                    "base_balance": 0,
+                    "balance": 0,
+                    "deductible_balance": 0,
+                    "undeductible_balance": 0,
+                }
+            ],
+        )
