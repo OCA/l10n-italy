@@ -633,9 +633,11 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             />
                             <!--                            <Beneficiario t-out=""/>-->
                             <ModalitaPagamento
-                                t-out="record.invoice_payment_term_id.fatturapa_pm_id.code"
-                            />
-                            <!--                            <DataRiferimentoTerminiPagamento t-out=""/>-->
+                            t-out="record.invoice_payment_term_id.fatturapa_pm_id.code"
+                        />
+                            <DataRiferimentoTerminiPagamento
+                            t-out="format_date(record.invoice_date)"
+                        />
                             <!--                            <GiorniTerminiPagamento t-out=""/>-->
                             <DataScadenzaPagamento
                                 t-if="payment.date_maturity"

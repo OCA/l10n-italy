@@ -98,6 +98,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataRiferimentoTerminiPagamento>2016-06-15</DataRiferimentoTerminiPagamento>
                 <DataScadenzaPagamento>2016-07-31</DataScadenzaPagamento>
                 <ImportoPagamento>14.00</ImportoPagamento>
             </DettaglioPagamento>

@@ -90,6 +90,7 @@
             <CondizioniPagamento>TP02</CondizioniPagamento>
             <DettaglioPagamento>
                 <ModalitaPagamento>MP05</ModalitaPagamento>
+                <DataRiferimentoTerminiPagamento>2023-02-28</DataRiferimentoTerminiPagamento>
                 <DataScadenzaPagamento>2023-03-31</DataScadenzaPagamento>
                 <ImportoPagamento>17.08</ImportoPagamento>
             </DettaglioPagamento>

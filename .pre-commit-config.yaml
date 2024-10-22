@@ -32,7 +32,9 @@ exclude: |
   ^l10n_it_fatturapa_out/tests/data|
   ^l10n_it_fatturapa_in/tests/data|
   ^l10n_it_fatturapa_out_sp/tests/data|
-  ^l10n_it_fatturapa_out_di/tests/data
+  ^l10n_it_fatturapa_out_di/tests/data|
+  ^l10n_it_fatturapa_out_oss/tests/data|
+  ^l10n_it_fatturapa_out_wt/tests/data
 default_language_version:
   python: python3
   node: "16.17.0"
