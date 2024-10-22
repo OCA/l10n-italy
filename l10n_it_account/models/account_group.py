@@ -28,6 +28,10 @@ class AccountGroup(models.Model):
         """
         if self.env.context.get("skip_check_balance_sign_coherence"):
             return
+        if self.company_id.country_id != self.env.ref("base.it"):
+            # skip check for other countries
+            # as other CoA do not follow this requirement
+            return
         done_group_ids, progenitor_ids = [], []
         for group in self:
             if group.id in done_group_ids:

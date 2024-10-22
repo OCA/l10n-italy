@@ -20,6 +20,7 @@ class TestAccount(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
         super().setUpClass(chart_template_ref=chart_template_ref)
+        cls.env.company.country_id = cls.env.ref("base.it").id
         cls.group_1 = cls.env["account.group"].create(
             {
                 "name": "1",
