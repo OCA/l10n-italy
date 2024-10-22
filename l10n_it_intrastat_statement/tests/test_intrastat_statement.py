@@ -7,10 +7,22 @@ from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests.common import Form, TransactionCase
 
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+
 
 class TestIntrastatStatement(TransactionCase):
     def setUp(self):
         super().setUp()
+        AccountTestInvoicingCommon.env = self.env
+        self.company_data_it = AccountTestInvoicingCommon.setup_company_data(
+            "La tua società",
+            chart_template=self.env.company.chart_template_id,
+            currency_id=self.env.ref("base.EUR").id,
+            country_id=self.env.ref("base.it").id,
+        )
+        it_company = self.company_data_it["company"]
+        self.env.user.company_id = it_company
+        self.env.user.company_ids = it_company
         self.statement_model = self.env["account.intrastat.statement"]
 
         self.account_account_model = self.env["account.account"]
@@ -73,7 +85,12 @@ class TestIntrastatStatement(TransactionCase):
         self.tax22_sale = (
             self.env.ref("l10n_it_intrastat.tax_22")
             .sudo()
-            .copy(default={"company_id": self.env.company.id})
+            .copy(
+                default={
+                    "company_id": self.env.company.id,
+                    "country_id": self.env.ref("base.it").id,
+                }
+            )
         )
         self.currency_gbp = self.env.ref("base.GBP")
         self.currency_gbp.active = True
