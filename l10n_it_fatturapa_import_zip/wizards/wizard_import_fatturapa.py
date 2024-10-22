@@ -168,3 +168,13 @@ class WizardImportFatturapa(models.TransientModel):
             )
 
         return debit_account
+
+    def invoiceCreate(self, fatt, fatturapa_attachment, FatturaBody, partner_id):
+        invoice = super().invoiceCreate(
+            fatt, fatturapa_attachment, FatturaBody, partner_id
+        )
+        invoice._onchange_journal_id()
+        invoice._onchange_partner_id()
+        invoice._onchange_date()
+        invoice.line_ids._compute_tax_ids()
+        return invoice
