@@ -12,6 +12,11 @@ class TestImportZIP(FatturapaCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.env.company.vat = "IT06363391001"
+        cls.env.company.in_invoice_registration_date = "rec_date"
+
+        user = cls.env.user
+        user.groups_id -= cls.env.ref("base.group_system")
+        user.groups_id -= cls.env.ref("base.group_erp_manager")
 
     def setUp(self):
         super().setUp()
@@ -46,6 +51,14 @@ class TestImportZIP(FatturapaCommon):
         )
 
     def test_import_zip(self):
+        company = self.env.company
+        original_in_invoice_registration_date = company.in_invoice_registration_date
+        user = self.env.user
+        # pre-condition
+        self.assertNotEqual(original_in_invoice_registration_date, "inv_date")
+        self.assertTrue(user.has_group("account.group_account_manager"))
+        self.assertFalse(user.has_group("base.group_erp_manager"))
+
         wizard_attachment_import = self.attachment_import_model.create(
             {
                 "name": "xml_import.zip",
@@ -101,6 +114,10 @@ class TestImportZIP(FatturapaCommon):
                             f"Field {field} of invoice {invoice.display_name} "
                             f"does not match",
                         )
+
+        self.assertEqual(
+            original_in_invoice_registration_date, company.in_invoice_registration_date
+        )
 
     def test_access_other_user_zip(self):
         """A user can see the zip files imported by other users."""
