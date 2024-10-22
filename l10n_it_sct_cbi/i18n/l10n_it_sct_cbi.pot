@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,7 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_sct_cbi
-#. odoo-python
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
@@ -23,7 +22,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_sct_cbi
-#. odoo-python
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
@@ -32,14 +30,12 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_sct_cbi
-#. odoo-python
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid "Bank account '%(partner_bank)s' must have a valid IBAN"
 msgstr ""
 
 #. module: l10n_it_sct_cbi
-#. odoo-python
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
@@ -58,7 +54,24 @@ msgid "CBIBdyPaymentRequest.00.04.01"
 msgstr ""
 
 #. module: l10n_it_sct_cbi
-#. odoo-python
+#: model:ir.model.fields,field_description:l10n_it_sct_cbi.field_account_payment_method__display_name
+#: model:ir.model.fields,field_description:l10n_it_sct_cbi.field_account_payment_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model.fields,field_description:l10n_it_sct_cbi.field_account_payment_method__id
+#: model:ir.model.fields,field_description:l10n_it_sct_cbi.field_account_payment_order__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model.fields,field_description:l10n_it_sct_cbi.field_account_payment_method____last_update
+#: model:ir.model.fields,field_description:l10n_it_sct_cbi.field_account_payment_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
@@ -82,7 +95,6 @@ msgid "Payment Order"
 msgstr ""
 
 #. module: l10n_it_sct_cbi
-#. odoo-python
 #: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
 #, python-format
 msgid ""
