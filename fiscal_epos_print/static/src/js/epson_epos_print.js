@@ -394,7 +394,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         adjustmentType: 3,
                         description: l.product_name,
                         department: l.tax_department.code,
-                        amount: -l.price,
+                        amount: -l.price * l.quantity,
                     });
                 }
             });
