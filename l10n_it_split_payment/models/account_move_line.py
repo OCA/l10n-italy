@@ -51,6 +51,7 @@ class AccountMoveLine(models.Model):
             if (
                 line.display_type == "tax"
                 and line.move_id.split_payment
+                and line.move_id.is_sale_document(include_receipts=True)
                 and not line.is_split_payment
                 and not any(ml.is_split_payment for ml in line.move_id.line_ids)
             ):
