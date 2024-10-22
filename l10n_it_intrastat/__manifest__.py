@@ -21,6 +21,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'data/account.intrastat.call.off.stock.operations.csv',
         'data/account.intrastat.transaction.nature.csv',
         'data/account.intrastat.transaction.nature.b.csv',
         'data/account.intrastat.transport.csv',
