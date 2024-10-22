@@ -39,6 +39,14 @@ class ResPartnerBankAdd(models.Model):
         help="Identification Code of the Company in the Interbank System.",
     )
 
+    @api.model
+    def _domain_riba_partner_bank_id(self):
+        """Domain to select bank accounts linked to the current company."""
+        company = self.env.company
+        return [
+            ("partner_id", "=", company.partner_id.id),
+        ]
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -110,6 +118,41 @@ class AccountMove(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
+
+    def _domain_riba_supplier_company_bank_id(self):
+        """Allow to select bank accounts linked to the current company."""
+        return self.env["res.partner.bank"]._domain_riba_partner_bank_id()
+
+    riba_supplier_company_bank_id = fields.Many2one(
+        comodel_name="res.partner.bank",
+        compute="_compute_riba_supplier_company_bank_id",
+        domain=_domain_riba_supplier_company_bank_id,
+        help="Bank account used for the RiBa of this vendor bill.",
+        readonly=False,
+        states={
+            "posted": [
+                ("readonly", True),
+            ],
+        },
+        store=True,
+        string="Company Bank Account for Supplier",
+    )
+
+    @api.depends(
+        "is_riba_payment",
+    )
+    def _compute_riba_supplier_company_bank_id(self):
+        for move in self:
+            is_riba_payment = move.is_riba_payment
+            is_purchase_document = move.is_purchase_document(include_receipts=True)
+            partner_riba_bank_account = (
+                move.partner_id.property_riba_supplier_company_bank_id
+            )
+            if is_riba_payment and is_purchase_document and partner_riba_bank_account:
+                riba_bank_account = partner_riba_bank_account
+            else:
+                riba_bank_account = False
+            move.riba_supplier_company_bank_id = riba_bank_account
 
     @api.model_create_multi
     def create(self, vals_list):
