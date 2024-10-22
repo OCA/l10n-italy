@@ -164,9 +164,9 @@ class SdiChannel(models.Model):
         it can be added in `default_values`.
 
         :param file_name_content_dict: Dictionary mapping
-            file names to their base64-encoded content for each Electronic Bill.
+            file names to their content for each Electronic Bill.
         :param metadata_file_name_content_dict: Dictionary mapping
-            file names to their base64-encoded content for each Metadata file.
+            file names to their content for each Metadata file.
         :param default_values: Default values
             for the creation of Electronic Bill.
         :return: the created Electronic Bills (`fatturapa.attachment.in`).
