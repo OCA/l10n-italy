@@ -34,22 +34,9 @@ class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
     _description = "Export E-invoice"
 
-    @api.model
-    def _domain_ir_values(self):
-        model_name = self.env.context.get("active_model", False)
-        # Get all print actions for current model
-        return [
-            ("binding_model_id", "=", model_name),
-        ]
-
-    def _get_selection(self):
-        reports = self.env["ir.actions.report"].sudo().search(self._domain_ir_values())
-        ret = [(str(r.id), r.name) for r in reports]
-        return ret
-
-    report_print_menu = fields.Selection(
-        selection="_get_selection",
-        help="This report will be automatically included in the created XML",
+    report_print_menu = fields.Many2one(
+        "ir.actions.report",
+        help="This report will be automatically included in the created XML"
     )
 
     def saveAttachment(self, fatturapa, number):
@@ -318,14 +305,9 @@ class WizardExportFatturapa(models.TransientModel):
         return action
 
     def generate_attach_report(self, inv):
-        try:
-            report_id = int(self.report_print_menu)
-        except ValueError as exc:
-            raise UserError(_("Print report not found")) from exc
-
-        report_model = self.env["ir.actions.report"].sudo().browse(report_id)
+        report_model = self.env['ir.actions.report']
         attachment, attachment_type = report_model._render_qweb_pdf(
-            report_model, inv.ids
+            self.report_print_menu, inv.ids
         )
         att_id = self.env["ir.attachment"].create(
             {
