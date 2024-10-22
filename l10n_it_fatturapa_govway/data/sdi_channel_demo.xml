@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sdi_channel_govway" model="sdi.channel">
+        <field name="name">GovWay</field>
+        <field name="channel_type">govway</field>
+    </record>
+</odoo>
