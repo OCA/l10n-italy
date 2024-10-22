@@ -297,7 +297,7 @@ class AssetDepreciation(models.Model):
         for dep in self:
             dep_lines = dep.line_ids.filtered(
                 lambda line: line.move_type == "depreciated"
-                and not line.partial_dismissal
+                and not (line.partial_dismissal or line.partial_recharge)
             )
             if dep_lines:
                 dep.last_depreciation_date = max(dep_lines.mapped("date"))

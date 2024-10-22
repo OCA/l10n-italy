@@ -51,6 +51,7 @@ class AssetAccountingInfo(models.Model):
     relation_type = fields.Selection(
         [
             ("create", "Asset Creation"),
+            ("partial_recharge", "Partial Recharge"),
             ("update", "Asset Update"),
             ("partial_dismiss", "Asset Partial Dismissal"),
             ("dismiss", "Asset Dismissal"),

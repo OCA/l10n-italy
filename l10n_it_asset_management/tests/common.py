@@ -292,6 +292,27 @@ class Common(TransactionCase):
         self.assertEqual(entry.move_type, "entry")
         return entry
 
+    def _refund_move(self, move, method="cancel", ref_date=None):
+        reverse_context = {
+            "active_model": move._name,
+            "active_ids": move.ids,
+        }
+        refund_wizard_form = Form(
+            self.env["account.move.reversal"].with_context(**reverse_context)
+        )
+        refund_wizard_form.reason = "test"
+        if ref_date:
+            refund_wizard_form.date_mode = "custom"
+            refund_wizard_form.date = ref_date
+        refund_wizard_form.refund_method = method
+        refund_wizard = refund_wizard_form.save()
+
+        refund_action = refund_wizard.reverse_moves()
+        refund_move = self.env[refund_action["res_model"]].browse(
+            refund_action["res_id"]
+        )
+        return refund_move
+
     def _civil_depreciate_asset(self, asset):
         # Keep only one civil depreciation
         civil_depreciation_type = self.env.ref(
