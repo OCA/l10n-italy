@@ -42,6 +42,16 @@
                             <div class="o_setting_right_pane">
                                 <label for="fiscal_cashdrawer"/>
                             </div>
+                            <br/>
+                            <div class="o_setting_left_pane">
+                                <field name="epos_print_courtesy_receipt"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="epos_print_courtesy_receipt"/>
+                                <div class="text-muted">
+                                    Print a courtesy receipt when the order has to be invoiced
+                                </div>
+                            </div>
                         </div>
                         <div class="col-12 col-lg-6 o_setting_box" id="fiscal_printer_serial">
                             <div class="o_setting_right_pane">
