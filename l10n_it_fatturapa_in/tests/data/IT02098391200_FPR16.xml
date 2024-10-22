@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FatturaElettronica xmlns="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" versione="FPR12">
+
+  <FatturaElettronicaHeader xmlns="">
+
+    <DatiTrasmissione>
+
+      <IdTrasmittente>
+
+        <IdPaese>IT</IdPaese>
+        <IdCodice>05979361218</IdCodice>
+
+      </IdTrasmittente>
+      <ProgressivoInvio>56Fvy</ProgressivoInvio>
+      <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+      <CodiceDestinatario>0000000</CodiceDestinatario>
+
+    </DatiTrasmissione>
+    <CedentePrestatore>
+
+      <DatiAnagrafici>
+
+        <IdFiscaleIVA>
+
+          <IdPaese>IT</IdPaese>
+          <IdCodice>02780790107</IdCodice>
+
+        </IdFiscaleIVA>
+        <CodiceFiscale>02780790107</CodiceFiscale>
+        <Anagrafica>
+
+          <Denominazione>SOCIETA' ALPHA SRL</Denominazione>
+
+        </Anagrafica>
+        <RegimeFiscale>RF01</RegimeFiscale>
+
+      </DatiAnagrafici>
+      <Sede>
+
+        <Indirizzo>VIALE ROMA 543</Indirizzo>
+        <CAP>07100</CAP>
+        <Comune>SASSARI</Comune>
+        <Provincia>SS</Provincia>
+        <Nazione>IT</Nazione>
+
+      </Sede>
+
+    </CedentePrestatore>
+    <CessionarioCommittente>
+
+      <DatiAnagrafici>
+        <CodiceFiscale>03533590174</CodiceFiscale>
+        <Anagrafica>
+          <Denominazione>BETA GAMMA</Denominazione>
+        </Anagrafica>
+      </DatiAnagrafici>
+      <Sede>
+        <Indirizzo>VIA TORINO 38-B</Indirizzo>
+        <CAP>00145</CAP>
+        <Comune>ROMA</Comune>
+        <Provincia>RM</Provincia>
+        <Nazione>IT</Nazione>
+      </Sede>
+
+    </CessionarioCommittente>
+  </FatturaElettronicaHeader>
+  <FatturaElettronicaBody xmlns="">
+
+    <DatiGenerali>
+
+      <DatiGeneraliDocumento>
+
+        <TipoDocumento>TD01</TipoDocumento>
+        <Divisa>EUR</Divisa>
+        <Data>2023-01-23</Data>
+        <Numero>2023/131703/1</Numero>
+        <ImportoTotaleDocumento>-1.83</ImportoTotaleDocumento>
+        <Causale>LA FATTURA FA RIFERIMENTO AD UNA OPERAZIONE AAAA BBBBBBBBBBBBBBBBBB CCC DDDDDDDDDDDDDDD E FFFFFFFFFFFFFFFFFFFF GGGGGGGGGG HHHHHHH II LLLLLLLLLLLLLLLLL MMM NNNNN OO PPPPPPPPPPP QQQQ RRRR SSSSSSSSSSSSSS</Causale>
+        <Causale>SEGUE DESCRIZIONE CAUSALE NEL CASO IN CUI NON SIANO STATI SUFFICIENTI 200 CARATTERI AAAAAAAAAAA BBBBBBBBBBBBBBBBB</Causale>
+
+      </DatiGeneraliDocumento>
+
+    </DatiGenerali>
+    <DatiBeniServizi>
+      <DettaglioLinee>
+
+        <NumeroLinea>10</NumeroLinea>
+        <Descrizione>Quota fissa Fognatura</Descrizione>
+        <Quantita>10.00</Quantita>
+        <DataInizioPeriodo>2022-01-01</DataInizioPeriodo>
+        <DataFinePeriodo>2022-04-19</DataFinePeriodo>
+        <PrezzoUnitario>-0.15</PrezzoUnitario>
+        <PrezzoTotale>-1.50</PrezzoTotale>
+        <AliquotaIVA>22.00</AliquotaIVA>
+
+      </DettaglioLinee>
+
+      <DatiRiepilogo>
+
+        <AliquotaIVA>22.00</AliquotaIVA>
+        <ImponibileImporto>-1.50</ImponibileImporto>
+        <Imposta>-0.33</Imposta>
+        <EsigibilitaIVA>I</EsigibilitaIVA>
+        <RiferimentoNormativo>IVA al 22%</RiferimentoNormativo>
+
+      </DatiRiepilogo>
+
+    </DatiBeniServizi>
+    <DatiPagamento>
+
+      <CondizioniPagamento>TP02</CondizioniPagamento>
+      <DettaglioPagamento>
+
+        <ModalitaPagamento>MP19</ModalitaPagamento>
+        <DataScadenzaPagamento>2023-02-22</DataScadenzaPagamento>
+        <ImportoPagamento>0.00</ImportoPagamento>
+
+      </DettaglioPagamento>
+
+    </DatiPagamento>
+  </FatturaElettronicaBody>
+
+</FatturaElettronica>
