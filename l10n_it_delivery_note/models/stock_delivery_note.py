@@ -625,19 +625,6 @@ class StockDeliveryNote(models.Model):
                 raise UserError(
                     _("%s hasn't sale order!") % delivery_note_id.display_name
                 )
-            if (
-                len(
-                    delivery_note_id.mapped("sale_ids.picking_ids.picking_type_id.code")
-                )
-                > 1
-            ):
-                raise UserError(
-                    _(
-                        "Sale orders related to %s have return! "
-                        "For invoicing, go to sale orders."
-                    )
-                    % delivery_note_id.display_name
-                )
             if delivery_note_id.invoice_status == "invoiced":
                 raise UserError(
                     _("%s is already invoiced!") % delivery_note_id.display_name
@@ -660,7 +647,7 @@ class StockDeliveryNote(models.Model):
     def _fix_quantities_to_invoice(self, lines, invoice_method):
         cache = {}
 
-        pickings_lines = lines.retrieve_pickings_lines(self.picking_ids)
+        pickings_lines = lines.retrieve_pickings_lines(self.mapped("picking_ids"))
         other_lines = lines - pickings_lines
 
         if not invoice_method or invoice_method == "dn":
@@ -742,6 +729,27 @@ class StockDeliveryNote(models.Model):
             self._compute_invoice_status()
             invoices = self.env["account.move"].browse(invoice_ids.ids)
             invoices.update_delivery_note_lines()
+
+            if all(
+                line.invoice_status == "invoiced" for line in self.mapped("line_ids")
+            ):
+                for delivery_note in self:
+                    ready_invoice_ids = [
+                        invoice_id
+                        for invoice_id in delivery_note.sale_ids.mapped(
+                            "invoice_ids"
+                        ).ids
+                        if invoice_id in invoices.ids
+                    ]
+                    delivery_note.write(
+                        {
+                            "invoice_ids": [
+                                (4, invoice_id) for invoice_id in ready_invoice_ids
+                            ]
+                        }
+                    )
+                self._compute_invoice_status()
+                invoices.update_delivery_note_lines()
 
     def action_done(self):
         self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[3]})
