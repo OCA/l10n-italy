@@ -972,6 +972,103 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 1.5)
         self.assertEqual(invoice.move_type, "in_refund")
 
+    def test_55_duplicated_partner(self):
+        """If there are multiple partners with the same VAT
+        and we try to import an Electronic Invoice for that VAT,
+        an inconsistency is logged."""
+        # Arrange: There are two partners with the same VAT
+        common_vat = "IT03309970733"
+        partners = self.env["res.partner"].create(
+            [
+                {
+                    "name": "Test partner1",
+                    "vat": common_vat,
+                },
+                {
+                    "name": "Test partner2",
+                    "vat": common_vat,
+                },
+            ]
+        )
+
+        # Update any conflicting partner from other tests
+        existing_partners = self.env["res.partner"].search(
+            [
+                ("vat", "=", common_vat),
+                ("id", "not in", partners.ids),
+            ],
+        )
+        existing_partners.update(
+            {
+                "vat": "IT12345670017",
+            }
+        )
+
+        # Assert: The import wizard can't choose between the two created partners
+        res = self.run_wizard("VATG1", "IT03309970733_VATG1.xml")
+        invoice = self.invoice_model.search(res.get("domain"))
+        inconsistencies = invoice.inconsistencies
+        self.assertIn("Two distinct partners", inconsistencies)
+        self.assertIn("VAT number", inconsistencies)
+        for partner in partners:
+            self.assertIn(partner.name, inconsistencies)
+
+    def test_56_xml_import_vat_group(self):
+        """Importing bills from VAT groups creates different suppliers."""
+        # Arrange: The involved XMLs contain suppliers from a VAT group:
+        # the suppliers have the same VAT `common_vat`,
+        # but each supplier has a different fiscal code
+        common_vat = "IT03309970733"
+        vat_group_1_fiscalcode = "MRORSS90E25B111T"
+        vat_group_2_fiscalcode = "03533590174"
+
+        # Update any conflicting partner from other tests
+        existing_partners = self.env["res.partner"].search(
+            [
+                "|",
+                ("vat", "=", common_vat),
+                (
+                    "fiscalcode",
+                    "in",
+                    (
+                        vat_group_1_fiscalcode,
+                        vat_group_2_fiscalcode,
+                    ),
+                ),
+            ],
+        )
+        existing_partners.update(
+            {
+                "vat": "IT12345670017",
+                "is_company": True,
+                "fiscalcode": "1234567890123456",
+            }
+        )
+
+        # Act: Import the XMLs,
+        # checking that the suppliers match the data in the XML
+        res = self.run_wizard("VATG1_group", "IT03309970733_VATG1.xml")
+        invoice_model = res.get("res_model")
+        invoice_domain = res.get("domain")
+        invoice_vat_group_1 = self.env[invoice_model].search(invoice_domain)
+        vat_group_1_partner = invoice_vat_group_1.partner_id
+        self.assertEqual(vat_group_1_partner.vat, common_vat)
+        self.assertEqual(vat_group_1_partner.fiscalcode, vat_group_1_fiscalcode)
+
+        res = self.run_wizard("VATG2", "IT03309970733_VATG2.xml")
+        invoice_model = res.get("res_model")
+        invoice_domain = res.get("domain")
+        invoice_vat_group_2 = self.env[invoice_model].search(invoice_domain)
+        vat_group_2_partner = invoice_vat_group_2.partner_id
+        self.assertEqual(vat_group_2_partner.vat, common_vat)
+        self.assertEqual(vat_group_2_partner.fiscalcode, vat_group_2_fiscalcode)
+
+        # Assert: Two different partners have been created
+        self.assertNotEqual(
+            vat_group_1_partner,
+            vat_group_2_partner,
+        )
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.
@@ -1060,13 +1157,18 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
     def test_xml_import_summary_tax_rate(self):
         # Invoice  with positive total. Detail Level:  '1' -- Tax Rate
-        # Note: this test depends on test_14_xml_import for supplier creation
-        supplier = self.env["res.partner"].search([("vat", "=", "IT02780790107")])[0]
-        # in order to make the system create the invoice lines
-        supplier.e_invoice_detail_level = "1"
+        supplier = self.env["res.partner"].create(
+            {
+                "name": "SOCIETA' ALPHA SRL",
+                "vat": "IT39768960237",
+                # in order to make the system create the invoice lines
+                "e_invoice_detail_level": "1",
+            }
+        )
         res = self.run_wizard("test_summary_tax_rate", "IT05979361218_ripilogoiva.xml")
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.partner_id, supplier)
         self.assertEqual(invoice.amount_total, 204.16)
         self.assertEqual(len(invoice.invoice_line_ids), 2)
 
@@ -1127,7 +1229,8 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertFalse(user.has_group(access_right_group_xmlid))
         self.assertNotEqual(user, other_user)
         import_action = self.run_wizard(
-            "access_other_user_e_invoice_attachments", "IT02780790107_11004.xml"
+            "access_other_user_e_invoice_attachments",
+            "IT02780790107_11004_other_user_attachment.xml",
         )
         # Assert
         with self.with_user(other_user.login):
