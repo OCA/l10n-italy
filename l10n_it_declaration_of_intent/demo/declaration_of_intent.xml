@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+    <record id="tax_08c" model="account.tax">
+        <field name="name">0% art.8c</field>
+        <field name="description">0a8c</field>
+        <field name="amount">0</field>
+        <field name="type_tax_use">sale</field>
+        <field
+            name="invoice_repartition_line_ids"
+            model="account.tax.repartition.line"
+            eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('account_type', '=', 'liability_current')], limit=1).id,
+            }),
+        ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            model="account.tax.repartition.line"
+            eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_it.2601', raise_if_not_found=False) or ref('l10n_generic_coa.tax_payable', raise_if_not_found=False) or obj().env['account.account'].search([('account_type', '=', 'liability_current')], limit=1).id,
+            }),
+        ]"
+        />
+    </record>
+    <record id="l10n_it_esportatore_abituale" model="account.fiscal.position">
+        <field name="name">Esportatore Abituale (Dichiarazione Intento)</field>
+        <field name="chart_template_id" ref="l10n_it.l10n_it_chart_template_generic" />
+        <field name="sequence">6</field>
+        <field name="auto_apply">1</field>
+        <field name="vat_required">1</field>
+    </record>
+    <record id="res_partner_1" model="res.partner">
+        <field name="name">Esportatore Abituale</field>
+        <field
+            eval="[Command.set([ref('base.res_partner_category_14'), ref('base.res_partner_category_12')])]"
+            name="category_id"
+        />
+        <field name="is_company">1</field>
+        <field name="street">Vicolo Stretto, 1</field>
+        <field name="city">Monopoli</field>
+        <field name="zip">00000</field>
+        <field name="country_id" ref="base.it" />
+        <field name="fiscal_position_id" ref="l10n_it_esportatore_abituale" />
+    </record>
+</odoo>

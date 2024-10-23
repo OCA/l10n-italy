@@ -425,6 +425,26 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
             1,
         )
 
+    def test_invoice_delete(self):
+        invoice = self._create_invoice(
+            "test_invoice_repost", self.partner1, tax=self.tax1
+        )
+        invoice_form = Form(invoice)
+        for tax in (self.tax2, self.tax22):
+            self._add_invoice_line_id(invoice_form, tax=tax)
+        invoice = invoice_form.save()
+        invoice.action_post()
+        invoice.button_draft()
+        invoice.with_context(force_delete=True).unlink()
+        self.assertEqual(
+            len(
+                self.declaration1.line_ids.filtered(
+                    lambda line: line.invoice_id == invoice
+                )
+            ),
+            0,
+        )
+
     def test_multi_company(self):
         """Check that a user can only see and create declarations in his company."""
         self.env = self.env(user=self.other_user)
