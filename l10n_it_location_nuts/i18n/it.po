@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-07 18:22+0000\n"
+"PO-Revision-Date: 2024-10-23 10:06+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_location_nuts
 #: model:ir.model.fields,field_description:l10n_it_location_nuts.field_nuts_import__display_name
@@ -29,7 +29,7 @@ msgstr "ID"
 #. module: l10n_it_location_nuts
 #: model:ir.model,name:l10n_it_location_nuts.model_nuts_import
 msgid "Import NUTS items from European ShowVoc service"
-msgstr ""
+msgstr "Importa elementi NUTS dal servizio European ShowVoc"
 
 #. module: l10n_it_location_nuts
 #: model:ir.model.fields,field_description:l10n_it_location_nuts.field_nuts_import____last_update
