@@ -85,6 +85,28 @@
                         />
                     </t>
 
+                    <!-- ...Other tot debit/credit -->
+                    <t
+                        t-foreach="statement.generic_vat_account_line_ids"
+                        t-as="generic_vat"
+                    >
+                        <tr t-if="generic_vat.amount != 0.0">
+                            <td class="text-right">
+                                <span t-esc="generic_vat.name" /> - <span
+                                    t-esc="generic_vat.account_id.name"
+                                />
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="formatLang(env, generic_vat.amount*-1)" />
+                            </td>
+                            <!-- sum -->
+                            <t
+                                t-set="total_statement"
+                                t-value="(total_statement + (generic_vat.amount*-1))"
+                            />
+                        </tr>
+                    </t>
+
                     <!-- tot statement -->
                     <tr>
                         <td class="text-right">
