@@ -615,7 +615,7 @@ class AccountVatPeriodEndStatement(models.Model):
             if prev_statements and not statement.annual:
                 prev_statement = prev_statements[0]
                 if (
-                    prev_statement.residual > 0
+                    1 <= prev_statement.residual <= 100
                     and prev_statement.authority_vat_amount > 0
                 ):
                     statement.write(
