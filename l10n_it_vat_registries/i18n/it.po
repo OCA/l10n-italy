@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-19 13:26+0000\n"
-"PO-Revision-Date: 2023-05-12 12:56+0000\n"
+"PO-Revision-Date: 2024-10-23 10:06+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_vat_registries
 #: model_terms:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
@@ -66,7 +66,7 @@ msgstr "Fatture cliente"
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__date_name
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__entry_order__date_name
 msgid "Date - Number"
-msgstr ""
+msgstr "Data - Numero"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__date_range_id
@@ -146,7 +146,7 @@ msgstr "Registro"
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__journal_date_name
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__entry_order__journal_date_name
 msgid "Journal - Date - Number"
-msgstr ""
+msgstr "Registro - Data - Numero"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__journal_ids
@@ -264,7 +264,7 @@ msgstr "Selezionare i registri dai quali prelevare i documenti"
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__show_full_contact_addess
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__show_full_contact_addess
 msgid "Show Full Contact Addess"
-msgstr ""
+msgstr "Visualizza indirizzo completo contatto"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__corrispettivi
