@@ -545,11 +545,16 @@ class AccountMove(models.Model):
                 self_purchase_invoice.button_draft()
         return super(AccountMove, new_self).button_draft()
 
+    def get_discount_for_rc(self, line):
+        """Hook for compute discount correctly"""
+        return line.discount
+
     def get_tax_amount_added_for_rc(self):
         res = 0
         for line in self.invoice_line_ids:
             if line.rc:
-                price_unit = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+                discount = self.get_discount_for_rc(line)
+                price_unit = line.price_unit * (1 - (discount or 0.0) / 100.0)
                 taxes = line.tax_ids.compute_all(
                     price_unit,
                     self.currency_id,
