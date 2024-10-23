@@ -542,6 +542,9 @@ class AccountInvoiceIntrastat(models.Model):
         ondelete="cascade",
         required=True,
     )
+    company_id = fields.Many2one(
+        readonly=True, related="invoice_id.company_id", store=True
+    )
     partner_id = fields.Many2one(
         string="Partner", readonly=True, related="invoice_id.partner_id", store=True
     )

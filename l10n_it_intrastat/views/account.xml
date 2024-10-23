@@ -74,6 +74,11 @@
                     <field name="transport_code_id" />
                     <field name="weight_kg" />
                     <field name="amount_currency" sum="Total" />
+                    <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
                 </tree>
             </field>
         </record>
@@ -162,6 +167,10 @@
                                <field name="supply_method" />
                                <field name="payment_method" />
                                <field name="country_payment_id" />
+                               <field
+                            name="company_id"
+                            groups="base.group_multi_company"
+                        />
                            </group>
                        </group>
                    </form>
@@ -186,6 +195,11 @@
                     <field name="weight_kg" />
                     <field name="additional_units" />
                     <field name="amount_currency" sum="Total" />
+                    <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
                 </tree>
             </field>
         </record>
@@ -223,6 +237,12 @@
                         string="Nomenclature Code"
                         domain="[]"
                         context="{'group_by':'intrastat_code_id'}"
+                    />
+                        <filter
+                        name="group_by_company"
+                        string="Company"
+                        domain="[]"
+                        context="{'group_by':'company_id'}"
                     />
                     </group>
                 </search>
