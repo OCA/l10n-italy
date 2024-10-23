@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 21:25+0000\n"
-"PO-Revision-Date: 2024-08-06 07:58+0000\n"
+"PO-Revision-Date: 2024-10-23 10:06+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -377,6 +377,11 @@ msgid ""
 "- \n"
 "- "
 msgstr ""
+"Non è possibile confermare fatture con pagamento RiBa senza banca impostata. "
+"Verifica le seguenti fatture:\n"
+"\n"
+"- \n"
+"- "
 
 #. module: l10n_it_ricevute_bancarie
 #: model_terms:ir.ui.view,arch_db:l10n_it_ricevute_bancarie.distinta_qweb
@@ -780,7 +785,7 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #: code:addons/l10n_it_ricevute_bancarie/models/account.py:0
 #, python-format
 msgid "Invoice %(name)s for customer \"%(customer_name)s\", total %(amount)s"
-msgstr ""
+msgstr "Fattura %(name)s per cliente \"%(customer_name)s\", totale %(amount)s"
 
 #. module: l10n_it_ricevute_bancarie
 #: model:ir.model.fields,field_description:l10n_it_ricevute_bancarie.field_riba_distinta_line__invoice_date
