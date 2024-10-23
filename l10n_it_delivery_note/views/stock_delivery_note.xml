@@ -18,6 +18,7 @@
                 <field name="sales_transport_check" invisible="True" />
                 <field name="can_change_number" invisible="True" />
                 <field name="show_product_information" invisible="True" />
+                <field name="avoid_single_dn_invoice" invisible="True" />
                 <header>
                     <button
                         name="action_draft"
@@ -37,7 +38,12 @@
                         name="action_invoice"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('sale_ids', '=', [])]}"
+                        attrs="{'invisible': [
+                            '|', '|',
+                            ('state', '!=', 'confirm'),
+                            ('sale_ids', '=', []),
+                            ('avoid_single_dn_invoice', '=', True)
+                        ]}"
                         groups="account.group_account_invoice"
                         string="Create invoice"
                     />

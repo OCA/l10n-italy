@@ -33,6 +33,7 @@
                                 groups="base.group_multi_company"
                             />
                             <field name="print_prices" />
+                            <field name="avoid_single_dn_invoice" />
                         </group>
                     </group>
                     <group>
