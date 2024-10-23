@@ -81,7 +81,7 @@
         <AltriDatiGestionali>
           <TipoDato>Valuta</TipoDato>
           <RiferimentoTesto>USD</RiferimentoTesto>
-          <RiferimentoNumero>14.00000</RiferimentoNumero>
+          <RiferimentoNumero>14.00</RiferimentoNumero>
           <RiferimentoData>2021-12-16</RiferimentoData>
         </AltriDatiGestionali>
       </DettaglioLinee>
