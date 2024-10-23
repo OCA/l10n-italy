@@ -25,7 +25,11 @@ esposizione, cioè l'importo dovuto dal cliente a fronte dell'emissione
 della RiBa non ancora scaduta.
 
 In maniera predefinita la data delle registrazioni dei pagamenti viene
-impostata con la data di scadenza della RiBa, ma è possibile modificarla
-successivamente a pagamento effettivamente avvenuto selezionando la
+impostata con la data di scadenza della RiBa, ma è possibile modificarla in due momenti:
+- durante la creazione del pagamento,
+  cliccando su "Segna righe come pagate" o su "Segna coma pagata"
+  o usando l'azione "Registrazione Riba a data di scadenza"
+  e indicando una data nel campo `Data pagamento`,
+- successivamente a pagamento effettivamente avvenuto selezionando la
 registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta data
 di pagamento RiBa".

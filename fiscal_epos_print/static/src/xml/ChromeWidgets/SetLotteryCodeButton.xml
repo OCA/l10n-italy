@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SetLotteryCodeButton" owl="1">
+       <div
+            id="lottery_code_button"
+            class='control-button'
+            t-on-click="onClickLotteryCode"
+        >
+            <i class='fa fa-pencil-square-o' />
+            Lottery Code
+        </div>
+    </t>
+
+</templates>

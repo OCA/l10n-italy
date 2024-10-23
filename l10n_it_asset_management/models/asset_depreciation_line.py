@@ -119,7 +119,7 @@ class AssetDepreciationLine(models.Model):
     _numbered_move_types = ("depreciated", "historical")
     # Non-default parameter: set which `move_types` do not concur to
     # asset.depreciation's `amount_residual` field compute
-    _non_residual_move_types = ("gain",)
+    _non_residual_move_types = ("gain", "loss")
     # Non-default parameter: set which `move_types` get to update the
     # depreciable amount
     _update_move_types = ("in", "out")
@@ -362,10 +362,14 @@ class AssetDepreciationLine(models.Model):
 
     def get_account_move_vals(self):
         self.ensure_one()
+        journal = self.env.context.get(
+            "l10n_it_asset_override_journal",
+            self.asset_id.category_id.journal_id,
+        )
         return {
             "company_id": self.company_id.id,
             "date": self.date,
-            "journal_id": self.asset_id.category_id.journal_id.id,
+            "journal_id": journal.id,
             "line_ids": [],
             "ref": _("Asset: ") + self.asset_id.make_name(),
             "move_type": "entry",
@@ -396,7 +400,7 @@ class AssetDepreciationLine(models.Model):
         # Asset depreciation
         if not self.partial_dismissal:
             credit_account_id = self.asset_id.category_id.fund_account_id.id
-            debit_account_id = self.asset_id.category_id.depreciation_account_id.id
+            debit_account_id = self.depreciation_id.depreciation_account_id.id
 
         # Asset partial dismissal
         else:
@@ -423,7 +427,7 @@ class AssetDepreciationLine(models.Model):
     def get_gain_account_move_line_vals(self):
         self.ensure_one()
         credit_line_vals = {
-            "account_id": self.asset_id.category_id.gain_account_id.id,
+            "account_id": self.depreciation_id.gain_account_id.id,
             "credit": self.amount,
             "debit": 0.0,
             "currency_id": self.currency_id.id,
@@ -458,7 +462,7 @@ class AssetDepreciationLine(models.Model):
             "name": " - ".join((self.asset_id.make_name(), self.name)),
         }
         debit_line_vals = {
-            "account_id": self.asset_id.category_id.loss_account_id.id,
+            "account_id": self.depreciation_id.loss_account_id.id,
             "credit": 0.0,
             "debit": self.amount,
             "currency_id": self.currency_id.id,

@@ -1,0 +1,1008 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fiscal_epos_print
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:0
+#, python-format
+msgid ": order already has a fiscal number, "
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_res_config_settings_printer_form
+msgid "<span class=\"o_form_label\">Fiscal Printer Serial</span>"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_res_config_settings_printer_form
+msgid "<span class=\"o_form_label\">Printer address</span>"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "An error happened while sending data to the printer. Error code: "
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/LotteryCodePopup.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:0
+#, python-format
+msgid "Apply"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_hr_employee_base
+msgid "Basic Employee"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/Popups/LotteryCodePopup.js:0
+#: code:addons/fiscal_epos_print/static/src/js/Popups/RefundInfoPopup.js:0
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:0
+#, python-format
+msgid "Cancel"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__account_journal__fiscalprinter_payment_type__0
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__pos_payment_method__fiscalprinter_payment_type__0
+msgid "Cash"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js:0
+#, python-format
+msgid "CashDrawer Opened"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__account_journal__fiscalprinter_payment_type__1
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__pos_payment_method__fiscalprinter_payment_type__1
+msgid "Cheque"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js:0
+#, python-format
+msgid "Close"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#, python-format
+msgid "Closing Seq."
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Closure Report Z (Fiscal)"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__refund_report
+msgid "Closure reference"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/Popups/LotteryCodePopup.js:0
+#, python-format
+msgid "Confirm ?"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js:0
+#, python-format
+msgid "Confirm Printer Daily Financial Report (Report X)?"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js:0
+#, python-format
+msgid "Confirm Printer Fiscal Closure (Report Z)?"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:0
+#, python-format
+msgid "Connecting to the fiscal printer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Connection to the printer failed"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__account_journal__fiscalprinter_payment_type__2
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__pos_payment_method__fiscalprinter_payment_type__2
+msgid "Credit or Credit Card"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_printer_debug_info
+msgid "Debug info"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-python
+#: code:addons/fiscal_epos_print/models/account.py:0
+#, python-format
+msgid "Department ID number range [1 - 99]"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_account_tax__fpdeptax
+msgid "Department on fiscal printer 1~99"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Discount"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__account_journal__fiscalprinter_payment_type__6
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__pos_payment_method__fiscalprinter_payment_type__6
+msgid "Discount on payment"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__refund_doc_num
+msgid "Document Number"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_account_journal__fiscalprinter_payment_index
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_payment_method__fiscalprinter_payment_index
+msgid "Electronic Payment / Ticket Index"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_hr_employee
+msgid "Employee"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonEPOSButton.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Epson ePOS"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonEPOSButton.xml:0
+#, python-format
+msgid "Epson ePOS Operation"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/SetRefundInfoButton.js:0
+#: code:addons/fiscal_epos_print/static/src/js/models.js:0
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Error Message: "
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Error on last ESC/POS command with Fiscal/Non fiscal closed"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Error on last ESC/POS command with Non fiscal open"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Files waiting to be sent: "
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Financial Report X"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Finished"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_operator_number
+msgid "Fiscal Operator"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__fiscal_cashdrawer
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_res_config_settings__fiscal_cashdrawer
+msgid "Fiscal Printer Open CashDrawer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee__fiscal_operator_number
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__fiscal_operator_number
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_public__fiscal_operator_number
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_res_users__fiscal_operator_number
+msgid "Fiscal Printer Operator"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__fiscal_printer_serial
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_printer_serial
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_res_config_settings__fiscal_printer_serial
+msgid "Fiscal Printer Serial"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Fiscal closure"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_z_rep_number
+msgid "Fiscal closure number"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Fiscal document open"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Fiscal open"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_res_config_settings_printer_form
+msgid "Fiscal printer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_receipt_amount
+msgid "Fiscal receipt amount"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_receipt_date
+msgid "Fiscal receipt date"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__fiscal_receipt_number
+msgid "Fiscal receipt number"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "From other measurement device"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__refund_full_refund
+#, python-format
+msgid "Full Refund"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "IRA files"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "IRA status"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_hr_employee_base__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_hr_employee_base__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:0
+#, python-format
+msgid "Invoice recorded"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
+msgid "Lottery"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/SetLotteryCodeButton.js:0
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/SetLotteryCodeButton.xml:0
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__lottery_code
+#, python-format
+msgid "Lottery Code"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/models.js:0
+#, python-format
+msgid "Manca iva su prodotto"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#, python-format
+msgid "Max 4 numbers"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/SetRefundInfoButton.js:0
+#, python-format
+msgid "Must select a refund order before clicking on this button!"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Negative receipt"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#: code:addons/fiscal_epos_print/static/src/js/models.js:0
+#, python-format
+msgid "Network error"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__account_journal__fiscalprinter_payment_type__5
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__pos_payment_method__fiscalprinter_payment_type__5
+msgid "No Paid"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/models.js:0
+#, python-format
+msgid "No taxes found"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Non fiscal open"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_hr_employee_base__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_hr_employee_base__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Offline (end of paper or open cover)"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/Popups/LotteryCodePopup.js:0
+#: code:addons/fiscal_epos_print/static/src/js/Popups/RefundInfoPopup.js:0
+#, python-format
+msgid "Ok"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Old files: "
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Open CashDrawer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Operations"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/pos_order_mgmt.js:0
+#, python-format
+msgid "Order already printed"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Paper running low"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Payment"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Payment in progress"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_account_journal__fiscalprinter_payment_type
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_payment_method__fiscalprinter_payment_type
+msgid "Payment type"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js:0
+#, python-format
+msgid "Please confirm to execute the Printer Daily Financial Report"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js:0
+#, python-format
+msgid "Please confirm to execute the Printer Fiscal Closure"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js:0
+#, python-format
+msgid "Please confirm to reprint the last receipt"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_pos_payment_method
+msgid "Point of Sale Payment Methods"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_pos_payment
+msgid "Point of Sale Payments"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Previous"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__printer_ip
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_res_config_settings__printer_ip
+msgid "Printer IP Address"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Printer can not be reached"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:0
+#, python-format
+msgid "Printing error"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid ""
+"Product prices on receipts must be set to 'Tax-Included Price' in POS "
+"configuration"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#, python-format
+msgid "RT Serial"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
+msgid "RT data"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
+msgid "Receipt"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#, python-format
+msgid "Receipt Date"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#, python-format
+msgid "Receipt Num."
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:0
+#, python-format
+msgid "Receipt sent to the printer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__refund_cash_fiscal_serial
+msgid "Refund Cash Serial"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/SetRefundInfoButton.xml:0
+#, python-format
+msgid "Refund Data"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_pos_form_refund_info
+msgid "Refund Info"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/SetRefundInfoButton.js:0
+#, python-format
+msgid "Refund Information Details"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "Refund Information Not Present"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_order__refund_date
+msgid "Refund date reference"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Refund: "
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Rejected files: "
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Reports"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Reprint Last Receipt"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/EpsonFP81IIComponent.js:0
+#, python-format
+msgid "Reprint Last Receipt?"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Reprint last receipt"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/pos.xml:0
+#, python-format
+msgid "Retry"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/SetReprintButton.xml:0
+#, python-format
+msgid "Ristampa Ultimo Scontrino"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/ChromeWidgets/SetReprintButton.js:0
+#, python-format
+msgid "Ristampa ultimo scontrino?"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Rounding"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Running low"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Send fiscal X report to the fiscal printer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Send fiscal closure command to the fiscal printer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_index
+#: model:ir.model.fields,help:fiscal_epos_print.field_pos_payment_method__fiscalprinter_payment_index
+msgid "Set the index of the given payment type to specify the detail."
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__show_receipt_when_printing
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_res_config_settings__show_receipt_when_printing
+msgid "Show receipt on screen when printing"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/LotteryCodePopup.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:0
+#, python-format
+msgid "Some fields are empty."
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/ChromeWidgets/EpsonFP81IIComponent.xml:0
+#, python-format
+msgid "Status of files to be sent to IRA"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "SubTotal"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_apos_payment_method_form_fp90
+msgid "Termini pagamento stampante"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_pos_config__printer_ip
+#: model:ir.model.fields,help:fiscal_epos_print.field_res_config_settings__printer_ip
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_pos_config_printer_form
+#: model_terms:ir.ui.view,arch_db:fiscal_epos_print.view_res_config_settings_printer_form
+msgid "The hostname or IP address of the fiscal printer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_account_journal__fiscalprinter_payment_type
+#: model:ir.model.fields,help:fiscal_epos_print.field_pos_payment_method__fiscalprinter_payment_type
+msgid "The payment type to send to the Fiscal Printer."
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid ""
+"The refund information aren't present. Please insert them before printing "
+"the receipt"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__account_journal__fiscalprinter_payment_type__3
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__pos_payment_method__fiscalprinter_payment_type__3
+msgid "Ticket"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__account_journal__fiscalprinter_payment_type__4
+#: model:ir.model.fields.selection,name:fiscal_epos_print.selection__pos_payment_method__fiscalprinter_payment_type__4
+msgid "Ticket with number"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Title closed"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Title open"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "To format"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_pos_config__use_https
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_res_config_settings__use_https
+msgid "Use https"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model,name:fiscal_epos_print.model_res_users
+msgid "User"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Waiting for receipt closing in JAVAPOS mode"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,field_description:fiscal_epos_print.field_hr_employee_base__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: fiscal_epos_print
+#: model:ir.model.fields,help:fiscal_epos_print.field_hr_employee_base__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#: code:addons/fiscal_epos_print/static/src/js/epson_epos_print.js:0
+#, python-format
+msgid "Wrong answer"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js:0
+#, python-format
+msgid "Wrong tax configuration"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/lottery.xml:0
+#, python-format
+msgid "XXXXXXXX"
+msgstr ""
+
+#. module: fiscal_epos_print
+#. odoo-javascript
+#: code:addons/fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml:0
+#, python-format
+msgid "YYYY-MM-DD"
+msgstr ""

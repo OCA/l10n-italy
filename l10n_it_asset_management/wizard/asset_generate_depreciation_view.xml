@@ -8,11 +8,37 @@
             <form>
                 <group name="depreciation_data" string="Depreciation Data">
                     <field name="date_dep" />
+                    <div
+                        class="alert alert-warning text-center"
+                        colspan="2"
+                        role="alert"
+                        attrs="{
+                            'invisible': [
+                                ('missing_fiscal_year_warning', '=', False),
+                            ],
+                        }"
+                    >
+                        <i class="fa fa-warning" title="Missing fiscal years" />
+                        <field name="missing_fiscal_year_warning" />
+                    </div>
+                    <label for="period" />
+                    <div class="o_row">
+                        <field
+                            name="period_count"
+                            attrs="{
+                                'invisible': [
+                                    ('period', '!=', 'month'),
+                                ],
+                            }"
+                        />
+                        <field name="period" />
+                    </div>
                     <field
                         name="type_ids"
                         options="{'no_create': True}"
                         widget="many2many_tags"
                     />
+                    <field name="journal_id" />
                 </group>
                 <group name="filters" string="Filters">
                     <field

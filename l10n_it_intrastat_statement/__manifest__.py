@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Dichiarazione Intrastat",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.2.0",
     "category": "Account",
     "summary": "Dichiarazione Intrastat per l'Agenzia delle Dogane",
     "author": "Openforce, Link IT srl, Agile Business Group, "
@@ -23,8 +23,12 @@
         "report/report_intrastat_mod1.xml",
         "report/intrastat_mod1_bis.xml",
         "report/intrastat_mod1_ter.xml",
+        "report/report_intrastat_mod1_quater.xml",
+        "report/report_intrastat_mod1_quinquies.xml",
         "report/report_intrastat_mod2.xml",
         "report/report_intrastat_mod2_bis.xml",
+        "report/report_intrastat_mod2_quater.xml",
+        "report/report_intrastat_mod2_quinquies.xml",
         "report/reports.xml",
     ],
 }

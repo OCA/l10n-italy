@@ -162,7 +162,7 @@
                     <button
                         name="settle_all_line"
                         type='object'
-                        string="Mark All as Settled"
+                        string="Mark lines as Settled"
                         class="oe_highlight"
                         attrs="{'invisible':[('state','!=','credited')]}"
                     />
@@ -209,7 +209,7 @@
                                         icon="fa-exclamation-triangle"
                                     />
                                     <button
-                                        name="riba_line_settlement"
+                                        name="button_settle"
                                         type='object'
                                         attrs="{'invisible':['|',('type','=','incasso'),('state','!=','credited')]}"
                                         string="Mark as Settled"

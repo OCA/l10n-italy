@@ -154,17 +154,6 @@ msgstr ""
 "Totale imposte: {bill_tax}"
 
 #. module: l10n_it_fatturapa_in
-#. odoo-python
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, python-format
-msgid ""
-"Bill total %(amount_total)s is different from document total amount "
-"%(document_total_amount)s"
-msgstr ""
-"Il totale fattura %(amount_total)s è diverso dall'importo totale del "
-"documento %(document_total_amount)s"
-
-#. module: l10n_it_fatturapa_in
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_fatturapa_in_attachment_form
 msgid "Bills"
 msgstr "Fatture"
@@ -664,13 +653,6 @@ msgstr "Forza validazione e-fattura"
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_in.view_invoice_form_fatturapa_in
 msgid "General Data"
 msgstr "Dati generali"
-
-#. module: l10n_it_fatturapa_in
-#. odoo-python
-#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
-#, python-format
-msgid "Global bill discount from document general data"
-msgstr "Sconto globale fattura dai dati generali del documento"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__has_message
@@ -1648,6 +1630,18 @@ msgstr ""
 #, python-format
 msgid "You can select only one XML file to link."
 msgstr "È possibile selezionare solo un file XML da collegare."
+
+#, python-format
+#~ msgid ""
+#~ "Bill total %(amount_total)s is different from document total amount "
+#~ "%(document_total_amount)s"
+#~ msgstr ""
+#~ "Il totale fattura %(amount_total)s è diverso dall'importo totale del "
+#~ "documento %(document_total_amount)s"
+
+#, python-format
+#~ msgid "Global bill discount from document general data"
+#~ msgstr "Sconto globale fattura dai dati generali del documento"
 
 #~ msgid "Creation"
 #~ msgstr "Creazione"

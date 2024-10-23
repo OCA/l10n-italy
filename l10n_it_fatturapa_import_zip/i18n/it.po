@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-19 16:10+0000\n"
-"PO-Revision-Date: 2024-09-17 10:06+0000\n"
+"PO-Revision-Date: 2024-10-21 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -253,6 +253,16 @@ msgid "Import E-bill ZIP Files"
 msgstr "Importa file ZIP e-fattura"
 
 #. module: l10n_it_fatturapa_import_zip
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_import_zip.action_wizard_import_fatturapa_out
+msgid "Import Electronic Invoice Out"
+msgstr "Importa fattura elettronica emessa"
+
+#. module: l10n_it_fatturapa_import_zip
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.fatturapa_attachment_import_zip_form
+msgid "Import Files (No Invoices)"
+msgstr "Importa file (non fatture)"
+
+#. module: l10n_it_fatturapa_import_zip
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.fatturapa_attachment_import_zip_form
 msgid "Import e-bill ZIP"
 msgstr "Importa file ZIP e-fattura"
@@ -402,6 +412,17 @@ msgstr "Allegato originale (non ottimizzato, non ridimensionato)"
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_import_zip.fatturapa_attachment_import_zip_form
 msgid "Out invoices"
 msgstr "Fatture emesse"
+
+#. module: l10n_it_fatturapa_import_zip
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_import_zip/wizards/wizard_import_fatturapa.py:0
+#, python-format
+msgid ""
+"Please configure Default Debit Account in Journal '{journal}' or check "
+"default income account for company '{company}'."
+msgstr ""
+"Configurare il conto debito predefinito nel registro '{journal}' o "
+"controllare il conto ricavi predefinito per l'azienda '{company}'."
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__res_field
