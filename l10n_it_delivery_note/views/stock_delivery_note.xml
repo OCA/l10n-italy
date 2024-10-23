@@ -432,7 +432,10 @@
                             attrs="{'invisible': [('invoice_ids', '=', [])]}"
                             groups="account.group_account_invoice"
                         >
-                            <field name="invoice_ids">
+                            <field
+                                name="invoice_ids"
+                                attrs="{'readonly': [('state', 'in', ['invoiced', 'done', 'cancel'])]}"
+                            >
                                 <tree editable="bottom">
                                     <field name="currency_id" invisible="True" />
                                     <button

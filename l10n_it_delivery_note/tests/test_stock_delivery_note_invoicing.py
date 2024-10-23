@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+from odoo.exceptions import UserError
 from odoo.tests import new_test_user
 from odoo.tests.common import Form
 
@@ -1473,3 +1474,26 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         self.assertIn(dn_2.date.strftime(DATE_FORMAT), label_so_2.name)
         self.assertEqual(product_line_2.product_id, so_2.order_line.product_id)
         self.assertEqual(product_line_2.quantity, 2)
+
+    def test_check_orphan_invoice_error(self):
+        sales_order = self.create_sales_order(
+            [
+                self.desk_combination_line,
+            ]
+        )
+        sales_order.action_confirm()
+        picking = sales_order.picking_ids
+        picking.move_lines[0].quantity_done = 1
+        picking.button_validate()
+        wizard = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                active_ids=picking.ids, active_model="stock.picking"
+            )
+        ).save()
+        result = wizard.confirm()
+        delivery_note = self.env["stock.delivery.note"].browse(result["res_id"])
+        delivery_note.action_confirm()
+        delivery_note.action_invoice()
+        delivery_note.write({"invoice_ids": [(5, 0, 0)]})
+        with self.assertRaises(UserError):
+            delivery_note.action_done()
