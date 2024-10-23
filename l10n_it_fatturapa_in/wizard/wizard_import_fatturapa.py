@@ -1286,7 +1286,12 @@ class WizardImportFatturapa(models.TransientModel):
             invoice.id, FatturaBody.DatiGenerali.DatiGeneraliDocumento
         )
 
-        if self.e_invoice_detail_level != "1":
+        # Avoid set roundings if import level is not maximum, because adding
+        # roundings as invoice line, generate a tax line in account.move.line
+        # entries with different values for amount_currency and balance
+        # raising ``check_amount_currency_balance_sign`` constraint in
+        # account.move
+        if self.e_invoice_detail_level == "2":
             self.set_roundings(FatturaBody, invoice)
 
         # compute the invoice
