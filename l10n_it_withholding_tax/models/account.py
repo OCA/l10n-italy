@@ -554,7 +554,7 @@ class AccountMoveLine(models.Model):
             # Delete wt move
             for wt_move in wt_mls.mapped("move_id"):
                 wt_move.button_draft()
-                wt_move.unlink()
+                wt_move.with_context(force_delete=True).unlink()
 
         return super(AccountMoveLine, self).remove_move_reconcile()
 
