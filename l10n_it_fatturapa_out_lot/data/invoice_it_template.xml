@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="production_lot_line_it_FatturaPA"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
+    >
+        <xpath expr="//DettaglioLinee/Descrizione" position="before">
+            <t t-set="product_description" t-value="line.name" />
+            <t t-if="line.prod_lot_ids">
+                <t
+                    t-set="lots_description"
+                    t-value="', '.join(filter(None, set(line.mapped('prod_lot_ids.display_name'))))"
+                />
+                <t
+                    t-set="product_description"
+                    t-value="product_description + ' S/N: ' + lots_description"
+                />
+            </t>
+        </xpath>
+        <xpath
+            expr="//DettaglioLinee/Descrizione/t[@t-if='line.name']"
+            position="attributes"
+        >
+            <attribute
+                name="t-esc"
+            >encode_for_export(product_description, 1000)</attribute>
+        </xpath>
+    </template>
+
+</odoo>
