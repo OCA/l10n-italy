@@ -13,6 +13,11 @@
             <group name="accounting_entries" position="after">
                 <group string="C/O" name="riba">
                     <field name="group_riba" />
+                    <field name="riba_exclude_expenses" />
+                    <field
+                        name="riba_policy_expenses"
+                        attrs="{'invisible': [('riba_exclude_expenses', '=', True)]}"
+                    />
                 </group>
             </group>
         </field>
