@@ -26,34 +26,32 @@ patch(PaymentScreen.prototype, {
     },
 
     async sendToFP90Printer(order) {
-        // If there is a printer IP and it's not an invoice, send the order to the fiscal printer
-        if (this.pos.config.printer_ip && !order.is_to_invoice()) {
-
-            // TODO
-            // if (order.has_refund && this.pos.context && this.pos.context.refund_details) {
-            //     order.refund_date = this.pos.context.refund_date;
-            //     order.refund_report = this.pos.context.refund_report;
-            //     order.refund_doc_num = this.pos.context.refund_doc_num;
-            //     order.refund_cash_fiscal_serial = this.pos.context.refund_cash_fiscal_serial;
-            // }
-
-            const receipt = order.export_as_JSON();
-            this.fp90.order = order
-            await this.fp90.printFiscalReceipt(receipt);
-
-            // TODO loading screen
-        }
+        // TODO
+        // if (order.has_refund && this.pos.context && this.pos.context.refund_details) {
+        //     order.refund_date = this.pos.context.refund_date;
+        //     order.refund_report = this.pos.context.refund_report;
+        //     order.refund_doc_num = this.pos.context.refund_doc_num;
+        //     order.refund_cash_fiscal_serial = this.pos.context.refund_cash_fiscal_serial;
+        // }
+        const receipt = order.export_as_JSON();
+        this.fp90.order = order
+        await this.fp90.printFiscalReceipt(receipt);
     },
 
     async _finalizeValidation() {
         const currentOrder = this.state.order;
-        // TODO funziona?
-        //this.ui.block();
-        await this.sendToFP90Printer(currentOrder);
-        //this.ui.unblock();
-        if (currentOrder._printed) {
-            await super._finalizeValidation();
+        if (this.pos.config.printer_ip && !currentOrder.is_to_invoice()) {
+            //TODO funziona?
+            //this.ui.block();
+            await this.sendToFP90Printer(currentOrder);
+            //this.ui.unblock();
+            if (currentOrder._printed) {
+                await super._finalizeValidation();
+            }
         }
+        else {
+            await super._finalizeValidation();
+        } 
     },
 
     _isOrderValid(isForceValidate) {
