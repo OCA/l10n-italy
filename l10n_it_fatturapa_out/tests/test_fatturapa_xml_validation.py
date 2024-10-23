@@ -960,6 +960,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         company_form = Form(self.env["res.company"].sudo(True))
         company_form.name = "YourCompany 2"
         company_form.vat = "IT07973780013"
+        company_form.city = "Roma"
         company_form.fatturapa_fiscal_position_id = (
             self.env.company.fatturapa_fiscal_position_id
         )
@@ -1199,3 +1200,168 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         # XML doc to be validated
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00018.xml")
+
+    def test_max_invoice_in_xml(self):
+        invoice1_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+        )
+        invoice1_form.partner_id = self.res_partner_fatturapa_0
+        with invoice1_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax_22)
+        invoice1 = invoice1_form.save()
+        invoice2 = invoice1.copy()
+        invoice3 = invoice1.copy()
+
+        invoice1.action_post()
+        invoice2.action_post()
+        invoice3.action_post()
+        invoices = invoice1 | invoice2 | invoice3
+
+        # partner limited, company limited (expect 3 xml attachments)
+        self.res_partner_fatturapa_0.max_invoice_in_xml = 1
+        self.env.company.max_invoice_in_xml = 2
+        res = self.run_wizard(invoices.ids)
+        attachments = self.attach_model.search(res["domain"])
+        self.assertEqual(len(attachments), 3)
+        attachments.unlink()
+
+        # partner limited, company unlimited (expect 3 xml attachments)
+        self.res_partner_fatturapa_0.max_invoice_in_xml = 1
+        self.env.company.max_invoice_in_xml = 0
+        res = self.run_wizard(invoices.ids)
+        attachments = self.attach_model.search(res["domain"])
+        self.assertEqual(len(attachments), 3)
+        attachments.unlink()
+
+        # partner unlimited, company limited (expect 2 xml attachments)
+        self.res_partner_fatturapa_0.max_invoice_in_xml = 0
+        self.env.company.max_invoice_in_xml = 2
+        res = self.run_wizard(invoices.ids)
+        attachments = self.attach_model.search(res["domain"])
+        self.assertEqual(len(attachments), 2)
+        attachments.unlink()
+
+        # partner unlimited, company unlimited (expect 1 xml attachment)
+        self.res_partner_fatturapa_0.max_invoice_in_xml = 0
+        self.env.company.max_invoice_in_xml = 0
+        res = self.run_wizard(invoices.ids)
+        attachments = self.attach_model.browse(res["res_id"])
+        self.assertEqual(len(attachments), 1)
+
+    def test_preventive_checks(self):
+        invoice_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "in_invoice"})
+        )
+        invoice_form.partner_id = self.res_partner_fatturapa_0
+        invoice_form.invoice_date = fields.Date.today()
+        with invoice_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax_22)
+        invoice = invoice_form.save()
+
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])
+        self.assertIn("invoice not posted", ue.exception.args[0])
+
+        invoice.action_post()
+
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])
+        self.assertIn("not a customer invoice", ue.exception.args[0])
+
+        # everything's fine with this invoice
+        invoice_form = Form(
+            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+        )
+        invoice_form.partner_id = self.res_partner_fatturapa_0
+        invoice_form.invoice_payment_term_id = self.account_payment_term
+        with invoice_form.line_ids.new() as line_form:
+            line_form.product_id = self.product_product_10
+            line_form.account_id = self.a_sale
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax_22)
+        invoice = invoice_form.save()
+        invoice.action_post()
+        res = self.run_wizard(invoice.ids)
+        attachments = self.attach_model.browse(res["res_id"])
+        self.assertEqual(len(attachments), 1)
+
+        # change/remove something and see if preventive_checks() catches it
+        invoice = invoice.copy()
+        fiscal_document_type_id = invoice.fiscal_document_type_id
+        invoice.fiscal_document_type_id = False
+        invoice.action_post()
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])
+        self.assertIn("fiscal document type must be set", ue.exception.args[0])
+        invoice.fiscal_document_type_id = fiscal_document_type_id
+
+        invoice = invoice.copy()
+        pt_id = invoice.invoice_payment_term_id.fatturapa_pt_id
+        invoice.invoice_payment_term_id.fatturapa_pt_id = False
+        invoice.action_post()
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])
+        self.assertIn(
+            "fiscal payment term must be set for the selected payment term",
+            ue.exception.args[0],
+        )
+        invoice.invoice_payment_term_id.fatturapa_pt_id = pt_id
+
+        invoice = invoice.copy()
+        pm_id = invoice.invoice_payment_term_id.fatturapa_pm_id
+        invoice.invoice_payment_term_id.fatturapa_pm_id = False
+        invoice.action_post()
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])
+        self.assertIn(
+            "fiscal payment method must be set for the selected payment term",
+            ue.exception.args[0],
+        )
+        invoice.invoice_payment_term_id.fatturapa_pm_id = pm_id
+
+        invoice = invoice.copy()
+        city = invoice.partner_id.city
+        invoice.partner_id.city = False
+        invoice.action_post()
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])
+        self.assertIn("city must be set", ue.exception.args[0])
+        invoice.partner_id.city = city
+
+        invoice = invoice.copy()
+        city = invoice.company_id.partner_id.city
+        invoice.company_id.partner_id.city = False
+        invoice.action_post()
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])
+        self.assertIn("city in our company's partner must be set", ue.exception.args[0])
+        invoice.company_id.partner_id.city = city
+
+        invoice = invoice.copy()
+        invoice.company_id.fatturapa_stabile_organizzazione = (
+            invoice.company_id.partner_id.copy()
+        )
+        city = invoice.company_id.fatturapa_stabile_organizzazione.city
+        invoice.company_id.fatturapa_stabile_organizzazione.city = False
+        invoice.action_post()
+        with self.assertRaises(UserError) as ue:
+            self.run_wizard(invoice.id)
+        self.assertIn(invoice.name, ue.exception.args[0])
+        self.assertIn(
+            "city in our company's Stable Organization must be set",
+            ue.exception.args[0],
+        )
+        invoice.company_id.fatturapa_stabile_organizzazione.city = city
