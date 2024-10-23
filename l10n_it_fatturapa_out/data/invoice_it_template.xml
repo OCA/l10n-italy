@@ -13,31 +13,28 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
     <template id="account_invoice_it_dati_ddt"><t /></template>
     <template id="account_invoice_it_dati_trasporto"><t /></template>
 
-    <template id="account_invoice_it_dati_documento_correlato">
-        <t t-translation="off">
-        <RiferimentoNumeroLinea t-if="doc.lineRef" t-esc="doc.lineRef" />
-        <IdDocumento t-if="doc.name" t-esc="doc.name" />
-        <Data t-if="doc.date" t-esc="doc.date" />
-        <NumItem t-if="doc.numitem" t-esc="doc.numitem" />
-        <CodiceCommessaConvenzione t-if="doc.code" t-esc="doc.code" />
-        <CodiceCUP t-if="doc.cup" t-esc="doc.cup" />
-        <CodiceCIG t-if="doc.cig" t-esc="doc.cig" />
-        </t>
-    </template>
-    <template id="account_invoice_it_dati_documenti_correlati">
-        <t t-translation="off">
-        <t t-set="related_orders" t-value="record.related_documents.browse()" />
-        <t t-set="related_contracts" t-value="record.related_documents.browse()" />
-        <t t-set="related_agreements" t-value="record.related_documents.browse()" />
-        <t t-set="related_receptions" t-value="record.related_documents.browse()" />
-        <t t-set="related_invoices" t-value="record.related_documents.browse()" />
-        <t t-set="line_counter" t-value="0" />
-        <t
-                t-foreach="record.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"
-                t-as="line"
-            >
-            <t t-set="line_counter" t-value="line_counter + 1" />
-            <t
+        <template id="account_invoice_it_dati_documento_correlato">
+            <t t-translation="off">
+            <RiferimentoNumeroLinea t-if="doc.lineRef" t-esc="doc.lineRef" />
+            <IdDocumento t-if="doc.name" t-esc="doc.name" />
+            <Data t-if="doc.date" t-esc="doc.date" />
+            <NumItem t-if="doc.numitem" t-esc="doc.numitem" />
+            <CodiceCommessaConvenzione t-if="doc.code" t-esc="doc.code" />
+            <CodiceCUP t-if="doc.cup" t-esc="doc.cup" />
+            <CodiceCIG t-if="doc.cig" t-esc="doc.cig" />
+            </t>
+        </template>
+        <template id="account_invoice_it_dati_documenti_correlati">
+            <t t-translation="off">
+            <t t-set="related_orders" t-value="record.related_documents.browse()" />
+            <t t-set="related_contracts" t-value="record.related_documents.browse()" />
+            <t t-set="related_agreements" t-value="record.related_documents.browse()" />
+            <t t-set="related_receptions" t-value="record.related_documents.browse()" />
+            <t t-set="related_invoices" t-value="record.related_documents.browse()" />
+            <t t-set="line_counter" t-value="0" />
+            <t t-foreach="wizard.get_e_invoice_lines(record)" t-as="line">
+                <t t-set="line_counter" t-value="line_counter + 1" />
+                <t
                     t-foreach="line.related_documents.filtered(lambda doc: doc.type == 'order')"
                     t-as="doc"
                 >
@@ -571,25 +568,24 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <t
                         t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documenti_correlati"
                     />
-                <!--                    <DatiSAL>-->
-                <!--                        <RiferimentoFase t-esc=""/>-->
-                <!--                    </DatiSAL>-->
-                <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_ddt" />
-                <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_trasporto" />
-                <!--                    <FatturaPrincipale>-->
-                <!--                        <NumeroFatturaPrincipale t-esc=""/>-->
-                <!--                        <DataFatturaPrincipale t-esc=""/>-->
-                <!--                    </FatturaPrincipale>-->
-            </DatiGenerali>
-            <DatiBeniServizi>
-                <!-- Invoice lines. -->
-                <t t-set="line_counter" t-value="0" />
-                <t
-                        t-foreach="record.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"
-                        t-as="line"
-                    >
-                    <t t-set="line_counter" t-value="line_counter + 1" />
+                    <!--                    <DatiSAL>-->
+                    <!--                        <RiferimentoFase t-esc=""/>-->
+                    <!--                    </DatiSAL>-->
+                    <t t-call="l10n_it_fatturapa_out.account_invoice_it_dati_ddt" />
                     <t
+                        t-call="l10n_it_fatturapa_out.account_invoice_it_dati_trasporto"
+                    />
+                    <!--                    <FatturaPrincipale>-->
+                    <!--                        <NumeroFatturaPrincipale t-esc=""/>-->
+                    <!--                        <DataFatturaPrincipale t-esc=""/>-->
+                    <!--                    </FatturaPrincipale>-->
+                </DatiGenerali>
+                <DatiBeniServizi>
+                    <!-- Invoice lines. -->
+                    <t t-set="line_counter" t-value="0" />
+                    <t t-foreach="wizard.get_e_invoice_lines(record)" t-as="line">
+                        <t t-set="line_counter" t-value="line_counter + 1" />
+                        <t
                             t-call="l10n_it_fatturapa_out.account_invoice_line_it_FatturaPA"
                         />
                 </t>

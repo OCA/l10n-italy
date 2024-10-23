@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template
+        id="account_invoice_it_dati_ddt"
+        inherit_id="l10n_it_fatturapa_out.account_invoice_it_dati_ddt"
+        priority="99"
+    >
+            <xpath expr="t" position="replace">
+                <t t-if="wizard.include_transport_data == 'dati_dn'">
+                    <!--2.1.8-->
+                    <DatiDDT t-foreach="wizard.getDatiDDT(record)" t-as="DatiDDT">
+                        <NumeroDDT
+                        t-esc="encode_for_export(DatiDDT.get('NumeroDDT'), 20)"
+                    />
+                        <DataDDT t-esc="format_date(DatiDDT.get('DataDDT'))" />
+                        <RiferimentoNumeroLinea
+                        t-if="DatiDDT.get('RiferimentoNumeroLinea')"
+                        t-foreach="DatiDDT.get('RiferimentoNumeroLinea')"
+                        t-as="NumeroLinea"
+                        t-esc="NumeroLinea"
+                    />
+                    </DatiDDT>
+                </t>
+            </xpath>
+        </template>
+</odoo>
