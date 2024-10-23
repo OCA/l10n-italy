@@ -1,0 +1,164 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_vat_period_end_statement_rf11
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-05 11:13+0000\n"
+"PO-Revision-Date: 2024-11-05 11:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_vat_period_end_statement_rf11
+#. odoo-python
+#: code:addons/account_vat_period_end_statement_rf11/models/account_vat_period_end.py:0
+#: code:addons/account_vat_period_end_statement_rf11/models/account_vat_period_end.py:0
+#: code:addons/account_vat_period_end_statement_rf11/models/account_vat_period_end.py:0
+#, python-format
+msgid "74 Ter VAT statement"
+msgstr "Liquidazione IVA 74 Ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.report_integration_74ter
+msgid "74 Ter VAT statement details"
+msgstr "Dettagli liquidazione IVA 74 Ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.report_integration_74ter
+msgid "74 Ter VAT total (credit)"
+msgstr "Totale IVA 74 Ter (credito)"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.report_integration_74ter
+msgid "74 Ter VAT total (debit)"
+msgstr "Totale IVA 74 Ter (debito)"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.view_account_vat_period_end_statement_inherit_74ter
+msgid "74Ter VAT details"
+msgstr "Dettagli IVA 74Ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,field_description:account_vat_period_end_statement_rf11.field_account_tax__is_tax_74ter
+msgid "74ter"
+msgstr ""
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,field_description:account_vat_period_end_statement_rf11.field_account_tax__tax_74ter_amount
+msgid "74ter Amount"
+msgstr "Importo 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,field_description:account_vat_period_end_statement_rf11.field_account_tax__tax_74_ter_income_account_id
+msgid "74ter Income Account"
+msgstr "Conto Ricavi 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,field_description:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__tax_74_ter_amount
+msgid "74ter Tax Amount"
+msgstr "Importo IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,field_description:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__tax_74_ter_amount_total
+msgid "74ter Tax Amount Total"
+msgstr "Importo IVA 74ter Totale"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,field_description:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__tax_74_ter_amount_previous
+msgid "74ter Tax Amount of Previous Period"
+msgstr "Importo IVA 74ter del Periodo Precedente"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,field_description:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__tax_74_ter_move_id
+msgid "74ter Tax Entry"
+msgstr "Registrazione IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.report_integration_74ter
+msgid "74ter tax amount"
+msgstr "Importo IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.report_integration_74ter
+msgid "74ter tax amount of previous period"
+msgstr "Importo IVA 74ter del periodo precedente"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,help:account_vat_period_end_statement_rf11.field_account_tax__tax_74ter_amount
+#: model:ir.model.fields,help:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__tax_74_ter_amount
+msgid "Amount of 74ter tax"
+msgstr "Importo IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,help:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__tax_74_ter_amount_previous
+msgid "Amount of 74ter tax of previous period"
+msgstr "Importo IVA 74ter del periodo precedente"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,help:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__tax_74_ter_amount_total
+msgid "Amount of 74ter tax total"
+msgstr "Importo IVA 74ter totale"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,help:account_vat_period_end_statement_rf11.field_account_tax__tax_74_ter_income_account_id
+msgid "Income account for 74ter tax"
+msgstr "Conto ricavi per l'IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,help:account_vat_period_end_statement_rf11.field_account_tax__is_tax_74ter
+msgid "Indicates that this tax is a 74ter tax"
+msgstr "Indica che questa imposta è un'imposta 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.account_tax_form_inherit_74ter
+msgid "Is tax 74ter"
+msgstr "È un'imposta 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,help:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__tax_74_ter_move_id
+msgid "Move of 74ter tax"
+msgstr "Movimento dell'IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,field_description:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__net_tax_74_ter
+msgid "Net Tax 74ter"
+msgstr "Imponibile IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model.fields,help:account_vat_period_end_statement_rf11.field_account_vat_period_end_statement__net_tax_74_ter
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.report_integration_74ter
+msgid "Net tax 74ter"
+msgstr "Imponibile IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#. odoo-python
+#: code:addons/account_vat_period_end_statement_rf11/models/account_tax.py:0
+#, python-format
+msgid "Only one sale tax can be 74ter."
+msgstr "Può esserci solo un'imposta di vendita 74ter."
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model,name:account_vat_period_end_statement_rf11.model_account_tax
+msgid "Tax"
+msgstr "Imposta"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.account_tax_form_inherit_74ter
+msgid "Tax 74ter amount"
+msgstr "Importo IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement_rf11.account_tax_form_inherit_74ter
+msgid "Tax 74ter income account"
+msgstr "Conto ricavi IVA 74ter"
+
+#. module: account_vat_period_end_statement_rf11
+#: model:ir.model,name:account_vat_period_end_statement_rf11.model_account_vat_period_end_statement
+msgid "VAT period end statement"
+msgstr "Liquidazione IVA di fine periodo"
