@@ -35,9 +35,6 @@
     ],
     "installable": True,
     "external_dependencies": {
-        "python": [
-            "unidecode",
-            "elementpath",
-        ],
+        "python": ["unidecode", "elementpath", "phonenumbers"],
     },
 }
