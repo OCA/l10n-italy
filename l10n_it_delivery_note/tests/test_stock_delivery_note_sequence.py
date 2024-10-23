@@ -183,8 +183,24 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
         self.assertTrue(result)
 
         delivery_note = picking.delivery_note_id
-        delivery_note.transport_datetime = datetime.now() + timedelta(days=1, hours=3)
-        delivery_note.date = date.today().replace(year=old_year)
+        delivery_note.write(
+            {
+                "transport_datetime": datetime.now() + timedelta(days=1, hours=3),
+                "date": date.today().replace(year=old_year),
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ).id,
+            }
+        )
         delivery_note.action_confirm()
         self.assertEqual(delivery_note.type_id.sequence_id, sequence)
         self.assertEqual(

@@ -22,6 +22,24 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         # when picking is validated
         self.env.user = self.user_mr
 
+        # set default transport_condition_id, goods_appearance_id,
+        # transport_reason_id and transport_method_id to pass DN validation checks
+        self.env.ref("l10n_it_delivery_note_base.delivery_note_type_ddt").write(
+            {
+                "default_transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ),
+                "default_goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ),
+                "default_transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ),
+                "default_transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ),
+            }
+        )
         # Mario Rossi SO
         self.sales_order_mr = self.create_sales_order(
             [
@@ -65,6 +83,22 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         self.picking_ab.button_validate()
         self.delivery_note_ab = self.picking_ab.delivery_note_id
         self.assertTrue(self.delivery_note_ab)
+        self.delivery_note_ab.write(
+            {
+                "transport_condition_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_condition_PF"
+                ).id,
+                "goods_appearance_id": self.env.ref(
+                    "l10n_it_delivery_note_base.goods_appearance_BAN"
+                ).id,
+                "transport_reason_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_reason_VEN"
+                ).id,
+                "transport_method_id": self.env.ref(
+                    "l10n_it_delivery_note_base.transport_method_MIT"
+                ).id,
+            }
+        )
         self.delivery_note_ab.action_confirm()
 
         # Anna Bianchi fatturazione, Mario Rossi spedizione
