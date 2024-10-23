@@ -338,7 +338,11 @@
                             <field name="statistic_amount_euro" />
                         </group>
                         <group>
-                            <field name="country_origin_id" />
+                            <field name="invoice_id" invisible="1" />
+                            <field
+                            name="country_origin_id"
+                            attrs="{'invisible':[('invoice_id', '!=', False)], 'required':[('invoice_id', '!=', False)]}"
+                        />
                             <field name="delivery_code_id" />
                             <field name="transport_code_id" />
                             <field name="country_destination_id" required="1" />
@@ -580,6 +584,7 @@
             <field name="arch" type="xml">
                 <form>
                     <field name="additional_units_required" invisible="1" />
+                    <field name="invoice_id" invisible="1" />
                     <group>
                         <group>
                             <field name="partner_id" string="Supplier" required="1" />
@@ -616,8 +621,22 @@
                         />
                             <field name="additional_units_uom" />
                             <field name="amount_euro" />
+                            <div
+                            class="alert alert-warning col-12"
+                            role="alert"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}"
+                            colspan="2"
+                        >
+                                <p
+                            >Attention, the amount currency value is expressed in partner country currency</p>
+                                <p
+                            >Get invoice amount and convert it, with currency rate at invoice date</p>
+                            </div>
+                            <field
+                            name="amount_currency"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}"
+                        />
                             <field name="statistic_amount_euro" />
-                            <field name="amount_currency" />
                         </group>
                         <group>
                             <field name="country_origin_id" required="1" />
@@ -656,6 +675,7 @@
             <field name="model">account.intrastat.statement.purchase.section2</field>
             <field name="arch" type="xml">
                 <form>
+                    <field name="invoice_id" invisible="1" />
                     <group>
                         <group>
                             <field name="partner_id" string="Supplier" required="1" />
@@ -685,8 +705,22 @@
                         />
                             <field name="sign_variation" required="1" />
                             <field name="amount_euro" />
+                            <div
+                            class="alert alert-warning col-12"
+                            role="alert"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}"
+                            colspan="2"
+                        >
+                                <p
+                            >Attention, the amount currency value is expressed in partner country currency</p>
+                                <p
+                            >Get invoice amount and convert it, with currency rate at invoice date</p>
+                            </div>
+                            <field
+                            name="amount_currency"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}"
+                        />
                             <field name="statistic_amount_euro" />
-                            <field name="amount_currency" />
                         </group>
                         <group>
                             <field name="year_id" required="1" />
@@ -721,6 +755,7 @@
             <field name="model">account.intrastat.statement.purchase.section3</field>
             <field name="arch" type="xml">
                 <form>
+                    <field name="invoice_id" invisible="1" />
                     <group>
                         <group>
                             <field name="partner_id" string="Supplier" />
@@ -736,7 +771,21 @@
                         <group>
                             <field name="intrastat_code_id" string="Service Code" />
                             <field name="amount_euro" />
-                            <field name="amount_currency" />
+                            <div
+                            class="alert alert-warning col-12"
+                            role="alert"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}"
+                            colspan="2"
+                        >
+                                <p
+                            >Attention, the amount currency value is expressed in partner country currency</p>
+                                <p
+                            >Get invoice amount and convert it, with currency rate at invoice date</p>
+                            </div>
+                            <field
+                            name="amount_currency"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}"
+                        />
                         </group>
                         <group>
                             <field name="invoice_number" />
@@ -774,6 +823,7 @@
             <field name="model">account.intrastat.statement.purchase.section4</field>
             <field name="arch" type="xml">
                 <form>
+                    <field name="invoice_id" invisible="1" />
                     <group>
                         <group>
                             <field name="partner_id" string="Supplier" required="1" />
@@ -805,7 +855,22 @@
                             required="1"
                         />
                             <field name="amount_euro" />
-                            <field name="amount_currency" />
+                            <div
+                            class="alert alert-warning col-12"
+                            role="alert"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}"
+                            colspan="2"
+                        >
+                                <p
+                            >Attention, the amount currency value is expressed in partner country currency</p>
+                                <p
+                            >Get invoice amount and convert it, with currency rate at invoice date</p>
+                            </div>
+                            <field
+                            name="amount_currency"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}"
+                        />
+
                         </group>
                         <group>
                             <field name="invoice_number" />

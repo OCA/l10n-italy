@@ -21,10 +21,7 @@ class IntrastatStatementPurchaseSection(models.AbstractModel):
 
         # Amounts
         amount_currency = 0
-        if (
-            invoice_id.currency_id != invoice_id.company_id.currency_id
-            and invoice_id.currency_id != self.env.ref("base.EUR")
-        ):
+        if invoice_id.need_account_currency():
             # Only for non-Euro countries
             dp_model = self.env["decimal.precision"]
             amount_currency = statement_id.round_min_amount(
