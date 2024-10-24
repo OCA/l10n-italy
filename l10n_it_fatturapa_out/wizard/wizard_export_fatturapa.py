@@ -106,6 +106,14 @@ class WizardExportFatturapa(models.TransientModel):
         return payments
 
     @api.model
+    def getImporto(self, line):
+        str_number = str(line.discount)
+        number = str_number[::-1].find(".")
+        if number <= 2:
+            return False
+        return line.price_unit * line.discount / 100
+
+    @api.model
     def getImportoTotale(self, invoice):
         """Entry point for other modules to override computation of
         ImportoTotaleDocumento"""
