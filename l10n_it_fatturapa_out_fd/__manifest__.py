@@ -7,7 +7,7 @@
     "summary": "Emissione di fattura elettronica con sconto fisso",
     "author": "TAKOBI, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy"
-               "/tree/12.0/l10n_it_fatturapa_out_fd",
+    "/tree/12.0/l10n_it_fatturapa_out_fd",
     "license": "AGPL-3",
     "depends": [
         "l10n_it_fatturapa_out",
