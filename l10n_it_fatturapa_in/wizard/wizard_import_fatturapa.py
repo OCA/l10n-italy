@@ -623,7 +623,7 @@ class WizardImportFatturapa(models.TransientModel):
         elif len(account.tax_ids) == 1:
             new_tax = account.tax_ids[0]
         line_tax = self.env["account.tax"]
-        if line_vals.get("tax_ids") and line_vals["tax_ids"][0] == fields.Command.SET:
+        if line_vals.get("tax_ids") and line_vals["tax_ids"][0][0] == fields.Command.SET:
             line_tax_id = line_vals["tax_ids"][0][2][0]
             line_tax = self.env["account.tax"].browse(line_tax_id)
         if new_tax and line_tax and new_tax != line_tax:
