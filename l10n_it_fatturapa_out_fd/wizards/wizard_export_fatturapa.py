@@ -7,19 +7,10 @@ from odoo import api, models
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
-    @staticmethod
-    def get_importo(line):
+    @api.model
+    def getImporto(self, line):
+        res = super().getImporto(line)
         discount_fixed = line.discount_fixed
         if discount_fixed:
             return discount_fixed
-        str_number = str(line.discount)
-        number = str_number[::-1].find(".")
-        if number <= 2:
-            return False
-        return line.price_unit * line.discount / 100
-
-    @api.model
-    def getTemplateValues(self, template_values):
-        template_values = super().getTemplateValues(template_values)
-        template_values.update({"get_importo": self.get_importo})
-        return template_values
+        return res
