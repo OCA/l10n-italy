@@ -1,0 +1,238 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_account_stamp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-23 15:50+0000\n"
+"PO-Revision-Date: 2024-09-23 18:01+0200\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+msgid ""
+"<span invisible=\"not l10n_it_account_stamp_is_stamp_duty_present\">\n"
+"                        Stamp charged to customer\n"
+"                    </span>"
+msgstr ""
+"<span invisible=\"not l10n_it_account_stamp_is_stamp_duty_present\">\n"
+"                        Bollo addebitato al cliente\n"
+"                    </span>"
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+msgid ""
+"<span invisible=\"state == 'draft'\">\n"
+"                            Stamp can only be charged to customer when "
+"invoice is in draft state\n"
+"                        </span>"
+msgstr ""
+"<span invisible=\"state == 'draft'\">\n"
+"                            Il bollo può essere addebitato al cliente solo "
+"quando la fattura è nello stato bozza\n"
+"                        </span>"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_manually_apply_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_manually_apply_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_manually_apply_stamp_duty
+msgid "Apply stamp duty"
+msgstr "Applica imposta di bollo"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_auto_compute_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_auto_compute_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_auto_compute_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__l10n_it_account_stamp_auto_compute
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__l10n_it_account_stamp_auto_compute
+msgid "Auto-compute"
+msgstr "Calcolo automatico"
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+msgid "Charge stamp to customer"
+msgstr "Addebitare bollo al cliente"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni di configurazione"
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.view_account_config_settings_stamp
+msgid "Configuration for stamp duty"
+msgstr "Configurazione imposta di bollo"
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
+msgid ""
+"For each invoice, the base amount for each selected tax will be added up and "
+"used to determine\n"
+"                        the application of the account stamp."
+msgstr ""
+"La base imponibile di ogni conto imposta individuato fra quelli sopra "
+"elencati verrà sommata e utilizzata, \n"
+"                        all'interno di ciascuna fattura, per determinare "
+"l'applicabilità della marca da bollo."
+
+#. module: l10n_it_account_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.report_invoice_document_custom_fields_ext
+msgid ""
+"Imposta di bollo assolta in modo virtuale ai sensi dell'articolo 15 del DPR "
+"642/1972 e del DM 17/06/2014"
+msgstr ""
+"Imposta di bollo assolta in modo virtuale ai sensi dell'articolo 15 del DPR "
+"642/1972 e del DM 17/06/2014"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move_line__is_stamp_line
+msgid "Is Stamp Line"
+msgstr "È una riga di bollo"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__l10n_it_account_stamp_is_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__l10n_it_account_stamp_is_stamp
+msgid "Is a stamp"
+msgstr "È un bollo"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Missing account income configuration for %s"
+msgstr "Configurazione mancante del conto di ricavo per %s"
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Missing stamp duty product in company settings!"
+msgstr "Prodotto imposta di bollo mancante nelle impostazioni dell'azienda!"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model,name:l10n_it_account_stamp.model_product_template
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Product %s must have income and expense accounts"
+msgstr "È necessario impostare i conti di ricavo e di costo per il prodotto %s"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_company__l10n_it_account_stamp_stamp_duty_product_id
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_res_config_settings__l10n_it_account_stamp_stamp_duty_product_id
+msgid "Product used as stamp duty in customer invoices."
+msgstr "Prodotto usato come imposta di bollo nelle fatture cliente."
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_is_stamp_duty_applied
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_is_stamp_duty_applied
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_is_stamp_duty_applied
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.account_move_form_stamp
+#: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
+msgid "Stamp Duty"
+msgstr "Imposta di bollo"
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Stamp Duty Expense"
+msgstr "Costo imposta di bollo"
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Stamp Duty Income"
+msgstr "Ricavo imposta di bollo"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_company__l10n_it_account_stamp_stamp_duty_product_id
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_res_config_settings__l10n_it_account_stamp_stamp_duty_product_id
+msgid "Stamp Duty Product"
+msgstr "Prodotto imposta di bollo"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__l10n_it_account_stamp_tax_apply_min_total_base
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__l10n_it_account_stamp_tax_apply_min_total_base
+msgid "Stamp applicability min total base"
+msgstr "Totale imponibile minimo per applicabilità bollo"
+
+#. module: l10n_it_account_stamp
+#: model:product.template,name:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid "Stamp duty 2 euro"
+msgstr "Imposta di bollo 2 euro"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_is_stamp_duty_applied
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_is_stamp_duty_applied
+#: model:ir.model.fields,help:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_is_stamp_duty_applied
+msgid "Stamp duty is applied to this invoice."
+msgstr "L'imposta di bollo è applicata a questa fattura."
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Stamp duty is not applicable"
+msgstr "Imposta di bollo non applicabile"
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/account_move.py:0
+msgid "Stamp duty line %s already present. Remove it first."
+msgstr "Riga per l'imposta di bollo %s già presente, prima rimuoverla."
+
+#. module: l10n_it_account_stamp
+#: model:product.template,description_sale:l10n_it_account_stamp.l10n_it_account_stamp_2_euro_product_template
+msgid ""
+"Stamp duty payment under the terms of Art. 6, Subsection 2 of MEF Decree "
+"June\n"
+"            17, 2014\n"
+"        "
+msgstr ""
+"Assolvimento dell’imposta di bollo ai sensi dell’articolo 6, comma 2, del D."
+"M.\n"
+"            17 giugno 2014\n"
+"        "
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_account_stamp_is_stamp_duty_present
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_account_stamp_is_stamp_duty_present
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_payment__l10n_it_account_stamp_is_stamp_duty_present
+msgid "Stamp line is present in invoice"
+msgstr "La riga bollo è presente in fattura"
+
+#. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_product__l10n_it_account_stamp_stamp_duty_apply_tax_ids
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_product_template__l10n_it_account_stamp_stamp_duty_apply_tax_ids
+msgid "Stamp taxes"
+msgstr "Imposte di bollo"
+
+#. module: l10n_it_account_stamp
+#. odoo-python
+#: code:addons/l10n_it_account_stamp/models/product.py:0
+msgid "The product %s must be a stamp to apply set taxes!"
+msgstr "Il prodotto %s deve essere un bollo per applicare le imposte definite!"
