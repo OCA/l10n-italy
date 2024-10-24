@@ -122,7 +122,7 @@ Contributors
 -  Mario Riva <mario.riva@agilebg.com>
 -  Mauro Soligo <mauro.soligo@katodo.com>
 -  Giovanni Barzan <giovanni.barzan@gmail.com>
--  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Lorenzo Battistini
 -  Roberto Onnis <onnis.roberto@gmail.com>
 -  Franco Tampieri
 -  Andrea Cometa <info@andreacometa.it>

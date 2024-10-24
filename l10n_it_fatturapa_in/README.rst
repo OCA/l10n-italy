@@ -205,7 +205,7 @@ Authors
 Contributors
 ------------
 
--  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Lorenzo Battistini
 -  Roberto Onnis
 -  Alessio Gerace
 -  Sergio Zanchetta <https://github.com/primes2h>

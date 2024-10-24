@@ -1,4 +1,4 @@
-#  Copyright 2022 Simone Rubino - TAKOBI
+#  Copyright 2022 ~ 2023 Simone Rubino - TAKOBI
 #  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -14,6 +14,7 @@ from odoo.tools import float_is_zero, frozendict
 from odoo.tools.translate import _
 
 from odoo.addons.base_iban.models.res_partner_bank import pretty_iban
+from odoo.addons.l10n_it_fiscalcode.model.res_partner import _check_company_fiscal_code
 
 _logger = logging.getLogger(__name__)
 
@@ -299,12 +300,16 @@ class WizardImportFatturapa(models.TransientModel):
                     raise UserError(
                         _("Country Code %s not found in system.") % CountryCode
                     )
+            if cf:
+                is_company = _check_company_fiscal_code(cf)
+            else:
+                # This is a weaker condition because
+                # Denominazione is also present when the partner is a person.
+                is_company = bool(DatiAnagrafici.Anagrafica.Denominazione)
             vals = {
                 "vat": vat,
                 "fiscalcode": cf,
-                "is_company": (
-                    DatiAnagrafici.Anagrafica.Denominazione and True or False
-                ),
+                "is_company": is_company,
                 "eori_code": DatiAnagrafici.Anagrafica.CodEORI or "",
                 "country_id": country_id,
             }

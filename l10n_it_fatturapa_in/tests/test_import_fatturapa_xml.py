@@ -1150,6 +1150,22 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.amount_tax, 5.12)
         self.assertEqual(invoice.amount_total, 28.39)
 
+    def test_xml_import_missing_Denominazione(self):
+        """When CedentePrestatore has no Denominazione and the Fiscal Code of a Company,
+        it is imported as a Company.
+        """
+        res = self.run_wizard(
+            "test_xml_import_missing_Denominazione",
+            "IT04333730275_FPR17.xml",
+        )
+        bill_model = res.get("res_model")
+        bill_domain = res.get("domain")
+        bill = self.env[bill_model].search(bill_domain)
+
+        partner = bill.partner_id
+        self.assertTrue(partner.is_company)
+        self.assertEqual(partner.fiscalcode, "04333730275")
+
 
 class TestFatturaPAEnasarco(FatturapaCommon):
     def setUp(self):
