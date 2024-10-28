@@ -67,7 +67,7 @@ export class EpsonEposPrint {
 
             this.popup.add(ErrorPopup, {
                 title: _t("Connection to the printer failed"),
-                body: `${_t("An error happened while sending data to the printer. Error code: ")} ${res.code || ""}\n${_t("Error Message: ")}${msgPrinter}`,
+                body: `${_t("An error happened while sending data to the printer. Error code: ")} ${res.code || ""}\n${_t("Error Message: ")}${msgPrinter}\n${_t("Technical details.\nXML: ")}${order.fp_xml}`,
             });
             return;
         }
@@ -257,6 +257,7 @@ export class EpsonEposPrint {
 
         xml += `<endFiscalReceipt operator="${fiscalOperator}" /></printerFiscalReceipt>`;
 
+        this.order.fp_xml = xml;
         this.fiscalPrinter.send(this.url, xml, 0, "sync");
         console.log(xml);
     }
