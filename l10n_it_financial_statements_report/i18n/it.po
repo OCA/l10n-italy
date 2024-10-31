@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-13 14:52+0000\n"
-"PO-Revision-Date: 2024-10-31 12:06+0000\n"
-"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"PO-Revision-Date: 2024-11-14 17:06+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Tutte le registrazioni confermate"
 #. module: l10n_it_financial_statements_report
 #: model:ir.model.fields.selection,name:l10n_it_financial_statements_report.selection__account_account__financial_statements_report_section__assets
 msgid "Assets"
-msgstr "Cespiti"
+msgstr "Attività"
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
@@ -228,38 +228,38 @@ msgstr "Saldo finale"
 #. module: l10n_it_financial_statements_report
 #: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report
 msgid "Financial Statements QWeb Report"
-msgstr "Stampa QWeb del Bilancio Contabile"
+msgstr "Resoconto QWeb del bilancio contabile"
 
 #. module: l10n_it_financial_statements_report
 #: model:ir.actions.act_window,name:l10n_it_financial_statements_report.action_financial_statements_wizard
 #: model:ir.ui.menu,name:l10n_it_financial_statements_report.menu_financial_statements_wizard
 msgid "Financial Statements Report"
-msgstr "Stampa Bilancio Contabile"
+msgstr "Resoconto bilancio contabile"
 
 #. module: l10n_it_financial_statements_report
 #: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__financial_statements_report_section
 msgid "Financial Statements Report - Section"
-msgstr "Bilancio Contabile - Sezione"
+msgstr "Resoconto bilancio contabile - Sezione"
 
 #. module: l10n_it_financial_statements_report
 #: model:ir.actions.report,name:l10n_it_financial_statements_report.report_financial_statements_report_html
 msgid "Financial Statements Report HTML"
-msgstr "Bilancio Contabile in HTML"
+msgstr "Resoconto bilancio contabile in HTML"
 
 #. module: l10n_it_financial_statements_report
 #: model:ir.actions.report,name:l10n_it_financial_statements_report.report_financial_statements_report_pdf
 msgid "Financial Statements Report PDF"
-msgstr "Bilancio Contabile in PDF"
+msgstr "Resoconto bilancio contabile in PDF"
 
 #. module: l10n_it_financial_statements_report
 #: model:ir.actions.report,name:l10n_it_financial_statements_report.report_financial_statements_report_xlsx
 msgid "Financial Statements Report XLSX"
-msgstr "Bilancio contabile in XLSX"
+msgstr "Resoconto bilancio contabile in XLSX"
 
 #. module: l10n_it_financial_statements_report
 #: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report_xlsx
 msgid "Financial Statements XLSX Report"
-msgstr "Stampa XLSX del Bilancio Contabile"
+msgstr "Resoconto XLSX del bilancio contabile"
 
 #. module: l10n_it_financial_statements_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
@@ -267,7 +267,7 @@ msgid ""
 "Financial Statements can be computed only if selected\n"
 "                        company have only one unaffected earnings account."
 msgstr ""
-"Il Bilancio Contabile può essere calcolato solo se l'azienda selezionata\n"
+"Il bilancio contabile può essere calcolato solo se l'azienda selezionata\n"
 "                            ha un solo conto di risultato economico."
 
 #. module: l10n_it_financial_statements_report
@@ -448,14 +448,14 @@ msgstr "A:"
 #. module: l10n_it_financial_statements_report
 #: model:ir.model,name:l10n_it_financial_statements_report.model_trial_balance_report_wizard
 msgid "Trial Balance Report Wizard"
-msgstr "Procedura guidata bilancio di verifica"
+msgstr "Procedura per resoconto bilancio di verifica"
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
 #, python-format
 msgid "Unknown report type; cannot parse it into a table."
-msgstr "Tipo report sconosciuto; impossibile convertirlo in tabella."
+msgstr "Tipo di rendiconto sconosciuto; impossibile analizzarlo come tabella."
 
 #. module: l10n_it_financial_statements_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.wizard_report_financial_statements_report
