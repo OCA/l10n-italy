@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_registro_iva" model="ir.ui.view">
+        <field name="name">VAT Registry XLSX</field>
+        <field name="model">wizard.registro.iva</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="l10n_it_vat_registries.wizard_registro_iva" />
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button[@name='print_registro']" position="after">
+                or
+                <button
+                    string="Print XLSX"
+                    name="print_registro_xlsx"
+                    type="object"
+                    class="oe_highlight"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
