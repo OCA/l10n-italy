@@ -518,7 +518,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         partner.country_id = self.env.ref("base.si").id
         partner.vat = "SI12345679"
         partner.fiscalcode = False
-        partner.onchange_country_id_e_inv()
+        partner._compute_codice_destinatario()
         partner.write(partner._convert_to_write(partner._cache))
         self.assertEqual(partner.codice_destinatario, "XXXXXXX")
         invoice = self.invoice_model.create(

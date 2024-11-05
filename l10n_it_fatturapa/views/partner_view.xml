@@ -33,8 +33,14 @@
                                 attrs="{'invisible': [('is_pa','=', False)]}"
                             />
                         <field
+                                name="l10n_it_use_parent_codice_destinatario"
+                                attrs="{'invisible': [('is_company', '=', False)]}"
+                            />
+                        <field
                                 name="codice_destinatario"
-                                attrs="{'invisible': [('is_pa', '=', True)]}"
+                                attrs="{'invisible': [('is_pa', '=', True)],
+                                        'readonly': [('l10n_it_use_parent_codice_destinatario', '=', False), ('is_company', '=', False)]
+                                        }"
                             />
                         <field
                                 name="pec_destinatario"

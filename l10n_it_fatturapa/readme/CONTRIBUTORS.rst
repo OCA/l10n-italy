@@ -10,6 +10,7 @@
 * `Ooops <https://www.ooops404.com>`_:
 
    * Giovanni Serra <giovanni@gslab.it>
+   * Eduard Brahas <eduard@ooops404.com>
 
 * `Aion Tech <https://aiontech.company/>`_:
 

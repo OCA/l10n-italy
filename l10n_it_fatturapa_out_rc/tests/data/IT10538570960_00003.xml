@@ -30,8 +30,9 @@
          </DatiAnagrafici>
          <Sede>
             <Indirizzo>Street</Indirizzo>
-            <CAP>12345</CAP>
+            <CAP>00000</CAP>
             <Comune>city</Comune>
+            <Provincia>EE</Provincia>
             <Nazione>BE</Nazione>
          </Sede>
       </CedentePrestatore>

@@ -28,8 +28,9 @@
             </DatiAnagrafici>
             <Sede>
                 <Indirizzo>Via Milano, 1</Indirizzo>
-                <CAP>00100</CAP>
+                <CAP>00000</CAP>
                 <Comune>Lugano</Comune>
+                <Provincia>EE</Provincia>
                 <Nazione>CH</Nazione>
             </Sede>
             <StabileOrganizzazione>
