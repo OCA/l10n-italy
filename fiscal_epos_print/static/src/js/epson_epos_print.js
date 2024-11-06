@@ -2,6 +2,7 @@
 
 import { _t } from "@web/core/l10n/translation";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
+import { ErrorTracebackPopup } from "@point_of_sale/app/errors/popups/error_traceback_popup";
 
 export class EpsonEposPrint {
     constructor(...args) {
@@ -39,6 +40,9 @@ export class EpsonEposPrint {
         let tagStatus = tagListNames ? tagListNames.filter(this.getStatusField) : [];
         let msgPrinter = "";
         let info = "";
+        let body_msg = "";
+        let order_lines_msg = "";
+        let order_payment_msg = "";
 
         if (tagStatus.length > 0 && res.success) {
             info = addInfo[tagStatus[0]];
@@ -55,7 +59,8 @@ export class EpsonEposPrint {
                     JSON.stringify(tagListNames) +
                     "\n" +
                     JSON.stringify(addInfo);
-
+                order_lines_msg = order.orderlines.map((l) => `\n${l.full_product_name || ""}, Quantity: ${l.quantity || ""}, Price: ${l.price || ""}, Discount: ${l.discount || ""}`).join(",");
+                order_payment_msg = order.paymentlines.map((l) => `\nType: ${l.payment_method.name || ""}, Amount: ${l.amount || ""}`).join(",");
                 // Save the order
                 //this.pos.push_single_order(order);
             }
@@ -65,10 +70,16 @@ export class EpsonEposPrint {
                 msgPrinter = this.decodeFpStatus(info);
             }
 
-            this.popup.add(ErrorPopup, {
+            body_msg = `${_t("An error happened while sending data to the printer.\nError code: ")}${res.code || ""}` +
+                       ` ${info || ""}\n${_t("Error Message: ")}${msgPrinter}`;
+            if (order) {
+                body_msg += `\n${_t("Order Details.\nOrder lines: {")}${order_lines_msg}` +
+                              `${_t(" }\nPayment Lines: {")}${order_payment_msg}\nTechnical details: \nXML: ")}${order.fp_xml}`;
+            }
+            this.popup.add(ErrorTracebackPopup, {
                 title: _t("Connection to the printer failed"),
-                body: `${_t("An error happened while sending data to the printer. Error code: ")} ${res.code || ""}\n${_t("Error Message: ")}${msgPrinter}\n${_t("Technical details.\nXML: ")}${order.fp_xml}`,
-            });
+                body: body_msg,
+                });
             return;
         }
 
