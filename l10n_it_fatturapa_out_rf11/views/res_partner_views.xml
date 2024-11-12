@@ -1,0 +1,12 @@
+<odoo>
+    <record id="res_partner_form_view_74ter_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.view.74ter.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="is_74ter_agent"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
