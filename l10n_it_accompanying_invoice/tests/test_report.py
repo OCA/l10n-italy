@@ -14,8 +14,8 @@ class TestReport(AccountTestInvoicingCommon):
             "out_invoice",
         )
 
-        html = self.env["ir.actions.report"]._render_qweb_html(
-            "l10n_it_accompanying_invoice.shipping_invoice_template",
-            [invoice.id],
+        report = self.env["ir.actions.report"]._get_report_from_name(
+            "l10n_it_accompanying_invoice.shipping_invoice_template"
         )
+        html = report._render_qweb_html(invoice.id)
         self.assertTrue(html)
