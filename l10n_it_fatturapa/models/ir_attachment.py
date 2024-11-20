@@ -166,3 +166,11 @@ class FatturaPAAttachment(models.AbstractModel):
         transform = ET.XSLT(xslt)
         newdom = transform(dom)
         return ET.tostring(newdom, pretty_print=True)
+
+    @api.model
+    def create(self, values):
+        attachments = super().create(values)
+        for att in attachments:
+            att.write({"res_model": self._name, "res_id": att.id})
+
+        return attachments
