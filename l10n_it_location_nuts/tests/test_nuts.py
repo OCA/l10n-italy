@@ -2,15 +2,15 @@
 # Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestNUTS(SavepointCase):
+class TestNUTS(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestNUTS, cls).setUpClass()
+        super().setUpClass()
         importer = cls.env["nuts.import"].create([{}])
-        importer.run_import()
+        importer.import_update_partner_nuts()
         cls.rome_nuts = cls.env["res.partner.nuts"].search([("code", "=", "ITI43")])
         rome_state_id = cls.env.ref("base.state_it_rm").id
         cls.it_partner = cls.env["res.partner"].create({"name": "it_partner"})

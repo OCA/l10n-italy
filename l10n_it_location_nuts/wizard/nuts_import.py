@@ -1,7 +1,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models
+from odoo import models
 
 
 class NutsImport(models.TransientModel):
@@ -119,15 +119,9 @@ class NutsImport(models.TransientModel):
         "ITI41": "base.state_it_vt",  # Viterbo
     }
 
-    @api.model
-    def state_mapping(self, data, node):
-        mapping = super(NutsImport, self).state_mapping(data, node)
-        level = data.get("level", 0)
-        code = data.get("code", "")
-        if self.current_country_id.code == "IT" and level == 4:
-            external_ref = self._it_state_map.get(code, False)
-            if external_ref:
-                state = self.env.ref(external_ref)
-                if state:
-                    mapping["state_id"] = state.id
-        return mapping
+    def _create_partner_nuts(self, nuts_data):
+        nuts_ids = super()._create_partner_nuts(nuts_data)
+        for nut in nuts_ids:
+            if self._it_state_map.get(nut.code, False):
+                nut.state_id = self.env.ref(self._it_state_map[nut.code])
+        return nuts_ids
