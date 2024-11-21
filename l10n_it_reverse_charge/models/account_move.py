@@ -413,11 +413,17 @@ class AccountMove(models.Model):
                 for line in rc_invoice.line_ids:
                     line.remove_move_reconcile()
                 rc_invoice.invoice_line_ids.unlink()
-                rc_invoice.write(inv_vals)
+                rc_invoice.with_context(
+                    force_conversion_date=self.rc_original_purchase_invoice_ids[0].invoice_date,
+                ).write(inv_vals)
             else:
-                rc_invoice = self.create(inv_vals)
+                rc_invoice = self.with_context(
+                    force_conversion_date=self.rc_original_purchase_invoice_ids[0].invoice_date,
+                ).create(inv_vals)
                 self.rc_self_invoice_id = rc_invoice.id
-            rc_invoice.action_post()
+            rc_invoice.with_context(
+                force_conversion_date=self.invoice_date,
+            ).action_post()
 
             if self.amount_total:
                 # No need to reconcile invoices with total = 0
@@ -468,10 +474,14 @@ class AccountMove(models.Model):
             if inv_line.account_id:
                 line_vals["account_id"] = rc_type.transitory_account_id.id
             invoice_line_vals.append((0, 0, line_vals))
-        supplier_invoice.write({"invoice_line_ids": invoice_line_vals})
+        supplier_invoice.with_context(
+            force_conversion_date=self.invoice_date,
+        ).write({"invoice_line_ids": invoice_line_vals})
         self.rc_self_purchase_invoice_id = supplier_invoice.id
 
-        supplier_invoice.action_post()
+        supplier_invoice.with_context(
+            force_conversion_date=self.invoice_date,
+        ).action_post()
         supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 
     def action_post(self):
