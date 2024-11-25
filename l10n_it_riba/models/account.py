@@ -347,6 +347,7 @@ class AccountMove(models.Model):
                 invoice._sync_dynamic_lines(
                     container={"records": invoice, "self": invoice}
                 )
+            invoice.is_past_due = False
         return invoice
 
     def get_due_cost_line_ids(self):

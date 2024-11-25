@@ -149,6 +149,9 @@
                     attrs="{'invisible': ['|',('is_riba_payment','=', False),('move_type','!=','out_invoice')], 'required': ['&amp;',('is_riba_payment','=', True),('move_type','=', 'out_invoice')]}"
                     domain="[('partner_id','=', commercial_partner_id)]"
                 />
+            </xpath>
+
+            <xpath expr="//label[@for='invoice_payment_term_id']" position="before">
                 <field
                     name="riba_supplier_company_bank_id"
                     attrs="{
