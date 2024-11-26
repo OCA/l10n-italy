@@ -414,11 +414,19 @@ class AccountMove(models.Model):
                     line.remove_move_reconcile()
                 rc_invoice.invoice_line_ids.unlink()
                 rc_invoice.with_context(
-                    force_conversion_date=self.rc_original_purchase_invoice_ids[0].invoice_date,
+                    force_conversion_date=self.rc_original_purchase_invoice_ids[
+                        0
+                    ].invoice_date
+                    if self.rc_original_purchase_invoice_ids
+                    else self.rc_purchase_invoice_id.invoice_date,
                 ).write(inv_vals)
             else:
                 rc_invoice = self.with_context(
-                    force_conversion_date=self.rc_original_purchase_invoice_ids[0].invoice_date,
+                    force_conversion_date=self.rc_original_purchase_invoice_ids[
+                        0
+                    ].invoice_date
+                    if self.rc_original_purchase_invoice_ids
+                    else self.rc_purchase_invoice_id.invoice_date,
                 ).create(inv_vals)
                 self.rc_self_invoice_id = rc_invoice.id
             rc_invoice.with_context(
