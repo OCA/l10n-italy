@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-28 08:49+0000\n"
-"PO-Revision-Date: 2023-04-28 08:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,31 +14,37 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:213
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:202
+#, python-format
+msgid " Account Central Journal"
+msgstr ""
+
+#. module: l10n_it_central_journal_reportlab
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:215
 #, python-format
 msgid " VAT: "
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:276
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:278
 #, python-format
 msgid "Account"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:77
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:76
 #, python-format
 msgid "Account Central Journal - {date_range}.pdf"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:81
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:80
 #, python-format
 msgid "Account Central Journal.pdf"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:275
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:277
 #, python-format
 msgid "Account Move"
 msgstr ""
@@ -51,7 +55,7 @@ msgid "All"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:413
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:403
 #, python-format
 msgid "Balance"
 msgstr ""
@@ -77,20 +81,15 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:279
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:281
 #, python-format
 msgid "Credit"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:274
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:276
 #, python-format
 msgid "Date"
-msgstr ""
-
-#. module: l10n_it_central_journal_reportlab
-#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__date_move_line_from
-msgid "From date"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
@@ -105,7 +104,7 @@ msgid "Dates movements"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:278
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:280
 #, python-format
 msgid "Debit"
 msgstr ""
@@ -127,7 +126,7 @@ msgid "Exclude from General Journal (Reportlab)"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:411
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:401
 #, python-format
 msgid "Final Balance"
 msgstr ""
@@ -135,6 +134,11 @@ msgstr ""
 #. module: l10n_it_central_journal_reportlab
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal_reportlab.wizard_giornale_reportlab
 msgid "Final print"
+msgstr ""
+
+#. module: l10n_it_central_journal_reportlab
+#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__date_move_line_from
+msgid "From date"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
@@ -164,7 +168,7 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:286
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:288
 #, python-format
 msgid "Initial Balance"
 msgstr ""
@@ -216,7 +220,7 @@ msgid "Layout"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:277
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:279
 #, python-format
 msgid "Name"
 msgstr ""
@@ -227,7 +231,7 @@ msgid "PDF"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:220
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:222
 #, python-format
 msgid "Page: %s / %s"
 msgstr ""
@@ -283,7 +287,7 @@ msgid "Report Giornale Name"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
-#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:273
+#: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:275
 #, python-format
 msgid "Row"
 msgstr ""
