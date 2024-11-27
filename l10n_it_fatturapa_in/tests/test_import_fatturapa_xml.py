@@ -5,7 +5,7 @@ from datetime import date
 
 from psycopg2 import IntegrityError
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.modules import get_module_resource
 from odoo.tests import Form
@@ -1208,6 +1208,50 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
                 expected_invoice_line_values,
             ],
         )
+
+    def test_fiscal_position_tax_mapping(self):
+        """Taxes must be mapped
+        according to the fiscal position of the imported bill."""
+        # Arrange
+        file_name = "IT01234567890_FPR03.xml"
+        res = self.run_wizard(
+            "test_fiscal_position_tax_mapping",
+            file_name,
+        )
+        bill = self.env[res["res_model"]].search(res["domain"])
+        tax = bill.invoice_line_ids.tax_ids
+        other_tax = tax.copy(
+            default={
+                "sequence": tax.sequence + 1,
+            },
+        )
+        fiscal_position = self.env["account.fiscal.position"].create(
+            {
+                "name": "Test fiscal position",
+                "tax_ids": [
+                    Command.create(
+                        {
+                            "tax_src_id": tax.id,
+                            "tax_dest_id": other_tax.id,
+                        }
+                    ),
+                ],
+            }
+        )
+        bill.partner_id.property_account_position_id = fiscal_position
+        # pre-condition
+        self.assertEqual(fiscal_position.map_tax(tax), other_tax)
+
+        # Act
+        res = self.run_wizard(
+            "test_fiscal_position_tax_mapped",
+            file_name,
+        )
+
+        # Assert
+        mapped_bill = self.env[res["res_model"]].search(res["domain"])
+        self.assertEqual(mapped_bill.fiscal_position_id, fiscal_position)
+        self.assertEqual(mapped_bill.invoice_line_ids.tax_ids, other_tax)
 
 
 class TestFatturaPAEnasarco(FatturapaCommon):

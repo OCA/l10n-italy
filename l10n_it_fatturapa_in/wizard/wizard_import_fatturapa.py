@@ -8,7 +8,7 @@ from datetime import datetime
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.fields import first
+from odoo.fields import Command, first
 from odoo.osv import expression
 from odoo.tools import float_is_zero, frozendict
 from odoo.tools.translate import _
@@ -614,39 +614,51 @@ class WizardImportFatturapa(models.TransientModel):
         return product
 
     def adjust_accounting_data(self, product, line_vals):
-        account = self.get_credit_account(product)
-        line_vals["account_id"] = account.id
+        line_tax_commands = line_vals.get("tax_ids")
+        if line_tax_commands and line_tax_commands[0][0] == fields.Command.SET:
+            line_tax_id = line_tax_commands[0][2][0]
+        else:
+            line_tax_id = False
+        line_tax = self.env["account.tax"].browse(line_tax_id)
 
-        new_tax = None
-        if len(product.product_tmpl_id.supplier_taxes_id) == 1:
-            new_tax = product.product_tmpl_id.supplier_taxes_id[0]
-        elif len(account.tax_ids) == 1:
-            new_tax = account.tax_ids[0]
-        line_tax = self.env["account.tax"]
-        if (
-            line_vals.get("tax_ids")
-            and line_vals["tax_ids"][0][0] == fields.Command.SET
-        ):
-            line_tax_id = line_vals["tax_ids"][0][2][0]
-            line_tax = self.env["account.tax"].browse(line_tax_id)
-        if new_tax and line_tax and new_tax != line_tax:
-            if new_tax._get_tax_amount() != line_tax._get_tax_amount():
-                self.log_inconsistency(
-                    _(
-                        "XML contains tax %(line_tax)s. "
-                        "Product %(product)s has tax %(new_tax)s. Using "
-                        "the XML one"
+        if product:
+            account = self.get_credit_account(product)
+            line_vals["account_id"] = account.id
+
+            new_tax = None
+            if len(product.product_tmpl_id.supplier_taxes_id) == 1:
+                new_tax = product.product_tmpl_id.supplier_taxes_id[0]
+            elif len(account.tax_ids) == 1:
+                new_tax = account.tax_ids[0]
+
+            if new_tax and line_tax and new_tax != line_tax:
+                if new_tax._get_tax_amount() != line_tax._get_tax_amount():
+                    self.log_inconsistency(
+                        _(
+                            "XML contains tax %(line_tax)s. "
+                            "Product %(product)s has tax %(new_tax)s. Using "
+                            "the XML one"
+                        )
+                        % {
+                            "line_tax": line_tax.name,
+                            "product": product.name,
+                            "new_tax": new_tax.name,
+                        }
                     )
-                    % {
-                        "line_tax": line_tax.name,
-                        "product": product.name,
-                        "new_tax": new_tax.name,
-                    }
-                )
-            else:
-                # If product has the same amount of the one in XML,
-                # I use it. Typical case: 22% det 50%
-                line_vals["tax_ids"] = [(6, 0, [new_tax.id])]
+                else:
+                    # If product has the same amount of the one in XML,
+                    # I use it. Typical case: 22% det 50%
+                    line_vals["tax_ids"] = [(6, 0, [new_tax.id])]
+
+        # Apply fiscal position
+        if line_tax:
+            bill = self.env["account.move"].browse(line_vals["move_id"])
+            fiscal_position = bill.fiscal_position_id
+            if fiscal_position:
+                line_tax = fiscal_position.map_tax(line_tax)
+                line_vals["tax_ids"] = [
+                    Command.set(line_tax.ids),
+                ] + line_tax_commands[1:]
 
     # move_line.tax_ids
     # move_line.name
@@ -1725,7 +1737,7 @@ class WizardImportFatturapa(models.TransientModel):
     ):
         if product:
             invoice_line_data["product_id"] = product.id
-            self.adjust_accounting_data(product, invoice_line_data)
+        self.adjust_accounting_data(product, invoice_line_data)
         self.create_and_get_line_id(
             invoice_lines, invoice_line_model, invoice_line_data
         )
