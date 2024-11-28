@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Add fiscal code fields to Config Settings form view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div data-key="account" position="inside">
+                <div class="row mt16 o_settings_container" name="l10n_it_fiscalcode">
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        id="l10n_it_fiscalcode_check_uniqueness"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="l10n_it_fiscalcode_check_uniqueness" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="l10n_it_fiscalcode_check_uniqueness" />
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                            <div class="text-muted">
+                                When the fiscal code of a partner is edited, raise an error
+                                if there is another partner with the same fiscal code.
+                            </div>
+                            <div class="mt8">
+                                <button
+                                    name="l10n_it_fiscalcode_check_uniqueness_constraint"
+                                    type="object"
+                                    string="Check existing partners"
+                                    attrs="{
+                                        'invisible': [
+                                            ('l10n_it_fiscalcode_check_uniqueness', '=', False),
+                                        ],
+                                    }"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>

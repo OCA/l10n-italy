@@ -27,6 +27,7 @@
         "view/report_invoice_document.xml",
         "wizard/compute_fc_view.xml",
         "view/company_view.xml",
+        "view/res_config_settings_views.xml",
     ],
     "installable": True,
 }

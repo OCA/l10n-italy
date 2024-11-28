@@ -42,3 +42,64 @@ class ResPartner(models.Model):
     def _fiscalcode_changed(self):
         if self.fiscalcode:
             self.fiscalcode = self.fiscalcode.upper()
+
+    @api.model
+    def _l10n_it_fiscalcode_build_uniqueness_constraint_error(self, error_dict):
+        """Create the error message for uniqueness constraint."""
+        error_message_list = [
+            _("Multiple partners have the same fiscal code, please correct them.\n"),
+        ]
+        for fiscal_code, partners in error_dict.items():
+            error_message_list.append(
+                _(
+                    "%(fiscal_code)s: %(partners)s",
+                    fiscal_code=fiscal_code,
+                    partners=", ".join(partners.mapped("name")),
+                )
+            )
+        return "\n".join(error_message_list)
+
+    @api.constrains(
+        "fiscalcode",
+    )
+    def _l10n_it_fiscalcode_constrain_uniqueness(self):
+        """
+        Partners in the same company must have different fiscal codes.
+
+        This check is only enabled for companies having "Fiscal code is unique".
+        """
+        companies = self.company_id
+        if not companies:
+            companies = self.env["res.company"].search([])
+
+        for company in companies.filtered("l10n_it_fiscalcode_check_uniqueness"):
+            error_dict = {}
+            partner_groups = self.env["res.partner"].read_group(
+                [
+                    ("company_id", "in", [False, company.id]),
+                    ("fiscalcode", "!=", False),
+                ],
+                [
+                    "fiscalcode",
+                ],
+                [
+                    "fiscalcode",
+                ],
+            )
+            for partner_group in partner_groups:
+                if partner_group["fiscalcode_count"] > 1:
+                    error_partners = self.env["res.partner"].search(
+                        partner_group["__domain"]
+                    )
+                    if self & error_partners:
+                        # Only raise an error for partners we are checking
+                        error_fiscal_code = partner_group["fiscalcode"]
+                        error_dict[error_fiscal_code] = error_partners
+
+            if error_dict:
+                error_message = (
+                    self._l10n_it_fiscalcode_build_uniqueness_constraint_error(
+                        error_dict
+                    )
+                )
+                raise ValidationError(error_message)

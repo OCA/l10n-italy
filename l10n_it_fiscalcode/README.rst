@@ -56,6 +56,20 @@ Installare il modulo Python:
 Install the Python package:
 `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__.
 
+Configuration
+=============
+
+**Italiano**
+
+Per controllare che i codici fiscali siano unici in una stessa azienda,
+abilitare "Il codice fiscale è unico" in Fatturazione > Configurazione >
+Impostazioni.
+
+**English**
+
+In order to check that fiscal codes are unique within the same company,
+enable "Tax code is unique" in Invoicing > Configuration > Settings.
+
 Usage
 =====
 

@@ -128,3 +128,104 @@ class TestFiscalCode(TransactionCase):
         # Assert
         self.assertIn("fiscal code", exc_message)
         self.assertIn("16 characters", exc_message)
+
+    def test_uniqueness_disabled(self):
+        """If a company has no "Fiscal code is unique",
+        partners with the same fiscal code are allowed."""
+        # Arrange
+        fiscal_code = "RSSMRA84H04H501X"
+        company = self.env.company
+        # pre-condition
+        self.assertFalse(company.l10n_it_fiscalcode_check_uniqueness)
+
+        # Act
+        partners = self.env["res.partner"].create(
+            [
+                {
+                    "name": "Test fiscal code uniqueness",
+                    "fiscalcode": fiscal_code,
+                },
+                {
+                    "name": "Test duplicated fiscal code",
+                    "fiscalcode": fiscal_code,
+                },
+            ]
+        )
+
+        # Assert
+        self.assertEqual(
+            partners[0].fiscalcode,
+            partners[1].fiscalcode,
+        )
+
+    def test_uniqueness_constraint(self):
+        """If a company has "Fiscal code is unique",
+        partners with the same fiscal code are not allowed."""
+        # Arrange
+        partner_names = [
+            "Test same fiscal code",
+            "Test duplicated fiscal code",
+        ]
+        fiscal_code = "RSSMRA84H04H501X"
+        company = self.env.company
+        company.l10n_it_fiscalcode_check_uniqueness = True
+        # pre-condition
+        self.assertTrue(company.l10n_it_fiscalcode_check_uniqueness)
+
+        # Act
+        with self.assertRaises(ValidationError) as ve:
+            self.env["res.partner"].create(
+                [
+                    {
+                        "name": partner_name,
+                        "fiscalcode": fiscal_code,
+                    }
+                    for partner_name in partner_names
+                ]
+            )
+        exc_message = ve.exception.args[0]
+
+        # Assert
+        self.assertIn("same fiscal code", exc_message)
+        self.assertIn(fiscal_code, exc_message)
+        for partner_name in partner_names:
+            self.assertIn(partner_name, exc_message)
+
+    def test_company_uniqueness_constraint(self):
+        """Uniqueness constraint can be checked for the whole company."""
+        # Arrange
+        partner_names = [
+            "Test same fiscal code",
+            "Test duplicated fiscal code",
+        ]
+        fiscal_code = "RSSMRA84H04H501X"
+        company = self.env["res.company"].create(
+            {
+                "name": "Test company",
+                "l10n_it_fiscalcode_check_uniqueness": False,
+            }
+        )
+        self.env["res.partner"].create(
+            [
+                {
+                    "name": partner_name,
+                    "fiscalcode": fiscal_code,
+                    "company_id": company.id,
+                }
+                for partner_name in partner_names
+            ]
+        )
+        company.l10n_it_fiscalcode_check_uniqueness = True
+        # pre-condition
+        self.assertTrue(company.l10n_it_fiscalcode_check_uniqueness)
+
+        # Act
+        with self.assertRaises(ValidationError) as ve:
+            company.l10n_it_fiscalcode_check_uniqueness_constraint()
+        exc_message = ve.exception.args[0]
+
+        # Assert
+        self.assertIn("same fiscal code", exc_message)
+        self.assertIn(fiscal_code, exc_message)
+        for partner_name in partner_names:
+            self.assertIn(partner_name, exc_message)
