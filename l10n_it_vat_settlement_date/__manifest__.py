@@ -16,6 +16,7 @@
         "account_tax_balance",
         "account_vat_period_end_statement",
         "l10n_it_vat_registries",
+        "l10n_it_vat_statement_communication",
     ],
     "data": [
         "views/account_move_views.xml",
