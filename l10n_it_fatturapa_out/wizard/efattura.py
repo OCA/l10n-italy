@@ -119,10 +119,14 @@ class EFatturaOut:
         def get_id_fiscale_iva(partner, prefer_fiscalcode=False):
             id_paese = partner.country_id.code
             if partner.vat:
-                if (id_paese == "IT" and partner.vat.startswith("IT")) or (
-                    id_paese == "SM" and partner.vat.startswith("SM")
+                id_paese_from_vat = partner.vat[:2]
+                if (id_paese == "IT" and id_paese_from_vat == "IT") or (
+                    id_paese == "SM" and id_paese_from_vat == "SM"
                 ):
                     id_codice = partner.vat[2:]
+                elif id_paese_from_vat.isalpha() and id_paese != id_paese_from_vat:
+                    id_codice = partner.vat[2:]
+                    id_paese = partner.vat[:2]
                 else:
                     id_codice = partner.vat
             elif partner.fiscalcode or id_paese == "IT":

@@ -8,6 +8,7 @@ import base64
 import re
 from unittest.mock import Mock
 
+from lxml import etree
 from psycopg2 import IntegrityError
 
 import odoo
@@ -1237,3 +1238,69 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         # Check that two attachments are created
         attachments_nbr = len(invoices.mapped("fatturapa_attachment_out_id"))
         self.assertEqual(attachments_nbr, 2)
+
+    def test_foreign_customer_with_italian_piva_xml_export(self):
+        # creo un'azienda estera con sede in una nazione straniera,
+        # ma partita iva italiana
+        vals = {
+            "name": "Azienda Estera",
+            "is_company": "1",
+            "street": "Mžaja ŠtraÇÃ 14",
+            "is_pa": False,
+            "city": "Šofıa",
+            "zip": "49715",
+            "country_id": self.env.ref("base.si").id,
+            "vat": "IT03297040366",
+        }
+        partner = self.env["res.partner"].create(vals)
+        invoice = self.invoice_model.create(
+            {
+                "name": "INV/2024/0014",
+                "invoice_date": "2024-01-07",
+                "partner_id": partner.id,
+                "journal_id": self.sales_journal.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
+                "user_id": self.user_demo.id,
+                "move_type": "out_invoice",
+                "currency_id": self.EUR.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_product_10.id,
+                            "name": "Mouse Optical",
+                            "quantity": 1,
+                            "product_uom_id": self.product_uom_unit.id,
+                            "price_unit": 10,
+                            "tax_ids": [(6, 0, {self.tax_22.id})],
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice._post()
+        res = self.run_wizard(invoice.id)
+        self.assertTrue(res)
+
+        attachment = self.attach_model.browse(res["res_id"])
+        xml_content = base64.decodebytes(attachment.datas)
+
+        parser = etree.XMLParser(remove_blank_text=True)
+        xml = etree.fromstring(xml_content, parser)
+        cessionario_committente_idiva = xml.findall(
+            ".//CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA"
+        )
+        # verifica che ci sia solo un tag
+        # CessionarioCommittente/DatiAnagrafici/IdFiscaleIVA
+        self.assertEqual(len(cessionario_committente_idiva), 1)
+        # verifica che ci siano sia IdPaese che IdCodice
+        self.assertEqual(len(cessionario_committente_idiva[0]), 2)
+        # verifica che ci siano sia IdPaese sia IT e non sia stato aggiunto il codice
+        # nazione come prima del commit:
+        # [FIX] l10n_it_fatturapa_out: avoid to add country code to PIVA for foreign
+        # customers with italian PIVA
+        self.assertEqual(cessionario_committente_idiva[0][0].text, "IT")
+        # verifica che ci siano sia IdPaese sia corretto
+        self.assertEqual(cessionario_committente_idiva[0][1].text, "03297040366")
