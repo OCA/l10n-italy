@@ -50,3 +50,8 @@ msgstr ""
 #: model:ir.model,name:l10n_it_vat_settlement_date.model_account_vat_period_end_statement
 msgid "VAT period end statement"
 msgstr ""
+
+#. module: l10n_it_vat_settlement_date
+#: model:ir.model,name:l10n_it_vat_settlement_date.model_comunicazione_liquidazione_vp
+msgid "VAT statement communication - VP table"
+msgstr ""
