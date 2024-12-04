@@ -72,10 +72,11 @@ export class EpsonEposPrint {
 
             body_msg = `${_t("An error happened while sending data to the printer.\nError code: ")}${res.code || ""}` +
                        `${_t("\nStatus: ")}${res.status || ""}` +
-                       ` ${info || ""}\n${_t("Error Message: ")}${msgPrinter}`;
+                       `${_t("\nPrinter Code: ")}${info || ""}\n${_t("Error Message: ")}${msgPrinter}`;
             if (order) {
                 body_msg += `\n${_t("Order Details.\nOrder lines: {")}${order_lines_msg}` +
-                              `${_t(" }\nPayment Lines: {")}${order_payment_msg}\nTechnical details: \nXML: ")}${order.fp_xml}`;
+                              `${_t(" }\nPayment Lines: {")}${order_payment_msg}` + 
+                              `${_t(" }\nTechnical details: \nXML: ")}${order.fp_xml}`;
             }
             this.popup.add(ErrorTracebackPopup, {
                 title: _t("Connection to the printer failed"),
