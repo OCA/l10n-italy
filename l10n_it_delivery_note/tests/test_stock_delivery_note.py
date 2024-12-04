@@ -57,6 +57,42 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         picking_backorder.button_validate()
         self.assertTrue(picking_backorder.delivery_note_id)
 
+    # Test validazione di più picking (ad es nel caso di batch picking)
+    def test_multiple_picking(self):
+        user = new_test_user(
+            self.env,
+            login="test",
+            groups="stock.group_stock_manager",
+        )
+        # change user in order to automatically create delivery note
+        # when picking is validated
+        self.env.user = user
+        # creo ordine 1
+        sale_order1 = self.create_sales_order(
+            [
+                self.desk_combination_line,  # 1
+            ],
+        )
+
+        # creo ordine 2
+        sale_order1.action_confirm()
+        sale_order2 = self.create_sales_order(
+            [
+                self.large_desk_line,  # 1
+            ],
+        )
+
+        sale_order2.action_confirm()
+        picking_ids = sale_order1.picking_ids | sale_order2.picking_ids
+
+        # verifico creazione di due ricezioni
+        self.assertEqual(len(picking_ids), 2)
+        sale_order1.picking_ids.move_ids.quantity_done = 1
+        sale_order2.picking_ids.move_ids.quantity_done = 1
+        picking_ids.button_validate()
+        # verifico che la generazione del ddt sia ok
+        self.assertEqual(len(picking_ids.mapped("delivery_note_id")), 1)
+
     # ⇒ "Consegna senza ordine"
     def test_delivery_without_so(self):
         #
