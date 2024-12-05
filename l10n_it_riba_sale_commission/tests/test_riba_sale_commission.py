@@ -1,4 +1,5 @@
 # Copyright 2023 Nextev
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from datetime import datetime
@@ -6,7 +7,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestRibaCommission(TransactionCase):
@@ -129,6 +130,7 @@ class TestRibaCommission(TransactionCase):
                 "past_due_journal_id": cls.bank_journal.id,
                 "overdue_effects_account_id": cls.unsolved_account.id,
                 "protest_charge_account_id": cls.expenses_account.id,
+                "settlement_journal_id": cls.bank_journal.id,
             }
         )
         cls.company = cls.env.ref("base.main_company")
@@ -170,7 +172,9 @@ class TestRibaCommission(TransactionCase):
             }
         )
 
-    def _create_invoice(self, inv_date, payment_term, commission):
+    def _create_invoice(self, inv_date, payment_term, commission, agent=None):
+        if agent is None:
+            agent = self.agent_monthly
         self.partner.property_account_receivable_id = self.account_rec1_id.id
         return self.env["account.move"].create(
             {
@@ -195,7 +199,7 @@ class TestRibaCommission(TransactionCase):
                                     0,
                                     0,
                                     {
-                                        "agent_id": self.agent_monthly.id,
+                                        "agent_id": agent.id,
                                         "commission_id": commission.id,
                                     },
                                 )
@@ -271,7 +275,7 @@ class TestRibaCommission(TransactionCase):
         wizard = self.make_settle_model.create(vals)
         wizard.action_settle()
 
-    def register_payment(self, invoice):
+    def register_payment(self, invoice, payment_date=None):
         invoice.action_post()
 
         wizard_riba_issue = self.env["riba.issue"].create(
@@ -303,6 +307,17 @@ class TestRibaCommission(TransactionCase):
             )
         )
         wiz_accreditation.create_move()
+
+        payment_wizard_action = riba_list.settle_all_line()
+        payment_wizard_form = Form(
+            self.env[payment_wizard_action["res_model"]].with_context(
+                **payment_wizard_action["context"]
+            )
+        )
+        if payment_date:
+            payment_wizard_form.payment_date = payment_date
+        payment_wizard = payment_wizard_form.save()
+        payment_wizard.pay()
 
     def test_riba_settlement(self):
         date = fields.Date.today()
@@ -346,3 +361,39 @@ class TestRibaCommission(TransactionCase):
             ]
         )
         self.assertEqual(0, len(settlements))
+
+    def test_settle_invoice_on_payment_date(self):
+        """When commission is "Payment Date Based",
+        the commission is settled based on the due date of the RiBa line.
+        """
+        # Arrange
+        commission = self.commission_model.create(
+            {
+                "name": "20% based on payment date",
+                "fix_qty": 20.0,
+                "amount_base_type": "net_amount",
+                "invoice_state": "paid_date",
+            }
+        )
+        agent = self.agent_monthly
+        agent.commission_id = commission
+        invoice = self._create_invoice(
+            "2020-01-15",
+            self.payment_term,
+            commission,
+            agent=agent,
+        )
+        self.register_payment(
+            invoice,
+            payment_date="2020-02-15",
+        )
+
+        # Act
+        self._settle_agent(agent=agent, date="2020-02-01")
+        january_settlement = self.settle_model.search([("state", "=", "settled")])
+        self._settle_agent(agent=agent, date="2020-03-01")
+        february_settlement = self.settle_model.search([("state", "=", "settled")])
+
+        # Assert
+        self.assertFalse(january_settlement)
+        self.assertEqual(invoice, february_settlement.line_ids.invoice_line_id.move_id)

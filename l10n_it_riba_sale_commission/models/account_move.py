@@ -1,3 +1,4 @@
+# Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from datetime import date, timedelta
@@ -9,6 +10,12 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     no_commission = fields.Boolean(string="Without commissions")
+    l10n_it_riba_commission_use_due_date = fields.Boolean(
+        string="Use RiBa due date for commission",
+        help="When commission is set for invoice status 'Payment Date Based', "
+        "use the corresponding RiBa's due date instead of the payment date.",
+        default=True,
+    )
 
     def _get_reconciled_invoices_partials(self):
         """
@@ -62,3 +69,17 @@ class AccountInvoiceLineAgent(models.Model):
             if dates:
                 return date_payment_to < max(dates)
         return super()._skip_future_payments(date_payment_to)
+
+    def _get_commission_settlement_date(self):
+        commission_settlement_date = super()._get_commission_settlement_date()
+        if (
+            self.commission_id.invoice_state == "paid_date"
+            and self.invoice_id.l10n_it_riba_commission_use_due_date
+        ):
+            # Assume that the invoice will be paid when all the RiBas are due
+            riba_lines = self.object_id.move_id.line_ids.slip_line_ids
+            commission_settlement_date = max(
+                riba_lines.riba_line_id.mapped("due_date"),
+                default=date.min,
+            )
+        return commission_settlement_date

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
     <record model="ir.ui.view" id="invoice_no_commission_form">
         <field name="name">account.move.invoice.no.commission.form</field>
@@ -7,6 +11,7 @@
         <field name="arch" type="xml">
             <group id="header_right_group" position="inside">
                 <field name="no_commission" />
+                <field name="l10n_it_riba_commission_use_due_date" />
             </group>
         </field>
     </record>
