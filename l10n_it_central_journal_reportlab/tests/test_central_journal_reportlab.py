@@ -8,7 +8,8 @@ from datetime import datetime
 
 from dateutil.rrule import MONTHLY
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 from odoo.tools import pdf
 
 
@@ -20,8 +21,8 @@ class TestCentralJournalReportlab(TransactionCase):
         self.range_type = self.env["date.range.type"].create({"name": "Fiscal year"})
         self.env["date.range.generator"].create(
             {
-                "date_start": "%s-01-01" % self.today.year,
-                "name_prefix": "%s-" % self.today.year,
+                "date_start": f"{self.today.year}-01-01",
+                "name_prefix": f"{self.today.year}-",
                 "type_id": self.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
