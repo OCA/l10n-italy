@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="wizard_giornale_reportlab" model="ir.ui.view">
         <field name="name">General Journal Reportlab</field>
         <field name="model">wizard.giornale.reportlab</field>
@@ -49,17 +48,17 @@
                 </group>
                 <footer>
                     <button
-                        name="print_giornale_reportlab"
-                        string="Print"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    name="print_giornale_reportlab"
+                    string="Print"
+                    type="object"
+                    class="oe_highlight"
+                />
                     <button
-                        name="print_giornale_reportlab_final"
-                        string="Final print"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    name="print_giornale_reportlab_final"
+                    string="Final print"
+                    type="object"
+                    class="oe_highlight"
+                />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
@@ -81,5 +80,4 @@
         action="action_giornale_reportlab"
         id="menu_giornale"
     />
-
 </odoo>
