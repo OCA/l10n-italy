@@ -29,12 +29,12 @@
         </field>
     </record>
 
-    <record id="view_date_range_inherit_tree" model="ir.ui.view">
-        <field name="name">date.range.tree.inherit</field>
+    <record id="view_date_range_inherit_list" model="ir.ui.view">
+        <field name="name">date.range.list.inherit</field>
         <field name="model">date.range</field>
-        <field name="inherit_id" ref="date_range.view_date_range_tree" />
+        <field name="inherit_id" ref="date_range.view_date_range_list" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="editable" />
             </xpath>
         </field>
