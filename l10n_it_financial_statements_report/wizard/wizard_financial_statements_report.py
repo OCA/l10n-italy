@@ -51,6 +51,7 @@ class ReportFinancialStatementsWizard(models.TransientModel):
             "show_partner_details": self.show_partner_details,
             "unaffected_earnings_account": self.unaffected_earnings_account.id,
             "account_financial_report_lang": self.env.lang,
+            "grouped_by": False,
         }
 
     def _print_report(self, report_type):
