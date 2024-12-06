@@ -37,7 +37,9 @@ class AccountMove(models.Model):
                     > date.today()
                 ) and riba_type == "sbf":
                     to_remove.append((partial, amount, counterpart_line))
-        return [item for item in invoice_partials if item not in to_remove]
+        return [
+            item for item in invoice_partials if item not in to_remove
+        ], exchange_diff_moves
 
 
 class AccountInvoiceLineAgent(models.Model):

@@ -1,6 +1,7 @@
 # Copyright 2023 Nextev
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
+from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
@@ -330,12 +331,10 @@ class TestRibaCommission(TransactionCase):
     def test_riba_partial_settlement(self):
         date = fields.Date.today()
         invoice = self._create_invoice(
-            date - relativedelta(days=100),
-            self.partial_payment_term,
-            self.partial_commission_net_paid,
+            date, self.partial_payment_term, self.partial_commission_net_paid
         )
         self.register_payment(invoice)
-        self._settle_agent(self.agent_monthly, 1)
+        self._settle_agent(self.agent_monthly, 1, date_payment_to=datetime.now())
         settlements = self.env["commission.settlement"].search(
             [
                 (

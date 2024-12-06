@@ -1,1 +1,1 @@
-odoo16-addon-commission@git+https://github.com/OCA/commission/pull/561/head#subdirectory=setup/commission
+odoo-addon-commission @ git+https://github.com/OCA/commission.git@refs/pull/561/head#subdirectory=setup/commission
