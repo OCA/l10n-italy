@@ -1,1 +1,1 @@
-odoo-addon-commission @ git+https://github.com/OCA/commission.git@refs/pull/561/head#subdirectory=setup/commission
+odoo-addon-sale_commission_partial_settlement @ git+https://github.com/OCA/commission.git@refs/pull/561/head#subdirectory=setup/sale_commission_partial_settlement
