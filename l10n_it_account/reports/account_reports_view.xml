@@ -104,7 +104,7 @@
 
     <template id="minimal_layout" inherit_id="web.minimal_layout" priority="100">
         <xpath expr="//head/script" position="replace">
-            <script>
+            <script t-if="subst">
                 function subst() {
                     var vars = {};
                     var x = document.location.search.substring(1).split('&amp;');
