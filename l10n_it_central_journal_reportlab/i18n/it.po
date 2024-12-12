@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-28 08:51+0000\n"
-"PO-Revision-Date: 2023-04-28 08:51+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2024-12-12 19:34+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_central_journal_reportlab
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:213
@@ -161,7 +163,7 @@ msgstr "Raggruppa per conto"
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_it_central_journal_reportlab
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:286
@@ -224,7 +226,7 @@ msgstr "Nome"
 #. module: l10n_it_central_journal_reportlab
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal_reportlab.wizard_giornale_reportlab
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #. module: l10n_it_central_journal_reportlab
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:220
@@ -296,7 +298,7 @@ msgstr "Riga iniziale"
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__target_move
 msgid "Target Move"
-msgstr ""
+msgstr "Movimento destinazione"
 
 #. module: l10n_it_central_journal_reportlab
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__date_move_line_to
@@ -323,4 +325,3 @@ msgstr "Anno per il piè di pagina"
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal_reportlab.wizard_giornale_reportlab
 msgid "or"
 msgstr "oppure"
-
