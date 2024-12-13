@@ -10,5 +10,4 @@ class StockDeliveryNote(models.Model):
     stock_picking_batch_id = fields.Many2one(
         "stock.picking.batch",
         string="Batch Picking",
-        readonly=True,
     )

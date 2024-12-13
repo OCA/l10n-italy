@@ -7,8 +7,8 @@
     "name": "ITA - Documento di trasporto - Prelievo raggruppato",
     "summary": "Crea i DDT partendo da gruppi di prelievi",
     "author": "Marco Colombo, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "l10n_it_delivery_note_batch",
-    "version": "16.0.1.1.0",
+    "website": "https://github.com/OCA/l10n-italy",
+    "version": "18.0.1.0.0",
     "category": "Localization/Italy",
     "license": "AGPL-3",
     "maintainers": [

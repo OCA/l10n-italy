@@ -15,13 +15,8 @@
                     type="object"
                     string="Create DNs"
                     style="margin-left:10px;"
-                    attrs="{'invisible': [
-                        '|',
-                        ('state', '=', 'done'),
-                        ('all_pickings_have_delivery_note', '=', True)
-                    ]}"
+                    invisible="state == 'done' or all_pickings_have_delivery_note"
                 />
-                <!-- attrs="{'invisible': ['|', ('state', '!=', 'done'), ('delivery_note_count', '!=', 0)]}" -->
             </xpath>
             <xpath expr="//sheet/div" position="before">
                 <div class="oe_button_box" name="button_box">
@@ -30,8 +25,7 @@
                         class="oe_stat_button"
                         name="goto_delivery_notes"
                         icon="fa-pencil-square-o"
-                        attrs="{'invisible': [('delivery_note_count', '=', 0)]}"
-                        groups="l10n_it_delivery_note.use_advanced_delivery_notes"
+                        invisible="not delivery_note_count"
                     >
                         <field
                             name="delivery_note_count"
