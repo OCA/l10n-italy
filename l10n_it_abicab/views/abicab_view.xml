@@ -13,8 +13,8 @@
         </field>
     </record>
 
-    <record id="view_bank_tree_abicab" model="ir.ui.view">
-        <field name="name">res.bank.tree.abicab</field>
+    <record id="view_bank_list_abicab" model="ir.ui.view">
+        <field name="name">res.bank.list.list</field>
         <field name="model">res.bank</field>
         <field name="inherit_id" ref="base.view_res_bank_tree" />
         <field name="arch" type="xml">
