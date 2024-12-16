@@ -53,7 +53,7 @@ xsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.
                     <IdPaese>IT</IdPaese>
                     <IdCodice>03533590174</IdCodice>
                 </IdFiscaleIVA>
-                <CodiceFiscale>MRORSS90E25B111T</CodiceFiscale>
+                <CodiceFiscale>MRORSS90E25B111K</CodiceFiscale>
                 <Anagrafica>
                     <Nome>MARIO</Nome>
                     <Cognome>ROSSI</Cognome>
