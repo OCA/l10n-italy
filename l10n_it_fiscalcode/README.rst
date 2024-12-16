@@ -85,13 +85,13 @@ fragment is included. ]
 16.0.1.0.0 (2022-11-11)
 -----------------------
 
--  [MIG] Migration from Odoo 14.0 to 16.0
--  [IMP] Black, isort, prettier (pre-commit)
+- [MIG] Migration from Odoo 14.0 to 16.0
+- [IMP] Black, isort, prettier (pre-commit)
 
 16.0.1.0.1 (2022-11-16)
 -----------------------
 
--  [IMP] Add codicefiscale.isvalid() to improve fiscalcode validation
+- [IMP] Add codicefiscale.isvalid() to improve fiscalcode validation
 
 Bug Tracker
 ===========
@@ -116,25 +116,25 @@ Authors
 Contributors
 ------------
 
--  Davide Corio
--  Luca Subiaco <subluca@gmail.com>
--  Simone Orsi <simone.orsi@domsense.com>
--  Mario Riva <mario.riva@agilebg.com>
--  Mauro Soligo <mauro.soligo@katodo.com>
--  Giovanni Barzan <giovanni.barzan@gmail.com>
--  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
--  Roberto Onnis <onnis.roberto@gmail.com>
--  Franco Tampieri
--  Andrea Cometa <info@andreacometa.it>
--  Andrea Gallina
--  Matteo Bilotta <mbilotta@linkgroup.it>
--  Giuseppe Borruso - Dinamiche Aziendali srl
-   <gborruso@dinamicheaziendali.it>
--  Alex Comba <alex.comba@agilebg.com>
--  Marco Colombo <marco.colombo@phi.technology>
--  `Aion Tech <https://aiontech.company/>`__:
+- Davide Corio
+- Luca Subiaco <subluca@gmail.com>
+- Simone Orsi <simone.orsi@domsense.com>
+- Mario Riva <mario.riva@agilebg.com>
+- Mauro Soligo <mauro.soligo@katodo.com>
+- Giovanni Barzan <giovanni.barzan@gmail.com>
+- Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+- Roberto Onnis <onnis.roberto@gmail.com>
+- Franco Tampieri
+- Andrea Cometa <info@andreacometa.it>
+- Andrea Gallina
+- Matteo Bilotta <mbilotta@linkgroup.it>
+- Giuseppe Borruso - Dinamiche Aziendali srl
+  <gborruso@dinamicheaziendali.it>
+- Alex Comba <alex.comba@agilebg.com>
+- Marco Colombo <marco.colombo@phi.technology>
+- `Aion Tech <https://aiontech.company/>`__:
 
-   -  Simone Rubino <simone.rubino@aion-tech.it>
+  - Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------

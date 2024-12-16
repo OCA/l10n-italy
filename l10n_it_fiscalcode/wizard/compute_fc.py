@@ -2,21 +2,13 @@
 
 import logging
 
+from codicefiscale import codicefiscale
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
-
-try:
-    from codicefiscale import build
-
-except ImportError:
-    _logger.warning(
-        "codicefiscale library not found. "
-        "If you plan to use it, please install the codicefiscale library"
-        " from https://pypi.python.org/pypi/codicefiscale"
-    )
 
 
 class WizardComputeFc(models.TransientModel):
@@ -185,16 +177,20 @@ class WizardComputeFc(models.TransientModel):
                 or not f.sex
             ):
                 raise UserError(_("One or more fields are missing"))
+
             nat_code = self._get_national_code(
                 f.birth_city.name, f.birth_province.code, f.birth_date
             )
             if not nat_code:
                 raise UserError(_("National code is missing"))
-            c_f = build(
+
+            birth_date = f.birth_date.strftime("%d/%m/%Y")
+
+            c_f = codicefiscale.encode(
                 f.fiscalcode_surname,
                 f.fiscalcode_firstname,
-                f.birth_date,
                 f.sex,
+                birth_date,
                 nat_code,
             )
             if partner.fiscalcode and partner.fiscalcode != c_f:

@@ -1,7 +1,10 @@
 # Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from codicefiscale import isvalid
+try:
+    from codicefiscale.codicefiscale import is_valid as isvalid
+except ImportError:
+    from codicefiscale import isvalid
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError

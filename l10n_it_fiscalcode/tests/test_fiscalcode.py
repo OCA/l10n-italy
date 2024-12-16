@@ -1,7 +1,12 @@
 # Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from codicefiscale import isvalid
+from datetime import date
+
+try:
+    from codicefiscale.codicefiscale import is_valid as isvalid
+except ImportError:
+    from codicefiscale import isvalid
 
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
@@ -22,7 +27,7 @@ class TestFiscalCode(TransactionCase):
                 {
                     "fiscalcode_surname": "ROSSI",
                     "fiscalcode_firstname": "MARIO",
-                    "birth_date": "1984-06-04",
+                    "birth_date": date(1984, 6, 4),
                     "sex": "M",
                     "birth_city": 10048,
                     "birth_province": self.rome_province.id,
@@ -75,6 +80,18 @@ class TestFiscalCode(TransactionCase):
                     "fiscalcode": "AAAMRA00H04H5010",
                 }
             )
+
+        # Omocode FC - can happen that an Italian FC is omocode, two distinct
+        # people share same birth data, so the AdE change an FC digit to make
+        # FC unique for that people. Example FC is taken from
+        # https://pypi.org/project/python-codicefiscale/
+        self.env["res.partner"].create(
+            {
+                "name": "Person",
+                "is_company": False,
+                "fiscalcode": "CCCFBA85D03L21VE",
+            }
+        )
 
     def test_fiscal_code_check_change_to_person(self):
         """

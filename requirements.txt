@@ -1,8 +1,8 @@
 # generated from manifests external_dependencies
 asn1crypto
-codicefiscale
 elementpath
 mock
 openupgradelib
+python-codicefiscale
 unidecode
 xmlschema
