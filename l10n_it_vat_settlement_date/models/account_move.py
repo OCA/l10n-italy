@@ -14,6 +14,11 @@ class AccountMove(models.Model):
         store=True,
         readonly=False,
         copy=False,
+        states={
+            "posted": [
+                ("readonly", True),
+            ],
+        },
     )
 
     @api.depends(
