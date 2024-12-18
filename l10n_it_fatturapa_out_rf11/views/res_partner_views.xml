@@ -5,7 +5,30 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='ref']" position="after">
-                <field name="is_74ter_agent"/>
+                <field name="is_74ter_agent" attrs="{'readonly': [('agent_74ter_id', '!=', False)]}"/>
+                <field name="agent_74ter_id"
+                    attrs="{'readonly': [('is_74ter_agent', '=', True)]}"
+                    domain="[('is_74ter_agent', '=', True)]"/>
+                <field name="invoices_paid_by_agent"
+                    attrs="{'readonly': ['|', ('is_74ter_agent', '=', True), ('agent_74ter_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_res_partner_filter_74ter_inherit" model="ir.ui.view">
+        <field name="name">view_res_partner_filter_74ter_inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="after">
+                <separator/>
+                <filter string="Agency" name="agency_74ter" domain="[('is_74ter_agent', '=', True)]"/>
+                <filter string="Not agency" name="not_agency_74ter" domain="[('is_74ter_agent', '=', False)]"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="agent_74ter_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='group_country']" position="after">
+                <filter name="group_agent_74ter_id" string="Agency" context="{'group_by': 'agent_74ter_id'}"/>
             </xpath>
         </field>
     </record>

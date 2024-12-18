@@ -16,7 +16,9 @@
     ],
     "data": [
         'views/res_partner_views.xml',
-        'data/invoice_it_template.xml'
+        'data/invoice_it_template.xml',
+        "views/account_move_views.xml",
+        "views/res_config_settings_views.xml",
     ],
     "installable": True,
 }
