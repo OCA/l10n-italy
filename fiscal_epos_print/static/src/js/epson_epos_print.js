@@ -3,6 +3,7 @@
 import { _t } from "@web/core/l10n/translation";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
 import { ErrorTracebackPopup } from "@point_of_sale/app/errors/popups/error_traceback_popup";
+import { roundPrecision as round_pr } from "@web/core/utils/numbers";
 
 export class EpsonEposPrint {
     constructor(...args) {
@@ -247,13 +248,31 @@ export class EpsonEposPrint {
 
         // Process payment lines
         //receipt.ticket = "";
+
+        //Gestione arrotondamento pagamenti
+        //Viene aggiunta una riga di pagamento con payment method type a 6
+        if (receipt.amount_total != receipt.amount_paid) {
+            let payment_round = 0;
+            if (receipt.amount_paid  < receipt.amount_total) {
+                const rounding = this.pos.currency.rounding;
+                payment_round = round_pr(
+                    (receipt.amount_total  - receipt.amount_paid), rounding
+                );
+                xml += this.printRecTotal({
+                    payment: Math.abs(payment_round),
+                    paymentType: "6",
+                    operator: fiscalOperator,
+                });
+            }
+        }
+
         receipt.statement_ids.forEach((st) => {
             let l = st[2];
             // vedi modulo fiscal_epos_print_meal_voucher
             //receipt.ticket += l.ticket;  // Append ticket to receipt
 
             // TODO
-            //const method = hasRefund ? "printRecTotalRefund" : "printRecTotal";
+            //const method = hasRefund ? "printRecTotalRefund" : "printRecTotal";        
             xml += this.printRecTotal({
                 payment: Math.abs(l.amount),
                 paymentType: l.fiscalprinter_payment_type,
