@@ -7,19 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-28 08:52+0000\n"
-"PO-Revision-Date: 2023-11-28 08:52+0000\n"
-"Last-Translator: Simone Rubino <simone.rubino@aion-tech.it>\n"
+"PO-Revision-Date: 2025-02-27 11:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_accompanying_invoice
 #: model:ir.actions.report,print_report_name:l10n_it_accompanying_invoice.shipping_invoice_report
 msgid "(object._get_report_base_filename())"
-msgstr ""
+msgstr "(object._get_report_base_filename())"
 
 #. module: l10n_it_accompanying_invoice
 #: model:ir.model.fields,field_description:l10n_it_accompanying_invoice.field_account_move__delivery_goods_appearance_id
@@ -94,7 +95,7 @@ msgstr "UdM del peso netto della consegna"
 #. module: l10n_it_accompanying_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_accompanying_invoice.view_move_form
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 #. module: l10n_it_accompanying_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_accompanying_invoice.view_move_form
@@ -104,12 +105,12 @@ msgstr "Altro"
 #. module: l10n_it_accompanying_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_accompanying_invoice.view_move_form
 msgid "Packages"
-msgstr "Pacchi"
+msgstr "Colli"
 
 #. module: l10n_it_accompanying_invoice
 #: model:ir.model.fields,field_description:l10n_it_accompanying_invoice.field_account_move__delivery_packages
 msgid "Packages of Delivery"
-msgstr "Pacchi della consegna"
+msgstr "Colli della consegna"
 
 #. module: l10n_it_accompanying_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_accompanying_invoice.view_move_form
@@ -169,7 +170,7 @@ msgstr "Causale di trasporto"
 #. module: l10n_it_accompanying_invoice
 #: model_terms:ir.ui.view,arch_db:l10n_it_accompanying_invoice.view_move_form
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #. module: l10n_it_accompanying_invoice
 #: model:ir.model.fields,field_description:l10n_it_accompanying_invoice.field_account_move__delivery_volume
