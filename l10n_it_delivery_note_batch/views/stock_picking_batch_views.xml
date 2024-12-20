@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_picking_batch_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.batch.form</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <field name="all_pickings_have_delivery_note" invisible="1" />
+            </header>
+            <xpath expr="//button[@name='action_print']" position="before">
+                <button
+                    class="oe_highlight"
+                    name="create_delivery_notes"
+                    type="object"
+                    string="Create DNs"
+                    style="margin-left:10px;"
+                    invisible="state == 'done' or all_pickings_have_delivery_note"
+                />
+            </xpath>
+            <xpath expr="//sheet/div" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        type="object"
+                        class="oe_stat_button"
+                        name="goto_delivery_notes"
+                        icon="fa-pencil-square-o"
+                        invisible="not delivery_note_count"
+                    >
+                        <field
+                            name="delivery_note_count"
+                            widget="statinfo"
+                            string="Delivery Notes"
+                        />
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

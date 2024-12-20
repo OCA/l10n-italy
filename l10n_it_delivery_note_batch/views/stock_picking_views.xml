@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="vpicktree" model="ir.ui.view">
+        <field name="name">stock.picking.list</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="delivery_note_id" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
