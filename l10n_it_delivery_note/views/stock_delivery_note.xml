@@ -523,11 +523,6 @@
                     string="Validated"
                     domain="[('state', '=', 'confirm')]"
                 />
-                <filter
-                    name="invoiced"
-                    string="Invoiced"
-                    domain="[('state', '=', 'invoiced')]"
-                />
                 <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
                 <filter
                     name="cancel"
