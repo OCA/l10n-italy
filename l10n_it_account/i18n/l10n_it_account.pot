@@ -95,8 +95,18 @@ msgid "Incoherent balance signs for '{}' and its subgroups."
 msgstr ""
 
 #. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_base_language_install
+msgid "Install Language"
+msgstr ""
+
+#. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.account_italian_localization
 msgid "Italian Localization"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model,name:l10n_it_account.model_res_lang
+msgid "Languages"
 msgstr ""
 
 #. module: l10n_it_account
