@@ -752,7 +752,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 '<endFiscalReceipt operator="' +
                 fiscal_operator +
                 '" /></printerFiscalReceipt>';
-            this.fiscalPrinter.send(this.url, xml);
+            this.fiscalPrinter.send(this.url, xml, 0, "sync");
             console.log(xml);
         },
 
