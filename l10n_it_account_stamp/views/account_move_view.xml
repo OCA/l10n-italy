@@ -34,7 +34,7 @@
                     invisible="l10n_it_account_stamp_auto_compute_stamp_duty"
                 />
                 <field
-                    name="l10n_it_account_stamp_is_stamp_duty_present"
+                    name="l10n_it_account_stamp_is_stamp_duty_invoice_line_present"
                     invisible="1"
                 />
             </xpath>
@@ -48,19 +48,23 @@
                         src="/l10n_it_account_stamp/static/description/icon.png"
                         alt="Stamp Duty"
                     />
-                    <span invisible="l10n_it_account_stamp_is_stamp_duty_present">
+                    <span
+                        invisible="l10n_it_account_stamp_is_stamp_duty_invoice_line_present"
+                    >
                         <span invisible="state != 'draft'">
                             <button
                                 type="object"
                                 string="Charge stamp to customer"
-                                name="add_stamp_duty_line"
+                                name="add_stamp_duty_invoice_line"
                             />
                         </span>
                         <span invisible="state == 'draft'">
                             Stamp can only be charged to customer when invoice is in draft state
                         </span>
                     </span>
-                    <span invisible="not l10n_it_account_stamp_is_stamp_duty_present">
+                    <span
+                        invisible="not l10n_it_account_stamp_is_stamp_duty_invoice_line_present"
+                    >
                         Stamp charged to customer
                     </span>
                 </div>
