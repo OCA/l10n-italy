@@ -139,6 +139,9 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     : [];
                 var msgPrinter = "";
                 var info = "";
+                var body_msg = "";
+                var order_lines_msg = "";
+                var order_payment_msg = "";
 
                 if (tagStatus.length > 0 && res.success) {
                     info = add_info[tagStatus[0]];
@@ -155,26 +158,29 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             JSON.stringify(tag_list_names) +
                             "\n" +
                             JSON.stringify(add_info);
+                        order_lines_msg = order.orderlines.map((l) => `\n${l.full_product_name || ""}, Quantity: ${l.quantity || ""}, Price: ${l.price || ""}, Discount: ${l.discount || ""}`).join(",");
+                        order_payment_msg = order.paymentlines.map((l) => `\nType: ${l.payment_method.name || ""}, Amount: ${l.amount || ""}`).join(",");
                         // Sender.env.pos.push_single_order(order);
                     }
                     if (tagStatus.length > 0) {
                         info = add_info[tagStatus[0]];
                         msgPrinter = decodeFpStatus(info);
                     }
-                    // TODO
-                    // sender.chrome.screens['receipt'].lock_screen(true);
-                    // TODO is this correct?
+                    
+                    body_msg =  `${_t("An error happened while sending data to the printer.\nError code: ")}${res.code || ""}` +
+                                `${_t("\nStatus: ")}${res.status || ""}` +
+                                `${_t("\nPrinter Code: ")}${info || ""}\n${_t("Error Message: ")}${msgPrinter}`;
+                    if (order) {
+                        body_msg += `\n${_t("Order Details.\nOrder lines: {")}${order_lines_msg}` +
+                                    `${_t(" }\nPayment Lines: {")}${order_payment_msg}` + 
+                                    `${_t(" }\nTechnical details: \nXML: ")}${order.fp_xml}`;
+                    }
                     Gui.showPopup("ErrorPopup", {
                         title: _t("Connection to the printer failed"),
-                        body:
-                            _t(
-                                "An error happened while sending data to the printer. Error code: "
-                            ) +
-                            (res.code || "") +
-                            "\n" +
-                            _t("Error Message: ") +
-                            msgPrinter,
+                        body: body_msg,
                     });
+                    // TODO
+                    // sender.chrome.screens['receipt'].lock_screen(true);
                     return;
                 }
 
@@ -752,6 +758,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 '<endFiscalReceipt operator="' +
                 fiscal_operator +
                 '" /></printerFiscalReceipt>';
+            this.order.fp_xml = xml;
             this.fiscalPrinter.send(this.url, xml, 0, "sync");
             console.log(xml);
         },
