@@ -121,7 +121,7 @@ class AccountMove(models.Model):
     def _compute_l10n_it_account_stamp_is_stamp_duty_present(self):
         for invoice in self:
             invoice.l10n_it_account_stamp_is_stamp_duty_present = (
-                invoice.is_stamp_duty_line_present()
+                invoice.is_stamp_duty_product_present()
             )
 
     def is_stamp_duty_product_present(self):
