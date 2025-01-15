@@ -37,6 +37,12 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
             self.picking_ids += self.selected_picking_ids
         else:
             self.picking_ids = self.picking_ids
+
+        self.partner_id = (
+            self.picking_ids.mapped("sale_id.partner_id")
+            if self.picking_ids.mapped("sale_id.partner_id")
+            else self.partner_id
+        ).id
         self.warning_message = self._get_warning_message()
 
         return True
