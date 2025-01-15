@@ -58,9 +58,12 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 this.fiscal_receipt_amount = null;
                 this.fiscal_receipt_date = null;
                 this.fiscal_z_rep_number = null;
-                this.fiscal_printer_serial =
-                    this.pos.config.fiscal_printer_serial || null;
                 this.fiscal_printer_debug_info = null;
+
+                if (!this.fiscal_printer_serial) {
+                    this.fiscal_printer_serial = this.pos.config.fiscal_printer_serial || null;
+                }
+
                 try {
                     if (this.pos.config.module_pos_hr) {
                         this.fiscal_operator_number =

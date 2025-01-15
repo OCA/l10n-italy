@@ -40,6 +40,7 @@ odoo.define("fiscal_epos_print.SetRefundInfoButton", function (require) {
             var dd = ("0" + current_order.refund_date.getDate()).slice(-2);
             var mm = ("0" + (current_order.refund_date.getMonth() + 1)).slice(-2);
             var yyyy = current_order.refund_date.getFullYear();
+
             this.showPopup("RefundInfoPopup", {
                 title: _t("Refund Information Details"),
                 refund_date: yyyy + "-" + mm + "-" + dd,
