@@ -15,9 +15,9 @@ class AccountMove(models.Model):
         compute="_compute_l10n_it_account_stamp_is_stamp_duty_applied",
         store=True,
     )
-    l10n_it_account_stamp_is_stamp_duty_present = fields.Boolean(
+    l10n_it_account_stamp_is_stamp_duty_invoice_line_present = fields.Boolean(
         string="Stamp line is present in invoice",
-        compute="_compute_l10n_it_account_stamp_is_stamp_duty_present",
+        compute="_compute_l10n_it_account_stamp_is_stamp_duty_invoice_line_present",
     )
     l10n_it_account_stamp_auto_compute_stamp_duty = fields.Boolean(
         related="company_id.l10n_it_account_stamp_stamp_duty_product_id.l10n_it_account_stamp_auto_compute",
@@ -70,7 +70,7 @@ class AccountMove(models.Model):
                 if invoice.l10n_it_account_stamp_manually_apply_stamp_duty:
                     invoice.l10n_it_account_stamp_is_stamp_duty_applied = True
 
-    def add_stamp_duty_line(self):
+    def add_stamp_duty_invoice_line(self):
         for inv in self:
             if not inv.l10n_it_account_stamp_is_stamp_duty_applied:
                 raise UserError(_("Stamp duty is not applicable"))
@@ -94,7 +94,6 @@ class AccountMove(models.Model):
             invoice_line_vals = {
                 "move_id": inv.id,
                 "product_id": stamp_product_id.id,
-                "is_stamp_line": True,
                 "name": stamp_product_id.description_sale,
                 "sequence": 99999,
                 "account_id": stamp_account.id,
@@ -118,9 +117,9 @@ class AccountMove(models.Model):
         "invoice_line_ids.product_id",
         "invoice_line_ids.product_id.l10n_it_account_stamp_is_stamp",
     )
-    def _compute_l10n_it_account_stamp_is_stamp_duty_present(self):
+    def _compute_l10n_it_account_stamp_is_stamp_duty_invoice_line_present(self):
         for invoice in self:
-            invoice.l10n_it_account_stamp_is_stamp_duty_present = (
+            invoice.l10n_it_account_stamp_is_stamp_duty_invoice_line_present = (
                 invoice.is_stamp_duty_product_present()
             )
 

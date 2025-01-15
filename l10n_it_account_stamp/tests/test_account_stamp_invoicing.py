@@ -87,7 +87,7 @@ class InvoicingTest(TestAccountInvoiceReport):
 
         # Add stamp and check that edited description is kept
         invoice.button_draft()
-        invoice.add_stamp_duty_line()
+        invoice.add_stamp_duty_invoice_line()
         self.assertEqual(invoice.invoice_line_ids[0].name, edited_descr)
 
     def test_amount_total_changing_currency(self):
@@ -108,28 +108,25 @@ class InvoicingTest(TestAccountInvoiceReport):
         invoice.action_post()
         self.assertEqual(total, invoice.amount_total)
 
-    def test_stamp_duty_line_button(self):
-        """Stamp fields show when stamp is added with the button to the invoice."""
-        # Arrange: Create an invoice eligible for stamp duty but without it
-        stamp_tax = self.tax_id
-        invoice = self.init_invoice(
-            "out_invoice",
-            taxes=stamp_tax,
-            amounts=[
-                100,
-            ],
+    def test_reset_invoice_to_draft(self):
+        """Reset an invoice to draft and check that relative tax stamp accounting lines
+        has been deleted."""
+        invoice = first(
+            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
         )
-        # pre-condition
-        self.assertTrue(invoice.l10n_it_account_stamp_is_stamp_duty_applied)
-        self.assertFalse(invoice.l10n_it_account_stamp_is_stamp_duty_present)
 
-        # Act
-        invoice.add_stamp_duty_line()
+        self.assertEqual(len(invoice), 1)
+        self.assertEqual(len(invoice.invoice_line_ids), 2)
+
+        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
         invoice.action_post()
 
-        # Assert
-        self.assertTrue(invoice.l10n_it_account_stamp_is_stamp_duty_present)
+        self.assertEqual(
+            len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 2
+        )
 
-        # Resetting to draft removes the stamp
         invoice.button_draft()
-        self.assertFalse(invoice.l10n_it_account_stamp_is_stamp_duty_present)
+
+        self.assertEqual(
+            len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 0
+        )
