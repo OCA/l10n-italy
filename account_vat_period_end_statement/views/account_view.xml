@@ -63,7 +63,7 @@
                     <field name="company_id" groups="base.group_multi_company" />
                     <field name="interest" />
                     <field name="account_ids" widget="many2many_tags" />
-                <field
+                    <field
                         name="interest_percent"
                         attrs="{'invisible': [('interest', '=', False)], 'required': [('interest', '=', True)]}"
                     />
@@ -105,28 +105,28 @@
                                         <field name="tax_id" />
                                         <field name="account_id" />
                                         <field name="amount" />
-                                   </tree>
+                                    </tree>
                                     <form>
                                         <group>
                                             <field name="tax_id" />
                                             <field name="account_id" />
                                             <field name="amount" />
                                         </group>
-                                   </form>
+                                    </form>
                                 </field>
                                 <field name="credit_vat_account_line_ids" nolabel="1">
                                     <tree editable="bottom">
                                         <field name="tax_id" />
                                         <field name="account_id" />
                                         <field name="amount" />
-                                   </tree>
+                                    </tree>
                                     <form>
                                         <group>
                                             <field name="tax_id" />
                                             <field name="account_id" />
                                             <field name="amount" />
                                         </group>
-                                   </form>
+                                    </form>
                                 </field>
                             </group>
                             <group col="3" colspan="4">
@@ -179,12 +179,12 @@
                                     <field name="account_id" />
                                     <field name="name" />
                                     <field name="amount" />
-                               </tree>
+                                </tree>
                                 <form>
                                     <field name="account_id" />
                                     <field name="name" />
                                     <field name="amount" />
-                               </form>
+                                </form>
                             </field>
                         </group>
                         <group attrs="{'invisible': [('annual', '=', True)]}">
@@ -209,7 +209,7 @@
                         </group>
                     </page>
                 </notebook>
-           </form>
+            </form>
         </field>
     </record>
 
@@ -233,7 +233,7 @@
                     name="periodic_filter"
                     domain="[('annual', '=', False)]"
                 />
-           </search>
+            </search>
         </field>
     </record>
 
@@ -254,7 +254,7 @@
                 <field name="annual" />
                 <field name="state" />
                 <field name="company_id" groups="base.group_multi_company" />
-           </tree>
+            </tree>
         </field>
     </record>
 

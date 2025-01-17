@@ -9,127 +9,134 @@
     Document
      -->
     <template id="report_vatperiodendstatement_document">
-            <t t-call="l10n_it_account.internal_layout">
-                <div class="article">
-                    <!--
+        <t t-call="l10n_it_account.internal_layout">
+            <div class="article">
+                <!--
                     Periods detail
                     -->
-                    <t t-foreach="statement.date_range_ids" t-as="period">
-                           <h3><span>Summary</span> <span t-esc="period.name" /> </h3>
+                <t t-foreach="statement.date_range_ids" t-as="period">
+                    <h3>
+                        <span>Summary</span>
+                        <span t-esc="period.name" />
+                    </h3>
 
-                           <!-- Purchase -->
-                           <t
+                    <!-- Purchase -->
+                    <t
                         t-set="tax_code_amounts"
                         t-value="tax_amounts(period.id, [l.tax_id.id for l in statement.credit_vat_account_line_ids], 'supplier')"
                     />
-                           <t t-set="tax_code_type" t-value="'credit'" />
-                           <t t-set="tax_code_section" t-value="'purchase'" />
-                           <t
+                    <t t-set="tax_code_type" t-value="'credit'" />
+                    <t t-set="tax_code_section" t-value="'purchase'" />
+                    <t
                         t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"
                     />
 
-                           <!-- Sale -->
-                           <t
+                    <!-- Sale -->
+                    <t
                         t-set="tax_code_amounts"
                         t-value="tax_amounts(period.id, [l.tax_id.id for l in statement.debit_vat_account_line_ids], 'customer')"
                     />
-                           <t t-set="tax_code_type" t-value="'debit'" />
-                           <t t-set="tax_code_section" t-value="'sale'" />
-                           <t
+                    <t t-set="tax_code_type" t-value="'debit'" />
+                    <t t-set="tax_code_section" t-value="'sale'" />
+                    <t
                         t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"
                     />
-                       </t>
+                </t>
 
-                       <!--
+                <!--
                     Total Compentence
                     -->
-                    <t t-set="total_statement" t-value="(0)" />
+                <t t-set="total_statement" t-value="(0)" />
 
-                    <h3>Total Statement</h3>
+                <h3>Total Statement</h3>
 
-                    <table class="table table-condensed">
-                        <!-- tot debit -->
-                           <t
+                <table class="table table-condensed">
+                    <!-- tot debit -->
+                    <t
                         t-set="vat_accounts"
                         t-value="account_vat_amounts('debit', statement.debit_vat_account_line_ids)"
                     />
-                           <t t-foreach="vat_accounts" t-as="account_id">
-                               <tr>
-                                   <td class="text-start">Total debit vat</td>
-                                   <td class="text-end"><span
+                    <t t-foreach="vat_accounts" t-as="account_id">
+                        <tr>
+                            <td class="text-start">Total debit vat</td>
+                            <td class="text-end">
+                                <span
                                     t-esc="formatLang(env, vat_accounts[account_id]['amount'])"
-                                /></td>
-                               </tr>
-                               <!-- sum -->
-                               <t
+                                />
+                            </td>
+                        </tr>
+                        <!-- sum -->
+                        <t
                             t-set="total_statement"
                             t-value="(total_statement + vat_accounts[account_id]['amount'])"
                         />
-                           </t>
+                    </t>
 
-                        <!-- tot credit -->
-                        <t
+                    <!-- tot credit -->
+                    <t
                         t-set="vat_accounts"
                         t-value="account_vat_amounts('credit', statement.credit_vat_account_line_ids)"
                     />
-                           <t t-foreach="vat_accounts" t-as="account_id">
-                               <tr>
-                                   <td class="text-start">Total credit vat</td>
-                                   <td class="text-end"><span
+                    <t t-foreach="vat_accounts" t-as="account_id">
+                        <tr>
+                            <td class="text-start">Total credit vat</td>
+                            <td class="text-end">
+                                <span
                                     t-esc="formatLang(env, vat_accounts[account_id]['amount'])"
-                                /></td>
-                               </tr>
-                               <!-- sum -->
-                               <t
+                                />
+                            </td>
+                        </tr>
+                        <!-- sum -->
+                        <t
                             t-set="total_statement"
                             t-value="(total_statement - vat_accounts[account_id]['amount'])"
                         />
-                           </t>
+                    </t>
 
-                           <!-- tot statement -->
-                           <tr>
-                              <td class="text-start"><strong
-                            >Total Statement</strong></td>
-                              <td class="text-end"><strong><span
-                                    t-esc="formatLang(env, total_statement)"
-                                /></strong></td>
-                          </tr>
-                       </table>
+                    <!-- tot statement -->
+                    <tr>
+                        <td class="text-start">
+                            <strong>Total Statement</strong>
+                        </td>
+                        <td class="text-end">
+                            <strong>
+                                <span t-esc="formatLang(env, total_statement)" />
+                            </strong>
+                        </td>
+                    </tr>
+                </table>
 
-                       <t t-set="total_to_pay" t-value="(total_statement)" />
-                    <t
+                <t t-set="total_to_pay" t-value="(total_statement)" />
+                <t
                     t-call="account_vat_period_end_statement.report_vat_period_end_statement_to_pay"
                 />
 
-                    <!-- payment info -->
-                    <t t-if="statement.payment_ids">
-                        <br />
+                <!-- payment info -->
+                <t t-if="statement.payment_ids">
+                    <br />
 
                     <table class="table table-condensed">
-                            <t t-foreach="statement.payment_ids" t-as="payment_line">
-                                <tr>
-                                    <td
+                        <t t-foreach="statement.payment_ids" t-as="payment_line">
+                            <tr>
+                                <td
                                     t-esc="'Importo versato (Estremi del versamento: data '+ payment_line.date.strftime('%d/%m/%Y') + ' - ' +payment_line.journal_id.name+')'"
                                 />
-                                    <td
+                                <td
                                     class="text-end"
                                     t-esc="formatLang(env, payment_line.debit)"
                                 />
-                               </tr>
-                           </t>
-                           <tr>
-                               <td colspan="2">
+                            </tr>
+                        </t>
+                        <tr>
+                            <td colspan="2">
                                Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.
 Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE
                                </td>
-                           </tr>
-                           </table>
-                      </t>
-
-
-                </div>
-            </t>
-
+                        </tr>
+                    </table>
+                </t>
+            </div>
+        </t>
     </template>
 
     <!-- To pay -->
@@ -141,8 +148,8 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
                 <td class="text-start">Previous credit vat</td>
                 <td class="text-end">-
                     <span
-                        t-esc="formatLang(env, statement.previous_credit_vat_amount)"
-                    />
+                    t-esc="formatLang(env, statement.previous_credit_vat_amount)"
+                />
                 </td>
                 <!-- sum -->
                 <t
@@ -200,8 +207,8 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
                     Down payment
                     <t t-if="statement.advance_computation_method">
                         &amp;nbsp;(<span
-                            t-field="statement.advance_computation_method"
-                        />)
+                    t-field="statement.advance_computation_method"
+                />)
                     </t>
                 </td>
                 <td class="text-end">-
@@ -267,12 +274,10 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
     Tax Code
      -->
     <template id="report_vatperiodendstatement_tax_code">
-
         <t t-set="total_vat" t-value="(0)" />
         <t t-set="total_vat_deductible" t-value="(0)" />
         <t t-set="total_vat_undeductible" t-value="(0)" />
         <t t-set="total_base" t-value="(0)" />
-
 
         <h4>
             <span t-if="(tax_code_section == 'sale')">Sale</span>
@@ -280,20 +285,20 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
         </h4>
         <table class="table table-condensed">
             <thead>
-                   <tr class="text-center">
-                       <th style="width:40%;">Description</th>
-                       <th style="width:15%;" class="text-end">Base</th>
-                       <th style="width:15%;" class="text-end">Vat</th>
-                       <span t-if="(tax_code_type == 'credit')">
-                           <th style="width:15%;" class="text-end">Deductible</th>
-                           <th style="width:15%;" class="text-end">Undeductible</th>
+                <tr class="text-center">
+                    <th style="width:40%;">Description</th>
+                    <th style="width:15%;" class="text-end">Base</th>
+                    <th style="width:15%;" class="text-end">Vat</th>
+                    <span t-if="(tax_code_type == 'credit')">
+                        <th style="width:15%;" class="text-end">Deductible</th>
+                        <th style="width:15%;" class="text-end">Undeductible</th>
                     </span>
                     <span t-if="not (tax_code_type == 'credit')">
                         <th style="width:15%;" />
                         <th style="width:15%;" />
                     </span>
                 </tr>
-               </thead>
+            </thead>
             <t t-foreach="tax_code_amounts" t-as="tax_code">
                 <!-- Prepare values -->
                 <t t-set="code" t-value="(tax_code_amounts[tax_code]['code'])" />
@@ -314,20 +319,22 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
                 <tr
                     t-if="tax_code_base or tax_code_vat or tax_code_vat_deductible or tax_code_vat_undeductible"
                 >
-                    <td><span t-esc="code" /></td>
-                    <td class="text-end"><span
-                            t-esc="formatLang(env, tax_code_base)"
-                        /></td>
-                    <td class="text-end"><span
-                            t-esc="formatLang(env, tax_code_vat)"
-                        /></td>
+                    <td>
+                        <span t-esc="code" />
+                    </td>
+                    <td class="text-end">
+                        <span t-esc="formatLang(env, tax_code_base)" />
+                    </td>
+                    <td class="text-end">
+                        <span t-esc="formatLang(env, tax_code_vat)" />
+                    </td>
                     <span t-if="(tax_code_type == 'credit')">
-                        <td class="text-end"><span
-                                t-esc="formatLang(env, tax_code_vat_deductible)"
-                            /></td>
-                        <td class="text-end"><span
-                                t-esc="formatLang(env, tax_code_vat_undeductible)"
-                            /></td>
+                        <td class="text-end">
+                            <span t-esc="formatLang(env, tax_code_vat_deductible)" />
+                        </td>
+                        <td class="text-end">
+                            <span t-esc="formatLang(env, tax_code_vat_undeductible)" />
+                        </td>
                     </span>
                     <span t-if="not (tax_code_type == 'credit')">
                         <td />
@@ -349,20 +356,30 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
 
             <!-- total -->
             <tr>
-                <td class="text-start"><strong>Total</strong></td>
-                <td class="text-end"><strong><span
-                            t-esc="formatLang(env, total_base)"
-                        /></strong></td>
-                <td class="text-end"><strong><span
-                            t-esc="formatLang(env, total_vat)"
-                        /></strong></td>
+                <td class="text-start">
+                    <strong>Total</strong>
+                </td>
+                <td class="text-end">
+                    <strong>
+                        <span t-esc="formatLang(env, total_base)" />
+                    </strong>
+                </td>
+                <td class="text-end">
+                    <strong>
+                        <span t-esc="formatLang(env, total_vat)" />
+                    </strong>
+                </td>
                 <span t-if="(tax_code_type == 'credit')">
-                    <td class="text-end"><strong><span
-                                t-esc="formatLang(env, total_vat_deductible)"
-                            /></strong></td>
-                    <td class="text-end"><strong><span
-                                t-esc="formatLang(env, total_vat_undeductible)"
-                            /></strong></td>
+                    <td class="text-end">
+                        <strong>
+                            <span t-esc="formatLang(env, total_vat_deductible)" />
+                        </strong>
+                    </td>
+                    <td class="text-end">
+                        <strong>
+                            <span t-esc="formatLang(env, total_vat_undeductible)" />
+                        </strong>
+                    </td>
                 </span>
                 <span t-if="not (tax_code_type == 'credit')">
                     <td />
@@ -370,7 +387,6 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
                 </span>
             </tr>
         </table>
-
     </template>
 
     <!--
@@ -378,7 +394,6 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
      -->
     <template id="vat_statement">
         <t t-call="web.html_container">
-
             <t t-set="title" t-value="'Liquidazione IVA'" />
             <t t-foreach="docs" t-as="statement">
                 <t
