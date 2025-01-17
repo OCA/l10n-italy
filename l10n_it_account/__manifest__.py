@@ -10,7 +10,7 @@
 {
     "name": "ITA - Contabilità base",
     "summary": "Modulo base usato come dipendenza di altri moduli contabili",
-    "version": "16.0.1.1.3",
+    "version": "18.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Hidden",
     "author": "Agile Business Group, Abstract, Odoo Community Association (OCA)",
@@ -25,21 +25,19 @@
     "data": [
         "views/account_menuitem.xml",
         "views/partner_view.xml",
-        "views/product_view.xml",
         "views/res_config_settings_views.xml",
         "reports/account_reports_view.xml",
-        "views/account_view.xml",
     ],
     "assets": {
         "web.report_assets_common": [
             "l10n_it_account/static/src/css/*.css",
         ]
     },
-    "external_dependencies": {
-        "python": [
-            "xmlschema",
-        ],
-    },
     "installable": True,
     "post_init_hook": "_l10n_it_account_post_init",
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
 }
