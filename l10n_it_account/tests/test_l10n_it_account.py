@@ -3,29 +3,17 @@
 
 import datetime
 
-import xmlschema
-
 from odoo import fields
-from odoo.exceptions import UserError, ValidationError
-from odoo.tests import tagged
-from odoo.tests.common import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
-
-from ..tools.account_tools import fpa_schema
 
 
 @tagged("post_install", "-at_install")
 class TestAccount(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
-        cls.group_1 = cls.env["account.group"].create(
-            {
-                "name": "1",
-                "code_prefix_start": "it.account.",
-            }
-        )
+    def setUpClass(cls):
+        super().setUpClass()
         cls.iva_22I5 = cls.env["account.tax"].create(
             {
                 "name": "IVA al 22% detraibile al 50%",
@@ -139,39 +127,6 @@ class TestAccount(AccountTestInvoicingCommon):
             }
         )
 
-    def test_group_constraint(self):
-        self.env["account.account"].create(
-            {
-                "name": "it_account_1",
-                "code": "it.account.1",
-                "account_type": "asset_current",
-            }
-        )
-        with self.assertRaises(ValidationError):
-            self.env["account.account"].create(
-                {
-                    "name": "it_account_2",
-                    "code": "it.account.2",
-                    "account_type": "liability_current",
-                }
-            )
-
-    def test_group_recursion(self):
-        """
-        It is not possible to create recursive account groups.
-        """
-        child_group = self.env["account.group"].create(
-            {
-                "name": "child",
-                "code_prefix_start": "it.account.child",
-                "parent_id": self.group_1.id,
-            }
-        )
-        with self.assertRaises(UserError) as ue:
-            self.group_1.parent_id = child_group
-        exc_message = ue.exception.args[0]
-        self.assertEqual("Recursion Detected.", exc_message)
-
     def test_vat_22_50(self):
         today = fields.Date.today()
         move_form = Form(
@@ -244,9 +199,6 @@ class TestAccount(AccountTestInvoicingCommon):
 
         # Check tomorrow's balance
         self.check_date_balance(self.iva_22I5, tomorrow, -22, -22)
-
-    def test_xmlschema_loading(self):
-        self.assertIsInstance(fpa_schema, xmlschema.XMLSchema)
 
     def check_date_balance(self, tax, date, deductible, not_deductible):
         """Compare expected balances with tax's balance in specified date."""

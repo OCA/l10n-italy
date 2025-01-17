@@ -59,14 +59,11 @@
                     <span t-esc="company.name" />
                 </h3>
                     <span t-esc="company.street" class="" /><br />
-                    <span t-esc="company.zip" class="" /> - <span
-                    t-esc="company.city"
-                    class=""
-                /> - <span t-esc="company.state_id.code" class="" /><br />
-                    <span class="text-end">TIN: </span><span
-                    t-esc="company.partner_id.vat"
-                    class=""
-                /><br />
+                    <span t-esc="company.zip" class="" />
+                    - <span t-esc="company.city" class="" />
+                    - <span t-esc="company.state_id.code" class="" /><br />
+                    <span class="text-end">TIN: </span>
+                    <span t-esc="company.partner_id.vat" class="" /><br />
                 </div>
                 <div class="col-xs-4 col-xs-offset-4 text-end" style="margin-left:10px">
                     <h3 t-esc="title" />
@@ -107,7 +104,7 @@
 
     <template id="minimal_layout" inherit_id="web.minimal_layout" priority="100">
         <xpath expr="//head/script" position="replace">
-            <script t-if="subst">
+            <script>
                 function subst() {
                     var vars = {};
                     var x = document.location.search.substring(1).split('&amp;');
