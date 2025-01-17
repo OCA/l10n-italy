@@ -21,46 +21,46 @@
                     </group>
                     <footer>
                         <button
-                            type="object"
-                            name="financial_statement_eu_html_report"
-                            string="View"
-                            class="oe_highlight"
-                            default_focus="1"
-                        />
+                        type="object"
+                        name="financial_statement_eu_html_report"
+                        string="View"
+                        class="oe_highlight"
+                        default_focus="1"
+                    />
                         or
                         <button
-                            type="object"
-                            name="financial_statement_eu_xlsx_report"
-                            string="Export XLSX"
-                        />
+                        type="object"
+                        name="financial_statement_eu_xlsx_report"
+                        string="Export XLSX"
+                    />
                         or
                         <button
-                            type="object"
-                            name="financial_statement_eu_xbrl_report"
-                            string="Export XBRL"
-                        />
+                        type="object"
+                        name="financial_statement_eu_xbrl_report"
+                        string="Export XBRL"
+                    />
                         or
                         <button special="cancel" string="Cancel" class="oe_link" />
                         <div
-                            invisible="log_warnings == ''"
-                            style="flex-basis: 100%; border: solid 1px; color: #721c24;
+                        invisible="log_warnings == ''"
+                        style="flex-basis: 100%; border: solid 1px; color: #721c24;
                                 background-color: #f8d7da; border-color: #f5c6cb;
                                 padding-left: 10px;padding-top:5px;padding-bottom:5px; margin-top: 10px;"
-                        >
-                            <field name="log_warnings" readonly="1" />
-                        </div>
+                    >
+                        <field name="log_warnings" readonly="1" />
+                    </div>
                         <field name="state" invisible="1" />
                         <field
-                            name="financial_statement_log_ids"
-                            string=""
-                            mode="list,kanban"
-                            invisible="state != 'UNLINKED_ACCOUNTS'"
-                        >
-                            <list create="false">
-                                <field name="account_id" />
-                                <field name="amount" />
-                            </list>
-                        </field>
+                        name="financial_statement_log_ids"
+                        string=""
+                        mode="list,kanban"
+                        invisible="state != 'UNLINKED_ACCOUNTS'"
+                    >
+                        <list create="false">
+                            <field name="account_id" />
+                            <field name="amount" />
+                        </list>
+                    </field>
                     </footer>
                 </sheet>
             </form>
@@ -96,5 +96,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

@@ -414,12 +414,12 @@ class FinancialStatementEU(models.Model):
             financial_statement_eu_lines["E=E"]["rounded_amount"] += delta_ef
             financial_statement_eu_lines["E=F"]["rounded_amount"] += delta_ef
 
-        financial_statement_eu_lines["PP=A9"][
-            "rounded_amount"
-        ] = financial_statement_eu_lines["E=F"]["rounded_amount"]
-        financial_statement_eu_lines["PP=A9"][
-            "total_amount"
-        ] = financial_statement_eu_lines["E=F"]["total_amount"]
+        financial_statement_eu_lines["PP=A9"]["rounded_amount"] = (
+            financial_statement_eu_lines["E=F"]["rounded_amount"]
+        )
+        financial_statement_eu_lines["PP=A9"]["total_amount"] = (
+            financial_statement_eu_lines["E=F"]["total_amount"]
+        )
         self.cal_financial_statement_eu_line_amount(financial_statement_eu_lines, "PA")
         self.cal_financial_statement_eu_line_amount(financial_statement_eu_lines, "PP")
         financial_statement_eu_lines["PP=A7j2"]["total_amount"] = (

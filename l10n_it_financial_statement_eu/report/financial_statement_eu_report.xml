@@ -18,7 +18,8 @@
                 <t t-if="len(warnings)>0">
                     <div class="warnings">
                         <t t-foreach="warnings" t-as="msg">
-                            <t t-esc="msg" /><br />
+                            <t t-esc="msg" />
+                            <br />
                         </t>
                         <t t-if="len(unlinked_account)>0">
                             <table>
@@ -62,24 +63,25 @@
                         Share capital Euro
                         <t t-esc="form_data['rea_capital']" />
                         - REA: <t t-esc="form_data['rea_office']" />-<t
-                            t-esc="form_data['rea_num']"
-                        />
+                        t-esc="form_data['rea_num']"
+                    />
                     </h6>
-                    <br /><br />
+                    <br />
+                    <br />
                     <h3>
                         <t t-esc="form_data['name']" />
                     </h3>
                     <div class="period">
                         from
                         <t
-                            t-esc="form_data['date_from']"
-                            t-options='{"widget": "date","format": "dd/MM/yyyy"}'
-                        />
+                        t-esc="form_data['date_from']"
+                        t-options='{"widget": "date","format": "dd/MM/yyyy"}'
+                    />
                         to
                         <t
-                            t-esc="form_data['date_to']"
-                            t-options='{"widget": "date","format": "dd/MM/yyyy"}'
-                        />
+                        t-esc="form_data['date_to']"
+                        t-options='{"widget": "date","format": "dd/MM/yyyy"}'
+                    />
                     </div>
                 </div>
                 <table>
@@ -151,5 +153,4 @@
         >l10n_it_financial_statement_eu.fseu_xbrl_report</field>
         <field name="binding_model_id" ref="model_financial_statement_eu_wizard" />
     </record>
-
 </odoo>
