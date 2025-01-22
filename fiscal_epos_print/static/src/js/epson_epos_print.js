@@ -711,21 +711,21 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     receipt.lottery_code.padEnd(16, " ") +
                     '0000" />';
             }
-            if (receipt.rounding_applied !== 0 && !has_refund) {
-                xml += self.printRounding({
-                    amount: Math.abs(
-                        round_pr(
-                            receipt.rounding_applied,
-                            self.sender.env.pos.currency.rounding
-                        )
-                    ),
+
+            //Check for roundings Payments
+            //If it's needed, adds a payment line with payment method type 6 in case of a rounding
+            if (Math.abs(receipt.total_paid)  < Math.abs(receipt.subtotal)) {
+                let payment_round = 0;
+                payment_round = round_pr(
+                    (receipt.subtotal  - receipt.total_paid), self.sender.env.pos.currency.rounding
+                );
+                xml += this.printRecTotal({
+                    payment: Math.abs(payment_round),
+                    paymentType: "6",
                     operator: fiscal_operator,
                 });
-                xml +=
-                    '<printRecSubtotal operator="' +
-                    fiscal_operator +
-                    '" option="1" />';
-            }
+            } 
+
             // TODO is always the same Total for refund and payments?
             receipt.ticket = "";
             _.each(receipt.paymentlines, function (l) {
@@ -763,9 +763,6 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             console.log(xml);
         },
 
-        /*
-        DON'T USE, this fiscal closure is forbid by Epson by default
-        */
         printFiscalReport: function (f_op) {
             var xml = "<printerFiscalReport>";
             xml += '<printZReport operator="' + f_op + '" timeout="" />';
