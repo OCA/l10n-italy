@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+     Copyright 2022 Alex Comba - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- accounting label -->
+    <record id="account.menu_finance" model="ir.ui.menu">
+        <field name="name">Accounting</field>
+    </record>
+
+    <menuitem
+        id="account_italian_localization"
+        name="Italian Localization"
+        sequence="2"
+        parent="account.menu_finance_configuration"
+    >
+        <!-- Add date range menu -->
+        <menuitem
+            id="menu_date_range_action_accounting"
+            action="date_range.date_range_action"
+        />
+        <menuitem
+            id="menu_date_range_type_action_accounting"
+            action="date_range.date_range_type_action"
+        />
+        <menuitem
+            id="menu_date_range_generator_action"
+            action="date_range.date_range_generator_action"
+        />
+    </menuitem>
+</odoo>
