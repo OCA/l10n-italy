@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template id="delivery_data">
+        <div id="delivery_data_information" class="row mb-4">
+            <div class="col" t-if="doc.transport_reason_id" name="transport_reason">
+                <strong>Reason of Transport</strong>
+                <div t-field="doc.transport_reason_id" />
+            </div>
+            <div class="col" t-if="doc.transport_condition_id">
+                <strong>Carriage Condition</strong>
+                <div t-field="doc.transport_condition_id" />
+            </div>
+            <div
+                class="col"
+                t-if="doc.transport_method_id and doc.company_id.display_carrier_dn_report"
+            >
+                <strong>Method of Transport:</strong>
+                <div t-field="doc.transport_method_id" />
+            </div>
+            <div
+                class="col"
+                t-if="doc.transport_method_id and not doc.company_id.display_carrier_dn_report"
+            >
+                <strong>Method of Transport / Carrier</strong>
+                <div t-field="doc.transport_method_id" />
+                <t t-if="doc.transport_method_id and doc.carrier_id"> / </t>
+                <div t-field="doc.carrier_id" />
+            </div>
+        </div>
+    </template>
+
+    <template id="parcels_data">
+        <div id="parcel_info" class="row">
+            <div class="col border" name="good_description">
+                <div class="px-2 pt-2" style="font-size:10px;">Goods Description</div>
+                <div
+                    class="px-2 pb-2"
+                    style="font-size:12px;"
+                    t-field="doc.goods_appearance_id"
+                />
+            </div>
+            <div class="col border border-start-0" name="gross_weight">
+                <div class="px-2 pt-2" style="font-size:10px;">Gross Weight</div>
+                <div
+                    class="px-2 pb-2"
+                    style="font-size:10px;"
+                    t-field="doc.gross_weight"
+                />
+            </div>
+            <div class="col border border-start-0" name="net_weight">
+                <div class="px-2 pt-2" style="font-size:10px;">Net Weight</div>
+                <div
+                    class="px-2 pb-2"
+                    style="font-size:10px;"
+                    t-field="doc.net_weight"
+                />
+            </div>
+            <div class="col border border-start-0" name="transport_date">
+                <div class="px-2 pt-2" style="font-size:10px;">Transport date</div>
+                <div
+                    class="px-2 pb-2"
+                    style="font-size:12px;"
+                    t-field="doc.transport_datetime"
+                />
+            </div>
+            <div class="col border border-start-0" name="packages">
+                <div class="px-2 pt-2" style="font-size:10px;">Packages</div>
+                <div class="px-2 pb-2" style="font-size:12px;" t-field="doc.packages" />
+            </div>
+        </div>
+        <div id="parcel_info_note" class="row">
+            <div class="col border border-bottom-0" name="note">
+                <div class="px-2 pt-2" style="font-size:10px;">Notes</div>
+                <div
+                    class="px-2 pb-2"
+                    style="font-size:12px;"
+                    t-if="doc.note"
+                    t-field="doc.note"
+                />
+                <div class="m-3 p-3" style="font-size:12px;" t-if="not doc.note" />
+            </div>
+        </div>
+        <div id="parcel_info_signature" class="row">
+            <div class="col border" name="carrier_signature">
+                <div class="px-2 pt-2" style="font-size:10px;">Carrier's Signature</div>
+                <div class="m-3 p-3" style="font-size:12px;" />
+            </div>
+            <div class="col border border-start-0" name="driver_signature">
+                <div class="px-2 pt-2" style="font-size:10px;">Driver's Signature</div>
+                <div class="m-3 p-3" style="font-size:12px;" />
+            </div>
+            <div class="col border border-start-0" name="recipint_signature">
+                <div
+                    class="px-2 pt-2"
+                    style="font-size:10px;"
+                >Recipient's Signature</div>
+                <div class="m-3 p-3" style="font-size:12px;" />
+            </div>
+        </div>
+    </template>
+</odoo>

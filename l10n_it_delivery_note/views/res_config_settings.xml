@@ -15,10 +15,7 @@
             >
                 <block title="Delivery Notes" name="delivery_notes_setting_container">
                     <setting id="required_partner_ref">
-                        <field
-                            name="group_required_partner_ref"
-                            widget="upgrade_boolean"
-                        />
+                        <field name="group_required_partner_ref" />
                         <div class="row mt-2">
                             <div class="text-muted">
                                 Block the validation of incoming DNs if the
@@ -39,10 +36,7 @@
                         </div>
                     </setting>
                     <setting id="ref_order_dn_report">
-                        <field
-                            name="display_ref_order_dn_report"
-                            widget="upgrade_boolean"
-                        />
+                        <field name="display_ref_order_dn_report" />
                         <div class="row mt-2">
                             <div class="text-muted">
                                 Prints Sale Order numbers on DN report (if there are any)
@@ -50,10 +44,7 @@
                         </div>
                     </setting>
                     <setting id="ref_customer_dn_report">
-                        <field
-                            name="display_ref_customer_dn_report"
-                            widget="upgrade_boolean"
-                        />
+                        <field name="display_ref_customer_dn_report" />
                         <div class="row mt-2">
                             <div class="text-muted">
                                 Prints Sale Order numbers on DN report (if there are any)
@@ -61,10 +52,7 @@
                         </div>
                     </setting>
                     <setting id="ref_customer_dn_report">
-                        <field
-                            name="display_ref_customer_dn_report"
-                            widget="upgrade_boolean"
-                        />
+                        <field name="display_ref_customer_dn_report" />
                         <div class="row mt-2">
                             <div class="text-muted">
                                 Prints Customer References on DN report (if there are any)
@@ -72,10 +60,7 @@
                         </div>
                     </setting>
                     <setting id="carrier_dn_report">
-                        <field
-                            name="display_carrier_dn_report"
-                            widget="upgrade_boolean"
-                        />
+                        <field name="display_carrier_dn_report" />
                         <div class="row mt-2">
                             <div class="text-muted">
                                 Prints Carrier's name on DN report (if there are any)
@@ -83,10 +68,7 @@
                         </div>
                     </setting>
                     <setting id="delivery_method_dn_report">
-                        <field
-                            name="display_delivery_method_dn_report"
-                            widget="upgrade_boolean"
-                        />
+                        <field name="display_delivery_method_dn_report" />
                         <div class="row mt-2">
                             <div class="text-muted">
                                 Prints Delivery Method on DN report (if there are any)
