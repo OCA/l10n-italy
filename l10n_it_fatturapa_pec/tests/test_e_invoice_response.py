@@ -120,7 +120,7 @@ class TestEInvoiceResponse(EInvoiceCommon):
         creates a new e-invoice
         """
         incoming_mail = self._get_file(
-            "POSTA CERTIFICATA: Invio File 7339338 (base64).txt"
+            "POSTA CERTIFICATA_ Invio File 7339338 (base64).txt"
         )
 
         e_invoices = self.attach_in_model.search([])
