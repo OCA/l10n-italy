@@ -17,56 +17,69 @@ ITA - Localizzazione valute per amount_to_text
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_amount_to_text
+    :target: https://github.com/OCA/l10n-italy/tree/16.0/l10n_it_amount_to_text
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_amount_to_text
+    :target: https://translation.odoo-community.org/projects/l10n-italy-16-0/l10n-italy-16-0-l10n_it_amount_to_text
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=16.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 **Italiano**
 
-Il core di Odoo fornisce ``amount_to_text``, il quale converte importi numerici in testo ottenendo la lingua dal contesto fornito o dalle impostazioni utente/partner, con alcune limitazioni.
+Il core di Odoo fornisce ``amount_to_text``, il quale converte importi
+numerici in testo ottenendo la lingua dal contesto fornito o dalle
+impostazioni utente/partner, con alcune limitazioni.
 
 Esempio: 45,75 €
 
-* Lingua utente "Inglese" → Forty-Five Euros and Seventy-Five Cents
-* Lingua utente "Italiano" → Quarantacinque Euros e Settantacinque Cents
+-  Lingua utente "Inglese" → Forty-Five Euros and Seventy-Five Cents
+-  Lingua utente "Italiano" → Quarantacinque Euros e Settantacinque
+   Cents
 
-L'unità/sottounità di valuta non viene tradotta e non viene gestita la forma singolare. Inoltre tutte le parole possiedono l'iniziale maiuscola, forma non corretta nella lingua italiana.
+L'unità/sottounità di valuta non viene tradotta e non viene gestita la
+forma singolare. Inoltre tutte le parole possiedono l'iniziale
+maiuscola, forma non corretta nella lingua italiana.
 
-Questo modulo fornisce una base per tradurre le unità/sottounità di valuta, adattando le parole alle regole della lingua italiana.
+Questo modulo fornisce una base per tradurre le unità/sottounità di
+valuta, adattando le parole alle regole della lingua italiana.
 
-Vengono inoltre gestite le eccezioni per la forma singolare delle valute EUR, USD, GBP e CNY.
+Vengono inoltre gestite le eccezioni per la forma singolare delle valute
+EUR, USD, GBP e CNY.
 
 Esempio: 1,01 €
 
-* La parte intera diventa "un euro", non "uno euro"
-* La parte decimale diventa "un centesimo", non "uno centesimi"
+-  La parte intera diventa "un euro", non "uno euro"
+-  La parte decimale diventa "un centesimo", non "uno centesimi"
 
 **English**
 
-Odoo core provides ``amount_to_text``, which converts numerical amounts to text getting language from given context or user/partner setting, with some limitations.
+Odoo core provides ``amount_to_text``, which converts numerical amounts
+to text getting language from given context or user/partner setting,
+with some limitations.
 
 Example: 45,75 €
 
-* User Language 'English' -> Forty-Five Euros and Seventy-Five Cents
-* User Language 'Italian' -> Quaranta Euros e Settantacinque Cents
+-  User Language 'English' -> Forty-Five Euros and Seventy-Five Cents
+-  User Language 'Italian' -> Quaranta Euros e Settantacinque Cents
 
-Currency unit/subunit is not translated and singular form is not handled. Moreover all words are capitalized, which is incorrect in italian language.
+Currency unit/subunit is not translated and singular form is not
+handled. Moreover all words are capitalized, which is incorrect in
+italian language.
 
-This module provides a base for translating currency unit/subunit adapting words to italian language rules.
+This module provides a base for translating currency unit/subunit
+adapting words to italian language rules.
 
-Singular form expections for EUR, USD, GBP and CNY currencies are handled as well.
+Singular form expections for EUR, USD, GBP and CNY currencies are
+handled as well.
 
 Example: 1,01 €
 
-* Integer part becomes "un euro", not "uno euro"
-* Decimal part becomes "un centesimo", not "uno centesimi"
+-  Integer part becomes "un euro", not "uno euro"
+-  Decimal part becomes "un centesimo", not "uno centesimi"
 
 **Table of contents**
 
@@ -89,35 +102,42 @@ Usage
 
 **Italiano**
 
-Chiamare la funzione ``amount_to_text`` nel modello valuta (``res.currency``).
+Chiamare la funzione ``amount_to_text`` nel modello valuta
+(``res.currency``).
 
-Per esempio, se è necessario convertire un importo in testo aggiungere questo codice ai report::
+Per esempio, se è necessario convertire un importo in testo aggiungere
+questo codice ai report:
 
-    <t t-foreach="docs" t-as="o">
-        <t t-set="currency" t-value="o.currency_id"/>
-        # Language obtained from context
-        <t t-esc="currency.with_context({'lang': 'it_IT'}).amount_to_text(45.75)"/>
+::
 
-        # Language obtained from user/partner settings.
-        # If not it_IT, Odoo core amount_to_text will be used.
-        <t t-esc="currency.amount_to_text(45.75)"/>
-    </t>
+   <t t-foreach="docs" t-as="o">
+       <t t-set="currency" t-value="o.currency_id"/>
+       # Language obtained from context
+       <t t-esc="currency.with_context({'lang': 'it_IT'}).amount_to_text(45.75)"/>
+
+       # Language obtained from user/partner settings.
+       # If not it_IT, Odoo core amount_to_text will be used.
+       <t t-esc="currency.amount_to_text(45.75)"/>
+   </t>
 
 **English**
 
 Call function ``amount_to_text`` in currency model (``res.currency``).
 
-For example, add this code if you need to convert amount to text in your reports::
+For example, add this code if you need to convert amount to text in your
+reports:
 
-    <t t-foreach="docs" t-as="o">
-        <t t-set="currency" t-value="o.currency_id"/>
-        # Language obtained from context
-        <t t-esc="currency.with_context({'lang': 'it_IT'}).amount_to_text(45.75)"/>
+::
 
-        # Language obtained from user/partner settings.
-        # If not it_IT, Odoo core amount_to_text will be used.
-        <t t-esc="currency.amount_to_text(45.75)"/>
-    </t>
+   <t t-foreach="docs" t-as="o">
+       <t t-set="currency" t-value="o.currency_id"/>
+       # Language obtained from context
+       <t t-esc="currency.with_context({'lang': 'it_IT'}).amount_to_text(45.75)"/>
+
+       # Language obtained from user/partner settings.
+       # If not it_IT, Odoo core amount_to_text will be used.
+       <t t-esc="currency.amount_to_text(45.75)"/>
+   </t>
 
 Bug Tracker
 ===========
@@ -125,7 +145,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_amount_to_text%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_amount_to_text%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -133,20 +153,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Zanchetta - Associazione PNLug APS
 * Ecosoft Co. Ltd
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Saran Lim. <saranl@ecosoft.co.th>
-* Pimolnat Suntian <pimolnats@ecosoft.co.th>
-* Sergio Zanchetta <https://github.com/primes2h>
+-  Saran Lim. <saranl@ecosoft.co.th>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  Sergio Zanchetta
+   <`https://github.com/primes2h <https://github.com/primes2h>`__>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -158,6 +179,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_amount_to_text>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/16.0/l10n_it_amount_to_text>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
