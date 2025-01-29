@@ -23,7 +23,7 @@ class Currency(models.Model):
             except NotImplementedError:
                 return num2words(number, lang="en")
 
-        formatted_amount = "%.{}f".format(self.decimal_places) % amount
+        formatted_amount = f"%.{self.decimal_places}f" % amount
         parts = formatted_amount.partition(".")
         integer_value = int(parts[0])
         fractional_value = int(parts[2] or 0)
