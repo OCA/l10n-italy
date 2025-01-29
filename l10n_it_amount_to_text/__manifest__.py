@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Localizzazione valute per amount_to_text",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Localizza le valute in italiano per amount_to_text",
     "author": "Sergio Zanchetta - Associazione PNLug APS,"
@@ -13,7 +13,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": ["base"],
-    "external_dependencies": {"python": ["num2words"]},  # num2words >= 0.5.12
+    "external_dependencies": {"python": ["num2words>=0.5.12"]},
     "data": [],
     "installable": True,
 }
