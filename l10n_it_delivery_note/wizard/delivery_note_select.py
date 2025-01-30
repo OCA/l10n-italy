@@ -72,6 +72,6 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
         sale_order_ids = self.selected_picking_ids.sale_id
         sale_order_id = sale_order_ids and sale_order_ids[0] or self.env["sale.order"]
         if sale_order_id:
-            sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids)
+            sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids.ids)
 
         return self.delivery_note_id.goto()
