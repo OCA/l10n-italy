@@ -73,5 +73,5 @@ def _rename_fields(env):
 
 
 @openupgrade.migrate()
-def migrate(env, version):
+def migrate(cr, version):
     _rename_fields(env)
