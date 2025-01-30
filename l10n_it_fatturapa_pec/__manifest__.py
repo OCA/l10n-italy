@@ -30,10 +30,5 @@
         "data/config_parameter.xml",
         "data/sdi_channel_demo.xml",
     ],
-    "installable": True,
-    "external_dependencies": {
-        "python": [
-            "mock",
-        ],
-    },
+    "installable": True
 }
