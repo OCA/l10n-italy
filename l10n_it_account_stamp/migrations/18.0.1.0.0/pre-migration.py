@@ -3,6 +3,7 @@
 
 from openupgradelib import openupgrade
 
+from odoo import SUPERUSER_ID
 
 def _rename_fields(env):
     openupgrade.rename_fields(
@@ -74,4 +75,5 @@ def _rename_fields(env):
 
 @openupgrade.migrate()
 def migrate(cr, version):
+    env = api.Environment(cr, SUPERUSER_ID, {})
     _rename_fields(env)
