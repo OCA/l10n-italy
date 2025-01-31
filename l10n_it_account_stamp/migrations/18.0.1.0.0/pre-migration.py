@@ -5,6 +5,7 @@ from openupgradelib import openupgrade
 
 from odoo import SUPERUSER_ID, api
 
+
 def _rename_fields(env):
     openupgrade.rename_fields(
         env,
