@@ -133,13 +133,14 @@ class WizardGiornaleReportlab(models.TransientModel):
                 am.name AS move_name,
                 COALESCE(aml.ref, '') AS ref,
                 aa.name AS account_name,
-                COALESCE(am.ref, '') AS name,
+                COALESCE(rp.name, '') AS name,
                 SUM(aml.debit) AS debit,
                 SUM(aml.credit) AS credit
             FROM
                 account_move_line aml
                 LEFT JOIN account_move am ON (am.id = aml.move_id)
                 LEFT JOIN account_account aa ON (aa.id = aml.account_id)
+                LEFT JOiN res_partner rp ON am.partner_id = rp.id
             WHERE
                 aml.date >= %(date_from)s
                 AND aml.date <= %(date_to)s
@@ -153,7 +154,8 @@ class WizardGiornaleReportlab(models.TransientModel):
                 am.name,
                 aml.ref,
                 aa.name,
-                am.ref
+                am.ref,
+                rp.name
             ORDER BY
                 am.date,
                 am.name
@@ -181,7 +183,7 @@ class WizardGiornaleReportlab(models.TransientModel):
                  am.name AS move_name,
                  COALESCE(aml.ref, '') AS ref,
                  aa.name AS account_name,
-                 COALESCE(am.ref, '') AS name,
+                 COALESCE(aml.name, '') AS name,
                  aml.debit AS debit,
                  aml.credit AS credit
              FROM
@@ -288,7 +290,8 @@ class WizardGiornaleReportlab(models.TransientModel):
         }
 
     def get_colwidths_report_giornale(self, width_available):
-        colwidths = [32, 40, 50, 120, 130, 100, 50, 50]
+        # colwidths = [32, 40, 50, 120, 130, 100, 50, 50]
+        colwidths = [28, 40, 80, 70, 100, 150, 52, 52]
         total = sum(colwidths)
         return [c / total * width_available for c in colwidths]
 
