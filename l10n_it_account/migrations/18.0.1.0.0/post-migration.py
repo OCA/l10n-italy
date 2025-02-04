@@ -8,6 +8,7 @@ OLD_MODULES = [
     "l10n_it_fatturapa",
     "l10n_it_fiscalcode",
     "l10n_it_ipa",
+    "l10n_it_pec",
     "l10n_it_rea",
 ]
 
@@ -134,6 +135,13 @@ def _l10n_it_ipa_migration(env):
     add_field_if_not_exists(env, table, "l10n_it_pa_index", "char", "l10n_it_edi")
     condition = "ipa_code IS NOT NULL"
     rename_fields(env, table, {"l10n_it_pa_index": "ipa_code"}, condition=condition)
+
+
+def _l10n_it_pec_migration(env):
+    table = "res_partner"
+    add_field_if_not_exists(env, table, "l10n_it_pec_email", "char", "l10n_it_edi")
+    condition = "pec_mail IS NOT NULL"
+    rename_fields(env, table, {"l10n_it_pec_email": "pec_mail"}, condition=condition)
 
 
 def _l10n_it_rea_migration(env):
