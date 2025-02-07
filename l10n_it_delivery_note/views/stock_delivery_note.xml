@@ -396,7 +396,7 @@
                                             ('picking_type_code', '=', type_code),
                                             '|', '|',
                                                     '&amp;', ('picking_type_code', '=', 'incoming'), ('partner_id', '=', partner_sender_id),
-                                                    '&amp;', ('picking_type_code', '=', 'outgoing'), ('partner_id', '=', partner_id),
+                                                    '&amp;', ('picking_type_code', '=', 'outgoing'), '|', ('partner_id', '=', partner_id), ('sale_id.partner_id', '=', partner_id),
                                                  ('picking_type_code', '=', 'internal'),
                                             ]"
                             >
