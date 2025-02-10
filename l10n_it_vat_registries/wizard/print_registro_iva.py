@@ -29,6 +29,7 @@ class WizardRegistroIva(models.TransientModel):
             ("journal_date_name", "Journal - Date - Number"),
         ],
         default="date_name",
+        required=True,
     )
     journal_ids = fields.Many2many(
         "account.journal",
