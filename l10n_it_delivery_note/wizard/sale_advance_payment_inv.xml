@@ -9,14 +9,14 @@
         <field name="model">sale.advance.payment.inv</field>
         <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
         <field name="arch" type="xml">
-            <xpath expr="//p" position="before">
+            <xpath expr="//div[hasclass('alert-warning')]" position="before">
                 <field name="step" invisible="True" />
             </xpath>
-            <xpath expr="//p" position="attributes">
+            <xpath expr="//div[hasclass('alert-warning')]" position="attributes">
                 <attribute name="name">initial_message</attribute>
                 <attribute name="invisible">step != 'initial'</attribute>
             </xpath>
-            <xpath expr="//p" position="after">
+            <xpath expr="//div[hasclass('alert-warning')]" position="after">
                 <div name="confirm_message" invisible="step != 'confirm'">
                     <div class="o_horizontal_separator">
                         <span class="fa fa-warning" /> Warning!
