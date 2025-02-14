@@ -2,15 +2,121 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
-from odoo.tools import html2plaintext
+from odoo.exceptions import UserError
+from odoo.tools import float_compare, html2plaintext
+
+from odoo.addons.base.models.ir_qweb_fields import Markup
+from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get_text
 
 
 class AccountMoveInherit(models.Model):
     _inherit = "account.move"
 
+    l10n_it_edi_protocol_number = fields.Char(size=64, copy=False)
+    l10n_it_edi_tax_representative_id = fields.Many2one(
+        "res.partner", string="Tax Representative"
+    )
+    l10n_it_edi_intermediary_id = fields.Many2one("res.partner", string="Intermediary")
+    l10n_it_edi_sender = fields.Selection(
+        [("CC", "Assignee / Partner"), ("TZ", "Third Person")], string="Sender"
+    )
     l10n_it_edi_attachment_preview_link = fields.Char(
         string="Preview link",
         compute="_compute_l10n_it_edi_attachment_preview_link",
+    )
+    l10n_it_edi_line_ids = fields.One2many(
+        "l10n_it_edi.line",
+        "invoice_id",
+        string="E-Invoice Lines",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_summary_ids = fields.One2many(
+        "l10n_it_edi.summary_data",
+        "invoice_id",
+        string="E-Invoice Summary Data",
+        copy=False,
+    )
+    l10n_it_edi_activity_progress_ids = fields.One2many(
+        "l10n_it_edi.activity_progress",
+        "invoice_id",
+        string="E-Invoice Activity Progress",
+        copy=False,
+    )
+    l10n_it_edi_rounding = fields.Float(
+        string="Rounding",
+        readonly=True,
+        help="Possible total amount rounding on the document (negative sign allowed)",
+        copy=False,
+    )
+    l10n_edi_it_art73 = fields.Boolean(
+        string="Art. 73",
+        readonly=True,
+        help="Indicates whether the document has been issued according to "
+        "methods and terms laid down in a ministerial decree under the "
+        "terms of Article 73 of Italian Presidential Decree 633/72 (this "
+        "enables the seller/provider to issue in the same year several "
+        "documents with same number)",
+        copy=False,
+    )
+    l10n_it_edi_related_invoice_code = fields.Char(
+        string="Related Invoice Code", copy=False
+    )
+    l10n_it_edi_related_invoice_date = fields.Date(
+        string="Related Invoice Date", copy=False
+    )
+    l10n_it_edi_stabile_organizzazione_indirizzo = fields.Char(
+        string="Organization Address",
+        help="The fields must be entered only when the seller/provider is "
+        "non-resident, with a stable organization in Italy. Address of "
+        "the stable organization in Italy (street name, square, etc.)",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_stabile_organizzazione_civico = fields.Char(
+        string="Organization Street Number",
+        help="Street number of the address (no need to specify if already "
+        "present in the address field)",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_stabile_organizzazione_cap = fields.Char(
+        string="Organization ZIP", help="ZIP Code", readonly=True, copy=False
+    )
+    l10n_it_edi_stabile_organizzazione_comune = fields.Char(
+        string="Organization Municipality",
+        help="Municipality or city to which the Stable Organization refers",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_stabile_organizzazione_provincia = fields.Char(
+        string="Organization Province",
+        help="Acronym of the Province to which the municipality indicated "
+        "in the information element 1.2.3.4 <Comune> belongs. "
+        "Must be filled if the information element 1.2.3.6 <Nazione> is "
+        "equal to IT",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_stabile_organizzazione_nazione = fields.Char(
+        string="Organization Country",
+        help="Country code according to the ISO 3166-1 alpha-2 code standard",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_amount_untaxed = fields.Monetary(
+        string="E-Invoice Untaxed Amount", readonly=True
+    )
+    l10n_it_edi_amount_tax = fields.Monetary(
+        string="E-Invoice Tax Amount", readonly=True
+    )
+    l10n_it_edi_amount_total = fields.Monetary(
+        string="E-Invoice Total Amount",
+        compute="_compute_l10n_it_amount_total",
+        readonly=True,
+    )
+    l10n_it_edi_validation_message = fields.Text(
+        compute="_compute_l10n_it_edi_validation_message"
     )
 
     # -------------------------------------------------------------------------
@@ -27,6 +133,54 @@ class AccountMoveInherit(models.Model):
                 )
             else:
                 move.l10n_it_edi_attachment_preview_link = ""
+
+    @api.depends(
+        "l10n_it_edi_amount_untaxed", "l10n_it_edi_amount_tax", "l10n_it_edi_rounding"
+    )
+    def _compute_l10n_it_amount_total(self):
+        for move in self:
+            move.l10n_it_edi_amount_total = sum(
+                [
+                    move.l10n_it_edi_amount_untaxed,
+                    move.l10n_it_edi_amount_tax,
+                    move.l10n_it_edi_rounding,
+                ]
+            )
+
+    @api.depends(
+        "move_type",
+        "state",
+        "amount_untaxed",
+        "amount_tax",
+        "amount_total",
+        "l10n_it_edi_attachment_id",
+        "l10n_it_edi_amount_untaxed",
+        "l10n_it_edi_amount_tax",
+        "l10n_it_edi_rounding",
+    )
+    def _compute_l10n_it_edi_validation_message(self):
+        self.l10n_it_edi_validation_message = ""
+
+        invoices_to_check = self.filtered(
+            lambda inv: inv.is_purchase_document()
+            and inv.state in ["draft", "posted"]
+            and inv.l10n_it_edi_attachment_id
+        )
+        for invoice in invoices_to_check:
+            error_messages = list()
+
+            if error_message := invoice._l10n_it_edi_check_amount_untaxed():
+                error_messages.append(error_message)
+
+            if error_message := invoice._l10n_it_edi_check_amount_tax():
+                error_messages.append(error_message)
+
+            if error_message := invoice._l10n_it_edi_check_amount_total():
+                error_messages.append(error_message)
+
+            if not error_messages:
+                continue
+            invoice.l10n_it_edi_validation_message = ",\n".join(error_messages) + "."
 
     # -------------------------------------------------------------------------
     # Business actions
@@ -84,3 +238,489 @@ class AccountMoveInherit(models.Model):
         res["causale"] = causale_list
 
         return res
+
+    def _l10n_it_edi_get_tax_representative(self, body_tree):
+        if body_tree.xpath("//RappresentanteFiscale"):
+            vat = get_text(body_tree, "//RappresentanteFiscale//IdCodice")
+            codice_fiscale = get_text(
+                body_tree, "//RappresentanteFiscale//CodiceFiscale"
+            )
+            self = self.with_context(skip_create_partner=True)
+            if tax_representative := self._l10n_it_edi_search_partner(
+                self.company_id, vat, codice_fiscale, ""
+            ):
+                self.l10n_it_edi_tax_representative_id = tax_representative.id
+            else:
+                if tax_representative := self._l10n_it_edi_create_partner(
+                    body_tree, "//RappresentanteFiscale", vat, codice_fiscale
+                ):
+                    self.l10n_it_edi_tax_representative_id = tax_representative.id
+
+    def _l10n_it_edi_get_intermediary(self, body_tree):
+        if body_tree.xpath("//TerzoIntermediarioOSoggettoEmittente"):
+            vat = get_text(
+                body_tree, "//TerzoIntermediarioOSoggettoEmittente//IdCodice"
+            )
+            codice_fiscale = get_text(
+                body_tree, "//TerzoIntermediarioOSoggettoEmittente//CodiceFiscale"
+            )
+            self = self.with_context(skip_create_partner=True)
+            if intermediary := self._l10n_it_edi_search_partner(
+                self.company_id, vat, codice_fiscale, ""
+            ):
+                self.l10n_it_edi_intermediary_id = intermediary.id
+            else:
+                if intermediary := self._l10n_it_edi_create_partner(
+                    body_tree,
+                    "//TerzoIntermediarioOSoggettoEmittente",
+                    vat,
+                    codice_fiscale,
+                ):
+                    self.l10n_it_edi_intermediary_id = intermediary.id
+
+        if sender := get_text(body_tree, "//SoggettoEmittente"):
+            self.l10n_it_edi_sender = sender
+
+    def _l10n_it_edi_get_extra_info(
+        self, company, document_type, body_tree, incoming=True
+    ):
+        extra_info, message_to_log = super()._l10n_it_edi_get_extra_info(
+            company, document_type, body_tree, incoming=incoming
+        )
+
+        self._l10n_it_edi_get_tax_representative(body_tree)
+        self._l10n_it_edi_get_intermediary(body_tree)
+
+        if element_stabile_organizzazione := body_tree.xpath("//StabileOrganizzazione"):
+            self.write(
+                {
+                    "l10n_it_edi_stabile_organizzazione_indirizzo": get_text(
+                        element_stabile_organizzazione, ".//Indirizzo"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_civico": get_date(
+                        element_stabile_organizzazione, ".//NumeroCivico"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_cap": get_date(
+                        element_stabile_organizzazione, ".//CAP"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_comune": get_date(
+                        element_stabile_organizzazione, ".//Comune"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_provincia": get_date(
+                        element_stabile_organizzazione, ".//Provincia"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_nazione": get_date(
+                        element_stabile_organizzazione, ".//Nazione"
+                    ),
+                }
+            )
+
+        if rounding := get_float(body_tree, ".//DatiGeneraliDocumento/Arrotondamento"):
+            self.l10n_it_edi_rounding = rounding
+
+        if get_text(body_tree, "//DatiGeneraliDocumento/Art73"):
+            self.l10n_edi_it_art73 = True
+
+        if elements_sal := body_tree.xpath(".//DatiGenerali/DatiSAL"):
+            self.env["l10n_it_edi.activity_progress"].create(
+                [
+                    {
+                        "activity_progress": get_text(
+                            element_sal, ".//RiferimentoFase"
+                        ),
+                        "invoice_id": self.id,
+                    }
+                    for element_sal in elements_sal
+                ],
+            )
+
+        for xpath, label in [
+            (
+                ".//DatiGenerali/DatiTrasporto",
+                self.env._("Transport informations from XML file:"),
+            ),
+            (".//DatiVeicoli", self.env._("Vehicle informations from XML file:")),
+        ]:
+            if body_tree.xpath(xpath):
+                message = Markup("<br/>").join(
+                    (label, self._compose_info_message(body_tree, xpath))
+                )
+                message_to_log.append(message)
+
+        if elements_parent_invoice := body_tree.xpath(
+            ".//DatiGenerali/FatturaPrincipale"
+        ):
+            for element_parent_invoice in elements_parent_invoice:
+                self.write(
+                    {
+                        "l10n_it_edi_related_invoice_code": get_text(
+                            element_parent_invoice, ".//NumeroFatturaPrincipale"
+                        ),
+                        "l10n_it_edi_related_invoice_date": get_date(
+                            element_parent_invoice, ".//DataFatturaPrincipale"
+                        ),
+                    }
+                )
+
+        tag_name = (
+            ".//DettaglioLinee"
+            if not extra_info["simplified"]
+            else ".//DatiBeniServizi"
+        )
+        if elements_line := body_tree.xpath(tag_name):
+            for element_line in elements_line:
+                self.l10n_it_edi_amount_untaxed += get_float(
+                    element_line, ".//PrezzoTotale"
+                )
+
+        if elements_summary := body_tree.xpath(".//DatiBeniServizi/DatiRiepilogo"):
+            self.env["l10n_it_edi.summary_data"].create(
+                [
+                    {
+                        "tax_rate": get_float(element_summary, ".//AliquotaIVA"),
+                        "non_taxable_nature": get_text(element_summary, ".//Natura"),
+                        "incidental_charges": get_float(
+                            element_summary, ".//SpeseAccessorie"
+                        ),
+                        "rounding": get_float(element_summary, ".//Arrotondamento"),
+                        "amount_untaxed": get_float(
+                            element_summary, ".//ImponibileImporto"
+                        ),
+                        "amount_tax": get_float(element_summary, ".//Imposta"),
+                        "payability": get_text(element_summary, ".//EsigibilitaIVA"),
+                        "law_reference": get_text(
+                            element_summary, ".//RiferimentoNormativo"
+                        ),
+                        "invoice_id": self.id,
+                    }
+                    for element_summary in elements_summary
+                ]
+            )
+            for element_summary in elements_summary:
+                self.l10n_it_edi_amount_tax += get_float(element_summary, ".//Imposta")
+
+        return extra_info, message_to_log
+
+    def _l10n_it_edi_create_partner(
+        self, xml_tree, partner_section_xpath, vat, codice_fiscale
+    ):
+        is_company = bool(get_text(xml_tree, partner_section_xpath + "//Denominazione"))
+        eori_code = get_text(xml_tree, partner_section_xpath + "//CodEORI")
+
+        if country_code := get_text(xml_tree, partner_section_xpath + "//IdPaese"):
+            country_id = (
+                self.env["res.country"]
+                .search([("code", "=", country_code)], limit=1)
+                .id
+            )
+            if not country_id:
+                raise UserError(
+                    self.env._("Country Code %s not found in system.", country_code)
+                )
+
+        vals = {
+            "vat": country_code + vat,
+            "l10n_it_codice_fiscale": codice_fiscale,
+            "is_company": is_company,
+            "l10n_edi_it_eori_code": eori_code,
+            "country_id": country_id,
+        }
+
+        if value := get_text(xml_tree, partner_section_xpath + "//Denominazione"):
+            vals["name"] = value
+        else:
+            # Remove fields check when module partner_firstname
+            # is migrated and added as a dependency
+            partner_fields = self.env["res.partner"]._fields.keys()
+            first_name = get_text(xml_tree, partner_section_xpath + "//Nome")
+            last_name = get_text(xml_tree, partner_section_xpath + "//Cognome")
+            if "firstname" in partner_fields:
+                vals["firstname"] = first_name
+                vals["lastname"] = last_name
+            else:
+                vals["name"] = " ".join(filter(None, [first_name, last_name]))
+
+        return self.env["res.partner"].create(vals)
+
+    def _l10n_it_edi_update_partner(self, xml_tree, partner_section_xpath, partner):
+        vals = {}
+
+        address_parts = filter(
+            None,
+            [
+                get_text(xml_tree, partner_section_xpath + "//Indirizzo"),
+                get_text(xml_tree, partner_section_xpath + "//NumeroCivico"),
+            ],
+        )
+        vals["street"] = " ".join(address_parts)
+
+        for field_name, xml_path in [
+            ("zip", "//CAP"),
+            ("city", "//Comune"),
+            ("l10n_edi_it_register", "//AlboProfessionale"),
+            ("phone", "//Telefono"),
+            ("email", "//Email"),
+            ("l10n_edi_it_register_code", "//NumeroIscrizioneAlbo"),
+        ]:
+            value = get_text(xml_tree, partner_section_xpath + xml_path)
+            vals[field_name] = value
+
+        if province := get_text(xml_tree, partner_section_xpath + "//Provincia"):
+            if province := self.env["res.country.state"].search(
+                [("code", "=", province), ("country_id", "=", partner.country_id.id)],
+                limit=1,
+            ):
+                vals["state_id"] = province.id
+            else:
+                message = self.env._(
+                    "Province (%s) not present in your system", province
+                )
+                self.sudo().message_post(body=message)
+
+        if phone := get_text(xml_tree, partner_section_xpath + "//Telefono"):
+            vals["phone"] = phone
+
+        if email := get_text(xml_tree, partner_section_xpath + "//Email"):
+            vals["email"] = email
+
+        if register_province := get_text(
+            xml_tree, partner_section_xpath + "//ProvinciaAlbo"
+        ):
+            if province := self.env["res.country.state"].search(
+                [
+                    ("code", "=", register_province),
+                    ("country_id", "=", partner.country_id.id),
+                ],
+                limit=1,
+            ):
+                vals["l10n_edi_it_register_province_id"] = province.id
+            else:
+                message = self.env._(
+                    "Register Province (%s) not present in your system",
+                    register_province,
+                )
+                self.sudo().message_post(body=message)
+
+        if register_code := get_text(
+            xml_tree, partner_section_xpath + "//NumeroIscrizioneAlbo"
+        ):
+            vals["l10n_edi_it_register_code"] = register_code
+
+        if register_regdate := get_date(
+            xml_tree, partner_section_xpath + "//DataIscrizioneAlbo"
+        ):
+            vals["l10n_edi_it_register_regdate"] = register_regdate
+
+        partner.write(vals)
+        return partner
+
+    def _l10n_it_edi_search_partner(self, company, vat, codice_fiscale, email):
+        partner = super()._l10n_it_edi_search_partner(
+            company, vat, codice_fiscale, email
+        )
+        if not partner and not self.env.context.get("skip_create_partner"):
+            try:
+                edi_attachment = self.l10n_it_edi_attachment_id
+                xml_tree = edi_attachment._decode_edi_l10n_it_edi(
+                    edi_attachment.name, edi_attachment.raw
+                )[0]["xml_tree"]
+            except Exception as e:
+                raise UserError(self.env._("Error parsing XML: %s") % str(e)) from e
+
+            buyer_seller_info = self._l10n_it_buyer_seller_info()
+            partner_info = buyer_seller_info[
+                "seller" if self.is_purchase_document() else "buyer"
+            ]
+
+            partner = self._l10n_it_edi_create_partner(
+                xml_tree, partner_info["section_xpath"], vat, codice_fiscale
+            )
+            if not partner.l10n_edi_it_electronic_invoice_no_contact_update:
+                partner = self._l10n_it_edi_update_partner(
+                    xml_tree, partner_info["section_xpath"], partner
+                )
+
+        return partner
+
+    def _l10n_it_edi_import_line(self, element, move_line, extra_info=None):
+        # Admin. ref.
+        if admin_ref := get_text(element, ".//RiferimentoAmministrazione"):
+            move_line.l10n_it_edi_admin_ref = admin_ref
+
+        vals = {
+            "line_number": int(get_text(element, ".//NumeroLinea")),
+            "service_type": get_text(element, ".//TipoCessionePrestazione"),
+            "name": " ".join(get_text(element, ".//Descrizione").split()),
+            "qty": float(get_text(element, ".//Quantita") or 0),
+            "uom": get_text(element, ".//UnitaMisura"),
+            "period_start_date": get_date(element, ".//DataInizioPeriodo"),
+            "period_end_date": get_date(element, ".//DataFinePeriodo"),
+            "unit_price": get_float(element, ".//PrezzoUnitario"),
+            "total_price": get_float(element, ".//PrezzoTotale"),
+            "tax_amount": get_float(element, ".//AliquotaIVA"),
+            "wt_amount": get_text(element, ".//Ritenuta"),
+            "tax_kind": get_text(element, ".//Natura").upper(),
+            "invoice_line_id": move_line.id,
+            "invoice_id": move_line.move_id.id,
+        }
+        einvoice_line = self.env["l10n_it_edi.line"].create(vals)
+
+        if elements_code := element.xpath(".//CodiceArticolo"):
+            for element_code in elements_code:
+                self.env["l10n_it_edi.article_code"].create(
+                    {
+                        "name": get_text(element_code, ".//CodiceTipo"),
+                        "code_val": get_text(element_code, ".//CodiceValore"),
+                        "l10n_it_edi_line_id": einvoice_line.id,
+                    }
+                )
+
+        if elements_discount := element.xpath(".//ScontoMaggiorazione"):
+            for element_discount in elements_discount:
+                self.env["l10n_it_edi.discount_rise_price"].create(
+                    {
+                        "name": get_text(element_discount, ".//Tipo"),
+                        "percentage": get_float(element_discount, ".//Percentuale"),
+                        "amount": get_float(element_discount, ".//Importo"),
+                        "l10n_it_edi_line_id": einvoice_line.id,
+                    }
+                )
+
+        if elements_other_data := element.xpath(".//AltriDatiGestionali"):
+            for element_other_data in elements_other_data:
+                self.env["l10n_it_edi.line_other_data"].create(
+                    {
+                        "name": get_text(element_other_data, ".//TipoDato"),
+                        "text_ref": get_text(element_other_data, ".//RiferimentoTesto"),
+                        "num_ref": get_float(
+                            element_other_data, ".//RiferimentoNumero"
+                        ),
+                        "date_ref": get_date(element_other_data, ".//RiferimentoData"),
+                        "l10n_it_edi_line_id": einvoice_line.id,
+                    }
+                )
+
+            if elements_code := element.xpath(".//CodiceArticolo"):
+                self.env["l10n_it_edi.article_code"].create(
+                    [
+                        {
+                            "name": get_text(element_code, ".//CodiceTipo"),
+                            "code_val": get_text(element_code, ".//CodiceValore"),
+                            "l10n_it_edi_line_id": einvoice_line.id,
+                        }
+                        for element_code in elements_code
+                    ]
+                )
+
+            if elements_discount := element.xpath(".//ScontoMaggiorazione"):
+                self.env["l10n_it_edi.discount_rise_price"].create(
+                    [
+                        {
+                            "name": get_text(element_discount, ".//Tipo"),
+                            "percentage": get_float(element_discount, ".//Percentuale"),
+                            "amount": get_float(element_discount, ".//Importo"),
+                            "l10n_it_edi_line_id": einvoice_line.id,
+                        }
+                        for element_discount in elements_discount
+                    ]
+                )
+
+            if elements_other_data := element.xpath(".//AltriDatiGestionali"):
+                self.env["l10n_it_edi.line_other_data"].create(
+                    [
+                        {
+                            "name": get_text(element_other_data, ".//TipoDato"),
+                            "text_ref": get_text(
+                                element_other_data, ".//RiferimentoTesto"
+                            ),
+                            "num_ref": get_float(
+                                element_other_data, ".//RiferimentoNumero"
+                            ),
+                            "date_ref": get_date(
+                                element_other_data, ".//RiferimentoData"
+                            ),
+                            "l10n_it_edi_line_id": einvoice_line.id,
+                        }
+                        for element_other_data in elements_other_data
+                    ]
+                )
+
+            messages_to_log += super()._l10n_it_edi_import_line(
+                element, move_line, extra_info=extra_info
+            )
+        else:
+            raise UserError(
+                _(
+                    "Import detail level %(import_detail_level)s not supported.\n"
+                    "Please set an import detail level in company %(company)s.",
+                    import_detail_level=import_detail_level,
+                    company=company.name,
+                )
+            )
+        return messages_to_log
+
+    def _l10n_it_edi_check_amount_untaxed(self):
+        error_message = ""
+        if (
+            self.l10n_it_edi_amount_untaxed
+            and float_compare(
+                self.amount_untaxed - self.l10n_it_edi_rounding,
+                abs(self.l10n_it_edi_amount_untaxed),
+                precision_rounding=self.currency_id.rounding,
+            )
+            != 0
+        ):
+            error_message = self.env._(
+                "Untaxed amount (%(amount_untaxed)s) "
+                "does not match with "
+                "e-invoice untaxed amount (%(l10n_it_edi_amount_untaxed)s) "
+                "with rounding of (%(currency_rounding)s)",
+                amount_untaxed=self.amount_untaxed,
+                l10n_it_edi_amount_untaxed=self.l10n_it_edi_amount_untaxed,
+                currency_rounding=self.currency_id.rounding,
+            )
+        return error_message
+
+    def _l10n_it_edi_check_amount_tax(self):
+        error_message = ""
+        if (
+            self.l10n_it_edi_amount_tax
+            and float_compare(
+                self.amount_tax,
+                abs(self.l10n_it_edi_amount_tax),
+                precision_rounding=self.currency_id.rounding,
+            )
+            != 0
+        ):
+            error_message = self.env._(
+                "Taxed amount (%(amount_tax)s) "
+                "does not match with "
+                "e-invoice taxed amount (%(l10n_it_edi_amount_tax)s) "
+                "with rounding of (%(currency_rounding)s)",
+                amount_tax=self.amount_tax,
+                l10n_it_edi_amount_tax=self.l10n_it_edi_amount_tax,
+                currency_rounding=self.currency_id.rounding,
+            )
+        return error_message
+
+    def _l10n_it_edi_check_amount_total(self):
+        error_message = ""
+        if (
+            self.l10n_it_edi_amount_total
+            and float_compare(
+                self.amount_total,
+                abs(self.l10n_it_edi_amount_total),
+                precision_rounding=self.currency_id.rounding,
+            )
+            != 0
+        ):
+            error_message = self.env._(
+                "Total amount (%(self.amount_total)s) "
+                "does not match with "
+                "e-invoice total amount (%(self.l10n_it_edi_amount_total)s) "
+                "with rounding of (%(currency_rounding)s)",
+                amount_total=self.amount_total,
+                l10n_it_edi_amount_total=self.l10n_it_edi_amount_total,
+                currency_rounding=self.currency_id.rounding,
+            )
+        return error_message

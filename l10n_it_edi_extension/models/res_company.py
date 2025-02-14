@@ -16,6 +16,12 @@ class ResCompanyInherit(models.Model):
         "year several documents with same number)",
     )
     l10n_edi_it_admin_ref = fields.Char(string="Public Administration Reference Code")
+    l10n_edi_it_sender_partner = fields.Many2one(
+        "res.partner",
+        string="Third Party/Sender",
+        help="Data of Third-Party Issuer Intermediary who emits the "
+        "invoice on behalf of the seller/provider",
+    )
     l10n_edi_it_stable_organization = fields.Many2one(
         "res.partner",
         string="Stable Organization",
