@@ -42,7 +42,9 @@
             <t t-foreach="causale" t-as="c">
                 <Causale t-out="c" />
             </t>
-            <Art73 t-if="company.l10n_edi_it_art73">SI</Art73>
+            <Art73
+                t-if="record.l10n_edi_it_art73 or company.l10n_edi_it_art73"
+            >SI</Art73>
         </xpath>
     </template>
 </odoo>
