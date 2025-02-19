@@ -1,11 +1,12 @@
-# Copyright 2024 Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+# Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
 from io import BytesIO
 
 from lxml import etree
 
-from odoo import _, api, models, tools
+from odoo import api, models, tools
 from odoo.exceptions import UserError
 
 
@@ -17,32 +18,12 @@ class IrAttachmentInherit(models.Model):
         """Hook to have a clean inheritance."""
         return "FoglioStileAssoSoftware.xsl"
 
-    @api.model
-    def remove_xades_sign(self, xml_string):
-        # Recovering parser is needed for files where strings like
-        # xmlns:ds="http://www.w3.org/2000/09/xmldsig#&quot;"
-        # are present: even if lxml raises
-        # {XMLSyntaxError}xmlns:ds:
-        # 'http://www.w3.org/2000/09/xmldsig#"' is not a valid URI
-        # such files are accepted by SDI
-        try:
-            recovering_parser = etree.XMLParser(recover=True, resolve_entities=False)
-            root = etree.fromstring(xml_string, recovering_parser)
-            for elem in root.iter("*"):
-                if "Signature" in elem.tag:
-                    elem.getparent().remove(elem)
-                    break
-                if any(" " in (ns_uri or "") for ns_uri in elem.nsmap.values()):
-                    etree.cleanup_namespaces(elem)
-            return etree.tostring(root)
-        except (etree.ParseError, ValueError) as e:
-            raise UserError(_(f"XML parsing of '{self.name}' failed: {str(e)}")) from e
-
     def get_xml_string(self):
         if not self._is_l10n_it_edi_import_file():
-            raise UserError(_("Invalid xml %s.") % self.name)
-        xml_string = self._decode_edi_l10n_it_edi(self.name, self.raw)[0]["content"]
-        return self.remove_xades_sign(xml_string)
+            raise UserError(self.env._("Invalid xml %s.") % self.name)
+        content = base64.decodebytes(self.raw)
+        xml_string = self._decode_edi_l10n_it_edi(self.name, content)[0]["content"]
+        return xml_string
 
     def get_fattura_elettronica_preview(self):
         xsl_path = tools.misc.file_path(
