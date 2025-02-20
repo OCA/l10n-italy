@@ -87,7 +87,10 @@ class AccountPartialReconcile(models.Model):
 
             move_ids = ld.move_id | lc.move_id
             lines = self.env["account.move.line"].search(
-                [("withholding_tax_generated_by_move_id", "in", move_ids.ids)]
+                [
+                    ("withholding_tax_generated_by_move_id", "in", move_ids.ids),
+                    ("move_id", "in", move_ids.ids),
+                ]
             )
             if lines:
                 is_wt_move = True
@@ -287,24 +290,29 @@ class AccountMove(models.Model):
                 withholding_tax_amount += float_round(
                     wt_line.tax, dp_obj.precision_get("Account")
                 )
-            invoice.amount_net_pay = invoice.amount_total - withholding_tax_amount
-            amount_net_pay_residual = invoice.amount_net_pay
+            reconciled_partials, _ = invoice._get_reconciled_invoices_partials()
+            amount_net_pay_residual = invoice.amount_total - withholding_tax_amount
             invoice.withholding_tax_amount = withholding_tax_amount
-
-            reconciled_lines = invoice.line_ids.filtered(
-                lambda line: line.account_id.account_type
-                in ("asset_receivable", "liability_payable")
-            )
-            reconciled_amls = reconciled_lines.mapped(
-                "matched_debit_ids.debit_move_id"
-            ) + reconciled_lines.mapped("matched_credit_ids.credit_move_id")
-
-            for line in reconciled_amls:
-                if not line.withholding_tax_generated_by_move_id:
-                    amount_net_pay_residual -= line.debit or line.credit
-            invoice.amount_net_pay_residual = float_round(
-                amount_net_pay_residual, dp_obj.precision_get("Account")
-            )
+            if reconciled_partials:
+                total_amount = sum(
+                    x[1]
+                    for x in reconciled_partials
+                    if not x[2].withholding_tax_generated_by_move_id
+                )
+                amount_net_pay_residual -= total_amount
+                amount_net_pay_residual = (
+                    0 if amount_net_pay_residual <= 0 else amount_net_pay_residual
+                )
+                invoice.amount_net_pay_residual = float_round(
+                    amount_net_pay_residual, dp_obj.precision_get("Account")
+                )
+            else:
+                invoice.amount_net_pay = invoice.amount_total - withholding_tax_amount
+                amount_net_pay_residual = invoice.amount_net_pay
+                invoice.withholding_tax_amount = withholding_tax_amount
+                invoice.amount_net_pay_residual = float_round(
+                    amount_net_pay_residual, dp_obj.precision_get("Account")
+                )
 
     withholding_tax = fields.Boolean()
     withholding_tax_in_print = fields.Boolean(
@@ -540,6 +548,45 @@ class AccountMoveLine(models.Model):
         string="W.T.",
         default=_default_withholding_tax,
     )
+
+    def _prepare_reconciliation_partials(self, vals_list):
+        new_vals_list = []
+        for line in self:
+            wt_amount = (
+                -line.withholding_tax_amount
+                if line.move_type
+                in [
+                    "in_refund",
+                    "out_invoice",
+                ]
+                else line.withholding_tax_amount
+            )
+            reconciled_lines = line.move_id.line_ids.filtered(
+                lambda line: line.account_id.account_type
+                in ("asset_receivable", "liability_payable")
+            )
+            reconciled_amls = reconciled_lines.mapped(
+                "matched_debit_ids.debit_move_id"
+            ) + reconciled_lines.mapped("matched_credit_ids.credit_move_id")
+            wt_lines = reconciled_amls.filtered(
+                lambda x: x.withholding_tax_generated_by_move_id
+            )
+            wt_amount_pay = sum(wt_lines.mapped("amount_currency")) or 0
+            new_vals_list.append(
+                {
+                    "record": line,
+                    "balance": line.balance + line.withholding_tax_amount,
+                    "amount_currency": line.amount_currency + wt_amount,
+                    "amount_residual": line.amount_residual
+                    + (wt_amount - wt_amount_pay),
+                    "amount_residual_currency": line.amount_residual_currency
+                    + (wt_amount - wt_amount_pay),
+                    "company": line.company_id,
+                    "currency": line.currency_id,
+                    "date": line.date,
+                }
+            )
+        return super()._prepare_reconciliation_partials(new_vals_list)
 
 
 class AccountInvoiceWithholdingTax(models.Model):

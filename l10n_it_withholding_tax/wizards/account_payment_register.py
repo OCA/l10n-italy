@@ -11,16 +11,19 @@ class AccountPaymentRegister(models.TransientModel):
     @api.model
     def _get_wizard_values_from_batch(self, batch_result):
         wizard_values_from_batch = super()._get_wizard_values_from_batch(batch_result)
-        self._inject_withholding_net_pay_residual(wizard_values_from_batch)
+        self._inject_withholding_net_pay_residual(
+            wizard_values_from_batch, batch_result["lines"]
+        )
         return wizard_values_from_batch
 
-    def _inject_withholding_net_pay_residual(self, wizard_values_from_batch):
+    def _inject_withholding_net_pay_residual(
+        self, wizard_values_from_batch, account_move_line_ids=None
+    ):
         """If the payment is for Invoices having Withholding Taxes,
         set the Residual Net To Pay as the amount to be paid.
         """
         if self.env.context.get("active_model") == "account.move":
-            moves_ids = self.env.context.get("active_ids", [])
-            moves = self.env["account.move"].browse(moves_ids)
+            moves = account_move_line_ids.mapped("move_id")
             withholding_moves = moves.filtered("withholding_tax")
             if withholding_moves:
                 currency = withholding_moves.currency_id
@@ -47,7 +50,7 @@ class AccountPaymentRegister(models.TransientModel):
             batch_result, early_payment_discount=early_payment_discount
         )
         withholding_net_pay_residual_values = self._inject_withholding_net_pay_residual(
-            dict()
+            dict(), batch_result["lines"]
         )
         withholding_net_pay_residual = withholding_net_pay_residual_values.get(
             "source_amount"
