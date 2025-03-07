@@ -8,29 +8,44 @@
         <div id="delivery_data_information" class="row mt32 mb32">
             <div t-if="doc.delivery_transport_reason_id" class="col-3 bm-2">
                 <strong>Reason of Transport:</strong>
-                <p t-field="doc.delivery_transport_reason_id" class="m-0" />
+                <p
+                    t-field="doc.with_context(lang=doc.partner_id.lang).delivery_transport_reason_id"
+                    class="m-0"
+                />
             </div>
             <div t-if="doc.delivery_transport_condition_id" class="col-3 bm-2">
                 <strong>Carriage Condition:</strong>
-                <p t-field="doc.delivery_transport_condition_id" class="m-0" />
+                <p
+                    t-field="doc.with_context(lang=doc.partner_id.lang).delivery_transport_condition_id"
+                    class="m-0"
+                />
             </div>
             <div
                 t-if="doc.delivery_transport_method_id and doc.company_id.display_carrier_dn_report"
                 class="col-3 bm-2"
             >
                 <strong>Method of Transport:</strong>
-                <p t-field="doc.delivery_transport_method_id" class="m-0" />
+                <p
+                    t-field="doc.with_context(lang=doc.partner_id.lang).delivery_transport_method_id"
+                    class="m-0"
+                />
             </div>
             <div
                 t-if="doc.delivery_transport_method_id and not doc.company_id.display_carrier_dn_report"
                 class="col-3 bm-2"
             >
                 <strong>Method of Transport / Carrier:</strong>
-                <span t-field="doc.delivery_transport_method_id" class="m-0" />
+                <span
+                    t-field="doc.with_context(lang=doc.partner_id.lang).delivery_transport_method_id"
+                    class="m-0"
+                />
                 <t
                     t-if="doc.delivery_transport_method_id and doc.delivery_carrier_id"
                 > / </t>
-                <span t-field="doc.delivery_carrier_id" class="m-0" />
+                <span
+                    t-field="doc.with_context(lang=doc.partner_id.lang).delivery_carrier_id"
+                    class="m-0"
+                />
             </div>
         </div>
     </template>
