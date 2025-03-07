@@ -47,6 +47,26 @@ class ResPartnerBankAdd(models.Model):
             ("partner_id", "=", company.partner_id.id),
         ]
 
+    def _check_protected_records(self):
+        protected_records = (
+            self.env["account.move"]
+            .search([("riba_partner_bank_id", "in", self.ids)])
+            .mapped("riba_partner_bank_id")
+        )
+        if protected_records:
+            acc_numbers = [bank.acc_number for bank in protected_records]
+            message = self.env._(
+                "The bank accounts with accreditation code {acc_codes}s"
+                " cannot be deleted as they are used in invoices."
+                " If possible, archive the bank account",
+                acc_codes=", ".join(acc_numbers),
+            )
+            raise UserError(message)
+
+    def unlink(self):
+        self._check_protected_records()
+        return super().unlink()
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -338,6 +358,9 @@ class AccountMove(models.Model):
                 invoice._sync_dynamic_lines(
                     container={"records": invoice, "self": invoice}
                 )
+            # if the bank account is archived do not allow the use in the new invoice
+            if not invoice.riba_partner_bank_id.active:
+                invoice.riba_partner_bank_id = False
         return invoices
 
     def get_due_cost_line_ids(self):
