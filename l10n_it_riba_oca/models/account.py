@@ -456,11 +456,19 @@ class AccountMoveLine(models.Model):
         return res
 
     def action_riba_issue(self):
+        for line in self:
+            if not line.move_id.riba_partner_bank_id.active:
+                raise UserError(
+                    self.env._(
+                        "Non è possibile emettere una riba legata ad un IBAN "
+                        "archiviato; riga: %s , contatto: %s"
+                    )
+                    % (line.name, line.partner_id.name)
+                )
         ctx = dict(self.env.context)
         ctx.pop("active_id", None)
         ctx["active_ids"] = self.ids
         ctx["active_model"] = "account.move.line"
-
         return {
             "type": "ir.actions.act_window",
             "name": "Issue RiBa",
