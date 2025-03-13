@@ -53,10 +53,10 @@
                 name="t-esc"
             >format_numbers(0) if tax_ids and tax_ids.oss_country_id and tax_ids.kind_id else format_numbers(tax_ids.amount)</attribute>
         </xpath>
-        <xpath expr="//AliquotaIVA[@t-if='line_is_section_note']">
+        <xpath expr="//AliquotaIVA[@t-if='line_is_section_note']" position="attributes">
             <attribute
                 name="t-esc"
-            >format_numbers(0) if tax_ids and tax_ids.oss_country_id and tax_ids.kind_id else existing_tax_line['AliquotaIVA']</attribute>
+            >format_numbers(0) if ((tax_ids and tax_ids.oss_country_id and tax_ids.kind_id) or (existing_tax_line.get('Natura') and existing_tax_line.get('Oss Country'))) else existing_tax_line['AliquotaIVA']</attribute>
         </xpath>
         <xpath expr="//DettaglioLinee">
             <AltriDatiGestionali
