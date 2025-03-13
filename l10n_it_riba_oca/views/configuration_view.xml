@@ -51,6 +51,7 @@
 
                 <group string="Past Due">
                     <field name="past_due_journal_id" />
+                    <field name="past_due_fee_amount" />
                     <field name="overdue_effects_account_id" />
                     <field name="protest_charge_account_id" />
                 </group>

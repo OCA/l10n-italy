@@ -82,6 +82,9 @@ class RibaConfiguration(models.Model):
         "Past Due Bills Account",
         check_company=True,
     )
+    past_due_fee_amount = fields.Float(
+        "Fee Amount",
+    )
     protest_charge_account_id = fields.Many2one(
         "account.account",
         "Protest Fee Account",
@@ -107,9 +110,11 @@ class RibaConfiguration(models.Model):
 
     def get_default_value_by_list_line(self, field_name):
         if not self.env.context.get("active_id", False):
-            return False
+            return False if field_name != "past_due_fee_amount" else 0.0
         ribalist_line = self.env["riba.slip.line"].browse(self.env.context["active_id"])
         res = ribalist_line.slip_id.config_id[field_name]
+        if field_name == "past_due_fee_amount":
+            return res
         if res:
             # we need to check if the field is string like "config_type" or
             # many2one like journals and accounts

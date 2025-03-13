@@ -232,7 +232,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             .create(
                 {
                     "bank_amount": 455,
-                    "expense_amount": 5,
+                    "past_due_fee_amount": 5,
                 }
             )
         )
@@ -478,7 +478,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             .create(
                 {
                     "bank_amount": 102,
-                    "expense_amount": 2,
+                    "past_due_fee_amount": 2,
                 }
             )
         )
@@ -954,3 +954,34 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
         # Assert
         self.assertEqual(bill.riba_supplier_company_bank_id, bank_account)
+
+    def test_past_due_fee_amount_flow(self):
+        config = self.env["riba.configuration"].create(
+            {
+                "name": "Test Config",
+                "type": "sbf",
+                "bank_id": self.company_bank.id,
+                "acceptance_journal_id": self.bank_journal.id,
+                "acceptance_account_id": self.sbf_effects.id,
+                "past_due_fee_amount": 15.0,
+            }
+        )
+        self.assertEqual(config.past_due_fee_amount, 15.0)
+        distinta = self.env["riba.slip"].create(
+            {
+                "config_id": config.id,
+                "name": "Test slip",
+            }
+        )
+        distinta_line = self.env["riba.slip.line"].create(
+            {"slip_id": distinta.id, "amount": 100.0}
+        )
+        wizard = (
+            self.env["riba.past_due"]
+            .with_context(
+                active_model="riba.slip.line",
+                active_id=distinta_line.id,
+            )
+            .create({})
+        )
+        self.assertEqual(wizard.past_due_fee_amount, 15.0)
