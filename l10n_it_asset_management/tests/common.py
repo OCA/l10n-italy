@@ -206,9 +206,6 @@ class Common(TransactionCase):
         period_count=None,
         override_journal=None,
     ):
-        first_of_year = date_dep.replace(month=1, day=1)
-        last_of_year = date_dep.replace(month=12, day=31)
-        self._generate_fiscal_years(first_of_year, last_of_year)
         if override_journal is None:
             override_journal = self.env["account.journal"].browse()
         wiz_vals = asset.with_context(
