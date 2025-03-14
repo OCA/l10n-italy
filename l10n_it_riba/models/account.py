@@ -186,9 +186,11 @@ class AccountMove(models.Model):
         :param all_date_due: list of due dates for partner
         :return: True if month of invoice_date_due is in a list of all_date_due
         """
-        for d in all_date_due:
-            if invoice_date_due.month == d.month and invoice_date_due.year == d.year:
-                return True
+        self.ensure_one()
+        if self.partner_id.riba_policy_expenses != "unlimited":
+            for d in all_date_due:
+                if invoice_date_due.strftime("%Y-%m") == str(d.strftime("%Y-%m")):
+                    return True
         return False
 
     def _post(self, soft=True):
@@ -226,6 +228,7 @@ class AccountMove(models.Model):
                 or not invoice.invoice_payment_term_id
                 or not invoice.invoice_payment_term_id.riba
                 or invoice.invoice_payment_term_id.riba_payment_cost == 0.0
+                or invoice.partner_id.commercial_partner_id.riba_exclude_expenses
             ):
                 continue
             if not invoice.company_id.due_cost_service_id:
@@ -234,8 +237,16 @@ class AccountMove(models.Model):
                 )
             # ---- Apply Collection Fees on invoice only on first due date of the month
             # ---- Get Date of first due date
-            move_line = self.env["account.move.line"].search(
-                [("partner_id", "=", invoice.partner_id.id)]
+            move_line = (
+                self.env["account.move.line"]
+                .search(
+                    [
+                        ("partner_id", "=", invoice.partner_id.id),
+                        ("move_id.invoice_payment_term_id.riba", "=", True),
+                        ("date_maturity", ">=", fields.Date.context_today(invoice)),
+                    ]
+                )
+                .mapped("move_id.line_ids")
             )
             if not any(line.due_cost_line for line in move_line):
                 move_line = self.env["account.move.line"]
@@ -246,12 +257,12 @@ class AccountMove(models.Model):
             # ---- Get date
             previous_date_due = move_line.mapped("date_maturity")
             pterm = self.env["account.payment.term"].browse(
-                self.invoice_payment_term_id.id
+                invoice.invoice_payment_term_id.id
             )
             pterm_list = pterm._compute_terms(
-                date_ref=self.invoice_date,
-                currency=self.currency_id,
-                company=self.company_id,
+                date_ref=invoice.invoice_date,
+                currency=invoice.currency_id,
+                company=invoice.company_id,
                 tax_amount=1,
                 tax_amount_currency=1,
                 untaxed_amount=0,
@@ -260,7 +271,7 @@ class AccountMove(models.Model):
             )
 
             for pay_date in pterm_list:
-                if not self.month_check(pay_date["date"], previous_date_due):
+                if not invoice.month_check(pay_date["date"], previous_date_due):
                     # ---- Get Line values for service product
                     service_prod = invoice.company_id.due_cost_service_id
                     account = service_prod.product_tmpl_id.get_product_accounts(
