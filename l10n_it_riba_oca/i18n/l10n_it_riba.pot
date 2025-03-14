@@ -1,0 +1,1573 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_riba
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_account_config_settings_riba
+msgid ""
+"<span class=\"o_form_label\">RiBa Collection Fees</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Product used as Service for RiBa Collection Fees\" aria-label=\"Product used as Service for RiBa Collection Fees\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#, python-format
+msgid "A/C Bank"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__bank_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__bank_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__bank_account_id
+msgid "A/C Bank Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
+msgid "Acceptance"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__acceptance_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__acceptance_account_id
+msgid "Acceptance Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__date_accepted
+msgid "Acceptance Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__acceptance_move_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Acceptance Entries"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__acceptance_move_id
+msgid "Acceptance Entry"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__acceptance_journal_id
+msgid "Acceptance Journal"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip__state__accepted
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
+msgid "Accepted"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__credit_account_id
+msgid "Account used when RiBa amount is credited by the bank."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__acceptance_account_id
+msgid "Account used when RiBa is accepted by the bank."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_line_form
+msgid "Accounting"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_needaction
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_configuration__type__incasso
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_past_due__config_type__incasso
+msgid "After Collection"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__total_amount
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__amount
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__amount
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_payment_multiple_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_tree
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_account_bank_statement_line__open_amount
+#: model:ir.model.fields,help:l10n_it_riba.field_account_move__open_amount
+#: model:ir.model.fields,help:l10n_it_riba.field_account_payment__open_amount
+msgid ""
+"Amount currently only supposed to be paid, but has actually not happened"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_configuration__sbf_collection_type__maturation
+msgid "At currency maturation"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_attachment_count
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_res_bank
+msgid "Bank"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__bank_id
+msgid "Bank Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_account_bank_statement_line__riba_partner_bank_id
+#: model:ir.model.fields,help:l10n_it_riba.field_account_move__riba_partner_bank_id
+#: model:ir.model.fields,help:l10n_it_riba.field_account_payment__riba_partner_bank_id
+msgid ""
+"Bank Account Number to which the RiBa will be debited. If not set, first "
+"bank in partner will be used."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_credit
+msgid "Bank Credit"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#, python-format
+msgid "Bank Fee"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__bank_expense_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__bank_expense_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__bank_expense_account_id
+msgid "Bank Fees Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__bank_id
+msgid "Bank account used for RiBa issuing."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_res_partner__property_riba_supplier_company_bank_id
+#: model:ir.model.fields,help:l10n_it_riba.field_res_users__property_riba_supplier_company_bank_id
+msgid "Bank account used for the RiBa of this supplier."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_account_bank_statement_line__riba_supplier_company_bank_id
+#: model:ir.model.fields,help:l10n_it_riba.field_account_move__riba_supplier_company_bank_id
+#: model:ir.model.fields,help:l10n_it_riba.field_account_payment__riba_supplier_company_bank_id
+msgid "Bank account used for the RiBa of this vendor bill."
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#, python-format
+msgid "Bills"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__effects_account_id
+#, python-format
+msgid "Bills Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__effects_amount
+msgid "Bills Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.server,name:l10n_it_riba.action_wizard_riba_due_date_settlement
+msgid "C/O Due Date Settlement"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__cig
+msgid "CIG"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__cup
+msgid "CUP"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_credit
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_due_date_settlement
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_issue_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_payment_multiple_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_presentation_riba
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip__state__cancel
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip_line__state__cancel
+msgid "Canceled"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/account.py:0
+#, python-format
+msgid ""
+"Cannot post invoices with C/O payments without bank. Please check the following invoices:\n"
+"\n"
+"- \n"
+"- "
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_file_export
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_payment_date
+msgid "Close"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_company__due_cost_service_id
+msgid "Collection Fees Service"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__sbf_collection_type
+msgid "Collection Type"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_account_payment_term__riba_payment_cost
+msgid ""
+"Collection fees amount. If different from 0, for each payment deadline an "
+"invoice line will be added to invoice, with this amount."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__company_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__company_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_partner_form_riba
+msgid "Company Bank Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_bank_statement_line__riba_supplier_company_bank_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__riba_supplier_company_bank_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__riba_supplier_company_bank_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_partner__property_riba_supplier_company_bank_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_users__property_riba_supplier_company_bank_id
+msgid "Company Bank Account for Supplier"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__configuration_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__config_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__config_id
+msgid "Configuration"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_configuration
+msgid "Configuration parameters for RiBa"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_due_date_settlement
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_payment_date
+msgid "Confirm"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip_line__state__confirmed
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_slip_riba_filter
+msgid "Confirmed"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_credit
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_issue_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
+msgid "Create"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__create_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__create_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__date_created
+msgid "Creation Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
+#, python-format
+msgid "Credit"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__credit_amount
+msgid "Credit Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__date_credited
+msgid "Credit Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__credit_move_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+#, python-format
+msgid "Credit Entry"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__credit_journal_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__credit_journal_id
+msgid "Credit Journal"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__move_line_id
+msgid "Credit Move Line"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__move_line_ids
+msgid "Credit Move Lines"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/riba.py:0
+#, python-format
+msgid "Credit date must be greater or equal to acceptance date."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip__state__credited
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip_line__state__credited
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
+msgid "Credited"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_bank_statement_line__riba_credited_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__riba_credited_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__riba_credited_ids
+msgid "Credited RiBa Slips"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__partner_id
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+msgid "Customer"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__date
+msgid "Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_to_issue_tree
+msgid "Debit Total"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__bank_id
+msgid "Debtor Bank"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_config_settings__due_cost_service_id
+msgid "Default Collection Fees Service"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_res_config_settings__due_cost_service_id
+msgid "Default Service for RiBa Collection Fees on invoice."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__date_paid
+msgid "Default date for payments."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_due_date_settlement__payment_date
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_payment_multiple__payment_date
+msgid ""
+"Defaults to the 'Payment date' in the RiBas.\n"
+"If empty, the due date in each line will be used."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__name
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_line_form
+msgid "Detail"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip__state__draft
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip_line__state__draft
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_slip_riba_filter
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__due_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__due_date
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
+msgid "Due Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#, python-format
+msgid "Every account is mandatory."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_file_export
+msgid "Export"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.server,name:l10n_it_riba.action_wizard_riba_file_export
+msgid "Export RiBa"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_file_export
+msgid "Export RiBa file"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__expense_amount
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__expense_amount
+msgid "Fees Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__riba_txt
+msgid "File"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__file_name
+msgid "File Name"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_follower_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_partner_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_bank__banca_estera
+msgid "Foreign Bank"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_account_full_reconcile
+msgid "Full Reconcile"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_line_form
+msgid "General"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_partner__group_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_users__group_riba
+msgid "Group RiBa"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_res_partner__group_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_res_users__group_riba
+msgid "Group RiBa by customer while issuing."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__has_message
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move_line__iban
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__iban
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+msgid "IBAN"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_account_setup_bank_manual_config__codice_sia
+#: model:ir.model.fields,help:l10n_it_riba.field_res_partner_bank__codice_sia
+msgid "Identification Code of the Company in the Interbank System."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_needaction
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_has_error
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_past_due__date
+msgid "If empty, the due date in the line will be used."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_configuration__sbf_collection_type__immediate
+msgid "Immediate"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/account.py:0
+#, python-format
+msgid "Invoice %(name)s for customer \"%(customer_name)s\", total %(amount)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__invoice_date
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+msgid "Invoice Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_line_form
+msgid "Invoice Entries"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__invoice_number
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+msgid "Invoice Number"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/account.py:0
+#, python-format
+msgid "Invoice is linked to RiBa slip No. %(riba)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_is_follower
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_bank_statement_line__is_riba_payment
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__is_riba_payment
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__is_riba_payment
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_partner__is_supplier_payment_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_users__is_supplier_payment_riba
+msgid "Is RiBa Payment"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_bank_statement_line__is_past_due
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__is_past_due
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__is_past_due
+msgid "Is a past due invoice"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.ui.menu,name:l10n_it_riba.menu_riba_to_issue
+msgid "Issue"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__type
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__config_type
+msgid "Issue Mode"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.server,name:l10n_it_riba.riba_issue_action_server
+msgid "Issue RiBa"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
+msgid "Issued RiBas"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_issue.py:0
+#, python-format
+msgid "It is possible to issue C/O for posted move only!"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__credit_journal_id
+msgid "Journal used when RiBa amount is credited by the bank."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__acceptance_journal_id
+msgid "Journal used when RiBa is accepted by the bank."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__past_due_journal_id
+msgid "Journal used when RiBa is past due."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_configuration__settlement_journal_id
+msgid "Journal used when customers finally pay the invoice to bank."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__registration_date
+msgid "Keep empty to use the current date."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line____last_update
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__write_uid
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_issue__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__write_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_layout
+msgid "Logo"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_main_attachment_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_past_due
+msgid "Manage Past Due RiBas"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Mark as Accepted"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Mark as Credited"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_tree
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Mark as Past Due"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Mark as Settled"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Mark lines as Settled"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_has_error
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_line_form
+msgid "Move Line"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
+#, python-format
+msgid "No IBAN or ABI/CAB specified for %(partner)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
+#, python-format
+msgid "No IBAN specified."
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
+#, python-format
+msgid "No SIA Code specified for %(company)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
+#, python-format
+msgid "No VAT or Fiscal Code specified for %(company)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_file_export.py:0
+#, python-format
+msgid "No VAT or Fiscal Code specified for %(partner)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_due_date_settlement.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#: code:addons/l10n_it_riba/wizard/wizard_riba_payment_date.py:0
+#, python-format
+msgid "No active ID found."
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_issue.py:0
+#, python-format
+msgid "No bank has been specified for invoice %(invoice)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__sequence
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+msgid "Number"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_needaction_counter
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__message_has_error_counter
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_needaction_counter
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__message_has_error_counter
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_bank_statement_line__open_amount
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__open_amount
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__open_amount
+msgid "Open Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Other Info"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip__state__paid
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip_line__state__paid
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_slip_riba_filter
+msgid "Paid"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__bank_amount
+msgid "Paid Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_account_partial_reconcile
+msgid "Partial Reconcile"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip__state__past_due
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_slip_line__state__past_due
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.invoice_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.invoice_tree
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
+msgid "Past Due"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#, python-format
+msgid "Past Due Bills"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__overdue_effects_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__overdue_effects_account_id
+msgid "Past Due Bills Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__overdue_effects_amount
+msgid "Past Due Bills Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__date_past_due
+msgid "Past Due Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__past_due_move_ids
+msgid "Past Due Entries"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__past_due_move_id
+#, python-format
+msgid "Past Due Entry"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.act_window,name:l10n_it_riba.action_invoice_tree1
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move_line__past_due_invoice_ids
+#: model:ir.ui.menu,name:l10n_it_riba.menu_invoices
+msgid "Past Due Invoices"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__past_due_journal_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__past_due_journal_id
+msgid "Past Due Journal"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_bank_statement_line__past_due_move_line_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__past_due_move_line_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__past_due_move_line_ids
+msgid "Past Due Journal Items"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#, python-format
+msgid "Past Due RiBa %(name)s - Line %(sequence)s"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_bank_statement_line__riba_past_due_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__riba_past_due_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__riba_past_due_ids
+msgid "Past Due RiBa Slips"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.act_window,name:l10n_it_riba.riba_past_due_action
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
+msgid "Past Due RiBas"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Past Dues"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_payment_multiple_view_form
+msgid "Pay"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_payment_multiple
+msgid "Pay multiple RiBa lines"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__payment_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_date__date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__payment_date
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__date_paid
+msgid "Payment Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_account_payment_term
+msgid "Payment Terms"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__payment_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__payment_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_line_form
+msgid "Payments"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/riba.py:0
+#, python-format
+msgid "Please define a Settlement Journal."
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_riba_multiple_payment.py:0
+#, python-format
+msgid "Please select the RiBa lines to be paid"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_presentation_riba_issue__presentation_amount
+msgid "Presentation Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.act_window,name:l10n_it_riba.riba_presentation_action
+#: model:ir.ui.menu,name:l10n_it_riba.menu_presentation_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_presentation_riba
+msgid "Presentation Riba"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_presentation_riba_issue
+msgid "Presentation Riba Issue"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.report,name:l10n_it_riba.print_slip_qweb
+msgid "Print Slip"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_account_config_settings_riba
+msgid "Product"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_account_config_settings_riba
+msgid "Product used as Service for RiBa Collection Fees"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__protest_charge_account_id
+msgid "Protest Fee Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
+msgid "Reconciled"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__name
+msgid "Reference"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__registration_date
+msgid "Registration Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_past_due.py:0
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move_line__riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment_term__riba
+#: model:ir.ui.menu,name:l10n_it_riba.menu_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_partner_form_riba
+#, python-format
+msgid "RiBa"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.act_window,name:l10n_it_riba.action_riba_configuration
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
+msgid "RiBa - Configuration"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:account.payment.term,name:l10n_it_riba.account_payment_term_riba
+#: model_terms:account.payment.term,note:l10n_it_riba.account_payment_term_riba
+msgid "RiBa 30 Days End of Month"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__credit_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_credit__credit_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__riba_bank_account_id
+msgid "RiBa Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__riba_bank_amount
+msgid "RiBa Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_bank_statement_line__riba_partner_bank_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move__riba_partner_bank_id
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment__riba_partner_bank_id
+msgid "RiBa Bank Account"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_payment_term__riba_payment_cost
+msgid "RiBa Collection Fees"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move_line__due_cost_line
+msgid "RiBa Collection Fees Line"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.ui.menu,name:l10n_it_riba.menu_riba_configuration
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_account_config_settings_riba
+msgid "RiBa Configuration"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.act_window,name:l10n_it_riba.riba_credit_action
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_credit
+msgid "RiBa Credit"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/wizard/wizard_credit.py:0
+#, python-format
+msgid "RiBa Credit %s"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_move_line__slip_line_ids
+msgid "RiBa Detail"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_slip_line
+#: model:ir.model,name:l10n_it_riba.model_riba_slip_move_line
+msgid "RiBa Details"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__line_ids
+msgid "RiBa Due Dates"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_file_export
+msgid "RiBa File Export Wizard"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.act_window,name:l10n_it_riba.action_riba_to_issue
+#: model:ir.model,name:l10n_it_riba.model_riba_issue
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_issue_view
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_presentation_riba
+msgid "RiBa Issue"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.server,name:l10n_it_riba.action_riba_payment_date
+#: model:ir.model,name:l10n_it_riba.model_riba_payment_date
+msgid "RiBa Payment Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.act_window,name:l10n_it_riba.slip_riba_action
+#: model:ir.model,name:l10n_it_riba.model_riba_slip
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "RiBa Slip"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.act_window,name:l10n_it_riba.detail_riba_action
+msgid "RiBa Slip Detail"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+msgid "RiBa Slip No."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_report_l10n_it_riba_slip_qweb
+msgid "RiBa Slip Report"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_detail_riba_filter
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_slip_riba_filter
+msgid "RiBa Slips"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
+msgid "RiBa To Issue"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__config_id
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__config_id
+msgid "RiBa configuration to be used."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__riba_line_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__riba_line_ids
+msgid "RiBa lines to be paid"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model,name:l10n_it_riba.model_riba_due_date_settlement
+msgid "Riba Due Date Settlement"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_account_setup_bank_manual_config__codice_sia
+#: model:ir.model.fields,field_description:l10n_it_riba.field_res_partner_bank__codice_sia
+msgid "SIA Code"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_due_date_settlement__riba_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_payment_multiple__riba_ids
+msgid "Selected RiBas"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.wizard_riba_payment_date
+msgid "Set RiBa Payment Date"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/account.py:0
+#, python-format
+msgid "Set a Service for Collection Fees in Company Config."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.actions.server,name:l10n_it_riba.riba_line_settle_action_server
+msgid "Settle RiBa Line"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/riba.py:0
+#, python-format
+msgid "Settle line"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/riba.py:0
+#, python-format
+msgid "Settle lines"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_configuration_form
+msgid "Settlement"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_configuration__settlement_journal_id
+msgid "Settlement Journal"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_credit
+msgid "Skip and Confirm Credit"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
+msgid "Skip and Confirm Past Due"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__slip_id
+msgid "Slip"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/riba.py:0
+#, python-format
+msgid ""
+"Slip %(name)s is in state '%(state)s'. You can only delete documents in "
+"state 'Draft' or 'Canceled'."
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_move_line__riba_line_id
+msgid "Slip Line"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_slip_form
+msgid "Slip lines"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.ui.menu,name:l10n_it_riba.menu_riba_distinte
+msgid "Slips"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.ui.menu,name:l10n_it_riba.menu_riba_detail
+msgid "Slips Detail"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_file_export__state
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__state
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__state
+msgid "State"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_configuration__type__sbf
+#: model:ir.model.fields.selection,name:l10n_it_riba.selection__riba_past_due__config_type__sbf
+msgid "Subject To Collection"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_layout
+msgid "Tel:"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_issue_view
+msgid "This wizard will generate the RiBa slip"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
+msgid ""
+"This wizard will generate the journal entry related to an past due RiBa"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_credit
+msgid ""
+"This wizard will generate the journal entry related to credit received from "
+"the bank"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_due_date_settlement
+msgid "This wizard will set 'Paid' all C/O details selected by due date"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_filter
+msgid "To Reconcile"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.view_riba_to_issue_tree
+msgid "Total Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__type
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__type
+msgid "Type"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__user_id
+msgid "User"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip__website_message_ids
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_slip_line__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip__website_message_ids
+#: model:ir.model.fields,help:l10n_it_riba.field_riba_slip_line__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model:ir.model.fields,field_description:l10n_it_riba.field_riba_past_due__bank_amount
+msgid "Withdrawn Amount"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_past_due
+msgid ""
+"You can also skip this step and set the line status to 'Past Due' anyway"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.riba_credit
+msgid ""
+"You can also skip this step and set the slip status to 'Credited' anyway"
+msgstr ""
+
+#. module: l10n_it_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba.slip_qweb
+msgid "of"
+msgstr ""
+
+#. module: l10n_it_riba
+#. odoo-python
+#: code:addons/l10n_it_riba/models/account.py:0
+#, python-format
+msgid "{line_name} for {month}-{year}"
+msgstr ""
