@@ -150,7 +150,9 @@ class AccountMove(models.Model):
             "date": self.invoice_date,
         }
         move_lines = []
-        for inv_line in self.invoice_line_ids:
+        for inv_line in self.invoice_line_ids.filtered(
+            lambda line: line.display_type == "product"
+        ):
             if inv_line.advance_customs_vat:
                 line_vals = {
                     "name": self.env._("Customs expenses"),
@@ -176,7 +178,9 @@ class AccountMove(models.Model):
                 "partner_id": bill_of_entry.partner_id.id,
             }
             move_lines.append((0, 0, line_vals))
-            for boe_line in bill_of_entry.invoice_line_ids:
+            for boe_line in bill_of_entry.invoice_line_ids.filtered(
+                lambda line: line.display_type == "product"
+            ):
                 if boe_line.tax_ids:
                     if len(boe_line.tax_ids) > 1:
                         raise UserError(

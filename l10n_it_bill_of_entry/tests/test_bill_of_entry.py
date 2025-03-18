@@ -13,7 +13,9 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 @tagged("post_install", "-at_install")
 class TestBillOfEntry(AccountTestInvoicingCommon):
-    def _create_invoice(self, partner, customs_doc_type, journal, products_list):
+    def _create_invoice(
+        self, partner, customs_doc_type, journal, products_list, notes_sections_list
+    ):
         invoice = self.init_invoice(
             "in_invoice",
             partner=partner,
@@ -25,9 +27,14 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             invoice_form.journal_id = journal
         for product, qty, price in products_list:
             with invoice_form.invoice_line_ids.new() as line:
+                line.name = product.name
                 line.product_id = product
                 line.price_unit = price
                 line.quantity = qty
+        for name, display_type in notes_sections_list:
+            with invoice_form.invoice_line_ids.new() as line:
+                line.name = name
+                line.display_type = display_type
 
         invoice = invoice_form.save()
         return invoice
@@ -44,13 +51,24 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         self.fp_model = self.env["account.fiscal.position"]
         self.fp_tax_model = self.env["account.fiscal.position.tax"]
 
-        demo_data_company = self.env.ref("base.demo_company_it")
-        self.env.user.company_ids |= demo_data_company
-        self.env.user.company_id = demo_data_company
+        self.data_it_company = self.setup_other_company(
+            name="IT Company",
+            vat="IT01234560157",
+            phone="0266766700",
+            email="test@test.it",
+            street="1234 Test Street",
+            zip="12345",
+            city="Prova",
+            l10n_it_codice_fiscale="01234560157",
+            l10n_it_tax_system="RF01",
+        )
+        self.it_company = self.data_it_company["company"]
+        self.env.user.company_ids |= self.it_company
+        self.env.user.company_id = self.it_company
         # Now that current user can access the company,
         # log the user *only* in this company so that
         # searching, reading and other operations behave as expected
-        self.env.user.company_ids = demo_data_company
+        self.env.user.company_ids = self.it_company
 
         # Default accounts for invoice line account_id
         self.account_revenue = self.account_model.search(
@@ -64,7 +82,6 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             "l10n_it_bill_of_entry.account_journal_purchase_extraEU"
         )
         # Bill of entry storno journal
-        self.company = self.env.ref("base.demo_company_it")
         self.bill_of_entry_journal = self.journal_model.create(
             {
                 "name": "bill_of_entry_journal",
@@ -72,7 +89,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
                 "code": "BOE",
             }
         )
-        self.company.bill_of_entry_journal_id = self.bill_of_entry_journal.id
+        self.it_company.bill_of_entry_journal_id = self.bill_of_entry_journal.id
 
         # Extra EU fiscal position tax correspondence
         self.tax22 = self.tax_model.create(
@@ -82,7 +99,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
                 "tax_group_id": self.env.ref(
-                    f"account.{demo_data_company.id}_tax_group_iva_22"
+                    f"account.{self.it_company.id}_tax_group_iva_22"
                 ).id,
             }
         )
@@ -146,6 +163,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             [
                 (self.product1, 1, 2500),
             ],
+            [],
         )
 
         # Bill of Entry - draft state
@@ -155,6 +173,9 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             self.journal,
             [
                 (self.product_extra, 1, 2500),
+            ],
+            [
+                ("nota", "line_note"),
             ],
         )
         bill_of_entry_form = Form(self.bill_of_entry)
@@ -171,6 +192,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
                 (self.product_delivery, 1, 300),
                 (self.adv_customs_expense, 1, 550),
             ],
+            [],
         )
         forwarder_invoice_form = Form(self.forwarder_invoice)
         with forwarder_invoice_form.invoice_line_ids.edit(1) as line:
@@ -186,12 +208,12 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             }
         )
 
-        demo_data_company.bill_of_entry_tax_id = (
-            demo_data_company.account_purchase_tax_id.copy()
+        self.it_company.bill_of_entry_tax_id = (
+            self.it_company.account_purchase_tax_id.copy()
         )
-        demo_data_company.bill_of_entry_partner_id = self.env[
-            "res.partner"
-        ].name_create("Customs")
+        self.it_company.bill_of_entry_partner_id = self.env["res.partner"].name_create(
+            "Customs"
+        )
 
     def test_generate_bill_of_entry_required_configurations(self):
         company = self.env.company
