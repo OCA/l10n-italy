@@ -40,6 +40,7 @@
         <field name="name">Delivery Expenses</field>
         <field name="account_type">expense</field>
         <field name="reconcile">True</field>
+        <field name="company_ids" eval="[(6, 0, [ref('base.demo_company_it')])]" />
     </record>
 
     <!-- Account Tax -->
@@ -54,7 +55,12 @@
         <field name="amount_type">percent</field>
         <field name="amount">22</field>
         <field name="description">22aExtraUE</field>
-        <field name="tax_group_id" ref="account.tax_group_taxes" />
+        <field name="country_id" ref="base.it" />
+        <field
+            name="tax_group_id"
+            eval="ref('account.%s_tax_group_iva_22' % ref('base.demo_company_it'))"
+        />
+        <field name="company_id" ref="base.demo_company_it" />
         <field name="sequence">99</field>
     </record>
 
@@ -62,11 +68,13 @@
     <record id="partner_customs" model="res.partner">
         <field name="name">Customs</field>
         <field name="is_company">True</field>
+        <field name="company_id" ref="base.demo_company_it" />
     </record>
 
     <!-- Account Fiscal Position -->
     <record id="fiscal_position_extraEU" model="account.fiscal.position">
         <field name="name">Extra EU</field>
+        <field name="company_id" ref="base.demo_company_it" />
     </record>
 
     <!-- Account Journal -->
@@ -74,6 +82,7 @@
         <field name="name">Supplier Invoices ExtraUE</field>
         <field name="type">purchase</field>
         <field name="code">NOUE</field>
+        <field name="company_id" ref="base.demo_company_it" />
     </record>
 
     <!-- Product product -->

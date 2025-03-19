@@ -6,7 +6,7 @@
 
 from odoo.exceptions import UserError
 from odoo.fields import first
-from odoo.tests.common import Form, tagged
+from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -44,7 +44,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         self.fp_model = self.env["account.fiscal.position"]
         self.fp_tax_model = self.env["account.fiscal.position.tax"]
 
-        demo_data_company = self.env.ref("base.main_company")
+        demo_data_company = self.env.ref("base.demo_company_it")
         self.env.user.company_ids |= demo_data_company
         self.env.user.company_id = demo_data_company
         # Now that current user can access the company,
@@ -64,7 +64,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             "l10n_it_bill_of_entry.account_journal_purchase_extraEU"
         )
         # Bill of entry storno journal
-        self.company = self.env.ref("base.main_company")
+        self.company = self.env.ref("base.demo_company_it")
         self.bill_of_entry_journal = self.journal_model.create(
             {
                 "name": "bill_of_entry_journal",
@@ -81,7 +81,9 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
                 "amount": 22,
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
-                "tax_group_id": self.env.ref("account.tax_group_taxes").id,
+                "tax_group_id": self.env.ref(
+                    f"account.{demo_data_company.id}_tax_group_iva_22"
+                ).id,
             }
         )
         self.fiscpos_extra = self.env.ref(

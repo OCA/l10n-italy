@@ -5,7 +5,6 @@
 from odoo import fields, models
 from odoo.exceptions import UserError
 from odoo.fields import first
-from odoo.tools.translate import _
 
 
 class AccountMove(models.Model):
@@ -112,7 +111,7 @@ class AccountMove(models.Model):
                 break
         if not advance_customs_vat_line and list(set(boe_tax_rates)) != [0.0]:
             raise UserError(
-                _(
+                self.env._(
                     "Forwarder invoice %s does not have lines with "
                     "'Advance Customs Vat'"
                 )
@@ -123,11 +122,11 @@ class AccountMove(models.Model):
     def _get_forwarder_invoice_boe_amounts(self):
         self.ensure_one()
         if not self.forwarder_bill_of_entry_ids:
-            raise UserError(_("No bill of entries found for this invoice"))
+            raise UserError(self.env._("No bill of entries found for this invoice"))
         for bill_of_entry in self.forwarder_bill_of_entry_ids:
             if bill_of_entry.state not in ("posted", "paid"):
                 raise UserError(
-                    _(
+                    self.env._(
                         "Bill of entry %(partner)s is in state %(state)s",
                         partner=bill_of_entry.partner_id.name,
                         state=bill_of_entry.state,
@@ -143,7 +142,7 @@ class AccountMove(models.Model):
     def _prepare_bill_of_entry_storno(self):
         self.ensure_one()
         if not self.company_id.bill_of_entry_journal_id:
-            raise UserError(_("No Bill of entry Storno journal configured"))
+            raise UserError(self.env._("No Bill of entry Storno journal configured"))
         move_vals = {
             "customs_doc_type": False,
             "move_type": "entry",
@@ -154,7 +153,7 @@ class AccountMove(models.Model):
         for inv_line in self.invoice_line_ids:
             if inv_line.advance_customs_vat:
                 line_vals = {
-                    "name": _("Customs expenses"),
+                    "name": self.env._("Customs expenses"),
                     "account_id": inv_line.account_id.id,
                     "debit": 0.0,
                     "credit": inv_line.price_subtotal,
@@ -170,7 +169,7 @@ class AccountMove(models.Model):
             )
             boe_account = first(boe_payable_lines).account_id
             line_vals = {
-                "name": _("Customs supplier"),
+                "name": self.env._("Customs supplier"),
                 "account_id": first(boe_account).id,
                 "debit": bill_of_entry.amount_total,
                 "credit": 0.0,
@@ -181,12 +180,12 @@ class AccountMove(models.Model):
                 if boe_line.tax_ids:
                     if len(boe_line.tax_ids) > 1:
                         raise UserError(
-                            _("Can't handle more than 1 tax for line %s")
+                            self.env._("Can't handle more than 1 tax for line %s")
                             % boe_line.name
                         )
 
                 line_vals = {
-                    "name": _("Extra UE expenses"),
+                    "name": self.env._("Extra UE expenses"),
                     "account_id": boe_line.account_id.id,
                     "debit": 0.0,
                     "credit": boe_line.price_subtotal,
@@ -258,21 +257,27 @@ class AccountMove(models.Model):
         self.ensure_one()
         for line in self.invoice_line_ids:
             if line.tax_ids:
-                raise UserError(_("Extra UE supplier invoice must have no taxes"))
+                raise UserError(
+                    self.env._("Extra UE supplier invoice must have no taxes")
+                )
 
     def generate_bill_of_entry(self):
         self.ensure_one()
         if self.customs_doc_type != "supplier_invoice":
             raise UserError(
-                _("You can generate bill of entry from extra UE supplier invoice only")
+                self.env._(
+                    "You can generate bill of entry from extra UE supplier invoice only"
+                )
             )
         if not self.company_id.bill_of_entry_tax_id:
             raise UserError(
-                _("Please set 'Bill of entry tax' in accounting configuration")
+                self.env._("Please set 'Bill of entry tax' in accounting configuration")
             )
         if not self.company_id.bill_of_entry_partner_id:
             raise UserError(
-                _("Please set 'Bill of entry partner' in accounting configuration")
+                self.env._(
+                    "Please set 'Bill of entry partner' in accounting configuration"
+                )
             )
         self._check_no_taxes()
         boe_inv = self.copy(
