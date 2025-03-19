@@ -31,7 +31,7 @@
         <field name="reconcile">True</field>
     </record>
 
-<!--
+    <!--
         When l10n_it is installed, it creates the l10n_it.1_4201 account
         (420100 costi di trasporto)
 -->
@@ -67,14 +67,14 @@
     <!-- Account Fiscal Position -->
     <record id="fiscal_position_extraEU" model="account.fiscal.position">
         <field name="name">Extra EU</field>
-     </record>
+    </record>
 
     <!-- Account Journal -->
     <record id="account_journal_purchase_extraEU" model="account.journal">
         <field name="name">Supplier Invoices ExtraUE</field>
         <field name="type">purchase</field>
         <field name="code">NOUE</field>
-     </record>
+    </record>
 
     <!-- Product product -->
     <record id="product_product_extraEU_purchase" model="product.product">
