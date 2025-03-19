@@ -14,9 +14,9 @@ from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
 
-class EdiImportFileWizard(models.TransientModel):
-    _name = "edi.import.file.wizard"
-    _description = "EDI Import E-invoice Files Wizard"
+class EInvoiceImportFileWizard(models.TransientModel):
+    _name = "l10n_it_edi.import_file_wizard"
+    _description = "E-invoice Import E-invoice Files Wizard"
 
     l10n_it_edi_attachment = fields.Binary()
     l10n_it_edi_attachment_filename = fields.Char()

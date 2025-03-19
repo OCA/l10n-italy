@@ -59,7 +59,7 @@
                         </group>
                     </group>
                     <separator name="Lines Detail" />
-                    <field name="e_invoice_line_ids">
+                    <field name="l10n_it_edi_line_ids">
                         <list>
                             <field name="line_number" />
                             <field name="name" />
@@ -90,15 +90,15 @@
                                 </group>
                             </group>
                             <separator string="Articles Code" />
-                            <field name="cod_article_ids" />
+                            <field name="l10n_it_edi_article_code_ids" />
                             <separator string="Discount Supplement" />
-                            <field name="discount_rise_price_ids" />
+                            <field name="l10n_it_edi_discount_rise_price_ids" />
                             <separator string="Other Administrative Data" />
-                            <field name="other_data_ids" />
+                            <field name="l10n_it_edi_line_other_data_ids" />
                         </form>
                     </field>
                     <separator name="Summary Data" />
-                    <field name="fatturapa_summary_ids">
+                    <field name="l10n_it_edi_summary_ids">
                         <list editable="bottom">
                             <field name="tax_rate" />
                             <field name="non_taxable_nature" />
@@ -111,25 +111,29 @@
                         </list>
                     </field>
                     <separator name="Progress Data" />
-                    <field name="activity_progress_ids">
+                    <field name="l10n_it_edi_activity_progress_ids">
                         <list>
-                            <field name="fatturapa_activity_progress" />
+                            <field name="activity_progress" />
                         </list>
                     </field>
                     <group>
                         <group string="Stable Organization">
-                            <field name="l10n_it_stabile_organizzazione_indirizzo" />
-                            <field name="l10n_it_stabile_organizzazione_civico" />
-                            <field name="l10n_it_stabile_organizzazione_cap" />
-                            <field name="l10n_it_stabile_organizzazione_comune" />
-                            <field name="l10n_it_stabile_organizzazione_provincia" />
-                            <field name="l10n_it_stabile_organizzazione_nazione" />
+                            <field
+                                name="l10n_it_edi_stabile_organizzazione_indirizzo"
+                            />
+                            <field name="l10n_it_edi_stabile_organizzazione_civico" />
+                            <field name="l10n_it_edi_stabile_organizzazione_cap" />
+                            <field name="l10n_it_edi_stabile_organizzazione_comune" />
+                            <field
+                                name="l10n_it_edi_stabile_organizzazione_provincia"
+                            />
+                            <field name="l10n_it_edi_stabile_organizzazione_nazione" />
                         </group>
                     </group>
                     <group>
                         <group string="General Data">
                             <field name="l10n_it_edi_rounding" widget="monetary" />
-                            <field name="l10n_it_art73" />
+                            <field name="l10n_edi_it_art73" />
                         </group>
                     </group>
                 </page>

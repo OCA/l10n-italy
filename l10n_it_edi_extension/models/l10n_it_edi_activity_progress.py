@@ -4,11 +4,11 @@
 from odoo import fields, models
 
 
-class FatturapaActivityProgress(models.Model):
-    _name = "fatturapa.activity.progress"
+class EInvoiceActivityProgress(models.Model):
+    _name = "l10n_it_edi.activity_progress"
     _description = "E-invoice activity progress"
 
-    fatturapa_activity_progress = fields.Integer(string="Activity Progress")
+    activity_progress = fields.Integer()
     invoice_id = fields.Many2one(
         "account.move", string="Related Invoice", ondelete="cascade", index=True
     )

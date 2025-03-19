@@ -57,21 +57,21 @@ class AccountMoveInherit(models.Model):
         string="Preview link",
         compute="_compute_l10n_it_edi_attachment_preview_link",
     )
-    e_invoice_line_ids = fields.One2many(
-        "einvoice.line",
+    l10n_it_edi_line_ids = fields.One2many(
+        "l10n_it_edi.line",
         "invoice_id",
         string="E-Invoice Lines",
         readonly=True,
         copy=False,
     )
-    fatturapa_summary_ids = fields.One2many(
-        "fatturapa.summary.data",
+    l10n_it_edi_summary_ids = fields.One2many(
+        "l10n_it_edi.summary_data",
         "invoice_id",
         string="E-Invoice Summary Data",
         copy=False,
     )
-    activity_progress_ids = fields.One2many(
-        "fatturapa.activity.progress",
+    l10n_it_edi_activity_progress_ids = fields.One2many(
+        "l10n_it_edi.activity_progress",
         "invoice_id",
         string="E-Invoice Activity Progress",
         copy=False,
@@ -82,7 +82,7 @@ class AccountMoveInherit(models.Model):
         help="Possible total amount rounding on the document (negative sign allowed)",
         copy=False,
     )
-    l10n_it_art73 = fields.Boolean(
+    l10n_edi_it_art73 = fields.Boolean(
         string="Art. 73",
         readonly=True,
         help="Indicates whether the document has been issued according to "
@@ -92,13 +92,13 @@ class AccountMoveInherit(models.Model):
         "documents with same number)",
         copy=False,
     )
-    l10n_it_related_invoice_code = fields.Char(
+    l10n_it_edi_related_invoice_code = fields.Char(
         string="Related Invoice Code", copy=False
     )
-    l10n_it_related_invoice_date = fields.Date(
+    l10n_it_edi_related_invoice_date = fields.Date(
         string="Related Invoice Date", copy=False
     )
-    l10n_it_stabile_organizzazione_indirizzo = fields.Char(
+    l10n_it_edi_stabile_organizzazione_indirizzo = fields.Char(
         string="Organization Address",
         help="The fields must be entered only when the seller/provider is "
         "non-resident, with a stable organization in Italy. Address of "
@@ -106,23 +106,23 @@ class AccountMoveInherit(models.Model):
         readonly=True,
         copy=False,
     )
-    l10n_it_stabile_organizzazione_civico = fields.Char(
+    l10n_it_edi_stabile_organizzazione_civico = fields.Char(
         string="Organization Street Number",
         help="Street number of the address (no need to specify if already "
         "present in the address field)",
         readonly=True,
         copy=False,
     )
-    l10n_it_stabile_organizzazione_cap = fields.Char(
+    l10n_it_edi_stabile_organizzazione_cap = fields.Char(
         string="Organization ZIP", help="ZIP Code", readonly=True, copy=False
     )
-    l10n_it_stabile_organizzazione_comune = fields.Char(
+    l10n_it_edi_stabile_organizzazione_comune = fields.Char(
         string="Organization Municipality",
         help="Municipality or city to which the Stable Organization refers",
         readonly=True,
         copy=False,
     )
-    l10n_it_stabile_organizzazione_provincia = fields.Char(
+    l10n_it_edi_stabile_organizzazione_provincia = fields.Char(
         string="Organization Province",
         help="Acronym of the Province to which the municipality indicated "
         "in the information element 1.2.3.4 <Comune> belongs. "
@@ -131,7 +131,7 @@ class AccountMoveInherit(models.Model):
         readonly=True,
         copy=False,
     )
-    l10n_it_stabile_organizzazione_nazione = fields.Char(
+    l10n_it_edi_stabile_organizzazione_nazione = fields.Char(
         string="Organization Country",
         help="Country code according to the ISO 3166-1 alpha-2 code standard",
         readonly=True,
@@ -268,13 +268,13 @@ class AccountMoveInherit(models.Model):
             self.l10n_it_edi_rounding = rounding
 
         if get_text(body_tree, "//DatiGeneraliDocumento/Art73"):
-            self.l10n_it_art73 = True
+            self.l10n_edi_it_art73 = True
 
         if elements_sal := body_tree.xpath(".//DatiGenerali/DatiSAL"):
             for element_sal in elements_sal:
-                self.env["fatturapa.activity.progress"].create(
+                self.env["l10n_it_edi.activity_progress"].create(
                     {
-                        "fatturapa_activity_progress": get_text(
+                        "activity_progress": get_text(
                             element_sal, ".//RiferimentoFase"
                         ),
                         "invoice_id": self.id,
@@ -287,10 +287,10 @@ class AccountMoveInherit(models.Model):
             for element_parent_invoice in elements_parent_invoice:
                 self.write(
                     {
-                        "l10n_it_related_invoice_code": get_text(
+                        "l10n_it_edi_related_invoice_code": get_text(
                             element_parent_invoice, ".//NumeroFatturaPrincipale"
                         ),
-                        "l10n_it_related_invoice_date": get_date(
+                        "l10n_it_edi_related_invoice_date": get_date(
                             element_parent_invoice, ".//DataFatturaPrincipale"
                         ),
                     }
@@ -309,7 +309,7 @@ class AccountMoveInherit(models.Model):
 
         if elements_summary := body_tree.xpath(".//DatiBeniServizi/DatiRiepilogo"):
             for element_summary in elements_summary:
-                self.env["fatturapa.summary.data"].create(
+                self.env["l10n_it_edi.summary_data"].create(
                     {
                         "tax_rate": get_float(element_summary, ".//AliquotaIVA"),
                         "non_taxable_nature": get_text(element_summary, ".//Natura"),
@@ -470,22 +470,22 @@ class AccountMoveInherit(models.Model):
                 for element_stabile_organizzazione in elements_stabile_organizzazione:
                     self.write(
                         {
-                            "l10n_it_stabile_organizzazione_indirizzo": get_text(
+                            "l10n_it_edi_stabile_organizzazione_indirizzo": get_text(
                                 element_stabile_organizzazione, ".//Indirizzo"
                             ),
-                            "l10n_it_stabile_organizzazione_civico": get_date(
+                            "l10n_it_edi_stabile_organizzazione_civico": get_date(
                                 element_stabile_organizzazione, ".//NumeroCivico"
                             ),
-                            "l10n_it_stabile_organizzazione_cap": get_date(
+                            "l10n_it_edi_stabile_organizzazione_cap": get_date(
                                 element_stabile_organizzazione, ".//CAP"
                             ),
-                            "l10n_it_stabile_organizzazione_comune": get_date(
+                            "l10n_it_edi_stabile_organizzazione_comune": get_date(
                                 element_stabile_organizzazione, ".//Comune"
                             ),
-                            "l10n_it_stabile_organizzazione_provincia": get_date(
+                            "l10n_it_edi_stabile_organizzazione_provincia": get_date(
                                 element_stabile_organizzazione, ".//Provincia"
                             ),
-                            "l10n_it_stabile_organizzazione_nazione": get_date(
+                            "l10n_it_edi_stabile_organizzazione_nazione": get_date(
                                 element_stabile_organizzazione, ".//Nazione"
                             ),
                         }
@@ -511,32 +511,32 @@ class AccountMoveInherit(models.Model):
             "invoice_line_id": move_line.id,
             "invoice_id": move_line.move_id.id,
         }
-        einvoice_line = self.env["einvoice.line"].create(vals)
+        einvoice_line = self.env["l10n_it_edi.line"].create(vals)
 
         if elements_code := element.xpath(".//CodiceArticolo"):
             for element_code in elements_code:
-                self.env["fatturapa.article.code"].create(
+                self.env["l10n_it_edi.article_code"].create(
                     {
                         "name": get_text(element_code, ".//CodiceTipo"),
                         "code_val": get_text(element_code, ".//CodiceValore"),
-                        "e_invoice_line_id": einvoice_line.id,
+                        "l10n_it_edi_line_id": einvoice_line.id,
                     }
                 )
 
         if elements_discount := element.xpath(".//ScontoMaggiorazione"):
             for element_discount in elements_discount:
-                self.env["discount.rise.price"].create(
+                self.env["l10n_it_edi.discount_rise_price"].create(
                     {
                         "name": get_text(element_discount, ".//Tipo"),
                         "percentage": get_float(element_discount, ".//Percentuale"),
                         "amount": get_float(element_discount, ".//Importo"),
-                        "e_invoice_line_id": einvoice_line.id,
+                        "l10n_it_edi_line_id": einvoice_line.id,
                     }
                 )
 
         if elements_other_data := element.xpath(".//AltriDatiGestionali"):
             for element_other_data in elements_other_data:
-                self.env["einvoice.line.other.data"].create(
+                self.env["l10n_it_edi.line_other_data"].create(
                     {
                         "name": get_text(element_other_data, ".//TipoDato"),
                         "text_ref": get_text(element_other_data, ".//RiferimentoTesto"),
@@ -544,7 +544,7 @@ class AccountMoveInherit(models.Model):
                             element_other_data, ".//RiferimentoNumero"
                         ),
                         "date_ref": get_date(element_other_data, ".//RiferimentoData"),
-                        "e_invoice_line_id": einvoice_line.id,
+                        "l10n_it_edi_line_id": einvoice_line.id,
                     }
                 )
 

@@ -4,8 +4,8 @@
 from odoo import fields, models
 
 
-class FatturapaSummaryData(models.Model):
-    _name = "fatturapa.summary.data"
+class EInvoiceSummaryData(models.Model):
+    _name = "l10n_it_edi.summary_data"
     _description = "E-invoice summary data"
 
     tax_rate = fields.Float()

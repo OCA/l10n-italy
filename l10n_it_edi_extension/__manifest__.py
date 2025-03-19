@@ -20,7 +20,7 @@
         "data/invoice_it_template.xml",
         "views/l10n_it_view.xml",
         "views/res_partner_view.xml",
-        "wizards/edi_import_file_wizard.xml",
+        "wizards/l10n_it_edi_import_file_wizard.xml",
     ],
     "installable": True,
 }

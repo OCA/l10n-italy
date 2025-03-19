@@ -5,11 +5,11 @@ from odoo import fields, models
 
 
 class EInvoiceLineOtherData(models.Model):
-    _name = "einvoice.line.other.data"
+    _name = "l10n_it_edi.line_other_data"
     _description = "E-invoice line other data"
 
-    e_invoice_line_id = fields.Many2one(
-        "einvoice.line", string="Related E-bill Line", readonly=True
+    l10n_it_edi_line_id = fields.Many2one(
+        "l10n_it_edi.line", string="Related E-bill Line", readonly=True
     )
     name = fields.Char(string="Data Type", readonly=True)
     text_ref = fields.Char(string="Text Reference", readonly=True)

@@ -5,8 +5,8 @@ from odoo import fields, models
 
 
 class EInvoiceLine(models.Model):
-    _name = "einvoice.line"
-    _description = "E-invoice line"
+    _name = "l10n_it_edi.line"
+    _description = "E-invoice Line"
 
     invoice_id = fields.Many2one(
         "account.move", string="Invoice", readonly=True, ondelete="cascade"
@@ -16,9 +16,9 @@ class EInvoiceLine(models.Model):
     )
     line_number = fields.Integer(readonly=True)
     service_type = fields.Char(string="Sale Provision Type", readonly=True)
-    cod_article_ids = fields.One2many(
-        "fatturapa.article.code",
-        "e_invoice_line_id",
+    l10n_it_edi_article_code_ids = fields.One2many(
+        "l10n_it_edi.article_code",
+        "l10n_it_edi_line_id",
         string="Articles Code",
         readonly=True,
     )
@@ -30,9 +30,9 @@ class EInvoiceLine(models.Model):
     period_start_date = fields.Date(readonly=True)
     period_end_date = fields.Date(readonly=True)
     unit_price = fields.Float(readonly=True, digits="Product Price")
-    discount_rise_price_ids = fields.One2many(
-        "discount.rise.price",
-        "e_invoice_line_id",
+    l10n_it_edi_discount_rise_price_ids = fields.One2many(
+        "l10n_it_edi.discount_rise_price",
+        "l10n_it_edi_line_id",
         string="Discount and Supplement Details",
         readonly=True,
     )
@@ -41,9 +41,9 @@ class EInvoiceLine(models.Model):
     wt_amount = fields.Char(string="Tax Withholding", readonly=True)
     tax_kind = fields.Char(string="Nature", readonly=True)
     admin_ref = fields.Char(string="Administration Reference", readonly=True)
-    other_data_ids = fields.One2many(
-        "einvoice.line.other.data",
-        "e_invoice_line_id",
+    l10n_it_edi_line_other_data_ids = fields.One2many(
+        "l10n_it_edi.line_other_data",
+        "l10n_it_edi_line_id",
         string="Other Administrative Data",
         readonly=True,
     )

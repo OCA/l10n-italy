@@ -4,8 +4,8 @@
 from odoo import fields, models
 
 
-class DiscountRisePrice(models.Model):
-    _name = "discount.rise.price"
+class EInvoiceDiscountRisePrice(models.Model):
+    _name = "l10n_it_edi.discount_rise_price"
     _description = "E-invoice Discount Supplement Data"
 
     name = fields.Selection([("SC", "Discount"), ("MG", "Supplement")], string="Type")
@@ -20,6 +20,6 @@ class DiscountRisePrice(models.Model):
     invoice_id = fields.Many2one(
         "account.move", string="Related Invoice", ondelete="cascade", index=True
     )
-    e_invoice_line_id = fields.Many2one(
-        "einvoice.line", string="Related E-invoice Line", readonly=True
+    l10n_it_edi_line_id = fields.Many2one(
+        "l10n_it_edi.line", string="Related E-invoice Line", readonly=True
     )

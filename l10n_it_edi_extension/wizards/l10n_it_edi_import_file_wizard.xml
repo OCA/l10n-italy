@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="edi_import_file_wizard_form" model="ir.ui.view">
-        <field name="name">edi_import_file_wizard_form_view</field>
-        <field name="model">edi.import.file.wizard</field>
+    <record id="l10n_it_edi_import_file_wizard_form" model="ir.ui.view">
+        <field name="name">l10n_it_edi_import_file_wizard_form_view</field>
+        <field name="model">l10n_it_edi.import_file_wizard</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -27,17 +27,20 @@
         </field>
     </record>
 
-    <record id="action_edi_import_file_wizard" model="ir.actions.act_window">
-        <field name="name">EDI Import E-invoice Files</field>
-        <field name="res_model">edi.import.file.wizard</field>
+    <record id="action_l10n_it_edi_import_file_wizard" model="ir.actions.act_window">
+        <field name="name">E-invoice Import Files</field>
+        <field name="res_model">l10n_it_edi.import_file_wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="view_id" ref="l10n_it_edi_extension.edi_import_file_wizard_form" />
+        <field
+            name="view_id"
+            ref="l10n_it_edi_extension.l10n_it_edi_import_file_wizard_form"
+        />
     </record>
 
     <menuitem
-        id="menu_edi_import_file_wizard"
-        action="l10n_it_edi_extension.action_edi_import_file_wizard"
+        id="menu_l10n_it_edi_import_file_wizard"
+        action="l10n_it_edi_extension.action_l10n_it_edi_import_file_wizard"
         parent="account.menu_finance_payables"
     />
 </odoo>
