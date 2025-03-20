@@ -20,7 +20,7 @@
     <record id="action_account_tax_registry_form" model="ir.actions.act_window">
         <field name="name">VAT registries</field>
         <field name="res_model">account.tax.registry</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
             Click to add a VAT registry.
