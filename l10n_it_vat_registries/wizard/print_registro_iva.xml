@@ -42,11 +42,11 @@
                 </group>
                 <footer>
                     <button
-                        string="Print"
-                        name="print_registro"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    string="Print"
+                    name="print_registro"
+                    type="object"
+                    class="oe_highlight"
+                />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
