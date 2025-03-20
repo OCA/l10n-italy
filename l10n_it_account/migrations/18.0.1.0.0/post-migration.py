@@ -100,6 +100,185 @@ def _l10n_it_account_tax_kind_migration(env):
     )
 
 
+def _l10n_it_fatturapa_details(env):
+    RENAMED_MODELS = [
+        ("discount.rise.price", "l10n_it_edi.discount_rise_price"),
+        ("fatturapa.activity.progress", "l10n_it_edi.activity_progress"),
+        ("fatturapa.summary.data", "l10n_it_edi.summary_data"),
+    ]
+    RENAMED_TABLES = [
+        ("discount_rise_price", "l10n_it_edi_discount_rise_price"),
+        ("fatturapa_activity_progress", "l10n_it_edi_activity_progress"),
+        ("fatturapa.summary.data", "l10n_it_edi_summary_data"),
+    ]
+    RENAMED_FIELDS = [
+        [
+            (
+                "account.move",
+                "fatturapa_summary_ids",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_summary_ids",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "activity_progress_ids",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_activity_progress_ids",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "efatt_rounding",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_rounding",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "art73",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_art73",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "related_invoice_code",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_related_invoice_code",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "related_invoice_code",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_related_invoice_code",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "related_invoice_date",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_related_invoice_date",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "efatt_stabile_organizzazione_indirizzo",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_stabile_organizzazione_indirizzo",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "efatt_stabile_organizzazione_civico",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_stabile_organizzazione_civico",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "efatt_stabile_organizzazione_cap",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_stabile_organizzazione_cap",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "efatt_stabile_organizzazione_comune",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_stabile_organizzazione_comune",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "efatt_stabile_organizzazione_provincia",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_stabile_organizzazione_provincia",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "l10n_it_edi_stabile_organizzazione_nazione",
+            ),
+            (
+                "account.move",
+                "efatt_stabile_organizzazione_nazione",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "l10n_it_edi_stabile_organizzazione_nazione",
+            ),
+            (
+                "account.move",
+                "efatt_stabile_organizzazione_nazione",
+            ),
+        ],
+    ]
+
+    openupgrade.rename_models(
+        env.cr,
+        RENAMED_MODELS,
+    )
+    openupgrade.rename_tables(
+        env.cr,
+        RENAMED_TABLES,
+    )
+    field_spec = []
+    for renamed_field in RENAMED_FIELDS:
+        (old_model, old_field), (new_model, new_field) = renamed_field
+        field_spec.append(
+            (
+                old_model,
+                new_model.replace(".", "_"),
+                old_field,
+                new_field,
+            )
+        )
+    openupgrade.rename_fields(
+        env,
+        field_spec,
+    )
+
+
 def _l10n_it_fatturapa_migration(env):
     table = "res_partner"
     add_field_if_not_exists(env, table, "l10n_it_pa_index", "char", "l10n_it_edi")
@@ -121,6 +300,83 @@ def _l10n_it_fatturapa_migration(env):
         env,
         table,
         {"l10n_it_tax_representative_partner_id": "fatturapa_tax_representative"},
+    )
+
+    _l10n_it_fatturapa_details(env)
+
+
+def _l10n_it_fatturapa_in_migration(env):
+    RENAMED_MODELS = [
+        ("einvoice.line", "l10n_it_edi.line"),
+    ]
+    RENAMED_TABLES = [
+        ("einvoice_line", "l10n_it_edi_line"),
+    ]
+    RENAMED_FIELDS = [
+        [
+            (
+                "account.move",
+                "e_invoice_line_ids",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_line_ids",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "e_invoice_amount_untaxed",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_amount_untaxed",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "e_invoice_amount_tax",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_amount_tax",
+            ),
+        ],
+        [
+            (
+                "account.move",
+                "e_invoice_amount_total",
+            ),
+            (
+                "account.move",
+                "l10n_it_edi_amount_total",
+            ),
+        ],
+    ]
+
+    openupgrade.rename_models(
+        env.cr,
+        RENAMED_MODELS,
+    )
+    openupgrade.rename_tables(
+        env.cr,
+        RENAMED_TABLES,
+    )
+    field_spec = []
+    for renamed_field in RENAMED_FIELDS:
+        (old_model, old_field), (new_model, new_field) = renamed_field
+        field_spec.append(
+            (
+                old_model,
+                new_model.replace(".", "_"),
+                old_field,
+                new_field,
+            )
+        )
+    openupgrade.rename_fields(
+        env,
+        field_spec,
     )
 
 
