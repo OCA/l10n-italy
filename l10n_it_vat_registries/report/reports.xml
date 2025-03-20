@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo noupdate="1">
-
     <record id="action_report_registro_iva" model="ir.actions.report">
         <field name="name">Invoices VAT Registry</field>
         <field name="model">account.move</field>
@@ -12,5 +11,4 @@
             ref="l10n_it_account.l10n_it_account_a4_landscape"
         />
     </record>
-
 </odoo>

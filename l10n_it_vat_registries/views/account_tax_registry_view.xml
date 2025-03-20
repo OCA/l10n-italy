@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_account_tax_registry_form" model="ir.ui.view">
         <field name="name">account.tax.registry.form</field>
         <field name="model">account.tax.registry</field>
@@ -23,9 +22,10 @@
         <field name="res_model">account.tax.registry</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-          <p class="oe_view_nocontent_create">
+            <p class="oe_view_nocontent_create">
             Click to add a VAT registry.
-          </p><p>
+          </p>
+            <p>
             A VAT registry is used to group several journals in one registry.
           </p>
         </field>
@@ -35,5 +35,4 @@
         id="menu_action_account_tax_registry_form"
         parent="account.account_account_menu"
     />
-
 </odoo>
