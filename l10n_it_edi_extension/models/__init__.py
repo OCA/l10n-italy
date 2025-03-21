@@ -5,5 +5,6 @@ from . import l10n_it_edi_line_other_data
 from . import l10n_it_edi_activity_progress
 from . import l10n_it_edi_summary_data
 from . import l10n_it_edi_line
+from . import account_move_line
 from . import account_move
 from . import ir_attachment

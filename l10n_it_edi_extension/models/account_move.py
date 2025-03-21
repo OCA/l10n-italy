@@ -53,6 +53,14 @@ def get_datetime(tree, xpath):
 class AccountMoveInherit(models.Model):
     _inherit = "account.move"
 
+    l10n_it_edi_protocol_number = fields.Char(size=64, copy=False)
+    l10n_it_edi_tax_representative_id = fields.Many2one(
+        "res.partner", string="Tax Representative"
+    )
+    l10n_it_edi_intermediary_id = fields.Many2one("res.partner", string="Intermediary")
+    l10n_it_edi_sender = fields.Selection(
+        [("CC", "Assignee / Partner"), ("TZ", "Third Person")], string="Sender"
+    )
     l10n_it_edi_attachment_preview_link = fields.Char(
         string="Preview link",
         compute="_compute_l10n_it_edi_attachment_preview_link",
@@ -257,12 +265,52 @@ class AccountMoveInherit(models.Model):
 
         return res
 
+    def _l10n_it_edi_get_tax_representative(self, body_tree):
+        if body_tree.xpath("//RappresentanteFiscale"):
+            vat = get_text(body_tree, "//RappresentanteFiscale//IdCodice")
+            codice_fiscale = get_text(
+                body_tree, "//RappresentanteFiscale//CodiceFiscale"
+            )
+            if tax_representative := self._l10n_it_edi_search_partner(
+                self.company_id, vat, codice_fiscale, ""
+            ):
+                self.l10n_it_edi_tax_representative_id = tax_representative.id
+            else:
+                if tax_representative := self._l10n_it_edi_create_partner(
+                    body_tree, "//RappresentanteFiscale", vat, codice_fiscale
+                ):
+                    self.l10n_it_edi_tax_representative_id = tax_representative.id
+
+    def _l10n_it_edi_get_intermediary(self, body_tree):
+        if body_tree.xpath("//TerzoIntermediarioOSoggettoEmittente"):
+            vat = get_text(
+                body_tree, "//TerzoIntermediarioOSoggettoEmittente//IdCodice"
+            )
+            codice_fiscale = get_text(
+                body_tree, "//TerzoIntermediarioOSoggettoEmittente//CodiceFiscale"
+            )
+            if intermediary := self._l10n_it_edi_search_partner(
+                self.company_id, vat, codice_fiscale, ""
+            ):
+                self.l10n_it_edi_intermediary_id = intermediary.id
+            else:
+                if intermediary := self._l10n_it_edi_create_partner(
+                    body_tree,
+                    "//TerzoIntermediarioOSoggettoEmittente",
+                    vat,
+                    codice_fiscale,
+                ):
+                    self.l10n_it_edi_intermediary_id = intermediary.id
+
     def _l10n_it_edi_get_extra_info(
         self, company, document_type, body_tree, incoming=True
     ):
         extra_info, message_to_log = super()._l10n_it_edi_get_extra_info(
             company, document_type, body_tree, incoming=incoming
         )
+
+        self._l10n_it_edi_get_tax_representative(body_tree)
+        self._l10n_it_edi_get_intermediary(body_tree)
 
         if rounding := get_float(body_tree, ".//DatiGeneraliDocumento/Arrotondamento"):
             self.l10n_it_edi_rounding = rounding
@@ -332,16 +380,14 @@ class AccountMoveInherit(models.Model):
 
         return extra_info, message_to_log
 
-    def _l10n_it_edi_create_partner(self, xml_tree, partner_info, vat, codice_fiscale):
+    def _l10n_it_edi_create_partner(
+        self, xml_tree, partner_section_xpath, vat, codice_fiscale
+    ):
         country_id = False
-        is_company = bool(
-            get_text(xml_tree, partner_info["section_xpath"] + "//Denominazione")
-        )
-        eori_code = get_text(xml_tree, partner_info["section_xpath"] + "//CodEORI")
+        is_company = bool(get_text(xml_tree, partner_section_xpath + "//Denominazione"))
+        eori_code = get_text(xml_tree, partner_section_xpath + "//CodEORI")
 
-        if country_code := get_text(
-            xml_tree, partner_info["section_xpath"] + "//IdPaese"
-        ):
+        if country_code := get_text(xml_tree, partner_section_xpath + "//IdPaese"):
             countries = self.env["res.country"].search([("code", "=", country_code)])
             if countries:
                 country_id = fields.first(countries).id
@@ -363,19 +409,19 @@ class AccountMoveInherit(models.Model):
             ("lastname", "//Cognome"),
             ("name", "//Denominazione"),
         ]:
-            if value := get_text(xml_tree, partner_info["section_xpath"] + xml_path):
+            if value := get_text(xml_tree, partner_section_xpath + xml_path):
                 vals[field_name] = value
 
         return self.env["res.partner"].create(vals)
 
-    def _l10n_it_edi_update_partner(self, xml_tree, partner_info, partner):
+    def _l10n_it_edi_update_partner(self, xml_tree, partner_section_xpath, partner):
         vals = {}
 
         address_parts = filter(
             None,
             [
-                get_text(xml_tree, partner_info["section_xpath"] + "//Indirizzo"),
-                get_text(xml_tree, partner_info["section_xpath"] + "//NumeroCivico"),
+                get_text(xml_tree, partner_section_xpath + "//Indirizzo"),
+                get_text(xml_tree, partner_section_xpath + "//NumeroCivico"),
             ],
         )
         vals["street"] = " ".join(address_parts)
@@ -388,12 +434,10 @@ class AccountMoveInherit(models.Model):
             ("email", "//Email"),
             ("l10n_it_register_code", "//NumeroIscrizioneAlbo"),
         ]:
-            value = get_text(xml_tree, partner_info["section_xpath"] + xml_path)
+            value = get_text(xml_tree, partner_section_xpath + xml_path)
             vals[field_name] = value
 
-        if province := get_text(
-            xml_tree, partner_info["section_xpath"] + "//Provincia"
-        ):
+        if province := get_text(xml_tree, partner_section_xpath + "//Provincia"):
             if provinces := self.env["res.country.state"].search(
                 [("code", "=", province), ("country_id", "=", partner.country_id.id)]
             ):
@@ -404,14 +448,14 @@ class AccountMoveInherit(models.Model):
                 )
                 self.sudo().message_post(body=message)
 
-        if phone := get_text(xml_tree, partner_info["section_xpath"] + "//Telefono"):
+        if phone := get_text(xml_tree, partner_section_xpath + "//Telefono"):
             vals["phone"] = phone
 
-        if email := get_text(xml_tree, partner_info["section_xpath"] + "//Email"):
+        if email := get_text(xml_tree, partner_section_xpath + "//Email"):
             vals["email"] = email
 
         if register_province := get_text(
-            xml_tree, partner_info["section_xpath"] + "//ProvinciaAlbo"
+            xml_tree, partner_section_xpath + "//ProvinciaAlbo"
         ):
             if provinces := self.env["res.country.state"].search(
                 [
@@ -428,12 +472,12 @@ class AccountMoveInherit(models.Model):
                 self.sudo().message_post(body=message)
 
         if register_code := get_text(
-            xml_tree, partner_info["section_xpath"] + "//NumeroIscrizioneAlbo"
+            xml_tree, partner_section_xpath + "//NumeroIscrizioneAlbo"
         ):
             vals["l10n_it_register_code"] = register_code
 
         if register_regdate := get_date(
-            xml_tree, partner_info["section_xpath"] + "//DataIscrizioneAlbo"
+            xml_tree, partner_section_xpath + "//DataIscrizioneAlbo"
         ):
             vals["l10n_it_register_regdate"] = register_regdate
 
@@ -457,11 +501,11 @@ class AccountMoveInherit(models.Model):
             ]
 
             partner = self._l10n_it_edi_create_partner(
-                xml_tree, partner_info, vat, codice_fiscale
+                xml_tree, partner_info["section_xpath"], vat, codice_fiscale
             )
             if not partner.l10n_it_electronic_invoice_no_contact_update:
                 partner = self._l10n_it_edi_update_partner(
-                    xml_tree, partner_info, partner
+                    xml_tree, partner_info["section_xpath"], partner
                 )
 
             if elements_stabile_organizzazione := xml_tree.xpath(
@@ -494,6 +538,10 @@ class AccountMoveInherit(models.Model):
         return partner
 
     def _l10n_it_edi_import_line(self, element, move_line, extra_info=None):
+        # Admin. ref.
+        if admin_ref := get_text(element, ".//RiferimentoAmministrazione"):
+            move_line.l10n_it_edi_admin_ref = admin_ref
+
         vals = {
             "line_number": int(get_text(element, ".//NumeroLinea")),
             "service_type": get_text(element, ".//TipoCessionePrestazione"),
