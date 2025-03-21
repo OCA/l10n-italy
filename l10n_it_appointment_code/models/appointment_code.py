@@ -3,7 +3,7 @@
 # Copyright 2021 Alex Comba - Agile Business Group
 # Copyright 2022 Giuseppe Borruso - Dinamiche Aziendali
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -18,7 +18,9 @@ class AppointmentCode(models.Model):
             elements = self.search(domain)
             if len(elements) > 1:
                 raise ValidationError(
-                    _("The element with code %s already exists") % appointment_code.code
+                    self.env._(
+                        "The element with code %s already exists", appointment_code.code
+                    )
                 )
 
     code = fields.Char()
