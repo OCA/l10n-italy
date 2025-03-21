@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_appointment_code_tree" model="ir.ui.view">
         <field name="name">view.appointment.code.tree</field>
         <field name="model">appointment.code</field>
@@ -39,5 +38,4 @@
         groups="account.group_account_manager"
         sequence="45"
     />
-
 </odoo>
