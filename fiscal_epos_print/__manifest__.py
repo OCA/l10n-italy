@@ -6,13 +6,14 @@
 
 {
     "name": "ITA - Driver per stampanti fiscali compatibili ePOS-Print XML",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "category": "Point Of Sale",
     "summary": "ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: "
     "FP81II, FP90III",
     "author": (
         "Odoo Community Association (OCA), Agile Business Group, "
-        "Leonardo Donelli, TAKOBI, Level Prime Srl"
+        "Leonardo Donelli, TAKOBI, Level Prime Srl, "
+        "IT-Stecher"
     ),
     "license": "AGPL-3",
     "website": "https://github.com/OCA/l10n-italy",
@@ -48,6 +49,7 @@
             # Screens
             "fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js",
             "fiscal_epos_print/static/src/js/Screens/ReceiptScreen/ReceiptScreen.js",
+            "fiscal_epos_print/static/src/xml/Screens/ReceiptScreen/ReceiptScreen.xml",
             # Popups
             "fiscal_epos_print/static/src/xml/Popups/LotteryCodePopup.xml",
             "fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml",

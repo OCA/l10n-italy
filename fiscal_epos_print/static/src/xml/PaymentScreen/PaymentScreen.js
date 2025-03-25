@@ -6,7 +6,7 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
     var _t = core._t;
     var eposDriver = epson_epos_print.eposDriver;
     const Registries = require("point_of_sale.Registries");
-    const PaymentScreen = require("point_of_sale.PaymentScreen");
+    const PaymentScreen = require("point_of_sale.PaymentScreen");   
     const { useState } = require("@odoo/owl");
     // eslint-disable-next-line
     const MyPaymentScreen = (PaymentScreen) =>
@@ -14,6 +14,7 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
             setup() {
                 super.setup();
                 if (this.env.pos.config.printer_ip) {
+                    
                     this.state = useState({ isLoading: false });
                     var currentOrder = this.env.pos.get_order();
                     var printer_options = currentOrder.getPrinterOptions();
@@ -90,35 +91,29 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                 printer_options.order = order;
                 const fp90 = new eposDriver(printer_options, this);
 
-                fp90.printFiscalJob(
-                    receipt,
-                    order,
+                fp90.printFiscalJob(receipt, order,
                     async (orderWithData) => {
                         const isComplete =
                             orderWithData.fiscal_receipt_number &&
                             orderWithData.fiscal_z_rep_number &&
                             orderWithData.fiscal_receipt_date &&
                             orderWithData.fiscal_printer_serial;
-
+                        
                         this.state.isLoading = false;
                         if (isComplete) {
                             await super._finalizeValidation();
                         } else {
                             this.showPopup("ErrorPopup", {
                                 title: _t("Fiscal data incomplete"),
-                                body: _t(
-                                    "The receipt appears to have been printed, but important fiscal information is missing. The order was NOT saved."
-                                ),
+                                body: _t("The receipt appears to have been printed, but important fiscal information is missing. The order was NOT saved."),
                             });
                         }
                     },
-                    () => {
+                    () => {                        
                         this.state.isLoading = false;
                         this.showPopup("ErrorPopup", {
                             title: _t("Printing errors"),
-                            body: _t(
-                                "The order was not saved because the fiscal print failed."
-                            ),
+                            body: _t("The order was not saved because the fiscal print failed."),
                         });
                     }
                 );

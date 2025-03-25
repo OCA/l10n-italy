@@ -28,18 +28,12 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 const selectedOrder = this.get_order();
                 selectedOrder.lottery_code = lottery_code;
             }
-
+            
             reset_cashier() {
-                this.cashier = {
-                    name: null,
-                    id: null,
-                    barcode: null,
-                    user_id: null,
-                    pin: null,
-                    role: null,
-                    fiscal_operator_number: null,
-                };
+                this.cashier = {name: null, id: null, barcode: null, user_id: null, pin: null, role: null, fiscal_operator_number: null};
             }
+
+            
         };
     Registries.Model.extend(PosGlobalState, FiscalEposPrintPosGlobalState);
 
@@ -61,15 +55,16 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 this.fiscal_printer_serial =
                     this.pos.config.fiscal_printer_serial || null;
                 this.fiscal_printer_debug_info = null;
-                try {
+                try{
                     if (this.pos.config.module_pos_hr) {
-                        this.fiscal_operator_number =
-                            this.pos.cashier.fiscal_operator_number || null;
-                    } else {
-                        this.fiscal_operator_number = "1";
+                        this.fiscal_operator_number = this.pos.cashier.fiscal_operator_number || null;
                     }
-                } catch (error) {
-                    this.fiscal_operator_number = "1";
+                    else{
+                        this.fiscal_operator_number = "1"
+                    }
+                }
+                catch (error){
+                    this.fiscal_operator_number = "1"
                 }
             }
 
@@ -80,13 +75,19 @@ odoo.define("fiscal_epos_print.models", function (require) {
                     this.destroy();
                     return this.pos.get_order().add_product(product, options);
                 }
+                const qty = options.quantity || 1;
+                if (qty === 0) {
+                    console.warn('[fiscal_epos_print] Produkt mit Menge = 0 wurde nicht hinzugefügt:', product.display_name);
+                    return; // kein Hinzufügen
+                }
+
                 return super.add_product(...arguments);
             }
 
             check_order_has_refund() {
                 var order = this.pos.get_order();
                 if (order) {
-                    var lines = order.orderlines;
+                    var lines = order.orderlines;                    
                     order.has_refund = lines.some(function (line) {
                         return line.quantity < 0.0;
                     });
@@ -114,16 +115,17 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 this.fiscal_receipt_date = json.fiscal_receipt_date;
                 this.fiscal_z_rep_number = json.fiscal_z_rep_number;
                 this.fiscal_printer_serial = this.pos.config.fiscal_printer_serial;
-                this.fiscal_printer_debug_info = json.fiscal_printer_debug_info;
-                try {
+                this.fiscal_printer_debug_info = json.fiscal_printer_debug_info;  
+                try{              
                     if (this.pos.config.module_pos_hr && json.employee_id) {
-                        this.fiscal_operator_number =
-                            this.pos.employee_by_id[json.employee_id]
-                                .fiscal_operator_number || null;
-                    } else {
-                        this.fiscal_operator_number = "1";
+                        this.fiscal_operator_number = this.pos.employee_by_id[json.employee_id].fiscal_operator_number || null
                     }
-                } catch (error) {}
+                    else{
+                        this.fiscal_operator_number = "1"
+                    }
+                }
+                catch(error){}
+
             }
 
             export_as_JSON() {
@@ -141,15 +143,16 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 json.fiscal_receipt_date = this.fiscal_receipt_date || null;
                 json.fiscal_z_rep_number = this.fiscal_z_rep_number || null;
                 json.fiscal_printer_serial = this.fiscal_printer_serial || null;
-                json.fiscal_printer_debug_info = this.fiscal_printer_debug_info || null;
-                try {
+                json.fiscal_printer_debug_info = this.fiscal_printer_debug_info || null;  
+                try{  
                     if (this.pos.config.module_pos_hr) {
-                        json.fiscal_operator_number =
-                            this.pos.cashier.fiscal_operator_number || null;
-                    } else {
-                        json.fiscal_operator_number = "1";
+                        json.fiscal_operator_number = this.pos.cashier.fiscal_operator_number || null;
                     }
-                } catch (error) {}
+                    else {
+                        json.fiscal_operator_number = "1"
+                    }
+                }
+                catch(error){}
                 return json;
             }
 
@@ -167,10 +170,16 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 json.fiscal_z_rep_number = this.fiscal_z_rep_number;
                 json.fiscal_printer_serial = this.fiscal_printer_serial;
                 json.fiscal_printer_debug_info = this.fiscal_printer_debug_info;
-                try {
-                    json.fiscal_operator_number =
-                        this.pos.cashier.fiscal_operator_number || null;
-                } catch (error) {}
+                if (this.pos.config.module_pos_hr) {  
+                    json.to_invoice = this.to_invoice; 
+                }
+                else {
+                    json.to_invoice = false
+                }              
+                try{  
+                    json.fiscal_operator_number = this.pos.cashier.fiscal_operator_number || null                
+                }
+                catch(error){}
                 return json;
             }
 
@@ -199,17 +208,8 @@ odoo.define("fiscal_epos_print.models", function (require) {
                     if (receipt.tax_department.included_in_price === true) {
                         receipt.full_price = this.price;
                     } else {
-                        // This strategy was used because JavaScript's Math.round rounds to the nearest integer
-                        const dec_precision = this.pos.currency.decimal_places;
-                        const full_price = Number(
-                            (
-                                this.price *
-                                (1 + receipt.tax_department.tax_amount / 100)
-                            ).toFixed(dec_precision)
-                        );
-                        const rounding_factor = Math.pow(10, dec_precision);
                         receipt.full_price =
-                            Math.trunc(full_price * rounding_factor) / rounding_factor;
+                            this.price * (1 + receipt.tax_department.tax_amount / 100);
                     }
                 }
 
@@ -233,12 +233,16 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 });
             }
 
-            set_quantity(quantity) {
-                if (quantity === "0") {
+            // IMPORTANT FOR FISCAL PRINTERS:
+            // Fiscal printers don't allow lines with quantity 0.
+            // If the user tries to set a line with quantity 0, we remove it directly.
+            set_quantity(quantity, keep_price) {
+                if (quantity === "0" || quantity === "") {
                     // Epson FP doesn't allow lines with quantity 0
                     quantity = "remove";
+                    console.warn('[fiscal_epos_print] Zeile mit Menge 0 wurde automatisch entfernt:', this.product.display_name);
                 }
-                return super.set_quantity(...arguments);
+                return super.set_quantity(quantity, keep_price);
             }
         };
     Registries.Model.extend(Orderline, FiscalEposPrintOrderline);

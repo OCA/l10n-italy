@@ -6,15 +6,25 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
     var _t = core._t;
     var eposDriver = epson_epos_print.eposDriver;
     const Registries = require("point_of_sale.Registries");
+<<<<<<< HEAD
     const PaymentScreen = require("point_of_sale.PaymentScreen");
+    const {useState} = require("@odoo/owl");
+=======
+    const PaymentScreen = require("point_of_sale.PaymentScreen");   
     const { useState } = require("@odoo/owl");
+>>>>>>> eab4f71bb (Re-engineered the communication with fiscal printer in asynchronous manor. With this we can retain the fiscal data of the fiscal receipts in the system and avoid to have posted orders without printed fiscal receipt, because of async error handling.)
     // eslint-disable-next-line
     const MyPaymentScreen = (PaymentScreen) =>
         class extends PaymentScreen {
             setup() {
                 super.setup();
                 if (this.env.pos.config.printer_ip) {
+<<<<<<< HEAD
+                    this.state = useState({isLoading: false});
+=======
+                    
                     this.state = useState({ isLoading: false });
+>>>>>>> eab4f71bb (Re-engineered the communication with fiscal printer in asynchronous manor. With this we can retain the fiscal data of the fiscal receipts in the system and avoid to have posted orders without printed fiscal receipt, because of async error handling.)
                     var currentOrder = this.env.pos.get_order();
                     var printer_options = currentOrder.getPrinterOptions();
                     var fp90 = new eposDriver(printer_options, this);
@@ -90,22 +100,31 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                 printer_options.order = order;
                 const fp90 = new eposDriver(printer_options, this);
 
+<<<<<<< HEAD
                 fp90.printFiscalJob(
                     receipt,
                     order,
+=======
+                fp90.printFiscalJob(receipt, order,
+>>>>>>> eab4f71bb (Re-engineered the communication with fiscal printer in asynchronous manor. With this we can retain the fiscal data of the fiscal receipts in the system and avoid to have posted orders without printed fiscal receipt, because of async error handling.)
                     async (orderWithData) => {
                         const isComplete =
                             orderWithData.fiscal_receipt_number &&
                             orderWithData.fiscal_z_rep_number &&
                             orderWithData.fiscal_receipt_date &&
                             orderWithData.fiscal_printer_serial;
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> eab4f71bb (Re-engineered the communication with fiscal printer in asynchronous manor. With this we can retain the fiscal data of the fiscal receipts in the system and avoid to have posted orders without printed fiscal receipt, because of async error handling.)
                         this.state.isLoading = false;
                         if (isComplete) {
                             await super._finalizeValidation();
                         } else {
                             this.showPopup("ErrorPopup", {
                                 title: _t("Fiscal data incomplete"),
+<<<<<<< HEAD
                                 body: _t(
                                     "The receipt appears to have been printed, but important fiscal information is missing. The order was NOT saved."
                                 ),
@@ -119,6 +138,17 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                             body: _t(
                                 "The order was not saved because the fiscal print failed."
                             ),
+=======
+                                body: _t("The receipt appears to have been printed, but important fiscal information is missing. The order was NOT saved."),
+                            });
+                        }
+                    },
+                    () => {                        
+                        this.state.isLoading = false;
+                        this.showPopup("ErrorPopup", {
+                            title: _t("Printing errors"),
+                            body: _t("The order was not saved because the fiscal print failed."),
+>>>>>>> eab4f71bb (Re-engineered the communication with fiscal printer in asynchronous manor. With this we can retain the fiscal data of the fiscal receipts in the system and avoid to have posted orders without printed fiscal receipt, because of async error handling.)
                         });
                     }
                 );

@@ -81,3 +81,25 @@
     cursor: default;
     background-color: #1e1e1e;
 }
+.epos-loader-overlay {
+    position: absolute;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.7);
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.epos-loader {
+    border: 6px solid #ccc;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
