@@ -85,12 +85,14 @@
     position: absolute;
     z-index: 9999;
     background: rgba(255, 255, 255, 0.7);
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-  
 .epos-loader {
     border: 6px solid #ccc;
     border-top: 6px solid #3498db;
@@ -101,5 +103,7 @@
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }

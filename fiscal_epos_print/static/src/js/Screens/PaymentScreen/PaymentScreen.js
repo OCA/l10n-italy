@@ -7,14 +7,14 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
     var eposDriver = epson_epos_print.eposDriver;
     const Registries = require("point_of_sale.Registries");
     const PaymentScreen = require("point_of_sale.PaymentScreen");
-    const { useState } = require("@odoo/owl");
+    const {useState} = require("@odoo/owl");
     // eslint-disable-next-line
     const MyPaymentScreen = (PaymentScreen) =>
         class extends PaymentScreen {
             setup() {
                 super.setup();
                 if (this.env.pos.config.printer_ip) {
-                    this.state = useState({ isLoading: false });
+                    this.state = useState({isLoading: false});
                     var currentOrder = this.env.pos.get_order();
                     var printer_options = currentOrder.getPrinterOptions();
                     var fp90 = new eposDriver(printer_options, this);
@@ -60,7 +60,7 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                     printer_options.order = currentOrder;
                     var receipt = currentOrder.export_for_printing();
                     this.sendToFP90Printer(receipt, printer_options);
-                }                
+                }
                 await super._finalizeValidation();
             } */
 
@@ -83,7 +83,7 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                 }
 
                 // Show loading spinner
-                this.state.isLoading = true;
+                this.env.services.ui.block();
 
                 const receipt = order.export_for_printing();
                 const printer_options = order.getPrinterOptions();
@@ -100,10 +100,11 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                             orderWithData.fiscal_receipt_date &&
                             orderWithData.fiscal_printer_serial;
 
-                        this.state.isLoading = false;
                         if (isComplete) {
                             await super._finalizeValidation();
+                            this.env.services.ui.unblock();
                         } else {
+                            this.env.services.ui.unblock();
                             this.showPopup("ErrorPopup", {
                                 title: _t("Fiscal data incomplete"),
                                 body: _t(
@@ -113,7 +114,7 @@ odoo.define("fiscal_epos_print.PaymentScreen", function (require) {
                         }
                     },
                     () => {
-                        this.state.isLoading = false;
+                        this.env.services.ui.unblock();
                         this.showPopup("ErrorPopup", {
                             title: _t("Printing errors"),
                             body: _t(
