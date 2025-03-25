@@ -4,3 +4,4 @@
 - Alessio Gerace
 - Roberto Fichera
 - Giuseppe Borruso \<<gborruso@dinamicheaziendali.it>\>
+- Martin Stecher \<<martin@it-stecher.com>\>
