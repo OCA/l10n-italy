@@ -122,21 +122,18 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
     }
 
     var eposDriver = core.Class.extend({
-
         printFiscalJob: function (receipt, order, onSuccess, onError) {
-            if (!this.printQueue)
-                this.printQueue = [];
+            if (!this.printQueue) this.printQueue = [];
             this.printQueue.push({
                 receipt: receipt,
                 order: order,
                 onSuccess: onSuccess,
                 onError: onError,
             });
-            this.order = order;  // Fallback für alte Logik
+            this.order = order;
             this.printFiscalReceipt(receipt);
         },
-                
-                
+
         init: function (options, sender) {
             var self = this;
             var opts = options || {};
@@ -145,15 +142,16 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             this.fiscalPrinter = new epson.fiscalPrint();
             this.sender = sender;
             this.order = opts.order || null;
-            
+
             // Fields for asynchroneous printing
             this.printQueue = [];
             this.onPrintSuccess = null;
             this.onPrintError = null;
 
             this.fiscalPrinter.onreceive = function (res, tag_list_names, add_info) {
-                
-                var tagStatus = tag_list_names ? tag_list_names.filter(getStatusField) : [];
+                var tagStatus = tag_list_names
+                    ? tag_list_names.filter(getStatusField)
+                    : [];
                 var msgPrinter = "";
                 var info = "";
 
@@ -199,37 +197,51 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         });
                         return;
                     }
-                    
+
                     if (targetOrder) {
                         try {
-                            targetOrder.fiscal_receipt_number = parseInt(add_info.fiscalReceiptNumber);
-                            targetOrder.fiscal_receipt_amount = parseFloat(add_info.fiscalReceiptAmount.replace(",", "."));
-                            var fiscalReceiptDate = new Date(add_info.fiscalReceiptDate.replace(/(\d{1,2})\/(\d{1,2})\/(\d{4})/, "$3/$2/$1"));
-                            targetOrder.fiscal_receipt_date = moment(fiscalReceiptDate).format("YYYY-MM-DD");
+                            targetOrder.fiscal_receipt_number = parseInt(
+                                add_info.fiscalReceiptNumber
+                            );
+                            targetOrder.fiscal_receipt_amount = parseFloat(
+                                add_info.fiscalReceiptAmount.replace(",", ".")
+                            );
+                            var fiscalReceiptDate = new Date(
+                                add_info.fiscalReceiptDate.replace(
+                                    /(\d{1,2})\/(\d{1,2})\/(\d{4})/,
+                                    "$3/$2/$1"
+                                )
+                            );
+                            targetOrder.fiscal_receipt_date =
+                                moment(fiscalReceiptDate).format("YYYY-MM-DD");
                             targetOrder.fiscal_z_rep_number = add_info.zRepNumber;
-                            targetOrder.fiscal_printer_serial = self.sender.env.pos.config.fiscal_printer_serial;
-                            targetOrder.fiscal_operator_number = add_info.fiscal_operator_number || "1";
+                            targetOrder.fiscal_printer_serial =
+                                self.sender.env.pos.config.fiscal_printer_serial;
+                            targetOrder.fiscal_operator_number =
+                                add_info.fiscal_operator_number || "1";
                         } catch (e) {
                             console.warn("[EPOS] Error setting fiscal fields::", e);
                         }
                     }
 
-                    if (job && typeof job.onSuccess === 'function') {
+                    if (job && typeof job.onSuccess === "function") {
                         job.onSuccess(targetOrder);
-                    } else if (typeof self.onPrintSuccess === 'function') {
+                    } else if (typeof self.onPrintSuccess === "function") {
                         self.onPrintSuccess(targetOrder);
                     }
                 } else {
                     if (targetOrder) {
                         targetOrder.fiscal_printer_debug_info =
-                            JSON.stringify(res) + "\n" +
-                            JSON.stringify(tag_list_names) + "\n" +
+                            JSON.stringify(res) +
+                            "\n" +
+                            JSON.stringify(tag_list_names) +
+                            "\n" +
                             JSON.stringify(add_info);
                     }
 
-                    if (job && typeof job.onError === 'function') {
+                    if (job && typeof job.onError === "function") {
                         job.onError(targetOrder, res);
-                    } else if (typeof self.onPrintError === 'function') {
+                    } else if (typeof self.onPrintError === "function") {
                         self.onPrintError(add_info, res);
                     }
 
@@ -318,7 +330,7 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 " />";
             return tag;
         },
-        
+
         printFiscalVoidDetails: function (args) {
             var message =
                 "VOID " +
@@ -554,7 +566,9 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         */
         printInfoPaymentCustomer: function (receipt) {
             var tag =
-                '<printRecMessage operator="' + (receipt.fiscal_operator_number || "1") + '" message="------------------" messageType="3" index="5" font="2" />';
+                '<printRecMessage operator="' +
+                (receipt.fiscal_operator_number || "1") +
+                '" message="------------------" messageType="3" index="5" font="2" />';
             var index = 5;
             _.each(receipt.ticket.split("<br />"), function (msg) {
                 index += 1;
@@ -572,18 +586,22 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             return tag;
         },
 
-        printRecCash: function(receipt){
-            var amount = 0
-            receipt.paymentlines.forEach(l => {
+        printRecCash: function (receipt) {
+            var amount = 0;
+            receipt.paymentlines.forEach((l) => {
                 // Set ticket
-                // Amount always positive because it's used for refund too                
+                // Amount always positive because it's used for refund too
                 amount += Math.abs(l.amount);
             });
             var xml = "<printerCommand>";
-            xml += '<printRecCash operator="' + (receipt.fiscal_operator_number || "1") + '" direction="in" form="0" amount="'+ amount +'" />';
+            xml +=
+                '<printRecCash operator="' +
+                (receipt.fiscal_operator_number || "1") +
+                '" direction="in" form="0" amount="' +
+                amount +
+                '" />';
             xml += "</printerCommand>";
             this.fiscalPrinter.send(this.url, xml);
-            
         },
 
         /*
@@ -594,18 +612,18 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             var has_refund = _.every(receipt.orderlines, function (line) {
                 return line.quantity < 0;
             });
-            if (receipt.to_invoice){
-                this.printRecCash(receipt)
+            if (receipt.to_invoice) {
+                this.printRecCash(receipt);
                 return;
-            }            
+            }
             var xml = "<printerFiscalReceipt>";
             var fiscal_operator = receipt.fiscal_operator_number || "1";
             // Header must be printed before beginning a fiscal receipt
-            if (!receipt.refund_full_refund){
+            if (!receipt.refund_full_refund) {
                 xml += this.printFiscalReceiptHeader(receipt);
             }
-            if (has_refund) {                
-                if (receipt.refund_full_refund){                
+            if (has_refund) {
+                if (receipt.refund_full_refund) {
                     xml += this.printFiscalVoidDetails({
                         refund_date: receipt.refund_date,
                         refund_report: receipt.refund_report,
@@ -623,16 +641,18 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                     });
                 }
             }
-            if (!receipt.refund_full_refund){
-                if (receipt.fiscal_operator_number!="1")
-                    xml += '<beginFiscalReceipt operator="'+receipt.fiscal_operator_number+'" />';
-                else                    
-                    xml += '<beginFiscalReceipt operator="1" />';           
-            
+            if (!receipt.refund_full_refund) {
+                if (receipt.fiscal_operator_number != "1")
+                    xml +=
+                        '<beginFiscalReceipt operator="' +
+                        receipt.fiscal_operator_number +
+                        '" />';
+                else xml += '<beginFiscalReceipt operator="1" />';
+
                 _.each(receipt.orderlines, function (l) {
                     if (l.price >= 0) {
                         if (l.quantity >= 0) {
-                            if (l.discount < 100){
+                            if (l.discount < 100) {
                                 xml += self.printRecItem({
                                     description: l.product_name,
                                     quantity: l.quantity,
@@ -646,7 +666,8 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                                 if (l.discount) {
                                     xml += self.printRecItemAdjustment({
                                         adjustmentType: 0,
-                                        description: _t("Discount") + " " + l.discount + "%",
+                                        description:
+                                            _t("Discount") + " " + l.discount + "%",
                                         amount: round_pr(
                                             l.quantity * l.full_price - l.price_display,
                                             self.sender.env.pos.currency.rounding
@@ -710,11 +731,13 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                             )
                         ),
                         operator: fiscal_operator,
-                    });                
-                    if (receipt.fiscal_operator_number!="1"){
-                        xml += '<printRecSubtotal operator="'+receipt.fiscal_operator_number+'" option="1" />';
-                    }
-                    else{
+                    });
+                    if (receipt.fiscal_operator_number != "1") {
+                        xml +=
+                            '<printRecSubtotal operator="' +
+                            receipt.fiscal_operator_number +
+                            '" option="1" />';
+                    } else {
                         xml += '<printRecSubtotal operator="1" option="1" />';
                     }
                 }
@@ -745,18 +768,19 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                 xml += this.printOrderId(receipt);
                 if (receipt.ticket) {
                     xml += this.printInfoPaymentCustomer(receipt);
-                }            
-                if (receipt.fiscal_operator_number!="1"){
-                    xml += '<endFiscalReceipt operator="'+fiscal_operator+'" /></printerFiscalReceipt>';
                 }
-                else{
+                if (receipt.fiscal_operator_number != "1") {
+                    xml +=
+                        '<endFiscalReceipt operator="' +
+                        fiscal_operator +
+                        '" /></printerFiscalReceipt>';
+                } else {
                     xml += '<endFiscalReceipt operator="1" /></printerFiscalReceipt>';
                 }
                 this.fiscalPrinter.send(this.url, xml);
                 console.log(xml);
-            }
-            else{
-                xml += '</printerFiscalReceipt>'
+            } else {
+                xml += "</printerFiscalReceipt>";
                 this.fiscalPrinter.send(this.url, xml);
                 console.log(xml);
             }
@@ -767,10 +791,9 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         */
         printFiscalReport: function (f_op) {
             var xml = "<printerFiscalReport>";
-            if (f_op!="1"){
-                xml += '<printZReport operator="'+f_op+'" timeout="" />';
-            }
-            else{
+            if (f_op != "1") {
+                xml += '<printZReport operator="' + f_op + '" timeout="" />';
+            } else {
                 xml += '<printZReport operator="1" timeout="" />';
             }
             xml += "</printerFiscalReport>";
@@ -782,12 +805,15 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
         */
         printFiscalXZReport: function (f_op) {
             var xml = "<printerFiscalReport>";
-            if (f_op){
-                xml += '<displayText operator="'+f_op+'" data="Stampa chiusura giornaliera" />';
-                xml += '<printXZReport operator="'+f_op+'" timeout="" />';
-            }
-            else{
-                xml += '<displayText operator="1" data="Stampa chiusura giornaliera" />';
+            if (f_op) {
+                xml +=
+                    '<displayText operator="' +
+                    f_op +
+                    '" data="Stampa chiusura giornaliera" />';
+                xml += '<printXZReport operator="' + f_op + '" timeout="" />';
+            } else {
+                xml +=
+                    '<displayText operator="1" data="Stampa chiusura giornaliera" />';
                 xml += '<printXZReport operator="1" timeout="" />';
             }
             xml += "</printerFiscalReport>";
@@ -796,10 +822,9 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
 
         printFiscalXReport: function (f_op) {
             var xml = "<printerFiscalReport>";
-            if (f_op!="1"){
-                xml += '<printXReport operator="'+f_op+'"/>';
-            }
-            else{
+            if (f_op != "1") {
+                xml += '<printXReport operator="' + f_op + '"/>';
+            } else {
                 xml += '<printXReport operator="1" />';
             }
             xml += "</printerFiscalReport>";
@@ -820,10 +845,9 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             var xml = "<printerCommand>";
             xml +=
                 '<directIO command="4038" data="0212345" comment="Login password 0212345 followed by 93 spaces for a length of 100" />';
-            if (f_op!="1"){
-                xml += '<printDuplicateReceipt operator="'+f_op+'" />';
-            }
-            else{
+            if (f_op != "1") {
+                xml += '<printDuplicateReceipt operator="' + f_op + '" />';
+            } else {
                 xml += '<printDuplicateReceipt operator="1" />';
             }
             xml += "</printerCommand>";

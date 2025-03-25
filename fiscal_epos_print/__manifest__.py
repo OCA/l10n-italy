@@ -49,7 +49,6 @@
             # Screens
             "fiscal_epos_print/static/src/js/Screens/PaymentScreen/PaymentScreen.js",
             "fiscal_epos_print/static/src/js/Screens/ReceiptScreen/ReceiptScreen.js",
-            "fiscal_epos_print/static/src/xml/Screens/ReceiptScreen/ReceiptScreen.xml",
             # Popups
             "fiscal_epos_print/static/src/xml/Popups/LotteryCodePopup.xml",
             "fiscal_epos_print/static/src/xml/Popups/RefundInfoPopup.xml",
