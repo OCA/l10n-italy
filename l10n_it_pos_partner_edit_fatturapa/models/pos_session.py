@@ -1,4 +1,6 @@
+# Copyright 2025 Martin Stecher - IT-S
 from odoo import models
+
 
 class POSSession(models.Model):
     _inherit = "pos.session"

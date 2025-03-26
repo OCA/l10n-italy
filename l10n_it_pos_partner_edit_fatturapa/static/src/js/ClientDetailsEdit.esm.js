@@ -1,4 +1,4 @@
-/** @odoo-module **/
+// Copyright 2025 Martin Stecher - IT-S
 const {useState} = owl;
 import PartnerDetailsEdit from "point_of_sale.PartnerDetailsEdit";
 import Registries from "point_of_sale.Registries";
