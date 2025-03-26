@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-name="PartnerDetailsEdit"
+        t-inherit="point_of_sale.PartnerDetailsEdit"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//div[hasclass('partner-details-left')]" position="inside">
+            <div class="partner-detail">
+                <span class="label">Fatt.Elett. subjected</span>
+                <input
+                    class="detail"
+                    name="electornic_invoice_subjected"
+                    type="checkbox"
+                    t-model="changes.electornic_invoice_subjected"
+                    t-on-change="captureChange"
+                    t-att-value="props.partner.electornic_invoice_subjected || ''"
+                />
+            </div>
+            <div class="partner-detail">
+                <span class="label">Fatt.Elett. obliged</span>
+                <input
+                    class="detail"
+                    name="electronic_invoice_obliged_subject"
+                    type="checkbox"
+                    t-model="changes.electronic_invoice_obliged_subject"
+                    t-on-change="captureChange"
+                    t-att-value="props.partner.electronic_invoice_obliged_subject || ''"
+                />
+            </div>
+            <div class="partner-detail">
+                <span class="label">Codice Dest.</span>
+                <input
+                    class="detail"
+                    name="codice_destinatario"
+                    type="text"
+                    maxlength="7"
+                    t-model="changes.birthdate_date"
+                    t-on-change="captureChange"
+                    t-att-value="props.partner.codice_destinatario || ''"
+                    placeholder="0000000"
+                />
+            </div>
+            <div class="partner-detail">
+                <span class="label">PEC Dest.</span>
+                <input
+                    class="detail"
+                    name="pec_destinatario"
+                    type="email"
+                    t-model="changes.pec_destinatario"
+                    t-on-change="captureChange"
+                    t-att-value="props.partner.pec_destinatario || ''"
+                    placeholder="mail@pec.it"
+                />
+            </div>
+        </xpath>
+    </t>
+</templates>
