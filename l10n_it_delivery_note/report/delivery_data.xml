@@ -69,18 +69,28 @@
                 </td>
                 <td>
                     <div name="gross_weight" style="font-size:10px;">Gross Weight</div>
-                    <div
+                    <span
                         class="text-left"
                         style="font-size:12px;"
                         t-field="doc.delivery_gross_weight"
                     />
+                    <span
+                        class="text-left"
+                        style="font-size:12px;"
+                        t-field="doc.delivery_gross_weight_uom_id.name"
+                    />
                 </td>
                 <td>
                     <div name="net_weight" style="font-size:10px;">Net Weight</div>
-                    <div
+                    <span
                         class="text-left"
                         style="font-size:12px;"
                         t-field="doc.delivery_net_weight"
+                    />
+                    <span
+                        class="text-left"
+                        style="font-size:12px;"
+                        t-field="doc.delivery_net_weight_uom_id.name"
                     />
                 </td>
                 <td>
