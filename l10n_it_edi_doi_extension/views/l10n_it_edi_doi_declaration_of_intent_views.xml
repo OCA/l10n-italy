@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_l10n_it_edi_doi_form_type" model="ir.ui.view">
+        <field name="name">l10n_it_edi_doi.declaration_of_intent_type.form</field>
+        <field name="model">l10n_it_edi_doi.declaration_of_intent</field>
+        <field name="inherit_id" ref="l10n_it_edi_doi.view_l10n_it_edi_doi_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="type" readonly="state != 'draft'" />
+            </field>
+        </field>
+    </record>
+
+    <record id="declaration_of_intent_search" model="ir.ui.view">
+        <field name="name">Search view for declaration_of_intent</field>
+        <field name="model">l10n_it_edi_doi.declaration_of_intent</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_edi_doi.view_l10n_it_edi_doi_declaration_of_intent_search"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter
+                    name="doi_type_in"
+                    string="Issued"
+                    domain="[('type','=', 'in')]"
+                    help="Show issued declarations"
+                />
+                <filter
+                    name="doi_type_out"
+                    string="Received"
+                    domain="[('type','=', 'out')]"
+                    help="Show received declarations"
+                />
+                <group expand="1" string="Group By">
+                    <filter
+                        name="group_by_partner"
+                        string="Partner"
+                        context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        name="group_by_type"
+                        string="Type"
+                        context="{'group_by':'type'}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="declaration_of_intent_action">
+        <field name="name">Declarations of intent</field>
+        <field name="res_model">l10n_it_edi_doi.declaration_of_intent</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_search_state_active': 1}</field>
+    </record>
+
+    <menuitem
+        id="declaration_of_intent_menu"
+        action="declaration_of_intent_action"
+        parent="account.menu_finance_entries"
+        sequence="10"
+    />
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form_doi" model="ir.ui.view">
+        <field name="name">account.move.doi.type.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='l10n_it_edi_doi_id']" position="before">
+                <field name="doi_type" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='l10n_it_edi_doi_id']" position="attributes">
+                <attribute name="domain">
+                    [('state', '!=', 'draft'),
+                    ('company_id', '=', company_id),
+                    ('currency_id', '=', currency_id),
+                    ('partner_id', '=', commercial_partner_id),
+                    ('type', '=', doi_type)]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
