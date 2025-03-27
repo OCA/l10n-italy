@@ -11,9 +11,10 @@
                         <tree editable="top" create="false">
                             <field name="wizard_id" invisible="True" />
                             <field name="e_invoice_descr" />
+                            <field name="xml_supplier_id" invisible="1" />
                             <field
                                 name="invoice_id"
-                                domain="[
+                                domain="[('partner_id','child_of',xml_supplier_id),
                                           ('move_type', 'in', ('in_invoice', 'in_refund')),
                                           ('state', '!=', 'cancel'),
                                           ('fatturapa_attachment_in_id', '=', False)]"

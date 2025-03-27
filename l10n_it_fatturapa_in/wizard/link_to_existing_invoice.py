@@ -21,6 +21,9 @@ class WizardLinkToInvoiceLine(models.TransientModel):
     invoice_id = fields.Many2one(
         comodel_name="account.move",
     )
+    xml_supplier_id = fields.Many2one(
+        "res.partner", related="wizard_id.attachment_id.xml_supplier_id"
+    )
 
     def link(self):
         self.ensure_one()
