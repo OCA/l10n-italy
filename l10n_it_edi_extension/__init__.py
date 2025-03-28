@@ -271,6 +271,96 @@ def _l10n_it_fatturapa_pre_migration(env):
                 "l10n_it_edi_admin_ref",
             ),
         ],
+        [
+            (
+                "res.partner",
+                "eori_code",
+            ),
+            (
+                "res.partner",
+                "l10n_edi_it_eori_code",
+            ),
+        ],
+        [
+            (
+                "res.partner",
+                "electronic_invoice_no_contact_update",
+            ),
+            (
+                "res.partner",
+                "l10n_edi_it_electronic_invoice_no_contact_update",
+            ),
+        ],
+        [
+            (
+                "res.partner",
+                "register",
+            ),
+            (
+                "res.partner",
+                "l10n_edi_it_register",
+            ),
+        ],
+        [
+            (
+                "res.partner",
+                "register_province",
+            ),
+            (
+                "res.partner",
+                "l10n_edi_it_register_province",
+            ),
+        ],
+        [
+            (
+                "res.partner",
+                "register_code",
+            ),
+            (
+                "res.partner",
+                "l10n_edi_it_register_code",
+            ),
+        ],
+        [
+            (
+                "res.partner",
+                "register_regdate",
+            ),
+            (
+                "res.partner",
+                "l10n_edi_it_register_regdate",
+            ),
+        ],
+        [
+            (
+                "res.company",
+                "fatturapa_art73",
+            ),
+            (
+                "res.company",
+                "l10n_edi_it_art73",
+            ),
+        ],
+        [
+            (
+                "res.company",
+                "fatturapa_pub_administration_ref",
+            ),
+            (
+                "res.company",
+                "l10n_edi_it_admin_ref",
+            ),
+        ],
+        [
+            (
+                "res.company",
+                "fatturapa_sender_partner",
+            ),
+            (
+                "res.company",
+                "l10n_edi_it_sender_partner",
+            ),
+        ],
     ]
 
     openupgrade.rename_models(
@@ -296,6 +386,41 @@ def _l10n_it_fatturapa_pre_migration(env):
         env,
         field_spec,
     )
+
+
+def _l10n_it_fatturapa_post_migration_related_ddt(env):
+    env.cr.execute("""
+        SELECT invoice_id, invoice_line_id, name, date, lineRef
+        FROM fatturapa_related_ddt
+        WHERE invoice_id IS NOT NULL OR invoice_line_id IS NOT NULL
+    """)
+    rows = env.cr.fetchall()
+    invoice_map = {}
+    for row in rows:
+        invoice_id, invoice_line_id, name, date, lineRef = row
+        move_id = (
+            invoice_id or env["account.move.line"].browse(invoice_line_id).move_id.id
+        )
+        if move_id:
+            invoice_map.setdefault(move_id, []).append((name, date, lineRef))
+
+    moves = env["account.move"].browse(invoice_map.keys())
+    for move in moves:
+        for name, date, lineRef in invoice_map[move.id]:
+            ddt_tags = Markup('<ul class="mb-0">{}</ul>').format(
+                Markup().join(
+                    nl2br_enclose(" ".join(tag.split()), "li")
+                    for tag in [
+                        f"NumeroDDT: {name}",
+                        f'DataDDT: {date or "N/A"}',
+                        f'LineRef: {lineRef or "N/A"}',
+                    ]
+                )
+            )
+            message = Markup("{} {}<br/>{}").format(
+                "DatiDDT", env._("from XML file:"), ddt_tags
+            )
+            move.sudo().message_post(body=message)
 
 
 def _l10n_it_fatturapa_post_migration(env):
@@ -327,7 +452,7 @@ def _l10n_it_fatturapa_post_migration(env):
         UPDATE res_company
         SET l10n_it_tax_system = fp.code
         FROM res_partner rp
-        JOIN fatturapa_fiscal_position fp ON rp.register_fiscalpos = fp.id
+        LEFT JOIN fatturapa_fiscal_position fp ON rp.register_fiscalpos = fp.id
         WHERE res_company.partner_id = rp.id AND rp.register_fiscalpos IS NOT NULL
     """
     openupgrade.logged_query(env.cr, query)
@@ -339,36 +464,207 @@ def _l10n_it_fatturapa_post_migration(env):
         WHERE ir_attachment.id = fa.ir_attachment_id
     """)
 
+    _l10n_it_fatturapa_post_migration_related_ddt(env)
+
     env.cr.execute("""
-        SELECT invoice_id, invoice_line_id, name, date, lineRef
-        FROM fatturapa_related_ddt
-        WHERE invoice_id IS NOT NULL OR invoice_line_id IS NOT NULL
+        SELECT
+            am.id AS move_id,
+            rp.name AS carrier_name,
+            rp.license_number AS license_number,
+            am.transport_vehicle,
+            am.transport_reason,
+            am.number_items,
+            am.description,
+            am.unit_weight,
+            am.gross_weight,
+            am.net_weight,
+            am.pickup_datetime,
+            am.transport_date,
+            am.delivery_address,
+            am.delivery_datetime,
+            am.ftpa_incoterms
+        FROM account_move am
+        LEFT JOIN res_partner rp ON am.carrier_id = rp.id
     """)
     rows = env.cr.fetchall()
     invoice_map = {}
     for row in rows:
-        invoice_id, invoice_line_id, name, date, lineRef = row
-        move_id = (
-            invoice_id or env["account.move.line"].browse(invoice_line_id).move_id.id
-        )
-        if move_id:
-            invoice_map.setdefault(move_id, []).append((name, date, lineRef))
+        move_id, *delivery_data = row
+        invoice_map.setdefault(move_id, []).append(tuple(delivery_data))
 
     moves = env["account.move"].browse(invoice_map.keys())
     for move in moves:
-        for name, date, lineRef in invoice_map[move.id]:
-            document_type_tags = Markup('<ul class="mb-0">{}</ul>').format(
+        for delivery_data in invoice_map[move.id]:
+            (
+                carrier_name,
+                license_number,
+                transport_vehicle,
+                transport_reason,
+                number_items,
+                description,
+                unit_weight,
+                gross_weight,
+                net_weight,
+                pickup_datetime,
+                transport_date,
+                delivery_address,
+                delivery_datetime,
+                ftpa_incoterms,
+            ) = delivery_data
+            delivery_tags = Markup('<ul class="mb-0">{}</ul>').format(
                 Markup().join(
                     nl2br_enclose(" ".join(tag.split()), "li")
                     for tag in [
-                        f"NumeroDDT: {name}",
-                        f'DataDDT: {date or "N/A"}',
-                        f'LineRef: {lineRef or "N/A"}',
+                        f'Carrier: {carrier_name or "N/A"}',
+                        f'NumeroLicenzaGuida: {license_number or "N/A"}',
+                        f'MezzoTrasporto: {transport_vehicle or "N/A"}',
+                        f'CausaleTrasporto: {transport_reason or "N/A"}',
+                        f'NumeroColli: {number_items or "N/A"}',
+                        f'Descrizione: {description or "N/A"}',
+                        f'UnitaMisuraPeso: {unit_weight or "N/A"}',
+                        f'PesoLordo: {gross_weight or "N/A"}',
+                        f'PesoNetto: {net_weight or "N/A"}',
+                        f'DataOraRitiro: {pickup_datetime or "N/A"}',
+                        f'DataInizioTrasporto: {transport_date or "N/A"}',
+                        f'IndirizzoResa: {delivery_address or "N/A"}',
+                        f'DataOraConsegna: {delivery_datetime or "N/A"}',
+                        f'TipoResa: {ftpa_incoterms or "N/A"}',
                     ]
                 )
             )
             message = Markup("{} {}<br/>{}").format(
-                "DatiDDT", env._("from XML file:"), document_type_tags
+                "DatiTrasporto", env._("from XML file:"), delivery_tags
+            )
+            move.sudo().message_post(body=message)
+
+    env.cr.execute("""
+        SELECT
+            id AS move_id,
+            vehicle_registration,
+            total_travel
+        FROM account_move
+        WHERE
+			vehicle_registration IS NOT NULL
+			OR total_travel IS NOT NULL
+    """)
+    rows = env.cr.fetchall()
+    invoice_map = {}
+    for row in rows:
+        move_id, *vehicle_data = row
+        invoice_map.setdefault(move_id, []).append(tuple(vehicle_data))
+
+    moves = env["account.move"].browse(invoice_map.keys())
+    for move in moves:
+        for vehicle_data in invoice_map[move.id]:
+            vehicle_registration, total_travel = vehicle_data
+            vehicle_tags = Markup('<ul class="mb-0">{}</ul>').format(
+                Markup().join(
+                    nl2br_enclose(" ".join(tag.split()), "li")
+                    for tag in [
+                        f'Data: {vehicle_registration or "N/A"}',
+                        f'TotalePercorso: {total_travel or "N/A"}',
+                    ]
+                )
+            )
+            message = Markup("{} {}<br/>{}").format(
+                "DatiVeicoli", env._("from XML file:"), vehicle_tags
+            )
+            move.sudo().message_post(body=message)
+
+    env.cr.execute("""
+        SELECT
+            fpd.invoice_id,
+            fpt.code AS term_code,
+            fpdl.recipient,
+            fpm.code AS method_code,
+            fpdl.payment_term_start,
+            fpdl.payment_days,
+            fpdl.payment_due_date,
+            fpdl.payment_amount,
+            fpdl.post_office_code,
+            fpdl.recepit_surname,
+            fpdl.recepit_name,
+            fpdl.recepit_cf,
+            fpdl.recepit_title,
+            fpdl.payment_bank_name,
+            fpdl.payment_bank_iban,
+            fpdl.payment_bank_abi,
+            fpdl.payment_bank_cab,
+            fpdl.payment_bank_bic,
+            fpdl.prepayment_discount,
+            fpdl.max_payment_date,
+            fpdl.penalty_amount,
+            fpdl.penalty_date,
+            fpdl.payment_code
+        FROM fatturapa_payment_data fpd
+        LEFT JOIN fatturapa_payment_term fpt ON fpd.payment_terms = fpt.id
+        LEFT JOIN fatturapa_payment_detail fpdl ON fpd.id = fpdl.payment_data_id
+        LEFT JOIN fatturapa_payment_method fpm ON fpdl.fatturapa_pm_id = fpm.id
+    """)
+    rows = env.cr.fetchall()
+    invoice_map = {}
+    for row in rows:
+        invoice_id, *payment_data = row
+        invoice_map.setdefault(invoice_id, []).append(tuple(payment_data))
+
+    moves = env["account.move"].browse(invoice_map.keys())
+    for move in moves:
+        for payment_data in invoice_map[move.id]:
+            (
+                term_code,
+                recipient,
+                method_code,
+                payment_term_start,
+                payment_days,
+                payment_due_date,
+                payment_amount,
+                post_office_code,
+                recepit_surname,
+                recepit_name,
+                recepit_cf,
+                recepit_title,
+                payment_bank_name,
+                payment_bank_iban,
+                payment_bank_abi,
+                payment_bank_cab,
+                payment_bank_bic,
+                prepayment_discount,
+                max_payment_date,
+                penalty_amount,
+                penalty_date,
+                payment_code,
+            ) = payment_data
+            payment_tags = Markup('<ul class="mb-0">{}</ul>').format(
+                Markup().join(
+                    nl2br_enclose(" ".join(tag.split()), "li")
+                    for tag in [
+                        f'CondizioniPagamento: {term_code or "N/A"}',
+                        f'Beneficiario: {recipient or "N/A"}',
+                        f'ModalitaPagamento: {method_code or "N/A"}',
+                        f'DataRiferimentoTerminiPagamento: {payment_term_start or "N/A"}',  # noqa: E501
+                        f'GiorniTerminiPagamento: {payment_days or "N/A"}',
+                        f'DataScadenzaPagamento: {payment_due_date or "N/A"}',
+                        f'ImportoPagamento: {payment_amount or "N/A"}',
+                        f'CodUfficioPostale: {post_office_code or "N/A"}',
+                        f'CognomeQuietanzante: {recepit_surname or "N/A"}',
+                        f'NomeQuietanzante: {recepit_name or "N/A"}',
+                        f'CFQuietanzante: {recepit_cf or "N/A"}',
+                        f'TitoloQuietanzante: {recepit_title or "N/A"}',
+                        f'IstitutoFinanziario: {payment_bank_name or "N/A"}',
+                        f'IBAN: {payment_bank_iban or "N/A"}',
+                        f'ABI: {payment_bank_abi or "N/A"}',
+                        f'CAB: {payment_bank_cab or "N/A"}',
+                        f'BIC: {payment_bank_bic or "N/A"}',
+                        f'ScontoPagamentoAnticipato: {prepayment_discount or "N/A"}',
+                        f'DataLimitePagamentoAnticipato: {max_payment_date or "N/A"}',
+                        f'PenalitaPagamentiRitardati: {penalty_amount or "N/A"}',
+                        f'DataDecorrenzaPenale: {penalty_date or "N/A"}',
+                        f'CodicePagamento: {payment_code or "N/A"}',
+                    ]
+                )
+            )
+            message = Markup("{} {}<br/>{}").format(
+                "DatiPagamento", env._("from XML file:"), payment_tags
             )
             move.sudo().message_post(body=message)
 

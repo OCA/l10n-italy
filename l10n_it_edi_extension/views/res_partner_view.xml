@@ -6,11 +6,12 @@
         <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
             <xpath expr="//group[@id='invoice_send_settings']" position="inside">
-                <field name="l10n_it_eori_code" />
-                <field name="l10n_it_electronic_invoice_no_contact_update" />
-                <field name="l10n_it_register" />
-                <field name="l10n_it_register_province" />
-                <field name="l10n_it_register_regdate" />
+                <field name="l10n_edi_it_eori_code" />
+                <field name="l10n_edi_it_electronic_invoice_no_contact_update" />
+                <field name="l10n_edi_it_register" />
+                <field name="l10n_edi_it_register_province" />
+                <field name="l10n_edi_it_register_code" />
+                <field name="l10n_edi_it_register_regdate" />
             </xpath>
         </field>
     </record>

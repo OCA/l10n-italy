@@ -10,6 +10,8 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, html2plaintext
 
+from odoo.addons.base.models.ir_qweb_fields import Markup
+
 # -------------------------------------------------------------------------
 # XML tool functions
 # -------------------------------------------------------------------------
@@ -329,6 +331,16 @@ class AccountMoveInherit(models.Model):
                     }
                 )
 
+        for xpath, label in [
+            (".//DatiGenerali/DatiTrasporto", "Transport informations from XML file:"),
+            (".//DatiVeicoli", "Vehicle informations from XML file:"),
+        ]:
+            if body_tree.xpath(xpath):
+                message = Markup("<br/>").join(
+                    (self.env._(label), self._compose_info_message(body_tree, xpath))
+                )
+                message_to_log.append(message)
+
         if elements_parent_invoice := body_tree.xpath(
             ".//DatiGenerali/FatturaPrincipale"
         ):
@@ -400,7 +412,7 @@ class AccountMoveInherit(models.Model):
             "vat": vat,
             "l10n_it_codice_fiscale": codice_fiscale,
             "is_company": is_company,
-            "l10n_it_eori_code": eori_code,
+            "l10n_edi_it_eori_code": eori_code,
             "country_id": country_id,
         }
 
@@ -429,10 +441,10 @@ class AccountMoveInherit(models.Model):
         for field_name, xml_path in [
             ("zip", "//CAP"),
             ("city", "//Comune"),
-            ("l10n_it_register", "//AlboProfessionale"),
+            ("l10n_edi_it_register", "//AlboProfessionale"),
             ("phone", "//Telefono"),
             ("email", "//Email"),
-            ("l10n_it_register_code", "//NumeroIscrizioneAlbo"),
+            ("l10n_edi_it_register_code", "//NumeroIscrizioneAlbo"),
         ]:
             value = get_text(xml_tree, partner_section_xpath + xml_path)
             vals[field_name] = value
@@ -463,7 +475,7 @@ class AccountMoveInherit(models.Model):
                     ("country_id", "=", partner.country_id.id),
                 ]
             ):
-                vals["l10n_it_register_province"] = fields.first(provinces).id
+                vals["l10n_edi_it_register_province"] = fields.first(provinces).id
             else:
                 message = self.env._(
                     f"Register Province ({register_province}) not present in "
@@ -474,12 +486,12 @@ class AccountMoveInherit(models.Model):
         if register_code := get_text(
             xml_tree, partner_section_xpath + "//NumeroIscrizioneAlbo"
         ):
-            vals["l10n_it_register_code"] = register_code
+            vals["l10n_edi_it_register_code"] = register_code
 
         if register_regdate := get_date(
             xml_tree, partner_section_xpath + "//DataIscrizioneAlbo"
         ):
-            vals["l10n_it_register_regdate"] = register_regdate
+            vals["l10n_edi_it_register_regdate"] = register_regdate
 
         partner.write(vals)
         return partner
@@ -503,7 +515,7 @@ class AccountMoveInherit(models.Model):
             partner = self._l10n_it_edi_create_partner(
                 xml_tree, partner_info["section_xpath"], vat, codice_fiscale
             )
-            if not partner.l10n_it_electronic_invoice_no_contact_update:
+            if not partner.l10n_edi_it_electronic_invoice_no_contact_update:
                 partner = self._l10n_it_edi_update_partner(
                     xml_tree, partner_info["section_xpath"], partner
                 )

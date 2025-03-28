@@ -1,4 +1,5 @@
 from . import res_partner
+from . import res_company
 from . import l10n_it_edi_article_code
 from . import l10n_it_edi_discount_rise_price
 from . import l10n_it_edi_line_other_data
