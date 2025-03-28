@@ -3,9 +3,11 @@
 
 from openupgradelib import openupgrade
 
+from odoo import SUPERUSER_ID, api
 
-@openupgrade.migrate()
-def migrate(env, version):
+
+def migrate(cr, version):
+    env = api.Environment(cr, SUPERUSER_ID, {})
     openupgrade.logged_query(
         env.cr,
         """
