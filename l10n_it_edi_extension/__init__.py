@@ -848,6 +848,10 @@ def _l10n_it_fatturapa_in_pre_migration(env):
 
 
 def _l10n_it_fatturapa_in_post_migration(env):
+    table = "account_move"
+    condition = "e_invoice_reference IS NOT NULL"
+    rename_fields(env, table, {"ref": "e_invoice_reference"}, condition=condition)
+
     env.cr.execute("""
         SELECT
             am.id,

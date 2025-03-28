@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template
+        id="account_invoice_line_it_FatturaPA_inherit"
+        inherit_id="l10n_it_edi.account_invoice_line_it_FatturaPA"
+    >
+        <xpath expr="//DettaglioLinee/Natura" position="after">
+            <RiferimentoAmministrazione t-if="it_values['admin_ref']" t-out="it_values['admin_ref']" />
+        </xpath>
+    </template>
+
+    <template
         id="account_invoice_it_FatturaPA_export_causale"
         inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
     >
