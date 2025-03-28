@@ -22,3 +22,9 @@ class ResCompanyInherit(models.Model):
         help="Data of Third-Party Issuer Intermediary who emits the "
         "invoice on behalf of the seller/provider",
     )
+    l10n_edi_it_stable_organization = fields.Many2one(
+        "res.partner",
+        string="Stable Organization",
+        help="The fields must be entered only when the seller/provider is "
+        "non-resident, with a stable organization in Italy",
+    )

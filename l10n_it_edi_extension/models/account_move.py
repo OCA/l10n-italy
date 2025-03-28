@@ -243,16 +243,22 @@ class AccountMoveInherit(models.Model):
     # Helpers
     # -------------------------------------------------------------------------
 
-    def _l10n_it_edi_add_base_lines_xml_values(self, base_lines_aggregated_values, is_downpayment):
-        res = super()._l10n_it_edi_add_base_lines_xml_values(base_lines_aggregated_values, is_downpayment)
-        for base_line, aggregated_values in base_lines_aggregated_values:
+    def _l10n_it_edi_add_base_lines_xml_values(
+        self, base_lines_aggregated_values, is_downpayment
+    ):
+        res = super()._l10n_it_edi_add_base_lines_xml_values(
+            base_lines_aggregated_values, is_downpayment
+        )
+        for base_line, _aggregated_values in base_lines_aggregated_values:
             line = base_line["record"]
             it_values = base_line["it_values"] = {}
 
             if line.l10n_it_edi_admin_ref:
-                it_values.update({
-                    "admin_ref": line.l10n_it_edi_admin_ref,
-                })
+                it_values.update(
+                    {
+                        "admin_ref": line.l10n_it_edi_admin_ref,
+                    }
+                )
         return res
 
     def _l10n_it_edi_get_values(self, pdf_values=None):

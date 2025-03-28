@@ -361,6 +361,16 @@ def _l10n_it_fatturapa_pre_migration(env):
                 "l10n_edi_it_sender_partner",
             ),
         ],
+        [
+            (
+                "res.company",
+                "fatturapa_stabile_organizzazione",
+            ),
+            (
+                "res.company",
+                "l10n_edi_it_stable_organization",
+            ),
+        ],
     ]
 
     openupgrade.rename_models(
