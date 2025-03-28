@@ -15,18 +15,21 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 @tagged("post_install", "-at_install")
 class TestVATStatementCommon(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+    def setUpClass(
+        cls,
+    ):
+        super().setUpClass()
 
         cls.range_type = cls.env["date.range.type"].create(
             {"name": "Fiscal year", "company_id": False, "allow_overlap": False}
         )
         generator = cls.env["date.range.generator"]
         current_datetime = datetime(2020, month=6, day=15)
+        previous_datetime = datetime(2019, month=6, day=15)
         generator = generator.create(
             {
-                "date_start": f"{current_datetime.year}-01-01",
-                "name_prefix": f"{current_datetime.year}-",
+                "date_start": f"{current_datetime:%Y}-01-01",
+                "name_prefix": f"{current_datetime:%Y}-",
                 "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
@@ -36,8 +39,8 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         generator.action_apply()
         prev_year_generator = generator.create(
             {
-                "date_start": f"{current_datetime.year - 1}-01-01",
-                "name_prefix": f"{current_datetime.year - 1}-",
+                "date_start": f"{previous_datetime:%Y}-01-01",
+                "name_prefix": f"{previous_datetime:%Y}-",
                 "type_id": cls.range_type.id,
                 "duration_count": 1,
                 "unit_of_time": str(MONTHLY),
@@ -129,9 +132,9 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         )
         cls.term_line_model.create(
             {
-                "delay_type": "days_after",
-                "value": "fixed",
-                "days": 16,
+                "value": "percent",
+                "value_amount": 100,
+                "nb_days": 16,
                 "payment_id": cls.account_payment_term.id,
             }
         )

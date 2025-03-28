@@ -1,0 +1,365 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_vat_registries
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-12 02:40+0000\n"
+"PO-Revision-Date: 2017-05-12 02:40+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Bosnian (https://www.transifex.com/oca/teams/23907/bs/)\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
+msgid "A VAT registry is used to group several journals in one registry."
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "BUSINESS NAME"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Cancel"
+msgstr "Otkaži"
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.actions.act_window,help:l10n_it_vat_registries.action_account_tax_registry_form
+msgid "Click to add a VAT registry."
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__create_uid
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__create_uid
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__create_date
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__create_date
+msgid "Created on"
+msgstr "Kreirano"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__customer
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__customer
+msgid "Customer Invoices"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__date_name
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__entry_order__date_name
+msgid "Date - Number"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__date_range_id
+msgid "Date range"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "Deductible"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "Description"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__display_name
+msgid "Display Name"
+msgstr "Prikaži naziv"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__entry_order
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__entry_order
+msgid "Entry Order"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax__exclude_from_registries
+msgid "Exclude from VAT registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__from_date
+msgid "From date"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "General Total EUR"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__id
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "INV. DATE"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "INV. NUM."
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.report,name:l10n_it_vat_registries.action_report_registro_iva
+msgid "Invoices VAT Registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__journal_date_name
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__entry_order__journal_date_name
+msgid "Journal - Date - Number"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__journal_ids
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__journal_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.view_account_tax_registry_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Journals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry____last_update
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva____last_update
+msgid "Last Modified on"
+msgstr "Zadnje mijenjano"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__write_uid
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__write_uid
+msgid "Last Updated by"
+msgstr "Zadnji ažurirao"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__write_date
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__write_date
+msgid "Last Updated on"
+msgstr "Zadnje ažurirano"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__fiscal_page_base
+msgid "Last printed page"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__layout_type
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__layout_type
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Layout"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__message
+msgid "Message"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/models/vat_registry.py:0
+#, python-format
+msgid "Move line %s has too many base taxes"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__name
+msgid "Name"
+msgstr "Ime"
+
+#. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:0
+#, python-format
+msgid ""
+"No journals found in the current selection.\n"
+"Please load them before to retry!"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "Non-Deductible"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Print"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__only_totals
+msgid "Prints only totals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "REASON"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "REG. DATE"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "REG. NUM."
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_report_l10n_it_vat_registries_report_registro_iva
+msgid "Report VAT registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
+msgid "Run VAT registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__journal_ids
+msgid "Select journals you want retrieve documents from"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__show_full_contact_addess
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__show_full_contact_addess
+msgid "Show Full Contact Addess"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__corrispettivi
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__corrispettivi
+msgid "Sums due"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__supplier
+#: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__supplier
+msgid "Supplier Invoices"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "TIN"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "TOTAL"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_tax
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "Tax"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Tax Journal"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "Tax description"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_account_tax_registry
+msgid "Tax registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "Taxable"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_finance_legal_statement_taxes
+msgid "Taxes"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__to_date
+msgid "To date"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
+msgid "Totals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_registro_iva
+msgid "VAT Registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.act_window,name:l10n_it_vat_registries.action_registro_iva
+msgid "VAT Registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.act_window,name:l10n_it_vat_registries.action_account_tax_registry_form
+#: model:ir.ui.menu,name:l10n_it_vat_registries.menu_action_account_tax_registry_form
+msgid "VAT registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__tax_registry_id
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__tax_registry_id
+msgid "VAT registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__year_footer
+msgid "Value printed near number of page in the footer"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__year_footer
+msgid "Year for Footer"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal__tax_registry_id
+msgid ""
+"You can group several journals within 1 registry. In printing wizard, you "
+"will be able to select the registry in order to load that group of journals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "or"
+msgstr "ili"

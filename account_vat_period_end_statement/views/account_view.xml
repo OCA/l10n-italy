@@ -23,7 +23,7 @@
                     <button
                         name="statement_draft"
                         type="object"
-                        invisible="state not in ('confirmed', 'paid')"
+                        invisible="state not in ['confirmed', 'paid']"
                         string="Set to draft"
                     />
                     <button
@@ -38,28 +38,28 @@
                     <field
                         name="journal_id"
                         widget="selection"
-                        readonly="state in ('confirmed', 'paid')"
+                        readonly="state in ['confirmed', 'paid']"
                     />
-                    <field name="date" readonly="state in ('confirmed', 'paid')" />
+                    <field name="date" readonly="state in ['confirmed', 'paid']" />
                     <field name="annual" />
                     <field name="move_id" invisible="annual" />
                     <field
                         name="payment_term_id"
                         invisible="annual"
-                        readonly="state in ('confirmed', 'paid')"
+                        readonly="state in ['confirmed', 'paid']"
                     />
                     <field
                         name="authority_partner_id"
-                        readonly="state in ('confirmed', 'paid')"
                         widget="res_partner_many2one"
                         context="{'res_partner_search_mode': 'supplier', 'default_is_company': True}"
                         invisible="annual"
+                        readonly="state in ['confirmed', 'paid']"
                     />
                     <field
                         name="authority_vat_account_id"
                         invisible="annual"
                         required="not annual"
-                        readonly="state in ('confirmed', 'paid')"
+                        readonly="state in ['confirmed', 'paid']"
                     />
                     <field name="company_id" groups="base.group_multi_company" />
                     <field name="interest" />
@@ -78,7 +78,7 @@
                                 name="%(action_add_period)d"
                                 string="Add period"
                                 colspan="2"
-                                invisible="state in ('confirmed', 'paid')"
+                                invisible="state in ['confirmed', 'paid']"
                                 icon="fa-plus"
                             />
                             <span>&amp;nbsp;</span>
@@ -87,7 +87,7 @@
                                 name="%(action_remove_period)d"
                                 string="Remove period"
                                 colspan="2"
-                                invisible="state in ('confirmed', 'paid')"
+                                invisible="state in ['confirmed', 'paid']"
                                 icon="fa-minus"
                             />
                         </div>
@@ -101,97 +101,91 @@
                                 class="form_inner_group_auto_width"
                             >
                                 <separator string="Debit Account Lines" />
-                                <separator string="Credit Account Lines" />
-                                <field name="debit_vat_account_line_ids" nolabel="1">
+                                <field
+                                    name="debit_vat_account_line_ids"
+                                    mode="list,form"
+                                    nolabel="1"
+                                >
                                     <list editable="bottom">
                                         <field name="tax_id" />
                                         <field name="account_id" />
                                         <field name="amount" />
                                     </list>
-                                    <form>
-                                        <group>
-                                            <field name="tax_id" />
-                                            <field name="account_id" />
-                                            <field name="amount" />
-                                        </group>
-                                    </form>
                                 </field>
-                                <field name="credit_vat_account_line_ids" nolabel="1">
+                                <separator string="Credit Account Lines" />
+                                <field
+                                    name="credit_vat_account_line_ids"
+                                    mode="list,form"
+                                    nolabel="1"
+                                >
                                     <list editable="bottom">
                                         <field name="tax_id" />
                                         <field name="account_id" />
                                         <field name="amount" />
                                     </list>
-                                    <form>
-                                        <group>
-                                            <field name="tax_id" />
-                                            <field name="account_id" />
-                                            <field name="amount" />
-                                        </group>
-                                    </form>
                                 </field>
                             </group>
                             <group col="3" colspan="4">
                                 <separator colspan="3" string="Previous Credits VAT" />
                                 <field
                                     name="previous_credit_vat_account_id"
-                                    required="previous_credit_vat_amount != 0"
-                                    readonly="state in ('confirmed', 'paid')"
+                                    required="previous_credit_vat_amount"
+                                    readonly="state in ['confirmed', 'paid']"
                                 />
                                 <field
                                     name="previous_credit_vat_amount"
+                                    readonly="state in ['confirmed', 'paid']"
                                     nolabel="1"
-                                    readonly="state in ('confirmed', 'paid')"
                                 />
                                 <field name="previous_year_credit" />
                                 <separator colspan="3" string="Previous Debits VAT" />
                                 <field
                                     name="previous_debit_vat_account_id"
-                                    required="previous_debit_vat_amount != 0"
-                                    readonly="state in ('confirmed', 'paid')"
+                                    required="previous_debit_vat_amount"
+                                    readonly="state in ['confirmed', 'paid']"
                                 />
                                 <field
                                     name="previous_debit_vat_amount"
+                                    readonly="state in ['confirmed', 'paid']"
                                     nolabel="1"
-                                    readonly="state in ('confirmed', 'paid')"
                                 />
                                 <separator colspan="3" string="Due interests" />
                                 <field
                                     name="interests_debit_vat_account_id"
-                                    required="interests_debit_vat_amount != 0"
-                                    readonly="state in ('confirmed', 'paid')"
+                                    readonly="state in ['confirmed', 'paid']"
+                                    required="interests_debit_vat_amount"
                                 />
                                 <field
                                     name="interests_debit_vat_amount"
+                                    readonly="state in ['confirmed', 'paid']"
                                     nolabel="1"
-                                    readonly="state in ('confirmed', 'paid')"
                                 />
                                 <separator colspan="3" string="Tax credits" />
                                 <field
                                     name="tax_credit_account_id"
-                                    required="tax_credit_amount != 0"
-                                    readonly="state in ('confirmed', 'paid')"
+                                    readonly="state in ['confirmed', 'paid']"
+                                    required="tax_credit_amount"
                                 />
                                 <field
                                     name="tax_credit_amount"
+                                    readonly="state in ['confirmed', 'paid']"
                                     nolabel="1"
-                                    readonly="state in ('confirmed', 'paid')"
                                 />
                                 <separator colspan="3" string="Down payment" />
                                 <field
                                     name="advance_account_id"
-                                    required="advance_amount != 0"
-                                    readonly="state in ('confirmed', 'paid')"
+                                    readonly="state in ['confirmed', 'paid']"
+                                    required="advance_amount"
                                 />
                                 <field
                                     name="advance_amount"
+                                    readonly="state in ['confirmed', 'paid']"
                                     nolabel="1"
-                                    readonly="state in ('confirmed', 'paid')"
                                 />
                                 <field
                                     name="advance_computation_method"
+                                    readonly="state in ['confirmed', 'paid']"
                                     string="Computation method"
-                                    readonly="state in ('confirmed', 'paid')"
                                 />
                             </group>
                             <separator
@@ -200,7 +194,7 @@
                             />
                             <field
                                 name="generic_vat_account_line_ids"
-                                readonly="state in ('confirmed', 'paid')"
+                                readonly="state in ['confirmed', 'paid']"
                                 colspan="3"
                                 nolabel="1"
                             >

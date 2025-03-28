@@ -5,7 +5,6 @@
 
 from odoo import fields, models
 from odoo.exceptions import UserError
-from odoo.tools.translate import _
 
 
 class RemovePeriod(models.TransientModel):
@@ -26,7 +25,7 @@ class RemovePeriod(models.TransientModel):
     def remove_period(self):
         self.ensure_one()
         if "active_id" not in self.env.context:
-            raise UserError(_("Current statement not found"))
+            raise UserError(self.env._("Current statement not found"))
         period = self.env["date.range"].browse(int(self.period_id))
         period.vat_statement_id = False
         statement = self.env["account.vat.period.end.statement"].browse(

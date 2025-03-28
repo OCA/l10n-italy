@@ -5,7 +5,6 @@
 
 from odoo import fields, models
 from odoo.exceptions import UserError
-from odoo.tools.translate import _
 
 
 class AddPeriod(models.TransientModel):
@@ -17,12 +16,14 @@ class AddPeriod(models.TransientModel):
     def add_period(self):
         self.ensure_one()
         if "active_id" not in self.env.context:
-            raise UserError(_("Current statement not found"))
+            raise UserError(self.env._("Current statement not found"))
         statement_env = self.env["account.vat.period.end.statement"]
         wizard = self
         if wizard.period_id.vat_statement_id:
             raise UserError(
-                _("Period (%(name)s) is associated to statement (%(date)s) yet")
+                self.env._(
+                    "Period (%(name)s) is associated to statement (%(date)s) yet"
+                )
                 % {
                     "name": wizard.period_id.name,
                     "date": wizard.period_id.vat_statement_id.date,

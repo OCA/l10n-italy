@@ -9,7 +9,6 @@ import time
 
 from odoo import api, models
 from odoo.tools.misc import formatLang
-from odoo.tools.translate import _
 
 
 class VatPeriodEndStatementReport(models.AbstractModel):
@@ -85,7 +84,7 @@ class VatPeriodEndStatementReport(models.AbstractModel):
         if statement_account_line is None:
             statement_account_line = []
         if account_type != "credit" and account_type != "debit":
-            raise Exception(_("Account type neither credit and debit !"))
+            raise Exception(self.env._("Account type neither credit and debit !"))
 
         account_amounts = {}
         for line in statement_account_line:
