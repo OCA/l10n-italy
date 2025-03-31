@@ -94,9 +94,6 @@ def _l10n_it_account_tax_kind_migration(env):
     update_table(
         env, table, "account_tax_kind", {"l10n_it_exempt_reason": "code"}, condition
     )
-    env["ir.module.module"].search(
-        [("name", "=", "l10n_it_account_tax_kind")]
-    ).button_immediate_uninstall()
 
 
 def _l10n_it_fatturapa_migration(env):
