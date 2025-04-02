@@ -972,6 +972,46 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.invoice_line_ids[0].price_subtotal, 1.5)
         self.assertEqual(invoice.move_type, "in_refund")
 
+    def test_55_xml_import(self):
+        """
+        Test: Import two different XML with same VAT but different
+        fiscalcode
+        """
+        partner_model = self.env["res.partner"]
+        partner1 = partner_model.create(
+            [
+                {
+                    "name": "ENEL ENERGIA S.P.A.",
+                    "country_id": self.ref("base.it"),
+                    "vat": "IT15844561009",
+                    "fiscalcode": "06655971007",
+                    "is_company": True,
+                }
+            ]
+        )
+
+        partner2 = partner_model.create(
+            [
+                {
+                    "name": "ENEL ITALIA S.P.A.",
+                    "country_id": self.ref("base.it"),
+                    "vat": "IT15844561009",
+                    "fiscalcode": "06377691008",
+                    "is_company": True,
+                }
+            ]
+        )
+        res_invoice1 = self.run_wizard("test56", "IT15844561009_001.xml")
+        invoice_id1 = res_invoice1.get("domain")[0][2][0]
+        invoice1 = self.invoice_model.browse(invoice_id1)
+
+        res_invoice2 = self.run_wizard("test57", "IT15844561009_002.xml")
+        invoice_id2 = res_invoice2.get("domain")[0][2][0]
+        invoice2 = self.invoice_model.browse(invoice_id2)
+
+        self.assertEqual(invoice1.partner_id, partner1)
+        self.assertEqual(invoice2.partner_id, partner2)
+
     def test_01_xml_link(self):
         """
         E-invoice lines are created.

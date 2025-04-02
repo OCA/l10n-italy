@@ -249,22 +249,28 @@ class WizardImportFatturapa(models.TransientModel):
                     ]
                 )
             partners = partner_model.search(domain)
-        if not partners and cf:
+        if cf and len(partners) != 1:
             domain = [("fiscalcode", "=", cf)]
-            if (
-                self.env.context.get("from_attachment")
-                and res_partner_rule
-                and res_partner_rule.active
-            ):
-                att = self.env.context.get("from_attachment")
-                domain.extend(
-                    [
-                        "|",
-                        ("company_id", "child_of", att.company_id.id),
-                        ("company_id", "=", False),
-                    ]
-                )
-            partners = partner_model.search(domain)
+
+            if len(partners) > 1:
+                filtered_partners = partners.filtered_domain(domain)
+                if filtered_partners:
+                    partners = filtered_partners
+            else:
+                if (
+                    self.env.context.get("from_attachment")
+                    and res_partner_rule
+                    and res_partner_rule.active
+                ):
+                    att = self.env.context.get("from_attachment")
+                    domain.extend(
+                        [
+                            "|",
+                            ("company_id", "child_of", att.company_id.id),
+                            ("company_id", "=", False),
+                        ]
+                    )
+                partners = partner_model.search(domain)
         commercial_partner_id = False
         if len(partners) > 1:
             for partner in partners:
