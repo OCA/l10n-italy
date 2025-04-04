@@ -95,7 +95,7 @@ class TestRegistry(TransactionCase):
         # XLSX
         res = wizard.print_registro_xlsx()
 
-        report_name = "l10n_it_vat_registries_xlsx.report_registro_iva"
+        report_name = "l10n_it_vat_registries.report_registro_iva_xlsx"
         domain = [
             ("report_type", "=", "xlsx"),
             ("report_name", "=", report_name),
