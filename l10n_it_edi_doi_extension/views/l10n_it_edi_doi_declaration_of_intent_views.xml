@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_l10n_it_edi_doi_form_type" model="ir.ui.view">
+        <field name="name">l10n_it_edi_doi.declaration_of_intent_type.form</field>
+        <field name="model">l10n_it_edi_doi.declaration_of_intent</field>
+        <field name="inherit_id" ref="l10n_it_edi_doi.view_l10n_it_edi_doi_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="type" readonly="state != 'draft'" />
+            </field>
+        </field>
+    </record>
+</odoo>
