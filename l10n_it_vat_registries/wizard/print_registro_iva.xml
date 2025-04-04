@@ -48,6 +48,13 @@
                         class="oe_highlight"
                     />
                     or
+                    <button
+                        string="Print XLSX"
+                        name="print_registro_xlsx"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>

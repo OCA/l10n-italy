@@ -20,6 +20,7 @@
         "web",
         "account_tax_balance",
         "date_range",
+        "report_xlsx_helper",
     ],
     "data": [
         "security/ir.model.access.csv",
