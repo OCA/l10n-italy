@@ -100,11 +100,11 @@ def _l10n_it_fatturapa_migration(env):
     """
     Remove exclusion for installation of "l10n_it_edi"
     """
-    query = sql.SQL("""
+    query = """
         DELETE
         FROM ir_module_module_exclusion
         WHERE name = 'l10n_it_edi'
-    """)
+    """
     openupgrade.logged_query(env.cr, query)
 
 
