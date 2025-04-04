@@ -2,7 +2,7 @@
 
 import logging
 
-from odoo import _
+from odoo import _, models
 from odoo.tools.misc import formatLang
 
 from odoo.addons.report_xlsx_helper.report.report_xlsx_format import (
@@ -10,14 +10,15 @@ from odoo.addons.report_xlsx_helper.report.report_xlsx_format import (
     XLS_HEADERS,
 )
 
-from ..models.vat_registry import ReportRegistroIva
-
 _logger = logging.getLogger(__name__)
 
 
-class ReportRegistroIvaXlsx(ReportRegistroIva):
-    _name = "report.l10n_it_vat_registries_xlsx.report_registro_iva"
-    _inherit = "report.report_xlsx.abstract"
+class ReportRegistroIvaXlsx(models.AbstractModel):
+    _name = "report.l10n_it_vat_registries.report_registro_iva_xlsx"
+    _inherit = [
+        "report.report_xlsx.abstract",
+        "report.l10n_it_vat_registries.report_registro_iva",
+    ]
     _description = "XLSX report for VAT registries"
 
     # to override
