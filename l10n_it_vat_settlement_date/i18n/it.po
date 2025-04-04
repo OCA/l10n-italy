@@ -56,6 +56,18 @@ msgid "VAT period end statement"
 msgstr "Dichiarazione IVA di fine periodo"
 
 #. module: l10n_it_vat_settlement_date
+#. odoo-python
+#: code:addons/l10n_it_vat_settlement_date/wizard/report_registro_iva_xlsx.py:0
+#, python-format
+msgid "VAT settlement date"
+msgstr ""
+
+#. module: l10n_it_vat_settlement_date
 #: model:ir.model,name:l10n_it_vat_settlement_date.model_comunicazione_liquidazione_vp
 msgid "VAT statement communication - VP table"
 msgstr "Comunicazione liquidazione IVA. Quadro VP"
+
+#. module: l10n_it_vat_settlement_date
+#: model:ir.model,name:l10n_it_vat_settlement_date.model_report_l10n_it_vat_registries_report_registro_iva_xlsx
+msgid "XLSX report for VAT registries"
+msgstr ""
