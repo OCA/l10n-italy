@@ -18,10 +18,13 @@ OLD_MODULES = [
     "l10n_it_fatturapa",
     "l10n_it_fatturapa_in",
     "l10n_it_fatturapa_out",
+    "l10n_it_fatturapa_sale",
+    "l10n_it_fiscal_payment_term",
     "l10n_it_fiscalcode",
     "l10n_it_ipa",
     "l10n_it_pec",
     "l10n_it_rea",
+    "l10n_it_vat_payability",
 ]
 
 
@@ -60,6 +63,43 @@ def update_table(env, target_table, source_table, field_updates, condition):
     if condition:
         query += sql.SQL(" WHERE {} ").format(sql.SQL(condition))
     openupgrade.logged_query(env.cr, query)
+
+
+def add_field_if_not_exists(env, table, field_name, field_type, module):
+    """Helper function to add fields if they do not exist."""
+    if not openupgrade.column_exists(env.cr, table, field_name):
+        sql_type_mapping = {
+            "binary": "bytea",
+            "boolean": "bool",
+            "char": "varchar",
+            "date": "date",
+            "datetime": "timestamp",
+            "float": "numeric",
+            "html": "text",
+            "integer": "int4",
+            "many2many": False,
+            "many2one": "int4",
+            "many2one_reference": "int4",
+            "monetary": "numeric",
+            "one2many": False,
+            "reference": "varchar",
+            "selection": "varchar",
+            "text": "text",
+            "serialized": "text",
+        }
+        openupgrade.add_fields(
+            env,
+            [
+                (
+                    field_name,
+                    table.replace("_", "."),
+                    table,
+                    field_type,
+                    sql_type_mapping[field_type],
+                    module,
+                )
+            ],
+        )
 
 
 def _l10n_it_fatturapa_pre_migration(env):
@@ -433,50 +473,7 @@ def _l10n_it_fatturapa_post_migration_related_ddt(env):
             move.sudo().message_post(body=message)
 
 
-def _l10n_it_fatturapa_post_migration(env):
-    table = "res_partner"
-    rename_fields(
-        env,
-        table,
-        {
-            "l10n_it_pa_index": "codice_destinatario",
-            "l10n_it_pec_email": "pec_destinatario",
-        },
-    )
-
-    table = "res_company"
-    rename_fields(
-        env,
-        table,
-        {"l10n_it_tax_representative_partner_id": "fatturapa_tax_representative"},
-    )
-
-    table = "account_move_line"
-    rename_fields(
-        env,
-        table,
-        {"sequence": "ftpa_line_number"},
-    )
-
-    query = """
-        UPDATE res_company
-        SET l10n_it_tax_system = fp.code
-        FROM res_partner rp
-        LEFT JOIN fatturapa_fiscal_position fp ON rp.register_fiscalpos = fp.id
-        WHERE res_company.partner_id = rp.id AND rp.register_fiscalpos IS NOT NULL
-    """
-    openupgrade.logged_query(env.cr, query)
-
-    query = """
-        UPDATE ir_attachment
-        SET res_model = 'account.move', res_id = fa.invoice_id
-        FROM fatturapa_attachments fa
-        WHERE ir_attachment.id = fa.ir_attachment_id
-    """
-    openupgrade.logged_query(env.cr, query)
-
-    _l10n_it_fatturapa_post_migration_related_ddt(env)
-
+def _l10n_it_fatturapa_post_migration_delivery_data(env):
     env.cr.execute("""
         SELECT
             am.id AS move_id,
@@ -548,6 +545,8 @@ def _l10n_it_fatturapa_post_migration(env):
             )
             move.sudo().message_post(body=message)
 
+
+def _l10n_it_fatturapa_post_migration_vehicle_data(env):
     env.cr.execute("""
         SELECT
             id AS move_id,
@@ -555,8 +554,8 @@ def _l10n_it_fatturapa_post_migration(env):
             total_travel
         FROM account_move
         WHERE
-			vehicle_registration IS NOT NULL
-			OR total_travel IS NOT NULL
+            vehicle_registration IS NOT NULL
+            OR total_travel IS NOT NULL
     """)
     rows = env.cr.fetchall()
     invoice_map = {}
@@ -582,6 +581,8 @@ def _l10n_it_fatturapa_post_migration(env):
             )
             move.sudo().message_post(body=message)
 
+
+def _l10n_it_fatturapa_post_migration_payment_data(env):
     env.cr.execute("""
         SELECT
             fpd.invoice_id,
@@ -679,6 +680,8 @@ def _l10n_it_fatturapa_post_migration(env):
             )
             move.sudo().message_post(body=message)
 
+
+def _l10n_it_fatturapa_post_migration_related_document_type(env):
     env.cr.execute("""
         SELECT invoice_id, invoice_line_id, type, name, date, code, cig, cup
         FROM fatturapa_related_document_type
@@ -697,7 +700,39 @@ def _l10n_it_fatturapa_post_migration(env):
             )
 
     moves = env["account.move"].browse(invoice_map.keys())
-    for move in moves:
+    out_moves = moves.filtered(lambda m: m.is_sale_document())
+    for move in out_moves:
+        for index, (document_type, name, date, code, cig, cup) in enumerate(
+            invoice_map[move.id], start=1
+        ):
+            if index == 1:
+                if document_type == "order":
+                    document_type = "purchase_order"
+                elif document_type not in ["contract", "agreement"]:
+                    document_type = ""
+                move.l10n_it_origin_document_type = document_type
+                move.l10n_it_origin_document_name = name
+                move.l10n_it_origin_document_date = date
+                move.l10n_it_cig = cig
+                move.l10n_it_cup = cup
+            else:
+                document_type_tags = Markup('<ul class="mb-0">{}</ul>').format(
+                    Markup().join(
+                        nl2br_enclose(" ".join(tag.split()), "li")
+                        for tag in [
+                            f"IdDocumento: {name}",
+                            f'Data: {date or "N/A"}',
+                            f'CodiceCommessaConvenzione: {code or "N/A"}',
+                            f'CodiceCIG: {cig or "N/A"}',
+                            f'CodiceCUP: {cup or "N/A"}',
+                        ]
+                    )
+                )
+                message = Markup("{} {}<br/>{}").format(
+                    document_type, env._("from XML file:"), document_type_tags
+                )
+                move.sudo().message_post(body=message)
+    for move in moves - out_moves:
         for document_type, name, date, code, cig, cup in invoice_map[move.id]:
             document_type_tags = Markup('<ul class="mb-0">{}</ul>').format(
                 Markup().join(
@@ -715,6 +750,55 @@ def _l10n_it_fatturapa_post_migration(env):
                 document_type, env._("from XML file:"), document_type_tags
             )
             move.sudo().message_post(body=message)
+
+
+def _l10n_it_fatturapa_post_migration(env):
+    table = "res_partner"
+    rename_fields(
+        env,
+        table,
+        {
+            "l10n_it_pa_index": "codice_destinatario",
+            "l10n_it_pec_email": "pec_destinatario",
+        },
+    )
+
+    table = "res_company"
+    rename_fields(
+        env,
+        table,
+        {"l10n_it_tax_representative_partner_id": "fatturapa_tax_representative"},
+    )
+
+    table = "account_move_line"
+    rename_fields(
+        env,
+        table,
+        {"sequence": "ftpa_line_number"},
+    )
+
+    query = """
+        UPDATE res_company
+        SET l10n_it_tax_system = fp.code
+        FROM res_partner rp
+        LEFT JOIN fatturapa_fiscal_position fp ON rp.register_fiscalpos = fp.id
+        WHERE res_company.partner_id = rp.id AND rp.register_fiscalpos IS NOT NULL
+    """
+    openupgrade.logged_query(env.cr, query)
+
+    query = """
+        UPDATE ir_attachment
+        SET res_model = 'account.move', res_id = fa.invoice_id
+        FROM fatturapa_attachments fa
+        WHERE ir_attachment.id = fa.ir_attachment_id
+    """
+    openupgrade.logged_query(env.cr, query)
+
+    _l10n_it_fatturapa_post_migration_related_ddt(env)
+    _l10n_it_fatturapa_post_migration_delivery_data(env)
+    _l10n_it_fatturapa_post_migration_vehicle_data(env)
+    _l10n_it_fatturapa_post_migration_payment_data(env)
+    _l10n_it_fatturapa_post_migration_related_document_type(env)
 
 
 def _l10n_it_fatturapa_in_pre_migration(env):
@@ -895,14 +979,11 @@ def _l10n_it_fatturapa_out_post_migration(env):
     }
 
     for fatturapa_state, l10n_it_edi_state in updates.items():
-        query = ("""
+        query = f"""
             UPDATE account_move
             SET l10n_it_edi_state = '{l10n_it_edi_state}'
             WHERE fatturapa_state = '{fatturapa_state}'
-        """).format(
-            l10n_it_edi_state=l10n_it_edi_state,
-            fatturapa_state=fatturapa_state,
-        )
+        """
         openupgrade.logged_query(env.cr, query)
 
     env.cr.execute("""
@@ -925,6 +1006,108 @@ def _l10n_it_fatturapa_out_post_migration(env):
             with open(filestore_path, "rb") as f:
                 file_data = base64.b64encode(f.read())
                 move.l10n_it_edi_attachment_file = file_data
+
+
+def _l10n_it_fatturapa_sale_post_migration(env):
+    add_field_if_not_exists(
+        env,
+        "sale_order",
+        "l10n_it_origin_document_type",
+        "selection",
+        "l10n_it_edi_sale",
+    )
+    add_field_if_not_exists(
+        env, "sale_order", "l10n_it_origin_document_name", "char", "l10n_it_edi_sale"
+    )
+    add_field_if_not_exists(
+        env, "sale_order", "l10n_it_origin_document_date", "date", "l10n_it_edi_sale"
+    )
+    add_field_if_not_exists(
+        env, "sale_order", "l10n_it_cig", "char", "l10n_it_edi_sale"
+    )
+    add_field_if_not_exists(
+        env, "sale_order", "l10n_it_cup", "char", "l10n_it_edi_sale"
+    )
+
+    env.cr.execute("""
+        SELECT sale_order_id, sale_order_line_id, type, name, date, code, cig, cup
+        FROM fatturapa_related_document_type
+        WHERE sale_order_id IS NOT NULL OR sale_order_line_id IS NOT NULL
+    """)
+    rows = env.cr.fetchall()
+    sale_map = {}
+    for row in rows:
+        sale_order_id, sale_order_line_id, document_type, name, date, code, cig, cup = (
+            row
+        )
+        sale_id = (
+            sale_order_id
+            or env["sale.order.line"].browse(sale_order_line_id).order_id.id
+        )
+        if sale_id:
+            sale_map.setdefault(sale_id, []).append(
+                (document_type, name, date, code, cig, cup)
+            )
+
+    sales = env["sale.order"].browse(sale_map.keys())
+    for sale in sales:
+        for index, (document_type, name, date, code, cig, cup) in enumerate(
+            sale_map[sale.id], start=1
+        ):
+            if index == 1:
+                if document_type == "order":
+                    document_type = "purchase_order"
+                elif document_type not in ["contract", "agreement"]:
+                    document_type = ""
+                query = f"""
+                    UPDATE sale_order
+                    SET
+                        l10n_it_origin_document_type = '{document_type or ''}',
+                        l10n_it_origin_document_name = '{name or ''}',
+                        l10n_it_cig = '{cig or ''}',
+                        l10n_it_cup = '{cup or ''}'
+                    WHERE id = {sale.id}
+                """
+                openupgrade.logged_query(env.cr, query)
+                if date:
+                    query = f"""
+                        UPDATE sale_order
+                        SET l10n_it_origin_document_date = '{date.strftime('%Y-%m-%d')}'
+                        WHERE id = {sale.id}
+                    """
+                    openupgrade.logged_query(env.cr, query)
+            else:
+                document_type_tags = Markup('<ul class="mb-0">{}</ul>').format(
+                    Markup().join(
+                        nl2br_enclose(" ".join(tag.split()), "li")
+                        for tag in [
+                            f"IdDocumento: {name}",
+                            f'Data: {date or "N/A"}',
+                            f'CodiceCommessaConvenzione: {code or "N/A"}',
+                            f'CodiceCIG: {cig or "N/A"}',
+                            f'CodiceCUP: {cup or "N/A"}',
+                        ]
+                    )
+                )
+                message = Markup("{} {}<br/>{}").format(
+                    document_type, env._("from XML file:"), document_type_tags
+                )
+                sale.sudo().message_post(body=message)
+
+
+def _l10n_it_fiscal_payment_term_post_migration(env):
+    add_field_if_not_exists(
+        env, "account_move", "l10n_it_payment_method", "selection", "l10n_it_edi_ndd"
+    )
+
+    query = """
+        UPDATE account_move
+        SET l10n_it_payment_method = fpm.code
+        FROM account_payment_term apt
+        LEFT JOIN fatturapa_payment_method fpm ON apt.fatturapa_pm_id = fpm.id
+        WHERE account_move.invoice_payment_term_id = apt.id
+    """
+    openupgrade.logged_query(env.cr, query)
 
 
 def _l10n_it_fiscalcode_post_migration(env):
@@ -965,6 +1148,21 @@ def _l10n_it_rea_post_migration(env):
         },
         condition,
     )
+
+
+def _l10n_it_vat_payability_pre_migration(env):
+    updates = {
+        "D": "on_payment",
+        "I": "on_invoice",
+    }
+
+    for payability, tax_exigibility in updates.items():
+        query = f"""
+            UPDATE account_tax
+            SET tax_exigibility = '{tax_exigibility}'
+            WHERE payability = '{payability}'
+        """
+        openupgrade.logged_query(env.cr, query)
 
 
 def _l10n_it_edi_extension_pre_init_hook(env):
