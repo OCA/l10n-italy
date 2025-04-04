@@ -19,10 +19,10 @@
         <field name="report_type">xlsx</field>
         <field
             name="report_name"
-        >l10n_it_vat_registries_xlsx.report_registro_iva</field>
+        >l10n_it_vat_registries.report_registro_iva_xlsx</field>
         <field
             name="report_file"
-        >l10n_it_vat_registries_xlsx.report_registro_iva</field>
+        >l10n_it_vat_registries.report_registro_iva_xlsx</field>
     </record>
 
 </odoo>

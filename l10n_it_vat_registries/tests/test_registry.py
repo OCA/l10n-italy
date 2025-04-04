@@ -8,41 +8,46 @@ from odoo.tests.common import TransactionCase
 
 
 class TestRegistry(TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUp(self):
+        super().setUp()
 
-        cls.test_date = fields.Date.today()
-        cls.journal = cls.env["account.journal"].search(
+        self.test_date = fields.Date.today()
+        self.journal = self.env["account.journal"].search(
             [("type", "=", "sale")], limit=1
         )
-        cls.ova = cls.env["account.account"].search(
-            [("account_type", "=", "asset_current")],
+        self.ova = self.env["account.account"].search(
+            [
+                (
+                    "user_type_id",
+                    "=",
+                    self.env.ref("account.data_account_type_current_assets").id,
+                )
+            ],
             limit=1,
         )
-        cls.tax = cls.env["account.tax"].create(
+        self.tax = self.env["account.tax"].create(
             {
                 "name": "Tax 10.0",
                 "amount": 10.0,
                 "amount_type": "fixed",
             }
         )
-        cls.tax_registry = cls.env["account.tax.registry"].create(
+        self.tax_registry = self.env["account.tax.registry"].create(
             {
                 "name": "Sales",
                 "layout_type": "customer",
-                "journal_ids": [(6, 0, [cls.journal.id])],
+                "journal_ids": [(6, 0, [self.journal.id])],
             }
         )
 
-        cls.invoice_line_account = (
-            cls.env["account.account"]
+        self.invoice_line_account = (
+            self.env["account.account"]
             .search(
                 [
                     (
                         "user_type_id",
                         "=",
-                        cls.env.ref("account.data_account_type_expenses").id,
+                        self.env.ref("account.data_account_type_expenses").id,
                     )
                 ],
                 limit=1,
@@ -50,29 +55,29 @@ class TestRegistry(TransactionCase):
             .id
         )
 
-        cls.invoice = cls.env["account.move"].create(
+        self.invoice = self.env["account.move"].create(
             {
-                "partner_id": cls.env.ref("base.res_partner_2").id,
-                "invoice_date": cls.test_date,
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "invoice_date": self.test_date,
                 "move_type": "out_invoice",
-                "journal_id": cls.journal.id,
+                "journal_id": self.journal.id,
                 "invoice_line_ids": [
                     (
                         0,
                         None,
                         {
-                            "product_id": cls.env.ref("product.product_product_4").id,
+                            "product_id": self.env.ref("product.product_product_4").id,
                             "quantity": 1.0,
                             "price_unit": 100.0,
                             "name": "product that cost 100",
-                            "account_id": cls.invoice_line_account,
-                            "tax_ids": [(6, 0, [cls.tax.id])],
+                            "account_id": self.invoice_line_account,
+                            "tax_ids": [(6, 0, [self.tax.id])],
                         },
                     )
                 ],
             }
         )
-        cls.invoice.action_post()
+        self.invoice.action_post()
 
     def test_invoice_and_report(self):
         wizard = self.env["wizard.registro.iva"].create(
@@ -100,14 +105,14 @@ class TestRegistry(TransactionCase):
         # XLSX
         res = wizard.print_registro_xlsx()
 
-        report_name = "l10n_it_vat_registries_xlsx.report_registro_iva"
+        report_name = "l10n_it_vat_registries.report_registro_iva_xlsx"
         domain = [
             ("report_type", "=", "xlsx"),
             ("report_name", "=", report_name),
         ]
         report = self.env["ir.actions.report"].search(domain)
         data = res["context"]["report_action"]["data"]
-        xlsx, _type = report._render_xlsx(report_name, data["ids"], data)
+        xlsx, _type = report._render_xlsx(data["ids"], data)
 
         # basic reading of a file
         # we don't want to depend on other non-standard libraries such as openpyxl
