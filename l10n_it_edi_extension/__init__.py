@@ -17,6 +17,7 @@ from odoo.addons.base.models.ir_qweb_fields import Markup, nl2br, nl2br_enclose
 OLD_MODULES = [
     "l10n_it_fatturapa",
     "l10n_it_fatturapa_in",
+    "l10n_it_fatturapa_out",
     "l10n_it_fiscalcode",
     "l10n_it_ipa",
     "l10n_it_pec",
@@ -400,30 +401,29 @@ def _l10n_it_fatturapa_pre_migration(env):
 
 def _l10n_it_fatturapa_post_migration_related_ddt(env):
     env.cr.execute("""
-        SELECT invoice_id, invoice_line_id, name, date, lineRef
+        SELECT invoice_id, invoice_line_id, name, date
         FROM fatturapa_related_ddt
         WHERE invoice_id IS NOT NULL OR invoice_line_id IS NOT NULL
     """)
     rows = env.cr.fetchall()
     invoice_map = {}
     for row in rows:
-        invoice_id, invoice_line_id, name, date, lineRef = row
+        invoice_id, invoice_line_id, name, date = row
         move_id = (
             invoice_id or env["account.move.line"].browse(invoice_line_id).move_id.id
         )
         if move_id:
-            invoice_map.setdefault(move_id, []).append((name, date, lineRef))
+            invoice_map.setdefault(move_id, []).append((name, date))
 
     moves = env["account.move"].browse(invoice_map.keys())
     for move in moves:
-        for name, date, lineRef in invoice_map[move.id]:
+        for name, date in invoice_map[move.id]:
             ddt_tags = Markup('<ul class="mb-0">{}</ul>').format(
                 Markup().join(
                     nl2br_enclose(" ".join(tag.split()), "li")
                     for tag in [
                         f"NumeroDDT: {name}",
                         f'DataDDT: {date or "N/A"}',
-                        f'LineRef: {lineRef or "N/A"}',
                     ]
                 )
             )
@@ -467,12 +467,13 @@ def _l10n_it_fatturapa_post_migration(env):
     """
     openupgrade.logged_query(env.cr, query)
 
-    env.cr.execute("""
+    query = """
         UPDATE ir_attachment
         SET res_model = 'account.move', res_id = fa.invoice_id
         FROM fatturapa_attachments fa
         WHERE ir_attachment.id = fa.ir_attachment_id
-    """)
+    """
+    openupgrade.logged_query(env.cr, query)
 
     _l10n_it_fatturapa_post_migration_related_ddt(env)
 
@@ -869,6 +870,48 @@ def _l10n_it_fatturapa_in_post_migration(env):
         FROM account_move am
         JOIN fatturapa_attachment_in fai ON fai.id = am.fatturapa_attachment_in_id
         WHERE am.fatturapa_attachment_in_id IS NOT NULL
+    """)
+    rows = env.cr.fetchall()
+    for row in rows:
+        invoice_id, attachment_id = row
+        move = env["account.move"].browse(invoice_id)
+        attachment = env["ir.attachment"].browse(attachment_id)
+        filestore_path = os.path.join(
+            config.filestore(env.cr.dbname), attachment.store_fname
+        )
+        if os.path.exists(filestore_path):
+            with open(filestore_path, "rb") as f:
+                file_data = base64.b64encode(f.read())
+                move.l10n_it_edi_attachment_file = file_data
+
+
+def _l10n_it_fatturapa_out_post_migration(env):
+    updates = {
+        "ready": "being_sent",
+        "sent": "processing",
+        "delivered": "forwarded",
+        "accepted": "accepted_by_pa_partner",
+        "error": "forward_failed",
+    }
+
+    for fatturapa_state, l10n_it_edi_state in updates.items():
+        query = ("""
+            UPDATE account_move
+            SET l10n_it_edi_state = '{l10n_it_edi_state}'
+            WHERE fatturapa_state = '{fatturapa_state}'
+        """).format(
+            l10n_it_edi_state=l10n_it_edi_state,
+            fatturapa_state=fatturapa_state,
+        )
+        openupgrade.logged_query(env.cr, query)
+
+    env.cr.execute("""
+        SELECT
+            am.id,
+            fao.ir_attachment_id AS attachment_id
+        FROM account_move am
+        JOIN fatturapa_attachment_out fao ON fao.id = am.fatturapa_attachment_out_id
+        WHERE am.fatturapa_attachment_out_id IS NOT NULL
     """)
     rows = env.cr.fetchall()
     for row in rows:
