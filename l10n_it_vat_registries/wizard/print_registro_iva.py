@@ -139,6 +139,8 @@ class WizardRegistroIva(models.TransientModel):
         datas_form["from_date"] = self.from_date
         datas_form["to_date"] = self.to_date
         datas_form["journal_ids"] = [j.id for j in self.journal_ids]
+        if self._include_rc_journals():
+            datas_form["rc_journal_ids"] = [j.id for j in self.rc_journal_ids]
         datas_form["fiscal_page_base"] = self.fiscal_page_base
         datas_form["registry_type"] = self.layout_type
         datas_form["year_footer"] = self.year_footer
