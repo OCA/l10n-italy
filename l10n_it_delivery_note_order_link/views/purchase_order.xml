@@ -4,7 +4,6 @@
     @author: Matteo Bilotta <mbilotta@linkeurope.it>
   -->
 <odoo>
-
     <record id="purchase_order_form_view_delivery_note" model="ir.ui.view">
         <field name="name">purchase.order.form</field>
         <field name="model">purchase.order</field>
@@ -29,7 +28,6 @@
                     />
                 </button>
             </xpath>
-       </field>
+        </field>
     </record>
-
 </odoo>
