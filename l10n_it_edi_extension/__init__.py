@@ -1154,6 +1154,7 @@ def _l10n_it_vat_payability_pre_migration(env):
     updates = {
         "D": "on_payment",
         "I": "on_invoice",
+        "S": "on_invoice",
     }
 
     for payability, tax_exigibility in updates.items():
