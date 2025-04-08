@@ -167,3 +167,17 @@ class AccountInvoice(models.Model):
         dn_lines.sync_invoice_status()
         dn_lines.delivery_note_id._compute_invoice_status()
         dn_lines.delivery_note_id.state = "confirm"
+
+    def _l10n_it_edi_get_delivery_note_values(self):
+        self.ensure_one()
+        ddt_dict = {}
+        for line in self.invoice_line_ids.filtered(lambda il: il.delivery_note_id):
+            ddt_dict.setdefault(line.delivery_note_id, []).append(line.sequence)
+        return ddt_dict
+
+    def _l10n_it_edi_get_values(self, pdf_values=None):
+        template_values = super()._l10n_it_edi_get_values(pdf_values)
+        template_values["delivery_note_dict"] = (
+            self._l10n_it_edi_get_delivery_note_values()
+        )
+        return template_values

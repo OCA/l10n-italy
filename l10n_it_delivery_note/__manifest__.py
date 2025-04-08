@@ -22,10 +22,10 @@
         "mail",
         "sale",
         "sale_stock",
-        # "stock_account",
         "stock_delivery",
         "portal",
         "product",
+        "l10n_it_edi",
     ],
     "data": [
         "security/ir.model.access.csv",

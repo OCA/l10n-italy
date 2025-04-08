@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="delivery_note_edi_template"
+        inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
+    >
+        <xpath expr="//DatiDDT" position="after">
+            <t
+                t-if="delivery_note_dict"
+                t-foreach="delivery_note_dict"
+                t-as="delivery_note"
+            >
+                <DatiDDT>
+                    <NumeroDDT
+                        t-esc="format_alphanumeric(delivery_note.number[-20:])"
+                    />
+                    <DataDDT t-esc="format_date(delivery_note.date)" />
+                    <t
+                        t-if="len(delivery_note_dict[delivery_note]) > 1"
+                        t-foreach="delivery_note_dict[delivery_note]"
+                        t-as="line_ref"
+                    >
+                        <RiferimentoNumeroLinea t-esc="line_ref" />
+                    </t>
+                </DatiDDT>
+            </t>
+        </xpath>
+    </template>
+</odoo>
