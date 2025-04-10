@@ -15,12 +15,12 @@
         <field name="name">account.intrastat.custom.view.tree</field>
         <field name="model">account.intrastat.custom</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" />
                 <field name="name" />
                 <field name="date_start" />
                 <field name="date_stop" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -65,7 +65,7 @@
         <field name="name">views.tree.report.intrastat.code</field>
         <field name="model">report.intrastat.code</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="active" />
                 <field name="type" />
                 <field name="name" />
@@ -73,7 +73,7 @@
                 <field name="additional_unit_required" />
                 <field name="additional_unit_from" />
                 <field name="additional_unit_uom_id" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -119,10 +119,10 @@
         <field name="name">account.intrastat.transport.view.tree</field>
         <field name="model">account.intrastat.transport</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" />
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -161,12 +161,12 @@
         <field name="name">account.intrastat.transaction.nature.view.tree</field>
         <field name="model">account.intrastat.transaction.nature</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" />
                 <field name="name" />
                 <field name="triangulation" />
                 <field name="active" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -210,11 +210,11 @@
         <field name="name">account.intrastat.transaction.nature.b.view.tree</field>
         <field name="model">account.intrastat.transaction.nature.b</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" />
                 <field name="name" />
                 <field name="nature_parent_id" />
-            </tree>
+            </list>
         </field>
     </record>
 
