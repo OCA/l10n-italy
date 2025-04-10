@@ -34,14 +34,13 @@ class ReportIntrastatCode(models.Model):
     type = fields.Selection(selection=[("good", "Goods"), ("service", "Service")])
     description = fields.Char(translate=True)
 
-    def name_get(self):
-        res = []
+    @api.depends("name", "description")
+    def _compute_display_name(self):
         for code in self:
             name = f"{code.name} - {code.description}"
             if len(name) > 50:
                 name = name[:50] + "..."
-            res.append((code.id, name))
-        return res
+            code.display_name = name
 
     @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
@@ -54,7 +53,7 @@ class ReportIntrastatCode(models.Model):
             )
         else:
             records = self.search(args, limit=limit)
-        return records.name_get()
+        return [(record.id, record.display_name) for record in records]
 
 
 class ResCountry(models.Model):
