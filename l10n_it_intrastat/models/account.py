@@ -447,7 +447,7 @@ class AccountInvoiceIntrastat(models.Model):
     def name_get(self):
         res = []
         for line in self:
-            res.append((line.id, "%s" % line.invoice_id.name))
+            res.append((line.id, f"{line.invoice_id.name}"))
         return res
 
     @api.depends("amount_currency")
