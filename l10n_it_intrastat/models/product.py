@@ -60,8 +60,8 @@ class ProductTemplate(models.Model):
             res["intrastat_type"] = self.intrastat_type
         elif self.categ_id and self.categ_id.intrastat_code_id:
             res["intrastat_code_id"] = self.categ_id.intrastat_code_id.id
-            res[
-                "intrastat_country_origin_id"
-            ] = self.categ_id.intrastat_country_origin_id.id
+            res["intrastat_country_origin_id"] = (
+                self.categ_id.intrastat_country_origin_id.id
+            )
             res["intrastat_type"] = self.categ_id.intrastat_type
         return res
