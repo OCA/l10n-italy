@@ -2,7 +2,7 @@
 # Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 
@@ -282,15 +282,12 @@ class AccountMove(models.Model):
 
     intrastat = fields.Boolean(
         string="Subject to Intrastat",
-        states={"draft": [("readonly", False)]},
         copy=False,
     )
     intrastat_line_ids = fields.One2many(
         comodel_name="account.invoice.intrastat",
         inverse_name="invoice_id",
         string="Intrastat",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         copy=False,
     )
 
@@ -342,7 +339,9 @@ class AccountMove(models.Model):
                     total_amount - subtotal, precision_digits=precision_digits
                 ):
                     raise UserError(
-                        _("Intrastat total must be equal to invoice untaxed total")
+                        self.env._(
+                            "Intrastat total must be equal to invoice untaxed total"
+                        )
                     )
         return res
 
@@ -444,11 +443,10 @@ class AccountInvoiceIntrastat(models.Model):
     _name = "account.invoice.intrastat"
     _description = "Intrastat Line"
 
-    def name_get(self):
-        res = []
+    @api.depends("invoice_id.name")
+    def _compute_display_name(self):
         for line in self:
-            res.append((line.id, f"{line.invoice_id.name}"))
-        return res
+            line.display_name = f"{line.invoice_id.name}"
 
     @api.depends("amount_currency")
     def _compute_amount_euro(self):
@@ -544,12 +542,11 @@ class AccountInvoiceIntrastat(models.Model):
     company_id = fields.Many2one(
         related="invoice_id.company_id",
         store=True,
-        readonly=True,
         precompute=True,
         index=True,
     )
     partner_id = fields.Many2one(
-        string="Partner", readonly=True, related="invoice_id.partner_id", store=True
+        string="Partner", related="invoice_id.partner_id", store=True
     )
 
     intrastat_type_data = fields.Selection(
@@ -590,10 +587,9 @@ class AccountInvoiceIntrastat(models.Model):
         compute="_compute_amount_euro",
         digits="Account",
         store=True,
-        readonly=True,
     )
     amount_currency = fields.Float(string="Amount in Currency", digits="Account")
-    currency_rate = fields.Float(readonly=True)
+    currency_rate = fields.Float()
     transaction_nature_id = fields.Many2one(
         comodel_name="account.intrastat.transaction.nature", string="Transaction Nature"
     )
@@ -606,7 +602,6 @@ class AccountInvoiceIntrastat(models.Model):
     additional_units = fields.Float()
     additional_units_uom = fields.Char(
         string="Additional Unit of Measure",
-        readonly=True,
         related="intrastat_code_id.additional_unit_uom_id.name",
     )
     statistic_amount_euro = fields.Float(
@@ -617,7 +612,6 @@ class AccountInvoiceIntrastat(models.Model):
         string="Partner State",
         compute="_compute_partner_data",
         store=True,
-        readonly=True,
     )
     # Origin
     province_origin_id = fields.Many2one(
@@ -655,8 +649,6 @@ class AccountInvoiceIntrastat(models.Model):
     invoice_type = fields.Selection(
         string="Invoice Type",
         related="invoice_id.move_type",
-        store=False,
-        readonly=True,
     )
 
     @api.onchange("transaction_nature_id")
