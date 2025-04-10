@@ -199,12 +199,15 @@ class WizardGiornaleReportlab(models.TransientModel):
                  COALESCE(aml.ref, '') AS ref,
                  aa.name AS account_name,
                  COALESCE(aml.name, '') AS name,
+                 rp.name AS partner_name,
+                 aa.account_type AS account_type,
                  aml.debit AS debit,
                  aml.credit AS credit
              FROM
                  account_move_line aml
                  LEFT JOIN account_move am ON (am.id = aml.move_id)
                  LEFT JOIN account_account aa ON (aa.id = aml.account_id)
+                 LEFT JOIN res_partner rp ON am.partner_id = rp.id
              WHERE
                  aml.date >= %(date_from)s
                  AND aml.date <= %(date_to)s
@@ -476,7 +479,14 @@ class WizardGiornaleReportlab(models.TransientModel):
             move = Paragraph(line["move_name"], style_name)
             move_name = line["move_name"] or ""
             account = Paragraph(account_name, style_name)
-            name = Paragraph(line["name"], style_name)
+
+            # Management of data visualization based on account type
+            # For credit/debit accounts, displays the partner name, otherwise displays the entry name
+            if line["account_type"] in ["asset_receivable", "liability_payable"]:
+                name = Paragraph(line["partner_name"], style_name)
+            else:
+                name = Paragraph(line["name"], style_name)
+
             # evitiamo che i caratteri < o > vengano interpretato come tag html
             # dalla libreria reportlab
             debit = Paragraph(formatLang(self.env, line["debit"]), style_number)
