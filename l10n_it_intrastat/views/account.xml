@@ -26,25 +26,26 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='fiscal_position_id']" position="after">
-                <field name="intrastat" />
+                <field name="intrastat" readonly="state != 'draft'" />
             </xpath>
 
             <xpath expr="//page[@name='other_info']" position="before">
-                <page
-                    string="Intrastat"
-                    attrs="{'invisible': [('intrastat', '=', False)]}"
-                >
+                <page string="Intrastat" invisible="not intrastat">
                     <group colspan="4">
                         <group>
                             <button
                                 name="compute_intrastat_lines"
-                                states="draft,sent"
+                                invisible="state not in ['draft', 'sent']"
                                 string="Recompute Intrastat Lines"
                                 type="object"
                             />
                         </group>
                         <newline />
-                        <field name="intrastat_line_ids" nolabel="1" />
+                        <field
+                            name="intrastat_line_ids"
+                            nolabel="1"
+                            readonly="state == 'draft'"
+                        />
                     </group>
                 </page>
             </xpath>
@@ -58,7 +59,7 @@
         <field name="name">views.tree.account.intrastat.invoice.intrastat</field>
         <field name="model">account.invoice.intrastat</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="intrastat_code_type" />
                 <field name="intrastat_code_id" />
                 <field name="transaction_nature_id" />
@@ -71,7 +72,7 @@
                     groups="base.group_multi_company"
                     optional="show"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -90,12 +91,12 @@
                         <field name="statistic_amount_euro" />
                     </group>
                     <group>
-                        <field name="invoice_type" invisible="1" />
+                        <field name="invoice_type" column_invisible="1" />
                         <field name="transaction_nature_id" />
                         <field name="transaction_nature_b_id" />
                         <field
                             name="triangulation"
-                            attrs="{'invisible': [('invoice_type', 'in', ['in_invoice', 'in_refund'])]}"
+                            invisible="invoice_type in ['in_invoice', 'in_refund']"
                         />
                         <field name="weight_kg" />
                         <field name="show_weight" />
@@ -111,11 +112,8 @@
                     <group name="intra_origin" string="Origin">
                         <field
                             name="province_origin_id"
-                            attrs="{
-                                       'invisible': [
-                                           ('statement_section', 'not in', ['sale_s1'])],
-                                       'required': [
-                                           ('statement_section', 'in', ['sale_s1'])]}"
+                            invisible="statement_section != 'sale_s1'"
+                            required="statement_section == 'sale_s1'"
                         />
                         <field name="country_origin_id" />
                         <field name="country_good_origin_id" />
@@ -127,19 +125,13 @@
                         <field name="transport_code_id" />
                         <field
                             name="province_destination_id"
-                            attrs="{
-                                   'invisible': [
-                                       ('statement_section', 'not in', ['purchase_s1'])],
-                                   'required': [
-                                       ('statement_section', 'in', ['purchase_s1'])]}"
+                            invisible="statement_section != 'purchase_s1'"
+                            required="statement_section == 'purchase_s1'"
                         />
                         <field
                             name="country_destination_id"
-                            attrs="{
-                                   'invisible': [
-                                       ('statement_section', 'not in', ['sale_s1'])],
-                                   'required': [
-                                       ('statement_section', 'in', ['sale_s1'])]}"
+                            invisible="statement_section != 'sale_s1'"
+                            required="statement_section == 'sale_s1'"
                         />
                     </group>
 
@@ -147,12 +139,10 @@
                     <group
                         name="intra_invoice"
                         string="Invoice Ref"
-                        attrs="{'invisible': [
-                                               ('statement_section', '!=', 'sale_s3'),
-                                               ('statement_section', '!=', 'sale_s4'),
-                                               ('statement_section', '!=', 'purchase_s3'),
-                                               ('statement_section', '!=', 'purchase_s4'),
-                                           ]}"
+                        invisible="statement_section != 'sale_s3'
+                                    and statement_section != 'sale_s4'
+                                    and statement_section != 'purchase_s3'
+                                    and statement_section != 'purchase_s4'"
                     >
                         <field name="invoice_number" />
                         <field name="invoice_date" />
@@ -172,7 +162,7 @@
         <field name="name">account.intrastat.invoice.intrastat.report</field>
         <field name="model">account.invoice.intrastat</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="partner_id" />
                 <field name="invoice_id" />
                 <field name="intrastat_code_id" />
@@ -189,7 +179,7 @@
                     groups="base.group_multi_company"
                     optional="show"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -242,7 +232,7 @@
         <field name="name">Intrastat Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.invoice.intrastat</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_tree_invoice_intrastat_report_tree" />
         <field name="search_view_id" ref="view_invoice_intrastat_search" />
     </record>
