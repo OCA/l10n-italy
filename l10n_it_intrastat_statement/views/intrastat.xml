@@ -7,7 +7,7 @@
         <field name="name">account.intrastat.statement.tree.view</field>
         <field name="model">account.intrastat.statement</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="number" />
                 <field name="date" />
                 <field name="sale" />
@@ -17,7 +17,7 @@
                 <field name="period_type" />
                 <field name="period_number" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -65,10 +65,7 @@
                         <group />
                     </group>
                     <notebook>
-                        <page
-                            string="Sales"
-                            attrs="{'invisible':[('sale','=', False)]}"
-                        >
+                        <page string="Sales" invisible="not sale">
                             <group>
                                 <group>
                                     <field
@@ -151,10 +148,7 @@
                                 </page>
                             </notebook>
                         </page>
-                        <page
-                            string="Purchases"
-                            attrs="{'invisible':[('purchase','=', False)]}"
-                        >
+                        <page string="Purchases" invisible="not purchase">
                             <group>
                                 <group>
                                     <field
@@ -247,7 +241,7 @@
         <field name="name">Intrastat Statements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.intrastat.statement</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="account_intrastat_statement_tree_view" />
         <field name="help" />
     </record>
@@ -266,9 +260,9 @@
         <field name="name">views.tree.statement.sale.section1</field>
         <field name="model">account.intrastat.statement.sale.section1</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
-                <field name="invoice_id" />
+                <field name="invoice_id" readonly="1" />
                 <field name="partner_id" string="Buyer" />
                 <field name="country_partner_id" string="Buyer State" />
                 <field name="intrastat_code_id" string="Goods Code" />
@@ -276,7 +270,7 @@
                 <field name="country_destination_id" />
                 <field name="province_origin_id" />
                 <field name="amount_euro" sum="Total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_form_statement_sale_section1" model="ir.ui.view">
@@ -284,7 +278,7 @@
         <field name="model">account.intrastat.statement.sale.section1</field>
         <field name="arch" type="xml">
             <form>
-                <field name="additional_units_required" invisible="1" />
+                <field name="additional_units_required" column_invisible="1" />
                 <group>
                     <group>
                         <field name="partner_id" string="Buyer" required="1" />
@@ -311,7 +305,7 @@
                         <field name="weight_kg" required="1" />
                         <field
                             name="additional_units"
-                            attrs="{'required':[('additional_units_required','=', True )]}"
+                            required="additional_units_required"
                         />
                         <field name="additional_units_uom" />
                         <field name="amount_euro" />
@@ -335,7 +329,7 @@
         <field name="name">views.tree.statement.sale.section2</field>
         <field name="model">account.intrastat.statement.sale.section2</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
                 <field name="year_id" />
                 <field name="quarterly" />
@@ -346,7 +340,7 @@
                 <field name="intrastat_code_id" string="Goods Code" />
                 <field name="sign_variation" />
                 <field name="amount_euro" sum="Total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_form_statement_sale_section2" model="ir.ui.view">
@@ -396,7 +390,7 @@
         <field name="name">views.tree.statement.sale.section3</field>
         <field name="model">account.intrastat.statement.sale.section3</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
                 <field name="country_partner_id" string="Buyer State" />
                 <field name="partner_id" string="Buyer" />
@@ -405,7 +399,7 @@
                 <field name="invoice_number" />
                 <field name="invoice_date" />
                 <field name="amount_euro" sum="Total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_form_statement_sale_section3" model="ir.ui.view">
@@ -453,7 +447,7 @@
         <field name="name">views.tree.statement.sale.section4</field>
         <field name="model">account.intrastat.statement.sale.section4</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
                 <field name="intrastat_custom_id" />
                 <field name="country_partner_id" string="Buyer State" />
@@ -464,7 +458,7 @@
                 <field name="invoice_date" />
                 <field name="cancellation" />
                 <field name="amount_euro" sum="Total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_form_statement_sale_section4" model="ir.ui.view">
@@ -478,16 +472,14 @@
                         <field
                             name="country_partner_id"
                             string="Buyer State"
-                            attrs="{
-                                'required':[('cancellation','=', False)],
-                                'invisible':[('cancellation','=', True)]}"
+                            required="not cancellation"
+                            invisible="cancellation"
                         />
                         <field
                             name="vat_code"
                             string="Buyer VAT Code"
-                            attrs="{
-                                'required':[('cancellation','=', False)],
-                                'invisible':[('cancellation','=', True)]}"
+                            required="not cancellation"
+                            invisible="cancellation"
                         />
                     </group>
                     <group>
@@ -500,16 +492,15 @@
                 </group>
                 <newline />
                 <group>
-                    <group attrs="{'invisible':[('cancellation','=', True)]}">
+                    <group invisible="cancellation">
                         <field
                             name="intrastat_code_id"
                             string="Service Code"
-                            attrs="{
-                                'required':[('cancellation','=', False)]}"
+                            required="not cancellation"
                         />
                         <field name="amount_euro" />
                     </group>
-                    <group attrs="{'invisible':[('cancellation','=', True)]}">
+                    <group invisible="cancellation">
                         <field name="invoice_number" />
                         <field name="invoice_date" />
                         <field name="supply_method" />
@@ -528,9 +519,9 @@
         <field name="name">views.tree.statement.purchase.section1</field>
         <field name="model">account.intrastat.statement.purchase.section1</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
-                <field name="invoice_id" />
+                <field name="invoice_id" readonly="1" />
                 <field name="partner_id" string="Supplier" />
                 <field name="country_partner_id" string="Supplier State" />
                 <field name="intrastat_code_id" string="Goods Code" />
@@ -538,7 +529,7 @@
                 <field name="country_origin_id" />
                 <field name="province_destination_id" />
                 <field name="amount_euro" sum="Total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_form_statement_purchase_section1" model="ir.ui.view">
@@ -546,7 +537,7 @@
         <field name="model">account.intrastat.statement.purchase.section1</field>
         <field name="arch" type="xml">
             <form>
-                <field name="additional_units_required" invisible="1" />
+                <field name="additional_units_required" column_invisible="1" />
                 <group>
                     <group>
                         <field name="partner_id" string="Supplier" required="1" />
@@ -577,8 +568,7 @@
                         <field name="weight_kg" required="1" />
                         <field
                             name="additional_units"
-                            attrs="{
-                                'required':[('additional_units_required','=', True )]}"
+                            required="additional_units_required"
                         />
                         <field name="additional_units_uom" />
                         <field name="amount_euro" />
@@ -603,7 +593,7 @@
         <field name="name">views.tree.statement.purchase.section2</field>
         <field name="model">account.intrastat.statement.purchase.section2</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
                 <field name="year_id" />
                 <field name="quarterly" />
@@ -614,7 +604,7 @@
                 <field name="intrastat_code_id" string="Goods Code" />
                 <field name="sign_variation" />
                 <field name="amount_euro" sum="Total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_form_statement_purchase_section2" model="ir.ui.view">
@@ -669,7 +659,7 @@
         <field name="name">views.tree.statement.purchase.section3</field>
         <field name="model">account.intrastat.statement.purchase.section3</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
                 <field name="country_partner_id" string="Supplier State" />
                 <field name="partner_id" string="Supplier" />
@@ -678,7 +668,7 @@
                 <field name="invoice_number" />
                 <field name="invoice_date" />
                 <field name="amount_euro" sum="Total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_form_statement_purchase_section3" model="ir.ui.view">
@@ -719,7 +709,7 @@
         <field name="name">views.tree.statement.purchase.section4</field>
         <field name="model">account.intrastat.statement.purchase.section4</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
                 <field name="intrastat_custom_id" />
                 <field name="country_partner_id" string="Supplier State" />
@@ -729,7 +719,7 @@
                 <field name="invoice_number" />
                 <field name="invoice_date" />
                 <field name="amount_euro" sum="Total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_form_statement_purchase_section4" model="ir.ui.view">
@@ -788,12 +778,12 @@
         <field name="name">account.intrastat.custom.view.tree</field>
         <field name="model">account.intrastat.custom</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" />
                 <field name="name" />
                 <field name="date_start" />
                 <field name="date_stop" />
-            </tree>
+            </list>
         </field>
     </record>
 

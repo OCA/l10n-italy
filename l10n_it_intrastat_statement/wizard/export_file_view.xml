@@ -5,9 +5,9 @@
         <field name="model">account.intrastat.export.file</field>
         <field name="arch" type="xml">
             <form string="Export Intrastat File">
-                <field invisible="1" name="state" />
-                <field name="name" invisible="1" />
-                <div states="get">
+                <field column_invisible="1" name="state" />
+                <field name="name" column_invisible="1" />
+                <div invisible="state != 'get'">
                     <h2>Export Complete</h2>
                     <p>Here is the exported file: <field
                         name="data"
@@ -15,7 +15,7 @@
                         filename="name"
                     /></p>
                 </div>
-                <footer states="choose">
+                <footer invisible="state != 'choose'">
                     <button
                     name="act_getfile"
                     string="Export submission file"
@@ -44,7 +44,7 @@
                     class="oe_link"
                 />
                 </footer>
-                <footer states="get">
+                <footer invisible="state != 'get'">
                     <button special="cancel" string="Close" type="object" />
                 </footer>
             </form>

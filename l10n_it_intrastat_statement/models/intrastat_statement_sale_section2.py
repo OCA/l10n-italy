@@ -1,7 +1,7 @@
 #  Copyright 2019 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 from .intrastat_statement import format_9, format_x
@@ -71,25 +71,33 @@ class IntrastatStatementSaleSection2(models.Model):
     def _export_line_checks(self, section_label, section_number):
         res = super()._export_line_checks(section_label, section_number)
         if not self.year_id:
-            raise ValidationError(_("Missing reference year on 'Sales - Section 2'"))
+            raise ValidationError(
+                self.env._("Missing reference year on 'Sales - Section 2'")
+            )
         if not self.sign_variation:
-            raise ValidationError(_("Missing adjustment sign on 'Sales - Section 2'"))
+            raise ValidationError(
+                self.env._("Missing adjustment sign on 'Sales - Section 2'")
+            )
         if self.statement_id.period_type == "M":
             if not self.month:
                 raise ValidationError(
-                    _("Missing reference month on 'Sales - Section 2' adjustment")
+                    self.env._(
+                        "Missing reference month on 'Sales - Section 2' adjustment"
+                    )
                 )
         elif self.statement_id.period_type == "T":
             if not self.quarterly:
                 raise ValidationError(
-                    _("Missing reference quarter on 'Sales - Section 2' adjustment")
+                    self.env._(
+                        "Missing reference quarter on 'Sales - Section 2' adjustment"
+                    )
                 )
         return res
 
     @api.model
     def _prepare_export_line(self):
         self.ensure_one()
-        self._export_line_checks(_("Sales"), self.get_section_number())
+        self._export_line_checks(self.env._("Sales"), self.get_section_number())
 
         rcd = ""
         # Mese di riferimento del riepilogo da rettificare

@@ -1,7 +1,7 @@
 #  Copyright 2019 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 
@@ -12,7 +12,6 @@ class IntrastatStatementSection(models.AbstractModel):
     statement_id = fields.Many2one(
         comodel_name="account.intrastat.statement",
         string="Statement",
-        readonly=True,
         ondelete="cascade",
     )
     sequence = fields.Integer(string="Progr.")
@@ -22,9 +21,7 @@ class IntrastatStatementSection(models.AbstractModel):
     )
     vat_code = fields.Char()
     amount_euro = fields.Integer(string="Amount in Euro")
-    invoice_id = fields.Many2one(
-        comodel_name="account.move", string="Invoice", readonly=True
-    )
+    invoice_id = fields.Many2one(comodel_name="account.move", string="Invoice")
     intrastat_code_id = fields.Many2one(comodel_name="report.intrastat.code")
 
     def apply_partner_data(self, partner_data):
@@ -66,7 +63,7 @@ class IntrastatStatementSection(models.AbstractModel):
         self.ensure_one()
         if not self.vat_code and section_number != 4:
             raise ValidationError(
-                _(
+                self.env._(
                     "Missing vat code for %(display_name)s on "
                     "'%(section_label)s - Section %(section_number)s'",
                     display_name=self.partner_id.display_name,
@@ -79,7 +76,8 @@ class IntrastatStatementSection(models.AbstractModel):
             country_id.intrastat_validate()
         elif section_number == 4 and not self.cancellation:
             raise ValidationError(
-                _("Missing State for Partner %s") % self.partner_id.display_name
+                self.env._("Missing State for Partner %s")
+                % self.partner_id.display_name
             )
 
     def get_amount_euro(self):
@@ -87,8 +85,10 @@ class IntrastatStatementSection(models.AbstractModel):
 
     @api.model
     def get_section_number(self):
-        raise UserError(_("Section number must be overridden by every section"))
+        raise UserError(
+            self.env._("Section number must be overridden by every section")
+        )
 
     @api.model
     def get_section_type(self):
-        raise UserError(_("Section type must be overridden by every section"))
+        raise UserError(self.env._("Section type must be overridden by every section"))

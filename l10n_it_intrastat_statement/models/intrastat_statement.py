@@ -5,7 +5,7 @@ from datetime import date, datetime, timedelta
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_round
 
@@ -99,7 +99,7 @@ class AccountIntrastatStatement(models.Model):
             ]
         ):
             raise UserError(
-                _(
+                self.env._(
                     "Wrong section type %(section_type)s or number %(section_number)s",
                     section_type=section_type,
                     section_number=section_number,
@@ -209,12 +209,8 @@ class AccountIntrastatStatement(models.Model):
         default=1,
         required=True,
     )
-    date_start = fields.Date(
-        string="Start Date", store=True, readonly=True, compute="_compute_dates"
-    )
-    date_stop = fields.Date(
-        string="Stop Date", store=True, readonly=True, compute="_compute_dates"
-    )
+    date_start = fields.Date(string="Start Date", store=True, compute="_compute_dates")
+    date_stop = fields.Date(string="Stop Date", store=True, compute="_compute_dates")
     content_type = fields.Selection(
         selection=[
             ("0", "Normal Period"),
@@ -277,13 +273,11 @@ class AccountIntrastatStatement(models.Model):
     sale_section1_operation_number = fields.Integer(
         string="Operation Count - Sales Section 1",
         store=True,
-        readonly=True,
         compute="_compute_amount_sale_s1",
     )
     sale_section1_operation_amount = fields.Integer(
         string="Operation Amount - Sales Section 1",
         store=True,
-        readonly=True,
         compute="_compute_amount_sale_s1",
     )
     sale_section2_ids = fields.One2many(
@@ -294,13 +288,11 @@ class AccountIntrastatStatement(models.Model):
     sale_section2_operation_number = fields.Integer(
         string="Operation Count - Sales Section 2",
         store=True,
-        readonly=True,
         compute="_compute_amount_sale_s2",
     )
     sale_section2_operation_amount = fields.Integer(
         string="Operation Amount - Sales Section 2",
         store=True,
-        readonly=True,
         compute="_compute_amount_sale_s2",
     )
     sale_section3_ids = fields.One2many(
@@ -311,13 +303,11 @@ class AccountIntrastatStatement(models.Model):
     sale_section3_operation_number = fields.Integer(
         string="Operation Count - Sales Section 3",
         store=True,
-        readonly=True,
         compute="_compute_amount_sale_s3",
     )
     sale_section3_operation_amount = fields.Integer(
         string="Operation Amount - Sales Section 3",
         store=True,
-        readonly=True,
         compute="_compute_amount_sale_s3",
     )
     sale_section4_ids = fields.One2many(
@@ -328,13 +318,11 @@ class AccountIntrastatStatement(models.Model):
     sale_section4_operation_number = fields.Integer(
         string="Operation Count - Sales Section 4",
         store=True,
-        readonly=True,
         compute="_compute_amount_sale_s4",
     )
     sale_section4_operation_amount = fields.Integer(
         string="Operation Amount - Sales Section 4",
         store=True,
-        readonly=True,
         compute="_compute_amount_sale_s4",
     )
 
@@ -349,13 +337,11 @@ class AccountIntrastatStatement(models.Model):
     purchase_section1_operation_number = fields.Integer(
         string="Operation Count - Purchases Section 1",
         store=True,
-        readonly=True,
         compute="_compute_amount_purchase_s1",
     )
     purchase_section1_operation_amount = fields.Integer(
         string="Operation Amount - Purchases Section 1",
         store=True,
-        readonly=True,
         compute="_compute_amount_purchase_s1",
     )
     purchase_section2_ids = fields.One2many(
@@ -366,13 +352,11 @@ class AccountIntrastatStatement(models.Model):
     purchase_section2_operation_number = fields.Integer(
         string="Operation Count - Purchases Section 2",
         store=True,
-        readonly=True,
         compute="_compute_amount_purchase_s2",
     )
     purchase_section2_operation_amount = fields.Integer(
         string="Operation Amount - Purchases Section 2",
         store=True,
-        readonly=True,
         compute="_compute_amount_purchase_s2",
     )
     purchase_section3_ids = fields.One2many(
@@ -383,13 +367,11 @@ class AccountIntrastatStatement(models.Model):
     purchase_section3_operation_number = fields.Integer(
         string="Operation Count - Purchases Section 3",
         store=True,
-        readonly=True,
         compute="_compute_amount_purchase_s3",
     )
     purchase_section3_operation_amount = fields.Integer(
         string="Operation Amount - Purchases Section 3",
         store=True,
-        readonly=True,
         compute="_compute_amount_purchase_s3",
     )
     purchase_section4_ids = fields.One2many(
@@ -400,13 +382,11 @@ class AccountIntrastatStatement(models.Model):
     purchase_section4_operation_number = fields.Integer(
         string="Operation Count - Purchases Section 4",
         store=True,
-        readonly=True,
         compute="_compute_amount_purchase_s4",
     )
     purchase_section4_operation_amount = fields.Integer(
         string="Operation Amount - Purchases Section 4",
         store=True,
-        readonly=True,
         compute="_compute_amount_purchase_s4",
     )
 
@@ -738,7 +718,7 @@ class AccountIntrastatStatement(models.Model):
 
         # Data validation
         if not file_content:
-            raise ValidationError(_("Nothing to export"))
+            raise ValidationError(self.env._("Nothing to export"))
         if (
             not self.sale_section1_ids
             and not self.sale_section2_ids
@@ -749,7 +729,7 @@ class AccountIntrastatStatement(models.Model):
             and not self.purchase_section3_ids
             and not self.purchase_section4_ids
         ):
-            raise ValidationError(_("Statement without lines"))
+            raise ValidationError(self.env._("Statement without lines"))
 
         return file_content
 
@@ -852,7 +832,7 @@ class AccountIntrastatStatement(models.Model):
             if line_to_refund:
                 if line_to_refund.amount_euro < line.amount_euro:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "Invoice and credit note in the same period with"
                             " credit note > invoice for partner %s"
                         )
@@ -888,9 +868,9 @@ class AccountIntrastatStatement(models.Model):
                 1 <= statement.period_number <= 12
             ):
                 raise ValidationError(
-                    _("Period Not Valid! Range accepted: from 1 to 12")
+                    self.env._("Period Not Valid! Range accepted: from 1 to 12")
                 )
             if statement.period_type == "T" and not (1 <= statement.period_number <= 4):
                 raise ValidationError(
-                    _("Period Not Valid! Range accepted: from 1 to 4")
+                    self.env._("Period Not Valid! Range accepted: from 1 to 4")
                 )
