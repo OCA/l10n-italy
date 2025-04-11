@@ -16,7 +16,7 @@ _logger = logging.getLogger(__name__)
 
 class EInvoiceImportFileWizard(models.TransientModel):
     _name = "l10n_it_edi.import_file_wizard"
-    _description = "E-invoice Import E-invoice Files Wizard"
+    _description = "E-invoice Import Files Wizard"
 
     l10n_it_edi_attachment = fields.Binary()
     l10n_it_edi_attachment_filename = fields.Char()
