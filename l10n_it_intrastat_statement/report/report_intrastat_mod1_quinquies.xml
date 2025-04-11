@@ -13,12 +13,13 @@
                     >
                         <div class="page">
                             <div class="row">
-
                                 <div class="col-3">
-                                    <p class="text-right"><img
+                                    <p class="text-right">
+                                        <img
                                             src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
                                             height="80px"
-                                        /></p>
+                                        />
+                                    </p>
                                 </div>
                                 <div class="col-7 col-offset-3">
                                     <table class="table text-center table-bordered">
@@ -28,9 +29,8 @@
                                         </td>
                                         <td>Mod. INTRA-1 Quinquies</td>
                                     </table>
-
+                                </div>
                             </div>
-                        </div>
                             <div class="row">
                                 <span class="text-center col-7 col-offset-3">
                                     <strong
@@ -56,10 +56,14 @@
                                         </t>
                                     </strong>
                                     <span class="col-offset-1">ANNO: </span>
-                                    <strong><span t-esc="o.fiscalyear" /></strong>
+                                    <strong>
+                                        <span t-esc="o.fiscalyear" />
+                                    </strong>
 
                                     <span class="col-offset-2">PARTITA IVA</span>
-                                    <strong><span t-esc="o.company_id.vat" /></strong>
+                                    <strong>
+                                        <span t-esc="o.company_id.vat" />
+                                    </strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -143,39 +147,59 @@
                                                 t-as="l"
                                             >
                                                 <td t-esc="l.sequence" />
-                                                <td><span
+                                                <td>
+                                                    <span
                                                         t-field="l.intrastat_custom_id"
-                                                    /></td>
-                                                <td><span t-field="l.year_id" /></td>
-                                                <td><span t-field="l.protocol" /></td>
-                                                <td><span
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.year_id" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.protocol" />
+                                                </td>
+                                                <td>
+                                                    <span
                                                         t-field="l.progressive_to_modify"
-                                                    /></td>
-                                                <td><span
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
                                                         t-field="l.country_partner_id.code"
-                                                    /></td>
-                                                <td><span t-field="l.vat_code" /></td>
-                                                <td><span
-                                                        t-field="l.amount_euro"
-                                                    /></td>
-                                                <td><span
-                                                        t-field="l.invoice_number"
-                                                    /></td>
-                                                <td><span
-                                                        t-field="l.invoice_date"
-                                                    /></td>
-                                                <td><span
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.vat_code" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.amount_euro" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.invoice_number" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.invoice_date" />
+                                                </td>
+                                                <td>
+                                                    <span
                                                         t-field="l.intrastat_code_id"
-                                                    /></td>
-                                                <td><span
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
                                                         t-esc="l.get_supply_method_key()"
-                                                    /></td>
-                                                <td><span
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
                                                         t-esc="l.get_payment_method_key()"
-                                                    /></td>
-                                                <td><span
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
                                                         t-field="l.country_payment_id.code"
-                                                    /></td>
+                                                    />
+                                                </td>
                                                 <t
                                                     t-set="total"
                                                     t-value="total + l.amount_euro"
@@ -186,7 +210,9 @@
                                                     colspan="2"
                                                     class="text-right"
                                                 >TOTALE</td>
-                                                <td><t t-esc="total" /></td>
+                                                <td>
+                                                    <t t-esc="total" />
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
