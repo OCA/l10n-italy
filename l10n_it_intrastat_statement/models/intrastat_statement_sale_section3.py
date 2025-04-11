@@ -1,7 +1,7 @@
 #  Copyright 2019 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 from .intrastat_statement import format_9, format_x
 
@@ -52,7 +52,7 @@ class IntrastatStatementSaleSection3(models.Model):
     @api.model
     def _prepare_export_line(self):
         self.ensure_one()
-        self._export_line_checks(_("Sales"), self.get_section_number())
+        self._export_line_checks(self.env._("Sales"), self.get_section_number())
 
         rcd = ""
         # Codice dello Stato membro dell’acquirente
