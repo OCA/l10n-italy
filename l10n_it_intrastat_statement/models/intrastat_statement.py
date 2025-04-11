@@ -84,13 +84,11 @@ class AccountIntrastatStatement(models.Model):
         :param section_number: 1..4
         """
         section_ids_field = self.get_section_field_name(section_type, section_number)
-        section_op_number_field = "{}_section{}_operation_number".format(
-            section_type,
-            section_number,
+        section_op_number_field = (
+            f"{section_type}_section{section_number}_operation_number"
         )
-        section_op_amount_field = "{}_section{}_operation_amount".format(
-            section_type,
-            section_number,
+        section_op_amount_field = (
+            f"{section_type}_section{section_number}_operation_amount"
         )
         if any(
             field_name not in self._fields

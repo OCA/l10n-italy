@@ -14,19 +14,22 @@
                         <div class="page" style="font-size: 10px">
                             <div class="row">
                                 <div class="col-2">
-                                    <p class="text-right"><img
+                                    <p class="text-right">
+                                        <img
                                             src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
                                             height="80px"
-                                        /></p>
+                                        />
+                                    </p>
                                 </div>
                                 <div class="col-6 offset-2">
                                     <table class="table table-bordered">
-                                    <tr>
-                                        <td><b>ELENCO RIEPILOGATIVO DELLE CESSIONI
+                                        <tr>
+                                            <td>
+                                                <b>ELENCO RIEPILOGATIVO DELLE CESSIONI
                                         <br
-                                                    />INTRACOMUNITARIE DI BENI E DEI SERVIZI RESI</b>
-                                        </td>
-                                    </tr>
+                                                />INTRACOMUNITARIE DI BENI E DEI SERVIZI RESI</b>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
                                 <div class="col-2">
@@ -46,75 +49,75 @@
                                         rowspan="2"
                                     >PERIODO DI RIFERIMENTO</td>
                                     <td>MESE: <t t-if="o.period_type == 'M'"><span
-                                                class="font_bold"
-                                                t-esc="o.period_number"
-                                            /> ANNO: <span
-                                                class="font_bold"
-                                                t-esc="o.fiscalyear"
-                                            /></t></td>
+                                        class="font_bold"
+                                        t-esc="o.period_number"
+                                    /> ANNO: <span
+                                        class="font_bold"
+                                        t-esc="o.fiscalyear"
+                                    /></t></td>
                                     <td
                                         class="center"
                                         width="20%"
                                         rowspan="2"
                                     > NUMERO DI RIFERIMENTO <br /><span
-                                            class="font_bold"
-                                            t-esc="o.sale_statement_sequence"
-                                        /></td>
+                                        class="font_bold"
+                                        t-esc="o.sale_statement_sequence"
+                                    /></td>
                                 </tr>
                                 <tr>
                                     <td>
                                     TRIMESTRE: <t t-if="o.period_type == 'T'"><span
-                                                class="font_bold"
-                                                t-esc="o.period_number"
-                                            /> ANNO: <span
-                                                class="font_bold"
-                                                t-esc="o.fiscalyear"
-                                            /></t>
+                                        class="font_bold"
+                                        t-esc="o.period_number"
+                                    /> ANNO: <span
+                                        class="font_bold"
+                                        t-esc="o.fiscalyear"
+                                    /></t>
                                     <br />
                                         <table class="table table-bordered">
-                                            <tr>
+                                        <tr>
                                                 LE INFORMAZIONI DELLE SEZIONI 1 e/o 3 SONO DA RIFERIRSI A (Barrare la casella):
                                             </tr>
-                                            <tr>
-                                                <td
-                                                    width="8%"
-                                                    class="align-middle text-center"
-                                                >
-                                                    <span
-                                                        t-if="o.period_type == 'T' and o.content_type == '8'"
-                                                    >
-                                                        X
-                                                    </span>
-                                                </td>
+                                        <tr>
                                             <td
-                                                    width="25%"
-                                                >SOLO 1° MESE DEL TRIMESTRE</td>
-                                                <td
-                                                    width="8%"
-                                                    class="align-middle text-center"
+                                                width="8%"
+                                                class="align-middle text-center"
+                                            >
+                                                <span
+                                                    t-if="o.period_type == 'T' and o.content_type == '8'"
                                                 >
-                                                    <span
-                                                        t-if="o.period_type == 'T' and o.content_type == '9'"
-                                                    >
                                                         X
                                                     </span>
-                                                </td>
+                                            </td>
                                             <td
-                                                    width="25%"
-                                                >1° E 2° MESE DEL TRIMESTRE</td>
-                                                <td
-                                                    width="8%"
-                                                    class="align-middle text-center"
+                                                width="25%"
+                                            >SOLO 1° MESE DEL TRIMESTRE</td>
+                                            <td
+                                                width="8%"
+                                                class="align-middle text-center"
+                                            >
+                                                <span
+                                                    t-if="o.period_type == 'T' and o.content_type == '9'"
                                                 >
-                                                    <span
-                                                        t-if="o.period_type == 'T' and o.content_type == '0'"
-                                                    >
                                                         X
                                                     </span>
-                                                </td>
+                                            </td>
+                                            <td
+                                                width="25%"
+                                            >1° E 2° MESE DEL TRIMESTRE</td>
+                                            <td
+                                                width="8%"
+                                                class="align-middle text-center"
+                                            >
+                                                <span
+                                                    t-if="o.period_type == 'T' and o.content_type == '0'"
+                                                >
+                                                        X
+                                                    </span>
+                                            </td>
                                             <td width="25%">3° TRIMESTRE COMPLETO</td>
-                                            </tr>
-                                        </table>
+                                        </tr>
+                                    </table>
                                     </td>
                                 </tr>
                             </table>
@@ -122,27 +125,30 @@
                                 <th colspan="4" class="fondo">SOGGETTO OBBLIGATO</th>
                                 <tr>
                                     <td colspan="4">PARTITA IVA: <span
-                                            class="font_bold"
-                                            t-esc="o.company_id.partner_id.vat"
-                                        /></td>
-                                </tr><tr>
+                                        class="font_bold"
+                                        t-esc="o.company_id.partner_id.vat"
+                                    /></td>
+                                </tr>
+                                <tr>
                                     <td colspan="4" class="fondo">PERSONA FISICA</td>
-                                </tr><tr>
-                                    <td colspan="2">COGNOME<p /></td><td
-                                        colspan="2"
-                                    >NOME<p /></td>
-                                </tr><tr>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">COGNOME<p /></td>
+                                    <td colspan="2">NOME<p /></td>
+                                </tr>
+                                <tr>
                                     <td
                                         colspan="4"
                                         class="fondo"
                                     >SOGGETTO DIVERSO DA PERSONA FISICA</td>
-                                </tr><tr>
+                                </tr>
+                                <tr>
                                     <td
                                         colspan="4"
                                     >DENOMINAZIONE / RAGIONE SOCIALE ><span
-                                            class="font_bold"
-                                            t-esc="o.company_id.partner_id.name"
-                                        /></td>
+                                        class="font_bold"
+                                        t-esc="o.company_id.partner_id.name"
+                                    /></td>
                                 </tr>
                                 <tr>
                                     <td width="10%" class="align-middle text-center">
@@ -167,15 +173,16 @@
                                 <th class="fondo">SOGGETTO DELEGATO</th>
                                 <tr>
                                     <td>PARTITA IVA: <span
-                                            class="font_bold"
-                                            t-esc="o.company_id.intrastat_delegated_vat"
-                                        /></td>
-                                </tr><tr>
+                                        class="font_bold"
+                                        t-esc="o.company_id.intrastat_delegated_vat"
+                                    /></td>
+                                </tr>
+                                <tr>
                                     <td
                                     >COGNOME E NOME o DENOMINAZIONE / RAGIONE SOCIALE <span
-                                            class="font_bold"
-                                            t-esc="o.company_id.intrastat_delegated_name"
-                                        /></td>
+                                        class="font_bold"
+                                        t-esc="o.company_id.intrastat_delegated_name"
+                                    /></td>
                                 </tr>
                             </table>
                             <table class="table table-bordered">
@@ -194,18 +201,26 @@
                                     <td>AMMONTARE COMPLESSIVO IN EURO</td>
                                 </tr>
                                 <tr>
-                                    <td><span
+                                    <td>
+                                        <span
                                             t-esc="o.sale_section1_operation_number or ''"
-                                        /></td>
-                                    <td><span
+                                        />
+                                    </td>
+                                    <td>
+                                        <span
                                             t-esc="o.sale_section1_operation_amount or ''"
-                                        /></td>
-                                    <td><span
+                                        />
+                                    </td>
+                                    <td>
+                                        <span
                                             t-esc="o.sale_section2_operation_number or ''"
-                                        /></td>
-                                    <td><span
+                                        />
+                                    </td>
+                                    <td>
+                                        <span
                                             t-esc="o.sale_section2_operation_amount or ''"
-                                        /></td>
+                                        />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td rowspan="2">SERVIZI</td>
@@ -218,18 +233,26 @@
                                     <td>AMMONTARE COMPLESSIVO IN EURO</td>
                                 </tr>
                                 <tr>
-                                    <td><span
+                                    <td>
+                                        <span
                                             t-esc="o.sale_section3_operation_number or ''"
-                                        /></td>
-                                    <td><span
+                                        />
+                                    </td>
+                                    <td>
+                                        <span
                                             t-esc="o.sale_section3_operation_amount or ''"
-                                        /></td>
-                                    <td><span
+                                        />
+                                    </td>
+                                    <td>
+                                        <span
                                             t-esc="o.sale_section4_operation_number or ''"
-                                        /></td>
-                                    <td><span
+                                        />
+                                    </td>
+                                    <td>
+                                        <span
                                             t-esc="o.sale_section4_operation_amount or ''"
-                                        /></td>
+                                        />
+                                    </td>
                                 </tr>
                             </table>
                             <table class="table">
@@ -248,9 +271,16 @@
                                 <tr>
                                     <td>DATA PRESENTAZIONE</td>
                                     <td>PROTOCOLLO</td>
-                                </tr><tr>
-                                    <td><p /><p /></td>
-                                    <td><p /><p /></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p />
+                                        <p />
+                                    </td>
+                                    <td>
+                                        <p />
+                                        <p />
+                                    </td>
                                 </tr>
                             </table>
                         </div>
