@@ -1,7 +1,7 @@
 #  Copyright 2019 Simone Rubino - Agile Business Group
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 from .intrastat_statement import format_9, format_x
@@ -72,22 +72,30 @@ class IntrastatStatementSaleSection4(models.Model):
     def _export_line_checks(self, section_label, section_number):
         res = super()._export_line_checks(section_label, section_number)
         if not self.year_id:
-            raise ValidationError(_("Missing reference year on 'Sales - Section 4'"))
+            raise ValidationError(
+                self.env._("Missing reference year on 'Sales - Section 4'")
+            )
         if not self.intrastat_custom_id:
-            raise ValidationError(_("Missing customs section on 'Sales - Section 4'"))
+            raise ValidationError(
+                self.env._("Missing customs section on 'Sales - Section 4'")
+            )
         if not self.protocol:
-            raise ValidationError(_("Missing protocol number on 'Sales - Section 4'"))
+            raise ValidationError(
+                self.env._("Missing protocol number on 'Sales - Section 4'")
+            )
         if not self.progressive_to_modify:
             raise ValidationError(
-                _("Missing progressive to adjust on 'Sales - Section 4'")
+                self.env._("Missing progressive to adjust on 'Sales - Section 4'")
             )
         if not self.country_payment_id and not self.cancellation:
-            raise ValidationError(_("Missing payment country on 'Sales - Section 4'"))
+            raise ValidationError(
+                self.env._("Missing payment country on 'Sales - Section 4'")
+            )
         return res
 
     @api.model
     def _prepare_export_line(self):
-        self._export_line_checks(_("Sales"), self.get_section_number())
+        self._export_line_checks(self.env._("Sales"), self.get_section_number())
         modifying = not self.cancellation
 
         rcd = ""

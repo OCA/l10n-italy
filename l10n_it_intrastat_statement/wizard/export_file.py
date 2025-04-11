@@ -3,15 +3,15 @@
 
 import base64
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class AccountIntrastatExportFile(models.TransientModel):
     _name = "account.intrastat.export.file"
     _description = "Intrastat export file"
 
-    name = fields.Char(string="File Name", readonly=True)
-    data = fields.Binary(string="File", readonly=True)
+    name = fields.Char(string="File Name")
+    data = fields.Binary(string="File")
     state = fields.Selection(
         selection=[("choose", "Choose"), ("get", "Get")],
         default="choose",
@@ -38,7 +38,7 @@ class AccountIntrastatExportFile(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": "account.intrastat.export.file",
             "view_mode": "form",
-            "name": _("Export Intrastat File"),
+            "name": self.env._("Export Intrastat File"),
             "res_id": self.id,
             "nodestroy": True,
             "view_id": [view_id],

@@ -5,7 +5,7 @@ import base64
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestIntrastatStatement(TransactionCase):
@@ -537,7 +537,7 @@ class TestIntrastatStatement(TransactionCase):
                 {
                     "date": fields.Date.from_string("2019-01-01"),
                     "reason": "no reason",
-                    "refund_method": "refund",
+                    "company_id": self.env.company.id,
                     "journal_id": move.journal_id.id,
                 }
             )
