@@ -8,6 +8,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, fields, models
+from odoo.tools.misc import formatLang
 from odoo.exceptions import UserError
 
 
@@ -35,8 +36,9 @@ class RibaIssue(models.TransientModel):
                 "acceptance_account_id": acceptance_account_id,
             }
             return riba_list_line.create(rdl)
-
         self.ensure_one()
+        # controllo che non siano presenti riba già emesse
+        self._check_duplicate_riba_emission()
         # Qui creiamo la distinta
         # wizard_obj = self.browse(cr, uid, ids)[0]
         # active_ids = context and context.get('active_ids', [])
@@ -147,3 +149,41 @@ class RibaIssue(models.TransientModel):
         )
         action_vals["res_id"] = rd_id
         return action_vals
+
+    def _check_duplicate_riba_emission(self):
+        # recupero linee dove fare riba
+        move_lines = self.env["account.move.line"].search([("id", "in", self._context["active_ids"])])
+        # preparo variabili strettamente collegate da cui proviene l'errore
+        move_lines_error = self.env["account.move.line"]
+        riba_line_error = self.env['riba.slip.line']
+        bank_move_error = self.env['account.move']
+        # ciclo le righe da emettere
+        for move in move_lines:
+            slip_line_ids = move.mapped('slip_line_ids')
+            if slip_line_ids.mapped('riba_line_id'):
+                # riporto l'errore per dettaglio distinta riba
+                riba_line_error |= slip_line_ids.mapped('riba_line_id')
+                if slip_line_ids.mapped('riba_line_id').mapped('acceptance_move_id'):
+                    # filtro le righe valide (accreditate)
+                    bank_move_lines = slip_line_ids.mapped('riba_line_id').mapped('acceptance_move_id').filtered(lambda l: l.state not in ['cancel'])
+                    if bank_move_lines:
+                        # riporto l'errore per annullare il movimento contabile di accredito
+                        bank_move_error |= bank_move_lines
+                move_lines_error |= move
+        if move_lines_error or riba_line_error or bank_move_error:
+            # errore su collegamenti
+            invoice_ids = move_lines_error.mapped('move_id')
+            # imposto il messaggio
+            currency_simbol = self.env.user.company_id.currency_id.symbol
+            message = _(
+                """Cannot issue a new RiBa on the following invoices: %s
+You need to delete the credit and riba bill detail first.
+Order of elimination: Journal Entries ➜ Slips Detail
+Ref. Journal Entries: %s
+Ref. Slips Detail: %s
+After deleting, issue a new RiBa!
+"""
+            ) % (', '.join(inv.display_name for inv in invoice_ids), ', '.join(b_line.display_name for b_line in bank_move_error),
+                 ', '.join((str(r_line.sequence) + " " + r_line.invoice_number + " " + formatLang(self.env, r_line.amount) + currency_simbol) for r_line in riba_line_error))
+            raise UserError(message)
+        return True
