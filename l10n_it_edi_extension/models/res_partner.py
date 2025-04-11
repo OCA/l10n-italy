@@ -1,7 +1,9 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ResPartnerInherit(models.Model):
@@ -17,3 +19,17 @@ class ResPartnerInherit(models.Model):
     )
     l10n_edi_it_register_code = fields.Char(string="Register Registration Number")
     l10n_edi_it_register_regdate = fields.Date(string="Register Registration Date")
+
+    @api.constrains("l10n_it_codice_fiscale", "company_type")
+    def validate_codice_fiscale(self):
+        res = super().validate_codice_fiscale()
+        for partner in self:
+            if not partner.l10n_it_codice_fiscale:
+                continue
+            elif (
+                partner.company_type == "person"
+                and len(partner.l10n_it_codice_fiscale) != 16
+            ):
+                msg = self.env._("The fiscal code must have 16 characters.")
+                raise ValidationError(msg)
+        return res
