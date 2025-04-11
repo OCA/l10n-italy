@@ -960,13 +960,17 @@ def _l10n_it_fatturapa_in_post_migration(env):
         invoice_id, attachment_id = row
         move = env["account.move"].browse(invoice_id)
         attachment = env["ir.attachment"].browse(attachment_id)
-        filestore_path = os.path.join(
-            config.filestore(env.cr.dbname), attachment.store_fname
-        )
-        if os.path.exists(filestore_path):
-            with open(filestore_path, "rb") as f:
-                file_data = base64.b64encode(f.read())
-                move.l10n_it_edi_attachment_file = file_data
+        attachment.res_model = "account.move"
+        attachment.res_id = move.id
+        attachment.res_field = "l10n_it_edi_attachment_file"
+        if not attachment.raw:
+            filestore_path = os.path.join(
+                config.filestore(env.cr.dbname), attachment.store_fname
+            )
+            if os.path.exists(filestore_path):
+                with open(filestore_path, "rb") as f:
+                    file_raw = base64.encodebytes(f.read())
+                    attachment.raw = file_raw
 
 
 def _l10n_it_fatturapa_out_post_migration(env):
@@ -999,13 +1003,17 @@ def _l10n_it_fatturapa_out_post_migration(env):
         invoice_id, attachment_id = row
         move = env["account.move"].browse(invoice_id)
         attachment = env["ir.attachment"].browse(attachment_id)
-        filestore_path = os.path.join(
-            config.filestore(env.cr.dbname), attachment.store_fname
-        )
-        if os.path.exists(filestore_path):
-            with open(filestore_path, "rb") as f:
-                file_data = base64.b64encode(f.read())
-                move.l10n_it_edi_attachment_file = file_data
+        attachment.res_model = "account.move"
+        attachment.res_id = move.id
+        attachment.res_field = "l10n_it_edi_attachment_file"
+        if not attachment.raw:
+            filestore_path = os.path.join(
+                config.filestore(env.cr.dbname), attachment.store_fname
+            )
+            if os.path.exists(filestore_path):
+                with open(filestore_path, "rb") as f:
+                    file_raw = base64.encodebytes(f.read())
+                    attachment.raw = file_raw
 
 
 def _l10n_it_fatturapa_sale_post_migration(env):
