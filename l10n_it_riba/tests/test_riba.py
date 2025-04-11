@@ -981,3 +981,67 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
         # Assert
         self.assertEqual(bill.riba_supplier_company_bank_id, bank_account)
+
+    def test_duplicate_riba_emission_block(self):
+        """Verifica che non sia possibile emettere una RIBA
+        se ne esiste già una accreditata sulla fattura."""
+        # Set Service in Company Config
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        # Validate Invoice
+        self.invoice.action_post()
+        self.assertEqual(self.invoice.state, "posted")
+
+        # 1. Emissione e accredito prima RIBA
+        to_issue_action = self.env.ref("l10n_it_riba.action_riba_to_issue")
+        to_issue_model = self.env[to_issue_action.res_model]
+        to_issue_domain = safe_eval.safe_eval(to_issue_action.domain)
+        to_issue_records = (
+            to_issue_model.search(to_issue_domain) & self.invoice.line_ids
+        )
+
+        issue_wizard_context = {
+            "active_model": to_issue_records._name,
+            "active_ids": to_issue_records.ids,
+        }
+        issue_wizard = (
+            self.env["riba.issue"]
+            .with_context(**issue_wizard_context)
+            .create(
+                {
+                    "configuration_id": self.riba_config_incasso.id,
+                }
+            )
+        )
+
+        issue_result = issue_wizard.create_list()
+        riba_list = self.env[issue_result["res_model"]].browse(issue_result["res_id"])
+        riba_list.confirm()
+
+        credit_wizard = (
+            self.env["riba.credit"]
+            .with_context(
+                active_model="riba.slip",
+                active_ids=[riba_list.id],
+                active_id=riba_list.id,
+            )
+            .create({"bank_amount": 100, "expense_amount": 0})
+        )
+        credit_wizard.create_move()
+        self.assertEqual(riba_list.state, "credited")
+
+        # 2. Tentativo di nuova emissione su stessa fattura
+        with self.assertRaises(UserError) as error:
+            new_issue_wizard = (
+                self.env["riba.issue"]
+                .with_context(**issue_wizard_context)
+                .create(
+                    {
+                        "configuration_id": self.riba_config_incasso.id,
+                    }
+                )
+            )
+            new_issue_wizard.create_list()
+
+        self.assertIn(
+            "È già presente una RIBA accreditata", str(error.exception).lower()
+        )
