@@ -110,3 +110,22 @@ class AccountInvoice(models.Model):
                 )
         res = super(AccountInvoice, self).button_draft()
         return res
+
+    def create(self, vals_list):
+        if self.env["account.payment.term"].browse(
+            vals_list["invoice_payment_term_id"]
+        ).fatturapa_pm_id.code == "MP12" and vals_list.get("partner_bank_id"):
+            raise UserError(
+                _("It is not possible to set a partner bank with RIBA in payment mode")
+            )
+        return super(AccountInvoice, self).create(vals_list)
+
+    def write(self, vals_list):
+        if vals_list.get("partner_bank_id") and not vals_list.get("payment_mode_id"):
+            if self.invoice_payment_term_id.fatturapa_pm_id.code == "MP12":
+                raise UserError(
+                    _(
+                        "It is not possible to set a partner bank with RIBA in payment mode"
+                    )
+                )
+        return super(AccountInvoice, self).write(vals_list)
