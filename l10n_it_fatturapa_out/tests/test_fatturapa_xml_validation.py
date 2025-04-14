@@ -562,7 +562,7 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00011.xml")
 
-    def test_12_xml_export(self):
+    def test_indirizzo_spedizione_xml_export(self):
         invoicing_partner = self.env["res.partner"].create(
             {
                 "parent_id": self.res_partner_fatturapa_2.id,

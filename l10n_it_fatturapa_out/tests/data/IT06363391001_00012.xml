@@ -69,6 +69,15 @@
                 <ImportoTotaleDocumento>12.20</ImportoTotaleDocumento>
                 <Art73>SI</Art73>
             </DatiGeneraliDocumento>
+            <DatiTrasporto>
+                <IndirizzoResa>
+                    <Indirizzo>Via Roma, 1</Indirizzo>
+                    <CAP>16100</CAP>
+                    <Comune>Genova</Comune>
+                    <Provincia>AK</Provincia>
+                    <Nazione>IT</Nazione>
+                </IndirizzoResa>
+            </DatiTrasporto>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>

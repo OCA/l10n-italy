@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-<!--
+    <!--
 abstract templates per moduli
 
 sono definiti 'record' a livello fattura (account.invoice / account.move)
 e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
 -->
-        <template id="account_invoice_line_ritenuta"><t /></template>
-        <template id="account_invoice_it_dati_ritenuta"><t /></template>
-        <template id="account_invoice_it_dati_bollo"><t /></template>
-        <template id="account_invoice_it_dati_cassa_previdenziale"><t /></template>
-        <template id="account_invoice_it_dati_ddt"><t /></template>
-        <template id="account_invoice_it_dati_trasporto"><t /></template>
+    <template id="account_invoice_line_ritenuta"><t /></template>
+    <template id="account_invoice_it_dati_ritenuta"><t /></template>
+    <template id="account_invoice_it_dati_bollo"><t /></template>
+    <template id="account_invoice_it_dati_cassa_previdenziale"><t /></template>
+    <template id="account_invoice_it_dati_ddt"><t /></template>
+    <template id="account_invoice_it_dati_trasporto">
+        <t t-translation="off">
+            <t t-if="record.partner_id != record.partner_shipping_id">
+                <DatiTrasporto>
+                    <IndirizzoResa>
+                        <t t-set="indirizzo"><t
+                                t-if="record.partner_shipping_id.street2"
+                                t-out="record.partner_shipping_id.street + '\n' + record.partner_shipping_id.street2"
+                            /><t
+                                t-if="not record.partner_shipping_id.street2"
+                                t-out="record.partner_shipping_id.street"
+                            /></t>
+                        <Indirizzo t-out="encode_for_export(indirizzo, 60)" />
+                        <!--            <NumeroCivico t-out=""/>-->
+                        <CAP
+                            t-if="record.partner_shipping_id.zip"
+                            t-out="record.partner_shipping_id.zip"
+                        />
+                        <CAP t-else="" t-out="'00000'" />
+                        <Comune
+                            t-out="encode_for_export(record.partner_shipping_id.city, 60)"
+                        />
+                        <Provincia t-out="record.partner_shipping_id.state_id.code" />
+                        <Nazione
+                            t-out="record.partner_shipping_id.country_id.code or ''"
+                        />
+                    </IndirizzoResa>
+                </DatiTrasporto>
+            </t>
+        </t>
+    </template>
 
-        <template id="account_invoice_it_dati_documento_correlato">
-            <t t-translation="off">
+    <template id="account_invoice_it_dati_documento_correlato">
+        <t t-translation="off">
             <RiferimentoNumeroLinea t-if="doc.lineRef" t-out="doc.lineRef" />
             <IdDocumento t-if="doc.name" t-out="doc.name" />
             <Data t-if="doc.date" t-out="doc.date" />
@@ -22,10 +52,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
             <CodiceCommessaConvenzione t-if="doc.code" t-out="doc.code" />
             <CodiceCUP t-if="doc.cup" t-out="doc.cup" />
             <CodiceCIG t-if="doc.cig" t-out="doc.cig" />
-            </t>
-        </template>
-        <template id="account_invoice_it_dati_documenti_correlati">
-            <t t-translation="off">
+        </t>
+    </template>
+    <template id="account_invoice_it_dati_documenti_correlati">
+        <t t-translation="off">
             <t t-set="related_orders" t-value="record.related_documents.browse()" />
             <t t-set="related_contracts" t-value="record.related_documents.browse()" />
             <t t-set="related_agreements" t-value="record.related_documents.browse()" />
@@ -118,11 +148,11 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-call="l10n_it_fatturapa_out.account_invoice_it_dati_documento_correlato"
                 />
             </DatiFattureCollegate>
-            </t>
-        </template>
+        </t>
+    </template>
 
-        <template id="account_invoice_line_it_sconto_maggiorazione">
-            <t t-translation="off">
+    <template id="account_invoice_line_it_sconto_maggiorazione">
+        <t t-translation="off">
             <t t-set="importo" t-value="get_importo(line)" />
             <ScontoMaggiorazione t-if="line.discount != 0 or importo != 0">
                 <!-- [2.2.1.10] -->
@@ -137,11 +167,11 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     <Percentuale t-out="format_numbers_two(abs(line.discount))" />
                 </t>
             </ScontoMaggiorazione>
-            </t>
-        </template>
+        </t>
+    </template>
 
-        <template id="account_invoice_line_it_FatturaPA">
-            <t t-translation="off">
+    <template id="account_invoice_line_it_FatturaPA">
+        <t t-translation="off">
             <t
                 t-set="line_is_section_note"
                 t-value="line.display_type in ('line_section', 'line_note')"
@@ -224,18 +254,18 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     <RiferimentoData t-out="format_date(record.date)" />
                 </AltriDatiGestionali>
             </DettaglioLinee>
-            </t>
-        </template>
+        </t>
+    </template>
 
-        <template id="account_invoice_it_FatturaPA_sede">
-            <t t-translation="off">
+    <template id="account_invoice_it_FatturaPA_sede">
+        <t t-translation="off">
             <t t-set="indirizzo"><t
                     t-if="partner_id.street2"
                     t-out="partner_id.street + '\n' + partner_id.street2"
                 /><t t-if="not partner_id.street2" t-out="partner_id.street" /></t>
             <Indirizzo t-out="encode_for_export(indirizzo, 60)" />
             <!--            <NumeroCivico t-out=""/>-->
-<!-- XXX da controllare, if vecchio codice fa diversamente
+            <!-- XXX da controllare, if vecchio codice fa diversamente
             <CAP><t t-if="partner_id.country_id.code == 'IT'" t-out="partner_id.zip" /><t t-if="partner_id.country_id.code != 'IT'" t-out="'00000'" /></CAP>
 -->
             <CAP
@@ -256,10 +286,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 t-out="'EE'"
             />
             <Nazione t-out="partner_id.country_id.code" />
-            </t>
-        </template>
-        <template id="account_invoice_it_dati_trasmissione">
-            <t t-translation="off">
+        </t>
+    </template>
+    <template id="account_invoice_it_dati_trasmissione">
+        <t t-translation="off">
             <t t-set="transmitter" t-value="company_id.e_invoice_transmitter_id" />
             <DatiTrasmissione>
                 <IdTrasmittente>
@@ -276,26 +306,26 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-if="codice_destinatario"
                     t-out="codice_destinatario"
                 />
-            <ContattiTrasmittente>
-                <Telefono
+                <ContattiTrasmittente>
+                    <Telefono
                         t-if="format_phone(transmitter.phone)"
                         t-out="format_phone(transmitter.phone)"
                     />
-                <Telefono
+                    <Telefono
                         t-if="not format_phone(transmitter.phone) and format_phone(transmitter.mobile)"
                         t-out="format_phone(transmitter.mobile)"
                     />
-                <Email t-if="transmitter.email" t-out="transmitter.email" />
-            </ContattiTrasmittente>
+                    <Email t-if="transmitter.email" t-out="transmitter.email" />
+                </ContattiTrasmittente>
                 <PECDestinatario
                     t-if="codice_destinatario == '0000000' and partner_id.pec_destinatario"
                     t-out="partner_id.pec_destinatario"
                 />
             </DatiTrasmissione>
-            </t>
-        </template>
-        <template id="account_invoice_it_cedente_prestatore">
-            <t t-translation="off">
+        </t>
+    </template>
+    <template id="account_invoice_it_cedente_prestatore">
+        <t t-translation="off">
             <CedentePrestatore>
                 <DatiAnagrafici>
                     <t
@@ -393,10 +423,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     t-out="company_id.fatturapa_pub_administration_ref"
                 />
             </CedentePrestatore>
-            </t>
-        </template>
-        <template id="account_invoice_it_rappresentante_fiscale">
-            <t t-translation="off">
+        </t>
+    </template>
+    <template id="account_invoice_it_rappresentante_fiscale">
+        <t t-translation="off">
             <RappresentanteFiscale t-if="company_id.fatturapa_tax_representative">
                 <!--1.3-->
                 <DatiAnagrafici>
@@ -433,10 +463,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     </Anagrafica>
                 </DatiAnagrafici>
             </RappresentanteFiscale>
-            </t>
-        </template>
-        <template id="account_invoice_it_cessionario_committente">
-            <t t-translation="off">
+        </t>
+    </template>
+    <template id="account_invoice_it_cessionario_committente">
+        <t t-translation="off">
             <CessionarioCommittente>
                 <DatiAnagrafici>
                     <t
@@ -477,10 +507,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     </t>
                 </Sede>
             </CessionarioCommittente>
-            </t>
-        </template>
-        <template id="account_invoice_it_terzo_intermediario_soggetto_emittente">
-            <t t-translation="off">
+        </t>
+    </template>
+    <template id="account_invoice_it_terzo_intermediario_soggetto_emittente">
+        <t t-translation="off">
             <TerzoIntermediarioOSoggettoEmittente
                 t-if="company_id.fatturapa_sender_partner"
             >
@@ -515,14 +545,14 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                             t-if="company_id.fatturapa_sender_partner.eori_code"
                             t-out="company_id.fatturapa_sender_partner.eori_code"
                         />
-                   </Anagrafica>
+                    </Anagrafica>
                 </DatiAnagrafici>
             </TerzoIntermediarioOSoggettoEmittente>
-            </t>
-        </template>
+        </t>
+    </template>
 
-        <template id="account_invoice_it_fattura_elettronica_body">
-            <t t-translation="off">
+    <template id="account_invoice_it_fattura_elettronica_body">
+        <t t-translation="off">
             <t
                 t-set="currency"
                 t-value="record.currency_id or record.company_currency_id"
@@ -595,30 +625,30 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                         />
                     </t>
                     <t t-foreach="list(all_taxes[record.id].values())" t-as="tax_data">
-                       <DatiRiepilogo>
-                              <!--2.2.2-->
-                              <AliquotaIVA t-out="tax_data['AliquotaIVA']" />
-                              <Natura
+                        <DatiRiepilogo>
+                            <!--2.2.2-->
+                            <AliquotaIVA t-out="tax_data['AliquotaIVA']" />
+                            <Natura
                                 t-if="tax_data.get('Natura', False)"
                                 t-out="tax_data['Natura']"
                             />
-                              <!--                <SpeseAccessorie t-out=""/>-->
-                              <!--                <Arrotondamento t-out=""/>-->
-                              <ImponibileImporto
+                            <!--                <SpeseAccessorie t-out=""/>-->
+                            <!--                <Arrotondamento t-out=""/>-->
+                            <ImponibileImporto
                                 t-out="format_monetary(tax_data['ImponibileImporto'], euro)"
                             />
-                              <Imposta
+                            <Imposta
                                 t-out="format_monetary(tax_data['Imposta'], euro)"
                             />
-                                <EsigibilitaIVA
+                            <EsigibilitaIVA
                                 t-if="tax_data.get('EsigibilitaIVA', False)"
                                 t-out="tax_data['EsigibilitaIVA']"
                             />
-                                <RiferimentoNormativo
+                            <RiferimentoNormativo
                                 t-if="tax_data.get('RiferimentoNormativo', False)"
                                 t-out="encode_for_export(tax_data['RiferimentoNormativo'], 100)"
                             />
-                       </DatiRiepilogo>
+                        </DatiRiepilogo>
                     </t>
                 </DatiBeniServizi>
                 <!--                <DatiVeicoli>-->
@@ -697,10 +727,10 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     <Attachment t-out="doc_id.datas.decode()" />
                 </Allegati>
             </FatturaElettronicaBody>
-            </t>
-        </template>
-        <template id="account_invoice_it_FatturaPA_export">
-            <t t-translation="off">
+        </t>
+    </template>
+    <template id="account_invoice_it_FatturaPA_export">
+        <t t-translation="off">
             <ns1:FatturaElettronica
                 xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
                 t-att-versione="formato_trasmissione"
@@ -724,7 +754,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     <t
                         t-call="l10n_it_fatturapa_out.account_invoice_it_terzo_intermediario_soggetto_emittente"
                     />
-                <SoggettoEmittente
+                    <SoggettoEmittente
                         t-if="company_id.fatturapa_sender_partner"
                     >TZ</SoggettoEmittente>
                     <!--                    <SoggettoEmittente t-if="False" t-out="CC"/>-->
@@ -734,7 +764,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                         t-call="l10n_it_fatturapa_out.account_invoice_it_fattura_elettronica_body"
                     />
                 </t>
-                </ns1:FatturaElettronica>
-            </t>
-        </template>
+            </ns1:FatturaElettronica>
+        </t>
+    </template>
 </odoo>
