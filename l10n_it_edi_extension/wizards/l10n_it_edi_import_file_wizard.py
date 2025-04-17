@@ -4,9 +4,8 @@
 import base64
 import io
 import logging
+import os
 import zipfile
-
-from lxml import etree
 
 from odoo import fields, models
 from odoo.exceptions import UserError
@@ -29,66 +28,65 @@ class EInvoiceImportFileWizard(models.TransientModel):
         moves = self.env["account.move"]
 
         with zipfile.ZipFile(zip_io, "r") as zip_ref:
-            for filename in zip_ref.namelist():
-                with zip_ref.open(filename) as file:
-                    attachment_model = (
-                        self.env["ir.attachment"].sudo().with_company(company)
-                    )
-                    existing_attachment = attachment_model.search_count(
-                        [
-                            ("name", "=", filename),
-                            ("res_model", "=", "account.move"),
-                            ("res_field", "=", "l10n_it_edi_attachment_file"),
-                            ("company_id", "=", company.id),
-                        ],
-                        limit=1,
-                    )
+            for member in zip_ref.infolist():
+                if not member.is_dir():
+                    with zip_ref.open(member) as file:
+                        filename = os.path.basename(member.filename)
+                        attachment_model = (
+                            self.env["ir.attachment"].sudo().with_company(company)
+                        )
+                        existing_attachment = attachment_model.search_count(
+                            [
+                                ("name", "=", filename),
+                                ("res_model", "=", "account.move"),
+                                ("res_field", "=", "l10n_it_edi_attachment_file"),
+                                ("company_id", "=", company.id),
+                            ],
+                            limit=1,
+                        )
 
-                    if existing_attachment:
-                        message = f"E-invoice already exists: {filename}"
-                        _logger.warning(message)
-                        raise UserError(self.env._(message))
+                        if existing_attachment:
+                            message = f"E-invoice already exists: {filename}"
+                            _logger.warning(message)
+                            raise UserError(self.env._(message))
 
-                    content = file.read()
-                    attachment = attachment_model.create(
-                        {
-                            "name": filename,
-                            "raw": base64.encodebytes(content),
-                            "type": "binary",
-                        }
-                    )
+                        content = file.read()
+                        attachment = attachment_model.create(
+                            {
+                                "name": filename,
+                                "raw": content,
+                                "type": "binary",
+                            }
+                        )
 
-                    if not attachment._is_l10n_it_edi_import_file():
-                        _logger.info(f"Skipping {filename}, not an XML/P7M file")
-                        attachment.unlink()
-                        continue
+                        if not attachment._is_l10n_it_edi_import_file():
+                            _logger.info(f"Skipping {filename}, not an XML/P7M file")
+                            attachment.unlink()
+                            continue
 
-                    move = self.env["account.move"].with_company(company).create({})
-                    attachment.write(
-                        {
-                            "res_model": "account.move",
-                            "res_id": move.id,
-                            "res_field": "l10n_it_edi_attachment_file",
-                        }
-                    )
+                        for file_data in attachment._decode_edi_l10n_it_edi(
+                            filename, content
+                        ):
+                            move = (
+                                self.env["account.move"]
+                                .with_company(company)
+                                .create({})
+                            )
+                            attachment.write(
+                                {
+                                    "res_model": "account.move",
+                                    "res_id": move.id,
+                                    "res_field": "l10n_it_edi_attachment_file",
+                                }
+                            )
 
-                    move.with_context(
-                        account_predictive_bills_disable_prediction=True,
-                        no_new_invoice=True,
-                    ).message_post(attachment_ids=attachment.ids)
+                            move.with_context(
+                                account_predictive_bills_disable_prediction=True,
+                                no_new_invoice=True,
+                            ).message_post(attachment_ids=attachment.ids)
 
-                    file_data = {
-                        "filename": filename,
-                        "content": attachment.raw,
-                        "attachment": attachment,
-                        "xml_tree": etree.fromstring(content),
-                        "sort_weight": 100,
-                        "type": "binary",
-                    }
-
-                    _logger.info(f"Importing {filename}")
-                    move._l10n_it_edi_import_invoice(move, file_data, True)
-                    moves |= move
+                            move._l10n_it_edi_import_invoice(move, file_data, True)
+                            moves |= move
 
         return {
             "view_type": "form",

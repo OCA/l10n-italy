@@ -199,7 +199,7 @@ def _l10n_it_fatturapa_pre_migration(env):
             ),
             (
                 "account.move",
-                "l10n_it_edi_art73",
+                "l10n_edi_it_art73",
             ),
         ],
         [

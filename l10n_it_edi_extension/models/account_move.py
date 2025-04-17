@@ -1,8 +1,8 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import base64
-import datetime
+
+from datetime import datetime
 
 from lxml import etree
 
@@ -291,6 +291,7 @@ class AccountMoveInherit(models.Model):
             codice_fiscale = get_text(
                 body_tree, "//RappresentanteFiscale//CodiceFiscale"
             )
+            self = self.with_context(skip_create_partner=True)
             if tax_representative := self._l10n_it_edi_search_partner(
                 self.company_id, vat, codice_fiscale, ""
             ):
@@ -309,6 +310,7 @@ class AccountMoveInherit(models.Model):
             codice_fiscale = get_text(
                 body_tree, "//TerzoIntermediarioOSoggettoEmittente//CodiceFiscale"
             )
+            self = self.with_context(skip_create_partner=True)
             if intermediary := self._l10n_it_edi_search_partner(
                 self.company_id, vat, codice_fiscale, ""
             ):
@@ -321,6 +323,9 @@ class AccountMoveInherit(models.Model):
                     codice_fiscale,
                 ):
                     self.l10n_it_edi_intermediary_id = intermediary.id
+
+        if sender := get_text(body_tree, "//SoggettoEmittente"):
+            self.l10n_it_edi_sender = sender
 
     def _l10n_it_edi_get_extra_info(
         self, company, document_type, body_tree, incoming=True
@@ -427,20 +432,25 @@ class AccountMoveInherit(models.Model):
                 )
 
         vals = {
-            "vat": vat,
+            "vat": country_code + vat,
             "l10n_it_codice_fiscale": codice_fiscale,
             "is_company": is_company,
             "l10n_edi_it_eori_code": eori_code,
             "country_id": country_id,
         }
 
-        for field_name, xml_path in [
-            ("firstname", "//Nome"),
-            ("lastname", "//Cognome"),
-            ("name", "//Denominazione"),
-        ]:
-            if value := get_text(xml_tree, partner_section_xpath + xml_path):
-                vals[field_name] = value
+        if value := get_text(xml_tree, partner_section_xpath + "//Denominazione"):
+            vals["name"] = value
+        else:
+            vals["name"] = " ".join(
+                filter(
+                    None,
+                    [
+                        get_text(xml_tree, partner_section_xpath + "//Nome"),
+                        get_text(xml_tree, partner_section_xpath + "//Cognome"),
+                    ],
+                )
+            )
 
         return self.env["res.partner"].create(vals)
 
@@ -518,10 +528,12 @@ class AccountMoveInherit(models.Model):
         partner = super()._l10n_it_edi_search_partner(
             company, vat, codice_fiscale, email
         )
-        if not partner:
+        if not partner and not self.env.context.get("skip_create_partner"):
             try:
-                content = base64.decodebytes(self.l10n_it_edi_attachment_id.raw)
-                xml_tree = etree.fromstring(content)
+                edi_attachment = self.l10n_it_edi_attachment_id
+                xml_tree = edi_attachment._decode_edi_l10n_it_edi(
+                    edi_attachment.name, edi_attachment.raw
+                )[0]["xml_tree"]
             except Exception as e:
                 raise UserError(self.env._("Error parsing XML: %s") % str(e)) from e
 
