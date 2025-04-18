@@ -101,7 +101,6 @@ class WizardGiornaleReportlab(models.TransientModel):
         if self.daterange_id:
             date_start = fields.Date.to_date(self.daterange_id.date_start)
             date_end = fields.Date.to_date(self.daterange_id.date_end)
-
             if self.daterange_id.date_last_print:
                 date_last_print = fields.Date.to_date(self.daterange_id.date_last_print)
                 self.last_def_date_print = date_last_print
@@ -120,6 +119,22 @@ class WizardGiornaleReportlab(models.TransientModel):
 
             if self.last_def_date_print == self.daterange_id.date_end:
                 self.date_move_line_from_view = self.last_def_date_print
+
+    def get_progressive_debit_and_credit(self):
+        progressive_debit = 0
+        progressive_credit = 0
+        domain = [("date_end", "<=", self.daterange_id.date_start)]
+        date_range_model = self.env["date.range"]
+        last_daterange_id = date_range_model.search(domain).sorted(
+            "date_end", reverse=True
+        )
+        last_daterange_id = last_daterange_id.filtered(
+            lambda dr: dr.date_end.year == self.daterange_id.date_start.year
+        )
+        if last_daterange_id:
+            progressive_debit = last_daterange_id[0].progressive_debit
+            progressive_credit = last_daterange_id[0].progressive_credit
+        return progressive_debit, progressive_credit
 
     def get_grupped_line_reportlab_ids(self):
         wizard = self
@@ -318,7 +333,7 @@ class WizardGiornaleReportlab(models.TransientModel):
     def get_initial_balance_data_report_giornale(self):
         style_name = self.get_styles_report_giornale_line()["style_name"]
         style_number = self.get_styles_report_giornale_line()["style_number"]
-
+        progressive_debit, progressive_credit = self.get_progressive_debit_and_credit()
         initial_balance_data = [
             [
                 "",
@@ -327,8 +342,8 @@ class WizardGiornaleReportlab(models.TransientModel):
                 "",
                 "",
                 Paragraph(_("Initial Balance"), style_name),
-                Paragraph(formatLang(self.env, self.progressive_debit2), style_number),
-                Paragraph(formatLang(self.env, self.progressive_credit), style_number),
+                Paragraph(formatLang(self.env, progressive_debit), style_number),
+                Paragraph(formatLang(self.env, progressive_credit), style_number),
             ]
         ]
         return initial_balance_data
