@@ -18,8 +18,9 @@ class AppointmentCode(models.Model):
             elements = self.search(domain)
             if len(elements) > 1:
                 raise ValidationError(
-                    self.env._("The element with code %s already exists")
-                    % appointment_code.code
+                    self.env._(
+                        "The element with code %s already exists", appointment_code.code
+                    )
                 )
 
     code = fields.Char()

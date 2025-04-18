@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="view_boe_config_settings" model="ir.ui.view">
+        <field name="name">view.boe.config.setting</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <app name="account" position="inside">
+                <block name="bill_of_entries_settings" title="Bill of Entries">
+                    <setting
+                        company_dependent="1"
+                        help="Journal used for reconciliation of bill of entries"
+                    >
+                        <field
+                            name="bill_of_entry_journal_id"
+                            class="o_light_label"
+                            options="{'no_create': True}"
+                        />
+                    </setting>
+                    <setting
+                        help="Tax used in bill of entries generation, when product is not present"
+                    >
+                        <field
+                            name="bill_of_entry_tax_id"
+                            class="o_light_label"
+                            options="{'no_create': True}"
+                        />
+                    </setting>
+                    <setting help="Supplier used in bill of entries">
+                        <field name="bill_of_entry_partner_id" class="o_light_label" />
+                    </setting>
+                </block>
+            </app>
+        </field>
+    </record>
+</odoo>

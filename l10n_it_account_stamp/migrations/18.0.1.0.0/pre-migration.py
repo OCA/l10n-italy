@@ -74,6 +74,7 @@ def _rename_fields(env):
     )
 
 
+@openupgrade.migrate()
 def migrate(cr, version):
     env = api.Environment(cr, SUPERUSER_ID, {})
     _rename_fields(env)
