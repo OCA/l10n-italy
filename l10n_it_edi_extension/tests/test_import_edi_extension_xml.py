@@ -102,9 +102,17 @@ class TestFatturaPAXMLValidation(TestItEdi):
         self.assertEqual(move.partner_id.state_id.code, "SS")
         self.assertEqual(move.partner_id.country_id.code, "IT")
         self.assertEqual(move.partner_id.vat, "IT02780790107")
-        self.assertEqual(move.l10n_it_edi_tax_representative_id.name, "Rappresentante fiscale")
+        self.assertEqual(
+            move.l10n_it_edi_tax_representative_id.name, "Rappresentante fiscale"
+        )
         self.assertTrue(move.l10n_edi_it_art73)
-        for tag in ["DatiOrdineAcquisto", "DatiContratto", "DatiConvenzione", "DatiRicezione", "DatiTrasporto"]:
+        for tag in [
+            "DatiOrdineAcquisto",
+            "DatiContratto",
+            "DatiConvenzione",
+            "DatiRicezione",
+            "DatiTrasporto",
+        ]:
             self.assertTrue(
                 any(tag in str(body) for body in move.mapped("message_ids.body")),
                 f"'{tag}' not found in message bodies",

@@ -21,8 +21,7 @@ class IrAttachmentInherit(models.Model):
     def get_xml_string(self):
         if not self._is_l10n_it_edi_import_file():
             raise UserError(self.env._("Invalid xml %s.") % self.name)
-        content = base64.decodebytes(self.raw)
-        xml_string = self._decode_edi_l10n_it_edi(self.name, content)[0]["content"]
+        xml_string = self._decode_edi_l10n_it_edi(self.name, self.raw)[0]["content"]
         return xml_string
 
     def get_fattura_elettronica_preview(self):
