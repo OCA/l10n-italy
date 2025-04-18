@@ -6,7 +6,7 @@
                 href="/l10n_it_financial_statement_eu/static/src/css/report.css"
                 rel="stylesheet"
             />
-            <t t-raw="0" />
+            <t t-out="0" />
         </div>
         <div class="footer">
             <div class="row">

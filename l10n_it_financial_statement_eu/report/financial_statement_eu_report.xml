@@ -61,9 +61,9 @@
                         <t t-esc="form_data['fiscalcode']" />
                         <br />
                         Share capital Euro
-                        <t t-esc="form_data['rea_capital']" />
-                        - REA: <t t-esc="form_data['rea_office']" />-<t
-                        t-esc="form_data['rea_num']"
+                        <t t-esc="form_data['l10n_it_eco_index_share_capital']" />
+                        - REA: <t t-esc="form_data['l10n_it_eco_index_office']" />-<t
+                        t-esc="form_data['l10n_it_eco_index_number']"
                     />
                     </h6>
                     <br />

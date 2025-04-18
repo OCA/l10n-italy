@@ -21,7 +21,11 @@ class FinancialStatementEuXlsxReport(models.AbstractModel):
         sheet.write(0, 0, data["company_name"], st_bold18)
         sheet.set_row(0, 28)
         sheet.write(1, 0, data["address"] + " - " + data["city"])
-        sheet.write(2, 0, _("Share capital Euro ") + str(data["rea_capital"]))
+        sheet.write(
+            2,
+            0,
+            _("Share capital Euro ") + str(data["l10n_it_eco_index_share_capital"]),
+        )
         sheet.write(4, 0, data["name"], st_bold18)
         sheet.set_row(4, 28)
         sheet.write(
@@ -242,7 +246,7 @@ class FinancialStatementEuXBRLReport(models.AbstractModel):
         xbrl += self.get_xbrl_data_tag(
             "DatiAnagraficiCapitaleSociale",
             i_year,
-            financial_statement_form_data["rea_capital"],
+            financial_statement_form_data["l10n_it_eco_index_share_capital"],
             0,
         )
         xbrl += self.get_xbrl_data_tag(
@@ -251,7 +255,7 @@ class FinancialStatementEuXBRLReport(models.AbstractModel):
         xbrl += self.get_xbrl_data_tag(
             "DatiAnagraficiCodiceCciaa",
             i_year,
-            financial_statement_form_data["rea_office"],
+            financial_statement_form_data["l10n_it_eco_index_office"],
         )
         xbrl += self.get_xbrl_data_tag(
             "DatiAnagraficiPartitaIva",
@@ -266,22 +270,22 @@ class FinancialStatementEuXBRLReport(models.AbstractModel):
         xbrl += self.get_xbrl_data_tag(
             "DatiAnagraficiNumeroRea",
             i_year,
-            financial_statement_form_data["rea_office"]
+            financial_statement_form_data["l10n_it_eco_index_office"]
             + " "
-            + financial_statement_form_data["rea_num"],
+            + financial_statement_form_data["l10n_it_eco_index_number"],
         )
         xbrl += self.get_xbrl_data_tag("DatiAnagraficiFormaGiuridica", i_year, "")
         xbrl += self.get_xbrl_data_tag(
             "DatiAnagraficiSettoreAttivitaPrevalenteAteco", i_year, ""
         )
-        if self.env.company.rea_liquidation_state == "LS":
+        if self.env.company.l10n_it_eco_index_liquidation_state == "LS":
             tmp_s = "true"
         else:
             tmp_s = "false"
         xbrl += self.get_xbrl_data_tag(
             "DatiAnagraficiSocietaLiquidazione", i_year, tmp_s
         )
-        if self.env.company.rea_member_type == "SU":
+        if self.env.company.l10n_it_eco_index_sole_shareholder == "SU":
             tmp_s = "true"
         else:
             tmp_s = "false"

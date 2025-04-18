@@ -72,9 +72,9 @@ class CreateFinancialStatementWizard(models.TransientModel):
     company_name = fields.Char()
     address = fields.Char()
     city = fields.Char()
-    rea_office = fields.Char(string="REA office")
-    rea_num = fields.Char(string="REA number")
-    rea_capital = fields.Float(string="Share Capital")
+    l10n_it_eco_index_office = fields.Char(string="REA office")
+    l10n_it_eco_index_number = fields.Char(string="REA number")
+    l10n_it_eco_index_share_capital = fields.Float(string="Share Capital")
     fiscalcode = fields.Char(string="Fiscal Code")
     vat_code = fields.Char(string="VAT number")
     vat_code_nation = fields.Char(string="VAT number nation")
@@ -117,9 +117,13 @@ class CreateFinancialStatementWizard(models.TransientModel):
         self.company_name = self.env.company.name
         self.address = self.env.company.street
         self.city = self.env.company.zip + " " + self.env.company.city
-        self.rea_office = self.env.company.l10n_it_eco_index_office.code or ""
-        self.rea_num = self.env.company.l10n_it_eco_index_number or ""
-        self.rea_capital = self.env.company.l10n_it_eco_index_share_capital
+        self.l10n_it_eco_index_office = (
+            self.env.company.l10n_it_eco_index_office.code or ""
+        )
+        self.l10n_it_eco_index_number = self.env.company.l10n_it_eco_index_number or ""
+        self.l10n_it_eco_index_share_capital = (
+            self.env.company.l10n_it_eco_index_share_capital
+        )
         self.fiscalcode = self.env.company.l10n_it_codice_fiscale
         self.vat_code = self.env.company.vat or ""
         self.vat_code_nation = ""
