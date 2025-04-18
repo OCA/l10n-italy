@@ -28,7 +28,7 @@
                     <t t-set="tax_code_type" t-value="'credit'" />
                     <t t-set="tax_code_section" t-value="'purchase'" />
                     <t
-                        t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"
+                        t-call="l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_tax_code"
                     />
 
                     <!-- Sale -->
@@ -39,7 +39,7 @@
                     <t t-set="tax_code_type" t-value="'debit'" />
                     <t t-set="tax_code_section" t-value="'sale'" />
                     <t
-                        t-call="account_vat_period_end_statement.report_vatperiodendstatement_tax_code"
+                        t-call="l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_tax_code"
                     />
                 </t>
 
@@ -96,7 +96,11 @@
                     <!-- tot statement -->
                     <tr>
                         <td class="text-start">
-                            <strong>Total Statement</strong>
+                            <strong> Total Statement <t
+                                t-if="total_statement >= 0"
+                            >(debit)</t>
+                                <t t-else="">(credit)</t>
+                            </strong>
                         </td>
                         <td class="text-end">
                             <strong>
@@ -108,7 +112,7 @@
 
                 <t t-set="total_to_pay" t-value="(total_statement)" />
                 <t
-                    t-call="account_vat_period_end_statement.report_vat_period_end_statement_to_pay"
+                    t-call="l10n_it_account_vat_period_end_settlement.report_vat_period_end_statement_to_pay"
                 />
 
                 <!-- payment info -->
@@ -129,9 +133,11 @@
                         </t>
                         <tr>
                             <td colspan="2">
-                               Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.
-Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE
-                               </td>
+                                Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE
+                                in Italia, Beni FUE in Italia, Cell., Microproc.
+                                Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE,
+                                Rev.Charge UE, Cell. UE, Microproc. UE
+                            </td>
                         </tr>
                     </table>
                 </t>
@@ -146,8 +152,7 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
             <tr>
                 <td />
                 <td class="text-start">Previous credit vat</td>
-                <td class="text-end">-
-                    <span
+                <td class="text-end">- <span
                     t-esc="formatLang(env, statement.previous_credit_vat_amount)"
                 />
                 </td>
@@ -191,8 +196,9 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
             <tr>
                 <td />
                 <td class="text-start">Tax credits</td>
-                <td class="text-end">-
-                    <span t-esc="formatLang(env, statement.tax_credit_amount)" />
+                <td class="text-end">- <span
+                    t-esc="formatLang(env, statement.tax_credit_amount)"
+                />
                 </td>
                 <!-- sum -->
                 <t
@@ -203,16 +209,15 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
             <!-- advance -->
             <tr>
                 <td />
-                <td class="text-start">
-                    Down payment
-                    <t t-if="statement.advance_computation_method">
-                        &amp;nbsp;(<span
+                <td class="text-start"> Down payment <t
+                    t-if="statement.advance_computation_method"
+                > &amp;nbsp;(<span
                     t-field="statement.advance_computation_method"
-                />)
-                    </t>
+                />) </t>
                 </td>
-                <td class="text-end">-
-                    <span t-esc="formatLang(env, statement.advance_amount)" />
+                <td class="text-end">- <span
+                    t-esc="formatLang(env, statement.advance_amount)"
+                />
                 </td>
                 <!-- sum -->
                 <t
@@ -402,7 +407,7 @@ Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell.
                 />
                 <t t-set="l10n_it_count_fiscal_year" t-value="statement.fiscal_year" />
                 <t
-                    t-call="account_vat_period_end_statement.report_vatperiodendstatement_document"
+                    t-call="l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_document"
                 />
             </t>
         </t>

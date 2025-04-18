@@ -319,7 +319,8 @@ class TestTax(TestVATStatementCommon):
 
         # Act
         report_content, report_type = self.env["ir.actions.report"]._render_qweb_html(
-            "account_vat_period_end_statement.report_vat_statement", statement.ids
+            "l10n_it_account_vat_period_end_settlement.report_vat_statement",
+            statement.ids,
         )
 
         # Assert
