@@ -259,6 +259,8 @@
                     <t t-set="tot_tax" t-value="0" />
                     <t t-set="tot_ded" t-value="0" />
                     <t t-set="tot_unded" t-value="0" />
+                    <t t-set="tot_deb" t-value="0" />
+                    <t t-set="tot_cre" t-value="0" />
                     <div style="page-break-inside: avoid;">
                         <table style="width:100%;">
                             <tr>
@@ -285,6 +287,14 @@
                                                 <th
                                                     class="right_without_line_bold"
                                                 >Non-Deductible</th>
+                                                <!-- Il credito IVA è in dare -->
+                                                <th
+                                                    class="right_without_line_bold"
+                                                >Credit</th>
+                                                <!-- Il debito IVA è in avere -->
+                                                <th
+                                                    class="right_without_line_bold"
+                                                >Debit</th>
                                             </tr>
                                         </thead>
                                         <t
@@ -311,6 +321,14 @@
                                                 t-set="tot_unded"
                                                 t-value="tot_unded + tax_code_tuple[4]"
                                             />
+                                            <t
+                                                t-set="tot_deb"
+                                                t-value="tot_deb + tax_code_tuple[5]"
+                                            />
+                                            <t
+                                                t-set="tot_cre"
+                                                t-value="tot_cre + tax_code_tuple[6]"
+                                            />
                                             <tr>
                                                 <td
                                                     class="left_without_line"
@@ -331,6 +349,14 @@
                                                 <td
                                                     class="right_without_line"
                                                     t-esc="formatLang(env, tax_code_tuple[4])"
+                                                />
+                                                <td
+                                                    class="right_without_line"
+                                                    t-esc="formatLang(env, tax_code_tuple[5])"
+                                                />
+                                                <td
+                                                    class="right_without_line"
+                                                    t-esc="formatLang(env, tax_code_tuple[6])"
                                                 />
                                             </tr>
                                         </t>
@@ -353,6 +379,14 @@
                                             <td
                                                 class="right_without_line_bold"
                                                 t-esc="formatLang(env, tot_unded)"
+                                            />
+                                            <td
+                                                class="right_without_line_bold"
+                                                t-esc="formatLang(env, tot_deb)"
+                                            />
+                                            <td
+                                                class="right_without_line_bold"
+                                                t-esc="formatLang(env, tot_cre)"
                                             />
                                         </tr>
                                     </table>
