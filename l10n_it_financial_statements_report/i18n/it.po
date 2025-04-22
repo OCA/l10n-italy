@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-13 14:52+0000\n"
-"PO-Revision-Date: 2024-11-14 17:06+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2025-04-22 10:23+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
@@ -233,7 +233,7 @@ msgstr "Resoconto QWeb del bilancio contabile"
 #. module: l10n_it_financial_statements_report
 #: model:ir.model,name:l10n_it_financial_statements_report.model_report_l10n_it_financial_statements_report_report_pdf
 msgid "Financial Statements QWeb Report PDF"
-msgstr ""
+msgstr "Resoconto PDF QWeb del bilancio contabile"
 
 #. module: l10n_it_financial_statements_report
 #: model:ir.actions.act_window,name:l10n_it_financial_statements_report.action_financial_statements_wizard
