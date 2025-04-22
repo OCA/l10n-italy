@@ -11,7 +11,8 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
-        "account_vat_period_end_statement",
+        #"account_vat_period_end_statement",
+	"l10n_it_account_vat_period_end_settlement",
         "l10n_it_appointment_code",
         "l10n_it_edi",
     ],
