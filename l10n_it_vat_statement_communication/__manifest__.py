@@ -19,9 +19,9 @@
     "data": [
         "security/ir.model.access.csv",
         "views/comunicazione_liquidazione.xml",
-        "views/config.xml",
-        "views/account.xml",
-        "wizard/export_file_view.xml",
+        #"views/config.xml",
+        #"views/account.xml",
+        #"wizard/export_file_view.xml",
         "security/security.xml",
     ],
     "installable": True,
