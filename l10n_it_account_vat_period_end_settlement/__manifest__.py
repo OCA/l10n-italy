@@ -34,7 +34,7 @@
     "assets": {
         "web.assets_backend": [
             "l10n_it_account_vat_period_end_settlement/static/src/css/"
-            "l10n_it_account_vat_period_end_settlement.css",
+            "account_vat_period_end_settlement.css",
         ],
     },
     "external_dependencies": {
