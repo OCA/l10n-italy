@@ -12,7 +12,7 @@ from odoo.tools.misc import formatLang
 
 
 class VatPeriodEndStatementReport(models.AbstractModel):
-    _name = "report.account_vat_period_end_statement.vat_statement"
+    _name = "report.l10n_it_account_vat_period_end_settlement.vat_statement"
     _description = "VAT Statement report"
 
     @api.model
