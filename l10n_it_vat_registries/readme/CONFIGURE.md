@@ -22,6 +22,9 @@ o 'corrispettivi'. Per associare un registro contabile a un registro
 IVA, aprire il registro tramite Contabilità -\> Configurazione -\>
 Contabilità -\> Registri e impostare il campo "Registro IVA".
 
+Per le operazioni in inversione contabile è importante impostare
+"Includere registrazioni inversione contabile" nel registro IVA vendite.
+
 Se non ci sono movimenti contabili da stampare, la stampa viene generata
 con totale zero.
 
@@ -46,6 +49,9 @@ registries you can configure VAT registries, like 'Sales', 'Purchases'
 or 'corrispettivi'. In order to link a journal to a VAT registry, open
 journal by Accounting -\> Configuration -\> Accounting -\> Journals and
 set the 'VAT registry' field.
+
+For reverse charge operations it is important to set
+"Include reverse charge moves" in sales VAT registry
 
 If there are no account moves to be printed, the report is printed with
 total equal to zero.
