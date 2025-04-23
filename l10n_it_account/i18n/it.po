@@ -36,39 +36,15 @@ msgstr ""
 "                    <span class=\"page\"/>"
 
 #. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_account
-msgid "Account"
-msgstr "Conto"
-
-#. module: l10n_it_account
-#: model:ir.model,name:l10n_it_account.model_account_group
-msgid "Account Group"
-msgstr "Gruppo contabile"
-
-#. module: l10n_it_account
-#: model_terms:ir.ui.view,arch_db:l10n_it_account.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_account.view_partner_property_form
 msgid "Accounting"
 msgstr "Contabilità"
 
 #. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_ids
-msgid "Accounts"
-msgstr "Conti"
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_account__account_balance_sign
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_group__account_balance_sign
-msgid "Balance sign"
-msgstr "Segno del saldo"
-
-#. module: l10n_it_account
-#. odoo-python
-#: code:addons/l10n_it_account/models/account_account.py:0
-#, python-format
-msgid "Balance sign's value can only be 1 or -1."
-msgstr "Il valore del segno per il saldo può essere solo 1 o -1."
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__credit_balance
+msgid "Credit Balance"
+msgstr ""
 
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_type_action_accounting
@@ -81,6 +57,11 @@ msgid "Date Ranges"
 msgstr "Intervalli date"
 
 #. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__debit_balance
+msgid "Debit Balance"
+msgstr ""
+
+#. module: l10n_it_account
 #: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__deductible_balance
 msgid "Deductible Balance"
 msgstr "Saldo deducibile"
@@ -89,18 +70,6 @@ msgstr "Saldo deducibile"
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_generator_action
 msgid "Generate Date Ranges"
 msgstr "Generazione intervalli date"
-
-#. module: l10n_it_account
-#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__cee_type
-msgid "Include in VAT register"
-msgstr "Includere nel registro IVA"
-
-#. module: l10n_it_account
-#. odoo-python
-#: code:addons/l10n_it_account/models/account_group.py:0
-#, python-format
-msgid "Incoherent balance signs for '{}' and its subgroups."
-msgstr "Segni del saldo incoerenti per \"{}\" e i sottogruppi."
 
 #. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_base_language_install
@@ -128,16 +97,6 @@ msgid "Parent Taxes"
 msgstr "Imposte padre"
 
 #. module: l10n_it_account
-#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__purchase
-msgid "Purchase"
-msgstr "Acquisto"
-
-#. module: l10n_it_account
-#: model:ir.model.fields.selection,name:l10n_it_account.selection__account_tax__cee_type__sale
-msgid "Sale"
-msgstr "Vendita"
-
-#. module: l10n_it_account
 #: model:ir.model,name:l10n_it_account.model_account_tax
 msgid "Tax"
 msgstr "Imposta"
@@ -147,14 +106,42 @@ msgstr "Imposta"
 msgid "Undeductible Balance"
 msgstr "Saldo non deducibile"
 
-#. module: l10n_it_account
-#: model:ir.model.fields,help:l10n_it_account.field_account_tax__cee_type
-msgid ""
-"Use in the case of tax with 'VAT integration'. This specifies the VAT "
-"register (sales / purchases) where the tax must be computed."
-msgstr ""
-"Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
-"registro IVA (vendite / acquisti) nel quale deve essere calcolata l'imposta."
+#~ msgid "Account"
+#~ msgstr "Conto"
+
+#~ msgid "Account Group"
+#~ msgstr "Gruppo contabile"
+
+#~ msgid "Accounts"
+#~ msgstr "Conti"
+
+#~ msgid "Balance sign"
+#~ msgstr "Segno del saldo"
+
+#, python-format
+#~ msgid "Balance sign's value can only be 1 or -1."
+#~ msgstr "Il valore del segno per il saldo può essere solo 1 o -1."
+
+#~ msgid "Include in VAT register"
+#~ msgstr "Includere nel registro IVA"
+
+#, python-format
+#~ msgid "Incoherent balance signs for '{}' and its subgroups."
+#~ msgstr "Segni del saldo incoerenti per \"{}\" e i sottogruppi."
+
+#~ msgid "Purchase"
+#~ msgstr "Acquisto"
+
+#~ msgid "Sale"
+#~ msgstr "Vendita"
+
+#~ msgid ""
+#~ "Use in the case of tax with 'VAT integration'. This specifies the VAT "
+#~ "register (sales / purchases) where the tax must be computed."
+#~ msgstr ""
+#~ "Utilizzare nel caso di imposta per \"integrazione IVA\". Specifica il "
+#~ "registro IVA (vendite / acquisti) nel quale deve essere calcolata "
+#~ "l'imposta."
 
 #~ msgid ""
 #~ "<br/>\n"

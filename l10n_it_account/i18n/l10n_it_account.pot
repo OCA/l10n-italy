@@ -34,6 +34,11 @@ msgid "Accounting"
 msgstr ""
 
 #. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__credit_balance
+msgid "Credit Balance"
+msgstr ""
+
+#. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_type_action_accounting
 msgid "Date Range Types"
 msgstr ""
@@ -41,6 +46,11 @@ msgstr ""
 #. module: l10n_it_account
 #: model:ir.ui.menu,name:l10n_it_account.menu_date_range_action_accounting
 msgid "Date Ranges"
+msgstr ""
+
+#. module: l10n_it_account
+#: model:ir.model.fields,field_description:l10n_it_account.field_account_tax__debit_balance
+msgid "Debit Balance"
 msgstr ""
 
 #. module: l10n_it_account
