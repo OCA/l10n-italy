@@ -33,3 +33,9 @@ class AccountTaxRegistry(models.Model):
         required=True,
     )
     show_full_contact_addess = fields.Boolean()
+    include_rc_moves = fields.Boolean(
+        string="Include reverse charge moves",
+    )
+    rc_journal_ids = fields.One2many(
+        "account.journal", "rc_tax_registry_id", "RC Journals", readonly=True
+    )

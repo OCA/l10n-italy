@@ -12,3 +12,8 @@ class AccountJournal(models.Model):
         "wizard, you will be able to select the registry in order to load"
         " that group of journals",
     )
+    rc_tax_registry_id = fields.Many2one(
+        "account.tax.registry",
+        "Customer VAT registry for RC",
+        help="Customer VAT registry for reverse charge operations",
+    )
