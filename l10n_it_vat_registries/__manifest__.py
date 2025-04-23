@@ -17,6 +17,7 @@
         "base_setup",
         "account",
         "l10n_it_account",
+        "l10n_it_edi",
         "web",
         "account_tax_balance",
         "date_range",

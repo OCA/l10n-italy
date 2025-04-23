@@ -33,11 +33,22 @@ class WizardRegistroIva(models.TransientModel):
     )
     journal_ids = fields.Many2many(
         "account.journal",
-        "registro_iva_journals_rel",
+        "wizard_vat_registries_journals_rel",
+        "wizard_id",
         "journal_id",
-        "registro_id",
         string="Journals",
         help="Select journals you want retrieve documents from",
+    )
+    include_rc_moves = fields.Boolean(
+        string="Include reverse charge moves",
+    )
+    rc_journal_ids = fields.Many2many(
+        "account.journal",
+        "wizard_vat_registries_rc_journals_rel",
+        "wizard_id",
+        "journal_id",
+        string="Reverse charge journals",
+        help="Select journals you want retrieve reverse charge documents from",
     )
     message = fields.Char(size=64, readonly=True)
     only_totals = fields.Boolean(string="Prints only totals")
@@ -52,6 +63,8 @@ class WizardRegistroIva(models.TransientModel):
         self.layout_type = self.tax_registry_id.layout_type
         self.entry_order = self.tax_registry_id.entry_order
         self.show_full_contact_addess = self.tax_registry_id.show_full_contact_addess
+        self.include_rc_moves = self.tax_registry_id.include_rc_moves
+        self.rc_journal_ids = self.tax_registry_id.rc_journal_ids
 
     @api.onchange("date_range_id")
     def on_change_date_range_id(self):
@@ -72,6 +85,15 @@ class WizardRegistroIva(models.TransientModel):
             ("state", "=", "posted"),
         ]
 
+    def _include_rc_journals(self):
+        if (
+            self.include_rc_moves
+            and self.rc_journal_ids
+            and self.layout_type == "customer"
+        ):
+            return True
+        return False
+
     def _get_move_ids(self, wizard):
         MAPPING = {
             "journal_date_name": "journal_id, date, name",
@@ -82,6 +104,26 @@ class WizardRegistroIva(models.TransientModel):
             self._get_move_ids_domain(),
             order=order,
         )
+        if wizard._include_rc_journals():
+            LAMBDA_MAPPING = {
+                "journal_date_name": lambda m: (m.journal_id, m.date, m.name),
+                "date_name": lambda m: (m.date, m.name),
+            }
+            order = LAMBDA_MAPPING[wizard.entry_order]
+            rc_moves = (
+                self.env["account.move"]
+                .search(
+                    [
+                        ("date", ">=", wizard.from_date),
+                        ("date", "<=", wizard.to_date),
+                        ("journal_id", "in", [j.id for j in wizard.rc_journal_ids]),
+                        ("state", "=", "posted"),
+                    ]
+                )
+                .filtered(lambda m: m.l10n_it_edi_is_self_invoice)
+            )
+            moves |= rc_moves
+            moves = moves.sorted(order)
         return moves.ids
 
     def print_registro(self):
@@ -100,6 +142,8 @@ class WizardRegistroIva(models.TransientModel):
         datas_form["from_date"] = wizard.from_date
         datas_form["to_date"] = wizard.to_date
         datas_form["journal_ids"] = [j.id for j in wizard.journal_ids]
+        if wizard._include_rc_journals():
+            datas_form["rc_journal_ids"] = [j.id for j in wizard.rc_journal_ids]
         datas_form["fiscal_page_base"] = wizard.fiscal_page_base
         datas_form["registry_type"] = wizard.layout_type
         datas_form["year_footer"] = wizard.year_footer

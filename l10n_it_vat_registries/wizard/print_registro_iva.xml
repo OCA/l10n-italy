@@ -32,11 +32,29 @@
                         height="250"
                         domain="[('type', 'in', ('sale','purchase'))]"
                     />
-                    <group string="Layout">
-                        <field name="layout_type" />
-                        <field name="show_full_contact_addess" />
-                        <field name="only_totals" />
-                        <field name="fiscal_page_base" />
+                    <group string="Layout" colspan="2">
+                        <group colspan="2">
+                            <field name="layout_type" />
+                        </group>
+                        <group>
+                            <field
+                                name="include_rc_moves"
+                                invisible="layout_type != 'customer'"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="rc_journal_ids"
+                                domain="[('type', '=', 'purchase')]"
+                                invisible="not include_rc_moves or layout_type != 'customer'"
+                                widget="many2many_tags"
+                            />
+                        </group>
+                        <group colspan="2">
+                            <field name="show_full_contact_addess" />
+                            <field name="only_totals" />
+                            <field name="fiscal_page_base" />
+                        </group>
                     </group>
                     <field name="message" nolabel="1" colspan="2" />
                 </group>

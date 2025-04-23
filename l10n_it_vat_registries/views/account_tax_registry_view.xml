@@ -13,6 +13,17 @@
                 </group>
                 <separator string="Journals" />
                 <field name="journal_ids" />
+                <separator string="RC Journals" />
+                <group>
+                    <field name="include_rc_moves" />
+                </group>
+                <group>
+                    <field
+                        name="rc_journal_ids"
+                        invisible="not include_rc_moves"
+                        widget="many2many_tags"
+                    />
+                </group>
             </form>
         </field>
     </record>
