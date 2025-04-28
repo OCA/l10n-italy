@@ -371,26 +371,189 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Production/Stable" src="https://img.shields.io/badge/maturity-Production%2FStable-green.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_extension"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_edi_extension"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p><strong>Italiano</strong></p>
-<p>Questo modulo aggiunge funzionalità basi per gestire le fatture
-elettroniche.</p>
+<p>Questo modulo estende le funzionalità standard della fatturazione
+elettronica italiana di Odoo, introducendo strumenti utili come
+l’anteprima XML, la gestione facilitata delle date per le fatture
+differite e una maggiore flessibilità nella numerazione e
+nell’esportazione.</p>
+<p>Le funzionalità principali incluse sono:</p>
+<ol class="arabic simple">
+<li>Anteprima e Download del file XML:</li>
+</ol>
+<ul class="simple">
+<li>Aggiunge un pulsante (“Preview XML”) direttamente nel form della
+fattura.</li>
+<li>Questo pulsante permette di visualizzare un’anteprima del file XML
+della fattura elettronica prima dell’invio effettivo.</li>
+<li>Dalla stessa finestra di anteprima, è possibile scaricare il file XML
+generato.</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>Rigenerazione Numero Fattura (se non inviata):</li>
+</ol>
+<ul class="simple">
+<li>Se una fattura non è ancora stata inviata allo SDI (Sistema di
+Interscambio), riportandola in bozza e riconvalidandola, il modulo
+permette di rigenerare il numero progressivo della fattura se
+necessario (ad esempio, se nel frattempo sono state emesse altre
+fatture).</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li>Gestione Data Fattura per Fatture Differite:</li>
+</ol>
+<ul class="simple">
+<li>Offre un wizard (accessibile dal menu “Azioni” su una selezione di
+fatture in stato “Bozza” o “Convalidato”) per impostare la data della
+fattura come l’ultimo giorno del mese del DDT (Documento di
+Trasporto) associato. Utile per la creazione di fatture differite a
+fine mese.</li>
+</ul>
+<ol class="arabic simple" start="4">
+<li>Filtro Data nell’Export:</li>
+</ol>
+<ul class="simple">
+<li>Modifica il wizard standard di esportazione massiva delle fatture
+elettroniche (l10n_it_edi.wizard_export_fatturapa).</li>
+<li>Fa sì che il filtro per data utilizzato nel wizard si basi sulla Data
+Fattura (invoice_date) invece che sulla Data Contabile (date).</li>
+</ul>
 <p>&lt;<a class="reference external" href="https://www.fatturapa.gov.it">https://www.fatturapa.gov.it</a>&gt;</p>
 <p><strong>English</strong></p>
-<p>This module adds base feature to handle e-invoice.</p>
+<p>This module extends Odoo standard Italian electronic invoicing
+functionality, introducing useful tools such as XML preview, simplified
+date management for deferred invoices and greater flexibility in
+numbering and exporting.</p>
+<p>The main features included are:</p>
+<ol class="arabic simple">
+<li>XML File Preview and Download:</li>
+</ol>
+<ul class="simple">
+<li>Adds a button (“Preview XML”) directly in the invoice form.</li>
+<li>This button allows you to preview the electronic invoice XML file
+before actual submission.</li>
+<li>From the same preview window, you can download the generated XML
+file.</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>Invoice Number Regeneration (if not sent):</li>
+</ol>
+<ul class="simple">
+<li>If an invoice has not yet been sent to SDI (Exchange System), by
+setting it back to draft and revalidating it, the module allows
+regenerating the progressive invoice number if necessary (for
+example, if other invoices have been issued in the meantime).</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li>Invoice Date Management for Deferred Invoices:</li>
+</ol>
+<ul class="simple">
+<li>Provides a wizard (accessible from the “Actions” menu on a selection
+of invoices in “Draft” or “Validated” status) to set the invoice date
+as the last day of the month of the associated DDT (Transport
+Document). Useful for creating end-of-month deferred invoices.</li>
+</ul>
+<ol class="arabic simple" start="4">
+<li>Date Filter in Export:</li>
+</ol>
+<ul class="simple">
+<li>Modifies the standard mass export wizard for electronic invoices
+(l10n_it_edi.wizard_export_fatturapa).</li>
+<li>Makes the date filter used in the wizard based on Invoice Date
+(invoice_date) instead of Accounting Date (date).</li>
+</ul>
 <p>&lt;<a class="reference external" href="https://www.fatturapa.gov.it">https://www.fatturapa.gov.it</a>&gt;</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-1">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-2">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-3">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-4">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-5">Maintainers</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
+<p><strong>Italiano</strong></p>
+<p>Non è necessaria alcuna configurazione specifica per
+l10n_it_edi_extension: una volta installato, le sue funzionalità sono
+attive. Tuttavia, è fondamentale capire che questo modulo è
+un’estensione e si basa su altri moduli preesistenti e sulla
+configurazione generale di Odoo per la localizzazione italiana e la
+fatturazione elettronica. Quindi, affinché le funzionalità di questo
+modulo siano utilizzabili, è necessario che:</p>
+<ol class="arabic simple">
+<li>Siano installati e configurati i moduli dipendenti:</li>
+</ol>
+<ul class="simple">
+<li>account: Il modulo base della contabilità di Odoo deve essere
+installato e configurato (piano dei conti, tasse, giornali contabili,
+ecc.).</li>
+<li>l10n_it_edi: Il modulo principale per la fatturazione elettronica
+italiana deve essere installato e correttamente configurato. Questo
+include:<ul>
+<li>Configurazione dei dati aziendali (partita IVA, codice fiscale,
+regime fiscale, ecc.).</li>
+<li>Configurazione dei registri contabili per l’emissione delle
+fatture elettroniche (indicando il formato FatturaPA/Elettronica).</li>
+<li>Configurazione delle sequenze dedicate per la numerazione delle
+fatture elettroniche.</li>
+<li>Eventuale configurazione delle credenziali SDI se si utilizza
+l’invio diretto tramite Odoo (se supportato dalla configurazione
+generale).</li>
+</ul>
+</li>
+</ul>
+<p>Le funzionalità aggiunte da l10n_it_edi_extension si integrano
+automaticamente nell’interfaccia esistente:</p>
+<ul class="simple">
+<li>Il pulsante “Preview XML” apparirà nel form della fattura.</li>
+<li>L’opzione per impostare la data a fine mese DDT sarà disponibile nel
+menu “Azioni” delle fatture selezionate.</li>
+<li>Il filtro data nel wizard di esportazione userà automaticamente la
+data fattura.</li>
+</ul>
+<p><strong>English</strong></p>
+<p>No specific configuration is required for l10n_it_edi_extension: once
+installed, its features are active. However, it’s essential to
+understand that this module is an extension and relies on other
+pre-existing modules and Odoo general configuration for Italian
+localization and electronic invoicing. Therefore, for this module’s
+features to be usable, it is necessary that:</p>
+<ol class="arabic simple">
+<li>The dependent modules are installed and configured:</li>
+</ol>
+<ul class="simple">
+<li>account: Odoo’s basic accounting module must be installed and
+configured (chart of accounts, taxes, journals, etc.).</li>
+<li>l10n_it_edi: The main module for Italian electronic invoicing must be
+installed and properly configured. This includes:<ul>
+<li>Company data configuration (VAT number, fiscal code, tax regime,
+etc.).</li>
+<li>Configuration of accounting journals for issuing electronic
+invoices (indicating FatturaPA/Electronic format).</li>
+<li>Configuration of dedicated sequences for electronic invoice
+numbering.</li>
+<li>Optional SDI credentials configuration if direct sending through
+Odoo is used (if supported by general configuration).</li>
+</ul>
+</li>
+</ul>
+<p>The features added by l10n_it_edi_extension are automatically integrated
+into the existing interface:</p>
+<ul class="simple">
+<li>The “Preview XML” button will appear in the invoice form.</li>
+<li>The option to set the DDT end-of-month date will be available in the
+“Actions” menu of selected invoices.</li>
+<li>The date filter in the export wizard will automatically use the
+invoice date.</li>
+</ul>
+</div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-1">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -398,22 +561,22 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-2">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-3">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-3">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-4">Authors</a></h2>
 <ul class="simple">
 <li>Giuseppe Borruso</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-4">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-5">Contributors</a></h2>
 <ul class="simple">
 <li>Giuseppe Borruso - Dinamiche Aziendali srl
 &lt;<a class="reference external" href="mailto:gborruso&#64;dinamicheaziendali.it">gborruso&#64;dinamicheaziendali.it</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-5">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
