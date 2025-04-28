@@ -30,14 +30,85 @@ Italy - E-invoicing - Base Feature
 
 **Italiano**
 
-Questo modulo aggiunge funzionalità basi per gestire le fatture
-elettroniche.
+Questo modulo estende le funzionalità standard della fatturazione
+elettronica italiana di Odoo, introducendo strumenti utili come
+l'anteprima XML, la gestione facilitata delle date per le fatture
+differite e una maggiore flessibilità nella numerazione e
+nell'esportazione.
+
+Le funzionalità principali incluse sono:
+
+1. Anteprima e Download del file XML:
+
+-  Aggiunge un pulsante ("Preview XML") direttamente nel form della
+   fattura.
+-  Questo pulsante permette di visualizzare un'anteprima del file XML
+   della fattura elettronica prima dell'invio effettivo.
+-  Dalla stessa finestra di anteprima, è possibile scaricare il file XML
+   generato.
+
+2. Rigenerazione Numero Fattura (se non inviata):
+
+-  Se una fattura non è ancora stata inviata allo SDI (Sistema di
+   Interscambio), riportandola in bozza e riconvalidandola, il modulo
+   permette di rigenerare il numero progressivo della fattura se
+   necessario (ad esempio, se nel frattempo sono state emesse altre
+   fatture).
+
+3. Gestione Data Fattura per Fatture Differite:
+
+-  Offre un wizard (accessibile dal menu "Azioni" su una selezione di
+   fatture in stato "Bozza" o "Convalidato") per impostare la data della
+   fattura come l'ultimo giorno del mese del DDT (Documento di
+   Trasporto) associato. Utile per la creazione di fatture differite a
+   fine mese.
+
+4. Filtro Data nell'Export:
+
+-  Modifica il wizard standard di esportazione massiva delle fatture
+   elettroniche (l10n_it_edi.wizard_export_fatturapa).
+-  Fa sì che il filtro per data utilizzato nel wizard si basi sulla Data
+   Fattura (invoice_date) invece che sulla Data Contabile (date).
 
 <https://www.fatturapa.gov.it>
 
 **English**
 
-This module adds base feature to handle e-invoice.
+This module extends Odoo standard Italian electronic invoicing
+functionality, introducing useful tools such as XML preview, simplified
+date management for deferred invoices and greater flexibility in
+numbering and exporting.
+
+The main features included are:
+
+1. XML File Preview and Download:
+
+-  Adds a button ("Preview XML") directly in the invoice form.
+-  This button allows you to preview the electronic invoice XML file
+   before actual submission.
+-  From the same preview window, you can download the generated XML
+   file.
+
+2. Invoice Number Regeneration (if not sent):
+
+-  If an invoice has not yet been sent to SDI (Exchange System), by
+   setting it back to draft and revalidating it, the module allows
+   regenerating the progressive invoice number if necessary (for
+   example, if other invoices have been issued in the meantime).
+
+3. Invoice Date Management for Deferred Invoices:
+
+-  Provides a wizard (accessible from the "Actions" menu on a selection
+   of invoices in "Draft" or "Validated" status) to set the invoice date
+   as the last day of the month of the associated DDT (Transport
+   Document). Useful for creating end-of-month deferred invoices.
+
+4. Date Filter in Export:
+
+-  Modifies the standard mass export wizard for electronic invoices
+   (l10n_it_edi.wizard_export_fatturapa).
+-  Makes the date filter used in the wizard based on Invoice Date
+   (invoice_date) instead of Accounting Date (date).
 
 <https://www.fatturapa.gov.it>
 
@@ -45,6 +116,81 @@ This module adds base feature to handle e-invoice.
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+**Italiano**
+
+Non è necessaria alcuna configurazione specifica per
+l10n_it_edi_extension: una volta installato, le sue funzionalità sono
+attive. Tuttavia, è fondamentale capire che questo modulo è
+un'estensione e si basa su altri moduli preesistenti e sulla
+configurazione generale di Odoo per la localizzazione italiana e la
+fatturazione elettronica. Quindi, affinché le funzionalità di questo
+modulo siano utilizzabili, è necessario che:
+
+1. Siano installati e configurati i moduli dipendenti:
+
+-  account: Il modulo base della contabilità di Odoo deve essere
+   installato e configurato (piano dei conti, tasse, giornali contabili,
+   ecc.).
+-  l10n_it_edi: Il modulo principale per la fatturazione elettronica
+   italiana deve essere installato e correttamente configurato. Questo
+   include:
+
+   -  Configurazione dei dati aziendali (partita IVA, codice fiscale,
+      regime fiscale, ecc.).
+   -  Configurazione dei registri contabili per l'emissione delle
+      fatture elettroniche (indicando il formato FatturaPA/Elettronica).
+   -  Configurazione delle sequenze dedicate per la numerazione delle
+      fatture elettroniche.
+   -  Eventuale configurazione delle credenziali SDI se si utilizza
+      l'invio diretto tramite Odoo (se supportato dalla configurazione
+      generale).
+
+Le funzionalità aggiunte da l10n_it_edi_extension si integrano
+automaticamente nell'interfaccia esistente:
+
+-  Il pulsante "Preview XML" apparirà nel form della fattura.
+-  L'opzione per impostare la data a fine mese DDT sarà disponibile nel
+   menu "Azioni" delle fatture selezionate.
+-  Il filtro data nel wizard di esportazione userà automaticamente la
+   data fattura.
+
+**English**
+
+No specific configuration is required for l10n_it_edi_extension: once
+installed, its features are active. However, it's essential to
+understand that this module is an extension and relies on other
+pre-existing modules and Odoo general configuration for Italian
+localization and electronic invoicing. Therefore, for this module's
+features to be usable, it is necessary that:
+
+1. The dependent modules are installed and configured:
+
+-  account: Odoo's basic accounting module must be installed and
+   configured (chart of accounts, taxes, journals, etc.).
+-  l10n_it_edi: The main module for Italian electronic invoicing must be
+   installed and properly configured. This includes:
+
+   -  Company data configuration (VAT number, fiscal code, tax regime,
+      etc.).
+   -  Configuration of accounting journals for issuing electronic
+      invoices (indicating FatturaPA/Electronic format).
+   -  Configuration of dedicated sequences for electronic invoice
+      numbering.
+   -  Optional SDI credentials configuration if direct sending through
+      Odoo is used (if supported by general configuration).
+
+The features added by l10n_it_edi_extension are automatically integrated
+into the existing interface:
+
+-  The "Preview XML" button will appear in the invoice form.
+-  The option to set the DDT end-of-month date will be available in the
+   "Actions" menu of selected invoices.
+-  The date filter in the export wizard will automatically use the
+   invoice date.
 
 Bug Tracker
 ===========
