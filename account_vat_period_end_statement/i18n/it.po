@@ -28,6 +28,16 @@ msgid "&amp;nbsp;("
 msgstr "&amp;nbsp;("
 
 #. module: account_vat_period_end_statement
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "(credit)"
+msgstr ""
+
+#. module: account_vat_period_end_statement
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "(debit)"
+msgstr ""
+
+#. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "<span>&amp;nbsp;</span>"
 msgstr "<span>&amp;nbsp;</span>"
@@ -41,11 +51,6 @@ msgstr "<span>Riepilogo</span>"
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
 msgid "<strong>Total Credit</strong>"
 msgstr "<strong>Credito totale</strong>"
-
-#. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
-msgid "<strong>Total Statement</strong>"
-msgstr "<strong>Totale liquidazione</strong>"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
@@ -765,6 +770,9 @@ msgstr "Non è possibile eliminare una liquidazione confermata o pagata"
 #, python-format
 msgid "You must select documents from the same company!"
 msgstr "Bisogna selezionare documenti della stessa azienda!"
+
+#~ msgid "<strong>Total Statement</strong>"
+#~ msgstr "<strong>Totale liquidazione</strong>"
 
 #~ msgid "Account Lines"
 #~ msgstr "Righe conti"
