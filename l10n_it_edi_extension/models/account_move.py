@@ -249,13 +249,11 @@ class AccountMoveInherit(models.Model):
         )
         for base_line, _aggregated_values in base_lines_aggregated_values:
             line = base_line["record"]
-
-            if line.l10n_it_edi_admin_ref:
-                base_line["it_values"].update(
-                    {
-                        "admin_ref": line.l10n_it_edi_admin_ref,
-                    }
-                )
+            base_line["it_values"].update(
+                {
+                    "admin_ref": line.l10n_it_edi_admin_ref or None,
+                }
+            )
         return res
 
     def _l10n_it_edi_get_values(self, pdf_values=None):
