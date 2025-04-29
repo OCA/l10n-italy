@@ -4,8 +4,6 @@
 
 from datetime import datetime
 
-from lxml import etree
-
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, html2plaintext
