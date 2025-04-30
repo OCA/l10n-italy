@@ -11,7 +11,11 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <xpath expr="//header/field[@name='state']" position="before">
-                <field name="hide_link_asset_button" invisible="1" />
+                <field
+                    name="hide_link_asset_button"
+                    invisible="1"
+                    groups="l10n_it_asset_management.group_asset_user"
+                />
                 <button
                     name="open_wizard_manage_asset"
                     type="object"
