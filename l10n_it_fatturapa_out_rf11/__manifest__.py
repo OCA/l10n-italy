@@ -7,8 +7,9 @@
     "development_status": "Alpha",
     "category": "Localization/Italy",
     "summary": "Supporto IVA secondo art.74-ter, DPR 633/72 - Agenzie viaggi e turismo per la generazione del file XML FatturaPA",
-    "author": "Innovyou",
-    "website": "https://innovyou.it",
+    "author": "Innovyou, Odoo Community Association (OCA)",
+    "maintainers": ["eLBati", "LorenzoC0"],
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
         "account",
