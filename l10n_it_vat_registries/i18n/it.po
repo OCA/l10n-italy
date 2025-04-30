@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-18 10:46+0000\n"
-"PO-Revision-Date: 2025-04-18 10:46+0000\n"
+"POT-Creation-Date: 2025-04-18 14:19+0000\n"
+"PO-Revision-Date: 2025-04-18 14:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,6 +64,16 @@ msgstr "Credito"
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__customer
 msgid "Customer Invoices"
 msgstr "Fatture cliente"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__rc_tax_registry_id
+msgid "Customer VAT registry for RC"
+msgstr "Registro IVA clienti per IC"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal__rc_tax_registry_id
+msgid "Customer VAT registry for reverse charge operations"
+msgstr "Registro IVA clienti per operazioni in inversione contabile"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__entry_order__date_name
@@ -133,6 +143,12 @@ msgstr "DATA FATT."
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "INV. NUM."
 msgstr "NUM. FATT."
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__include_rc_moves
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__include_rc_moves
+msgid "Include reverse charge moves"
+msgstr "Includere registrazioni inversione contabile"
 
 #. module: l10n_it_vat_registries
 #: model:ir.actions.report,name:l10n_it_vat_registries.action_report_registro_iva
@@ -224,6 +240,12 @@ msgid "Prints only totals"
 msgstr "Stampa solo i totali"
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__rc_journal_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.view_account_tax_registry_form
+msgid "RC Journals"
+msgstr "Registri IC"
+
+#. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "REASON"
 msgstr "CAUSALE"
@@ -244,6 +266,11 @@ msgid "Report VAT registry"
 msgstr "Resoconto registro IVA"
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__rc_journal_ids
+msgid "Reverse charge journals"
+msgstr "Registri inversione contabile"
+
+#. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
 msgid "Run VAT registry"
 msgstr "Stampa Registro IVA"
@@ -252,6 +279,11 @@ msgstr "Stampa Registro IVA"
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__journal_ids
 msgid "Select journals you want retrieve documents from"
 msgstr "Selezionare i registri dai quali prelevare i documenti"
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__rc_journal_ids
+msgid "Select journals you want retrieve reverse charge documents from"
+msgstr "Selezionare i registri da cui recuperare i documenti in inversione contabile"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__show_full_contact_addess

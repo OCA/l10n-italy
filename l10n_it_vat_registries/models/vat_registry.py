@@ -79,6 +79,25 @@ class ReportRegistroIva(models.AbstractModel):
                 tax = move_line.tax_line_id
                 is_base = False
 
+            if move.l10n_it_edi_is_self_invoice and not is_base:
+                if (
+                    move.is_purchase_document(include_receipts=True)
+                    and move_line.tax_line_id
+                    and move_line.account_id.account_type.startswith("liability")
+                ):
+                    # Purchase document and a tax line with "Debito IVA"
+                    # This is the case of reverse charge invoices
+                    # (including partially det RC VAT):
+                    # do not compute the reversed VAT
+                    continue
+                if (
+                    move.is_sale_document(include_receipts=True)
+                    and move_line.tax_line_id
+                    and move_line.account_id.account_type.startswith("asset")
+                ):
+                    # Sale document and a tax line with "Credito IVA"
+                    continue
+
             if tax.parent_tax_ids and len(tax.parent_tax_ids) == 1:
                 # we group by main tax
                 tax = tax.parent_tax_ids[0]
