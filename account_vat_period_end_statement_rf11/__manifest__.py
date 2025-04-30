@@ -7,8 +7,9 @@
     "development_status": "Alpha",
     "category": "Localization/Italy",
     "summary": "Supporto IVA secondo art.74-ter, DPR 633/72 - Agenzie viaggi e turismo per la liquidazione IVA",
-    "author": "Innovyou",
-    "website": "https://innovyout.it",
+    "author": "Innovyou, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-italy",
+    "maintainers": ["eLBati", "LorenzoC0"],
     "license": "AGPL-3",
     "depends": [
         "account",
