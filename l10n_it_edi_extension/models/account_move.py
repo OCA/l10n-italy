@@ -518,9 +518,13 @@ class AccountMoveInherit(models.Model):
         partner = super()._l10n_it_edi_search_partner(
             company, vat, codice_fiscale, email
         )
-        if not partner and not self.env.context.get("skip_create_partner"):
+        edi_attachment = self.l10n_it_edi_attachment_id
+        if (
+            edi_attachment
+            and not partner
+            and not self.env.context.get("skip_create_partner")
+        ):
             try:
-                edi_attachment = self.l10n_it_edi_attachment_id
                 xml_tree = edi_attachment._decode_edi_l10n_it_edi(
                     edi_attachment.name, edi_attachment.raw
                 )[0]["xml_tree"]
