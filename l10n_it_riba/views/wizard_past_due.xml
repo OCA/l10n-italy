@@ -37,7 +37,7 @@
                         attrs="{'invisible':[('config_type','=','incasso')]}"
                     />
                     <field name="bank_expense_account_id" />
-                    <field name="expense_amount" />
+                    <field name="past_due_fee_amount" />
                     <field name="date" />
                 </group>
                 <footer>
