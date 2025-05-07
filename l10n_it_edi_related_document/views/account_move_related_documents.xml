@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="account_invoice_it_dati_documento_correlato">
+        <t t-translation="off">
+            <RiferimentoNumeroLinea t-if="doc.lineRef" t-out="doc.lineRef" />
+            <IdDocumento t-if="doc.name" t-out="doc.name" />
+            <Data t-if="doc.date" t-out="doc.date" />
+            <NumItem t-if="doc.numitem" t-out="doc.numitem" />
+            <CodiceCommessaConvenzione t-if="doc.code" t-out="doc.code" />
+            <CodiceCUP t-if="doc.cup" t-out="doc.cup" />
+            <CodiceCIG t-if="doc.cig" t-out="doc.cig" />
+        </t>
+    </template>
+
+    <template id="account_invoice_it_dati_documenti_correlati">
+        <t t-translation="off">
+            <t
+                t-set="related_orders"
+                t-value="record.related_document_ids.filtered(lambda doc: doc.type == 'order')"
+            />
+            <t
+                t-set="related_contracts"
+                t-value="record.related_document_ids.filtered(lambda doc: doc.type == 'contract')"
+            />
+            <t
+                t-set="related_agreements"
+                t-value="record.related_document_ids.filtered(lambda doc: doc.type == 'agreement')"
+            />
+            <t
+                t-set="related_receptions"
+                t-value="record.related_document_ids.filtered(lambda doc: doc.type == 'reception')"
+            />
+            <t
+                t-set="related_invoices"
+                t-value="record.related_document_ids.filtered(lambda doc: doc.type == 'invoice')"
+            />
+            <DatiOrdineAcquisto t-foreach="related_orders" t-as="doc">
+                <t
+                    t-call="l10n_it_edi_related_document.account_invoice_it_dati_documento_correlato"
+                />
+            </DatiOrdineAcquisto>
+            <DatiContratto t-foreach="related_contracts" t-as="doc">
+                <t
+                    t-call="l10n_it_edi_related_document.account_invoice_it_dati_documento_correlato"
+                />
+            </DatiContratto>
+            <DatiConvenzione t-foreach="related_agreements" t-as="doc">
+                <t
+                    t-call="l10n_it_edi_related_document.account_invoice_it_dati_documento_correlato"
+                />
+            </DatiConvenzione>
+            <DatiRicezione t-foreach="related_receptions" t-as="doc">
+                <t
+                    t-call="l10n_it_edi_related_document.account_invoice_it_dati_documento_correlato"
+                />
+            </DatiRicezione>
+            <DatiFattureCollegate t-foreach="related_invoices" t-as="doc">
+                <t
+                    t-call="l10n_it_edi_related_document.account_invoice_it_dati_documento_correlato"
+                />
+            </DatiFattureCollegate>
+        </t>
+    </template>
+</odoo>

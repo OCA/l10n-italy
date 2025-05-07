@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="account_invoice_it_FatturaPA_export_inherit"
+        inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
+    >
+        <xpath expr="//DatiGeneraliDocumento" position="after">
+            <t
+                t-call="l10n_it_edi_related_document.account_invoice_it_dati_documenti_correlati"
+            />
+        </xpath>
+    </template>
+</odoo>
