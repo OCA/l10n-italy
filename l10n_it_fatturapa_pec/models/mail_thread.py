@@ -3,6 +3,7 @@
 # Copyright 2018 Sergio Corato (https://efatto.it)
 # Copyright 2018 Lorenzo Battistini <https://github.com/eLBati>
 
+import base64
 import logging
 import re
 
@@ -33,17 +34,22 @@ class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
     def clean_message_dict(self, message_dict):
-        del message_dict["attachments"]
-        del message_dict["cc"]
-        del message_dict["from"]
-        del message_dict["to"]
-        del message_dict["recipients"]
-        del message_dict["references"]
-        del message_dict["in_reply_to"]
-        del message_dict["bounced_email"]
-        del message_dict["bounced_partner"]
-        del message_dict["bounced_msg_id"]
-        del message_dict["bounced_message"]
+        fields_to_clean = [
+            "attachments",
+            "cc",
+            "from",
+            "to",
+            "recipients",
+            "references",
+            "in_reply_to",
+            "bounced_email",
+            "bounced_partner",
+            "bounced_msg_id",
+            "bounced_message",
+            "x_odoo_message_id",
+        ]
+        for field in fields_to_clean:
+            message_dict.pop(field, None)
 
     @api.model
     def message_route(
@@ -222,7 +228,7 @@ class MailThread(models.AbstractModel):
                 # See check_fetch_pec_server_id
                 company_id = sdi_chan.company_id.id
         file_name_content_dict = {
-            attachment.name: attachment.datas,
+            attachment.name: base64.b64decode(attachment.datas),
         }
         default_values = {
             "company_id": company_id,

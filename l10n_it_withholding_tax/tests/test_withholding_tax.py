@@ -1,10 +1,13 @@
 # Copyright 2018 Lorenzo Battistini (https://github.com/eLBati)
+# Copyright 2024 Simone Rubino - Aion Tech
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import time
 from datetime import date, timedelta
 
 from odoo import fields
 from odoo.exceptions import ValidationError
+from odoo.fields import first
 from odoo.tests.common import Form, TransactionCase
 
 
@@ -364,3 +367,35 @@ class TestWithholdingTax(TransactionCase):
             wizard.amount,
             invoice.amount_net_pay_residual,
         )
+
+    def test_wt_display_name(self):
+        """The display name of statements and moves
+        includes the partner and the tax."""
+        # Arrange
+        invoice = self.invoice
+        partner = invoice.partner_id
+        wt_tax = self.wt1040
+        payment_wizard = self._get_payment_wizard(invoice)
+        payment_wizard.action_create_payments()
+
+        wt_statement = self.env["withholding.tax.statement"].search(
+            [
+                ("invoice_id", "=", invoice.id),
+                ("withholding_tax_id", "=", wt_tax.id),
+            ],
+            limit=1,
+        )
+        wt_move = first(wt_statement.move_ids)
+        # pre-condition
+        self.assertTrue(wt_statement)
+        self.assertTrue(wt_move)
+
+        # Act
+        wt_statement_display_name = wt_statement.display_name
+        wt_move_display_name = wt_move.display_name
+
+        # Assert
+        self.assertIn(partner.name, wt_statement_display_name)
+        self.assertIn(wt_tax.name, wt_statement_display_name)
+        self.assertIn(partner.name, wt_move_display_name)
+        self.assertIn(wt_tax.name, wt_move_display_name)

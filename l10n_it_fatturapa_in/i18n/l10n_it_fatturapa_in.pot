@@ -369,6 +369,7 @@ msgid "Discount and Supplement Details"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__discount_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__discount_decimal_digits
 msgid "Discounts decimal digits"
 msgstr ""
@@ -1026,6 +1027,7 @@ msgid "Preview link"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__price_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__price_decimal_digits
 msgid "Prices decimal digits"
 msgstr ""
@@ -1055,6 +1057,7 @@ msgid "Province ( %s ) not present in your system"
 msgstr ""
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__quantity_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__quantity_decimal_digits
 msgid "Quantities decimal digits"
 msgstr ""
@@ -1405,6 +1408,27 @@ msgstr ""
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__tax_amount
 msgid "VAT Rate"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__discount_decimal_digits
+msgid ""
+"Value used during import of this e-invoice to override \"Discount\" "
+"precision."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__price_decimal_digits
+msgid ""
+"Value used during import of this e-invoice to override \"Product Price\" "
+"precision."
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__quantity_decimal_digits
+msgid ""
+"Value used during import of this e-invoice to override \"Product Unit of "
+"Measure\" precision."
 msgstr ""
 
 #. module: l10n_it_fatturapa_in

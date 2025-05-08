@@ -37,6 +37,12 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
             self.picking_ids += self.selected_picking_ids
         else:
             self.picking_ids = self.picking_ids
+
+        self.partner_id = (
+            self.picking_ids.mapped("sale_id.partner_id")
+            if self.picking_ids.mapped("sale_id.partner_id")
+            else self.partner_id
+        ).id
         self.warning_message = self._get_warning_message()
 
         return True
@@ -66,7 +72,7 @@ class StockDeliveryNoteSelectWizard(models.TransientModel):
         sale_order_ids = self.selected_picking_ids.sale_id
         sale_order_id = sale_order_ids and sale_order_ids[0] or self.env["sale.order"]
         if sale_order_id:
-            sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids)
+            sale_order_id._assign_delivery_notes_invoices(sale_order_id.invoice_ids.ids)
 
         if self.user_has_groups("l10n_it_delivery_note.use_advanced_delivery_notes"):
             return self.delivery_note_id.goto()

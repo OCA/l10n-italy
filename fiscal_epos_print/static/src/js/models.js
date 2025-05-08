@@ -87,10 +87,9 @@ odoo.define("fiscal_epos_print.models", function (require) {
                 var order = this.pos.get_order();
                 if (order) {
                     var lines = order.orderlines;
-                    order.has_refund =
-                        lines.find(function (line) {
-                            return line.quantity < 0.0;
-                        }) !== undefined;
+                    order.has_refund = lines.some(function (line) {
+                        return line.quantity < 0.0;
+                    });
                     if (order.has_refund) {
                         order.refund_report = this.name.substr(-4);
                         order.refund_doc_num = this.name.substr(-4);

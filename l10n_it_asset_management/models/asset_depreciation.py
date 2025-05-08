@@ -11,6 +11,7 @@ from odoo.tools import float_compare, float_is_zero
 
 class AssetDepreciation(models.Model):
     _name = "asset.depreciation"
+    _inherit = "l10n_it_asset_management.compute.depreciable_amount"
     _description = "Assets Depreciations"
 
     amount_depreciable = fields.Monetary(string="Initial Depreciable Amount")
@@ -69,12 +70,6 @@ class AssetDepreciation(models.Model):
         readonly=True,
         required=True,
         string="Asset",
-    )
-
-    base_coeff = fields.Float(
-        default=1,
-        help="Coeff to compute amount depreciable from purchase amount",
-        string="Depreciable Base Coeff",
     )
 
     company_id = fields.Many2one(
@@ -241,10 +236,14 @@ class AssetDepreciation(models.Model):
         for dep in self:
             dep.state = dep.get_depreciation_state()
 
-    @api.onchange("asset_id", "base_coeff")
-    def onchange_base_coeff(self):
+    @api.onchange(
+        "asset_id",
+        "base_coeff",
+        "base_max_amount",
+    )
+    def onchange_depreciable_amount_computation(self):
         purchase_amount = self.asset_id.purchase_amount
-        self.amount_depreciable = self.base_coeff * purchase_amount
+        self.amount_depreciable = self._get_depreciable_amount(purchase_amount)
 
     @api.onchange("first_dep_nr")
     def onchange_normalize_first_dep_nr(self):

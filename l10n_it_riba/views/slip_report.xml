@@ -126,7 +126,10 @@
                                                 name="td_amount_total"
                                                 class="text-right"
                                             >
-                                                <span t-esc="tot_amount" />
+                                                <span
+                                                    t-out="tot_amount"
+                                                    t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"
+                                                />
                                             </td>
                                         </tr>
                                     </table>

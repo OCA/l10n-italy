@@ -7,7 +7,7 @@
     "name": "ITA - Fattura elettronica - Canale SdI",
     "summary": "Aggiunge il canale di invio/ricezione dei file XML "
     "attraverso lo SdI",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.1.1",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",

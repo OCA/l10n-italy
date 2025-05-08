@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-13 10:39+0000\n"
+"PO-Revision-Date: 2025-01-28 10:56+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,14 +14,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: l10n_it_central_journal_reportlab
 #. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
-msgid " Account Central Journal"
-msgstr " Libro giornale contabile"
+msgid " - Account Central Journal"
+msgstr " - Libro giornale contabile"
 
 #. module: l10n_it_central_journal_reportlab
 #. odoo-python
@@ -363,6 +363,10 @@ msgstr "Anno per il piè di pagina"
 #: model_terms:ir.ui.view,arch_db:l10n_it_central_journal_reportlab.wizard_giornale_reportlab
 msgid "or"
 msgstr "oppure"
+
+#, python-format
+#~ msgid " Account Central Journal"
+#~ msgstr " Libro giornale contabile"
 
 #, python-format
 #~ msgid "Account Move"

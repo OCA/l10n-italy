@@ -10,14 +10,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-08 03:45+0000\n"
-"PO-Revision-Date: 2017-12-08 03:45+0000\n"
-"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"PO-Revision-Date: 2025-04-15 12:24+0000\n"
+"Last-Translator: BitStab <bitstab@users.noreply.translation.odoo-"
+"community.org>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_reverse_charge
 #. odoo-python
@@ -27,12 +29,14 @@ msgid ""
 "Can't find tax mapping for {tax_name} in Reverse Charge Type {rc_type_name}, "
 "please check the configuration."
 msgstr ""
+"Für {tax_name} konnte im Reverse-Charge-Typ {rc_type_name} keine Zuordnung "
+"gefunden werden. Überprüfen Sie die Konfiguration."
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__company_id
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type_tax__company_id
 msgid "Company"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__create_uid
@@ -49,7 +53,7 @@ msgstr "Angelegt am"
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__description
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__display_name
@@ -60,12 +64,13 @@ msgstr "Anzeigename"
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__tax_ids
 msgid "Example: 22_A_I_UE, 22_V_I_UE"
-msgstr ""
+msgstr "Beispiel: 22_A_I_UE, 22_V_I_UE"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_fiscal_position
+#, fuzzy
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Steuerzuordnung"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__with_supplier_self_invoice
@@ -75,6 +80,11 @@ msgid ""
 "register, an invoice to the specified partner (tipically, my company), "
 "instead of the extraUE partner"
 msgstr ""
+"Wählen Sie diese Option aus, um die Erstellung einer zusätzlichen passiven "
+"Eigenrechnung zu ermöglichen. Dies wird normalerweise für Lieferanten "
+"außerhalb der EU verwendet, um im Mehrwertsteuer-Einkaufsregister eine "
+"Rechnung für den angegebenen Partner (normalerweise Ihr eigenes Unternehmen) "
+"anstelle des Lieferanten außerhalb der EU anzuzeigen"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,field_description:l10n_it_reverse_charge.field_account_rc_type__id
@@ -91,26 +101,31 @@ msgid ""
 " %(line)s\n"
 " is RC but has not tax"
 msgstr ""
+"Rechnung %(invoice)s, Zeile\n"
+" %(line)s\n"
+" ist RC, hat aber keine Steuer"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_move
+#, fuzzy
 msgid "Journal Entry"
-msgstr ""
+msgstr "Buchungssatz"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model,name:l10n_it_reverse_charge.model_account_move_line
+#, fuzzy
 msgid "Journal Item"
-msgstr ""
+msgstr "Buchungszeile"
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__journal_id
 msgid "Journal used on RC self invoices."
-msgstr ""
+msgstr "Für die Selbstfakturierung RC verwendetes Register."
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__supplier_journal_id
 msgid "Journal used on RC supplier self invoices."
-msgstr ""
+msgstr "Register für Lieferantenselbstrechnungen in RC."
 
 #. module: l10n_it_reverse_charge
 #: model:ir.model.fields,help:l10n_it_reverse_charge.field_account_rc_type__payment_journal_id

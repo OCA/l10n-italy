@@ -242,7 +242,6 @@ class WithholdingTaxStatement(models.Model):
         string="WT amount paid", store=True, readonly=True, compute="_compute_total"
     )
     move_ids = fields.One2many("withholding.tax.move", "statement_id", "Moves")
-    display_name = fields.Char(compute="_compute_display_name")
 
     @api.depends("move_id.line_ids.account_id.account_type")
     def _compute_type(self):
@@ -285,8 +284,12 @@ class WithholdingTaxStatement(models.Model):
                 amount_wt = tax_data["tax"]
             return amount_wt
 
-    def _compute_display_name(self):
-        self.display_name = self.partner_id.name + " - " + self.withholding_tax_id.name
+    def name_get(self):
+        res = []
+        for record in self:
+            name = record.partner_id.name + " - " + record.withholding_tax_id.name
+            res.append((record.id, name))
+        return res
 
 
 class WithholdingTaxMove(models.Model):
@@ -341,7 +344,6 @@ class WithholdingTaxMove(models.Model):
         "account.move", "Payment Move", ondelete="cascade"
     )
     wt_account_move_id = fields.Many2one("account.move", "WT Move", ondelete="cascade")
-    display_name = fields.Char(compute="_compute_display_name")
     full_reconcile_id = fields.Many2one(
         "account.full.reconcile",
         compute="_compute_full_reconcile_id",
@@ -479,8 +481,12 @@ class WithholdingTaxMove(models.Model):
                 }
             )
 
-    def _compute_display_name(self):
-        self.display_name = self.partner_id.name + " - " + self.withholding_tax_id.name
+    def name_get(self):
+        res = []
+        for record in self:
+            name = record.partner_id.name + " - " + record.withholding_tax_id.name
+            res.append((record.id, name))
+        return res
 
     def action_paid(self):
         for move in self:

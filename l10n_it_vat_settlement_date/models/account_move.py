@@ -13,6 +13,7 @@ class AccountMove(models.Model):
         compute="_compute_l10n_it_vat_settlement_date",
         store=True,
         readonly=False,
+        copy=False,
     )
 
     @api.depends(

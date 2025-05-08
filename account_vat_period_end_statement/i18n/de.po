@@ -10,14 +10,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-26 14:46+0000\n"
-"PO-Revision-Date: 2017-07-26 14:46+0000\n"
-"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"PO-Revision-Date: 2025-04-15 12:24+0000\n"
+"Last-Translator: BitStab <bitstab@users.noreply.translation.odoo-community."
+"org>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields.selection,name:account_vat_period_end_statement.selection__account_vat_period_end_statement__advance_computation_method__4
@@ -27,71 +29,79 @@ msgstr ""
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "&amp;nbsp;("
-msgstr ""
+msgstr "&amp;nbsp;("
+
+#. module: account_vat_period_end_statement
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "(credit)"
+msgstr "(Haben)"
+
+#. module: account_vat_period_end_statement
+#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
+msgid "(debit)"
+msgstr "(Soll)"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
 msgid "<span>&amp;nbsp;</span>"
-msgstr ""
+msgstr "<span>&amp;nbsp;</span>"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
-msgid "<span>Summary</span>"
+msgid "<span>VAT statement</span>"
 msgstr ""
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "<strong>Total Credit</strong>"
-msgstr ""
-
-#. module: account_vat_period_end_statement
-#: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_document
-msgid "<strong>Total Statement</strong>"
-msgstr ""
+msgstr "<strong>Gesamtguthaben</strong>"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 msgid "<strong>Total To Pay</strong>"
-msgstr ""
+msgstr "<strong>Gesamtbetrag</strong>"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vatperiodendstatement_tax_code
 msgid "<strong>Total</strong>"
-msgstr ""
+msgstr "<strong>Gesamt</strong>"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_credit_account_line__account_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_debit_account_line__account_id
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_statement_generic_account_line__account_id
+#, fuzzy
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #. module: account_vat_period_end_statement
 #. odoo-python
 #: code:addons/account_vat_period_end_statement/report/vat_statement.py:0
 #, python-format
 msgid "Account type neither credit and debit !"
-msgstr ""
+msgstr "Kontotyp weder Debit noch Kredit!"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_tax__vat_statement_account_id
 msgid "Account used for VAT statement"
-msgstr ""
+msgstr "Für die Mehrwertsteuerabrechnung verwendetes Konto"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+#, fuzzy
 msgid "Accounts"
-msgstr ""
+msgstr "Konten"
 
 #. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__account_ids
 msgid "Accounts filter"
-msgstr ""
+msgstr "Kontofilter"
 
 #. module: account_vat_period_end_statement
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.add_period
+#, fuzzy
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #. module: account_vat_period_end_statement
 #: model:ir.actions.act_window,name:account_vat_period_end_statement.action_add_period
@@ -211,7 +221,10 @@ msgid "Credit Account Lines"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#. odoo-python
+#: code:addons/account_vat_period_end_statement/models/account.py:0
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__credit_vat_account_line_ids
+#, python-format
 msgid "Credit VAT"
 msgstr ""
 
@@ -244,7 +257,10 @@ msgid "Debit Account Lines"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#. odoo-python
+#: code:addons/account_vat_period_end_statement/models/account.py:0
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__debit_vat_account_line_ids
+#, python-format
 msgid "Debit VAT"
 msgstr ""
 
@@ -302,9 +318,12 @@ msgid "Draft"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#. odoo-python
+#: code:addons/account_vat_period_end_statement/models/account.py:0
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__interests_debit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.report_vat_period_end_statement_to_pay
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+#, python-format
 msgid "Due interests"
 msgstr ""
 
@@ -401,6 +420,13 @@ msgid "Last printed page"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#. odoo-python
+#: code:addons/account_vat_period_end_statement/models/account.py:0
+#, python-format
+msgid "Other VAT Credits / Debits"
+msgstr ""
+
+#. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__generic_vat_account_line_ids
 msgid "Other VAT Credits / Debits or Tax Compensations"
 msgstr ""
@@ -463,8 +489,11 @@ msgid "Periods"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#. odoo-python
+#: code:addons/account_vat_period_end_statement/models/account.py:0
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_credit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+#, python-format
 msgid "Previous Credits VAT"
 msgstr ""
 
@@ -474,8 +503,11 @@ msgid "Previous Credits VAT Amount"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#. odoo-python
+#: code:addons/account_vat_period_end_statement/models/account.py:0
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__previous_debit_vat_account_id
 #: model_terms:ir.ui.view,arch_db:account_vat_period_end_statement.view_account_vat_period_end_statement
+#, python-format
 msgid "Previous Debits VAT"
 msgstr ""
 
@@ -593,8 +625,22 @@ msgid "Tax Authority Partner"
 msgstr ""
 
 #. module: account_vat_period_end_statement
+#. odoo-python
+#: code:addons/account_vat_period_end_statement/models/account.py:0
+#, python-format
+msgid "Tax Authority VAT"
+msgstr ""
+
+#. module: account_vat_period_end_statement
 #: model:ir.model.fields,field_description:account_vat_period_end_statement.field_account_vat_period_end_statement__authority_vat_account_id
 msgid "Tax Authority VAT Account"
+msgstr ""
+
+#. module: account_vat_period_end_statement
+#. odoo-python
+#: code:addons/account_vat_period_end_statement/models/account.py:0
+#, python-format
+msgid "Tax Credits"
 msgstr ""
 
 #. module: account_vat_period_end_statement
@@ -716,3 +762,6 @@ msgstr ""
 #, python-format
 msgid "You cannot delete a confirmed or paid statement"
 msgstr ""
+
+#~ msgid "<span>Summary</span>"
+#~ msgstr "<span>Zusammenfassung</span>"

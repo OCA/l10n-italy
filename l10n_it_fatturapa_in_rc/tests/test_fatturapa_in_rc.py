@@ -5,21 +5,23 @@ from odoo.addons.l10n_it_fatturapa_in.tests.fatturapa_common import FatturapaCom
 
 
 class TestInvoiceRC(FatturapaCommon):
-    def setUp(self):
-        super().setUp()
-        self.invoice_model = self.env["account.move"]
-        self.invoice_line_model = self.env["account.move.line"]
-        self.partner_model = self.env["res.partner"]
-        self._create_account()
-        self._create_taxes()
-        self._create_journals()
-        self._create_rc_types()
-        self._create_rc_type_taxes()
-        self._create_fiscal_position()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.invoice_model = cls.env["account.move"]
+        cls.invoice_line_model = cls.env["account.move.line"]
+        cls.partner_model = cls.env["res.partner"]
+        cls._create_account()
+        cls._create_taxes()
+        cls._create_journals()
+        cls._create_rc_types()
+        cls._create_rc_type_taxes()
+        cls._create_fiscal_position()
 
-    def _create_account(self):
-        account_model = self.env["account.account"]
-        self.account_selfinvoice = account_model.create(
+    @classmethod
+    def _create_account(cls):
+        account_model = cls.env["account.account"]
+        cls.account_selfinvoice = account_model.create(
             {
                 "code": "295000",
                 "name": "selfinvoice temporary",
@@ -27,46 +29,48 @@ class TestInvoiceRC(FatturapaCommon):
             }
         )
 
-    def _create_taxes(self):
-        tax_model = self.env["account.tax"]
-        self.tax_22ai = tax_model.create(
+    @classmethod
+    def _create_taxes(cls):
+        tax_model = cls.env["account.tax"]
+        cls.tax_22ai = tax_model.create(
             {
                 "name": "Tax 22% Purchase RC ITA",
                 "type_tax_use": "purchase",
                 "amount": 22,
-                "kind_id": self.env.ref("l10n_it_account_tax_kind.n6_1").id,
+                "kind_id": cls.env.ref("l10n_it_account_tax_kind.n6_1").id,
                 "sequence": 10,
             }
         )
-        self.tax_22vi = tax_model.create(
+        cls.tax_22vi = tax_model.create(
             {
                 "name": "Tax 22% Sales RC ITA",
                 "type_tax_use": "sale",
                 "amount": 22,
-                "kind_id": self.env.ref("l10n_it_account_tax_kind.n6_1").id,
+                "kind_id": cls.env.ref("l10n_it_account_tax_kind.n6_1").id,
                 "law_reference": "articoli 23 e 25 D.P.R. 633/1972",
                 "sequence": 10,
             }
         )
 
-    def _create_journals(self):
-        journal_model = self.env["account.journal"]
-        self.journal_selfinvoice = journal_model.create(
+    @classmethod
+    def _create_journals(cls):
+        journal_model = cls.env["account.journal"]
+        cls.journal_selfinvoice = journal_model.create(
             {
                 "name": "selfinvoice",
                 "type": "sale",
                 "code": "SLF",
             }
         )
-        self.journal_reconciliation = journal_model.create(
+        cls.journal_reconciliation = journal_model.create(
             {
                 "name": "RC reconciliation",
                 "type": "bank",
                 "code": "SLFRC",
-                "default_account_id": self.account_selfinvoice.id,
+                "default_account_id": cls.account_selfinvoice.id,
             }
         )
-        self.journal_selfinvoice_extra = journal_model.create(
+        cls.journal_selfinvoice_extra = journal_model.create(
             {
                 "name": "Extra Selfinvoice",
                 "type": "sale",
@@ -74,35 +78,38 @@ class TestInvoiceRC(FatturapaCommon):
             }
         )
 
-    def _create_rc_types(self):
-        rc_type_model = self.env["account.rc.type"]
-        self.rc_type_ita = rc_type_model.create(
+    @classmethod
+    def _create_rc_types(cls):
+        rc_type_model = cls.env["account.rc.type"]
+        cls.rc_type_ita = rc_type_model.create(
             {
                 "name": "RC ITA (selfinvoice)",
                 "method": "selfinvoice",
                 "partner_type": "other",
-                "partner_id": self.env.ref("base.main_partner").id,
-                "journal_id": self.journal_selfinvoice.id,
-                "payment_journal_id": self.journal_reconciliation.id,
-                "transitory_account_id": self.account_selfinvoice.id,
+                "partner_id": cls.env.ref("base.main_partner").id,
+                "journal_id": cls.journal_selfinvoice.id,
+                "payment_journal_id": cls.journal_reconciliation.id,
+                "transitory_account_id": cls.account_selfinvoice.id,
                 "e_invoice_suppliers": True,
             }
         )
 
-    def _create_rc_type_taxes(self):
-        rc_type_tax_model = self.env["account.rc.type.tax"]
-        self.rc_type_tax_ita = rc_type_tax_model.create(
+    @classmethod
+    def _create_rc_type_taxes(cls):
+        rc_type_tax_model = cls.env["account.rc.type.tax"]
+        cls.rc_type_tax_ita = rc_type_tax_model.create(
             {
-                "rc_type_id": self.rc_type_ita.id,
-                "purchase_tax_id": self.tax_22ai.id,
-                "sale_tax_id": self.tax_22vi.id,
+                "rc_type_id": cls.rc_type_ita.id,
+                "purchase_tax_id": cls.tax_22ai.id,
+                "sale_tax_id": cls.tax_22vi.id,
             }
         )
 
-    def _create_fiscal_position(self):
-        model_fiscal_position = self.env["account.fiscal.position"]
-        self.fiscal_position_rc_ita = model_fiscal_position.create(
-            {"name": "RC ITA", "rc_type_id": self.rc_type_ita.id}
+    @classmethod
+    def _create_fiscal_position(cls):
+        model_fiscal_position = cls.env["account.fiscal.position"]
+        cls.fiscal_position_rc_ita = model_fiscal_position.create(
+            {"name": "RC ITA", "rc_type_id": cls.rc_type_ita.id}
         )
 
     def test_00_xml_import(self):
@@ -152,3 +159,29 @@ class TestInvoiceRC(FatturapaCommon):
         invoice_id = res.get("domain")[0][2][0]
         invoice = self.invoice_model.browse(invoice_id)
         self.assertTrue(len(invoice.invoice_line_ids) == 0)
+
+    def test_01_xml_import(self):
+        supplier = self.env["res.partner"].search([("vat", "=", "IT02780790107")])[0]
+        # import lines grouped by "Tax rate"
+        supplier.e_invoice_detail_level = "1"
+        res = self.run_wizard(
+            "test2", "IT01234567890_FPR04.xml", module_name="l10n_it_fatturapa_in_rc"
+        )
+        # Trigger pending computations
+        # as if they were done during the attachment import,
+        # in the UX this happens right before going back to the client.
+        # Otherwise account.move.line.rc field is computed on demand
+        # and its check on the context fails.
+        self.env(
+            context=dict(
+                active_model="fatturapa.attachment.in",
+            ),
+        ).flush_all()
+
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        self.assertEqual(invoice.invoice_line_ids[0].name, "Riepilogo Aliquota 22.00")
+        self.assertEqual(invoice.invoice_line_ids[1].name, "Riepilogo Aliquota 0.00")
+        self.assertFalse(invoice.invoice_line_ids[0].rc)
+        self.assertTrue(invoice.invoice_line_ids[1].rc)
+        self.assertEqual(invoice.invoice_line_ids[0].tax_ids.name, "22% e-bill")

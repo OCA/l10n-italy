@@ -324,6 +324,14 @@
                                         />
                                     </group>
                                 </group>
+                                <group
+                                    attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"
+                                >
+                                    <group>
+                                        <field name="dn_supplier_number" />
+                                        <field name="dn_supplier_date" />
+                                    </group>
+                                </group>
                                 <separator
                                     string="Delivery Notes"
                                     attrs="{'invisible': [('delivery_note_exists', '=', False)]}"
@@ -389,6 +397,7 @@
                     name="validated_delivery_note"
                     domain="[('delivery_note_state', '=', 'confirm')]"
                 />
+                <field name="dn_supplier_number" />
             </xpath>
             <group position="inside">
                 <filter

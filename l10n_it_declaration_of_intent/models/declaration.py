@@ -34,6 +34,7 @@ class DeclarationOfIntentYearlyLimit(models.Model):
 
 class DeclarationOfIntent(models.Model):
     _name = "l10n_it_declaration_of_intent.declaration"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Declaration of intent"
     _order = "date_start desc,date_end desc"
 

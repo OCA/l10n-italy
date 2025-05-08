@@ -6,7 +6,7 @@ import logging
 import re
 from datetime import datetime
 
-from odoo import api, fields, models, registry
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.fields import first
 from odoo.osv import expression
@@ -623,7 +623,10 @@ class WizardImportFatturapa(models.TransientModel):
         elif len(account.tax_ids) == 1:
             new_tax = account.tax_ids[0]
         line_tax = self.env["account.tax"]
-        if line_vals.get("tax_ids") and line_vals["tax_ids"][0] == fields.Command.SET:
+        if (
+            line_vals.get("tax_ids")
+            and line_vals["tax_ids"][0][0] == fields.Command.SET
+        ):
             line_tax_id = line_vals["tax_ids"][0][2][0]
             line_tax = self.env["account.tax"].browse(line_tax_id)
         if new_tax and line_tax and new_tax != line_tax:
@@ -1280,7 +1283,15 @@ class WizardImportFatturapa(models.TransientModel):
         # 2.5
         self.set_attachments_data(FatturaBody, invoice)
 
-        if self.e_invoice_detail_level != "1":
+        # Avoid set roundings if import level is not maximum, because adding
+        # roundings generate problems:
+        #  - generate a tax line in account.move.line
+        #    entries with different values for amount_currency and balance
+        #    raising ``check_amount_currency_balance_sign`` constraint in
+        #    account.move
+        #  - If rounding line is the only line the import generate a refund
+        #    instead of an invoice
+        if self.e_invoice_detail_level == "2":
             self.set_roundings(FatturaBody, invoice)
 
         self.set_vendor_bill_data(FatturaBody, invoice)
@@ -1783,34 +1794,25 @@ class WizardImportFatturapa(models.TransientModel):
         )
         invoice_line_ids.append(invoice_line_id)
 
-    def _set_decimal_precision(self, precision_name, field_name):
+    def _set_decimal_precision(self, precision_name, field_name, attachments):
         precision = self.env["decimal.precision"].search(
             [("name", "=", precision_name)], limit=1
         )
         different_precisions = original_precision = None
         if precision:
-            precision_id = precision.id
             original_precision = precision.digits
             different_precisions = self[field_name] != original_precision
             if different_precisions:
-                with registry(self.env.cr.dbname).cursor() as new_cr:
-                    # We need a new env (and cursor) because 'digits' property of Float
-                    # fields is retrieved with a new LazyCursor,
-                    # see class Float at odoo.fields,
-                    # so we need to write (commit) to DB in order to make the new
-                    # precision available
-                    new_env = api.Environment(new_cr, self.env.uid, self.env.context)
-                    new_precision = new_env["decimal.precision"].browse(precision_id)
-                    new_precision.sudo().write({"digits": self[field_name]})
-                    new_cr.commit()
+                precision.sudo().digits = self[field_name]
+                attachments.update(
+                    {
+                        field_name: self[field_name],
+                    }
+                )
         return precision, different_precisions, original_precision
 
     def _restore_original_precision(self, precision, original_precision):
-        with registry(self.env.cr.dbname).cursor() as new_cr:
-            new_env = api.Environment(new_cr, self.env.uid, self.env.context)
-            new_price_precision = new_env["decimal.precision"].browse(precision.id)
-            new_price_precision.sudo().write({"digits": original_precision})
-            new_cr.commit()
+        precision.sudo().digits = original_precision
 
     def _get_invoice_partner_id(self, fatt):
         cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
@@ -1819,28 +1821,34 @@ class WizardImportFatturapa(models.TransientModel):
 
     def importFatturaPA(self):
         self.ensure_one()
+        fatturapa_attachments = self._get_selected_records()
 
         (
             price_precision,
             different_price_precisions,
             original_price_precision,
-        ) = self._set_decimal_precision("Product Price", "price_decimal_digits")
+        ) = self._set_decimal_precision(
+            "Product Price", "price_decimal_digits", attachments=fatturapa_attachments
+        )
         (
             qty_precision,
             different_qty_precisions,
             original_qty_precision,
         ) = self._set_decimal_precision(
-            "Product Unit of Measure", "quantity_decimal_digits"
+            "Product Unit of Measure",
+            "quantity_decimal_digits",
+            attachments=fatturapa_attachments,
         )
         (
             discount_precision,
             different_discount_precisions,
             original_discount_precision,
-        ) = self._set_decimal_precision("Discount", "discount_decimal_digits")
+        ) = self._set_decimal_precision(
+            "Discount", "discount_decimal_digits", attachments=fatturapa_attachments
+        )
 
         new_invoices = []
         # convert to dict in order to be able to modify context
-        fatturapa_attachments = self._get_selected_records()
         self.env.context = dict(self.env.context)
         for fatturapa_attachment in fatturapa_attachments:
             self.reset_inconsistencies()

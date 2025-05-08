@@ -30,12 +30,15 @@ class RibaPaymentMultiple(models.TransientModel):
         domain="["
         "'&',"
         "('slip_id', 'in', riba_ids),"
-        "'!',"
         # The following domain must match the domain
         # that shows the 'Pay' button in each RiBa line
         "'|',"
+        "'&',"
+        "('type', '=', 'sbf'),"
+        "('state', '=', 'credited'),"
+        "'&',"
         "('type', '=', 'incasso'),"
-        "('state', '!=', 'credited'),"
+        "('state', '=', 'confirmed'),"
         "]",
         readonly=False,
         store=True,
@@ -79,6 +82,16 @@ class RibaPaymentMultiple(models.TransientModel):
         lines = self.riba_line_ids
         if not lines:
             raise UserError(_("Please select the RiBa lines to be paid"))
-        lines.riba_line_settlement(
+        incasso_lines = lines.filtered(lambda line: line.type == "incasso")
+        sbf_lines = lines - incasso_lines
+        # type "incasso" lines need to be set as paid only without settlement
+        # and account moves creation
+        incasso_lines.state = "paid"
+        # type "sbf" lines need to be settled and account moves created
+        sbf_lines.riba_line_settlement(
             date=self.payment_date,
         )
+        # set the state of the RiBa slips to 'paid' if all their lines are paid
+        for slip in lines.slip_id:
+            if list(set(slip.line_ids.mapped("state"))) == ["paid"]:
+                slip.state = "paid"

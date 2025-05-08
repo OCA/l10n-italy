@@ -10,14 +10,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-08 03:46+0000\n"
-"PO-Revision-Date: 2017-12-08 03:46+0000\n"
-"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"PO-Revision-Date: 2025-04-15 12:24+0000\n"
+"Last-Translator: BitStab <bitstab@users.noreply.translation.odoo-"
+"community.org>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__account_id
@@ -27,12 +29,12 @@ msgstr ""
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__move_id
 msgid "Account Move"
-msgstr ""
+msgstr "Buchhaltungsbewegung"
 
 #. module: l10n_it_withholding_tax_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
 msgid "Account Setting"
-msgstr ""
+msgstr "Kontoeinstellungen"
 
 #. module: l10n_it_withholding_tax_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
@@ -41,34 +43,37 @@ msgstr "Abbrechen"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__company_id
+#, fuzzy
 msgid "Company"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: l10n_it_withholding_tax_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
+#, fuzzy
 msgid "Confirm"
-msgstr ""
+msgstr "Betsätigen"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields.selection,name:l10n_it_withholding_tax_payment.selection__withholding_tax_move_payment__state__confirmed
+#, fuzzy
 msgid "Confirmed"
-msgstr ""
+msgstr "Bestätigt"
 
 #. module: l10n_it_withholding_tax_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.view_withholding_move_payment_form
 msgid "Create Account Move"
-msgstr ""
+msgstr "Erstelle Buchhaltungsbewegung"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.actions.act_window,name:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_action
 #: model_terms:ir.ui.view,arch_db:l10n_it_withholding_tax_payment.wizard_wt_move_payment_create_view
 msgid "Create Payment Move"
-msgstr ""
+msgstr "Zahlungsbewegung erstellen"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model,name:l10n_it_withholding_tax_payment.model_wizard_wt_move_payment_create
 msgid "Create WT Payment Move Wizard"
-msgstr ""
+msgstr "Erstellung des Verfahrens für den RdA-Zahlungsverkehr"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__create_uid
@@ -89,8 +94,9 @@ msgstr "Datum"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__description
+#, fuzzy
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. module: l10n_it_withholding_tax_payment
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax_payment.field_withholding_tax_move_payment__display_name

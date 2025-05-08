@@ -82,7 +82,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_data
 msgid "<strong>Carriage Condition:</strong>"
 msgstr ""
 
@@ -107,12 +107,12 @@ msgid "<strong>Delivery address:</strong>"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_data
 msgid "<strong>Method of Transport / Carrier:</strong>"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_data
 msgid "<strong>Method of Transport:</strong>"
 msgstr ""
 
@@ -124,7 +124,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_data
 msgid "<strong>Reason of Transport:</strong>"
 msgstr ""
 
@@ -198,6 +198,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__goods_appearance_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__goods_appearance_id
 msgid "Appearance of goods"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_goods_appearance_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_goods_appearance_id
+msgid "Appearance of goods of Delivery"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -282,13 +288,24 @@ msgid "Carrier"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_carrier_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_carrier_id
+msgid "Carrier of Delivery"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Carrier's Signature"
 msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 msgid "Carriers"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model,name:l10n_it_delivery_note.model_l10n_it_delivery_note_delivery_mixin
+msgid "Common data for records to be delivered"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -309,6 +326,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__transport_condition_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__transport_condition_id
 msgid "Condition of transport"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_transport_condition_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_transport_condition_id
+msgid "Condition of transport of Delivery"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -677,7 +700,7 @@ msgid "Draft document:"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Driver's Signature"
 msgstr ""
 
@@ -721,13 +744,25 @@ msgid "Go to invoice"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Goods Description"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Gross Weight"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_gross_weight
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_gross_weight
+msgid "Gross Weight of Delivery"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_gross_weight_uom_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_gross_weight_uom_id
+msgid "Gross Weight of Delivery UoM"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -822,6 +857,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_note
 msgid "Internal note"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_note
+msgid "Internal note of delivery"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -996,6 +1037,12 @@ msgid "Method of transport"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_transport_method_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_transport_method_id
+msgid "Method of transport of Delivery"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.stock_picking_transport_method_action
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_picking_transport_method_menu
 msgid "Methods of transport"
@@ -1013,8 +1060,20 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Net Weight"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_net_weight
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_net_weight
+msgid "Net Weight of Delivery"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_net_weight_uom_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_net_weight_uom_id
+msgid "Net Weight of Delivery UoM"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1061,7 +1120,7 @@ msgid "Note DN"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Notes"
 msgstr ""
 
@@ -1123,9 +1182,15 @@ msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__packages
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_delivery_notes
 msgid "Packages"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_packages
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_packages
+msgid "Packages of Delivery"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1227,6 +1292,12 @@ msgid "Reason of transport"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_transport_reason_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_transport_reason_id
+msgid "Reason of transport of Delivery"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.actions.act_window,name:l10n_it_delivery_note.stock_picking_transport_reason_action
 #: model:ir.ui.menu,name:l10n_it_delivery_note.stock_picking_transport_reason_menu
 msgid "Reasons of transport"
@@ -1241,7 +1312,7 @@ msgid "Recipient"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Recipient's Signature"
 msgstr ""
 
@@ -1461,6 +1532,16 @@ msgid "Summary"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__dn_supplier_date
+msgid "Supplier DN Date"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__dn_supplier_number
+msgid "Supplier DN Number"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Tax"
 msgstr ""
@@ -1618,9 +1699,15 @@ msgid "Transfer"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_transport_datetime
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_transport_datetime
+msgid "Transport Date of Delivery"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__transport_datetime
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__transport_datetime
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Transport date"
 msgstr ""
 
@@ -1736,6 +1823,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__volume_uom_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_volume_uom_id
 msgid "Volume UoM"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_volume
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_volume
+msgid "Volume of Delivery"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_l10n_it_delivery_note_delivery_mixin__delivery_volume_uom_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_volume_uom_id
+msgid "Volume of Delivery UoM"
 msgstr ""
 
 #. module: l10n_it_delivery_note

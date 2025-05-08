@@ -10,7 +10,17 @@ from ..wizard import efattura
 
 _logger = logging.getLogger(__name__)
 
-SELF_INVOICE_TYPES = ("TD16", "TD17", "TD18", "TD19", "TD20", "TD21", "TD27", "TD28")
+SELF_INVOICE_TYPES = (
+    "TD16",
+    "TD17",
+    "TD18",
+    "TD19",
+    "TD20",
+    "TD21",
+    "TD22",
+    "TD27",
+    "TD28",
+)
 
 
 class FatturaPAAttachmentIn(models.Model):
@@ -66,6 +76,24 @@ class FatturaPAAttachmentIn(models.Model):
     linked_invoice_id_xml = fields.Char(
         compute="_compute_linked_invoice_id_xml",
         store=True,
+    )
+    price_decimal_digits = fields.Integer(
+        string="Prices decimal digits",
+        help="Value used during import of this e-invoice "
+        'to override "Product Price" precision.',
+        readonly=True,
+    )
+    quantity_decimal_digits = fields.Integer(
+        string="Quantities decimal digits",
+        help="Value used during import of this e-invoice "
+        'to override "Product Unit of Measure" precision.',
+        readonly=True,
+    )
+    discount_decimal_digits = fields.Integer(
+        string="Discounts decimal digits",
+        help="Value used during import of this e-invoice "
+        'to override "Discount" precision.',
+        readonly=True,
     )
 
     _sql_constraints = [

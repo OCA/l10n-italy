@@ -27,7 +27,7 @@
                     name="manually_apply_tax_stamp"
                     attrs="{'invisible': [('auto_compute_stamp', '=', True)]}"
                 />
-                <field name="tax_stamp_line_present" invisible="1" />
+                <field name="tax_stamp_invoice_line_present" invisible="1" />
             </xpath>
             <field name="narration" position="before">
                 <div
@@ -40,13 +40,13 @@
                         alt="Tax stamp"
                     />
                     <span
-                        attrs="{'invisible': [('tax_stamp_line_present', '=', True)]}"
+                        attrs="{'invisible': [('tax_stamp_invoice_line_present', '=', True)]}"
                     >
                         <span attrs="{'invisible': [('state', 'not in', 'draft')]}">
                             <button
                                 type="object"
                                 string="Charge stamp to customer"
-                                name="add_tax_stamp_line"
+                                name="add_tax_stamp_invoice_line"
                             />
                         </span>
                         <span attrs="{'invisible': [('state', '=', 'draft')]}">
@@ -54,7 +54,7 @@
                         </span>
                     </span>
                     <span
-                        attrs="{'invisible': [('tax_stamp_line_present', '=', False)]}"
+                        attrs="{'invisible': [('tax_stamp_invoice_line_present', '=', False)]}"
                     >
                         Stamp charged to customer
                     </span>

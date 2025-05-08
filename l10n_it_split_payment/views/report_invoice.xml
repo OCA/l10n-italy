@@ -1,0 +1,12 @@
+<odoo>
+    <template
+        id="report_invoice_document_split_inherit"
+        inherit_id="account.report_invoice_document"
+    >
+        <xpath expr="//t[@t-if='len(payments_vals) > 0']" position="attributes">
+            <attribute
+                name="t-if"
+            >len(payments_vals) &gt; 0 or o.split_payment</attribute>
+        </xpath>
+    </template>
+</odoo>

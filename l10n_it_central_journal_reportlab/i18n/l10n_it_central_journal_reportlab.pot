@@ -17,7 +17,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_central_journal_reportlab/wizard/print_giornale.py:0
 #, python-format
-msgid " Account Central Journal"
+msgid " - Account Central Journal"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab

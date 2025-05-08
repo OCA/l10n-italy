@@ -4,3 +4,4 @@ from . import account_move
 from . import account_move_line
 from . import account_tax
 from . import account_vat_period_end_statement
+from . import comunicazione_liquidazione

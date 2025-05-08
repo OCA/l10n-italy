@@ -327,5 +327,9 @@ class TestRibaCommon(common.TransactionCase):
                 "bank_id": self.company_bank.id,
                 "acceptance_journal_id": self.bank_journal.id,
                 "acceptance_account_id": self.sbf_effects.id,
+                "past_due_journal_id": self.bank_journal.id,
+                "overdue_effects_account_id": self.past_due_account.id,
+                "protest_charge_account_id": self.expenses_account.id,
+                "settlement_journal_id": self.bank_journal.id,
             }
         )

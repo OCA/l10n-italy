@@ -50,3 +50,9 @@ class WizardImportFatturapa(models.TransientModel):
             if rc_ita_fp:
                 invoice.fiscal_position_id = rc_ita_fp
         return res
+
+    def _prepareInvoiceLineAliquota(self, credit_account_id, line, nline):
+        retLine = super()._prepareInvoiceLineAliquota(credit_account_id, line, nline)
+        if self._is_in_reverse_charge_line(line):
+            retLine["rc"] = True
+        return retLine

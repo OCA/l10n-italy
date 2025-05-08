@@ -37,15 +37,9 @@
                     />
                 </group>
 
-                <group string="Acceptance" attrs="{'invisible': [('type','!=','sbf')]}">
-                    <field
-                        name="acceptance_journal_id"
-                        attrs="{'required':[('type','=','sbf')]}"
-                    />
-                    <field
-                        name="acceptance_account_id"
-                        attrs="{'required':[('type','=','sbf')]}"
-                    />
+                <group string="Acceptance">
+                    <field name="acceptance_journal_id" />
+                    <field name="acceptance_account_id" />
                 </group>
 
                 <group string="Credit" attrs="{'invisible': [('type','!=','sbf')]}">
@@ -55,22 +49,15 @@
                     <field name="bank_expense_account_id" />
                 </group>
 
-                <group string="Past Due" attrs="{'invisible': [('type','!=','sbf')]}">
+                <group string="Past Due">
                     <field name="past_due_journal_id" />
                     <field name="overdue_effects_account_id" />
                     <field name="protest_charge_account_id" />
                 </group>
 
-                <group string="Settlement" attrs="{'invisible': [('type','!=','sbf')]}">
+                <group string="Settlement">
                     <field name="past_due_journal_id" />
                     <field name="settlement_journal_id" />
-                </group>
-                <group
-                    string="Acceptance"
-                    attrs="{'required':[('type','=','incasso')]}"
-                >
-                    <field name="acceptance_journal_id" />
-                    <field name="acceptance_account_id" />
                 </group>
             </form>
         </field>

@@ -35,13 +35,14 @@ class RibaConfiguration(models.Model):
     acceptance_journal_id = fields.Many2one(
         "account.journal",
         "Acceptance Journal",
+        required=True,
         check_company=True,
-        domain="[('company_id', '=', company_id), ('type', '=', 'bank')]",
         help="Journal used when RiBa is accepted by the bank.",
     )
     acceptance_account_id = fields.Many2one(
         "account.account",
         "Acceptance Account",
+        required=True,
         check_company=True,
         help="Account used when RiBa is accepted by the bank.",
     )
@@ -55,7 +56,6 @@ class RibaConfiguration(models.Model):
         "account.journal",
         "Credit Journal",
         check_company=True,
-        domain="[('company_id', '=', company_id), ('type', '=', 'bank')]",
         help="Journal used when RiBa amount is credited by the bank.",
     )
     credit_account_id = fields.Many2one(
@@ -78,7 +78,6 @@ class RibaConfiguration(models.Model):
         "account.journal",
         "Past Due Journal",
         check_company=True,
-        domain="[('company_id', '=', company_id), ('type', '=', 'bank')]",
         help="Journal used when RiBa is past due.",
     )
     overdue_effects_account_id = fields.Many2one(
@@ -113,8 +112,11 @@ class RibaConfiguration(models.Model):
         if not self.env.context.get("active_id", False):
             return False
         ribalist_line = self.env["riba.slip.line"].browse(self.env.context["active_id"])
-        return (
-            ribalist_line.slip_id.config_id[field_name]
-            and ribalist_line.slip_id.config_id[field_name].id
-            or False
-        )
+        res = ribalist_line.slip_id.config_id[field_name]
+        if res:
+            # we need to check if the field is string like "config_type" or
+            # many2one like journals and accounts
+            if isinstance(res, str):
+                return res
+            return res.id
+        return False

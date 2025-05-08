@@ -150,6 +150,16 @@
                     domain="[('partner_id','=', commercial_partner_id)]"
                 />
                 <field
+                    name="riba_supplier_company_bank_id"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                                ('is_riba_payment', '=', False),
+                                ('move_type', '!=', 'in_invoice'),
+                        ],
+                    }"
+                />
+                <field
                     name="is_past_due"
                     string="Past Due"
                     attrs="{'invisible': [('is_past_due', '=', False)]}"

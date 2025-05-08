@@ -99,6 +99,8 @@ class StockPicking(models.Model):
     delivery_note_readonly = fields.Boolean(compute="_compute_boolean_flags")
     delivery_note_visible = fields.Boolean(compute="_compute_boolean_flags")
     can_be_invoiced = fields.Boolean(compute="_compute_boolean_flags")
+    dn_supplier_number = fields.Char(string="Supplier DN Number", copy=False)
+    dn_supplier_date = fields.Date(string="Supplier DN Date", copy=False)
 
     @property
     def _delivery_note_fields(self):
@@ -329,11 +331,26 @@ class StockPicking(models.Model):
         if not self.delivery_note_id and delivery_note_to_create:
             self._check_delivery_note_consistency()
         res = super().button_validate()
-        if delivery_note_to_create and not self.delivery_note_id:
+        # Since this method can be called multiple times after the
+        # user clicks on the Validate button we must be sure to create
+        # the delivery note only after the stock_picking data is updated.
+        if (
+            delivery_note_to_create
+            and not self.delivery_note_id
+            and (
+                isinstance(res, bool)
+                or (
+                    isinstance(res, dict)
+                    and res["res_model"] == "stock.backorder.confirmation"
+                )
+            )
+        ):
             delivery_note = self._create_delivery_note()
             self.write({"delivery_note_id": delivery_note.id})
             if self.sale_id:
-                self.sale_id._assign_delivery_notes_invoices(self.sale_id.invoice_ids)
+                self.sale_id._assign_delivery_notes_invoices(
+                    self.sale_id.invoice_ids.ids
+                )
         return res
 
     def _create_delivery_note(self):

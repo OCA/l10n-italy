@@ -2,3 +2,5 @@
 - Lorenzo Battistini \<<lorenzo.battistini@agilebg.com>\>
 - Marco Colombo \<<https://github.com/TheMule71>\>
 - Alex Comba \<<alex.comba@agilebg.com>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>

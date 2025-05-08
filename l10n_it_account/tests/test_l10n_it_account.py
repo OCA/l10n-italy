@@ -6,7 +6,7 @@ import datetime
 import xmlschema
 
 from odoo import fields
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 from odoo.tests import tagged
 from odoo.tests.common import Form
 
@@ -138,23 +138,6 @@ class TestAccount(AccountTestInvoicingCommon):
                 ],
             }
         )
-
-    def test_group_constraint(self):
-        self.env["account.account"].create(
-            {
-                "name": "it_account_1",
-                "code": "it.account.1",
-                "account_type": "asset_current",
-            }
-        )
-        with self.assertRaises(ValidationError):
-            self.env["account.account"].create(
-                {
-                    "name": "it_account_2",
-                    "code": "it.account.2",
-                    "account_type": "liability_current",
-                }
-            )
 
     def test_group_recursion(self):
         """

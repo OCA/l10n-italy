@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-09 20:32+0000\n"
-"PO-Revision-Date: 2024-09-17 10:06+0000\n"
+"PO-Revision-Date: 2024-12-15 15:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -417,6 +417,7 @@ msgid "Discount and Supplement Details"
 msgstr "Dettagli sconto e maggiorazione"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__discount_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__discount_decimal_digits
 msgid "Discounts decimal digits"
 msgstr "Cifre decimali sconti"
@@ -1101,6 +1102,7 @@ msgid "Preview link"
 msgstr "Collegamento di anteprima"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__price_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__price_decimal_digits
 msgid "Prices decimal digits"
 msgstr "Cifre decimali prezzi"
@@ -1134,6 +1136,7 @@ msgid "Province ( %s ) not present in your system"
 msgstr "Provincia ( %s ) non presente nel sistema"
 
 #. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__quantity_decimal_digits
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_import_fatturapa__quantity_decimal_digits
 msgid "Quantities decimal digits"
 msgstr "Cifre decimali quantità"
@@ -1508,6 +1511,33 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_einvoice_line__tax_amount
 msgid "VAT Rate"
 msgstr "Aliquota IVA"
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__discount_decimal_digits
+msgid ""
+"Value used during import of this e-invoice to override \"Discount\" "
+"precision."
+msgstr ""
+"Valore utilizzato durante l'importazione di questa fattura elettronica per "
+"sovrascrivere la precisione \"Sconto\"."
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__price_decimal_digits
+msgid ""
+"Value used during import of this e-invoice to override \"Product Price\" "
+"precision."
+msgstr ""
+"Valore utilizzato durante l'importazione di questa fattura elettronica per "
+"sovrascrivere la precisione del \"Prezzo del prodotto\"."
+
+#. module: l10n_it_fatturapa_in
+#: model:ir.model.fields,help:l10n_it_fatturapa_in.field_fatturapa_attachment_in__quantity_decimal_digits
+msgid ""
+"Value used during import of this e-invoice to override \"Product Unit of "
+"Measure\" precision."
+msgstr ""
+"Valore utilizzato durante l'importazione di questa fattura elettronica per "
+"sovrascrivere la precisione \"Unità di misura del prodotto\"."
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_res_company__in_invoice_registration_date

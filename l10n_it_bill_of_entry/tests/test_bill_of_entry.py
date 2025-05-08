@@ -13,7 +13,9 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 @tagged("post_install", "-at_install")
 class TestBillOfEntry(AccountTestInvoicingCommon):
-    def _create_invoice(self, partner, customs_doc_type, journal, products_list):
+    def _create_invoice(
+        self, partner, customs_doc_type, journal, products_list, notes_sections_list
+    ):
         invoice = self.init_invoice(
             "in_invoice",
             partner=partner,
@@ -25,9 +27,14 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             invoice_form.journal_id = journal
         for product, qty, price in products_list:
             with invoice_form.invoice_line_ids.new() as line:
+                line.name = product.name
                 line.product_id = product
                 line.price_unit = price
                 line.quantity = qty
+        for name, display_type in notes_sections_list:
+            with invoice_form.invoice_line_ids.new() as line:
+                line.name = name
+                line.display_type = display_type
 
         invoice = invoice_form.save()
         return invoice
@@ -144,6 +151,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             [
                 (self.product1, 1, 2500),
             ],
+            [],
         )
 
         # Bill of Entry - draft state
@@ -153,6 +161,9 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             self.journal,
             [
                 (self.product_extra, 1, 2500),
+            ],
+            [
+                ("nota", "line_note"),
             ],
         )
         bill_of_entry_form = Form(self.bill_of_entry)
@@ -169,6 +180,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
                 (self.product_delivery, 1, 300),
                 (self.adv_customs_expense, 1, 550),
             ],
+            [],
         )
         forwarder_invoice_form = Form(self.forwarder_invoice)
         with forwarder_invoice_form.invoice_line_ids.edit(1) as line:

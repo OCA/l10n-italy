@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Simone Vanin - Agile Business Group
+     Copyright 2023 Simone Rubino - Aion Tech
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">Show shipping data in invoice form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page
+                    string="Shipping Information"
+                    name="shipping_info"
+                    attrs="{
+                        'invisible': [
+                            ('move_type', '=', 'entry'),
+                        ],
+                    }"
+                >
+                    <group name="shipping_info">
+                        <group name="shipping_transport" string="Transport">
+                            <field
+                                name="delivery_transport_reason_id"
+                                string="Transport Reason"
+                                widget="selection"
+                            />
+                            <field
+                                name="delivery_transport_condition_id"
+                                string="Transport Condition"
+                                widget="selection"
+                            />
+                            <field
+                                name="delivery_transport_method_id"
+                                string="Transport Method"
+                                widget="selection"
+                            />
+                            <field name="delivery_carrier_id" string="Carrier" />
+                            <field
+                                name="delivery_transport_datetime"
+                                string="Transport Date"
+                            />
+                        </group>
+                        <group name="shipping_parcels" string="Parcels">
+                            <field
+                                name="delivery_goods_appearance_id"
+                                string="Goods Appearance"
+                                widget="selection"
+                            />
+                            <label for="delivery_volume" string="Volume" />
+                            <div class="o_row">
+                                <field name="delivery_volume" />
+                                <field
+                                    name="delivery_volume_uom_id"
+                                    groups="uom.group_uom"
+                                    widget="selection"
+                                />
+                            </div>
+                            <label for="delivery_gross_weight" string="Gross Weight" />
+                            <div class="o_row">
+                                <field name="delivery_gross_weight" />
+                                <field
+                                    name="delivery_gross_weight_uom_id"
+                                    groups="uom.group_uom"
+                                    widget="selection"
+                                />
+                            </div>
+                            <label for="delivery_net_weight" string="Net Weight" />
+                            <div class="o_row">
+                                <field name="delivery_net_weight" />
+                                <field
+                                    name="delivery_net_weight_uom_id"
+                                    groups="uom.group_uom"
+                                    widget="selection"
+                                />
+                            </div>
+                            <field name="delivery_packages" string="Packages" />
+                        </group>
+                        <group colspan="2" name="shipping_other" string="Other">
+                            <field name="delivery_note" string="Note" />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

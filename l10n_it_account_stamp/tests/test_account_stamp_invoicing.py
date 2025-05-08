@@ -84,7 +84,7 @@ class InvoicingTest(TestAccountInvoiceReport):
         invoice.action_post()
 
         # Add stamp and check that edited description is kept
-        invoice.add_tax_stamp_line()
+        invoice.add_tax_stamp_invoice_line()
         self.assertEqual(invoice.invoice_line_ids[0].name, edited_descr)
 
     def test_amount_total_changing_currency(self):
@@ -102,27 +102,25 @@ class InvoicingTest(TestAccountInvoiceReport):
         invoice.action_post()
         self.assertEqual(total, invoice.amount_total)
 
-    def test_tax_stamp_line_button(self):
-        """Stamp fields show when stamp is added with the button to the invoice."""
-        # Arrange: Create an invoice eligible for tax stamp but without it
-        stamp_tax = self.tax_id
-        invoice = self.init_invoice(
-            "out_invoice",
-            taxes=stamp_tax,
-            amounts=[
-                100,
-            ],
+    def test_reset_invoice_to_draft(self):
+        """Reset an invoice to draft and check that relative tax stamp accounting lines
+        has been deleted."""
+        invoice = first(
+            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
         )
-        # pre-condition
-        self.assertTrue(invoice.tax_stamp)
-        self.assertFalse(invoice.tax_stamp_line_present)
 
-        # Act
-        invoice.add_tax_stamp_line()
+        self.assertEqual(len(invoice), 1)
+        self.assertEqual(len(invoice.invoice_line_ids), 2)
 
-        # Assert
-        self.assertTrue(invoice.tax_stamp_line_present)
+        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
+        invoice.action_post()
 
-        # Resetting to draft removes the stamp
+        self.assertEqual(
+            len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 2
+        )
+
         invoice.button_draft()
-        self.assertFalse(invoice.tax_stamp_line_present)
+
+        self.assertEqual(
+            len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 0
+        )

@@ -1,8 +1,7 @@
 # Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import fields, models
 
 
 class AccountGroup(models.Model):
@@ -17,34 +16,6 @@ class AccountGroup(models.Model):
         compute="_compute_account_balance_sign",
         string="Balance sign",
     )
-
-    @api.constrains("account_ids", "parent_id")
-    def check_balance_sign_coherence(self):
-        """
-        Checks whether every group (plus parents and subgroups) have the same
-        balance sign. This is done by first retrieving every group's progenitor
-        and then checking, for each of them, the account types' for accounts
-        linked to such progenitor group and its subgroups.
-        """
-        if self.env.context.get("skip_check_balance_sign_coherence"):
-            return
-        done_group_ids, progenitor_ids = [], []
-        for group in self:
-            if group.id in done_group_ids:
-                continue
-            progenitor = group.get_group_progenitor()
-            progenitor_ids.extend(progenitor.ids)
-            done_group_ids.extend(progenitor.get_group_subgroups().ids)
-
-        progenitors = self.browse(tuple(set(progenitor_ids)))
-        for progenitor in progenitors:
-            accounts = progenitor.get_group_accounts()
-            if not accounts.have_same_sign():
-                raise ValidationError(
-                    _("Incoherent balance signs for '{}' and its subgroups.").format(
-                        progenitor.name_get()[0][-1]
-                    )
-                )
 
     def _compute_account_balance_sign(self):
         for group in self:

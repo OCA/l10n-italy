@@ -164,7 +164,7 @@
                         type='object'
                         string="Mark lines as Settled"
                         class="oe_highlight"
-                        attrs="{'invisible':[('state','!=','credited')]}"
+                        attrs="{'invisible':['|','&amp;',('state','!=','credited'),('type','=','sbf'),'&amp;',('state','!=','accepted'),('type','=','incasso')]}"
                     />
                     <button
                         name="action_cancel_draft"
@@ -204,14 +204,14 @@
                                     <button
                                         name="%(riba_past_due_action)d"
                                         type='action'
-                                        attrs="{'invisible':['|',('type','=','incasso'),('state','!=','credited')]}"
+                                        attrs="{'invisible':['|','&amp;',('state','!=','credited'),('type','=','sbf'),'&amp;',('state','!=','confirmed'),('type','=','incasso')]}"
                                         string="Mark as Past Due"
                                         icon="fa-exclamation-triangle"
                                     />
                                     <button
                                         name="button_settle"
                                         type='object'
-                                        attrs="{'invisible':['|',('type','=','incasso'),('state','!=','credited')]}"
+                                        attrs="{'invisible':['|','&amp;',('state','!=','credited'),('type','=','sbf'),'&amp;',('state','!=','confirmed'),('type','=','incasso')]}"
                                         string="Mark as Settled"
                                         icon="fa-check"
                                     />

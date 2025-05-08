@@ -9,21 +9,23 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-01 19:47+0000\n"
-"PO-Revision-Date: 2016-11-01 19:47+0000\n"
-"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2016\n"
+"PO-Revision-Date: 2025-04-15 12:24+0000\n"
+"Last-Translator: BitStab <bitstab@users.noreply.translation.odoo-"
+"community.org>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_abicab
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_account_setup_bank_manual_config__bank_abi
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__abi
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_abi
 msgid "ABI"
-msgstr ""
+msgstr "ABI"
 
 #. module: l10n_it_abicab
 #: model:ir.model,name:l10n_it_abicab.model_res_bank
@@ -40,12 +42,12 @@ msgstr "Bankkonten"
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_bank__cab
 #: model:ir.model.fields,field_description:l10n_it_abicab.field_res_partner_bank__bank_cab
 msgid "CAB"
-msgstr ""
+msgstr "CAB"
 
 #. module: l10n_it_abicab
 #: model_terms:ir.ui.view,arch_db:l10n_it_abicab.view_bank_filter_abicab
 msgid "Search Bank"
-msgstr ""
+msgstr "Bank suchen"
 
 #~ msgid "Bank Details"
 #~ msgstr "Bankdetails"

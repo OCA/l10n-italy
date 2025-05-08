@@ -24,11 +24,7 @@ class AccountMoveLine(models.Model):
         for line in self:
             move = line.move_id
             # see invoice_line_ids field definition
-            is_invoice_line = line.display_type in (
-                "product",
-                "line_section",
-                "line_note",
-            )
+            is_invoice_line = line.display_type == "product"
             is_rc = (
                 move.is_purchase_document()
                 and move.fiscal_position_id.rc_type_id
@@ -99,11 +95,13 @@ class AccountMove(models.Model):
         else:
             move_type = "out_refund"
         supplier = self.partner_id
+        reference_date = self.invoice_date
         original_invoice = self.search(
             [("rc_self_purchase_invoice_id", "=", self.id)], limit=1
         )
         if original_invoice:
             supplier = original_invoice.partner_id
+            reference_date = original_invoice.invoice_date
 
         narration = _(
             "Reverse charge self invoice.\n"
@@ -113,7 +111,7 @@ class AccountMove(models.Model):
             "Internal reference: %(internal_reference)s",
             supplier=supplier.display_name,
             reference=self.invoice_origin or self.ref or "",
-            date=self.date,
+            date=reference_date,
             internal_reference=self.name,
         )
         return {
@@ -290,7 +288,7 @@ class AccountMove(models.Model):
             line_to_reconcile.account_id,
 
             payment_credit_line_data["amount_currency"],
-            payment_credit_line_data["credit"],
+            payment_credit_line_data["credit"] or payment_credit_line_data["debit"],
         )
         rc_payment_data["line_ids"] = [
             (0, 0, payment_debit_line_data),
@@ -428,7 +426,8 @@ class AccountMove(models.Model):
                 )
                 if line_tax_ids and mapped_taxes:
                     rc_invoice_line["tax_ids"] = [(6, False, mapped_taxes.ids)]
-                rc_invoice_line["account_id"] = rc_type.transitory_account_id.id
+                if line.account_id:
+                    rc_invoice_line["account_id"] = rc_type.transitory_account_id.id
                 rc_invoice_lines.append([0, False, rc_invoice_line])
         if rc_invoice_lines:
             inv_vals = self.rc_inv_vals(
@@ -473,7 +472,7 @@ class AccountMove(models.Model):
         supplier_invoice_vals["partner_bank_id"] = None
         # because this field has copy=False
         supplier_invoice_vals["date"] = self.date
-        supplier_invoice_vals["invoice_date"] = self.date
+        supplier_invoice_vals["invoice_date"] = self.invoice_date
         supplier_invoice_vals["invoice_origin"] = self.ref or self.name
         supplier_invoice_vals["partner_id"] = rc_type.partner_id.id
         supplier_invoice_vals["journal_id"] = rc_type.supplier_journal_id.id
@@ -490,6 +489,7 @@ class AccountMove(models.Model):
             line_vals = inv_line.copy_data()[0]
             line_vals["rc_source_line_id"] = inv_line.id
             line_vals["move_id"] = supplier_invoice.id
+            line_vals["analytic_distribution"] = False
             line_tax_ids = inv_line.tax_ids
             mapped_taxes = rc_type.map_tax(
                 line_tax_ids,
@@ -500,7 +500,8 @@ class AccountMove(models.Model):
                 line_vals["tax_ids"] = [
                     (6, False, mapped_taxes.ids),
                 ]
-            line_vals["account_id"] = rc_type.transitory_account_id.id
+            if inv_line.account_id:
+                line_vals["account_id"] = rc_type.transitory_account_id.id
             invoice_line_vals.append((0, 0, line_vals))
         supplier_invoice.write({"invoice_line_ids": invoice_line_vals})
         self.rc_self_purchase_invoice_id = supplier_invoice.id

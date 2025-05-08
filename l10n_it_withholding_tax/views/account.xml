@@ -112,8 +112,8 @@
                     /></group></xpath>
 
                 <xpath
-                expr="//group/group/field[@name='payment_reference']"
-                position="after"
+                expr="//group/group/field[@name='partner_bank_id']"
+                position="before"
             >
                     <field name="withholding_tax" invisible="1" />
                 </xpath>

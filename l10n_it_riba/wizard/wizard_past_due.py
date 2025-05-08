@@ -13,6 +13,10 @@ from odoo.exceptions import UserError
 
 class RibaPastDue(models.TransientModel):
     @api.model
+    def _get_config_type(self):
+        return self.env["riba.configuration"].get_default_value_by_list_line("type")
+
+    @api.model
     def _get_past_due_journal_id(self):
         return self.env["riba.configuration"].get_default_value_by_list_line(
             "past_due_journal_id"
@@ -56,6 +60,11 @@ class RibaPastDue(models.TransientModel):
 
     _name = "riba.past_due"
     _description = "Manage Past Due RiBas"
+    config_type = fields.Selection(
+        [("sbf", "Subject To Collection"), ("incasso", "After Collection")],
+        "Issue Mode",
+        default=_get_config_type,
+    )
     past_due_journal_id = fields.Many2one(
         "account.journal",
         "Past Due Journal",
@@ -117,18 +126,63 @@ class RibaPastDue(models.TransientModel):
         slip_line = self.env["riba.slip.line"].browse(active_id)
         wizard = self
         sbf_immediate = slip_line.slip_id.config_id.sbf_collection_type == "immediate"
-        if (
+        riba_type = slip_line.slip_id.config_id.type
+        account_check = (
             not wizard.past_due_journal_id
             or not wizard.effects_account_id
-            or not wizard.riba_bank_account_id
             or not wizard.overdue_effects_account_id
-            or not wizard.bank_account_id
             or not wizard.bank_expense_account_id
-        ):
+        )
+        # only sbf type needs "RiBa Account" and "A/C Bank Account"
+        if riba_type == "sbf":
+            account_check = (
+                account_check
+                or not wizard.riba_bank_account_id
+                or not wizard.bank_account_id
+            )
+        if account_check:
             raise UserError(_("Every account is mandatory."))
-
         date = self.date or slip_line.due_date
-        line_ids = [
+        # when incasso type, "Past Due Bills" aml needs to be linked to
+        # a "Bills Account" aml
+        line_ids = []
+        if riba_type == "incasso":
+            aml_name = _("Bills Account")
+            aml_account_id = wizard.effects_account_id.id
+            aml_credit = wizard.effects_amount
+        # when incasso type, "Past Due Bills" aml needs to be linked to
+        # an "A/C Bank" aml
+        else:
+            aml_name = (_("A/C Bank"),)
+            aml_account_id = wizard.bank_account_id.id
+            aml_credit = wizard.bank_amount
+            # when sbf type and immediate collection, we need to create
+            # a "Bills" aml and a "RiBa" aml
+            if sbf_immediate:
+                line_ids = [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": _("Bills"),
+                            "account_id": wizard.effects_account_id.id,
+                            "partner_id": slip_line.partner_id.id,
+                            "credit": wizard.effects_amount,
+                            "debit": 0.0,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": _("RiBa"),
+                            "account_id": wizard.riba_bank_account_id.id,
+                            "debit": wizard.riba_bank_amount,
+                            "credit": 0.0,
+                        },
+                    ),
+                ]
+        line_ids += [
             (
                 0,
                 0,
@@ -145,50 +199,16 @@ class RibaPastDue(models.TransientModel):
                 0,
                 0,
                 {
-                    "name": _("A/C Bank"),
-                    "account_id": wizard.bank_account_id.id,
-                    "credit": wizard.bank_amount,
+                    "name": aml_name,
+                    "account_id": aml_account_id,
+                    "credit": aml_credit,
                     "debit": 0.0,
                 },
             ),
         ]
-        if sbf_immediate:
-            line_ids += [
-                (
-                    0,
-                    0,
-                    {
-                        "name": _("Bills"),
-                        "account_id": wizard.effects_account_id.id,
-                        "partner_id": slip_line.partner_id.id,
-                        "credit": wizard.effects_amount,
-                        "debit": 0.0,
-                    },
-                ),
-                (
-                    0,
-                    0,
-                    {
-                        "name": _("RiBa"),
-                        "account_id": wizard.riba_bank_account_id.id,
-                        "debit": wizard.riba_bank_amount,
-                        "credit": 0.0,
-                    },
-                ),
-            ]
-        move_vals = {
-            "ref": _("Past Due RiBa %(name)s - Line %(sequence)s")
-            % {
-                "name": slip_line.slip_id.name,
-                "sequence": slip_line.sequence,
-            },
-            "journal_id": wizard.past_due_journal_id.id,
-            "date": date,
-            "line_ids": line_ids,
-        }
-
+        # add bank fees aml
         if wizard.expense_amount:
-            move_vals["line_ids"].append(
+            line_ids += [
                 (
                     0,
                     0,
@@ -199,7 +219,18 @@ class RibaPastDue(models.TransientModel):
                         "credit": 0.0,
                     },
                 ),
-            )
+            ]
+
+        move_vals = {
+            "ref": _("Past Due RiBa %(name)s - Line %(sequence)s")
+            % {
+                "name": slip_line.slip_id.name,
+                "sequence": slip_line.sequence,
+            },
+            "journal_id": wizard.past_due_journal_id.id,
+            "date": date,
+            "line_ids": line_ids,
+        }
 
         move = move_model.create(move_vals)
         move.action_post()
@@ -216,8 +247,6 @@ class RibaPastDue(models.TransientModel):
                             i.id
                             for i in riba_move_line.move_line_id.past_due_invoice_ids
                         ]
-                    if sbf_immediate:
-                        riba_move_line.move_line_id.remove_move_reconcile()
                     move_model.browse(invoice_ids).write(
                         {
                             "past_due_move_line_ids": [(4, move_line.id)],
@@ -228,7 +257,9 @@ class RibaPastDue(models.TransientModel):
         for acceptance_move_line in slip_line.acceptance_move_id.line_ids:
             if acceptance_move_line.account_id.id == wizard.effects_account_id.id:
                 to_be_reconciled.append(acceptance_move_line.id)
-
+        # remove payments reconciliations linked to past due line for both
+        # incasso and sbf type to set linked invoices as unpaid again
+        slip_line.move_line_ids.move_line_id.remove_move_reconcile()
         slip_line.write(
             {
                 "past_due_move_id": move.id,

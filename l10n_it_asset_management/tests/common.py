@@ -6,7 +6,7 @@
 from datetime import date
 
 from odoo.fields import Command, first
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form, TransactionCase, new_test_user
 
 
 class Common(TransactionCase):
@@ -71,7 +71,27 @@ class Common(TransactionCase):
             ],
             limit=1,
         )
-
+        cls.user = new_test_user(
+            cls.env,
+            "user",
+            groups="base.group_multi_company,account.group_account_manager",
+            company_id=cls.env.ref("base.main_company").id,
+            company_ids=[(6, 0, [cls.env.ref("base.main_company").id])],
+        )
+        groups = ",".join(
+            [
+                "base.group_multi_company",
+                "account.group_account_user",
+                "l10n_it_asset_management.group_asset_user",
+            ]
+        )
+        cls.account_user = new_test_user(
+            cls.env,
+            "user_account",
+            groups=groups,
+            company_id=cls.env.ref("base.main_company").id,
+            company_ids=[(6, 0, [cls.env.ref("base.main_company").id])],
+        )
         cls.civilistico_asset_dep_type = cls.env.ref(
             "l10n_it_asset_management.ad_type_civilistico"
         )

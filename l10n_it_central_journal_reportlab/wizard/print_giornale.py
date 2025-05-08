@@ -203,7 +203,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         report.drawString(
             margin_left,
             height_available,
-            self.company_id.name + _(" Account Central Journal"),
+            self.company_id.name + _(" - Account Central Journal"),
         )
         report.setFont("Helvetica", 10)
         text = ""

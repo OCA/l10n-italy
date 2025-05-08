@@ -1004,12 +1004,9 @@ msgid "Code"
 msgstr ""
 
 #. module: l10n_it_asset_management
-#: model:ir.model.fields,help:l10n_it_asset_management.field_asset_depreciation__base_coeff
-msgid "Coeff to compute amount depreciable from purchase amount"
-msgstr ""
-
-#. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_asset_category_depreciation_type__base_coeff
+#: model:ir.model.fields,help:l10n_it_asset_management.field_asset_depreciation__base_coeff
+#: model:ir.model.fields,help:l10n_it_asset_management.field_l10n_it_asset_management_compute_depreciable_amount__base_coeff
 msgid "Coeff to compute depreciable amount from purchase amount"
 msgstr ""
 
@@ -1045,6 +1042,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_dep_line_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_asset_management.asset_search_view
 msgid "Company"
+msgstr ""
+
+#. module: l10n_it_asset_management
+#: model:ir.model,name:l10n_it_asset_management.model_l10n_it_asset_management_compute_depreciable_amount
+msgid "Compute depreciable amount"
 msgstr ""
 
 #. module: l10n_it_asset_management
@@ -1252,6 +1254,8 @@ msgstr ""
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category_depreciation_type__base_coeff
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__base_coeff
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_l10n_it_asset_management_compute_depreciable_amount__base_coeff
 msgid "Dep Base Coeff"
 msgstr ""
 
@@ -1295,11 +1299,6 @@ msgstr ""
 #: code:addons/l10n_it_asset_management/report/asset_previsional_xlsx.py:0
 #, python-format
 msgid "Dep. Percentage (%)"
-msgstr ""
-
-#. module: l10n_it_asset_management
-#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__base_coeff
-msgid "Depreciable Base Coeff"
 msgstr ""
 
 #. module: l10n_it_asset_management
@@ -2074,6 +2073,13 @@ msgstr ""
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_wizard_account_move_manage_asset__management_type
 msgid "Management Type"
+msgstr ""
+
+#. module: l10n_it_asset_management
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category_depreciation_type__base_max_amount
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__base_max_amount
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_l10n_it_asset_management_compute_depreciable_amount__base_max_amount
+msgid "Maximum depreciable amount"
 msgstr ""
 
 #. module: l10n_it_asset_management

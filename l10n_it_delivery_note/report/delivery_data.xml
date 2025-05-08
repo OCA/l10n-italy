@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template id="delivery_data">
+        <div id="delivery_data_information" class="row mt32 mb32">
+            <div t-if="doc.delivery_transport_reason_id" class="col-3 bm-2">
+                <strong>Reason of Transport:</strong>
+                <p t-field="doc.delivery_transport_reason_id" class="m-0" />
+            </div>
+            <div t-if="doc.delivery_transport_condition_id" class="col-3 bm-2">
+                <strong>Carriage Condition:</strong>
+                <p t-field="doc.delivery_transport_condition_id" class="m-0" />
+            </div>
+            <div
+                t-if="doc.delivery_transport_method_id and doc.company_id.display_carrier_dn_report"
+                class="col-3 bm-2"
+            >
+                <strong>Method of Transport:</strong>
+                <p t-field="doc.delivery_transport_method_id" class="m-0" />
+            </div>
+            <div
+                t-if="doc.delivery_transport_method_id and not doc.company_id.display_carrier_dn_report"
+                class="col-3 bm-2"
+            >
+                <strong>Method of Transport / Carrier:</strong>
+                <span t-field="doc.delivery_transport_method_id" class="m-0" />
+                <t
+                    t-if="doc.delivery_transport_method_id and doc.delivery_carrier_id"
+                > / </t>
+                <span t-field="doc.delivery_carrier_id" class="m-0" />
+            </div>
+        </div>
+    </template>
+
+    <template id="parcels_data">
+        <table
+            id="parcel_info"
+            class="table table-condensed table-bordered delivery_data"
+            style="page-break-inside: avoid"
+        >
+            <tr>
+                <td>
+                    <div
+                        name="good_description"
+                        style="font-size:10px;"
+                    >Goods Description</div>
+                    <div
+                        style="font-size:12px;"
+                        t-field="doc.delivery_goods_appearance_id"
+                    />
+                </td>
+                <td>
+                    <div name="gross_weight" style="font-size:10px;">Gross Weight</div>
+                    <div
+                        class="text-left"
+                        style="font-size:12px;"
+                        t-field="doc.delivery_gross_weight"
+                    />
+                </td>
+                <td>
+                    <div name="net_weight" style="font-size:10px;">Net Weight</div>
+                    <div
+                        class="text-left"
+                        style="font-size:12px;"
+                        t-field="doc.delivery_net_weight"
+                    />
+                </td>
+                <td>
+                    <div
+                        name="transport_date"
+                        style="font-size:10px;"
+                    >Transport date</div>
+                    <div
+                        class="m-0"
+                        style="font-size:12px;"
+                        t-field="doc.delivery_transport_datetime"
+                    />
+                </td>
+                <td>
+                    <div name="packages" style="font-size:10px;">Packages</div>
+                    <div
+                        class="text-left"
+                        style="font-size:12px;"
+                        t-field="doc.delivery_packages"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="notes">
+                    <div name="notes" style="font-size:10px;">Notes</div>
+                    <br />
+                    <div
+                        class="signature"
+                        style="font-size:12px;"
+                        t-field="doc.delivery_note"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <table class="table table-condensed delivery_data">
+                        <tr>
+                            <td>
+                                <div
+                                    name="carrier_signature"
+                                    style="font-size:10px;"
+                                >Carrier's Signature</div>
+                                <br />
+                                <div class="signature" style="font-size:12px;" />
+                            </td>
+                            <td>
+                                <div
+                                    name="driver_signature"
+                                    style="font-size:10px;"
+                                >Driver's Signature</div>
+                                <br />
+                                <div class="signature" style="font-size:12px;" />
+                            </td>
+                            <td>
+                                <div
+                                    name="recipint_signature"
+                                    style="font-size:10px;"
+                                >Recipient's Signature</div>
+                                <br />
+                                <div class="signature" style="font-size:12px;" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </template>
+</odoo>

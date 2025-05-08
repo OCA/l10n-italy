@@ -1150,6 +1150,65 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.amount_tax, 5.12)
         self.assertEqual(invoice.amount_total, 28.39)
 
+    def test_increased_decimal_precision(self):
+        """
+        Increase price decimal precision during import:
+        computation of line's price is more accurate.
+        """
+        res = self.run_wizard(
+            "increased_decimal_precision",
+            "IT01234567890_FPR16.xml",
+            wiz_values={
+                "price_decimal_digits": 3,
+            },
+        )
+
+        # The new precision allows to compute the correct amount
+        invoice = self.invoice_model.search(res["domain"])
+        expected_invoice_values = {
+            "amount_untaxed": 66.79,
+            "amount_tax": 14.69,
+            "amount_total": 81.48,
+        }
+        self.assertRecordValues(
+            invoice,
+            [
+                expected_invoice_values,
+            ],
+        )
+        invoice_line = invoice.invoice_line_ids
+        expected_invoice_line_values = {
+            "price_subtotal": 66.79,
+            "price_total": 81.48,
+        }
+        self.assertRecordValues(
+            invoice_line,
+            [
+                expected_invoice_line_values,
+            ],
+        )
+
+        # Trigger amounts recomputation because:
+        # date triggers an update on date_due
+        # date_due triggers an update on needed_terms
+        # needed_terms needs amount_total_signed
+        with Form(invoice) as invoice_form:
+            invoice_form.date = fields.Date.today()
+
+        # The correct amount is kept
+        self.assertRecordValues(
+            invoice,
+            [
+                expected_invoice_values,
+            ],
+        )
+        self.assertRecordValues(
+            invoice_line,
+            [
+                expected_invoice_line_values,
+            ],
+        )
+
 
 class TestFatturaPAEnasarco(FatturapaCommon):
     def setUp(self):

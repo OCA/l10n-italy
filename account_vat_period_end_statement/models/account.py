@@ -110,6 +110,7 @@ class AccountVatPeriodEndStatement(models.Model):
     _name = "account.vat.period.end.statement"
     _description = "VAT period end statement"
     _rec_name = "date"
+    _order = "date DESC, id DESC"
 
     debit_vat_account_line_ids = fields.One2many(
         "statement.debit.account.line",
@@ -401,7 +402,7 @@ class AccountVatPeriodEndStatement(models.Model):
     ):
         self.ensure_one()
         debit_vat_data = {
-            "name": _(name),
+            "name": name,
             "account_id": account_id,
             "move_id": move_id,
             "journal_id": statement.journal_id.id,
@@ -489,7 +490,7 @@ class AccountVatPeriodEndStatement(models.Model):
 
     def _add_end_debit_vat_data(self, lines_to_create, move, statement, statement_date):
         end_debit_vat_data = self._prepare_account_move_line(
-            name="Tax Authority VAT",
+            name=_("Tax Authority VAT"),
             account_id=statement.authority_vat_account_id.id,
             move_id=move.id,
             statement=statement,
@@ -516,7 +517,7 @@ class AccountVatPeriodEndStatement(models.Model):
     def _add_generic_vat_data(self, lines_to_create, move, statement, statement_date):
         for generic_line in statement.generic_vat_account_line_ids:
             generic_vat_data = self._prepare_account_move_line(
-                name="Other VAT Credits / Debits",
+                name=_("Other VAT Credits / Debits"),
                 account_id=generic_line.account_id.id,
                 move_id=move.id,
                 statement=statement,
@@ -531,7 +532,7 @@ class AccountVatPeriodEndStatement(models.Model):
     def _add_interests_data(self, lines_to_create, move, statement, statement_date):
         if statement.interests_debit_vat_amount:
             interests_data = self._prepare_account_move_line(
-                name="Due interests",
+                name=_("Due interests"),
                 account_id=statement.interests_debit_vat_account_id.id,
                 move_id=move.id,
                 statement=statement,
@@ -552,7 +553,7 @@ class AccountVatPeriodEndStatement(models.Model):
     ):
         if statement.previous_debit_vat_amount:
             previous_debit_vat_data = self._prepare_account_move_line(
-                name="Previous Debits VAT",
+                name=_("Previous Debits VAT"),
                 account_id=statement.previous_debit_vat_account_id.id,
                 move_id=move.id,
                 statement=statement,
@@ -571,7 +572,7 @@ class AccountVatPeriodEndStatement(models.Model):
     def _add_advance_vat_data(self, lines_to_create, move, statement, statement_date):
         if statement.advance_amount:
             advance_vat_data = self._prepare_account_move_line(
-                name="Tax Credits",
+                name=_("Tax Credits"),
                 account_id=statement.advance_account_id.id,
                 move_id=move.id,
                 statement=statement,
@@ -586,7 +587,7 @@ class AccountVatPeriodEndStatement(models.Model):
     def _add_tax_credit_data(self, lines_to_create, move, statement, statement_date):
         if statement.tax_credit_amount:
             tax_credit_vat_data = self._prepare_account_move_line(
-                name="Tax Credits",
+                name=_("Tax Credits"),
                 account_id=statement.tax_credit_account_id.id,
                 move_id=move.id,
                 statement=statement,
@@ -603,7 +604,7 @@ class AccountVatPeriodEndStatement(models.Model):
     ):
         if statement.previous_credit_vat_amount:
             previous_credit_vat_data = self._prepare_account_move_line(
-                name="Previous Credits VAT",
+                name=_("Previous Credits VAT"),
                 account_id=statement.previous_credit_vat_account_id.id,
                 move_id=move.id,
                 statement=statement,
@@ -623,7 +624,7 @@ class AccountVatPeriodEndStatement(models.Model):
         for credit_line in statement.credit_vat_account_line_ids:
             if credit_line.amount != 0.0:
                 credit_vat_data = self._prepare_account_move_line(
-                    name="Credit VAT",
+                    name=_("Credit VAT"),
                     account_id=credit_line.account_id.id,
                     move_id=move.id,
                     statement=statement,
@@ -639,7 +640,7 @@ class AccountVatPeriodEndStatement(models.Model):
         for debit_line in statement.debit_vat_account_line_ids:
             if debit_line.amount != 0.0:
                 debit_vat_data = self._prepare_account_move_line(
-                    name="Debit VAT",
+                    name=_("Debit VAT"),
                     account_id=debit_line.account_id.id,
                     move_id=move.id,
                     statement=statement,
@@ -789,19 +790,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 tax.vat_statement_account_id.id in statement.account_ids.ids
                 or not statement.account_ids
             ):
-                # se ho una tassa padre con figli cee_type, condidero le figlie
-                if any(
-                    tax_ch
-                    for tax_ch in tax.children_tax_ids
-                    if tax_ch.cee_type in ("sale", "purchase")
-                ):
-                    for tax_ch in tax.children_tax_ids:
-                        if tax_ch.cee_type == "sale":
-                            self._set_debit_lines(tax_ch, debit_line_ids, statement)
-                        elif tax_ch.cee_type == "purchase":
-                            self._set_credit_lines(tax_ch, credit_line_ids, statement)
-
-                elif tax.type_tax_use == "sale":
+                if tax.type_tax_use == "sale":
                     self._set_debit_lines(tax, debit_line_ids, statement)
                 elif tax.type_tax_use == "purchase":
                     self._set_credit_lines(tax, credit_line_ids, statement)

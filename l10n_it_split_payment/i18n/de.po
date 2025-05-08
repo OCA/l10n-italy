@@ -9,14 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-12 02:40+0000\n"
-"PO-Revision-Date: 2017-05-12 02:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2025-04-15 12:24+0000\n"
+"Last-Translator: BitStab <bitstab@users.noreply.translation.odoo-"
+"community.org>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_split_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
@@ -31,27 +33,28 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_split_payment.field_res_company__sp_account_id
 #: model:ir.model.fields,help:l10n_it_split_payment.field_res_config_settings__sp_account_id
 msgid "Account used to write off the VAT amount"
-msgstr ""
+msgstr "Konto zur Tilgung des Mehrwertsteuerbetrags (IVA)"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Konfigurationseinstellungen"
 
 #. module: l10n_it_split_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
 msgid "Configuration for Split Payment module"
-msgstr ""
+msgstr "Konfiguration für Split Payment Modul"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_fiscal_position
+#, fuzzy
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Steuerzuordnung"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_bank_statement_line__split_payment
@@ -59,22 +62,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_move_line__is_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_payment__split_payment
 msgid "Is Split Payment"
-msgstr ""
+msgstr "Ist Split Payment"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_tax__is_split_payment
+#, fuzzy
 msgid "Is split payment"
-msgstr ""
+msgstr "Ist Split Payment"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_move
+#, fuzzy
 msgid "Journal Entry"
-msgstr ""
+msgstr "Journaleintrag"
 
 #. module: l10n_it_split_payment
 #: model:ir.model,name:l10n_it_split_payment.model_account_move_line
+#, fuzzy
 msgid "Journal Item"
-msgstr ""
+msgstr "Buchungssätze"
 
 #. module: l10n_it_split_payment
 #. odoo-python
@@ -84,11 +90,13 @@ msgid ""
 "Please set 'Split Payment Write-off Account' field in accounting "
 "configuration"
 msgstr ""
+"Setzen Sie das Feld \"Zahlungsaufteilungs-Stornokonto\" in der "
+"Buchhaltungseinrichtung"
 
 #. module: l10n_it_split_payment
 #: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
 msgid "SP account"
-msgstr ""
+msgstr "SP Konto"
 
 #. module: l10n_it_split_payment
 #: model:account.tax.group,name:l10n_it_split_payment.tax_group_split_payment
@@ -97,19 +105,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_move__amount_sp
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_account_payment__amount_sp
 msgid "Split Payment"
-msgstr ""
+msgstr "Split Payment"
 
 #. module: l10n_it_split_payment
 #. odoo-python
 #: code:addons/l10n_it_split_payment/models/account_move_line.py:0
 #, python-format
 msgid "Split Payment Write Off"
-msgstr ""
+msgstr "Stornierung der Zahlungsaufteilung (Split Payment)"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_res_company__sp_account_id
 msgid "Split Payment Write-off Account"
-msgstr ""
+msgstr "Zahlungssplit-Stornokonto (Split Payment)"
 
 #. module: l10n_it_split_payment
 #: model:ir.model.fields,field_description:l10n_it_split_payment.field_res_config_settings__sp_account_id

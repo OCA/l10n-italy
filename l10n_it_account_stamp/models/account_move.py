@@ -14,9 +14,9 @@ class AccountMove(models.Model):
         compute="_compute_tax_stamp",
         store=True,
     )
-    tax_stamp_line_present = fields.Boolean(
+    tax_stamp_invoice_line_present = fields.Boolean(
         string="Stamp line is present in invoice",
-        compute="_compute_tax_stamp_line_present",
+        compute="_compute_tax_stamp_invoice_line_present",
     )
     auto_compute_stamp = fields.Boolean(
         related="company_id.tax_stamp_product_id.auto_compute"
@@ -60,7 +60,7 @@ class AccountMove(models.Model):
                 if invoice.manually_apply_tax_stamp:
                     invoice.tax_stamp = True
 
-    def add_tax_stamp_line(self):
+    def add_tax_stamp_invoice_line(self):
         for inv in self:
             if not inv.tax_stamp:
                 raise UserError(_("Tax stamp is not applicable"))
@@ -84,7 +84,6 @@ class AccountMove(models.Model):
             invoice_line_vals = {
                 "move_id": inv.id,
                 "product_id": stamp_product_id.id,
-                "is_stamp_line": True,
                 "name": stamp_product_id.description_sale,
                 "sequence": 99999,
                 "account_id": stamp_account.id,
@@ -108,9 +107,11 @@ class AccountMove(models.Model):
         "invoice_line_ids.product_id",
         "invoice_line_ids.product_id.is_stamp",
     )
-    def _compute_tax_stamp_line_present(self):
+    def _compute_tax_stamp_invoice_line_present(self):
         for invoice in self:
-            invoice.tax_stamp_line_present = invoice.is_tax_stamp_line_present()
+            invoice.tax_stamp_invoice_line_present = (
+                invoice.is_tax_stamp_product_present()
+            )
 
     def is_tax_stamp_product_present(self):
         product_stamp = self.invoice_line_ids.filtered(

@@ -1,0 +1,248 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_pec
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-04-15 12:24+0000\n"
+"Last-Translator: BitStab <bitstab@users.noreply.translation.odoo-"
+"community.org>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
+msgid ""
+"<span class=\"o_form_label\">Supplier Bills</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\"/>"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_sdi_channel__channel_type
+msgid "Channels (Pec, Web, Sftp) could be provided by external modules."
+msgstr ""
+"Die Kanäle (PEC, Web, SFTP) können durch externe Module bereitgestellt "
+"werden."
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_res_config_settings
+#, fuzzy
+msgid "Config Settings"
+msgstr "Konfigurationseinstellungen"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify"
+msgstr "Zu benachrichtigende Kontakte"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify when PEC message can't be processed"
+msgstr ""
+"Kontakte, die benachrichtigt werden sollen, wenn PEC-Nachrichten nicht "
+"verarbeitet werden können"
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_account_config_settings_ftpa_pec
+msgid "Default user used in electronic supplier bills"
+msgstr ""
+"Standardbenutzer, der in elektronischen Lieferantenrechnungen verwendet wird"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__is_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_ir_mail_server__is_fatturapa_pec
+msgid "E-invoice PEC server"
+msgstr "E-Rechnung PEC Server"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_sdi_channel
+msgid "ES channel"
+msgstr "SdI Kanal"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel__channel_type
+msgid "ES channel type"
+msgstr "SdI Kanaltyp"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fatturapa_attachment_out
+#, fuzzy
+msgid "Electronic Invoice"
+msgstr "Elektronische Rechnung"
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
+#, python-format
+msgid "Email %s is not valid"
+msgstr "Die E-Mail %s ist ungültig"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_mail_thread
+#, fuzzy
+msgid "Email Thread"
+msgstr "E-Mail-Thread"
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__email_exchange_system
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__email_exchange_system
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel__email_exchange_system
+msgid "Exchange System Email Address"
+msgstr "SdI E-Mail-Adresse"
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:0
+#, python-format
+msgid "Fetchmail PEC server [%s] error"
+msgstr "Fetchmail PEC-Server [%s] Fehler"
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
+#, python-format
+msgid "File content and file name are mandatory"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel__fetch_pec_server_id
+msgid "Incoming PEC server"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__last_pec_error_message
+msgid "Last PEC Error Message"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_email_server_form_e_invoice
+msgid "Last error message"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model,name:l10n_it_fatturapa_pec.model_ir_mail_server
+msgid "Mail Server"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
+#, python-format
+msgid "No incoming PEC server found. Please configure it."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel__pec_server_id
+msgid "Outgoing PEC server"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields.selection,name:l10n_it_fatturapa_pec.selection__sdi_channel__channel_type__pec
+#: model:sdi.channel,name:l10n_it_fatturapa_pec.sdi_channel_pec
+msgid "PEC"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.ir_mail_server_fatturapa_out_pec_form
+msgid "PEC and Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_fetchmail_server__pec_error_count
+msgid "PEC error count"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/mail_thread.py:0
+#, python-format
+msgid ""
+"PEC message \"%(subject)s\" has been read but not processed, as not related to an e-invoice.\n"
+"Please check PEC mailbox %(fetchmail_name)s, at server %(fetchmail_server)s, with user %(fetchmail_user)s."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/fatturapa_attachment_out.py:0
+#, python-format
+msgid ""
+"PEC message \"%s\" is coming from SDI but attachments do not match SDI "
+"response format. Please check."
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/fetchmail.py:0
+#, python-format
+msgid ""
+"PEC server %(name)s has been reset. Last error message is "
+"'%(error_message)s'"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
+#, python-format
+msgid ""
+"SDI PEC address not set. Please update it with the address indicated by SDI "
+"after the first sending"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_sdi_channel__first_invoice_sent
+msgid "SDI already assigned a PEC address to my company"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_ir_mail_server__email_from_for_fatturaPA
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_company__email_from_for_fatturaPA
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_pec.field_res_config_settings__email_from_for_fatturaPA
+msgid "Sender Email Address"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_pec.view_sdi_channel_form
+msgid ""
+"The ES email address must be changed ather the first invoice sent. After "
+"that, you have to set here the address indicated by the ES"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
+#: code:addons/l10n_it_fatturapa_pec/models/sdi.py:0
+#, python-format
+msgid "The channel %(name)s with pec server %(server_name)s already exists"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_company__email_exchange_system
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_res_config_settings__email_exchange_system
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_sdi_channel__email_exchange_system
+msgid ""
+"The first time you send a PEC to SDI, you must use the address sdi01@pec.fatturapa.it.\n"
+"Odoo will automatically set this address the first time you send an e-invoice to SdI using this channel.\n"
+"The system, with the first response or notification, communicates the PEC address to be used for future messages"
+msgstr ""
+
+#. module: l10n_it_fatturapa_pec
+#: model:ir.model.fields,help:l10n_it_fatturapa_pec.field_sdi_channel__first_invoice_sent
+msgid "This is set after having sent the first e-invoice to SDI"
+msgstr ""

@@ -333,9 +333,15 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     <!--                    <ProvinciaAlbo t-out=""/>-->
                     <!--                    <NumeroIscrizioneAlbo t-out=""/>-->
                     <!--                    <DataIscrizioneAlbo t-out=""/>-->
-                    <RegimeFiscale>RF01</RegimeFiscale>
-<!--                    TODO: see https://github.com/OCA/l10n-italy/issues/2557-->
-<!--                    t-out="partner_id.fatturapa_fiscal_position_id.code"-->
+                    <t t-if="company_id and company_id.fatturapa_fiscal_position_id">
+                        <RegimeFiscale
+                            t-out="company_id.fatturapa_fiscal_position_id.code"
+                        />
+                    </t>
+                    <t t-if="not company_id">
+                        <RegimeFiscale>RF01</RegimeFiscale>
+                    </t>
+                    <!-- NOTE: see https://github.com/OCA/l10n-italy/issues/2557 -->
                 </DatiAnagrafici>
                 <Sede>
                     <t
@@ -706,6 +712,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                     <t
                         t-call="l10n_it_fatturapa_out.account_invoice_it_cedente_prestatore"
                     >
+                        <t t-set="company_id" t-value="company_id" />
                         <t t-set="partner_id" t-value="company_id.partner_id" />
                     </t>
                     <t
