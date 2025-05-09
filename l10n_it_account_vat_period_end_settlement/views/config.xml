@@ -10,7 +10,7 @@
         <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="VAT statement">
+                <page string="VAT Settlement">
                     <group>
                         <field name="of_account_end_vat_statement_interest" />
                         <field name="of_account_end_vat_statement_interest_percent" />

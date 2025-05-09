@@ -211,7 +211,7 @@ class AccountVatPeriodEndStatement(models.Model):
         required=True,
         default=fields.Date.context_today,
     )
-    move_id = fields.Many2one("account.move", "VAT statement move", readonly=True)
+    move_id = fields.Many2one("account.move", "VAT settlement move", readonly=True)
     state = fields.Selection(
         [
             ("draft", "Draft"),
@@ -335,7 +335,7 @@ class AccountVatPeriodEndStatement(models.Model):
         for statement in self:
             statement_date = fields.Date.to_string(statement.date)
             move_data = {
-                "name": self.env._("VAT statement") + " - " + statement_date,
+                "name": self.env._("VAT Settlement") + " - " + statement_date,
                 "date": statement_date,
                 "journal_id": statement.journal_id.id,
             }
@@ -739,47 +739,48 @@ class AccountVatPeriodEndStatement(models.Model):
 
 class StatementDebitAccountLine(models.Model):
     _name = "statement.debit.account.line"
-    _description = "VAT Statement debit account line"
+    _description = "VAT Settlement debit account line"
 
     account_id = fields.Many2one("account.account", "Account", required=True)
     tax_id = fields.Many2one("account.tax", "Tax", required=True)
-    statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
+    statement_id = fields.Many2one("account.vat.period.end.statement", "VAT Settlement")
     amount = fields.Float(required=True, digits="Account")
 
 
 class StatementCreditAccountLine(models.Model):
     _name = "statement.credit.account.line"
-    _description = "VAT Statement credit account line"
+    _description = "VAT Settlement credit account line"
 
     account_id = fields.Many2one("account.account", "Account", required=True)
     tax_id = fields.Many2one("account.tax", "Tax", required=True)
-    statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
+    statement_id = fields.Many2one("account.vat.period.end.statement", "VAT Settlement")
     amount = fields.Float(required=True, digits="Account")
 
 
 class StatementGenericAccountLine(models.Model):
     _name = "statement.generic.account.line"
-    _description = "VAT Statement generic account line"
+    _description = "VAT Settlement generic account line"
 
     account_id = fields.Many2one("account.account", "Account", required=True)
-    statement_id = fields.Many2one("account.vat.period.end.statement", "VAT statement")
+    statement_id = fields.Many2one("account.vat.period.end.statement", "VAT Settlement")
     amount = fields.Float(required=True, digits="Account")
     name = fields.Char("Description")
 
 
 class AccountTax(models.Model):
     _inherit = "account.tax"
+    exclude_from_vat_settlements = fields.Boolean(string="Exclude from VAT settlements")
     vat_statement_account_id = fields.Many2one(
         "account.account",
-        "Account used for VAT statement",
+        "Account used for VAT Settlement",
         help="The tax balance will be "
         "associated to this account after selecting the period in "
-        "VAT statement",
+        "VAT Settlement",
     )
 
 
 class DateRange(models.Model):
     _inherit = "date.range"
     vat_statement_id = fields.Many2one(
-        "account.vat.period.end.statement", "VAT statement"
+        "account.vat.period.end.statement", "VAT Settlement"
     )

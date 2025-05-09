@@ -28,7 +28,7 @@
 
 **English**
 
-> In order to generate VAT statement's periods, open Accounting \>
+> In order to generate VAT Settlement's periods, open Accounting \>
 > Configuration \> Accounting \> Date ranges \> Generate Date Ranges
 > (visible only in debug mode):
 >
@@ -42,13 +42,13 @@
 >   the first day of the year e.g. 01/01/2018)
 >
 > In order to load the correct amount from tax, the tax has to be
-> associated to the account involved in the statement:
+> associated to the account involved in the Settlement:
 >
 > 1.  open a tax in Accounting \> Configuration \> Accounting \> Taxes,
 > 2.  in the tab 'Advanced Options' select the correct account (for
 >     instance the account debit VAT) for the field 'Account used for
->     VAT statement'.
+>     VAT Settlement'.
 >
 > If you need to calculate interest, you can add default information in
-> your company data (percentage and account), in the 'VAT statement'
+> your company data (percentage and account), in the 'VAT Settlement'
 > tab.
