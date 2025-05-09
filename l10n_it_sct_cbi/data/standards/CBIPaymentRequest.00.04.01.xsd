@@ -169,6 +169,7 @@
 		<xs:sequence>
 			<xs:element name="Id" type="CBIAccountIdentification1"/>
 			<xs:element name="Tp" type="CashAccountType2Choice" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Ccy" type="ActiveOrHistoricCurrencyCode" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="CBICashAccount3">
