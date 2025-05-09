@@ -18,14 +18,14 @@ class RemovePeriod(models.TransientModel):
         return res
 
     _name = "remove.period.from.vat.statement"
-    _description = "Remove period from VAT Statement"
+    _description = "Remove period from VAT Settlement"
 
     period_id = fields.Selection(_get_period_ids, "Period", required=True)
 
     def remove_period(self):
         self.ensure_one()
         if "active_id" not in self.env.context:
-            raise UserError(self.env._("Current statement not found"))
+            raise UserError(self.env._("Current settlement not found"))
         period = self.env["date.range"].browse(int(self.period_id))
         period.vat_statement_id = False
         statement = self.env["account.vat.period.end.statement"].browse(

@@ -279,14 +279,14 @@
     </record>
 
     <record id="action_account_vat_period_end_statement" model="ir.actions.act_window">
-        <field name="name">Vat statement</field>
+        <field name="name">Vat Settlement</field>
         <field name="res_model">account.vat.period.end.statement</field>
     </record>
 
     <menuitem
         id="menu_account_vat_period_end_statement"
         action="action_account_vat_period_end_statement"
-        name="VAT statements"
+        name="VAT Settlements"
         parent="account.menu_finance_entries"
     />
 

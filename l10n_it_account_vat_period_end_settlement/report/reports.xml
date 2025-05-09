@@ -5,7 +5,7 @@
   -->
 <odoo>
     <record id="report_vat_statement" model="ir.actions.report">
-        <field name="name">Print Vat Period End Statement</field>
+        <field name="name">Print Vat Period End Settlement</field>
         <field name="model">account.vat.period.end.statement</field>
         <field name="report_type">qweb-pdf</field>
         <field

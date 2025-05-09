@@ -12,8 +12,8 @@ from odoo.tools.misc import formatLang
 
 
 class VatPeriodEndStatementReport(models.AbstractModel):
-    _name = "report.account_vat_period_end_statement.vat_statement"
-    _description = "VAT Statement report"
+    _name = "report.l10n_it_account_vat_period_end_settlement.vat_statement"
+    _description = "VAT Settlement report"
 
     @api.model
     def _get_report_values(self, docids, data=None):

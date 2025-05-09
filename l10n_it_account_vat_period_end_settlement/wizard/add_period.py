@@ -9,7 +9,7 @@ from odoo.exceptions import UserError
 
 class AddPeriod(models.TransientModel):
     _name = "add.period.to.vat.statement"
-    _description = "Add period to VAT Statement"
+    _description = "Add period to VAT Settlement"
 
     period_id = fields.Many2one("date.range", "Period", required=True)
 
@@ -22,7 +22,7 @@ class AddPeriod(models.TransientModel):
         if wizard.period_id.vat_statement_id:
             raise UserError(
                 self.env._(
-                    "Period (%(name)s) is associated to statement (%(date)s) yet"
+                    "Period (%(name)s) is associated to settlement (%(date)s) yet"
                 )
                 % {
                     "name": wizard.period_id.name,

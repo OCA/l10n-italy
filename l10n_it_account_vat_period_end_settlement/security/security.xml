@@ -5,7 +5,7 @@
   -->
 <odoo noupdate="1">
     <record model="ir.rule" id="ccount_vat_period_end_statement_comp_rule">
-        <field name="name">Account Vat Period End Statement multi-company</field>
+        <field name="name">Account Vat Period End Settlement multi-company</field>
         <field name="model_id" ref="model_account_vat_period_end_statement" />
         <field name="global" eval="True" />
         <field

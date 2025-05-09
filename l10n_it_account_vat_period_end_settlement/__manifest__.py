@@ -10,7 +10,7 @@
     "name": "ITA - Liquidazione IVA",
     "version": "18.0.1.0.0",
     "category": "Localization/Italy",
-    "summary": "Allow to create the 'VAT Statement'.",
+    "summary": "Allow to create the 'VAT Settlement'.",
     "license": "AGPL-3",
     "author": "Agile Business Group, Odoo Community Association (OCA), LinkIt Spa",
     "website": "https://github.com/OCA/l10n-italy",
