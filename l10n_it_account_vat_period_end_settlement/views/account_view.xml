@@ -109,7 +109,7 @@
                                     <list editable="bottom">
                                         <field name="tax_id" />
                                         <field name="account_id" />
-                                        <field name="amount" />
+                                        <field name="amount" sum="Total" />
                                     </list>
                                 </field>
                                 <separator string="Credit Account Lines" />
@@ -121,7 +121,7 @@
                                     <list editable="bottom">
                                         <field name="tax_id" />
                                         <field name="account_id" />
-                                        <field name="amount" />
+                                        <field name="amount" sum="Total" />
                                     </list>
                                 </field>
                             </group>
@@ -201,7 +201,7 @@
                                 <list editable="bottom">
                                     <field name="account_id" />
                                     <field name="name" />
-                                    <field name="amount" />
+                                    <field name="amount" sum="Total" />
                                 </list>
                                 <form>
                                     <field name="account_id" />
@@ -299,7 +299,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="tax_group_id" position="after">
-                <field name="vat_statement_account_id" />
+                <field name="exclude_from_vat_settlements" />
             </field>
         </field>
     </record>

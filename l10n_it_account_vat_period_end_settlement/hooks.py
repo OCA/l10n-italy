@@ -15,3 +15,13 @@ def pre_absorb_old_module(env):
             ],
             merge_modules=True,
         )
+
+
+def set_exclude_from_vat_settlements(env):
+    openupgrade.logged_query(
+        env.cr,
+        """
+        UPDATE account_tax SET exclude_from_vat_settlement = True
+        WHERE vat_statement_account_id IS NULL;
+        """,
+    )

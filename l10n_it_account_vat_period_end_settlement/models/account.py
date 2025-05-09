@@ -53,6 +53,7 @@ class AccountVatPeriodEndStatement(models.Model):
             if not statement.move_id.exists():
                 statement.residual = 0.0
                 statement.reconciled = False
+                statement.state = "draft"
                 continue
 
             residual = 0.0
@@ -63,8 +64,10 @@ class AccountVatPeriodEndStatement(models.Model):
             statement.residual = abs(residual)
             if float_is_zero(statement.residual, precision_digits=precision):
                 statement.reconciled = True
+                statement.state = "paid"
             else:
                 statement.reconciled = False
+                statement.state = "confirmed"
 
     @api.depends("move_id.line_ids.amount_residual")
     def _compute_lines(self):
@@ -264,9 +267,9 @@ class AccountVatPeriodEndStatement(models.Model):
     )
 
     def _get_domain_account(self):
-        domain = [("vat_statement_account_id", "!=", False)]
+        domain = [("exclude_from_vat_settlements", "=", False)]
         tax_ids = self.env["account.tax"].search(domain)
-        account_ids = tax_ids.mapped("vat_statement_account_id")
+        account_ids = tax_ids.mapped("repartition_line_ids.account_id")
         return [("id", "in", account_ids.ids)]
 
     def unlink(self):
@@ -284,34 +287,12 @@ class AccountVatPeriodEndStatement(models.Model):
                 date = min([x.date_start for x in statement.date_range_ids])
                 statement.update({"fiscal_year": date.year})
 
-    def _write(self, vals):
-        pre_not_reconciled = self.filtered(lambda statement: not statement.reconciled)
-        pre_reconciled = self - pre_not_reconciled
-        res = super()._write(vals)
-        reconciled = self.filtered(lambda statement: statement.reconciled)
-        not_reconciled = self - reconciled
-        (reconciled & pre_reconciled).filtered(
-            lambda statement: statement.state == "confirmed"
-        ).statement_paid()
-        (not_reconciled & pre_not_reconciled).filtered(
-            lambda statement: statement.state == "paid"
-        ).statement_confirmed()
-        return res
-
     def statement_draft(self):
         for statement in self:
             if statement.move_id:
                 statement.move_id.button_cancel()
                 statement.move_id.with_context(force_delete=True).unlink()
             statement.state = "draft"
-
-    def statement_paid(self):
-        for statement in self:
-            statement.state = "paid"
-
-    def statement_confirmed(self):
-        for statement in self:
-            statement.state = "confirmed"
 
     def _prepare_account_move_line(
         self, name, account_id, move_id, statement, statement_date, partner_id=False
@@ -335,7 +316,7 @@ class AccountVatPeriodEndStatement(models.Model):
         for statement in self:
             statement_date = fields.Date.to_string(statement.date)
             move_data = {
-                "name": self.env._("VAT Settlement") + " - " + statement_date,
+                "ref": self.env._("VAT Settlement") + " - " + statement_date,
                 "date": statement_date,
                 "journal_id": statement.journal_id.id,
             }
@@ -664,10 +645,31 @@ class AccountVatPeriodEndStatement(models.Model):
                     "to_date": period.date_end,
                     "registry_type": "customer",
                 }
-            )[3]  # position 3 is deductible part
+            )[5]  # position 5 is debit balance
+        debit_account_id = False
+        if total:
+            # For 0% taxes, account is not used
+            debit_accounts = debit_tax._get_debit_accounts()
+            if not debit_accounts:
+                raise UserError(
+                    self.env._(
+                        "The tax %s has no debit account defined. "
+                        "Please define it in the tax form."
+                    )
+                    % debit_tax.name
+                )
+            if len(debit_accounts) > 1:
+                raise UserError(
+                    self.env._(
+                        "The tax %s has more than one debit account defined. "
+                        "Please define only one in the tax form."
+                    )
+                    % debit_tax.name
+                )
+            debit_account_id = debit_accounts.id
         debit_line_ids.append(
             {
-                "account_id": debit_tax.vat_statement_account_id.id,
+                "account_id": debit_account_id,
                 "tax_id": debit_tax.id,
                 "amount": total,
             }
@@ -683,9 +685,29 @@ class AccountVatPeriodEndStatement(models.Model):
                     "registry_type": "supplier",
                 }
             )[3]  # position 3 is deductible part
+        credit_account_id = False
+        if total:
+            credit_accounts = credit_tax._get_credit_accounts()
+            if not credit_accounts:
+                raise UserError(
+                    self.env._(
+                        "The tax %s has no credit account defined. "
+                        "Please define it in the tax form."
+                    )
+                    % credit_tax.name
+                )
+            if len(credit_accounts) > 1:
+                raise UserError(
+                    self.env._(
+                        "The tax %s has more than one credit account defined. "
+                        "Please define only one in the tax form."
+                    )
+                    % credit_tax.name
+                )
+            credit_account_id = credit_accounts.id
         credit_line_ids.append(
             {
-                "account_id": credit_tax.vat_statement_account_id.id,
+                "account_id": credit_account_id,
                 "tax_id": credit_tax.id,
                 "amount": total,
             }
@@ -697,18 +719,24 @@ class AccountVatPeriodEndStatement(models.Model):
         tax_model = self.env["account.tax"]
         taxes = tax_model.search(
             [
-                ("vat_statement_account_id", "!=", False),
+                ("exclude_from_vat_settlements", "=", False),
                 ("type_tax_use", "in", ["sale", "purchase"]),
             ]
         )
         for tax in taxes:
-            if (
-                tax.vat_statement_account_id.id in statement.account_ids.ids
-                or not statement.account_ids
-            ):
-                if tax.type_tax_use == "sale":
+            debit_accounts = tax._get_debit_accounts()
+            credit_accounts = tax._get_credit_accounts()
+            if debit_accounts:
+                if (
+                    all(debit_accounts.ids) in statement.account_ids.ids
+                    or not statement.account_ids
+                ):
                     self._set_debit_lines(tax, debit_line_ids, statement)
-                elif tax.type_tax_use == "purchase":
+            if credit_accounts:
+                if (
+                    all(credit_accounts.ids) in statement.account_ids.ids
+                    or not statement.account_ids
+                ):
                     self._set_credit_lines(tax, credit_line_ids, statement)
 
         return credit_line_ids, debit_line_ids
@@ -741,7 +769,7 @@ class StatementDebitAccountLine(models.Model):
     _name = "statement.debit.account.line"
     _description = "VAT Settlement debit account line"
 
-    account_id = fields.Many2one("account.account", "Account", required=True)
+    account_id = fields.Many2one("account.account", "Account", required=False)
     tax_id = fields.Many2one("account.tax", "Tax", required=True)
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT Settlement")
     amount = fields.Float(required=True, digits="Account")
@@ -751,7 +779,7 @@ class StatementCreditAccountLine(models.Model):
     _name = "statement.credit.account.line"
     _description = "VAT Settlement credit account line"
 
-    account_id = fields.Many2one("account.account", "Account", required=True)
+    account_id = fields.Many2one("account.account", "Account", required=False)
     tax_id = fields.Many2one("account.tax", "Tax", required=True)
     statement_id = fields.Many2one("account.vat.period.end.statement", "VAT Settlement")
     amount = fields.Float(required=True, digits="Account")
@@ -770,13 +798,6 @@ class StatementGenericAccountLine(models.Model):
 class AccountTax(models.Model):
     _inherit = "account.tax"
     exclude_from_vat_settlements = fields.Boolean(string="Exclude from VAT settlements")
-    vat_statement_account_id = fields.Many2one(
-        "account.account",
-        "Account used for VAT Settlement",
-        help="The tax balance will be "
-        "associated to this account after selecting the period in "
-        "VAT Settlement",
-    )
 
 
 class DateRange(models.Model):

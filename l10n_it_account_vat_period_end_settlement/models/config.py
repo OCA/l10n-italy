@@ -11,7 +11,8 @@ class ResCompany(models.Model):
         "Interest on End Vat Settlement", help="Apply interest on end vat settlement"
     )
     of_account_end_vat_statement_interest_percent = fields.Float(
-        "Interest on End Vat Settlement - %", help="Apply interest on end vat settlement"
+        "Interest on End Vat Settlement - %",
+        help="Apply interest on end vat settlement",
     )
     of_account_end_vat_statement_interest_account_id = fields.Many2one(
         "account.account",
