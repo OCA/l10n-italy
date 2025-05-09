@@ -44,7 +44,17 @@ class VatPeriodEndStatementReport(models.AbstractModel):
 
         for tax_id in tax_ids:
             tax = tax_model.browse(tax_id)
-            tax_name, base, tax_val, deductible, undeductible = tax._compute_totals_tax(
+            (
+                tax_name,
+                base,
+                tax_val,
+                deductible,
+                undeductible,
+                debit_balance,
+                credit_balance,
+                customer_balance,
+                supplier_balance,
+            ) = tax._compute_totals_tax(
                 {
                     "from_date": date_range.date_start,
                     "to_date": date_range.date_end,
@@ -54,7 +64,7 @@ class VatPeriodEndStatementReport(models.AbstractModel):
 
             res[tax_name] = {
                 "code": tax_name,
-                "vat": tax_val,
+                "supplier_balance": supplier_balance,
                 "vat_deductible": deductible,
                 "vat_undeductible": undeductible,
                 "base": base,
@@ -74,12 +84,13 @@ class VatPeriodEndStatementReport(models.AbstractModel):
         account_amounts = {}
         for line in statement_account_line:
             account_id = line.account_id.id
-            if account_id not in account_amounts:
-                account_amounts[account_id] = {
-                    "account_id": line.account_id.id,
-                    "account_name": line.account_id.name,
-                    "amount": line.amount,
-                }
-            else:
-                account_amounts[account_id]["amount"] += line.amount
+            if account_id:
+                if account_id not in account_amounts:
+                    account_amounts[account_id] = {
+                        "account_id": line.account_id.id,
+                        "account_name": line.account_id.name,
+                        "amount": line.amount,
+                    }
+                else:
+                    account_amounts[account_id]["amount"] += line.amount
         return account_amounts

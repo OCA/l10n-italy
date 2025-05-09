@@ -58,7 +58,9 @@
                     />
                     <t t-foreach="vat_accounts" t-as="account_id">
                         <tr>
-                            <td class="text-start">Total debit vat</td>
+                            <td class="text-start">
+                                <t t-esc="vat_accounts[account_id]['account_name']" />
+                            </td>
                             <td class="text-end">
                                 <span
                                     t-esc="formatLang(env, vat_accounts[account_id]['amount'])"
@@ -79,7 +81,9 @@
                     />
                     <t t-foreach="vat_accounts" t-as="account_id">
                         <tr>
-                            <td class="text-start">Total credit vat</td>
+                            <td class="text-start">
+                                <t t-esc="vat_accounts[account_id]['account_name']" />
+                            </td>
                             <td class="text-end">
                                 <span
                                     t-esc="formatLang(env, vat_accounts[account_id]['amount'])"
@@ -311,7 +315,10 @@
                     t-set="tax_code_base"
                     t-value="(tax_code_amounts[tax_code]['base'])"
                 />
-                <t t-set="tax_code_vat" t-value="(tax_code_amounts[tax_code]['vat'])" />
+                <t
+                    t-set="tax_code_supplier_balance"
+                    t-value="(tax_code_amounts[tax_code]['supplier_balance'])"
+                />
                 <t
                     t-set="tax_code_vat_deductible"
                     t-value="(tax_code_amounts[tax_code]['vat_deductible'])"
@@ -322,7 +329,7 @@
                 />
                 <!-- print values  -->
                 <tr
-                    t-if="tax_code_base or tax_code_vat or tax_code_vat_deductible or tax_code_vat_undeductible"
+                    t-if="tax_code_base or tax_code_supplier_balance or tax_code_vat_deductible or tax_code_vat_undeductible"
                 >
                     <td>
                         <span t-esc="code" />
@@ -330,10 +337,23 @@
                     <td class="text-end">
                         <span t-esc="formatLang(env, tax_code_base)" />
                     </td>
-                    <td class="text-end">
-                        <span t-esc="formatLang(env, tax_code_vat)" />
-                    </td>
+                    <span t-if="(tax_code_type == 'debit')">
+                        <td class="text-end">
+                            <span t-esc="formatLang(env, tax_code_vat_deductible)" />
+                        </td>
+                        <t
+                            t-set="total_vat"
+                            t-value="(total_vat + tax_code_vat_deductible)"
+                        />
+                    </span>
                     <span t-if="(tax_code_type == 'credit')">
+                        <td class="text-end">
+                            <span t-esc="formatLang(env, tax_code_supplier_balance)" />
+                        </td>
+                        <t
+                            t-set="total_vat"
+                            t-value="(total_vat + tax_code_supplier_balance)"
+                        />
                         <td class="text-end">
                             <span t-esc="formatLang(env, tax_code_vat_deductible)" />
                         </td>
@@ -347,7 +367,6 @@
                     </span>
                 </tr>
                 <!-- sum total  -->
-                <t t-set="total_vat" t-value="(total_vat + tax_code_vat)" />
                 <t t-set="total_base" t-value="(total_base + tax_code_base)" />
                 <t
                     t-set="total_vat_deductible"

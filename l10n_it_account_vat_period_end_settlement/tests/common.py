@@ -7,17 +7,14 @@ from datetime import date, datetime
 
 from dateutil.rrule import MONTHLY
 
-from odoo.tests import Form, tagged
+from odoo.tests import Form
 
-from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+from odoo.addons.l10n_it_edi.tests.test_edi_reverse_charge import TestItEdiReverseCharge
 
 
-@tagged("post_install", "-at_install")
-class TestVATStatementCommon(AccountTestInvoicingCommon):
+class TestVATStatementCommon(TestItEdiReverseCharge):
     @classmethod
-    def setUpClass(
-        cls,
-    ):
+    def setUpClass(cls):
         super().setUpClass()
 
         cls.range_type = cls.env["date.range.type"].create(
@@ -48,12 +45,6 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
             }
         )
         prev_year_generator.action_apply()
-        cls.tax_model = cls.env["account.tax"]
-        cls.account_model = cls.env["account.account"]
-        cls.term_model = cls.env["account.payment.term"]
-        cls.term_line_model = cls.env["account.payment.term.line"]
-        cls.invoice_model = cls.env["account.move"]
-        cls.invoice_line_model = cls.env["account.move.line"]
         current_date = current_datetime.date()
         cls.current_period = cls.env["date.range"].search(
             [("date_start", "<=", current_date), ("date_end", ">=", current_date)]
@@ -67,11 +58,13 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
                 ("date_end", ">=", cls.last_year_date),
             ]
         )
-        cls.vat_statement_model = cls.env["account.vat.period.end.statement"]
         cls.paid_vat_account = (
             cls.env["account.account"]
             .search(
-                [("account_type", "=", "asset_current")],
+                [
+                    ("account_type", "=", "asset_current"),
+                    ("company_ids", "in", cls.company.id),
+                ],
                 limit=1,
             )
             .id
@@ -79,7 +72,10 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         cls.received_vat_account = (
             cls.env["account.account"]
             .search(
-                [("account_type", "=", "liability_current")],
+                [
+                    ("account_type", "=", "liability_current"),
+                    ("company_ids", "in", cls.company.id),
+                ],
                 limit=1,
             )
             .id
@@ -88,49 +84,37 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         # ----- Set invoice date to recent date in the system
         # ----- This solves problems with account_invoice_sequential_dates
         cls.recent_date = (
-            cls.invoice_model.search(
-                [("invoice_date", "!=", False)], order="invoice_date desc", limit=1
-            ).invoice_date
+            cls.env["account.move"]
+            .search(
+                [("invoice_date", "!=", False), ("company_id", "=", cls.company.id)],
+                order="invoice_date desc",
+                limit=1,
+            )
+            .invoice_date
             or current_date
         )
         cls.last_year_recent_date = date(
             cls.recent_date.year - 1, cls.recent_date.month, cls.recent_date.day
         )
-        cls.account_tax_22 = cls.company_data["default_tax_sale"].copy(
-            {
-                "name": "22%",
-                "amount": 22,
-                "amount_type": "percent",
-                "vat_statement_account_id": cls.received_vat_account,
-                "type_tax_use": "sale",
-            }
-        )
-        cls.account_tax_22_credit = cls.company_data["default_tax_purchase"].copy(
-            {
-                "name": "22% credit",
-                "amount": 22,
-                "amount_type": "percent",
-                "vat_statement_account_id": cls.paid_vat_account,
-                "type_tax_use": "purchase",
-            }
-        )
 
-        cls.vat_authority = cls.account_model.create(
+        cls.vat_authority = cls.env["account.account"].create(
             {
                 "code": "VAT.AUTH",
                 "name": "VAT Authority",
                 "reconcile": True,
                 "account_type": "liability_payable",
+                "company_ids": [(6, 0, [cls.company.id])],
             }
         )
 
-        cls.account_payment_term = cls.term_model.create(
+        cls.account_payment_term = cls.env["account.payment.term"].create(
             {
                 "name": "16 Days End of Month",
                 "note": "16 Days End of Month",
+                "company_id": cls.company.id,
             }
         )
-        cls.term_line_model.create(
+        cls.env["account.payment.term.line"].create(
             {
                 "value": "percent",
                 "value_amount": 100,
@@ -138,16 +122,15 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
                 "payment_id": cls.account_payment_term.id,
             }
         )
-        cls.sale_journal = cls.company_data["default_journal_sale"]
-        cls.purchase_journal = cls.company_data["default_journal_purchase"]
-        cls.general_journal = cls.company_data["default_journal_misc"]
 
     def _create_vendor_bill(self, partner, invoice_date, price_unit, tax):
         """
         Create an open Vendor Bill for `partner` having date `invoice_date`.
         The Bill will also have a Line having Price `price_unit` and Tax `tax`.
         """
-        bill_model = self.invoice_model.with_context(default_move_type="in_invoice")
+        bill_model = self.env["account.move"].with_context(
+            default_move_type="in_invoice"
+        )
         bill_form = Form(bill_model)
         bill_form.partner_id = partner
         bill_form.invoice_date = invoice_date
@@ -155,7 +138,7 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
             line.tax_ids.clear()
             line.tax_ids.add(tax)
             line.name = "Test Invoice Line"
-            line.account_id = self.company_data["default_account_expense"]
+            line.account_id = self.company_data_2["default_account_expense"]
             line.price_unit = price_unit
         bill = bill_form.save()
         bill.action_post()
@@ -169,8 +152,8 @@ class TestVATStatementCommon(AccountTestInvoicingCommon):
         if payment_term is None:
             payment_term = self.account_payment_term
         # Create statement
-        statement_form = Form(self.vat_statement_model)
-        statement_form.journal_id = self.general_journal
+        statement_form = Form(self.env["account.vat.period.end.statement"])
+        statement_form.journal_id = self.company_data_2["default_journal_misc"]
         statement_form.authority_vat_account_id = self.vat_authority
         statement_form.payment_term_id = payment_term
         statement_form.date = statement_date
