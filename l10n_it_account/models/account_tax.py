@@ -22,7 +22,6 @@ LIABILITY_TYPES = (
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
-    # TODO remove?
     parent_tax_ids = fields.Many2many(
         "account.tax",
         "account_tax_filiation_rel",
@@ -44,7 +43,11 @@ class AccountTax(models.Model):
     )
     def _compute_deductible_balance(self):
         for tax in self:
-            tax.deductible_balance = tax.credit_balance
+            tax.deductible_balance = (
+                tax.credit_balance
+                if tax.type_tax_use == "purchase"
+                else tax.debit_balance
+            )
 
     @api.depends_context(
         "from_date",
@@ -67,8 +70,7 @@ class AccountTax(models.Model):
     )
     def _compute_debit_balance(self):
         for tax in self:
-            accounts = tax._get_accounts_tax()
-            accounts = accounts.filtered(lambda a: a.account_type in LIABILITY_TYPES)
+            accounts = tax._get_debit_accounts()
             account_ids = accounts.ids
             tax.debit_balance = tax._compute_tax_balance_by_accounts(
                 account_ids=account_ids
@@ -82,17 +84,28 @@ class AccountTax(models.Model):
     )
     def _compute_credit_balance(self):
         for tax in self:
-            accounts = tax._get_accounts_tax()
-            accounts = accounts.filtered(lambda a: a.account_type in ASSET_TYPES)
+            accounts = tax._get_credit_accounts()
             account_ids = accounts.ids
             tax.credit_balance = tax._compute_tax_balance_by_accounts(
                 account_ids=account_ids
             )
 
+    def _get_debit_accounts(self):
+        accounts = self._get_accounts_tax()
+        return accounts.filtered(lambda a: a.account_type in LIABILITY_TYPES)
+
+    def _get_credit_accounts(self):
+        accounts = self._get_accounts_tax()
+        return accounts.filtered(lambda a: a.account_type in ASSET_TYPES)
+
     def _get_accounts_tax(self):
-        return self.mapped("invoice_repartition_line_ids.account_id") | self.mapped(
+        accounts = self.mapped("invoice_repartition_line_ids.account_id") | self.mapped(
             "refund_repartition_line_ids.account_id"
         )
+        for child in self.children_tax_ids:
+            # split payment case
+            accounts |= child._get_accounts_tax()
+        return accounts
 
     def _compute_tax_balance_by_accounts(
         self, account_ids=None, exclude_account_ids=None
@@ -195,8 +208,10 @@ class AccountTax(models.Model):
         Args:
             data: date range, journals and registry_type
         Returns:
-            A tuple: (tax_name, base, tax, deductible, undeductible)
-
+            A tuple:
+            (tax_name, base, tax, deductible, undeductible,
+            debit_balance, credit_balance, customer_balance,
+            supplier_balance)
         """
         self.ensure_one()
         context = {
@@ -217,7 +232,16 @@ class AccountTax(models.Model):
         deductible_balance = tax.deductible_balance
         undeductible_balance = tax.undeductible_balance
         debit_balance = tax.debit_balance
+        customer_balance = debit_balance
         credit_balance = tax.credit_balance
+        supplier_balance = credit_balance + undeductible_balance
+        if tax.amount_type == "group":
+            for child_tax in tax.children_tax_ids:
+                if child_tax._l10n_it_is_split_payment():
+                    # split payment case: tax and debit amount is from child,
+                    # but deductible is not
+                    balance = child_tax.balance
+                    customer_balance = child_tax.debit_balance
         if registry_type == "supplier":
             base_balance = -base_balance
             balance = -balance
@@ -225,9 +249,13 @@ class AccountTax(models.Model):
             undeductible_balance = -undeductible_balance
             debit_balance = -debit_balance
             credit_balance = -credit_balance
+            customer_balance = -customer_balance
+            supplier_balance = -supplier_balance
         if registry_type == "customer" and tax.type_tax_use == "purchase":
             # case of reverse charge in sales VAT registry
             base_balance = -base_balance
+            deductible_balance = -deductible_balance - undeductible_balance
+            undeductible_balance = 0
         return (
             tax_name,
             base_balance,
@@ -236,4 +264,6 @@ class AccountTax(models.Model):
             undeductible_balance,
             debit_balance,
             credit_balance,
+            customer_balance,
+            supplier_balance,
         )

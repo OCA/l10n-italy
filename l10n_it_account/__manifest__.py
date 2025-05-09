@@ -10,7 +10,7 @@
 {
     "name": "ITA - Contabilità base",
     "summary": "Modulo base usato come dipendenza di altri moduli contabili",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "development_status": "Production/Stable",
     "category": "Hidden",
     "author": "Agile Business Group, Abstract, Odoo Community Association (OCA)",
@@ -21,6 +21,7 @@
         "account_tax_balance",
         "date_range",
         "web",
+        "l10n_it",  # for _l10n_it_is_split_payment
     ],
     "data": [
         "views/account_menuitem.xml",
