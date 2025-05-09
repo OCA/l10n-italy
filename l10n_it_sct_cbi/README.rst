@@ -134,6 +134,8 @@ Contributors
 
    -  Simone Rubino <simone.rubino@aion-tech.it>
 
+-  Simone Rubino <simone.rubino88@gmail.com>
+
 Maintainers
 -----------
 

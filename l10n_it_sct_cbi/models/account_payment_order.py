@@ -1,6 +1,7 @@
 # Copyright 2013-2015 Alexis de Lattre <alexis.delattre@akretion.com>
 # Copyright 2016 Alessandro Camilli <alessandro.camilli@openforce.it>
 # Copyright 2024 Simone Rubino - Aion Tech
+# Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from collections import defaultdict
@@ -43,6 +44,10 @@ class AccountPaymentOrder(models.Model):
                         partner_bank=partner_bank.display_name,
                     )
                 )
+
+            currency_code_node = parent_node.find(".//Ccy")
+            if currency_code_node is not None:
+                currency_code_node.getparent().remove(currency_code_node)
         return res
 
     @api.model

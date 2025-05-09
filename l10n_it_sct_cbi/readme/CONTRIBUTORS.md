@@ -4,3 +4,4 @@
 - Alex Comba \<<alex.comba@agilebg.com>\>
 - [Aion Tech](https://aiontech.company/):
   - Simone Rubino \<<simone.rubino@aion-tech.it>\>
+- Simone Rubino \<<simone.rubino88@gmail.com>\>
