@@ -300,7 +300,7 @@ def migrate_old_module(cr):
     )
 
 
-def pre_absorb_old_module_v16(cr):
+def pre_absorb_old_module(cr):
     if openupgrade.is_module_installed(cr, "l10n_it_ricevute_bancarie"):
         openupgrade.update_module_names(
             cr,
