@@ -317,3 +317,10 @@ def pre_absorb_old_module(cr):
             merge_modules=True,
         )
         migrate_old_module(cr)
+
+    query = """
+        DELETE
+        FROM ir_module_module_exclusion
+        WHERE name = 'l10n_it_edi'
+    """
+    openupgrade.logged_query(cr, query)
