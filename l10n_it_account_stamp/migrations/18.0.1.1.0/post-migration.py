@@ -4,9 +4,9 @@
 from openupgradelib import openupgrade
 
 
-def migrate(env, version):
+def migrate(cr, version):
     openupgrade.logged_query(
-        env.cr,
+        cr,
         """
         UPDATE account_move_line aml
         SET
