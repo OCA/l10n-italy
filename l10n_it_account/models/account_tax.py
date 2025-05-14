@@ -187,6 +187,7 @@ class AccountTax(models.Model):
             for child in tax.children_tax_ids:
                 child_balance = child.balance
                 tax_balance += child_balance
+                base_balance += child.base_balance
                 account_ids = (
                     child.mapped("invoice_repartition_line_ids.account_id")
                     | child.mapped("refund_repartition_line_ids.account_id")
