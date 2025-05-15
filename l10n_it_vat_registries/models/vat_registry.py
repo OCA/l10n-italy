@@ -79,6 +79,20 @@ class ReportRegistroIva(models.AbstractModel):
                 tax = move_line.tax_line_id
                 is_base = False
 
+            if (
+                not is_base
+                and len(tax.parent_tax_ids) == 1
+                and tax.parent_tax_ids[0].amount_type == "group"
+            ):
+                tax_data = {
+                    "tax": tax,
+                    "group": tax.parent_tax_ids[0],
+                }
+
+                if move._l10n_it_edi_is_neg_split_payment(tax_data):
+                    # split payment case: don't consider the negative part
+                    continue
+
             if move.l10n_it_edi_is_self_invoice and not is_base:
                 if (
                     move.is_purchase_document(include_receipts=True)
@@ -204,7 +218,24 @@ class ReportRegistroIva(models.AbstractModel):
     def _compute_totals_tax(self, tax, data):
         """
         Returns:
-            A tuple: (tax_name, base, tax, deductible, undeductible)
-
+            A tuple:
+            (tax_name, base, tax, deductible, undeductible,
+            debit_balance, credit_balance)
         """
-        return tax._compute_totals_tax(data)
+        res = tax._compute_totals_tax(data)
+        if tax.amount_type == "group":
+            for child_tax in tax.children_tax_ids:
+                if child_tax._l10n_it_is_split_payment():
+                    child_res = child_tax._compute_totals_tax(data)
+                    # split payment case: tax and debit amount is from child,
+                    # but deductible is not
+                    res = (
+                        res[0],
+                        res[1],
+                        child_res[2],
+                        res[3],
+                        res[4],
+                        child_res[5],
+                        res[6],
+                    )
+        return res
