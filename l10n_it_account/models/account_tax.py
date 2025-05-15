@@ -22,7 +22,6 @@ LIABILITY_TYPES = (
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
-    # TODO remove?
     parent_tax_ids = fields.Many2many(
         "account.tax",
         "account_tax_filiation_rel",
@@ -44,7 +43,11 @@ class AccountTax(models.Model):
     )
     def _compute_deductible_balance(self):
         for tax in self:
-            tax.deductible_balance = tax.credit_balance
+            tax.deductible_balance = (
+                tax.credit_balance
+                if tax.type_tax_use == "purchase"
+                else tax.debit_balance
+            )
 
     @api.depends_context(
         "from_date",
@@ -195,8 +198,9 @@ class AccountTax(models.Model):
         Args:
             data: date range, journals and registry_type
         Returns:
-            A tuple: (tax_name, base, tax, deductible, undeductible)
-
+            A tuple:
+            (tax_name, base, tax, deductible, undeductible,
+            debit_balance, credit_balance)
         """
         self.ensure_one()
         context = {
@@ -228,6 +232,8 @@ class AccountTax(models.Model):
         if registry_type == "customer" and tax.type_tax_use == "purchase":
             # case of reverse charge in sales VAT registry
             base_balance = -base_balance
+            deductible_balance = -deductible_balance
+            undeductible_balance = -undeductible_balance
         return (
             tax_name,
             base_balance,
