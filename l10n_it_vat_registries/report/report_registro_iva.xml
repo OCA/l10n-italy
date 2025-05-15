@@ -279,14 +279,12 @@
                                                 <th
                                                     class="right_without_line_bold"
                                                 >Tax</th>
-                                                <t t-if="registry_type == 'supplier'">
-                                                    <th
-                                                        class="right_without_line_bold"
-                                                    >Deductible</th>
-                                                    <th
-                                                        class="right_without_line_bold"
-                                                    >Non-Deductible</th>
-                                                </t>
+                                                <th
+                                                    class="right_without_line_bold"
+                                                >Deductible</th>
+                                                <th
+                                                    class="right_without_line_bold"
+                                                >Non-Deductible</th>
                                             </tr>
                                         </thead>
                                         <t
@@ -294,63 +292,84 @@
                                             t-as="total_used_tax"
                                         >
                                             <t
-                                                t-set="tax_code_tuple"
+                                                t-set="tax_tuple"
                                                 t-value="compute_totals_tax(total_used_tax, data)"
                                             />
                                             <t
+                                                t-set="tax_name"
+                                                t-value="tax_tuple[0]"
+                                            />
+                                            <t
+                                                t-set="base_balance"
+                                                t-value="tax_tuple[1]"
+                                            />
+                                            <t
+                                                t-set="deductible_balance"
+                                                t-value="tax_tuple[3]"
+                                            />
+                                            <t
+                                                t-set="undeductible_balance"
+                                                t-value="tax_tuple[4]"
+                                            />
+                                            <t
+                                                t-set="customer_balance"
+                                                t-value="tax_tuple[7]"
+                                            />
+                                            <t
+                                                t-set="supplier_balance"
+                                                t-value="tax_tuple[8]"
+                                            />
+                                            <t
                                                 t-set="tot_base"
-                                                t-value="tot_base + tax_code_tuple[1]"
+                                                t-value="tot_base + base_balance"
                                             />
                                             <t t-if="registry_type == 'customer'">
-                                                <!-- tax_code_tuple[5] is debit_balance -->
                                                 <t
                                                     t-set="tot_tax"
-                                                    t-value="tot_tax + tax_code_tuple[5]"
+                                                    t-value="tot_tax + customer_balance"
                                                 />
                                             </t>
                                             <t t-if="registry_type == 'supplier'">
-                                                <!-- tax_code_tuple[6] is credit_balance, tax_code_tuple[4] is undeductible, which must be added to credit to get total tax amount -->
                                                 <t
                                                     t-set="tot_tax"
-                                                    t-value="tot_tax + tax_code_tuple[6] + tax_code_tuple[4]"
-                                                />
-                                                <t
-                                                    t-set="tot_ded"
-                                                    t-value="tot_ded + tax_code_tuple[3]"
-                                                />
-                                                <t
-                                                    t-set="tot_unded"
-                                                    t-value="tot_unded + tax_code_tuple[4]"
+                                                    t-value="tot_tax + supplier_balance"
                                                 />
                                             </t>
+                                            <t
+                                                t-set="tot_ded"
+                                                t-value="tot_ded + deductible_balance"
+                                            />
+                                            <t
+                                                t-set="tot_unded"
+                                                t-value="tot_unded + undeductible_balance"
+                                            />
                                             <tr>
                                                 <td
                                                     class="left_without_line"
-                                                    t-esc="tax_code_tuple[0]"
+                                                    t-esc="tax_name"
                                                 />
                                                 <td
                                                     class="right_without_line"
-                                                    t-esc="formatLang(env, tax_code_tuple[1])"
+                                                    t-esc="formatLang(env, base_balance)"
                                                 />
                                                 <td
                                                     t-if="registry_type == 'customer'"
                                                     class="right_without_line"
-                                                    t-esc="formatLang(env, tax_code_tuple[5])"
+                                                    t-esc="formatLang(env, customer_balance)"
                                                 />
-                                                <t t-if="registry_type == 'supplier'">
-                                                    <td
-                                                        class="right_without_line"
-                                                        t-esc="formatLang(env, tax_code_tuple[6] + tax_code_tuple[4])"
-                                                    />
-                                                    <td
-                                                        class="right_without_line"
-                                                        t-esc="formatLang(env, tax_code_tuple[3])"
-                                                    />
-                                                    <td
-                                                        class="right_without_line"
-                                                        t-esc="formatLang(env, tax_code_tuple[4])"
-                                                    />
-                                                </t>
+                                                <td
+                                                    t-if="registry_type == 'supplier'"
+                                                    class="right_without_line"
+                                                    t-esc="formatLang(env, supplier_balance)"
+                                                />
+                                                <td
+                                                    class="right_without_line"
+                                                    t-esc="formatLang(env, deductible_balance)"
+                                                />
+                                                <td
+                                                    class="right_without_line"
+                                                    t-esc="formatLang(env, undeductible_balance)"
+                                                />
                                             </tr>
                                         </t>
                                         <tr>
@@ -365,16 +384,14 @@
                                                 class="right_without_line_bold"
                                                 t-esc="formatLang(env, tot_tax)"
                                             />
-                                            <t t-if="registry_type == 'supplier'">
-                                                <td
-                                                    class="right_without_line_bold"
-                                                    t-esc="formatLang(env, tot_ded)"
-                                                />
-                                                <td
-                                                    class="right_without_line_bold"
-                                                    t-esc="formatLang(env, tot_unded)"
-                                                />
-                                            </t>
+                                            <td
+                                                class="right_without_line_bold"
+                                                t-esc="formatLang(env, tot_ded)"
+                                            />
+                                            <td
+                                                class="right_without_line_bold"
+                                                t-esc="formatLang(env, tot_unded)"
+                                            />
                                         </tr>
                                     </table>
                                 </td>
