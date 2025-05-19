@@ -399,6 +399,7 @@ class AccountMoveInherit(models.Model):
             for element_summary in elements_summary:
                 self.l10n_it_edi_amount_tax += get_float(element_summary, ".//Imposta")
 
+        extra_info["l10n_it_edi_ext_body_tree"] = body_tree
         return extra_info, message_to_log
 
     def _l10n_it_edi_create_partner(
@@ -546,63 +547,106 @@ class AccountMoveInherit(models.Model):
 
         return partner
 
-    def _l10n_it_edi_import_line(self, element, move_line, extra_info=None):
-        # Admin. ref.
-        if admin_ref := get_text(element, ".//RiferimentoAmministrazione"):
-            move_line.l10n_it_edi_admin_ref = admin_ref
-
-        vals = {
-            "line_number": int(get_text(element, ".//NumeroLinea")),
-            "service_type": get_text(element, ".//TipoCessionePrestazione"),
-            "name": " ".join(get_text(element, ".//Descrizione").split()),
-            "qty": float(get_text(element, ".//Quantita") or 0),
-            "uom": get_text(element, ".//UnitaMisura"),
-            "period_start_date": get_date(element, ".//DataInizioPeriodo"),
-            "period_end_date": get_date(element, ".//DataFinePeriodo"),
-            "unit_price": get_float(element, ".//PrezzoUnitario"),
-            "total_price": get_float(element, ".//PrezzoTotale"),
-            "tax_amount": get_float(element, ".//AliquotaIVA"),
-            "wt_amount": get_text(element, ".//Ritenuta"),
-            "tax_kind": get_text(element, ".//Natura").upper(),
-            "invoice_line_id": move_line.id,
-            "invoice_id": move_line.move_id.id,
-        }
-        einvoice_line = self.env["l10n_it_edi.line"].create(vals)
-
-        if elements_code := element.xpath(".//CodiceArticolo"):
-            for element_code in elements_code:
-                self.env["l10n_it_edi.article_code"].create(
-                    {
-                        "name": get_text(element_code, ".//CodiceTipo"),
-                        "code_val": get_text(element_code, ".//CodiceValore"),
-                        "l10n_it_edi_line_id": einvoice_line.id,
-                    }
-                )
-
-        if elements_discount := element.xpath(".//ScontoMaggiorazione"):
-            for element_discount in elements_discount:
-                self.env["l10n_it_edi.discount_rise_price"].create(
-                    {
-                        "name": get_text(element_discount, ".//Tipo"),
-                        "percentage": get_float(element_discount, ".//Percentuale"),
-                        "amount": get_float(element_discount, ".//Importo"),
-                        "l10n_it_edi_line_id": einvoice_line.id,
-                    }
-                )
-
-        if elements_other_data := element.xpath(".//AltriDatiGestionali"):
-            for element_other_data in elements_other_data:
-                self.env["l10n_it_edi.line_other_data"].create(
-                    {
-                        "name": get_text(element_other_data, ".//TipoDato"),
-                        "text_ref": get_text(element_other_data, ".//RiferimentoTesto"),
-                        "num_ref": get_float(
-                            element_other_data, ".//RiferimentoNumero"
+    def _l10n_it_edi_ext_import_summary_line(self, element, extra_info=None):
+        messages_to_log = []
+        company = self.company_id
+        percentage = get_float(element, ".//AliquotaIVA")
+        extra_domain = extra_info.get(
+            "type_tax_use_domain", [("type_tax_use", "=", "purchase")]
+        )
+        l10n_it_exempt_reason = get_text(element, ".//Natura").upper() or False
+        tax = self._l10n_it_edi_search_tax_for_import(
+            company,
+            percentage,
+            extra_domain,
+            l10n_it_exempt_reason=l10n_it_exempt_reason,
+        )
+        if tax:
+            self.invoice_line_ids += self.env["account.move.line"].create(
+                {
+                    "move_id": self.id,
+                    "name": self.env._(
+                        "Summary for tax amount %(percentage)s",
+                        percentage=percentage,
+                    ),
+                    "price_unit": get_float(element, ".//ImponibileImporto"),
+                    "tax_ids": tax.ids,
+                }
+            )
+        else:
+            messages_to_log.append(
+                Markup("<br/>").join(
+                    (
+                        self.env._(
+                            "Tax not found for summary line "
+                            "with percentage %(percentage)s.",
+                            percentage=percentage,
                         ),
-                        "date_ref": get_date(element_other_data, ".//RiferimentoData"),
-                        "l10n_it_edi_line_id": einvoice_line.id,
-                    }
+                        self._compose_info_message(element, "."),
+                    )
                 )
+            )
+
+        return messages_to_log
+
+    def _l10n_it_edi_import_line(self, element, move_line, extra_info=None):
+        if extra_info is None:
+            extra_info = dict()
+        messages_to_log = []
+        company = move_line.company_id
+        import_detail_level = (
+            move_line.partner_id.l10n_it_edi_import_detail_level
+            or company.l10n_it_edi_import_detail_level
+        )
+        if import_detail_level == "min":
+            move_line.unlink()
+            line_description = " ".join(get_text(element, ".//Descrizione").split())
+            messages_to_log.append(
+                Markup("<br/>").join(
+                    (
+                        self.env._(
+                            "Line with description %(line_description)s "
+                            "has been skipped "
+                            "because import detail level is minimum.",
+                            line_description=line_description,
+                        ),
+                        self._compose_info_message(element, "."),
+                    )
+                )
+            )
+        elif (
+            body_tree := extra_info.get("l10n_it_edi_ext_body_tree")
+        ) is not None and import_detail_level == "tax":
+            move_line.unlink()
+            tax_level_imported = extra_info.get("l10n_it_edi_ext_tax_level_imported")
+            if not tax_level_imported:
+                for summary_line in body_tree.xpath(".//DatiBeniServizi/DatiRiepilogo"):
+                    messages_to_log += self._l10n_it_edi_ext_import_summary_line(
+                        summary_line, extra_info=extra_info
+                    )
+                extra_info["l10n_it_edi_ext_tax_level_imported"] = True
+        elif import_detail_level == "max":
+            # Admin. ref.
+            if admin_ref := get_text(element, ".//RiferimentoAmministrazione"):
+                move_line.l10n_it_edi_admin_ref = admin_ref
+
+            vals = {
+                "line_number": int(get_text(element, ".//NumeroLinea")),
+                "service_type": get_text(element, ".//TipoCessionePrestazione"),
+                "name": " ".join(get_text(element, ".//Descrizione").split()),
+                "qty": float(get_text(element, ".//Quantita") or 0),
+                "uom": get_text(element, ".//UnitaMisura"),
+                "period_start_date": get_date(element, ".//DataInizioPeriodo"),
+                "period_end_date": get_date(element, ".//DataFinePeriodo"),
+                "unit_price": get_float(element, ".//PrezzoUnitario"),
+                "total_price": get_float(element, ".//PrezzoTotale"),
+                "tax_amount": get_float(element, ".//AliquotaIVA"),
+                "wt_amount": get_text(element, ".//Ritenuta"),
+                "tax_kind": get_text(element, ".//Natura").upper(),
+                "invoice_line_id": move_line.id,
+                "invoice_id": move_line.move_id.id,
+            }
+            einvoice_line = self.env["l10n_it_edi.line"].create(vals)
 
             if elements_code := element.xpath(".//CodiceArticolo"):
                 self.env["l10n_it_edi.article_code"].create(
@@ -654,7 +698,7 @@ class AccountMoveInherit(models.Model):
             )
         else:
             raise UserError(
-                _(
+                self.env._(
                     "Import detail level %(import_detail_level)s not supported.\n"
                     "Please set an import detail level in company %(company)s.",
                     import_detail_level=import_detail_level,

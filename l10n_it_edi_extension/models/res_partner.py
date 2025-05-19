@@ -19,6 +19,23 @@ class ResPartnerInherit(models.Model):
     )
     l10n_edi_it_register_code = fields.Char(string="Register Registration Number")
     l10n_edi_it_register_regdate = fields.Date(string="Register Registration Date")
+    l10n_it_edi_import_detail_level = fields.Selection(
+        selection=[
+            ("min", "Minimum"),
+            ("tax", "Tax rate"),
+            ("max", "Maximum"),
+        ],
+        string="E-bills import detail level",
+        help="Override the 'E-bills import detail level' of the company "
+        "for bills of this supplier.\n"
+        "Minimum: the bill is created with no lines; "
+        "the user will have to create them, according to what specified in "
+        "the electronic bill.\n"
+        "Tax rate: every tax rate present in the electronic bill "
+        "will create a line in the bill.\n"
+        "Maximum: every line contained in the electronic bill "
+        "will create a line in the bill.",
+    )
 
     @api.constrains("l10n_it_codice_fiscale", "company_type")
     def validate_codice_fiscale(self):

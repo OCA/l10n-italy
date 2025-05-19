@@ -20,6 +20,8 @@ Quindi, affinché le funzionalità di questo modulo siano utilizzabili, è neces
     - Configurazione delle sequenze dedicate per la numerazione delle fatture elettroniche.
     - Eventuale configurazione delle credenziali SDI se si utilizza l'invio diretto tramite Odoo (se supportato dalla configurazione generale).
 
+In Fatturazione > Configurazione > Impostazioni, valorizzare "Livello di dettaglio importazione e-fatture" per importare le fatture elettroniche senza righe, con una riga per ogni aliquota, oppure con tutte le righe (default).
+Questa configurazione può essere sovrascritta dal campo "Livello di dettaglio importazione e-fatture" in ogni fornitore.
 
 **English**
 
@@ -42,3 +44,6 @@ Therefore, for this module's features to be usable, the dependent modules must b
     - Configuration of accounting journals for issuing electronic invoices (indicating FatturaPA/Electronic format).
     - Configuration of dedicated sequences for electronic invoice numbering.
     - Optional SDI credentials configuration if direct sending through Odoo is used (if supported by general configuration).
+
+In Invoicing > Configuration > Settings, fill "E-bills import detail level" to import e-bills with no lines, one line for each tax rate, or all lines (default).
+This setting can be overridden using the "E-bills import detail level" in each supplier.

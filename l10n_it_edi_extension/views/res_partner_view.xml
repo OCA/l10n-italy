@@ -12,6 +12,7 @@
                 <field name="l10n_edi_it_register_province_id" />
                 <field name="l10n_edi_it_register_code" />
                 <field name="l10n_edi_it_register_regdate" />
+                <field name="l10n_it_edi_import_detail_level" />
             </xpath>
         </field>
     </record>

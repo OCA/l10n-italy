@@ -520,7 +520,7 @@ utili per la gestione amministrativa.</li>
 </ol>
 <p>&lt;<a class="reference external" href="https://www.fatturapa.gov.it">https://www.fatturapa.gov.it</a>&gt;</p>
 <p><strong>English</strong></p>
-<p>his module extends Odoo’s standard Italian electronic invoicing
+<p>This module extends Odoo’s standard Italian electronic invoicing
 functionality, introducing useful tools such as XML preview and fiscal
 code calculation and improvements in importing and exporting XML
 invoices.</p>
@@ -542,7 +542,7 @@ administrative management.</li>
 seller/provider’s permanent establishment in Italy if different
 from the registered office</li>
 <li><tt class="docutils literal">&lt;Causale&gt;</tt>: in this case there is no specific field, but it
-transcribes the “Terms and conditions” od the invoice.</li>
+transcribes the “Terms and conditions” of the invoice.</li>
 <li><tt class="docutils literal">&lt;Art73&gt;</tt>: indicates if the document was issued according to
 methods and terms established by ministerial decree pursuant to
 article 73 of DPR 633/72</li>
@@ -726,6 +726,11 @@ generale).</li>
 </ul>
 </li>
 </ul>
+<p>In Fatturazione &gt; Configurazione &gt; Impostazioni, valorizzare “Livello di
+dettaglio importazione e-fatture” per importare le fatture elettroniche
+senza righe, con una riga per ogni aliquota, oppure con tutte le righe
+(default). Questa configurazione può essere sovrascritta dal campo
+“Livello di dettaglio importazione e-fatture” in ogni fornitore.</p>
 <p><strong>English</strong></p>
 <p>The only available configurations are:</p>
 <ul class="simple">
@@ -770,6 +775,10 @@ Odoo is used (if supported by general configuration).</li>
 </ul>
 </li>
 </ul>
+<p>In Invoicing &gt; Configuration &gt; Settings, fill “E-bills import detail
+level” to import e-bills with no lines, one line for each tax rate, or
+all lines (default). This setting can be overridden using the “E-bills
+import detail level” in each supplier.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
