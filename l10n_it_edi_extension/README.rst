@@ -182,7 +182,7 @@ Le funzionalità principali incluse sono:
 
 **English**
 
-his module extends Odoo's standard Italian electronic invoicing
+This module extends Odoo's standard Italian electronic invoicing
 functionality, introducing useful tools such as XML preview and fiscal
 code calculation and improvements in importing and exporting XML
 invoices.
@@ -206,7 +206,7 @@ The main features included are:
       seller/provider's permanent establishment in Italy if different
       from the registered office
    -  ``<Causale>``: in this case there is no specific field, but it
-      transcribes the "Terms and conditions" od the invoice.
+      transcribes the "Terms and conditions" of the invoice.
    -  ``<Art73>``: indicates if the document was issued according to
       methods and terms established by ministerial decree pursuant to
       article 73 of DPR 633/72
@@ -383,6 +383,12 @@ necessario che siano installati e configurati i moduli dipendenti:
       l'invio diretto tramite Odoo (se supportato dalla configurazione
       generale).
 
+In Fatturazione > Configurazione > Impostazioni, valorizzare "Livello di
+dettaglio importazione e-fatture" per importare le fatture elettroniche
+senza righe, con una riga per ogni aliquota, oppure con tutte le righe
+(default). Questa configurazione può essere sovrascritta dal campo
+"Livello di dettaglio importazione e-fatture" in ogni fornitore.
+
 **English**
 
 The only available configurations are:
@@ -426,6 +432,11 @@ modules must be installed and configured:
       numbering.
    -  Optional SDI credentials configuration if direct sending through
       Odoo is used (if supported by general configuration).
+
+In Invoicing > Configuration > Settings, fill "E-bills import detail
+level" to import e-bills with no lines, one line for each tax rate, or
+all lines (default). This setting can be overridden using the "E-bills
+import detail level" in each supplier.
 
 Bug Tracker
 ===========

@@ -4,9 +4,8 @@ import logging
 
 from codicefiscale import build
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
-from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 

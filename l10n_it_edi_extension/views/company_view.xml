@@ -8,6 +8,30 @@
             <xpath expr="//setting[@id='italian_edi']" position="inside">
                 <field name="l10n_edi_it_create_partner" />
             </xpath>
+            <setting id="italian_edi" position="after">
+                <setting id="l10n_it_edi_import_detail_level">
+                    <div class="group-content">
+                        <span
+                            class="o_form_label"
+                            title="Minimum: the bill is created with no lines; the user will have to create them, according to what specified in the electronic bill.
+&#10;Tax rate: every tax rate present in the electronic bill will create a line in the bill.
+&#10;Maximum (default): every line contained in the electronic bill will create a line in the bill."
+                        >
+                            E-bills import detail level
+                    </span>
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                        />
+                        <div class="text-muted">
+                            How lines are converted from the e-bill to the bill.
+                            <br />
+                            This setting can be overridden in each supplier.
+                        </div>
+                        <field name="l10n_it_edi_import_detail_level" />
+                    </div>
+                </setting>
+            </setting>
         </field>
     </record>
 </odoo>

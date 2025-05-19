@@ -261,3 +261,95 @@ class TestFatturaPAXMLValidation(TestItEdi):
         # Assert
         partner = invoice.partner_id
         self.assertFalse(partner)
+
+    def test_min_import_detail_level(self):
+        """If import detail level is Minimum,
+        no line is imported."""
+        # Arrange
+        company = self.company
+        company.l10n_it_edi_import_detail_level = "min"
+
+        # Act
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {
+                    "company_id": company.id,
+                },
+            ],
+        )
+
+        # Assert
+        self.assertFalse(invoice.invoice_line_ids)
+
+    def test_tax_import_detail_level(self):
+        """If import detail level is Tax rate,
+        summary lines are imported."""
+        # Arrange
+        company = self.company
+        company.l10n_it_edi_import_detail_level = "tax"
+
+        # Act
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {
+                    "company_id": company.id,
+                },
+            ],
+        )
+
+        # Assert
+        self.assertEqual(len(invoice.invoice_line_ids), 1)
+
+    def test_max_import_detail_level(self):
+        """If import detail level is Maximum,
+        all lines are imported."""
+        # Arrange
+        company = self.company
+        # pre-condition
+        self.assertEqual(company.l10n_it_edi_import_detail_level, "max")
+
+        # Act
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {
+                    "company_id": company.id,
+                },
+            ],
+        )
+
+        # Assert
+        self.assertEqual(len(invoice.invoice_line_ids), 2)
+
+    def test_partner_import_detail_level(self):
+        """If import detail level is Maximum in the Company
+        and minimum in the partner,
+        the invoice is imported with minimum detail level."""
+        # Arrange
+        company = self.company
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Test partner",
+                "vat": "02780790107",
+                "l10n_it_edi_import_detail_level": "min",
+            },
+        )
+        # pre-condition
+        self.assertEqual(company.l10n_it_edi_import_detail_level, "max")
+        self.assertEqual(partner.l10n_it_edi_import_detail_level, "min")
+
+        # Act
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {
+                    "company_id": company.id,
+                    "partner_id": partner.id,
+                },
+            ],
+        )
+
+        # Assert
+        self.assertFalse(invoice.invoice_line_ids)
