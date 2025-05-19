@@ -75,7 +75,6 @@ Le funzionalità principali incluse sono:
 
 4. Aggiunge di un wizard per calcolare i codici fiscali
 
-
 \<<https://www.fatturapa.gov.it>\>
 
 
@@ -155,6 +154,5 @@ The main features included are:
       - improved fiscal code validation
 
 4. Adds a wizard to calculate fiscal codes
-
 
 \<<https://www.fatturapa.gov.it>\>

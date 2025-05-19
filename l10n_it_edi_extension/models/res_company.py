@@ -33,6 +33,23 @@ class ResCompanyInherit(models.Model):
         help="Automatically create the partner if it does not "
         "exist during the import of Electronic Invoices.",
     )
+    l10n_it_edi_import_detail_level = fields.Selection(
+        selection=[
+            ("min", "Minimum"),
+            ("tax", "Tax rate"),
+            ("max", "Maximum"),
+        ],
+        default="max",
+        required=True,
+        string="E-bills import detail level",
+        help="Minimum: the bill is created with no lines; "
+        "the user will have to create them, according to what specified in "
+        "the electronic bill.\n"
+        "Tax rate: every tax rate present in the electronic bill "
+        "will create a line in the bill.\n"
+        "Maximum (default): every line contained in the electronic bill "
+        "will create a line in the bill.",
+    )
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -43,5 +60,9 @@ class AccountConfigSettings(models.TransientModel):
         string="Create Partner on Eletronic Invoice import",
         help="Automatically create the partner if it does not "
         "exist during the import of Electronic Invoices.",
+        readonly=False,
+    )
+    l10n_it_edi_import_detail_level = fields.Selection(
+        related="company_id.l10n_it_edi_import_detail_level",
         readonly=False,
     )
