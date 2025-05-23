@@ -481,7 +481,8 @@ class WizardGiornaleReportlab(models.TransientModel):
             account = Paragraph(account_name, style_name)
 
             # Management of data visualization based on account type
-            # For credit/debit accounts, displays the partner name, otherwise displays the entry name
+            # For credit/debit accounts, displays the partner name,
+            # otherwise displays the entry name
             if line["account_type"] in ["asset_receivable", "liability_payable"]:
                 name = Paragraph(line["partner_name"], style_name)
             else:
