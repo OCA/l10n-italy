@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-09 12:56+0000\n"
-"PO-Revision-Date: 2024-09-04 10:06+0000\n"
+"PO-Revision-Date: 2025-05-24 15:27+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model.fields.selection,name:l10n_it_account_vat_period_end_settlement.selection__account_vat_period_end_statement__advance_computation_method__4
@@ -29,14 +29,13 @@ msgstr "&amp;nbsp;("
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_document
-#, fuzzy
 msgid "(credit)"
-msgstr "Crediti d'imposta"
+msgstr "(credito)"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_document
 msgid "(debit)"
-msgstr ""
+msgstr "(debito)"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.view_account_vat_period_end_statement
@@ -100,7 +99,6 @@ msgstr "Aggiungi periodo"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model,name:l10n_it_account_vat_period_end_settlement.model_add_period_to_vat_statement
-#, fuzzy
 msgid "Add period to VAT Settlement"
 msgstr "Aggiungi periodo alla liquidazione IVA"
 
@@ -135,7 +133,6 @@ msgstr "Prospetto annuale"
 #: model:ir.model.fields,help:l10n_it_account_vat_period_end_settlement.field_res_company__of_account_end_vat_statement_interest
 #: model:ir.model.fields,help:l10n_it_account_vat_period_end_settlement.field_res_company__of_account_end_vat_statement_interest_account_id
 #: model:ir.model.fields,help:l10n_it_account_vat_period_end_settlement.field_res_company__of_account_end_vat_statement_interest_percent
-#, fuzzy
 msgid "Apply interest on end vat settlement"
 msgstr "Applica interessi su liquidazione"
 
@@ -225,7 +222,6 @@ msgstr "IVA a credito da periodi precedenti"
 #. module: l10n_it_account_vat_period_end_settlement
 #. odoo-python
 #: code:addons/l10n_it_account_vat_period_end_settlement/wizard/remove_period.py:0
-#, fuzzy
 msgid "Current settlement not found"
 msgstr "Liquidazione corrente non trovata"
 
@@ -331,9 +327,8 @@ msgstr "Interessi dovuti per liquidazioni trimestrali"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model.fields,field_description:l10n_it_account_vat_period_end_settlement.field_account_tax__exclude_from_vat_settlements
-#, fuzzy
 msgid "Exclude from VAT settlements"
-msgstr "Conto utilizzato per la liquidazione IVA"
+msgstr "Escludi da liquidazione IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model.fields,field_description:l10n_it_account_vat_period_end_settlement.field_account_vat_period_end_statement__fiscal_year
@@ -357,21 +352,18 @@ msgstr "Interesse - Percentuale"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model.fields,field_description:l10n_it_account_vat_period_end_settlement.field_res_company__of_account_end_vat_statement_interest
-#, fuzzy
 msgid "Interest on End Vat Settlement"
-msgstr "Interessi su liquidazione"
+msgstr "Interessi su liquidazione IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model.fields,field_description:l10n_it_account_vat_period_end_settlement.field_res_company__of_account_end_vat_statement_interest_percent
-#, fuzzy
 msgid "Interest on End Vat Settlement - %"
-msgstr "Interessi su liquidazione - %"
+msgstr "Interessi su liquidazione IVA - %"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model.fields,field_description:l10n_it_account_vat_period_end_settlement.field_res_company__of_account_end_vat_statement_interest_account_id
-#, fuzzy
 msgid "Interest on End Vat Settlement - Account"
-msgstr "Interessi su liquidazione - Conto"
+msgstr "Interessi su liquidazione IVA - Conto"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model.fields,help:l10n_it_account_vat_period_end_settlement.field_account_vat_period_end_statement__reconciled
@@ -467,7 +459,6 @@ msgstr "Periodo"
 #. module: l10n_it_account_vat_period_end_settlement
 #. odoo-python
 #: code:addons/l10n_it_account_vat_period_end_settlement/wizard/add_period.py:0
-#, fuzzy
 msgid "Period (%(name)s) is associated to settlement (%(date)s) yet"
 msgstr "Il periodo (%(name)s) è già associato con la liquidazione (%(date)s)"
 
@@ -535,7 +526,6 @@ msgstr "Opzioni di stampa"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.actions.report,name:l10n_it_account_vat_period_end_settlement.report_vat_statement
-#, fuzzy
 msgid "Print Vat Period End Settlement"
 msgstr "Stampa Liquidazione IVA"
 
@@ -568,13 +558,11 @@ msgstr "Rimuovi periodo"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model,name:l10n_it_account_vat_period_end_settlement.model_remove_period_from_vat_statement
-#, fuzzy
 msgid "Remove period from VAT Settlement"
 msgstr "Rimuovi periodo dalla liquidazione IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_document
-#, fuzzy
 msgid ""
 "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE\n"
 "                                in Italia, Beni FUE in Italia, Cell., "
@@ -583,10 +571,12 @@ msgid ""
 "Intra, Beni UE,\n"
 "                                Rev.Charge UE, Cell. UE, Microproc. UE"
 msgstr ""
-"Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in "
-"Italia, Beni FUE in Italia, Cell., Microproc.\n"
-"    Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge "
-"UE, Cell. UE, Microproc. UE"
+"Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE\n"
+"                                in Italia, Beni FUE in Italia, Cell., "
+"Microproc.\n"
+"                                Operazioni UE: Servizi Si Intra, Servizi No "
+"Intra, Beni UE,\n"
+"                                Rev.Charge UE, Cell. UE, Microproc. UE"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_tax_code
@@ -677,6 +667,8 @@ msgid ""
 "The tax %s has more than one credit account defined. Please define only one "
 "in the tax form."
 msgstr ""
+"L0imopsta %s ha più di un conto credito associato. Indicarne solo uno nella "
+"maschera dell'imposta."
 
 #. module: l10n_it_account_vat_period_end_settlement
 #. odoo-python
@@ -685,6 +677,8 @@ msgid ""
 "The tax %s has more than one debit account defined. Please define only one "
 "in the tax form."
 msgstr ""
+"L'imposta %s ha più di un conto debito associato. Associarne solo uno nella "
+"maschera dell'imposta."
 
 #. module: l10n_it_account_vat_period_end_settlement
 #. odoo-python
@@ -692,6 +686,8 @@ msgstr ""
 msgid ""
 "The tax %s has no credit account defined. Please define it in the tax form."
 msgstr ""
+"L'imposta %s nona un conto credito associato. Definirne uno nella maschera "
+"dell'imposta."
 
 #. module: l10n_it_account_vat_period_end_settlement
 #. odoo-python
@@ -699,17 +695,18 @@ msgstr ""
 msgid ""
 "The tax %s has no debit account defined. Please define it in the tax form."
 msgstr ""
+"L'imposta %s non ha un conto debito associato. Definirne uno nella maschera "
+"dell'imposta."
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.view_account_vat_period_end_statement
 msgid "Total"
-msgstr ""
+msgstr "Totale"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_document
-#, fuzzy
 msgid "Total Settlement"
-msgstr "Riepilogo Liquidazione"
+msgstr "Totale liquidazione"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_tax_code
@@ -724,37 +721,31 @@ msgstr "Non detraibile"
 #: model:ir.model.fields,field_description:l10n_it_account_vat_period_end_settlement.field_statement_debit_account_line__statement_id
 #: model:ir.model.fields,field_description:l10n_it_account_vat_period_end_settlement.field_statement_generic_account_line__statement_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_vat_period_end_settlement.view_vat_period_end_statement_company_form
-#, fuzzy
 msgid "VAT Settlement"
 msgstr "Liquidazione IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model,name:l10n_it_account_vat_period_end_settlement.model_statement_credit_account_line
-#, fuzzy
 msgid "VAT Settlement credit account line"
 msgstr "Riga di credito liquidazione IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model,name:l10n_it_account_vat_period_end_settlement.model_statement_debit_account_line
-#, fuzzy
 msgid "VAT Settlement debit account line"
 msgstr "Riga di debito liquidazione IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model,name:l10n_it_account_vat_period_end_settlement.model_statement_generic_account_line
-#, fuzzy
 msgid "VAT Settlement generic account line"
 msgstr "Riga contabile generica dichiarazione IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model,name:l10n_it_account_vat_period_end_settlement.model_report_l10n_it_account_vat_period_end_settlement_vat_statement
-#, fuzzy
 msgid "VAT Settlement report"
-msgstr "Report liquidazione IVA"
+msgstr "Resoconto liquidazione IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.ui.menu,name:l10n_it_account_vat_period_end_settlement.menu_account_vat_period_end_statement
-#, fuzzy
 msgid "VAT Settlements"
 msgstr "Liquidazioni IVA"
 
@@ -765,7 +756,6 @@ msgstr "Dichiarazione IVA di fine periodo"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.model.fields,field_description:l10n_it_account_vat_period_end_settlement.field_account_vat_period_end_statement__move_id
-#, fuzzy
 msgid "VAT settlement move"
 msgstr "Movimento liquidazione IVA"
 
@@ -776,7 +766,6 @@ msgstr "IVA"
 
 #. module: l10n_it_account_vat_period_end_settlement
 #: model:ir.actions.act_window,name:l10n_it_account_vat_period_end_settlement.action_account_vat_period_end_statement
-#, fuzzy
 msgid "Vat Settlement"
 msgstr "Liquidazione IVA"
 
