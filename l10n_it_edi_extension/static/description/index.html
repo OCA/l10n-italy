@@ -8,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -274,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -300,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -368,107 +369,298 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:f1248807eff1e257c248a5aa7e2174684c32b780f443ff30730f1f1b1e850bd1
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Production/Stable" src="https://img.shields.io/badge/maturity-Production%2FStable-green.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_extension"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_edi_extension"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_extension"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_edi_extension"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p><strong>Italiano</strong></p>
 <p>Questo modulo estende le funzionalità standard della fatturazione
 elettronica italiana di Odoo, introducendo strumenti utili come
-l’anteprima XML, la gestione facilitata delle date per le fatture
-differite e una maggiore flessibilità nella numerazione e
-nell’esportazione.</p>
+l’anteprima XML ed il calcolo dei codici fiscali e miglioramenti
+nell’importazione e nell’esportazione delle fatture XML.</p>
 <p>Le funzionalità principali incluse sono:</p>
 <ol class="arabic simple">
-<li>Anteprima e Download del file XML:</li>
-</ol>
-<ul class="simple">
+<li>Anteprima e Download del file XML:<ul>
 <li>Aggiunge un pulsante (“Preview XML”) direttamente nel form della
 fattura.</li>
-<li>Questo pulsante permette di visualizzare un’anteprima del file XML
-della fattura elettronica prima dell’invio effettivo.</li>
-<li>Dalla stessa finestra di anteprima, è possibile scaricare il file XML
-generato.</li>
+<li>Dalla stessa finestra della fattura, è possibile scaricare il file
+XML generato.</li>
 </ul>
-<ol class="arabic simple" start="2">
-<li>Rigenerazione Numero Fattura (se non inviata):</li>
-</ol>
-<ul class="simple">
-<li>Se una fattura non è ancora stata inviata allo SDI (Sistema di
-Interscambio), riportandola in bozza e riconvalidandola, il modulo
-permette di rigenerare il numero progressivo della fattura se
-necessario (ad esempio, se nel frattempo sono state emesse altre
-fatture).</li>
+</li>
+<li>Valorizza i seguenti campi/nodi della fattura elettronica esportata:<ul>
+<li><tt class="docutils literal">&lt;RiferimentoAmministrazione&gt;</tt> (sia sulla riga o nell’azienda):
+identificativo utilizzato per uso amministrativo/gestionale
+interno. È un campo libero che può essere utilizzato per inserire
+riferimenti specifici richiesti dalla Pubblica Amministrazione o
+altri riferimenti utili per la gestione amministrativa.</li>
+<li><tt class="docutils literal">&lt;StabileOrganizzazione&gt;</tt>: rappresenta i dati della sede
+operativa stabile del cedente/prestatore in Italia se diversa
+dalla sede legale. Da impostare in odoo nell’azienda, tab
+“Informazioni Generali”</li>
+<li><tt class="docutils literal">&lt;Causale&gt;</tt>: in questo caso non c’è un campo apposito, ma
+trascrive i “Termini e condizioni” della fattura</li>
+<li><tt class="docutils literal">&lt;Art73&gt;</tt>: indica se il documento è stato emesso secondo
+modalità e termini stabiliti con decreto ministeriale ai sensi
+dell’articolo 73 del DPR 633/72. Da impostare in odoo nell’azienda
+o direttamente in fattura.</li>
 </ul>
-<ol class="arabic simple" start="3">
-<li>Gestione Data Fattura per Fatture Differite:</li>
-</ol>
-<ul class="simple">
-<li>Offre un wizard (accessibile dal menu “Azioni” su una selezione di
-fatture in stato “Bozza” o “Convalidato”) per impostare la data della
-fattura come l’ultimo giorno del mese del DDT (Documento di
-Trasporto) associato. Utile per la creazione di fatture differite a
-fine mese.</li>
+</li>
+<li>Miglioramenti nell’import delle fatture XML:<ul>
+<li>Aggiunge un’opzione per creare i contatti presenti in una fattura
+elettronica se non esistono in anagrafica tra cui:<ul>
+<li><tt class="docutils literal">&lt;CessionarioCommittente&gt;</tt> e <tt class="docutils literal">&lt;CedentePrestatore&gt;</tt> invece
+di scrivere solamente i dettagli nel chatter.</li>
 </ul>
-<ol class="arabic simple" start="4">
-<li>Filtro Data nell’Export:</li>
-</ol>
-<ul class="simple">
-<li>Modifica il wizard standard di esportazione massiva delle fatture
-elettroniche (l10n_it_edi.wizard_export_fatturapa).</li>
-<li>Fa sì che il filtro per data utilizzato nel wizard si basi sulla Data
-Fattura (invoice_date) invece che sulla Data Contabile (date).</li>
+</li>
+<li>Creazione di altri contatti presenti in una fattura elettronica se
+non esistono in anagrafica tra cui:<ul>
+<li><tt class="docutils literal">&lt;RappresentanteFiscale&gt;</tt></li>
+<li><tt class="docutils literal">&lt;TerzoIntermediarioOSoggettoEmittente&gt;</tt></li>
 </ul>
-<ol class="arabic simple" start="5">
-<li>Se una fattura elettronica contiene diverse fatture, tutte le fatture
-vengono create.</li>
-<li>Se il partner di una fattura elettronica non esiste, viene creato.</li>
+</li>
+<li>Gestione delle Fatture Elettroniche Multiple:<ul>
+<li>Supporto per la suddivisione automatica di file XML contenenti
+più fatture</li>
+<li>Ogni <tt class="docutils literal">&lt;FatturaElettronicaBody&gt;</tt> viene convertito in una
+fattura separata mantenendo l’header originale</li>
+</ul>
+</li>
+<li>Aggiunge la possibilità di scegliere tra 3 modalità di
+importazione:<ul>
+<li>senza righe</li>
+<li>una riga per ogni aliquota</li>
+<li>tutte le righe (default)</li>
+</ul>
+</li>
+<li>Importazione dei <tt class="docutils literal">&lt;DatiRiepilogo&gt;</tt>:<ul>
+<li><tt class="docutils literal">&lt;AliquotaIVA&gt;</tt></li>
+<li><tt class="docutils literal">&lt;Natura&gt;</tt>: Indica il motivo per cui un’operazione non
+prevede l’IVA</li>
+<li><tt class="docutils literal">&lt;SpeseAccessorie&gt;</tt>: es. trasporto, imballaggio</li>
+<li><tt class="docutils literal">&lt;Arrotondamento&gt;</tt></li>
+<li><tt class="docutils literal">&lt;ImponibileImporto&gt;</tt></li>
+<li><tt class="docutils literal">&lt;Imposta&gt;</tt></li>
+<li><tt class="docutils literal">&lt;EsigibilitaIVA&gt;</tt>: Indica quando l’IVA diventa esigibile
+(immediata, differita o scissione dei pagamenti)</li>
+<li><tt class="docutils literal">&lt;RiferimentoNormativo&gt;</tt>: Obbligatorio quando si usa il campo
+<tt class="docutils literal">&lt;Natura&gt;</tt></li>
+</ul>
+</li>
+<li>Importazione dei <tt class="docutils literal">&lt;DatiGeneraliDocumento&gt;</tt>:<ul>
+<li><tt class="docutils literal">&lt;Arrotondamento&gt;</tt></li>
+<li><tt class="docutils literal">&lt;Art73&gt;</tt>: indica se il documento è stato emesso secondo
+modalità e termini stabiliti con decreto ministeriale ai sensi
+dell’articolo 73 del DPR 633/72</li>
+<li><tt class="docutils literal">&lt;DatiSAL&gt;</tt> e <tt class="docutils literal">&lt;RiferimentoFase&gt;</tt>: utilizzati per indicare
+lo stato di avanzamento dei lavori in caso di fatturazione
+dilazionata/progressiva (contratti di appalto, servizi
+continuativi o lavori in corso d’opera)</li>
+</ul>
+</li>
+<li>Importazione dei dati della fattura principale
+(<tt class="docutils literal">&lt;NumeroFatturaPrincipale&gt;</tt> e <tt class="docutils literal">&lt;DataFatturaPrincipale&gt;</tt>)</li>
+<li>Scrittura nel chatter dei nodi di
+<tt class="docutils literal"><span class="pre">&lt;DatiGenerali&gt;&lt;DatiTrasporto&gt;</span></tt> e <tt class="docutils literal">&lt;DatiVeicoli&gt;</tt></li>
+<li>Gestione avanzata dei Dati delle Righe Fattura:<ul>
+<li>Creazione dei codici articolo in fase di importazione. Questi
+codici servono per identificare univocamente i prodotti/servizi
+secondo diversi standard di codifica. Nel file XML, questi
+codici sono nel nodo <tt class="docutils literal">&lt;CodiceArticolo&gt;</tt> che può contenere:<ul>
+<li><tt class="docutils literal">&lt;CodiceTipo&gt;</tt>: identifica il tipo di codifica utilizzata</li>
+<li><tt class="docutils literal">&lt;CodiceValore&gt;</tt>: il valore effettivo del codice</li>
+</ul>
+</li>
+<li>Registrazione dello sconto o maggiorazione, nodo
+<tt class="docutils literal">&lt;ScontoMaggiorazione&gt;</tt>, nelle righe di dettaglio della
+fattura.</li>
+<li>Importazione dei dati del nodo <tt class="docutils literal">&lt;AltriDatiGestionali&gt;</tt>
+(informazioni supplementari che non trovano posto negli altri
+campi standard della fattura elettronica) che può contenere:<ul>
+<li><tt class="docutils literal">&lt;TipoDato&gt;</tt>: identifica il tipo di informazione
+aggiuntiva che si sta inserendo</li>
+<li><tt class="docutils literal">&lt;RiferimentoTesto&gt;</tt>: contiene un valore testuale
+dell’informazione aggiuntiva</li>
+<li><tt class="docutils literal">&lt;RiferimentoNumero&gt;</tt>: contiene un valore numerico
+dell’informazione aggiuntiva</li>
+<li><tt class="docutils literal">&lt;RiferimentoData&gt;</tt>: contiene un valore data
+dell’informazione aggiuntiva</li>
+</ul>
+</li>
+<li>Importazione dei nodi:<ul>
+<li><tt class="docutils literal">&lt;NumeroLinea&gt;</tt>: numero progressivo della riga all’interno
+della fattura</li>
+<li><tt class="docutils literal">&lt;TipoCessionePrestazione&gt;</tt>: indica la tipologia della
+cessione o prestazione e può contenere valori come:<ul>
+<li>“SC” (Sconto)</li>
+<li>“PR” (Premio)</li>
+<li>“AB” (Abbuono)</li>
+<li>“AC” (Spesa accessoria)</li>
+</ul>
+</li>
+<li><tt class="docutils literal">&lt;DataInizioPeriodo&gt;</tt> e <tt class="docutils literal">&lt;DataFinePeriodo&gt;</tt>: indicano il
+periodo di riferimento di una prestazione e sono utili per
+servizi continuativi o prestazioni che si estendono su un
+periodo di tempo</li>
+<li><tt class="docutils literal">&lt;RiferimentoAmministrazione&gt;</tt>: identificativo utilizzato
+per uso amministrativo/gestionale interno. È un campo libero
+che può essere utilizzato per inserire riferimenti specifici
+richiesti dalla Pubblica Amministrazione o altri riferimenti
+utili per la gestione amministrativa.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Validazione avanzate dei file XML con gestione degli errori:<ul>
+<li>controllo sul totale imponibile</li>
+<li>controllo sul totale dell’IVA</li>
+<li>controllo sul totale IVA inclusa</li>
+<li>miglioramento della validazione del codice fiscale</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Aggiunge di un wizard per calcolare i codici fiscali</li>
 </ol>
 <p>&lt;<a class="reference external" href="https://www.fatturapa.gov.it">https://www.fatturapa.gov.it</a>&gt;</p>
 <p><strong>English</strong></p>
-<p>This module extends Odoo standard Italian electronic invoicing
-functionality, introducing useful tools such as XML preview, simplified
-date management for deferred invoices and greater flexibility in
-numbering and exporting.</p>
+<p>his module extends Odoo’s standard Italian electronic invoicing
+functionality, introducing useful tools such as XML preview and fiscal
+code calculation and improvements in importing and exporting XML
+invoices.</p>
 <p>The main features included are:</p>
 <ol class="arabic simple">
-<li>XML File Preview and Download:</li>
-</ol>
-<ul class="simple">
+<li>XML File Preview and Download:<ul>
 <li>Adds a button (“Preview XML”) directly in the invoice form.</li>
-<li>This button allows you to preview the electronic invoice XML file
-before actual submission.</li>
-<li>From the same preview window, you can download the generated XML
+<li>From the same invoice form, you can download the generated XML
 file.</li>
 </ul>
-<ol class="arabic simple" start="2">
-<li>Invoice Number Regeneration (if not sent):</li>
-</ol>
-<ul class="simple">
-<li>If an invoice has not yet been sent to SDI (Exchange System), by
-setting it back to draft and revalidating it, the module allows
-regenerating the progressive invoice number if necessary (for
-example, if other invoices have been issued in the meantime).</li>
+</li>
+<li>Adds fields in XML invoice export:<ul>
+<li><tt class="docutils literal">&lt;RiferimentoAmministrazione&gt;</tt> (both on line or on company):
+identifier used for internal administrative/management purposes.
+It’s a free field that can be used to insert specific references
+required by Public Administration or other useful references for
+administrative management.</li>
+<li><tt class="docutils literal">&lt;StabileOrganizzazione&gt;</tt>: represents the data of the
+seller/provider’s permanent establishment in Italy if different
+from the registered office</li>
+<li><tt class="docutils literal">&lt;Causale&gt;</tt>: in this case there is no specific field, but it
+transcribes the “Terms and conditions” od the invoice.</li>
+<li><tt class="docutils literal">&lt;Art73&gt;</tt>: indicates if the document was issued according to
+methods and terms established by ministerial decree pursuant to
+article 73 of DPR 633/72</li>
 </ul>
-<ol class="arabic simple" start="3">
-<li>Invoice Date Management for Deferred Invoices:</li>
-</ol>
-<ul class="simple">
-<li>Provides a wizard (accessible from the “Actions” menu on a selection
-of invoices in “Draft” or “Validated” status) to set the invoice date
-as the last day of the month of the associated DDT (Transport
-Document). Useful for creating end-of-month deferred invoices.</li>
+</li>
+<li>Improvements in XML invoice import:<ul>
+<li>Adds an option to create contacts present in an electronic invoice
+if they don’t exist in the address book, including:<ul>
+<li><tt class="docutils literal">&lt;CessionarioCommittente&gt;</tt> and <tt class="docutils literal">&lt;CedentePrestatore&gt;</tt>
+instead of just writing the details in the chatter.</li>
 </ul>
-<ol class="arabic simple" start="4">
-<li>Date Filter in Export:</li>
-</ol>
-<ul class="simple">
-<li>Modifies the standard mass export wizard for electronic invoices
-(l10n_it_edi.wizard_export_fatturapa).</li>
-<li>Makes the date filter used in the wizard based on Invoice Date
-(invoice_date) instead of Accounting Date (date).</li>
+</li>
+<li>Creation of other contacts present in an electronic invoice if
+they don’t exist in the address book, including:<ul>
+<li><tt class="docutils literal">&lt;RappresentanteFiscale&gt;</tt></li>
+<li><tt class="docutils literal">&lt;TerzoIntermediarioOSoggettoEmittente&gt;</tt></li>
 </ul>
-<ol class="arabic simple" start="5">
-<li>If an e-invoice contains multiple invoices, all the corresponding
-invoices are created.</li>
-<li>If the partner of an e-invoice does not exist, it is created.</li>
+</li>
+<li>Multiple Electronic Invoice Management:<ul>
+<li>Support for automatic splitting of XML files containing
+multiple invoices</li>
+<li>Each <tt class="docutils literal">&lt;FatturaElettronicaBody&gt;</tt> is converted into a separate
+invoice maintaining the original header</li>
+</ul>
+</li>
+<li>Adds the ability to choose between 3 import modes:<ul>
+<li>without lines</li>
+<li>one line for each VAT rate</li>
+<li>all lines (default)</li>
+</ul>
+</li>
+<li>Import of <tt class="docutils literal">&lt;DatiRiepilogo&gt;</tt>:<ul>
+<li><tt class="docutils literal">&lt;AliquotaIVA&gt;</tt></li>
+<li><tt class="docutils literal">&lt;Natura&gt;</tt>: Indicates the reason why an operation does not
+include VAT</li>
+<li><tt class="docutils literal">&lt;SpeseAccessorie&gt;</tt>: e.g., transport, packaging</li>
+<li><tt class="docutils literal">&lt;Arrotondamento&gt;</tt></li>
+<li><tt class="docutils literal">&lt;ImponibileImporto&gt;</tt></li>
+<li><tt class="docutils literal">&lt;Imposta&gt;</tt></li>
+<li><tt class="docutils literal">&lt;EsigibilitaIVA&gt;</tt>: Indicates when VAT becomes payable
+(immediate, deferred, or split payment)</li>
+<li><tt class="docutils literal">&lt;RiferimentoNormativo&gt;</tt>: Required when using the
+<tt class="docutils literal">&lt;Natura&gt;</tt> field</li>
+</ul>
+</li>
+<li>Import of <tt class="docutils literal">&lt;DatiGeneraliDocumento&gt;</tt>:<ul>
+<li><tt class="docutils literal">&lt;Arrotondamento&gt;</tt></li>
+<li><tt class="docutils literal">&lt;Art73&gt;</tt>: indicates if the document was issued according to
+methods and terms established by ministerial decree pursuant to
+article 73 of DPR 633/72</li>
+<li><tt class="docutils literal">&lt;DatiSAL&gt;</tt> and <tt class="docutils literal">&lt;RiferimentoFase&gt;</tt>: used to indicate the
+progress status of work in case of deferred/progressive
+invoicing (procurement contracts, continuous services, or work
+in progress)</li>
+</ul>
+</li>
+<li>Import of main invoice data (<tt class="docutils literal">&lt;NumeroFatturaPrincipale&gt;</tt> and
+<tt class="docutils literal">&lt;DataFatturaPrincipale&gt;</tt>)</li>
+<li>Writing in chatter of <tt class="docutils literal"><span class="pre">&lt;DatiGenerali&gt;&lt;DatiTrasporto&gt;</span></tt> and
+<tt class="docutils literal">&lt;DatiVeicoli&gt;</tt> nodes</li>
+<li>Advanced management of Invoice Line Data:<ul>
+<li>Creation of article codes during import. These codes are used
+to uniquely identify products/services according to different
+coding standards. In the XML file, these codes are in the
+<tt class="docutils literal">&lt;CodiceArticolo&gt;</tt> node which can contain:<ul>
+<li><tt class="docutils literal">&lt;CodiceTipo&gt;</tt>: identifies the type of coding used</li>
+<li><tt class="docutils literal">&lt;CodiceValore&gt;</tt>: the actual code value</li>
+</ul>
+</li>
+<li>Recording of discounts or surcharges,
+<tt class="docutils literal">&lt;ScontoMaggiorazione&gt;</tt>, in the invoice detail lines.</li>
+<li>Import of <tt class="docutils literal">&lt;AltriDatiGestionali&gt;</tt> node data (supplementary
+information that doesn’t fit in other standard electronic
+invoice fields) which can contain:<ul>
+<li><tt class="docutils literal">&lt;TipoDato&gt;</tt>: identifies the type of additional
+information being entered</li>
+<li><tt class="docutils literal">&lt;RiferimentoTesto&gt;</tt>: contains a textual value of the
+additional information</li>
+<li><tt class="docutils literal">&lt;RiferimentoNumero&gt;</tt>: contains a numerical value of the
+additional information</li>
+<li><tt class="docutils literal">&lt;RiferimentoData&gt;</tt>: contains a date value of the
+additional information</li>
+</ul>
+</li>
+<li>Import of nodes:<ul>
+<li><tt class="docutils literal">&lt;NumeroLinea&gt;</tt>: progressive line number within the
+invoice</li>
+<li><tt class="docutils literal">&lt;TipoCessionePrestazione&gt;</tt>: indicates the type of
+transfer or service and can contain values such as:<ul>
+<li>“SC” (Discount)</li>
+<li>“PR” (Prize)</li>
+<li>“AB” (Allowance)</li>
+<li>“AC” (Ancillary expense)</li>
+</ul>
+</li>
+<li><tt class="docutils literal">&lt;DataInizioPeriodo&gt;</tt> and <tt class="docutils literal">&lt;DataFinePeriodo&gt;</tt>: indicate
+the reference period of a service and are useful for
+continuous services or services that extend over a period of
+time</li>
+<li><tt class="docutils literal">&lt;RiferimentoAmministrazione&gt;</tt>: identifier used for
+internal administrative/management purposes. It’s a free
+field that can be used to insert specific references
+required by Public Administration or other useful references
+for administrative management.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Advanced XML file validation with error handling:<ul>
+<li>check on total taxable amount</li>
+<li>check on total VAT</li>
+<li>check on total including VAT</li>
+<li>improved fiscal code validation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Adds a wizard to calculate fiscal codes</li>
 </ol>
 <p>&lt;<a class="reference external" href="https://www.fatturapa.gov.it">https://www.fatturapa.gov.it</a>&gt;</p>
 <p><strong>Table of contents</strong></p>
@@ -487,21 +679,39 @@ invoices are created.</li>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p><strong>Italiano</strong></p>
-<p>Non è necessaria alcuna configurazione specifica per
-l10n_it_edi_extension: una volta installato, le sue funzionalità sono
-attive. Tuttavia, è fondamentale capire che questo modulo è
-un’estensione e si basa su altri moduli preesistenti e sulla
-configurazione generale di Odoo per la localizzazione italiana e la
-fatturazione elettronica. Quindi, affinché le funzionalità di questo
-modulo siano utilizzabili, è necessario che:</p>
-<ol class="arabic simple">
-<li>Siano installati e configurati i moduli dipendenti:</li>
-</ol>
+<p>Le uniche configurazioni disponibili sono:</p>
 <ul class="simple">
-<li>account: Il modulo base della contabilità di Odoo deve essere
+<li>Livello di dettaglio importazione e-fatture: in Fatturazione (o
+Contabilità per EE) &gt; Configurazione &gt; Impostazioni &gt; Fatturazione
+Elettronica Italiana, valorizzare “Livello di dettaglio importazione
+e-fatture” per importare le fatture elettroniche senza righe, con una
+riga per ogni aliquota, oppure con tutte le righe (default). Questa
+configurazione può essere sovrascritta dal campo “Livello di
+dettaglio importazione e-fatture” in ogni fornitore.</li>
+<li>Crea il partner se non esiste durante l’importazione: in Fatturazione
+(o Contabilità per EE) &gt; Configurazione &gt; Impostazioni &gt; Fatturazione
+Elettronica Italiana, spuntare l’opzione se si vuole attivare la
+funzionalità per i dati dei nodi:<ul>
+<li><tt class="docutils literal">&lt;CessionarioCommittente&gt;</tt></li>
+<li><tt class="docutils literal">&lt;CedentePrestatore&gt;</tt></li>
+<li><tt class="docutils literal">&lt;RappresentanteFiscale&gt;</tt></li>
+<li><tt class="docutils literal">&lt;TerzoIntermediarioOSoggettoEmittente&gt;</tt></li>
+</ul>
+</li>
+</ul>
+<p>Non sono necessarie altre configurazioni specifiche per
+l10n_it_edi_extension: una volta installato, le sue funzionalità sono
+attive e si integrano automaticamente nell’interfaccia esistente.</p>
+<p>Tuttavia, è fondamentale capire che questo modulo è un’estensione e si
+basa su altri moduli preesistenti e sulla configurazione generale di
+Odoo per la localizzazione italiana e la fatturazione elettronica.
+Quindi, affinché le funzionalità di questo modulo siano utilizzabili, è
+necessario che siano installati e configurati i moduli dipendenti:</p>
+<ul class="simple">
+<li><tt class="docutils literal">account</tt>: Il modulo base della contabilità di Odoo deve essere
 installato e configurato (piano dei conti, tasse, giornali contabili,
 ecc.).</li>
-<li>l10n_it_edi: Il modulo principale per la fatturazione elettronica
+<li><tt class="docutils literal">l10n_it_edi</tt>: Il modulo principale per la fatturazione elettronica
 italiana deve essere installato e correttamente configurato. Questo
 include:<ul>
 <li>Configurazione dei dati aziendali (partita IVA, codice fiscale,
@@ -516,30 +726,39 @@ generale).</li>
 </ul>
 </li>
 </ul>
-<p>Le funzionalità aggiunte da l10n_it_edi_extension si integrano
-automaticamente nell’interfaccia esistente:</p>
-<ul class="simple">
-<li>Il pulsante “Preview XML” apparirà nel form della fattura.</li>
-<li>L’opzione per impostare la data a fine mese DDT sarà disponibile nel
-menu “Azioni” delle fatture selezionate.</li>
-<li>Il filtro data nel wizard di esportazione userà automaticamente la
-data fattura.</li>
-</ul>
 <p><strong>English</strong></p>
-<p>No specific configuration is required for l10n_it_edi_extension: once
-installed, its features are active. However, it’s essential to
-understand that this module is an extension and relies on other
-pre-existing modules and Odoo general configuration for Italian
-localization and electronic invoicing. Therefore, for this module’s
-features to be usable, it is necessary that:</p>
-<ol class="arabic simple">
-<li>The dependent modules are installed and configured:</li>
-</ol>
+<p>The only available configurations are:</p>
 <ul class="simple">
-<li>account: Odoo’s basic accounting module must be installed and
+<li>E-invoice import detail level: in Invoicing (or Accounting for EE) &gt;
+Configuration &gt; Settings &gt; Italian Electronic Invoicing, set
+“E-invoice import detail level” to import electronic invoices without
+lines, with one line per tax rate, or with all lines (default). This
+configuration can be overridden by the “E-invoice import detail
+level” field in each supplier.</li>
+<li>Create partner if not existing during import: in Invoicing (or
+Accounting for EE) &gt; Configuration &gt; Settings &gt; Italian Electronic
+Invoicing, check this option if you want to enable the functionality
+for the following node data:<ul>
+<li><tt class="docutils literal">&lt;CessionarioCommittente&gt;</tt></li>
+<li><tt class="docutils literal">&lt;CedentePrestatore&gt;</tt></li>
+<li><tt class="docutils literal">&lt;RappresentanteFiscale&gt;</tt></li>
+<li><tt class="docutils literal">&lt;TerzoIntermediarioOSoggettoEmittente&gt;</tt></li>
+</ul>
+</li>
+</ul>
+<p>No other specific configurations are required for l10n_it_edi_extension:
+once installed, its features are active and automatically integrate into
+the existing interface.</p>
+<p>However, it’s essential to understand that this module is an extension
+and relies on other pre-existing modules and Odoo’s general
+configuration for Italian localization and electronic invoicing.
+Therefore, for this module’s features to be usable, the dependent
+modules must be installed and configured:</p>
+<ul class="simple">
+<li><tt class="docutils literal">account</tt>: Odoo’s basic accounting module must be installed and
 configured (chart of accounts, taxes, journals, etc.).</li>
-<li>l10n_it_edi: The main module for Italian electronic invoicing must be
-installed and properly configured. This includes:<ul>
+<li><tt class="docutils literal">l10n_it_edi</tt>: The main module for Italian electronic invoicing
+must be installed and properly configured. This includes:<ul>
 <li>Company data configuration (VAT number, fiscal code, tax regime,
 etc.).</li>
 <li>Configuration of accounting journals for issuing electronic
@@ -550,15 +769,6 @@ numbering.</li>
 Odoo is used (if supported by general configuration).</li>
 </ul>
 </li>
-</ul>
-<p>The features added by l10n_it_edi_extension are automatically integrated
-into the existing interface:</p>
-<ul class="simple">
-<li>The “Preview XML” button will appear in the invoice form.</li>
-<li>The option to set the DDT end-of-month date will be available in the
-“Actions” menu of selected invoices.</li>
-<li>The date filter in the export wizard will automatically use the
-invoice date.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -583,12 +793,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Giuseppe Borruso - Dinamiche Aziendali srl
 &lt;<a class="reference external" href="mailto:gborruso&#64;dinamicheaziendali.it">gborruso&#64;dinamicheaziendali.it</a>&gt;</li>
 <li>Simone Rubino &lt;<a class="reference external" href="mailto:simone.rubino88&#64;gmail.com">simone.rubino88&#64;gmail.com</a>&gt;</li>
+<li>Nextev Srl &lt;<a class="reference external" href="mailto:odoo&#64;nextev.it">odoo&#64;nextev.it</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
