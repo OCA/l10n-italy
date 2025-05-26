@@ -1,60 +1,160 @@
 **Italiano**
 
-Questo modulo estende le funzionalità standard della fatturazione elettronica italiana di Odoo, introducendo strumenti utili come l'anteprima XML, la gestione facilitata delle date per le fatture differite e una maggiore flessibilità nella numerazione e nell'esportazione.
+Questo modulo estende le funzionalità standard della fatturazione elettronica italiana di Odoo, introducendo strumenti utili come l'anteprima XML ed il calcolo dei codici fiscali e miglioramenti nell'importazione e nell'esportazione delle fatture XML.
 
 Le funzionalità principali incluse sono:
 
 1. Anteprima e Download del file XML:
 
-  - Aggiunge un pulsante ("Preview XML") direttamente nel form della fattura.
-  - Questo pulsante permette di visualizzare un'anteprima del file XML della fattura elettronica prima dell'invio effettivo.
-  - Dalla stessa finestra di anteprima, è possibile scaricare il file XML generato.
+   - Aggiunge un pulsante ("Preview XML") direttamente nel form della fattura.
+   - Dalla stessa finestra della fattura, è possibile scaricare il file XML generato.
 
-2. Rigenerazione Numero Fattura (se non inviata):
+2. Valorizza i seguenti campi/nodi della fattura elettronica esportata:
 
-  - Se una fattura non è ancora stata inviata allo SDI (Sistema di Interscambio), riportandola in bozza e riconvalidandola, il modulo permette di rigenerare il numero progressivo della fattura se necessario (ad esempio, se nel frattempo sono state emesse altre fatture).
+   - `<RiferimentoAmministrazione>` (sia sulla riga o nell'azienda): identificativo utilizzato per uso amministrativo/gestionale interno. È un campo libero che può essere utilizzato per inserire riferimenti specifici richiesti dalla Pubblica Amministrazione o altri riferimenti utili per la gestione amministrativa.
+   - `<StabileOrganizzazione>`: rappresenta i dati della sede operativa stabile del cedente/prestatore in Italia se diversa dalla sede legale. Da impostare in odoo nell'azienda, tab "Informazioni Generali"
+   - `<Causale>`: in questo caso non c'è un campo apposito, ma trascrive i "Termini e condizioni" della fattura
+   - `<Art73>`: indica se il documento è stato emesso secondo modalità e termini stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72. Da impostare in odoo nell'azienda o direttamente in fattura.
 
-3. Gestione Data Fattura per Fatture Differite:
+3. Miglioramenti nell'import delle fatture XML:
 
-  - Offre un wizard (accessibile dal menu "Azioni" su una selezione di fatture in stato "Bozza" o "Convalidato") per impostare la data della fattura come l'ultimo giorno del mese del DDT (Documento di Trasporto) associato. Utile per la creazione di fatture differite a fine mese.
+   - Aggiunge un'opzione per creare i contatti presenti in una fattura elettronica se non esistono in anagrafica tra cui:
+     - `<CessionarioCommittente>` e `<CedentePrestatore>` invece di scrivere solamente i dettagli nel chatter.
+   - Creazione di altri contatti presenti in una fattura elettronica se non esistono in anagrafica tra cui:
+     - `<RappresentanteFiscale>`
+     - `<TerzoIntermediarioOSoggettoEmittente>`
+   - Gestione delle Fatture Elettroniche Multiple:
+     - Supporto per la suddivisione automatica di file XML contenenti più fatture
+     - Ogni `<FatturaElettronicaBody>` viene convertito in una fattura separata mantenendo l'header originale
+   - Aggiunge la possibilità di scegliere tra 3 modalità di importazione:
+     - senza righe
+     - una riga per ogni aliquota
+     - tutte le righe (default)
+   - Importazione dei `<DatiRiepilogo>`:
+     - `<AliquotaIVA>`
+     - `<Natura>`: Indica il motivo per cui un'operazione non prevede l'IVA
+     - `<SpeseAccessorie>`: es. trasporto, imballaggio
+     - `<Arrotondamento>`
+     - `<ImponibileImporto>`
+     - `<Imposta>`
+     - `<EsigibilitaIVA>`: Indica quando l'IVA diventa esigibile (immediata, differita o scissione dei pagamenti)
+     - `<RiferimentoNormativo>`: Obbligatorio quando si usa il campo `<Natura>`
+   - Importazione dei `<DatiGeneraliDocumento>`:
+     - `<Arrotondamento>`
+     - `<Art73>`: indica se il documento è stato emesso secondo modalità e termini stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72
+     - `<DatiSAL>` e `<RiferimentoFase>`: utilizzati per indicare lo stato di avanzamento dei lavori in caso di fatturazione dilazionata/progressiva (contratti di appalto, servizi continuativi o lavori in corso d'opera)
+   - Importazione dei dati della fattura principale (`<NumeroFatturaPrincipale>` e `<DataFatturaPrincipale>`)
+   - Scrittura nel chatter dei nodi di `<DatiGenerali><DatiTrasporto>` e `<DatiVeicoli>`
+   - Gestione avanzata dei Dati delle Righe Fattura:
+     - Creazione dei codici articolo in fase di importazione.
+       Questi codici servono per identificare univocamente i prodotti/servizi secondo diversi standard di codifica.
+       Nel file XML, questi codici sono nel nodo `<CodiceArticolo>` che può contenere:
+       - `<CodiceTipo>`: identifica il tipo di codifica utilizzata
+       - `<CodiceValore>`: il valore effettivo del codice
+     - Registrazione dello sconto o maggiorazione, nodo `<ScontoMaggiorazione>`, nelle righe di dettaglio della fattura.
+     - Importazione dei dati del nodo `<AltriDatiGestionali>` (informazioni supplementari che non trovano posto negli altri campi standard della fattura elettronica) che può contenere:
+       - `<TipoDato>`: identifica il tipo di informazione aggiuntiva che si sta inserendo
+       - `<RiferimentoTesto>`: contiene un valore testuale dell'informazione aggiuntiva
+       - `<RiferimentoNumero>`: contiene un valore numerico dell'informazione aggiuntiva
+       - `<RiferimentoData>`: contiene un valore data dell'informazione aggiuntiva
+     - Importazione dei nodi:
+       - `<NumeroLinea>`: numero progressivo della riga all'interno della fattura
+       - `<TipoCessionePrestazione>`: indica la tipologia della cessione o prestazione e può contenere valori come:
+         - "SC" (Sconto)
+         - "PR" (Premio)
+         - "AB" (Abbuono)
+         - "AC" (Spesa accessoria)
+       - `<DataInizioPeriodo>` e `<DataFinePeriodo>`: indicano il periodo di riferimento di una prestazione e sono utili per servizi continuativi o prestazioni che si estendono su un periodo di tempo
+       - `<RiferimentoAmministrazione>`: identificativo utilizzato per uso amministrativo/gestionale interno. È un campo libero che può essere utilizzato per inserire riferimenti specifici richiesti dalla Pubblica Amministrazione o altri riferimenti utili per la gestione amministrativa.
 
-4. Filtro Data nell'Export:
+    - Validazione avanzate dei file XML con gestione degli errori:
+      - controllo sul totale imponibile
+      - controllo sul totale dell'IVA
+      - controllo sul totale IVA inclusa
+      - miglioramento della validazione del codice fiscale
 
-  - Modifica il wizard standard di esportazione massiva delle fatture elettroniche (l10n_it_edi.wizard_export_fatturapa).
-  - Fa sì che il filtro per data utilizzato nel wizard si basi sulla Data Fattura (invoice_date) invece che sulla Data Contabile (date).
+4. Aggiunge di un wizard per calcolare i codici fiscali
 
-5. Se una fattura elettronica contiene diverse fatture, tutte le fatture vengono create.
-6. Se il partner di una fattura elettronica non esiste, viene creato.
 
 \<<https://www.fatturapa.gov.it>\>
 
 
 **English**
 
-This module extends Odoo standard Italian electronic invoicing functionality, introducing useful tools such as XML preview, simplified date management for deferred invoices and greater flexibility in numbering and exporting.
+This module extends Odoo's standard Italian electronic invoicing functionality, introducing useful tools such as XML preview and fiscal code calculation and improvements in importing and exporting XML invoices.
 
 The main features included are:
 
 1. XML File Preview and Download:
 
-  - Adds a button ("Preview XML") directly in the invoice form.
-  - This button allows you to preview the electronic invoice XML file before actual submission.
-  - From the same preview window, you can download the generated XML file.
+   - Adds a button ("Preview XML") directly in the invoice form.
+   - From the same invoice form, you can download the generated XML file.
 
-2. Invoice Number Regeneration (if not sent):
+2. Adds fields in XML invoice export:
 
-  - If an invoice has not yet been sent to SDI (Exchange System), by setting it back to draft and revalidating it, the module allows regenerating the progressive invoice number if necessary (for example, if other invoices have been issued in the meantime).
+   - `<RiferimentoAmministrazione>` (both on line or on company): identifier used for internal administrative/management purposes. It's a free field that can be used to insert specific references required by Public Administration or other useful references for administrative management.
+   - `<StabileOrganizzazione>`: represents the data of the seller/provider's permanent establishment in Italy if different from the registered office
+   - `<Causale>`: in this case there is no specific field, but it transcribes the "Terms and conditions" of the invoice.
+   - `<Art73>`: indicates if the document was issued according to methods and terms established by ministerial decree pursuant to article 73 of DPR 633/72
 
-3. Invoice Date Management for Deferred Invoices:
+3. Improvements in XML invoice import:
 
-  - Provides a wizard (accessible from the "Actions" menu on a selection of invoices in "Draft" or "Validated" status) to set the invoice date as the last day of the month of the associated DDT (Transport Document). Useful for creating end-of-month deferred invoices.
+   - Adds an option to create contacts present in an electronic invoice if they don't exist in the address book, including:
+     - `<CessionarioCommittente>` and `<CedentePrestatore>` instead of just writing the details in the chatter.
+   - Creation of other contacts present in an electronic invoice if they don't exist in the address book, including:
+     - `<RappresentanteFiscale>`
+     - `<TerzoIntermediarioOSoggettoEmittente>`
+   - Multiple Electronic Invoice Management:
+     - Support for automatic splitting of XML files containing multiple invoices
+     - Each `<FatturaElettronicaBody>` is converted into a separate invoice maintaining the original header
+   - Adds the ability to choose between 3 import modes:
+     - without lines
+     - one line for each VAT rate
+     - all lines (default)
+   - Import of `<DatiRiepilogo>`:
+     - `<AliquotaIVA>`
+     - `<Natura>`: Indicates the reason why an operation does not include VAT
+     - `<SpeseAccessorie>`: e.g., transport, packaging
+     - `<Arrotondamento>`
+     - `<ImponibileImporto>`
+     - `<Imposta>`
+     - `<EsigibilitaIVA>`: Indicates when VAT becomes payable (immediate, deferred, or split payment)
+     - `<RiferimentoNormativo>`: Required when using the `<Natura>` field
+   - Import of `<DatiGeneraliDocumento>`:
+     - `<Arrotondamento>`
+     - `<Art73>`: indicates if the document was issued according to methods and terms established by ministerial decree pursuant to article 73 of DPR 633/72
+     - `<DatiSAL>` and `<RiferimentoFase>`: used to indicate the progress status of work in case of deferred/progressive invoicing (procurement contracts, continuous services, or work in progress)
+   - Import of main invoice data (`<NumeroFatturaPrincipale>` and `<DataFatturaPrincipale>`)
+   - Writing in chatter of `<DatiGenerali><DatiTrasporto>` and `<DatiVeicoli>` nodes
+   - Advanced management of Invoice Line Data:
+     - Creation of article codes during import.
+       These codes are used to uniquely identify products/services according to different coding standards.
+       In the XML file, these codes are in the `<CodiceArticolo>` node which can contain:
+       - `<CodiceTipo>`: identifies the type of coding used
+       - `<CodiceValore>`: the actual code value
+     - Recording of discounts or surcharges, `<ScontoMaggiorazione>`, in the invoice detail lines.
+     - Import of `<AltriDatiGestionali>` node data (supplementary information that doesn't fit in other standard electronic invoice fields) which can contain:
+       - `<TipoDato>`: identifies the type of additional information being entered
+       - `<RiferimentoTesto>`: contains a textual value of the additional information
+       - `<RiferimentoNumero>`: contains a numerical value of the additional information
+       - `<RiferimentoData>`: contains a date value of the additional information
+     - Import of nodes:
+       - `<NumeroLinea>`: progressive line number within the invoice
+       - `<TipoCessionePrestazione>`: indicates the type of transfer or service and can contain values such as:
+         - "SC" (Discount)
+         - "PR" (Prize)
+         - "AB" (Allowance)
+         - "AC" (Ancillary expense)
+       - `<DataInizioPeriodo>` and `<DataFinePeriodo>`: indicate the reference period of a service and are useful for continuous services or services that extend over a period of time
+       - `<RiferimentoAmministrazione>`: identifier used for internal administrative/management purposes. It's a free field that can be used to insert specific references required by Public Administration or other useful references for administrative management.
 
-4. Date Filter in Export:
+    - Advanced XML file validation with error handling:
+      - check on total taxable amount
+      - check on total VAT
+      - check on total including VAT
+      - improved fiscal code validation
 
-  - Modifies the standard mass export wizard for electronic invoices (l10n_it_edi.wizard_export_fatturapa).
-  - Makes the date filter used in the wizard based on Invoice Date (invoice_date) instead of Accounting Date (date).
+4. Adds a wizard to calculate fiscal codes
 
-5. If an e-invoice contains multiple invoices, all the corresponding invoices are created.
-6. If the partner of an e-invoice does not exist, it is created.
 
 \<<https://www.fatturapa.gov.it>\>

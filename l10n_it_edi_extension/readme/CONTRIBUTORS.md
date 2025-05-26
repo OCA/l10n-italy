@@ -1,2 +1,3 @@
 - Giuseppe Borruso - Dinamiche Aziendali srl \<<gborruso@dinamicheaziendali.it>\>
 - Simone Rubino \<<simone.rubino88@gmail.com>\>
+- Nextev Srl \<<odoo@nextev.it>\>
