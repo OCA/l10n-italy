@@ -24,7 +24,10 @@ def get_digits(self, env):
 
 
 def convert_to_cache(self, value, record, validate=True):
-    if record._name in ("account.move", "account.move.line"):
+    if (
+        record._name in ("account.move", "account.move.line")
+        and "fatturapa_attachment_in_id" in record._fields
+    ):
         e_invoice = record.fatturapa_attachment_in_id
         if e_invoice:
             # The invoice [line] has been created by importing an e-invoice.
