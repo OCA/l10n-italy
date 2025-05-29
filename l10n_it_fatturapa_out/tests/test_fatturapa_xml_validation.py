@@ -1170,6 +1170,48 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         xml_content = base64.decodebytes(attachment.datas)
         self.check_content(xml_content, "IT06363391001_00018.xml")
 
+    def test_19_xml_export(self):
+        # invoice with long uom name
+        uom = self.product_uom_unit.copy(
+            {"name": "Unit123456789", "uom_type": "smaller", "ratio": 0.0001}
+        )
+        invoice = self.invoice_model.create(
+            {
+                "name": "INV/2019/0010",
+                "invoice_date": "2019-08-07",
+                "partner_id": self.res_partner_fatturapa_2.id,
+                "journal_id": self.sales_journal.id,
+                # "account_id": self.a_recv.id,
+                "invoice_payment_term_id": self.account_payment_term.id,
+                # "user_id": self.user_demo.id,
+                "move_type": "out_invoice",
+                "currency_id": self.EUR.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "account_id": self.a_sale.id,
+                            "product_id": self.product_product_10.id,
+                            "name": "Mouse\nOptical",
+                            "quantity": 1,
+                            "product_uom_id": uom.id,
+                            "price_unit": 10,
+                            "tax_ids": [(6, 0, {self.tax_10.id})],
+                        },
+                    )
+                ],
+            }
+        )
+        invoice._post()
+        res = self.run_wizard(invoice.id)
+        attachment = self.attach_model.browse(res["res_id"])
+        self.set_e_invoice_file_id(attachment, "IT06363391001_00019.xml")
+
+        # XML doc to be validated
+        xml_content = base64.decodebytes(attachment.datas)
+        self.check_content(xml_content, "IT06363391001_00019.xml")
+
     def _get_multiple_invoices(self, partner, invoices_number=2):
         """Create `invoices_number` invoices for `partner`."""
         invoices = self.invoice_model.browse()
