@@ -27,10 +27,22 @@ class TestSP(TestAccountAccount):
                 "amount": 22,
             }
         )
+        self.tax10sp = self.tax_model.create(
+            {
+                "name": "10% SP",
+                "amount": 10,
+            }
+        )
         self.tax22 = self.tax_model.create(
             {
                 "name": "22%",
                 "amount": 22,
+            }
+        )
+        self.tax10 = self.tax_model.create(
+            {
+                "name": "10%",
+                "amount": 10,
             }
         )
         self.sp_fp = self.fp_model.create(
@@ -42,7 +54,12 @@ class TestSP(TestAccountAccount):
                         0,
                         0,
                         {"tax_src_id": self.tax22.id, "tax_dest_id": self.tax22sp.id},
-                    )
+                    ),
+                    (
+                        0,
+                        0,
+                        {"tax_src_id": self.tax10.id, "tax_dest_id": self.tax10sp.id},
+                    ),
                 ],
             }
         )
@@ -272,3 +289,46 @@ class TestSP(TestAccountAccount):
         self.assertEqual(invoice.amount_total, 200)
         self.assertEqual(invoice.amount_residual, 200)
         self.assertEqual(invoice.amount_tax, 0)
+
+    def test_invoice_two_sp_taxes(self):
+        self.assertTrue(self.tax22sp.is_split_payment)
+        self.assertTrue(self.tax10sp.is_split_payment)
+        invoice = self.move_model.with_context(default_move_type="out_invoice").create(
+            {
+                "invoice_date": self.recent_date,
+                "partner_id": self.env.ref("base.res_partner_3").id,
+                "journal_id": self.sales_journal.id,
+                "fiscal_position_id": self.sp_fp.id,
+                "move_type": "out_refund",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "service",
+                            "account_id": self.a_sale.id,
+                            "quantity": 1,
+                            "price_unit": 100,
+                            "tax_ids": [(6, 0, {self.tax22sp.id})],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "service2",
+                            "account_id": self.a_sale.id,
+                            "quantity": 1,
+                            "price_unit": 100,
+                            "tax_ids": [(6, 0, {self.tax10sp.id})],
+                        },
+                    ),
+                ],
+            }
+        )
+        line_sp = invoice.line_ids.filtered(
+            lambda line: line.account_id.id == self.company.sp_account_id.id
+        )
+
+        self.assertTrue(len(line_sp) == 1)
+        self.assertEqual(line_sp.credit, 32)

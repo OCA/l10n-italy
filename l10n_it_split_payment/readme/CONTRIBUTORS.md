@@ -8,3 +8,5 @@
 - Alex Comba \<<alex.comba@agilebg.com>\>
 - [Ooops](https://www.ooops404.com):
   - Giovanni Serra \<<giovanni@gslab.it>\>
+- [Stesi Consulting](https://www.stesi.consulting):
+  - Michele Di Croce \<<dicroce.m@stesi.consulting>\>

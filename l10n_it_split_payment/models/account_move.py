@@ -49,8 +49,6 @@ class AccountMove(models.Model):
         if self.env.context.get("skip_split_payment_computation"):
             return res
         self.compute_split_payment()
-        container = {"records": self}
-        self._check_balanced(container)
         return res
 
     def copy(self, default=None):
@@ -64,26 +62,30 @@ class AccountMove(models.Model):
         return res
 
     def compute_split_payment(self):
-        for move in self:
-            if move.split_payment:
-                line_sp = fields.first(
-                    move.line_ids.filtered(lambda move_line: move_line.is_split_payment)
-                )
-                for line in move.line_ids:
-                    if line.display_type == "tax" and not line.is_split_payment:
-                        write_off_line_vals = line._build_writeoff_line()
-                        if line_sp:
-                            if (
-                                float_compare(
-                                    line_sp.price_unit,
-                                    write_off_line_vals["price_unit"],
-                                    precision_rounding=move.currency_id.rounding,
-                                )
-                                != 0
-                            ):
-                                line_sp.write(write_off_line_vals)
-                        else:
-                            if move.amount_sp:
-                                move.with_context(
-                                    skip_split_payment_computation=True
-                                ).line_ids = [Command.create(write_off_line_vals)]
+        move_ids = self.filtered("split_payment")
+        for move in move_ids:
+            line_sp = fields.first(
+                move.line_ids.filtered(lambda move_line: move_line.is_split_payment)
+            )
+            lines = move.line_ids.filtered(
+                lambda line: line.display_type == "tax" and not line.is_split_payment
+            )
+            if lines:
+                write_off_line_vals = lines._build_writeoff_line()
+                if line_sp:
+                    if (
+                        float_compare(
+                            line_sp.price_unit,
+                            write_off_line_vals["price_unit"],
+                            precision_rounding=move.currency_id.rounding,
+                        )
+                        != 0
+                    ):
+                        line_sp.write(write_off_line_vals)
+                else:
+                    if move.amount_sp:
+                        move.with_context(
+                            skip_split_payment_computation=True
+                        ).line_ids = [Command.create(write_off_line_vals)]
+        container = {"records": move_ids}
+        self._check_balanced(container)

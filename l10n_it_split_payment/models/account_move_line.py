@@ -21,8 +21,10 @@ class AccountMoveLine(models.Model):
                 line.is_split_payment = True
 
     def _build_writeoff_line(self):
-        self.ensure_one()
-
+        if len(self.mapped("move_id")) != 1:
+            raise UserError(
+                _("Cannot create a split payment write-off line for multiple moves.")
+            )
         if not self.move_id.company_id.sp_account_id:
             raise UserError(
                 _(
@@ -37,32 +39,27 @@ class AccountMoveLine(models.Model):
             "journal_id": self.move_id.journal_id.id,
             "date": self.move_id.invoice_date,
             "date_maturity": self.move_id.invoice_date,
-            "price_unit": -self.credit,
-            "amount_currency": self.credit,
-            "debit": self.credit,
-            "credit": self.debit,
+            "price_unit": -sum(self.mapped("credit")),
+            "amount_currency": sum(self.mapped("credit")),
+            "debit": sum(self.mapped("credit")),
+            "credit": sum(self.mapped("debit")),
             "display_type": "tax",
         }
         if self.move_id.move_type == "out_refund":
-            vals["amount_currency"] = -self.debit
-            vals["debit"] = self.credit
-            vals["credit"] = self.debit
+            vals["amount_currency"] = -sum(self.mapped("debit"))
+            vals["debit"] = sum(self.mapped("credit"))
+            vals["credit"] = sum(self.mapped("debit"))
         return vals
 
     @api.model_create_multi
     def create(self, vals_list):
         lines = super().create(vals_list)
-        for line in lines:
-            if (
-                line.display_type == "tax"
-                and line.move_id.split_payment
-                and line.move_id.is_sale_document(include_receipts=True)
-                and not line.is_split_payment
-                and not any(ml.is_split_payment for ml in line.move_id.line_ids)
-            ):
-                write_off_line_vals = line._build_writeoff_line()
-                line.move_id.line_ids = [(0, 0, write_off_line_vals)]
-                line.move_id._sync_dynamic_lines(
-                    container={"records": line.move_id, "self": line.move_id}
-                )
+        move_ids = lines.filtered(
+            lambda line: line.display_type == "tax"
+            and line.move_id.split_payment
+            and line.move_id.is_sale_document(include_receipts=True)
+            and not line.is_split_payment
+            and not any(ml.is_split_payment for ml in line.move_id.line_ids)
+        ).mapped("move_id")
+        move_ids.compute_split_payment()
         return lines
