@@ -295,7 +295,10 @@ class AccountMove(models.Model):
                 if declaration.id not in declarations_amounts:
                     declarations_amounts[declaration.id] = declaration.available_amount
                 if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
-                    declarations_amounts[declaration.id] -= amount
+                    if not tax_line.force_declaration_of_intent_id or (
+                        tax_line.force_declaration_of_intent_id == declaration
+                    ):
+                        declarations_amounts[declaration.id] -= amount
         for declaration in declarations:
             # exclude amount from lines with invoice_id equals to self
             for line in declaration.line_ids.filtered(
