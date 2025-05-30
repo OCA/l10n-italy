@@ -1,0 +1,4 @@
+- [Dealtech Srl](https://dealtech.eu/it/):
+  - Alessandro Boldrini \<<https://github.com/DealTechSrl>\>
+- [Phi Srl](https://www.phi.technology/):
+  - Marco Colombo \<<https://github.com/TheMule71>\>
