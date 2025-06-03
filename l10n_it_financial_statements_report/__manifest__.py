@@ -2,17 +2,17 @@
 # Copyright 2019 Alessandro Camilli (alessandrocamilli@openforce.it)
 # Copyright 2019 Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright 2025 Michele Di Croce - Stesi Consulting Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "ITA - Stato patrimoniale e conto economico",
     "summary": "Rendicontazione .pdf e .xls per stato patrimoniale e conto"
     " economico a sezioni contrapposte",
-    "version": "16.0.1.0.5",
+    "version": "18.0.1.0.0",
     "category": "Localization/Italy",
     "author": "Odoo Community Association (OCA), Openforce",
-    "website": "https://github.com/OCA/l10n-italy"
-    "/tree/16.0/l10n_it_financial_statements_report",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
         "account_financial_report",
@@ -23,10 +23,4 @@
         "report/reports.xml",
         "wizard/wizard_financial_statements_report.xml",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "l10n_it_financial_statements_report/static/src/js/action_manager_report.js",
-            "l10n_it_financial_statements_report/static/src/js/client_action.js",
-        ],
-    },
 }

@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,15 +16,12 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "%(column)s BALANCE: %(curr_or_amount)s %(amount_or_curr)s"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "ASSETS"
 msgstr ""
 
@@ -33,15 +30,18 @@ msgstr ""
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model:ir.model,name:l10n_it_financial_statements_report.model_account_account
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
-#, python-format
 msgid "Account"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
+#: model:ir.model,name:l10n_it_financial_statements_report.model_account_group
+msgid "Account Group"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "Account at 0 filter"
 msgstr ""
 
@@ -49,7 +49,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "All entries"
 msgstr ""
 
@@ -57,7 +56,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "All posted entries"
 msgstr ""
 
@@ -69,7 +67,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "BALANCE SHEET"
 msgstr ""
 
@@ -84,9 +81,14 @@ msgid "Balance Sheet"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__account_balance_sign
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_group__account_balance_sign
+msgid "Balance sign"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "COSTS"
 msgstr ""
 
@@ -98,14 +100,12 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Cannot filter lines with attribute `%s`."
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid ""
 "Cannot filter lines with function `%(function_name)s(%(function_args)s)`."
 msgstr ""
@@ -113,7 +113,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Cannot filter lines with unknown parameter."
 msgstr ""
 
@@ -121,14 +120,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
-#, python-format
 msgid "Code"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid ""
 "Could not retrieve table datas for report '%s': no lines found to be "
 "printed."
@@ -137,7 +134,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid ""
 "Could not retrieve table datas for report '%s': unknown columns to be "
 "printed."
@@ -147,14 +143,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
-#, python-format
 msgid "Cur."
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "DEFICIT"
 msgstr ""
 
@@ -167,7 +161,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "Date range filter"
 msgstr ""
 
@@ -184,7 +177,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Ending balance in cur."
 msgstr ""
 
@@ -206,14 +198,12 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Field %s not set"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Final balance"
 msgstr ""
 
@@ -273,7 +263,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "From: %(from_)s To: %(to)s"
 msgstr ""
 
@@ -281,7 +270,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "Hide"
 msgstr ""
 
@@ -298,7 +286,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "LIABILITIES"
 msgstr ""
 
@@ -310,7 +297,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Level %s"
 msgstr ""
 
@@ -323,14 +309,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "Limit hierarchy levels"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "No"
 msgstr ""
 
@@ -338,42 +322,36 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "No limit"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "No partner allocated"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "No report has been defined for report type '{}'."
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "No report type has been declared for current print."
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "PROFIT & LOSS"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Partner"
 msgstr ""
 
@@ -385,7 +363,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "REVENUES"
 msgstr ""
 
@@ -397,7 +374,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "SURPLUS"
 msgstr ""
 
@@ -410,7 +386,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "Show"
 msgstr ""
 
@@ -422,7 +397,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Show foreign currency"
 msgstr ""
 
@@ -430,7 +404,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_filters
-#, python-format
 msgid "Target moves filter"
 msgstr ""
 
@@ -447,7 +420,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-#, python-format
 msgid "Unknown report type; cannot parse it into a table."
 msgstr ""
 
@@ -459,7 +431,6 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report_xlsx.py:0
-#, python-format
 msgid "Yes"
 msgstr ""
 

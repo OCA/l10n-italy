@@ -36,10 +36,33 @@ SECTION_ACCOUNT_TYPES_DICT = {
         "equity",
     ],
 }
+ACCOUNT_TYPES_NEGATIVE_SIGN = [
+    "equity_unaffected",
+    "equity",
+    "income",
+    "income_other",
+    "liability_payable",
+    "liability_credit_card",
+    "asset_prepayments",
+    "liability_current",
+    "liability_non_current",
+]
 
 
 class Account(models.Model):
     _inherit = "account.account"
+
+    account_balance_sign = fields.Integer(
+        string="Balance sign", compute="_compute_account_balance_sign"
+    )
+
+    @api.depends("account_type")
+    def _compute_account_balance_sign(self):
+        for account in self:
+            if account.account_type in ACCOUNT_TYPES_NEGATIVE_SIGN:
+                account.account_balance_sign = -1
+            else:
+                account.account_balance_sign = 1
 
     # This field is almost equal to `internal_group`; yet, we wanna keep the
     # report independent from Odoo's accounting workflow, so we'll use this
