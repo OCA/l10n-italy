@@ -25,6 +25,8 @@ msgid "A VAT registry is used to group several journals in one registry."
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "BUSINESS NAME"
 msgstr ""
@@ -60,6 +62,16 @@ msgstr "Creado en"
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__account_tax_registry__layout_type__customer
 #: model:ir.model.fields.selection,name:l10n_it_vat_registries.selection__wizard_registro_iva__layout_type__customer
 msgid "Customer Invoices"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__rc_tax_registry_id
+msgid "Customer VAT registry for RC"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_account_journal__rc_tax_registry_id
+msgid "Customer VAT registry for reverse charge operations"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -117,18 +129,33 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "INV. DATE"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "INV. NUM."
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__include_rc_moves
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__include_rc_moves
+msgid "Include reverse charge moves"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.actions.report,name:l10n_it_vat_registries.action_report_registro_iva
 msgid "Invoices VAT Registry"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.actions.report,name:l10n_it_vat_registries.action_report_registro_iva_xlsx
+msgid "Invoices VAT Registry XLSX"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -149,12 +176,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "Journals"
 msgstr ""
-
-#. module: l10n_it_vat_registries
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry____last_update
-#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva____last_update
-msgid "Last Modified on"
-msgstr "Ultima modificacion realizada"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__write_uid
@@ -188,8 +209,13 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #. odoo-python
 #: code:addons/l10n_it_vat_registries/models/vat_registry.py:0
-#, python-format
 msgid "Move line %s has too many base taxes"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
+msgid "N/A"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -200,7 +226,6 @@ msgstr "Nombre"
 #. module: l10n_it_vat_registries
 #. odoo-python
 #: code:addons/l10n_it_vat_registries/wizard/print_registro_iva.py:0
-#, python-format
 msgid ""
 "No journals found in the current selection.\n"
 "Please load them before to retry!"
@@ -217,21 +242,38 @@ msgid "Print"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
+msgid "Print XLSX"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__only_totals
 msgid "Prints only totals"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__rc_journal_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.view_account_tax_registry_form
+msgid "RC Journals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "REASON"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "REG. DATE"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "REG. NUM."
 msgstr ""
@@ -242,6 +284,11 @@ msgid "Report VAT registry"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__rc_journal_ids
+msgid "Reverse charge journals"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model,name:l10n_it_vat_registries.model_wizard_registro_iva
 msgid "Run VAT registry"
 msgstr ""
@@ -249,6 +296,11 @@ msgstr ""
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__journal_ids
 msgid "Select journals you want retrieve documents from"
+msgstr ""
+
+#. module: l10n_it_vat_registries
+#: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__rc_journal_ids
+msgid "Select journals you want retrieve reverse charge documents from"
 msgstr ""
 
 #. module: l10n_it_vat_registries
@@ -270,16 +322,22 @@ msgid "Supplier Invoices"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "TIN"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "TOTAL"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model:ir.model,name:l10n_it_vat_registries.model_account_tax
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Tax"
@@ -291,6 +349,8 @@ msgid "Tax Journal"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Tax description"
 msgstr ""
@@ -301,6 +361,8 @@ msgid "Tax registry"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#. odoo-python
+#: code:addons/l10n_it_vat_registries/wizard/report_registro_iva_xlsx.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "Taxable"
 msgstr ""
@@ -348,6 +410,11 @@ msgid "Value printed near number of page in the footer"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model,name:l10n_it_vat_registries.model_report_l10n_it_vat_registries_report_registro_iva_xlsx
+msgid "XLSX report for VAT registries"
+msgstr ""
+
+#. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__year_footer
 msgid "Year for Footer"
 msgstr ""
@@ -363,3 +430,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.wizard_registro_iva
 msgid "or"
 msgstr "ó"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modificacion realizada"

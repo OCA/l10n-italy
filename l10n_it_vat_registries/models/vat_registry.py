@@ -64,19 +64,26 @@ class ReportRegistroIva(models.AbstractModel):
         res = {}
 
         for move_line in move_lines:
-            if not (move_line.tax_line_id or move_line.tax_ids):
+            taxes = move_line.tax_ids.filtered(
+                lambda tax: tax._l10n_it_get_tax_kind() in [None, "vat"]
+            )
+            tax_line = move_line.tax_line_id.filtered(
+                lambda tax: tax._l10n_it_get_tax_kind() in [None, "vat"]
+            )
+
+            if not (tax_line or taxes):
                 continue
 
-            if move_line.tax_ids and len(move_line.tax_ids) != 1:
+            if taxes and len(taxes) != 1:
                 raise UserError(
                     _("Move line %s has too many base taxes") % move_line.name
                 )
 
-            if move_line.tax_ids:
-                tax = move_line.tax_ids[0]
+            if taxes:
+                tax = taxes[0]
                 is_base = True
             else:
-                tax = move_line.tax_line_id
+                tax = tax_line
                 is_base = False
 
             if (
@@ -96,7 +103,7 @@ class ReportRegistroIva(models.AbstractModel):
             if move.l10n_it_edi_is_self_invoice and not is_base:
                 if (
                     move.is_purchase_document(include_receipts=True)
-                    and move_line.tax_line_id
+                    and tax_line
                     and move_line.account_id.account_type.startswith("liability")
                 ):
                     # Purchase document and a tax line with "Debito IVA"
@@ -106,7 +113,7 @@ class ReportRegistroIva(models.AbstractModel):
                     continue
                 if (
                     move.is_sale_document(include_receipts=True)
-                    and move_line.tax_line_id
+                    and tax_line
                     and move_line.account_id.account_type.startswith("asset")
                 ):
                     # Sale document and a tax line with "Credito IVA"
