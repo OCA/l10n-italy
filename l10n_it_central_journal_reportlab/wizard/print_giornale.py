@@ -4,9 +4,10 @@ import base64
 import io
 
 from odoo import _, api, fields, models
-from datetime import timedelta
+from datetime import timedelta, datetime
 from odoo.tools.float_utils import float_compare
-from odoo.tools.misc import flatten, formatLang, format_date
+from odoo.tools.misc import flatten, formatLang
+from babel.dates import format_date
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.pagesizes import A4
@@ -84,18 +85,17 @@ class WizardGiornaleReportlab(models.TransientModel):
     @api.onchange('date_move_line_from')
     def get_year_footer_reportlab(self):
         if self.date_move_line_from:
-            self.year_footer = fields.Date.to_date(
-                self.date_move_line_from).year
+            self.year_footer = datetime.strptime(
+                self.date_move_line_from, "%Y-%m-%d").date().year
 
     @api.onchange('daterange')
     def on_change_daterange_reportlab(self):
         if self.daterange:
-            date_start = fields.Date.to_date(self.daterange.date_start)
-            date_end = fields.Date.to_date(self.daterange.date_end)
+            date_start = datetime.strptime(self.daterange.date_start, "%Y-%m-%d").date()
+            date_end = datetime.strptime(self.daterange.date_end, "%Y-%m-%d").date()
 
             if self.daterange.date_last_print_reportlab:
-                date_last_print = fields.Date.to_date(
-                    self.daterange.date_last_print_reportlab)
+                date_last_print = self.daterange.date_last_print_reportlab.date()
                 self.last_def_date_print = date_last_print
                 date_start = str(date_last_print + timedelta(days=1))
             else:
@@ -188,9 +188,13 @@ class WizardGiornaleReportlab(models.TransientModel):
         return move_line_ids
 
     def _get_move_name_reportlab(self, move_ref, move_name):
+        move_ref = unicode(move_ref) if move_ref else ""
+        move_name = unicode(move_name) if move_name else ""
         return " - ".join(filter(None, [move_ref, move_name]))
 
     def _get_account_name_reportlab(self, account_code, account_name):
+        account_code = unicode(account_code) if account_code else ""
+        account_name = unicode(account_name) if account_name else ""
         return " - ".join(filter(None, [account_code, account_name]))
 
     def get_template_header_report_giornale(self, report, height_available):
@@ -226,6 +230,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         style_header = ParagraphStyle("style_header")
         style_header.fontSize = 10
         style_header.fontName = "Helvetica-Bold"
+        style_header.encoding = "utf-8"
 
         style_header_number = ParagraphStyle("style_header_number")
         style_header_number.alignment = TA_RIGHT
@@ -265,10 +270,18 @@ class WizardGiornaleReportlab(models.TransientModel):
             "style_table_line_above": style_table_line_above
         }
 
-    def get_colwidths_report_giornale(self, width_available):
-        colwidths = [32, 35, 130, 130, 130, 50, 50]
-        total = sum(colwidths)
-        return [c/total * width_available for c in colwidths]
+    def get_colwidths_report_giornale(self):
+        colwidths_points = [
+            32,   # Row
+            35,   # Date
+            130,  # Account Move
+            130,  # Account
+            130,  # Name
+            50,   # Debit
+            50    # Credit
+        ]
+
+        return colwidths_points
 
     def get_data_header_report_giornale(self, style_header, style_header_number):
         data_header = [[
@@ -281,6 +294,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             Paragraph(_("Credit"), style_header_number),
         ]]
         return data_header
+
 
     def get_initial_balance_data_report_giornale(self, style_name, style_number):
         initial_balance_data = [[
@@ -369,7 +383,9 @@ class WizardGiornaleReportlab(models.TransientModel):
         for line in self.env["account.move.line"].browse(move_line_ids):
             start_row += 1
             row = Paragraph(str(start_row), style_name)
-            date = Paragraph(format_date(self.env, line.date), style_name)
+            date_obj = datetime.strptime(line.date, "%Y-%m-%d").date()
+            locale = self._context.get("lang")
+            date = Paragraph(format_date(date_obj, 'dd/MM/yyyy', locale=locale), style_name)
             move_name = self._get_move_name_reportlab(
                 line.move_id.ref, line.move_id.name
             )
@@ -379,9 +395,9 @@ class WizardGiornaleReportlab(models.TransientModel):
             )
             account = Paragraph(account_name, style_name)
             if line.account_id.user_type_id.type in ["receivable", "payable"]:
-                name = Paragraph(str(line.partner_id.name or ""), style_name)
+                name = Paragraph(unicode(line.partner_id.name) or "", style_name)
             else:
-                name = Paragraph(str(line.name or ""), style_name)
+                name = Paragraph(unicode(line.name), style_name)
             debit = Paragraph(formatLang(self.env, line.debit), style_number)
             credit = Paragraph(formatLang(self.env, line.credit), style_number)
             list_balance.append((line.debit, line.credit))
@@ -429,7 +445,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         style_table_line_above = \
             self.get_styles_report_giornale_line()["style_table_line_above"]
 
-        colwidths = self.get_colwidths_report_giornale(width_available)
+        colwidths = self.get_colwidths_report_giornale()
         data_header = \
             self.get_data_header_report_giornale(style_header, style_header_number)
         tables = [Table(data_header, colWidths=colwidths, style=style_table)]

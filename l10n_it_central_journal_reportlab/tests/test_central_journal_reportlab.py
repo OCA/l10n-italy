@@ -4,10 +4,10 @@
 import base64
 import io
 from datetime import datetime
-from PyPDF2 import PdfFileReader
+from pyPdf import PdfFileReader
 from dateutil.rrule import MONTHLY
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestCentralJournalReportlab(TransactionCase):
@@ -36,8 +36,15 @@ class TestCentralJournalReportlab(TransactionCase):
         self.journals = self.env["account.journal"].search([])
 
     def test_wizard_reportlab(self):
-        wizard_form = Form(self.wizard_model)
-        wizard_form.daterange = self.current_period
+        wizard_form = self.wizard_model.with_context(
+            active_model="account.journal",
+            active_ids=self.journals.ids,
+            active_id=self.journals.ids[0],
+        ).create(
+            {
+                "daterange": self.current_period.id,
+            }
+        )
         wizard = wizard_form.save()
         self.assertEqual(
             len(wizard.journal_ids),
