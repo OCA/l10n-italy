@@ -217,7 +217,7 @@ class StockDeliveryNoteLine(models.Model):
             price_unit = self.price_unit
 
         res = {
-            "display_type": "product",
+            "display_type": self.display_type or "product",
             "name": product_name,
             "product_id": self.product_id.id,
             "product_uom_id": self.product_uom_id.id,
