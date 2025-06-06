@@ -61,6 +61,28 @@
                         attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
                     >
                         <div class="o_setting_left_pane">
+                            <field name="use_dn_product_name_in_invoice" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_dn_product_name_in_invoice" />
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="use_dn_price_unit_in_invoice" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_dn_price_unit_in_invoice" />
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('group_use_advanced_delivery_notes', '=', False)]}"
+                    >
+                        <div class="o_setting_left_pane">
                             <field name="display_ref_order_dn_report" />
                         </div>
                         <div class="o_setting_right_pane">
