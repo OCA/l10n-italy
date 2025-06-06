@@ -207,14 +207,23 @@ class StockDeliveryNoteLine(models.Model):
         :rtype: dict
         """
         self.ensure_one()
+
+        product_name = self.sale_line_id.name
+        if self.company_id.use_dn_product_name_in_invoice:
+            product_name = self.name
+
+        price_unit = self.sale_line_id.price_unit
+        if self.company_id.use_dn_price_unit_in_invoice:
+            price_unit = self.price_unit
+
         res = {
             "display_type": "product",
-            "name": self.name,
+            "name": product_name,
             "product_id": self.product_id.id,
             "product_uom_id": self.product_uom_id.id,
             "quantity": self.product_qty,
             "discount": self.discount,
-            "price_unit": self.price_unit,
+            "price_unit": price_unit,
             "tax_ids": [Command.set(self.tax_ids.ids)],
             "sale_line_ids": [Command.link(self.sale_line_id.id)],
             "delivery_note_line_id": self.id,

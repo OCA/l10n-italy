@@ -373,8 +373,16 @@ ul.auto-toc {
 <p><strong>English</strong></p>
 <p>This module manage the Italian DDT (Delivery note).</p>
 <p>From a picking is possible to generate a Delivery Note and group more
-picking in one delivery note. It’s also possible to invoice from the
-delivery note form.</p>
+picking in one delivery note. It’s also possible to invoice directly
+from the delivery note form, with configurable options to use DN data
+(product names, prices) instead of sale order data when generating
+invoices.</p>
+<p>This is particularly useful when:</p>
+<ul class="simple">
+<li>Products are substituted at delivery time</li>
+<li>Prices are negotiated during delivery</li>
+<li>Detailed descriptions need to be added in the DN</li>
+</ul>
 <p>This module is alternative to <tt class="docutils literal">l10n_it_ddt</tt>, it follows the Odoo way
 to process sale orders, pickings and invoices.</p>
 <p>You can’t have both <tt class="docutils literal">l10n_it_ddt</tt> and <tt class="docutils literal">l10n_it_delivery_note</tt>
@@ -387,7 +395,16 @@ installed together.</p>
 <p><strong>Italiano</strong></p>
 <p>Questo modulo consente di gestire i DDT.</p>
 <p>Da un prelievo è possibile generare un DDT e raggruppare più prelievi in
-un DDT. È anche possibile fatturare dalla scheda del DDT.</p>
+un DDT. È anche possibile fatturare direttamente dalla scheda del DDT,
+con opzioni configurabili per utilizzare i dati del DDT (nomi prodotti,
+prezzi) invece dei dati dell’ordine di vendita nella generazione delle
+fatture.</p>
+<p>Questo è particolarmente utile quando:</p>
+<ul class="simple">
+<li>I prodotti vengono sostituiti al momento della consegna</li>
+<li>I prezzi vengono negoziati durante la consegna</li>
+<li>È necessario aggiungere descrizioni dettagliate nel DDT</li>
+</ul>
 <p>Questo modulo è un alternativa al modulo <tt class="docutils literal">l10n_it_ddt</tt>, segue la
 modalità Odoo di gestire ordini di vendita, prelievi e fatture.</p>
 <p>Non è possibile avere installati contemporaneamente <tt class="docutils literal">l10n_it_ddt</tt> e
@@ -404,15 +421,18 @@ modalità Odoo di gestire ordini di vendita, prelievi e fatture.</p>
 <li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a><ul>
 <li><a class="reference internal" href="#funzionalita-base" id="toc-entry-3">Funzionalità base</a></li>
 <li><a class="reference internal" href="#funzionalita-avanzata" id="toc-entry-4">Funzionalità avanzata</a></li>
-<li><a class="reference internal" href="#fatturazione-da-dn" id="toc-entry-5">Fatturazione da DN</a></li>
-<li><a class="reference internal" href="#accesso-da-portale" id="toc-entry-6">Accesso da portale</a></li>
+<li><a class="reference internal" href="#fatturazione-da-dn" id="toc-entry-5">Fatturazione da DN</a><ul>
+<li><a class="reference internal" href="#utilizzo-dei-dati-dal-ddt-nelle-fatture" id="toc-entry-6">Utilizzo dei dati dal DDT nelle fatture</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-7">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-8">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-9">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-10">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-11">Maintainers</a></li>
+<li><a class="reference internal" href="#accesso-da-portale" id="toc-entry-7">Accesso da portale</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-8">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-9">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-10">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-11">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-12">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -431,6 +451,17 @@ relating DN line to SO (if applicable).</p>
 field ‘Carrier’.</p>
 <p>Checking ‘Display Delivery Method in Delivery Note Report’ enables in
 report field ‘Delivery Method’.</p>
+<p><strong>Invoice Generation from Delivery Notes:</strong></p>
+<ul class="simple">
+<li>Checking ‘Use Delivery Note Product Name in Invoice’ makes the
+invoice use the product description from the delivery note instead
+of the sale order. This is useful when you modify product
+descriptions in the DN to reflect what was actually delivered.</li>
+<li>Checking ‘Use Delivery Note Price Unit in Invoice’ makes the
+invoice use the unit price from the delivery note instead of the
+sale order. This is useful for price negotiations at delivery time
+or when substituting products with different prices.</li>
+</ul>
 </li>
 <li><p class="first"><em>Inventory → Configuration → Warehouse Management → Delivery Note
 Types</em></p>
@@ -496,16 +527,47 @@ partner dalla tree view tramite il wizard “crea fattura”. Si può
 scegliere se includere anche i servizi non ancora fatturati dell’ordine
 di vendita correlato o considerare solo le righe nei DN. In maniera
 predefinita vengono dedotti gli eventuali anticipi fatturati.</p>
+<div class="section" id="utilizzo-dei-dati-dal-ddt-nelle-fatture">
+<h3><a class="toc-backref" href="#toc-entry-6">Utilizzo dei dati dal DDT nelle fatture</a></h3>
+<p>Dalle impostazioni (<em>Inventario → Configurazione → Impostazioni -
+Documenti di Trasporto</em>) è possibile configurare se la fattura deve
+utilizzare i dati dal DDT anziché dall’ordine di vendita:</p>
+<ul class="simple">
+<li><strong>Usa Nome Prodotto da DDT nelle Fatture</strong>: Quando attivo, la
+descrizione del prodotto nella fattura viene presa dal DDT invece che
+dall’ordine di vendita. Utile quando si modificano le descrizioni nel
+DDT per riflettere ciò che è stato effettivamente consegnato.</li>
+<li><strong>Usa Prezzo Unitario da DDT nelle Fatture</strong>: Quando attivo, il
+prezzo unitario nella fattura viene preso dal DDT invece che
+dall’ordine di vendita. Utile per negoziazioni di prezzo al momento
+della consegna o quando si sostituiscono prodotti con prezzi diversi.</li>
+</ul>
+<p><strong>Esempi pratici:</strong></p>
+<ol class="arabic simple">
+<li><strong>Prodotto sostituito</strong>: Se ordini “Scrivania Modello A - €500” ma
+consegni “Scrivania Modello B - €450”, modificando DDT e attivando
+entrambe le opzioni, la fattura rifletterà automaticamente il
+prodotto e prezzo reale consegnato.</li>
+<li><strong>Negoziazione alla consegna</strong>: Se il cliente nota un difetto e
+negoziate uno sconto, modificando il prezzo nel DDT con l’opzione
+attiva, la fattura sarà corretta senza bisogno di note credito.</li>
+<li><strong>Descrizioni dettagliate</strong>: Se nel DDT specifichi “3 sacchi cemento
+CEM II, 5 pannelli isolanti” invece di “Materiale edile vario”, con
+l’opzione attiva la fattura mostrerà i dettagli completi.</li>
+</ol>
+<p><strong>Nota</strong>: Queste opzioni sono disabilitate per default per mantenere la
+retrocompatibilità. Attivarle solo se si desidera questo comportamento.</p>
+</div>
 </div>
 <div class="section" id="accesso-da-portale">
-<h2><a class="toc-backref" href="#toc-entry-6">Accesso da portale</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Accesso da portale</a></h2>
 <p>Gli utenti portal hanno la possibilità di scaricare i report dei DDT di
 cui loro o la loro azienda padre sono impostati come destinatari o
 indirizzo di spedizione.</p>
 </div>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-7">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-8">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -513,9 +575,9 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-8">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-9">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-9">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-10">Authors</a></h2>
 <ul class="simple">
 <li>Marco Calcagni</li>
 <li>Gianmarco Conte</li>
@@ -523,7 +585,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-10">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-11">Contributors</a></h2>
 <ul>
 <li><p class="first">Riccardo Bellanova &lt;<a class="reference external" href="mailto:r.bellanova&#64;apuliasoftware.it">r.bellanova&#64;apuliasoftware.it</a>&gt;</p>
 </li>
@@ -569,7 +631,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-11">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-12">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />

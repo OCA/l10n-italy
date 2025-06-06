@@ -33,8 +33,16 @@ ITA - Documento di trasporto
 This module manage the Italian DDT (Delivery note).
 
 From a picking is possible to generate a Delivery Note and group more
-picking in one delivery note. It's also possible to invoice from the
-delivery note form.
+picking in one delivery note. It's also possible to invoice directly
+from the delivery note form, with configurable options to use DN data
+(product names, prices) instead of sale order data when generating
+invoices.
+
+This is particularly useful when:
+
+-  Products are substituted at delivery time
+-  Prices are negotiated during delivery
+-  Detailed descriptions need to be added in the DN
 
 This module is alternative to ``l10n_it_ddt``, it follows the Odoo way
 to process sale orders, pickings and invoices.
@@ -52,7 +60,16 @@ There are two available settings:
 Questo modulo consente di gestire i DDT.
 
 Da un prelievo è possibile generare un DDT e raggruppare più prelievi in
-un DDT. È anche possibile fatturare dalla scheda del DDT.
+un DDT. È anche possibile fatturare direttamente dalla scheda del DDT,
+con opzioni configurabili per utilizzare i dati del DDT (nomi prodotti,
+prezzi) invece dei dati dell'ordine di vendita nella generazione delle
+fatture.
+
+Questo è particolarmente utile quando:
+
+-  I prodotti vengono sostituiti al momento della consegna
+-  I prezzi vengono negoziati durante la consegna
+-  È necessario aggiungere descrizioni dettagliate nel DDT
 
 Questo modulo è un alternativa al modulo ``l10n_it_ddt``, segue la
 modalità Odoo di gestire ordini di vendita, prelievi e fatture.
@@ -89,6 +106,18 @@ To configure this module, go to:
 
    Checking 'Display Delivery Method in Delivery Note Report' enables in
    report field 'Delivery Method'.
+
+   **Invoice Generation from Delivery Notes:**
+
+   -  Checking 'Use Delivery Note Product Name in Invoice' makes the
+      invoice use the product description from the delivery note instead
+      of the sale order. This is useful when you modify product
+      descriptions in the DN to reflect what was actually delivered.
+
+   -  Checking 'Use Delivery Note Price Unit in Invoice' makes the
+      invoice use the unit price from the delivery note instead of the
+      sale order. This is useful for price negotiations at delivery time
+      or when substituting products with different prices.
 
 2. *Inventory → Configuration → Warehouse Management → Delivery Note
    Types*
@@ -164,6 +193,41 @@ partner dalla tree view tramite il wizard "crea fattura". Si può
 scegliere se includere anche i servizi non ancora fatturati dell'ordine
 di vendita correlato o considerare solo le righe nei DN. In maniera
 predefinita vengono dedotti gli eventuali anticipi fatturati.
+
+Utilizzo dei dati dal DDT nelle fatture
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Dalle impostazioni (*Inventario → Configurazione → Impostazioni -
+Documenti di Trasporto*) è possibile configurare se la fattura deve
+utilizzare i dati dal DDT anziché dall'ordine di vendita:
+
+-  **Usa Nome Prodotto da DDT nelle Fatture**: Quando attivo, la
+   descrizione del prodotto nella fattura viene presa dal DDT invece che
+   dall'ordine di vendita. Utile quando si modificano le descrizioni nel
+   DDT per riflettere ciò che è stato effettivamente consegnato.
+
+-  **Usa Prezzo Unitario da DDT nelle Fatture**: Quando attivo, il
+   prezzo unitario nella fattura viene preso dal DDT invece che
+   dall'ordine di vendita. Utile per negoziazioni di prezzo al momento
+   della consegna o quando si sostituiscono prodotti con prezzi diversi.
+
+**Esempi pratici:**
+
+1. **Prodotto sostituito**: Se ordini "Scrivania Modello A - €500" ma
+   consegni "Scrivania Modello B - €450", modificando DDT e attivando
+   entrambe le opzioni, la fattura rifletterà automaticamente il
+   prodotto e prezzo reale consegnato.
+
+2. **Negoziazione alla consegna**: Se il cliente nota un difetto e
+   negoziate uno sconto, modificando il prezzo nel DDT con l'opzione
+   attiva, la fattura sarà corretta senza bisogno di note credito.
+
+3. **Descrizioni dettagliate**: Se nel DDT specifichi "3 sacchi cemento
+   CEM II, 5 pannelli isolanti" invece di "Materiale edile vario", con
+   l'opzione attiva la fattura mostrerà i dettagli completi.
+
+**Nota**: Queste opzioni sono disabilitate per default per mantenere la
+retrocompatibilità. Attivarle solo se si desidera questo comportamento.
 
 Accesso da portale
 ------------------
