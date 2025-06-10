@@ -1235,6 +1235,10 @@ class WizardImportFatturapa(models.TransientModel):
         invoice.with_context(check_move_validity=False).update(
             {"invoice_line_ids": [(6, 0, invoice_lines)]}
         )
+        # (6, 0, ids) command bypasses the ORM's compute mechanism because it
+        # directly replaces the records in the database so we need to explicitly
+        # call the compute methods
+        invoice.invoice_line_ids._compute_account_id()
 
         invoice._onchange_invoice_line_wt_ids()
 
