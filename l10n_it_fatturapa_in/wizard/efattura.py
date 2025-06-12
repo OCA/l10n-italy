@@ -224,14 +224,17 @@ def CreateFromDocument(xml_string):  # noqa: C901
                         1 + decimal.Decimal(linea.AliquotaIVA) / 100
                     )
                     linea._imposta = DatiBeniServizi.Importo - linea._imponibile
-                if DatiBeniServizi.DatiIVA.Imposta:
+                if DatiBeniServizi.DatiIVA.Imposta is not None:
                     linea._imposta = decimal.Decimal(DatiBeniServizi.DatiIVA.Imposta)
                     linea._imponibile = (
                         decimal.Decimal(DatiBeniServizi.Importo) - linea._imposta
                     )
-                    if linea.AliquotaIVA is None:
+                    if linea.AliquotaIVA:
                         linea.AliquotaIVA = linea._imposta / linea._imponibile * 100
-                if linea.AliquotaIVA is None:
+                if (
+                    linea.AliquotaIVA is None
+                    and DatiBeniServizi.DatiIVA.Imposta is None
+                ):
                     raise ValidationError(_("No available data to compute AliquotaIVA"))
                 linea.PrezzoUnitario = linea._imponibile
                 linea.PrezzoTotale = linea._imponibile
