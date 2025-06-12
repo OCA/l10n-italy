@@ -6,6 +6,9 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _is_in_reverse_charge_line(self, line):
         """The e-invoice line `line` should be imported as reverse charge."""
+
+        # Add check for AliquotaIVA because in case of
+        # Fattura Elettronica Semplifica it is not ensured that the tag is there
         if line.AliquotaIVA is not None:
             return float(line.AliquotaIVA) == 0.0 and line.Natura.startswith("N6")
         return False
