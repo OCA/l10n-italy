@@ -6,7 +6,9 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _is_in_reverse_charge_line(self, line):
         """The e-invoice line `line` should be imported as reverse charge."""
-        return float(line.AliquotaIVA) == 0.0 and line.Natura.startswith("N6")
+        if line.AliquotaIVA is not None:
+            return float(line.AliquotaIVA) == 0.0 and line.Natura.startswith("N6")
+        return False
 
     def _prepare_generic_line_data(self, line):
         retLine = {}
