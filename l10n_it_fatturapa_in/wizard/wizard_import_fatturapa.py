@@ -452,7 +452,9 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _prepare_generic_line_data(self, line):
         retLine = {}
-        account_taxes = self.get_account_taxes(line.AliquotaIVA, line.Natura)
+        account_taxes = self.get_account_taxes(
+            line.AliquotaIVA, line.Imposta, line.Natura
+        )
         if account_taxes:
             retLine["tax_ids"] = [fields.Command.set([account_taxes[0].id])]
         else:
@@ -565,8 +567,13 @@ class WizardImportFatturapa(models.TransientModel):
                 account_tax = default_tax
         return account_tax
 
-    def get_account_taxes(self, AliquotaIVA, Natura):
-        tax_amount = float(AliquotaIVA)
+    def get_account_taxes(self, AliquotaIVA, Imposta, Natura):
+        if AliquotaIVA is not None:
+            tax_amount = float(AliquotaIVA)
+        elif Imposta is not None:
+            tax_amount = float(Imposta)
+        else:
+            tax_amount = 0.0
         if tax_amount == 0.0 and Natura:
             account_tax = self._get_zero_kind_account_tax(Natura)
         else:
@@ -657,7 +664,9 @@ class WizardImportFatturapa(models.TransientModel):
     # move_line.quantity
     def _prepareInvoiceLineAliquota(self, credit_account_id, line, nline):
         retLine = {}
-        account_taxes = self.get_account_taxes(line.AliquotaIVA, line.Natura)
+        account_taxes = self.get_account_taxes(
+            line.AliquotaIVA, line.Imposta, line.Natura
+        )
         if account_taxes:
             retLine["tax_ids"] = [fields.Command.set([account_taxes[0].id])]
         else:
@@ -1425,7 +1434,9 @@ class WizardImportFatturapa(models.TransientModel):
                 to_round = float(summary.Arrotondamento or 0.0)
                 if to_round != 0.0:
                     account_taxes = self.get_account_taxes(
-                        summary.AliquotaIVA, summary.Natura
+                        summary.AliquotaIVA,
+                        summary.Imposta,
+                        summary.Natura,
                     )
                     arrotondamenti_account_id = (
                         arrotondamenti_passivi_account_id.id
