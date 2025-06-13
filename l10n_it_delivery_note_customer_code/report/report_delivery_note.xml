@@ -4,55 +4,44 @@
         id="delivery_note_report_template_customer_code"
         inherit_id="l10n_it_delivery_note.delivery_note_report_template"
     >
-        <xpath
-            expr="//div[hasclass('page')]/table/thead/tr/th[1]"
-            position="attributes"
-        >
-            <attribute name="style">display:none</attribute>
+        <xpath expr="//table//th[@name='th_product']" position="attributes">
+            <attribute name="style">display: none;</attribute>
         </xpath>
-        <xpath expr="//div[hasclass('page')]/table/thead/tr/th[1]" position="after">
-            <th class="text-left">
-                    Code
-            </th>
+        <xpath expr="//table//th[@name='th_product']" position="after">
+            <th name="th_customer_code" class="text-start">Code</th>
         </xpath>
-        <xpath
-            expr="//div[hasclass('page')]/table/thead/tr/th[3]"
-            position="attributes"
-        >
-            <attribute name="style">display:none</attribute>
+        <xpath expr="//table//th[@name='th_description']" position="attributes">
+            <attribute name="style">display: none;</attribute>
         </xpath>
         <xpath expr="//div[hasclass('page')]/table/thead/tr/th[3]" position="after">
-            <th class="text-left">
-                Product Name
-            </th>
+            <th name="th_customer_name" class="text-start">Product Name</th>
         </xpath>
-        <xpath
-            expr="//div[hasclass('page')]//table/tbody/t/tr/t/td[1]/span"
-            position="attributes"
-        >
+        <xpath expr="//table//td[@name='td_product']/span" position="attributes">
             <attribute name="t-if">not line.product_customer_code</attribute>
         </xpath>
         <xpath
-            expr="//div[hasclass('page')]/table/tbody/t/tr/t/td[1]"
-            position="inside"
+            expr="//table//td[@name='td_product']/span[@t-field='line.product_id.default_code']"
+            position="after"
         >
-            <t t-if="line.product_customer_code">
-                <span t-esc="line.product_customer_code" />
-            </t>
+            <span
+                t-if="line.product_customer_code"
+                t-out="line.product_customer_code"
+            />
         </xpath>
         <xpath
-            expr="//div[hasclass('page')]//table/tbody/t/tr/t/td[2]/span"
+            expr="//table//td[@name='td_name']/span[@t-field='line.name']"
             position="attributes"
         >
             <attribute name="t-if">not line.product_customer_name</attribute>
         </xpath>
         <xpath
-            expr="//div[hasclass('page')]/table/tbody/t/tr/t/td[2]"
-            position="inside"
+            expr="//table//td[@name='td_name']/span[@t-field='line.name']"
+            position="after"
         >
-            <t t-if="line.product_customer_name">
-                <span t-esc="line.product_customer_name" />
-            </t>
+            <span
+                t-if="line.product_customer_name"
+                t-out="line.product_customer_name"
+            />
         </xpath>
     </template>
 </odoo>

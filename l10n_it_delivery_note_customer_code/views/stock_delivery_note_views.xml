@@ -10,7 +10,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='line_ids']/tree/field[@name='name']"
+                expr="//field[@name='line_ids']/list/field[@name='name']"
                 position="after"
             >
                 <field name="product_customer_code" optional="hide" />
