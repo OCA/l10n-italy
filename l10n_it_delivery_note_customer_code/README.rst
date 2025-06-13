@@ -17,30 +17,33 @@ Product Customer code and name for delivery note
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_delivery_note_customer_code
+    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_delivery_note_customer_code
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-14-0/l10n-italy-14-0-l10n_it_delivery_note_customer_code
+    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_delivery_note_customer_code
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 **English**
 
-This module allows to print product customer code and name in Italian DDT (Delivery Note) report, replacing product code and name.
+This module allows to print product customer code and name in Italian
+DDT (Delivery Note) report, replacing product code and name.
 
-For more information about product customer code field, see :code:`product_supplierinfo_for_customer_picking` module:
+For more information about product customer code field, see
+``product_supplierinfo_for_customer_picking`` module:
 https://github.com/OCA/stock-logistics-workflow/tree/14.0/product_supplierinfo_for_customer_picking
-
 
 **Italiano**
 
-Questo modulo consente di stampare il codice e il nome product customer sul report DDT, sostituendo il codice e il nome prodotto.
+Questo modulo consente di stampare il codice e il nome product customer
+sul report DDT, sostituendo il codice e il nome prodotto.
 
-Per maggiori informazioni sul campo codice product customer, guardare il modulo :code:`product_supplierinfo_for_customer_picking`:
+Per maggiori informazioni sul campo codice product customer, guardare il
+modulo ``product_supplierinfo_for_customer_picking``:
 https://github.com/OCA/stock-logistics-workflow/tree/14.0/product_supplierinfo_for_customer_picking
 
 **Table of contents**
@@ -54,7 +57,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_delivery_note_customer_code%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_delivery_note_customer_code%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -62,18 +65,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Agile Business Group
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Simone Vanin <simone.vanin@agilebg.com>
-* Nextev Srl <web@nextev.it>
+- Simone Vanin <simone.vanin@agilebg.com>
+- Nextev Srl <web@nextev.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -99,6 +102,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-aleuffre| |maintainer-renda-dev| |maintainer-PicchiSeba| 
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/14.0/l10n_it_delivery_note_customer_code>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_delivery_note_customer_code>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

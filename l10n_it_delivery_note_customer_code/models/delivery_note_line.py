@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class StockDeliveryNoteLine(models.Model):
-
     _inherit = "stock.delivery.note.line"
     product_customer_code = fields.Char(
         string="Product Customer Code", related="move_id.product_customer_code"

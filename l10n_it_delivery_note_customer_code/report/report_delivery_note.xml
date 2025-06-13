@@ -15,7 +15,7 @@
                     Code
             </th>
         </xpath>
-            <xpath
+        <xpath
             expr="//div[hasclass('page')]/table/thead/tr/th[3]"
             position="attributes"
         >
@@ -26,12 +26,11 @@
                 Product Name
             </th>
         </xpath>
-            <xpath
+        <xpath
             expr="//div[hasclass('page')]//table/tbody/t/tr/t/td[1]/span"
             position="attributes"
         >
             <attribute name="t-if">not line.product_customer_code</attribute>
-
         </xpath>
         <xpath
             expr="//div[hasclass('page')]/table/tbody/t/tr/t/td[1]"
