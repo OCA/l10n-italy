@@ -274,6 +274,14 @@ class StockDeliveryNote(models.Model):
     sales_transport_check = fields.Boolean(compute="_compute_sales", default=True)
 
     currency_id = fields.Many2one("res.currency", compute="_compute_currency_id")
+
+    untaxed_amount_total = fields.Monetary(
+        "Untaxed Total Amount",
+        compute="_compute_amount_total",
+        currency_field="currency_id",
+        store=True,
+    )
+
     amount_total = fields.Monetary(
         "Total Amount",
         compute="_compute_amount_total",
@@ -412,9 +420,12 @@ class StockDeliveryNote(models.Model):
         for sdn in self:
             sdn.currency_id = sdn.line_ids.mapped("currency_id")
 
-    @api.depends("line_ids.amount")
+    @api.depends("line_ids.amount", "line_ids.untaxed_amount")
     def _compute_amount_total(self):
         for sdn in self:
+            sdn.untaxed_amount_total = (
+                sum(line.untaxed_amount or 0.0 for line in sdn.line_ids) or 0.0
+            )
             sdn.amount_total = sum(line.amount or 0.0 for line in sdn.line_ids) or 0.0
 
     def _compute_get_pickings(self):
