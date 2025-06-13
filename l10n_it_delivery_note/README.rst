@@ -94,6 +94,9 @@ To configure this module, go to:
    Checking 'Display Delivery Method in Delivery Note Report' enables in
    report field 'Delivery Method'.
 
+   Checking 'Display total in DN with prices' enables in report the
+   'Import' column and the list of taxes with the sum of the total.
+
 2. *Inventory → Configuration → Warehouse Management → Delivery Note
    Types*
 
@@ -159,12 +162,6 @@ permessi dell'utente.
 
 Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle
 righe nota.
-
-Abilitare il campo "Display total in DN with prices" nelle impostazioni
-modifica il report del DDT:
-
--  colonna Import sulle righe
--  riquadro con la lista degli importi e somma del totale
 
 Accesso da portale
 ------------------
