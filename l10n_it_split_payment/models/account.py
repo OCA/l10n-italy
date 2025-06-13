@@ -37,6 +37,7 @@ class AccountMove(models.Model):
                 move.amount_sp = move.amount_tax
                 move.amount_tax = 0.0
                 move.amount_total = move.amount_untaxed
+                move.amount_total_signed = -move.amount_untaxed
                 move._compute_split_payments()
             else:
                 move.amount_sp = 0.0
