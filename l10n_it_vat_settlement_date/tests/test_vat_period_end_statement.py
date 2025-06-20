@@ -7,7 +7,7 @@ from odoo import fields
 from odoo.tests import tagged
 from odoo.tools import formatLang
 
-from odoo.addons.account_vat_period_end_statement.tests.common import (
+from odoo.addons.l10n_it_account_vat_period_end_settlement.tests.common import (
     TestVATStatementCommon,
 )
 

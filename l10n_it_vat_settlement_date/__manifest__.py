@@ -4,17 +4,17 @@
 
 {
     "name": "ITA - Data competenza IVA",
-    "version": "16.0.1.1.0",
+    "version": "18.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Settlement date for VAT Statement",
     "license": "AGPL-3",
     "author": "Marco Colombo, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy"
-    "/tree/16.0/l10n_it_vat_settlement_date",
+    "/tree/18.0/l10n_it_vat_settlement_date",
     "depends": [
         "account",
         "account_tax_balance",
-        "account_vat_period_end_statement",
+        "l10n_it_account_vat_period_end_settlement",
         "l10n_it_vat_registries",
         "l10n_it_vat_statement_communication",
     ],
