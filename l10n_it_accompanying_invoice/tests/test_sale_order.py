@@ -1,4 +1,5 @@
 #  Copyright 2023 Simone Rubino - Aion Tech
+#  Copyright 2025 Simone Rubino
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests import Form, tagged
@@ -19,10 +20,8 @@ def _init_sale_order(env, partner, products):
 @tagged("post_install", "-at_install")
 class TestSaleOrder(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(
-            chart_template_ref=chart_template_ref,
-        )
+    def setUpClass(cls):
+        super().setUpClass()
         cls.partner = cls.env.ref("base.res_partner_1")
         cls.product = cls.env.ref("product.product_product_16")
         cls.sale_order = _init_sale_order(cls.env, cls.partner, cls.product)
@@ -40,16 +39,16 @@ class TestSaleOrder(AccountTestInvoicingCommon):
         # Arrange
         sale_order = self.sale_order
         sale_order.default_transport_condition_id = self.env.ref(
-            "l10n_it_delivery_note_base.transport_condition_PF"
+            "l10n_it_delivery_note.transport_condition_PF"
         )
         sale_order.default_goods_appearance_id = self.env.ref(
-            "l10n_it_delivery_note_base.goods_appearance_CAR"
+            "l10n_it_delivery_note.goods_appearance_CAR"
         )
         sale_order.default_transport_reason_id = self.env.ref(
-            "l10n_it_delivery_note_base.transport_reason_VEN"
+            "l10n_it_delivery_note.transport_reason_VEN"
         )
         sale_order.default_transport_method_id = self.env.ref(
-            "l10n_it_delivery_note_base.transport_method_MIT"
+            "l10n_it_delivery_note.transport_method_MIT"
         )
         sale_order.action_confirm()
 

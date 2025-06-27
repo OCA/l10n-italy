@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 Simone Vanin - Agile Business Group
      Copyright 2023 Simone Rubino - Aion Tech
+     Copyright 2025 Simone Rubino
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_move_form" model="ir.ui.view">
@@ -12,11 +13,7 @@
                 <page
                     string="Shipping Information"
                     name="shipping_info"
-                    attrs="{
-                        'invisible': [
-                            ('move_type', '=', 'entry'),
-                        ],
-                    }"
+                    invisible="move_type == 'entry'"
                 >
                     <group name="shipping_info">
                         <group name="shipping_transport" string="Transport">

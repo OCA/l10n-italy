@@ -1,4 +1,5 @@
 #  Copyright 2023 Simone Rubino - Aion Tech
+#  Copyright 2025 Simone Rubino
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
@@ -15,16 +16,16 @@ class TestAccountMove(AccountTestInvoicingCommon):
         # Arrange
         partner = self.env.ref("base.res_partner_1")
         partner.default_transport_condition_id = self.env.ref(
-            "l10n_it_delivery_note_base.transport_condition_PF"
+            "l10n_it_delivery_note.transport_condition_PF"
         )
         partner.default_goods_appearance_id = self.env.ref(
-            "l10n_it_delivery_note_base.goods_appearance_CAR"
+            "l10n_it_delivery_note.goods_appearance_CAR"
         )
         partner.default_transport_reason_id = self.env.ref(
-            "l10n_it_delivery_note_base.transport_reason_VEN"
+            "l10n_it_delivery_note.transport_reason_VEN"
         )
         partner.default_transport_method_id = self.env.ref(
-            "l10n_it_delivery_note_base.transport_method_MIT"
+            "l10n_it_delivery_note.transport_method_MIT"
         )
 
         # Act
