@@ -1,34 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ Copyright 2025 Simone Rubino
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
+    <!-- These templates will be printed by implementations of `l10n_it_delivery_note.delivery_mixin`.-->
     <template id="delivery_data">
         <div id="delivery_data_information" class="row mb-4">
-            <div class="col" t-if="doc.transport_reason_id" name="transport_reason">
+            <div
+                class="col"
+                t-if="doc.delivery_transport_reason_id"
+                name="transport_reason"
+            >
                 <strong>Reason of Transport</strong>
-                <div t-field="doc.transport_reason_id" />
+                <div t-field="doc.delivery_transport_reason_id" />
             </div>
-            <div class="col" t-if="doc.transport_condition_id">
+            <div class="col" t-if="doc.delivery_transport_condition_id">
                 <strong>Carriage Condition</strong>
-                <div t-field="doc.transport_condition_id" />
+                <div t-field="doc.delivery_transport_condition_id" />
             </div>
             <div
                 class="col"
-                t-if="doc.transport_method_id and doc.company_id.display_carrier_dn_report"
+                t-if="doc.delivery_transport_method_id and doc.company_id.display_carrier_dn_report"
             >
                 <strong>Method of Transport:</strong>
-                <div t-field="doc.transport_method_id" />
+                <div t-field="doc.delivery_transport_method_id" />
             </div>
             <div
                 class="col"
-                t-if="doc.transport_method_id and not doc.company_id.display_carrier_dn_report"
+                t-if="doc.delivery_transport_method_id and not doc.company_id.display_carrier_dn_report"
             >
                 <strong>Method of Transport / Carrier</strong>
-                <div t-field="doc.transport_method_id" />
-                <t t-if="doc.transport_method_id and doc.carrier_id"> / </t>
-                <div t-field="doc.carrier_id" />
+                <div t-field="doc.delivery_transport_method_id" />
+                <t
+                    t-if="doc.delivery_transport_method_id and doc.delivery_carrier_id"
+                > / </t>
+                <div t-field="doc.delivery_carrier_id" />
             </div>
         </div>
     </template>
@@ -40,7 +48,7 @@
                 <div
                     class="px-2 pb-2"
                     style="font-size:12px;"
-                    t-field="doc.goods_appearance_id"
+                    t-field="doc.delivery_goods_appearance_id"
                 />
             </div>
             <div class="col border border-start-0" name="gross_weight">
@@ -48,7 +56,7 @@
                 <div
                     class="px-2 pb-2"
                     style="font-size:10px;"
-                    t-field="doc.gross_weight"
+                    t-field="doc.delivery_gross_weight"
                 />
             </div>
             <div class="col border border-start-0" name="net_weight">
@@ -56,7 +64,7 @@
                 <div
                     class="px-2 pb-2"
                     style="font-size:10px;"
-                    t-field="doc.net_weight"
+                    t-field="doc.delivery_net_weight"
                 />
             </div>
             <div class="col border border-start-0" name="transport_date">
@@ -64,12 +72,16 @@
                 <div
                     class="px-2 pb-2"
                     style="font-size:12px;"
-                    t-field="doc.transport_datetime"
+                    t-field="doc.delivery_transport_datetime"
                 />
             </div>
             <div class="col border border-start-0" name="packages">
                 <div class="px-2 pt-2" style="font-size:10px;">Packages</div>
-                <div class="px-2 pb-2" style="font-size:12px;" t-field="doc.packages" />
+                <div
+                    class="px-2 pb-2"
+                    style="font-size:12px;"
+                    t-field="doc.delivery_packages"
+                />
             </div>
         </div>
         <div id="parcel_info_note" class="row">
@@ -78,10 +90,14 @@
                 <div
                     class="px-2 pb-2"
                     style="font-size:12px;"
-                    t-if="doc.note"
-                    t-field="doc.note"
+                    t-if="doc.delivery_note"
+                    t-field="doc.delivery_note"
                 />
-                <div class="m-3 p-3" style="font-size:12px;" t-if="not doc.note" />
+                <div
+                    class="m-3 p-3"
+                    style="font-size:12px;"
+                    t-if="not doc.delivery_note"
+                />
             </div>
         </div>
         <div id="parcel_info_signature" class="row">
