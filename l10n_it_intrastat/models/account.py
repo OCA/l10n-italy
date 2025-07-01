@@ -10,7 +10,7 @@ from odoo.tools import float_is_zero
 class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
 
-    intrastat = fields.Boolean(string="Subject to Intrastat")
+    l10n_it_oca_intrastat = fields.Boolean(string="Subject to Intrastat")
 
 
 class AccountMoveLine(models.Model):
@@ -293,7 +293,7 @@ class AccountMove(models.Model):
 
     @api.onchange("fiscal_position_id")
     def change_fiscal_position(self):
-        self.intrastat = self.fiscal_position_id.intrastat
+        self.intrastat = self.fiscal_position_id.l10n_it_oca_intrastat
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
@@ -308,7 +308,7 @@ class AccountMove(models.Model):
                 intrastat = (
                     self.env["account.fiscal.position"]
                     .browse(val["fiscal_position_id"])
-                    .intrastat
+                    .l10n_it_oca_intrastat
                 )
                 val.update({"intrastat": intrastat})
         return super().create(vals_list)

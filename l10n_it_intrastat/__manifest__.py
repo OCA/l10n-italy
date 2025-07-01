@@ -33,4 +33,9 @@
         "views/config.xml",
     ],
     "demo": ["demo/product_demo.xml"],
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
 }
