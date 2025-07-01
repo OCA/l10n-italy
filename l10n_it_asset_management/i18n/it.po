@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-23 08:16+0000\n"
-"PO-Revision-Date: 2024-10-31 00:06+0000\n"
+"PO-Revision-Date: 2025-07-01 13:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_asset_management
 #. odoo-python
@@ -1987,7 +1987,7 @@ msgstr "Movimento contabile"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__l10n_it_asset_ids
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_asset__l10n_it_asset_id
 msgid "L10N It Asset"
-msgstr ""
+msgstr "Cespite L10N it"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_depreciation__last_depreciation_date
@@ -2743,7 +2743,7 @@ msgstr "Anno piè di pagina resoconto"
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional__report_l10n_it_asset_ids
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_category__report_l10n_it_asset_ids
 msgid "Report L10N It Asset"
-msgstr ""
+msgstr "Resoconto cespite L10N it"
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__report_name
