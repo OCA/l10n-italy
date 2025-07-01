@@ -64,7 +64,7 @@ class TestIntrastat(AccountTestInvoicingCommon):
         self.partner01.property_account_position_id = self.fp_model.create(
             {
                 "name": "F.P subjected to intrastat",
-                "intrastat": True,
+                "l10n_it_oca_intrastat": True,
             }
         )
         invoice = self.init_invoice(
