@@ -8,7 +8,7 @@
 
 {
     "name": "ITA - Liquidazione IVA",
-    "version": "18.0.1.0.2",
+    "version": "18.0.1.0.3",
     "category": "Localization/Italy",
     "summary": "Allow to create the 'VAT Settlement'.",
     "license": "AGPL-3",
