@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="l10n_it_fiscal_epos_print.LotteryCodePopup">
+        <Dialog title="props.title || 'Lottery Code'" size="'md'">
+            <div class="lottery-code-popup">
+                <div class="form-group">
+                    <label for="lottery-code-input">Lottery Code:</label>
+                    <input
+                        id="lottery-code-input"
+                        class="form-control"
+                        type="text"
+                        t-model="state.lotteryCode"
+                        t-on-input="onInputChange"
+                        t-ref="lotteryCodeInput"
+                        placeholder="Enter lottery code"
+                    />
+                    <div t-if="state.showError" class="text-danger mt-2">
+                        Lottery code is required
+                    </div>
+                </div>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="confirm">
+                    Apply
+                </button>
+                <button class="btn btn-secondary" t-on-click="cancel">
+                    Cancel
+                </button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>
