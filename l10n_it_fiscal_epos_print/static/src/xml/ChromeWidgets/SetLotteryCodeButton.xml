@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="l10n_it_fiscal_epos_print.SetLotteryCodeButton">
+        <button
+            id="lottery_code_button"
+            class='btn btn-secondary btn-lg py-5'
+            t-att-style="'background-color: ' + buttonColor"
+            t-on-click="onClickLotteryCode"
+        >
+            <i class='fa fa-pencil-square-o me-1' />
+            Lottery Code
+        </button>
+    </t>
+
+</templates>
