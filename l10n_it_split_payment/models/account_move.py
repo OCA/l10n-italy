@@ -43,12 +43,10 @@ class AccountMove(models.Model):
         return res
 
     def write(self, vals):
-        res = super(AccountMove, self.with_context(check_move_validity=False)).write(
-            vals
-        )
+        res = super().write(vals)
         if self.env.context.get("skip_split_payment_computation"):
             return res
-        self.compute_split_payment()
+        self.with_context(check_move_validity=False).compute_split_payment()
         container = {"records": self}
         self._check_balanced(container)
         return res
