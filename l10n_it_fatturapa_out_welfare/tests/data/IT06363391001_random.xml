@@ -40,9 +40,9 @@
             <DatiAnagrafici>
                 <IdFiscaleIVA>
                     <IdPaese>IT</IdPaese>
-                    <IdCodice>06363391001</IdCodice>
+                    <IdCodice>00146089990</IdCodice>
                 </IdFiscaleIVA>
-                <CodiceFiscale>06363391001</CodiceFiscale>
+                <CodiceFiscale>00146089990</CodiceFiscale>
                 <Anagrafica>
                     <Denominazione>Public Administration</Denominazione>
                 </Anagrafica>
@@ -62,7 +62,7 @@
                 <TipoDocumento>TD01</TipoDocumento>
                 <Divisa>EUR</Divisa>
                 <Data>2023-01-01</Data>
-                <Numero>INV/2023/0005</Numero>
+                <Numero>INV/2023/0001</Numero>
                 <DatiRitenuta>
                     <TipoRitenuta>RT02</TipoRitenuta>
                     <ImportoRitenuta>20.00</ImportoRitenuta>

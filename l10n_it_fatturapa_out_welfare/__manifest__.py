@@ -1,10 +1,11 @@
 #  Copyright 2022 Simone Rubino - TAKOBI
+#  Copyright 2025 Alex Comba - Agile Business Group
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "ITA - Fattura elettronica - Cassa previdenziale",
     "summary": "Registrazione della cassa previdenziale "
                "nelle fatture elettroniche in uscita",
-    "version": "12.0.1.0.2",
+    "version": "10.0.1.0.0",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "website": "https://github.com/OCA/l10n-italy",

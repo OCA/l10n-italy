@@ -49,9 +49,13 @@ class AccountInvoice (models.Model):
             )
             welfare_grouping_lines_values.append(welfare_grouping_line_values)
 
-        welfare_grouping_lines = self.env[invoice_lines._name].create(
-            welfare_grouping_lines_values,
-        )
+        invoice_line_model = self.env[invoice_lines._name]
+        welfare_grouping_lines = invoice_line_model.browse()
+        for welfare_grouping_line_values in welfare_grouping_lines_values:
+            welfare_grouping_line = invoice_line_model.create(
+                welfare_grouping_line_values,
+            )
+            welfare_grouping_lines |= welfare_grouping_line
         self.compute_taxes()
         return welfare_grouping_lines
 
@@ -66,4 +70,4 @@ class AccountInvoice (models.Model):
                     )
                 )
             )
-        return super().action_invoice_open()
+        return super(AccountInvoice, self).action_invoice_open()

@@ -57,6 +57,6 @@
     <record id="welfare_fund_type_amount_menu" model="ir.ui.menu">
         <field name="name">Welfare Fund Type Amounts</field>
         <field name="action" ref="welfare_fund_type_amount_action"/>
-        <field name="parent_id" ref="l10n_it_fatturapa.fatturapa_common_menu"/>
+        <field name="parent_id" ref="l10n_it_account.account_italian_localization"/>
     </record>
 </odoo>

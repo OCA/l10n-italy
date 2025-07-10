@@ -85,7 +85,7 @@ class WizardExportFatturapa (models.TransientModel):
 
     @api.model
     def _get_e_invoice_lines(self, invoice):
-        invoice_lines = super()._get_e_invoice_lines(invoice)
+        invoice_lines = super(WizardExportFatturapa, self)._get_e_invoice_lines(invoice)
         # Exclude Welfare Grouping Lines
         # from the Invoice Lines
         # that will become Electronic Invoice Lines
