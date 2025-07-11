@@ -6,7 +6,7 @@ from odoo import api, models
 
 
 class VatStatement(models.AbstractModel):
-    _inherit = "report.account_vat_period_end_statement.vat_statement"
+    _inherit = "report.l10n_it_account_vat_period_end_settlement.vat_statement"
 
     @api.model
     def _get_report_values(self, docids, data=None):

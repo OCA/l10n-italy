@@ -74,7 +74,7 @@ class TestVATPeriodEndStatement(TestVATStatementCommon):
     def _get_report(self, statement):
         """Print the Vat Period End Statement of `statement`."""
         report_action = self.env.ref(
-            "account_vat_period_end_statement.report_vat_statement"
+            "l10n_it_account_vat_period_end_settlement.report_vat_statement"
         )
         html, _report_type = self.env["ir.actions.report"]._render_qweb_html(
             report_action.report_name, statement.ids
