@@ -27,8 +27,8 @@ class WizardImportFatturapa(models.TransientModel):
 
     def _get_invoice_partner_id(self, fatt):
         if self._is_import_attachment_out():
-            partner_id = self.getPartnerBase(
-                fatt.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici
+            partner_id = self.get_partner_from_einvoice_node(
+                fatt.FatturaElettronicaHeader.CessionarioCommittente
             )
         else:
             partner_id = super()._get_invoice_partner_id(fatt)
