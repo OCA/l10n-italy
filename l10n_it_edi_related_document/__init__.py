@@ -4,24 +4,23 @@ from . import models
 from openupgradelib import openupgrade
 
 
-def _insert_account_move_related_document(cr, version):
+def _insert_account_move_related_document(env):
+    cr = env.cr
     cr.execute("SELECT * FROM fatturapa_related_document_type LIMIT 1")
     if cr.fetchone():
-        openupgrade.logged_query(
-            cr,
-            """
+        cr.execute("""
             INSERT INTO account_move_related_document (
-                type, name, lineRef, invoice_id, invoice_line_id, date,
+                type, name, "lineRef", invoice_id, invoice_line_id, date,
                 numitem, code, cig, cup
             )
             SELECT
-                type, name, lineRef, invoice_id, invoice_line_id, date,
+                type, name, "lineRef", invoice_id, invoice_line_id, date,
                 numitem, code, cig, cup
             FROM fatturapa_related_document_type
-            """,
-        )
+        """)
 
 
-@openupgrade.migrate()
-def migrate(cr, version):
-    _insert_account_move_related_document(cr)
+def _l10n_it_edi_related_document_post_init_hook(env):
+    module = "l10n_it_fatturapa"
+    if openupgrade.is_module_installed(env.cr, module):
+        _insert_account_move_related_document(env)
