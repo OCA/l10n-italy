@@ -14,7 +14,7 @@
             </xpath>
             <xpath expr="//div[hasclass('alert-warning')]" position="attributes">
                 <attribute name="name">initial_message</attribute>
-                <attribute name="invisible">step != 'initial'</attribute>
+                <attribute name="invisible" add="step != 'initial'" separator="or" />
             </xpath>
             <xpath expr="//div[hasclass('alert-warning')]" position="after">
                 <div name="confirm_message" invisible="step != 'confirm'">
