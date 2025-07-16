@@ -1187,7 +1187,11 @@ class WizardImportFatturapa(models.TransientModel):
         # 2.1.1.5
         found_withholding_taxes = self.set_withholding_tax(FatturaBody, invoice_data)
 
-        invoice = self.env["account.move"].create(invoice_data)
+        invoice = (
+            self.env["account.move"]
+            .with_context(skip_check_xml=True)  # l10n_it_fatturapa_out compat
+            .create(invoice_data)
+        )
         credit_account = self.get_credit_account()
 
         invoice_lines = []
@@ -1517,9 +1521,7 @@ class WizardImportFatturapa(models.TransientModel):
         if not partner.property_supplier_payment_term_id:
             due_dates = self._get_last_due_date(FatturaBody.DatiPagamento)
             if due_dates:
-                self.env["account.move"].browse(
-                    invoice_id
-                ).invoice_date_due = due_dates[0]
+                invoice.invoice_date_due = due_dates[0]
         if PaymentsData:
             PaymentDataModel = self.env["fatturapa.payment.data"]
             PaymentTermsModel = self.env["fatturapa.payment_term"]
