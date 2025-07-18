@@ -1,10 +1,11 @@
+# Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 
 from codicefiscale import build
 
-from odoo import _, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -25,6 +26,32 @@ class WizardComputeFc(models.TransientModel):
         "res.country.state", required=True, string="Province"
     )
     sex = fields.Selection([("M", "Male"), ("F", "Female")], required=True)
+
+    @api.onchange("birth_city")
+    def onchange_birth_city(self):
+        self.ensure_one()
+
+        it = self.env.ref("base.it").id
+        res = {
+            "value": {"birth_province": False},
+        }
+
+        if self.birth_city:
+            # SMELLS: Add a foreign key in "res_city_it_code"
+            #          instead using the weak link "code" <-> "province".
+            #
+            city_ids = self.env["res.city.it.code"].search(
+                [("name", "=", self.birth_city.name)]
+            )
+            provinces = city_ids.mapped("province")
+            province_ids = self.env["res.country.state"].search(
+                [("country_id", "=", it), ("code", "in", provinces)]
+            )
+
+            if len(province_ids) == 1:
+                res["value"]["birth_province"] = province_ids.id
+
+        return res
 
     def _get_national_code(self, birth_city, birth_prov, birth_date):
         """
@@ -119,12 +146,12 @@ class WizardComputeFc(models.TransientModel):
                 or not f.birth_city
                 or not f.sex
             ):
-                raise UserError(_("One or more fields are missing"))
+                raise UserError(self.env._("One or more fields are missing"))
             nat_code = self._get_national_code(
                 f.birth_city.name, f.birth_province.code, f.birth_date
             )
             if not nat_code:
-                raise UserError(_("National code is missing"))
+                raise UserError(self.env._("National code is missing"))
             c_f = build(
                 f.fiscalcode_surname,
                 f.fiscalcode_firstname,
@@ -134,7 +161,7 @@ class WizardComputeFc(models.TransientModel):
             )
             if partner.l10n_it_codice_fiscale and partner.l10n_it_codice_fiscale != c_f:
                 raise UserError(
-                    _(
+                    self.env._(
                         "Existing fiscal code %(partner_fiscalcode)s is different "
                         "from the computed one (%(compute)s). If you want to use"
                         " the computed one, remove the existing one"
