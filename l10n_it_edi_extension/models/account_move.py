@@ -395,7 +395,8 @@ class AccountMoveInherit(models.Model):
                 vals["state_id"] = found_province.id
             else:
                 message = self.env._(
-                    "Province (%s) not present in your system", province
+                    "Province (%(province)s) not present in your system",
+                    province=province,
                 )
                 self.sudo().message_post(body=message)
 
@@ -418,8 +419,9 @@ class AccountMoveInherit(models.Model):
                 vals["l10n_edi_it_register_province_id"] = found_province.id
             else:
                 message = self.env._(
-                    "Register Province (%s) not present in your system",
-                    register_province,
+                    "Register Province (%(register_province)s) not present in "
+                    "your system",
+                    register_province=register_province,
                 )
                 self.sudo().message_post(body=message)
 
@@ -596,71 +598,58 @@ class AccountMoveInherit(models.Model):
             )
         return messages_to_log
 
-    def _l10n_it_edi_check_amount_untaxed(self):
-        error_message = ""
+    def _l10n_it_edi_ext_check_amount(self, amount, edi_amount, message):
         if (
-            self.l10n_it_edi_amount_untaxed
+            edi_amount
             and float_compare(
-                self.amount_untaxed - self.l10n_it_edi_rounding,
-                abs(self.l10n_it_edi_amount_untaxed),
+                amount,
+                abs(edi_amount),
                 precision_rounding=self.currency_id.rounding,
             )
             != 0
         ):
-            error_message = self.env._(
-                "Untaxed amount (%(amount_untaxed)s) "
+            return message
+
+    def _l10n_it_edi_check_amount_untaxed(self):
+        return self._l10n_it_edi_ext_check_amount(
+            self.amount_untaxed - self.l10n_it_edi_rounding,
+            self.l10n_it_edi_amount_untaxed,
+            self.env._(
+                "Untaxed amount (%(amount_untaxed)s}) "
+                "minus rounding (%(rounding)s}) "
                 "does not match with "
-                "e-invoice untaxed amount (%(l10n_it_edi_amount_untaxed)s) "
-                "with rounding of (%(currency_rounding)s)",
+                "e-invoice untaxed amount %(edi_amount_untaxed)s)",
                 amount_untaxed=self.amount_untaxed,
-                l10n_it_edi_amount_untaxed=self.l10n_it_edi_amount_untaxed,
-                currency_rounding=self.currency_id.rounding,
-            )
-        return error_message
+                rounding=self.l10n_it_edi_rounding,
+                edi_amount_untaxed=self.l10n_it_edi_amount_untaxed,
+            ),
+        )
 
     def _l10n_it_edi_check_amount_tax(self):
-        error_message = ""
-        if (
-            self.l10n_it_edi_amount_tax
-            and float_compare(
-                self.amount_tax,
-                abs(self.l10n_it_edi_amount_tax),
-                precision_rounding=self.currency_id.rounding,
-            )
-            != 0
-        ):
-            error_message = self.env._(
-                "Taxed amount (%(amount_tax)s) "
+        return self._l10n_it_edi_ext_check_amount(
+            self.amount_tax,
+            self.l10n_it_edi_amount_tax,
+            self.env._(
+                "Taxed amount (%(tax_amount)s}) "
                 "does not match with "
-                "e-invoice taxed amount (%(l10n_it_edi_amount_tax)s) "
-                "with rounding of (%(currency_rounding)s)",
-                amount_tax=self.amount_tax,
-                l10n_it_edi_amount_tax=self.l10n_it_edi_amount_tax,
-                currency_rounding=self.currency_id.rounding,
-            )
-        return error_message
+                "e-invoice taxed amount (%(edi_tax_amount)s)",
+                tax_amount=self.amount_tax,
+                edi_tax_amount=self.l10n_it_edi_amount_tax,
+            ),
+        )
 
     def _l10n_it_edi_check_amount_total(self):
-        error_message = ""
-        if (
-            self.l10n_it_edi_amount_total
-            and float_compare(
-                self.amount_total,
-                abs(self.l10n_it_edi_amount_total),
-                precision_rounding=self.currency_id.rounding,
-            )
-            != 0
-        ):
-            error_message = self.env._(
-                "Total amount (%(self.amount_total)s) "
+        return self._l10n_it_edi_ext_check_amount(
+            self.amount_total,
+            self.l10n_it_edi_amount_total,
+            self.env._(
+                "Total amount (%(total_amount)s) "
                 "does not match with "
-                "e-invoice total amount (%(self.l10n_it_edi_amount_total)s) "
-                "with rounding of (%(currency_rounding)s)",
-                amount_total=self.amount_total,
-                l10n_it_edi_amount_total=self.l10n_it_edi_amount_total,
-                currency_rounding=self.currency_id.rounding,
-            )
-        return error_message
+                "e-invoice total amount (%(edi_total_amount)s)",
+                total_amount=self.amount_total,
+                edi_total_amount=self.l10n_it_edi_amount_total,
+            ),
+        )
 
     @api.model
     def _l10n_it_buyer_seller_info(self):
