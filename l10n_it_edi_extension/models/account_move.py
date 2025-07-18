@@ -250,8 +250,11 @@ class AccountMoveInherit(models.Model):
         if sender := get_text(body_tree, "//SoggettoEmittente"):
             self.l10n_it_edi_sender = sender
 
-        if element_stabile_organizzazione := body_tree.xpath("//StabileOrganizzazione"):
-            self.write(
+        if elements_stabile_organizzazione := body_tree.xpath(
+            "//StabileOrganizzazione"
+        ):
+            element_stabile_organizzazione = elements_stabile_organizzazione[0]
+            self.update(
                 {
                     "l10n_it_edi_stabile_organizzazione_indirizzo": get_text(
                         element_stabile_organizzazione, ".//Indirizzo"
