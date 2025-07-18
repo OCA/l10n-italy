@@ -1,6 +1,6 @@
+# Copyright 2024 Simone Rubino - Aion Tech
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -37,16 +37,28 @@ class ResPartnerInherit(models.Model):
         "will create a line in the bill.",
     )
 
-    @api.constrains("l10n_it_codice_fiscale", "company_type")
+    @api.constrains(
+        "l10n_it_codice_fiscale",
+        "company_type",
+    )
     def validate_codice_fiscale(self):
         res = super().validate_codice_fiscale()
         for partner in self:
             if not partner.l10n_it_codice_fiscale:
+                # Because it is not mandatory
                 continue
-            elif (
-                partner.company_type == "person"
-                and len(partner.l10n_it_codice_fiscale) != 16
-            ):
-                msg = self.env._("The fiscal code must have 16 characters.")
-                raise ValidationError(msg)
+            elif partner.company_type == "person":
+                # Person case
+                if partner.company_name:
+                    # In E-commerce, if there is company_name,
+                    # the user might insert VAT in l10n_it_codice_fiscale field.
+                    # Perform the same check as Company case
+                    continue
+                if len(partner.l10n_it_codice_fiscale) != 16:
+                    # Check l10n_it_codice_fiscale length of a person
+                    msg = self.env._(
+                        "The fiscal code '%s' must have 16 characters.",
+                        partner.l10n_it_codice_fiscale,
+                    )
+                    raise ValidationError(msg)
         return res
