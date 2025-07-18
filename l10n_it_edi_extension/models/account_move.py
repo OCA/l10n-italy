@@ -1,4 +1,5 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
+# Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -384,11 +385,14 @@ class AccountMoveInherit(models.Model):
             vals[field_name] = value
 
         if province := get_text(xml_tree, partner_section_xpath + "//Provincia"):
-            if province := self.env["res.country.state"].search(
-                [("code", "=", province), ("country_id", "=", partner.country_id.id)],
+            if found_province := self.env["res.country.state"].search(
+                [
+                    ("code", "=", province),
+                    ("country_id", "=", partner.country_id.id),
+                ],
                 limit=1,
             ):
-                vals["state_id"] = province.id
+                vals["state_id"] = found_province.id
             else:
                 message = self.env._(
                     "Province (%s) not present in your system", province
@@ -404,14 +408,14 @@ class AccountMoveInherit(models.Model):
         if register_province := get_text(
             xml_tree, partner_section_xpath + "//ProvinciaAlbo"
         ):
-            if province := self.env["res.country.state"].search(
+            if found_province := self.env["res.country.state"].search(
                 [
                     ("code", "=", register_province),
                     ("country_id", "=", partner.country_id.id),
                 ],
                 limit=1,
             ):
-                vals["l10n_edi_it_register_province_id"] = province.id
+                vals["l10n_edi_it_register_province_id"] = found_province.id
             else:
                 message = self.env._(
                     "Register Province (%s) not present in your system",
