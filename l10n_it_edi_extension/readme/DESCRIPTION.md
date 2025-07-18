@@ -67,11 +67,12 @@ Le funzionalità principali incluse sono:
        - `<DataInizioPeriodo>` e `<DataFinePeriodo>`: indicano il periodo di riferimento di una prestazione e sono utili per servizi continuativi o prestazioni che si estendono su un periodo di tempo
        - `<RiferimentoAmministrazione>`: identificativo utilizzato per uso amministrativo/gestionale interno. È un campo libero che può essere utilizzato per inserire riferimenti specifici richiesti dalla Pubblica Amministrazione o altri riferimenti utili per la gestione amministrativa.
 
-    - Validazione avanzate dei file XML con gestione degli errori:
-      - controllo sul totale imponibile
-      - controllo sul totale dell'IVA
-      - controllo sul totale IVA inclusa
-      - miglioramento della validazione del codice fiscale
+    - Convalida della fattura importata: se i seguenti importi sono diversi da quelli presenti nel file XML, nella fattura viene visualizzato un messaggio:
+      - importo totale imponibile
+      - IVA totale
+      - IVA inclusa
+
+    - I dati del partner possono essere aggiornati per corrispondere a quelli nella fattura elettronica.
 
 4. Aggiunge di un wizard per calcolare i codici fiscali
 
@@ -147,11 +148,12 @@ The main features included are:
        - `<DataInizioPeriodo>` and `<DataFinePeriodo>`: indicate the reference period of a service and are useful for continuous services or services that extend over a period of time
        - `<RiferimentoAmministrazione>`: identifier used for internal administrative/management purposes. It's a free field that can be used to insert specific references required by Public Administration or other useful references for administrative management.
 
-    - Advanced XML file validation with error handling:
-      - check on total taxable amount
-      - check on total VAT
-      - check on total including VAT
-      - improved fiscal code validation
+    - Validation of imported bill: if the following amounts are different than the amount in the XML a message is shown in the bill:
+      - total taxable amount
+      - total VAT
+      - total including VAT
+
+    - Partner's data can be updated to match the data in the e-bill
 
 4. Adds a wizard to calculate fiscal codes
 
