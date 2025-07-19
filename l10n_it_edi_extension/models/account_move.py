@@ -717,16 +717,10 @@ class AccountMoveInherit(models.Model):
         if name:
             vals["name"] = name
         else:
-            # Remove fields check when module partner_firstname
-            # is migrated and added as a dependency
-            partner_fields = self.env["res.partner"]._fields.keys()
-            first_name = get_text(tree, partner_info["first_name_xpath"])
-            last_name = get_text(tree, partner_info["last_name_xpath"])
-            if "firstname" in partner_fields:
+            if first_name := get_text(tree, partner_info["first_name_xpath"]):
                 vals["firstname"] = first_name
+            if last_name := get_text(tree, partner_info["last_name_xpath"]):
                 vals["lastname"] = last_name
-            else:
-                vals["name"] = " ".join(filter(None, [first_name, last_name]))
         return vals
 
     def _l10n_it_edi_extension_create_partner(self, invoice_data, section_xpath=None):
