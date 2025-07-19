@@ -76,6 +76,9 @@ Le funzionalità principali incluse sono:
       -  ``<RappresentanteFiscale>``
       -  ``<TerzoIntermediarioOSoggettoEmittente>``
 
+   -  Nome e cognome vengono assegnati ai nuovi contatti in base ai nodi
+      ``<Nome>`` e ``<Cognome>`` della fattura elettronica.
+
    -  Gestione delle Fatture Elettroniche Multiple:
 
       -  Supporto per la suddivisione automatica di file XML contenenti
@@ -228,6 +231,9 @@ The main features included are:
 
       -  ``<RappresentanteFiscale>``
       -  ``<TerzoIntermediarioOSoggettoEmittente>``
+
+   -  Name and surname are set in the new contacts based on the
+      ``<Nome>`` and ``<Cognome>`` nodes of the E-Bill.
 
    -  Multiple Electronic Invoice Management:
 
