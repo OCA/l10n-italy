@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 20:30+0000\n"
-"PO-Revision-Date: 2024-01-22 10:39+0000\n"
+"PO-Revision-Date: 2025-07-22 07:16+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_vat_settlement_communication
 #: model:ir.model.fields.selection,name:l10n_it_vat_settlement_communication.selection__comunicazione_liquidazione_vp__metodo_calcolo_acconto__4
@@ -306,15 +306,13 @@ msgstr "Escludere da IVA dovuta / detratta"
 
 #. module: l10n_it_vat_settlement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_settlement_communication.field_account_tax__vsc_exclude_active_operation
-#, fuzzy
 msgid "Exclude from active operations"
-msgstr "Escludere da operazioni attive / passive"
+msgstr "Escludere da operazioni attive"
 
 #. module: l10n_it_vat_settlement_communication
 #: model:ir.model.fields,field_description:l10n_it_vat_settlement_communication.field_account_tax__vsc_exclude_passive_operation
-#, fuzzy
 msgid "Exclude from passive operations"
-msgstr "Escludere da operazioni attive / passive"
+msgstr "Escludere da operazioni passive"
 
 #. module: l10n_it_vat_settlement_communication
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_settlement_communication.wizard_liquidazione_export_file
