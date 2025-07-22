@@ -1,5 +1,5 @@
 <odoo noupdate="1">
-    <record model="ateco.category" id="">
+    <record model="ateco.category" id="main">
         <field name="code" />
         <field name="name">Ateco_2007 - struttura</field>
         <field name="description">Ateco_2007 - struttura</field>
