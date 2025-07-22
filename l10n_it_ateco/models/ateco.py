@@ -1,5 +1,6 @@
 # Copyright (C) 2014 Abstract (<http://abstract.it>).
 # Copyright (C) 2016 Ciro Urselli (<http://www.apuliasoftware.it>).
+# Copyright (C) 2025 Michele Di Croce (<http://www.stesi.consulting>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
@@ -24,11 +25,9 @@ class AtecoCategory(models.Model):
         string="Partners",
     )
 
-    def name_get(self):
-        res = []
+    def _compute_display_name(self):
         for record in self:
             name = record.name
             if record.code:
                 name = record.code + " - " + name
-            res.append((record.id, name))
-        return res
+            record.display_name = name
