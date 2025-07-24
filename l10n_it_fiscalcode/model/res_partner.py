@@ -38,7 +38,8 @@ class ResPartner(models.Model):
                     # the user might insert VAT in fiscalcode field.
                     if not _check_company_fiscal_code(fiscal_code):
                         raise ValidationError(
-                            _("The fiscal code must have 11 characters.")
+                            _("The fiscal code '%s' must have 11 characters.")
+                            % partner.fiscalcode
                         )
                 elif not _check_person_fiscal_code(fiscal_code):
                     # Check fiscalcode length of a person
@@ -53,7 +54,10 @@ class ResPartner(models.Model):
                     raise ValidationError(msg)
             elif partner.company_type == "company":
                 if not _check_company_fiscal_code(fiscal_code):
-                    raise ValidationError(_("The fiscal code must have 11 characters."))
+                    raise ValidationError(
+                        _("The fiscal code '%s' must have 11 characters.")
+                        % partner.fiscalcode
+                    )
         return True
 
     fiscalcode = fields.Char("Fiscal Code", size=16, help="Italian Fiscal Code")
