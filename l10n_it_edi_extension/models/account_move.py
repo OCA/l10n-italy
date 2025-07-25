@@ -360,47 +360,6 @@ class AccountMoveInherit(models.Model):
         extra_info["l10n_it_edi_ext_body_tree"] = body_tree
         return extra_info, message_to_log
 
-    def _l10n_it_edi_create_partner(
-        self, xml_tree, partner_section_xpath, vat, codice_fiscale
-    ):
-        is_company = bool(get_text(xml_tree, partner_section_xpath + "//Denominazione"))
-        eori_code = get_text(xml_tree, partner_section_xpath + "//CodEORI")
-
-        if country_code := get_text(xml_tree, partner_section_xpath + "//IdPaese"):
-            country_id = (
-                self.env["res.country"]
-                .search([("code", "=", country_code)], limit=1)
-                .id
-            )
-            if not country_id:
-                raise UserError(
-                    self.env._("Country Code %s not found in system.", country_code)
-                )
-
-        vals = {
-            "vat": country_code + vat,
-            "l10n_it_codice_fiscale": codice_fiscale,
-            "is_company": is_company,
-            "l10n_edi_it_eori_code": eori_code,
-            "country_id": country_id,
-        }
-
-        if value := get_text(xml_tree, partner_section_xpath + "//Denominazione"):
-            vals["name"] = value
-        else:
-            # Remove fields check when module partner_firstname
-            # is migrated and added as a dependency
-            partner_fields = self.env["res.partner"]._fields.keys()
-            first_name = get_text(xml_tree, partner_section_xpath + "//Nome")
-            last_name = get_text(xml_tree, partner_section_xpath + "//Cognome")
-            if "firstname" in partner_fields:
-                vals["firstname"] = first_name
-                vals["lastname"] = last_name
-            else:
-                vals["name"] = " ".join(filter(None, [first_name, last_name]))
-
-        return self.env["res.partner"].create(vals)
-
     def _l10n_it_edi_update_partner(self, xml_tree, partner_section_xpath, partner):
         vals = {}
 
@@ -471,34 +430,6 @@ class AccountMoveInherit(models.Model):
             vals["l10n_edi_it_register_regdate"] = register_regdate
 
         partner.write(vals)
-        return partner
-
-    def _l10n_it_edi_search_partner(self, company, vat, codice_fiscale, email):
-        partner = super()._l10n_it_edi_search_partner(
-            company, vat, codice_fiscale, email
-        )
-        edi_attachment = self.l10n_it_edi_attachment_id
-        if edi_attachment and not partner:
-            try:
-                xml_tree = edi_attachment._decode_edi_l10n_it_edi(
-                    edi_attachment.name, edi_attachment.raw
-                )[0]["xml_tree"]
-            except Exception as e:
-                raise UserError(self.env._("Error parsing XML: %s") % str(e)) from e
-
-            buyer_seller_info = self._l10n_it_buyer_seller_info()
-            partner_info = buyer_seller_info[
-                "seller" if self.is_purchase_document() else "buyer"
-            ]
-
-            partner = self._l10n_it_edi_create_partner(
-                xml_tree, partner_info["section_xpath"], vat, codice_fiscale
-            )
-            if not partner.l10n_edi_it_electronic_invoice_no_contact_update:
-                partner = self._l10n_it_edi_update_partner(
-                    xml_tree, partner_info["section_xpath"], partner
-                )
-
         return partner
 
     def _l10n_it_edi_ext_import_summary_line(self, element, extra_info=None):
@@ -819,6 +750,15 @@ class AccountMoveInherit(models.Model):
         ):
             partner = self._l10n_it_edi_extension_create_partner(body_tree)
             invoice.partner_id = partner
+
+        if not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update:
+            buyer_seller_info = self._l10n_it_buyer_seller_info()
+            partner_info = buyer_seller_info[
+                "seller" if self.is_purchase_document() else "buyer"
+            ]
+            self._l10n_it_edi_update_partner(
+                body_tree, partner_info["section_xpath"], invoice.partner_id
+            )
 
         if body_tree.xpath("//RappresentanteFiscale"):
             tax_representative = self._l10n_it_edi_extension_create_partner(
