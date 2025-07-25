@@ -761,6 +761,15 @@ class AccountMoveInherit(models.Model):
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
 
         body_tree = data["xml_tree"]
+        if not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update:
+            buyer_seller_info = self._l10n_it_buyer_seller_info()
+            partner_info = buyer_seller_info[
+                "seller" if self.is_purchase_document() else "buyer"
+            ]
+            self._l10n_it_edi_update_partner(
+                body_tree, partner_info["section_xpath"], invoice.partner_id
+            )
+
         if (
             invoice
             and not invoice.partner_id
@@ -772,15 +781,6 @@ class AccountMoveInherit(models.Model):
                 "seller" if is_incoming else "buyer",
             )
             invoice.partner_id = partner
-
-        if not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update:
-            buyer_seller_info = self._l10n_it_buyer_seller_info()
-            partner_info = buyer_seller_info[
-                "seller" if self.is_purchase_document() else "buyer"
-            ]
-            self._l10n_it_edi_update_partner(
-                body_tree, partner_info["section_xpath"], invoice.partner_id
-            )
 
         if tax_representative := self._l10n_it_edi_extension_create_partner(
             body_tree,
