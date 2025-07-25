@@ -15,6 +15,7 @@ class TestFatturaPAXMLValidation(TestItEdi):
     def setUpClass(cls):
         super().setUpClass()
         cls.module = "l10n_it_edi_extension"
+        cls.env.company.l10n_edi_it_create_partner = True
 
     def _edi_import_invoice(self, filename):
         moves = self.env["account.move"]
@@ -240,3 +241,23 @@ class TestFatturaPAXMLValidation(TestItEdi):
         # Assert
         partner = invoice.partner_id
         self.assertEqual(partner.name, partner_name)
+
+    def test_avoid_create_partner(self):
+        """Partner is not created during import if the setting is disabled."""
+        self.env.company.l10n_edi_it_create_partner = False
+        partner_name = "SOCIETA' BETA SRL"
+        # pre-condition
+        partner = self.env["res.partner"].search(
+            [
+                ("name", "=", partner_name),
+            ],
+            limit=1,
+        )
+        self.assertFalse(partner)
+
+        # Act
+        invoice = self._assert_import_invoice("IT02780790107_11004.xml", [{}])
+
+        # Assert
+        partner = invoice.partner_id
+        self.assertFalse(partner)
