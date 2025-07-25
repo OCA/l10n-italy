@@ -802,7 +802,11 @@ class AccountMoveInherit(models.Model):
 
     def _l10n_it_edi_import_invoice(self, invoice, data, is_new):
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
-        if invoice and not invoice.partner_id:
+        if (
+            invoice
+            and not invoice.partner_id
+            and self.env.company.l10n_edi_it_create_partner
+        ):
             partner = self._l10n_it_edi_extension_create_partner(data)
             invoice.partner_id = partner
         return invoice
