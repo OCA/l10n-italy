@@ -26,6 +26,7 @@
         "data/res.city.it.code.csv",
         "views/l10n_it_view.xml",
         "views/res_partner_view.xml",
+        "views/company_view.xml",
         "wizards/compute_fc_view.xml",
         "wizards/l10n_it_edi_import_file_wizard.xml",
     ],

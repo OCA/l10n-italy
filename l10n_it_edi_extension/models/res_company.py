@@ -28,3 +28,20 @@ class ResCompanyInherit(models.Model):
         help="The fields must be entered only when the seller/provider is "
         "non-resident, with a stable organization in Italy",
     )
+    l10n_edi_it_create_partner = fields.Boolean(
+        string="Create Partner on Eletronic Invoice import",
+        help="Automatically create the partner if it does not "
+        "exist during the import of Electronic Invoices.",
+    )
+
+
+class AccountConfigSettings(models.TransientModel):
+    _inherit = "res.config.settings"
+
+    l10n_edi_it_create_partner = fields.Boolean(
+        related="company_id.l10n_edi_it_create_partner",
+        string="Create Partner on Eletronic Invoice import",
+        help="Automatically create the partner if it does not "
+        "exist during the import of Electronic Invoices.",
+        readonly=False,
+    )
