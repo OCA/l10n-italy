@@ -364,81 +364,9 @@ class AccountMoveInherit(models.Model):
         extra_info["l10n_it_edi_ext_body_tree"] = body_tree
         return extra_info, message_to_log
 
-    def _l10n_it_edi_update_partner(self, xml_tree, partner_section_xpath, partner):
-        vals = {}
-
-        address_parts = filter(
-            None,
-            [
-                get_text(xml_tree, partner_section_xpath + "//Indirizzo"),
-                get_text(xml_tree, partner_section_xpath + "//NumeroCivico"),
-            ],
-        )
-        vals["street"] = " ".join(address_parts)
-
-        for field_name, xml_path in [
-            ("zip", "//CAP"),
-            ("city", "//Comune"),
-            ("l10n_edi_it_register", "//AlboProfessionale"),
-            ("phone", "//Telefono"),
-            ("email", "//Email"),
-            ("l10n_edi_it_register_code", "//NumeroIscrizioneAlbo"),
-        ]:
-            value = get_text(xml_tree, partner_section_xpath + xml_path)
-            vals[field_name] = value
-
-        if province := get_text(xml_tree, partner_section_xpath + "//Provincia"):
-            if found_province := self.env["res.country.state"].search(
-                [
-                    ("code", "=", province),
-                    ("country_id", "=", partner.country_id.id),
-                ],
-                limit=1,
-            ):
-                vals["state_id"] = found_province.id
-            else:
-                message = self.env._(
-                    "Province (%(province)s) not present in your system",
-                    province=province,
-                )
-                self.sudo().message_post(body=message)
-
-        if phone := get_text(xml_tree, partner_section_xpath + "//Telefono"):
-            vals["phone"] = phone
-
-        if email := get_text(xml_tree, partner_section_xpath + "//Email"):
-            vals["email"] = email
-
-        if register_province := get_text(
-            xml_tree, partner_section_xpath + "//ProvinciaAlbo"
-        ):
-            if found_province := self.env["res.country.state"].search(
-                [
-                    ("code", "=", register_province),
-                    ("country_id", "=", partner.country_id.id),
-                ],
-                limit=1,
-            ):
-                vals["l10n_edi_it_register_province_id"] = found_province.id
-            else:
-                message = self.env._(
-                    "Register Province (%(register_province)s) not present in "
-                    "your system",
-                    register_province=register_province,
-                )
-                self.sudo().message_post(body=message)
-
-        if register_code := get_text(
-            xml_tree, partner_section_xpath + "//NumeroIscrizioneAlbo"
-        ):
-            vals["l10n_edi_it_register_code"] = register_code
-
-        if register_regdate := get_date(
-            xml_tree, partner_section_xpath + "//DataIscrizioneAlbo"
-        ):
-            vals["l10n_edi_it_register_regdate"] = register_regdate
-
-        partner.write(vals)
+    def _l10n_it_edi_update_partner(self, xml_tree, role, partner):
+        vals = self._l10n_it_edi_extension_prepare_partner_values(xml_tree, role)
+        partner.update(vals)
         return partner
 
     def _l10n_it_edi_ext_import_summary_line(self, element, extra_info=None):
@@ -654,34 +582,51 @@ class AccountMoveInherit(models.Model):
             ),
         )
 
+    def _l10n_it_edi_extend_partner_info(self, partner_role, partner_info):
+        if partner_role == "buyer":
+            partner_info_xpath = "//CessionarioCommittente"
+        elif partner_role == "seller":
+            partner_info_xpath = "//CedentePrestatore"
+        elif partner_role == "intermediary":
+            partner_info_xpath = "//TerzoIntermediarioOSoggettoEmittente"
+        elif partner_role == "tax_representative":
+            partner_info_xpath = "//RappresentanteFiscale"
+        else:
+            raise UserError(
+                self.env._(
+                    "Role %(role)s is not supported for partner creation/update",
+                    role=partner_role,
+                )
+            )
+
+        partner_info.update(
+            {
+                "city_xpath": f"{partner_info_xpath}//Comune",
+                "codice_fiscale_xpath": f"{partner_info_xpath}//CodiceFiscale",
+                "country_code_xpath": f"{partner_info_xpath}//IdPaese",
+                "email_xpath": f"{partner_info_xpath}//Email",
+                "eori_code_xpath": f"{partner_info_xpath}//CodEORI",
+                "first_name_xpath": f"{partner_info_xpath}//Nome",
+                "last_name_xpath": f"{partner_info_xpath}//Cognome",
+                "name_xpath": f"{partner_info_xpath}//Denominazione",
+                "phone_xpath": f"{partner_info_xpath}//Telefono",
+                "register_code_xpath": f"{partner_info_xpath}//NumeroIscrizioneAlbo",
+                "register_regdate_xpath": f"{partner_info_xpath}//DataIscrizioneAlbo",
+                "register_state_xpath": f"{partner_info_xpath}//ProvinciaAlbo",
+                "register_xpath": f"{partner_info_xpath}//AlboProfessionale",
+                "state_xpath": f"{partner_info_xpath}//Provincia",
+                "street_number_xpath": f"{partner_info_xpath}//NumeroCivico",
+                "street_xpath": f"{partner_info_xpath}//Indirizzo",
+                "vat_xpath": f"{partner_info_xpath}//IdCodice",
+                "zip_xpath": f"{partner_info_xpath}//CAP",
+            }
+        )
+
     @api.model
     def _l10n_it_buyer_seller_info(self):
         buyer_seller_info = super()._l10n_it_buyer_seller_info()
-        partners_info = {
-            "buyer": buyer_seller_info["buyer"],
-            "seller": buyer_seller_info["seller"],
-        }
-
-        for partner_role, partner_info in partners_info.items():
-            if partner_role == "buyer":
-                partner_info_xpath = "//CessionarioCommittente//DatiAnagrafici"
-            elif partner_role == "seller":
-                partner_info_xpath = "//CedentePrestatore//DatiAnagrafici"
-            else:
-                continue
-            partner_info["name_xpath"] = (
-                f"{partner_info_xpath}//Anagrafica//Denominazione"
-            )
-            partner_info["first_name_xpath"] = f"{partner_info_xpath}//Anagrafica//Nome"
-            partner_info["last_name_xpath"] = (
-                f"{partner_info_xpath}//Anagrafica//Cognome"
-            )
-            partner_info["eori_code_xpath"] = (
-                f"{partner_info_xpath}//Anagrafica//CodEORI"
-            )
-            partner_info["country_code_xpath"] = (
-                f"{partner_info_xpath}//IdFiscaleIVA//IdPaese"
-            )
+        for role, partner_info in buyer_seller_info.items():
+            self._l10n_it_edi_extend_partner_info(role, partner_info)
         return buyer_seller_info
 
     def _l10n_it_edi_extension_get_partner_info_by_role(self, tree, role):
@@ -689,51 +634,84 @@ class AccountMoveInherit(models.Model):
             buyer_seller_info = self._l10n_it_buyer_seller_info()
             partner_info = buyer_seller_info[role]
         else:
-            role_to_xpath = {
-                "intermediary": "//TerzoIntermediarioOSoggettoEmittente",
-                "tax_representative": "//RappresentanteFiscale",
-            }
-            section_xpath = role_to_xpath.get(role)
-            if section_xpath is None:
-                raise UserError(
-                    self.env._(
-                        "Role %(role)s is not supported for partner creation", role=role
-                    )
-                )
-
-            if tree.xpath(section_xpath):
-                partner_info = {
-                    "name_xpath": f"{section_xpath}//Denominazione",
-                    "first_name_xpath": f"{section_xpath}//Nome",
-                    "last_name_xpath": f"{section_xpath}//Cognome",
-                    "country_code_xpath": f"{section_xpath}//IdPaese",
-                    "vat_xpath": f"{section_xpath}//IdCodice",
-                    "codice_fiscale_xpath": f"{section_xpath}//CodiceFiscale",
-                    "eori_code_xpath": f"{section_xpath}//CodEORI",
-                }
-            else:
-                partner_info = dict()
+            partner_info = dict()
+            self._l10n_it_edi_extend_partner_info(role, partner_info)
         return partner_info
 
     def _l10n_it_edi_extension_prepare_partner_values(self, tree, role):
         if partner_info := self._l10n_it_edi_extension_get_partner_info_by_role(
             tree, role
         ):
-            vals = {
-                "vat": get_text(tree, partner_info["vat_xpath"]),
-                "l10n_it_codice_fiscale": get_text(
-                    tree, partner_info["codice_fiscale_xpath"]
-                ),
-                "l10n_edi_it_eori_code": get_text(
-                    tree, partner_info["eori_code_xpath"]
-                ),
-            }
+            vals = dict()
+            for field_name, partner_info_xpath in [
+                ("city", "city_xpath"),
+                ("email", "email_xpath"),
+                ("l10n_edi_it_eori_code", "eori_code_xpath"),
+                ("l10n_edi_it_register_code", "register_code_xpath"),
+                ("l10n_edi_it_register", "register_xpath"),
+                ("l10n_edi_it_register_regdate", "register_regdate_xpath"),
+                ("l10n_it_codice_fiscale", "codice_fiscale_xpath"),
+                ("phone", "phone_xpath"),
+                ("vat", "vat_xpath"),
+                ("zip", "zip_xpath"),
+            ]:
+                if value := get_text(tree, partner_info[partner_info_xpath]):
+                    vals[field_name] = value
 
             country_code = get_text(tree, partner_info["country_code_xpath"])
             if country := self.env["res.country"].search(
-                [("code", "=", country_code)], limit=1
+                [
+                    ("code", "=", country_code),
+                ],
+                limit=1,
             ):
                 vals["country_id"] = country.id
+
+                if province := get_text(tree, partner_info["state_xpath"]):
+                    if found_province := self.env["res.country.state"].search(
+                        [
+                            ("code", "=", province),
+                            ("country_id", "=", country.id),
+                        ],
+                        limit=1,
+                    ):
+                        vals["state_id"] = found_province.id
+                    else:
+                        message = self.env._(
+                            "Province (%(province)s) not present in your system",
+                            province=province,
+                        )
+                        self.sudo().message_post(body=message)
+
+                if register_province := get_text(
+                    tree, partner_info["register_state_xpath"]
+                ):
+                    if found_province := self.env["res.country.state"].search(
+                        [
+                            ("code", "=", register_province),
+                            ("country_id", "=", country.id),
+                        ],
+                        limit=1,
+                    ):
+                        vals["l10n_edi_it_register_province_id"] = found_province.id
+                    else:
+                        message = self.env._(
+                            "Register Province (%(register_province)s) not present in "
+                            "your system",
+                            register_province=register_province,
+                        )
+                        self.sudo().message_post(body=message)
+
+            if address_parts := list(
+                filter(
+                    None,
+                    [
+                        get_text(tree, partner_info["street_xpath"]),
+                        get_text(tree, partner_info["street_number_xpath"]),
+                    ],
+                )
+            ):
+                vals["street"] = " ".join(address_parts)
 
             if name := get_text(tree, partner_info["name_xpath"]):
                 vals["name"] = name
@@ -761,26 +739,25 @@ class AccountMoveInherit(models.Model):
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
 
         body_tree = data["xml_tree"]
-        if not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update:
-            buyer_seller_info = self._l10n_it_buyer_seller_info()
-            partner_info = buyer_seller_info[
-                "seller" if self.is_purchase_document() else "buyer"
-            ]
-            self._l10n_it_edi_update_partner(
-                body_tree, partner_info["section_xpath"], invoice.partner_id
-            )
-
+        is_incoming = self.is_purchase_document(include_receipts=True)
+        partner_role = "seller" if is_incoming else "buyer"
         if (
+            invoice
+            and invoice.partner_id
+            and not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update
+        ):
+            self._l10n_it_edi_update_partner(
+                body_tree, partner_role, invoice.partner_id
+            )
+        elif (
             invoice
             and not invoice.partner_id
             and self.env.company.l10n_edi_it_create_partner
         ):
-            is_incoming = self.is_purchase_document(include_receipts=True)
-            partner = self._l10n_it_edi_extension_create_partner(
+            invoice.partner_id = self._l10n_it_edi_extension_create_partner(
                 body_tree,
-                "seller" if is_incoming else "buyer",
+                partner_role,
             )
-            invoice.partner_id = partner
 
         if tax_representative := self._l10n_it_edi_extension_create_partner(
             body_tree,
