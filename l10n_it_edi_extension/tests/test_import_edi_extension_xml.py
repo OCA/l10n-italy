@@ -16,6 +16,7 @@ class TestFatturaPAXMLValidation(TestItEdi):
         super().setUpClass()
         cls.module = "l10n_it_edi_extension"
         cls.env.company.l10n_edi_it_create_partner = True
+        cls.company.l10n_edi_it_create_partner = True
 
     def _edi_import_invoice(self, filename):
         moves = self.env["account.move"]
