@@ -366,8 +366,6 @@ Le uniche configurazioni disponibili sono:
 
    -  ``<CessionarioCommittente>``
    -  ``<CedentePrestatore>``
-   -  ``<RappresentanteFiscale>``
-   -  ``<TerzoIntermediarioOSoggettoEmittente>``
 
 Non sono necessarie altre configurazioni specifiche per
 l10n_it_edi_extension: una volta installato, le sue funzionalità sono
