@@ -221,12 +221,7 @@ class AccountMove(models.Model):
         for invoice in self:
             # ---- Add a line with collection fees for each due date only for first due
             # ---- date of the month
-            if (
-                invoice.move_type != "out_invoice"
-                or not invoice.invoice_payment_term_id
-                or not invoice.invoice_payment_term_id.riba
-                or invoice.invoice_payment_term_id.riba_payment_cost == 0.0
-            ):
+            if not invoice.get_apply_due_cost():
                 continue
             if not invoice.company_id.due_cost_service_id:
                 raise UserError(
@@ -348,6 +343,18 @@ class AccountMove(models.Model):
                     container={"records": invoice, "self": invoice}
                 )
         return invoice
+
+    def get_apply_due_cost(self):
+        self.ensure_one()
+        if (
+            self.move_type != "out_invoice"
+            or not self.invoice_payment_term_id
+            or not self.invoice_payment_term_id.riba
+            or self.invoice_payment_term_id.riba_payment_cost == 0.0
+        ):
+            return False
+        else:
+            return True
 
     def get_due_cost_line_ids(self):
         return self.invoice_line_ids.filtered(lambda line: line.due_cost_line).ids
