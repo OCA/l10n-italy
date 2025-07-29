@@ -241,12 +241,12 @@ class AccountMove(models.Model):
             # ---- Get date
             previous_date_due = move_line.mapped("date_maturity")
             pterm = self.env["account.payment.term"].browse(
-                self.invoice_payment_term_id.id
+                invoice.invoice_payment_term_id.id
             )
             pterm_list = pterm._compute_terms(
-                date_ref=self.invoice_date,
-                currency=self.currency_id,
-                company=self.company_id,
+                date_ref=invoice.invoice_date,
+                currency=invoice.currency_id,
+                company=invoice.company_id,
                 tax_amount=1,
                 tax_amount_currency=1,
                 untaxed_amount=0,
@@ -255,7 +255,7 @@ class AccountMove(models.Model):
             )
 
             for pay_date in pterm_list:
-                if not self.month_check(pay_date["date"], previous_date_due):
+                if not invoice.month_check(pay_date["date"], previous_date_due):
                     # ---- Get Line values for service product
                     line_vals = invoice.get_due_cost_line_vals(pay_date)
                     invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
