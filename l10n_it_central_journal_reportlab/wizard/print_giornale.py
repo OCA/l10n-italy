@@ -475,7 +475,10 @@ class WizardGiornaleReportlab(models.TransientModel):
         tables.append(
             Table(initial_balance_data, colWidths=colwidths, style=style_table)
         )
-        start_row = self.start_row
+
+        if self.start_row:
+            start_row = self.start_row - 1
+
         if self.group_by_account:
             list_grupped_line = self.get_grupped_line_reportlab_ids()
             if not list_grupped_line:
