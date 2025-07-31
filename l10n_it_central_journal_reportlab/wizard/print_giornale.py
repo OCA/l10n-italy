@@ -389,13 +389,13 @@ class WizardGiornaleReportlab(models.TransientModel):
         for line in list_grupped_line:
             start_row += 1
             account_name = (
-                account_dict[line["account_id"]]
-                + " - "
-                + line["account_name"][user_lang]
+                account_dict[line["account_id"]] + " - " + line["account_name"]
+                and line["account_name"][user_lang]
+                or ""
                 if account_dict
                 and "line_id" in account_dict.keys()
                 and "account_id" in account_dict[line].keys()
-                else line["account_name"][user_lang]
+                else line["account_name"] and line["account_name"][user_lang] or ""
             )
             if not account_name:
                 continue
@@ -467,13 +467,13 @@ class WizardGiornaleReportlab(models.TransientModel):
         for line in list_line_not_grouped:
             start_row += 1
             account_name = (
-                account_dict[line["account_id"]]
-                + " - "
-                + line["account_name"][user_lang]
+                account_dict[line["account_id"]] + " - " + line["account_name"]
+                and line["account_name"][user_lang]
+                or ""
                 if account_dict
                 and "line_id" in account_dict.keys()
                 and "account_id" in account_dict[line].keys()
-                else line["account_name"][user_lang]
+                else line["account_name"] and line["account_name"][user_lang] or ""
             )
             if not account_name:
                 continue
@@ -489,7 +489,11 @@ class WizardGiornaleReportlab(models.TransientModel):
             # For credit/debit accounts, displays the partner name,
             # otherwise displays the entry name
             if line["account_type"] in ["asset_receivable", "liability_payable"]:
-                name = Paragraph(line["partner_name"], style_name)
+                name = (
+                    line["partner_name"]
+                    and Paragraph(line["partner_name"], style_name)
+                    or ""
+                )
             else:
                 name = Paragraph(line["name"], style_name)
 
