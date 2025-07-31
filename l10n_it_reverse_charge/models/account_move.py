@@ -513,8 +513,8 @@ class AccountMove(models.Model):
         supplier_invoice.action_post()
         supplier_invoice.fiscal_position_id = self.fiscal_position_id.id
 
-    def action_post(self):
-        ret = super().action_post()
+    def _post(self, soft=True):
+        ret = super()._post(soft=soft)
         for invoice in self:
             fp = invoice.fiscal_position_id
             rc_type = fp and fp.rc_type_id
