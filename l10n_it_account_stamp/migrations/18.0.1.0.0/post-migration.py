@@ -5,10 +5,10 @@ from openupgradelib import openupgrade
 
 
 @openupgrade.migrate()
-def migrate(cr, version):
+def migrate(env, version):
     openupgrade.load_data(
-        cr, "l10n_it_account_stamp", "18.0.1.0.0/noupdate_changes.xml"
+        env, "l10n_it_account_stamp", "migrations/18.0.1.0.0/noupdate_changes.xml"
     )
     openupgrade.delete_record_translations(
-        cr, "l10n_it_account_stamp", ["l10n_it_account_stamp_2_euro"]
+        env.cr, "l10n_it_account_stamp", ["l10n_it_account_stamp_2_euro"]
     )
