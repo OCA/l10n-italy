@@ -1,0 +1,1 @@
+from . import test_payment_terms_import
