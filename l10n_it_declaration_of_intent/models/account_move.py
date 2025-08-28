@@ -225,16 +225,37 @@ class AccountMove(models.Model):
     def get_declarations_used_amounts(self, declarations):
         """Get used amount by declarations for this invoice."""
         self.ensure_one()
+        declarations_available_amounts = {
+            declaration.id: declaration.available_amount for declaration in declarations
+        }
         declarations_used_amounts = {}
         sign = 1 if self.move_type in ["out_invoice", "in_invoice"] else -1
         for tax_line in self.line_ids.filtered("tax_ids"):
             amount = sign * tax_line.price_subtotal
-            for declaration in declarations:
+            matching_declarations = declarations.filtered(
+                lambda declaration, line_taxes=tax_line.tax_ids: any(
+                    tax in declaration.taxes_ids for tax in line_taxes
+                )
+            )
+            for declaration in matching_declarations:
                 if declaration.id not in declarations_used_amounts:
                     declarations_used_amounts[declaration.id] = 0
-                if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
-                    declarations_used_amounts[declaration.id] += amount
-                    amount = 0.0
+
+                if declaration == matching_declarations[-1]:
+                    # If this is the last available declaration,
+                    # assign all the remaining amount.
+                    declaration_used_amount = amount
+                else:
+                    declaration_available_amount = declarations_available_amounts[
+                        declaration.id
+                    ]
+                    declaration_used_amount = min(amount, declaration_available_amount)
+                declarations_available_amounts[
+                    declaration.id
+                ] -= declaration_used_amount
+
+                declarations_used_amounts[declaration.id] += declaration_used_amount
+                amount -= declaration_used_amount
         return declarations_used_amounts
 
     def check_declarations_amounts(self, declarations):
