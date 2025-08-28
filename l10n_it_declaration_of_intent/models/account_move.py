@@ -220,6 +220,8 @@ class AccountMove(models.Model):
                 partner_id=self.partner_id.id,
                 date=self.invoice_date,
             )
+        ids = [dec.id for dec in sorted(declarations, key=lambda d: d.date_start)]
+        declarations = declaration_model.browse(ids)
         return declarations
 
     def get_declarations_used_amounts(self, declarations):
