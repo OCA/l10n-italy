@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@id='invoice_send_settings']" position="inside">
                 <field name="l10n_edi_it_eori_code" />
+                <field name="l10n_edi_it_admin_ref" />
                 <field name="l10n_edi_it_electronic_invoice_no_contact_update" />
                 <field name="l10n_edi_it_register" />
                 <field name="l10n_edi_it_register_province_id" />
