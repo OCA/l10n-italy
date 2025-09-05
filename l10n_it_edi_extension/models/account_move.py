@@ -17,7 +17,6 @@ class AccountMoveInherit(models.Model):
     l10n_it_edi_tax_representative_id = fields.Many2one(
         "res.partner", string="Tax Representative"
     )
-    l10n_it_edi_intermediary_id = fields.Many2one("res.partner", string="Intermediary")
     l10n_it_edi_sender = fields.Selection(
         [("CC", "Assignee / Partner"), ("TZ", "Third Person")], string="Sender"
     )
@@ -587,8 +586,6 @@ class AccountMoveInherit(models.Model):
             partner_info_xpath = "//CessionarioCommittente"
         elif partner_role == "seller":
             partner_info_xpath = "//CedentePrestatore"
-        elif partner_role == "intermediary":
-            partner_info_xpath = "//TerzoIntermediarioOSoggettoEmittente"
         elif partner_role == "tax_representative":
             partner_info_xpath = "//RappresentanteFiscale"
         else:
@@ -765,9 +762,4 @@ class AccountMoveInherit(models.Model):
         ):
             invoice.l10n_it_edi_tax_representative_id = tax_representative
 
-        if intermediary := self._l10n_it_edi_extension_create_partner(
-            body_tree,
-            "intermediary",
-        ):
-            invoice.l10n_it_edi_intermediary_id = intermediary
         return invoice

@@ -52,11 +52,6 @@ class TestFatturaPAXMLValidation(TestItEdi):
 
         return moves
 
-    def test_01_xml_import(self):
-        move = self._edi_import_invoice("IT05979361218_011.xml")
-        move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
-        self.assertEqual(move.l10n_it_edi_intermediary_id.vat, "03339130126")
-
     def test_02_xml_import(self):
         move = self._edi_import_invoice("IT02780790107_11005.xml")
         move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
@@ -81,7 +76,6 @@ class TestFatturaPAXMLValidation(TestItEdi):
         move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
         self.assertEqual(move.ref, "FT/2015/0008")
         self.assertEqual(move.l10n_it_edi_sender, "TZ")
-        self.assertEqual(move.l10n_it_edi_intermediary_id.name, "MARIO ROSSI")
         self.assertEqual(
             move.l10n_it_edi_line_ids[0].l10n_it_edi_discount_rise_price_ids[0].name,
             "SC",

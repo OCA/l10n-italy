@@ -22,7 +22,6 @@ Le funzionalità principali incluse sono:
      - `<CessionarioCommittente>` e `<CedentePrestatore>` invece di scrivere solamente i dettagli nel chatter.
    - Creazione di altri contatti presenti in una fattura elettronica se non esistono in anagrafica tra cui:
      - `<RappresentanteFiscale>`
-     - `<TerzoIntermediarioOSoggettoEmittente>`
    - Nome e cognome vengono assegnati ai nuovi contatti in base ai nodi `<Nome>` e `<Cognome>` della fattura elettronica.
    - Gestione delle Fatture Elettroniche Multiple:
      - Supporto per la suddivisione automatica di file XML contenenti più fatture
@@ -104,7 +103,6 @@ The main features included are:
      - `<CessionarioCommittente>` and `<CedentePrestatore>` instead of just writing the details in the chatter.
    - Creation of other contacts present in an electronic invoice if they don't exist in the address book, including:
      - `<RappresentanteFiscale>`
-     - `<TerzoIntermediarioOSoggettoEmittente>`
    - Name and surname are set in the new contacts based on the `<Nome>` and `<Cognome>` nodes of the E-Bill.
    - Multiple Electronic Invoice Management:
      - Support for automatic splitting of XML files containing multiple invoices
