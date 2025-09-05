@@ -269,21 +269,8 @@ class RibaListLine(models.Model):
     amount = fields.Float(compute="_compute_line_values")
     invoice_date = fields.Char(compute="_compute_line_values", size=256)
     invoice_number = fields.Char(compute="_compute_line_values", size=256)
-    cig = fields.Char(compute="_compute_cig_cup_values", string="CIG", size=256)
-    cup = fields.Char(compute="_compute_cig_cup_values", string="CUP", size=256)
-
-    def _compute_cig_cup_values(self):
-        for line in self:
-            line.cig = ""
-            line.cup = ""
-            for slip_move_line in line.move_line_ids:
-                for (
-                    related_document
-                ) in slip_move_line.move_line_id.move_id.related_document_ids:
-                    if related_document.cup:
-                        line.cup = str(related_document.cup)
-                    if related_document.cig:
-                        line.cig = str(related_document.cig)
+    cig = fields.Char(string="CIG", size=256)
+    cup = fields.Char(string="CUP", size=256)
 
     def move_line_id_payment_get(self):
         # return the move line ids with the same account as the slip line
