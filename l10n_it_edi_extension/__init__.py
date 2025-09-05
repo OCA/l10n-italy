@@ -49,16 +49,6 @@ def _l10n_it_fatturapa_pre_migration(env):
         [
             (
                 "account.move",
-                "intermediary",
-            ),
-            (
-                "account.move",
-                "l10n_it_edi_intermediary_id",
-            ),
-        ],
-        [
-            (
-                "account.move",
                 "sender",
             ),
             (
@@ -294,16 +284,6 @@ def _l10n_it_fatturapa_pre_migration(env):
             (
                 "res.company",
                 "l10n_edi_it_admin_ref",
-            ),
-        ],
-        [
-            (
-                "res.company",
-                "fatturapa_sender_partner",
-            ),
-            (
-                "res.company",
-                "l10n_edi_it_sender_partner",
             ),
         ],
         [

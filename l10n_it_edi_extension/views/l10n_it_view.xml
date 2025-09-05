@@ -155,10 +155,6 @@
                 <field name="l10n_edi_it_art73" invisible="country_code != 'IT'" />
                 <field name="l10n_edi_it_admin_ref" invisible="country_code != 'IT'" />
                 <field
-                    name="l10n_edi_it_sender_partner"
-                    invisible="country_code != 'IT'"
-                />
-                <field
                     name="l10n_edi_it_stable_organization"
                     invisible="country_code != 'IT'"
                 />

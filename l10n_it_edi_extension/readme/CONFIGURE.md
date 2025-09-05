@@ -6,6 +6,7 @@ Le uniche configurazioni disponibili sono:
   - Crea il partner se non esiste durante l'importazione: in Fatturazione (o Contabilità per EE) > Configurazione > Impostazioni > Fatturazione Elettronica Italiana, spuntare l'opzione se si vuole attivare la funzionalità per i dati dei nodi:
      - `<CessionarioCommittente>`
      - `<CedentePrestatore>`
+     - `<RappresentanteFiscale>`
 
 Non sono necessarie altre configurazioni specifiche per l10n_it_edi_extension: una volta installato, le sue funzionalità sono attive e si integrano automaticamente nell'interfaccia esistente.
 
@@ -29,7 +30,6 @@ The only available configurations are:
      - `<CessionarioCommittente>`
      - `<CedentePrestatore>`
      - `<RappresentanteFiscale>`
-     - `<TerzoIntermediarioOSoggettoEmittente>`
 
 No other specific configurations are required for l10n_it_edi_extension: once installed, its features are active and automatically integrate into the existing interface.
 
