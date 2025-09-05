@@ -728,13 +728,23 @@ class AccountVatPeriodEndStatement(models.Model):
             credit_accounts = tax._get_credit_accounts()
             if debit_accounts:
                 if (
-                    all(debit_accounts.ids) in statement.account_ids.ids
+                    all(
+                        [
+                            acc_id in statement.account_ids.ids
+                            for acc_id in debit_accounts.ids
+                        ]
+                    )
                     or not statement.account_ids
                 ):
                     self._set_debit_lines(tax, debit_line_ids, statement)
             if credit_accounts:
                 if (
-                    all(credit_accounts.ids) in statement.account_ids.ids
+                    all(
+                        [
+                            acc_id in statement.account_ids.ids
+                            for acc_id in credit_accounts.ids
+                        ]
+                    )
                     or not statement.account_ids
                 ):
                     self._set_credit_lines(tax, credit_line_ids, statement)
