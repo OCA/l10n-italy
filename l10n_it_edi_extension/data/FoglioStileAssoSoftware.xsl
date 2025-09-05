@@ -2816,14 +2816,49 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <style type="text/css">
 
+          body {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          }
+
+          @media print {
+            body {
+              margin: 0;
+              padding: 0;
+            }
+            #fattura-container {
+              display: block !important;
+              width: 100% !important;
+              margin: 0 !important;
+              padding: 0 !important;
+            }
+            #fattura-elettronica {
+              display: block !important;
+              width: auto !important;
+              margin: 0 auto !important;
+            }
+            table {
+              margin: 0 auto !important;
+            }
+          }
+
+          #fattura-container
+          {
+          display: block;
+          width: 100%;
+          margin: 0 auto;
+          padding: 0;
+          }
+
           #fattura-elettronica
           {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          margin-left: auto;
-          margin-right: auto;
-          max-width: 1280px;
-          min-width: 800px;
-          padding: 0;  }
+          margin: 0 auto;
+          width: 850px;
+          padding: 0;
+          display: block;
+          }
 
           #fattura-elettronica
           div.page {
@@ -2833,8 +2868,13 @@
           {
           width: 800px;
           border: 2px solid black;
+          margin: 0 auto;
           }
 
+          table {
+          margin-left: auto;
+          margin-right: auto;
+          }
 
           tr td {vertical-align: top;}
 
@@ -2898,6 +2938,7 @@
           table-layout: fixed;
           border-collapse: collapse;
           word-wrap:normal; <!--break-word;-->
+          margin: 0 auto;
           }
           table.tbTitolo th {
           padding-left: 5px;
@@ -2916,6 +2957,7 @@
           table-layout: fixed;
           border-collapse: collapse;
           word-wrap:break-word;
+          margin: 0 auto;
           }
 
           table.tbFoglio th {
@@ -3051,7 +3093,7 @@
 		  table.tbNoBorder
           {
 			  border-collapse: collapse;
-			  margin-bottom: 5px;
+			  margin: 0 auto 5px auto;
 			  font-size:small;
 			  text-align:center;
 			  width:800px;
@@ -3060,7 +3102,10 @@
         </style>
       </head>
       <body>
-        <div id="fattura-container">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td align="center">
+              <div id="fattura-container">
 
           <xsl:choose>
             <xsl:when test="d:FatturaElettronicaSemplificata">
@@ -3096,6 +3141,9 @@
 
 
         </div>
+            </td>
+          </tr>
+        </table>
       </body>
     </html>
   </xsl:template>
