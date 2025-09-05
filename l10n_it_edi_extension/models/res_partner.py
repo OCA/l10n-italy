@@ -36,6 +36,7 @@ class ResPartnerInherit(models.Model):
         "Maximum: every line contained in the electronic bill "
         "will create a line in the bill.",
     )
+    l10n_edi_it_admin_ref = fields.Char(string="Administrative Reference")
 
     @api.constrains(
         "l10n_it_codice_fiscale",

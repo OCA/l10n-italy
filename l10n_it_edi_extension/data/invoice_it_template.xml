@@ -34,8 +34,8 @@
         </xpath>
         <xpath expr="//CedentePrestatore/IscrizioneREA" position="after">
             <RiferimentoAmministrazione
-                t-if="company.l10n_edi_it_admin_ref"
-                t-out="company.l10n_edi_it_admin_ref"
+                t-if="partner.l10n_edi_it_admin_ref or company.l10n_edi_it_admin_ref"
+                t-out="partner.l10n_edi_it_admin_ref or company.l10n_edi_it_admin_ref"
             />
         </xpath>
         <xpath expr="//DatiGeneraliDocumento/ImportoTotaleDocumento" position="after">
