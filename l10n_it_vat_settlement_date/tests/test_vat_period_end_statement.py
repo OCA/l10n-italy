@@ -51,6 +51,7 @@ class TestVATPeriodEndStatement(TestVATStatementCommon):
         )
         self.assertIn(bill, period_settled_moves)
 
+        bill.line_ids.tax_ids.invalidate_recordset()
         statement.compute_amounts()
         new_authority_vat_amount = statement.authority_vat_amount
         self.assertNotEqual(

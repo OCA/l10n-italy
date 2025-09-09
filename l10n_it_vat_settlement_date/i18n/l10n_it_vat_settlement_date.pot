@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -37,13 +37,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_vat_settlement_date.field_account_bank_statement_line__l10n_it_vat_settlement_date
 #: model:ir.model.fields,field_description:l10n_it_vat_settlement_date.field_account_move__l10n_it_vat_settlement_date
 #: model:ir.model.fields,field_description:l10n_it_vat_settlement_date.field_account_move_line__l10n_it_vat_settlement_date
-#: model:ir.model.fields,field_description:l10n_it_vat_settlement_date.field_account_payment__l10n_it_vat_settlement_date
 msgid "VAT Settlement Date"
 msgstr ""
 
 #. module: l10n_it_vat_settlement_date
-#: model:ir.model,name:l10n_it_vat_settlement_date.model_report_account_vat_period_end_statement_vat_statement
-msgid "VAT Statement report"
+#: model:ir.model,name:l10n_it_vat_settlement_date.model_report_l10n_it_account_vat_period_end_settlement_vat_statement
+msgid "VAT Settlement report"
 msgstr ""
 
 #. module: l10n_it_vat_settlement_date
@@ -54,7 +53,6 @@ msgstr ""
 #. module: l10n_it_vat_settlement_date
 #. odoo-python
 #: code:addons/l10n_it_vat_settlement_date/wizard/report_registro_iva_xlsx.py:0
-#, python-format
 msgid "VAT settlement date"
 msgstr ""
 

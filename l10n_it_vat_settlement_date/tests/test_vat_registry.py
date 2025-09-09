@@ -23,6 +23,7 @@ class TestVATRegistry(AccountTestInvoicingCommon):
             amounts=[
                 100,
             ],
+            taxes=cls.tax_sale_a,
             post=True,
         )
         cls.supplier_journal = cls.company_data["default_journal_purchase"]
