@@ -11,6 +11,9 @@ PICKING_TYPES = [
     ("outgoing", "Outgoing"),
     ("internal", "Internal"),
     ("mrp_operation", "Manufacturing Operation"),
+    # aggiunte per Odoo 18 / flussi moderni:
+    ('dropship', 'Dropship'),
+    ('crossdock', 'Cross Dock'),
 ]
 DOMAIN_PICKING_TYPES = [t[0] for t in PICKING_TYPES]
 
