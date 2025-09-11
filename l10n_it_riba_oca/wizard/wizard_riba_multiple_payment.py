@@ -88,10 +88,20 @@ class RibaPaymentMultiple(models.TransientModel):
         # and account moves creation
         incasso_lines.state = "paid"
         # type "sbf" lines need to be settled and account moves created
-        sbf_lines.riba_line_settlement(
-            date=self.payment_date,
-        )
+        if sbf_lines:
+            sbf_lines.riba_line_settlement(
+                date=self.payment_date,
+            )
         # set the state of the RiBa slips to 'paid' if all their lines are paid
         for slip in lines.slip_id:
             if list(set(slip.line_ids.mapped("state"))) == ["paid"]:
                 slip.state = "paid"
+
+    def skip(self):
+        active_id = self.env.context.get("active_id") or False
+        if not active_id:
+            raise UserError(self.env._("No active ID found."))
+        riba_slip = self.env["riba.slip"].browse(active_id)
+        riba_slip.state = "paid"
+        riba_slip.line_ids.state = "paid"
+        return {"type": "ir.actions.act_window_close"}

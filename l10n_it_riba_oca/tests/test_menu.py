@@ -5,7 +5,7 @@
 from odoo.tests import common
 
 
-class TestRiBaCommon(common.TransactionCase):
+class TestRiBaMenu(common.TransactionCase):
     def setUp(self):
         super().setUp()
         self.menu_model = self.env["ir.ui.menu"]
