@@ -1,52 +1,40 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_it_riba
+# 	* l10n_it_riba_oca
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 10:26+0000\n"
-"PO-Revision-Date: 2024-11-18 10:06+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"Plural-Forms: \n"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_account_config_settings_riba
 msgid ""
 "<span class=\"o_form_label\">RiBa Collection Fees</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" "
-"title=\"Product used as Service for RiBa Collection Fees\" aria-"
-"label=\"Product used as Service for RiBa Collection Fees\" groups=\"base."
-"group_multi_company\" role=\"img\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Product used as Service for RiBa Collection Fees\" aria-label=\"Product used as Service for RiBa Collection Fees\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
-"<span class=\"o_form_label\">Spese di incasso RiBa</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" "
-"title=\"Prodotto usato come servizio per le spese di incasso RiBa\" aria-"
-"label=\"Prodotto usato come servizio per le spese di incasso RiBa\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 msgid "<strong>Total</strong>"
-msgstr "<strong>Totale</strong>"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__bank_account_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__bank_account_id
 msgid "A/C Bank Account"
-msgstr "Conto banca C/C"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_configuration_form
 msgid "Acceptance"
-msgstr "Accettazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -56,68 +44,67 @@ msgstr "Accettazione"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__acceptance_account_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__acceptance_account_id
 msgid "Acceptance Account"
-msgstr "Conto accettazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__acceptance_amount
-#, fuzzy
 msgid "Acceptance Amount"
-msgstr "Conto accettazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__date_accepted
 msgid "Acceptance Date"
-msgstr "Data accettazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__acceptance_move_ids
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Acceptance Entries"
-msgstr "Registrazioni accettazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__acceptance_move_id
 msgid "Acceptance Entry"
-msgstr "Registrazione accettazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__acceptance_journal_id
 msgid "Acceptance Journal"
-msgstr "Registro accettazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip__state__accepted
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
 msgid "Accepted"
-msgstr "Accettata"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_configuration__credit_account_id
 msgid "Account used when RiBa amount is credited by the bank."
-msgstr "Conto usato quando l'importo RiBa viene accreditato dalla banca."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_configuration__acceptance_account_id
 msgid "Account used when RiBa is accepted by the bank."
-msgstr "Conto usato quando la RiBa viene accettata dalla banca."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_line_form
 msgid "Accounting"
-msgstr "Contabilità"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_needaction
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_needaction
 msgid "Action Needed"
-msgstr "Azione richiesta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_configuration__type__incasso
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_past_due__config_type__incasso
 msgid "After Collection"
-msgstr "Al dopo incasso"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__total_amount
@@ -128,7 +115,7 @@ msgstr "Al dopo incasso"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Amount"
-msgstr "Importo"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_account_bank_statement_line__open_amount
@@ -136,8 +123,6 @@ msgstr "Importo"
 msgid ""
 "Amount currently only supposed to be paid, but has actually not happened"
 msgstr ""
-"Importo che al momento dovrebbe essere pagato, ma in realtà non è stato "
-"ancora effettuato"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__expense_amount
@@ -148,9 +133,8 @@ msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__credit_amount
-#, fuzzy
 msgid "Amount the bank is crediting to the company. "
-msgstr "Conto usato quando l'importo RiBa viene accreditato dalla banca."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__credit_account_id
@@ -163,12 +147,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_attachment_count
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_attachment_count
 msgid "Attachment Count"
-msgstr "Numero allegati"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_res_bank
 msgid "Bank"
-msgstr "Banca"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -176,7 +160,7 @@ msgstr "Banca"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__bank_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__bank_account_id
 msgid "Bank Account"
-msgstr "Conto bancario"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_account_bank_statement_line__riba_partner_bank_id
@@ -185,39 +169,35 @@ msgid ""
 "Bank Account Number to which the RiBa will be debited. If not set, first "
 "bank in partner will be used."
 msgstr ""
-"Numero di conto bancario al quale verrà addebitata la Riba. Se non "
-"impostato, viene utilizzata la prima banca del partner."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_res_partner_bank
 msgid "Bank Accounts"
-msgstr "Conti bancari"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_credit
-#, fuzzy
 msgid "Bank Credit Wizard for RiBa Collections"
-msgstr "Prodotto usato come servizio per le spese di incasso RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba_oca/wizard/wizard_past_due.py:0
 msgid "Bank Fee"
-msgstr "Spese bancarie"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__bank_expense_account_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__bank_expense_account_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__bank_expense_account_id
 msgid "Bank Fees Account"
-msgstr "Conto spese bancarie"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__expense_amount
-#, fuzzy
 msgid "Bank Fees Amount"
-msgstr "Conto spese bancarie"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__bank_account_id
@@ -229,41 +209,40 @@ msgstr ""
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_configuration__bank_id
 msgid "Bank account used for RiBa issuing."
-msgstr "Conto bancario usato per l'emissione RiBa."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_res_partner__property_riba_supplier_company_bank_id
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_res_users__property_riba_supplier_company_bank_id
 msgid "Bank account used for the RiBa of this supplier."
-msgstr "Conto bancario utilizzato per le RiBa di questo fornitore."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_account_bank_statement_line__riba_supplier_company_bank_id
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_account_move__riba_supplier_company_bank_id
 msgid "Bank account used for the RiBa of this vendor bill."
 msgstr ""
-"Conco bancario utilizzato per le RiBa delle fatture di questo fornitore."
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_past_due.py:0
 msgid "Bills Account"
-msgstr "Conto effetti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.server,name:l10n_it_riba_oca.action_wizard_riba_due_date_settlement
 msgid "C/O Due Date Settlement"
-msgstr "Registrazione Riba a data di scadenza"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__cig
 msgid "CIG"
-msgstr "CIG"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__cup
 msgid "CUP"
-msgstr "CUP"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_credit
@@ -274,40 +253,34 @@ msgstr "CUP"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_presentation_riba
 msgid "Cancel"
-msgstr "Annulla"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip__state__cancel
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip_line__state__cancel
 msgid "Canceled"
-msgstr "Annullato"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/account.py:0
 msgid ""
-"Cannot post invoices with C/O payments without bank. Please check the "
-"following invoices:\n"
+"Cannot post invoices with C/O payments without bank. Please check the following invoices:\n"
 "\n"
 "- \n"
 "- "
 msgstr ""
-"Non si può registrare una fattura con pagamenti RiBa senza banca. "
-"Controllare le seguenti fatture:\n"
-"\n"
-"- \n"
-"- "
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_file_export
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_payment_date
 msgid "Close"
-msgstr "Chiudi"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_company__due_cost_service_id
 msgid "Collection Fees Service"
-msgstr "Servizio spese di incasso"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_account_payment_term__riba_payment_cost
@@ -315,25 +288,23 @@ msgid ""
 "Collection fees amount. If different from 0, for each payment deadline an "
 "invoice line will be added to invoice, with this amount."
 msgstr ""
-"Importo spese di incasso. Se diverso da 0, ad ogni scadenza di pagamento "
-"viene aggiunta alla fattura una riga pari all'importo."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_res_company
 msgid "Companies"
-msgstr "Aziende"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__company_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__company_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__company_id
 msgid "Company"
-msgstr "Azienda"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_partner_form_riba
 msgid "Company Bank Account"
-msgstr "Conto bancario aziendale"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_bank_statement_line__riba_supplier_company_bank_id
@@ -341,49 +312,49 @@ msgstr "Conto bancario aziendale"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_partner__property_riba_supplier_company_bank_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_users__property_riba_supplier_company_bank_id
 msgid "Company Bank Account for Supplier"
-msgstr "Conto bancario aziendale per fornitore"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_res_config_settings
 msgid "Config Settings"
-msgstr "Impostazioni di configurazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_issue__configuration_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__config_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__config_id
 msgid "Configuration"
-msgstr "Configurazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_configuration
 msgid "Configuration parameters for RiBa"
-msgstr "Parametri di configurazione Riba"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_due_date_settlement
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_payment_date
 msgid "Confirm"
-msgstr "Conferma"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip_line__state__confirmed
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_slip_riba_filter
 msgid "Confirmed"
-msgstr "Confermata"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_res_partner
 msgid "Contact"
-msgstr "Contatto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_credit
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_issue_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_past_due
 msgid "Create"
-msgstr "Crea"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_presentation_riba_issue__create_uid
@@ -399,7 +370,7 @@ msgstr "Crea"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__create_uid
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__create_uid
 msgid "Created by"
-msgstr "Creato da"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_presentation_riba_issue__create_date
@@ -415,36 +386,35 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__create_date
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__date_created
 msgid "Creation Date"
-msgstr "Data creazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_credit.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_configuration_form
 msgid "Credit"
-msgstr "Accredito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__credit_account_id
-#, fuzzy
 msgid "Credit Account"
-msgstr "Importo accredito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__credit_amount
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__credit_amount
 msgid "Credit Amount"
-msgstr "Importo accredito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__date_credited
 msgid "Credit Date"
-msgstr "Data accredito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -453,84 +423,83 @@ msgstr "Data accredito"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__credit_move_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Credit Entry"
-msgstr "Registrazione accredito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__credit_journal_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__credit_journal_id
 msgid "Credit Journal"
-msgstr "Registro accrediti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__move_line_id
 msgid "Credit Move Line"
-msgstr "Riga movimento di accredito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__move_line_ids
 msgid "Credit Move Lines"
-msgstr "Righe movimento di accredito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/riba.py:0
 msgid "Credit date must be greater or equal to acceptance date."
 msgstr ""
-"La data di accredito deve essere maggiore o pari alla data di accettazione."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip__state__credited
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip_line__state__credited
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
 msgid "Credited"
-msgstr "Accreditata"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_bank_statement_line__riba_credited_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move__riba_credited_ids
 msgid "Credited RiBa Slips"
-msgstr "Distinte RiBa accreditate"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_presentation_riba_issue__currency_id
 msgid "Currency"
-msgstr "Valuta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__partner_id
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 msgid "Customer"
-msgstr "Cliente"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__date
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_to_issue_tree
 msgid "Debit Total"
-msgstr "Totale addebito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__bank_id
 msgid "Debtor Bank"
-msgstr "Banca debitore"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_config_settings__due_cost_service_id
 msgid "Default Collection Fees Service"
-msgstr "Servizio spese di incasso predefinito"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_res_config_settings__due_cost_service_id
 msgid "Default Service for RiBa Collection Fees on invoice."
-msgstr "Servizio predefinito per le spese di incasso RiBa nella fattura."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip__date_paid
 msgid "Default date for payments."
-msgstr "Data predefinita per i pagamenti."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_due_date_settlement__payment_date
@@ -539,18 +508,16 @@ msgid ""
 "Defaults to the 'Payment date' in the RiBas.\n"
 "If empty, the due date in each line will be used."
 msgstr ""
-"Il valore predefinito è 'Data di pagamento' nelle RiBa.\n"
-"Se vuoto, verrà utilizzata la data di scadenza in ogni riga."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__name
 msgid "Description"
-msgstr "Descrizione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_line_form
 msgid "Detail"
-msgstr "Dettaglio"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_presentation_riba_issue__display_name
@@ -566,7 +533,7 @@ msgstr "Dettaglio"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__display_name
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__display_name
 msgid "Display Name"
-msgstr "Nome visualizzato"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip__state__draft
@@ -574,7 +541,7 @@ msgstr "Nome visualizzato"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_slip_riba_filter
 msgid "Draft"
-msgstr "Bozza"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_due_date_settlement__due_date
@@ -582,14 +549,14 @@ msgstr "Bozza"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
 msgid "Due Date"
-msgstr "Scadenza"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_credit.py:0
 #: code:addons/l10n_it_riba_oca/wizard/wizard_past_due.py:0
 msgid "Every account is mandatory."
-msgstr "I conti sono tutti obbligatori."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__bank_expense_account_id
@@ -601,91 +568,90 @@ msgstr ""
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_file_export
 msgid "Export"
-msgstr "Esporta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.server,name:l10n_it_riba_oca.action_wizard_riba_file_export
 msgid "Export RiBa"
-msgstr "Esporta RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_file_export
 msgid "Export RiBa file"
-msgstr "Esporta file RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__past_due_fee_amount
-#, fuzzy
 msgid "Fee Amount"
-msgstr "Importo spese"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__expense_amount
 msgid "Fees Amount"
-msgstr "Importo spese"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_file_export__riba_txt
 msgid "File"
-msgstr "File"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_file_export__file_name
 msgid "File Name"
-msgstr "Nome file"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_follower_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_follower_ids
 msgid "Followers"
-msgstr "Seguito da"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_partner_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguito da (partner)"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_bank__banca_estera
 msgid "Foreign Bank"
-msgstr "Banca estera"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_account_full_reconcile
 msgid "Full Reconcile"
-msgstr "Riconciliazione completa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_line_form
 msgid "General"
-msgstr "Generale"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_partner__group_riba
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_users__group_riba
 msgid "Group RiBa"
-msgstr "Raggruppa per cliente"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_res_partner__group_riba
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_res_users__group_riba
 msgid "Group RiBa by customer while issuing."
-msgstr "All'emissione, raggruppa le RiBa per cliente."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__has_message
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__has_message
 msgid "Has Message"
-msgstr "Ha un messaggio"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__iban
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__iban
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 msgid "IBAN"
-msgstr "IBAN"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_presentation_riba_issue__id
@@ -701,65 +667,65 @@ msgstr "IBAN"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_account_setup_bank_manual_config__codice_sia
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_res_partner_bank__codice_sia
 msgid "Identification Code of the Company in the Interbank System."
-msgstr "Codice identificativo dell'azienda nel sistema interbancario."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip__message_needaction
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip_line__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip__message_has_error
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip_line__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_past_due__date
 msgid "If empty, the due date in the line will be used."
-msgstr "Se vuoto, verrà utilizzata la data di scadenza indicata nella riga."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/account.py:0
 msgid "Invoice %(name)s for customer \"%(customer_name)s\", total %(amount)s"
-msgstr "Fattura %(name)s per cliente \"%(customer_name)s\", totale %(amount)s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__invoice_date
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 msgid "Invoice Date"
-msgstr "Data fattura"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_line_form
 msgid "Invoice Entries"
-msgstr "Registrazioni fattura"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__invoice_number
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 msgid "Invoice Number"
-msgstr "Numero fattura"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/account.py:0
 msgid "Invoice is linked to RiBa slip No. %(riba)s"
-msgstr "La fattura è collegata alla distinta RiBa n. %(riba)s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_is_follower
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_is_follower
 msgid "Is Follower"
-msgstr "Segue"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_bank_statement_line__is_riba_payment
@@ -767,70 +733,69 @@ msgstr "Segue"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_partner__is_supplier_payment_riba
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_users__is_supplier_payment_riba
 msgid "Is RiBa Payment"
-msgstr "È un pagamento RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.ui.menu,name:l10n_it_riba_oca.menu_riba_to_issue
 msgid "Issue"
-msgstr "Emissione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__type
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__config_type
 msgid "Issue Mode"
-msgstr "Modalità emissione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.server,name:l10n_it_riba_oca.riba_issue_action_server
 msgid "Issue RiBa"
-msgstr "Emetti RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_filter
 msgid "Issued RiBas"
-msgstr "RiBa emesse"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_issue.py:0
 msgid "It is possible to issue C/O for posted move only!"
-msgstr "E' possibile emettere le RiBa solo per fatture validate!"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_account_move
 msgid "Journal Entry"
-msgstr "Registrazione contabile"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_account_move_line
 msgid "Journal Item"
-msgstr "Movimento contabile"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_configuration__credit_journal_id
 msgid "Journal used when RiBa amount is credited by the bank."
 msgstr ""
-"Registro utilizzato quando l'importo RiBa viene accreditato dalla banca."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_configuration__acceptance_journal_id
 msgid "Journal used when RiBa is accepted by the bank."
-msgstr "Registro utilizzato quanto la RiBa viene accettata dalla banca."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_configuration__past_due_journal_id
 msgid "Journal used when RiBa is past due."
-msgstr "Registro utilizzato quando la RiBa è insoluta."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_configuration__settlement_journal_id
 msgid "Journal used when customers finally pay the invoice to bank."
-msgstr "Registro usato quando i clienti pagano infine la fattura alla banca."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip__registration_date
 msgid "Keep empty to use the current date."
-msgstr "Lasciare vuoto per utilizzare la data corrente."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_presentation_riba_issue__write_uid
@@ -846,7 +811,7 @@ msgstr "Lasciare vuoto per utilizzare la data corrente."
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__write_uid
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento di"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_presentation_riba_issue__write_date
@@ -862,7 +827,7 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__write_date
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__acceptance_account_id
@@ -874,90 +839,90 @@ msgstr ""
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_layout
 msgid "Logo"
-msgstr "Logo"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_past_due
 msgid "Manage Past Due RiBas"
-msgstr "Gestione RiBa insolute"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Mark as Accepted"
-msgstr "Segna come accettata"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Mark as Credited"
-msgstr "Segna come accreditata"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_tree
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Mark as Past Due"
-msgstr "Segna come insoluta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Mark as Settled"
-msgstr "Segna come pagata"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Mark lines as Settled"
-msgstr "Segna le righe come pagate"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_ir_ui_menu
 msgid "Menu"
-msgstr "Menu"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_has_error
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_has_error
 msgid "Message Delivery error"
-msgstr "Errore di consegna messaggio"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_ids
 msgid "Messages"
-msgstr "Messaggi"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_line_form
 msgid "Move Line"
-msgstr "Riga movimento"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_file_export.py:0
 msgid "No IBAN or ABI/CAB specified for %(partner)s"
-msgstr "Nessun IBAN o ABI/CAB specificato per %(partner)s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_file_export.py:0
 msgid "No IBAN specified."
-msgstr "Nessun IBAN specificato."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_file_export.py:0
 msgid "No SIA Code specified for %(company)s"
-msgstr "Nessun codice SIA indicato per %(company)s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_file_export.py:0
 msgid "No VAT or Fiscal Code specified for %(company)s"
-msgstr "Nessuna partita IVA o codice fiscale specificato per %(company)s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_file_export.py:0
 msgid "No VAT or Fiscal Code specified for %(partner)s"
-msgstr "Nessuna partita IVA o codice fiscale specificato per %(partner)s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -967,13 +932,13 @@ msgstr "Nessuna partita IVA o codice fiscale specificato per %(partner)s"
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_multiple_payment.py:0
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_payment_date.py:0
 msgid "No active ID found."
-msgstr "Nessun ID attivo trovato."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_issue.py:0
 msgid "No bank has been specified for invoice %(invoice)s"
-msgstr "Non è stata specificata una banca per la fattura %(invoice)s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -987,42 +952,42 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__sequence
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 msgid "Number"
-msgstr "Numero"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_needaction_counter
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Numero di azioni"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__message_has_error_counter
 msgid "Number of errors"
-msgstr "Numero di errori"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip__message_needaction_counter
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip_line__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "Numero di messaggi che richiedono un'azione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip__message_has_error_counter
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip_line__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "Numero di messaggi con errore di consegna"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_bank_statement_line__open_amount
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move__open_amount
 msgid "Open Amount"
-msgstr "Valore scoperto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Other Info"
-msgstr "Altre informazioni"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip__state__paid
@@ -1030,12 +995,12 @@ msgstr "Altre informazioni"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_slip_riba_filter
 msgid "Paid"
-msgstr "Pagata"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_account_partial_reconcile
 msgid "Partial Reconcile"
-msgstr "Riconciliazione parziale"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip__state__past_due
@@ -1044,99 +1009,98 @@ msgstr "Riconciliazione parziale"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_configuration_form
 msgid "Past Due"
-msgstr "Insoluta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_past_due.py:0
 msgid "Past Due Bills"
-msgstr "Effetti insoluti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__overdue_credit_account_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__overdue_credit_account_id
 msgid "Past Due Bills Account"
-msgstr "Conto effetti insoluti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__overdue_credit_amount
 msgid "Past Due Bills Amount"
-msgstr "Importo effetti insoluti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__date_past_due
 msgid "Past Due Date"
-msgstr "Data insoluto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__past_due_move_ids
 msgid "Past Due Entries"
-msgstr "Registrazioni insoluto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_past_due.py:0
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__past_due_move_id
 msgid "Past Due Entry"
-msgstr "Registrazione insoluto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__past_due_fee_amount
-#, fuzzy
 msgid "Past Due Fees Amount"
-msgstr "Importo effetti insoluti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.action_invoice_tree1
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__past_due_invoice_ids
 #: model:ir.ui.menu,name:l10n_it_riba_oca.menu_invoices
 msgid "Past Due Invoices"
-msgstr "Fatture insolute"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__past_due_journal_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__past_due_journal_id
 msgid "Past Due Journal"
-msgstr "Registro insoluti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_bank_statement_line__past_due_move_line_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move__past_due_move_line_ids
 msgid "Past Due Journal Items"
-msgstr "Movimenti contabili insoluto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_past_due.py:0
 msgid "Past Due RiBa %(name)s - Line %(sequence)s"
-msgstr "RiBa insoluta %(name)s - Riga %(sequence)s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_bank_statement_line__riba_past_due_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move__riba_past_due_ids
 msgid "Past Due RiBa Slips"
-msgstr "Distinte RiBa insolute"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.riba_past_due_action
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_past_due
 msgid "Past Due RiBas"
-msgstr "RiBa insolute"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Past Dues"
-msgstr "Insoluti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_payment_multiple_view_form
 msgid "Pay"
-msgstr "Paga"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_payment_multiple
 msgid "Pay multiple RiBa lines"
-msgstr "Paga righe RiBa multiple"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_due_date_settlement__payment_date
@@ -1144,12 +1108,12 @@ msgstr "Paga righe RiBa multiple"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_payment_multiple__payment_date
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__date_paid
 msgid "Payment Date"
-msgstr "Data pagamento"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_account_payment_term
 msgid "Payment Terms"
-msgstr "Termini di pagamento"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__payment_ids
@@ -1157,76 +1121,76 @@ msgstr "Termini di pagamento"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_line_form
 msgid "Payments"
-msgstr "Pagamenti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/riba.py:0
 msgid "Please define a Settlement Journal."
-msgstr "Definire un registro pagamenti."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_riba_multiple_payment.py:0
 msgid "Please select the RiBa lines to be paid"
-msgstr "Selezionare le righe RiBa da pagare"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_presentation_riba_issue__presentation_amount
 msgid "Presentation Amount"
-msgstr "Importo presentazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.riba_presentation_action
 #: model:ir.ui.menu,name:l10n_it_riba_oca.menu_presentation_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_presentation_riba
 msgid "Presentation Riba"
-msgstr "Presentazione RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_presentation_riba_issue
 msgid "Presentation Riba Issue"
-msgstr "Emissione presentazione RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.report,name:l10n_it_riba_oca.print_slip_qweb
 msgid "Print Slip"
-msgstr "Stampa distinta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_account_config_settings_riba
 msgid "Product"
-msgstr "Prodotto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_account_config_settings_riba
 msgid "Product used as Service for RiBa Collection Fees"
-msgstr "Prodotto usato come servizio per le spese di incasso RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__protest_charge_account_id
 msgid "Protest Fee Account"
-msgstr "Conto spese di protesto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_filter
 msgid "Reconciled"
-msgstr "Riconciliata"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__name
 msgid "Reference"
-msgstr "Riferimento"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__registration_date
 msgid "Registration Date"
-msgstr "Data registrazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Reset to Draft"
-msgstr "Reimposta a bozza"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__riba
@@ -1234,46 +1198,46 @@ msgstr "Reimposta a bozza"
 #: model:ir.ui.menu,name:l10n_it_riba_oca.menu_riba
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_partner_form_riba
 msgid "RiBa"
-msgstr "RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.action_riba_configuration
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_configuration_form
 msgid "RiBa - Configuration"
-msgstr "RiBa - Configurazione"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:account.payment.term,name:l10n_it_riba_oca.account_payment_term_riba
 #: model_terms:account.payment.term,note:l10n_it_riba_oca.account_payment_term_riba
 msgid "RiBa 30 Days End of Month"
-msgstr "RiBa 30 gg. fine mese"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__credit_account_id
 msgid "RiBa Account"
-msgstr "Conto RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_bank_statement_line__riba_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move__riba_partner_bank_id
 msgid "RiBa Bank Account"
-msgstr "Conto bancario RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_payment_term__riba_payment_cost
 msgid "RiBa Collection Fees"
-msgstr "Spese di incasso RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__due_cost_line
 msgid "RiBa Collection Fees Line"
-msgstr "Riga spese di incasso RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.ui.menu,name:l10n_it_riba_oca.menu_riba_configuration
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_account_config_settings_riba
 msgid "RiBa Configuration"
-msgstr "Configurazione RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -1281,40 +1245,39 @@ msgstr "Configurazione RiBa"
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.riba_credit_action
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_credit
 msgid "RiBa Credit"
-msgstr "Accredito banca"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/wizard/wizard_credit.py:0
 msgid "RiBa Credit %s"
-msgstr "Accredito RiBa %s"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__credit_account_id
-#, fuzzy
 msgid "RiBa Credit Account"
-msgstr "Conto RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__slip_line_ids
 msgid "RiBa Detail"
-msgstr "Dettaglio RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_slip_line
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_slip_move_line
 msgid "RiBa Details"
-msgstr "Dettagli RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__line_ids
 msgid "RiBa Due Dates"
-msgstr "Scadenze RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_file_export
 msgid "RiBa File Export Wizard"
-msgstr "Procedura esportazione file RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.action_riba_to_issue
@@ -1322,137 +1285,133 @@ msgstr "Procedura esportazione file RiBa"
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_issue_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_presentation_riba
 msgid "RiBa Issue"
-msgstr "Emissione RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__slip_line_id
-#, fuzzy
 msgid "RiBa Line"
-msgstr "Paga riga RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.server,name:l10n_it_riba_oca.action_riba_payment_date
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_payment_date
 msgid "RiBa Payment Date"
-msgstr "Data pagamento RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.slip_riba_action
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_slip
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "RiBa Slip"
-msgstr "Distinta RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.detail_riba_action
 msgid "RiBa Slip Detail"
-msgstr "Dettaglio distinta RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 msgid "RiBa Slip No."
-msgstr "Distinta RiBa n°"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_report_l10n_it_riba_oca_slip_qweb
 msgid "RiBa Slip Report"
-msgstr "Rendiconto distinta RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_slip_riba_filter
 msgid "RiBa Slips"
-msgstr "Distinte RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_filter
 msgid "RiBa To Issue"
-msgstr "RiBa da emettere"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip__config_id
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip_line__config_id
 msgid "RiBa configuration to be used."
-msgstr "Configurazione RiBa da utilizzare."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_due_date_settlement__riba_line_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_payment_multiple__riba_line_ids
 msgid "RiBa lines to be paid"
-msgstr "Righe RiBa da pagare"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_due_date_settlement
 msgid "Riba Due Date Settlement"
-msgstr "Registrazione Riba a data di scadenza"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_setup_bank_manual_config__codice_sia
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_partner_bank__codice_sia
 msgid "SIA Code"
-msgstr "Codice SIA"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_due_date_settlement__riba_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_payment_multiple__riba_ids
 msgid "Selected RiBas"
-msgstr "RiBa selezionate"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_payment_date
 msgid "Set RiBa Payment Date"
-msgstr "Imposta data pagamento RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/account.py:0
 msgid "Set a Service for Collection Fees in Company Config."
 msgstr ""
-"Impostare un servizio per le spese di incasso nella configurazione "
-"dell'azienda."
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.server,name:l10n_it_riba_oca.riba_line_settle_action_server
 msgid "Settle RiBa Line"
-msgstr "Paga riga RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/riba.py:0
 msgid "Settle line"
-msgstr "Paga riga"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/riba.py:0
 msgid "Settle lines"
-msgstr "Paga righe"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_configuration_form
 msgid "Settlement"
-msgstr "Pagamento"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__settlement_journal_id
 msgid "Settlement Journal"
-msgstr "Registro pagamenti"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_past_due
 msgid "Skip and Confirm Past Due"
-msgstr "Salta e conferma insoluto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_payment_date
-#, fuzzy
 msgid "Skip and Confirm Payment"
-msgstr "Salta e conferma insoluto"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__slip_id
 msgid "Slip"
-msgstr "Distinta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -1461,46 +1420,44 @@ msgid ""
 "Slip %(name)s is in state '%(state)s'. You can only delete documents in "
 "state 'Draft' or 'Canceled'."
 msgstr ""
-"La distinta %(name)s si trova nello stato «%(state)s». È possibile eliminare "
-"solo documenti in stato «Bozza» o «Annullata»."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__riba_line_id
 msgid "Slip Line"
-msgstr "Riga distinta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_form
 msgid "Slip lines"
-msgstr "Righe distinta"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.ui.menu,name:l10n_it_riba_oca.menu_riba_distinte
 msgid "Slips"
-msgstr "Distinte"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.ui.menu,name:l10n_it_riba_oca.menu_riba_detail
 msgid "Slips Detail"
-msgstr "Dettaglio distinte"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_file_export__state
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__state
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__state
 msgid "State"
-msgstr "Stato"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_configuration__type__sbf
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_past_due__config_type__sbf
 msgid "Subject To Collection"
-msgstr "Salvo buon fine"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_layout
 msgid "Tel:"
-msgstr "Tel:"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -1513,14 +1470,13 @@ msgstr ""
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_issue_view
 msgid "This wizard will generate the RiBa slip"
-msgstr "Questa procedura genera la distinta RiBa"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_past_due
-msgid "This wizard will generate the journal entry related to an past due RiBa"
+msgid ""
+"This wizard will generate the journal entry related to an past due RiBa"
 msgstr ""
-"Questa procedura genera la registrazione contabile relativa a una RiBa "
-"insoluta"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_credit
@@ -1528,25 +1484,21 @@ msgid ""
 "This wizard will generate the journal entry related to credit received from "
 "the bank"
 msgstr ""
-"Questa procedura genera la registrazione contabile relativa all'accredito "
-"ricevuto dalla banca"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_due_date_settlement
 msgid "This wizard will set 'Paid' all C/O details selected by due date"
 msgstr ""
-"Questa procedura guidata imposterà come \"Pagate\" tutte le righe dettaglio "
-"RiBa selezionate per data di scadenza"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_filter
 msgid "To Reconcile"
-msgstr "Da riconciliare"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_to_issue_tree
 msgid "Total Amount"
-msgstr "Importo totale"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__acceptance_amount
@@ -1559,121 +1511,44 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__type
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__type
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__user_id
 msgid "User"
-msgstr "Utente"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__website_message_ids
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__website_message_ids
 msgid "Website Messages"
-msgstr "Messaggi sito web"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip__website_message_ids
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_slip_line__website_message_ids
 msgid "Website communication history"
-msgstr "Cronologia comunicazioni sito web"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_past_due
 msgid ""
 "You can also skip this step and set the line status to 'Past Due' anyway"
 msgstr ""
-"È anche possibile saltare questo passo e impostare ugualmente lo stato a "
-"«Insoluta»"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_payment_date
 msgid ""
 "You can also skip this step and set the slip status to 'Credited' anyway"
 msgstr ""
-"È anche possibile saltare questo passo e impostare ugualmente lo stato ad "
-"«Accreditata»"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_qweb
 msgid "of"
-msgstr "del"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #. odoo-python
 #: code:addons/l10n_it_riba_oca/models/account.py:0
 msgid "{line_name} for {month}-{year}"
-msgstr "{line_name} per {month}-{year}"
-
-#, python-format
-#~ msgid "A/C Bank"
-#~ msgstr "Banca C/C"
-
-#~ msgid "At currency maturation"
-#~ msgstr "A maturazione valuta"
-
-#~ msgid "Bank Credit"
-#~ msgstr "Accredito banca"
-
-#, python-format
-#~ msgid "Bills"
-#~ msgstr "Effetti"
-
-#~ msgid "Bills Amount"
-#~ msgstr "Importo effetti"
-
-#~ msgid "Collection Type"
-#~ msgstr "Tipo riscossione"
-
-#~ msgid "Immediate"
-#~ msgstr "Immediata"
-
-#~ msgid "Is a past due invoice"
-#~ msgstr "È una fattura insoluta"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Ultima modifica il"
-
-#~ msgid "Main Attachment"
-#~ msgstr "Allegato principale"
-
-#~ msgid "Paid Amount"
-#~ msgstr "Importo pagato"
-
-#~ msgid "RiBa Amount"
-#~ msgstr "Importo RiBa"
-
-#~ msgid "Skip and Confirm Credit"
-#~ msgstr "Salta e conferma accredito"
-
-#~ msgid "Withdrawn Amount"
-#~ msgstr "Importo prelevato"
-
-#~ msgid "Mark All as Settled"
-#~ msgstr "Segna tutte come pagate"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Errore consegna SMS"
-
-#~ msgid "Bank Statement Line"
-#~ msgstr "Riga estratto conto bancario"
-
-#, python-format
-#~ msgid "Invoice is linked to RiBa slip No. {riba}"
-#~ msgstr "La fattura è collegata alla distinta RiBa n. {riba}"
-
-#, python-format
-#~ msgid "No IBAN or ABI/CAB specified for "
-#~ msgstr "Nessun IBAN o ABI/CAB specificato per "
-
-#, python-format
-#~ msgid "No SIA Code specified for "
-#~ msgstr "Nessun codice SIA specificato per "
-
-#, python-format
-#~ msgid "No VAT or Fiscal Code specified for "
-#~ msgstr "Nessuna partita IVA o codice fiscale specificato per "
-
-#, python-format
-#~ msgid "No bank has been specified for invoice %s"
-#~ msgstr "Nessuna banca specificata per la fattura %s"
+msgstr ""

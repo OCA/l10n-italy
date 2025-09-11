@@ -16,23 +16,18 @@
                 <group>
                     <field name="config_type" invisible="1" />
                     <field name="past_due_journal_id" />
-                    <field name="effects_account_id" />
-                    <field name="effects_amount" />
                     <field
-                        name="riba_bank_account_id"
+                        name="credit_account_id"
                         invisible="config_type == 'incasso'"
                     />
+                    <field name="credit_amount" invisible="config_type == 'incasso'" />
+                    <field name="overdue_credit_account_id" />
+                    <field name="overdue_credit_amount" />
                     <field
-                        name="riba_bank_amount"
-                        invisible="config_type == 'incasso'"
+                        name="acceptance_account_id"
+                        invisible="config_type == 'sbf'"
                     />
-                    <field name="overdue_effects_account_id" />
-                    <field name="overdue_effects_amount" />
-                    <field
-                        name="bank_account_id"
-                        invisible="config_type == 'incasso'"
-                    />
-                    <field name="bank_amount" invisible="config_type == 'incasso'" />
+                    <field name="bank_account_id" />
                     <field name="bank_expense_account_id" />
                     <field name="expense_amount" />
                     <field name="date" />

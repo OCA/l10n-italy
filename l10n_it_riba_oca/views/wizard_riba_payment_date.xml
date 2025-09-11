@@ -20,6 +20,15 @@
                             type="object"
                         />
                         <button special="cancel" string="Close" />
+                        <separator
+                            string="You can also skip this step and set the slip status to 'Credited' anyway"
+                            colspan="4"
+                        />
+                        <button
+                            string="Skip and Confirm Payment"
+                            name="skip"
+                            type="object"
+                        />
                     </footer>
                 </group>
             </form>

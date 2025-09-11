@@ -71,22 +71,6 @@ class ResPartnerBankAdd(models.Model):
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    @api.depends(
-        "past_due_move_line_ids.past_due_invoice_ids",
-        "past_due_move_line_ids.full_reconcile_id",
-        "past_due_move_line_ids.matched_debit_ids",
-        "past_due_move_line_ids.matched_credit_ids",
-    )
-    def _compute_is_past_due(self):
-        for invoice in self:
-            invoice.is_past_due = False
-            reconciled_past_due = 0
-            for past_due_move_line in invoice.past_due_move_line_ids:
-                if past_due_move_line.reconciled:
-                    reconciled_past_due += 1
-            if len(invoice.past_due_move_line_ids) != reconciled_past_due:
-                invoice.is_past_due = True
-
     def _compute_open_amount(self):
         today = fields.Date.today()
         for invoice in self:
@@ -123,9 +107,6 @@ class AccountMove(models.Model):
         "Past Due Journal Items",
     )
 
-    is_past_due = fields.Boolean(
-        "Is a past due invoice", compute="_compute_is_past_due", store=True
-    )
     is_riba_payment = fields.Boolean(
         "Is RiBa Payment", related="invoice_payment_term_id.riba"
     )
@@ -303,7 +284,35 @@ class AccountMove(models.Model):
                     invoice._sync_dynamic_lines(
                         container={"records": invoice, "self": invoice}
                     )
-        return super().action_post()
+        res = super().action_post()
+
+        # Automatic reconciliation for RiBa credit moves
+        # When a credit move is posted and there are related RiBa slips,
+        # we need to reconcile the acceptance and credit move lines
+        if self.riba_credited_ids:
+            # Get the acceptance account from the RiBa configuration
+            # Note: All RiBa slips should have the same configuration
+            acceptance_account_id = self.riba_credited_ids[
+                0
+            ].config_id.acceptance_account_id
+
+            # Find credit move lines with the acceptance account
+            credit_lines = self.line_ids.filtered(
+                lambda line: line.account_id == acceptance_account_id
+            )
+
+            # Find acceptance move lines with the same account
+            acceptance_lines = (
+                self.riba_credited_ids.acceptance_move_ids.line_ids.filtered(
+                    lambda line: line.account_id == acceptance_account_id
+                )
+            )
+
+            # Reconcile the matching lines to complete the RiBa credit flow
+            if credit_lines and acceptance_lines:
+                lines = credit_lines | acceptance_lines
+                lines.reconcile()
+        return res
 
     def button_draft(self):
         # ---- Delete Collection Fees Line of invoice when set Back to Draft
@@ -381,6 +390,7 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
+    slip_line_id = fields.Many2one("riba.slip.line", "RiBa Line", readonly=True)
     slip_line_ids = fields.One2many(
         "riba.slip.move.line", "move_line_id", "RiBa Detail"
     )
@@ -433,24 +443,33 @@ class AccountMoveLine(models.Model):
             )
         return result
 
-    def get_riba_lines(self):
-        riba_lines = self.env["riba.slip.line"]
-        return riba_lines.search([("acceptance_move_id", "=", self.move_id.id)])
-
     def update_paid_riba_lines(self):
-        # set paid only if not past_due
-        if not self.env.context.get("past_due_reconciliation"):
-            riba_lines = self.get_riba_lines()
-            for riba_line in riba_lines:
-                # allowed transitions:
-                # credited_to_paid and accepted_to_paid. See workflow
-                if riba_line.state in ["confirmed", "credited"]:
-                    if riba_line.test_reconciled():
-                        riba_line.state = "paid"
-                        riba_line.slip_id.state = "paid"
+        """
+        Update RiBa line status to 'paid' when move lines are reconciled.
+
+        This method is called during reconciliation to mark RiBa lines as paid
+        when the related account move lines are reconciled, but only if:
+        - We're not in a past_due_reconciliation context
+        - The RiBa line is in a state that allows transition to 'paid'
+        """
+        sl = self.slip_line_id
+        # Only update if not processing past due reconciliation and line exists
+        if not self.env.context.get("past_due_reconciliation") and sl.state in [
+            "confirmed",  # Accepted by bank but not yet credited
+            "credited",  # Already credited by bank
+        ]:
+            # Mark the RiBa line as paid
+            sl.state = "paid"
 
     def reconcile(self):
+        """
+        Override reconcile to update RiBa line states.
+
+        When account move lines are reconciled, we need to check if any
+        of them are related to RiBa lines and update their status accordingly.
+        """
         res = super().reconcile()
+        # Update RiBa line states for each reconciled line
         for line in self:
             line.update_paid_riba_lines()
         return res
@@ -491,15 +510,23 @@ class AccountFullReconcile(models.Model):
         return riba_lines
 
     def unreconcile_riba_lines(self, riba_lines):
+        """
+        Reset RiBa line states when reconciliation is undone.
+
+        When account move lines are unreconciled, we need to revert RiBa lines
+        to their previous state to maintain consistency in the RiBa workflow.
+        """
         for riba_line in riba_lines:
-            # allowed transitions:
-            # paid_to_cancel and past_due_to_cancel. See workflow
+            # Only process lines that are in final states (paid or past_due)
             if riba_line.state in ["paid", "past_due"]:
-                if not riba_line.test_reconciled():
+                # Only revert if there's no specific payment recorded
+                if not riba_line.payment_id:
+                    # If the RiBa slip has a credit move, revert to "credited" state
                     if riba_line.slip_id.credit_move_id:
                         riba_line.state = "credited"
                         riba_line.slip_id.state = "credited"
                     else:
+                        # Otherwise, revert to "confirmed" state (acceptance phase)
                         riba_line.state = "confirmed"
                         riba_line.slip_id.state = "accepted"
 

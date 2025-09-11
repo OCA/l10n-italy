@@ -16,11 +16,6 @@
                     <field name="name" />
                     <field name="type" />
                     <field
-                        name="sbf_collection_type"
-                        required="type == 'sbf'"
-                        invisible="type != 'sbf'"
-                    />
-                    <field
                         name="bank_id"
                         domain="[('partner_id.ref_company_ids', 'in', allowed_company_ids)]"
                     />
@@ -52,7 +47,7 @@
                 <group string="Past Due">
                     <field name="past_due_journal_id" />
                     <field name="past_due_fee_amount" />
-                    <field name="overdue_effects_account_id" />
+                    <field name="overdue_credit_account_id" />
                     <field name="protest_charge_account_id" />
                 </group>
 
