@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -103,6 +103,8 @@ msgid "Debit"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_account_journal__display_name
+#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_date_range__display_name
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__display_name
 msgid "Display Name"
 msgstr ""
@@ -155,6 +157,8 @@ msgid "Group By Account"
 msgstr ""
 
 #. module: l10n_it_central_journal_reportlab
+#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_account_journal__id
+#: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_date_range__id
 #: model:ir.model.fields,field_description:l10n_it_central_journal_reportlab.field_wizard_giornale_reportlab__id
 msgid "ID"
 msgstr ""

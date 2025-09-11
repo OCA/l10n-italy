@@ -1,6 +1,7 @@
 # Copyright 2018 Gianmarco Conte (gconte@dinamicheaziendali.it)
 # Copyright 2022 Giuseppe Borruso (gborruso@dinamicheaziendali.it)
 # Copyright 2024 Simone Rubino - Aion Tech
+# Copyright 2025 Michele Di Croce - Stesi Consulting
 
 import base64
 import io
@@ -221,6 +222,7 @@ class WizardGiornaleReportlab(models.TransientModel):
                 AND aml.journal_id IN %(journal_ids)s
                 AND aml.company_id = %(company_id)s
                 AND aml.account_id IS NOT NULL
+                AND aml.display_type NOT IN ('line_note','line_section')
             ORDER BY
                 am.date,
                 am.name
