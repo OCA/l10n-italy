@@ -130,7 +130,7 @@ class TestRibaCommon(common.TransactionCase):
         self.invoice = self._create_invoice()
         self.invoice2 = self._create_invoice()
         self.invoice_sbf = self._create_sbf_invoice()
-        self.sbf_effects = self.env["account.account"].create(
+        self.acceptance_account = self.env["account.account"].create(
             {
                 "code": "STC",
                 "name": "STC Bills (test)",
@@ -142,6 +142,7 @@ class TestRibaCommon(common.TransactionCase):
             {
                 "code": "RiBa",
                 "name": "RiBa Account (test)",
+                "reconcile": True,
                 "account_type": "asset_fixed",
             }
         )
@@ -161,9 +162,8 @@ class TestRibaCommon(common.TransactionCase):
                 "company_id": self.company2.id,
             }
         )
-        self.riba_config_sbf_maturation = self.create_config("maturation")
-        self.riba_config_sbf_immediate = self.create_config("immediate")
         self.riba_config_incasso = self.create_config_incasso()
+        self.riba_config_sbf = self.create_config_sbf()
         self.company_bank.codice_sia = "AA555"
 
     def _create_service_due_cost(self):
@@ -303,21 +303,20 @@ class TestRibaCommon(common.TransactionCase):
             }
         )
 
-    def create_config(self, sbf_collection_type):
+    def create_config_sbf(self):
         return self.env["riba.configuration"].create(
             {
                 "name": "Subject To Collection",
                 "type": "sbf",
-                "sbf_collection_type": sbf_collection_type,
                 "bank_id": self.company_bank.id,
                 "acceptance_journal_id": self.bank_journal.id,
                 "credit_journal_id": self.bank_journal.id,
-                "acceptance_account_id": self.sbf_effects.id,
+                "acceptance_account_id": self.acceptance_account.id,
                 "credit_account_id": self.riba_account.id,
                 "bank_account_id": self.bank_account.id,
                 "bank_expense_account_id": self.expenses_account.id,
                 "past_due_journal_id": self.bank_journal.id,
-                "overdue_effects_account_id": self.past_due_account.id,
+                "overdue_credit_account_id": self.past_due_account.id,
                 "protest_charge_account_id": self.expenses_account.id,
                 "settlement_journal_id": self.bank_journal.id,
             }
@@ -330,9 +329,10 @@ class TestRibaCommon(common.TransactionCase):
                 "type": "incasso",
                 "bank_id": self.company_bank.id,
                 "acceptance_journal_id": self.bank_journal.id,
-                "acceptance_account_id": self.sbf_effects.id,
+                "acceptance_account_id": self.acceptance_account.id,
+                "credit_account_id": self.riba_account.id,
                 "past_due_journal_id": self.bank_journal.id,
-                "overdue_effects_account_id": self.past_due_account.id,
+                "overdue_credit_account_id": self.past_due_account.id,
                 "protest_charge_account_id": self.expenses_account.id,
                 "settlement_journal_id": self.bank_journal.id,
             }

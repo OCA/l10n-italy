@@ -106,19 +106,7 @@
                                 <field name="past_due_move_id" />
                             </group>
                             <separator string="Payments" colspan="4" />
-                            <field name="payment_ids" nolabel="1" colspan="4">
-                                <list>
-                                    <field name="date" />
-                                    <field name="move_id" />
-                                    <field name="ref" />
-                                    <field name="name" />
-                                    <field name="journal_id" groups="base.group_user" />
-                                    <field name="debit" />
-                                    <field name="credit" />
-                                    <field name="amount_currency" />
-                                    <field name="currency_id" />
-                                </list>
-                            </field>
+                            <field name="payment_id" />
                             <field name="past_due_move_id" />
                         </page>
                     </notebook>

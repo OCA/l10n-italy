@@ -29,27 +29,27 @@ class RibaPastDue(models.TransientModel):
         )
 
     @api.model
-    def _get_effects_account_id(self):
+    def _get_acceptance_account_id(self):
         return self.env["riba.configuration"].get_default_value_by_list_line(
             "acceptance_account_id"
         )
 
     @api.model
-    def _get_effects_amount(self):
-        if not self.env.context.get("active_id", False):
-            return False
-        return self.env["riba.slip.line"].browse(self.env.context["active_id"]).amount
-
-    @api.model
-    def _get_riba_bank_account_id(self):
+    def _get_credit_account_id(self):
         return self.env["riba.configuration"].get_default_value_by_list_line(
             "credit_account_id"
         )
 
     @api.model
-    def _get_overdue_effects_account_id(self):
+    def _get_credit_amount(self):
+        if not self.env.context.get("active_id", False):
+            return False
+        return self.env["riba.slip.line"].browse(self.env.context["active_id"]).amount
+
+    @api.model
+    def _get_overdue_credit_account_id(self):
         return self.env["riba.configuration"].get_default_value_by_list_line(
-            "overdue_effects_account_id"
+            "overdue_credit_account_id"
         )
 
     @api.model
@@ -77,31 +77,29 @@ class RibaPastDue(models.TransientModel):
         domain=[("type", "=", "bank")],
         default=_get_past_due_journal_id,
     )
-    effects_account_id = fields.Many2one(
+    acceptance_account_id = fields.Many2one(
         "account.account",
-        "Bills Account",
-        default=_get_effects_account_id,
+        "Acceptance Account",
+        default=_get_acceptance_account_id,
     )
-    effects_amount = fields.Float("Bills Amount", default=_get_effects_amount)
-    riba_bank_account_id = fields.Many2one(
-        "account.account", "RiBa Account", default=_get_riba_bank_account_id
+    credit_account_id = fields.Many2one(
+        "account.account",
+        "Credit Account",
+        default=_get_credit_account_id,
     )
-    riba_bank_amount = fields.Float("RiBa Amount", default=_get_effects_amount)
-    overdue_effects_account_id = fields.Many2one(
+    credit_amount = fields.Float(default=_get_credit_amount)
+    overdue_credit_account_id = fields.Many2one(
         "account.account",
         "Past Due Bills Account",
-        default=_get_overdue_effects_account_id,
+        default=_get_overdue_credit_account_id,
     )
-    overdue_effects_amount = fields.Float(
-        "Past Due Bills Amount", default=_get_effects_amount
+    overdue_credit_amount = fields.Float(
+        "Past Due Bills Amount", default=_get_credit_amount
     )
+
     bank_account_id = fields.Many2one(
-        "account.account",
-        "A/C Bank Account",
-        domain=[("account_type", "=", "asset_cash")],
-        default=_get_bank_account_id,
+        "account.account", "A/C Bank Account", default=_get_bank_account_id
     )
-    bank_amount = fields.Float("Withdrawn Amount", compute="_compute_bank_amount")
     bank_expense_account_id = fields.Many2one(
         "account.account", "Bank Fees Account", default=_get_bank_expense_account_id
     )
@@ -113,13 +111,6 @@ class RibaPastDue(models.TransientModel):
     past_due_fee_amount = fields.Float(
         "Past Due Fees Amount", default=_get_unsolved_past_due_fee_amount
     )
-
-    @api.depends("overdue_effects_amount", "past_due_fee_amount")
-    def _compute_bank_amount(self):
-        for wizard in self:
-            wizard.bank_amount = (
-                wizard.overdue_effects_amount + wizard.past_due_fee_amount
-            )
 
     def skip(self):
         active_id = self.env.context.get("active_id")
@@ -133,117 +124,172 @@ class RibaPastDue(models.TransientModel):
         line.slip_id.state = "past_due"
         return {"type": "ir.actions.act_window_close"}
 
-    def create_move(self):
-        active_id = self.env.context.get("active_id", False)
-        if not active_id:
-            raise UserError(self.env._("No active ID found."))
-        move_model = self.env["account.move"]
-        move_line_model = self.env["account.move.line"]
-        slip_line = self.env["riba.slip.line"].browse(active_id)
-        wizard = self
-        sbf_immediate = slip_line.slip_id.config_id.sbf_collection_type == "immediate"
-        riba_type = slip_line.slip_id.config_id.type
+    def _validate_accounts(self, riba_type):
+        """Validate that all required accounts are set based on RiBa type."""
         account_check = (
-            not wizard.past_due_journal_id
-            or not wizard.effects_account_id
-            or not wizard.overdue_effects_account_id
-            or not wizard.bank_expense_account_id
+            not self.past_due_journal_id
+            or not self.overdue_credit_account_id
+            or not self.bank_expense_account_id
         )
-        # only sbf type needs "RiBa Account" and "A/C Bank Account"
-        if riba_type == "sbf":
-            account_check = (
-                account_check
-                or not wizard.riba_bank_account_id
-                or not wizard.bank_account_id
-            )
+        # only incasso type needs "Acceptance Account"
+        if riba_type == "incasso":
+            account_check = account_check or not self.acceptance_account_id
+        # only sbf type needs "RiBa Account"
+        else:
+            account_check = account_check or not self.credit_account_id
         if account_check:
             raise UserError(self.env._("Every account is mandatory."))
 
-        date = self.date or slip_line.due_date
-        # when incasso type, "Past Due Bills" aml needs to be linked to
-        # a "Bills Account" aml
+    def _prepare_move_lines(self, slip_line, riba_type, date):
+        """Prepare move lines for the past due entry."""
         line_ids = []
+
+        # Determine account and name based on RiBa type
         if riba_type == "incasso":
             aml_name = self.env._("Bills Account")
-            aml_account_id = wizard.effects_account_id.id
-            aml_credit = wizard.effects_amount
-        # when incasso type, "Past Due Bills" aml needs to be linked to
-        # an "A/C Bank" aml
+            aml_account_id = self.acceptance_account_id.id
         else:
-            aml_name = (self.env._("A/C Bank"),)
-            aml_account_id = wizard.bank_account_id.id
-            aml_credit = wizard.bank_amount
-            # when sbf type and immediate collection, we need to create
-            # a "Bills" aml and a "RiBa" aml
-            if sbf_immediate:
-                line_ids = [
+            aml_name = self.env._("RiBa Credit")
+            aml_account_id = self.credit_account_id.id
+
+        # Add bank fees line if applicable
+        if self.past_due_fee_amount:
+            line_ids.extend(
+                [
                     (
                         0,
                         0,
                         {
-                            "name": self.env._("Bills"),
-                            "account_id": wizard.effects_account_id.id,
-                            "partner_id": slip_line.partner_id.id,
-                            "credit": wizard.effects_amount,
-                            "debit": 0.0,
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.env._("RiBa"),
-                            "account_id": wizard.riba_bank_account_id.id,
-                            "debit": wizard.riba_bank_amount,
+                            "name": self.env._("Bank Fee"),
+                            "account_id": self.bank_expense_account_id.id,
+                            "debit": self.past_due_fee_amount,
                             "credit": 0.0,
                         },
                     ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.env._("Bank Fee"),
+                            "account_id": self.bank_account_id.id,
+                            "debit": 0.0,
+                            "credit": self.past_due_fee_amount,
+                        },
+                    ),
                 ]
-        line_ids += [
-            (
-                0,
-                0,
-                {
-                    "name": self.env._("Past Due Bills"),
-                    "account_id": wizard.overdue_effects_account_id.id,
-                    "debit": wizard.overdue_effects_amount,
-                    "credit": 0.0,
-                    "partner_id": slip_line.partner_id.id,
-                    "date_maturity": date,
-                },
-            ),
-            (
-                0,
-                0,
-                {
-                    "name": aml_name,
-                    "account_id": aml_account_id,
-                    "credit": aml_credit,
-                    "debit": 0.0,
-                },
-            ),
-        ]
-        # add bank fees aml
-        if wizard.past_due_fee_amount:
-            line_ids += [
+            )
+
+        # Add main lines
+        line_ids.extend(
+            [
+                # Past due bills line
                 (
                     0,
                     0,
                     {
-                        "name": self.env._("Bank Fee"),
-                        "account_id": wizard.bank_expense_account_id.id,
-                        "debit": wizard.past_due_fee_amount,
+                        "name": self.env._("Past Due Bills"),
+                        "account_id": self.overdue_credit_account_id.id,
+                        "debit": self.overdue_credit_amount,
                         "credit": 0.0,
+                        "partner_id": slip_line.partner_id.id,
+                        "date_maturity": date,
+                    },
+                ),
+                # Credit/acceptance line
+                (
+                    0,
+                    0,
+                    {
+                        "name": aml_name,
+                        "account_id": aml_account_id,
+                        "credit": self.overdue_credit_amount,
+                        "debit": 0.0,
                     },
                 ),
             ]
+        )
+
+        return line_ids
+
+    def _process_reconciliation(self, move, slip_line):
+        """Process reconciliation for the past due move."""
+        move_line_model = self.env["account.move.line"]
+        move_model = self.env["account.move"]
+
+        riba_credit_to_be_reconciled, customers_to_be_reconciled = [], []
+
+        # Process move lines for reconciliation
+        for move_line in move.line_ids:
+            if move_line.account_id.id == self.overdue_credit_account_id.id:
+                self._process_overdue_move_line(move_line, slip_line, move_model)
+                customers_to_be_reconciled.append(move_line.id)
+            if move_line.account_id.id == self.credit_account_id.id:
+                riba_credit_to_be_reconciled.append(move_line.id)
+
+        # Add credit move lines for reconciliation
+        for credit_move_line in slip_line.credit_move_id.line_ids:
+            if credit_move_line.account_id.id == self.credit_account_id.id:
+                riba_credit_to_be_reconciled.append(credit_move_line.id)
+
+        # Reconcile RiBa credit lines
+        if riba_credit_to_be_reconciled:
+            move_line_model.browse(riba_credit_to_be_reconciled).reconcile()
+
+        # Remove existing reconciliations
+        slip_line.move_line_ids.move_line_id.remove_move_reconcile()
+
+        # Add acceptance move lines for reconciliation
+        for acceptance_move_line in slip_line.acceptance_move_id.line_ids:
+            if acceptance_move_line.account_id.id == self.overdue_credit_account_id.id:
+                customers_to_be_reconciled.append(acceptance_move_line.id)
+
+        # Reconcile customer lines
+        customers_to_be_reconciled_lines = move_line_model.with_context(
+            past_due_reconciliation=True
+        ).browse(customers_to_be_reconciled)
+        customers_to_be_reconciled_lines.reconcile()
+
+    def _process_overdue_move_line(self, move_line, slip_line, move_model):
+        """Process overdue move line for invoice linking."""
+        for riba_move_line in slip_line.move_line_ids:
+            invoice_ids = []
+            if riba_move_line.move_line_id.move_id:
+                invoice_ids = [riba_move_line.move_line_id.move_id.id]
+            elif riba_move_line.move_line_id.past_due_invoice_ids:
+                invoice_ids = [
+                    i.id for i in riba_move_line.move_line_id.past_due_invoice_ids
+                ]
+            move_model.browse(invoice_ids).write(
+                {
+                    "past_due_move_line_ids": [(4, move_line.id)],
+                }
+            )
+
+    def create_move(self):
+        active_id = self.env.context.get("active_id", False)
+        if not active_id:
+            raise UserError(self.env._("No active ID found."))
+
+        move_model = self.env["account.move"]
+        slip_line = self.env["riba.slip.line"].browse(active_id)
+        riba_type = slip_line.slip_id.config_id.type
+
+        # Validate required accounts
+        self._validate_accounts(riba_type)
+
+        date = self.date or slip_line.due_date
+
+        # Prepare move lines
+        line_ids = self._prepare_move_lines(slip_line, riba_type, date)
+
+        # Create and post the move
         move_vals = {
             "ref": self.env._("Past Due RiBa %(name)s - Line %(sequence)s")
             % {
                 "name": slip_line.slip_id.name,
                 "sequence": slip_line.sequence,
             },
-            "journal_id": wizard.past_due_journal_id.id,
+            "journal_id": self.past_due_journal_id.id,
             "date": date,
             "line_ids": line_ids,
         }
@@ -251,42 +297,18 @@ class RibaPastDue(models.TransientModel):
         move = move_model.create(move_vals)
         move.action_post()
 
-        to_be_reconciled = []
-        for move_line in move.line_ids:
-            if move_line.account_id.id == wizard.overdue_effects_account_id.id:
-                for riba_move_line in slip_line.move_line_ids:
-                    invoice_ids = []
-                    if riba_move_line.move_line_id.move_id:
-                        invoice_ids = [riba_move_line.move_line_id.move_id.id]
-                    elif riba_move_line.move_line_id.past_due_invoice_ids:
-                        invoice_ids = [
-                            i.id
-                            for i in riba_move_line.move_line_id.past_due_invoice_ids
-                        ]
-                    move_model.browse(invoice_ids).write(
-                        {
-                            "past_due_move_line_ids": [(4, move_line.id)],
-                        }
-                    )
-            if move_line.account_id.id == wizard.effects_account_id.id:
-                to_be_reconciled.append(move_line.id)
-        for acceptance_move_line in slip_line.acceptance_move_id.line_ids:
-            if acceptance_move_line.account_id.id == wizard.effects_account_id.id:
-                to_be_reconciled.append(acceptance_move_line.id)
-        # remove payments reconciliations linked to past due line for both
-        # incasso and sbf type to set linked invoices as unpaid again
-        slip_line.move_line_ids.move_line_id.remove_move_reconcile()
+        # Process reconciliation
+        self._process_reconciliation(move, slip_line)
+
+        # Update slip line state
         slip_line.write(
             {
                 "past_due_move_id": move.id,
                 "state": "past_due",
             }
         )
-        to_be_reconciled_lines = move_line_model.with_context(
-            past_due_reconciliation=True
-        ).browse(to_be_reconciled)
-        to_be_reconciled_lines.reconcile()
         slip_line.slip_id.state = "past_due"
+
         return {
             "name": self.env._("Past Due Entry"),
             "view_mode": "form",

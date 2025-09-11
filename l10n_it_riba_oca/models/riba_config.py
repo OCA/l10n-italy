@@ -21,10 +21,6 @@ class RibaConfiguration(models.Model):
         "Issue Mode",
         required=True,
     )
-    sbf_collection_type = fields.Selection(
-        [("immediate", "Immediate"), ("maturation", "At currency maturation")],
-        "Collection Type",
-    )
     bank_id = fields.Many2one(
         "res.partner.bank",
         "Bank Account",
@@ -77,7 +73,7 @@ class RibaConfiguration(models.Model):
         check_company=True,
         help="Journal used when RiBa is past due.",
     )
-    overdue_effects_account_id = fields.Many2one(
+    overdue_credit_account_id = fields.Many2one(
         "account.account",
         "Past Due Bills Account",
         check_company=True,

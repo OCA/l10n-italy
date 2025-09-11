@@ -14,11 +14,11 @@
                     colspan="4"
                 />
                 <group>
+                    <field name="acceptance_account_id" />
+                    <field name="acceptance_amount" />
                     <field name="credit_journal_id" />
                     <field name="credit_account_id" />
                     <field name="credit_amount" />
-                    <field name="bank_account_id" />
-                    <field name="bank_amount" />
                     <field name="bank_expense_account_id" />
                     <field name="expense_amount" />
                 </group>
@@ -31,15 +31,6 @@
                         class="oe_highlight"
                     />
                     <button string="Cancel" special="cancel" class="oe_link" />
-                    <separator
-                        string="You can also skip this step and set the slip status to 'Credited' anyway"
-                        colspan="4"
-                    />
-                    <button
-                        string="Skip and Confirm Credit"
-                        name="skip"
-                        type="object"
-                    />
                 </footer>
             </form>
         </field>
