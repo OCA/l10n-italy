@@ -7,14 +7,13 @@ from datetime import date
 
 from odoo import tools
 
-from odoo.addons.l10n_it_edi.tests.common import TestItEdi
+from .common import Common
 
 
-class TestFatturaPAXMLValidation(TestItEdi):
+class TestFatturaPAXMLValidation(Common):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.module = "l10n_it_edi_extension"
         cls.env.company.l10n_edi_it_create_partner = True
         cls.company.l10n_edi_it_create_partner = True
 
