@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-09 11:43+0000\n"
+"PO-Revision-Date: 2025-09-15 09:03+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -66,7 +66,7 @@ msgstr "Rif. ammin."
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_admin_ref
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_admin_ref
 msgid "Administrative Reference"
-msgstr ""
+msgstr "Riferimento amministrativo"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__amount
