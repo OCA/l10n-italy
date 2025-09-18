@@ -383,6 +383,12 @@ class ComunicazioneLiquidazione(models.Model):
                     xModulo, etree.QName(NS_IV, "EventiEccezionali")
                 )
                 EventiEccezionali.text = quadro.exceptional_events
+
+            if quadro.extraordinary_operations:
+                OperazioniStraordinarie = etree.SubElement(
+                    xModulo, etree.QName(NS_IV, "OperazioniStraordinarie")
+                )
+                OperazioniStraordinarie.text = "1"
             # 1.2.2.1.5 TotaleOperazioniAttive
             TotaleOperazioniAttive = etree.SubElement(
                 xModulo, etree.QName(NS_IV, "TotaleOperazioniAttive")
@@ -538,6 +544,7 @@ class ComunicazioneLiquidazioneVp(models.Model):
     exceptional_events = fields.Selection(
         [("1", "Code 1"), ("9", "Code 9")], string="Exceptional events"
     )
+    extraordinary_operations = fields.Boolean()
 
     imponibile_operazioni_attive = fields.Float(
         string="Profitable operations total (without VAT)"
