@@ -838,7 +838,7 @@ def _l10n_it_fiscal_payment_term_post_migration(env):
                 "account.move",
                 "account_move",
                 "selection",
-                "selection",
+                "varchar",
                 "l10n_it_edi_ndd",
                 False,
             )
