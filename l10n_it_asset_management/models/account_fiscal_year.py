@@ -2,7 +2,7 @@
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -23,7 +23,7 @@ class AccountFiscalYear(models.Model):
         fiscal_years = self.search(dom, limit=limit)
         if not fiscal_years and miss_raise:
             date_str = fields.Date.to_string(date)
-            raise UserError(_("No fiscal year defined for date ") + date_str)
+            raise UserError(self.env._("No fiscal year defined for date ") + date_str)
         return fiscal_years
 
     @api.model

@@ -52,10 +52,10 @@
     </record>
 
     <record id="asset_dep_line_tree_view" model="ir.ui.view">
-        <field name="name">asset.dep.line.tree.view</field>
+        <field name="name">asset.dep.line.list.view</field>
         <field name="model">asset.depreciation.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="l10n_it_asset_id" />
                 <field name="depreciation_id" />
                 <field name="name" />
@@ -70,7 +70,7 @@
                 <field name="requires_account_move" invisible="1" />
                 <field name="currency_id" invisible="1" />
                 <field name="company_id" invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -84,21 +84,21 @@
                         name="button_generate_account_move"
                         string="Generate Move"
                         type="object"
-                        attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '!=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                        invisible="not amount or move_id or move_type in ('in', 'out') or not requires_account_move"
                         class="oe_highlight"
                     />
                     <button
                         name="button_regenerate_account_move"
                         string="Regenerate Move"
                         type="object"
-                        attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                        invisible="not amount or not move_id or move_type in ('in', 'out') or not requires_account_move"
                         class="oe_highlight"
                     />
                     <button
                         name="button_remove_account_move"
                         type="object"
                         string="Remove Move"
-                        attrs="{'invisible': ['|', '|', '|', ('amount', '=', 0), ('move_id', '=', False), ('move_type', 'in', ('in', 'out')), ('requires_account_move', '=', False)]}"
+                        invisible="not amount or not move_id or move_type in ('in', 'out') or not requires_account_move"
                         class="oe_highlight"
                     />
                 </header>
@@ -111,7 +111,7 @@
                             <field name="move_type" />
                             <field
                                 name="depreciation_line_type_id"
-                                attrs="{'invisible':[('move_type', 'not in', ('in', 'out'))]}"
+                                invisible="move_type not in ('in', 'out')"
                                 string="In/Out Amount Type"
                             />
                             <field name="depreciation_nr" />
@@ -132,7 +132,7 @@
                             colspan="2"
                             nolabel="1"
                         >
-                            <tree>
+                            <list>
                                 <field name="l10n_it_asset_id" />
                                 <field name="dep_line_id" />
                                 <field name="relation_type" />
@@ -145,7 +145,7 @@
                                     confirm="You confirm the removal of the current line? Depreciation line amounts will not be affected and will have to be updated manually."
                                     icon="fa-trash"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>

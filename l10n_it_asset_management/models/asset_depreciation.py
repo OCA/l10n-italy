@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 from odoo.tools import float_compare, float_is_zero
@@ -215,7 +215,7 @@ class AssetDepreciation(models.Model):
     def _unlink_except_open_move(self):
         if self.mapped("line_ids"):
             raise ValidationError(
-                _(
+                self.env._(
                     "Cannot delete depreciations if there is any depreciation"
                     " line linked to it."
                 )
@@ -225,9 +225,9 @@ class AssetDepreciation(models.Model):
                 lambda line: line.dismiss_move_id
                 and line.dismiss_move_id.state != "draft"
             )
-            name_list = "\n".join([line[-1] for line in deps.name_get()])
+            name_list = "\n".join(deps.mapped("display_name"))
             raise ValidationError(
-                _(
+                self.env._(
                     "Following lines are linked to posted account moves, and"
                     " cannot be deleted:\n%(name_list)s",
                     name_list=name_list,
@@ -271,8 +271,8 @@ class AssetDepreciation(models.Model):
         if self.force_all_dep_nr and self.force_first_dep_nr:
             self.force_all_dep_nr = False
             self.force_first_dep_nr = False
-            title = _("Warning!")
-            msg = _(
+            title = self.env._("Warning!")
+            msg = self.env._(
                 "Fields `Force All Dep. Num` and `Force First Dep. Num`"
                 " cannot be both active."
             )
@@ -313,7 +313,9 @@ class AssetDepreciation(models.Model):
         # Check if self is a valid recordset
         if not self:
             raise ValidationError(
-                _("Cannot create any depreciation according to current settings.")
+                self.env._(
+                    "Cannot create any depreciation according to current settings."
+                )
             )
 
         lines = self.mapped("line_ids")
@@ -323,15 +325,10 @@ class AssetDepreciation(models.Model):
         )
         if draft_lines:
             draft_names = ", ".join(
-                [
-                    asset_name
-                    for l10n_it_asset_id, asset_name in draft_lines.mapped(
-                        "depreciation_id.l10n_it_asset_id"
-                    ).name_get()
-                ]
+                draft_lines.mapped("depreciation_id.l10n_it_asset_id.display_name")
             )
             raise ValidationError(
-                _(
+                self.env._(
                     "Cannot update the following assets which contain"
                     " draft depreciation for the"
                     " chosen date and types:\n%(draft_names)s",
@@ -496,7 +493,7 @@ class AssetDepreciation(models.Model):
         if dep_date < date_start:
             dt_start_str = fields.Date.from_string(date_start).strftime("%d-%m-%Y")
             raise ValidationError(
-                _(
+                self.env._(
                     "Depreciations cannot start before %(start_date)s.",
                     start_date=dt_start_str,
                 )
@@ -552,14 +549,14 @@ class AssetDepreciation(models.Model):
             "credit": self.amount_depreciated,
             "debit": 0.0,
             "currency_id": self.currency_id.id,
-            "name": _("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
+            "name": self.env._("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
         }
         debit_line_vals = {
             "account_id": self.l10n_it_asset_id.category_id.fund_account_id.id,
             "credit": 0.0,
             "debit": self.amount_depreciated,
             "currency_id": self.currency_id.id,
-            "name": _("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
+            "name": self.env._("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
         }
         return [credit_line_vals, debit_line_vals]
 
@@ -571,7 +568,7 @@ class AssetDepreciation(models.Model):
             or self.l10n_it_asset_id.sale_date,
             "journal_id": self.l10n_it_asset_id.category_id.journal_id.id,
             "line_ids": [],
-            "ref": _("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
+            "ref": self.env._("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
             "move_type": "entry",
         }
 
@@ -588,7 +585,7 @@ class AssetDepreciation(models.Model):
         """
         if not date:
             raise ValidationError(
-                _("Cannot compute pro rata temporis for unknown date.")
+                self.env._("Cannot compute pro rata temporis for unknown date.")
             )
 
         fiscal_year_obj = self.env["account.fiscal.year"]
@@ -598,7 +595,7 @@ class AssetDepreciation(models.Model):
         if not fiscal_year:
             date_str = fields.Date.from_string(date).strftime("%d/%m/%Y")
             raise ValidationError(
-                _(
+                self.env._(
                     "No fiscal year defined for date %(date)s",
                     date=date_str,
                 )
@@ -633,13 +630,13 @@ class AssetDepreciation(models.Model):
             return ((dt_end - dt).days + 1) / lapse
         elif mode:
             raise NotImplementedError(
-                _(
+                self.env._(
                     "Cannot get pro rata temporis multiplier for mode `%(mode)s`",
                     mode=mode,
                 )
             )
         raise NotImplementedError(
-            _("Cannot get pro rata temporis multiplier for unspecified mode")
+            self.env._("Cannot get pro rata temporis multiplier for unspecified mode")
         )
 
     def make_name(self):
@@ -679,7 +676,9 @@ class AssetDepreciation(models.Model):
     def prepare_depreciation_line_vals(self, dep_date):
         self.ensure_one()
         if dep_date is None:
-            raise ValidationError(_("Cannot create a depreciation line without a date"))
+            raise ValidationError(
+                self.env._("Cannot create a depreciation line without a date")
+            )
         dep_amount = self._context.get("dep_amount") or 0.0
         dep_year = fields.Date.from_string(dep_date).year
         return {
@@ -687,7 +686,7 @@ class AssetDepreciation(models.Model):
             "date": dep_date,
             "depreciation_id": self.id,
             "move_type": "depreciated",
-            "name": _(
+            "name": self.env._(
                 "%(year)s - Depreciation",
                 year=dep_year,
             ),

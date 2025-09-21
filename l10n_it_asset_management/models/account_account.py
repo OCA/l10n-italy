@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 
@@ -32,7 +32,7 @@ class AccountAccount(models.Model):
             )
         ):
             raise UserError(
-                _(
+                self.env._(
                     "Cannot delete accounts while they're still used"
                     " by asset categories."
                 )

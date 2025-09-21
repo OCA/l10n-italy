@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 
@@ -39,10 +39,10 @@ class AccountMove(models.Model):
             comp = move.get_linked_aa_info_records().mapped("company_id")
             if len(comp) > 1 or (comp and comp != move.company_id):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "`%(move)s`: cannot change move's company once it's already"
                         " related to an asset.",
-                        move=move.name_get()[0][-1],
+                        move=move.display_name,
                     )
                 )
 
@@ -99,7 +99,9 @@ class AccountMove(models.Model):
         # deductible VAT
         lines = self.line_ids.filtered(lambda line: not line.asset_accounting_info_ids)
         if not lines:
-            raise ValidationError(_("Every line is already linked to an asset."))
+            raise ValidationError(
+                self.env._("Every line is already linked to an asset.")
+            )
 
         xmlid = "l10n_it_asset_management.action_wizard_account_move_manage_asset"
         act = self.env["ir.actions.act_window"]._for_xml_id(xmlid)

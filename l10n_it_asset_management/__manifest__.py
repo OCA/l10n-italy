@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Gestione Cespiti",
-    "version": "16.0.1.7.0",
+    "version": "18.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Gestione Cespiti",
     "author": "Openforce, Odoo Community Association (OCA)",
@@ -51,11 +51,4 @@
         ],
     },
     "development_status": "Beta",
-    "installable": True,
-    "external_dependencies": {
-        "python": [
-            "openupgradelib",
-        ],
-    },
-    "pre_init_hook": "pre_absorb_old_module",
 }

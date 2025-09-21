@@ -5,13 +5,13 @@
   -->
 <odoo>
     <record model="ir.ui.view" id="asset_tag_tree_view">
-        <field name="name">asset.tag.tree.view</field>
+        <field name="name">asset.tag.list.view</field>
         <field name="model">asset.tag</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -37,7 +37,7 @@
         <field name="name">Assets tag</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">asset.tag</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="asset_tag_tree_view" />
     </record>
 

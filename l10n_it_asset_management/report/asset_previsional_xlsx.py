@@ -2,7 +2,7 @@
 
 import logging
 
-from odoo import _, models
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -144,7 +144,7 @@ class AssetJournalXslx(models.AbstractModel):
     def generate_category_data(self, report_data):
         data = (
             {
-                "title": _("Category"),
+                "title": self.env._("Category"),
                 "field": "category_name",
                 "tstyle": report_data["formats"]["format_category_name"],
                 "vstyle": report_data["formats"]["format_category_name"],
@@ -158,32 +158,32 @@ class AssetJournalXslx(models.AbstractModel):
     def generate_asset_data(self, report_data):
         data = (
             {
-                "title": _("Asset"),
+                "title": self.env._("Asset"),
                 "field": "asset_name",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Code"),
+                "title": self.env._("Code"),
                 "field": "asset_code",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Purchase Amount"),
+                "title": self.env._("Purchase Amount"),
                 "field": "asset_purchase_amount",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Purchased as New / Used"),
+                "title": self.env._("Purchased as New / Used"),
                 "field": "asset_used",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Status"),
+                "title": self.env._("Status"),
                 "field": "asset_state",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
@@ -199,31 +199,31 @@ class AssetJournalXslx(models.AbstractModel):
     def generate_asset_accounting_doc_data(self, report_data):
         data = (
             {
-                "title": _("Partner"),
+                "title": self.env._("Partner"),
                 "field": "partner_name",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("VAT"),
+                "title": self.env._("VAT"),
                 "field": "partner_vat",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Document Nr"),
+                "title": self.env._("Document Nr"),
                 "field": "document_nr",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Document Date"),
+                "title": self.env._("Document Date"),
                 "field": "document_date",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Supplier Ref"),
+                "title": self.env._("Supplier Ref"),
                 "field": "partner_ref",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
@@ -237,38 +237,38 @@ class AssetJournalXslx(models.AbstractModel):
     def generate_depreciation_data(self, report_data):
         data = (
             {
-                "title": _("Depreciation Type"),
+                "title": self.env._("Depreciation Type"),
                 "field": "type_name",
                 "tstyle": report_data["formats"]["format_depreciation_header"],
                 "vstyle": report_data["formats"]["format_depreciation_value"],
             },
             {
-                "title": _("Depreciation Mode"),
+                "title": self.env._("Depreciation Mode"),
                 "field": "mode_name",
                 "tstyle": report_data["formats"]["format_depreciation_header"],
                 "vstyle": report_data["formats"]["format_depreciation_value"],
             },
             {
-                "title": _("Initial Depreciable Amount"),
+                "title": self.env._("Initial Depreciable Amount"),
                 "field": "dep_amount_depreciable",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_depreciation_header"],
                 "vstyle": report_data["formats"]["format_depreciation_value"],
             },
             {
-                "title": _("Starting From"),
+                "title": self.env._("Starting From"),
                 "field": "dep_date_start",
                 "tstyle": report_data["formats"]["format_depreciation_header"],
                 "vstyle": report_data["formats"]["format_depreciation_value"],
             },
             {
-                "title": _("Dep. Percentage (%)"),
+                "title": self.env._("Dep. Percentage (%)"),
                 "field": "dep_percentage",
                 "tstyle": report_data["formats"]["format_depreciation_header"],
                 "vstyle": report_data["formats"]["format_depreciation_value"],
             },
             {
-                "title": _("Pro Rata Temporis"),
+                "title": self.env._("Pro Rata Temporis"),
                 "field": "dep_pro_rata_temporis",
                 "tstyle": report_data["formats"]["format_depreciation_header"],
                 "vstyle": report_data["formats"]["format_depreciation_value"],
@@ -284,7 +284,7 @@ class AssetJournalXslx(models.AbstractModel):
     def generate_depreciation_line_year_data(self, report_data):
         data = (
             {
-                "title": _("Year"),
+                "title": self.env._("Year"),
                 "field": "year",
                 "tstyle": report_data["formats"][
                     "format_depreciation_year_line_header"
@@ -294,7 +294,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("Amount"),
+                "title": self.env._("Amount"),
                 "field": "amount_depreciable_updated",
                 "type": "amount",
                 "tstyle": report_data["formats"][
@@ -305,7 +305,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("In Amount"),
+                "title": self.env._("In Amount"),
                 "field": "amount_in",
                 "type": "amount",
                 "tstyle": report_data["formats"][
@@ -316,7 +316,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("Out Amount"),
+                "title": self.env._("Out Amount"),
                 "field": "amount_out",
                 "type": "amount",
                 "tstyle": report_data["formats"][
@@ -327,7 +327,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("Prev. Year Dep. Fund"),
+                "title": self.env._("Prev. Year Dep. Fund"),
                 "field": "amount_depreciation_fund_prev_year",
                 "type": "amount",
                 "tstyle": report_data["formats"][
@@ -338,7 +338,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("Depreciation"),
+                "title": self.env._("Depreciation"),
                 "field": "amount_depreciated",
                 "type": "amount",
                 "tstyle": report_data["formats"][
@@ -349,7 +349,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("Curr. Year Dep. Fund"),
+                "title": self.env._("Curr. Year Dep. Fund"),
                 "field": "amount_depreciation_fund_curr_year",
                 "type": "amount",
                 "tstyle": report_data["formats"][
@@ -360,7 +360,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("Gain / Loss"),
+                "title": self.env._("Gain / Loss"),
                 "field": "gain_loss",
                 "type": "amount",
                 "tstyle": report_data["formats"][
@@ -371,7 +371,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("Residual"),
+                "title": self.env._("Residual"),
                 "field": "amount_residual",
                 "type": "amount",
                 "tstyle": report_data["formats"][
@@ -392,7 +392,7 @@ class AssetJournalXslx(models.AbstractModel):
     def generate_depreciation_line_amount_detail_data(self, report_data):
         data = (
             {
-                "title": _("In Amount - Detail"),
+                "title": self.env._("In Amount - Detail"),
                 "field": "amount_in_detail",
                 "tstyle": report_data["formats"][
                     "format_depreciation_year_line_header"
@@ -402,7 +402,7 @@ class AssetJournalXslx(models.AbstractModel):
                 ],
             },
             {
-                "title": _("Out Amount - Detail"),
+                "title": self.env._("Out Amount - Detail"),
                 "field": "amount_out_detail",
                 "tstyle": report_data["formats"][
                     "format_depreciation_year_line_header"
@@ -420,68 +420,68 @@ class AssetJournalXslx(models.AbstractModel):
     def get_totals_data(self, report_data):
         data = (
             {
-                "title": _("Total"),
+                "title": self.env._("Total"),
                 "field": "name",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Type"),
+                "title": self.env._("Type"),
                 "field": "type_name",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Amount"),
+                "title": self.env._("Amount"),
                 "field": "amount_depreciable_updated",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("In Amount"),
+                "title": self.env._("In Amount"),
                 "field": "amount_in_total",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Out Amount"),
+                "title": self.env._("Out Amount"),
                 "field": "amount_out_total",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Prev. Year Dep. Fund"),
+                "title": self.env._("Prev. Year Dep. Fund"),
                 "field": "amount_depreciation_fund_prev_year",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Depreciation"),
+                "title": self.env._("Depreciation"),
                 "field": "amount_depreciated",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Curr. Year Dep. Fund"),
+                "title": self.env._("Curr. Year Dep. Fund"),
                 "field": "amount_depreciation_fund_curr_year",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Gain / Loss"),
+                "title": self.env._("Gain / Loss"),
                 "field": "gain_loss_total",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],
                 "vstyle": report_data["formats"]["format_asset_value"],
             },
             {
-                "title": _("Residual"),
+                "title": self.env._("Residual"),
                 "field": "amount_residual",
                 "type": "amount",
                 "tstyle": report_data["formats"]["format_asset_header"],

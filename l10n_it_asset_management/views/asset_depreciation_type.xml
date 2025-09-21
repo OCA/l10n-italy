@@ -5,15 +5,15 @@
   -->
 <odoo>
     <record model="ir.ui.view" id="asset_depreciation_type_tree_view">
-        <field name="name">asset.depreciation.type.tree.view</field>
+        <field name="name">asset.depreciation.type.list.view</field>
         <field name="model">asset.depreciation.type</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="name" />
                 <field name="requires_account_move" />
                 <field name="print_by_default" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -41,7 +41,7 @@
         <field name="name">Assets Depreciation Type</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">asset.depreciation.type</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="asset_depreciation_type_tree_view" />
     </record>
 

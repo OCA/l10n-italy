@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 from odoo.tools.float_utils import float_compare, float_is_zero
@@ -196,7 +196,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         method = self.get_management_type_2_method().get(self.management_type)
         if not method:
             raise ValidationError(
-                _(
+                self.env._(
                     "Could not determine how to link move lines to asset"
                     " in mode `%(management_type)s`.",
                     management_type=self.management_type,
@@ -215,7 +215,6 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                     "res_id": asset.id,
                     "view_id": form.id,
                     "view_mode": "form",
-                    "view_type": "form",
                     "views": [(form.id, "form")],
                 }
             )
@@ -227,12 +226,12 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         self.ensure_one()
         if not self.move_line_ids:
             raise ValidationError(
-                _("At least one move line is mandatory to create a new asset!")
+                self.env._("At least one move line is mandatory to create a new asset!")
             )
 
         if not len(self.move_line_ids.mapped("move_id")) == 1:
             raise ValidationError(
-                _(
+                self.env._(
                     "Cannot create asset if move lines come from different"
                     " account moves!"
                 )
@@ -244,10 +243,10 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 for line in self.move_line_ids
             ]
         ):
-            categ_name = self.category_id.name_get()[0][-1]
-            acc_name = self.category_id.asset_account_id.name_get()[0][-1]
+            categ_name = self.category_id.display_name
+            acc_name = self.category_id.asset_account_id.display_name
             raise ValidationError(
-                _(
+                self.env._(
                     "You need to choose move lines with account `%(acc_name)s`"
                     " if you need them to create an asset for"
                     " category `%(categ_name)s`!",
@@ -259,11 +258,15 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     def check_pre_dismiss_asset(self):
         self.ensure_one()
         if not self.l10n_it_asset_id:
-            raise ValidationError(_("Please choose an asset before continuing!"))
+            raise ValidationError(
+                self.env._("Please choose an asset before continuing!")
+            )
 
         if not self.move_line_ids and not self.dismiss_asset_without_sale:
             raise ValidationError(
-                _("At least one move line is mandatory to dismiss" " an asset!")
+                self.env._(
+                    "At least one move line is mandatory to dismiss" " an asset!"
+                )
             )
 
         if (
@@ -271,7 +274,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             and not self.dismiss_asset_without_sale
         ):
             raise ValidationError(
-                _(
+                self.env._(
                     "Cannot dismiss asset if move lines come from different"
                     " account moves!"
                 )
@@ -288,11 +291,9 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             and not self.dismiss_asset_without_sale
         ):
             ass_name = self.l10n_it_asset_id.make_name()
-            ass_acc = self.l10n_it_asset_id.category_id.asset_account_id.name_get()[0][
-                -1
-            ]
+            ass_acc = self.l10n_it_asset_id.category_id.asset_account_id.display_name
             raise ValidationError(
-                _(
+                self.env._(
                     "You need to choose move lines with account `%(ass_acc)s`"
                     " if you need them to dismiss asset `%(ass_name)s`!",
                     ass_acc=ass_acc,
@@ -303,22 +304,30 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     def check_pre_link_asset(self):
         self.ensure_one()
         if len(self.move_line_ids.mapped("account_id")) > 1:
-            raise ValidationError(_("Every move line must share the same account!"))
+            raise ValidationError(
+                self.env._("Every move line must share the same account!")
+            )
 
         if not self.management_type:
-            raise ValidationError(_("Couldn't determine which action should be done."))
+            raise ValidationError(
+                self.env._("Couldn't determine which action should be done.")
+            )
 
     def check_pre_update_asset(self):
         self.ensure_one()
         if not self.l10n_it_asset_id:
-            raise ValidationError(_("Please choose an asset before continuing!"))
+            raise ValidationError(
+                self.env._("Please choose an asset before continuing!")
+            )
 
         if not self.depreciation_type_ids:
-            raise ValidationError(_("Please choose at least one depreciation type!"))
+            raise ValidationError(
+                self.env._("Please choose at least one depreciation type!")
+            )
 
         if not self.move_line_ids:
             raise ValidationError(
-                _("At least one move line is mandatory to update" " an asset!")
+                self.env._("At least one move line is mandatory to update" " an asset!")
             )
 
         if not all(
@@ -328,11 +337,9 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             ]
         ):
             ass_name = self.l10n_it_asset_id.make_name()
-            ass_acc = self.l10n_it_asset_id.category_id.asset_account_id.name_get()[0][
-                -1
-            ]
+            ass_acc = self.l10n_it_asset_id.category_id.asset_account_id.display_name
             raise ValidationError(
-                _(
+                self.env._(
                     "You need to choose move lines with account `%(ass_acc)s`"
                     " if you need them to update asset `%(ass_name)s`!",
                     ass_acc=ass_acc,
@@ -368,7 +375,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         if len(self.move_line_ids.mapped("partner_id")) == 1:
             supplier = self.move_line_ids.mapped("partner_id")
         else:
-            raise ValidationError(_("Multiple partners found in move lines!"))
+            raise ValidationError(self.env._("Multiple partners found in move lines!"))
         move = self.move_line_ids.mapped("move_id")
         return {
             "asset_accounting_info_ids": [
@@ -405,7 +412,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             max_date = max(last_depreciation_dates)
             if max_date > dismiss_date:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Cannot dismiss an asset earlier than the last depreciation"
                         " date.\n"
                         "(Dismiss date: %(dismiss_date)s,"
@@ -416,7 +423,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 )
 
         if self.dismiss_asset_without_sale:
-            move_nums = _("Dismiss Asset without Sale")
+            move_nums = self.env._("Dismiss Asset without Sale")
             writeoff = 0
             vals = {
                 "depreciation_ids": [],
@@ -459,7 +466,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                         },
                     )
                 ]
-                dep_name = _("Direct dismiss")
+                dep_name = self.env._("Direct dismiss")
             else:
                 asset_accounting_info_ids = [
                     Command.create(
@@ -470,7 +477,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                     )
                     for line in self.move_line_ids
                 ]
-                dep_name = _("From move(s) ") + move_nums
+                dep_name = self.env._("From move(s) ") + move_nums
             dep_line_vals = {
                 "asset_accounting_info_ids": asset_accounting_info_ids,
                 "amount": min(residual, dep_writeoff),
@@ -497,7 +504,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                     "amount": abs(balance),
                     "date": dismiss_date,
                     "move_type": move_type,
-                    "name": _("From move(s) ") + move_nums,
+                    "name": self.env._("From move(s) ") + move_nums,
                 }
                 dep_vals["line_ids"].append(Command.create(dep_balance_vals))
 
@@ -529,7 +536,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             max_date = max(last_depreciation_dates)
             if max_date > dismiss_date:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Cannot dismiss an asset earlier than the last depreciation"
                         " date.\n"
                         "(Dismiss date: %(dismiss_date)s,"
@@ -566,7 +573,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 dep_purchase_amt *= base_coeff
                 dep_writeoff *= base_coeff
 
-            name = _(
+            name = self.env._(
                 "Partial dismissal from move(s) %(move_nums)s",
                 move_nums=move_nums,
             )
@@ -684,7 +691,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 # the residual amount
                 if sign < 0 and float_compare(residual, abs(amount), digits) < 0:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "Could not update `%(asset_name)s`:"
                             " not enough residual amount"
                             " to write off move `%(move_num)s`.\n"
@@ -715,13 +722,13 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                     "amount": abs(amount),
                     "date": move.date,
                     "move_type": dep_type,
-                    "name": _("From move(s) ") + move_num,
+                    "name": self.env._("From move(s) ") + move_num,
                 }
                 dep_vals["line_ids"].append(Command.create(dep_line_vals))
 
             if balances < 0 and residual + balances < 0:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Could not update `%(asset_name)s`:"
                         " not enough residual amount to"
                         " write off.\n"

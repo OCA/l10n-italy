@@ -15,7 +15,7 @@
                     name="open_wizard_manage_asset"
                     type="object"
                     string="Link to Asset"
-                    attrs="{'invisible': [('hide_link_asset_button', '=', True)]}"
+                    invisible="hide_link_asset_button"
                     groups="l10n_it_asset_management.group_asset_user"
                     class="oe_highlight"
                 />
@@ -27,7 +27,7 @@
                     string="Assets"
                 >
                     <field name="l10n_it_asset_ids" nolabel="1">
-                        <tree>
+                        <list>
                             <field name="name" />
                             <field name="code" />
                             <field name="category_id" />
@@ -43,7 +43,7 @@
                                 invisible="True"
                                 groups="!base.group_multi_company"
                             />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
@@ -63,7 +63,7 @@
                         groups="l10n_it_asset_management.group_asset_user"
                     >
                         <field name="l10n_it_asset_ids" nolabel="1">
-                            <tree>
+                            <list>
                                 <field name="name" />
                                 <field name="code" />
                                 <field name="category_id" />
@@ -79,7 +79,7 @@
                                     invisible="True"
                                     groups="!base.group_multi_company"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <group
@@ -88,7 +88,7 @@
                         groups="l10n_it_asset_management.group_asset_user"
                     >
                         <field name="dep_line_ids" nolabel="1">
-                            <tree>
+                            <list>
                                 <field name="depreciation_id" />
                                 <field name="name" />
                                 <field name="date" />
@@ -101,13 +101,13 @@
                                 <field name="partial_dismissal" invisible="1" />
                                 <field
                                     name="depreciation_nr"
-                                    attrs="{'invisible': [('force_dep_nr', '=', False), '|', ('partial_dismissal', '=', True), ('move_type', 'not in', ('depreciated', 'historical'))]}"
+                                    invisible="not force_dep_nr and (partial_dismissal or move_type not in ('depreciated', 'historical'))"
                                 />
                                 <field name="amount" widget="monetary" />
                                 <field name="requires_account_move" invisible="1" />
                                 <field name="currency_id" invisible="1" />
                                 <field name="company_id" invisible="1" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>

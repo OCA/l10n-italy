@@ -36,17 +36,17 @@
     </record>
 
     <record id="asset_accounting_info_tree_view" model="ir.ui.view">
-        <field name="name">asset.accounting.info.tree.view</field>
+        <field name="name">asset.accounting.info.list.view</field>
         <field name="model">asset.accounting.info</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="l10n_it_asset_id" />
                 <field name="dep_line_id" />
                 <field name="relation_type" />
                 <field name="move_id" />
                 <field name="move_line_id" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -67,7 +67,7 @@
                                 name="dep_line_id"
                                 options="{'no_create_edit': 1}"
                                 domain="[('l10n_it_asset_id', '=', l10n_it_asset_id)]"
-                                attrs="{'invisible': [('l10n_it_asset_id', '=', False)]}"
+                                invisible="not l10n_it_asset_id"
                             />
                             <field name="relation_type" />
                             <field
@@ -86,7 +86,7 @@
                                 name="move_line_id"
                                 options="{'no_create_edit': 1}"
                                 domain="[('move_id', '=', move_id)]"
-                                attrs="{'invisible': [('move_id', '=', False)]}"
+                                invisible="not move_id"
                             />
                         </group>
                     </group>
@@ -99,7 +99,7 @@
         <field name="name">Assets Accounting Info</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">asset.accounting.info</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="asset_accounting_info_tree_view" />
         <field name="search_view_id" ref="asset_accounting_info_search_view" />
         <field name="context">{'search_default_group_by_asset': 1}</field>

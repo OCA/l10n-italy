@@ -6,7 +6,7 @@
 
 from collections import OrderedDict
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 from odoo.tools.misc import format_amount
@@ -105,14 +105,14 @@ class Report(models.TransientModel):
             res = self.do_print(report_type)
         elif report_type:
             raise ValidationError(
-                _(
+                self.env._(
                     "No report has been defined for type `%(report_type)s`.",
                     report_type=report_type,
                 )
             )
         else:
             raise ValidationError(
-                _("No report type has been declared for current print.")
+                self.env._("No report type has been declared for current print.")
             )
         return res
 
@@ -174,7 +174,7 @@ class Report(models.TransientModel):
 
         if not (categories and assets and deps):
             raise ValidationError(
-                _("There is nothing to print according to current settings!")
+                self.env._("There is nothing to print according to current settings!")
             )
 
         dep_lines_grouped = OrderedDict()
@@ -257,8 +257,8 @@ class Report(models.TransientModel):
                     Command.create(
                         dict(
                             v,
-                            name=_("General Total"),
-                            type_name=t.name_get()[0][-1],
+                            name=self.env._("General Total"),
+                            type_name=t.display_name,
                             type_id=t.id,
                         ),
                     )
@@ -298,9 +298,9 @@ class Report(models.TransientModel):
         return self.env["asset.depreciation"].search(domain)
 
     def set_report_name(self):
-        report_name = _("Assets Depreciations ")
+        report_name = self.env._("Assets Depreciations ")
         if self.date:
-            report_name += _(
+            report_name += self.env._(
                 "to date %(to_date)s",
                 to_date=format_date(self, "date", "%d-%m-%Y"),
             )
@@ -424,8 +424,8 @@ class ReportCategory(models.TransientModel):
                         Command.create(
                             dict(
                                 v,
-                                name=categ.category_id.name_get()[0][-1],
-                                type_name=t.name_get()[0][-1],
+                                name=categ.category_id.display_name,
+                                type_name=t.display_name,
                                 type_id=t.id,
                             ),
                         )
@@ -491,8 +491,8 @@ class ReportAsset(models.TransientModel):
             "asset_code": asset.code or "/",
             "asset_name": asset.name,
             "asset_purchase_amount": asset.purchase_amount,
-            "asset_state": states_dict.get(asset.state) or _("Unknown"),
-            "asset_used": _("Used") if asset.used else _("New"),
+            "asset_state": states_dict.get(asset.state) or self.env._("Unknown"),
+            "asset_used": self.env._("Used") if asset.used else self.env._("New"),
         }
 
         acc_doc = self.env["report_asset_journal_accounting_doc"]
@@ -640,8 +640,8 @@ class ReportDepreciation(models.TransientModel):
             "dep_date_start": format_date(dep, "date_start", "%d-%m-%Y"),
             "dep_percentage": dep.percentage,
             "dep_pro_rata_temporis": dep_pro_rata_temporis,
-            "mode_name": dep.mode_id.name_get()[0][-1] if dep.mode_id else "",
-            "type_name": dep.type_id.name_get()[0][-1] if dep.type_id else "",
+            "mode_name": dep.mode_id.display_name if dep.mode_id else "",
+            "type_name": dep.type_id.display_name if dep.type_id else "",
         }
 
 

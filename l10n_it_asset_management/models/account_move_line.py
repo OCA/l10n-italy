@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 
@@ -32,10 +32,10 @@ class AccountMoveLine(models.Model):
             comp = move_line.get_linked_aa_info_records().mapped("company_id")
             if len(comp) > 1 or (comp and comp != move_line.company_id):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "`%(move_line)s`: cannot change move line's company once it's"
                         " already related to an asset.",
-                        move_line=move_line.name_get()[0][-1],
+                        move_line=move_line.display_name,
                     )
                 )
 

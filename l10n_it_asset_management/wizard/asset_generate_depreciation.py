@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.fields import Command
 from odoo.tools import format_date
 
@@ -94,7 +94,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                 passed_years = depreciation_date.year - asset_date.year + 1
                 passed_fiscal_years = _get_passed_years(asset_date, depreciation_date)
                 if passed_years != passed_fiscal_years:
-                    missing_fiscal_year_warning = _(
+                    missing_fiscal_year_warning = self.env._(
                         "Some years between %(asset_date)s and %(depreciation_date)s "
                         "have no configured fiscal year "
                         "and will not be counted for depreciation.\n"

@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.fields import Command
 
@@ -32,7 +32,7 @@ class AssetCategory(models.Model):
         # Raise error if configuration has not been completed.
         if not (mode and types):
             raise UserError(
-                _(
+                self.env._(
                     "Before creating new categories, please complete the"
                     " assets' configuration for both depreciation types"
                     " and modes."
@@ -125,7 +125,10 @@ class AssetCategory(models.Model):
     def _unlink_except_in_asset(self):
         if self.env["asset.asset"].sudo().search([("category_id", "in", self.ids)]):
             raise UserError(
-                _("Cannot delete categories while they're still linked" " to an asset.")
+                self.env._(
+                    "Cannot delete categories while they're still linked"
+                    " to an asset."
+                )
             )
 
     def get_depreciation_vals(self, amount_depreciable=0):

@@ -1,12 +1,11 @@
-/** @odoo-module **/
 import {ReportAction} from "@web/webclient/actions/reports/report_action";
-import {patch} from "web.utils";
+import {patch} from "@web/core/utils/patch";
 
 const MODULE_NAME = "l10n_it_asset_management";
 
-patch(ReportAction.prototype, "l10n_it_asset_management.ReportAction", {
+patch(ReportAction.prototype, {
     setup() {
-        this._super.apply(this, arguments);
+        super.setup(...arguments);
         this.isAssetReport = this.props.report_name.startsWith(`${MODULE_NAME}.`);
     },
 
@@ -17,9 +16,9 @@ patch(ReportAction.prototype, "l10n_it_asset_management.ReportAction", {
      * @returns {String}
      */
     _get_xlsx_name(str) {
-        if (!this.isAssetReport) return this._super.apply(this, arguments);
+        if (!this.isAssetReport) return super._get_xlsx_name(...arguments);
 
-        if (!_.isString(str)) {
+        if (typeof str !== "string") {
             return str;
         }
         const parts = str.split(".");

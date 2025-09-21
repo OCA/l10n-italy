@@ -6,8 +6,6 @@
         <field name="user_id" ref="base.user_root" />
         <field name="interval_number">5</field>
         <field name="interval_type">minutes</field>
-        <field name="numbercall">-1</field>
-        <field name="doall" eval="True" />
         <field name="model_id" ref="model_asset_accounting_info" />
         <field name="state">code</field>
         <field name="code">model.cron_vacuum_table()</field>

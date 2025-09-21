@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 
@@ -150,9 +150,9 @@ class AssetDepreciationLine(models.Model):
             lines = self.filtered(
                 lambda line: line.move_id and line.move_id.state != "draft"
             )
-            name_list = "\n".join([line[-1] for line in lines.name_get()])
+            name_list = "\n".join(lines.mapped("display_name"))
             raise ValidationError(
-                _(
+                self.env._(
                     "Following lines are linked to posted account moves, and"
                     " cannot be deleted:\n"
                 )
@@ -172,7 +172,7 @@ class AssetDepreciationLine(models.Model):
             comp = dep_line.get_linked_aa_info_records().mapped("company_id")
             if len(comp) > 1 or (comp and comp != dep_line.company_id):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "`%(dep_line)s`: cannot change depreciation line's company once"
                         " it's already related to an asset.",
                         dep_line=dep_line.make_name(),
@@ -187,7 +187,7 @@ class AssetDepreciationLine(models.Model):
             nums = num_lines.mapped("depreciation_nr")
             if nums and min(nums) < 0:
                 raise ValidationError(
-                    _("Depreciation number can't be a negative number.")
+                    self.env._("Depreciation number can't be a negative number.")
                 )
 
     @api.depends("amount", "move_type")
@@ -204,7 +204,7 @@ class AssetDepreciationLine(models.Model):
 
     def _search_requires_depreciation_nr_lines(self, operator, value):
         if operator not in ("=", "!="):
-            raise ValidationError(_("Invalid search operator!"))
+            raise ValidationError(self.env._("Invalid search operator!"))
 
         if (operator == "=" and value) or (operator == "!=" and not value):
             return [("move_type", "in", self.get_numbered_move_types())]
@@ -371,7 +371,7 @@ class AssetDepreciationLine(models.Model):
             "date": self.date,
             "journal_id": journal.id,
             "line_ids": [],
-            "ref": _("Asset: ") + self.l10n_it_asset_id.make_name(),
+            "ref": self.env._("Asset: ") + self.l10n_it_asset_id.make_name(),
             "move_type": "entry",
         }
 
@@ -380,7 +380,7 @@ class AssetDepreciationLine(models.Model):
         method = self.get_account_move_line_vals_methods().get(self.move_type)
         if not method:
             raise NotImplementedError(
-                _("Cannot create account move lines: no method is specified.")
+                self.env._("Cannot create account move lines: no method is specified.")
             )
 
         return method()
@@ -444,12 +444,14 @@ class AssetDepreciationLine(models.Model):
 
     def get_historical_account_move_line_vals(self):
         raise NotImplementedError(
-            _("Cannot create account move lines for lines of type" " `Historical`")
+            self.env._(
+                "Cannot create account move lines for lines of type" " `Historical`"
+            )
         )
 
     def get_in_account_move_line_vals(self):
         raise NotImplementedError(
-            _("Cannot create account move lines for lines of type `In`")
+            self.env._("Cannot create account move lines for lines of type `In`")
         )
 
     def get_loss_account_move_line_vals(self):
@@ -472,7 +474,7 @@ class AssetDepreciationLine(models.Model):
 
     def get_out_account_move_line_vals(self):
         raise NotImplementedError(
-            _("Cannot create account move lines for lines of type `Out`")
+            self.env._("Cannot create account move lines for lines of type `Out`")
         )
 
     def needs_account_move(self):

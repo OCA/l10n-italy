@@ -99,19 +99,13 @@ class TestAssets(Common):
         self.assertEqual(
             exc.exception.args[0],
             "Cannot dismiss an asset earlier than the last depreciation date.\n"
-            f"(Dismiss date: {today}, last depreciation date: {second_depreciation_date}).",
+            f"(Dismiss date: {today}, "
+            f"last depreciation date: {second_depreciation_date}).",
         )
         sale_invoice.button_cancel()
         sale_invoice.button_draft()
-        new_invoice_date = second_depreciation_date + relativedelta(days=10)
-        with self.assertRaises(ValidationError) as ve:
-            sale_invoice.invoice_date = new_invoice_date
-        exc_message = ve.exception.args[0]
-        self.assertIn("doesn't match the sequence number", exc_message)
-        self.assertIn("clear the Journal Entry's Number to proceed", exc_message)
-        self.assertNotEqual(sale_invoice.state, "posted")
         sale_invoice.name = False
-        sale_invoice.invoice_date = new_invoice_date
+        sale_invoice.invoice_date = second_depreciation_date + relativedelta(days=10)
         sale_invoice.action_post()
         self.assertEqual(sale_invoice.state, "posted")
         move_lines_to_do = move_lines.filtered(
@@ -791,7 +785,7 @@ class TestAssets(Common):
             forbidden_user.has_group("l10n_it_asset_management.group_asset_user")
         )
 
-        invoice = self.env["account.move"].search([("line_ids", "!=", False)])[0]
+        invoice = self._create_purchase_invoice(fields.Date.today())
         with self.assertRaises(AccessError):
             invoice.with_user(forbidden_user).open_wizard_manage_asset()
         invoice.with_user(manager_user).open_wizard_manage_asset()

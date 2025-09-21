@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 
@@ -136,7 +136,7 @@ class Asset(models.Model):
             comp = asset.get_linked_aa_info_records().mapped("company_id")
             if len(comp) > 1 or (comp and comp != asset.company_id):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "`%(asset)s`: cannot change asset's company once it's already"
                         " related to accounting info.",
                         asset=asset.make_name(),
@@ -154,7 +154,7 @@ class Asset(models.Model):
         # linked to an account move
         if any(self.depreciation_ids.mapped("line_ids.move_id")):
             raise ValidationError(
-                _(
+                self.env._(
                     "Cannot change category for an asset that's already been"
                     " depreciated."
                 )
@@ -185,8 +185,8 @@ class Asset(models.Model):
             if self.depreciation_ids.mapped("line_ids").filtered(
                 lambda line: line.move_type == "depreciated"
             ):
-                title = _("Warning!")
-                msg = _(
+                title = self.env._("Warning!")
+                msg = self.env._(
                     "Current asset has already been depreciated. Changes upon"
                     " its purchase value will not be automatically reflected"
                     " upon depreciation lines, which will have to be updated"

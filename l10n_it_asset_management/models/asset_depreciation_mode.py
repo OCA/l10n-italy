@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.fields import Command
 
@@ -59,14 +59,14 @@ class AssetDepreciationMode(models.Model):
             .search([("mode_id", "in", self.ids)])
         ):
             raise UserError(
-                _(
+                self.env._(
                     "Cannot delete depreciation modes while they're still linked"
                     " to categories."
                 )
             )
         if self.env["asset.depreciation"].sudo().search([("mode_id", "in", self.ids)]):
             raise UserError(
-                _(
+                self.env._(
                     "Cannot delete depreciation modes while they're still linked"
                     " to depreciations."
                 )
@@ -78,7 +78,7 @@ class AssetDepreciationMode(models.Model):
             domain = [("company_id", "=", company.id), ("default", "=", True)]
             if self.search_count(domain) > 1:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "There can be no more than 1 default depreciation mode"
                         " for each company."
                     )

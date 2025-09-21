@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -38,7 +38,7 @@ class DepLineType(models.Model):
                 [("depreciation_line_type_id", "=", line_type.id)]
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Cannot remove type %(type)s: there is some depreciation"
                         " line linked to it.",
                         type=line_type.name,

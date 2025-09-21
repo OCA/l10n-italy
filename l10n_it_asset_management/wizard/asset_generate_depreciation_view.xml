@@ -11,25 +11,14 @@
                         class="alert alert-warning text-center"
                         colspan="2"
                         role="alert"
-                        attrs="{
-                            'invisible': [
-                                ('missing_fiscal_year_warning', '=', False),
-                            ],
-                        }"
+                        invisible="not missing_fiscal_year_warning"
                     >
                         <i class="fa fa-warning" title="Missing fiscal years" />
                         <field name="missing_fiscal_year_warning" />
                     </div>
                     <label for="period" />
                     <div class="o_row">
-                        <field
-                            name="period_count"
-                            attrs="{
-                                'invisible': [
-                                    ('period', '!=', 'month'),
-                                ],
-                            }"
-                        />
+                        <field name="period_count" invisible="period != 'month'" />
                         <field name="period" />
                     </div>
                     <field
@@ -51,13 +40,13 @@
                         widget="many2many_tags"
                     />
                     <field name="l10n_it_asset_ids" options="{'no_create': True}">
-                        <tree>
+                        <list>
                             <field name="name" />
                             <field name="code" />
                             <field name="category_id" />
                             <field name="purchase_date" />
                             <field name="purchase_amount" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>

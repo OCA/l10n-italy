@@ -3,7 +3,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -140,7 +140,7 @@ class AssetAccountingInfo(models.Model):
         self.ensure_one()
         companies = self.get_all_companies()
         if len(companies) > 1:
-            raise ValidationError(_("Incoherent company data."))
+            raise ValidationError(self.env._("Incoherent company data."))
 
     def check_data_coherence(self):
         self.ensure_one()
@@ -153,7 +153,7 @@ class AssetAccountingInfo(models.Model):
             and self.l10n_it_asset_id
             != self.dep_line_id.depreciation_id.l10n_it_asset_id
         ):
-            raise ValidationError(_("Incoherent asset data."))
+            raise ValidationError(self.env._("Incoherent asset data."))
 
         # If move_line_id and move_id are set, check whether the move line
         # belongs to the given move
@@ -162,7 +162,7 @@ class AssetAccountingInfo(models.Model):
             and self.move_line_id
             and self.move_id != self.move_line_id.move_id
         ):
-            raise ValidationError(_("Incoherent move data."))
+            raise ValidationError(self.env._("Incoherent move data."))
 
     def get_all_companies(self):
         company_ids = []
@@ -222,7 +222,7 @@ class AssetAccountingInfo(models.Model):
         if self.l10n_it_asset_id:
             name = self.l10n_it_asset_id.make_name()
         else:
-            name = _("Unknown Asset")
+            name = self.env._("Unknown Asset")
         relation_name = dict(self._fields["relation_type"].selection).get(
             self.relation_type
         )
