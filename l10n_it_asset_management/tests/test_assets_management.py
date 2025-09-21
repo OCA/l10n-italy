@@ -99,9 +99,7 @@ class TestAssets(Common):
         self.assertEqual(
             exc.exception.args[0],
             "Cannot dismiss an asset earlier than the last depreciation date.\n"
-            "(Dismiss date: {}, last depreciation date: {}).".format(
-                today, second_depreciation_date
-            ),
+            f"(Dismiss date: {today}, last depreciation date: {second_depreciation_date}).",
         )
         sale_invoice.button_cancel()
         sale_invoice.button_draft()

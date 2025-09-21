@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <template id="document_layout">
         <!-- Multicompany -->
         <t t-if="o and 'company_id' in o">
@@ -25,13 +24,13 @@
                     <span t-esc="company.street" class="" />
                     <br />
                     <span t-esc="company.zip" class="" /> - <span
-                        t-esc="company.city"
-                        class=""
-                    /> - <span t-esc="company.state_id.code" class="" />
+                    t-esc="company.city"
+                    class=""
+                /> - <span t-esc="company.state_id.code" class="" />
                     <br />
                     <span class="text-end"><t
-                            t-esc="company.country_id.vat_label or 'TIN'"
-                        />: </span><span t-esc="company.partner_id.vat" class="" />
+                    t-esc="company.country_id.vat_label or 'TIN'"
+                />: </span><span t-esc="company.partner_id.vat" class="" />
                     <br />
                 </div>
             </div>
@@ -53,20 +52,25 @@
                 <div class="col-6 text-end custom_footer">
                     <ul class="list-inline">
                         <li>
-                            <t t-if="o.report_footer_year"><span
-                                    t-esc="o.report_footer_year"
-                                /></t>
-                            <t t-else=""><span class="page" /></t>
+                            <t t-if="o.report_footer_year">
+                                <span t-esc="o.report_footer_year" />
+                            </t>
+                            <t t-else="">
+                                <span class="page" />
+                            </t>
                         </li>
                         <li>/</li>
                         <li>
-                            <t t-if="o.report_footer_year"><span class="page" /></t>
-                            <t t-else=""><span class="topage" /></t>
+                            <t t-if="o.report_footer_year">
+                                <span class="page" />
+                            </t>
+                            <t t-else="">
+                                <span class="topage" />
+                            </t>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </template>
-
 </odoo>

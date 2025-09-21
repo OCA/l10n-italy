@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record id="wizard_asset_journal_report_form_view" model="ir.ui.view">
         <field name="name">wizard.asset.journal.report.form.view</field>
         <field name="model">wizard.asset.journal.report</field>
@@ -51,23 +50,23 @@
                 </sheet>
                 <footer>
                     <button
-                        name="button_export_asset_journal_html"
-                        string="View Journal Report"
-                        class="btn-primary"
-                        type="object"
-                    />
+                    name="button_export_asset_journal_html"
+                    string="View Journal Report"
+                    class="btn-primary"
+                    type="object"
+                />
                     <button
-                        name="button_export_asset_journal_pdf"
-                        string="Print Journal Report"
-                        class="btn-primary"
-                        type="object"
-                    />
+                    name="button_export_asset_journal_pdf"
+                    string="Print Journal Report"
+                    class="btn-primary"
+                    type="object"
+                />
                     <button
-                        name="button_export_asset_journal_xlsx"
-                        string="Export Journal Report"
-                        class="btn-primary"
-                        type="object"
-                    />
+                    name="button_export_asset_journal_xlsx"
+                    string="Export Journal Report"
+                    class="btn-primary"
+                    type="object"
+                />
                     or
                     <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
@@ -90,5 +89,4 @@
         action="action_wizard_asset_journal_report"
         sequence="20"
     />
-
 </odoo>

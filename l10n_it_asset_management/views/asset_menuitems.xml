@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- General Menu -->
     <menuitem
         id="menu_asset"
@@ -42,5 +41,4 @@
         groups="base.group_no_one"
         sequence="1000"
     />
-
 </odoo>

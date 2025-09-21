@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-
     <record id="clean_asset_accounting_info_cron" model="ir.cron">
         <field name="name">Vacuum Empty Asset Accounting Info</field>
         <field name="active" eval="False" />
@@ -13,5 +12,4 @@
         <field name="state">code</field>
         <field name="code">model.cron_vacuum_table()</field>
     </record>
-
 </odoo>

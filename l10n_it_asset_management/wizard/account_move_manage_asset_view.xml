@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record model="ir.ui.view" id="wizard_account_move_mange_asset_form_view">
         <field name="name">wizard.account.move.manage.asset.form.view</field>
         <field name="model">wizard.account.move.manage.asset</field>
@@ -19,7 +18,7 @@
                         attrs="{'invisible': ['|', ('is_move_state_ok', '=', True), ('dismiss_asset_without_sale', '=', True)]}"
                     >
                         Only posted moves can be used to create, update or dismiss assets!<br
-                        />
+                    />
                         Please select posted moves only.
                     </div>
                     <div
@@ -281,6 +280,4 @@
         <field name="target">new</field>
         <field name="view_id" ref="wizard_account_move_mange_asset_form_view" />
     </record>
-
-
 </odoo>

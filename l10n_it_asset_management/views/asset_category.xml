@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record model="ir.ui.view" id="asset_category_tree_view">
         <field name="name">asset.category.asset.tree</field>
         <field name="model">asset.category</field>
@@ -98,5 +97,4 @@
         parent="menu_asset_configuration"
         sequence="20"
     />
-
 </odoo>

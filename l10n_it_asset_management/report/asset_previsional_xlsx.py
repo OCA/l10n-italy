@@ -90,32 +90,32 @@ class AssetJournalXslx(models.AbstractModel):
         )
 
         # 4- Depreciation yearly and amount details formats
-        report_data["formats"][
-            "format_depreciation_year_line_header"
-        ] = workbook.add_format(
-            {
-                "align": "center",
-                "bold": True,
-                "font_size": 12,
-            }
+        report_data["formats"]["format_depreciation_year_line_header"] = (
+            workbook.add_format(
+                {
+                    "align": "center",
+                    "bold": True,
+                    "font_size": 12,
+                }
+            )
         )
 
-        report_data["formats"][
-            "format_depreciation_year_line_value_center"
-        ] = workbook.add_format(
-            {
-                "align": "center",
-                "font_size": 12,
-            }
+        report_data["formats"]["format_depreciation_year_line_value_center"] = (
+            workbook.add_format(
+                {
+                    "align": "center",
+                    "font_size": 12,
+                }
+            )
         )
 
-        report_data["formats"][
-            "format_depreciation_year_line_value_right"
-        ] = workbook.add_format(
-            {
-                "align": "right",
-                "font_size": 12,
-            }
+        report_data["formats"]["format_depreciation_year_line_value_right"] = (
+            workbook.add_format(
+                {
+                    "align": "right",
+                    "font_size": 12,
+                }
+            )
         )
 
         # 5- Report title
@@ -192,9 +192,9 @@ class AssetJournalXslx(models.AbstractModel):
         return dict(enumerate(data))
 
     def set_asset_accounting_doc_data(self, report_data):
-        report_data[
-            "asset_accounting_doc_data"
-        ] = self.generate_asset_accounting_doc_data(report_data)
+        report_data["asset_accounting_doc_data"] = (
+            self.generate_asset_accounting_doc_data(report_data)
+        )
 
     def generate_asset_accounting_doc_data(self, report_data):
         data = (
@@ -277,9 +277,9 @@ class AssetJournalXslx(models.AbstractModel):
         return {n + 1: d for n, d in enumerate(data)}
 
     def set_depreciation_line_year_data(self, report_data):
-        report_data[
-            "depreciation_line_year_data"
-        ] = self.generate_depreciation_line_year_data(report_data)
+        report_data["depreciation_line_year_data"] = (
+            self.generate_depreciation_line_year_data(report_data)
+        )
 
     def generate_depreciation_line_year_data(self, report_data):
         data = (
@@ -385,9 +385,9 @@ class AssetJournalXslx(models.AbstractModel):
         return {n + 1: d for n, d in enumerate(data)}
 
     def set_depreciation_line_amount_detail_data(self, report_data):
-        report_data[
-            "depreciation_line_amount_detail_data"
-        ] = self.generate_depreciation_line_amount_detail_data(report_data)
+        report_data["depreciation_line_amount_detail_data"] = (
+            self.generate_depreciation_line_amount_detail_data(report_data)
+        )
 
     def generate_depreciation_line_amount_detail_data(self, report_data):
         data = (

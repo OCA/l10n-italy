@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record id="group_asset_user" model="res.groups">
         <field name="name">Asset Users</field>
         <field name="category_id" ref="base.module_category_hidden" />
@@ -27,5 +26,4 @@
             eval="[Command.link(ref('group_account_invoice_assets'))]"
         />
     </record>
-
 </odoo>

@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record model="ir.ui.view" id="asset_search_view">
         <field name="name">asset.search.view</field>
         <field name="model">asset.asset</field>
@@ -215,5 +214,4 @@
         action="action_asset"
         sequence="10"
     />
-
 </odoo>

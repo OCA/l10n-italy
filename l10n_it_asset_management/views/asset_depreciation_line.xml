@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record model="ir.ui.view" id="asset_dep_line_search_view">
         <field name="name">asset.depreciation.line.view</field>
         <field name="model">asset.depreciation.line</field>
@@ -171,5 +170,4 @@
         action="action_asset_dep_line"
         sequence="10"
     />
-
 </odoo>

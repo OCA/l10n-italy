@@ -48,7 +48,7 @@
         <field name="name">Asset Previsional Report HTML</field>
         <field name="model">report_asset_previsional</field>
         <field name="report_type">qweb-html</field>
-         <field
+        <field
             name="paperformat_id"
             ref="l10n_it_asset_management.asset_previsional_a4_landscape"
         />
@@ -87,5 +87,4 @@
             name="report_file"
         >l10n_it_asset_management.report_asset_previsional_xlsx</field>
     </record>
-
 </odoo>

@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record model="ir.ui.view" id="view_asset_depreciation_form">
         <field name="name">asset.depreciation.form.view</field>
         <field name="model">asset.depreciation</field>
@@ -206,5 +205,4 @@
             </tree>
         </field>
     </record>
-
 </odoo>

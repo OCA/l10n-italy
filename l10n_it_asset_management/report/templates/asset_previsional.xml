@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <template id="template_asset_previsional_report">
         <div class="o_account_financial_reports_page">
             <t t-call="l10n_it_asset_management.template_asset_previsional_base" />
@@ -111,9 +110,8 @@
         <div name="category_name">
             <h2 style="text-align: centerNel;">
                 <span style="margin: 5px; font-weight: bold;">
-                    <span>Totals for: </span><span
-                        t-field="category_section.category_name"
-                    />
+                    <span>Totals for: </span>
+                    <span t-field="category_section.category_name" />
                 </span>
             </h2>
         </div>
@@ -679,7 +677,8 @@
                             t-att-res-model="res_model"
                             class="o_account_financial_reports_web_action_multi"
                         >
-                            <t t-out="year_section.year" /><br />
+                            <t t-out="year_section.year" />
+                            <br />
                             <t t-out="'In/Out Amounts details'" />
                         </a>
                     </span>
@@ -891,5 +890,4 @@
             </div>
         </div>
     </template>
-
 </odoo>

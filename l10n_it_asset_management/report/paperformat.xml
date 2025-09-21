@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-
     <record id="asset_journal_a4_landscape" model="report.paperformat">
         <field name="name">Assets Journal Report A4 Landscape</field>
         <field name="format">A4</field>
@@ -30,5 +29,4 @@
         <field name="header_spacing">35</field>
         <field name="dpi">90</field>
     </record>
-
 </odoo>

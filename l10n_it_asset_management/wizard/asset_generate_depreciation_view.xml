@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record id="wizard_asset_generate_depreciation_form_view" model="ir.ui.view">
         <field name="name">wizard.asset.generate.depreciation.form.view</field>
         <field name="model">wizard.asset.generate.depreciation</field>
@@ -63,27 +62,26 @@
                 </group>
                 <footer>
                     <button
-                        name="do_generate"
-                        string="Generate"
-                        invisible="not context.get('allow_reload_window', False)"
-                        context="{'reload_window': True}"
-                        class="btn-primary"
-                        type="object"
-                    />
+                    name="do_generate"
+                    string="Generate"
+                    invisible="not context.get('allow_reload_window', False)"
+                    context="{'reload_window': True}"
+                    class="btn-primary"
+                    type="object"
+                />
                     <button
-                        name="do_generate"
-                        string="Generate"
-                        invisible="context.get('allow_reload_window', False)"
-                        class="btn-primary"
-                        type="object"
-                    />
+                    name="do_generate"
+                    string="Generate"
+                    invisible="context.get('allow_reload_window', False)"
+                    class="btn-primary"
+                    type="object"
+                />
                     or
                     <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
             </form>
         </field>
     </record>
-
 
     <record
         id="action_wizard_asset_generate_depreciation"
@@ -103,5 +101,4 @@
         action="action_wizard_asset_generate_depreciation"
         sequence="20"
     />
-
 </odoo>

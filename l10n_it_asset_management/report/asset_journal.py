@@ -362,12 +362,12 @@ class ReportCategory(models.TransientModel):
             for report_dep in report_deps:
                 dep_type = report_dep.depreciation_id.type_id
                 if not report_dep.report_depreciation_year_line_ids:
-                    totals_by_dep_type[dep_type][
-                        "amount_depreciable_updated"
-                    ] += report_dep.dep_amount_depreciable
-                    totals_by_dep_type[dep_type][
-                        "amount_residual"
-                    ] += report_dep.dep_amount_depreciable
+                    totals_by_dep_type[dep_type]["amount_depreciable_updated"] += (
+                        report_dep.dep_amount_depreciable
+                    )
+                    totals_by_dep_type[dep_type]["amount_residual"] += (
+                        report_dep.dep_amount_depreciable
+                    )
                     continue
                 last_line = report_dep.report_depreciation_year_line_ids[-1]
                 line_curr = last_line.get_currency()

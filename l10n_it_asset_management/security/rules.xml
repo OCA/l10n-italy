@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo noupdate="1">
-
     <record id="asset_multicompany_rule" model="ir.rule">
         <field name="name">Asset multi company rule</field>
         <field name="model_id" ref="model_asset_asset" />
@@ -103,5 +102,4 @@
             ['|',('company_id','=',False),('company_id','in',company_ids)]
         </field>
     </record>
-
 </odoo>
