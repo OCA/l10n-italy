@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========================
 ITA - Data competenza IVA
 =========================
@@ -17,7 +13,7 @@ ITA - Data competenza IVA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
@@ -36,9 +32,22 @@ ITA - Data competenza IVA
 
 Aggiunge la data competenza IVA per le fatture fornitori.
 
+La data di competenza IVA può essere impostata nella fattura e viene
+utilizzata automaticamente in:
+
+-  Liquidazione IVA (modulo
+   ``l10n_it_account_vat_period_end_settlement``)
+-  Registro IVA (modulo ``l10n_it_vat_registries``)
+
 **English**
 
 Add settlement date for bills.
+
+The VAT settlement date can be set in the invoice and is automatically
+used in:
+
+-  VAT Settlement (module ``l10n_it_account_vat_period_end_settlement``)
+-  VAT Registry (module ``l10n_it_vat_registries``)
 
 **Table of contents**
 
@@ -66,9 +75,9 @@ Authors
 Contributors
 ------------
 
-- `Aion Tech <https://aiontech.company/>`__:
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
