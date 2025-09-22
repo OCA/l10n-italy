@@ -57,7 +57,7 @@ Configuration
 In Invoicing / Configuration / Settings / SEPA/PAIN, set:
 
 -  the CUC code in field ``Initiating Party Identifier``
--  the ``Initiating Party Identifier`` (must be "CBI").
+-  the ``Initiating Party Issuer`` (must be "CBI").
 
 |company_setting|
 
