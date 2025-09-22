@@ -312,13 +312,14 @@ class AccountMove(models.Model):
 
             for line in reconciled_amls:
                 # When this method is invoked from
-                if float_compare(
-                    abs(line.amount_currency), amount_net_pay_residual, amount_dp
-                ):
-                    amount_net_pay_residual = 0
 
                 if not line.withholding_tax_generated_by_move_id:
                     amount_net_pay_residual -= abs(line.amount_currency)
+                else:
+                    if float_compare(
+                        abs(line.amount_currency), amount_net_pay_residual, amount_dp
+                    ):
+                        amount_net_pay_residual = 0
             invoice.amount_net_pay_residual = float_round(
                 amount_net_pay_residual, amount_dp
             )
