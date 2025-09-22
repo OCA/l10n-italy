@@ -86,9 +86,21 @@ class AccountPartialReconcile(models.Model):
             lc = self.env["account.move.line"].browse(vals.get("credit_move_id"))
 
             move_ids = ld.move_id | lc.move_id
-            lines = self.env["account.move.line"].search(
-                [("withholding_tax_generated_by_move_id", "in", move_ids.ids)]
-            )
+            lines_domain = [
+                ("withholding_tax_generated_by_move_id", "in", move_ids.ids),
+            ]
+            if invoice:
+                # In case the payment move of move_ids contain more than one
+                # payment filter by partner is mandatory because otherwise
+                # the account move line search result can be inconsistent if at
+                # least one line of the payment move has the value set for
+                # 'withholding_tax_generated_by_move_id' with the same value of
+                # payment move, leading to a wrong link between Withholding tax
+                # move and invoice
+                lines_domain.append(
+                    ("partner_id", "=", invoice.partner_id.id),
+                )
+            lines = self.env["account.move.line"].search(lines_domain)
             if lines:
                 is_wt_move = True
                 reconcile.generate_wt_moves(is_wt_move, lines)
@@ -280,14 +292,13 @@ class AccountMove(models.Model):
         # "payment_move_line_ids",
     )
     def _compute_amount_withholding_tax(self):
-        dp_obj = self.env["decimal.precision"]
+        amount_dp = self.env["decimal.precision"].precision_get("Account")
         for invoice in self:
             withholding_tax_amount = 0.0
             for wt_line in invoice.withholding_tax_line_ids:
-                withholding_tax_amount += float_round(
-                    wt_line.tax, dp_obj.precision_get("Account")
-                )
-            invoice.amount_net_pay = invoice.amount_total - withholding_tax_amount
+                withholding_tax_amount += float_round(wt_line.tax, amount_dp)
+            amount_net_pay = abs(invoice.amount_total_signed) - withholding_tax_amount
+            invoice.amount_net_pay = amount_net_pay
             amount_net_pay_residual = invoice.amount_net_pay
             invoice.withholding_tax_amount = withholding_tax_amount
 
@@ -300,10 +311,16 @@ class AccountMove(models.Model):
             ) + reconciled_lines.mapped("matched_credit_ids.credit_move_id")
 
             for line in reconciled_amls:
+                # When this method is invoked from
+                if float_compare(
+                    abs(line.amount_currency), amount_net_pay_residual, amount_dp
+                ):
+                    amount_net_pay_residual = 0
+
                 if not line.withholding_tax_generated_by_move_id:
                     amount_net_pay_residual -= abs(line.amount_currency)
             invoice.amount_net_pay_residual = float_round(
-                amount_net_pay_residual, dp_obj.precision_get("Account")
+                amount_net_pay_residual, amount_dp
             )
 
     withholding_tax = fields.Boolean()
