@@ -36,7 +36,7 @@ class AccountPaymentOrder(models.Model):
         )
         pain_flavor = gen_args.get("pain_flavor")
         if pain_flavor == "CBIBdyPaymentRequest.00.04.01":
-            iban_node = parent_node.find(f".//{'%sAcct' % party_type}/Id/IBAN")
+            iban_node = parent_node.find(f".//{party_type}Acct/Id/IBAN")
             if iban_node is None:
                 raise UserError(
                     _(
@@ -87,7 +87,7 @@ class AccountPaymentOrder(models.Model):
             return res
 
         if party_type == "Dbtr":
-            party_agent_tag = "%sAgt" % party_type
+            party_agent_tag = f"{party_type}Agt"
             party_agent_node = parent_node.xpath(f"//{party_agent_tag}")[-1]
 
             party_agent_institution_tag = "FinInstnId"
@@ -384,7 +384,7 @@ class AccountPaymentOrder(models.Model):
         )
         amount_node = etree.SubElement(credit_transfer_transaction_info_node, "Amt")
         instructed_amount = etree.SubElement(amount_node, "InstdAmt", Ccy=currency_name)
-        instructed_amount.text = "%.2f" % line.amount
+        instructed_amount.text = f"{line.amount:.2f}"
         if not line.partner_bank_id:
             raise UserError(
                 _(
@@ -495,7 +495,7 @@ class AccountPaymentOrder(models.Model):
 
         transactions_number = len(transactions)
         transactions_number_node.text = str(transactions_number)
-        transactions_amount_node.text = "%.2f" % transactions_amount
+        transactions_amount_node.text = f"{transactions_amount:.2f}"
         return payment_node, transactions_number, transactions_amount
 
     def finalize_sepa_file_creation(self, xml_root, gen_args):
@@ -544,6 +544,6 @@ class AccountPaymentOrder(models.Model):
             transactions_amount += payment_transactions_amount
 
             transactions_number_node.text = str(transactions_number)
-            transactions_amount_node.text = "%.2f" % transactions_amount
+            transactions_amount_node.text = f"{transactions_amount:.2f}"
 
         return self.finalize_sepa_file_creation(xml_root, gen_args)

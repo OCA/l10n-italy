@@ -16,8 +16,8 @@ class TestGenerateFile(AccountTestInvoicingCommon):
     """Test payment file generation."""
 
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+    def setUpClass(cls):
+        super().setUpClass()
 
         company = cls.env.company
         company.initiating_party_identifier = "CUC Code"

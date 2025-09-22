@@ -5,10 +5,10 @@
 {
     "name": "ITA - Banking SEPA Credit Transfer CBI",
     "summary": "Usare gli standard CBI per SEPA Credit Transfer",
-    "version": "16.0.1.0.2",
+    "version": "18.0.1.0.0",
     "category": "Banking",
     "author": "Openforce di Alessandro Camilli, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/l10n-italy" "/tree/16.0/l10n_it_sct_cbi",
+    "website": "https://github.com/OCA/l10n-italy" "/tree/18.0/l10n_it_sct_cbi",
     "license": "AGPL-3",
     "maintainers": [
         "monen17",
