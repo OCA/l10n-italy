@@ -6,14 +6,6 @@ from odoo.exceptions import ValidationError
 
 ALLOWED_PICKING_STATES = ["done"]
 
-PICKING_TYPES = [
-    ("incoming", "Incoming"),
-    ("outgoing", "Outgoing"),
-    ("internal", "Internal"),
-    ("mrp_operation", "Manufacturing Operation"),
-]
-DOMAIN_PICKING_TYPES = [t[0] for t in PICKING_TYPES]
-
 
 class StockPickingCheckerMixin(models.AbstractModel):
     _name = "stock.picking.checker.mixin"
