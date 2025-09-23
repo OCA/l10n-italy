@@ -5,8 +5,6 @@ import datetime
 
 from odoo import api, fields, models
 
-from ..mixins.picking_checker import PICKING_TYPES
-
 
 class StockDeliveryNoteCreateWizard(models.TransientModel):
     _name = "stock.delivery.note.create.wizard"
@@ -38,7 +36,9 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
         "stock.delivery.note.type", default=_default_type, required=True
     )
     picking_type = fields.Selection(
-        PICKING_TYPES, string="Picking type", compute="_compute_picking_type"
+        lambda self: self.env["stock.picking.type"]._fields["code"].selection,
+        string="Picking type",
+        compute="_compute_picking_type",
     )
 
     @api.depends("selected_picking_ids")
