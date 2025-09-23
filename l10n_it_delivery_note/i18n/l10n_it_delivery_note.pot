@@ -927,8 +927,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note_type.py:0
 #: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__incoming
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__incoming
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_type__code__incoming
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 msgid "Incoming"
@@ -946,8 +944,6 @@ msgid "Initial"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__internal
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__internal
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_type__code__internal
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 msgid "Internal"
@@ -1116,12 +1112,6 @@ msgstr ""
 #. module: l10n_it_delivery_note
 #: model:res.groups,name:l10n_it_delivery_note.group_required_partner_ref
 msgid "Make Partner Ref. in DN Required"
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__mrp_operation
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__mrp_operation
-msgid "Manufacturing Operation"
 msgstr ""
 
 #. module: l10n_it_delivery_note
@@ -1301,8 +1291,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note_type.py:0
 #: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__outgoing
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__outgoing
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_type__code__outgoing
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 msgid "Outgoing"
