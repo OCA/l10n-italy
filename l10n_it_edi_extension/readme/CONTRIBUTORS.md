@@ -1,0 +1,5 @@
+- Giuseppe Borruso - Dinamiche Aziendali srl \<<gborruso@dinamicheaziendali.it>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>
+- Simone Rubino \<<simone.rubino88@gmail.com>\>
+- Nextev Srl \<<odoo@nextev.it>\>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_account_config_settings_create_partner">
+        <field name="name">view_account_config_settings_create_partner</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="l10n_it_edi.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="italian_edi" position="after">
+                <setting
+                    id="l10n_edi_it_create_partner"
+                    help="Automatically create the partner if it does not exist during the import of Electronic Invoices."
+                    company_dependent="1"
+                >
+                    <field name="l10n_edi_it_create_partner" />
+                </setting>
+                <setting id="l10n_it_edi_import_detail_level">
+                    <div class="group-content">
+                        <span
+                            class="o_form_label"
+                            title="Minimum: the bill is created with no lines; the user will have to create them, according to what specified in the electronic bill.
+&#10;Tax rate: every tax rate present in the electronic bill will create a line in the bill.
+&#10;Maximum (default): every line contained in the electronic bill will create a line in the bill."
+                        >
+                            E-bills import detail level
+                    </span>
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                        />
+                        <div class="text-muted">
+                            How lines are converted from the e-bill to the bill.
+                            <br />
+                            This setting can be overridden in each supplier.
+                        </div>
+                        <field name="l10n_it_edi_import_detail_level" />
+                    </div>
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>

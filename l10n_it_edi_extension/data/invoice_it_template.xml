@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="account_invoice_line_it_FatturaPA_inherit"
+        inherit_id="l10n_it_edi.account_invoice_line_it_FatturaPA"
+    >
+        <xpath expr="//DettaglioLinee/Natura" position="after">
+            <RiferimentoAmministrazione
+                t-if="it_values['admin_ref']"
+                t-out="it_values['admin_ref']"
+            />
+        </xpath>
+    </template>
+
+    <template
+        id="account_invoice_it_FatturaPA_export_inherit"
+        inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
+    >
+        <xpath expr="//CedentePrestatore/IscrizioneREA" position="before">
+            <StabileOrganizzazione t-if="company.l10n_edi_it_stable_organization">
+                <t t-set="partner" t-value="company.l10n_edi_it_stable_organization" />
+                <Indirizzo
+                    t-if="partner.street or partner.street2"
+                    t-out="format_address(partner.street, partner.street2, 60)"
+                />
+                <CAP t-out="partner.zip" />
+                <Comune t-out="format_alphanumeric(partner.city, 60)" />
+                <Provincia
+                    t-if="partner.state_id"
+                    t-out="format_alphanumeric(partner.state_id.code, 2)"
+                />
+                <Nazione t-out="partner.country_id.code" />
+            </StabileOrganizzazione>
+        </xpath>
+        <xpath expr="//CedentePrestatore/IscrizioneREA" position="after">
+            <RiferimentoAmministrazione
+                t-if="partner.l10n_edi_it_admin_ref or company.l10n_edi_it_admin_ref"
+                t-out="partner.l10n_edi_it_admin_ref or company.l10n_edi_it_admin_ref"
+            />
+        </xpath>
+        <xpath expr="//DatiGeneraliDocumento/ImportoTotaleDocumento" position="after">
+            <t t-foreach="causale" t-as="c">
+                <Causale t-out="c" />
+            </t>
+            <Art73
+                t-if="record.l10n_edi_it_art73 or company.l10n_edi_it_art73"
+            >SI</Art73>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="shipping_invoice_report" model="ir.actions.report">
+        <field name="name">Shipping Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_it_accompanying_invoice.shipping_invoice_template</field>
+        <field
+            name="report_file"
+        >l10n_it_accompanying_invoice.shipping_invoice_template</field>
+        <field name="print_report_name">(object._get_report_base_filename())</field>
+        <field name="binding_model_id" ref="model_account_move" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="shipping_invoice_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="account.report_invoice_document" t-lang="o.partner_id.lang">
+                    <t t-set="print_delivery_data" t-value="True" />
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_shipping_invoice" inherit_id="account.report_invoice_document">
+        <!--
+            Compatible with standard template account.report_invoice_document
+            and the "replace" in l10n_it.report_invoice_document
+        -->
+        <xpath expr="//p[@name='note']" position="after">
+            <p t-if="print_delivery_data">
+                <t t-call="l10n_it_delivery_note.delivery_data">
+                    <t t-set="doc" t-value="o" />
+                </t>
+                <t t-call="l10n_it_delivery_note.parcels_data">
+                    <t t-set="doc" t-value="o" />
+                </t>
+            </p>
+        </xpath>
+    </template>
+</odoo>

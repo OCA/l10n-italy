@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_invoice_form_l10n_it_inherit_view" model="ir.ui.view">
+        <field name="name">account.move.form.l10n.it.inherit.view</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@role='alert']" position="after">
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="l10n_it_edi_validation_message == ''"
+                >
+                    <field
+                        name="l10n_it_edi_validation_message"
+                        decoration-bf="1"
+                        nolabel="1"
+                    />
+                </div>
+            </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']/list/field[@name='analytic_distribution']"
+                position="after"
+            >
+                <field name="l10n_it_edi_admin_ref" optional="hide" />
+            </xpath>
+            <xpath
+                expr="//page[@name='electronic_invoicing']//field[@name='l10n_it_edi_attachment_id']"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath
+                expr="//page[@name='electronic_invoicing']//field[@name='l10n_it_edi_attachment_id']"
+                position="after"
+            >
+                <label
+                    for="l10n_it_edi_attachment_id"
+                    class="oe_inline"
+                    invisible="not l10n_it_edi_attachment_id"
+                />
+                <div class="o_row" invisible="not l10n_it_edi_attachment_id">
+                    <field
+                        name="l10n_it_edi_attachment_id"
+                        groups="account.group_account_invoice"
+                        readonly="1"
+                    />
+                    <button
+                        name="action_l10n_it_edi_attachment_preview"
+                        type="object"
+                        string="Preview FPA"
+                    />
+                </div>
+            </xpath>
+            <xpath expr="//page[@name='electronic_invoicing']" position="after">
+                <page
+                    string="E-Invoice Details"
+                    invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund') or country_code != 'IT'"
+                >
+                    <group>
+                        <group string="Amount Summary">
+                            <field name="l10n_it_edi_amount_untaxed" />
+                            <field name="l10n_it_edi_amount_tax" />
+                            <field name="l10n_it_edi_amount_total" />
+                        </group>
+                    </group>
+                    <separator name="Lines Detail" />
+                    <field name="l10n_it_edi_line_ids">
+                        <list>
+                            <field name="line_number" />
+                            <field name="name" />
+                            <field name="qty" />
+                            <field name="uom" />
+                            <field name="unit_price" />
+                            <field name="tax_amount" />
+                            <field name="total_price" />
+                        </list>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="line_number" />
+                                    <field name="name" />
+                                    <field name="qty" />
+                                    <field name="uom" />
+                                    <field name="unit_price" />
+                                    <field name="tax_amount" />
+                                    <field name="total_price" />
+                                </group>
+                                <group>
+                                    <field name="service_type" />
+                                    <field name="period_start_date" />
+                                    <field name="period_end_date" />
+                                    <field name="wt_amount" />
+                                    <field name="tax_kind" />
+                                </group>
+                            </group>
+                            <separator string="Articles Code" />
+                            <field name="l10n_it_edi_article_code_ids" />
+                            <separator string="Discount Supplement" />
+                            <field name="l10n_it_edi_discount_rise_price_ids" />
+                            <separator string="Other Administrative Data" />
+                            <field name="l10n_it_edi_line_other_data_ids" />
+                        </form>
+                    </field>
+                    <separator name="Summary Data" />
+                    <field name="l10n_it_edi_summary_ids">
+                        <list editable="bottom">
+                            <field name="tax_rate" />
+                            <field name="non_taxable_nature" />
+                            <field name="incidental_charges" readonly="1" />
+                            <field name="rounding" />
+                            <field name="amount_untaxed" />
+                            <field name="amount_tax" />
+                            <field name="payability" />
+                            <field name="law_reference" />
+                        </list>
+                    </field>
+                    <separator name="Progress Data" />
+                    <field name="l10n_it_edi_activity_progress_ids">
+                        <list>
+                            <field name="activity_progress" />
+                        </list>
+                    </field>
+                    <group>
+                        <group string="Stable Organization">
+                            <field
+                                name="l10n_it_edi_stabile_organizzazione_indirizzo"
+                            />
+                            <field name="l10n_it_edi_stabile_organizzazione_civico" />
+                            <field name="l10n_it_edi_stabile_organizzazione_cap" />
+                            <field name="l10n_it_edi_stabile_organizzazione_comune" />
+                            <field
+                                name="l10n_it_edi_stabile_organizzazione_provincia"
+                            />
+                            <field name="l10n_it_edi_stabile_organizzazione_nazione" />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="General Data">
+                            <field name="l10n_it_edi_rounding" widget="monetary" />
+                            <field name="l10n_edi_it_art73" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_company_form_l10n_it_inherit_view" model="ir.ui.view">
+        <field name="name">res.company.form.l10n.it.inherit.view</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="l10n_it_edi.res_company_form_l10n_it" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='l10n_it_tax_system']" position="after">
+                <field name="l10n_edi_it_art73" invisible="country_code != 'IT'" />
+                <field name="l10n_edi_it_admin_ref" invisible="country_code != 'IT'" />
+                <field
+                    name="l10n_edi_it_stable_organization"
+                    invisible="country_code != 'IT'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

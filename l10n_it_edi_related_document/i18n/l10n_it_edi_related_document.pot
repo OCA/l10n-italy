@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_edi_related_document
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields.selection,name:l10n_it_edi_related_document.selection__account_move_related_document__type__agreement
+msgid "Agreement"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__cig
+msgid "CIG Code"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__cup
+msgid "CUP Code"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields.selection,name:l10n_it_edi_related_document.selection__account_move_related_document__type__contract
+msgid "Contract"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__date
+msgid "Date"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__type
+msgid "Document"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__name
+msgid "Document ID"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model,name:l10n_it_edi_related_document.model_account_move_related_document
+msgid "E-invoice Related Documents"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__numitem
+msgid "Item Num."
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model,name:l10n_it_edi_related_document.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model,name:l10n_it_edi_related_document.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__lineRef
+msgid "Line Ref."
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields.selection,name:l10n_it_edi_related_document.selection__account_move_related_document__type__order
+msgid "Order"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__code
+msgid "Order Agreement Code"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields.selection,name:l10n_it_edi_related_document.selection__account_move_related_document__type__reception
+msgid "Reception"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_bank_statement_line__related_document_ids
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move__related_document_ids
+msgid "Related Document"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_line__related_document_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_related_document.account_invoice_form_related_document
+msgid "Related Documents"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__invoice_id
+#: model:ir.model.fields.selection,name:l10n_it_edi_related_document.selection__account_move_related_document__type__invoice
+msgid "Related Invoice"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__invoice_line_id
+msgid "Related Invoice Line"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.actions.act_window,name:l10n_it_edi_related_document.account_move_related_document_action
+#: model:ir.ui.menu,name:l10n_it_edi_related_document.account_move_related_document_menu
+msgid "Related documents"
+msgstr ""

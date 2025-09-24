@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_invoice_form_related_document" model="ir.ui.view">
+        <field name="name">account.move.form.related.document</field>
+        <field name="model">account.move</field>
+        <field name="priority">20</field>
+        <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[field[@name='l10n_it_origin_document_type']]"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='electronic_invoicing']" position="after">
+                <page
+                    string="Related Documents"
+                    name="related_document"
+                    invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund') or country_code != 'IT'"
+                >
+                    <field name="related_document_ids">
+                        <list editable="bottom">
+                            <field name="type" />
+                            <field name="name" />
+                            <field name="lineRef" />
+                            <field name="date" />
+                            <field name="numitem" />
+                            <field name="code" />
+                            <field name="cig" />
+                            <field name="cup" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

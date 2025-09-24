@@ -126,27 +126,24 @@ class WizardRegistroIva(models.TransientModel):
             moves = moves.sorted(order)
         return moves.ids
 
-    def print_registro(self):
+    def _get_datas_form(self):
         self.ensure_one()
-        wizard = self
-        if not wizard.journal_ids:
+        if not self.journal_ids:
             raise UserError(
                 _(
                     "No journals found in the current selection.\n"
                     "Please load them before to retry!"
                 )
             )
-        move_ids = self._get_move_ids(wizard)
-
         datas_form = {}
-        datas_form["from_date"] = wizard.from_date
-        datas_form["to_date"] = wizard.to_date
-        datas_form["journal_ids"] = [j.id for j in wizard.journal_ids]
-        if wizard._include_rc_journals():
-            datas_form["rc_journal_ids"] = [j.id for j in wizard.rc_journal_ids]
-        datas_form["fiscal_page_base"] = wizard.fiscal_page_base
-        datas_form["registry_type"] = wizard.layout_type
-        datas_form["year_footer"] = wizard.year_footer
+        datas_form["from_date"] = self.from_date
+        datas_form["to_date"] = self.to_date
+        datas_form["journal_ids"] = [j.id for j in self.journal_ids]
+        if self._include_rc_journals():
+            datas_form["rc_journal_ids"] = [j.id for j in self.rc_journal_ids]
+        datas_form["fiscal_page_base"] = self.fiscal_page_base
+        datas_form["registry_type"] = self.layout_type
+        datas_form["year_footer"] = self.year_footer
 
         lang_code = self.env.company.partner_id.lang
         lang = self.env["res.lang"]
@@ -154,14 +151,27 @@ class WizardRegistroIva(models.TransientModel):
         date_format = lang_id.date_format
         datas_form["date_format"] = date_format
 
-        if wizard.tax_registry_id:
-            datas_form["tax_registry_name"] = wizard.tax_registry_id.name
+        if self.tax_registry_id:
+            datas_form["tax_registry_name"] = self.tax_registry_id.name
         else:
             datas_form["tax_registry_name"] = ""
-        datas_form["only_totals"] = wizard.only_totals
-        datas_form["entry_order"] = wizard.entry_order
-        datas_form["show_full_contact_addess"] = wizard.show_full_contact_addess
-        # report_name = 'l10n_it_vat_registries.report_registro_iva'
+        datas_form["only_totals"] = self.only_totals
+        datas_form["entry_order"] = self.entry_order
+        datas_form["show_full_contact_addess"] = self.show_full_contact_addess
+        return datas_form
+
+    def print_registro(self):
+        move_ids = self._get_move_ids(self)
+        datas_form = self._get_datas_form()
+
         report_name = "l10n_it_vat_registries.action_report_registro_iva"
         datas = {"ids": move_ids, "model": "account.move", "form": datas_form}
         return self.env.ref(report_name).report_action(self, data=datas)
+
+    def print_registro_xlsx(self):
+        move_ids = self._get_move_ids(self)
+        datas_form = self._get_datas_form()
+        report_name = "l10n_it_vat_registries.action_report_registro_iva_xlsx"
+        datas = {"ids": move_ids, "model": "account.move", "form": datas_form}
+        moves = self.env["account.move"].browse(move_ids)
+        return self.env.ref(report_name).report_action(moves, data=datas)

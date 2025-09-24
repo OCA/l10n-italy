@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-l10n-italy"
-version = "18.0.20250731.1"
+version = "18.0.20250919.0"
 dependencies = [
     "odoo-addon-l10n_it_abicab==18.0.*",
+    "odoo-addon-l10n_it_accompanying_invoice==18.0.*",
     "odoo-addon-l10n_it_account==18.0.*",
     "odoo-addon-l10n_it_account_stamp==18.0.*",
     "odoo-addon-l10n_it_account_vat_period_end_settlement==18.0.*",
@@ -10,13 +11,18 @@ dependencies = [
     "odoo-addon-l10n_it_ateco==18.0.*",
     "odoo-addon-l10n_it_bill_of_entry==18.0.*",
     "odoo-addon-l10n_it_central_journal_reportlab==18.0.*",
+    "odoo-addon-l10n_it_currency_rate_update_boi==18.0.*",
     "odoo-addon-l10n_it_delivery_note==18.0.*",
     "odoo-addon-l10n_it_edi_doi_extension==18.0.*",
+    "odoo-addon-l10n_it_edi_extension==18.0.*",
+    "odoo-addon-l10n_it_edi_related_document==18.0.*",
     "odoo-addon-l10n_it_financial_statement_eu==18.0.*",
     "odoo-addon-l10n_it_intrastat==18.0.*",
     "odoo-addon-l10n_it_intrastat_statement==18.0.*",
+    "odoo-addon-l10n_it_location_nuts==18.0.*",
     "odoo-addon-l10n_it_vat_registries==18.0.*",
     "odoo-addon-l10n_it_vat_settlement_communication==18.0.*",
+    "odoo-addon-l10n_it_vat_settlement_date==18.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
