@@ -35,7 +35,7 @@ class SelectManuallyDeclarations(models.TransientModel):
             ]
             domain = expression.AND([domain, date_domain])
 
-        return declaration_model.search(domain)
+        return declaration_model.search(domain, order="date_end desc")
 
     declaration_ids = fields.Many2many(
         comodel_name="l10n_it_declaration_of_intent.declaration",
