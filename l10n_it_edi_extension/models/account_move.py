@@ -2,9 +2,12 @@
 # Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import re
+import unicodedata
+
 from odoo import api, fields, models, osv
 from odoo.exceptions import UserError
-from odoo.tools import float_compare, html2plaintext
+from odoo.tools import float_compare, html2plaintext, is_html_empty
 
 from odoo.addons.base.models.ir_qweb_fields import Markup
 from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get_text
@@ -266,11 +269,36 @@ class AccountMoveInherit(models.Model):
             )
         return res
 
+    @api.model
+    def _sanitize_causale(self, text):
+        # Normalize text into NFC
+        text = unicodedata.normalize("NFC", text)
+
+        # Mapping of "fancy" or typographic characters to ASCII-friendly equivalents
+        replacements = {
+            "\u2018": "'",  # left single quotation mark → straight apostrophe
+            "\u2019": "'",  # right single quotation mark → straight apostrophe
+            "\u201c": '"',  # left double quotation mark → straight quote
+            "\u201d": '"',  # right double quotation mark → straight quote
+            "\u2013": "-",  # en dash → hyphen
+            "\u2014": "-",  # em dash → hyphen
+            "\u2026": "...",  # ellipsis → three dots
+            "\u20ac": "EUR",  # euro sign → EUR text
+        }
+
+        for bad, good in replacements.items():
+            text = text.replace(bad, good)
+
+        # Remove any character outside Basic Latin + Latin-1 Supplement range
+        text = re.sub(r"[^\u0000-\u00FF]", "?", text)
+
+        return text
+
     def _l10n_it_edi_get_values(self, pdf_values=None):
         res = super()._l10n_it_edi_get_values(pdf_values)
 
         causale_list = []
-        if self.narration:
+        if not is_html_empty(self.narration):
             try:
                 narration_text = html2plaintext(self.narration)
             except Exception:
@@ -278,8 +306,11 @@ class AccountMoveInherit(models.Model):
 
             # max length of Causale is 200
             for causale in narration_text.split("\n"):
-                if not causale:
+                # Skip if causale is empty or only spaces
+                if not causale.strip():
                     continue
+
+                causale = self._sanitize_causale(causale)
                 causale_list_200 = [
                     causale[i : i + 200] for i in range(0, len(causale), 200)
                 ]
