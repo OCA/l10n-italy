@@ -23,8 +23,11 @@ class SelectManuallyDeclarations(models.TransientModel):
         domain = [
             ("partner_id", "=", invoice.partner_id.commercial_partner_id.id),
             ("type", "=", type_short),
-            ("state", "not in", ("close", "expired")),
         ]
+        # refunds may reopen closed DIs
+        if not invoice.move_type.endswith("_refund"):
+            domain.append(("state", "not in", ("close", "expired")))
+
         if invoice.invoice_date:
             date_domain = [
                 ("date_start", "<=", invoice.invoice_date),
