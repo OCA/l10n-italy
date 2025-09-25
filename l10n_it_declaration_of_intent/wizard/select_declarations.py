@@ -52,7 +52,7 @@ class SelectManuallyDeclarations(models.TransientModel):
         if not invoice_id:
             return res
         invoice = self.env["account.move"].browse(invoice_id)
-        invoice.declaration_of_intent_ids = [(6, 0, [])]
-        for declaration in self.declaration_ids:
-            invoice.declaration_of_intent_ids = [(4, declaration.id)]
+        invoice.declaration_of_intent_ids = [
+            (6, 0, [d.id for d in self.declaration_ids])
+        ]
         return True
