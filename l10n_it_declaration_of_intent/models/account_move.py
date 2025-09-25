@@ -13,6 +13,8 @@ class AccountMove(models.Model):
 
     declaration_of_intent_ids = fields.Many2many(
         comodel_name="l10n_it_declaration_of_intent.declaration",
+        compute="_compute_declarations",
+        store=True,
         string="Declarations of intent",
     )
 
@@ -82,7 +84,7 @@ class AccountMove(models.Model):
         posted = super()._post(soft)
         # Check if there is enough available amount on declarations
         for invoice in self.filtered(lambda m: m.is_invoice()):
-            declarations = invoice.get_declarations()
+            declarations = invoice.declaration_of_intent_ids
             # If partner has no declarations, do nothing
             if not declarations:
                 # If fiscal position is valid for declaration of intent,
@@ -209,21 +211,31 @@ class AccountMove(models.Model):
             grouped_lines[force_declaration][tax] |= line
         return grouped_lines
 
-    def get_declarations(self):
-        """Get declarations linked directly or indirectly to this invoice."""
-        self.ensure_one()
+    @api.depends(
+        "invoice_date",
+        "fiscal_position_id",
+        "declaration_of_intent_ids.state",
+    )
+    def _compute_declarations(self):
         declaration_model = self.env["l10n_it_declaration_of_intent.declaration"]
-        if self.declaration_of_intent_ids:
-            declarations = self.declaration_of_intent_ids
-        else:
-            declarations = declaration_model.with_context(
-                ignore_state=True if self.move_type.endswith("_refund") else False
+        no_di = self.filtered(
+            lambda am: not am.fiscal_position_id.valid_for_declaration_of_intent
+        )
+        no_di.declaration_of_intent_ids = [(5, 0, 0)]  # clear
+        for invoice in self - no_di:
+            is_refund = invoice.move_type.endswith("_refund")
+            valid_declarations = declaration_model.with_context(
+                ignore_state=is_refund
             ).get_valid(
-                type_d=self.move_type.split("_")[0],
-                partner_id=self.partner_id.id,
-                date=self.invoice_date,
+                type_d=invoice.get_type_short(),
+                partner_id=invoice.partner_id.id,
+                date=invoice.invoice_date,
             )
-        return declarations
+            if invoice.declaration_of_intent_ids:
+                new_value = valid_declarations & invoice.declaration_of_intent_ids
+            else:
+                new_value = valid_declarations
+            invoice.declaration_of_intent_ids = new_value
 
     def get_declarations_used_amounts(self, declarations):
         """Get used amount by declarations for this invoice."""
