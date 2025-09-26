@@ -130,3 +130,87 @@ class InvoicingTest(TestAccountInvoiceReport):
         self.assertEqual(
             len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 0
         )
+
+    def test_compute_l10n_it_stamp_duty(self):
+        """Test that l10n_it_stamp_duty is correctly computed based on stamp
+        application and product price."""
+        stamp_product = self.env.company.l10n_it_account_stamp_stamp_duty_product_id
+        stamp_price = stamp_product.list_price
+
+        # Test 1: Invoice in draft with stamp duty applied
+        invoice = first(
+            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        )
+        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
+        self.assertTrue(invoice.l10n_it_account_stamp_is_stamp_duty_applied)
+        self.assertEqual(invoice.state, "draft")
+        self.assertEqual(
+            invoice.l10n_it_stamp_duty,
+            stamp_price,
+            "Stamp duty should equal product price when applied in draft",
+        )
+
+        # Test 2: Invoice in draft without stamp duty applied
+        invoice2 = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner_a.id,
+                "invoice_date": "2024-01-01",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test Product Without Stamp",
+                            "price_unit": 100.0,
+                            "quantity": 1,
+                        },
+                    )
+                ],
+            }
+        )
+        self.assertFalse(invoice2.l10n_it_account_stamp_is_stamp_duty_applied)
+        self.assertEqual(invoice2.state, "draft")
+        self.assertEqual(
+            invoice2.l10n_it_stamp_duty,
+            0,
+            "Stamp duty should be 0 when not applied",
+        )
+
+        # Test 3: Posted invoice should keep value from draft
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(
+            invoice.l10n_it_stamp_duty,
+            stamp_price,
+            "Stamp duty should be preserved after posting",
+        )
+
+        # Test 4: Change stamp product price and verify recomputation
+        new_price = 5.0
+        stamp_product.list_price = new_price
+        invoice3 = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner_a.id,
+                "invoice_date": "2024-01-01",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test Product",
+                            "price_unit": 100.0,
+                            "quantity": 1,
+                            "tax_ids": [(6, 0, [self.tax_id.id])],
+                        },
+                    )
+                ],
+            }
+        )
+        self.assertTrue(invoice3.l10n_it_account_stamp_is_stamp_duty_applied)
+        self.assertEqual(
+            invoice3.l10n_it_stamp_duty,
+            new_price,
+            "Stamp duty should reflect updated product price",
+        )
