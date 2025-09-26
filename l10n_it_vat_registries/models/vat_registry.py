@@ -65,10 +65,10 @@ class ReportRegistroIva(models.AbstractModel):
 
         for move_line in move_lines:
             taxes = move_line.tax_ids.filtered(
-                lambda tax: tax._l10n_it_get_tax_kind() in [None, "vat"]
+                lambda tax: tax._l10n_it_filter_kind("vat")
             )
             tax_line = move_line.tax_line_id.filtered(
-                lambda tax: tax._l10n_it_get_tax_kind() in [None, "vat"]
+                lambda tax: tax._l10n_it_filter_kind("vat")
             )
 
             if not (tax_line or taxes):
