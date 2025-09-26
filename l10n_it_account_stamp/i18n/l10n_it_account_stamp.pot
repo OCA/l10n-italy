@@ -64,6 +64,12 @@ msgid "Configuration for stamp duty"
 msgstr ""
 
 #. module: l10n_it_account_stamp
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_bank_statement_line__l10n_it_stamp_duty
+#: model:ir.model.fields,field_description:l10n_it_account_stamp.field_account_move__l10n_it_stamp_duty
+msgid "Dati Bollo"
+msgstr ""
+
+#. module: l10n_it_account_stamp
 #: model_terms:ir.ui.view,arch_db:l10n_it_account_stamp.product_template_form_view_account_stamp
 msgid ""
 "For each invoice, the base amount for each selected tax will be added up and used to determine\n"
