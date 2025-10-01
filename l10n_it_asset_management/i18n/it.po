@@ -758,6 +758,11 @@ msgstr ""
 "sia per le nature che per le modalità di ammortamento."
 
 #. module: l10n_it_asset_management
+#: model:res.groups,name:l10n_it_asset_management.group_account_invoice_assets
+msgid "Billing and Assets"
+msgstr ""
+
+#. module: l10n_it_asset_management
 #: model:ir.model.fields,help:l10n_it_asset_management.field_wizard_asset_journal_report__show_sold_assets
 #: model:ir.model.fields,help:l10n_it_asset_management.field_wizard_asset_previsional_report__show_sold_assets
 msgid ""

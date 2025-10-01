@@ -784,9 +784,11 @@ class TestAssets(Common):
         manager_user = self.user
         account_user = self.account_user
         forbidden_user = self.env.ref("base.user_demo")
-        forbidden_user.groups_id -= self.env.ref(
-            "l10n_it_asset_management.group_asset_user"
-        ) | self.env.ref("account.group_account_manager")
+        forbidden_user.groups_id -= (
+            self.env.ref("l10n_it_asset_management.group_asset_user")
+            | self.env.ref("account.group_account_manager")
+            | self.env.ref("l10n_it_asset_management.group_account_invoice_assets")
+        )
         self.assertFalse(
             forbidden_user.has_group("l10n_it_asset_management.group_asset_user")
         )
