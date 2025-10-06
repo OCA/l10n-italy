@@ -9,7 +9,7 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
-from ..mixins.picking_checker import DONE_PICKING_STATE
+from ..mixins.picking_checker import ALLOWED_PICKING_STATES
 from .stock_delivery_note import DOMAIN_DELIVERY_NOTE_STATES
 
 CANCEL_MOVE_STATE = "cancel"
@@ -123,7 +123,7 @@ class StockPicking(models.Model):
 
         for picking in self:
             picking.use_delivery_note = (
-                not from_delivery_note and picking.state == DONE_PICKING_STATE
+                not from_delivery_note and picking.state in ALLOWED_PICKING_STATES
             )
 
             picking.delivery_note_draft = False
