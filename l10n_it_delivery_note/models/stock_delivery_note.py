@@ -15,8 +15,8 @@ from ..mixins.delivery_mixin import (
     _domain_weight_uom,
 )
 from ..mixins.picking_checker import (
+    ALLOWED_PICKING_STATES,
     DOMAIN_PICKING_TYPES,
-    DONE_PICKING_STATE,
     PICKING_TYPES,
 )
 
@@ -524,7 +524,7 @@ class StockDeliveryNote(models.Model):
         if self.partner_id:
             pickings_picker_domain = [
                 ("delivery_note_id", "=", False),
-                ("state", "=", DONE_PICKING_STATE),
+                ("state", "in", ALLOWED_PICKING_STATES),
                 ("picking_type_code", "=", self.picking_type),
                 ("partner_id", "=", self.partner_id.id),
             ]
