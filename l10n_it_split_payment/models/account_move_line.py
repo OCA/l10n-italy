@@ -42,6 +42,7 @@ class AccountMoveLine(models.Model):
             "debit": self.credit,
             "credit": self.debit,
             "display_type": "tax",
+            "tax_repartition_line_id": self.tax_repartition_line_id.id,
         }
         if self.move_id.move_type == "out_refund":
             vals["amount_currency"] = -self.debit
