@@ -249,7 +249,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         # Storno Bill of Entry account.move
         storno = self.forwarder_invoice.bill_of_entry_storno_id
         self.assertTrue(storno)
-        self.assertEqual(storno.date, self.forwarder_invoice.invoice_date)
+        self.assertEqual(storno.date, self.forwarder_invoice.date)
 
         # Advance Customs Expense account.move.line
         move_line_domain = [
