@@ -20,6 +20,7 @@
         "account",
         "l10n_it_edi",
         "partner_firstname",
+        "l10n_it_edi_withholding",
     ],
     "data": [
         "security/ir.model.access.csv",
