@@ -11,10 +11,11 @@
                             colspan="2"
                             string="If you want to add a PDF version of the invoice into the XML, select which one. Leave empty otherwise"
                         />
+                        <field name="allowed_report_ids" invisible="1" />
                         <field
                             name="report_print_menu"
                             string="Attached report"
-                            domain="[('binding_model_id','=',context.get('active_model'))]"
+                            domain="[('id','in',allowed_report_ids)]"
                             widget="selection"
                         />
                     </group>

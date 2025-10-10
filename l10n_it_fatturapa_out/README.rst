@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =====================================
 ITA - Fattura elettronica - Emissione
 =====================================
@@ -17,7 +13,7 @@ ITA - Fattura elettronica - Emissione
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
@@ -89,25 +85,25 @@ Usage
 
 **Italiano**
 
-   - Compilare la fattura con i dati necessari per l'esportazione: per
-     esempio, nella scheda "Allegati fattura elettronica"
-   - Selezionare 1 o N fatture ed eseguire la procedura guidata "Esporta
-     fattura elettronica"
-   - Per le fatture estere, è possibile inviarle a soli fini fiscali
-     inserendo il codice identificativo XXXXXXX (7 volte X) ed avendo
-     cura di indicare il paese del partner. Le fatture vanno comunque
-     spedite al cliente, ma si evita la predisposizione
-     dell'esterometro.
+   -  Compilare la fattura con i dati necessari per l'esportazione: per
+      esempio, nella scheda "Allegati fattura elettronica"
+   -  Selezionare 1 o N fatture ed eseguire la procedura guidata
+      "Esporta fattura elettronica"
+   -  Per le fatture estere, è possibile inviarle a soli fini fiscali
+      inserendo il codice identificativo XXXXXXX (7 volte X) ed avendo
+      cura di indicare il paese del partner. Le fatture vanno comunque
+      spedite al cliente, ma si evita la predisposizione
+      dell'esterometro.
 
 **English**
 
-   - Fill invoice data you need to export: For instance, in 'Electronic
-     Invoice Attachments' TAB
-   - Select 1 or N invoices and run 'Export Electronic Invoice' wizard
-   - For foreign invoices, it is possible to send them only for tax
-     purposes with code XXXXXXX (7 times X) and assuring to set the
-     country of the partner. Invoices must be sent anyway to the
-     customer, but in this way it is not needed to prepare esterometro.
+   -  Fill invoice data you need to export: For instance, in 'Electronic
+      Invoice Attachments' TAB
+   -  Select 1 or N invoices and run 'Export Electronic Invoice' wizard
+   -  For foreign invoices, it is possible to send them only for tax
+      purposes with code XXXXXXX (7 times X) and assuring to set the
+      country of the partner. Invoices must be sent anyway to the
+      customer, but in this way it is not needed to prepare esterometro.
 
 Bug Tracker
 ===========
@@ -132,21 +128,25 @@ Authors
 Contributors
 ------------
 
-- Davide Corio
-- Lorenzo Battistini <https://github.com/eLBati>
-- Roberto Onnis
-- Alessio Gerace
-- Alex Comba
-- Sergio Zanchetta <https://github.com/primes2h>
-- Marco Colombo <https://github.com/TheMule71>
-- Giovanni Serra <giovanni@gslab.it>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Davide Corio
+-  Lorenzo Battistini <https://github.com/eLBati>
+-  Roberto Onnis
+-  Alessio Gerace
+-  Alex Comba
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Marco Colombo <https://github.com/TheMule71>
+-  Giovanni Serra <giovanni@gslab.it>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
+   -  Víctor Martínez
 
-- `Aion Tech <https://aiontech.company/>`__:
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
+
+-  `Stesi Consulting <https://www.stesi.consulting/>`__:
+
+   -  Michele Di Croce <dicroce.m@stesi.consulting>
 
 Maintainers
 -----------
