@@ -40,6 +40,23 @@ class WizardExportFatturapa(models.TransientModel):
         help="This report will be automatically included in the created XML",
     )
 
+    def _default_allowed_report_ids(self):
+        active_model = self.env.context.get("active_model", False)
+        if not active_model:
+            return False
+        allowed_reports = (
+            self.env["ir.actions.report"]
+            .sudo()
+            .search([("binding_model_id", "=", active_model)])
+        )
+        return allowed_reports
+
+    allowed_report_ids = fields.Many2many(
+        "ir.actions.report",
+        default=_default_allowed_report_ids,
+        help="Allowed reports for this wizard",
+    )
+
     def saveAttachment(self, fatturapa, number):
         attach_obj = self.env["fatturapa.attachment.out"]
         vat = attach_obj.get_file_vat()

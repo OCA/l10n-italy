@@ -1363,3 +1363,29 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
             with mute_logger("odoo.models.unlink"):
                 e_invoice.unlink()
                 invoice.button_draft()
+
+    def test_access_wizard_fatturapa_export(self):
+        """
+        Verify that allowed_report_ids in "wizard.export.fatturapa"
+        only contains reports for invoices
+        (otherwise non-admin users may not be able to access)
+        """
+        invoice = self._create_invoice()
+        f = Form(
+            self.wizard_model.with_context(
+                active_id=invoice.id,
+                active_model=invoice._name,
+            )
+        )
+        field = f._view["tree"].xpath("//field[@name='report_print_menu']")[0]
+        self.assertIn("allowed_report_ids", field.get("domain"))
+        allowed_reports = f.allowed_report_ids._get_ids()
+        invoice_reports = self.env["ir.actions.report"].search(
+            [("binding_model_id", "=", invoice._name)]
+        )
+        self.assertItemsEqual(invoice_reports.ids, allowed_reports)
+
+        # Verify non-admin user can read the allowed reports
+        user = self.user_demo
+        self.assertNotIn(self.env.ref("base.group_system"), user.groups_id)
+        invoice_reports.with_user(user).read()

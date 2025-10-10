@@ -12,3 +12,5 @@
   - Simone Rubino \<<simone.rubino@aion-tech.it>\>
 - [PyTech](https://www.pytech.it):
   - Simone Rubino \<<simone.rubino@pytech.it>\>
+- [Stesi Consulting](https://www.stesi.consulting/):
+  - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
