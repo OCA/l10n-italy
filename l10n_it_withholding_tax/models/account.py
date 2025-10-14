@@ -165,7 +165,7 @@ class AccountPartialReconcile(models.Model):
             )
             == 1
         ):
-            amount_to_pay = (invoice.amount_net_pay,)
+            amount_to_pay = invoice.amount_net_pay
             vals_update.update(
                 {
                     "amount": amount_to_pay,
