@@ -43,10 +43,24 @@ class WizardImportFatturapa(models.TransientModel):
         # set RC fiscal position
         inv_line_ids = invoice_data['invoice_line_ids'][0][2]
         inv_lines = self.env['account.invoice.line'].browse(inv_line_ids)
-        if any(inv_lines.mapped('rc')):
-            rc_ita_fp = self.env['account.fiscal.position'].search([
+        fp_obj = self.env['account.fiscal.position']
+        inv_fp = fp_obj.browse(
+            invoice_data.get("fiscal_position_id", 0)
+        ).exists()
+        rc_inv_lines = inv_lines.filtered("rc")
+        if not inv_fp and rc_inv_lines:
+            fp_domain = [
                 ('rc_type_id.e_invoice_suppliers', '=', True)
-            ])
-            if rc_ita_fp:
-                invoice_data['fiscal_position_id'] = rc_ita_fp.id
+            ]
+            inv_fp_src_taxes = rc_inv_lines.mapped("invoice_line_tax_ids")
+            if inv_fp_src_taxes:
+                fp_domain.append(
+                    ("tax_ids.tax_src_id", "in", inv_fp_src_taxes.ids)
+                )
+            inv_rc_fp = self.env['account.fiscal.position'].search(
+                fp_domain,
+                limit=1
+            )
+            if inv_rc_fp:
+                invoice_data['fiscal_position_id'] = inv_rc_fp.id
         return res
