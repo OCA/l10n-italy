@@ -28,31 +28,34 @@ class ReportFinancialStatementsWizard(models.TransientModel):
                 self.receivable_accounts_only = False
         return res
 
-    def prepare_report_vals(self):
-        self.ensure_one()
-        return {
-            "financial_statements_report_type": self.financial_statements_report_type,
-            "hide_accounts_codes": self.hide_accounts_codes,
-            "wizard_id": self.id,
-            "company_id": self.company_id.id,
-            "date_from": self.date_from,
-            "date_to": self.date_to,
-            "foreign_currency": self.foreign_currency,
-            "account_ids": self.account_ids.ids or [],
-            "partner_ids": self.partner_ids.ids or [],
-            "journal_ids": self.journal_ids.ids or [],
-            "fy_start_date": self.fy_start_date,
-            "hide_account_at_0": self.hide_account_at_0,
-            "hide_parent_hierarchy_level": self.hide_parent_hierarchy_level,
-            "show_hierarchy": self.show_hierarchy,
-            "limit_hierarchy_level": self.limit_hierarchy_level,
-            "only_posted_moves": self.target_move == "posted",
-            "show_hierarchy_level": self.show_hierarchy_level,
-            "show_partner_details": self.show_partner_details,
-            "unaffected_earnings_account": self.unaffected_earnings_account.id,
-            "account_financial_report_lang": self.env.lang,
-            "grouped_by": False,
-        }
+    def _prepare_report_data(self):
+        res = super()._prepare_report_data()
+        res.update(
+            {
+                "financial_statements_report_type": self.financial_statements_report_type,  # noqa: E501
+                "hide_accounts_codes": self.hide_accounts_codes,
+                "wizard_id": self.id,
+                "company_id": self.company_id.id,
+                "date_from": self.date_from,
+                "date_to": self.date_to,
+                "foreign_currency": self.foreign_currency,
+                "account_ids": self.account_ids.ids or [],
+                "partner_ids": self.partner_ids.ids or [],
+                "journal_ids": self.journal_ids.ids or [],
+                "fy_start_date": self.fy_start_date,
+                "hide_account_at_0": self.hide_account_at_0,
+                "hide_parent_hierarchy_level": self.hide_parent_hierarchy_level,
+                "show_hierarchy": self.show_hierarchy,
+                "limit_hierarchy_level": self.limit_hierarchy_level,
+                "only_posted_moves": self.target_move == "posted",
+                "show_hierarchy_level": self.show_hierarchy_level,
+                "show_partner_details": self.show_partner_details,
+                "unaffected_earnings_account": self.unaffected_earnings_account.id,
+                "account_financial_report_lang": self.env.lang,
+                "grouped_by": False,
+            }
+        )
+        return res
 
     def _print_report(self, report_type):
         """
@@ -64,7 +67,7 @@ class ReportFinancialStatementsWizard(models.TransientModel):
         self.ensure_one()
         if self.financial_statements_report_type not in REPORT_TYPES:
             return super()._print_report(report_type)
-        report_data = self.prepare_report_vals()
+        report_data = self._prepare_report_data()
         return self.env[
             "report.l10n_it_financial_statements_report.report"
         ].print_report(self, report_data, report_type=report_type)

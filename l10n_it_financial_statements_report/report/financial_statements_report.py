@@ -242,6 +242,10 @@ class ReportFinancialStatementsReport(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
+        # see OCA/account-financial-reporting#1408
+        # compute_data_for_report() calls _get_report_values() on
+        # report.account_financial_report.trial_balance and we don't
+        # need to call super()._get_report_values() here again
         report_data = self.compute_data_for_report(data)
 
         wizard_id = data["wizard_id"]
