@@ -23,7 +23,7 @@
         "account_due_list",
         "base_iban",
         "l10n_it_abicab",
-        "l10n_it_edi",
+        "l10n_it_edi_related_document",
         "account_payment_term_extension",
     ],
     "data": [
