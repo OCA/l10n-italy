@@ -34,6 +34,7 @@ class ReportFinancialStatementsWizard(models.TransientModel):
             "financial_statements_report_type": self.financial_statements_report_type,
             "hide_accounts_codes": self.hide_accounts_codes,
             "wizard_id": self.id,
+            "wizard_name": self._name,
             "company_id": self.company_id.id,
             "date_from": self.date_from,
             "date_to": self.date_to,
