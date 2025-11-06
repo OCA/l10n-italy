@@ -11,3 +11,15 @@ class Common(TestItEdi):
     def setUpClass(cls):
         super().setUpClass()
         cls.module = "l10n_it_edi_extension"
+
+        cls.italian_shipping_partner_a = cls.env["res.partner"].create(
+            {
+                "name": "Mario Rossi Shipping",
+                "country_id": cls.env.ref("base.it").id,
+                "street": "Largo S. Martino 1",
+                "zip": "80129",
+                "city": "Napoli",
+                "company_id": False,
+                "invoice_edi_format": "it_edi_xml",
+            }
+        )
