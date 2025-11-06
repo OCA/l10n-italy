@@ -392,10 +392,8 @@ class RibaFileExport(models.TransientModel):
                 unidecode(line.partner_id.ref and line.partner_id.ref[:16] or ""),
                 unidecode(line.invoice_number[:40]),
                 line.invoice_date,
-                unidecode(f"CIG: {line.cig if line.cig else ''} "),
-                "",
-                unidecode(f"CUP: {line.cup if line.cup else ''} "),
-                "",
+                unidecode(f"CIG: {line.cig} " if line.cig else ""),
+                unidecode(f"CUP: {line.cup} " if line.cup else ""),
             ]
             array_riba.append(riba)
 

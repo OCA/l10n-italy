@@ -283,8 +283,25 @@ class RibaListLine(models.Model):
     amount = fields.Float(compute="_compute_line_values")
     invoice_date = fields.Char(compute="_compute_line_values", size=256)
     invoice_number = fields.Char(compute="_compute_line_values", size=256)
-    cig = fields.Char(string="CIG", size=256)
-    cup = fields.Char(string="CUP", size=256)
+    cig = fields.Char(compute="_compute_cig_cup_values", string="CIG", size=256)
+    cup = fields.Char(compute="_compute_cig_cup_values", string="CUP", size=256)
+
+    def _compute_cig_cup_values(self):
+        for line in self:
+            line.cig = ""
+            line.cup = ""
+            related_documents = line.mapped(
+                "move_line_ids.move_line_id.move_id.related_document_ids"
+            )
+
+            for related_document in related_documents:
+                if related_document.cup:
+                    line.cup = str(related_document.cup)
+                if related_document.cig:
+                    line.cig = str(related_document.cig)
+                # Stop if at least one value is found
+                if line.cup or line.cig:
+                    break
 
     sequence = fields.Integer("Number")
     move_line_ids = fields.One2many(
