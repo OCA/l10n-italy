@@ -66,14 +66,12 @@
                 <Data>2019-01-01</Data>
                 <Numero>INV/2019/00001</Numero>
                 <ImportoTotaleDocumento>122.00</ImportoTotaleDocumento>
-                <Causale>first line</Causale>
-                <Causale>second line</Causale>
             </DatiGeneraliDocumento>
             <DatiTrasporto>
                 <IndirizzoResa>
-                    <Indirizzo>Via Privata Alessi 6</Indirizzo>
-                    <CAP>28887</CAP>
-                    <Comune>Milan</Comune>
+                    <Indirizzo>Largo S. Martino 1</Indirizzo>
+                    <CAP>80129</CAP>
+                    <Comune>Napoli</Comune>
                     <Nazione>IT</Nazione>
                 </IndirizzoResa>
             </DatiTrasporto>
