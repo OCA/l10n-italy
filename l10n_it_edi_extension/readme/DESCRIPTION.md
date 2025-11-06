@@ -15,6 +15,7 @@ Le funzionalità principali incluse sono:
    - `<StabileOrganizzazione>`: rappresenta i dati della sede operativa stabile del cedente/prestatore in Italia se diversa dalla sede legale. Da impostare in odoo nell'azienda, tab "Informazioni Generali"
    - `<Causale>`: in questo caso non c'è un campo apposito, ma trascrive i "Termini e condizioni" della fattura
    - `<Art73>`: indica se il documento è stato emesso secondo modalità e termini stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR 633/72. Da impostare in odoo nell'azienda o direttamente in fattura.
+   - `<IndirizzoResa>`: rappresenta l'indirizzo di consegna della merce.
 
 3. Miglioramenti nell'import delle fatture XML:
 
@@ -96,6 +97,7 @@ The main features included are:
    - `<StabileOrganizzazione>`: represents the data of the seller/provider's permanent establishment in Italy if different from the registered office
    - `<Causale>`: in this case there is no specific field, but it transcribes the "Terms and conditions" of the invoice.
    - `<Art73>`: indicates if the document was issued according to methods and terms established by ministerial decree pursuant to article 73 of DPR 633/72
+   - `<IndirizzoResa>`: represents the shipping address of the goods.
 
 3. Improvements in XML invoice import:
 

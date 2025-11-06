@@ -69,6 +69,14 @@
                 <Causale>first line</Causale>
                 <Causale>second line</Causale>
             </DatiGeneraliDocumento>
+            <DatiTrasporto>
+                <IndirizzoResa>
+                    <Indirizzo>Via Privata Alessi 6</Indirizzo>
+                    <CAP>28887</CAP>
+                    <Comune>Milan</Comune>
+                    <Nazione>IT</Nazione>
+                </IndirizzoResa>
+            </DatiTrasporto>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>
