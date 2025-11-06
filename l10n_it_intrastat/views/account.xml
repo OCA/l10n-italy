@@ -35,7 +35,6 @@
                         <group>
                             <button
                                 name="compute_intrastat_lines"
-                                invisible="state not in ['draft', 'sent']"
                                 string="Recompute Intrastat Lines"
                                 type="object"
                             />
