@@ -455,6 +455,18 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                         },
                     )
                 ],
+                "related_document_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "type": "order",
+                            "name": "SO1232",
+                            "cig": "7987210EG5",
+                            "cup": "H71N17000690124",
+                        },
+                    )
+                ],
             }
         )
         invoice._onchange_riba_partner_bank_id()
@@ -472,8 +484,12 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         riba_list_id = action and action["res_id"] or False
         riba_list = self.slip_model.browse(riba_list_id)
         riba_list.confirm()
+        self.assertEqual(riba_list.line_ids[0].cig, "7987210EG5")
+        self.assertEqual(riba_list.line_ids[0].cup, "H71N17000690124")
         wizard_riba_export = self.env["riba.file.export"].create({})
         wizard_riba_export.with_context(active_ids=[riba_list.id]).act_getfile()
+        riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
+        self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690124" in riba_txt)
         # Assert
         file_content = base64.decodebytes(wizard_riba_export.riba_txt).decode()
         self.assertNotIn("INV/2025/00004", file_content)
@@ -508,6 +524,18 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                         },
                     )
                 ],
+                "related_document_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "type": "order",
+                            "name": "SO1232",
+                            "cig": "7987210EG5",
+                            "cup": "H71N17000690124",
+                        },
+                    )
+                ],
             }
         )
         invoice._onchange_riba_partner_bank_id()
@@ -530,6 +558,18 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                             "price_unit": 450.00,
                             "account_id": self.sale_account.id,
                             "tax_ids": [[6, 0, self.tax_22.ids]],
+                        },
+                    )
+                ],
+                "related_document_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "type": "order",
+                            "name": "SO1232",
+                            "cig": "7987210EG5",
+                            "cup": "H71N17000690125",
                         },
                     )
                 ],
@@ -556,6 +596,9 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertTrue(len(riba_list.line_ids), 2)
         wizard_riba_export = self.env["riba.file.export"].create({})
         wizard_riba_export.with_context(active_ids=[riba_list.id]).act_getfile()
+        riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
+        self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690124" in riba_txt)
+        self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690125" in riba_txt)
         # Assert
         file_content = base64.decodebytes(wizard_riba_export.riba_txt).decode()
         self.assertNotIn("INV/2025/00008", file_content)

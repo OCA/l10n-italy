@@ -33,3 +33,7 @@ impostata con la data di scadenza della RiBa, ma è possibile modificarla in due
 - successivamente a pagamento effettivamente avvenuto selezionando la
 registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta data
 di pagamento RiBa".
+
+Non è possibile emettere Riba per fatture verso Enti che richiedono più di un CIG e un CUP differenti per fattura.
+In questo caso particolare, emettere più fatture.
+Non è possibile raggruppare Riba in fase di emissione se le fatture contengono CIG e CUP differenti. Verrà creata una riga di distinta per ogni fattura.

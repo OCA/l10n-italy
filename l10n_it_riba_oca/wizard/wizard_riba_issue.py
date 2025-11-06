@@ -62,7 +62,15 @@ class RibaIssue(models.TransientModel):
                 self.env._("It is possible to issue C/O for posted move only!")
             )
         do_group_riba = True
-        if len({f"{x.l10n_it_cig}{x.l10n_it_cup}" for x in move_lines.move_id}) > 1:
+        if (
+            len(
+                {
+                    f"{x.cig}{x.cup}"
+                    for x in move_lines.mapped("move_id.related_document_ids")
+                }
+            )
+            > 1
+        ):
             do_group_riba = False
         if do_group_riba:
             for move_line in move_lines:
@@ -90,7 +98,7 @@ class RibaIssue(models.TransientModel):
                         invoice=move_line.move_id.name,
                     )
                 )
-            if move_line.partner_id.group_riba:  # and do_group_riba:
+            if move_line.partner_id.group_riba and do_group_riba:
                 for key in grouped_lines:
                     if (
                         key[0] == move_line.partner_id.id
