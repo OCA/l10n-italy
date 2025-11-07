@@ -4,6 +4,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.tools import float_compare, html2plaintext
 
 from odoo.addons.base.models.ir_qweb_fields import Markup
@@ -397,6 +398,42 @@ class AccountMoveInherit(models.Model):
         partner.update(vals)
         return partner
 
+    def _l10n_it_edi_search_tax_for_import(
+        self, company, percentage, extra_domain=None, l10n_it_exempt_reason=None
+    ):
+        # Check if a tax of the default product fits what is requested
+        partner_default_product = self.partner_id.l10n_it_edi_ext_default_product_id
+        if default_product_taxes := partner_default_product.supplier_taxes_id:
+            product_extra_domain = Domain.AND(
+                [
+                    extra_domain,
+                    [
+                        ("id", "in", default_product_taxes.ids),
+                    ],
+                ]
+            )
+            tax = super()._l10n_it_edi_search_tax_for_import(
+                company,
+                percentage,
+                product_extra_domain,
+                l10n_it_exempt_reason=l10n_it_exempt_reason,
+            )
+            if not tax:
+                tax = super()._l10n_it_edi_search_tax_for_import(
+                    company,
+                    percentage,
+                    extra_domain,
+                    l10n_it_exempt_reason=l10n_it_exempt_reason,
+                )
+        else:
+            tax = super()._l10n_it_edi_search_tax_for_import(
+                company,
+                percentage,
+                extra_domain,
+                l10n_it_exempt_reason=l10n_it_exempt_reason,
+            )
+        return tax
+
     def _l10n_it_edi_ext_import_summary_line(self, element, extra_info=None):
         messages_to_log = []
         if extra_info is None:
@@ -414,17 +451,21 @@ class AccountMoveInherit(models.Model):
             l10n_it_exempt_reason=l10n_it_exempt_reason,
         )
         if tax:
-            self.env["account.move.line"].create(
-                {
-                    "move_id": self.id,
-                    "name": self.env._(
-                        "Summary for tax amount %(percentage)s",
-                        percentage=percentage,
-                    ),
-                    "price_unit": get_float(element, ".//ImponibileImporto"),
-                    "tax_ids": tax.ids,
-                }
-            )
+            line_values = {
+                "move_id": self.id,
+                "name": self.env._(
+                    "Summary for tax amount %(percentage)s",
+                    percentage=percentage,
+                ),
+                "price_unit": get_float(element, ".//ImponibileImporto"),
+                "tax_ids": tax.ids,
+            }
+            if (
+                partner_default_product
+                := self.partner_id.l10n_it_edi_ext_default_product_id
+            ):
+                line_values["product_id"] = partner_default_product.id
+            self.env["account.move.line"].create(line_values)
         else:
             messages_to_log.append(
                 Markup("<br/>").join(
@@ -446,8 +487,9 @@ class AccountMoveInherit(models.Model):
             extra_info = dict()
         messages_to_log = []
         company = move_line.company_id
+        partner = move_line.partner_id
         import_detail_level = (
-            move_line.partner_id.l10n_it_edi_import_detail_level
+            partner.l10n_it_edi_import_detail_level
             or company.l10n_it_edi_import_detail_level
         )
         if import_detail_level == "min":
@@ -552,6 +594,23 @@ class AccountMoveInherit(models.Model):
             messages_to_log += super()._l10n_it_edi_import_line(
                 element, move_line, extra_info=extra_info
             )
+            if not move_line.product_id and (
+                partner_default_product := partner.l10n_it_edi_ext_default_product_id
+            ):
+                # If no product is found use the default one set on the partner,
+                # without recomputing what was assigned
+                with self.env.protecting(
+                    [
+                        move_line._fields[field_name]
+                        for field_name in [
+                            "price_unit",
+                            "tax_ids",
+                        ]
+                    ],
+                    move_line,
+                ):
+                    move_line.product_id = partner_default_product
+
         else:
             raise UserError(
                 self.env._(

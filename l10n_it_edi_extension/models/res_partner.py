@@ -37,6 +37,13 @@ class ResPartnerInherit(models.Model):
         "will create a line in the bill.",
     )
     l10n_edi_it_admin_ref = fields.Char(string="Administrative Reference")
+    l10n_it_edi_ext_default_product_id = fields.Many2one(
+        comodel_name="product.product",
+        string="E-bills default Product",
+        help="Used by electronic invoice XML import. "
+        "If filled in, generated bill lines will use this product when "
+        "no other possible product is found.",
+    )
 
     @api.constrains(
         "l10n_it_codice_fiscale",
