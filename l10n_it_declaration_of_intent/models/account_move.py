@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from collections import defaultdict
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import format_date
@@ -15,11 +16,10 @@ class AccountMove(models.Model):
 
     declaration_of_intent_ids = fields.Many2many(
         comodel_name="l10n_it_declaration_of_intent.declaration",
-        #compute="_compute_declarations",
+        # compute="_compute_declarations",
         store=True,
         string="Declarations of intent",
     )
-    
     declaration_of_intent_amount_ids = fields.One2many(
         comodel_name="account.move.intent",
         compute="_compute_declaration_amounts",
@@ -95,7 +95,9 @@ class AccountMove(models.Model):
 
         # Check if there is enough available amount on declarations
         for invoice in self.filtered(lambda m: m.is_invoice()):
-            declarations = invoice.declaration_of_intent_amount_ids.declaration_of_intent_id
+            declarations = (
+                invoice.declaration_of_intent_amount_ids.declaration_of_intent_id
+            )
 
             # If partner has no declarations, do nothing
             if not declarations:
@@ -123,7 +125,7 @@ class AccountMove(models.Model):
                 continue
             # Group lines by tax
             if invoice.move_type.startswith("out"):
-                pass # import pdb; pdb.set_trace()
+                pass
             grouped_lines = self.get_move_lines_by_declaration(lines)
             invoice.update_declarations(declarations_used_amounts, grouped_lines)
 
@@ -233,25 +235,33 @@ class AccountMove(models.Model):
     )
     def _compute_declaration_amounts(self):
 
-        invoices = self.filtered(lambda move: move.partner_id and move.move_type.endswith("_invoice"))
-        refunds = self.filtered(lambda move: move.partner_id and move.move_type.endswith("_refund"))
+        invoices = self.filtered(
+            lambda move: move.partner_id and move.move_type.endswith("_invoice")
+        )
+        refunds = self.filtered(
+            lambda move: move.partner_id and move.move_type.endswith("_refund")
+        )
 
         for record in invoices:
             tax_summary = record._get_tax_summary()
-            available_declarations = record._get_available_declarations(check_dates=True)
+            available_declarations = record._get_available_declarations(
+                check_dates=True
+            )
 
-            #values = [fields.Command.clear()]
-            #values = [(5,0,0)]
-            record.declaration_of_intent_amount_ids = [(5,0,0)]
+            # values = [fields.Command.clear()]
+            # values = [(5,0,0)]
+            record.declaration_of_intent_amount_ids = [(5, 0, 0)]
             values = []
             amount_per_declaration = {d: 0.0 for d in available_declarations}
-            print("TAX SUMMARY", tax_summary)
             for tax_id, todo_amount in tax_summary.items():
                 for declaration in available_declarations.sorted("date_end"):
                     if tax_id not in declaration.taxes_ids:
                         continue
 
-                    available = declaration.available_amount - amount_per_declaration[declaration]
+                    available = (
+                        declaration.available_amount
+                        - amount_per_declaration[declaration]
+                    )
                     if todo_amount <= available:
                         amount_per_declaration[declaration] += todo_amount
                         todo_amount = 0
@@ -260,23 +270,29 @@ class AccountMove(models.Model):
                         amount_per_declaration[declaration] += available
                         # amount_per_declaration[declaration] = declaration.available_amount
                         todo_amount -= available
-                if todo_amount > 0.0:
-                    print("TODO_AMOUNT =", todo_amount)
             for d, amount in amount_per_declaration.items():
-                #values.append(fields.Command.create({
-                values.append([0,0,{
-                    "declaration_of_intent_id": d.id,
-                    "move_id": record.id,
-                    "amount": amount,
-                }])
+                # values.append(fields.Command.create({
+                values.append(
+                    [
+                        0,
+                        0,
+                        {
+                            "declaration_of_intent_id": d.id,
+                            "move_id": record.id,
+                            "amount": amount,
+                        },
+                    ]
+                )
             record.declaration_of_intent_amount_ids = values
 
         for record in refunds:
             tax_summary = record._get_tax_summary()
-            available_declarations = record._get_available_declarations(check_dates=False)
+            available_declarations = record._get_available_declarations(
+                check_dates=False
+            )
 
-            #values = [fields.Command.clear()]
-            values = [(5,0,0)]
+            # values = [fields.Command.clear()]
+            values = [(5, 0, 0)]
             amount_per_declaration = {d: 0.0 for d in available_declarations}
             for tax_id, todo_amount in tax_summary.items():
                 todo_amount = -todo_amount
@@ -284,7 +300,9 @@ class AccountMove(models.Model):
                     if tax_id not in declaration.taxes_ids:
                         continue
 
-                    available = declaration.used_amount - amount_per_declaration[declaration]
+                    available = (
+                        declaration.used_amount - amount_per_declaration[declaration]
+                    )
                     if todo_amount <= available:
                         amount_per_declaration[declaration] += todo_amount
                         todo_amount = 0
@@ -293,19 +311,22 @@ class AccountMove(models.Model):
                         amount_per_declaration[declaration] += available
                         # amount_per_declaration[declaration] = declaration.available_amount
                         todo_amount -= available
-                if todo_amount > 0.0:
-                    print("TODO_AMOUNT =", todo_amount)
             for d, amount in amount_per_declaration.items():
-                #values.append(fields.Command.create({
-                values = [(0,0,{
-                    "declaration_of_intent_id": d.id,
-                    "move_id": record.id,
-                    "amount": -amount,
-                })]
+                # values.append(fields.Command.create({
+                values = [
+                    (
+                        0,
+                        0,
+                        {
+                            "declaration_of_intent_id": d.id,
+                            "move_id": record.id,
+                            "amount": -amount,
+                        },
+                    )
+                ]
             record.declaration_of_intent_amount_ids = values
 
         (self - invoices - refunds).declaration_of_intent_amount_ids = False
-
 
     def get_declarations_used_amounts(self, declarations):
         """Get used amount by declarations for this invoice."""
@@ -477,8 +498,6 @@ class AccountMove(models.Model):
     # ok
     def _get_available_declarations(self, check_dates=True):
         self.ensure_one()
-        import pdb; pdb.set_trace()
-        
         invoice_type_short = self.get_type_short()
         if not invoice_type_short:
             return []
@@ -490,10 +509,14 @@ class AccountMove(models.Model):
             ignore_state=not check_dates,
         )
 
-        all_declarations = all_declarations.filtered(lambda d: d.taxes_ids & self.line_ids.tax_ids)
+        all_declarations = all_declarations.filtered(
+            lambda d: d.taxes_ids & self.line_ids.tax_ids
+        )
         if check_dates:
-            all_declarations = all_declarations.filtered(lambda d: d.state == "valid"
-                                            and d.date_start <= fields.Date.today() <= d.date_end)
+            all_declarations = all_declarations.filtered(
+                lambda d: d.state == "valid"
+                and d.date_start <= fields.Date.today() <= d.date_end
+            )
         return all_declarations
 
     def _get_tax_summary(self):
@@ -539,6 +562,7 @@ class AccountMoveLine(models.Model):
 
 class AccountMoveIntent(models.Model):
     _name = "account.move.intent"
+    _description = "Declaration of intent Amount"
 
     currency_id = fields.Many2one(related="move_id.currency_id")
     declaration_of_intent_id = fields.Many2one(
