@@ -453,3 +453,75 @@ class TestFatturaPAXMLValidation(Common):
             preview_action["url"],
             invoice.l10n_it_edi_ext_attachment_in_preview_link,
         )
+
+    def test_partner_default_product(self):
+        """If the partner has a default product and no product is found,
+        the partner's default product is used."""
+        # Arrange
+        supplier = self.env["res.partner"].create(
+            {
+                "name": "Test supplier",
+                "vat": "02780790107",
+            }
+        )
+        default_product = self.default_product.with_company(self.company)
+        supplier.l10n_it_edi_ext_default_product_id = default_product
+
+        # Act
+        bill = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [{"partner_id": supplier.id}],
+        )
+
+        # Assert
+        self.assertRecordValues(
+            bill.invoice_line_ids,
+            [
+                {
+                    "product_id": default_product.id,
+                    "account_id": default_product.property_account_expense_id.id,
+                    "tax_ids": default_product.supplier_taxes_id.ids,
+                    "price_total": 6.10,
+                },
+                {
+                    "product_id": default_product.id,
+                    "account_id": default_product.property_account_expense_id.id,
+                    "tax_ids": default_product.supplier_taxes_id.ids,
+                    "price_total": 24.40,
+                },
+            ],
+        )
+
+    def test_partner_default_product_tax_detail_level(self):
+        """If the partner has a default product and no product is found,
+        and the invoice is imported with "Tax" detail level,
+        the partner's default product is used."""
+        # Arrange
+        supplier = self.env["res.partner"].create(
+            {
+                "name": "Test supplier",
+                "vat": "02780790107",
+                "l10n_it_edi_import_detail_level": "tax",
+            }
+        )
+        default_product = self.default_product.with_company(self.company)
+        supplier.l10n_it_edi_ext_default_product_id = default_product
+
+        # Act
+        bill = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [{"partner_id": supplier.id}],
+        )
+
+        # Assert
+        self.assertRecordValues(
+            bill.invoice_line_ids,
+            [
+                {
+                    "product_id": default_product.id,
+                    "account_id": default_product.property_account_expense_id.id,
+                    "tax_ids": default_product.supplier_taxes_id.ids,
+                    "price_total": 41.48,
+                },
+            ],
+        )

@@ -3,6 +3,8 @@
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
+from odoo.fields import Command
+
 from odoo.addons.l10n_it_edi.tests.common import TestItEdi
 
 
@@ -59,6 +61,33 @@ class Common(TestItEdi):
                     "amount_type": "percent",
                     "l10n_it_exempt_reason": "N3.1",
                     "l10n_it_law_reference": "Art. 8, c.1, lett.a - D.P.R. 633/1972",
+                }
+            )
+        )
+        cls.default_product = cls.env["product.product"].create(
+            {
+                "name": "Test default Product",
+                "supplier_taxes_id": [
+                    Command.create(
+                        {
+                            "name": "Test purchase tax in default product",
+                            "amount": 22,
+                            "sequence": 100,
+                            "type_tax_use": "purchase",
+                            "company_id": cls.company.id,
+                        }
+                    )
+                ],
+            }
+        )
+        cls.default_product.with_company(cls.company).property_account_expense_id = (
+            cls.env["account.account"]
+            .with_company(cls.company)
+            .create(
+                {
+                    "name": "Test expense account in default product",
+                    "code": "TESTEADP",
+                    "account_type": "expense",
                 }
             )
         )

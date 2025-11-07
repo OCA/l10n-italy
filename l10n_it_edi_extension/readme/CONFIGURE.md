@@ -7,6 +7,9 @@ Le uniche configurazioni disponibili sono:
      - `<CessionarioCommittente>`
      - `<CedentePrestatore>`
      - `<RappresentanteFiscale>`
+  - Prodotto predefinito fatture elettroniche fornitore: è possibile impostare un prodotto nel campo apposito del fornitore, nella scheda "Fatturazione", sezione "Fatture cliente".
+    Durante l'importazione di livello "Massimo": questo prodotto sarà impostato nelle righe della fattura importata se nessun altro prodotto viene trovato.
+    Durante l'importazione di livello "Aliquota fiscale": questo prodotto sarà impostato nelle righe della fattura importata.
 
 Non sono necessarie altre configurazioni specifiche per l10n_it_edi_extension: una volta installato, le sue funzionalità sono attive e si integrano automaticamente nell'interfaccia esistente.
 
@@ -30,6 +33,9 @@ The only available configurations are:
      - `<CessionarioCommittente>`
      - `<CedentePrestatore>`
      - `<RappresentanteFiscale>`
+  - E-bills default product: You can set a product in the supplier's field in the "Invoicing" tab, "Customer Invoices" section.
+    During "Maximum" level imports: this product will be set in the imported invoice lines if no other product is found.
+    During "Tax Rate" level imports: this product will be set in the imported invoice lines.
 
 No other specific configurations are required for l10n_it_edi_extension: once installed, its features are active and automatically integrate into the existing interface.
 

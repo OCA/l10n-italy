@@ -306,6 +306,12 @@ msgid "E-Invoice Untaxed Amount"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_it_edi_ext_default_product_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_it_edi_ext_default_product_id
+msgid "E-bills default Product"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_it_edi_import_detail_level
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_config_settings__l10n_it_edi_import_detail_level
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_it_edi_import_detail_level
@@ -1023,6 +1029,14 @@ msgstr ""
 msgid ""
 "Untaxed amount (%(amount_untaxed)s}) minus rounding (%(rounding)s}) does not"
 " match with e-invoice untaxed amount %(edi_amount_untaxed)s)"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_partner__l10n_it_edi_ext_default_product_id
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_users__l10n_it_edi_ext_default_product_id
+msgid ""
+"Used by electronic invoice XML import. If filled in, generated bill lines "
+"will use this product when no other possible product is found."
 msgstr ""
 
 #. module: l10n_it_edi_extension
