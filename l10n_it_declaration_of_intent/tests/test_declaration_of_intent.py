@@ -565,7 +565,7 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
             partner=self.partner2,
             taxes=self.tax1,
         )
-        declarations = invoice.get_declarations()
+        declarations = invoice.declaration_of_intent_ids
         # pre-condition
         self.assertGreater(len(declarations), 1)
         self.assertTrue(all([tax in d.taxes_ids for d in declarations]))

@@ -96,6 +96,16 @@ class DeclarationOfIntent(models.Model):
         string="Lines",
     )
 
+    declaration_of_intent_amount_ids = fields.Many2many(
+        relation="account_move_intent_declaration_of_intent_rel",
+        #column1="declaration_of_intent_id",
+        #column2="move_id",
+        comodel_name="account.move.intent",
+        #compute="_compute_declaration_amounts",
+        #store=True,
+        #string="Declarations of intent amounts",
+    )
+
     @api.model
     def create(self, values):
         # ----- Check if yearly plafond is enough
