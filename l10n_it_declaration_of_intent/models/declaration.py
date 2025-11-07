@@ -96,16 +96,6 @@ class DeclarationOfIntent(models.Model):
         string="Lines",
     )
 
-    declaration_of_intent_amount_ids = fields.Many2many(
-        relation="account_move_intent_declaration_of_intent_rel",
-        #column1="declaration_of_intent_id",
-        #column2="move_id",
-        comodel_name="account.move.intent",
-        #compute="_compute_declaration_amounts",
-        #store=True,
-        #string="Declarations of intent amounts",
-    )
-
     @api.model
     def create(self, values):
         # ----- Check if yearly plafond is enough
@@ -209,6 +199,7 @@ class DeclarationOfIntent(models.Model):
         "limit_amount",
         "line_ids.invoice_id",
         "line_ids.invoice_id.state",
+        "line_ids.move_state",
     )
     def _compute_amounts(self):
         for record in self:
@@ -305,3 +296,4 @@ class DeclarationOfIntentLine(models.Model):
         "res.company", string="Company", related="declaration_id.company_id"
     )
     currency_id = fields.Many2one("res.currency", string="Currency")
+    move_state = fields.Selection(related="invoice_id.state")
