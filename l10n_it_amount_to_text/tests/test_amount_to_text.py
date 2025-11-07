@@ -11,6 +11,7 @@ class TestAmountToText(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.env["res.lang"]._activate_lang("it_IT")
 
     def test_01_currency_it_amount_to_text(self):
