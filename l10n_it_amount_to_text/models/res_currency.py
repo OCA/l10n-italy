@@ -35,17 +35,13 @@ class Currency(models.Model):
                 formatted_amount, to="currency", lang=lang.iso_code, currency=self.name
             )
         except NotImplementedError:
-            amount_words = tools.ustr("{amt_value} {amt_word}").format(
-                amt_value=_num2words(integer_value, lang=lang.iso_code),
-                amt_word=self.currency_unit_label.lower(),
-            )
+            num_words = _num2words(integer_value, lang=lang.iso_code)
+            currency_label = self.currency_unit_label.lower()
+            amount_words = f"{num_words} {currency_label}"
+
             if not self.is_zero(amount - integer_value):
-                amount_words += (
-                    " "
-                    + "e"
-                    + tools.ustr(" {amt_value} {amt_word}").format(
-                        amt_value=_num2words(fractional_value, lang=lang.iso_code),
-                        amt_word=self.currency_subunit_label.lower(),
-                    )
-                )
+                fractional_words = _num2words(fractional_value, lang=lang.iso_code)
+                subunit_label = self.currency_subunit_label.lower()
+                amount_words += f" e {fractional_words} {subunit_label}"
+
             return amount_words

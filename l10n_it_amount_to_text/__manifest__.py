@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Localizzazione valute per amount_to_text",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Localizza le valute in italiano per amount_to_text",
     "author": "Sergio Zanchetta - Associazione PNLug APS,"
