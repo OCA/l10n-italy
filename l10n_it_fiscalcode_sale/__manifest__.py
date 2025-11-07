@@ -3,7 +3,7 @@
 {
     "name": "ITA - Codice fiscale nel preventivo",
     "summary": "Mostra il codice fiscale del cliente nella stampa del preventivo",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "development_status": "Beta",
     "category": "Hidden",
     "website": "https://github.com/OCA/l10n-italy",
@@ -15,7 +15,7 @@
     "auto_install": True,
     "depends": [
         "sale_management",
-        "l10n_it_fiscalcode",
+        "l10n_it_edi",
     ],
     "data": [
         "views/sale_order_report.xml",
