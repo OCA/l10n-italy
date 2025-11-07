@@ -326,7 +326,7 @@ class AccountMove(models.Model):
                 ]
             record.declaration_of_intent_amount_ids = values
 
-        (self - invoices - refunds).declaration_of_intent_amount_ids = False
+        (self - invoices - refunds).declaration_of_intent_amount_ids = [(5, 0, 0)]
 
     def get_declarations_used_amounts(self, declarations):
         """Get used amount by declarations for this invoice."""
