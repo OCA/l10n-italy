@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 10:26+0000\n"
-"PO-Revision-Date: 2024-11-18 10:06+0000\n"
+"PO-Revision-Date: 2025-11-10 08:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_account_config_settings_riba
@@ -60,9 +60,8 @@ msgstr "Conto accettazione"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__acceptance_amount
-#, fuzzy
 msgid "Acceptance Amount"
-msgstr "Conto accettazione"
+msgstr "Valore accettazione"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__date_accepted
@@ -145,12 +144,14 @@ msgid ""
 "Amount of fees charged by the bank for the RiBa collection service. If "
 "specified, separate entries will be created for the fee payment."
 msgstr ""
+"Valore della tariffa applicata dalla banca per il servizio di riscossione "
+"RiBa. Se indicato, verranno create registrazioni separate per il pagamento "
+"della tariffa."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__credit_amount
-#, fuzzy
 msgid "Amount the bank is crediting to the company. "
-msgstr "Conto usato quando l'importo RiBa viene accreditato dalla banca."
+msgstr "Valore che la banca sta accreditando all'azienda. "
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__credit_account_id
@@ -158,6 +159,8 @@ msgid ""
 "Asset account representing amounts credited by the bank. This will be "
 "debited with the credit amount."
 msgstr ""
+"Conto immobilizzazione che rappresenta i valori accreditati dalla banca. "
+"Questo verrà addebitato con il valore del credito."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__message_attachment_count
@@ -195,9 +198,8 @@ msgstr "Conti bancari"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model,name:l10n_it_riba_oca.model_riba_credit
-#, fuzzy
 msgid "Bank Credit Wizard for RiBa Collections"
-msgstr "Prodotto usato come servizio per le spese di incasso RiBa"
+msgstr "Procedura guidata credito banca per la riscossione delle RiBa"
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -215,9 +217,8 @@ msgstr "Conto spese bancarie"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__expense_amount
-#, fuzzy
 msgid "Bank Fees Amount"
-msgstr "Conto spese bancarie"
+msgstr "Valore tariffe banca"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__bank_account_id
@@ -225,6 +226,8 @@ msgid ""
 "Bank account from which collection fees will be paid. This account will be "
 "credited for any expense amounts."
 msgstr ""
+"Conto bancario dal quale verranno pagate le tariffe di riscossione. Questo "
+"conto verrà accreditato per ogni valore delle spese."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_configuration__bank_id
@@ -431,9 +434,8 @@ msgstr "Accredito"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__credit_account_id
-#, fuzzy
 msgid "Credit Account"
-msgstr "Importo accredito"
+msgstr "Conto avere"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__credit_amount
@@ -597,6 +599,8 @@ msgid ""
 "Expense account for recording bank collection fees. This account will be "
 "debited for any fees charged by the bank."
 msgstr ""
+"Conto spese per registrare le tariffe riscossione della banca. Questo conto "
+"verrà addebitato per ogni tariffa applicata dalla banca."
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_file_export
@@ -615,9 +619,8 @@ msgstr "Esporta file RiBa"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__past_due_fee_amount
-#, fuzzy
 msgid "Fee Amount"
-msgstr "Importo spese"
+msgstr "Valore tariffa"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__expense_amount
@@ -870,6 +873,8 @@ msgid ""
 "Liability account used during RiBa acceptance. This will be credited to "
 "reverse the acceptance entry."
 msgstr ""
+"Conto passività utilizzato durante l'approvazione RiBa. Questo verrà "
+"accreditato per invertire la registrazione di approvazione."
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.slip_layout
@@ -982,6 +987,8 @@ msgid ""
 "Non è possibile emettere una riba legata ad un IBAN archiviato; riga: %s , "
 "contatto: %s"
 msgstr ""
+"Non è possibile emettere una RiBa legata ad un IBAN archiviato; riga: %s , "
+"contatto: %s"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__sequence
@@ -1082,9 +1089,8 @@ msgstr "Registrazione insoluto"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__past_due_fee_amount
-#, fuzzy
 msgid "Past Due Fees Amount"
-msgstr "Importo effetti insoluti"
+msgstr "Valore scaduto tariffe dovute"
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.act_window,name:l10n_it_riba_oca.action_invoice_tree1
@@ -1291,9 +1297,8 @@ msgstr "Accredito RiBa %s"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__credit_account_id
-#, fuzzy
 msgid "RiBa Credit Account"
-msgstr "Conto RiBa"
+msgstr "Conto credito RiBa"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__slip_line_ids
@@ -1326,9 +1331,8 @@ msgstr "Emissione RiBa"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__slip_line_id
-#, fuzzy
 msgid "RiBa Line"
-msgstr "Paga riga RiBa"
+msgstr "Riga RiBa"
 
 #. module: l10n_it_riba_oca
 #: model:ir.actions.server,name:l10n_it_riba_oca.action_riba_payment_date
@@ -1445,9 +1449,8 @@ msgstr "Salta e conferma insoluto"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_payment_date
-#, fuzzy
 msgid "Skip and Confirm Payment"
-msgstr "Salta e conferma insoluto"
+msgstr "Salta e conferma pagamento"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_line__slip_id
@@ -1509,6 +1512,8 @@ msgid ""
 "The bank accounts with accreditation code {acc_codes}s cannot be deleted as "
 "they are used in invoices. If possible, archive the bank account"
 msgstr ""
+"I conti bancari con codice {acc_codes}s non possono essere eliminati perché "
+"utilizzati nelle RiBa. Se possibile, archiviare il conto bancario"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_issue_view
@@ -1554,6 +1559,8 @@ msgid ""
 "Total amount from the RiBa slip that was recorded during acceptance. This "
 "amount will be used to reverse the acceptance liability."
 msgstr ""
+"Valore totale da distinta RiBa registrato durante l'approvazione. Questo "
+"valore verrà usato per invertire la passività dell'accettazione."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip__type
