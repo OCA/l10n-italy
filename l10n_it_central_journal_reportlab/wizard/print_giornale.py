@@ -67,7 +67,7 @@ class WizardGiornaleReportlab(models.TransientModel):
     )
     target_move = fields.Selection(
         [("all", "All"), ("posted", "Posted"), ("draft", "Draft")],
-        default="all",
+        default="posted",
     )
     fiscal_page_base = fields.Integer("Last printed page", required=True)
     start_row = fields.Integer("Start row", required=True)
@@ -163,6 +163,7 @@ class WizardGiornaleReportlab(models.TransientModel):
                 AND aml.journal_id IN %(journal_ids)s
                 AND aml.company_id = %(company_id)s
                 AND (aml.debit + aml.credit) != 0.0
+                AND aml.account_id IS NOT NULL
             GROUP BY
                 aml.account_id,
                 am.date,
@@ -214,6 +215,7 @@ class WizardGiornaleReportlab(models.TransientModel):
                  AND am.state IN %(target_type)s
                  AND aml.journal_id IN %(journal_ids)s
                  AND aml.company_id = %(company_id)s
+                 AND aml.account_id IS NOT NULL
              ORDER BY
                  am.date,
                  am.name
@@ -400,7 +402,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             row = Paragraph(str(start_row), style_name)
             date = Paragraph(format_date(self.env, line["date"]), style_name)
             ref = Paragraph(str(line["ref"]), style_name)
-            move = Paragraph(line["move_name"], style_name)
+            move = Paragraph(line["move_name"] or "", style_name)
             account = Paragraph(account_name, style_name)
             name = Paragraph(line["name"], style_name)
             # dato che nel SQL ho la somma dei crediti e debiti potrei avere
@@ -476,7 +478,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             row = Paragraph(str(start_row), style_name)
             date = Paragraph(format_date(self.env, line["date"]), style_name)
             ref = Paragraph(str(line["ref"]), style_name)
-            move = Paragraph(line["move_name"], style_name)
+            move = Paragraph(line["move_name"] or "", style_name)
             move_name = line["move_name"] or ""
             account = Paragraph(account_name, style_name)
 
