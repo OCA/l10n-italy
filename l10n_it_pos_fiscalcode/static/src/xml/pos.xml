@@ -11,10 +11,10 @@
             <div class="partner-detail">
                 <span class="label">F.C.</span>
                 <input
-                    class="detail fiscalcode"
-                    name="fiscalcode"
+                    class="detail l10n_it_codice_fiscale"
+                    name="l10n_it_codice_fiscale"
                     t-on-change="captureChange"
-                    t-att-value="props.partner.fiscalcode || ''"
+                    t-att-value="props.partner.l10n_it_codice_fiscale || ''"
                 />
             </div>
         </xpath>

@@ -10,5 +10,5 @@ class PosSession(models.Model):
 
     def _loader_params_res_partner(self):
         result = super()._loader_params_res_partner()
-        result["search_params"]["fields"].append("fiscalcode")
+        result["search_params"]["fields"].append("l10n_it_codice_fiscale")
         return result
