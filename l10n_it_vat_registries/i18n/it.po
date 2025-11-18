@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-18 14:19+0000\n"
-"PO-Revision-Date: 2025-09-09 11:43+0000\n"
+"PO-Revision-Date: 2025-11-18 17:43+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -104,12 +104,12 @@ msgstr "Nome visualizzato"
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__enable_currency
 msgid "Enable currency values"
-msgstr ""
+msgstr "Abilita valori valuta"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,help:l10n_it_vat_registries.field_wizard_registro_iva__enable_currency
 msgid "Enable currency values in the report"
-msgstr ""
+msgstr "Abilita valori valuta nel resoconto"
 
 #. module: l10n_it_vat_registries
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__entry_order
@@ -351,7 +351,7 @@ msgstr "TOTALE"
 #. module: l10n_it_vat_registries
 #: model_terms:ir.ui.view,arch_db:l10n_it_vat_registries.report_registro_iva
 msgid "TOTAL (currency)"
-msgstr ""
+msgstr "TOTALE (valuta)"
 
 #. module: l10n_it_vat_registries
 #. odoo-python
