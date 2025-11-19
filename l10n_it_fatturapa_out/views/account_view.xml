@@ -71,6 +71,49 @@
                 />
             </xpath>
 
+            <xpath expr="//div[@class='d-flex'][1]" position="after">
+                <div
+                    class="o_td_label"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                >
+                    <label for="fatturapa_pt_id" string="Payment term" />
+                </div>
+                <div
+                    name="invoice_payment_term_extra"
+                    class="d-flex"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                >
+                     <field
+                        name="fatturapa_pt_id"
+                        attrs="{
+                                'readonly': [
+                                    ('fatturapa_attachment_out_id', '!=', False)
+                                ]
+                            }"
+                    />
+                </div>
+                <div
+                    class="o_td_label"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"
+                >
+                    <label for="fatturapa_pm_id" string="Payment method" />
+                </div>
+                <div
+                    name="invoice_payment_method_extra"
+                    class="d-flex"
+                    attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))]}"
+                >
+                        <field
+                        name="fatturapa_pm_id"
+                        attrs="{
+                                'readonly': [
+                                    ('fatturapa_attachment_out_id', '!=', False)
+                                ]
+                            }"
+                    />
+                </div>
+            </xpath>
+
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Related Documents"

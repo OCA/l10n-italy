@@ -931,7 +931,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
 
         expect to fail with a proper message
         """
-
         self.env.company = self.company
         invoice1 = self._create_invoice()
         invoice1.action_post()

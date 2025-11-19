@@ -626,11 +626,11 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <!--                    <TotalePercorso t-out=""/>-->
                 <!--                </DatiVeicoli>-->
                 <t t-set="payments" t-value="get_payments(record)" />
-                <DatiPagamento t-if="record.invoice_payment_term_id and payments">
+                <DatiPagamento
+                    t-if="payments and record.fatturapa_pt_id and record.fatturapa_pm_id"
+                >
                     <!--                    <CondizioniPagamento><t t-if="len(payments) == 1">TP02</t><t t-else="">TP01</t></CondizioniPagamento>-->
-                    <CondizioniPagamento
-                        t-out="record.invoice_payment_term_id.fatturapa_pt_id.code"
-                    />
+                    <CondizioniPagamento t-out="record.fatturapa_pt_id.code" />
                     <t t-foreach="payments" t-as="payment">
                         <DettaglioPagamento>
                             <t
@@ -638,9 +638,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                                 t-value="record.partner_bank_id"
                             />
                             <!--                            <Beneficiario t-out=""/>-->
-                            <ModalitaPagamento
-                                t-out="record.invoice_payment_term_id.fatturapa_pm_id.code"
-                            />
+                            <ModalitaPagamento t-out="record.fatturapa_pm_id.code" />
                             <!--                            <DataRiferimentoTerminiPagamento t-out=""/>-->
                             <!--                            <GiorniTerminiPagamento t-out=""/>-->
                             <DataScadenzaPagamento

@@ -40,12 +40,33 @@ class AccountInvoice(models.Model):
         store="true",
     )
 
+    fatturapa_pt_id = fields.Many2one(
+        "fatturapa.payment_term",
+        string="Fiscal Payment Term",
+        compute="_compute_invoice_payment_term_method",
+    )
+    fatturapa_pm_id = fields.Many2one(
+        "fatturapa.payment_method",
+        string="Fiscal Payment Method",
+        compute="_compute_invoice_payment_term_method",
+    )
+
     @api.depends("fatturapa_attachment_out_id.state")
     def _compute_fatturapa_state(self):
         for record in self:
             record.fatturapa_state = fatturapa_attachment_state_mapping.get(
                 record.fatturapa_attachment_out_id.state
             )
+
+    @api.depends("invoice_payment_term_id")
+    def _compute_invoice_payment_term_method(self):
+        """Auto-populate fiscal payment term and method from payment term"""
+        if self.invoice_payment_term_id:
+            self.fatturapa_pt_id = self.invoice_payment_term_id.fatturapa_pt_id
+            self.fatturapa_pm_id = self.invoice_payment_term_id.fatturapa_pm_id
+        else:
+            self.fatturapa_pt_id = False
+            self.fatturapa_pm_id = False
 
     def preventive_checks(self):
         for invoice in self:
@@ -55,10 +76,7 @@ class AccountInvoice(models.Model):
                     % invoice.name
                 )
 
-            if (
-                invoice.invoice_payment_term_id
-                and invoice.invoice_payment_term_id.fatturapa_pt_id.code is False
-            ):
+            if invoice.fatturapa_pt_id and invoice.fatturapa_pt_id.code is False:
                 raise UserError(
                     _(
                         "Invoice %(name)s fiscal payment term must be"
@@ -70,10 +88,7 @@ class AccountInvoice(models.Model):
                     },
                 )
 
-            if (
-                invoice.invoice_payment_term_id
-                and invoice.invoice_payment_term_id.fatturapa_pm_id.code is False
-            ):
+            if invoice.fatturapa_pm_id and invoice.fatturapa_pm_id.code is False:
                 raise UserError(
                     _(
                         "Invoice %(name)s fiscal payment method must be"
