@@ -305,10 +305,13 @@ class AccountMove(models.Model):
 
     def _get_available_declarations(self, check_dates=True):
         self.ensure_one()
+        all_declarations = (
+            self.reversed_entry_id.declaration_of_intent_amount_ids.declaration_id
+        )
         invoice_type_short = self.get_type_short()
         if not invoice_type_short:
             return []
-        all_declarations = self.env[
+        all_declarations |= self.env[
             "l10n_it_declaration_of_intent.declaration"
         ].get_all_for_partner(
             invoice_type_short,
