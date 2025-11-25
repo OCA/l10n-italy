@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2025-08-02 15:07+0000\n"
+"PO-Revision-Date: 2025-11-25 11:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -2739,7 +2739,7 @@ msgstr "Fornitura di servizi applicativi"
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.582932
 msgid "Application software downloads"
-msgstr "Download di software applicativo"
+msgstr "Scaricamenti software applicativo"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_08129025
@@ -13512,7 +13512,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.582120
 msgid "Computer games downloads"
-msgstr "Download di giochi per computer"
+msgstr "Scaricamenti di giochi per computer"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.620121
@@ -22187,7 +22187,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.591124
 msgid "Films and other video downloads"
-msgstr "Download di film e altri video"
+msgstr "Scaricamento di film e altri video"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_48120000
@@ -50432,7 +50432,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.592035
 msgid "Music downloads"
-msgstr "Download di musica"
+msgstr "Scaricamenti di musica"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.855212
@@ -79636,7 +79636,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.582931
 msgid "System software downloads"
-msgstr "Download di software per sistemi"
+msgstr "Scaricamenti di software per sistemi"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.620220
