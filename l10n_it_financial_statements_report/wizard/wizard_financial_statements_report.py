@@ -29,7 +29,7 @@ class ReportFinancialStatementsWizard(models.TransientModel):
         return res
 
     def _prepare_report_data(self):
-        res = super()._prepare_report_data()
+        res = super()._prepare_report_trial_balance()
         res.update(
             {
                 "financial_statements_report_type": self.financial_statements_report_type,  # noqa: E501
