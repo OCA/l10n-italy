@@ -365,6 +365,7 @@ class AccountMoveInherit(models.Model):
 
     def _l10n_it_edi_update_partner(self, xml_tree, role, partner):
         vals = self._l10n_it_edi_extension_prepare_partner_values(xml_tree, role)
+        del vals["vat"]  # Because VAT is used to identify the partner
         partner.update(vals)
         return partner
 
