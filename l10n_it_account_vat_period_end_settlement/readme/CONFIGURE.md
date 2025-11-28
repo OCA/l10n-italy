@@ -22,6 +22,9 @@
 > Per calcolare gli interessi, è possibile aggiungere le informazioni da
 > utilizzare (conto e percentuale) nei dati aziendali, nella scheda
 > 'Liquidazione IVA'.
+>
+> Per le imposte interamente indetraibili è comunque necessario indicare
+> una riga di ripartizione a 0% che faccia riferimento ad un conto IVA.
 
 **English**
 
@@ -46,3 +49,6 @@
 > If you need to calculate interest, you can add default information in
 > your company data (percentage and account), in the 'VAT Settlement'
 > tab.
+>
+> Fully undeductable taxes still need one repartition line (0% amount)
+> with a reference to a VAT account.
