@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -90,7 +90,11 @@ msgid "Description"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva__display_name
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva_xlsx__display_name
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__display_name
 msgid "Display Name"
 msgstr ""
@@ -127,7 +131,11 @@ msgid "General Total EUR"
 msgstr ""
 
 #. module: l10n_it_vat_registries
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_journal__id
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_account_tax_registry__id
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva__id
+#: model:ir.model.fields,field_description:l10n_it_vat_registries.field_report_l10n_it_vat_registries_report_registro_iva_xlsx__id
 #: model:ir.model.fields,field_description:l10n_it_vat_registries.field_wizard_registro_iva__id
 msgid "ID"
 msgstr ""

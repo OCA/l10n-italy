@@ -37,5 +37,5 @@ class AccountTaxRegistry(models.Model):
         string="Include reverse charge moves",
     )
     rc_journal_ids = fields.One2many(
-        "account.journal", "rc_tax_registry_id", "RC Journals", readonly=True
+        "account.journal", "rc_tax_registry_id", "RC Journals"
     )

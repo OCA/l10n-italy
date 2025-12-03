@@ -5,6 +5,7 @@ from zipfile import ZipFile
 
 from odoo import fields
 from odoo.fields import Command
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
@@ -138,3 +139,36 @@ class TestRegistry(TransactionCase):
         report_ids = map(lambda report_action: report_action.get("id"), report_actions)
 
         self.assertNotIn(report_id, report_ids)
+
+
+class TestRcJournals(TransactionCase):
+    def _new_registry_form(self):
+        registry = self.env["account.tax.registry"].create(
+            {
+                "name": "Reverse charge",
+                "layout_type": "supplier",
+            }
+        )
+        return Form(registry), registry
+
+    def test_set_rc_journal_ids(self):
+        """RC journals are hidden by default and can be set once reverse
+        charge moves are included.
+
+        The ``rc_journal_ids`` field only makes sense when reverse charge
+        moves are included, so it stays invisible otherwise. Once
+        ``include_rc_moves`` is enabled the field becomes visible and the
+        user can assign journals to the registry.
+        """
+        form, registry = self._new_registry_form()
+        self.assertTrue(form._get_modifier("rc_journal_ids", "invisible"))
+        form.include_rc_moves = True
+        self.assertFalse(form._get_modifier("rc_journal_ids", "invisible"))
+        with form.rc_journal_ids.new() as journal:
+            journal.name = "RC Journal"
+            journal.code = "RCJ"
+            journal.type = "general"
+        form.save()
+
+        self.assertEqual(registry.rc_journal_ids.mapped("name"), ["RC Journal"])
+        self.assertEqual(registry.rc_journal_ids.rc_tax_registry_id, registry)
