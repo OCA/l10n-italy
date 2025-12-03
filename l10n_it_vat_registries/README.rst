@@ -33,7 +33,6 @@ ITA - Registri IVA
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 Law: Decreto del Presidente della Repubblica del 26 ottobre 1972 n. 633
-https://goo.gl/31yTVj
 
 **Table of contents**
 
