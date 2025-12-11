@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "depends": ["l10n_it_edi_doi", "purchase"],
     "data": [
+        "security/ir.model.access.csv",
         "views/l10n_it_edi_doi_declaration_of_intent_views.xml",
         "views/res_company.xml",
         "views/purchase_order_views.xml",

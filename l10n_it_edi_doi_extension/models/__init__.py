@@ -1,3 +1,4 @@
+from . import account_move_doi
 from . import account_move
 from . import declaration_of_intent
 from . import res_company

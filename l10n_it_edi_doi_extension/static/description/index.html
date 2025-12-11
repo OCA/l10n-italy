@@ -378,11 +378,27 @@ ul.auto-toc {
 <p><strong>English</strong></p>
 <p>This module extends the functionality of l10n_it_edi_doi, enabling the
 use of the Declaration of Intent (Dichiarazione di Intento) for incoming
-vendor bills and purchase order.</p>
+vendor bills and purchase orders.</p>
+<p>Key features:</p>
+<ul class="simple">
+<li>Support for multiple Declarations of Intent per invoice</li>
+<li>Dedicated tab in invoice form for managing DOI associations</li>
+<li>Automatic validation of DOI amounts and available thresholds</li>
+<li>Smart warnings when invoice amounts don’t match DOI coverage</li>
+<li>Backward compatibility with single-declaration workflow</li>
+</ul>
 <p><strong>Italiano</strong></p>
 <p>Questo modulo estende la funzionalità di l10n_it_edi_doi, permettendo
 l’utilizzo della Dichiarazione di Intento per le fatture di acquisto in
 ingresso e gli ordini di acquisto.</p>
+<p>Caratteristiche principali:</p>
+<ul class="simple">
+<li>Supporto per dichiarazioni di intento multiple per fattura</li>
+<li>Tab dedicato nel form fattura per gestire le associazioni DOI</li>
+<li>Validazione automatica degli importi e soglie disponibili</li>
+<li>Avvisi intelligenti quando gli importi non corrispondono</li>
+<li>Retrocompatibilità con il flusso a dichiarazione singola</li>
+</ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -407,6 +423,23 @@ between two types:</p>
 <li>“Issued from company”: for declarations issued by the company.</li>
 <li>“Received from customer”: for declarations received from suppliers.</li>
 </ul>
+<p><strong>Multiple Declarations of Intent:</strong></p>
+<p>When creating or editing a vendor bill, you can now associate multiple
+Declarations of Intent:</p>
+<ol class="arabic simple">
+<li>Go to the “Declarations of Intent” tab in the invoice form</li>
+<li>Add one or more declarations using the list</li>
+<li>For each declaration, specify the amount to be covered</li>
+<li>The module will automatically:<ul>
+<li>Validate that amounts don’t exceed available thresholds</li>
+<li>Show a warning if total DOI amounts don’t match invoice amount</li>
+<li>Update the invoiced amounts on each declaration</li>
+<li>Generate protocol numbers in the XML export</li>
+</ul>
+</li>
+</ol>
+<p>You can also use the traditional single-declaration field for backward
+compatibility, or mix both approaches for different invoices.</p>
 <p><strong>Italiano</strong></p>
 <p>Nella configurazione dell’azienda è necessario definire un’imposta
 dedicata alla Dichiarazione di Intento per le fatture in ingresso. Nei
@@ -417,6 +450,25 @@ due tipologie:</p>
 <li>“Received from customer”: per le dichiarazioni ricevute dai
 fornitori.</li>
 </ul>
+<p><strong>Dichiarazioni di Intento Multiple:</strong></p>
+<p>Durante la creazione o modifica di una fattura fornitore, è ora
+possibile associare più Dichiarazioni di Intento:</p>
+<ol class="arabic simple">
+<li>Accedi al tab “Dichiarazioni di Intento” nel form della fattura</li>
+<li>Aggiungi una o più dichiarazioni usando la lista</li>
+<li>Per ogni dichiarazione, specifica l’importo da coprire</li>
+<li>Il modulo automaticamente:<ul>
+<li>Valida che gli importi non superino le soglie disponibili</li>
+<li>Mostra un avviso se il totale DOI non corrisponde all’importo
+fattura</li>
+<li>Aggiorna gli importi fatturati su ogni dichiarazione</li>
+<li>Genera i numeri di protocollo nell’esportazione XML</li>
+</ul>
+</li>
+</ol>
+<p>È possibile continuare ad usare il campo tradizionale a dichiarazione
+singola per retrocompatibilità, o combinare entrambi gli approcci per
+fatture diverse.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
@@ -437,7 +489,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="contributors">
 <h3><a class="toc-backref" href="#toc-entry-5">Contributors</a></h3>
 <ul class="simple">
-<li>Nextev S.r.l&lt;<a class="reference external" href="mailto:odoo&#64;nextev.it">odoo&#64;nextev.it</a>&gt;</li>
+<li>Nextev Srl&lt;<a class="reference external" href="mailto:odoo&#64;nextev.it">odoo&#64;nextev.it</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">

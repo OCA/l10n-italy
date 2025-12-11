@@ -1,1 +1,1 @@
-- Nextev S.r.l\<<odoo@nextev.it>\>
+- Nextev Srl\<<odoo@nextev.it>\>
