@@ -411,6 +411,7 @@ class AccountInvoice(models.Model):
         supplier_invoice.partner_id = rc_type.partner_id.id
         supplier_invoice.journal_id = rc_type.supplier_journal_id.id
         for inv_line in supplier_invoice.invoice_line_ids:
+            inv_line.account_analytic_id = False
             line_tax_ids = inv_line.invoice_line_tax_ids
             mapped_taxes = rc_type.map_tax(
                 line_tax_ids,
