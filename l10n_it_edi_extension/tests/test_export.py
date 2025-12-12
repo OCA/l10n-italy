@@ -34,3 +34,22 @@ class TestExport(Common):
         invoice.partner_shipping_id = self.italian_shipping_partner_a
         invoice.action_post()
         self._assert_export_invoice(invoice, "partner_shipping.xml")
+
+    def test_partner_shipping_with_related_documents(self):
+        """Sequence tag in IndirizzoResa node."""
+        invoice = self.init_invoice(
+            "out_invoice",
+            amounts=[100],
+            company=self.company,
+            partner=self.italian_partner_b,
+            taxes=self.split_payment_tax,
+        )
+        invoice.invoice_date_due = invoice.date
+        invoice.l10n_it_origin_document_type = "purchase_order"
+        invoice.l10n_it_origin_document_date = invoice.date
+        invoice.l10n_it_origin_document_name = "PO0123"
+        invoice.l10n_it_cup = "0123456789"
+        invoice.l10n_it_cig = "0987654321"
+        invoice.partner_shipping_id = self.italian_shipping_partner_a
+        invoice.action_post()
+        self._assert_export_invoice(invoice, "partner_shipping_sequence.xml")
