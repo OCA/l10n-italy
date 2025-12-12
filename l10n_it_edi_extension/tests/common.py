@@ -23,3 +23,8 @@ class Common(TestItEdi):
                 "invoice_edi_format": "it_edi_xml",
             }
         )
+        cls.split_payment_tax = (
+            cls.env["account.tax"]
+            .with_company(cls.company)
+            .search([("name", "=", "22% SP")])
+        )
