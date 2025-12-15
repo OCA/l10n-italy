@@ -5,7 +5,6 @@
 from unittest import mock
 
 from odoo import Command
-from odoo.fields import first
 from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -16,37 +15,28 @@ class TestIntrastat(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner01 = cls.env.ref("base.res_partner_1")
-        cls.product01 = cls.env.ref("product.product_product_10")
-        cls.account_account_model = cls.env["account.account"]
         cls.fp_model = cls.env["account.fiscal.position"]
-
-        cls.account_account_receivable = cls.account_account_model.create(
+        # Use existing intrastat code from module data
+        cls.intrastat_code = cls.env.ref(
+            "l10n_it_intrastat.intrastat_category_2014_01012100"
+        )
+        # Create product with intrastat configuration
+        cls.intrastat_product = cls.env["product.template"].create(
             {
-                "code": "1",
-                "name": "Debtors - (test)",
-                "reconcile": True,
-                "account_type": "asset_receivable",
+                "name": "Intrastat Test Product",
+                "type": "consu",
+                "list_price": 1000.0,
+                "weight": 0,
+                "intrastat_type": "good",
+                "intrastat_code_id": cls.intrastat_code.id,
             }
         )
-
-        cls.account_account_payable = cls.account_account_model.create(
-            {
-                "code": "2",
-                "name": "Creditors - (test)",
-                "reconcile": True,
-                "account_type": "liability_payable",
-            }
-        )
-
-        cls.partner01.property_account_receivable_id = cls.account_account_receivable
-        cls.partner01.property_account_payable_id = cls.account_account_payable
 
     def test_invoice_totals(self):
         invoice = self.init_invoice(
             "out_invoice",
-            partner=self.partner01,
-            products=self.product01,
+            partner=self.partner_a,
+            products=self.intrastat_product.product_variant_ids[:1],
             taxes=self.tax_sale_a,
         )
         invoice.intrastat = True
@@ -61,7 +51,7 @@ class TestIntrastat(AccountTestInvoicingCommon):
         self.assertEqual(total_intrastat_amount, invoice.amount_untaxed)
 
     def test_invoice_fiscal_position(self):
-        self.partner01.property_account_position_id = self.fp_model.create(
+        self.partner_a.property_account_position_id = self.fp_model.create(
             {
                 "name": "F.P subjected to intrastat",
                 "l10n_it_oca_intrastat": True,
@@ -69,8 +59,8 @@ class TestIntrastat(AccountTestInvoicingCommon):
         )
         invoice = self.init_invoice(
             "out_invoice",
-            partner=self.partner01,
-            products=self.product01,
+            partner=self.partner_a,
+            products=self.intrastat_product.product_variant_ids[:1],
             taxes=self.tax_sale_a,
         )
         # Compute intrastat lines
@@ -93,7 +83,8 @@ class TestIntrastat(AccountTestInvoicingCommon):
         """Weight from variants is propagated to the intrastat lines."""
         # Arrange
         variant_weight = 100
-        product = self.product01
+        product = self.intrastat_product
+        # Ensure product has no weight initially
         product.weight = 0
 
         attribute = self.env["product.attribute"].create(
@@ -123,7 +114,7 @@ class TestIntrastat(AccountTestInvoicingCommon):
                 }
             )
         ]
-        variant = first(product.product_variant_ids)
+        variant = product.product_variant_ids[:1]
         variant.weight = variant_weight
         # pre-condition
         self.assertFalse(product.weight)

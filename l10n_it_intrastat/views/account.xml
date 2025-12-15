@@ -203,23 +203,23 @@
                     name="country_destination_id"
                     filter_domain="[('country_destination_id','ilike',self)]"
                 />
-                <group expand="0" string="Group By...">
+                <group>
                     <filter
-                        name="group_by_partne"
+                        name="group_by_partner"
                         string="Partner"
-                        domain="[]"
+                        domain=""
                         context="{'group_by':'partner_id'}"
                     />
                     <filter
                         name="intrastat_code"
                         string="Nomenclature Code"
-                        domain="[]"
+                        domain=""
                         context="{'group_by':'intrastat_code_id'}"
                     />
                     <filter
                         name="group_by_company"
                         string="Company"
-                        domain="[]"
+                        domain=""
                         context="{'group_by':'company_id'}"
                     />
                 </group>

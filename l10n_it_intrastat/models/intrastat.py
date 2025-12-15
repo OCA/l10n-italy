@@ -1,7 +1,7 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -62,7 +62,9 @@ class ResCountry(models.Model):
     def intrastat_validate(self):
         self.ensure_one()
         if not self.code:
-            raise ValidationError(_("State %s without ISO code") % self.display_name)
+            raise ValidationError(
+                self.env._("State %s without ISO code", self.display_name)
+            )
         return True
 
 

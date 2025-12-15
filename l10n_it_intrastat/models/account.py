@@ -227,7 +227,8 @@ class AccountMoveLine(models.Model):
         product_weight = product.weight or 0
         if (
             intrastat_uom_kg
-            and product.uom_id.category_id == intrastat_uom_kg.category_id
+            and product.uom_id
+            and product.uom_id._has_common_reference(intrastat_uom_kg)
         ):
             weight_kg = self.product_uom_id._compute_quantity(
                 qty=self.quantity, to_unit=intrastat_uom_kg

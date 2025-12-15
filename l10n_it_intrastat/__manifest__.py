@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Intrastat",
-    "version": "18.0.1.0.2",
+    "version": "19.0.1.0.0",
     "category": "Account",
     "summary": "Riclassificazione merci e servizi per dichiarazioni Intrastat",
     "author": "Openforce, Link IT srl, Agile Business Group, "
@@ -33,9 +33,4 @@
         "views/config.xml",
     ],
     "demo": ["demo/product_demo.xml"],
-    "external_dependencies": {
-        "python": [
-            "openupgradelib",
-        ],
-    },
 }
