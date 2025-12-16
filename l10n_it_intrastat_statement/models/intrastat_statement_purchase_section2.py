@@ -32,7 +32,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
         res = super()._prepare_statement_line(inv_intra_line, statement_id)
-        company_id = self._context.get("company_id", self.env.company)
+        company_id = self.env.context.get("company_id", self.env.company)
 
         # Company defaults
         statistic_amount = (
@@ -86,8 +86,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
             if not self.month:
                 raise ValidationError(
                     self.env._(
-                        "Missing reference month "
-                        "on 'Purchases - Section 2' adjustment"
+                        "Missing reference month on 'Purchases - Section 2' adjustment"
                     )
                 )
         elif self.statement_id.period_type == "T":

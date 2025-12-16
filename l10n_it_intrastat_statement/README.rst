@@ -21,13 +21,13 @@ ITA - Dichiarazione Intrastat
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_intrastat_statement
+    :target: https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_intrastat_statement
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_intrastat_statement
+    :target: https://translation.odoo-community.org/projects/l10n-italy-19-0/l10n-italy-19-0-l10n_it_intrastat_statement
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -61,48 +61,50 @@ funzionalità contabili complete.
 
 Nella parte superiore della maschera, inserire i dati:
 
-- *Azienda*: popolato in automatico con il nome dell'azienda;
-- *Partita IVA contribuente*: la partita IVA, popolata in automatico con
-  il nome dell'azienda;
-- *Data di presentazione*: popolata in automatico con la data corrente;
-- *Anno*: l'anno di presentazione, scelto dal menù a tendina che
-  visualizza gli anni fiscali configurati a sistema;
-- *Tipo periodo*: l’orizzonte temporale a cui fa riferimento la
-  dichiarazione, scelto da menù a tendina con le voci “Mese” o
-  “Trimestre”;
-- *Periodo*: il periodo temporale a cui fa riferimento la dichiarazione.
-  Inserire il numero del mese (es. 9 per settembre, se nel campo "Tipo
-  periodo" è stato selezionato “Mese”, oppure in numero del trimestre
-  (es: 1 per il trimestre gennaio-marzo), se nel campo "Tipo periodo" è
-  stato selezionato “Trimestre”;
-- *Caselle di selezione “Cessioni” e “Acquisti”*: da selezionare in base
-  alla tipologia di operazioni che si vogliono inserire nella
-  dichiarazione;
-- *Numero*: progressivo della dichiarazione proposto in automatico dal
-  sistema;
-- *Tipo di contenuto*: selezionare la voce di competenza dal menù a
-  tendina;
-- *Casi speciali*: selezionare la voce di competenza dal menù a tendina;
-- *Sezione doganale*: selezionare la voce di riferimento dal menù a
-  tendina.
+-  *Azienda*: popolato in automatico con il nome dell'azienda;
+-  *Partita IVA contribuente*: la partita IVA, popolata in automatico
+   con il nome dell'azienda;
+-  *Data di presentazione*: popolata in automatico con la data corrente;
+-  *Anno*: l'anno di presentazione, scelto dal menù a tendina che
+   visualizza gli anni fiscali configurati a sistema;
+-  *Tipo periodo*: l’orizzonte temporale a cui fa riferimento la
+   dichiarazione, scelto da menù a tendina con le voci “Mese” o
+   “Trimestre”;
+-  *Periodo*: il periodo temporale a cui fa riferimento la
+   dichiarazione. Inserire il numero del mese (es. 9 per settembre, se
+   nel campo "Tipo periodo" è stato selezionato “Mese”, oppure in numero
+   del trimestre (es: 1 per il trimestre gennaio-marzo), se nel campo
+   "Tipo periodo" è stato selezionato “Trimestre”;
+-  *Caselle di selezione “Cessioni” e “Acquisti”*: da selezionare in
+   base alla tipologia di operazioni che si vogliono inserire nella
+   dichiarazione;
+-  *Numero*: progressivo della dichiarazione proposto in automatico dal
+   sistema;
+-  *Tipo di contenuto*: selezionare la voce di competenza dal menù a
+   tendina;
+-  *Casi speciali*: selezionare la voce di competenza dal menù a
+   tendina;
+-  *Sezione doganale*: selezionare la voce di riferimento dal menù a
+   tendina.
 
 Inseriti e salvati i dati, utilizzare il pulsante «Ricalcola» per
 popolare la dichiarazione. Per ciascuna scheda (”Cessioni” e “Acquisti”)
 verranno inserite nelle sezioni di riferimento:
 
-- Cessioni:
+-  Cessioni:
 
-  - Cessione beni - Sezione 1 → fatture di vendita di merci
-  - Rettifica beni - Sezione 2 → note di credito su vendita merci
-  - Cessione servizi - Sezione 3 → fatture di vendita di servizi
-  - Rettifica servizi - Sezione 4 → note di credito su vendita servizi
+   -  Cessione beni - Sezione 1 → fatture di vendita di merci
+   -  Rettifica beni - Sezione 2 → note di credito su vendita merci
+   -  Cessione servizi - Sezione 3 → fatture di vendita di servizi
+   -  Rettifica servizi - Sezione 4 → note di credito su vendita servizi
 
-- Acquisti:
+-  Acquisti:
 
-  - Acquisto beni - Sezione 1 → fatture di acquisto di merci
-  - Rettifica beni - Sezione 2 → note di credito su acquisto merci
-  - Acquisto servizi - Sezione 3 → fatture di acquisto di servizi
-  - Rettifica servizi - Sezione 4 → note di credito su acquisto servizi
+   -  Acquisto beni - Sezione 1 → fatture di acquisto di merci
+   -  Rettifica beni - Sezione 2 → note di credito su acquisto merci
+   -  Acquisto servizi - Sezione 3 → fatture di acquisto di servizi
+   -  Rettifica servizi - Sezione 4 → note di credito su acquisto
+      servizi
 
 I dati presi dalle fatture e dalle note di credito indicate come
 soggette ad Intrastat, relative al periodo di riferimento.
@@ -118,9 +120,9 @@ l’apposito pulsante «Esporta file».
 Il pulsante fa partire una procedura guidata, che permette di scegliere
 quale tipo di file estrarre:
 
-- file di invio (complessivo)
-- file acquisti.cee
-- file cessioni.cee
+-  file di invio (complessivo)
+-  file acquisti.cee
+-  file cessioni.cee
 
 Il file potrà essere scaricato tramite l’apposito link visualizzato
 nella maschera della procedura guidata. Di seguito un esempio per lo
@@ -137,7 +139,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat_statement%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat_statement%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -154,13 +156,13 @@ Authors
 Contributors
 ------------
 
-- Alessandro Camilli
-- Lorenzo Battistini
-- Lara Baggio <lbaggio@linkgroup.it>
-- Glauco Prina <gprina@linkgroup.it>
-- Sergio Zanchetta <https://github.com/primes2h>
-- Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-- Alex Comba <alex.comba@agilebg.com>
+-  Alessandro Camilli
+-  Lorenzo Battistini
+-  Lara Baggio <lbaggio@linkgroup.it>
+-  Glauco Prina <gprina@linkgroup.it>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+-  Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 -----------
@@ -175,6 +177,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_intrastat_statement>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_intrastat_statement>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

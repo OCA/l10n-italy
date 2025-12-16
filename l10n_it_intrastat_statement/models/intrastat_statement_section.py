@@ -76,8 +76,10 @@ class IntrastatStatementSection(models.AbstractModel):
             country_id.intrastat_validate()
         elif section_number == 4 and not self.cancellation:
             raise ValidationError(
-                self.env._("Missing State for Partner %s")
-                % self.partner_id.display_name
+                self.env._(
+                    "Missing State for Partner %s",
+                    self.partner_id.display_name,
+                )
             )
 
     def get_amount_euro(self):

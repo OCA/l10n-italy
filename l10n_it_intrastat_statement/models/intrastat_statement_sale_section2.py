@@ -32,7 +32,7 @@ class IntrastatStatementSaleSection2(models.Model):
     @api.model
     def _prepare_statement_line(self, inv_intra_line, statement_id=None):
         res = super()._prepare_statement_line(inv_intra_line, statement_id)
-        company_id = self._context.get("company_id", self.env.company)
+        company_id = self.env.context.get("company_id", self.env.company)
 
         # Company defaults
         transaction_nature_id = (

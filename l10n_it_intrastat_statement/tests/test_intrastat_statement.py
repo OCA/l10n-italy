@@ -39,41 +39,52 @@ class TestIntrastatStatement(TransactionCase):
                 "type_tax_use": "purchase",
             }
         )
+        self.tax22_sale = self.env["account.tax"].create(
+            {
+                "name": "22% intra sale",
+                "description": "22",
+                "amount": 22,
+                "type_tax_use": "sale",
+            }
+        )
 
-        self.partner01 = self.env.ref("base.res_partner_1")
-        self.partner01.update(
+        self.partner01 = self.env["res.partner"].create(
             {
+                "name": "Test Partner 1",
                 "vat": "IT02780790107",
+                "country_id": self.env.ref("base.it").id,
                 "property_account_receivable_id": self.account_account_receivable.id,
                 "property_account_payable_id": self.account_account_payable.id,
             }
         )
-        self.partner02 = self.env.ref("base.res_partner_2")
-        self.partner02.update(
+        self.partner02 = self.env["res.partner"].create(
             {
+                "name": "Test Partner 2",
                 "vat": "IT12345670017",
+                "country_id": self.env.ref("base.it").id,
                 "property_account_receivable_id": self.account_account_receivable.id,
                 "property_account_payable_id": self.account_account_payable.id,
             }
         )
-        self.product01 = self.env.ref("product.product_product_10")
-        self.service01 = self.env.ref("product.product_product_1")
-        self.service01.update(
+
+        intrastat_code = self.env.ref(
+            "l10n_it_intrastat.intrastat_category_2014_01012100"
+        )
+        self.product01 = self.env["product.product"].create(
             {
-                "intrastat_type": "service",
-                "intrastat_code_id": self.env.ref(
-                    "l10n_it_intrastat.intrastat_intrastat_01012100"
-                ),
+                "name": "Test Product Good",
+                "type": "consu",
+                "intrastat_type": "good",
+                "intrastat_code_id": intrastat_code.id,
             }
         )
-        # Demo tax is in another company than current user's company.
-        # We can't change this tax's company because
-        # it is the default sale tax for the company
-        # and it has already been used in other invoices.
-        self.tax22_sale = (
-            self.env.ref("l10n_it_intrastat.tax_22")
-            .sudo()
-            .copy(default={"company_id": self.env.company.id})
+        self.service01 = self.env["product.product"].create(
+            {
+                "name": "Test Product Service",
+                "type": "service",
+                "intrastat_type": "service",
+                "intrastat_code_id": intrastat_code.id,
+            }
         )
         self.currency_gbp = self.env.ref("base.GBP")
         self.currency_gbp.active = True

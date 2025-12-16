@@ -167,7 +167,7 @@ class AccountIntrastatStatement(models.Model):
     def _get_sequence(self):
         return self.env["ir.sequence"].next_by_code("intrastat.statement.sequence")
 
-    number = fields.Integer(default=_compute_progressive)
+    number = fields.Integer(default=lambda self: self._compute_progressive())
     date = fields.Date(
         string="Submission Date", default=fields.Date.today(), required=True
     )
@@ -205,7 +205,7 @@ class AccountIntrastatStatement(models.Model):
     )
     period_number = fields.Integer(
         string="Period",
-        help="Values accepted:\n" " - Month : From 1 to 12\n" " - Quarter: From 1 to 4",
+        help="Values accepted:\n - Month : From 1 to 12\n - Quarter: From 1 to 4",
         default=1,
         required=True,
     )
@@ -217,7 +217,7 @@ class AccountIntrastatStatement(models.Model):
             ("8", "Change Period in quarter: only first month operations"),
             (
                 "9",
-                "Change Period in quarter: only first and second month " "operations",
+                "Change Period in quarter: only first and second month operations",
             ),
         ],
         required=True,
@@ -263,7 +263,7 @@ class AccountIntrastatStatement(models.Model):
     )
 
     sale_statement_sequence = fields.Integer(
-        string="Sales Statement Sequence", default=_get_sequence
+        string="Sales Statement Sequence", default=lambda self: self._get_sequence()
     )
     sale_section1_ids = fields.One2many(
         comodel_name="account.intrastat.statement.sale.section1",
@@ -327,7 +327,7 @@ class AccountIntrastatStatement(models.Model):
     )
 
     purchase_statement_sequence = fields.Integer(
-        string="Purchases Statement Sequence", default=_get_sequence
+        string="Purchases Statement Sequence", default=lambda self: self._get_sequence()
     )
     purchase_section1_ids = fields.One2many(
         comodel_name="account.intrastat.statement.purchase.section1",
@@ -834,9 +834,9 @@ class AccountIntrastatStatement(models.Model):
                     raise ValidationError(
                         self.env._(
                             "Invoice and credit note in the same period with"
-                            " credit note > invoice for partner %s"
+                            " credit note > invoice for partner %s",
+                            line.partner_id.name,
                         )
-                        % line.partner_id.name
                     )
                 val = {"amount_euro": (line_to_refund.amount_euro - line.amount_euro)}
                 if "statistic_amount_euro" in line_to_refund:

@@ -5,8 +5,8 @@
         <field name="model">account.intrastat.export.file</field>
         <field name="arch" type="xml">
             <form string="Export Intrastat File">
-                <field column_invisible="1" name="state" />
-                <field name="name" column_invisible="1" />
+                <field invisible="1" name="state" />
+                <field name="name" invisible="1" />
                 <div invisible="state != 'get'">
                     <h2>Export Complete</h2>
                     <p>Here is the exported file: <field
