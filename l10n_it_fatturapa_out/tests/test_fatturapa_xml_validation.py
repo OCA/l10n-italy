@@ -16,6 +16,7 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests import Form, tagged
 from odoo.tools import mute_logger
+from odoo.tools.safe_eval import safe_eval
 
 from .fatturapa_common import FatturaPACommon
 
@@ -1372,18 +1373,23 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         """
         invoice = self._create_invoice()
         f = Form(
-            self.wizard_model.with_context(
+            self.wizard_model.with_user(self.user_demo).with_context(
                 active_id=invoice.id,
                 active_model=invoice._name,
             )
         )
+        w = f.save()
         field = f._view["tree"].xpath("//field[@name='report_print_menu']")[0]
-        self.assertIn("allowed_report_ids", field.get("domain"))
-        allowed_reports = f.allowed_report_ids._get_ids()
+        eval_context = dict(w.read()[0], context=w.env.context)
+        domain = safe_eval(
+            field.get("domain"),
+            globals_dict=eval_context,
+        )
+        allowed_reports = w.env["ir.actions.report"].search(domain)
         invoice_reports = self.env["ir.actions.report"].search(
             [("binding_model_id", "=", invoice._name)]
         )
-        self.assertItemsEqual(invoice_reports.ids, allowed_reports)
+        self.assertItemsEqual(invoice_reports, allowed_reports)
 
         # Verify non-admin user can read the allowed reports
         user = self.user_demo
