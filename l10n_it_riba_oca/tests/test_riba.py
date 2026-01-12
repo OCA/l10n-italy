@@ -492,7 +492,11 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690124" in riba_txt)
         # Assert
         file_content = base64.decodebytes(wizard_riba_export.riba_txt).decode()
-        self.assertNotIn("INV/2025/00004", file_content)
+        # Post invoice to have the name assigned
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+        # Check that an invoice name not in the riba list isn't in the RiBa file
+        self.assertNotIn(self.invoice.name, file_content)
         self.assertIn("CABNP Paribas", file_content)
 
     def test_riba_fatturapa_group(self):
@@ -601,9 +605,13 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690125" in riba_txt)
         # Assert
         file_content = base64.decodebytes(wizard_riba_export.riba_txt).decode()
-        self.assertNotIn("INV/2025/00008", file_content)
-        self.assertIn("INV/2025/00005", file_content)
-        self.assertIn("INV/2025/00006", file_content)
+        # Post invoice to have the name assigned
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+        # Check that an invoice name not in the riba list isn't in the RiBa file
+        self.assertNotIn(self.invoice.name, file_content)
+        self.assertIn(invoice.name, file_content)
+        self.assertIn(invoice1.name, file_content)
 
     def test_riba_presentation(self):
         total_amount = 200000
