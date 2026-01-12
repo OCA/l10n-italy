@@ -272,6 +272,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_riba_oca
+#: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__charge_to_customer
+msgid "Charge the customer the costs"
+msgstr ""
+
+#. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_file_export
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_payment_date
 msgid "Close"
