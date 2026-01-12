@@ -23,8 +23,8 @@ msgid ""
 "<span class=\"o_form_label\">RiBa Collection Fees</span>\n"
 "                        <span class=\"fa fa-lg fa-building-o\" "
 "title=\"Product used as Service for RiBa Collection Fees\" aria-"
-"label=\"Product used as Service for RiBa Collection Fees\" groups=\"base."
-"group_multi_company\" role=\"img\"/>"
+"label=\"Product used as Service for RiBa Collection Fees\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"o_form_label\">Spese di incasso RiBa</span>\n"
 "                        <span class=\"fa fa-lg fa-building-o\" "
@@ -300,6 +300,11 @@ msgstr ""
 "\n"
 "- \n"
 "- "
+
+#. module: l10n_it_riba_oca
+#: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__charge_to_customer
+msgid "Charge the customer the costs"
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.wizard_riba_file_export
