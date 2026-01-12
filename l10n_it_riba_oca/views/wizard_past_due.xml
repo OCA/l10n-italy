@@ -32,6 +32,7 @@
                     <field name="expense_amount" />
                     <field name="date" />
                     <field name="past_due_fee_amount" />
+                    <field name="charge_to_customer" />
                 </group>
                 <footer>
                     <button
