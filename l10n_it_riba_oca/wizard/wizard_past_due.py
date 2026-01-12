@@ -111,6 +111,7 @@ class RibaPastDue(models.TransientModel):
     past_due_fee_amount = fields.Float(
         "Past Due Fees Amount", default=_get_unsolved_past_due_fee_amount
     )
+    charge_to_customer = fields.Boolean("Charge the customer the costs")
 
     def skip(self):
         active_id = self.env.context.get("active_id")
@@ -153,19 +154,19 @@ class RibaPastDue(models.TransientModel):
             aml_account_id = self.credit_account_id.id
 
         # Add bank fees line if applicable
+        bank_fee_line = {
+            "name": self.env._("Bank Fee"),
+            "account_id": self.bank_expense_account_id.id,
+            "debit": self.past_due_fee_amount,
+            "credit": 0.0,
+        }
+        if self.charge_to_customer:
+            bank_fee_line["partner_id"] = slip_line.partner_id.id
+
         if self.past_due_fee_amount:
             line_ids.extend(
                 [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.env._("Bank Fee"),
-                            "account_id": self.bank_expense_account_id.id,
-                            "debit": self.past_due_fee_amount,
-                            "credit": 0.0,
-                        },
-                    ),
+                    (0, 0, bank_fee_line),
                     (
                         0,
                         0,
