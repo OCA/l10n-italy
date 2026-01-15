@@ -1,12 +1,17 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import logging
 from io import BytesIO
 
 from lxml import etree
 
 from odoo import api, models, tools
 from odoo.exceptions import UserError
+
+from odoo.addons.l10n_it_edi.tools.remove_signature import remove_signature
+
+_logger = logging.getLogger(__name__)
 
 
 class IrAttachmentInherit(models.Model):
@@ -20,7 +25,33 @@ class IrAttachmentInherit(models.Model):
     def get_xml_string(self):
         if not self._is_l10n_it_edi_import_file():
             raise UserError(self.env._("Invalid xml %s.") % self.name)
-        xml_string = self._decode_edi_l10n_it_edi(self.name, self.raw)[0]["content"]
+
+        # from _decode_edi_l10n_it_edi()
+        # for files with a Cades signature, _decode_edi_l10n_it_edi() returns the
+        # orginal (signed) contents and a list of etree subtrees, each starting
+        # from FatturaElettronicaBody, neither of which is useful to us here
+        #
+        # so we copy the code snipped that's useful to us
+        # 8<
+        def parse_xml(parser, name, content):
+            try:
+                return etree.fromstring(content, parser)
+            except (etree.ParseError, ValueError) as e:
+                _logger.info("XML parsing of %s failed: %s", name, e)
+
+        name = self.name
+        content = self.raw
+        parser = etree.XMLParser(recover=True, resolve_entities=False)
+        if (xml_tree := parse_xml(parser, name, content)) is None:
+            # The file may have a Cades signature, trying to remove it
+            if (xml_tree := parse_xml(parser, name, remove_signature(content))) is None:
+                _logger.info("Italian EDI invoice file %s cannot be decoded.", name)
+                return []
+        # >8
+
+        xml_string = etree.tostring(
+            xml_tree, pretty_print=True, encoding="unicode"
+        ).encode()
         return xml_string
 
     def get_fattura_elettronica_preview(self):
