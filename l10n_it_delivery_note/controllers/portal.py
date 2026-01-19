@@ -25,8 +25,8 @@ class DNCustomerPortal(CustomerPortal):
 
     def _get_delivery_notes_searchbar_sortings(self):
         return {
-            "date": {"label": self.env._("Delivery Note Date"), "order": "date desc"},
-            "name": {"label": self.env._("Delivery Note #"), "order": "name"},
+            "date": {"label": request.env._("Delivery Note Date"), "order": "date desc"},
+            "name": {"label": request.env._("Delivery Note #"), "order": "name"},
         }
 
     def _get_delivery_notes_searchbar_inputs(self):
