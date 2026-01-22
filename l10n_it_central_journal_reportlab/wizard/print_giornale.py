@@ -46,7 +46,10 @@ class WizardGiornaleReportlab(models.TransientModel):
     date_move_line_to = fields.Date("To date", required=True)
     daterange_id = fields.Many2one("date.range", "Date Range", required=True)
     company_id = fields.Many2one(
-        related="daterange_id.company_id", readonly=True, store=True
+        comodel_name="res.company",
+        default=lambda self: self.env.company.id,
+        readonly=True,
+        store=True,
     )
     progressive_credit = fields.Float()
     progressive_debit2 = fields.Float("Progressive Debit")
@@ -181,7 +184,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             "date_to": wizard.date_move_line_to,
             "target_type": tuple(target_type),
             "journal_ids": tuple(self.journal_ids.ids),
-            "company_id": self.env.company.id,
+            "company_id": wizard.company_id.id,
         }
         self.env.cr.execute(sql, params)
         list_grupped_line = self.env.cr.dictfetchall()
@@ -225,7 +228,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             "date_to": wizard.date_move_line_to,
             "target_type": tuple(target_type),
             "journal_ids": tuple(self.journal_ids.ids),
-            "company_id": self.env.company.id,
+            "company_id": wizard.company_id.id,
         }
         self.env.cr.execute(sql, params)
         list_line_not_grouped = self.env.cr.dictfetchall()
