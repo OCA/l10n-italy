@@ -22,10 +22,7 @@
                     <group name="filters">
                         <group name="date_range">
                             <field name="company_id" invisible="True" />
-                            <field
-                                name="date_range_id"
-                                domain="[('company_id','in',(company_id,False))]"
-                            />
+                            <field name="date_range_id" />
                             <field name="date_from" />
                             <field name="date_to" />
                             <field name="fy_start_date" invisible="1" />
