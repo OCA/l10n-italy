@@ -47,20 +47,25 @@
             >SI</Art73>
         </xpath>
         <xpath expr="//DatiGeneraliDocumento" position="after">
-            <DatiTrasporto t-if="record.partner_shipping_id">
+            <DatiTrasporto>
                 <!-- 2.1.9.12 -->
-                <IndirizzoResa>
+                <t t-set="shipper" t-value="record.partner_shipping_id" />
+                <IndirizzoResa t-if="shipper and shipper.country_id.code == 'IT'">
                     <Indirizzo
-                        t-out="format_address(record.partner_shipping_id.street, record.partner_shipping_id.street2, 60)"
+                        t-out="format_address(shipper.street, shipper.street2, 60)"
                     />
-                    <CAP t-out="record.partner_shipping_id.zip" />
+                    <CAP>
+                        <t t-if="shipper.zip" t-out="shipper.zip" />
+                    </CAP>
                     <Comune
-                        t-out="format_alphanumeric(record.partner_shipping_id.city, 60)"
+                        t-if="shipper.city"
+                        t-out="format_alphanumeric(shipper.city, 60)"
                     />
                     <Provincia
-                        t-out="format_alphanumeric(record.partner_shipping_id.state_id.code, 2)"
+                        t-if="shipper.state_id"
+                        t-out="format_alphanumeric(shipper.state_id.code, 2)"
                     />
-                    <Nazione t-out="record.partner_shipping_id.country_id.code" />
+                    <Nazione t-out="shipper.country_id.code" />
                 </IndirizzoResa>
             </DatiTrasporto>
         </xpath>
