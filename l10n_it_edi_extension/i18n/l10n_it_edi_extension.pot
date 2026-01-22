@@ -551,6 +551,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/account_move.py:0
 msgid ""
+"Line with description %(line_description)s has been replaced by summary line"
+" because import detail level is tax."
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
 "Line with description %(line_description)s has been skipped because import "
 "detail level is minimum."
 msgstr ""

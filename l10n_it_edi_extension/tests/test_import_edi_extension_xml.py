@@ -4,8 +4,10 @@
 
 import base64
 from datetime import date
+from unittest.mock import patch
 
 from odoo import tools
+from odoo.exceptions import MissingError
 
 from .common import Common
 
@@ -275,6 +277,91 @@ class TestFatturaPAXMLValidation(Common):
 
         # Assert
         self.assertFalse(invoice.invoice_line_ids)
+
+    def test_min_import_detail_level_with_line_access(self):
+        """If import detail level is Minimum and another module
+        tries to access deleted line fields (like l10n_it_edi_withholding does),
+        no MissingError should occur thanks to the fix."""
+        # Arrange
+        company = self.company
+        company.l10n_it_edi_import_detail_level = "min"
+
+        # Simulate what l10n_it_edi_withholding does: access move_line_form.price_unit
+        original_method = self.env["account.move"]._l10n_it_edi_import_line
+        test_case = self
+
+        def patched_import_line(self, element, move_line_form, extra_info=None):
+            messages = original_method(element, move_line_form, extra_info)
+            # This is what causes the MissingError without the fix:
+            # l10n_it_edi_withholding accesses move_line_form.price_unit at line 320
+            try:
+                _ = move_line_form.price_unit
+            except MissingError:
+                # Without the fix, this would raise MissingError
+                test_case.fail(
+                    "MissingError: line was deleted but accessed by another module"
+                )
+            return messages
+
+        # Act & Assert
+        with patch.object(
+            type(self.env["account.move"]),
+            "_l10n_it_edi_import_line",
+            patched_import_line,
+        ):
+            invoice = self._assert_import_invoice(
+                "IT02780790107_11004.xml",
+                [
+                    {
+                        "company_id": company.id,
+                    },
+                ],
+            )
+
+        # Assert
+        self.assertFalse(invoice.invoice_line_ids)
+
+    def test_tax_import_detail_level_with_line_access(self):
+        """If import detail level is Tax rate and another module
+        tries to access deleted line fields (like l10n_it_edi_withholding does),
+        no MissingError should occur thanks to the fix."""
+        # Arrange
+        company = self.company
+        company.l10n_it_edi_import_detail_level = "tax"
+
+        # Simulate what l10n_it_edi_withholding does: access move_line_form.price_unit
+        original_method = self.env["account.move"]._l10n_it_edi_import_line
+        test_case = self
+
+        def patched_import_line(self, element, move_line_form, extra_info=None):
+            messages = original_method(element, move_line_form, extra_info)
+            # This is what causes the MissingError without the fix
+            try:
+                _ = move_line_form.price_unit
+            except MissingError:
+                # Without the fix, this would raise MissingError
+                test_case.fail(
+                    "MissingError: line was deleted but accessed by another module"
+                )
+            return messages
+
+        # Act & Assert
+        with patch.object(
+            type(self.env["account.move"]),
+            "_l10n_it_edi_import_line",
+            patched_import_line,
+        ):
+            invoice = self._assert_import_invoice(
+                "IT02780790107_11004.xml",
+                [
+                    {
+                        "company_id": company.id,
+                    },
+                ],
+            )
+
+        # Assert
+        self.assertEqual(len(invoice.invoice_line_ids), 1)
 
     def test_tax_import_detail_level(self):
         """If import detail level is Tax rate,

@@ -360,7 +360,6 @@ class AccountMoveInherit(models.Model):
             for element_summary in elements_summary:
                 self.l10n_it_edi_amount_tax += get_float(element_summary, ".//Imposta")
 
-        extra_info["l10n_it_edi_ext_body_tree"] = body_tree
         return extra_info, message_to_log
 
     def _l10n_it_edi_update_partner(self, xml_tree, role, partner):
@@ -371,6 +370,8 @@ class AccountMoveInherit(models.Model):
 
     def _l10n_it_edi_ext_import_summary_line(self, element, extra_info=None):
         messages_to_log = []
+        if extra_info is None:
+            extra_info = {}
         company = self.company_id
         percentage = get_float(element, ".//AliquotaIVA")
         extra_domain = extra_info.get(
@@ -384,7 +385,7 @@ class AccountMoveInherit(models.Model):
             l10n_it_exempt_reason=l10n_it_exempt_reason,
         )
         if tax:
-            self.invoice_line_ids += self.env["account.move.line"].create(
+            self.env["account.move.line"].create(
                 {
                     "move_id": self.id,
                     "name": self.env._(
@@ -421,7 +422,6 @@ class AccountMoveInherit(models.Model):
             or company.l10n_it_edi_import_detail_level
         )
         if import_detail_level == "min":
-            move_line.unlink()
             line_description = " ".join(get_text(element, ".//Descrizione").split())
             messages_to_log.append(
                 Markup("<br/>").join(
@@ -436,17 +436,22 @@ class AccountMoveInherit(models.Model):
                     )
                 )
             )
-        elif (
-            body_tree := extra_info.get("l10n_it_edi_ext_body_tree")
-        ) is not None and import_detail_level == "tax":
-            move_line.unlink()
-            tax_level_imported = extra_info.get("l10n_it_edi_ext_tax_level_imported")
-            if not tax_level_imported:
-                for summary_line in body_tree.xpath(".//DatiBeniServizi/DatiRiepilogo"):
-                    messages_to_log += self._l10n_it_edi_ext_import_summary_line(
-                        summary_line, extra_info=extra_info
+        elif import_detail_level == "tax":
+            # Lines will be replaced with summary lines in _l10n_it_edi_import_invoice
+            line_description = " ".join(get_text(element, ".//Descrizione").split())
+            messages_to_log.append(
+                Markup("<br/>").join(
+                    (
+                        self.env._(
+                            "Line with description %(line_description)s "
+                            "has been replaced by summary line "
+                            "because import detail level is tax.",
+                            line_description=line_description,
+                        ),
+                        self._compose_info_message(element, "."),
                     )
-                extra_info["l10n_it_edi_ext_tax_level_imported"] = True
+                )
+            )
         elif import_detail_level == "max":
             # Admin. ref.
             if admin_ref := get_text(element, ".//RiferimentoAmministrazione"):
@@ -735,6 +740,34 @@ class AccountMoveInherit(models.Model):
 
     def _l10n_it_edi_import_invoice(self, invoice, data, is_new):
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
+
+        if invoice:
+            import_detail_level = (
+                invoice.partner_id.l10n_it_edi_import_detail_level
+                or invoice.company_id.l10n_it_edi_import_detail_level
+            )
+            if import_detail_level == "min":
+                # Delete all lines - Odoo creates them in the import loop
+                # but we don't want any for minimum detail level
+                invoice.invoice_line_ids.unlink()
+            elif import_detail_level == "tax":
+                # Delete all lines created by Odoo and create summary lines instead
+                invoice.invoice_line_ids.unlink()
+                body_tree = data.get("xml_tree")
+                if body_tree is not None:
+                    for summary_line in body_tree.xpath(
+                        ".//DatiBeniServizi/DatiRiepilogo"
+                    ):
+                        messages = invoice._l10n_it_edi_ext_import_summary_line(
+                            summary_line,
+                            extra_info={
+                                "type_tax_use_domain": [
+                                    ("type_tax_use", "=", "purchase")
+                                ]
+                            },
+                        )
+                        for message in messages:
+                            invoice.sudo().message_post(body=message)
 
         body_tree = data["xml_tree"]
         is_incoming = self.is_purchase_document(include_receipts=True)

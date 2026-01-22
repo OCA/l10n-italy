@@ -593,6 +593,14 @@ msgstr "Numero riga"
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/account_move.py:0
 msgid ""
+"Line with description %(line_description)s has been replaced by summary line "
+"because import detail level is tax."
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
 "Line with description %(line_description)s has been skipped because import "
 "detail level is minimum."
 msgstr ""
@@ -1000,8 +1008,8 @@ msgstr "Aliquota fiscale"
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/account_move.py:0
 msgid ""
-"Taxed amount (%(tax_amount)s}) does not match with e-invoice taxed amount "
-"(%(edi_tax_amount)s)"
+"Taxed amount (%(tax_amount)s}) does not match with e-invoice taxed amount (%"
+"(edi_tax_amount)s)"
 msgstr ""
 "L'importo tassato (%(tax_amount)s}) non corrisponde all'importo tassato "
 "della e-fattura (%(edi_tax_amount)s)"
@@ -1052,8 +1060,8 @@ msgstr "Prezzo totale"
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/account_move.py:0
 msgid ""
-"Total amount (%(total_amount)s) does not match with e-invoice total amount "
-"(%(edi_total_amount)s)"
+"Total amount (%(total_amount)s) does not match with e-invoice total amount (%"
+"(edi_total_amount)s)"
 msgstr ""
 "L'importo totale (%(total_amount)s) non corrisponde all'importo totale della "
 "e-fattura (%(edi_total_amount)s)"
@@ -1086,9 +1094,9 @@ msgid ""
 "Untaxed amount (%(amount_untaxed)s}) minus rounding (%(rounding)s}) does not "
 "match with e-invoice untaxed amount %(edi_amount_untaxed)s)"
 msgstr ""
-"L'importo non tassato (%(amount_untaxed)s}) meno l'arrotondamento "
-"(%(rounding)s}) non corrisponde all'importo non tassato della e-fattura "
-"%(edi_amount_untaxed)s)"
+"L'importo non tassato (%(amount_untaxed)s}) meno l'arrotondamento (%"
+"(rounding)s}) non corrisponde all'importo non tassato della e-fattura %"
+"(edi_amount_untaxed)s)"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__tax_amount
