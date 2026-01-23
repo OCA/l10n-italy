@@ -47,7 +47,9 @@
             >SI</Art73>
         </xpath>
         <xpath expr="//DatiDDT" position="after">
-            <DatiTrasporto t-if="record.partner_shipping_id">
+            <DatiTrasporto
+                t-if="record.partner_shipping_id and record.partner_shipping_id.country_id.code == 'IT'"
+            >
                 <!-- 2.1.9.12 -->
                 <IndirizzoResa>
                     <Indirizzo
