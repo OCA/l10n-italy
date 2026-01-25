@@ -338,7 +338,7 @@ def _l10n_it_fatturapa_post_migration_related_ddt(env):
                     nl2br_enclose(" ".join(tag.split()), "li")
                     for tag in [
                         f"NumeroDDT: {name}",
-                        f'DataDDT: {date or "N/A"}',
+                        f"DataDDT: {date or 'N/A'}",
                     ]
                 )
             )
@@ -398,20 +398,20 @@ def _l10n_it_fatturapa_post_migration_delivery_data(env):
                 Markup().join(
                     nl2br_enclose(" ".join(tag.split()), "li")
                     for tag in [
-                        f'Carrier: {carrier_name or "N/A"}',
-                        f'NumeroLicenzaGuida: {license_number or "N/A"}',
-                        f'MezzoTrasporto: {transport_vehicle or "N/A"}',
-                        f'CausaleTrasporto: {transport_reason or "N/A"}',
-                        f'NumeroColli: {number_items or "N/A"}',
-                        f'Descrizione: {description or "N/A"}',
-                        f'UnitaMisuraPeso: {unit_weight or "N/A"}',
-                        f'PesoLordo: {gross_weight or "N/A"}',
-                        f'PesoNetto: {net_weight or "N/A"}',
-                        f'DataOraRitiro: {pickup_datetime or "N/A"}',
-                        f'DataInizioTrasporto: {transport_date or "N/A"}',
-                        f'IndirizzoResa: {delivery_address or "N/A"}',
-                        f'DataOraConsegna: {delivery_datetime or "N/A"}',
-                        f'TipoResa: {ftpa_incoterms or "N/A"}',
+                        f"Carrier: {carrier_name or 'N/A'}",
+                        f"NumeroLicenzaGuida: {license_number or 'N/A'}",
+                        f"MezzoTrasporto: {transport_vehicle or 'N/A'}",
+                        f"CausaleTrasporto: {transport_reason or 'N/A'}",
+                        f"NumeroColli: {number_items or 'N/A'}",
+                        f"Descrizione: {description or 'N/A'}",
+                        f"UnitaMisuraPeso: {unit_weight or 'N/A'}",
+                        f"PesoLordo: {gross_weight or 'N/A'}",
+                        f"PesoNetto: {net_weight or 'N/A'}",
+                        f"DataOraRitiro: {pickup_datetime or 'N/A'}",
+                        f"DataInizioTrasporto: {transport_date or 'N/A'}",
+                        f"IndirizzoResa: {delivery_address or 'N/A'}",
+                        f"DataOraConsegna: {delivery_datetime or 'N/A'}",
+                        f"TipoResa: {ftpa_incoterms or 'N/A'}",
                     ]
                 )
             )
@@ -446,8 +446,8 @@ def _l10n_it_fatturapa_post_migration_vehicle_data(env):
                 Markup().join(
                     nl2br_enclose(" ".join(tag.split()), "li")
                     for tag in [
-                        f'Data: {vehicle_registration or "N/A"}',
-                        f'TotalePercorso: {total_travel or "N/A"}',
+                        f"Data: {vehicle_registration or 'N/A'}",
+                        f"TotalePercorso: {total_travel or 'N/A'}",
                     ]
                 )
             )
@@ -525,28 +525,28 @@ def _l10n_it_fatturapa_post_migration_payment_data(env):
                 Markup().join(
                     nl2br_enclose(" ".join(tag.split()), "li")
                     for tag in [
-                        f'CondizioniPagamento: {term_code or "N/A"}',
-                        f'Beneficiario: {recipient or "N/A"}',
-                        f'ModalitaPagamento: {method_code or "N/A"}',
-                        f'DataRiferimentoTerminiPagamento: {payment_term_start or "N/A"}',  # noqa: E501
-                        f'GiorniTerminiPagamento: {payment_days or "N/A"}',
-                        f'DataScadenzaPagamento: {payment_due_date or "N/A"}',
-                        f'ImportoPagamento: {payment_amount or "N/A"}',
-                        f'CodUfficioPostale: {post_office_code or "N/A"}',
-                        f'CognomeQuietanzante: {recepit_surname or "N/A"}',
-                        f'NomeQuietanzante: {recepit_name or "N/A"}',
-                        f'CFQuietanzante: {recepit_cf or "N/A"}',
-                        f'TitoloQuietanzante: {recepit_title or "N/A"}',
-                        f'IstitutoFinanziario: {payment_bank_name or "N/A"}',
-                        f'IBAN: {payment_bank_iban or "N/A"}',
-                        f'ABI: {payment_bank_abi or "N/A"}',
-                        f'CAB: {payment_bank_cab or "N/A"}',
-                        f'BIC: {payment_bank_bic or "N/A"}',
-                        f'ScontoPagamentoAnticipato: {prepayment_discount or "N/A"}',
-                        f'DataLimitePagamentoAnticipato: {max_payment_date or "N/A"}',
-                        f'PenalitaPagamentiRitardati: {penalty_amount or "N/A"}',
-                        f'DataDecorrenzaPenale: {penalty_date or "N/A"}',
-                        f'CodicePagamento: {payment_code or "N/A"}',
+                        f"CondizioniPagamento: {term_code or 'N/A'}",
+                        f"Beneficiario: {recipient or 'N/A'}",
+                        f"ModalitaPagamento: {method_code or 'N/A'}",
+                        f"DataRiferimentoTerminiPagamento: {payment_term_start or 'N/A'}",  # noqa: E501
+                        f"GiorniTerminiPagamento: {payment_days or 'N/A'}",
+                        f"DataScadenzaPagamento: {payment_due_date or 'N/A'}",
+                        f"ImportoPagamento: {payment_amount or 'N/A'}",
+                        f"CodUfficioPostale: {post_office_code or 'N/A'}",
+                        f"CognomeQuietanzante: {recepit_surname or 'N/A'}",
+                        f"NomeQuietanzante: {recepit_name or 'N/A'}",
+                        f"CFQuietanzante: {recepit_cf or 'N/A'}",
+                        f"TitoloQuietanzante: {recepit_title or 'N/A'}",
+                        f"IstitutoFinanziario: {payment_bank_name or 'N/A'}",
+                        f"IBAN: {payment_bank_iban or 'N/A'}",
+                        f"ABI: {payment_bank_abi or 'N/A'}",
+                        f"CAB: {payment_bank_cab or 'N/A'}",
+                        f"BIC: {payment_bank_bic or 'N/A'}",
+                        f"ScontoPagamentoAnticipato: {prepayment_discount or 'N/A'}",
+                        f"DataLimitePagamentoAnticipato: {max_payment_date or 'N/A'}",
+                        f"PenalitaPagamentiRitardati: {penalty_amount or 'N/A'}",
+                        f"DataDecorrenzaPenale: {penalty_date or 'N/A'}",
+                        f"CodicePagamento: {payment_code or 'N/A'}",
                     ]
                 )
             )
