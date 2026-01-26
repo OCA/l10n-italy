@@ -2,10 +2,10 @@
 #  Copyright 2025 Simone Rubino
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import base64
 from datetime import date
 
 from odoo import tools
+from odoo.fields import Domain
 
 from .common import Common
 
@@ -17,43 +17,8 @@ class TestFatturaPAXMLValidation(Common):
         cls.env.company.l10n_edi_it_create_partner = True
         cls.company.l10n_edi_it_create_partner = True
 
-    def _edi_import_invoice(self, filename):
-        moves = self.env["account.move"]
-        path = f"l10n_it_edi_extension/tests/import_xmls/{filename}"
-
-        with tools.file_open(path, mode="rb") as file:
-            content = file.read()
-
-            attachment = self.env["ir.attachment"].create(
-                {
-                    "name": filename,
-                    "raw": content,
-                    "type": "binary",
-                }
-            )
-
-            if not attachment._is_l10n_it_edi_import_file():
-                attachment.unlink()
-                return False
-
-            for file_data in attachment._decode_edi_l10n_it_edi(filename, content):
-                move = self.env["account.move"].with_company(self.company).create({})
-                attachment.write(
-                    {
-                        "res_model": "account.move",
-                        "res_id": move.id,
-                        "res_field": "l10n_it_edi_attachment_file",
-                    }
-                )
-
-                move._l10n_it_edi_import_invoice(move, file_data, True)
-                moves |= move
-
-        return moves
-
     def test_02_xml_import(self):
-        move = self._edi_import_invoice("IT02780790107_11005.xml")
-        move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
+        move = self._assert_import_invoice("IT02780790107_11005.xml", [{}])
         self.assertEqual(move.ref, "124")
         self.assertEqual(move.partner_id.name, "Societa' Alpha SRL")
         self.assertEqual(move.invoice_line_ids[0].tax_ids[0].name, "22% G")
@@ -71,8 +36,7 @@ class TestFatturaPAXMLValidation(Common):
                 )
 
     def test_03_xml_import(self):
-        move = self._edi_import_invoice("IT05979361218_003.xml")
-        move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
+        move = self._assert_import_invoice("IT05979361218_003.xml", [{}])
         self.assertEqual(move.ref, "FT/2015/0008")
         self.assertEqual(move.l10n_it_edi_sender, "TZ")
         self.assertEqual(
@@ -90,8 +54,7 @@ class TestFatturaPAXMLValidation(Common):
         self.assertEqual(move.amount_total, 9)
 
     def test_04_xml_import(self):
-        move = self._edi_import_invoice("IT02780790107_11004.xml")
-        move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
+        move = self._assert_import_invoice("IT02780790107_11004.xml", [{}])
         self.assertEqual(move.ref, "123")
         self.assertEqual(len(move.invoice_line_ids[0].tax_ids), 1)
         self.assertEqual(move.invoice_line_ids[0].tax_ids[0].name, "22% G")
@@ -120,16 +83,15 @@ class TestFatturaPAXMLValidation(Common):
             )
 
         # verify if attached documents are correctly imported
-        attachments = self.env["ir.attachment"].search(
-            [("res_model", "=", "account.move"), ("res_id", "=", move.id)]
+        edi_attachment = move.message_ids.attachment_ids.filtered(
+            lambda a: a.name == "test.png"
         )
-        self.assertEqual(len(attachments), 1)
         orig_attachment_path = tools.misc.file_path(
             "l10n_it_edi_extension/tests/import_xmls/test.png"
         )
         with open(orig_attachment_path, "rb") as orig_attachment:
             orig_attachment_data = orig_attachment.read()
-            self.assertEqual(attachments[0].raw, orig_attachment_data)
+            self.assertEqual(edi_attachment.raw, orig_attachment_data)
 
     def test_import_zip(self):
         path = "l10n_it_edi_extension/tests/import_xmls/xml_import.zip"
@@ -148,7 +110,7 @@ class TestFatturaPAXMLValidation(Common):
             )
             action = wizard_attachment_import.action_import()
 
-        move_ids = action.get("domain")[0][2]
+        move_ids = action.get("domain", Domain).value
         moves = self.env["account.move"].browse(move_ids)
         out_moves = moves.filtered(lambda m: m.is_sale_document())
         in_moves = moves.filtered(lambda m: m.is_purchase_document())
@@ -183,8 +145,8 @@ class TestFatturaPAXMLValidation(Common):
         }
 
         for out_move in out_moves:
-            attachment = out_move.l10n_it_edi_attachment_id
-            expected_invoices_values = check_invoices_values.get(attachment.name)
+            attachment_name = out_move.l10n_it_edi_attachment_name
+            expected_invoices_values = check_invoices_values.get(attachment_name)
             if expected_invoices_values is not None:
                 for move, expected_values in zip(
                     out_move,

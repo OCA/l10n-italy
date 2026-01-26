@@ -9,6 +9,7 @@ import zipfile
 
 from odoo import fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 
 _logger = logging.getLogger(__name__)
 
@@ -46,9 +47,11 @@ class EInvoiceImportFileWizard(models.TransientModel):
                         )
 
                         if existing_attachment:
-                            message = f"E-invoice already exists: {filename}"
+                            message = self.env._(
+                                "E-invoice already exists: %s", filename
+                            )
                             _logger.warning(message)
-                            raise UserError(self.env._(message))
+                            raise UserError(message)
 
                         content = file.read()
                         attachment = attachment_model.create(
@@ -58,41 +61,56 @@ class EInvoiceImportFileWizard(models.TransientModel):
                                 "type": "binary",
                             }
                         )
+                        files_data = self.env["account.move"]._to_files_data(attachment)
+                        files_data = [
+                            file_data
+                            for file_data in files_data
+                            if self.env["account.move"]._is_l10n_it_edi_import_file(
+                                file_data
+                            )
+                        ]
 
-                        if not attachment._is_l10n_it_edi_import_file():
+                        if not files_data:
                             _logger.info(f"Skipping {filename}, not an XML/P7M file")
                             attachment.unlink()
                             continue
 
-                        for file_data in attachment._decode_edi_l10n_it_edi(
-                            filename, content
-                        ):
-                            move = (
-                                self.env["account.move"]
-                                .with_company(company)
-                                .create({})
-                            )
-                            attachment.write(
-                                {
-                                    "res_model": "account.move",
-                                    "res_id": move.id,
-                                    "res_field": "l10n_it_edi_attachment_file",
-                                }
+                        files_data.extend(
+                            self.env["account.move"]._unwrap_attachments(files_data)
+                        )
+
+                        records = (
+                            self.env["account.move"]
+                            .with_company(company)
+                            .create([{}] * len(files_data))
+                        )
+                        for record, file_data in zip(records, files_data, strict=False):
+                            attachment = file_data["attachment"]
+                            record.message_post(
+                                body=self.env._(
+                                    "This invoice was imported from .zip file"
+                                ),
+                                attachment_ids=attachment.ids,
                             )
 
-                            move.with_context(
-                                account_predictive_bills_disable_prediction=True,
-                                no_new_invoice=True,
-                            ).message_post(attachment_ids=attachment.ids)
+                        # Extend created moves with the related attachments.
+                        for record, file_data in zip(records, files_data, strict=False):
+                            record._extend_with_attachments([file_data], new=True)
+                            if record.is_sale_document():
+                                record.l10n_it_edi_attachment_name = file_data.get(
+                                    "name", ""
+                                )
+                                record.l10n_it_edi_attachment_file = base64.b64encode(
+                                    file_data.get("raw", b"")
+                                )
 
-                            move._l10n_it_edi_import_invoice(move, file_data, True)
-                            moves |= move
+                        moves |= records
 
         return {
             "view_type": "form",
-            "name": "E-invoices",
+            "name": self.env._("E-invoices"),
             "view_mode": "list,form",
             "res_model": "account.move",
             "type": "ir.actions.act_window",
-            "domain": [("id", "in", moves.ids)],
+            "domain": Domain("id", "in", moves.ids),
         }

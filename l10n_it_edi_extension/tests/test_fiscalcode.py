@@ -11,7 +11,19 @@ class TestFiscalCode(TransactionCase):
     def setUp(self):
         super().setUp()
 
-        self.partner = self.env.ref("base.res_partner_2")
+        self.partner = self.env["res.partner"].create(
+            {
+                "name": "Acme Corporation",
+                "is_company": True,
+                "street": "77 Santa Barbara Rd",
+                "city": "Pleasant Hill",
+                "state_id": self.env.ref("base.state_us_5").id,
+                "zip": "94523",
+                "email": "acme_corp@yourcompany.example.com",
+                "phone": "(603)-996-3829",
+                "vat": "US12345673",
+            }
+        )
         self.rome_province = self.env.ref("base.state_it_rm")
 
     def test_fiscalcode_compute(self):

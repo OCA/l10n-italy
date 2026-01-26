@@ -25,23 +25,25 @@
                 <field name="l10n_it_edi_admin_ref" optional="hide" />
             </xpath>
             <xpath
-                expr="//page[@name='electronic_invoicing']//field[@name='l10n_it_edi_attachment_id']"
+                expr="//page[@name='electronic_invoicing']//field[@name='l10n_it_edi_attachment_file']"
                 position="attributes"
             >
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath
-                expr="//page[@name='electronic_invoicing']//field[@name='l10n_it_edi_attachment_id']"
+                expr="//page[@name='electronic_invoicing']//field[@name='l10n_it_edi_attachment_file']"
                 position="after"
             >
                 <label
-                    for="l10n_it_edi_attachment_id"
+                    for="l10n_it_edi_attachment_file"
                     class="oe_inline"
-                    invisible="not l10n_it_edi_attachment_id"
+                    invisible="not l10n_it_edi_attachment_file"
                 />
-                <div class="o_row" invisible="not l10n_it_edi_attachment_id">
+                <div class="o_row" invisible="not l10n_it_edi_attachment_file">
                     <field
-                        name="l10n_it_edi_attachment_id"
+                        name="l10n_it_edi_attachment_file"
+                        widget="binary"
+                        filename="l10n_it_edi_attachment_name"
                         groups="account.group_account_invoice"
                         readonly="1"
                     />
