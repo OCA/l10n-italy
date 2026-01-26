@@ -29,6 +29,7 @@
 
     <record id="action_l10n_it_edi_import_file_wizard" model="ir.actions.act_window">
         <field name="name">E-invoice Import Files</field>
+        <field name="path">einvoice-import-files</field>
         <field name="res_model">l10n_it_edi.import_file_wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

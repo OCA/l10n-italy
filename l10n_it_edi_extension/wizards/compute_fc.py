@@ -136,7 +136,7 @@ class WizardComputeFc(models.TransientModel):
         return nc
 
     def compute_fc(self):
-        active_id = self._context.get("active_id")
+        active_id = self.env.context.get("active_id")
         partner = self.env["res.partner"].browse(active_id)
         for f in self:
             if (
@@ -164,12 +164,10 @@ class WizardComputeFc(models.TransientModel):
                     self.env._(
                         "Existing fiscal code %(partner_fiscalcode)s is different "
                         "from the computed one (%(compute)s). If you want to use"
-                        " the computed one, remove the existing one"
+                        " the computed one, remove the existing one",
+                        partner_fiscalcode=partner.l10n_it_codice_fiscale,
+                        compute=c_f,
                     )
-                    % {
-                        "partner_fiscalcode": partner.l10n_it_codice_fiscale,
-                        "compute": c_f,
-                    }
                 )
             partner.l10n_it_codice_fiscale = c_f
             partner.company_type = "person"

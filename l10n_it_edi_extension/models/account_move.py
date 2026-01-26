@@ -123,13 +123,12 @@ class AccountMoveInherit(models.Model):
     # Computes
     # -------------------------------------------------------------------------
 
-    @api.depends("l10n_it_edi_attachment_id")
+    @api.depends("l10n_it_edi_attachment_file")
     def _compute_l10n_it_edi_attachment_preview_link(self):
         for move in self:
-            if move.l10n_it_edi_attachment_id:
+            if move.l10n_it_edi_attachment_file:
                 move.l10n_it_edi_attachment_preview_link = (
-                    move.get_base_url()
-                    + f"/fatturapa/preview/{move.l10n_it_edi_attachment_id.id}"
+                    move.get_base_url() + f"/fatturapa/preview/{move.id}"
                 )
             else:
                 move.l10n_it_edi_attachment_preview_link = ""
@@ -153,7 +152,7 @@ class AccountMoveInherit(models.Model):
         "amount_untaxed",
         "amount_tax",
         "amount_total",
-        "l10n_it_edi_attachment_id",
+        "l10n_it_edi_attachment_file",
         "l10n_it_edi_amount_untaxed",
         "l10n_it_edi_amount_tax",
         "l10n_it_edi_rounding",
@@ -164,7 +163,7 @@ class AccountMoveInherit(models.Model):
         invoices_to_check = self.filtered(
             lambda inv: inv.is_purchase_document()
             and inv.state in ["draft", "posted"]
-            and inv.l10n_it_edi_attachment_id
+            and inv.l10n_it_edi_attachment_file
         )
         for invoice in invoices_to_check:
             error_messages = list()
@@ -191,7 +190,7 @@ class AccountMoveInherit(models.Model):
 
         return {
             "type": "ir.actions.act_url",
-            "name": "Show preview",
+            "name": self.env._("Show preview"),
             "url": self.l10n_it_edi_attachment_preview_link,
             "target": "new",
         }

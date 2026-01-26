@@ -40,7 +40,7 @@
 
     <record id="action_compute_fc" model="ir.actions.act_window">
         <field name="name">Compute Fiscal Code</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">compute-fiscal-code</field>
         <field name="res_model">wizard.compute.fc</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
@@ -52,13 +52,15 @@
         <field name="inherit_id" ref="l10n_it_edi.res_partner_form_l10n_it" />
         <field name="arch" type="xml">
             <field name="l10n_it_codice_fiscale" position="after">
-                <button
-                    name="%(l10n_it_edi_extension.action_compute_fc)d"
-                    invisible="'IT' not in fiscal_country_codes or parent_id"
-                    string="Compute FC"
-                    type="action"
-                    icon="fa-gear"
-                />
+                <div colspan="2">
+                    <button
+                        name="%(l10n_it_edi_extension.action_compute_fc)d"
+                        invisible="'IT' not in fiscal_country_codes or parent_id"
+                        string="Compute FC"
+                        type="action"
+                        icon="fa-gear"
+                    />
+                </div>
             </field>
         </field>
     </record>
