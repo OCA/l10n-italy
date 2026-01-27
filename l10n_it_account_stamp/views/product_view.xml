@@ -5,7 +5,7 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="account.product_template_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='payables']" position="after">
+            <xpath expr="//group[@name='properties']" position="inside">
                 <group string="Stamp Duty">
                     <field name="l10n_it_account_stamp_is_stamp" />
                     <field
@@ -43,8 +43,7 @@
                 expr="//field[@name='property_account_expense_id']"
                 position="attributes"
             >
-                <attribute name="required">l10n_it_account_stamp_is_stamp
-                </attribute>
+                <attribute name="required">l10n_it_account_stamp_is_stamp</attribute>
             </xpath>
         </field>
     </record>
