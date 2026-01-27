@@ -3,13 +3,12 @@
     <record id="view_bank_filter_abicab" model="ir.ui.view">
         <field name="name">res.bank.filter.abicab</field>
         <field name="model">res.bank</field>
-        <field name="type">search</field>
+        <field name="inherit_id" ref="base.res_bank_view_search" />
         <field name="arch" type="xml">
-            <search string="Search Bank">
-                <field name="name" />
+            <field name="name" position="after">
                 <field name="abi" />
                 <field name="cab" />
-            </search>
+            </field>
         </field>
     </record>
 
