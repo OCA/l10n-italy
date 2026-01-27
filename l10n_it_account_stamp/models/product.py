@@ -1,6 +1,6 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -17,8 +17,10 @@ class ProductTemplate(models.Model):
                 and not template.l10n_it_account_stamp_is_stamp
             ):
                 raise exceptions.ValidationError(
-                    _("The product %s must be a stamp to apply set taxes!")
-                    % template.name
+                    self.env._(
+                        "The product %s must be a stamp to apply set taxes!",
+                        template.name,
+                    )
                 )
 
     l10n_it_account_stamp_stamp_duty_apply_tax_ids = fields.Many2many(

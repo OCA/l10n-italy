@@ -1,4 +1,4 @@
-from odoo.fields import first
+from odoo.fields import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.test_account_invoice_report import (
@@ -41,7 +41,7 @@ class InvoicingTest(TestAccountInvoiceReport):
         stamp_product_id.write(
             {
                 "l10n_it_account_stamp_stamp_duty_apply_tax_ids": [
-                    (6, 0, [self.tax_id.id])
+                    Command.set(self.tax_id.ids)
                 ],
                 "property_account_income_id": account_revenue_id.id,
                 "property_account_expense_id": account_expense_id.id,
@@ -50,14 +50,13 @@ class InvoicingTest(TestAccountInvoiceReport):
         self.env.company.l10n_it_account_stamp_stamp_duty_product_id = stamp_product_id
 
     def test_post_invoicing(self):
-        invoice = first(
-            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
-        )
+        invoices = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        invoice = next(iter(invoices), invoices)
 
         self.assertEqual(len(invoice), 1)
         self.assertEqual(len(invoice.invoice_line_ids), 2)
 
-        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
+        invoice.invoice_line_ids[0].write({"tax_ids": [Command.set(self.tax_id.ids)]})
         self.assertEqual(
             len(invoice.line_ids.filtered(lambda line: line.is_stamp_line)), 0
         )
@@ -71,11 +70,10 @@ class InvoicingTest(TestAccountInvoiceReport):
     def test_keep_lines_description(self):
         """Check that description is kept in other lines when adding stamp."""
         # Get an invoice and make it eligible for applying stamp
-        invoice = first(
-            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
-        )
+        invoices = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        invoice = next(iter(invoices), invoices)
         self.assertEqual(len(invoice), 1)
-        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
+        invoice.invoice_line_ids[0].write({"tax_ids": [Command.set(self.tax_id.ids)]})
 
         # Edit the description of first line
         invoice_form = Form(invoice)
@@ -97,9 +95,8 @@ class InvoicingTest(TestAccountInvoiceReport):
             self.env.company.l10n_it_account_stamp_stamp_duty_product_id
         )
         stamp_duty_product.l10n_it_account_stamp_auto_compute = False
-        invoice = first(
-            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
-        )
+        invoices = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        invoice = next(iter(invoices), invoices)
         invoice_form = Form(invoice)
         invoice_form.l10n_it_account_stamp_manually_apply_stamp_duty = False
         invoice_form.currency_id = self.env.ref("base.USD")
@@ -111,14 +108,13 @@ class InvoicingTest(TestAccountInvoiceReport):
     def test_reset_invoice_to_draft(self):
         """Reset an invoice to draft and check that relative tax stamp accounting lines
         has been deleted."""
-        invoice = first(
-            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
-        )
+        invoices = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        invoice = next(iter(invoices), invoices)
 
         self.assertEqual(len(invoice), 1)
         self.assertEqual(len(invoice.invoice_line_ids), 2)
 
-        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
+        invoice.invoice_line_ids[0].write({"tax_ids": [Command.set(self.tax_id.ids)]})
         invoice.action_post()
 
         self.assertEqual(
@@ -138,10 +134,9 @@ class InvoicingTest(TestAccountInvoiceReport):
         stamp_price = stamp_product.list_price
 
         # Test 1: Invoice in draft with stamp duty applied
-        invoice = first(
-            self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
-        )
-        invoice.invoice_line_ids[0].write({"tax_ids": [(6, 0, [self.tax_id.id])]})
+        invoices = self.invoices.filtered(lambda inv: inv.move_type == "out_invoice")
+        invoice = next(iter(invoices), invoices)
+        invoice.invoice_line_ids[0].write({"tax_ids": [Command.set(self.tax_id.ids)]})
         self.assertTrue(invoice.l10n_it_account_stamp_is_stamp_duty_applied)
         self.assertEqual(invoice.state, "draft")
         self.assertEqual(
@@ -157,14 +152,12 @@ class InvoicingTest(TestAccountInvoiceReport):
                 "partner_id": self.partner_a.id,
                 "invoice_date": "2024-01-01",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Test Product Without Stamp",
                             "price_unit": 100.0,
                             "quantity": 1,
-                        },
+                        }
                     )
                 ],
             }
@@ -195,14 +188,12 @@ class InvoicingTest(TestAccountInvoiceReport):
                 "partner_id": self.partner_a.id,
                 "invoice_date": "2024-01-01",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Test Product",
                             "price_unit": 100.0,
                             "quantity": 1,
-                            "tax_ids": [(6, 0, [self.tax_id.id])],
+                            "tax_ids": [Command.set(self.tax_id.ids)],
                         },
                     )
                 ],

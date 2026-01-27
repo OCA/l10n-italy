@@ -1,8 +1,9 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command
 
 
 class AccountMove(models.Model):
@@ -52,7 +53,9 @@ class AccountMove(models.Model):
             lang=self.partner_id.lang
         ).l10n_it_account_stamp_stamp_duty_product_id
         if not stamp_product_id:
-            raise UserError(_("Missing stamp duty product in company settings!"))
+            raise UserError(
+                self.env._("Missing stamp duty product in company settings!")
+            )
         total_tax_base = sum(
             (
                 inv_tax.price_subtotal
@@ -94,23 +97,29 @@ class AccountMove(models.Model):
     def add_stamp_duty_invoice_line(self):
         for inv in self:
             if not inv.l10n_it_account_stamp_is_stamp_duty_applied:
-                raise UserError(_("Stamp duty is not applicable"))
+                raise UserError(self.env._("Stamp duty is not applicable"))
             stamp_product_id = inv.company_id.with_context(
                 lang=inv.partner_id.lang
             ).l10n_it_account_stamp_stamp_duty_product_id
             if not stamp_product_id:
-                raise UserError(_("Missing stamp duty product in company settings!"))
+                raise UserError(
+                    self.env._("Missing stamp duty product in company settings!")
+                )
             for line in inv.invoice_line_ids:
                 if line.product_id and line.product_id.l10n_it_account_stamp_is_stamp:
                     raise UserError(
-                        _("Stamp duty line %s already present. Remove it first.")
-                        % line.name
+                        self.env._(
+                            "Stamp duty line %s already present. Remove it first.",
+                            line.name,
+                        )
                     )
             stamp_account = stamp_product_id.property_account_income_id
             if not stamp_account:
                 raise UserError(
-                    _("Missing account income configuration for %s")
-                    % stamp_product_id.name
+                    self.env._(
+                        "Missing account income configuration for %s",
+                        stamp_product_id.name,
+                    )
                 )
             invoice_line_vals = {
                 "move_id": inv.id,
@@ -122,9 +131,9 @@ class AccountMove(models.Model):
                 "quantity": 1,
                 "display_type": "product",
                 "product_uom_id": stamp_product_id.uom_id.id,
-                "tax_ids": [(6, 0, stamp_product_id.taxes_id.ids)],
+                "tax_ids": [Command.set(stamp_product_id.taxes_id.ids)],
             }
-            inv.write({"invoice_line_ids": [(0, 0, invoice_line_vals)]})
+            inv.write({"invoice_line_ids": [Command.create(invoice_line_vals)]})
 
     def is_stamp_duty_line_present(self):
         self.ensure_one()
@@ -158,11 +167,13 @@ class AccountMove(models.Model):
             or not product.property_account_expense_id
         ):
             raise UserError(
-                _("Product %s must have income and expense accounts") % product.name
+                self.env._(
+                    "Product %s must have income and expense accounts", product.name
+                )
             )
 
         income_vals = {
-            "name": _("Stamp Duty Income"),
+            "name": self.env._("Stamp Duty Income"),
             "is_stamp_line": True,
             "partner_id": self.partner_id.id,
             "account_id": product.property_account_income_id.id,
@@ -178,7 +189,7 @@ class AccountMove(models.Model):
             income_vals["credit"] = 0
 
         expense_vals = {
-            "name": _("Stamp Duty Expense"),
+            "name": self.env._("Stamp Duty Expense"),
             "is_stamp_line": True,
             "partner_id": self.partner_id.id,
             "account_id": product.property_account_expense_id.id,
@@ -213,7 +224,7 @@ class AccountMove(models.Model):
                 ).l10n_it_account_stamp_stamp_duty_product_id
                 if not stamp_product_id:
                     raise UserError(
-                        _("Missing stamp duty product in company settings!")
+                        self.env._("Missing stamp duty product in company settings!")
                     )
                 income_vals, expense_vals = inv._build_stamp_duty_lines(
                     stamp_product_id
