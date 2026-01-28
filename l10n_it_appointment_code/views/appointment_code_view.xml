@@ -26,6 +26,7 @@
 
     <record id="action_appointment_code" model="ir.actions.act_window">
         <field name="name">Appointment Codes</field>
+        <field name="path">appointment-code</field>
         <field name="res_model">appointment.code</field>
         <field name="view_id" ref="view_appointment_code_tree" />
     </record>
