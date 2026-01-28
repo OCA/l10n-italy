@@ -88,55 +88,65 @@
     <!-- Product product -->
     <record id="product_product_extraEU_purchase" model="product.product">
         <field name="name">ExtraEU Goods Purchase</field>
-        <field name="categ_id" ref="product.product_category_1" />
+        <field
+            name="categ_id"
+            eval="ref('product.product_category_services', raise_if_not_found=False)"
+        />
         <field name="purchase_ok">True</field>
         <field name="standard_price">1.0</field>
         <field name="list_price">1.0</field>
         <field name="type">service</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
-        <field name="uom_po_id" ref="uom.product_uom_unit" />
     </record>
     <record id="product_product_adv_customs_expense" model="product.product">
         <field name="name">Advance Customs Expense</field>
-        <field name="categ_id" ref="product.product_category_1" />
+        <field
+            name="categ_id"
+            eval="ref('product.product_category_services', raise_if_not_found=False)"
+        />
         <field name="purchase_ok">True</field>
         <field name="standard_price">1.0</field>
         <field name="list_price">1.0</field>
         <field name="type">service</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
-        <field name="uom_po_id" ref="uom.product_uom_unit" />
     </record>
     <record id="product_product_customs_expense" model="product.product">
         <field name="name">Customs Expense</field>
-        <field name="categ_id" ref="product.product_category_1" />
+        <field
+            name="categ_id"
+            eval="ref('product.product_category_services', raise_if_not_found=False)"
+        />
         <field name="purchase_ok">True</field>
         <field name="standard_price">1.0</field>
         <field name="list_price">1.0</field>
         <field name="type">service</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
-        <field name="uom_po_id" ref="uom.product_uom_unit" />
     </record>
     <record id="product_product_delivery" model="product.product">
         <field name="name">Delivery Expense</field>
-        <field name="categ_id" ref="product.product_category_1" />
+        <field
+            name="categ_id"
+            eval="ref('product.product_category_services', raise_if_not_found=False)"
+        />
         <field name="purchase_ok">True</field>
         <field name="standard_price">1.0</field>
         <field name="list_price">1.0</field>
         <field name="type">service</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
-        <field name="uom_po_id" ref="uom.product_uom_unit" />
         <!-- Usually this is standard VAT -->
         <field name="supplier_taxes_id" eval="[(6, 0, [ref('tax_22extraUE')])]" />
     </record>
     <record id="product_product_stamp_duties" model="product.product">
         <field name="name">Stamp Duties</field>
-        <field name="categ_id" ref="product.product_category_1" />
+        <field
+            name="categ_id"
+            eval="ref('product.product_category_services', raise_if_not_found=False)"
+        />
         <field name="purchase_ok">True</field>
         <field name="standard_price">1.0</field>
         <field name="list_price">1.0</field>
         <field name="type">service</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
-        <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field name="property_account_expense_id" ref="account_account_stamp_duties" />
     </record>
 </odoo>

@@ -4,7 +4,7 @@
 
 from odoo import fields, models
 from odoo.exceptions import UserError
-from odoo.fields import first
+from odoo.fields import Command, Domain
 
 
 class AccountMove(models.Model):
@@ -76,7 +76,7 @@ class AccountMove(models.Model):
             "account.action_move_in_invoice_type"
         )
         if len(self) > 1:
-            action["domain"] = [("id", "in", self.ids)]
+            action["domain"] = Domain("id", "in", self.ids)
         elif len(self) == 1:
             form_view = [(self.env.ref("account.view_move_form").id, "form")]
             if "views" in action:
@@ -113,9 +113,9 @@ class AccountMove(models.Model):
             raise UserError(
                 self.env._(
                     "Forwarder invoice %s does not have lines with "
-                    "'Advance Customs Vat'"
+                    "'Advance Customs Vat'",
+                    self.name,
                 )
-                % self.name
             )
         return True
 
@@ -163,29 +163,32 @@ class AccountMove(models.Model):
                 }
                 if inv_line.product_id:
                     line_vals["product_id"] = inv_line.product_id.id
-                move_lines.append((0, 0, line_vals))
+                move_lines.append(Command.create(line_vals))
 
         for bill_of_entry in self.forwarder_bill_of_entry_ids:
             boe_payable_lines = bill_of_entry.line_ids.filtered(
                 lambda line: line.account_type == "liability_payable"
             )
-            boe_account = first(boe_payable_lines).account_id
+            boe_payable_line = next(iter(boe_payable_lines), boe_payable_lines)
+            boe_account = boe_payable_line.account_id
             line_vals = {
                 "name": self.env._("Customs supplier"),
-                "account_id": first(boe_account).id,
+                "account_id": boe_account.id,
                 "debit": bill_of_entry.amount_total,
                 "credit": 0.0,
                 "partner_id": bill_of_entry.partner_id.id,
             }
-            move_lines.append((0, 0, line_vals))
+            move_lines.append(Command.create(line_vals))
             for boe_line in bill_of_entry.invoice_line_ids.filtered(
                 lambda line: line.display_type == "product"
             ):
                 if boe_line.tax_ids:
                     if len(boe_line.tax_ids) > 1:
                         raise UserError(
-                            self.env._("Can't handle more than 1 tax for line %s")
-                            % boe_line.name
+                            self.env._(
+                                "Can't handle more than 1 tax for line %s",
+                                boe_line.name,
+                            )
                         )
 
                 line_vals = {
@@ -197,7 +200,7 @@ class AccountMove(models.Model):
                 }
                 if boe_line.product_id:
                     line_vals["product_id"] = boe_line.product_id.id
-                move_lines.append((0, 0, line_vals))
+                move_lines.append(Command.create(line_vals))
         move_vals["line_ids"] = move_lines
         return move_vals
 
@@ -210,7 +213,8 @@ class AccountMove(models.Model):
                 boe_payable_lines = boe.line_ids.filtered(
                     lambda line: line.account_type == "liability_payable"
                 )
-                boe_account = first(boe_payable_lines).account_id
+                boe_payable_line = next(iter(boe_payable_lines), boe_payable_lines)
+                boe_account = boe_payable_line.account_id
                 if line_account == boe_account:
                     reconcile_ids.append(move_line.id)
                     for boe_move_line in boe.line_ids:
@@ -294,8 +298,8 @@ class AccountMove(models.Model):
             tax = self.company_id.bill_of_entry_tax_id
             if line.product_id.supplier_taxes_id:
                 tax = line.product_id.supplier_taxes_id[0]
-            line.tax_ids = [(6, 0, [tax.id])]
-        boe_inv.supplier_invoice_ids = [(4, self.id)]
+            line.tax_ids = [Command.set(tax.ids)]
+        boe_inv.supplier_invoice_ids = [Command.link(self.id)]
 
         action = boe_inv._bill_of_entry_view_bills()
         return action

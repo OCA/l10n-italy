@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.fields import first
+from odoo.fields import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -19,12 +19,11 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         invoice = self.init_invoice(
             "in_invoice",
             partner=partner,
+            journal=journal,
         )
         invoice_form = Form(invoice)
         if customs_doc_type:
             invoice_form.customs_doc_type = customs_doc_type
-        if journal:
-            invoice_form.journal_id = journal
         for product, qty, price in products_list:
             with invoice_form.invoice_line_ids.new() as line:
                 line.name = product.name
@@ -44,12 +43,14 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
 
         self.account_model = self.env["account.account"]
         self.tax_model = self.env["account.tax"]
+        self.tax_group_model = self.env["account.tax.group"]
         self.journal_model = self.env["account.journal"]
         self.invoice_model = self.env["account.move"]
         self.inv_line_model = self.env["account.move.line"]
         self.move_line_model = self.env["account.move.line"]
         self.fp_model = self.env["account.fiscal.position"]
-        self.fp_tax_model = self.env["account.fiscal.position.tax"]
+        self.pp_model = self.env["product.product"]
+        self.partner_model = self.env["res.partner"]
 
         self.data_it_company = self.setup_other_company(
             name="IT Company",
@@ -78,9 +79,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         self.journal = self.journal_model.search([("type", "=", "purchase")], limit=1)
         # Extra EU purchase journal for differentiate
         # extra EU purchase invoices from ordinary ones
-        self.extra_journal = self.env.ref(
-            "l10n_it_bill_of_entry.account_journal_purchase_extraEU"
-        )
+        self.extra_journal = self.journal_model.search([("code", "=", "NOUE")], limit=1)
         # Bill of entry storno journal
         self.bill_of_entry_journal = self.journal_model.create(
             {
@@ -91,6 +90,13 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         )
         self.it_company.bill_of_entry_journal_id = self.bill_of_entry_journal.id
 
+        self.tax_group_iva_22 = self.tax_group_model.create(
+            {
+                "name": "IVA 22%",
+                "preceding_subtotal": "Imponibile",
+            }
+        )
+
         # Extra EU fiscal position tax correspondence
         self.tax22 = self.tax_model.create(
             {
@@ -98,62 +104,143 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
                 "amount": 22,
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
-                "tax_group_id": self.env.ref(
-                    f"account.{self.it_company.id}_tax_group_iva_22"
-                ).id,
+                "tax_group_id": self.tax_group_iva_22.id,
             }
         )
-        self.fiscpos_extra = self.env.ref(
-            "l10n_it_bill_of_entry.fiscal_position_extraEU"
-        )
-        self.fp_tax_model.create(
+        self.fiscpos_extra = self.fp_model.create(
             {
-                "position_id": self.fiscpos_extra.id,
-                "tax_src_id": self.tax22.id,
+                "name": "Extra EU",
             }
         )
 
         # Delivery Expense account
-        self.account_delivery_expense = self.env.ref(
-            "l10n_it_bill_of_entry.account_account_delivery_expense"
+        self.account_delivery_expense = self.account_model.create(
+            {
+                "code": "420101",
+                "name": "Delivery Expenses",
+                "account_type": "expense",
+                "reconcile": True,
+            }
         )
 
         # Extra EU purchase journal
-        self.journal_extra = self.env.ref(
-            "l10n_it_bill_of_entry.account_journal_purchase_extraEU"
-        )
+        self.journal_extra = self.journal_model.search([("code", "=", "NOUE")], limit=1)
 
         # Products
-        self.product1 = self.env.ref("product.product_delivery_01")
-        self.product1.write(
+        self.product1 = self.pp_model.create(
             {
-                "supplier_taxes_id": [(6, 0, [self.tax22.id])],
+                "name": "Office Chair",
+                "standard_price": 55.0,
+                "list_price": 70.0,
+                "type": "consu",
+                "default_code": "FURN_7777",
             }
         )
-        self.tax_22extraUE = self.env.ref("l10n_it_bill_of_entry.tax_22extraUE")
-        self.product_extra = self.env.ref(
-            "l10n_it_bill_of_entry.product_product_extraEU_purchase"
+        self.product1.write(
+            {
+                "supplier_taxes_id": [Command.set(self.tax22.ids)],
+            }
         )
-        self.product_extra.supplier_taxes_id = [(6, 0, self.tax_22extraUE.ids)]
-        self.adv_customs_expense = self.env.ref(
-            "l10n_it_bill_of_entry.product_product_adv_customs_expense"
+        self.tax_22extraUE = self.tax_model.create(
+            {
+                "name": "Iva al 22% ExtraUE (credito)",
+                "amount": 22,
+                "amount_type": "percent",
+                "type_tax_use": "purchase",
+                "tax_group_id": self.tax_group_iva_22.id,
+                "sequence": 99,
+            }
         )
-        self.customs_expense = self.env.ref(
-            "l10n_it_bill_of_entry.product_product_customs_expense"
+        self.product_extra = self.pp_model.create(
+            {
+                "name": "ExtraEU Goods Purchase",
+                "purchase_ok": True,
+                "standard_price": 1.0,
+                "list_price": 1.0,
+                "type": "service",
+            }
         )
-        self.product_delivery = self.env.ref(
-            "l10n_it_bill_of_entry.product_product_delivery"
+        self.product_extra.supplier_taxes_id = [Command.set(self.tax_22extraUE.ids)]
+        self.adv_customs_expense = self.pp_model.create(
+            {
+                "name": "Advance Customs Expense",
+                "purchase_ok": True,
+                "standard_price": 1.0,
+                "list_price": 1.0,
+                "type": "service",
+            }
         )
-        self.product_delivery.supplier_taxes_id = [(6, 0, [self.tax22.id])]
-        self.product_stamp = self.env.ref(
-            "l10n_it_bill_of_entry.product_product_stamp_duties"
+        self.customs_expense = self.pp_model.create(
+            {
+                "name": "Customs Expense",
+                "purchase_ok": True,
+                "standard_price": 1.0,
+                "list_price": 1.0,
+                "type": "service",
+            }
+        )
+        self.product_delivery = self.pp_model.create(
+            {
+                "name": "Customs Expense",
+                "purchase_ok": True,
+                "standard_price": 1.0,
+                "list_price": 1.0,
+                "type": "service",
+            }
+        )
+        self.product_delivery.supplier_taxes_id = [Command.set(self.tax22.ids)]
+        self.account_stamp_duties = self.account_model.create(
+            {
+                "code": "421400",
+                "name": "Stamp Duties",
+                "account_type": "expense",
+                "reconcile": True,
+            }
+        )
+        self.product_stamp = self.pp_model.create(
+            {
+                "name": "Customs Expense",
+                "purchase_ok": True,
+                "standard_price": 1.0,
+                "list_price": 1.0,
+                "property_account_expense_id": self.account_stamp_duties.id,
+            }
         )
 
         # Partners
-        self.customs = self.env.ref("l10n_it_bill_of_entry.partner_customs")
-        self.supplier = self.env.ref("base.res_partner_1")
+        self.customs = self.partner_model.create(
+            {
+                "name": "Customs",
+                "is_company": True,
+            }
+        )
+        self.supplier = self.env["res.partner"].create(
+            {
+                "name": "Wood Corner",
+                "is_company": True,
+                "street": "1839 Arbor Way",
+                "city": "Turlock",
+                "state_id": self.env.ref("base.state_us_5").id,
+                "zip": "95380",
+                "email": "wood.corner26@example.com",
+                "phone": "(623)-853-7197",
+                "vat": "US12345672",
+            }
+        )
         self.supplier.property_account_position_id = self.fiscpos_extra.id
-        self.forwarder = self.env.ref("base.res_partner_12")
+        self.forwarder = self.env["res.partner"].create(
+            {
+                "name": "Azure Interior",
+                "is_company": True,
+                "street": "4557 De Silva St",
+                "city": "Fremont",
+                "state_id": self.env.ref("base.state_us_5").id,
+                "zip": "94538",
+                "email": "azure.Interior24@example.com",
+                "phone": "(870)-931-0505",
+                "vat": "US12345677",
+            }
+        )
 
         # Extra EU supplier invoice - draft state
         self.supplier_invoice = self._create_invoice(
@@ -204,7 +291,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         )
         self.forwarder_invoice.update(
             {
-                "forwarder_bill_of_entry_ids": [(4, self.bill_of_entry.id)],
+                "forwarder_bill_of_entry_ids": [Command.link(self.bill_of_entry.id)],
             }
         )
 
@@ -276,7 +363,8 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         boe_payable_lines = self.bill_of_entry.line_ids.filtered(
             lambda line: line.account_type == "liability_payable"
         )
-        boe_account = first(boe_payable_lines).account_id
+        boe_payable_line = next(iter(boe_payable_lines), boe_payable_lines)
+        boe_account = boe_payable_line.account_id
         move_line_domain = [
             ("account_id", "=", boe_account.id),
             ("debit", "=", self.bill_of_entry.amount_total),

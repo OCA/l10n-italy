@@ -123,6 +123,7 @@
 
     <record id="action_supplier_invoice" model="ir.actions.act_window">
         <field name="name">Supplier invoices</field>
+        <field name="path">supplier-invoices</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">list,kanban,form,pivot,graph,activity</field>
         <field
@@ -152,6 +153,7 @@
 
     <record id="action_bill_of_entry" model="ir.actions.act_window">
         <field name="name">Bills of entry</field>
+        <field name="path">bills-entry</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">list,kanban,form,pivot,graph,activity</field>
         <field
@@ -181,6 +183,7 @@
 
     <record id="action_forwarder_invoice" model="ir.actions.act_window">
         <field name="name">Forwarder invoices</field>
+        <field name="path">forwarder-invoices</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">list,kanban,form,pivot,graph,activity</field>
         <field
