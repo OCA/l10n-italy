@@ -41,6 +41,7 @@
 
     <record id="action_ateco_category_search" model="ir.actions.act_window">
         <field name="name">Ateco categories</field>
+        <field name="path">ateco-categories</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">ateco.category</field>
         <field name="view_mode">list,form</field>
