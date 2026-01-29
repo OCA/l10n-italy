@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -91,7 +91,7 @@ class AccountMove(models.Model):
             )
             if declaration_lines and not declaration:
                 errors.append(
-                    _(
+                    self.env._(
                         "Given the tax %s is applied, there should be a "
                         "Declaration of Intent selected.",
                         doi_bill_tax.name,
@@ -99,7 +99,7 @@ class AccountMove(models.Model):
                 )
             if any(line.tax_ids != doi_bill_tax for line in declaration_lines):
                 errors.append(
-                    _(
+                    self.env._(
                         "A line using tax %s should not contain any other taxes",
                         doi_bill_tax.name,
                     )

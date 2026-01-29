@@ -4,11 +4,13 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
+from odoo.fields import Command
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.l10n_it_edi.tests.common import TestItEdi
 
 
-class TestDoiIssuedFromCompany(TransactionCase):
+class TestDoiIssuedFromCompany(TestItEdi):
     @classmethod
     def _create_declaration(cls, type_doi):
         return cls.env["l10n_it_edi_doi.declaration_of_intent"].create(
@@ -33,11 +35,29 @@ class TestDoiIssuedFromCompany(TransactionCase):
             cls.env["account.move"].with_context(
                 default_move_type="in_invoice" if in_type else "out_invoice",
                 default_partner_id=partner.id,
+                default_company_id=cls.company.id,
             )
         )
         invoice_form.invoice_date = date if date else fields.Date.today()
-        invoice_form.invoice_payment_term_id = cls.env.ref(
-            "account.account_payment_term_advance"
+        invoice_form.invoice_payment_term_id = cls.env["account.payment.term"].create(
+            {
+                "name": "30% Advance End of Following Month",
+                "note": "Payment terms: 30% Advance End of Following Month",
+                "line_ids": [
+                    Command.clear(),
+                    Command.create(
+                        {"value": "percent", "value_amount": 30.0, "nb_days": 0}
+                    ),
+                    Command.create(
+                        {
+                            "value": "percent",
+                            "value_amount": 70.0,
+                            "delay_type": "days_after_end_of_next_month",
+                            "nb_days": 0,
+                        }
+                    ),
+                ],
+            }
         )
         cls._add_invoice_line_id(invoice_form, tax=tax, in_type=in_type)
         invoice = invoice_form.save()
@@ -46,7 +66,14 @@ class TestDoiIssuedFromCompany(TransactionCase):
     @classmethod
     def _add_invoice_line_id(cls, invoice_form, tax=False, in_type=False):
         with invoice_form.invoice_line_ids.new() as invoice_line:
-            invoice_line.product_id = cls.env.ref("product.product_product_5")
+            invoice_line.product_id = cls.env["product.product"].create(
+                {
+                    "name": "Corner Desk Right Sit",
+                    "type": "consu",
+                    "list_price": 147.0,
+                    "default_code": "E-COM06",
+                }
+            )
             invoice_line.quantity = 10.00
             invoice_line.name = "test line"
             invoice_line.price_unit = 90.00
@@ -57,28 +84,26 @@ class TestDoiIssuedFromCompany(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.company = cls.env.ref("base.main_company")
-        cls.company.country_id = cls.env.ref("base.it")
-        cls.company.account_fiscal_country_id = cls.env.ref("base.it")
         cls.tax_model = cls.env["account.tax"]
-        cls.partner = cls.env.ref("base.res_partner_2")
-        cls.partner.country_id = cls.env.ref("base.it")
+        cls.partner = cls.italian_partner_a
         cls.partner.company_id = cls.company
         cls.doi_in = cls._create_declaration("in")
-        cls.tax_group = cls.env["account.tax.group"].create(
-            {"name": "Vat Free", "sequence": 1}
+        cls.tax_group = (
+            cls.env["account.tax.group"]
+            .with_company(cls.company)
+            .create({"name": "Vat Free", "sequence": 1})
         )
-        cls.tax = cls.tax_model.create(
+        cls.tax = cls.tax_model.with_company(cls.company).create(
             {
                 "l10n_it_exempt_reason": "N3.5",
-                "l10n_it_law_reference": "Art. 8, comma 1, lett. a) DPR 633/72",
+                "invoice_legal_notes": "Art. 8, comma 1, lett. a) DPR 633/72",
                 "type_tax_use": "purchase",
                 "name": "0% declaration tax3",
                 "amount": 0,
                 "tax_group_id": cls.tax_group.id,
             }
         )
-        cls.env.company.l10n_it_edi_doi_bill_tax_id = cls.tax
+        cls.company.l10n_it_edi_doi_bill_tax_id = cls.tax
 
     def test_in_invoice_under_declaration_limit(self):
         invoice = self._create_invoice("1", self.partner, tax=self.tax, in_type=True)

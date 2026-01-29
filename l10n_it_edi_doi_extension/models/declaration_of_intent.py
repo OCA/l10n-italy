@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -62,7 +62,7 @@ class L10nItDeclarationOfIntent(models.Model):
     def _unlink_except_linked_to_purchase_document(self):
         if self.purchase_order_ids:
             raise UserError(
-                _(
+                self.env._(
                     "You cannot delete Declarations of Intents that "
                     "are already used on at least one Purchase Order."
                 )

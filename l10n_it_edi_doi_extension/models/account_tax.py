@@ -1,4 +1,4 @@
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 
@@ -10,5 +10,7 @@ class AccountTax(models.Model):
         for tax in self:
             if tax == tax.company_id.l10n_it_edi_doi_bill_tax_id:
                 raise UserError(
-                    _("You cannot delete the special tax for Declarations of Intent.")
+                    self.env._(
+                        "You cannot delete the special tax for Declarations of Intent."
+                    )
                 )

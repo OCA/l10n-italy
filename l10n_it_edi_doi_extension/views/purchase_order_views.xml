@@ -14,14 +14,14 @@
                     icon="fa-list"
                     invisible="not l10n_it_edi_doi_id"
                 >
-                    <div class="o_field_widget o_stat_info">
+                    <div class="o_field_statinfo">
                         <span class="o_stat_text">Declaration of Intent</span>
                     </div>
                 </button>
             </div>
             <xpath expr="//header" position="after">
                 <div
-                    class="alert alert-warning mb-0"
+                    class="alert alert-warning"
                     role="alert"
                     invisible="not l10n_it_edi_doi_warning"
                 >

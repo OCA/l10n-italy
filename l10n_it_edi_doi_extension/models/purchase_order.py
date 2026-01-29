@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 
@@ -110,7 +110,7 @@ class PurchaseOrder(models.Model):
             order.l10n_it_edi_doi_warning = ""
             declaration = order.l10n_it_edi_doi_id
 
-            show_warning = declaration and order.state != "cancelled"
+            show_warning = declaration and order.state != "cancel"
             if not show_warning:
                 continue
 
@@ -204,19 +204,19 @@ class PurchaseOrder(models.Model):
             if not doi_tax:
                 continue
             declaration_tax_lines = order.order_line.filtered(
-                lambda line, doi_tax=doi_tax: doi_tax in line.taxes_id
+                lambda line, doi_tax=doi_tax: doi_tax in line.tax_ids
             )
             if declaration_tax_lines and not order.l10n_it_edi_doi_id:
                 errors.append(
-                    _(
+                    self.env._(
                         "Given the tax %s is applied, there should be a "
                         "Declaration of Intent selected.",
                         doi_tax.name,
                     ),
                 )
-            if any(line.taxes_id != doi_tax for line in declaration_tax_lines):
+            if any(line.tax_ids != doi_tax for line in declaration_tax_lines):
                 errors.append(
-                    _(
+                    self.env._(
                         "A line using tax %s should not contain any other taxes",
                         doi_tax.name,
                     )
@@ -253,7 +253,8 @@ class PurchaseOrder(models.Model):
     def action_open_declaration_of_intent(self):
         self.ensure_one()
         return {
-            "name": _("Declaration of Intent for %s", self.display_name),
+            "name": self.env._("Declaration of Intent for %s", self.display_name),
+            "path": "declaration-intent-form",
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "l10n_it_edi_doi.declaration_of_intent",
@@ -294,7 +295,7 @@ class PurchaseOrder(models.Model):
                 continue
 
             order_lines = order.order_line.filtered(
-                lambda line: line.taxes_id.ids == tax.ids
+                lambda line: line.tax_ids.ids == tax.ids
             )
             order_not_yet_invoiced = 0
             for line in order_lines:
