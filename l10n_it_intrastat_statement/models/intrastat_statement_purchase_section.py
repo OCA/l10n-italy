@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class IntrastatStatementPurchaseSection(models.AbstractModel):
     _inherit = "account.intrastat.statement.section"
     _name = "account.intrastat.statement.purchase.section"
-    _description = "Fields and methods " "common to all Intrastat purchase sections"
+    _description = "Fields and methods common to all Intrastat purchase sections"
 
     amount_currency = fields.Integer(string="Amount in Currency")
 

@@ -205,7 +205,7 @@ class AccountIntrastatStatement(models.Model):
     )
     period_number = fields.Integer(
         string="Period",
-        help="Values accepted:\n" " - Month : From 1 to 12\n" " - Quarter: From 1 to 4",
+        help="Values accepted:\n - Month : From 1 to 12\n - Quarter: From 1 to 4",
         default=1,
         required=True,
     )
@@ -217,7 +217,7 @@ class AccountIntrastatStatement(models.Model):
             ("8", "Change Period in quarter: only first month operations"),
             (
                 "9",
-                "Change Period in quarter: only first and second month " "operations",
+                "Change Period in quarter: only first and second month operations",
             ),
         ],
         required=True,

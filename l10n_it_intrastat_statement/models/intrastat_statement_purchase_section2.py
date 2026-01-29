@@ -86,8 +86,7 @@ class IntrastatStatementPurchaseSection2(models.Model):
             if not self.month:
                 raise ValidationError(
                     self.env._(
-                        "Missing reference month "
-                        "on 'Purchases - Section 2' adjustment"
+                        "Missing reference month on 'Purchases - Section 2' adjustment"
                     )
                 )
         elif self.statement_id.period_type == "T":

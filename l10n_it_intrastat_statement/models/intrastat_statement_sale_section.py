@@ -7,7 +7,7 @@ from odoo import api, models
 class IntrastatStatementSaleSection(models.AbstractModel):
     _inherit = "account.intrastat.statement.section"
     _name = "account.intrastat.statement.sale.section"
-    _description = "Fields and methods " "common to all Intrastat sale sections"
+    _description = "Fields and methods common to all Intrastat sale sections"
 
     @api.model
     def get_section_type(self):
