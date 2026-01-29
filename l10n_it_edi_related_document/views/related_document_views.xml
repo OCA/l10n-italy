@@ -46,6 +46,7 @@
 
     <record id="account_move_related_document_action" model="ir.actions.act_window">
         <field name="name">Related documents</field>
+        <field name="path">related-documents</field>
         <field name="res_model">account.move.related_document</field>
         <field name="view_mode">form,list</field>
         <field name="view_id" ref="account_move_related_document_view_list" />
