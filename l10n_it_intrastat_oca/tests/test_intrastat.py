@@ -5,7 +5,6 @@
 from unittest import mock
 
 from odoo import Command
-from odoo.fields import first
 from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -16,8 +15,37 @@ class TestIntrastat(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner01 = cls.env.ref("base.res_partner_1")
-        cls.product01 = cls.env.ref("product.product_product_10")
+        cls.partner01 = cls.env["res.partner"].create(
+            {
+                "name": "Wood Corner",
+                "is_company": True,
+                "street": "1839 Arbor Way",
+                "city": "Turlock",
+                "state_id": cls.env.ref("base.state_us_5").id,
+                "zip": "95380",
+                "email": "wood.corner26@example.com",
+                "phone": "(623)-853-7197",
+                "vat": "US12345672",
+            }
+        )
+
+        cls.intrastat_01012100 = cls.env["report.intrastat.code"].create(
+            {
+                "name": "Pure-bred breeding horses",
+                "type": "good",
+            }
+        )
+        cls.product01 = cls.env["product.product"].create(
+            {
+                "name": "Cabinet with Doors",
+                "type": "consu",
+                "list_price": 140.0,
+                "weight": 0.01,
+                "default_code": "E-COM11",
+                "intrastat_type": "good",
+                "intrastat_code_id": cls.intrastat_01012100.id,
+            }
+        )
         cls.account_account_model = cls.env["account.account"]
         cls.fp_model = cls.env["account.fiscal.position"]
 
@@ -93,40 +121,41 @@ class TestIntrastat(AccountTestInvoicingCommon):
         """Weight from variants is propagated to the intrastat lines."""
         # Arrange
         variant_weight = 100
-        product = self.product01
-        product.weight = 0
 
         attribute = self.env["product.attribute"].create(
             {
                 "name": "Test attribute",
                 "value_ids": [
-                    Command.create(
-                        {
-                            "name": "Test value 1",
-                        }
-                    ),
-                    Command.create(
-                        {
-                            "name": "Test value 2",
-                        }
-                    ),
+                    Command.create({"name": "Test value 1"}),
+                    Command.create({"name": "Test value 2"}),
                 ],
             }
         )
-        product.attribute_line_ids = [
-            Command.create(
-                {
-                    "attribute_id": attribute.id,
-                    "value_ids": [
-                        Command.set(attribute.value_ids.ids),
-                    ],
-                }
-            )
-        ]
-        variant = first(product.product_variant_ids)
+        template = self.env["product.template"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "list_price": 140.0,
+                "weight": 0.0,
+                "default_code": "E-COM11",
+                "intrastat_type": "good",
+                "intrastat_code_id": self.intrastat_01012100.id,
+                "attribute_line_ids": [
+                    Command.create(
+                        {
+                            "attribute_id": attribute.id,
+                            "value_ids": [Command.set(attribute.value_ids.ids)],
+                        }
+                    )
+                ],
+            }
+        )
+
+        self.assertEqual(len(template.product_variant_ids), 2)
+        variant = next(iter(template.product_variant_ids), template.product_variant_ids)
         variant.weight = variant_weight
         # pre-condition
-        self.assertFalse(product.weight)
+        self.assertFalse(template.weight)
         self.assertEqual(variant.weight, variant_weight)
 
         # Act

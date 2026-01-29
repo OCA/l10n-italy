@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Intrastat",
-    "version": "18.0.1.0.2",
+    "version": "19.0.1.0.0",
     "category": "Account",
     "summary": "Riclassificazione merci e servizi per dichiarazioni Intrastat",
     "author": "Openforce, Link IT srl, Agile Business Group, "
@@ -12,6 +12,11 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
     "depends": [
         "product",
         "stock",
@@ -33,9 +38,5 @@
         "views/config.xml",
     ],
     "demo": ["demo/product_demo.xml"],
-    "external_dependencies": {
-        "python": [
-            "openupgradelib",
-        ],
-    },
+    "pre_init_hook": "pre_absorb_old_module",
 }

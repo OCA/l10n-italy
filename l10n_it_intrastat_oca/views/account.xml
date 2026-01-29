@@ -203,7 +203,7 @@
                     name="country_destination_id"
                     filter_domain="[('country_destination_id','ilike',self)]"
                 />
-                <group expand="0" string="Group By...">
+                <group>
                     <filter
                         name="group_by_partne"
                         string="Partner"
@@ -229,7 +229,7 @@
 
     <record id="view_invoice_intrastat_report_action" model="ir.actions.act_window">
         <field name="name">Intrastat Lines</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">intrastat-lines</field>
         <field name="res_model">account.invoice.intrastat</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_tree_invoice_intrastat_report_tree" />
