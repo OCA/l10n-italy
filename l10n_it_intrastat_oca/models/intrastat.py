@@ -1,7 +1,7 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -18,6 +18,7 @@ class AccountIntrastatCustom(models.Model):
 class ReportIntrastatCode(models.Model):
     _name = "report.intrastat.code"
     _description = "Intrastat code"
+    _rec_names_search = ["name", "description"]
 
     name = fields.Char(string="Intrastat Code")
     active = fields.Boolean(default=True)
@@ -42,19 +43,6 @@ class ReportIntrastatCode(models.Model):
                 name = name[:50] + "..."
             code.display_name = name
 
-    @api.model
-    def name_search(self, name="", args=None, operator="ilike", limit=100):
-        if not args:
-            args = []
-        if name:
-            records = self.search(
-                ["|", ("name", operator, name), ("description", operator, name)] + args,
-                limit=limit,
-            )
-        else:
-            records = self.search(args, limit=limit)
-        return [(record.id, record.display_name) for record in records]
-
 
 class ResCountry(models.Model):
     _inherit = "res.country"
@@ -62,7 +50,9 @@ class ResCountry(models.Model):
     def intrastat_validate(self):
         self.ensure_one()
         if not self.code:
-            raise ValidationError(_("State %s without ISO code") % self.display_name)
+            raise ValidationError(
+                self.env._("State %s without ISO code", self.display_name)
+            )
         return True
 
 

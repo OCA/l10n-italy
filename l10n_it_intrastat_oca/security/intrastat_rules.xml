@@ -4,7 +4,7 @@
         <field name="name">Intrastat Line Multi Company Rule</field>
         <field
             name="model_id"
-            ref="l10n_it_intrastat.model_account_invoice_intrastat"
+            ref="l10n_it_intrastat_oca.model_account_invoice_intrastat"
         />
         <field name="global" eval="True" />
         <field
