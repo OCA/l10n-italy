@@ -4,6 +4,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.tools import float_is_zero
 
 
@@ -655,7 +656,7 @@ class AccountInvoiceIntrastat(models.Model):
     def _onchange_transaction_nature_id(self):
         domain = [("nature_parent_id", "=", self.transaction_nature_id.id)]
         recs = self.env["account.intrastat.transaction.nature.b"].search(domain)
-        return {"domain": {"transaction_nature_b_id": [("id", "in", recs.ids)]}}
+        return {"domain": {"transaction_nature_b_id": Domain("id", "in", recs.ids)}}
 
     @api.onchange("weight_kg")
     def change_weight_kg(self):
