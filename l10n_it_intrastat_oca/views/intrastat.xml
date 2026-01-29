@@ -45,6 +45,7 @@
 
     <record id="action_account_intrastat_custom" model="ir.actions.act_window">
         <field name="name">Customs Sections</field>
+        <field name="path">customs-sections</field>
         <field name="res_model">account.intrastat.custom</field>
         <field name="view_id" ref="account_intrastat_custom_view_tree" />
     </record>
@@ -99,6 +100,7 @@
 
     <record id="action_report_intrastat_code" model="ir.actions.act_window">
         <field name="name">Nomenclature Codes</field>
+        <field name="path">nomenclature-codes</field>
         <field name="res_model">report.intrastat.code</field>
         <field name="view_id" ref="view_tree_report_intrastat_code" />
     </record>
@@ -141,6 +143,7 @@
 
     <record id="action_account_intrastat_transport" model="ir.actions.act_window">
         <field name="name">Transport Mode</field>
+        <field name="path">transport-mode</field>
         <field name="res_model">account.intrastat.transport</field>
         <field name="view_id" ref="account_intrastat_transport_view_tree" />
     </record>
@@ -190,6 +193,7 @@
         model="ir.actions.act_window"
     >
         <field name="name">Transaction Nature</field>
+        <field name="path">transaction-nature</field>
         <field name="res_model">account.intrastat.transaction.nature</field>
         <field name="view_id" ref="account_intrastat_transaction_nature_view_tree" />
     </record>
@@ -237,6 +241,7 @@
         model="ir.actions.act_window"
     >
         <field name="name">Transaction Nature B</field>
+        <field name="path">transaction-nature-b</field>
         <field name="res_model">account.intrastat.transaction.nature.b</field>
         <field name="view_id" ref="account_intrastat_transaction_nature_b_view_tree" />
     </record>
