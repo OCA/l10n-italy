@@ -15,7 +15,7 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import Table
 from reportlab.platypus.paragraph import Paragraph
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import format_date, formatLang
 
@@ -64,7 +64,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         "giornale_reportlab_journals_rel",
         "journal_id",
         "giornale_reportlab_id",
-        default=_get_journal,
+        default=lambda self: self._get_journal(),
         string="Journals",
         required=True,
     )
@@ -86,11 +86,11 @@ class WizardGiornaleReportlab(models.TransientModel):
     def _compute_report_giornale_name(self):
         for wizard in self:
             if wizard.report_giornale and wizard.daterange_id:
-                wizard.report_giornale_name = (
-                    _("Account Central Journal - %s.pdf") % wizard.daterange_id.name
+                wizard.report_giornale_name = self.env._(
+                    "Account Central Journal - %s.pdf", wizard.daterange_id.name
                 )
             elif wizard.report_giornale:
-                wizard.report_giornale_name = _("Account Central Journal.pdf")
+                wizard.report_giornale_name = self.env._("Account Central Journal.pdf")
             else:
                 wizard.report_giornale_name = False
 
@@ -145,7 +145,8 @@ class WizardGiornaleReportlab(models.TransientModel):
             target_type = ["posted", "draft"]
         else:
             target_type = [wizard.target_move]
-        sql = """SELECT
+        sql = """
+            SELECT
                 aml.account_id AS account_id,
                 am.date,
                 am.name AS move_name,
@@ -178,7 +179,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             ORDER BY
                 am.date,
                 am.name
-                """
+        """
         params = {
             "date_from": wizard.date_move_line_from,
             "date_to": wizard.date_move_line_to,
@@ -196,33 +197,34 @@ class WizardGiornaleReportlab(models.TransientModel):
             target_type = ["posted", "draft"]
         else:
             target_type = [wizard.target_move]
-        sql = """SELECT
-                 aml.account_id AS account_id,
-                 am.date,
-                 am.name AS move_name,
-                 COALESCE(aml.ref, '') AS ref,
-                 aa.name AS account_name,
-                 COALESCE(aml.name, '') AS name,
-                 rp.name AS partner_name,
-                 aa.account_type AS account_type,
-                 aml.debit AS debit,
-                 aml.credit AS credit
-             FROM
-                 account_move_line aml
-                 LEFT JOIN account_move am ON (am.id = aml.move_id)
-                 LEFT JOIN account_account aa ON (aa.id = aml.account_id)
-                 LEFT JOIN res_partner rp ON am.partner_id = rp.id
-             WHERE
-                 aml.date >= %(date_from)s
-                 AND aml.date <= %(date_to)s
-                 AND am.state IN %(target_type)s
-                 AND aml.journal_id IN %(journal_ids)s
-                 AND aml.company_id = %(company_id)s
-                 AND aml.account_id IS NOT NULL
-             ORDER BY
-                 am.date,
-                 am.name
-                 """
+        sql = """
+            SELECT
+                aml.account_id AS account_id,
+                am.date,
+                am.name AS move_name,
+                COALESCE(aml.ref, '') AS ref,
+                aa.name AS account_name,
+                COALESCE(aml.name, '') AS name,
+                rp.name AS partner_name,
+                aa.account_type AS account_type,
+                aml.debit AS debit,
+                aml.credit AS credit
+            FROM
+                account_move_line aml
+                LEFT JOIN account_move am ON (am.id = aml.move_id)
+                LEFT JOIN account_account aa ON (aa.id = aml.account_id)
+                LEFT JOIN res_partner rp ON am.partner_id = rp.id
+            WHERE
+                aml.date >= %(date_from)s
+                AND aml.date <= %(date_to)s
+                AND am.state IN %(target_type)s
+                AND aml.journal_id IN %(journal_ids)s
+                AND aml.company_id = %(company_id)s
+                AND aml.account_id IS NOT NULL
+            ORDER BY
+                am.date,
+                am.name
+        """
         params = {
             "date_from": wizard.date_move_line_from,
             "date_to": wizard.date_move_line_to,
@@ -243,7 +245,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         report.drawString(
             margin_left,
             height_available,
-            self.company_id.name + _(" Account Central Journal"),
+            self.company_id.name + self.env._(" Account Central Journal"),
         )
         report.setFont("Helvetica", 10)
         text = ""
@@ -263,10 +265,11 @@ class WizardGiornaleReportlab(models.TransientModel):
 
     def get_template_footer_report_giornale(self, report):
         page_num = report.getPageNumber() + self.fiscal_page_base
-        page_text = _("Page: %(year_footer)s / %(page_num)s") % {
-            "year_footer": self.year_footer,
-            "page_num": page_num,
-        }
+        page_text = self.env._(
+            "Page: %(year_footer)s / %(page_num)s",
+            year_footer=self.year_footer,
+            page_num=page_num,
+        )
         report.drawString(margin_left, margin_bottom + 12, page_text)
 
     def get_styles_report_giornale_line(self):
@@ -326,14 +329,14 @@ class WizardGiornaleReportlab(models.TransientModel):
 
         data_header = [
             [
-                Paragraph(_("Row"), style_header),
-                Paragraph(_("Date"), style_header),
-                Paragraph(_("Ref"), style_header),
-                Paragraph(_("Number"), style_header),
-                Paragraph(_("Account"), style_header),
-                Paragraph(_("Name"), style_header),
-                Paragraph(_("Debit"), style_header_number),
-                Paragraph(_("Credit"), style_header_number),
+                Paragraph(self.env._("Row"), style_header),
+                Paragraph(self.env._("Date"), style_header),
+                Paragraph(self.env._("Ref"), style_header),
+                Paragraph(self.env._("Number"), style_header),
+                Paragraph(self.env._("Account"), style_header),
+                Paragraph(self.env._("Name"), style_header),
+                Paragraph(self.env._("Debit"), style_header_number),
+                Paragraph(self.env._("Credit"), style_header_number),
             ]
         ]
         return data_header
@@ -349,7 +352,7 @@ class WizardGiornaleReportlab(models.TransientModel):
                 "",
                 "",
                 "",
-                Paragraph(_("Initial Balance"), style_name),
+                Paragraph(self.env._("Initial Balance"), style_name),
                 Paragraph(formatLang(self.env, progressive_debit), style_number),
                 Paragraph(formatLang(self.env, progressive_credit), style_number),
             ]
@@ -381,6 +384,8 @@ class WizardGiornaleReportlab(models.TransientModel):
         company = self.env.company
         user_lang = company.partner_id.lang
         model_account = self.env["account.account"]
+
+        # pylint: disable=no-search-all
         all_account = model_account.search([]).filtered(
             lambda acc: company.id in acc.company_ids.ids
         )
@@ -459,6 +464,8 @@ class WizardGiornaleReportlab(models.TransientModel):
         company = self.env.company
         user_lang = company.partner_id.lang
         model_account = self.env["account.account"]
+
+        # pylint: disable=no-search-all
         all_account = model_account.search([]).filtered(
             lambda acc: company.id in acc.company_ids.ids
         )
@@ -517,9 +524,9 @@ class WizardGiornaleReportlab(models.TransientModel):
         style_number = self.get_styles_report_giornale_line()["style_number"]
 
         if final:
-            name = Paragraph(_("Final Balance"), style_name)
+            name = Paragraph(self.env._("Final Balance"), style_name)
         else:
-            name = Paragraph(_("Balance"), style_name)
+            name = Paragraph(self.env._("Balance"), style_name)
 
         balance_data = [
             [
@@ -562,14 +569,18 @@ class WizardGiornaleReportlab(models.TransientModel):
         if self.group_by_account:
             list_grupped_line = self.get_grupped_line_reportlab_ids()
             if not list_grupped_line:
-                raise UserError(_("No documents found in the current selection"))
+                raise UserError(
+                    self.env._("No documents found in the current selection")
+                )
             final_tables, list_balance = self.get_grupped_final_tables_report_giornale(
                 list_grupped_line, tables, start_row, width_available
             )
         else:
             list_line_not_grouped = self.get_line_reportlab_ids()
             if not list_line_not_grouped:
-                raise UserError(_("No documents found in the current selection"))
+                raise UserError(
+                    self.env._("No documents found in the current selection")
+                )
             final_tables, list_balance = self.get_final_tables_report_giornale(
                 list_line_not_grouped, tables, start_row, width_available
             )
