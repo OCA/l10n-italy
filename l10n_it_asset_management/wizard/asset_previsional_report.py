@@ -52,21 +52,26 @@ class WizardAssetPrevisionalReport(models.TransientModel):
 
     asset_order_fname = fields.Selection(
         get_asset_order_fname_selection,
-        default=get_default_asset_order_fname,
+        default=lambda self: self.get_default_asset_order_fname(),
         required=True,
         string="Asset Print Order",
     )
 
     category_ids = fields.Many2many(
-        "asset.category", default=get_default_category_ids, string="Categories"
+        "asset.category",
+        default=lambda self: self.get_default_category_ids(),
+        string="Categories",
     )
 
     company_id = fields.Many2one(
-        "res.company", default=get_default_company_id, required=True, string="Company"
+        "res.company",
+        default=lambda self: self.get_default_company_id(),
+        required=True,
+        string="Company",
     )
 
     date = fields.Date(
-        default=get_default_date,
+        default=lambda self: self.get_default_date(),
         string="To Date",
     )
 
@@ -81,12 +86,12 @@ class WizardAssetPrevisionalReport(models.TransientModel):
     show_dismissed_assets = fields.Boolean()
 
     report_footer_year = fields.Char(
-        default=get_default_report_footer_year,
+        default=lambda self: self.get_default_report_footer_year(),
     )
 
     type_ids = fields.Many2many(
         "asset.depreciation.type",
-        default=get_default_type_ids,
+        default=lambda self: self.get_default_type_ids(),
         string="Depreciation Types",
     )
 

@@ -25,7 +25,7 @@
                 <filter name="out" string="Out" domain="[('move_type','=','out')]" />
                 <filter name="loss" string="Loss" domain="[('move_type','=','loss')]" />
                 <filter name="gain" string="Gain" domain="[('move_type','=','gain')]" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Asset"
                         name="group_by_asset_id"
@@ -155,6 +155,7 @@
 
     <record id="action_asset_dep_line" model="ir.actions.act_window">
         <field name="name">Depreciation Lines</field>
+        <field name="path">depreciation-lines</field>
         <field name="res_model">asset.depreciation.line</field>
         <field name="view_id" ref="asset_dep_line_tree_view" />
         <field name="search_view_id" ref="asset_dep_line_search_view" />

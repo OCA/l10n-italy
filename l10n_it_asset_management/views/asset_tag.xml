@@ -35,7 +35,7 @@
 
     <record id="action_asset_tag" model="ir.actions.act_window">
         <field name="name">Assets tag</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">assets-tag</field>
         <field name="res_model">asset.tag</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="asset_tag_tree_view" />

@@ -19,7 +19,7 @@
                     string="Move"
                     filter_domain="['|', ('move_id.name', 'ilike', self), ('move_id.ref', 'ilike', self)]"
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Asset"
                         name="group_by_asset"
@@ -97,7 +97,7 @@
 
     <record id="action_asset_accounting_info" model="ir.actions.act_window">
         <field name="name">Assets Accounting Info</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">assets-accounting-info</field>
         <field name="res_model">asset.accounting.info</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="asset_accounting_info_tree_view" />

@@ -39,7 +39,7 @@
 
     <record id="action_asset_depreciation_type" model="ir.actions.act_window">
         <field name="name">Assets Depreciation Type</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">assets-depreciation-type</field>
         <field name="res_model">asset.depreciation.type</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="asset_depreciation_type_tree_view" />

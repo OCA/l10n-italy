@@ -105,7 +105,7 @@ class AccountMove(models.Model):
 
         xmlid = "l10n_it_asset_management.action_wizard_account_move_manage_asset"
         act = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
-        ctx = dict(self._context)
+        ctx = dict(self.env.context)
         ctx.update(
             {
                 "default_company_id": self.company_id.id,
@@ -124,10 +124,11 @@ class AccountMove(models.Model):
         return self.env["asset.accounting.info"].search(
             [
                 "|",
-                ("move_id", "=", self.id),
-                ("move_line_id.move_id", "=", self.id),
+                ("move_id", "in", self.ids),
+                ("move_line_id.move_id", "in", self.ids),
             ]
         )
 
+    # pylint: disable=no-search-all
     def get_valid_accounts(self):
         return self.env["asset.category"].search([]).mapped("asset_account_id")

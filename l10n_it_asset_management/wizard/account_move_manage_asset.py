@@ -19,7 +19,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     @api.model
     def get_default_move_ids(self):
-        return self._context.get("move_ids")
+        return self.env.context.get("move_ids")
 
     l10n_it_asset_id = fields.Many2one("asset.asset", string="Asset")
 
@@ -36,7 +36,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     company_id = fields.Many2one(
         "res.company",
-        default=get_default_company_id,
+        default=lambda self: self.get_default_company_id(),
         string="Company",
     )
 
@@ -74,7 +74,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
     move_ids = fields.Many2many(
         "account.move",
-        default=get_default_move_ids,
+        default=lambda self: self.get_default_move_ids(),
         string="Moves",
     )
 
@@ -184,10 +184,10 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 self.move_type = "general"
                 self.management_type = "update"
         else:
-            if self._context.get("remove_asset_without_sale"):
+            if self.env.context.get("remove_asset_without_sale"):
                 self.dismiss_asset_without_sale = True
                 self.management_type = "dismiss"
-                self.l10n_it_asset_id = self._context.get("l10n_it_asset_ids")[0]
+                self.l10n_it_asset_id = self.env.context.get("l10n_it_asset_ids")[0]
 
     def link_asset(self):
         self.ensure_one()
@@ -205,7 +205,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         # As written above: method defined in here must return an asset
         asset = method(self)
 
-        if self._context.get("show_asset"):
+        if self.env.context.get("show_asset"):
             act_xmlid = "l10n_it_asset_management.action_asset"
             act = self.env["ir.actions.act_window"]._for_xml_id(act_xmlid)
             form_xmlid = "l10n_it_asset_management.asset_form_view"
@@ -288,7 +288,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             )
             and not self.dismiss_asset_without_sale
         ):
-            ass_name = self.l10n_it_asset_id.make_name()
+            ass_name = self.l10n_it_asset_id.display_name
             ass_acc = self.l10n_it_asset_id.category_id.asset_account_id.display_name
             raise ValidationError(
                 self.env._(
@@ -334,7 +334,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 for line in self.move_line_ids
             ]
         ):
-            ass_name = self.l10n_it_asset_id.make_name()
+            ass_name = self.l10n_it_asset_id.display_name
             ass_acc = self.l10n_it_asset_id.category_id.asset_account_id.display_name
             raise ValidationError(
                 self.env._(
@@ -643,7 +643,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     def get_update_asset_vals(self):
         self.ensure_one()
         asset = self.l10n_it_asset_id
-        asset_name = asset.make_name()
+        asset_name = asset.display_name
         digits = self.env["decimal.precision"].precision_get("Account")
 
         grouped_move_lines = {}

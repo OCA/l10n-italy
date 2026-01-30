@@ -76,6 +76,7 @@
 
     <record id="action_wizard_asset_journal_report" model="ir.actions.act_window">
         <field name="name">Asset Journal</field>
+        <field name="path">asset-journal</field>
         <field name="res_model">wizard.asset.journal.report</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="wizard_asset_journal_report_form_view" />

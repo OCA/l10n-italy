@@ -62,7 +62,7 @@ class AssetDepreciationModeLine(models.Model):
 
     def get_depreciation_amount_multiplier(self):
         multiplier = 1
-        passed_fiscal_years = self._context.get("passed_fiscal_years")
+        passed_fiscal_years = self.env.context.get("passed_fiscal_years")
         if passed_fiscal_years is None:
             # Cannot compare to any line
             return multiplier

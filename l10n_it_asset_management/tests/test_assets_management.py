@@ -54,7 +54,7 @@ class TestAssets(Common):
         sale_invoice = self.env["account.move"].create(
             {
                 "move_type": "out_invoice",
-                "partner_id": self.env.ref("base.partner_demo").id,
+                "partner_id": self.partner_demo.id,
                 "journal_id": self.env["account.journal"]
                 .search(
                     [
@@ -160,7 +160,7 @@ class TestAssets(Common):
         sale_invoice = self.env["account.move"].create(
             {
                 "move_type": "out_invoice",
-                "partner_id": self.env.ref("base.partner_demo").id,
+                "partner_id": self.partner_demo.id,
                 "journal_id": self.env["account.journal"]
                 .search(
                     [
@@ -775,8 +775,14 @@ class TestAssets(Common):
     def test_open_manage_asset_wiz(self):
         manager_user = self.user
         account_user = self.account_user
-        forbidden_user = self.env.ref("base.user_demo")
-        forbidden_user.groups_id -= (
+        forbidden_user = self.env["res.users"].create(
+            {
+                "partner_id": self.partner_demo.id,
+                "login": "demo",
+                "password": "demo",
+            }
+        )
+        forbidden_user.group_ids -= (
             self.env.ref("l10n_it_asset_management.group_asset_user")
             | self.env.ref("account.group_account_manager")
             | self.env.ref("l10n_it_asset_management.group_account_invoice_assets")
@@ -802,8 +808,8 @@ class TestAssets(Common):
                         "name": "Test Asset Name",
                         "category_id": asset_category.id,
                         "management_type": "create",
-                        "move_ids": [(6, 0, invoice.ids)],
-                        "move_line_ids": [(6, 0, invoice.invoice_line_ids.ids)],
+                        "move_ids": [Command.set(invoice.ids)],
+                        "move_line_ids": [Command.set(invoice.invoice_line_ids.ids)],
                     }
                 ]
             )

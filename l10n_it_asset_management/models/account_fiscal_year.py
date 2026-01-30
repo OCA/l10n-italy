@@ -4,6 +4,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 
 
 class AccountFiscalYear(models.Model):
@@ -31,9 +32,9 @@ class AccountFiscalYear(models.Model):
         """
         Prepares a search() domain to retrieve fiscal years by given ``date``.
         """
-        domain = [("date_from", "<=", date), ("date_to", ">=", date)]
+        domain = Domain([("date_from", "<=", date), ("date_to", ">=", date)])
         if company:
-            domain.append(("company_id", "in", company.ids))
+            domain &= Domain("company_id", "in", company.ids)
         return domain
 
     @api.model
@@ -46,12 +47,6 @@ class AccountFiscalYear(models.Model):
                     "date_to": end_date,
                 }
             )._get_overlapping_domain()
-            # Exclude current record's NewId
-            # because it is not supported in domains
-            overlapping_fiscal_year_domain = [
-                term if term[0] != "id" else ("id", "!=", 0)
-                for term in overlapping_fiscal_year_domain
-            ]
             overlapping_fiscal_years = self.search(overlapping_fiscal_year_domain)
             passed_years = len(overlapping_fiscal_years)
         else:

@@ -25,6 +25,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
             return fiscal_year.date_to
         return fields.Date.today()
 
+    # pylint: disable=no-search-all
     @api.model
     def get_default_type_ids(self):
         return [Command.set(self.env["asset.depreciation.type"].search([]).ids)]
@@ -41,19 +42,19 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
 
     company_id = fields.Many2one(
         "res.company",
-        default=get_default_company_id,
+        default=lambda self: self.get_default_company_id(),
         string="Company",
     )
 
     date_dep = fields.Date(
-        default=get_default_date_dep,
+        default=lambda self: self.get_default_date_dep(),
         required=True,
         string="Depreciation Date",
     )
 
     type_ids = fields.Many2many(
         "asset.depreciation.type",
-        default=get_default_type_ids,
+        default=lambda self: self.get_default_type_ids(),
         required=True,
         string="Depreciation Types",
     )
@@ -146,7 +147,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
                 period_count=self.period_count,
             )
             deps.post_generate_depreciation_lines(dep_lines)
-        if self._context.get("reload_window"):
+        if self.env.context.get("reload_window"):
             return {"type": "ir.actions.client", "tag": "reload"}
 
     def get_depreciations(self):

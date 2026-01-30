@@ -258,6 +258,7 @@
 
     <record id="action_wizard_account_move_manage_asset" model="ir.actions.act_window">
         <field name="name">Link to Assets</field>
+        <field name="path">link-assets</field>
         <field name="res_model">wizard.account.move.manage.asset</field>
         <field name="binding_view_types">form</field>
         <field name="binding_model_id" ref="account.model_account_move" />
@@ -268,6 +269,7 @@
     </record>
     <record id="action_wizard_asset_move_manage_asset" model="ir.actions.act_window">
         <field name="name">Dismiss Assets</field>
+        <field name="path">dismiss-assets</field>
         <field name="res_model">wizard.account.move.manage.asset</field>
         <field name="binding_view_types">form</field>
         <field

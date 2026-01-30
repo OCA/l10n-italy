@@ -6,7 +6,7 @@
 from datetime import date
 
 from odoo import api, fields, models
-from odoo.fields import Command
+from odoo.fields import Command, Domain
 
 
 class WizardAssetJournalReport(models.TransientModel):
@@ -52,21 +52,26 @@ class WizardAssetJournalReport(models.TransientModel):
 
     asset_order_fname = fields.Selection(
         get_asset_order_fname_selection,
-        default=get_default_asset_order_fname,
+        default=lambda self: self.get_default_asset_order_fname(),
         required=True,
         string="Asset Print Order",
     )
 
     category_ids = fields.Many2many(
-        "asset.category", default=get_default_category_ids, string="Categories"
+        "asset.category",
+        default=lambda self: self.get_default_category_ids(),
+        string="Categories",
     )
 
     company_id = fields.Many2one(
-        "res.company", default=get_default_company_id, required=True, string="Company"
+        "res.company",
+        default=lambda self: self.get_default_company_id(),
+        required=True,
+        string="Company",
     )
 
     date = fields.Date(
-        default=get_default_date,
+        default=lambda self: self.get_default_date(),
         string="To Date",
     )
 
@@ -81,12 +86,12 @@ class WizardAssetJournalReport(models.TransientModel):
     show_dismissed_assets = fields.Boolean()
 
     report_footer_year = fields.Char(
-        default=get_default_report_footer_year,
+        default=lambda self: self.get_default_report_footer_year(),
     )
 
     type_ids = fields.Many2many(
         "asset.depreciation.type",
-        default=get_default_type_ids,
+        default=lambda self: self.get_default_type_ids(),
         string="Depreciation Types",
     )
 
@@ -136,18 +141,18 @@ class WizardAssetJournalReport(models.TransientModel):
         return assets
 
     def get_asset_domain(self):
-        asset_domain = []
+        asset_domain = Domain(Domain.TRUE)
         if self.category_ids:
-            asset_domain.append(("category_id", "in", self.category_ids.ids))
+            asset_domain &= Domain("category_id", "in", self.category_ids.ids)
         if self.company_id:
-            asset_domain.append(("company_id", "in", (False, self.company_id.id)))
+            asset_domain &= Domain("company_id", "in", (False, self.company_id.id))
         if self.date:
-            asset_domain.append(("purchase_date", "<=", self.date))
+            asset_domain &= Domain("purchase_date", "<=", self.date)
         if self.type_ids:
             deps = self.env["asset.depreciation"].search(
                 [("type_id", "in", self.type_ids.ids)]
             )
-            asset_domain.append(("id", "in", deps.mapped("l10n_it_asset_id").ids))
+            asset_domain &= Domain("id", "in", deps.mapped("l10n_it_asset_id").ids)
         return asset_domain
 
     def prepare_report_vals(self):
