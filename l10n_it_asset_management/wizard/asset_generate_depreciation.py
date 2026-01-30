@@ -61,8 +61,7 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
     journal_id = fields.Many2one(
         comodel_name="account.journal",
         string="Override journal",
-        help="Create move entries in this journal "
-        "instead of the category's journal.",
+        help="Create move entries in this journal instead of the category's journal.",
     )
     period = fields.Selection(
         selection=[

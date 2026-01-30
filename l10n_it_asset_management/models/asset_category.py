@@ -126,8 +126,7 @@ class AssetCategory(models.Model):
         if self.env["asset.asset"].sudo().search([("category_id", "in", self.ids)]):
             raise UserError(
                 self.env._(
-                    "Cannot delete categories while they're still linked"
-                    " to an asset."
+                    "Cannot delete categories while they're still linked to an asset."
                 )
             )
 

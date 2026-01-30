@@ -445,7 +445,7 @@ class AssetDepreciationLine(models.Model):
     def get_historical_account_move_line_vals(self):
         raise NotImplementedError(
             self.env._(
-                "Cannot create account move lines for lines of type" " `Historical`"
+                "Cannot create account move lines for lines of type `Historical`"
             )
         )
 
