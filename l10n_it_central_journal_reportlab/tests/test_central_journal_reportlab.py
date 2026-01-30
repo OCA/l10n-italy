@@ -8,17 +8,36 @@ from datetime import datetime
 
 from dateutil.rrule import MONTHLY
 
-from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+from odoo.tests import Form, tagged
 from odoo.tools import pdf
 
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
-class TestCentralJournalReportlab(TransactionCase):
+
+@tagged("post_install", "-at_install")
+class TestCentralJournalReportlab(AccountTestInvoicingCommon):
     def setUp(self):
         super().setUp()
 
         self.today = datetime.now()
-        self.range_type = self.env["date.range.type"].create({"name": "Fiscal year"})
+        self.data_it_company = self.setup_other_company(
+            name="IT Company2",
+            vat="IT01234560157",
+            phone="0266766700",
+            email="test@test.it",
+            street="1234 Test Street",
+            zip="12345",
+            city="Prova",
+        )
+        self.it_company = self.data_it_company["company"]
+        self.env.user.company_ids |= self.it_company
+        self.env.user.company_id = self.it_company
+        # Now that current user can access the company,
+        # log the user *only* in this company so that
+        # searching, reading and other operations behave as expected
+        self.env.user.company_ids = self.it_company
+
+        self.range_type = self.env["date.range.type"].create({"name": "Fiscal Year"})
         self.env["date.range.generator"].create(
             {
                 "date_start": f"{self.today.year}-01-01",
@@ -33,14 +52,39 @@ class TestCentralJournalReportlab(TransactionCase):
             [
                 ("date_start", "<=", self.today.date()),
                 ("date_end", ">=", self.today.date()),
-            ]
+            ],
+            limit=1,
         )
         self.wizard_model = self.env["wizard.giornale.reportlab"]
         self.report_model = self.env["ir.actions.report"]
         self.report_name = "central_journal_reportlab.report_giornale_reportlab"
         self.journals = self.env["account.journal"].search([])
+        self.partner = self.env["res.partner"].create(
+            {
+                "name": "Wood Corner",
+                "is_company": True,
+                "street": "1839 Arbor Way",
+                "city": "Turlock",
+                "state_id": self.env.ref("base.state_us_5").id,
+                "zip": "95380",
+                "email": "wood.corner26@example.com",
+                "phone": "(623)-853-7197",
+                "vat": "US12345672",
+            }
+        )
 
     def test_wizard_reportlab(self):
+        out_invoice = Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
+        )
+        out_invoice.partner_id = self.partner
+        out_invoice.invoice_date = self.today
+        with out_invoice.invoice_line_ids.new() as line:
+            line.name = "Test line"
+            line.price_unit = 100
+        out_invoice = out_invoice.save()
+        out_invoice.action_post()
+
         wizard_form = Form(self.wizard_model)
         wizard_form.daterange_id = self.current_period
         wizard = wizard_form.save()
@@ -68,7 +112,7 @@ class TestCentralJournalReportlab(TransactionCase):
         out_invoice = Form(
             self.env["account.move"].with_context(default_move_type="out_invoice")
         )
-        out_invoice.partner_id = self.env.ref("base.res_partner_1")
+        out_invoice.partner_id = self.partner
         out_invoice.invoice_date = self.today
         with out_invoice.invoice_line_ids.new() as note_line:
             note_line.display_type = "line_note"
