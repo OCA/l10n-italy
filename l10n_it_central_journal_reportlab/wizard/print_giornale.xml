@@ -66,6 +66,7 @@
 
     <record id="action_giornale_reportlab" model="ir.actions.act_window">
         <field name="name">General Journal Reportlab</field>
+        <field name="path">general-journal-reportlab</field>
         <field name="res_model">wizard.giornale.reportlab</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="wizard_giornale_reportlab" />
