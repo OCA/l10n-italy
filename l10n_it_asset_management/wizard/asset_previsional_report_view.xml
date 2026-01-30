@@ -76,6 +76,7 @@
 
     <record id="action_wizard_asset_previsional_report" model="ir.actions.act_window">
         <field name="name">Asset Previsional Report</field>
+        <field name="path">asset-previsional-report</field>
         <field name="res_model">wizard.asset.previsional.report</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="wizard_asset_previsional_report_form_view" />

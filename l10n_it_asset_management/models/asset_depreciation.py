@@ -234,8 +234,12 @@ class AssetDepreciation(models.Model):
                 )
             )
 
-    def name_get(self):
-        return [(dep.id, dep.make_name()) for dep in self]
+    @api.depends("l10n_it_asset_id", "type_id")
+    def _compute_display_name(self):
+        for dep in self:
+            dep.display_name = " - ".join(
+                (dep.l10n_it_asset_id.display_name, dep.type_id.name or "")
+            )
 
     @api.depends("amount_depreciable", "amount_depreciable_updated", "amount_residual")
     def _compute_state(self):
@@ -499,7 +503,7 @@ class AssetDepreciation(models.Model):
                 )
             )
 
-        if self.pro_rata_temporis or self._context.get("force_prorata"):
+        if self.pro_rata_temporis or self.env.context.get("force_prorata"):
             fiscal_year_obj = self.env["account.fiscal.year"]
             fy_start = fiscal_year_obj.get_fiscal_year_by_date(
                 date_start, company=self.company_id
@@ -549,14 +553,16 @@ class AssetDepreciation(models.Model):
             "credit": self.amount_depreciated,
             "debit": 0.0,
             "currency_id": self.currency_id.id,
-            "name": self.env._("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
+            "name": self.env._("Asset dismissal: ")
+            + self.l10n_it_asset_id.display_name,
         }
         debit_line_vals = {
             "account_id": self.l10n_it_asset_id.category_id.fund_account_id.id,
             "credit": 0.0,
             "debit": self.amount_depreciated,
             "currency_id": self.currency_id.id,
-            "name": self.env._("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
+            "name": self.env._("Asset dismissal: ")
+            + self.l10n_it_asset_id.display_name,
         }
         return [credit_line_vals, debit_line_vals]
 
@@ -564,11 +570,11 @@ class AssetDepreciation(models.Model):
         self.ensure_one()
         return {
             "company_id": self.company_id.id,
-            "date": self._context.get("dismiss_date")
+            "date": self.env.context.get("dismiss_date")
             or self.l10n_it_asset_id.sale_date,
             "journal_id": self.l10n_it_asset_id.category_id.journal_id.id,
             "line_ids": [],
-            "ref": self.env._("Asset dismissal: ") + self.l10n_it_asset_id.make_name(),
+            "ref": self.env._("Asset dismissal: ") + self.l10n_it_asset_id.display_name,
             "move_type": "entry",
         }
 
@@ -619,7 +625,7 @@ class AssetDepreciation(models.Model):
                      date to fiscal year's last day
         """
         self.ensure_one()
-        if not (self.pro_rata_temporis or self._context.get("force_prorata")):
+        if not (self.pro_rata_temporis or self.env.context.get("force_prorata")):
             return 1
 
         dt_start, dt, dt_end = self.get_pro_rata_temporis_dates(date)
@@ -638,10 +644,6 @@ class AssetDepreciation(models.Model):
         raise NotImplementedError(
             self.env._("Cannot get pro rata temporis multiplier for unspecified mode")
         )
-
-    def make_name(self):
-        self.ensure_one()
-        return " - ".join((self.l10n_it_asset_id.make_name(), self.type_id.name or ""))
 
     def need_normalize_first_dep_nr(self):
         self.ensure_one()
@@ -664,7 +666,7 @@ class AssetDepreciation(models.Model):
         Normalize first numbered line according to `first_dep_nr` value
         :param force: if True, force normalization
         """
-        force = force or self._context.get("force_normalize_first_dep_nr")
+        force = force or self.env.context.get("force_normalize_first_dep_nr")
         for d in self:
             if force or d.need_normalize_first_dep_nr():
                 d.onchange_normalize_first_dep_nr()
@@ -679,7 +681,7 @@ class AssetDepreciation(models.Model):
             raise ValidationError(
                 self.env._("Cannot create a depreciation line without a date")
             )
-        dep_amount = self._context.get("dep_amount") or 0.0
+        dep_amount = self.env.context.get("dep_amount") or 0.0
         dep_year = fields.Date.from_string(dep_date).year
         return {
             "amount": dep_amount,

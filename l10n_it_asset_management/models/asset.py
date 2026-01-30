@@ -34,7 +34,7 @@ class Asset(models.Model):
 
     company_id = fields.Many2one(
         "res.company",
-        default=get_default_company_id,
+        default=lambda self: self.get_default_company_id(),
         required=True,
         string="Company",
         tracking=True,
@@ -127,8 +127,13 @@ class Asset(models.Model):
         self.mapped("depreciation_ids").unlink()
         return super().unlink()
 
-    def name_get(self):
-        return [(asset.id, asset.make_name()) for asset in self]
+    @api.depends("name", "code")
+    def _compute_display_name(self):
+        for asset in self:
+            name = asset.name.strip()
+            code = asset.code.strip() if asset.code else None
+
+            asset.display_name = f"[{code}] {name}" if code else name
 
     @api.constrains("company_id")
     def check_company(self):
@@ -139,7 +144,7 @@ class Asset(models.Model):
                     self.env._(
                         "`%(asset)s`: cannot change asset's company once it's already"
                         " related to accounting info.",
-                        asset=asset.make_name(),
+                        asset=asset.display_name,
                     )
                 )
 
@@ -204,7 +209,7 @@ class Asset(models.Model):
         self.ensure_one()
         xmlid = "l10n_it_asset_management.action_wizard_asset_generate_depreciation"
         [act] = self.env.ref(xmlid).read()
-        ctx = dict(self._context)
+        ctx = dict(self.env.context)
         ctx.update(
             {
                 "default_l10n_it_asset_ids": [Command.set(self.ids)],
@@ -242,10 +247,3 @@ class Asset(models.Model):
                 ("dep_line_id.l10n_it_asset_id", "=", self.id),
             ]
         )
-
-    def make_name(self):
-        self.ensure_one()
-        name = self.name.strip()
-        if self.code:
-            return f"[{self.code.strip()}] {name}"
-        return name

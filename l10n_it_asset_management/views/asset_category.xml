@@ -84,7 +84,7 @@
 
     <record id="action_asset_category" model="ir.actions.act_window">
         <field name="name">Assets category</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">assets-category</field>
         <field name="res_model">asset.category</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="asset_category_tree_view" />

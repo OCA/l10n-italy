@@ -18,7 +18,9 @@ class AssetDepreciationMode(models.Model):
         return self.env.company
 
     company_id = fields.Many2one(
-        "res.company", default=get_default_company_id, string="Company"
+        "res.company",
+        default=lambda self: self.get_default_company_id(),
+        string="Company",
     )
 
     default = fields.Boolean(string="Default Mode")
@@ -92,7 +94,7 @@ class AssetDepreciationMode(models.Model):
         self.ensure_one()
 
         # Update multiplier from used asset coefficient
-        used_asset = self._context.get("used_asset", False)
+        used_asset = self.env.context.get("used_asset", False)
         if self.used_asset_coeff and used_asset:
             multiplier *= self.used_asset_coeff
 

@@ -5,7 +5,7 @@
 
 from datetime import date
 
-from odoo.fields import Command, first
+from odoo.fields import Command
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase, new_test_user
 
@@ -14,6 +14,19 @@ class Common(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.partner_demo = cls.env["res.partner"].create(
+            {
+                "name": "Marc Demo",
+                "company_name": "YourCompany",
+                "street": "3575  Buena Vista Avenue",
+                "city": "Eugene",
+                "state_id": cls.env.ref("base.state_us_32").id,
+                "zip": "97401",
+                "email": "mark.brown23@example.com",
+                "phone": "(441)-695-2334",
+            }
+        )
+
         cls.data_account_type_current_assets = "asset_current"
 
         cls.asset_fixed_account = cls.env["account.account"].search(
@@ -77,7 +90,7 @@ class Common(TransactionCase):
             "user",
             groups="base.group_multi_company,account.group_account_manager",
             company_id=cls.env.ref("base.main_company").id,
-            company_ids=[(6, 0, [cls.env.ref("base.main_company").id])],
+            company_ids=[Command.set(cls.env.ref("base.main_company").ids)],
         )
         groups = ",".join(
             [
@@ -91,7 +104,7 @@ class Common(TransactionCase):
             "user_account",
             groups=groups,
             company_id=cls.env.ref("base.main_company").id,
-            company_ids=[(6, 0, [cls.env.ref("base.main_company").id])],
+            company_ids=[Command.set(cls.env.ref("base.main_company").ids)],
         )
         cls.civilistico_asset_dep_type = cls.env.ref(
             "l10n_it_asset_management.ad_type_civilistico"
@@ -184,7 +197,7 @@ class Common(TransactionCase):
                 "account_type": "asset_cash",
             }
         )
-        cls.env.user.groups_id += cls.env.ref("account.group_account_readonly")
+        cls.env.user.group_ids += cls.env.ref("account.group_account_readonly")
 
     def _create_asset(self, asset_date=None):
         asset = self.env["asset.asset"].create(
@@ -255,7 +268,7 @@ class Common(TransactionCase):
             {
                 "move_type": "in_invoice",
                 "invoice_date": invoice_date,
-                "partner_id": self.env.ref("base.partner_demo").id,
+                "partner_id": self.partner_demo.id,
                 "journal_id": self.env["account.journal"]
                 .search(
                     [
@@ -280,7 +293,7 @@ class Common(TransactionCase):
             {
                 "move_type": "out_invoice",
                 "invoice_date": invoice_date,
-                "partner_id": self.env.ref("base.partner_demo").id,
+                "partner_id": self.partner_demo.id,
                 "journal_id": self.sale_journal.id,
                 "invoice_line_ids": [
                     Command.create(
@@ -318,11 +331,10 @@ class Common(TransactionCase):
         civil_depreciation_type = self.env.ref(
             "l10n_it_asset_management.ad_type_civilistico"
         )
-        civil_depreciation = first(
-            asset.depreciation_ids.filtered(
-                lambda d: d.type_id == civil_depreciation_type
-            )
+        civil_depreciations = asset.depreciation_ids.filtered(
+            lambda d: d.type_id == civil_depreciation_type
         )
+        civil_depreciation = next(iter(civil_depreciations), civil_depreciations)
         (asset.depreciation_ids - civil_depreciation).unlink()
 
         civil_depreciation.line_ids = [
@@ -354,7 +366,7 @@ class Common(TransactionCase):
         fiscal_years_values = list()
         for fiscal_year in fiscal_years:
             fiscal_year_values = {
-                "name": "Fiscal Year %d" % fiscal_year,
+                "name": self.env._("Fiscal Year %d", fiscal_year),
                 "date_from": date(fiscal_year, 1, 1),
                 "date_to": date(fiscal_year, 12, 31),
             }

@@ -12,7 +12,7 @@
                 <field name="name" />
                 <field name="code" />
                 <field name="category_id" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Purchase Date"
                         name="group_by_purchase_date"
@@ -198,6 +198,7 @@
 
     <record id="action_asset" model="ir.actions.act_window">
         <field name="name">Assets</field>
+        <field name="path">assets-oca</field>
         <field name="res_model">asset.asset</field>
         <field name="view_id" ref="asset_tree_view" />
     </record>

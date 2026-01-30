@@ -164,8 +164,16 @@ class AssetDepreciationLine(models.Model):
         self.mapped("move_id").unlink()
         return super().unlink()
 
-    def name_get(self):
-        return [(line.id, line.make_name()) for line in self]
+    @api.depends("name", "depreciation_id")
+    def _compute_display_name(self):
+        for line in self:
+            name = line.name.strip()
+
+            line.display_name = (
+                f"{name} ({line.depreciation_id.display_name})"
+                if self.depreciation_id
+                else name
+            )
 
     def check_company(self):
         for dep_line in self:
@@ -175,7 +183,7 @@ class AssetDepreciationLine(models.Model):
                     self.env._(
                         "`%(dep_line)s`: cannot change depreciation line's company once"
                         " it's already related to an asset.",
-                        dep_line=dep_line.make_name(),
+                        dep_line=dep_line.display_name,
                     )
                 )
 
@@ -269,10 +277,6 @@ class AssetDepreciationLine(models.Model):
             self.move_type in self.get_numbered_move_types()
             and not self.partial_dismissal
         )
-
-    def make_name(self):
-        self.ensure_one()
-        return f"{self.name} ({self.depreciation_id.make_name()})"
 
     def need_normalize_depreciation_nr(self):
         """Check if numbers need to be normalized"""
@@ -371,7 +375,7 @@ class AssetDepreciationLine(models.Model):
             "date": self.date,
             "journal_id": journal.id,
             "line_ids": [],
-            "ref": self.env._("Asset: ") + self.l10n_it_asset_id.make_name(),
+            "ref": self.env._("Asset: ") + self.l10n_it_asset_id.display_name,
             "move_type": "entry",
         }
 
@@ -413,14 +417,14 @@ class AssetDepreciationLine(models.Model):
             "credit": amt,
             "debit": 0.0,
             "currency_id": self.currency_id.id,
-            "name": " - ".join((self.l10n_it_asset_id.make_name(), self.name)),
+            "name": " - ".join((self.l10n_it_asset_id.display_name, self.name)),
         }
         debit_line_vals = {
             "account_id": debit_account_id,
             "credit": 0.0,
             "debit": amt,
             "currency_id": self.currency_id.id,
-            "name": " - ".join((self.l10n_it_asset_id.make_name(), self.name)),
+            "name": " - ".join((self.l10n_it_asset_id.display_name, self.name)),
         }
         return [credit_line_vals, debit_line_vals]
 
@@ -431,14 +435,14 @@ class AssetDepreciationLine(models.Model):
             "credit": self.amount,
             "debit": 0.0,
             "currency_id": self.currency_id.id,
-            "name": " - ".join((self.l10n_it_asset_id.make_name(), self.name)),
+            "name": " - ".join((self.l10n_it_asset_id.display_name, self.name)),
         }
         debit_line_vals = {
             "account_id": self.l10n_it_asset_id.category_id.asset_account_id.id,
             "credit": 0.0,
             "debit": self.amount,
             "currency_id": self.currency_id.id,
-            "name": " - ".join((self.l10n_it_asset_id.make_name(), self.name)),
+            "name": " - ".join((self.l10n_it_asset_id.display_name, self.name)),
         }
         return [credit_line_vals, debit_line_vals]
 
@@ -461,14 +465,14 @@ class AssetDepreciationLine(models.Model):
             "credit": self.amount,
             "debit": 0.0,
             "currency_id": self.currency_id.id,
-            "name": " - ".join((self.l10n_it_asset_id.make_name(), self.name)),
+            "name": " - ".join((self.l10n_it_asset_id.display_name, self.name)),
         }
         debit_line_vals = {
             "account_id": self.depreciation_id.loss_account_id.id,
             "credit": 0.0,
             "debit": self.amount,
             "currency_id": self.currency_id.id,
-            "name": " - ".join((self.l10n_it_asset_id.make_name(), self.name)),
+            "name": " - ".join((self.l10n_it_asset_id.display_name, self.name)),
         }
         return [credit_line_vals, debit_line_vals]
 

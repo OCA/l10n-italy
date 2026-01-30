@@ -92,8 +92,21 @@ class AssetAccountingInfo(models.Model):
 
         return res
 
-    def name_get(self):
-        return [(aa_info.id, aa_info.make_name()) for aa_info in self]
+    @api.depends("l10n_it_asset_id", "relation_type")
+    def _compute_display_name(self):
+        for aa_info in self:
+            if aa_info.l10n_it_asset_id:
+                name = aa_info.l10n_it_asset_id.display_name
+            else:
+                name = self.env._("Unknown Asset")
+
+            relation_name = dict(aa_info._fields["relation_type"].selection).get(
+                aa_info.relation_type
+            )
+            if relation_name:
+                name += " - " + relation_name
+
+            aa_info.display_name = name.strip()
 
     @api.model
     def cron_vacuum_table(self):
@@ -216,19 +229,6 @@ class AssetAccountingInfo(models.Model):
                 ("move_line_id", "=", False),
             ]
         )
-
-    def make_name(self):
-        self.ensure_one()
-        if self.l10n_it_asset_id:
-            name = self.l10n_it_asset_id.make_name()
-        else:
-            name = self.env._("Unknown Asset")
-        relation_name = dict(self._fields["relation_type"].selection).get(
-            self.relation_type
-        )
-        if relation_name:
-            name += " - " + relation_name
-        return name.strip()
 
     def normalize_info(self):
         """Normalize asset accounting info if needed"""

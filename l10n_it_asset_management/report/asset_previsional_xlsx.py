@@ -615,7 +615,7 @@ class AssetJournalXslx(models.AbstractModel):
                 self.write_value(report_data, total_section, "totals_data")
             report_data["row_pos"] += 1
 
-    def _define_formats(self, workbook, report_data):
+    def _define_formats(self, workbook, report_data, data=None):
         """Add cell formats to current workbook.
         Those formats can be used on all cell.
         Available formats are :

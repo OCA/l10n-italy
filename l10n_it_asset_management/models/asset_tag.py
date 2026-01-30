@@ -15,7 +15,9 @@ class AssetTag(models.Model):
         return self.env.company
 
     company_id = fields.Many2one(
-        "res.company", default=get_default_company_id, string="Company"
+        "res.company",
+        default=lambda self: self.get_default_company_id(),
+        string="Company",
     )
 
     name = fields.Char(required=True)
