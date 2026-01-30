@@ -280,6 +280,7 @@
 
     <record id="action_account_vat_period_end_statement" model="ir.actions.act_window">
         <field name="name">Vat Settlement</field>
+        <field name="path">vat-settlement</field>
         <field name="res_model">account.vat.period.end.statement</field>
     </record>
 

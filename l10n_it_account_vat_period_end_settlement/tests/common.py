@@ -7,6 +7,7 @@ from datetime import date, datetime
 
 from dateutil.rrule import MONTHLY
 
+from odoo.fields import Command
 from odoo.tests import Form
 
 from odoo.addons.l10n_it_edi.tests.test_edi_reverse_charge import TestItEdiReverseCharge
@@ -103,7 +104,7 @@ class TestVATStatementCommon(TestItEdiReverseCharge):
                 "name": "VAT Authority",
                 "reconcile": True,
                 "account_type": "liability_payable",
-                "company_ids": [(6, 0, [cls.company.id])],
+                "company_ids": [Command.set(cls.company.ids)],
             }
         )
 
