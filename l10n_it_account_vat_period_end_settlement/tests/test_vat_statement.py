@@ -21,9 +21,7 @@ class TestTax(TestVATStatementCommon):
                 "partner_id": self.italian_partner_a.id,
                 "move_type": "out_invoice",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "service",
                             "price_unit": 100,
@@ -44,9 +42,7 @@ class TestTax(TestVATStatementCommon):
                 "partner_id": self.italian_partner_a.id,
                 "move_type": "in_invoice",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "service",
                             "price_unit": 50,
@@ -69,9 +65,7 @@ class TestTax(TestVATStatementCommon):
                 "partner_id": self.italian_partner_a.id,
                 "move_type": "in_invoice",
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "service",
                             "price_unit": 50,
@@ -302,9 +296,7 @@ class TestTax(TestVATStatementCommon):
         self.init_invoice(
             "out_invoice",
             invoice_date=self.recent_date,
-            amounts=[
-                1000,
-            ],
+            amounts=[1000],
             taxes=self.company_data_2["default_tax_sale"],
             post=True,
         )

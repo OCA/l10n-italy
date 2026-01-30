@@ -8,7 +8,7 @@
 
 {
     "name": "ITA - Liquidazione IVA",
-    "version": "18.0.1.0.5",
+    "version": "19.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Allow to create the 'VAT Settlement'.",
     "license": "AGPL-3",
@@ -19,6 +19,7 @@
         "account_tax_balance",
         "date_range",
         "l10n_it_account",
+        "l10n_it_edi",
         "web",
     ],
     "data": [
@@ -37,12 +38,5 @@
             "l10n_it_account_vat_period_end_settlement.css",
         ],
     },
-    "external_dependencies": {
-        "python": [
-            "openupgradelib",
-        ],
-    },
-    "pre_init_hook": "pre_absorb_old_module",
-    "post_init_hook": "post_absorb_old_module",
     "installable": True,
 }

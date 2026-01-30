@@ -29,7 +29,7 @@
     </record>
     <record id="action_add_period" model="ir.actions.act_window">
         <field name="name">Add period</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">add-period</field>
         <field name="res_model">add.period.to.vat.statement</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

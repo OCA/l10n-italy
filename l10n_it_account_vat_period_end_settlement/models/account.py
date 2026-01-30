@@ -10,6 +10,7 @@ import math
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command, Domain
 from odoo.tools import float_is_zero
 
 
@@ -248,9 +249,11 @@ class AccountVatPeriodEndStatement(models.Model):
         "account.move.line", string="Payments", compute="_compute_lines", store=True
     )
     date_range_ids = fields.One2many("date.range", "vat_statement_id", "Periods")
-    interest = fields.Boolean("Compute Interest", default=_get_default_interest)
+    interest = fields.Boolean(
+        "Compute Interest", default=lambda self: self._get_default_interest()
+    )
     interest_percent = fields.Float(
-        "Interest - Percent", default=_get_default_interest_percent
+        "Interest - Percent", default=lambda self: self._get_default_interest_percent()
     )
     fiscal_page_base = fields.Integer("Last printed page", required=True, default=0)
     fiscal_year = fields.Char("Fiscal year for report")
@@ -270,16 +273,15 @@ class AccountVatPeriodEndStatement(models.Model):
         domain = [("exclude_from_vat_settlements", "=", False)]
         tax_ids = self.env["account.tax"].search(domain)
         account_ids = tax_ids.mapped("repartition_line_ids.account_id")
-        return [("id", "in", account_ids.ids)]
+        return Domain("id", "in", account_ids.ids)
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_confirmed_paid_statement(self):
         for statement in self:
             if statement.state == "confirmed" or statement.state == "paid":
                 raise UserError(
                     self.env._("You cannot delete a confirmed or paid statement")
                 )
-        res = super().unlink()
-        return res
 
     def set_fiscal_year(self):
         for statement in self:
@@ -382,7 +384,7 @@ class AccountVatPeriodEndStatement(models.Model):
             current_line = end_debit_vat_data.copy()
             current_line["credit"] = term["company_amount"]
             current_line["date_maturity"] = term["date"]
-            payment_term_lines.append((0, 0, current_line))
+            payment_term_lines.append(Command.create(current_line))
         return payment_term_lines
 
     def _add_end_debit_vat_data(self, lines_to_create, move, statement, statement_date):
@@ -406,10 +408,10 @@ class AccountVatPeriodEndStatement(models.Model):
                 )
                 lines_to_create.extend(payment_term_lines)
             else:
-                lines_to_create.append((0, 0, end_debit_vat_data))
+                lines_to_create.append(Command.create(end_debit_vat_data))
         elif statement.authority_vat_amount < 0:
             end_debit_vat_data["debit"] = math.fabs(statement.authority_vat_amount)
-            lines_to_create.append((0, 0, end_debit_vat_data))
+            lines_to_create.append(Command.create(end_debit_vat_data))
 
     def _add_generic_vat_data(self, lines_to_create, move, statement, statement_date):
         for generic_line in statement.generic_vat_account_line_ids:
@@ -424,7 +426,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 generic_vat_data["debit"] = math.fabs(generic_line.amount)
             else:
                 generic_vat_data["credit"] = math.fabs(generic_line.amount)
-            lines_to_create.append((0, 0, generic_vat_data))
+            lines_to_create.append(Command.create(generic_vat_data))
 
     def _add_interests_data(self, lines_to_create, move, statement, statement_date):
         if statement.interests_debit_vat_amount:
@@ -443,7 +445,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 interests_data["credit"] = math.fabs(
                     statement.interests_debit_vat_amount
                 )
-            lines_to_create.append((0, 0, interests_data))
+            lines_to_create.append(Command.create(interests_data))
 
     def _add_previous_debit_data(
         self, lines_to_create, move, statement, statement_date
@@ -464,7 +466,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 previous_debit_vat_data["credit"] = math.fabs(
                     statement.previous_debit_vat_amount
                 )
-            lines_to_create.append((0, 0, previous_debit_vat_data))
+            lines_to_create.append(Command.create(previous_debit_vat_data))
 
     def _add_advance_vat_data(self, lines_to_create, move, statement, statement_date):
         if statement.advance_amount:
@@ -479,7 +481,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 advance_vat_data["debit"] = math.fabs(statement.advance_amount)
             else:
                 advance_vat_data["credit"] = math.fabs(statement.advance_amount)
-            lines_to_create.append((0, 0, advance_vat_data))
+            lines_to_create.append(Command.create(advance_vat_data))
 
     def _add_tax_credit_data(self, lines_to_create, move, statement, statement_date):
         if statement.tax_credit_amount:
@@ -494,7 +496,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 tax_credit_vat_data["debit"] = math.fabs(statement.tax_credit_amount)
             else:
                 tax_credit_vat_data["credit"] = math.fabs(statement.tax_credit_amount)
-            lines_to_create.append((0, 0, tax_credit_vat_data))
+            lines_to_create.append(Command.create(tax_credit_vat_data))
 
     def _add_previous_credit_vat_data(
         self, lines_to_create, move, statement, statement_date
@@ -515,7 +517,7 @@ class AccountVatPeriodEndStatement(models.Model):
                 previous_credit_vat_data["credit"] = math.fabs(
                     statement.previous_credit_vat_amount
                 )
-            lines_to_create.append((0, 0, previous_credit_vat_data))
+            lines_to_create.append(Command.create(previous_credit_vat_data))
 
     def _add_credit_vat_data(self, lines_to_create, move, statement, statement_date):
         for credit_line in statement.credit_vat_account_line_ids:
@@ -531,7 +533,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     credit_vat_data["debit"] = math.fabs(credit_line.amount)
                 else:
                     credit_vat_data["credit"] = math.fabs(credit_line.amount)
-                lines_to_create.append((0, 0, credit_vat_data))
+                lines_to_create.append(Command.create(credit_vat_data))
 
     def _add_debit_vat_data(self, lines_to_create, move, statement, statement_date):
         for debit_line in statement.debit_vat_account_line_ids:
@@ -547,7 +549,7 @@ class AccountVatPeriodEndStatement(models.Model):
                     debit_vat_data["debit"] = math.fabs(debit_line.amount)
                 else:
                     debit_vat_data["credit"] = math.fabs(debit_line.amount)
-                lines_to_create.append((0, 0, debit_vat_data))
+                lines_to_create.append(Command.create(debit_vat_data))
 
     def _get_previous_statements(self):
         self.ensure_one()
@@ -654,17 +656,17 @@ class AccountVatPeriodEndStatement(models.Model):
                 raise UserError(
                     self.env._(
                         "The tax %s has no debit account defined. "
-                        "Please define it in the tax form."
+                        "Please define it in the tax form.",
+                        debit_tax.name,
                     )
-                    % debit_tax.name
                 )
             if len(debit_accounts) > 1:
                 raise UserError(
                     self.env._(
                         "The tax %s has more than one debit account defined. "
-                        "Please define only one in the tax form."
+                        "Please define only one in the tax form.",
+                        debit_tax.name,
                     )
-                    % debit_tax.name
                 )
             debit_account_id = debit_accounts.id
         debit_line_ids.append(
@@ -692,17 +694,17 @@ class AccountVatPeriodEndStatement(models.Model):
                 raise UserError(
                     self.env._(
                         "The tax %s has no credit account defined. "
-                        "Please define it in the tax form."
+                        "Please define it in the tax form.",
+                        credit_tax.name,
                     )
-                    % credit_tax.name
                 )
             if len(credit_accounts) > 1:
                 raise UserError(
                     self.env._(
                         "The tax %s has more than one credit account defined. "
-                        "Please define only one in the tax form."
+                        "Please define only one in the tax form.",
+                        credit_tax.name,
                     )
-                    % credit_tax.name
                 )
             credit_account_id = credit_accounts.id
         credit_line_ids.append(
