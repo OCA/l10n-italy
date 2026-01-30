@@ -4,6 +4,7 @@
 import datetime
 
 from odoo import fields
+from odoo.fields import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -14,6 +15,20 @@ class TestAccount(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Azure Interior",
+                "is_company": True,
+                "street": "4557 De Silva St",
+                "city": "Fremont",
+                "state_id": cls.env.ref("base.state_us_5").id,
+                "zip": "94538",
+                "phone": "(870) 931-0505",
+                "email": "azure.Interior24@example.com",
+                "website": "http://www.azure-interior.com",
+                "vat": "US12345677",
+            }
+        )
         cls.iva_22I5 = cls.env["account.tax"].create(
             {
                 "name": "IVA al 22% detraibile al 50%",
@@ -23,27 +38,20 @@ class TestAccount(AccountTestInvoicingCommon):
                 "type_tax_use": "purchase",
                 "price_include": False,
                 "invoice_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
                             "account_id": cls.company_data["default_account_assets"].id,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
@@ -51,26 +59,19 @@ class TestAccount(AccountTestInvoicingCommon):
                     ),
                 ],
                 "refund_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
@@ -89,17 +90,13 @@ class TestAccount(AccountTestInvoicingCommon):
                 "type_tax_use": "purchase",
                 "price_include": False,
                 "invoice_repartition_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "tax",
@@ -107,17 +104,13 @@ class TestAccount(AccountTestInvoicingCommon):
                     ),
                 ],
                 "refund_repartition_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "tax",
@@ -132,7 +125,7 @@ class TestAccount(AccountTestInvoicingCommon):
         move_form = Form(
             self.env["account.move"].with_context(default_move_type="in_invoice")
         )
-        move_form.partner_id = self.env.ref("base.res_partner_12")
+        move_form.partner_id = self.partner
         move_form.invoice_date = today
         with move_form.invoice_line_ids.new() as line_form:
             line_form.name = "test line"
@@ -178,7 +171,7 @@ class TestAccount(AccountTestInvoicingCommon):
         today = fields.Date.today()
         self.init_invoice(
             "in_invoice",
-            partner=self.env.ref("base.res_partner_12"),
+            partner=self.partner,
             invoice_date=today,
             post=True,
             amounts=[100],
@@ -187,7 +180,7 @@ class TestAccount(AccountTestInvoicingCommon):
         tomorrow = today + datetime.timedelta(days=1)
         self.init_invoice(
             "in_invoice",
-            partner=self.env.ref("base.res_partner_12"),
+            partner=self.partner,
             invoice_date=tomorrow,
             post=True,
             amounts=[200],

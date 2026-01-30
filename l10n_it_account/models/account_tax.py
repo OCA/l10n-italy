@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 ASSET_TYPES = (
     "asset_receivable",
@@ -141,9 +142,10 @@ class AccountTax(models.Model):
                 financial_type=financial_type,
                 account_ids=account_ids,
             )
-            balance = self.env["account.move.line"].read_group(domain, ["balance"], [])[
-                0
-            ]["balance"]
+            lines = self.env["account.move.line"].formatted_read_group(
+                domain, [], ["balance:sum"]
+            )
+            balance = next(iter(lines), lines).get("balance:sum", 0)
             balance = balance and -balance or 0
         elif exclude_account_ids is not None:
             domain = self.get_move_lines_domain(
@@ -151,9 +153,10 @@ class AccountTax(models.Model):
                 financial_type=financial_type,
                 exclude_account_ids=exclude_account_ids,
             )
-            balance = self.env["account.move.line"].read_group(domain, ["balance"], [])[
-                0
-            ]["balance"]
+            lines = self.env["account.move.line"].formatted_read_group(
+                domain, [], ["balance:sum"]
+            )
+            balance = next(iter(lines), lines).get("balance:sum", 0)
             balance = balance and -balance or 0
         return balance
 
@@ -169,20 +172,10 @@ class AccountTax(models.Model):
             financial_type=financial_type,
         )
         if account_ids is not None:
-            domain.append(
-                (
-                    "account_id",
-                    "in",
-                    account_ids,
-                )
-            )
+            domain = Domain.AND([domain, Domain("account_id", "in", account_ids)])
         elif exclude_account_ids is not None:
-            domain.append(
-                (
-                    "account_id",
-                    "not in",
-                    exclude_account_ids,
-                )
+            domain = Domain.AND(
+                [domain, Domain("account_id", "not in", exclude_account_ids)]
             )
         return domain
 
@@ -200,7 +193,8 @@ class AccountTax(models.Model):
         self.ensure_one()
         name = self.name
         if self.parent_tax_ids and len(self.parent_tax_ids) == 1:
-            name = self.parent_tax_ids[0].name
+            parent_taxes = self.parent_tax_ids
+            name = next(iter(parent_taxes), parent_taxes).name
         return name
 
     def _compute_totals_tax(self, data):
