@@ -102,5 +102,5 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
 
     def confirm(self):
         raise NotImplementedError(
-            "This functionality isn't ready yet. " "Please, come back later."
+            "This functionality isn't ready yet. Please, come back later."
         )
