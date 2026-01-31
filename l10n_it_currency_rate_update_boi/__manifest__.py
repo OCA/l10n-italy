@@ -6,7 +6,7 @@
     "version": "18.0.1.0.0",
     "category": "Financial Management/Configuration",
     "summary": "Update exchange rates using www.bancaditalia.it",
-    "author": "TAKOBI, " "Odoo Community Association (OCA)",
+    "author": "TAKOBI, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "maintainers": ["eLBati"],
     "license": "AGPL-3",
