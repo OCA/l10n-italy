@@ -11,7 +11,7 @@
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-italy"
     "/tree/18.0/l10n_it_accompanying_invoice",
-    "author": "Agile Business Group, " "Odoo Community Association (OCA)",
+    "author": "Agile Business Group, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
