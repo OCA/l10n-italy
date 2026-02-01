@@ -29,6 +29,7 @@
         model="ir.actions.act_window"
     >
         <field name="name">Create invoices</field>
+        <field name="path">create-invoices</field>
         <field name="res_model">stock.delivery.note.invoice.wizard</field>
         <field name="view_mode">form</field>
         <field

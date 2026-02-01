@@ -17,12 +17,13 @@ class StockPickingGoodsAppearance(models.Model):
     sequence = fields.Integer(index=True, default=10)
     name = fields.Char(
         string="Appearance name",
-        index=True,
+        index="trigram",
         required=True,
         translate=True,
     )
     note = fields.Html(string="Internal note")
 
-    _sql_constraints = [
-        ("name_uniq", "unique(name)", "This appearance of goods already exists!")
-    ]
+    _name_uniq = models.Constraint(
+        "UNIQUE(name)",
+        "This appearance of goods already exists!",
+    )

@@ -7,6 +7,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+from odoo.fields import Domain
 
 from .stock_delivery_note import DATE_FORMAT, DOMAIN_INVOICE_STATUSES
 
@@ -37,7 +38,7 @@ class AccountInvoice(models.Model):
         action.update(kwargs)
 
         if len(delivery_notes) > 1:
-            action["domain"] = [("id", "in", delivery_notes.ids)]
+            action["domain"] = Domain("id", "in", delivery_notes.ids)
 
         elif len(delivery_notes) == 1:
             action["views"] = [
@@ -78,11 +79,11 @@ class AccountInvoice(models.Model):
         return {
             "sequence": sequence,
             "display_type": "line_note",
-            "name": self.env._("""Delivery Note "%(ddt_name)s" of %(ddt_date)s""")
-            % {
-                "ddt_name": delivery_note_id.name,
-                "ddt_date": delivery_note_id.date.strftime(DATE_FORMAT),
-            },
+            "name": self.env._(
+                """Delivery Note "%(ddt_name)s" of %(ddt_date)s""",
+                ddt_name=delivery_note_id.name,
+                ddt_date=delivery_note_id.date.strftime(DATE_FORMAT),
+            ),
             "note_dn": True,
             "delivery_note_id": delivery_note_id.id,
             "quantity": 0,

@@ -20,7 +20,7 @@ class StockPickingTransportCondition(models.Model):
     sequence = fields.Integer(index=True, default=10)
     name = fields.Char(
         string="Condition name",
-        index=True,
+        index="trigram",
         required=True,
         translate=True,
     )
@@ -39,6 +39,7 @@ class StockPickingTransportCondition(models.Model):
 
     note = fields.Html(string="Internal note")
 
-    _sql_constraints = [
-        ("name_uniq", "unique(name)", "This condition of transport already exists!")
-    ]
+    _name_uniq = models.Constraint(
+        "UNIQUE(name)",
+        "This condition of transport already exists!",
+    )
