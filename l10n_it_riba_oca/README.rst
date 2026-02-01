@@ -21,13 +21,13 @@ ITA - Ricevute bancarie
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_riba_oca
+    :target: https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_riba_oca
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_riba_oca
+    :target: https://translation.odoo-community.org/projects/l10n-italy-19-0/l10n-italy-19-0-l10n_it_riba_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -50,12 +50,12 @@ Nella configurazione delle RiBa è possibile specificare se si tratti di
 'Salvo buon fine' o 'Al dopo incasso', che hanno un flusso completamente
 diverso.
 
-- Al dopo incasso: le fatture risulteranno pagate all'accettazione;
-  l'incasso potrà essere registrato con una normale riconciliazione
-  bancaria, che andrà a chiudere gli "effetti attivi" aperti
-  all'accettazione.
-- Salvo buon fine: le registrazioni generate seguiranno la struttura
-  descritta nel documento http://goo.gl/jpRhJp
+-  Al dopo incasso: le fatture risulteranno pagate all'accettazione;
+   l'incasso potrà essere registrato con una normale riconciliazione
+   bancaria, che andrà a chiudere gli "effetti attivi" aperti
+   all'accettazione.
+-  Salvo buon fine: le registrazioni generate seguiranno la struttura
+   descritta nel documento http://goo.gl/jpRhJp
 
 È possibile specificare diverse configurazioni (dal menù *Configurazione
 → Pagamenti → Configurazione RiBa*). Per ognuna, in caso di 'Salvo buon
@@ -112,12 +112,13 @@ In maniera predefinita la data delle registrazioni dei pagamenti viene
 impostata con la data di scadenza della RiBa, ma è possibile modificarla
 in due momenti:
 
-- durante la creazione del pagamento, cliccando su "Segna righe come
-  pagate" o su "Segna coma pagata" o usando l'azione "Registrazione Riba
-  a data di scadenza" e indicando una data nel campo ``Data pagamento``,
-- successivamente a pagamento effettivamente avvenuto selezionando la
-  registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta
-  data di pagamento RiBa".
+-  durante la creazione del pagamento, cliccando su "Segna righe come
+   pagate" o su "Segna coma pagata" o usando l'azione "Registrazione
+   Riba a data di scadenza" e indicando una data nel campo
+   ``Data pagamento``,
+-  successivamente a pagamento effettivamente avvenuto selezionando la
+   registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta
+   data di pagamento RiBa".
 
 Non è possibile emettere Riba per fatture verso Enti che richiedono più
 di un CIG e un CUP differenti per fattura. In questo caso particolare,
@@ -131,7 +132,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_riba_oca%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_riba_oca%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -141,27 +142,27 @@ Credits
 Contributors
 ------------
 
-- Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-- Andrea Cometa <a.cometa@apuliasoftware.it>
-- Andrea Gallina <a.gallina@apuliasoftware.it>
-- Davide Corio <info@davidecorio.com>
-- Giacomo Grasso <giacomo.grasso@agilebg.com>
-- Gabriele Baldessari <gabriele.baldessari@gmail.com>
-- Alex Comba <alex.comba@agilebg.com>
-- Marco Calcagni <mcalcagni@dinamicheaziendali.it>
-- Sergio Zanchetta <https://github.com/primes2h>
-- Simone Vanin <simone.vanin@agilebg.com>
-- Sergio Corato <https://github.com/sergiocorato>
-- Giovanni Serra <giovanni@gslab.it>
-- `Aion Tech <https://aiontech.company/>`__:
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Andrea Cometa <a.cometa@apuliasoftware.it>
+-  Andrea Gallina <a.gallina@apuliasoftware.it>
+-  Davide Corio <info@davidecorio.com>
+-  Giacomo Grasso <giacomo.grasso@agilebg.com>
+-  Gabriele Baldessari <gabriele.baldessari@gmail.com>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Simone Vanin <simone.vanin@agilebg.com>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  Giovanni Serra <giovanni@gslab.it>
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
-- `TAKOBI <https://takobi.online>`__:
+-  `TAKOBI <https://takobi.online>`__:
 
-  - Simone Rubino <sir@takobi.online>
+   -  Simone Rubino <sir@takobi.online>
 
-- Nextev Srl <odoo@nextev.it>
+-  Nextev Srl <odoo@nextev.it>
 
 Maintainers
 -----------
@@ -176,6 +177,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_riba_oca>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_riba_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

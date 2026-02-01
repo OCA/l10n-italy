@@ -82,7 +82,7 @@
 
     <record id="detail_riba_action" model="ir.actions.act_window">
         <field name="name">RiBa Slip Detail</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">riba-slip-detail</field>
         <field name="res_model">riba.slip.line</field>
         <field name="view_mode">list</field>
         <field name="search_view_id" ref="view_detail_riba_filter" />

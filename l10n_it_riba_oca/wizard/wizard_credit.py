@@ -9,6 +9,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command
 
 
 class RibaCredit(models.TransientModel):
@@ -96,12 +97,12 @@ class RibaCredit(models.TransientModel):
     credit_journal_id = fields.Many2one(
         "account.journal",
         string="Credit Journal",
-        default=_get_credit_journal_id,
+        default=lambda self: self._get_credit_journal_id(),
     )
     credit_account_id = fields.Many2one(
         "account.account",
         string="RiBa Credit Account",
-        default=_get_credit_account_id,
+        default=lambda self: self._get_credit_account_id(),
         help="Asset account representing amounts credited by the bank. "
         "This will be debited with the credit amount.",
     )
@@ -113,12 +114,12 @@ class RibaCredit(models.TransientModel):
     acceptance_account_id = fields.Many2one(
         "account.account",
         string="Acceptance Account",
-        default=_get_acceptance_account_id,
+        default=lambda self: self._get_acceptance_account_id(),
         help="Liability account used during RiBa acceptance. "
         "This will be credited to reverse the acceptance entry.",
     )
     acceptance_amount = fields.Float(
-        default=_get_acceptance_amount,
+        default=lambda self: self._get_acceptance_amount(),
         help="Total amount from the RiBa slip that was recorded during acceptance. "
         "This amount will be used to reverse the acceptance liability.",
     )
@@ -127,14 +128,14 @@ class RibaCredit(models.TransientModel):
     bank_account_id = fields.Many2one(
         "account.account",
         string="Bank Account",
-        default=_get_bank_account_id,
+        default=lambda self: self._get_bank_account_id(),
         help="Bank account from which collection fees will be paid. "
         "This account will be credited for any expense amounts.",
     )
     bank_expense_account_id = fields.Many2one(
         "account.account",
         string="Bank Fees Account",
-        default=_get_bank_expense_account_id,
+        default=lambda self: self._get_bank_expense_account_id(),
         help="Expense account for recording bank collection fees. "
         "This account will be debited for any fees charged by the bank.",
     )
@@ -192,7 +193,7 @@ class RibaCredit(models.TransientModel):
 
         # Prepare the basic credit move with core RiBa entries
         move_vals = {
-            "ref": self.env._("RiBa Credit %s") % slip.name,
+            "ref": self.env._("RiBa Credit %s", slip.name),
             "journal_id": wizard.credit_journal_id.id,
             "line_ids": [
                 # Debit RiBa Credit Account - Represents amount bank will collect
@@ -226,9 +227,7 @@ class RibaCredit(models.TransientModel):
             move_vals["line_ids"].extend(
                 [
                     # Debit Bank Fees - Record collection expense
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": self.env._("Bank Fee"),
                             "account_id": wizard.bank_expense_account_id.id,
@@ -237,9 +236,7 @@ class RibaCredit(models.TransientModel):
                         },
                     ),
                     # Credit Bank Account - Payment of fees from bank balance
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": self.env._("Bank Account"),
                             "account_id": wizard.bank_account_id.id,

@@ -32,7 +32,7 @@
 
     <record id="riba_presentation_action" model="ir.actions.act_window">
         <field name="name">Presentation Riba</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">presentation-riba</field>
         <field name="res_model">presentation.riba.issue</field>
         <field name="target">new</field>
         <field name="view_id" ref="wizard_presentation_riba" />

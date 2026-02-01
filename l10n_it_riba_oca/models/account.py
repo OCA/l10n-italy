@@ -10,6 +10,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command, Domain
 
 
 class AccountPaymentTerm(models.Model):
@@ -43,9 +44,7 @@ class ResPartnerBankAdd(models.Model):
     def _domain_riba_partner_bank_id(self):
         """Domain to select bank accounts linked to the current company."""
         company = self.env.company
-        return [
-            ("partner_id", "=", company.partner_id.id),
-        ]
+        return Domain("partner_id", "=", company.partner_id.id)
 
     def _check_protected_records(self):
         protected_records = (
@@ -125,7 +124,7 @@ class AccountMove(models.Model):
     riba_supplier_company_bank_id = fields.Many2one(
         comodel_name="res.partner.bank",
         compute="_compute_riba_supplier_company_bank_id",
-        domain=_domain_riba_supplier_company_bank_id,
+        domain=lambda self: self._domain_riba_supplier_company_bank_id(),
         help="Bank account used for the RiBa of this vendor bill.",
         store=True,
         string="Company Bank Account for Supplier",
@@ -204,8 +203,8 @@ class AccountMove(models.Model):
             raise UserError(
                 self.env._(
                     "Cannot post invoices with C/O payments without bank. "
-                    "Please check the following invoices:\n\n- "
-                    + "\n- ".join(inv_details)
+                    "Please check the following invoices:\n\n- %s",
+                    "\n- ".join(inv_details),
                 )
             )
         return super()._post(soft=soft)
@@ -267,7 +266,8 @@ class AccountMove(models.Model):
                             invoice.invoice_payment_term_id.riba_payment_cost
                         ),
                         "due_cost_line": True,
-                        "name": self.env._("{line_name} for {month}-{year}").format(
+                        "name": self.env._(
+                            "%(line_name)s for %(month)s-%(year)s",
                             line_name=service_prod.name,
                             month=pay_date["date"].month,
                             year=pay_date["date"].year,
@@ -278,8 +278,8 @@ class AccountMove(models.Model):
                     # ---- Update Line Value with tax if is set on product
                     if invoice.company_id.due_cost_service_id.taxes_id:
                         tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
-                        line_vals.update({"tax_ids": [(4, tax.id)]})
-                    invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
+                        line_vals.update({"tax_ids": [Command.link(tax.id)]})
+                    invoice.write({"invoice_line_ids": [Command.create(line_vals)]})
                     # ---- recompute invoice taxes
                     invoice._sync_dynamic_lines(
                         container={"records": invoice, "self": invoice}
@@ -322,7 +322,11 @@ class AccountMove(models.Model):
             due_cost_line_ids = invoice.get_due_cost_line_ids()
             if due_cost_line_ids:
                 invoice.write(
-                    {"invoice_line_ids": [(2, id, 0) for id in due_cost_line_ids]}
+                    {
+                        "invoice_line_ids": [
+                            Command.delete(id) for id in due_cost_line_ids
+                        ]
+                    }
                 )
                 invoice._sync_dynamic_lines(
                     container={"records": invoice, "self": invoice}
@@ -362,7 +366,11 @@ class AccountMove(models.Model):
             due_cost_line_ids = invoice.get_due_cost_line_ids()
             if due_cost_line_ids:
                 invoice.write(
-                    {"invoice_line_ids": [(2, id, 0) for id in due_cost_line_ids]}
+                    {
+                        "invoice_line_ids": [
+                            Command.delete(id) for id in due_cost_line_ids
+                        ]
+                    }
                 )
                 invoice._sync_dynamic_lines(
                     container={"records": invoice, "self": invoice}
@@ -410,36 +418,22 @@ class AccountMoveLine(models.Model):
     due_cost_line = fields.Boolean("RiBa Collection Fees Line")
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        model_data_obj = self.env["ir.model.data"]
-        ids = model_data_obj.search(
-            [
-                ("module", "=", "l10n_it_riba_oca"),
-                ("name", "=", "view_riba_to_issue_tree"),
-            ]
-        )
-        if ids:
-            view_payments_tree_id = model_data_obj.get_object_reference(
-                "l10n_it_riba_oca", "view_riba_to_issue_tree"
-            )
-        if ids and view_id == view_payments_tree_id[1]:
+    def get_view(self, view_id=None, view_type="form", **options):
+        view_payments_tree_id = self.env.ref("l10n_it_riba_oca.view_riba_to_issue_tree")
+        if view_id == view_payments_tree_id.id:
             # Use RiBa slip
-            result = super(models.Model, self).fields_view_get(
+            result = super(models.Model, self).get_view(
                 view_id=view_id,
                 view_type=view_type,
-                toolbar=toolbar,
-                submenu=submenu,
+                **options,
             )
         else:
             # Use special views for account.move.line object
             # (for ex. list view contains user defined fields)
-            result = super().fields_view_get(
+            result = super().get_view(
                 view_id=view_id,
                 view_type=view_type,
-                toolbar=toolbar,
-                submenu=submenu,
+                **options,
             )
         return result
 
@@ -480,9 +474,10 @@ class AccountMoveLine(models.Model):
                 raise UserError(
                     self.env._(
                         "Non è possibile emettere una riba legata ad un IBAN "
-                        "archiviato; riga: %s , contatto: %s"
+                        "archiviato; riga: %(name)s , contatto: %(partner_name)s",
+                        name=line.name,
+                        partner_name=line.partner_id.name,
                     )
-                    % (line.name, line.partner_id.name)
                 )
         ctx = dict(self.env.context)
         ctx.pop("active_id", None)
