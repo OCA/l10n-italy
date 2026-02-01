@@ -1,6 +1,6 @@
 from odoo.exceptions import AccessError, MissingError
+from odoo.fields import Domain
 from odoo.http import request, route
-from odoo.osv.expression import OR
 
 from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.addons.portal.controllers.portal import pager as portal_pager
@@ -8,19 +8,19 @@ from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 class DNCustomerPortal(CustomerPortal):
     def _get_delivery_note_domain(self):
-        domain = [("state", "in", ["confirm", "invoiced", "done"])]
-        return domain
+        return Domain("state", "in", ["confirm", "invoiced", "done"])
 
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
-        dn_count = (
-            request.env["stock.delivery.note"].search_count(
-                self._get_delivery_note_domain()
+        if "dn_count" in counters:
+            dn_count = (
+                request.env["stock.delivery.note"].search_count(
+                    self._get_delivery_note_domain()
+                )
+                if request.env["stock.delivery.note"].has_access("read")
+                else 0
             )
-            if request.env["stock.delivery.note"].has_access("read")
-            else 0
-        )
-        values["dn_count"] = dn_count
+            values["dn_count"] = dn_count
         return values
 
     def _get_delivery_notes_searchbar_sortings(self):
@@ -61,13 +61,13 @@ class DNCustomerPortal(CustomerPortal):
         domain = self._get_delivery_note_domain()
 
         if date_begin and date_end:
-            domain += [("date", ">", date_begin), ("date", "<=", date_end)]
+            domain &= Domain([("date", ">", date_begin), ("date", "<=", date_end)])
 
         if search and search_in:
             search_domain = []
             if search_in == "name":
-                search_domain = OR([search_domain, [("name", "ilike", search)]])
-            domain += search_domain
+                search_domain = Domain.OR([search_domain, [("name", "ilike", search)]])
+            domain &= Domain(search_domain)
 
         pager_values = portal_pager(
             url=url,

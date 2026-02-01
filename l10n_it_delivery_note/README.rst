@@ -21,13 +21,13 @@ ITA - Documento di trasporto
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_delivery_note
+    :target: https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_delivery_note
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_delivery_note
+    :target: https://translation.odoo-community.org/projects/l10n-italy-19-0/l10n-italy-19-0-l10n_it_delivery_note
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -48,8 +48,8 @@ installed together.
 
 There are two available settings:
 
-- Base (default): one picking, one DN.
-- Advanced: more picking in one DN.
+-  Base (default): one picking, one DN.
+-  Advanced: more picking in one DN.
 
 **Italiano**
 
@@ -66,8 +66,8 @@ Non è possibile avere installati contemporaneamente ``l10n_it_ddt`` e
 
 Ci sono due impostazioni possibili.
 
-- Base (predefinita): un prelievo, un DDT.
-- Avanzata: più prelievi in un DDT.
+-  Base (predefinita): un prelievo, un DDT.
+-  Avanzata: più prelievi in un DDT.
 
 **Table of contents**
 
@@ -100,11 +100,14 @@ To configure this module, go to:
    In delivery note type you can specify if the product price have to be
    printed in the delivery note report/slip.
 
-   - *Inventory → Configuration → Delivery Notes → Conditions of
-     Transport*
-   - *Inventory → Configuration → Delivery Notes → Appearances of Goods*
-   - *Inventory → Configuration → Delivery Notes → Reasons of Transport*
-   - *Inventory → Configuration → Delivery Notes → Methods of Transport*
+   -  *Inventory → Configuration → Delivery Notes → Conditions of
+      Transport*
+   -  *Inventory → Configuration → Delivery Notes → Appearances of
+      Goods*
+   -  *Inventory → Configuration → Delivery Notes → Reasons of
+      Transport*
+   -  *Inventory → Configuration → Delivery Notes → Methods of
+      Transport*
 
 3. *Settings → User & Companies → Users*
 
@@ -142,10 +145,10 @@ Funzionalità avanzata
 
 Vengono attivate varie funzionalità aggiuntive:
 
-- più prelievi per un DDT
-- selezione multipla di prelievi e generazione dei DDT
-- aggiunta righe nota e righe sezione descrittive.
-- lista dei DDT.
+-  più prelievi per un DDT
+-  selezione multipla di prelievi e generazione dei DDT
+-  aggiunta righe nota e righe sezione descrittive.
+-  lista dei DDT.
 
 Il report DDT stampa in righe aggiuntive i lotti/seriali e le scadenze
 del prodotto.
@@ -170,7 +173,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_delivery_note%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_delivery_note%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -187,39 +190,39 @@ Authors
 Contributors
 ------------
 
-- Riccardo Bellanova <r.bellanova@apuliasoftware.it>
+-  Riccardo Bellanova <r.bellanova@apuliasoftware.it>
 
-- Matteo Bilotta <mbilotta@linkeurope.it>
+-  Matteo Bilotta <mbilotta@linkeurope.it>
 
-- Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+-  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 
-- Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
 
-- Marco Colombo <marco.colombo@gmail.com>
+-  Marco Colombo <marco.colombo@gmail.com>
 
-- Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
 
-- Letizia Freda <letizia.freda@netfarm.it>
+-  Letizia Freda <letizia.freda@netfarm.it>
 
-- Andrea Piovesana <andrea.m.piovesana@gmail.com>
+-  Andrea Piovesana <andrea.m.piovesana@gmail.com>
 
-- Alex Comba <alex.comba@agilebg.com>
+-  Alex Comba <alex.comba@agilebg.com>
 
-- `Ooops <https://www.ooops404.com>`__:
+-  `Ooops <https://www.ooops404.com>`__:
 
-     - Giovanni Serra <giovanni@gslab.it>
-     - Foresti Francesco <francesco.foresti@ooops404.com>
+      -  Giovanni Serra <giovanni@gslab.it>
+      -  Foresti Francesco <francesco.foresti@ooops404.com>
 
-- Nextev Srl <odoo@nextev.it>
+-  Nextev Srl <odoo@nextev.it>
 
-- `PyTech-SRL <https://www.pytech.it>`__:
+-  `PyTech-SRL <https://www.pytech.it>`__:
 
-     - Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
-     - Sebastiano Picchi <sebastiano.picchi@pytech.it>
+      -  Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
+      -  Sebastiano Picchi <sebastiano.picchi@pytech.it>
 
-- `Aion Tech <https://aiontech.company/>`__:
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
@@ -248,6 +251,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-MarcoCalcagni| |maintainer-aleuffre| |maintainer-renda-dev| 
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_delivery_note>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_delivery_note>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

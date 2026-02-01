@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests import Form, new_test_user
+from odoo.fields import Command
+from odoo.tests import Form
 
 from .delivery_note_common import StockDeliveryNoteCommon
 
@@ -17,13 +18,6 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         #        └ Picking ┐
         #                  └ DdT
         #
-
-        user = new_test_user(
-            self.env,
-            login="test",
-            groups="stock.group_stock_manager",
-        )
-        self.env.user = user
         StockPicking = self.env["stock.picking"]
 
         sales_order = self.create_sales_order(
@@ -66,13 +60,6 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         #     Picking ┐
         #             └ DdT
         #
-        user = new_test_user(
-            self.env,
-            login="test",
-            groups="stock.group_stock_manager",
-        )
-        self.env.user = user
-
         picking = self.create_picking()
 
         self.assertEqual(len(picking.move_ids), 1)
@@ -98,16 +85,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         self.assertIn("belongs to another company", exc_message)
 
     def test_delivery_action_confirm(self):
-        user = new_test_user(
-            self.env,
-            login="test",
-            groups="stock.group_stock_manager",
-        )
-        self.env.user = user
-
-        picking = self.create_picking(
-            carrier_id=self.env.ref("delivery.delivery_carrier").id
-        )
+        picking = self.create_picking(carrier_id=self.delivery_carrier.id)
 
         picking.move_ids.quantity = False
         picking.move_ids.quantity = 1
@@ -143,7 +121,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         picking.move_ids.quantity = 1
         new_picking.button_validate()
 
-        delivery_note_id.write({"picking_ids": [(4, new_picking.id)]})
+        delivery_note_id.write({"picking_ids": [Command.link(new_picking.id)]})
 
         warning_context = delivery_note_id.action_confirm().get("context")
         self.assertTrue(warning_context)
@@ -154,9 +132,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
 
         picking.carrier_id = self.env.ref("delivery.free_delivery_carrier").id
         new_picking.carrier_id = self.env.ref("delivery.free_delivery_carrier").id
-        delivery_note_id.carrier_id = self.env.ref(
-            "l10n_it_delivery_note.partner_carrier_2"
-        ).id
+        delivery_note_id.carrier_id = self.partner_carrier_2.id
 
         warning_context = delivery_note_id.action_confirm().get("context")
         self.assertTrue(warning_context)
@@ -169,7 +145,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         delivery_note_id.delivery_method_id = self.env.ref(
             "delivery.free_delivery_carrier"
         ).id
-        picking.carrier_id = self.env.ref("delivery.delivery_carrier").id
+        picking.carrier_id = self.delivery_carrier.id
         new_picking.carrier_id = self.env.ref("delivery.free_delivery_carrier").id
         warning_context = delivery_note_id.action_confirm().get("context")
         self.assertTrue(warning_context)
@@ -179,13 +155,11 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
             warning_context.get("default_warning_message"),
         )
 
-        new_picking.carrier_id = self.env.ref("delivery.delivery_carrier").id
+        new_picking.carrier_id = self.delivery_carrier.id
         delivery_note_id.delivery_method_id = self.env.ref(
             "delivery.free_delivery_carrier"
         ).id
-        delivery_note_id.carrier_id = self.env.ref(
-            "l10n_it_delivery_note.partner_carrier_1"
-        ).id
+        delivery_note_id.carrier_id = self.partner_carrier_1.id
         warning_context = delivery_note_id.action_confirm().get("context")
         self.assertTrue(warning_context)
         self.assertIn(
@@ -195,17 +169,16 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         )
 
     def test_delivery_action_confirm_without_ref(self):
-        user = new_test_user(
-            self.env,
-            login="test",
-            groups="stock.group_stock_manager,"
-            "l10n_it_delivery_note.group_required_partner_ref",
+        group_required_partner_ref = self.env.ref(
+            "l10n_it_delivery_note.group_required_partner_ref"
         )
-        self.env.user = user
+        self.env.user.write(
+            {"group_ids": [Command.link(group_required_partner_ref.id)]}
+        )
 
         picking = self.create_picking(
             picking_type_id=self.env.ref("stock.picking_type_in").id,
-            carrier_id=self.env.ref("delivery.delivery_carrier").id,
+            carrier_id=self.delivery_carrier.id,
         )
         picking.move_ids.quantity = False
         picking.move_ids.quantity = 1
