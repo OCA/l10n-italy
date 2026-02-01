@@ -9,11 +9,16 @@
     "name": "ITA - Stato patrimoniale e conto economico",
     "summary": "Rendicontazione .pdf e .xls per stato patrimoniale e conto"
     " economico a sezioni contrapposte",
-    "version": "18.0.1.1.0",
+    "version": "19.0.1.0.0",
     "category": "Localization/Italy",
     "author": "Odoo Community Association (OCA), Openforce",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
+    "external_dependencies": {
+        "python": [
+            "xlrd==1.2.0",
+        ],
+    },
     "depends": [
         "account_financial_report",
         "l10n_it_account",
