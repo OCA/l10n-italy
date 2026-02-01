@@ -1,7 +1,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare
 
@@ -28,14 +28,14 @@ class ReportFinancialStatementsReport(models.AbstractModel):
             res = self.do_print(wizard, report_data, report_type)
         elif report_type:
             raise ValidationError(
-                _(
-                    "No report has been defined for report type '{}'.",
+                self.env._(
+                    "No report has been defined for report type '%s'.",
                     report_type,
                 )
             )
         else:
             raise ValidationError(
-                _("No report type has been declared for current print.")
+                self.env._("No report type has been declared for current print.")
             )
         return res
 
@@ -69,7 +69,7 @@ class ReportFinancialStatementsReport(models.AbstractModel):
         cols = self.get_column_data().get(rep_type)
         if not cols:
             raise ValidationError(
-                _("Unknown report type; cannot parse it into a table.")
+                self.env._("Unknown report type; cannot parse it into a table.")
             )
         l_sec, l_name = cols["left"]["section"], cols["left"]["name"]
         r_sec, r_name = cols["right"]["section"], cols["right"]["name"]
@@ -189,24 +189,24 @@ class ReportFinancialStatementsReport(models.AbstractModel):
             "balance_sheet": {
                 "left": {
                     "section": "assets",
-                    "name": _("ASSETS"),
+                    "name": self.env._("ASSETS"),
                 },
                 "right": {
                     "section": "liabilities",
-                    "name": _("LIABILITIES"),
+                    "name": self.env._("LIABILITIES"),
                 },
-                "title": _("BALANCE SHEET"),
+                "title": self.env._("BALANCE SHEET"),
             },
             "profit_loss": {
                 "left": {
                     "section": "expenses",
-                    "name": _("COSTS"),
+                    "name": self.env._("COSTS"),
                 },
                 "right": {
                     "section": "incomes",
-                    "name": _("REVENUES"),
+                    "name": self.env._("REVENUES"),
                 },
-                "title": _("PROFIT & LOSS"),
+                "title": self.env._("PROFIT & LOSS"),
             },
         }
 

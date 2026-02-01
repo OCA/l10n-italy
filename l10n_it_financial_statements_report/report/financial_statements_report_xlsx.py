@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _, models
+from odoo import models
 from odoo.tools import get_lang
 from odoo.tools.float_utils import float_compare, float_is_zero, float_round
 
@@ -42,15 +42,10 @@ class FinancialStatementsReportXslx(models.AbstractModel):
     _description = "Financial Statements XLSX Report"
     _inherit = "report.account_financial_report.abstract_report_xlsx"
 
-    def _define_formats(self, workbook, report_data):
+    def _define_formats(self, workbook, report_data, data=None):
         """Defines new formats"""
-        res = super()._define_formats(workbook, report_data)
-        company_id = report_data.get("company_id")
-        if company_id is not None:
-            company = self.env["res.company"].browse(company_id)
-            currency = company.currency_id
-        else:
-            currency = self.env["res.company"]._default_currency_id()
+        res = super()._define_formats(workbook, report_data, data=data)
+        currency = self._get_currency_from_company(data=data)
         report_data["financial_statements_report_currency"] = currency
         report_data["formats"]["format_amount_right"] = report_data["formats"][
             "format_amount"
@@ -122,32 +117,32 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         date_to = report.date_to.strftime("%d-%m-%Y")
         return [
             (
-                _("Date range filter"),
-                _(
+                self.env._("Date range filter"),
+                self.env._(
                     "From: %(from_)s To: %(to)s",
                     from_=date_from,
                     to=date_to,
                 ),
             ),
             (
-                _("Target moves filter"),
-                _("All posted entries")
+                self.env._("Target moves filter"),
+                self.env._("All posted entries")
                 if report.target_move == "posted"
-                else _("All entries"),
+                else self.env._("All entries"),
             ),
             (
-                _("Account at 0 filter"),
-                _("Hide") if report.hide_account_at_0 else _("Show"),
+                self.env._("Account at 0 filter"),
+                self.env._("Hide") if report.hide_account_at_0 else self.env._("Show"),
             ),
             (
-                _("Show foreign currency"),
-                _("Yes") if report.foreign_currency else _("No"),
+                self.env._("Show foreign currency"),
+                self.env._("Yes") if report.foreign_currency else self.env._("No"),
             ),
             (
-                _("Limit hierarchy levels"),
-                _("Level %s", report.show_hierarchy_level)
+                self.env._("Limit hierarchy levels"),
+                self.env._("Level %s", report.show_hierarchy_level)
                 if report.limit_hierarchy_level
-                else _("No limit"),
+                else self.env._("No limit"),
             ),
         ]
 
@@ -163,21 +158,21 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         cols = {
             0: {
                 "field": "code",
-                "header": _("Code"),
+                "header": self.env._("Code"),
                 "indent_field": "level",
                 "indent_unit": 2,
                 "width": 20,
             },
             1: {
                 "field": "name",
-                "header": _("Account"),
+                "header": self.env._("Account"),
                 "indent_field": "level",
                 "indent_unit": 2,
                 "width": 60,
             },
             2: {
                 "field": "ending_balance",
-                "header": _("Final balance"),
+                "header": self.env._("Final balance"),
                 "type": "amount",
                 "width": 20,
             },
@@ -188,13 +183,13 @@ class FinancialStatementsReportXslx(models.AbstractModel):
                     3: {
                         "field": "currency_id",
                         "field_currency_balance": "currency_id",
-                        "header": _("Cur."),
+                        "header": self.env._("Cur."),
                         "type": "many2one",
                         "width": 10,
                     },
                     4: {
                         "field": "ending_balance_foreign_currency",
-                        "header": _("Ending balance in cur."),
+                        "header": self.env._("Ending balance in cur."),
                         "type": "amount_currency",
                         "width": 20,
                     },
@@ -234,7 +229,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         """Partner Columns are ordinary Columns but with 'Partner' after Account."""
         partner_col = {
             "field": "partner_id",
-            "header": _("Partner"),
+            "header": self.env._("Partner"),
             "type": "many2one",
             "width": 60,
         }
@@ -367,13 +362,13 @@ class FinancialStatementsReportXslx(models.AbstractModel):
 
         msg = ""
         if not table.get("row"):
-            msg = _(
+            msg = self.env._(
                 "Could not retrieve table datas for report '%s': no lines"
                 " found to be printed.",
                 financial_statements_report_cols["title"],
             )
         elif not table.get("col"):
-            msg = _(
+            msg = self.env._(
                 "Could not retrieve table datas for report '%s': unknown"
                 " columns to be printed.",
                 financial_statements_report_cols["title"],
@@ -418,16 +413,16 @@ class FinancialStatementsReportXslx(models.AbstractModel):
                     fname = func.__name__
                     fvars = func.__code__.co_varnames
                     fvars_names = ", ".join(fvars) if fvars else ""
-                    msg = _(
+                    msg = self.env._(
                         "Cannot filter lines with function "
                         "`%(function_name)s(%(function_args)s)`.",
                         function_name=fname,
                         function_args=fvars_names,
                     )
                 elif isinstance(func, str):
-                    msg = _("Cannot filter lines with attribute `%s`.", func)
+                    msg = self.env._("Cannot filter lines with attribute `%s`.", func)
                 else:
-                    msg = _("Cannot filter lines with unknown parameter.")
+                    msg = self.env._("Cannot filter lines with unknown parameter.")
                 _logger.info(msg)
 
         if lines and report.show_partner_details:
@@ -536,9 +531,9 @@ class FinancialStatementsReportXslx(models.AbstractModel):
                     partners_data = report_result["partners_data"]
                     value = partners_data[record_id]["name"]
                 else:
-                    value = _("No partner allocated")
+                    value = self.env._("No partner allocated")
             else:
-                value = _("Field %s not set", field)
+                value = self.env._("Field %s not set", field)
         elif cell_type == "string":
             if line.get("group_id", False):
                 style = report_data["formats"]["format_bold"]
@@ -618,7 +613,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         debit = self.format_value_by_lang(lang, report_result["total_debit"], decimals)
         debit_data = order_currency_amount(currency, debit)
 
-        left_str = _(
+        left_str = self.env._(
             "%(column)s BALANCE: %(curr_or_amount)s %(amount_or_curr)s",
             column=report_data["financial_statements_report_cols"]["left"]["name"],
             curr_or_amount=debit_data[0],
@@ -636,7 +631,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
             report_data["formats"]["format_header_right"],
         )
 
-        right_str = _(
+        right_str = self.env._(
             "%(column)s BALANCE: %(curr_or_amount)s %(amount_or_curr)s",
             column=report_data["financial_statements_report_cols"]["right"]["name"],
             curr_or_amount=credit_data[0],
@@ -670,7 +665,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         surplus = float_compare(total_credit, total_debit, decimals) == 1
         deficit = float_compare(total_credit, total_debit, decimals) == -1
         if surplus or deficit:
-            title = _("SURPLUS") if surplus else _("DEFICIT")
+            title = self.env._("SURPLUS") if surplus else self.env._("DEFICIT")
             bal_data = order_currency_amount(currency, balance)
             balance_str = f"{title}: {bal_data[0]} {bal_data[1]}"
             left_columns = _extract_financial_statements_report_columns(

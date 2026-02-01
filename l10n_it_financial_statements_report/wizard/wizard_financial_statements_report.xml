@@ -133,6 +133,7 @@
 
     <record id="action_financial_statements_wizard" model="ir.actions.act_window">
         <field name="name">Financial Statements Report</field>
+        <field name="path">financial-statements-report</field>
         <field name="res_model">trial.balance.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="wizard_report_financial_statements_report" />
