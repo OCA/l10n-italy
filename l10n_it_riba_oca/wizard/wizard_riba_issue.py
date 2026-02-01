@@ -49,14 +49,16 @@ class RibaIssue(models.TransientModel):
         rd = {
             "name": self.env["ir.sequence"].next_by_code("seq.riba.slip"),
             "config_id": self.configuration_id.id,
-            "user_id": self._uid,
+            "user_id": self.env.uid,
             "date_created": fields.Date.context_today(self),
         }
         rd_id = riba_list.create(rd).id
 
         # group by partner and due date
         grouped_lines = {}
-        move_lines = move_line_obj.search([("id", "in", self._context["active_ids"])])
+        move_lines = move_line_obj.search(
+            [("id", "in", self.env.context["active_ids"])]
+        )
         if any(line.parent_state != "posted" for line in move_lines):
             raise UserError(
                 self.env._("It is possible to issue C/O for posted move only!")
