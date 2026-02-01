@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 
 
 class StockDeliveryNoteBaseWizard(models.AbstractModel):
@@ -16,10 +17,12 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
         return self.env["stock.picking"].browse(active_ids)
 
     def _domain_type_id(self):
-        return [("company_id", "in", [False, self.env.company.id])]
+        return Domain("company_id", "in", [False, self.env.company.id])
 
     selected_picking_ids = fields.Many2many(
-        "stock.picking", default=_default_stock_pickings, readonly=True
+        "stock.picking",
+        default=lambda self: self._default_stock_pickings(),
+        readonly=True,
     )
 
     partner_sender_id = fields.Many2one(
@@ -34,7 +37,7 @@ class StockDeliveryNoteBaseWizard(models.AbstractModel):
     type_id = fields.Many2one(
         "stock.delivery.note.type",
         string="Type",
-        domain=_domain_type_id,
+        domain=lambda self: self._domain_type_id(),
     )
 
     error_message = fields.Html(compute="_compute_fields")

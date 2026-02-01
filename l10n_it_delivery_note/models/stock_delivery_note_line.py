@@ -5,6 +5,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command, Domain
 
 DATE_FORMAT = "%d/%m/%Y"
 DATETIME_FORMAT = "%d/%m/%Y %H:%M:%S"
@@ -51,10 +52,15 @@ class StockDeliveryNoteLine(models.Model):
     product_qty = fields.Float(
         string="Quantity", digits="Product Unit of Measure", default=1.0
     )
-    product_uom_id = fields.Many2one("uom.uom", string="UoM", default=_default_unit_uom)
+    product_uom_id = fields.Many2one(
+        "uom.uom", string="UoM", default=lambda self: self._default_unit_uom()
+    )
     price_unit = fields.Float(string="Unit price", digits="Product Price")
     currency_id = fields.Many2one(
-        "res.currency", string="Currency", required=True, default=_default_currency
+        "res.currency",
+        string="Currency",
+        required=True,
+        default=lambda self: self._default_currency(),
     )
     discount = fields.Float(digits="Discount")
     tax_ids = fields.Many2many("account.tax", string="Taxes")
@@ -86,14 +92,10 @@ class StockDeliveryNoteLine(models.Model):
         copy=False,
     )
 
-    _sql_constraints = [
-        (
-            "move_uniq",
-            "unique(move_id)",
-            "You cannot assign the same warehouse movement to "
-            "different delivery notes!",
-        )
-    ]
+    _move_uniq = models.Constraint(
+        "UNIQUE(move_id)",
+        "You cannot assign the same warehouse movement to different delivery notes!",
+    )
 
     @property
     def is_invoiceable(self):
@@ -120,12 +122,12 @@ class StockDeliveryNoteLine(models.Model):
 
             self.name = name
 
-            product_uom_domain = [
-                ("category_id", "=", self.product_id.uom_id.category_id.id)
-            ]
+            product_uom_domain = Domain(
+                "category_id", "=", self.product_id.uom_id.category_id.id
+            )
 
         else:
-            product_uom_domain = []
+            product_uom_domain = Domain(Domain.TRUE)
 
         return {"domain": {"product_uom_id": product_uom_domain}}
 
@@ -152,7 +154,7 @@ class StockDeliveryNoteLine(models.Model):
                 line["price_unit"] = order_line.price_unit
                 line["currency_id"] = order.currency_id.id
                 line["discount"] = order_line.discount
-                line["tax_ids"] = [(6, False, order_line.tax_id.ids)]
+                line["tax_ids"] = [Command.set(order_line.tax_ids.ids)]
                 line["invoice_status"] = DOMAIN_INVOICE_STATUSES[1]
 
             lines.append(line)
@@ -170,7 +172,7 @@ class StockDeliveryNoteLine(models.Model):
                         "product_uom_id": False,
                         "price_unit": 0.0,
                         "discount": 0.0,
-                        "tax_ids": [(5, False, False)],
+                        "tax_ids": [Command.clear()],
                     }
                 )
         return super().create(vals_list)

@@ -2,6 +2,7 @@
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
 from odoo import api, fields, models
+from odoo.fields import Command, Domain
 
 from .stock_delivery_note import DOMAIN_DELIVERY_NOTE_STATES, DOMAIN_INVOICE_STATUSES
 
@@ -112,7 +113,11 @@ class SaleOrder(models.Model):
                 if invoice_id in invoice_ids
             ]
             ready_delivery_note.write(
-                {"invoice_ids": [(4, invoice_id) for invoice_id in ready_invoice_ids]}
+                {
+                    "invoice_ids": [
+                        Command.link(invoice_id) for invoice_id in ready_invoice_ids
+                    ]
+                }
             )
 
         ready_delivery_notes._compute_invoice_status()
@@ -137,7 +142,7 @@ class SaleOrder(models.Model):
         action.update(kwargs)
 
         if len(delivery_notes) > 1:
-            action["domain"] = [("id", "in", delivery_notes.ids)]
+            action["domain"] = Domain("id", "in", delivery_notes.ids)
 
         elif len(delivery_notes) == 1:
             action["views"] = [

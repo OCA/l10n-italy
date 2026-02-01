@@ -10,6 +10,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+from odoo.fields import Domain
 
 DELIVERY_NOTE_TYPE_CODES = [
     ("incoming", "Incoming"),
@@ -26,7 +27,7 @@ class StockDeliveryNoteType(models.Model):
 
     active = fields.Boolean(default=True)
     sequence = fields.Integer(index=True, default=10)
-    name = fields.Char(index=True, required=True, translate=True)
+    name = fields.Char(index="trigram", required=True, translate=True)
     print_prices = fields.Boolean(string="Show prices on printed DN", default=False)
     code = fields.Selection(
         DELIVERY_NOTE_TYPE_CODES,
@@ -55,13 +56,10 @@ class StockDeliveryNoteType(models.Model):
     )
     note = fields.Html(string="Internal note")
 
-    _sql_constraints = [
-        (
-            "name_uniq",
-            "unique(name, company_id)",
-            "This delivery note type already exists!",
-        )
-    ]
+    _name_uniq = models.Constraint(
+        "UNIQUE(name, company_id)",
+        "This delivery note type already exists!",
+    )
 
     def goto_sequence(self, **kwargs):
         self.ensure_one()
@@ -114,7 +112,7 @@ class StockDeliveryNoteType(models.Model):
         """
         This method sets domain to check if sequence already exists
         """
-        return [("code", "=", code), ("company_id", "=", company_id.id)]
+        return Domain([("code", "=", code), ("company_id", "=", company_id.id)])
 
     def _get_or_create_sequence(self, code, company_id):
         """
@@ -136,7 +134,7 @@ class StockDeliveryNoteType(models.Model):
         """
         This method sets domain to check if dn type already exists
         """
-        return [("name", "=", name), ("company_id", "=", company_id.id)]
+        return Domain([("name", "=", name), ("company_id", "=", company_id.id)])
 
     def _set_or_create_dn_types(
         self, name, sequence_code, print_prices, code, company_id
