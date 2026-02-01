@@ -20,7 +20,7 @@ class ResConfigSettings(models.TransientModel):
     virtual_locations_root = fields.Many2one(
         "stock.location",
         string="Virtual locations root",
-        default=_default_virtual_locations_root,
+        default=lambda self: self._default_virtual_locations_root(),
         config_parameter="stock.location.virtual_root",
     )
 

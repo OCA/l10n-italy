@@ -1,8 +1,10 @@
 # Copyright 2022 Sergio Corato
 # Copyright 2023 Nextev Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from datetime import date, datetime, timedelta
 
+from odoo.fields import Command
 from odoo.tests import Form
 from odoo.tests.common import users
 from odoo.tools.date_utils import relativedelta
@@ -148,9 +150,7 @@ class StockDeliveryNoteSequence(StockDeliveryNoteCommon):
                 {
                     "use_date_range": True,
                     "date_range_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "date_from": date.today().replace(
                                     month=1, day=1, year=sequence_year

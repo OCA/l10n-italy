@@ -22,7 +22,8 @@ class StockDeliveryNoteInvoiceWizard(models.TransientModel):
         return fields.Date.context_today(self)
 
     invoice_date = fields.Date(
-        string="Invoice/Bill Date", default=_get_default_invoice_date
+        string="Invoice/Bill Date",
+        default=lambda self: self._get_default_invoice_date(),
     )
     invoice_method = fields.Selection(
         [("dn", "Only DN"), ("service", "With Service")],
@@ -32,7 +33,7 @@ class StockDeliveryNoteInvoiceWizard(models.TransientModel):
 
     def create_invoices(self):
         delivery_note_ids = self.env["stock.delivery.note"].browse(
-            self._context.get("active_ids", [])
+            self.env.context.get("active_ids", [])
         )
         delivery_note_ids.action_invoice(self.invoice_method)
         for invoice in delivery_note_ids.mapped("invoice_ids"):
