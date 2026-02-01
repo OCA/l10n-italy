@@ -6,6 +6,11 @@
 
 from odoo import api, models
 
+from odoo.addons.l10n_it_delivery_note.mixins.delivery_mixin import (
+    _default_volume_uom,
+    _default_weight_uom,
+)
+
 
 class AccountMove(models.Model):
     _name = "account.move"
@@ -13,6 +18,12 @@ class AccountMove(models.Model):
         "account.move",
         "l10n_it_delivery_note.delivery_mixin",
     ]
+
+    def _default_volume_uom(self):
+        return _default_volume_uom(self)
+
+    def _default_weight_uom(self):
+        return _default_weight_uom(self)
 
     @api.onchange(
         "partner_id",

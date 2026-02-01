@@ -7,7 +7,7 @@
 {
     "name": "ITA - Fattura accompagnatoria",
     "summary": "Stampa della fattura accompagnatoria",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-italy"
     "/tree/18.0/l10n_it_accompanying_invoice",
