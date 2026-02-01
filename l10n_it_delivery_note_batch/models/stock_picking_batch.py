@@ -1,6 +1,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, models
+from odoo.fields import Domain
 
 
 class StockPickingBatch(models.Model):
@@ -72,7 +73,7 @@ class StockPickingBatch(models.Model):
         action.update(kwargs)
 
         if len(delivery_notes) > 1:
-            action["domain"] = [("id", "in", delivery_notes.ids)]
+            action["domain"] = Domain("id", "in", delivery_notes.ids)
 
         elif len(delivery_notes) == 1:
             action["views"] = [
