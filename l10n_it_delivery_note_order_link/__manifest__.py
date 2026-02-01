@@ -9,7 +9,7 @@
     "summary": "Crea collegamento tra i DDT e ordine di vendita/acquisto",
     "author": "Openindustry.it Sas, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "license": "AGPL-3",
     "maintainers": ["andreampiovesana"],
     "category": "Localization/Italy",

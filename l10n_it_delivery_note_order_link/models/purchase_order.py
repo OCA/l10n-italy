@@ -2,6 +2,7 @@
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 
 from odoo import fields, models
+from odoo.fields import Domain
 
 
 class PurchaseOrder(models.Model):
@@ -29,7 +30,7 @@ class PurchaseOrder(models.Model):
         action.update(kwargs)
 
         if len(delivery_notes) > 1:
-            action["domain"] = [("id", "in", delivery_notes.ids)]
+            action["domain"] = Domain("id", "in", delivery_notes.ids)
 
         elif len(delivery_notes) == 1:
             action["views"] = [
