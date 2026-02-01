@@ -1,7 +1,7 @@
 #  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import Command
+from odoo.fields import Command
 from odoo.tests import Form
 
 from .riba_common import TestRibaCommon

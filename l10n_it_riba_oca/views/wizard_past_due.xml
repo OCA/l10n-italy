@@ -60,7 +60,7 @@
 
     <record id="riba_past_due_action" model="ir.actions.act_window">
         <field name="name">Past Due RiBas</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">past-due-ribas</field>
         <field name="res_model">riba.past_due</field>
         <field name="target">new</field>
         <field name="view_id" ref="riba_past_due" />

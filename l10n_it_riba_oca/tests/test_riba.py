@@ -8,9 +8,8 @@ import base64
 import datetime
 import os
 
-from odoo import Command
 from odoo.exceptions import UserError
-from odoo.fields import first
+from odoo.fields import Command
 from odoo.tests import Form
 from odoo.tools import config, safe_eval
 
@@ -314,16 +313,14 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 "partner_id": self.partner.id,
                 "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "product1",
                             "product_id": self.product1.id,
                             "quantity": 1.0,
                             "price_unit": 100.00,
                             "account_id": self.sale_account.id,
-                            "tax_ids": [[6, 0, []]],
+                            "tax_ids": [Command.clear()],
                         },
                     )
                 ],
@@ -442,23 +439,19 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 "partner_id": self.partner.id,
                 "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "product1",
                             "product_id": self.product1.id,
                             "quantity": 1.0,
                             "price_unit": 450.00,
                             "account_id": self.sale_account.id,
-                            "tax_ids": [[6, 0, self.tax_22.ids]],
+                            "tax_ids": [Command.set(self.tax_22.ids)],
                         },
                     )
                 ],
                 "related_document_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "type": "order",
                             "name": "SO1232",
@@ -497,7 +490,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.invoice.action_post()
         # Check that an invoice name not in the riba list isn't in the RiBa file
         self.assertNotIn(self.invoice.name, file_content)
-        self.assertIn("CABNP Paribas", file_content)
+        self.assertIn("BNP Paribas", file_content)
 
     def test_riba_fatturapa_group(self):
         self.partner.group_riba = True
@@ -515,23 +508,19 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 "partner_id": self.partner.id,
                 "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "product1",
                             "product_id": self.product1.id,
                             "quantity": 1.0,
                             "price_unit": 450.00,
                             "account_id": self.sale_account.id,
-                            "tax_ids": [[6, 0, self.tax_22.ids]],
+                            "tax_ids": [Command.set(self.tax_22.ids)],
                         },
                     )
                 ],
                 "related_document_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "type": "order",
                             "name": "SO1232",
@@ -552,23 +541,19 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 "partner_id": self.partner.id,
                 "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "product1",
                             "product_id": self.product1.id,
                             "quantity": 1.0,
                             "price_unit": 450.00,
                             "account_id": self.sale_account.id,
-                            "tax_ids": [[6, 0, self.tax_22.ids]],
+                            "tax_ids": [Command.set(self.tax_22.ids)],
                         },
                     )
                 ],
                 "related_document_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "type": "order",
                             "name": "SO1232",
@@ -734,7 +719,9 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         )
         invoice_form.partner_id = partner
         invoice_form.invoice_payment_term_id = payment_term
-        invoice_form.riba_partner_bank_id = first(partner.bank_ids)
+        invoice_form.riba_partner_bank_id = next(
+            iter(partner.bank_ids), partner.bank_ids
+        )
         with invoice_form.invoice_line_ids.new() as line:
             line.product_id = product
         invoice = invoice_form.save()
@@ -819,7 +806,9 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         )
         invoice_form.partner_id = partner
         invoice_form.invoice_payment_term_id = payment_term
-        invoice_form.riba_partner_bank_id = first(partner.bank_ids)
+        invoice_form.riba_partner_bank_id = next(
+            iter(partner.bank_ids), partner.bank_ids
+        )
         with invoice_form.invoice_line_ids.new() as line:
             line.product_id = product
         invoice = invoice_form.save()

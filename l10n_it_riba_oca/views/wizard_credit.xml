@@ -38,7 +38,7 @@
 
     <record id="riba_credit_action" model="ir.actions.act_window">
         <field name="name">RiBa Credit</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">riba-credit</field>
         <field name="res_model">riba.credit</field>
         <field name="target">new</field>
         <field name="view_id" ref="riba_credit" />

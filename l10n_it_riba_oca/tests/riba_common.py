@@ -2,6 +2,7 @@
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields
+from odoo.fields import Command
 from odoo.tests import common
 
 
@@ -23,18 +24,13 @@ class TestRibaCommon(common.TransactionCase):
                 "amount": 22.00,
                 "type_tax_use": "sale",
                 "invoice_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "tax",
@@ -43,18 +39,13 @@ class TestRibaCommon(common.TransactionCase):
                     ),
                 ],
                 "refund_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "tax",
@@ -75,9 +66,42 @@ class TestRibaCommon(common.TransactionCase):
         self.move_line_model = self.env["account.move.line"]
         self.move_model = self.env["account.move"]
         self.slip_model = self.env["riba.slip"]
-        self.partner = self.env.ref("base.res_partner_3")
-        self.partner.vat = "IT01234567890"
-        self.product1 = self.env.ref("product.product_product_5")
+
+        self.bank_bnp = self.env["res.bank"].create(
+            {
+                "name": "BNP Paribas",
+                "bic": "GEBABEBB",
+            }
+        )
+        self.partner = self.env["res.partner"].create(
+            {
+                "name": "Gemini Furniture",
+                "is_company": True,
+                "street": "Via Industria 21",
+                "city": "Serravalle",
+                "zip": "47899",
+                "email": "gemini_furniture@fake.geminifurniture.com",
+                "phone": "+378 0549 885555",
+                "vat": "IT01114601006",
+                "bank_ids": [
+                    Command.create(
+                        {
+                            "acc_type": "iban",
+                            "acc_number": "SI56191000000123438",
+                            "bank_id": self.bank_bnp.id,
+                        }
+                    )
+                ],
+            }
+        )
+        self.product1 = self.env["product.product"].create(
+            {
+                "name": "Corner Desk Right Sit",
+                "type": "consu",
+                "list_price": 147.0,
+                "default_code": "E-COM06",
+            }
+        )
         self.sale_journal = self.env["account.journal"].search([("type", "=", "sale")])[
             0
         ]
@@ -124,8 +148,24 @@ class TestRibaCommon(common.TransactionCase):
             ],
             limit=1,
         )
-        self.account_payment_term_riba = self.env.ref(
-            "l10n_it_riba_oca.account_payment_term_riba"
+        self.account_payment_term_riba = self.env["account.payment.term"].create(
+            {
+                "name": "RiBa 30 Days End of Month",
+                "note": "RiBa 30 Days End of Month",
+                "riba": True,
+                "line_ids": [
+                    Command.clear(),
+                    Command.create(
+                        {
+                            "value": "percent",
+                            "value_amount": 100.0,
+                            "delay_type": "days_end_of_month_on_the",
+                            "nb_days": 30,
+                            "days_next_month": "0",
+                        },
+                    ),
+                ],
+            }
         )
         self.invoice = self._create_invoice()
         self.invoice2 = self._create_invoice()
@@ -154,7 +194,21 @@ class TestRibaCommon(common.TransactionCase):
                 "account_type": "asset_receivable",
             }
         )
-        self.company_bank = self.env.ref("l10n_it_riba_oca.company_bank")
+        self.bank = self.env["res.bank"].create(
+            {
+                "name": "Bank",
+                "bic": "CPHBBE75",
+            }
+        )
+        self.company_bank = self.env["res.partner.bank"].create(
+            {
+                "acc_number": "BE74126201326907",
+                "partner_id": self.env.company.partner_id.id,
+                "bank_id": self.bank.id,
+                "company_id": self.env.company.id,
+                "bank_bic": "CPHBBE75",
+            }
+        )
         self.company2_bank = self.env["res.partner.bank"].create(
             {
                 "acc_number": "IT000000000000000000",
@@ -171,7 +225,7 @@ class TestRibaCommon(common.TransactionCase):
             {
                 "name": "Collection Fees",
                 "type": "service",
-                "taxes_id": [[6, 0, self.tax_22.ids]],
+                "taxes_id": [Command.set(self.tax_22.ids)],
                 "property_account_income_id": self._account_expense().id,
             }
         )
@@ -203,16 +257,14 @@ class TestRibaCommon(common.TransactionCase):
                 "invoice_payment_term_id": self.payment_term1.id,
                 "riba_partner_bank_id": self.partner.bank_ids[0].id,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": self.product1.name,
                             "product_id": self.product1.id,
                             "quantity": 1.0,
                             "price_unit": 100.00,
                             "account_id": self.sale_account.id,
-                            "tax_ids": [[6, 0, self.tax_22.ids]],
+                            "tax_ids": [Command.set(self.tax_22.ids)],
                         },
                     )
                 ],
@@ -234,16 +286,14 @@ class TestRibaCommon(common.TransactionCase):
                 "partner_id": self.partner.id,
                 "invoice_payment_term_id": self.account_payment_term_riba.id,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "product1",
                             "product_id": self.product1.id,
                             "quantity": 1.0,
                             "price_unit": 450.00,
                             "account_id": self.sale_account.id,
-                            "tax_ids": [[6, 0, []]],
+                            "tax_ids": [Command.clear()],
                         },
                     )
                 ],
@@ -257,9 +307,7 @@ class TestRibaCommon(common.TransactionCase):
                 "riba": True,
                 "riba_payment_cost": 5.00,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "value": "percent",
                             "delay_type": "days_after",
@@ -268,9 +316,7 @@ class TestRibaCommon(common.TransactionCase):
                             "value_amount": 0.50,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "value": "percent",
                             "delay_type": "days_after",
@@ -289,9 +335,7 @@ class TestRibaCommon(common.TransactionCase):
                 "riba": True,
                 "riba_payment_cost": 5.00,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "value": "percent",
                             "delay_type": "days_after_end_of_month",

@@ -12,7 +12,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
-            <group name="accounting_entries" position="after">
+            <group name="general" position="after">
                 <group string="RiBa" name="riba">
                     <field name="group_riba" />
                 </group>

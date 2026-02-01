@@ -9,6 +9,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command
 
 
 class RibaPastDue(models.TransientModel):
@@ -69,39 +70,43 @@ class RibaPastDue(models.TransientModel):
     config_type = fields.Selection(
         [("sbf", "Subject To Collection"), ("incasso", "After Collection")],
         "Issue Mode",
-        default=_get_config_type,
+        default=lambda self: self._get_config_type(),
     )
     past_due_journal_id = fields.Many2one(
         "account.journal",
         "Past Due Journal",
         domain=[("type", "=", "bank")],
-        default=_get_past_due_journal_id,
+        default=lambda self: self._get_past_due_journal_id(),
     )
     acceptance_account_id = fields.Many2one(
         "account.account",
         "Acceptance Account",
-        default=_get_acceptance_account_id,
+        default=lambda self: self._get_acceptance_account_id(),
     )
     credit_account_id = fields.Many2one(
         "account.account",
         "Credit Account",
-        default=_get_credit_account_id,
+        default=lambda self: self._get_credit_account_id(),
     )
-    credit_amount = fields.Float(default=_get_credit_amount)
+    credit_amount = fields.Float(default=lambda self: self._get_credit_amount())
     overdue_credit_account_id = fields.Many2one(
         "account.account",
         "Past Due Bills Account",
-        default=_get_overdue_credit_account_id,
+        default=lambda self: self._get_overdue_credit_account_id(),
     )
     overdue_credit_amount = fields.Float(
-        "Past Due Bills Amount", default=_get_credit_amount
+        "Past Due Bills Amount", default=lambda self: self._get_credit_amount()
     )
 
     bank_account_id = fields.Many2one(
-        "account.account", "A/C Bank Account", default=_get_bank_account_id
+        "account.account",
+        "A/C Bank Account",
+        default=lambda self: self._get_bank_account_id(),
     )
     bank_expense_account_id = fields.Many2one(
-        "account.account", "Bank Fees Account", default=_get_bank_expense_account_id
+        "account.account",
+        "Bank Fees Account",
+        default=lambda self: self._get_bank_expense_account_id(),
     )
     expense_amount = fields.Float("Fees Amount")
     date = fields.Date(
@@ -109,7 +114,8 @@ class RibaPastDue(models.TransientModel):
         readonly=False,
     )
     past_due_fee_amount = fields.Float(
-        "Past Due Fees Amount", default=_get_unsolved_past_due_fee_amount
+        "Past Due Fees Amount",
+        default=lambda self: self._get_unsolved_past_due_fee_amount(),
     )
     charge_to_customer = fields.Boolean("Charge the customer the costs")
 
@@ -166,10 +172,8 @@ class RibaPastDue(models.TransientModel):
         if self.past_due_fee_amount:
             line_ids.extend(
                 [
-                    (0, 0, bank_fee_line),
-                    (
-                        0,
-                        0,
+                    Command.create(bank_fee_line),
+                    Command.create(
                         {
                             "name": self.env._("Bank Fee"),
                             "account_id": self.bank_account_id.id,
@@ -262,7 +266,7 @@ class RibaPastDue(models.TransientModel):
                 ]
             move_model.browse(invoice_ids).write(
                 {
-                    "past_due_move_line_ids": [(4, move_line.id)],
+                    "past_due_move_line_ids": [Command.link(move_line.id)],
                 }
             )
 
@@ -285,11 +289,11 @@ class RibaPastDue(models.TransientModel):
 
         # Create and post the move
         move_vals = {
-            "ref": self.env._("Past Due RiBa %(name)s - Line %(sequence)s")
-            % {
-                "name": slip_line.slip_id.name,
-                "sequence": slip_line.sequence,
-            },
+            "ref": self.env._(
+                "Past Due RiBa %(name)s - Line %(sequence)s",
+                name=slip_line.slip_id.name,
+                sequence=slip_line.sequence,
+            ),
             "journal_id": self.past_due_journal_id.id,
             "date": date,
             "line_ids": line_ids,

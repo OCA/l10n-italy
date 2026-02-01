@@ -30,6 +30,6 @@ class ResPartner(models.Model):
         comodel_name="res.partner.bank",
         company_dependent=True,
         string="Company Bank Account for Supplier",
-        domain=_domain_property_riba_supplier_company_bank_id,
+        domain=lambda self: self._domain_property_riba_supplier_company_bank_id(),
         help="Bank account used for the RiBa of this supplier.",
     )
