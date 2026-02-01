@@ -115,6 +115,7 @@
 
     <record model="ir.actions.act_window" id="action_riba_to_issue">
         <field name="name">RiBa Issue</field>
+        <field name="path">riba-issue</field>
         <field name="res_model">account.move.line</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_riba_to_issue_tree" />
@@ -171,6 +172,7 @@
 
     <record id="action_invoice_tree1" model="ir.actions.act_window">
         <field name="name">Past Due Invoices</field>
+        <field name="path">past-due-invoices</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">list,form,graph</field>
         <field eval="False" name="view_id" />

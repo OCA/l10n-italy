@@ -69,9 +69,7 @@ class RibaPaymentMultiple(models.TransientModel):
             ribas = wizard.riba_ids
             wizard_riba_lines_domain = safe_eval(
                 riba_lines_domain,
-                globals_dict={
-                    "riba_ids": ribas.ids,
-                },
+                {"riba_ids": ribas.ids},
             )
             wizard.riba_line_ids = ribas.line_ids.filtered_domain(
                 wizard_riba_lines_domain

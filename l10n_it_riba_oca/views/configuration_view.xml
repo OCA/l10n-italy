@@ -78,6 +78,7 @@
     <!-- ====================================================== -->
     <record id="action_riba_configuration" model="ir.actions.act_window">
         <field name="name">RiBa - Configuration</field>
+        <field name="path">riba-configuration</field>
         <field name="res_model">riba.configuration</field>
         <field name="view_mode">list,form</field>
     </record>
