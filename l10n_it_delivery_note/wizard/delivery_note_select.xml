@@ -90,6 +90,7 @@
 
     <record id="stock_delivery_note_select_action" model="ir.actions.act_window">
         <field name="name">Select an existing delivery note</field>
+        <field name="path">select-existing-delivery-note</field>
         <field name="res_model">stock.delivery.note.select.wizard</field>
         <field name="view_mode">form</field>
         <field

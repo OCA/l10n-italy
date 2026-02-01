@@ -72,6 +72,7 @@
 
     <record id="stock_delivery_note_create_action" model="ir.actions.act_window">
         <field name="name">Create a new delivery note</field>
+        <field name="path">create-new-delivery-note</field>
         <field name="res_model">stock.delivery.note.create.wizard</field>
         <field name="view_mode">form</field>
         <field

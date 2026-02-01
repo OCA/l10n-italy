@@ -1,3 +1,4 @@
+from odoo.fields import Command
 from odoo.tests.common import TransactionCase
 
 from odoo.addons.mail.tests.common import mail_new_test_user
@@ -65,16 +66,11 @@ class StockDeliveryNoteCommon(TransactionCase):
             "location_id": self.env.ref("stock.stock_location_stock").id,
             "location_dest_id": self.env.ref("stock.stock_location_customers").id,
             "move_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
-                        "name": self.env.ref("product.product_product_8").name,
-                        "product_id": self.env.ref("product.product_product_8").id,
+                        "product_id": self.product_8.id,
                         "product_uom_qty": 1,
-                        "product_uom": self.env.ref(
-                            "product.product_product_8"
-                        ).uom_id.id,
+                        "product_uom": self.product_8.uom_id.id,
                         "location_id": self.env.ref("stock.stock_location_stock").id,
                         "location_dest_id": self.env.ref(
                             "stock.stock_location_customers"
@@ -98,35 +94,104 @@ class StockDeliveryNoteCommon(TransactionCase):
             email="accountmanager@yourcompany.com",
             groups="account.group_account_manager,base.group_partner_manager,"
             "base.group_system,sales_team.group_sale_manager,stock.group_stock_manager",
-            company_ids=[(6, 0, [c.id for c in self.env["res.company"].search([])])],
+            company_ids=[Command.set(self.env["res.company"].search([]).ids)],
         )
 
         self.sender = self.env.ref("base.main_partner")
         company = self.create_commercial_partner("Azienda Rossi")
         self.recipient = self.create_partner("Mario Rossi", company)
 
-        try:
-            self.desk_combination_line = self.prepare_sales_order_line(
-                self.env.ref("product.product_product_3"), 1
-            )
-            self.customizable_desk_line = self.prepare_sales_order_line(
-                self.env.ref("product.product_product_4"), 3
-            )
-            self.right_corner_desk_line = self.prepare_sales_order_line(
-                self.env.ref("product.product_product_5"), 2
-            )
-            self.large_cabinet_line = self.prepare_sales_order_line(
-                self.env.ref("product.product_product_6"), 11
-            )
-            self.storage_box_line = self.prepare_sales_order_line(
-                self.env.ref("product.product_product_7"), 5
-            )
-            self.large_desk_line = self.prepare_sales_order_line(
-                self.env.ref("product.product_product_8"), 1
-            )
+        self.product_delivery = self.env["product.product"].create(
+            {
+                "name": "The Poste",
+                "type": "service",
+                "list_price": 20.0,
+                "is_storable": False,
+                "invoice_policy": "order",
+            }
+        )
+        self.partner_carrier_1 = self.env["res.partner"].create(
+            {
+                "name": "Carrier 1",
+            }
+        )
+        self.delivery_carrier = self.env["delivery.carrier"].create(
+            {
+                "name": "The Poste",
+                "fixed_price": 20.0,
+                "sequence": 2,
+                "delivery_type": "base_on_rule",
+                "product_id": self.product_delivery.id,
+                "partner_id": self.partner_carrier_1.id,
+            }
+        )
+        self.free_delivery_carrier = self.env.ref("delivery.free_delivery_carrier")
+        self.free_delivery_carrier.partner_id = self.partner_carrier_1.id
 
-        except ValueError as exc:
-            raise RuntimeError(
-                "It seems you're not using a database with"
-                " demonstration data loaded for this tests."
-            ) from exc
+        self.partner_carrier_2 = self.env["res.partner"].create(
+            {
+                "name": "Carrier 2",
+            }
+        )
+
+        self.product_3 = self.env["product.product"].create(
+            {
+                "name": "Desk Combination",
+                "type": "consu",
+                "list_price": 450.0,
+                "is_storable": True,
+                "invoice_policy": "delivery",
+            }
+        )
+        self.product_4 = self.env["product.product"].create(
+            {
+                "name": "Customizable Desk",
+                "type": "consu",
+                "list_price": 750.0,
+                "is_storable": True,
+                "invoice_policy": "delivery",
+            }
+        )
+        self.product_5 = self.env["product.product"].create(
+            {
+                "name": "Corner Desk Right Sit",
+                "type": "consu",
+                "list_price": 147.0,
+                "is_storable": True,
+                "invoice_policy": "delivery",
+            }
+        )
+        self.product_6 = self.env["product.product"].create(
+            {
+                "name": "Large Cabinet",
+                "type": "consu",
+                "list_price": 320.0,
+                "is_storable": True,
+                "invoice_policy": "delivery",
+            }
+        )
+        self.product_7 = self.env["product.product"].create(
+            {
+                "name": "Storage Box",
+                "type": "consu",
+                "list_price": 15.0,
+                "is_storable": True,
+                "invoice_policy": "delivery",
+            }
+        )
+        self.product_8 = self.env["product.product"].create(
+            {
+                "name": "Large Desk",
+                "type": "consu",
+                "list_price": 1799.0,
+                "is_storable": True,
+                "invoice_policy": "delivery",
+            }
+        )
+
+        self.desk_combination_line = self.prepare_sales_order_line(self.product_3, 1)
+        self.customizable_desk_line = self.prepare_sales_order_line(self.product_4, 3)
+        self.right_corner_desk_line = self.prepare_sales_order_line(self.product_5, 2)
+        self.large_cabinet_line = self.prepare_sales_order_line(self.product_6, 11)
+        self.storage_box_line = self.prepare_sales_order_line(self.product_7, 5)
+        self.large_desk_line = self.prepare_sales_order_line(self.product_8, 1)

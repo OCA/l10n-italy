@@ -9,24 +9,8 @@ def _default_volume_uom(model):
     return model.env.ref("uom.product_uom_litre", raise_if_not_found=False)
 
 
-def _domain_volume_uom(model):
-    uom_category_id = model.env.ref(
-        "uom.product_uom_categ_vol", raise_if_not_found=False
-    )
-
-    return [("category_id", "=", uom_category_id.id)]
-
-
 def _default_weight_uom(model):
     return model.env.ref("uom.product_uom_kgm", raise_if_not_found=False)
-
-
-def _domain_weight_uom(model):
-    uom_category_id = model.env.ref(
-        "uom.product_uom_categ_kgm", raise_if_not_found=False
-    )
-
-    return [("category_id", "=", uom_category_id.id)]
 
 
 class DeliveryData(models.AbstractModel):
@@ -56,8 +40,7 @@ class DeliveryData(models.AbstractModel):
     delivery_volume_uom_id = fields.Many2one(
         "uom.uom",
         string="Volume of Delivery UoM",
-        default=_default_volume_uom,
-        domain=_domain_volume_uom,
+        default=lambda self: self._default_volume_uom(),
     )
     delivery_volume = fields.Float(
         string="Volume of Delivery",
@@ -65,8 +48,7 @@ class DeliveryData(models.AbstractModel):
     delivery_gross_weight_uom_id = fields.Many2one(
         "uom.uom",
         string="Gross Weight of Delivery UoM",
-        default=_default_weight_uom,
-        domain=_domain_weight_uom,
+        default=lambda self: self._default_weight_uom(),
     )
     delivery_gross_weight = fields.Float(
         string="Gross Weight of Delivery",
@@ -74,8 +56,7 @@ class DeliveryData(models.AbstractModel):
     delivery_net_weight_uom_id = fields.Many2one(
         "uom.uom",
         string="Net Weight of Delivery UoM",
-        default=_default_weight_uom,
-        domain=_domain_weight_uom,
+        default=lambda self: self._default_weight_uom(),
     )
     delivery_net_weight = fields.Float(
         string="Net Weight of Delivery",

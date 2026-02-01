@@ -31,9 +31,11 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
 
     partner_shipping_id = fields.Many2one("res.partner", required=True)
 
-    date = fields.Date(default=_default_date)
+    date = fields.Date(default=lambda self: self._default_date())
     type_id = fields.Many2one(
-        "stock.delivery.note.type", default=_default_type, required=True
+        "stock.delivery.note.type",
+        default=lambda self: self._default_type(),
+        required=True,
     )
     picking_type = fields.Selection(
         lambda self: self.env["stock.picking.type"]._fields["code"].selection,

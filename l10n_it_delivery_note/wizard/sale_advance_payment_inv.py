@@ -20,7 +20,9 @@ class SaleAdvancePaymentInv(models.TransientModel):
 
         return DOMAIN_WIZARD_STEPS[0]
 
-    step = fields.Selection(WIZARD_STEPS, string="Current step", default=_default_step)
+    step = fields.Selection(
+        WIZARD_STEPS, string="Current step", default=lambda self: self._default_step()
+    )
 
     def action_step_confirm(self):
         self.step = DOMAIN_WIZARD_STEPS[0]

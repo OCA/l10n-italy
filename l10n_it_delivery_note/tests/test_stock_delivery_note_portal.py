@@ -18,7 +18,6 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
             groups="base.group_portal",
         )
         self.user_mr.partner_id = self.recipient
-        self.env.user = self.user_mr
 
         # Mario Rossi SO
         self.sales_order_mr = self.create_sales_order(
@@ -129,7 +128,9 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
         """Test portal user's access rights"""
         # Portal users can see the Delivery Notes for which they
         # are assigned as recipient or delivery address
-        self.delivery_note_mr.with_user(self.user_mr).read()
+        self.assertTrue(
+            self.delivery_note_mr.with_user(self.user_mr).has_access("read")
+        )
 
         # Portal users can't edit the DN
         with self.assertRaises(AccessError):
@@ -145,8 +146,9 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
 
         # Portal users can't see the Delivery Notes for which they
         # aren't assigned as recipient or delivery address
-        with self.assertRaises(AccessError):
-            self.delivery_note_ab.with_user(self.user_mr).read()
+        self.assertFalse(
+            self.delivery_note_ab.with_user(self.user_mr).has_access("read")
+        )
 
         # Portal users can't edit the DN
         with self.assertRaises(AccessError):
@@ -159,7 +161,9 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
 
         # Portal users can see the Delivery Notes for which they
         # are assigned as delivery address
-        self.delivery_note_ab_mr.with_user(self.user_mr).read()
+        self.assertTrue(
+            self.delivery_note_ab_mr.with_user(self.user_mr).has_access("read")
+        )
 
         # Portal users can't edit the DN
         with self.assertRaises(AccessError):
@@ -172,7 +176,9 @@ class StockDeliveryNotePortal(StockDeliveryNoteCommon, HttpCase):
 
         # Portal users can see the Delivery Notes for which their company
         # are assigned as recipient
-        self.delivery_note_azr.with_user(self.user_mr).read()
+        self.assertTrue(
+            self.delivery_note_azr.with_user(self.user_mr).has_access("read")
+        )
 
         # Portal users can't edit the DN
         with self.assertRaises(AccessError):
