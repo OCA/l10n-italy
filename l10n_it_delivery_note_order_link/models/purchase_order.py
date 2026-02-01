@@ -35,7 +35,7 @@ class PurchaseOrder(models.Model):
             action["views"] = [
                 (
                     self.env.ref(
-                        "l10n_it_delivery_note." "stock_delivery_note_form_view"
+                        "l10n_it_delivery_note.stock_delivery_note_form_view"
                     ).id,
                     "form",
                 )
