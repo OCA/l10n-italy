@@ -75,6 +75,7 @@
 
     <record id="financial_statement_eu_act_window" model="ir.actions.act_window">
         <field name="name">Financial statement EU lines</field>
+        <field name="path">financial-statement-eu-lines</field>
         <field name="res_model">financial.statement.eu</field>
         <field name="view_mode">list,form</field>
         <field name="domain">[]</field>

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from odoo import _, models
+from odoo import models
 
 
 def print_date(str_date):
@@ -16,7 +16,7 @@ class FinancialStatementEuXlsxReport(models.AbstractModel):
         financial_statement_eu_data = self.env[
             "financial.statement.eu"
         ].cal_financial_statement_eu_data(data)
-        sheet = workbook.add_worksheet(_("Financial statement EU"))
+        sheet = workbook.add_worksheet(self.env._("Financial statement EU"))
         st_bold18 = workbook.add_format({"bold": True, "font_size": 18})
         sheet.write(0, 0, data["company_name"], st_bold18)
         sheet.set_row(0, 28)
@@ -24,41 +24,42 @@ class FinancialStatementEuXlsxReport(models.AbstractModel):
         sheet.write(
             2,
             0,
-            _("Share capital Euro ") + str(data["l10n_it_eco_index_share_capital"]),
+            self.env._("Share capital Euro ")
+            + str(data["l10n_it_eco_index_share_capital"]),
         )
         sheet.write(4, 0, data["name"], st_bold18)
         sheet.set_row(4, 28)
         sheet.write(
             5,
             0,
-            _("from")
+            self.env._("from")
             + " "
             + print_date(data["date_from"])
             + " "
-            + _("to")
+            + self.env._("to")
             + " "
             + print_date(data["date_to"]),
         )
-        str_opz = "(" + _("Values show as") + ": "
+        str_opz = "(" + self.env._("Values show as") + ": "
         if data["values_precision"] == "d":
-            str_opz += _("2 decimals Euro")
+            str_opz += self.env._("2 decimals Euro")
         else:  # "u"
-            str_opz += _("euro units")
-        str_opz += " / " + _("Hide account with amount 0") + ": "
+            str_opz += self.env._("euro units")
+        str_opz += " / " + self.env._("Hide account with amount 0") + ": "
         if data["hide_acc_amount_0"]:
-            str_opz += _("YES")
+            str_opz += self.env._("YES")
         else:
-            str_opz += _("NO")
-        str_opz += " / " + _("Use only posted registration") + ": "
+            str_opz += self.env._("NO")
+        str_opz += " / " + self.env._("Use only posted registration") + ": "
         if data["only_posted_move"]:
-            str_opz += _("YES")
+            str_opz += self.env._("YES")
         else:
-            str_opz += _("NO")
-        str_opz += " / " + _("Ignore closing registration") + ": "
+            str_opz += self.env._("NO")
+        str_opz += " / " + self.env._("Ignore closing registration") + ": "
         if data["ignore_closing_move"]:
-            str_opz += _("YES")
+            str_opz += self.env._("YES")
         else:
-            str_opz += _("NO")
+            str_opz += self.env._("NO")
         str_opz += ")"
         st_bold9 = workbook.add_format({"font_size": 9})
         sheet.write(6, 0, str_opz, st_bold9)
@@ -68,8 +69,8 @@ class FinancialStatementEuXlsxReport(models.AbstractModel):
             {"fg_color": "#729fcf", "align": "center"}
         )
         row_table_titles = 8
-        sheet.write(row_table_titles, 0, _("Description"), col_title_style)
-        sheet.write(row_table_titles, 1, _("Code"), col_title_style)
+        sheet.write(row_table_titles, 0, self.env._("Description"), col_title_style)
+        sheet.write(row_table_titles, 1, self.env._("Code"), col_title_style)
         sheet.write(row_table_titles, 2, str(data["year"]), col_title_center_style)
         st_des = workbook.add_format({"num_format": "@"})
         st_acc_desc = workbook.add_format(

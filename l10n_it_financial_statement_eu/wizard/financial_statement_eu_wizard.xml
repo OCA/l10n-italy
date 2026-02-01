@@ -69,6 +69,7 @@
 
     <record id="action_financial_statement_eu_wizard" model="ir.actions.act_window">
         <field name="name">Calculate Financial statement EU</field>
+        <field name="path">calculate-financial-statement-eu</field>
         <field name="res_model">financial.statement.eu.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

@@ -1,7 +1,9 @@
 from datetime import datetime
 
+from odoo.fields import Command
 from odoo.tests import tagged
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
 def _get_financial_statement_line_amount(fs_lines, line_code):
@@ -11,10 +13,29 @@ def _get_financial_statement_line_amount(fs_lines, line_code):
 
 
 @tagged("-at_install", "post_install")
-class TestFinancialStatementEU(TransactionCase):
-    def setUp(self):
-        # add env on cls and many other things
-        super().setUp()
+class TestFinancialStatementEU(AccountTestInvoicingCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        cls.data_it_company = cls.setup_other_company(
+            name="IT Company2",
+            vat="IT01234560157",
+            phone="0266766700",
+            email="test@test.it",
+            street="1234 Test Street",
+            zip="12345",
+            city="Prova",
+            l10n_it_codice_fiscale="01234560157",
+            l10n_it_tax_system="RF01",
+        )
+        cls.it_company = cls.data_it_company["company"]
+        cls.env.user.company_ids |= cls.it_company
+        cls.env.user.company_id = cls.it_company
+        # Now that current user can access the company,
+        # log the user *only* in this company so that
+        # searching, reading and other operations behave as expected
+        cls.env.user.company_ids = cls.it_company
 
     def _find_or_create_account_account(self, company_id, code, name, code_fs_eu):
         acc_id = self.env["account.account"].search(
@@ -35,9 +56,13 @@ class TestFinancialStatementEU(TransactionCase):
         if (not acc_id.financial_statement_eu_debit_id) or (
             acc_id.financial_statement_eu_debit_id.id != id_fs_eu
         ):
+            # Like the post-init hook, run as superuser:
+            # accounts of all the companies are updated
             self.env[
                 "financial.statement.eu"
-            ].financial_statement_eu_account_association(code, id_fs_eu, False, True)
+            ].sudo().financial_statement_eu_account_association(
+                code, id_fs_eu, False, True
+            )
         return acc_id
 
     def _add_move(self, company_id, ref, journal, date, line_list):
@@ -51,9 +76,7 @@ class TestFinancialStatementEU(TransactionCase):
             )
             if acc_id:
                 lines.append(
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "debit": line["debit"],
                             "credit": line["credit"],
@@ -275,18 +298,14 @@ class TestFinancialStatementEU(TransactionCase):
                 "journal_id": journal.id,
                 "date": datetime(2023, 4, 1).date(),
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "debit": 100,
                             "credit": 0,
                             "account_id": unlinked_account.id,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "debit": 0,
                             "credit": 100,
@@ -338,18 +357,14 @@ class TestFinancialStatementEU(TransactionCase):
                 "journal_id": journal.id,
                 "date": datetime(2023, 4, 1).date(),
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "debit": 100,
                             "credit": 0,
                             "account_id": off_balance_accounts[0].id,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "debit": 0,
                             "credit": 100,

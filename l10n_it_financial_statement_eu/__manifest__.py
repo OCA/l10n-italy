@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Bilancio UE con XBRL",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Localization/Italy",
     "development_status": "Beta",
     "license": "AGPL-3",

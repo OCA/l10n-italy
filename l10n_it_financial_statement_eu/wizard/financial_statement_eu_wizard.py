@@ -1,6 +1,6 @@
 from datetime import date
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class FinancialStatementEULog(models.TransientModel):
@@ -35,12 +35,16 @@ class CreateFinancialStatementWizard(models.TransientModel):
     date_range_id = fields.Many2one(
         comodel_name="date.range",
         string="Date range",
-        default=_default_date_range,
+        default=lambda self: self._default_date_range(),
     )
     date_from = fields.Date(
-        string="From date", required=True, default=_default_date_from
+        string="From date",
+        required=True,
+        default=lambda self: self._default_date_from(),
     )
-    date_to = fields.Date(string="To date", required=True, default=_default_date_to)
+    date_to = fields.Date(
+        string="To date", required=True, default=lambda self: self._default_date_to()
+    )
     values_precision = fields.Selection(
         [
             ("d", "2 decimals Euro"),
@@ -82,7 +86,7 @@ class CreateFinancialStatementWizard(models.TransientModel):
         "financial.statement.eu.log",
         "financial_statement_id",
         string="Unlinked Account",
-        auto_join=True,
+        bypass_search_access=True,
     )
     state = fields.Selection(
         [
@@ -105,7 +109,7 @@ class CreateFinancialStatementWizard(models.TransientModel):
     def _compute_period_data(self):
         for fs in self:
             fs.year = fs.date_to.year
-            fs.name = _("Financial statement EU")
+            fs.name = self.env._("Financial statement EU")
             if fs.date_to.month == fs.date_from.month:
                 fs.name = fs.name + " " + str(fs.date_from.month) + "-" + str(fs.year)
             else:

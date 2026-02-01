@@ -374,7 +374,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:3ef3438ed33bd6ac6a175cf911d3424f3675a082b38c1be88d5fb58d1b86db42
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_financial_statement_eu"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_financial_statement_eu"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_financial_statement_eu"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-19-0/l10n-italy-19-0-l10n_it_financial_statement_eu"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p><strong>Italiano</strong></p>
 <p>In Odoo è presente il piano dei conti tradizionale e le varie
 registrazioni contabili con gli importi ma non è presente una struttura
@@ -389,8 +389,8 @@ preassociazione automatica in fase di installazione del modulo)</li>
 <li>elaborare le registrazioni contabili di un dato periodo (per esempio
 l’anno precedente) al fine di ottenere il bilancio contabile in
 formato UE, facendo gli opportuni controlli di congruenza,
-associazione di tutti i conti movimentati nel periodo e quadratura del
-bilancio. Nei report viene riportato anche il dettaglio dei conti
+associazione di tutti i conti movimentati nel periodo e quadratura
+del bilancio. Nei report viene riportato anche il dettaglio dei conti
 associati ad una certa voce del bilancio UE</li>
 <li>generare il report di anteprima del Bilancio UE</li>
 <li>generare la stampa PDF del Bilancio UE</li>
@@ -410,15 +410,15 @@ available the following features:</p>
 Budget (with automatic pre-association during module installation)</li>
 <li>process the accounting records of a given period (for example last
 year) in order to obtain the accounting financial statements in EU
-format, carrying out the appropriate congruence checks, association of
-all the accounts moved in the period and balancing of the balance
+format, carrying out the appropriate congruence checks, association
+of all the accounts moved in the period and balancing of the balance
 sheet. The reports also show the details of the accounts associated
 with a certain item of the EU financial statements</li>
 <li>preview then EU financial statements</li>
 <li>PDF printout of the EU financial statements</li>
 <li>download files in XLSX or XBRL format (useful for subsequent
-re-elaborations and for the transfer of the EU financial statements to
-the accountant)</li>
+re-elaborations and for the transfer of the EU financial statements
+to the accountant)</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -475,8 +475,8 @@ le seguenti opzioni di generazione:</p>
 stampare i valori del bilancio in Euro (con due decimali) o in unità
 di Euro (senza decimali). In caso si selezioni “unità di Euro” gli
 eventuali delta da arrotondamenti vengono riportati in automatico su
-due apposite voci (una nel Passivo e una nel Conto Economico). I saldi
-dei conti contabili verranno stampati comunque con 2 decimali</li>
+due apposite voci (una nel Passivo e una nel Conto Economico). I
+saldi dei conti contabili verranno stampati comunque con 2 decimali</li>
 <li>Nascondere conti a 0: consente di non visualizzare i conti contabili
 con saldo a 0 e che quindi non influiscono nel calcolo delle voci del
 bilancio. Il bilancio UE verrà comunque visualizzato completo, con
@@ -485,10 +485,10 @@ anche le voci con importo 0</li>
 contabili confermate (ignora bozze e annullate)</li>
 <li>Ignora registrazioni di chiusura: consente di stampare un Bilancio UE
 corretto anche in caso sia già stata effettuata la chiusura
-d’esercizio e quindi tutti i conti contabili siano a saldo 0 al 31/12.
-Se per effettuare la chiusura d’esercizio è stato utilizzato il modulo
-“account_fiscal_year_closing”, questa opzione consente di ignorare le
-registrazioni contabili di chiusura</li>
+d’esercizio e quindi tutti i conti contabili siano a saldo 0 al
+31/12. Se per effettuare la chiusura d’esercizio è stato utilizzato
+il modulo “account_fiscal_year_closing”, questa opzione consente di
+ignorare le registrazioni contabili di chiusura</li>
 </ul>
 <p><strong>English</strong></p>
 <p>The “Accounting / Configuration / Chart of Accounts” mask has been
@@ -527,7 +527,7 @@ year-end closing, this option allows you to ignore the closing moves</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_financial_statement_eu%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_financial_statement_eu%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -558,7 +558,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/mktsrl"><img alt="mktsrl" src="https://github.com/mktsrl.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_financial_statement_eu">OCA/l10n-italy</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_financial_statement_eu">OCA/l10n-italy</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

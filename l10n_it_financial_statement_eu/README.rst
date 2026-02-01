@@ -21,13 +21,13 @@ ITA - Bilancio UE con XBRL
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_financial_statement_eu
+    :target: https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_financial_statement_eu
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_financial_statement_eu
+    :target: https://translation.odoo-community.org/projects/l10n-italy-19-0/l10n-italy-19-0-l10n_it_financial_statement_eu
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -43,18 +43,18 @@ Questo modulo consente di generare un bilancio riclassificato secondo lo
 schema del bilancio UE con tutte le voci delle più recenti tassonomie
 mettendo a disposizione le seguenti funzionalità:
 
-- associare ai conti del piano dei conti le voci del Bilancio UE (con
-  preassociazione automatica in fase di installazione del modulo)
-- elaborare le registrazioni contabili di un dato periodo (per esempio
-  l’anno precedente) al fine di ottenere il bilancio contabile in
-  formato UE, facendo gli opportuni controlli di congruenza,
-  associazione di tutti i conti movimentati nel periodo e quadratura del
-  bilancio. Nei report viene riportato anche il dettaglio dei conti
-  associati ad una certa voce del bilancio UE
-- generare il report di anteprima del Bilancio UE
-- generare la stampa PDF del Bilancio UE
-- generare i file XLSX e XBRL del bilancio (utili per successive
-  rielaborazioni e per trasferimento del bilancio UE al Commercialista)
+-  associare ai conti del piano dei conti le voci del Bilancio UE (con
+   preassociazione automatica in fase di installazione del modulo)
+-  elaborare le registrazioni contabili di un dato periodo (per esempio
+   l’anno precedente) al fine di ottenere il bilancio contabile in
+   formato UE, facendo gli opportuni controlli di congruenza,
+   associazione di tutti i conti movimentati nel periodo e quadratura
+   del bilancio. Nei report viene riportato anche il dettaglio dei conti
+   associati ad una certa voce del bilancio UE
+-  generare il report di anteprima del Bilancio UE
+-  generare la stampa PDF del Bilancio UE
+-  generare i file XLSX e XBRL del bilancio (utili per successive
+   rielaborazioni e per trasferimento del bilancio UE al Commercialista)
 
 **English**
 
@@ -66,19 +66,19 @@ allows to generate a reclassified financial statements according to the
 EU format with all the entries of the most recent taxonomies by making
 available the following features:
 
-- associate the items in the Chart of Accounts with the items in the EU
-  Budget (with automatic pre-association during module installation)
-- process the accounting records of a given period (for example last
-  year) in order to obtain the accounting financial statements in EU
-  format, carrying out the appropriate congruence checks, association of
-  all the accounts moved in the period and balancing of the balance
-  sheet. The reports also show the details of the accounts associated
-  with a certain item of the EU financial statements
-- preview then EU financial statements
-- PDF printout of the EU financial statements
-- download files in XLSX or XBRL format (useful for subsequent
-  re-elaborations and for the transfer of the EU financial statements to
-  the accountant)
+-  associate the items in the Chart of Accounts with the items in the EU
+   Budget (with automatic pre-association during module installation)
+-  process the accounting records of a given period (for example last
+   year) in order to obtain the accounting financial statements in EU
+   format, carrying out the appropriate congruence checks, association
+   of all the accounts moved in the period and balancing of the balance
+   sheet. The reports also show the details of the accounts associated
+   with a certain item of the EU financial statements
+-  preview then EU financial statements
+-  PDF printout of the EU financial statements
+-  download files in XLSX or XBRL format (useful for subsequent
+   re-elaborations and for the transfer of the EU financial statements
+   to the accountant)
 
 **Table of contents**
 
@@ -129,24 +129,24 @@ consente di selezionare il periodo e scegliere la modalità di
 esportazione del Bilancio UE. Nel wizard di “Bilancio UE” sono presenti
 le seguenti opzioni di generazione:
 
-- Visualizza valori [2 decimali di Euro / unità di Euro]: consente di
-  stampare i valori del bilancio in Euro (con due decimali) o in unità
-  di Euro (senza decimali). In caso si selezioni “unità di Euro” gli
-  eventuali delta da arrotondamenti vengono riportati in automatico su
-  due apposite voci (una nel Passivo e una nel Conto Economico). I saldi
-  dei conti contabili verranno stampati comunque con 2 decimali
-- Nascondere conti a 0: consente di non visualizzare i conti contabili
-  con saldo a 0 e che quindi non influiscono nel calcolo delle voci del
-  bilancio. Il bilancio UE verrà comunque visualizzato completo, con
-  anche le voci con importo 0
-- Solo registrazioni confermate: per utilizzare solo le registrazioni
-  contabili confermate (ignora bozze e annullate)
-- Ignora registrazioni di chiusura: consente di stampare un Bilancio UE
-  corretto anche in caso sia già stata effettuata la chiusura
-  d’esercizio e quindi tutti i conti contabili siano a saldo 0 al 31/12.
-  Se per effettuare la chiusura d’esercizio è stato utilizzato il modulo
-  “account_fiscal_year_closing”, questa opzione consente di ignorare le
-  registrazioni contabili di chiusura
+-  Visualizza valori [2 decimali di Euro / unità di Euro]: consente di
+   stampare i valori del bilancio in Euro (con due decimali) o in unità
+   di Euro (senza decimali). In caso si selezioni “unità di Euro” gli
+   eventuali delta da arrotondamenti vengono riportati in automatico su
+   due apposite voci (una nel Passivo e una nel Conto Economico). I
+   saldi dei conti contabili verranno stampati comunque con 2 decimali
+-  Nascondere conti a 0: consente di non visualizzare i conti contabili
+   con saldo a 0 e che quindi non influiscono nel calcolo delle voci del
+   bilancio. Il bilancio UE verrà comunque visualizzato completo, con
+   anche le voci con importo 0
+-  Solo registrazioni confermate: per utilizzare solo le registrazioni
+   contabili confermate (ignora bozze e annullate)
+-  Ignora registrazioni di chiusura: consente di stampare un Bilancio UE
+   corretto anche in caso sia già stata effettuata la chiusura
+   d’esercizio e quindi tutti i conti contabili siano a saldo 0 al
+   31/12. Se per effettuare la chiusura d’esercizio è stato utilizzato
+   il modulo “account_fiscal_year_closing”, questa opzione consente di
+   ignorare le registrazioni contabili di chiusura
 
 **English**
 
@@ -164,22 +164,22 @@ allows you to select the period and choose how to export the EU
 financial statements. The following generation options are present in
 the "Financial statement EU" wizard:
 
-- Values show as [2 decimals Euro / Euro units] : allows to print the
-  values in Euros (with two decimals) or in Euro units (without
-  decimals). If "Euro units" is selected, any delta from rounding is
-  automatically reported on two specific Items (one in the Liabilities
-  and one in the Income Statement).
-- Hide account with amount 0: allows to not display the accounts with a
-  balance at 0 and which therefore have no influence on the calculation
-  of the financial statements items. The financial statements will be
-  anyway displayed complete, even then items with amount 0
-- Use only posted registration: to use confirmed postings only (ignore
-  drafts and cancelled)
-- Ignore closing registration: allows you to print a correct EU
-  financial statements even if the year-end has already been closed and
-  therefore all accounting accounts have a balance of 0 as at 31/12. If
-  the "account_fiscal_year_closing" module was used to carry out the
-  year-end closing, this option allows you to ignore the closing moves
+-  Values show as [2 decimals Euro / Euro units] : allows to print the
+   values in Euros (with two decimals) or in Euro units (without
+   decimals). If "Euro units" is selected, any delta from rounding is
+   automatically reported on two specific Items (one in the Liabilities
+   and one in the Income Statement).
+-  Hide account with amount 0: allows to not display the accounts with a
+   balance at 0 and which therefore have no influence on the calculation
+   of the financial statements items. The financial statements will be
+   anyway displayed complete, even then items with amount 0
+-  Use only posted registration: to use confirmed postings only (ignore
+   drafts and cancelled)
+-  Ignore closing registration: allows you to print a correct EU
+   financial statements even if the year-end has already been closed and
+   therefore all accounting accounts have a balance of 0 as at 31/12. If
+   the "account_fiscal_year_closing" module was used to carry out the
+   year-end closing, this option allows you to ignore the closing moves
 
 Bug Tracker
 ===========
@@ -187,7 +187,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_financial_statement_eu%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_financial_statement_eu%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -202,10 +202,10 @@ Authors
 Contributors
 ------------
 
-- Martinelli Andrea (analisi/sviluppo) <https://github.com/TennyMkt>
-- Bellomi Luca (analisi/supporto) <https://github.com/mktsrl>
-- Allegretti Daniele (analisi/supervisione/consulenza)
-  <https://www.mkt.it/>
+-  Martinelli Andrea (analisi/sviluppo) <https://github.com/TennyMkt>
+-  Bellomi Luca (analisi/supporto) <https://github.com/mktsrl>
+-  Allegretti Daniele (analisi/supervisione/consulenza)
+   <https://www.mkt.it/>
 
 Maintainers
 -----------
@@ -228,6 +228,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-mktsrl| 
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_financial_statement_eu>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_financial_statement_eu>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
