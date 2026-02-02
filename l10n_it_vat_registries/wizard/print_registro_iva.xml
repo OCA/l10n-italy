@@ -84,7 +84,7 @@
 
     <record id="action_registro_iva" model="ir.actions.act_window">
         <field name="name">VAT Registry</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="path">vat-registry</field>
         <field name="res_model">wizard.registro.iva</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
