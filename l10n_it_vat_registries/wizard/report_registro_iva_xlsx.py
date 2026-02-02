@@ -63,8 +63,7 @@ class ReportRegistroIvaXlsx(models.AbstractModel):
                 "header": {"value": _("INV. NUM.")},
                 "lines": {
                     "value": self._render(
-                        "move.ref if move.journal_id.type == 'purchase' "
-                        "else move.name"
+                        "move.ref if move.journal_id.type == 'purchase' else move.name"
                     )
                 },
                 "width": 20,
