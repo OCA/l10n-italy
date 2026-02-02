@@ -3,6 +3,7 @@
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.l10n_it_account_vat_period_end_settlement.tests.common import (
@@ -54,7 +55,15 @@ class VatStatementCommunicationCase(TestVATStatementCommon):
 
         # Products
 
-        cls.product_product_10 = cls.env.ref("product.product_product_10")
+        cls.product_product_10 = cls.env["product.product"].create(
+            {
+                "name": "Cabinet with Doors",
+                "type": "consu",
+                "list_price": 140.0,
+                "weight": 0.01,
+                "default_code": "E-COM11",
+            }
+        )
 
         cls.tax_22_purchase = cls.company_data_2["default_tax_purchase"]
 
@@ -62,7 +71,19 @@ class VatStatementCommunicationCase(TestVATStatementCommon):
 
         # Partners
 
-        cls.res_partner_1 = cls.env.ref("base.res_partner_1")
+        cls.res_partner_1 = cls.env["res.partner"].create(
+            {
+                "name": "Wood Corner",
+                "is_company": True,
+                "street": "1839 Arbor Way",
+                "city": "Turlock",
+                "state_id": cls.env.ref("base.state_us_5").id,
+                "zip": "95380",
+                "email": "wood.corner26@example.com",
+                "phone": "(623)-853-7197",
+                "vat": "US12345672",
+            }
+        )
 
         # Type of periods
 
@@ -134,10 +155,10 @@ class VatStatementCommunicationCase(TestVATStatementCommon):
         comunicazione_liquidazione.write(
             {
                 "quadri_vp_ids": [
-                    [5, 0, 0],
-                    [0, 0, {"period_type": "month", "month": 1}],
-                    [0, 0, {"period_type": "month", "month": 2}],
-                    [0, 0, {"period_type": "month", "month": 3}],
+                    Command.clear(),
+                    Command.create({"period_type": "month", "month": 1}),
+                    Command.create({"period_type": "month", "month": 2}),
+                    Command.create({"period_type": "month", "month": 3}),
                 ]
             }
         )
@@ -149,8 +170,8 @@ class VatStatementCommunicationCase(TestVATStatementCommon):
         comunicazione_liquidazione.write(
             {
                 "quadri_vp_ids": [
-                    [5, 0, 0],
-                    [0, 0, {"period_type": "quarter", "quarter": 1}],
+                    Command.clear(),
+                    Command.create({"period_type": "quarter", "quarter": 1}),
                 ]
             }
         )

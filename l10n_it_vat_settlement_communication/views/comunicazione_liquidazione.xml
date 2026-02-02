@@ -103,6 +103,7 @@
 
     <record id="action_comunicazione_liquidazione" model="ir.actions.act_window">
         <field name="name">VAT statement communication</field>
+        <field name="path">vat-statement-communication</field>
         <field name="res_model">comunicazione.liquidazione</field>
         <field name="view_id" ref="view_comunicazione_liquidazione_tree" />
     </record>

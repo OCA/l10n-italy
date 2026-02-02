@@ -20,7 +20,7 @@ class ComunicazioneLiquidazione(models.Model):
 
     @api.model
     def _default_company(self):
-        company_id = self._context.get("company_id", self.env.company.id)
+        company_id = self.env.context.get("company_id", self.env.company.id)
         return company_id
 
     @api.constrains("identificativo")
@@ -29,8 +29,9 @@ class ComunicazioneLiquidazione(models.Model):
         dichiarazioni = self.search(domain)
         if len(dichiarazioni) > 1:
             raise ValidationError(
-                self.env._("Communication with identifier {} already exists").format(
-                    self.identificativo
+                self.env._(
+                    "Communication with identifier %s already exists",
+                    self.identificativo,
                 )
             )
 
@@ -51,6 +52,7 @@ class ComunicazioneLiquidazione(models.Model):
                     name += f", {str(quadro.quarter)}"
             dich.name = name
 
+    # pylint: disable=no-search-all
     def _get_identificativo(self):
         dichiarazioni = self.search([])
         if dichiarazioni:
@@ -59,9 +61,14 @@ class ComunicazioneLiquidazione(models.Model):
             return 1
 
     company_id = fields.Many2one(
-        "res.company", string="Company", required=True, default=_default_company
+        "res.company",
+        string="Company",
+        required=True,
+        default=lambda self: self._default_company(),
     )
-    identificativo = fields.Integer(string="Identifier", default=_get_identificativo)
+    identificativo = fields.Integer(
+        string="Identifier", default=lambda self: self._get_identificativo()
+    )
     name = fields.Char(compute="_compute_name")
     year = fields.Integer(required=True)
     last_month = fields.Integer(string="Last month")
@@ -164,8 +171,8 @@ class ComunicazioneLiquidazione(models.Model):
         ]:
             raise ValidationError(
                 self.env._(
-                    "Taxpayer Fiscalcode is required. It's accepted codes \
-                    with lenght 11 or 16 chars"
+                    "Taxpayer Fiscalcode is required. "
+                    "It's accepted codes with lenght 11 or 16 chars"
                 )
             )
 
@@ -178,8 +185,8 @@ class ComunicazioneLiquidazione(models.Model):
         ):
             raise ValidationError(
                 self.env._(
-                    "Declarant Fiscalcode is required. You can enable the \
-                section with different declarant option"
+                    "Declarant Fiscalcode is required. "
+                    "You can enable the section with different declarant option"
                 )
             )
 
@@ -358,7 +365,7 @@ class ComunicazioneLiquidazione(models.Model):
         xModulo = etree.Element(etree.QName(NS_IV, "Modulo"))
         # Numero Modulo
         NumeroModulo = etree.SubElement(xModulo, etree.QName(NS_IV, "NumeroModulo"))
-        NumeroModulo.text = str(self._context.get("nr_modulo", 1))
+        NumeroModulo.text = str(self.env.context.get("nr_modulo", 1))
 
         if quadro.period_type == "month":
             # 1.2.2.1.1 Mese
