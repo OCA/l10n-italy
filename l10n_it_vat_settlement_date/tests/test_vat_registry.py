@@ -20,9 +20,7 @@ class TestVATRegistry(AccountTestInvoicingCommon):
         cls.supplier_bill = cls.init_invoice(
             "in_invoice",
             invoice_date=datetime.date(2020, 6, 15),
-            amounts=[
-                100,
-            ],
+            amounts=[100],
             taxes=cls.tax_sale_a,
             post=True,
         )

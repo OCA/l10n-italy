@@ -4,7 +4,7 @@
 
 {
     "name": "ITA - Data competenza IVA",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Settlement date for VAT Statement",
     "license": "AGPL-3",

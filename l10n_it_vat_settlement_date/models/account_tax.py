@@ -5,7 +5,7 @@
 import re
 
 from odoo import models
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 class AccountTax(models.Model):
@@ -16,13 +16,16 @@ class AccountTax(models.Model):
         where the settlement date is used instead of move date."""
         # Substitute `date` with the settlement date in domain terms
         settlement_domain = []
-        for term in domain:
-            if term[0] == "date":
-                # 'tuple' object does not support item assignment
-                # so we have to create another term with the new date
-                term = "l10n_it_vat_settlement_date", *term[1:]
-            settlement_domain.append(term)
-        return settlement_domain
+        for term in Domain(domain).children:
+            field_expr = term.field_expr
+            operator = term.operator
+            value = term.value
+            if term.field_expr == "date":
+                field_expr = "l10n_it_vat_settlement_date"
+
+            child = field_expr, operator, value
+            settlement_domain.append(child)
+        return Domain(settlement_domain)
 
     def _inject_vat_settlement_date_domain(self, domain):
         """Create a new domain where the settlement date is used instead of move date.
@@ -30,10 +33,10 @@ class AccountTax(models.Model):
         The domain falls back on the move date if the settlement date is empty.
         """
         settlement_domain = self._get_settlement_date_domain(domain)
-        domain = expression.OR(
+        domain = Domain.OR(
             [
                 settlement_domain,
-                expression.AND(
+                Domain.AND(
                     [
                         [("l10n_it_vat_settlement_date", "=", None)],
                         domain,

@@ -22,8 +22,21 @@ class TestVATPeriodEndStatement(TestVATStatementCommon):
         current_period = self.current_period
         tax = self.company_data_2["default_tax_purchase"]
         out_of_period_date = current_period.date_end + relativedelta(days=+1)
+        partner4 = self.env["res.partner"].create(
+            {
+                "name": "Wood Corner",
+                "is_company": True,
+                "street": "1839 Arbor Way",
+                "city": "Turlock",
+                "state_id": self.env.ref("base.state_us_5").id,
+                "zip": "95380",
+                "email": "wood.corner26@example.com",
+                "phone": "(623)-853-7197",
+                "vat": "US12345672",
+            }
+        )
         bill = self._create_vendor_bill(
-            self.env.ref("base.res_partner_4"),
+            partner4,
             out_of_period_date,
             100,
             tax,
@@ -81,8 +94,21 @@ class TestVATPeriodEndStatement(TestVATStatementCommon):
         current_period = self.current_period
         tax = self.company_data_2["default_tax_purchase"]
         in_period_date = current_period.date_end + relativedelta(days=-1)
+        partner4 = self.env["res.partner"].create(
+            {
+                "name": "Wood Corner",
+                "is_company": True,
+                "street": "1839 Arbor Way",
+                "city": "Turlock",
+                "state_id": self.env.ref("base.state_us_5").id,
+                "zip": "95380",
+                "email": "wood.corner26@example.com",
+                "phone": "(623)-853-7197",
+                "vat": "US12345672",
+            }
+        )
         bill = self._create_vendor_bill(
-            self.env.ref("base.res_partner_4"),
+            partner4,
             in_period_date,
             100,
             tax,
