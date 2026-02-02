@@ -5,7 +5,6 @@ import time
 from odoo import api, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
-from odoo.tools.translate import _
 
 
 class ReportRegistroIva(models.AbstractModel):
@@ -85,7 +84,7 @@ class ReportRegistroIva(models.AbstractModel):
 
             if taxes and len(taxes) != 1:
                 raise UserError(
-                    _("Move line %s has too many base taxes") % move_line.name
+                    self.env._("Move line %s has too many base taxes", move_line.name)
                 )
 
             if taxes:

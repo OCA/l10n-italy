@@ -4,6 +4,7 @@ import io
 from zipfile import ZipFile
 
 from odoo import fields
+from odoo.fields import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -31,7 +32,7 @@ class TestRegistry(TransactionCase):
             {
                 "name": "Sales",
                 "layout_type": "customer",
-                "journal_ids": [(6, 0, [cls.journal.id])],
+                "journal_ids": [Command.set(cls.journal.ids)],
             }
         )
 
@@ -44,23 +45,41 @@ class TestRegistry(TransactionCase):
             .id
         )
 
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Acme Corporation",
+                "is_company": True,
+                "street": "77 Santa Barbara Rd",
+                "city": "Pleasant Hill",
+                "state_id": cls.env.ref("base.state_us_5").id,
+                "zip": "94523",
+                "email": "acme_corp@yourcompany.example.com",
+                "phone": "(603)-996-3829",
+                "vat": "US12345673",
+            }
+        )
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Customizable Desk",
+                "type": "consu",
+                "list_price": 750.0,
+            }
+        )
         cls.invoice = cls.env["account.move"].create(
             {
-                "partner_id": cls.env.ref("base.res_partner_2").id,
+                "partner_id": cls.partner.id,
                 "invoice_date": cls.test_date,
                 "move_type": "out_invoice",
                 "journal_id": cls.journal.id,
                 "invoice_line_ids": [
-                    (
-                        0,
-                        None,
+                    Command.create(
                         {
-                            "product_id": cls.env.ref("product.product_product_4").id,
+                            "product_id": cls.product.id,
                             "quantity": 1.0,
                             "price_unit": 100.0,
                             "name": "product that cost 100",
                             "account_id": cls.invoice_line_account,
-                            "tax_ids": [(6, 0, [cls.tax.id])],
+                            "tax_ids": [Command.set(cls.tax.ids)],
                         },
                     )
                 ],
