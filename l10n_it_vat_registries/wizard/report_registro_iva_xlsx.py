@@ -2,7 +2,7 @@
 
 import logging
 
-from odoo import _, models
+from odoo import models
 from odoo.tools.misc import formatLang
 
 from odoo.addons.report_xlsx_helper.report.report_xlsx_format import (
@@ -32,26 +32,28 @@ class ReportRegistroIvaXlsx(models.AbstractModel):
             "supplier": "Registro IVA acquisti",
             "corrispettivi": "Registro corrispettivi",
         }
-        title = data["form"]["tax_registry_name"] or titles.get(registry_type, _("N/A"))
+        title = data["form"]["tax_registry_name"] or titles.get(
+            registry_type, self.env._("N/A")
+        )
 
         col_specs = {
             "date": {
-                "header": {"value": _("REG. DATE")},
+                "header": {"value": self.env._("REG. DATE")},
                 "lines": {"value": self._render("format_date(move.date,date_format)")},
                 "width": 20,
             },
             "no": {
-                "header": {"value": _("REG. NUM.")},
+                "header": {"value": self.env._("REG. NUM.")},
                 "lines": {"value": self._render("move.name")},
                 "width": 20,
             },
             "reason": {
-                "header": {"value": _("REASON")},
+                "header": {"value": self.env._("REASON")},
                 "lines": {"value": self._render("line['invoice_type']")},
                 "width": 20,
             },
             "inv_date": {
-                "header": {"value": _("INV. DATE")},
+                "header": {"value": self.env._("INV. DATE")},
                 "lines": {
                     "value": self._render(
                         "format_date(line['invoice_date'],date_format)"
@@ -60,7 +62,7 @@ class ReportRegistroIvaXlsx(models.AbstractModel):
                 "width": 20,
             },
             "inv_name": {
-                "header": {"value": _("INV. NUM.")},
+                "header": {"value": self.env._("INV. NUM.")},
                 "lines": {
                     "value": self._render(
                         "move.ref if move.journal_id.type == 'purchase' else move.name"
@@ -69,34 +71,34 @@ class ReportRegistroIvaXlsx(models.AbstractModel):
                 "width": 20,
             },
             "partner": {
-                "header": {"value": _("BUSINESS NAME")},
+                "header": {"value": self.env._("BUSINESS NAME")},
                 "lines": {"value": self._render("move.partner_id.name")},
                 "width": 20,
             },
             "tin": {
-                "header": {"value": _("TIN")},
+                "header": {"value": self.env._("TIN")},
                 "lines": {"value": self._render("move.partner_id.vat")},
                 "width": 20,
             },
             "total": {
-                "header": {"value": _("TOTAL")},
+                "header": {"value": self.env._("TOTAL")},
                 "lines": {
                     "value": self._render("formatLang(env, invoice_total(move))")
                 },
                 "width": 20,
             },
             "tax_name": {
-                "header": {"value": _("Tax description")},
+                "header": {"value": self.env._("Tax description")},
                 "lines": {"value": self._render("line['tax_code_name']")},
                 "width": 20,
             },
             "taxable": {
-                "header": {"value": _("Taxable")},
+                "header": {"value": self.env._("Taxable")},
                 "lines": {"value": self._render("formatLang(env, line['base'])")},
                 "width": 20,
             },
             "tax": {
-                "header": {"value": _("Tax")},
+                "header": {"value": self.env._("Tax")},
                 "lines": {"value": self._render("formatLang(env, line['tax'])")},
                 "width": 20,
             },
