@@ -195,8 +195,7 @@ class ComunicazioneLiquidazione(models.Model):
             if len(self.taxpayer_fiscalcode) == 16:
                 raise ValidationError(
                     self.env._(
-                        "Group's statement not valid, as fiscal code is 16 "
-                        "characters"
+                        "Group's statement not valid, as fiscal code is 16 characters"
                     )
                 )
         # CodiceCaricaDichiarante
