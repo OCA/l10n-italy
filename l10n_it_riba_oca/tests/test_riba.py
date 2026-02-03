@@ -21,6 +21,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
     def test_add_due_cost(self):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.partner_id.riba_policy_expenses = "unlimited"
         # ---- Validate Invoice
         self.invoice.action_post()
         # ---- Test Invoice has 2 line
@@ -774,6 +775,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         cannot be confirmed (e.g. via the list view)
         """
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.partner_id.riba_policy_expenses = "unlimited"
         self.invoice.riba_partner_bank_id = False
         with self.assertRaises(UserError) as err:
             self.invoice.action_post()

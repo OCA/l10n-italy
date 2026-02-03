@@ -234,10 +234,106 @@ class AccountMove(models.Model):
             )
         return super()._post(soft=soft)
 
+    def _get_riba_expense_line_vals(self, pay_date=None):
+        """
+        Prepare values for RiBa collection fees invoice line.
+        :param pay_date: optional date for the expense description
+        :return: dict with invoice line values
+        """
+        self.ensure_one()
+        service_prod = self.company_id.due_cost_service_id
+        account = service_prod.product_tmpl_id.get_product_accounts(
+            self.fiscal_position_id
+        )["income"]
+        line_vals = {
+            "partner_id": self.partner_id.id,
+            "product_id": service_prod.id,
+            "move_id": self.id,
+            "price_unit": self.invoice_payment_term_id.riba_payment_cost,
+            "due_cost_line": True,
+            "account_id": account.id,
+            "sequence": 9999,
+        }
+        if pay_date:
+            line_vals["name"] = self.env._("{line_name} for {month}-{year}").format(
+                line_name=service_prod.name,
+                month=pay_date.month,
+                year=pay_date.year,
+            )
+        if self.company_id.due_cost_service_id.taxes_id:
+            tax = self.fiscal_position_id.map_tax(service_prod.taxes_id)
+            line_vals["tax_ids"] = [(4, tax.id)]
+        return line_vals
+
+    def _add_riba_expense_line(self, pay_date=None):
+        """Add a RiBa collection fees line to the invoice."""
+        self.ensure_one()
+        line_vals = self._get_riba_expense_line_vals(pay_date)
+        self.write({"invoice_line_ids": [(0, 0, line_vals)]})
+
+    def _apply_riba_collection_fees(self):
+        """
+        Apply collection fees based on partner's riba_policy_expenses.
+        """
+        self.ensure_one()
+
+        # Get existing move lines with RiBa expenses for this partner
+        move_line = self.env["account.move.line"].search(
+            [
+                ("partner_id", "=", self.partner_id.id),
+                ("move_id.invoice_payment_term_id.riba", "=", True),
+                ("move_id.state", "=", "posted"),
+            ]
+        )
+        move_line = move_line.filtered(
+            lambda line: any(
+                inv_line.due_cost_line for inv_line in line.move_id.invoice_line_ids
+            )
+        )
+        move_line = move_line.filtered(lambda line: line.date_maturity is not False)
+        move_line = move_line.sorted(key=lambda r: r.date_maturity)
+
+        previous_date_due = move_line.mapped("date_maturity")
+        all_invoice_date = move_line.mapped("invoice_date")
+
+        # Compute payment term dates
+        pterm_list = self.invoice_payment_term_id._compute_terms(
+            date_ref=self.invoice_date,
+            currency=self.currency_id,
+            company=self.company_id,
+            tax_amount=1,
+            tax_amount_currency=1,
+            untaxed_amount=0,
+            sign=1 if self.is_inbound(include_receipts=True) else -1,
+            untaxed_amount_currency=self.amount_untaxed,
+        )
+
+        policy = self.partner_id.riba_policy_expenses
+
+        if policy == "one_per_invoice":
+            # One expense per invoice, no date in description
+            self._add_riba_expense_line()
+        elif policy == "unlimited":
+            # One expense for each due date, no checks
+            for pay_date in pterm_list["line_ids"]:
+                self._add_riba_expense_line(pay_date["date"])
+        elif policy == "one_a_maturity":
+            # One expense per maturity date, skip if date already exists
+            for pay_date in pterm_list["line_ids"]:
+                if not self.maturity_check(pay_date["date"], previous_date_due):
+                    self._add_riba_expense_line(pay_date["date"])
+        else:
+            # Default: one_a_month - one expense per month
+            if not self.month_check(all_invoice_date):
+                pay_date = pterm_list["line_ids"][0]
+                self._add_riba_expense_line(pay_date["date"])
+
+        # Recompute invoice taxes
+        self._sync_dynamic_lines(container={"records": self, "self": self})
+
     def action_post(self):
         for invoice in self:
-            # ---- Add a line with collection fees for each due date only for first due
-            # ---- date of the month
+            # Check if collection fees should be applied
             if (
                 invoice.move_type != "out_invoice"
                 or not invoice.invoice_payment_term_id
@@ -250,131 +346,8 @@ class AccountMove(models.Model):
                 raise UserError(
                     self.env._("Set a Service for Collection Fees in Company Config.")
                 )
-            # ---- Apply Collection Fees on invoice only on first due date of the month
-            # ---- Get Date of first due date
-            move_line = self.env["account.move.line"].search(
-                [
-                    ("partner_id", "=", invoice.partner_id.id),
-                    ("move_id.invoice_payment_term_id.riba", "=", True),
-                    ("move_id.state", "=", "posted"),
-                ]
-            )
-            # ---- Keep only lines from invoices that already have collection fees
-            move_line = move_line.filtered(
-                lambda line: any(
-                    inv_line.due_cost_line for inv_line in line.move_id.invoice_line_ids
-                )
-            )
-            move_line = move_line.filtered(lambda line: line.date_maturity is not False)
-            # ---- Sorted
-            move_line = move_line.sorted(key=lambda r: r.date_maturity)
-            # ---- Get date
-            previous_date_due = move_line.mapped("date_maturity")
-            all_invoice_date = move_line.mapped("invoice_date")
-            pterm_list = invoice.invoice_payment_term_id._compute_terms(
-                date_ref=invoice.invoice_date,
-                currency=invoice.currency_id,
-                company=invoice.company_id,
-                tax_amount=1,
-                tax_amount_currency=1,
-                untaxed_amount=0,
-                sign=1 if invoice.is_inbound(include_receipts=True) else -1,
-                untaxed_amount_currency=invoice.amount_untaxed,
-            )
+            invoice._apply_riba_collection_fees()
 
-            # Check if expenses should be applied based on policy
-            should_skip_expense = False
-            if invoice.partner_id.riba_policy_expenses == "one_per_invoice":
-                # Always add one expense per invoice, regardless of due dates
-                pay_date = pterm_list["line_ids"][
-                    0
-                ]  # Use first due date for description
-                service_prod = invoice.company_id.due_cost_service_id
-                account = service_prod.product_tmpl_id.get_product_accounts(
-                    invoice.fiscal_position_id
-                )["income"]
-                line_vals = {
-                    "partner_id": invoice.partner_id.id,
-                    "product_id": service_prod.id,
-                    "move_id": invoice.id,
-                    "price_unit": (invoice.invoice_payment_term_id.riba_payment_cost),
-                    "due_cost_line": True,
-                    "account_id": account.id,
-                    "sequence": 9999,
-                }
-                if invoice.company_id.due_cost_service_id.taxes_id:
-                    tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
-                    line_vals.update({"tax_ids": [(4, tax.id)]})
-                invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
-            elif invoice.partner_id.riba_policy_expenses == "one_a_maturity":
-                # For maturity policy, check each due date
-                for pay_date in pterm_list["line_ids"]:
-                    should_skip_expense = invoice.maturity_check(
-                        pay_date["date"], previous_date_due
-                    )
-                    if not should_skip_expense:
-                        # Add expense line for this due date
-                        service_prod = invoice.company_id.due_cost_service_id
-                        account = service_prod.product_tmpl_id.get_product_accounts(
-                            invoice.fiscal_position_id
-                        )["income"]
-                        line_vals = {
-                            "partner_id": invoice.partner_id.id,
-                            "product_id": service_prod.id,
-                            "move_id": invoice.id,
-                            "price_unit": (
-                                invoice.invoice_payment_term_id.riba_payment_cost
-                            ),
-                            "due_cost_line": True,
-                            "name": self.env._("{line_name} for {month}-{year}").format(
-                                line_name=service_prod.name,
-                                month=pay_date["date"].month,
-                                year=pay_date["date"].year,
-                            ),
-                            "account_id": account.id,
-                            "sequence": 9999,
-                        }
-                        if invoice.company_id.due_cost_service_id.taxes_id:
-                            tax = invoice.fiscal_position_id.map_tax(
-                                service_prod.taxes_id
-                            )
-                            line_vals.update({"tax_ids": [(4, tax.id)]})
-                        invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
-            else:
-                # For month policy, check only once per invoice
-                should_skip_expense = invoice.month_check(all_invoice_date)
-                if not should_skip_expense:
-                    # Add only one expense line for the invoice
-                    pay_date = pterm_list["line_ids"][
-                        0
-                    ]  # Use first due date for description
-                    service_prod = invoice.company_id.due_cost_service_id
-                    account = service_prod.product_tmpl_id.get_product_accounts(
-                        invoice.fiscal_position_id
-                    )["income"]
-                    line_vals = {
-                        "partner_id": invoice.partner_id.id,
-                        "product_id": service_prod.id,
-                        "move_id": invoice.id,
-                        "price_unit": (
-                            invoice.invoice_payment_term_id.riba_payment_cost
-                        ),
-                        "due_cost_line": True,
-                        "name": self.env._("{line_name} for {month}-{year}").format(
-                            line_name=service_prod.name,
-                            month=pay_date["date"].month,
-                            year=pay_date["date"].year,
-                        ),
-                        "account_id": account.id,
-                        "sequence": 9999,
-                    }
-                    if invoice.company_id.due_cost_service_id.taxes_id:
-                        tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
-                        line_vals.update({"tax_ids": [(4, tax.id)]})
-                    invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
-
-            # Recompute invoice taxes
-            invoice._sync_dynamic_lines(container={"records": invoice, "self": invoice})
         res = super().action_post()
 
         # Automatic reconciliation for RiBa credit moves
