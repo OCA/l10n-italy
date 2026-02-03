@@ -180,10 +180,12 @@ class AccountMove(models.Model):
         :return: True if month of current invoice date is already in all_invoice_date
         """
         self.ensure_one()
+        if not self.invoice_date:
+            return False
         if self.partner_id.riba_policy_expenses != "unlimited":
             current_invoice_month = self.invoice_date.strftime("%Y-%m")
             for d in all_invoice_date:
-                if current_invoice_month == d.strftime("%Y-%m"):
+                if d and current_invoice_month == d.strftime("%Y-%m"):
                     return True
         return False
 
@@ -360,8 +362,8 @@ class AccountMove(models.Model):
                         "due_cost_line": True,
                         "name": self.env._("{line_name} for {month}-{year}").format(
                             line_name=service_prod.name,
-                            month=invoice.invoice_date.month,
-                            year=invoice.invoice_date.year,
+                            month=pay_date["date"].month,
+                            year=pay_date["date"].year,
                         ),
                         "account_id": account.id,
                         "sequence": 9999,
