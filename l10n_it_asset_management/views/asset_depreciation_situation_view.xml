@@ -4,22 +4,28 @@
         <field name="name">asset.depreciation.situation.tree</field>
         <field name="model">asset.depreciation</field>
         <field name="arch" type="xml">
-            <tree string="Situazione Cespiti" 
-                  default_group_by="l10n_it_asset_id"
-                  expand="1">
-                <field name="l10n_it_asset_id" string="Cespite"/>
-                <field name="type_id" string="Tipo Ammortamento"/>
-                <field name="amount_depreciable_updated" 
-                       string="Importo Ammortizzabile" 
-                       sum="Totale Ammortizzabile"/>
-                <field name="amount_depreciated" 
-                       string="Importo Ammortizzato" 
-                       sum="Totale Ammortizzato"/>
-                <field name="amount_residual" 
-                       string="Residuo" 
-                       sum="Totale Residuo"/>
-                <field name="last_depreciation_date" 
-                       string="Ultima Data Ammortamento"/>
+            <tree string="Situazione Cespiti">
+                <field name="l10n_it_asset_id" string="Cespite" />
+                <field name="type_id" string="Tipo Ammortamento" />
+                <field
+                    name="amount_depreciable_updated"
+                    string="Importo Ammortizzabile"
+                    sum="Totale Ammortizzabile"
+                />
+                <field
+                    name="amount_depreciated"
+                    string="Importo Ammortizzato"
+                    sum="Totale Ammortizzato"
+                />
+                <field
+                    name="amount_residual"
+                    string="Residuo"
+                    sum="Totale Residuo"
+                />
+                <field
+                    name="last_depreciation_date"
+                    string="Ultima Data Ammortamento"
+                />
             </tree>
         </field>
     </record>
@@ -28,14 +34,15 @@
         <field name="name">Situazione Cespiti</field>
         <field name="res_model">asset.depreciation</field>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_asset_depreciation_situation_tree"/>
+        <field name="view_id" ref="view_asset_depreciation_situation_tree" />
         <field name="context">{'group_by': 'l10n_it_asset_id'}</field>
     </record>
 
-    <menuitem 
-        id="menu_asset_situation" 
-        name="Situazione Cespiti" 
-        parent="menu_asset_reports" 
-        action="action_asset_depreciation_situation" 
-        sequence="30"/>
+    <menuitem
+        id="menu_asset_situation"
+        name="Situazione Cespiti"
+        parent="menu_asset_reports"
+        action="action_asset_depreciation_situation"
+        sequence="30"
+    />
 </odoo>
