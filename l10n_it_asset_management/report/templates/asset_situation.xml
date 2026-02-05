@@ -86,6 +86,68 @@
                             </td>
                         </tr>
                     </t>
+                    <t t-if="o.show_category_totals">
+                        <tr style="background-color: #E0E0E0; font-weight: bold;">
+                            <td style="text-align: left;">
+                                <span t-esc="'Total ' + category.category_name" />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="category.total_amount_depreciable_updated"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="category.total_amount_depreciated"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="category.total_amount_residual"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: center;"></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </t>
+
+        <t t-if="o.show_totals and o.report_total_ids">
+            <div style="margin-top: 50px;">
+                <h3 style="background-color: #337AB7; color: white; padding: 8px; text-align: center; margin: 0;">
+                    TOTALI GENERALI
+                </h3>
+            </div>
+            <table class="table table-sm table-bordered" style="width: 100%;">
+                <tbody>
+                    <t t-foreach="o.report_total_ids" t-as="totals">
+                        <tr style="background-color: #E0E0E0; font-weight: bold;">
+                            <td style="width: 40%; text-align: left;">Totale Generale</td>
+                            <td style="width: 15%; text-align: right;">
+                                <span
+                                    t-field="totals.total_amount_depreciable_updated"
+                                    t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                                />
+                            </td>
+                            <td style="width: 15%; text-align: right;">
+                                <span
+                                    t-field="totals.total_amount_depreciated"
+                                    t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                                />
+                            </td>
+                            <td style="width: 15%; text-align: right;">
+                                <span
+                                    t-field="totals.total_amount_residual"
+                                    t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                                />
+                            </td>
+                            <td style="width: 15%; text-align: center;"></td>
+                        </tr>
+                    </t>
                 </tbody>
             </table>
         </t>
