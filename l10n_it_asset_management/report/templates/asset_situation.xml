@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2026 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template id="template_asset_situation_report">
+        <div class="o_account_financial_reports_page">
+            <t t-call="l10n_it_asset_management.template_asset_situation_base" />
+        </div>
+    </template>
+
+    <template id="template_asset_situation_qweb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="l10n_it_asset_management.document_layout">
+                    <t t-call="l10n_it_asset_management.template_asset_situation_base" />
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="template_asset_situation_base">
+        <div class="page">
+            <t t-call="l10n_it_asset_management.template_asset_situation_title" />
+            <t t-call="l10n_it_asset_management.template_asset_situation_body" />
+        </div>
+    </template>
+
+    <template id="template_asset_situation_title">
+        <div>
+            <h1 style="text-align:center;">
+                <span t-field="o.report_name" />
+            </h1>
+            <div style="width: 100%; text-align:center; margin-bottom: 20px;">
+                <t t-if="o.purchase_date_from">
+                    <span>Purchase Date From: <span
+                            t-field="o.purchase_date_from"
+                        /></span>
+                    <br />
+                </t>
+                <t t-if="o.purchase_date_to">
+                    <span>Purchase Date To: <span t-field="o.purchase_date_to" /></span>
+                    <br />
+                </t>
+                <t t-if="o.show_sold_assets">
+                    <span>Including Sold Assets</span>
+                    <br />
+                </t>
+                <t t-if="o.show_dismissed_assets">
+                    <span>Including Dismissed Assets</span>
+                    <br />
+                </t>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_asset_situation_body">
+        <t t-foreach="o.report_category_ids" t-as="category">
+            <div class="act_as_table data_table" style="width: 100%; margin-bottom: 30px;">
+                <!-- Category Header -->
+                <div name="category_name" style="margin-bottom: 10px;">
+                    <h2 style="text-align: center; background-color: #337AB7; color: white; padding: 10px; margin: 0;">
+                        <span t-esc="category.category_name" />
+                    </h2>
+                </div>
+
+                <!-- Table Header -->
+                <div class="act_as_thead">
+                    <div class="act_as_row">
+                        <div class="act_as_cell" style="width: 30%;">Asset Name</div>
+                        <div class="act_as_cell" style="width: 15%;">Type</div>
+                        <div
+                            class="act_as_cell amount"
+                            style="width: 15%;"
+                        >Depreciable</div>
+                        <div
+                            class="act_as_cell amount"
+                            style="width: 15%;"
+                        >Depreciated</div>
+                        <div class="act_as_cell amount" style="width: 15%;">Residual</div>
+                        <div class="act_as_cell" style="width: 10%;">Last Depr. Date</div>
+                    </div>
+                </div>
+
+                <!-- Table Body -->
+                <div class="act_as_tbody">
+                    <t t-foreach="category.line_ids" t-as="line">
+                        <div class="act_as_row">
+                            <div class="act_as_cell" style="width: 30%;">
+                                <span t-esc="line.asset_name" />
+                            </div>
+                            <div class="act_as_cell" style="width: 15%;">
+                                <span t-esc="line.depreciation_type" />
+                            </div>
+                            <div class="act_as_cell amount" style="width: 15%;">
+                                <span
+                                    t-field="line.amount_depreciable_updated"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </div>
+                            <div class="act_as_cell amount" style="width: 15%;">
+                                <span
+                                    t-field="line.amount_depreciated"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </div>
+                            <div class="act_as_cell amount" style="width: 15%;">
+                                <span
+                                    t-field="line.amount_residual"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </div>
+                            <div class="act_as_cell" style="width: 10%;">
+                                <span
+                                    t-field="line.last_depreciation_date"
+                                    t-options="{'widget': 'date'}"
+                                />
+                            </div>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- Category Totals -->
+                <t t-if="o.show_category_totals">
+                    <div class="act_as_tfoot">
+                        <div class="act_as_row" style="font-weight: bold; background-color: #f0f0f0;">
+                            <div class="act_as_cell" style="width: 30%;">
+                                Total <span t-esc="category.category_name" />
+                            </div>
+                            <div class="act_as_cell" style="width: 15%;" />
+                            <div class="act_as_cell amount" style="width: 15%;">
+                                <span
+                                    t-field="category.total_amount_depreciable_updated"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </div>
+                            <div class="act_as_cell amount" style="width: 15%;">
+                                <span
+                                    t-field="category.total_amount_depreciated"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </div>
+                            <div class="act_as_cell amount" style="width: 15%;">
+                                <span
+                                    t-field="category.total_amount_residual"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </div>
+                            <div class="act_as_cell" style="width: 10%;" />
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+
+        <!-- General Totals -->
+        <t t-if="o.show_totals and o.report_total_ids">
+            <t t-set="totals" t-value="o.report_total_ids[0]" />
+            <div class="act_as_table data_table" style="width: 100%; margin-top: 30px;">
+                <div name="totals_header" style="margin-bottom: 10px;">
+                    <h2 style="text-align: center; background-color: #2c3e50; color: white; padding: 10px; margin: 0;">
+                        GENERAL TOTALS
+                    </h2>
+                </div>
+                <div class="act_as_row" style="font-weight: bold; font-size: 14pt;">
+                    <div class="act_as_cell" style="width: 30%;">TOTAL</div>
+                    <div class="act_as_cell" style="width: 15%;" />
+                    <div class="act_as_cell amount" style="width: 15%;">
+                        <span
+                            t-field="totals.total_amount_depreciable_updated"
+                            t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                        />
+                    </div>
+                    <div class="act_as_cell amount" style="width: 15%;">
+                        <span
+                            t-field="totals.total_amount_depreciated"
+                            t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                        />
+                    </div>
+                    <div class="act_as_cell amount" style="width: 15%;">
+                        <span
+                            t-field="totals.total_amount_residual"
+                            t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                        />
+                    </div>
+                    <div class="act_as_cell" style="width: 10%;" />
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
