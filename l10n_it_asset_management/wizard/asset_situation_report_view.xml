@@ -49,7 +49,7 @@
     <menuitem
         id="menu_asset_situation_report"
         name="Situazione Cespiti"
-        parent="menu_asset_reports"
+        parent="l10n_it_asset_management.menu_asset_reports"
         action="action_asset_situation_report_wizard"
         sequence="30"
     />
