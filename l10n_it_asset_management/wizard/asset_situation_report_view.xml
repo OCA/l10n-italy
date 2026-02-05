@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2026 Nextev Srl
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
     <record id="view_asset_situation_report_wizard_form" model="ir.ui.view">
         <field name="name">asset.situation.report.wizard.form</field>
