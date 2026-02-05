@@ -5,3 +5,4 @@
 from . import models
 from . import report
 from . import wizard
+from . import asset_situation_report
