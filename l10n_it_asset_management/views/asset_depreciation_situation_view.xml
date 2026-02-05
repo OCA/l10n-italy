@@ -17,8 +17,15 @@
                     string="Importo Ammortizzato"
                     sum="Totale Ammortizzato"
                 />
-                <field name="amount_residual" string="Residuo" sum="Totale Residuo" />
-                <field name="last_depreciation_date" string="Ultima Data Ammortamento" />
+                <field
+                    name="amount_residual"
+                    string="Residuo"
+                    sum="Totale Residuo"
+                />
+                <field
+                    name="last_depreciation_date"
+                    string="Ultima Data Ammortamento"
+                />
             </list>
         </field>
     </record>
