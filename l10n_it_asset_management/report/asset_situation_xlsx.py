@@ -15,7 +15,6 @@ class AssetSituationXlsx(models.AbstractModel):
 
     def generate_xlsx_report(self, workbook, data, objects):
         """Set wb, data and report attributes"""
-        # Initialize report variables
         report_data = {
             "workbook": None,
             "sheet": None,
@@ -31,13 +30,11 @@ class AssetSituationXlsx(models.AbstractModel):
         self.set_formats(workbook, report_data)
         self.set_report_data(report_data)
 
-        # Get report data
         report_footer = self._get_report_footer()
         filters = self._get_report_filters(objects)
         report_data["columns"] = self._get_report_columns(objects)
         self._set_column_width(report_data)
 
-        # Fill report
         self._write_report_title(report_name, report_data)
         self._write_filters(filters, report_data)
         self._generate_report_content(workbook, objects, data, report_data)
@@ -45,8 +42,6 @@ class AssetSituationXlsx(models.AbstractModel):
 
     def set_formats(self, workbook, report_data):
         """Defines custom formats"""
-
-        # Category formats
         report_data["formats"]["format_category_header"] = workbook.add_format(
             {
                 "align": "center",
@@ -57,62 +52,32 @@ class AssetSituationXlsx(models.AbstractModel):
             }
         )
 
-        # Header formats
         report_data["formats"]["format_header_left"] = workbook.add_format(
-            {
-                "align": "left",
-                "bold": True,
-                "border": 1,
-            }
+            {"align": "left", "bold": True, "border": 1}
         )
 
         report_data["formats"]["format_header_center"] = workbook.add_format(
-            {
-                "align": "center",
-                "bold": True,
-                "border": 1,
-            }
+            {"align": "center", "bold": True, "border": 1}
         )
 
         report_data["formats"]["format_header_right"] = workbook.add_format(
-            {
-                "align": "right",
-                "bold": True,
-                "border": 1,
-            }
+            {"align": "right", "bold": True, "border": 1}
         )
 
-        # Data formats
         report_data["formats"]["format_data_left"] = workbook.add_format(
-            {
-                "align": "left",
-                "border": 1,
-            }
+            {"align": "left", "border": 1}
         )
 
         report_data["formats"]["format_data_center"] = workbook.add_format(
-            {
-                "align": "center",
-                "border": 1,
-            }
+            {"align": "center", "border": 1}
         )
 
         report_data["formats"]["format_data_amount"] = workbook.add_format(
-            {
-                "align": "right",
-                "border": 1,
-                "num_format": "#,##0.00",
-            }
+            {"align": "right", "border": 1, "num_format": "#,##0.00"}
         )
 
-        # Total formats
         report_data["formats"]["format_total_label"] = workbook.add_format(
-            {
-                "align": "left",
-                "bold": True,
-                "bg_color": "#E0E0E0",
-                "border": 1,
-            }
+            {"align": "left", "bold": True, "bg_color": "#E0E0E0", "border": 1}
         )
 
         report_data["formats"]["format_total_amount"] = workbook.add_format(
@@ -157,16 +122,8 @@ class AssetSituationXlsx(models.AbstractModel):
 
     def _get_report_columns(self, objects):
         return {
-            0: {
-                "header": "Asset Name",
-                "field": "asset_name",
-                "width": 40,
-            },
-            1: {
-                "header": "Depreciation Type",
-                "field": "depreciation_type",
-                "width": 20,
-            },
+            0: {"header": "Asset Name", "field": "asset_name", "width": 40},
+            1: {"header": "Depreciation Type", "field": "depreciation_type", "width": 20},
             2: {
                 "header": "Depreciable Amount",
                 "field": "amount_depreciable_updated",
@@ -198,14 +155,11 @@ class AssetSituationXlsx(models.AbstractModel):
         if not obj:
             return
 
-        # Write column headers
         self._write_column_headers(report_data)
 
-        # Write data by category
         for category in obj.report_category_ids:
             self._write_category_section(category, report_data)
 
-        # Write general totals
         if obj.show_totals and obj.report_total_ids:
             self._write_totals(obj.report_total_ids[0], report_data)
 
@@ -229,7 +183,6 @@ class AssetSituationXlsx(models.AbstractModel):
         row_pos = report_data["row_pos"]
         sheet = report_data["sheet"]
 
-        # Write category header
         sheet.merge_range(
             row_pos,
             0,
@@ -240,11 +193,9 @@ class AssetSituationXlsx(models.AbstractModel):
         )
         report_data["row_pos"] += 1
 
-        # Write category lines
         for line in category.line_ids:
             self._write_line(line, report_data)
 
-        # Write category totals if enabled
         if category.report_id.show_category_totals:
             self._write_category_totals(category, report_data)
 
@@ -256,10 +207,7 @@ class AssetSituationXlsx(models.AbstractModel):
         sheet = report_data["sheet"]
 
         sheet.write(
-            row_pos,
-            0,
-            line.asset_name,
-            report_data["formats"]["format_data_left"],
+            row_pos, 0, line.asset_name, report_data["formats"]["format_data_left"]
         )
         sheet.write(
             row_pos,
@@ -307,12 +255,7 @@ class AssetSituationXlsx(models.AbstractModel):
             f"Total {category.category_name}",
             report_data["formats"]["format_total_label"],
         )
-        sheet.write(
-            row_pos,
-            1,
-            "",
-            report_data["formats"]["format_total_label"],
-        )
+        sheet.write(row_pos, 1, "", report_data["formats"]["format_total_label"])
         sheet.write(
             row_pos,
             2,
@@ -331,12 +274,7 @@ class AssetSituationXlsx(models.AbstractModel):
             category.total_amount_residual,
             report_data["formats"]["format_total_amount"],
         )
-        sheet.write(
-            row_pos,
-            5,
-            "",
-            report_data["formats"]["format_total_label"],
-        )
+        sheet.write(row_pos, 5, "", report_data["formats"]["format_total_label"])
 
         report_data["row_pos"] += 1
 
@@ -349,17 +287,9 @@ class AssetSituationXlsx(models.AbstractModel):
         row_pos = report_data["row_pos"]
 
         sheet.write(
-            row_pos,
-            0,
-            "GENERAL TOTALS",
-            report_data["formats"]["format_total_label"],
+            row_pos, 0, "GENERAL TOTALS", report_data["formats"]["format_total_label"]
         )
-        sheet.write(
-            row_pos,
-            1,
-            "",
-            report_data["formats"]["format_total_label"],
-        )
+        sheet.write(row_pos, 1, "", report_data["formats"]["format_total_label"])
         sheet.write(
             row_pos,
             2,
@@ -378,11 +308,6 @@ class AssetSituationXlsx(models.AbstractModel):
             totals.total_amount_residual,
             report_data["formats"]["format_total_amount"],
         )
-        sheet.write(
-            row_pos,
-            5,
-            "",
-            report_data["formats"]["format_total_label"],
-        )
+        sheet.write(row_pos, 5, "", report_data["formats"]["format_total_label"])
 
         report_data["row_pos"] += 1
