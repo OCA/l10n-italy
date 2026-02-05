@@ -27,7 +27,6 @@
         "report/paperformat.xml",
         "report/templates/asset_journal.xml",
         "report/templates/asset_previsional.xml",
-        "report/templates/asset_situation.xml",
         "report/reports.xml",
         "views/asset_menuitems.xml",
         "views/account_move.xml",
@@ -44,7 +43,7 @@
         "wizard/asset_generate_depreciation_view.xml",
         "wizard/asset_journal_report_view.xml",
         "wizard/asset_previsional_report_view.xml",
-        "wizard/asset_situation_report_view.xml",
+        "views/asset_depreciation_situation_view.xml",
     ],
     "assets": {
         "web.assets_backend": [

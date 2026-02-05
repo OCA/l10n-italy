@@ -6,5 +6,3 @@ from . import asset_journal
 from . import asset_journal_xlsx
 from . import asset_previsional
 from . import asset_previsional_xlsx
-from . import asset_situation
-from . import asset_situation_xlsx
