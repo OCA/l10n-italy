@@ -88,7 +88,7 @@
         >l10n_it_asset_management.report_asset_previsional_xlsx</field>
     </record>
 
-     <record id="report_asset_situation_html" model="ir.actions.report">
+    <record id="report_asset_situation_html" model="ir.actions.report">
         <field name="name">Asset Situation Report HTML</field>
         <field name="model">report.asset.situation</field>
         <field name="report_type">qweb-html</field>

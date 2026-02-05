@@ -14,7 +14,9 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="l10n_it_asset_management.document_layout">
-                    <t t-call="l10n_it_asset_management.template_asset_situation_base" />
+                    <t
+                        t-call="l10n_it_asset_management.template_asset_situation_base"
+                    />
                 </t>
             </t>
         </t>
@@ -38,7 +40,9 @@
     <template id="template_asset_situation_body">
         <t t-foreach="o.report_category_ids" t-as="category">
             <div style="margin-top: 30px; margin-bottom: 10px;">
-                <h3 style="background-color: #337AB7; color: white; padding: 8px; text-align: center; margin: 0;">
+                <h3
+                    style="background-color: #337AB7; color: white; padding: 8px; text-align: center; margin: 0;"
+                >
                     <span t-esc="category.category_name" />
                 </h3>
             </div>
@@ -47,10 +51,16 @@
                 <thead style="background-color: #f5f5f5;">
                     <tr>
                         <th style="width: 40%; text-align: left;">Nome Cespite</th>
-                        <th style="width: 15%; text-align: right;">Importo Ammortizzabile</th>
-                        <th style="width: 15%; text-align: right;">Importo Ammortizzato</th>
+                        <th
+                            style="width: 15%; text-align: right;"
+                        >Importo Ammortizzabile</th>
+                        <th
+                            style="width: 15%; text-align: right;"
+                        >Importo Ammortizzato</th>
                         <th style="width: 15%; text-align: right;">Importo Residuo</th>
-                        <th style="width: 15%; text-align: center;">Ultima Data Ammortamento</th>
+                        <th
+                            style="width: 15%; text-align: center;"
+                        >Ultima Data Ammortamento</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -110,7 +120,7 @@
                                     t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
                                 />
                             </td>
-                            <td style="text-align: center;"></td>
+                            <td style="text-align: center;" />
                         </tr>
                     </t>
                 </tbody>
@@ -119,7 +129,9 @@
 
         <t t-if="o.show_totals and o.report_total_ids">
             <div style="margin-top: 50px;">
-                <h3 style="background-color: #337AB7; color: white; padding: 8px; text-align: center; margin: 0;">
+                <h3
+                    style="background-color: #337AB7; color: white; padding: 8px; text-align: center; margin: 0;"
+                >
                     TOTALI GENERALI
                 </h3>
             </div>
@@ -127,7 +139,9 @@
                 <tbody>
                     <t t-foreach="o.report_total_ids" t-as="totals">
                         <tr style="background-color: #E0E0E0; font-weight: bold;">
-                            <td style="width: 40%; text-align: left;">Totale Generale</td>
+                            <td
+                                style="width: 40%; text-align: left;"
+                            >Totale Generale</td>
                             <td style="width: 15%; text-align: right;">
                                 <span
                                     t-field="totals.total_amount_depreciable_updated"
@@ -146,7 +160,7 @@
                                     t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
                                 />
                             </td>
-                            <td style="width: 15%; text-align: center;"></td>
+                            <td style="width: 15%; text-align: center;" />
                         </tr>
                     </t>
                 </tbody>

@@ -123,7 +123,11 @@ class AssetSituationXlsx(models.AbstractModel):
     def _get_report_columns(self, objects):
         return {
             0: {"header": "Asset Name", "field": "asset_name", "width": 40},
-            1: {"header": "Depreciation Type", "field": "depreciation_type", "width": 20},
+            1: {
+                "header": "Depreciation Type",
+                "field": "depreciation_type",
+                "width": 20,
+            },
             2: {
                 "header": "Depreciable Amount",
                 "field": "amount_depreciable_updated",

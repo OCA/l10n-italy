@@ -3,10 +3,8 @@
 
 from collections import OrderedDict
 
-from odoo import api, fields, models
+from odoo import fields, models
 from odoo.exceptions import ValidationError
-from odoo.fields import Command
-from odoo.tools.misc import format_amount
 
 
 def format_date(rec, field_name, fmt):
@@ -156,8 +154,7 @@ class ReportAssetSituation(models.TransientModel):
             for d in category_data["depreciations"]
         )
         total_depreciated = sum(
-            d["depreciation"].amount_depreciated
-            for d in category_data["depreciations"]
+            d["depreciation"].amount_depreciated for d in category_data["depreciations"]
         )
         total_residual = sum(
             d["depreciation"].amount_residual for d in category_data["depreciations"]
