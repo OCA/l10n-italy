@@ -72,6 +72,14 @@ class AssetDepreciation(models.Model):
         string="Asset",
     )
 
+    category_id = fields.Many2one(
+        "asset.category",
+        readonly=True,
+        related="l10n_it_asset_id.category_id",
+        store=True,
+        string="Category",
+    )
+
     company_id = fields.Many2one(
         "res.company",
         readonly=True,
