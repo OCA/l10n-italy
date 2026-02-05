@@ -37,6 +37,7 @@
         "views/asset_depreciation_line.xml",
         "views/asset_depreciation_line_type.xml",
         "views/asset_depreciation_mode.xml",
+        "views/asset_depreciation_situation.xml",
         "views/asset_depreciation_type.xml",
         "views/asset_tag.xml",
         "wizard/account_move_manage_asset_view.xml",
