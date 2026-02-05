@@ -33,9 +33,7 @@
             </h1>
             <div style="width: 100%; text-align:center; margin-bottom: 20px;">
                 <t t-if="o.purchase_date_from">
-                    <span>Data acquisto da: <span
-                            t-field="o.purchase_date_from"
-                        /></span>
+                    <span>Data acquisto da: <span t-field="o.purchase_date_from" /></span>
                     <br />
                 </t>
                 <t t-if="o.purchase_date_to">
@@ -72,5 +70,110 @@
                         <th style="width: 15%; text-align: right;">Importo Ammortizzato</th>
                         <th style="width: 15%; text-align: right;">Importo Residuo</th>
                         <th style="width: 15%; text-align: center;">Ultima Data Ammortamento</th>
-                    
-
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="category.line_ids" t-as="line">
+                        <tr>
+                            <td style="text-align: left;">
+                                <span t-esc="line.asset_name" />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="line.amount_depreciable_updated"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="line.amount_depreciated"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="line.amount_residual"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: center;">
+                                <span
+                                    t-field="line.last_depreciation_date"
+                                    t-options="{'widget': 'date'}"
+                                />
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+
+                <!-- Category Totals -->
+                <t t-if="o.show_category_totals">
+                    <tfoot style="background-color: #f0f0f0; font-weight: bold;">
+                        <tr>
+                            <td style="text-align: left;">
+                                Totale <span t-esc="category.category_name" />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="category.total_amount_depreciable_updated"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="category.total_amount_depreciated"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="category.total_amount_residual"
+                                    t-options="{'widget': 'monetary', 'display_currency': category.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: center;"></td>
+                        </tr>
+                    </tfoot>
+                </t>
+            </table>
+        </t>
+
+        <!-- General Totals -->
+        <t t-if="o.show_totals and o.report_total_ids">
+            <t t-set="totals" t-value="o.report_total_ids[0]" />
+
+            <div style="margin-top: 40px; margin-bottom: 10px;">
+                <h3 style="background-color: #2c3e50; color: white; padding: 8px; text-align: center; margin: 0;">
+                    TOTALI GENERALI
+                </h3>
+            </div>
+
+            <table class="table table-sm table-bordered" style="width: 100%;">
+                <tbody style="background-color: #e8e8e8; font-weight: bold; font-size: 110%;">
+                    <tr>
+                        <td style="width: 40%; text-align: left;">TOTALE</td>
+                        <td style="width: 15%; text-align: right;">
+                            <span
+                                t-field="totals.total_amount_depreciable_updated"
+                                t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                            />
+                        </td>
+                        <td style="width: 15%; text-align: right;">
+                            <span
+                                t-field="totals.total_amount_depreciated"
+                                t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                            />
+                        </td>
+                        <td style="width: 15%; text-align: right;">
+                            <span
+                                t-field="totals.total_amount_residual"
+                                t-options="{'widget': 'monetary', 'display_currency': totals.currency_id}"
+                            />
+                        </td>
+                        <td style="width: 15%; text-align: center;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+    </template>
+</odoo>
