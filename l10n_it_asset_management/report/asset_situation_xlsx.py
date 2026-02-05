@@ -1,328 +1,388 @@
 # Copyright 2026 Simone Rubino - Aion Tech
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from collections import OrderedDict
+import logging
 
-from odoo import api, fields, models
-from odoo.exceptions import ValidationError
-from odoo.fields import Command
-from odoo.tools.misc import format_amount
+from odoo import models
 
-
-def format_date(rec, field_name, fmt):
-    """Formats record's field value according to given format `fmt`"""
-    if not rec[field_name]:
-        return ""
-    return rec._fields[field_name].from_string(rec[field_name]).strftime(fmt)
+_logger = logging.getLogger(__name__)
 
 
-class ReportAssetSituation(models.TransientModel):
-    """
-    This report has the following structure:
-        * Report (which is just a data container)
-        ** Category
-        *** Asset
-        **** Depreciation
-    Each class is set to be linked via a M2O to its parent class, and via
-    a O2M to its child class.
-    Each class is linked to Report via `report_id` field.
-    """
+class AssetSituationXlsx(models.AbstractModel):
+    _name = "report.l10n_it_asset_management.report_asset_situation_xlsx"
+    _description = "Report Asset Situation Xlsx"
+    _inherit = "report.account_financial_report.abstract_report_xlsx"
 
-    _name = "report.asset.situation"
-    _description = "Report Asset Situation"
-    _inherit = "report.account_financial_report.abstract_report"
-
-    # Data fields
-    date = fields.Date()
-
-    l10n_it_asset_ids = fields.Many2many(
-        "asset.asset",
-    )
-
-    depreciation_ids = fields.Many2many(
-        "asset.depreciation",
-    )
-
-    category_ids = fields.Many2many(
-        "asset.category",
-    )
-
-    company_id = fields.Many2one(
-        "res.company",
-    )
-
-    show_totals = fields.Boolean()
-
-    show_category_totals = fields.Boolean()
-    show_sold_assets = fields.Boolean()
-    show_dismissed_assets = fields.Boolean()
-
-    type_ids = fields.Many2many(
-        "asset.depreciation.type",
-    )
-
-    purchase_date_from = fields.Date()
-    purchase_date_to = fields.Date()
-
-    # Report structure fields
-    report_category_ids = fields.One2many(
-        "report.asset.situation.category", "report_id"
-    )
-
-    report_total_ids = fields.One2many("report.asset.situation.totals", "report_id")
-
-    # Fields to be printed
-    report_name = fields.Char()
-
-    ############################
-    #                          #
-    # REPORT RENDERING METHODS #
-    #                          #
-    ############################
-
-    def print_report(self, report_type=None):
-        """
-        This method is called from the JS widget buttons 'Print'
-        and 'Export' in the HTML view.
-        Prints PDF and XLSX reports.
-        :param report_type: string that represents the report type
-        """
-        self.ensure_one()
-        report_type = report_type or "qweb-pdf"
-        if report_type in ("qweb-pdf", "xlsx", "qweb-html"):
-            res = self.do_print(report_type)
-        elif report_type:
-            raise ValidationError(
-                self.env._("Report type %s is not supported.", report_type)
-            )
-        else:
-            res = False
-        return res
-
-    def do_print(self, report_type):
-        self.ensure_one()
-        if report_type == "xlsx":
-            report_name = "l10n_it_asset_management.report_asset_situation_xlsx"
-        elif report_type == "qweb-html":
-            report_name = "l10n_it_asset_management.report_asset_situation_html"
-        else:
-            report_name = "l10n_it_asset_management.report_asset_situation_pdf"
-
-        return (
-            self.env["ir.actions.report"]
-            .search([("report_name", "=", report_name)], limit=1)
-            .report_action(self, config=False)
-        )
-
-    def compute_data_for_report(self):
-        self.ensure_one()
-        self._inject_category_values()
-        if self.show_totals:
-            self._inject_totals_values()
-
-    def _inject_category_values(self):
-        """Create category sections with their assets and depreciations"""
-        categories_data = OrderedDict()
-
-        # Group depreciations by category
-        for depreciation in self.depreciation_ids:
-            asset = depreciation.l10n_it_asset_id
-            category = asset.category_id
-
-            if category not in categories_data:
-                categories_data[category] = {
-                    "category": category,
-                    "depreciations": [],
-                }
-
-            categories_data[category]["depreciations"].append(
-                {
-                    "depreciation": depreciation,
-                    "asset": asset,
-                }
-            )
-
-        # Create report records
-        for category_data in categories_data.values():
-            self._create_category_section(category_data)
-
-    def _create_category_section(self, category_data):
-        """Create a category section with its data"""
-        category = category_data["category"]
-
-        # Calculate category totals
-        total_depreciable = sum(
-            d["depreciation"].amount_depreciable_updated
-            for d in category_data["depreciations"]
-        )
-        total_depreciated = sum(
-            d["depreciation"].amount_depreciated
-            for d in category_data["depreciations"]
-        )
-        total_residual = sum(
-            d["depreciation"].amount_residual for d in category_data["depreciations"]
-        )
-
-        # Create category record
-        category_vals = {
-            "report_id": self.id,
-            "category_id": category.id,
-            "category_name": category.name,
-            "total_amount_depreciable_updated": total_depreciable,
-            "total_amount_depreciated": total_depreciated,
-            "total_amount_residual": total_residual,
+    def generate_xlsx_report(self, workbook, data, objects):
+        """Set wb, data and report attributes"""
+        # Initialize report variables
+        report_data = {
+            "workbook": None,
+            "sheet": None,
+            "columns": None,
+            "row_pos": None,
+            "formats": None,
         }
+        report_name = self._get_report_name(objects, data=data)
+        report_data["workbook"] = workbook
+        report_data["sheet"] = workbook.add_worksheet(report_name[:31])
+        report_data["row_pos"] = 0
+        self._define_formats(workbook, report_data)
+        self.set_formats(workbook, report_data)
+        self.set_report_data(report_data)
 
-        category_record = self.env["report.asset.situation.category"].create(
-            category_vals
-        )
+        # Get report data
+        report_footer = self._get_report_footer()
+        filters = self._get_report_filters(objects)
+        report_data["columns"] = self._get_report_columns(objects)
+        self._set_column_width(report_data)
 
-        # Create asset depreciation lines
-        for dep_data in category_data["depreciations"]:
-            depreciation = dep_data["depreciation"]
-            asset = dep_data["asset"]
+        # Fill report
+        self._write_report_title(report_name, report_data)
+        self._write_filters(filters, report_data)
+        self._generate_report_content(workbook, objects, data, report_data)
+        self._write_report_footer(report_footer, report_data)
 
-            line_vals = {
-                "report_id": self.id,
-                "category_id": category_record.id,
-                "asset_id": asset.id,
-                "asset_name": asset.make_name(),
-                "depreciation_id": depreciation.id,
-                "depreciation_type": depreciation.type_id.name,
-                "amount_depreciable_updated": depreciation.amount_depreciable_updated,
-                "amount_depreciated": depreciation.amount_depreciated,
-                "amount_residual": depreciation.amount_residual,
-                "last_depreciation_date": depreciation.last_depreciation_date,
-                "purchase_date": asset.purchase_date,
-                "dismissed": asset.dismissed,
-                "sold": asset.sold,
+    def set_formats(self, workbook, report_data):
+        """Defines custom formats"""
+
+        # Category formats
+        report_data["formats"]["format_category_header"] = workbook.add_format(
+            {
+                "align": "center",
+                "bg_color": "#337AB7",
+                "bold": True,
+                "font_color": "#FFFFFF",
+                "font_size": 14,
             }
-
-            self.env["report.asset.situation.line"].create(line_vals)
-
-    def _inject_totals_values(self):
-        """Create general totals"""
-        total_depreciable = sum(
-            self.report_category_ids.mapped("total_amount_depreciable_updated")
         )
-        total_depreciated = sum(
-            self.report_category_ids.mapped("total_amount_depreciated")
-        )
-        total_residual = sum(self.report_category_ids.mapped("total_amount_residual"))
 
-        totals_vals = {
-            "report_id": self.id,
-            "total_amount_depreciable_updated": total_depreciable,
-            "total_amount_depreciated": total_depreciated,
-            "total_amount_residual": total_residual,
+        # Header formats
+        report_data["formats"]["format_header_left"] = workbook.add_format(
+            {
+                "align": "left",
+                "bold": True,
+                "border": 1,
+            }
+        )
+
+        report_data["formats"]["format_header_center"] = workbook.add_format(
+            {
+                "align": "center",
+                "bold": True,
+                "border": 1,
+            }
+        )
+
+        report_data["formats"]["format_header_right"] = workbook.add_format(
+            {
+                "align": "right",
+                "bold": True,
+                "border": 1,
+            }
+        )
+
+        # Data formats
+        report_data["formats"]["format_data_left"] = workbook.add_format(
+            {
+                "align": "left",
+                "border": 1,
+            }
+        )
+
+        report_data["formats"]["format_data_center"] = workbook.add_format(
+            {
+                "align": "center",
+                "border": 1,
+            }
+        )
+
+        report_data["formats"]["format_data_amount"] = workbook.add_format(
+            {
+                "align": "right",
+                "border": 1,
+                "num_format": "#,##0.00",
+            }
+        )
+
+        # Total formats
+        report_data["formats"]["format_total_label"] = workbook.add_format(
+            {
+                "align": "left",
+                "bold": True,
+                "bg_color": "#E0E0E0",
+                "border": 1,
+            }
+        )
+
+        report_data["formats"]["format_total_amount"] = workbook.add_format(
+            {
+                "align": "right",
+                "bold": True,
+                "bg_color": "#E0E0E0",
+                "border": 1,
+                "num_format": "#,##0.00",
+            }
+        )
+
+    def _get_report_name(self, objects, data=None):
+        return objects.report_name if objects else "Situazione Cespiti"
+
+    def _get_report_footer(self):
+        return ""
+
+    def _get_report_filters(self, objects):
+        filters = []
+        obj = objects[0] if objects else None
+        if not obj:
+            return filters
+
+        if obj.purchase_date_from:
+            filters.append(
+                f"Purchase Date From: {obj.purchase_date_from.strftime('%d/%m/%Y')}"
+            )
+
+        if obj.purchase_date_to:
+            filters.append(
+                f"Purchase Date To: {obj.purchase_date_to.strftime('%d/%m/%Y')}"
+            )
+
+        if obj.show_dismissed_assets:
+            filters.append("Including Dismissed Assets")
+
+        if obj.show_sold_assets:
+            filters.append("Including Sold Assets")
+
+        return filters
+
+    def _get_report_columns(self, objects):
+        return {
+            0: {
+                "header": "Asset Name",
+                "field": "asset_name",
+                "width": 40,
+            },
+            1: {
+                "header": "Depreciation Type",
+                "field": "depreciation_type",
+                "width": 20,
+            },
+            2: {
+                "header": "Depreciable Amount",
+                "field": "amount_depreciable_updated",
+                "type": "amount",
+                "width": 18,
+            },
+            3: {
+                "header": "Depreciated Amount",
+                "field": "amount_depreciated",
+                "type": "amount",
+                "width": 18,
+            },
+            4: {
+                "header": "Residual Amount",
+                "field": "amount_residual",
+                "type": "amount",
+                "width": 18,
+            },
+            5: {
+                "header": "Last Depreciation Date",
+                "field": "last_depreciation_date",
+                "type": "date",
+                "width": 18,
+            },
         }
 
-        self.env["report.asset.situation.totals"].create(totals_vals)
+    def _generate_report_content(self, workbook, objects, data, report_data):
+        obj = objects[0] if objects else None
+        if not obj:
+            return
 
+        # Write column headers
+        self._write_column_headers(report_data)
 
-class ReportAssetSituationCategory(models.TransientModel):
-    _name = "report.asset.situation.category"
-    _description = "Asset Situation Report Category"
+        # Write data by category
+        for category in obj.report_category_ids:
+            self._write_category_section(category, report_data)
 
-    report_id = fields.Many2one(
-        "report.asset.situation",
-        required=True,
-        ondelete="cascade",
-    )
+        # Write general totals
+        if obj.show_totals and obj.report_total_ids:
+            self._write_totals(obj.report_total_ids[0], report_data)
 
-    category_id = fields.Many2one("asset.category")
-    category_name = fields.Char()
+    def _write_column_headers(self, report_data):
+        """Write the column headers"""
+        row_pos = report_data["row_pos"]
+        sheet = report_data["sheet"]
 
-    line_ids = fields.One2many(
-        "report.asset.situation.line",
-        "category_id",
-    )
+        for col_pos, column in report_data["columns"].items():
+            sheet.write(
+                row_pos,
+                col_pos,
+                column["header"],
+                report_data["formats"]["format_header_center"],
+            )
 
-    total_amount_depreciable_updated = fields.Monetary(
-        currency_field="currency_id",
-    )
-    total_amount_depreciated = fields.Monetary(
-        currency_field="currency_id",
-    )
-    total_amount_residual = fields.Monetary(
-        currency_field="currency_id",
-    )
+        report_data["row_pos"] += 1
 
-    currency_id = fields.Many2one(
-        "res.currency",
-        related="report_id.company_id.currency_id",
-    )
+    def _write_category_section(self, category, report_data):
+        """Write a category section with its lines"""
+        row_pos = report_data["row_pos"]
+        sheet = report_data["sheet"]
 
+        # Write category header
+        sheet.merge_range(
+            row_pos,
+            0,
+            row_pos,
+            len(report_data["columns"]) - 1,
+            category.category_name,
+            report_data["formats"]["format_category_header"],
+        )
+        report_data["row_pos"] += 1
 
-class ReportAssetSituationLine(models.TransientModel):
-    _name = "report.asset.situation.line"
-    _description = "Asset Situation Report Line"
+        # Write category lines
+        for line in category.line_ids:
+            self._write_line(line, report_data)
 
-    report_id = fields.Many2one(
-        "report.asset.situation",
-        required=True,
-        ondelete="cascade",
-    )
+        # Write category totals if enabled
+        if category.report_id.show_category_totals:
+            self._write_category_totals(category, report_data)
 
-    category_id = fields.Many2one(
-        "report.asset.situation.category",
-        required=True,
-        ondelete="cascade",
-    )
+        report_data["row_pos"] += 1
 
-    asset_id = fields.Many2one("asset.asset")
-    asset_name = fields.Char()
+    def _write_line(self, line, report_data):
+        """Write a single asset line"""
+        row_pos = report_data["row_pos"]
+        sheet = report_data["sheet"]
 
-    depreciation_id = fields.Many2one("asset.depreciation")
-    depreciation_type = fields.Char()
+        sheet.write(
+            row_pos,
+            0,
+            line.asset_name,
+            report_data["formats"]["format_data_left"],
+        )
+        sheet.write(
+            row_pos,
+            1,
+            line.depreciation_type or "",
+            report_data["formats"]["format_data_center"],
+        )
+        sheet.write(
+            row_pos,
+            2,
+            line.amount_depreciable_updated,
+            report_data["formats"]["format_data_amount"],
+        )
+        sheet.write(
+            row_pos,
+            3,
+            line.amount_depreciated,
+            report_data["formats"]["format_data_amount"],
+        )
+        sheet.write(
+            row_pos,
+            4,
+            line.amount_residual,
+            report_data["formats"]["format_data_amount"],
+        )
+        sheet.write(
+            row_pos,
+            5,
+            line.last_depreciation_date.strftime("%d/%m/%Y")
+            if line.last_depreciation_date
+            else "",
+            report_data["formats"]["format_data_center"],
+        )
 
-    amount_depreciable_updated = fields.Monetary(
-        string="Depreciable Amount",
-        currency_field="currency_id",
-    )
-    amount_depreciated = fields.Monetary(
-        string="Depreciated Amount",
-        currency_field="currency_id",
-    )
-    amount_residual = fields.Monetary(
-        string="Residual Amount",
-        currency_field="currency_id",
-    )
-    last_depreciation_date = fields.Date(
-        string="Last Depreciation Date",
-    )
+        report_data["row_pos"] += 1
 
-    purchase_date = fields.Date()
-    dismissed = fields.Boolean()
-    sold = fields.Boolean()
+    def _write_category_totals(self, category, report_data):
+        """Write category totals"""
+        row_pos = report_data["row_pos"]
+        sheet = report_data["sheet"]
 
-    currency_id = fields.Many2one(
-        "res.currency",
-        related="report_id.company_id.currency_id",
-    )
+        sheet.write(
+            row_pos,
+            0,
+            f"Total {category.category_name}",
+            report_data["formats"]["format_total_label"],
+        )
+        sheet.write(
+            row_pos,
+            1,
+            "",
+            report_data["formats"]["format_total_label"],
+        )
+        sheet.write(
+            row_pos,
+            2,
+            category.total_amount_depreciable_updated,
+            report_data["formats"]["format_total_amount"],
+        )
+        sheet.write(
+            row_pos,
+            3,
+            category.total_amount_depreciated,
+            report_data["formats"]["format_total_amount"],
+        )
+        sheet.write(
+            row_pos,
+            4,
+            category.total_amount_residual,
+            report_data["formats"]["format_total_amount"],
+        )
+        sheet.write(
+            row_pos,
+            5,
+            "",
+            report_data["formats"]["format_total_label"],
+        )
 
+        report_data["row_pos"] += 1
 
-class ReportAssetSituationTotals(models.TransientModel):
-    _name = "report.asset.situation.totals"
-    _description = "Asset Situation Report Totals"
+    def _write_totals(self, totals, report_data):
+        """Write general totals"""
+        row_pos = report_data["row_pos"]
+        sheet = report_data["sheet"]
 
-    report_id = fields.Many2one(
-        "report.asset.situation",
-        required=True,
-        ondelete="cascade",
-    )
+        report_data["row_pos"] += 1
+        row_pos = report_data["row_pos"]
 
-    total_amount_depreciable_updated = fields.Monetary(
-        currency_field="currency_id",
-    )
-    total_amount_depreciated = fields.Monetary(
-        currency_field="currency_id",
-    )
-    total_amount_residual = fields.Monetary(
-        currency_field="currency_id",
-    )
+        sheet.write(
+            row_pos,
+            0,
+            "GENERAL TOTALS",
+            report_data["formats"]["format_total_label"],
+        )
+        sheet.write(
+            row_pos,
+            1,
+            "",
+            report_data["formats"]["format_total_label"],
+        )
+        sheet.write(
+            row_pos,
+            2,
+            totals.total_amount_depreciable_updated,
+            report_data["formats"]["format_total_amount"],
+        )
+        sheet.write(
+            row_pos,
+            3,
+            totals.total_amount_depreciated,
+            report_data["formats"]["format_total_amount"],
+        )
+        sheet.write(
+            row_pos,
+            4,
+            totals.total_amount_residual,
+            report_data["formats"]["format_total_amount"],
+        )
+        sheet.write(
+            row_pos,
+            5,
+            "",
+            report_data["formats"]["format_total_label"],
+        )
 
-    currency_id = fields.Many2one(
-        "res.currency",
-        related="report_id.company_id.currency_id",
-    )
+        report_data["row_pos"] += 1
