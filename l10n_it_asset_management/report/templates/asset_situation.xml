@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template id="template_asset_situation_report">
+        <div class="o_account_financial_reports_page">
+            <t t-call="l10n_it_asset_management.template_asset_situation_base" />
+        </div>
+    </template>
+
+    <template id="template_asset_situation_qweb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="l10n_it_asset_management.document_layout">
+                    <t t-call="l10n_it_asset_management.template_asset_situation_base" />
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="template_asset_situation_base">
+        <div class="page">
+            <t t-call="l10n_it_asset_management.template_asset_situation_title" />
+            <t t-call="l10n_it_asset_management.template_asset_situation_body" />
+        </div>
+    </template>
+
+    <template id="template_asset_situation_title">
+        <div>
+            <h1 style="text-align:center; margin-bottom: 30px;">
+                <span t-field="o.report_name" />
+            </h1>
+        </div>
+    </template>
+
+    <template id="template_asset_situation_body">
+        <t t-foreach="o.report_category_ids" t-as="category">
+            <div style="margin-top: 30px; margin-bottom: 10px;">
+                <h3 style="background-color: #337AB7; color: white; padding: 8px; text-align: center; margin: 0;">
+                    <span t-esc="category.category_name" />
+                </h3>
+            </div>
+
+            <table class="table table-sm table-bordered" style="width: 100%;">
+                <thead style="background-color: #f5f5f5;">
+                    <tr>
+                        <th style="width: 40%; text-align: left;">Nome Cespite</th>
+                        <th style="width: 15%; text-align: right;">Importo Ammortizzabile</th>
+                        <th style="width: 15%; text-align: right;">Importo Ammortizzato</th>
+                        <th style="width: 15%; text-align: right;">Importo Residuo</th>
+                        <th style="width: 15%; text-align: center;">Ultima Data Ammortamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="category.line_ids" t-as="line">
+                        <tr>
+                            <td style="text-align: left;">
+                                <span t-esc="line.asset_name" />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="line.amount_depreciable_updated"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="line.amount_depreciated"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: right;">
+                                <span
+                                    t-field="line.amount_residual"
+                                    t-options="{'widget': 'monetary', 'display_currency': line.currency_id}"
+                                />
+                            </td>
+                            <td style="text-align: center;">
+                                <t t-if="line.last_depreciation_date">
+                                    <span
+                                        t-field="line.last_depreciation_date"
+                                        t-options="{'widget': 'date'}"
+                                    />
+                                </t>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </t>
+    </template>
+</odoo>

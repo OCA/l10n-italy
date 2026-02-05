@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_asset_situation_report_wizard_form" model="ir.ui.view">
+        <field name="name">asset.situation.report.wizard.form</field>
+        <field name="model">asset.situation.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Situazione Cespiti">
+                <group>
+                    <group>
+                        <field name="date" />
+                        <field name="company_id" />
+                        <field name="category_ids" widget="many2many_tags" />
+                        <field name="type_ids" widget="many2many_tags" />
+                    </group>
+                    <group>
+                        <field name="show_dismissed_assets" />
+                        <field name="show_sold_assets" />
+                        <field name="purchase_date_from" />
+                        <field name="purchase_date_to" />
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="show_category_totals" />
+                        <field name="show_totals" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="generate_report"
+                        string="Generate Report"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_asset_situation_report_wizard" model="ir.actions.act_window">
+        <field name="name">Situazione Cespiti</field>
+        <field name="res_model">asset.situation.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_asset_asset" />
+    </record>
+
+    <menuitem
+        id="menu_asset_situation_report"
+        name="Situazione Cespiti"
+        parent="l10n_it_asset_management.menu_asset_reports"
+        action="action_asset_situation_report_wizard"
+        sequence="30"
+    />
+</odoo>
