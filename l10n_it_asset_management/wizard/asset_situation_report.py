@@ -44,17 +44,14 @@ class AssetSituationReportWizard(models.TransientModel):
     )
 
     purchase_date_from = fields.Date(
-        string="Purchase Date From",
         help="Filter assets purchased from this date",
     )
 
     purchase_date_to = fields.Date(
-        string="Purchase Date To",
         help="Filter assets purchased until this date",
     )
 
     show_category_totals = fields.Boolean(
-        string="Show Category Totals",
         default=True,
     )
 

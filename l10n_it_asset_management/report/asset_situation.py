@@ -285,9 +285,7 @@ class ReportAssetSituationLine(models.TransientModel):
         string="Residual Amount",
         currency_field="currency_id",
     )
-    last_depreciation_date = fields.Date(
-        string="Last Depreciation Date",
-    )
+    last_depreciation_date = fields.Date()
 
     purchase_date = fields.Date()
     dismissed = fields.Boolean()
