@@ -87,4 +87,48 @@
             name="report_file"
         >l10n_it_asset_management.report_asset_previsional_xlsx</field>
     </record>
+
+     <record id="report_asset_situation_html" model="ir.actions.report">
+        <field name="name">Asset Situation Report HTML</field>
+        <field name="model">report.asset.situation</field>
+        <field name="report_type">qweb-html</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_asset_management.asset_journal_a4_landscape"
+        />
+        <field
+            name="report_name"
+        >l10n_it_asset_management.template_asset_situation_qweb</field>
+        <field
+            name="report_file"
+        >l10n_it_asset_management.template_asset_situation_html</field>
+    </record>
+
+    <record id="report_asset_situation_pdf" model="ir.actions.report">
+        <field name="name">Asset Situation Report PDF</field>
+        <field name="model">report.asset.situation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="paperformat_id"
+            ref="l10n_it_asset_management.asset_journal_a4_landscape"
+        />
+        <field
+            name="report_name"
+        >l10n_it_asset_management.template_asset_situation_qweb</field>
+        <field
+            name="report_file"
+        >l10n_it_asset_management.template_asset_situation_qweb</field>
+    </record>
+
+    <record id="report_asset_situation_xlsx" model="ir.actions.report">
+        <field name="name">Asset Situation Report XLSX</field>
+        <field name="model">report.asset.situation</field>
+        <field name="report_type">xlsx</field>
+        <field
+            name="report_name"
+        >l10n_it_asset_management.report_asset_situation_xlsx</field>
+        <field
+            name="report_file"
+        >l10n_it_asset_management.report_asset_situation_xlsx</field>
+    </record>
 </odoo>
