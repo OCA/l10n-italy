@@ -1029,15 +1029,17 @@ class WizardImportFatturapa(models.TransientModel):
                 )
         return einvoiceline
 
-    def get_credit_account(self, product=None):
+    def get_credit_account(self, product=None, partner=None):
         """
         Try to get default credit account for invoice line looking in
 
         1) product (if provided)
-        2) journal
-        3) company default.
+        2) account_invoice_line_default_account (partner property)
+        3) journal
+        4) company default.
 
         :param product: Product whose expense account will be used
+        :param partner: Vendor partner whose default expense account may be used
         :return: The account found
         """
         credit_account = self.env["account.account"].browse()
@@ -1049,6 +1051,17 @@ class WizardImportFatturapa(models.TransientModel):
             credit_account = accounts_dict["expense"]
 
         company = self.env.company
+        # If module account_invoice_line_default_account is installed and partner
+        # has a default expense account, use it
+        if (
+            not credit_account
+            and partner
+            and "property_account_expense" in partner._fields
+        ):
+            partner_company = partner.with_company(company)
+            if partner_company.property_account_expense:
+                credit_account = partner_company.property_account_expense
+
         # Search in journal
         journal = self.get_journal(company)
         if not credit_account:
@@ -1208,7 +1221,7 @@ class WizardImportFatturapa(models.TransientModel):
         found_withholding_taxes = self.set_withholding_tax(FatturaBody, invoice_data)
 
         invoice = self.env["account.move"].create(invoice_data)
-        credit_account = self.get_credit_account()
+        credit_account = self.get_credit_account(partner=partner)
 
         invoice_lines = []
         # 2.2.1
