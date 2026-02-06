@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.l10n.it.edi.pec</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="l10n_it_edi.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//block[@id='account_edi']//setting[@id='italian_edi']"
+                position="after"
+            >
+                <setting id="l10n_it_edi_pec" string="PEC Channel">
+                    <field name="l10n_it_edi_use_pec" />
+                    <div class="text-muted">
+                        Send and receive electronic invoices through PEC
+                        (Certified Email) instead of the standard IAP proxy.
+                    </div>
+                    <div invisible="not l10n_it_edi_use_pec" class="content-group mt16">
+                        <div class="row">
+                            <label
+                                for="l10n_it_edi_pec_server_id"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="l10n_it_edi_pec_server_id"
+                                class="col-lg-8"
+                                context="{'default_is_l10n_it_edi_pec': True}"
+                            />
+                        </div>
+                        <div class="row">
+                            <label
+                                for="l10n_it_edi_pec_fetch_server_id"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="l10n_it_edi_pec_fetch_server_id"
+                                class="col-lg-8"
+                                context="{'default_is_l10n_it_edi_pec': True}"
+                            />
+                        </div>
+                        <div class="row">
+                            <label
+                                for="l10n_it_edi_pec_email_exchange_system"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="l10n_it_edi_pec_email_exchange_system"
+                                class="col-lg-8"
+                            />
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

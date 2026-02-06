@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_email_server_form_e_invoice" model="ir.ui.view">
+        <field name="name">fetchmail.server.form.inherit.l10n.it.edi.pec</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='server_type']" position="after">
+                <field name="is_l10n_it_edi_pec" />
+            </xpath>
+            <field name="active" position="after">
+                <field
+                    name="e_inv_notify_partner_ids"
+                    widget="many2many_tags"
+                    invisible="not is_l10n_it_edi_pec"
+                />
+            </field>
+            <notebook position="inside">
+                <page
+                    string="Last error message"
+                    invisible="not last_pec_error_message"
+                >
+                    <field name="last_pec_error_message" />
+                    <group>
+                        <field name="pec_error_count" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
