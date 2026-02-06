@@ -1,0 +1,1 @@
+odoo-addon-l10n_it_account_vat_period_end_settlement @ git+https://github.com/OCA/l10n-italy@refs/pull/5319/head#subdirectory=l10n_it_account_vat_period_end_settlement
