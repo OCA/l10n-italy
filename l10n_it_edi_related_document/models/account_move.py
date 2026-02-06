@@ -172,20 +172,20 @@ class AccountMove(models.Model):
 
             vals = {
                 "type": document_type,
-                "name": self.l10n_it_origin_document_name,
-                "date": self.l10n_it_origin_document_date,
-                "cig": self.l10n_it_cig,
-                "cup": self.l10n_it_cup,
+                "name": record.l10n_it_origin_document_name,
+                "date": record.l10n_it_origin_document_date,
+                "cig": record.l10n_it_cig,
+                "cup": record.l10n_it_cup,
             }
             if not record.standard_related_document_id:
-                self.standard_related_document_id = self.env[
+                record.standard_related_document_id = self.env[
                     "account.move.related_document"
                 ].create(vals)
-                self.related_document_ids = [
-                    fields.Command.link(self.standard_related_document_id.id)
+                record.related_document_ids = [
+                    fields.Command.link(record.standard_related_document_id.id)
                 ]
             else:
-                self.standard_related_document_id.with_context(
+                record.standard_related_document_id.with_context(
                     l10n_it_edi_related_loop_avoid=True
                 ).update(vals)
 
