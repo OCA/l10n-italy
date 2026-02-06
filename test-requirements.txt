@@ -1,0 +1,1 @@
+odoo-addon-l10n_it_delivery_note @ git+https://github.com/OCA/l10n-italy@refs/pull/5081/head#subdirectory=l10n_it_delivery_note
