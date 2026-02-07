@@ -35,7 +35,7 @@
         <field name="res_model">asset.depreciation</field>
         <field name="view_mode">list</field>
         <field name="view_id" ref="view_asset_depreciation_situation_list" />
-        <field name="context">{'group_by': 'l10n_it_asset_id'}</field>
+        <field name="context">{'group_by': 'l10n_it_asset_id.category_id'}</field>
     </record>
 
     <menuitem
