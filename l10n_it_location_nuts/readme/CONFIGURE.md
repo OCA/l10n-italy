@@ -2,20 +2,18 @@
 
 Dopo aver installato il modulo, aprire la procedura guidata:
 
-Contatti / Configurazione / Localizzazione / Importa NUTS 2013
+Contatti / Configurazione / Localizzazione / Importa NUTS 2024
 
 e confermare.
 
 Questo aggiornerà le regioni NUTS con i dati presenti nel
-[RAMON](http://ec.europa.eu/eurostat/ramon) (Reference And Management Of
-Nomenclatures) e le collegherà alle province già presenti in Odoo.
+[ShowVoc](https://showvoc.op.europa.eu/) e le collegherà alle province già presenti in Odoo.
 
 **English**
 
 After installing the module, open the wizard:
 
-Contacts / Configuration / Localization / Import NUTS 2013
+Contacts / Configuration / Localization / Import NUTS 2024
 
 and confirm. This will update the NUTS regions with data stored in
-[RAMON](http://ec.europa.eu/eurostat/ramon) (Reference And Management Of
-Nomenclatures) and will link them with states already stored in Odoo.
+[ShowVoc](https://showvoc.op.europa.eu/) and will link them with states already stored in Odoo.
