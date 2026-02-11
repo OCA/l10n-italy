@@ -208,9 +208,9 @@ class AccountMove(models.Model):
                     + "\n- ".join(inv_details)
                 )
             )
-        return super()._post(soft=soft)
+        #return super()._post(soft=soft)
 
-    def _post(self):
+    #def _post(self):
         for invoice in self:
             # ---- Add a line with collection fees for each due date only for first due
             # ---- date of the month
@@ -284,7 +284,7 @@ class AccountMove(models.Model):
                     invoice._sync_dynamic_lines(
                         container={"records": invoice, "self": invoice}
                     )
-        res = super()._post()
+        res = super()._post(soft=soft)
 
         # Automatic reconciliation for RiBa credit moves
         # When a credit move is posted and there are related RiBa slips,
