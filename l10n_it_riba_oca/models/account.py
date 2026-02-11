@@ -184,33 +184,7 @@ class AccountMove(models.Model):
                 return True
         return False
 
-    def _post(self, soft=True):
-        inv_riba_no_bank = self.filtered(
-            lambda x: x.is_riba_payment
-            and x.move_type == "out_invoice"
-            and not x.riba_partner_bank_id
-        )
-        if inv_riba_no_bank:
-            inv_details = (
-                self.env._(
-                    'Invoice %(name)s for customer "%(customer_name)s", '
-                    "total %(amount)s",
-                    name=inv.display_name,
-                    customer_name=inv.partner_id.display_name,
-                    amount=inv.amount_total,
-                )
-                for inv in inv_riba_no_bank
-            )
-            raise UserError(
-                self.env._(
-                    "Cannot post invoices with C/O payments without bank. "
-                    "Please check the following invoices:\n\n- "
-                    + "\n- ".join(inv_details)
-                )
-            )
-        return super()._post(soft=soft)
-
-    def action_post(self):
+    def add_riba_fee(self):
         for invoice in self:
             # ---- Add a line with collection fees for each due date only for first due
             # ---- date of the month
@@ -284,8 +258,7 @@ class AccountMove(models.Model):
                     invoice._sync_dynamic_lines(
                         container={"records": invoice, "self": invoice}
                     )
-        res = super().action_post()
-
+    def reconcile_riba_fee(self):
         # Automatic reconciliation for RiBa credit moves
         # When a credit move is posted and there are related RiBa slips,
         # we need to reconcile the acceptance and credit move lines
@@ -312,6 +285,35 @@ class AccountMove(models.Model):
             if credit_lines and acceptance_lines:
                 lines = credit_lines | acceptance_lines
                 lines.reconcile()
+    
+    def _post(self, soft=True):
+        self.add_riba_fee()
+        inv_riba_no_bank = self.filtered(
+            lambda x: x.is_riba_payment
+            and x.move_type == "out_invoice"
+            and not x.riba_partner_bank_id
+        )
+        if inv_riba_no_bank:
+            inv_details = (
+                self.env._(
+                    'Invoice %(name)s for customer "%(customer_name)s", '
+                    "total %(amount)s",
+                    name=inv.display_name,
+                    customer_name=inv.partner_id.display_name,
+                    amount=inv.amount_total,
+                )
+                for inv in inv_riba_no_bank
+            )
+            raise UserError(
+                self.env._(
+                    "Cannot post invoices with C/O payments without bank. "
+                    "Please check the following invoices:\n\n- "
+                    + "\n- ".join(inv_details)
+                )
+            )
+        
+        res = super()._post(soft=soft)
+        res.reconcile_riba_fee()
         return res
 
     def button_draft(self):
