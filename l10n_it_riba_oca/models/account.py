@@ -208,9 +208,7 @@ class AccountMove(models.Model):
                     + "\n- ".join(inv_details)
                 )
             )
-        #return super()._post(soft=soft)
 
-    #def _post(self):
         for invoice in self:
             # ---- Add a line with collection fees for each due date only for first due
             # ---- date of the month
