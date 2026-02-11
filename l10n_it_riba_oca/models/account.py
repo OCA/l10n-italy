@@ -184,6 +184,161 @@ class AccountMove(models.Model):
                 return True
         return False
 
+        def _add_riba_costs_after_post(self):
+        """
+        Metodo comune che aggiunge le spese RiBa alle fatture che le richiedono.
+        Questo metodo viene chiamato sia da action_post() che da _post() per
+        garantire che le spese vengano aggiunte in entrambi i casi.
+        """
+        for move in self:
+            # Verifica che sia una fattura cliente confermata con RiBa
+            if not move._should_add_riba_cost():
+                continue
+            
+            # Ottieni il prodotto delle spese
+            due_cost_service = move._get_riba_due_cost_service()
+            if not due_cost_service:
+                continue
+            
+            # Verifica che le spese non siano già state aggiunte
+            if move._has_riba_cost_line(due_cost_service):
+                _logger.debug(
+                    "Spese RiBa già presenti sulla fattura %s, skip", move.name
+                )
+                continue
+            
+            # Aggiungi la riga delle spese
+            try:
+                move._create_riba_cost_line(due_cost_service)
+                _logger.info(
+                    "Spese RiBa aggiunte alla fattura %s", move.name
+                )
+            except Exception as e:
+                _logger.error(
+                    "Errore aggiungendo spese RiBa alla fattura %s: %s",
+                    move.name, str(e)
+                )
+
+    def _should_add_riba_cost(self):
+        """
+        Verifica se questa fattura deve avere le spese RiBa.
+        
+        Returns:
+            bool: True se le spese devono essere aggiunte
+        """
+        self.ensure_one()
+        return (
+            self.state == "posted"
+            and self.move_type == "out_invoice"
+            and self.payment_mode_id
+            and self.payment_mode_id.payment_method_id
+            and self.payment_mode_id.payment_method_id.code in ("Ri.Ba", "RIBA")
+            and (
+                self.payment_mode_id.due_cost_service_id
+                or self.company_id.due_cost_service_id
+            )
+        )
+
+    def _get_riba_due_cost_service(self):
+        """
+        Ottiene il prodotto da usare per le spese RiBa.
+        Priorità: payment_mode > company
+        
+        Returns:
+            product.product: Il prodotto delle spese o False
+        """
+        self.ensure_one()
+        return (
+            self.payment_mode_id.due_cost_service_id
+            or self.company_id.due_cost_service_id
+        )
+
+    def _has_riba_cost_line(self, due_cost_service):
+        """
+        Verifica se la fattura ha già una riga per le spese RiBa.
+        
+        Args:
+            due_cost_service: product.product del servizio spese
+            
+        Returns:
+            bool: True se già presente
+        """
+        self.ensure_one()
+        return any(
+            line.product_id == due_cost_service
+            for line in self.invoice_line_ids
+        )
+
+    def _create_riba_cost_line(self, due_cost_service):
+        """
+        Crea la riga della fattura per le spese RiBa.
+        
+        Args:
+            due_cost_service: product.product del servizio spese
+        """
+        self.ensure_one()
+        
+        # Calcola l'importo
+        amount = self._get_riba_cost_amount(due_cost_service)
+        
+        # Ottieni il conto contabile
+        account = (
+            due_cost_service.property_account_income_id
+            or due_cost_service.categ_id.property_account_income_categ_id
+        )
+        
+        if not account:
+            raise ValueError(
+                f"Nessun conto contabile trovato per il prodotto {due_cost_service.name}"
+            )
+        
+        # Crea la riga
+        line_vals = {
+            "move_id": self.id,
+            "product_id": due_cost_service.id,
+            "name": due_cost_service.name or "Spese incasso RiBa",
+            "quantity": 1.0,
+            "price_unit": amount,
+            "account_id": account.id,
+            "tax_ids": [(6, 0, due_cost_service.taxes_id.ids)],
+        }
+        
+        # Crea con context appropriato per evitare errori di validazione
+        self.env["account.move.line"].with_context(
+            check_move_validity=False
+        ).create(line_vals)
+        
+        # Ricalcola i totali
+        self._recompute_dynamic_lines(recompute_all_taxes=True)
+
+    def _get_riba_cost_amount(self, due_cost_service):
+        """
+        Determina l'importo delle spese RiBa.
+        Priorità: payment_mode > company > product
+        
+        Args:
+            due_cost_service: product.product del servizio spese
+            
+        Returns:
+            float: Importo delle spese
+        """
+        self.ensure_one()
+        
+        # Prova dal payment mode
+        if hasattr(self.payment_mode_id, "due_cost_amount"):
+            amount = self.payment_mode_id.due_cost_amount
+            if amount:
+                return amount
+        
+        # Prova dalla company
+        if hasattr(self.company_id, "due_cost_amount"):
+            amount = self.company_id.due_cost_amount
+            if amount:
+                return amount
+        
+        # Usa il prezzo del prodotto
+        return due_cost_service.list_price or 0.0
+        
     def _post(self, soft=True):
         inv_riba_no_bank = self.filtered(
             lambda x: x.is_riba_payment
@@ -208,7 +363,9 @@ class AccountMove(models.Model):
                     + "\n- ".join(inv_details)
                 )
             )
-        return super()._post(soft=soft)
+            posted._add_riba_costs_after_post()
+            res = super()._post(soft=soft)
+        return   res
 
     def action_post(self):
         for invoice in self:
