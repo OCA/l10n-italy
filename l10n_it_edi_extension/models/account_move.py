@@ -147,6 +147,14 @@ class AccountMoveInherit(models.Model):
                 ]
             )
 
+    def _l10n_it_edi_is_to_validate(self):
+        self.ensure_one()
+        return (
+            self.is_purchase_document()
+            or self.env.context.get("l10n_it_validate_all_invoices")
+            and self.is_sale_document()
+        )
+
     @api.depends(
         "move_type",
         "state",
@@ -162,7 +170,7 @@ class AccountMoveInherit(models.Model):
         self.l10n_it_edi_validation_message = ""
 
         invoices_to_check = self.filtered(
-            lambda inv: inv.is_purchase_document()
+            lambda inv: inv._l10n_it_edi_is_to_validate()
             and inv.state in ["draft", "posted"]
             and inv.l10n_it_edi_attachment_id
         )

@@ -3,7 +3,7 @@
 
 {
     "name": "Italy - E-invoicing - Base Feature",
-    "version": "18.0.1.2.4",
+    "version": "18.0.1.2.5",
     "category": "Accounting/Localizations/EDI",
     "development_status": "Beta",
     "summary": "E-invoice base feature",
