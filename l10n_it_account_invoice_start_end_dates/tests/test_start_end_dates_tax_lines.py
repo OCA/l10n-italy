@@ -1,9 +1,9 @@
 # Copyright 2024 Lorenzo Battistini
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from datetime import date
 
 from odoo import fields
+from odoo.fields import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -24,27 +24,21 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
                 "invoice_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.clear(),
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
                             "account_id": cls.company_data["default_account_assets"].id,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
@@ -52,26 +46,20 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
                     ),
                 ],
                 "refund_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.clear(),
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 50,
                             "repartition_type": "tax",
@@ -89,18 +77,14 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
                 "invoice_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.clear(),
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "tax",
@@ -108,18 +92,14 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
                     ),
                 ],
                 "refund_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.clear(),
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "tax",
@@ -136,18 +116,14 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
                 "invoice_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.clear(),
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "tax",
@@ -156,18 +132,14 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
                     ),
                 ],
                 "refund_repartition_line_ids": [
-                    (5, 0, 0),
-                    (
-                        0,
-                        0,
+                    Command.clear(),
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "base",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "factor_percent": 100,
                             "repartition_type": "tax",
@@ -178,8 +150,8 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
             }
         )
         cls.expense_account = cls.company_data["default_account_expense"]
-        cls.start = date(2024, 1, 1)
-        cls.end = date(2024, 12, 31)
+        cls.start = fields.Date.from_string("2024-1-1")
+        cls.end = fields.Date.from_string("2024-12-31")
 
     def _create_vendor_bill(self, tax, start_date=None, end_date=None):
         move_form = Form(
@@ -278,10 +250,10 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
     def test_multiple_invoice_lines_different_dates(self):
         """Multiple invoice lines with different dates should create separate
         tax lines, each with their own dates."""
-        start_1 = date(2024, 1, 1)
-        end_1 = date(2024, 6, 30)
-        start_2 = date(2024, 7, 1)
-        end_2 = date(2024, 12, 31)
+        start_1 = fields.Date.from_string("2024-1-1")
+        end_1 = fields.Date.from_string("2024-6-30")
+        start_2 = fields.Date.from_string("2024-7-1")
+        end_2 = fields.Date.from_string("2024-12-31")
         move_form = Form(
             self.env["account.move"].with_context(default_move_type="in_invoice")
         )
