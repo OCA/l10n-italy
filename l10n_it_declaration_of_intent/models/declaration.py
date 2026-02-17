@@ -199,6 +199,7 @@ class DeclarationOfIntent(models.Model):
         "limit_amount",
         "line_ids.invoice_id",
         "line_ids.invoice_id.state",
+        "line_ids.move_state",
     )
     def _compute_amounts(self):
         for record in self:
@@ -295,3 +296,4 @@ class DeclarationOfIntentLine(models.Model):
         "res.company", string="Company", related="declaration_id.company_id"
     )
     currency_id = fields.Many2one("res.currency", string="Currency")
+    move_state = fields.Selection(related="invoice_id.state")

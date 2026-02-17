@@ -31,7 +31,9 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         )
 
     @classmethod
-    def _create_invoice(cls, name, partner, tax=False, date=False, in_type=False):
+    def _create_invoice(
+        cls, name, partner, tax=False, date=False, in_type=False, **kwargs
+    ):
         invoice_form = Form(
             cls.env["account.move"].with_context(
                 default_move_type="in_invoice" if in_type else "out_invoice"
@@ -42,6 +44,8 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         invoice_form.invoice_payment_term_id = cls.env.ref(
             "account.account_payment_term_advance"
         )
+        for k, v in kwargs.items():
+            setattr(invoice_form, k, v)
         cls._add_invoice_line_id(invoice_form, tax=tax, in_type=in_type)
         invoice = invoice_form.save()
         return invoice
@@ -208,7 +212,15 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
             }
         )
         cls.declaration4 = cls._create_declaration(cls.partner4, "in")
-        cls.invoice1 = cls._create_invoice("1", cls.partner1)
+        standard_fiscal_position = cls.env["account.fiscal.position"].search(
+            [
+                ("name", "=", "Italia"),
+            ],
+            limit=1,
+        )
+        cls.invoice1 = cls._create_invoice(
+            "1", cls.partner1, fiscal_position_id=standard_fiscal_position
+        )
         cls.invoice2 = cls._create_invoice("2", cls.partner1, tax=cls.tax1)
         cls.invoice3 = cls._create_invoice("3", cls.partner1, tax=cls.tax1)
         cls.invoice_without_valid_taxes = cls._create_invoice(
@@ -219,12 +231,12 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         cls.invoice_future = cls._create_invoice(
             "future", cls.partner1, date=future_date, tax=cls.tax1
         )
-        cls.out_refund = cls._create_refund(cls.partner1, tax=cls.tax1)
-        cls.in_refund = cls._create_refund(
-            cls.partner1,
-            tax=cls.tax1,
-            in_type=True,
-        )
+        # cls.out_refund = cls._create_refund(cls.partner1, tax=cls.tax1)
+        # cls.in_refund = cls._create_refund(
+        #    cls.partner1,
+        #    tax=cls.tax1,
+        #    in_type=True,
+        # )
         cls.invoice4 = cls._create_invoice("4", cls.partner3, tax=cls.tax22)
         cls.invoice4.fiscal_position_id = cls.fiscal_position2.id
         cls.invoice5 = cls._create_invoice(
@@ -282,7 +294,7 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         self.invoice1.action_post()
         post_used_amount = self.declaration1.used_amount
         self.assertEqual(previous_used_amount, post_used_amount)
-        self.invoice_future.action_post()
+        self.invoice_future.with_context().action_post()
         post_used_amount = self.declaration1.used_amount
         self.assertEqual(previous_used_amount, post_used_amount)
         self.invoice_without_valid_taxes.action_post()
@@ -315,28 +327,27 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         self.assertEqual(previous_used_amount, post_used_amount)
 
     def test_refund(self):
+        self.assertEqual(self.declaration1.used_amount, 0)
         self.invoice2.action_post()
-        previous_used_amount = self.declaration1.used_amount
+        self.assertEqual(self.declaration1.used_amount, 900)
+        self.out_refund = self._create_refund(self.partner1, tax=self.tax1)
         self.out_refund.action_post()
-        post_used_amount = self.declaration1.used_amount
-        self.assertNotEqual(previous_used_amount, post_used_amount)
+        self.assertEqual(self.declaration1.used_amount, 800)
 
-    def test_refund_with_amount_bigger_than_residual(self):
+    def test_refund_with_amount_bigger_than_used(self):
+        self.assertEqual(self.declaration1.limit_amount, 1000)
         self.invoice2.action_post()
+        self.assertEqual(self.declaration1.available_amount, 100)
+
+        self.out_refund = self._create_refund(self.partner1, tax=self.tax1)
         refund_form = Form(self.out_refund)
         with refund_form.invoice_line_ids.edit(0) as line_form:
             line_form.quantity = 10
-        refund_form.save()
-
-        # Check that base amount has been updated
-        self.assertEqual(self.out_refund.amount_untaxed, 1000)
 
         # Refund goes over plafond: 100 + 1000 > 1000
-        self.assertEqual(self.declaration1.available_amount, 100)
-        self.assertEqual(self.out_refund.amount_untaxed, 1000)
-        self.assertEqual(self.declaration1.limit_amount, 1000)
         with self.assertRaises(UserError):
-            self.out_refund.action_post()
+            # now we raise UserError for 'draft' refunds too
+            refund_form.save()
 
     def test_fiscal_position_no_declaration(self):
         self.invoice4._onchange_date_invoice()
@@ -356,12 +367,8 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         """
         partner = self.partner1
 
-        out_invoice = self._create_invoice(
-            "test_all_out_invoice", partner, tax=self.tax1, in_type=False
-        )
-        self.assertEqual(out_invoice.move_type, "out_invoice")
-        out_invoice_balance = out_invoice.line_ids.filtered("tax_ids").balance
-        self.assertEqual(out_invoice_balance, -900)
+        declaration_in = self._create_declaration(partner, "in")
+        declaration_in.limit_amount = 2000
 
         in_invoice = self._create_invoice(
             "test_all_in_invoice", partner, tax=self.tax1, in_type=True
@@ -369,41 +376,55 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
         self.assertEqual(in_invoice.move_type, "in_invoice")
         in_invoice_balance = in_invoice.line_ids.filtered("tax_ids").balance
         self.assertEqual(in_invoice_balance, 900)
-
-        out_refund = self._create_refund(partner, tax=self.tax1, in_type=False)
-        self.assertEqual(out_refund.move_type, "out_refund")
-        out_refund_balance = out_refund.line_ids.filtered("tax_ids").balance
-        self.assertEqual(out_refund_balance, 100)
+        in_invoice.with_context().action_post()
+        self.assertEqual(in_invoice.declaration_of_intent_ids, declaration_in)
 
         in_refund = self._create_refund(partner, tax=self.tax1, in_type=True)
         self.assertEqual(in_refund.move_type, "in_refund")
         in_refund_balance = in_refund.line_ids.filtered("tax_ids").balance
         self.assertEqual(in_refund_balance, -100)
-
-        declaration_out = self._create_declaration(partner, "out")
-        declaration_out.limit_amount = 2000
-        invoices_in = in_invoice | in_refund
-        invoices_in.declaration_of_intent_ids = declaration_out
-
-        declaration_in = self._create_declaration(partner, "in")
-        declaration_in.limit_amount = 2000
-        invoices_out = out_invoice | out_refund
-        invoices_out.declaration_of_intent_ids = declaration_in
-
-        invoices_in.action_post()
-        invoices_out.action_post()
+        in_refund.action_post()
+        # XXX - TODO - test manual
+        # invoices_in.declaration_of_intent_ids = declaration_out
 
         # balance is positive for in invoices
+        # XXX ???
         # add "in" invoice and refund and compare with "out" DI available_amount
+        # XXX ???
+        # XXX why - declarations and move are matched "out" with "out_*" and
+        # "in" with "in_*" respectively
         used_amount_in = in_invoice_balance + in_refund_balance
         self.assertEqual(used_amount_in, 800)
-        self.assertEqual(declaration_out.available_amount, 2000 - used_amount_in)
+        self.assertEqual(declaration_in.available_amount, 2000 - used_amount_in)
+
+        self.declaration1.force_close = True
+        declaration_out = self._create_declaration(partner, "out")
+        declaration_out.limit_amount = 2000
+
+        out_invoice = self._create_invoice(
+            "test_all_out_invoice", partner, tax=self.tax1, in_type=False
+        )
+        self.assertEqual(out_invoice.move_type, "out_invoice")
+        out_invoice_balance = out_invoice.line_ids.filtered("tax_ids").balance
+        self.assertEqual(out_invoice_balance, -900)
+        out_invoice.action_post()
+
+        out_refund = self._create_refund(partner, tax=self.tax1, in_type=False)
+        self.assertEqual(out_refund.move_type, "out_refund")
+        out_refund_balance = out_refund.line_ids.filtered("tax_ids").balance
+        self.assertEqual(out_refund_balance, 100)
+        out_refund.action_post()
+        # XXX - TODO - test manual
+        # invoices_out.declaration_of_intent_ids = declaration_in
 
         # balance is positive for out invoices
         # add "out" invoice and refund and compare with "in" DI available_amount
         used_amount_out = -out_invoice_balance - out_refund_balance
         self.assertEqual(used_amount_out, 800)
         self.assertEqual(declaration_in.available_amount, 2000 - used_amount_out)
+
+        # XXX needed?
+        self.declaration1.force_close = False
 
     def test_invoice_repost(self):
         invoice = self._create_invoice(
@@ -565,7 +586,7 @@ class TestDeclarationOfIntent(AccountTestInvoicingCommon):
             partner=self.partner2,
             taxes=self.tax1,
         )
-        declarations = invoice.get_declarations()
+        declarations = invoice.declaration_of_intent_ids
         # pre-condition
         self.assertGreater(len(declarations), 1)
         self.assertTrue(all([tax in d.taxes_ids for d in declarations]))

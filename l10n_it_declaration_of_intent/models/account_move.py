@@ -1,10 +1,13 @@
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2022 Michele Rusticucci <michele.rusticucci@agilebg.com>
+# Copyright 2025 Marco Colombo <marco.colombo@phi.technology>
+# Copyright 2025 Sergio Corato <sergiocorato@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from collections import defaultdict
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.misc import format_date
 
 
 class AccountMove(models.Model):
@@ -12,9 +15,26 @@ class AccountMove(models.Model):
 
     declaration_of_intent_ids = fields.Many2many(
         comodel_name="l10n_it_declaration_of_intent.declaration",
+        compute="_compute_declarations",
+        # store=True,
         string="Declarations of intent",
     )
 
+    declaration_of_intent_amount_ids = fields.One2many(
+        string="Declarations of intent amounts",
+        comodel_name="l10n_it_declaration_of_intent.declaration_line",
+        inverse_name="invoice_id",
+        compute="_compute_declaration_amounts",
+        store=True,
+    )
+
+    def _compute_declarations(self):
+        for record in self:
+            record.declaration_of_intent_ids = (
+                record.declaration_of_intent_amount_ids.declaration_id
+            )
+
+    # XXX verificare se serve
     def _set_fiscal_position(self):
         for invoice in self:
             if invoice.partner_id:
@@ -60,16 +80,19 @@ class AccountMove(models.Model):
             invoice_type_short = self.move_type.split("_")[0]
         return invoice_type_short
 
+    # XXX verificare se serve
     @api.onchange("invoice_date")
     def _onchange_date_invoice(self):
         self._set_fiscal_position()
 
+    # XXX verificare se serve
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
         res = super()._onchange_partner_id()
         self._set_fiscal_position()
         return res
 
+    # XXX - da implementare / verificare
     def select_manually_declarations(self):
         self.ensure_one()
         action = self.env.ref(
@@ -77,279 +100,253 @@ class AccountMove(models.Model):
         ).read()[0]
         return action
 
-    def _post(self, soft=True):
-        posted = super()._post(soft)
-        # Check if there is enough available amount on declarations
-        for invoice in self.filtered(lambda m: m.is_invoice()):
-            declarations = invoice.get_declarations()
-            # If partner has no declarations, do nothing
-            if not declarations:
-                # If fiscal position is valid for declaration of intent,
-                # there should be a valid declaration of intent
-                if invoice.fiscal_position_id.valid_for_declaration_of_intent:
+    @api.depends(
+        "partner_id",
+        "partner_id.commercial_partner_id",
+        "declaration_of_intent_ids",
+        "line_ids",
+        "line_ids.tax_line_id",
+        "line_ids.price_subtotal",
+    )
+    def _compute_declaration_amounts(self):  # noqa: C901
+        # at some point during creation partner_id and or line_ids may be empty
+        invoices = self.filtered(
+            lambda move: move.partner_id
+            and move.line_ids
+            and move.move_type.endswith("_invoice")
+            and move.fiscal_position_id.valid_for_declaration_of_intent
+        )
+        refunds = self.filtered(
+            lambda move: move.partner_id
+            and move.line_ids
+            and move.move_type.endswith("_refund")
+            and move.fiscal_position_id.valid_for_declaration_of_intent
+        )
+
+        for record in invoices:
+            cmp = record.currency_id.compare_amounts
+            available_declarations = record._get_available_declarations(
+                check_dates=True
+            )
+            tax_summary = record._get_tax_summary()
+            # we're interest only in those taxes associated with
+            # available_declarations
+            tax_summary = {
+                k: v
+                for k, v in tax_summary.items()
+                if k in available_declarations.taxes_ids
+            }
+
+            # 16.0 values = [fields.Command.clear()]
+            values = [(5, 0, 0)]
+            amount_per_declaration = {d: 0.0 for d in available_declarations}
+
+            # handle forced declarations first
+            # remove their amounts from tax_summary
+            for line in record.line_ids.filtered(
+                lambda li: li.force_declaration_of_intent_id
+            ):
+                declaration = line.force_declaration_of_intent_id
+                available = (
+                    declaration.available_amount - amount_per_declaration[declaration]
+                )
+                # try and assign the declaration
+                if cmp(line.price_subtotal, available) <= 0:
+                    amount_per_declaration[declaration] += line.price_subtotal
+                    tax_summary[line.tax_ids[0]] -= line.price_subtotal
+                    assert cmp(tax_summary[line.tax_ids[0]], 0.0) > 0
+                else:
+                    raise UserError(
+                        _("Available plafond insufficent.\n" "Excess value: %s")
+                        % (line.price_subtotal - available)
+                    )
+
+            for tax_id, todo_amount in tax_summary.items():
+                for declaration in available_declarations.sorted("date_end"):
+                    if tax_id not in declaration.taxes_ids:
+                        continue
+                    available = (
+                        declaration.available_amount
+                        - amount_per_declaration[declaration]
+                    )
+
+                    if cmp(todo_amount, available) == -1:
+                        amount_per_declaration[declaration] += todo_amount
+                        todo_amount = 0
+                        break
+                    else:
+                        amount_per_declaration[declaration] += available
+                        # amount_per_declaration[declaration] = declaration.available_amount
+                        todo_amount -= available
+                if cmp(todo_amount, 0.0) != 0:
+                    raise UserError(
+                        _("Available plafond insufficent.\n" "Excess value: %s")
+                        % (todo_amount,)
+                    )
+            for d, amount in amount_per_declaration.items():
+                if cmp(amount, 0.0) == 0:
+                    continue
+                # values.append(fields.Command.create({
+                values.append(
+                    (
+                        0,
+                        0,
+                        {
+                            "declaration_id": d.id,
+                            "invoice_id": record.id,
+                            "amount": amount,
+                            "currency_id": record.currency_id.id,
+                        },
+                    )
+                )
+            record.declaration_of_intent_amount_ids = values
+
+        # code for refunds is similar to the above, but:
+        # - available declarations ignore dates and state
+        # - amounts per declarations are negative (decrease used)
+        # - (hence) available amount depends on used, not residual
+        # - failure indicates a different event, a refund should never
+        #   exceed the cumulative used amount no matter what, as it would
+        #   exceed the amount on the invoice it refers to. The user is
+        #   doing something very wrong: either the amount of the refund is
+        #   wrong, or the original invoice didn't refer to declarations
+        #   of intent, or something along the line.
+        #   For invoices, exceeding the available amount requires the
+        #   customer to create a new declaration, and which is (sort of)
+        #   a regular workflow event.
+
+        for record in refunds:
+            cmp = record.currency_id.compare_amounts
+            available_declarations = record._get_available_declarations(
+                check_dates=False
+            )
+            tax_summary = record._get_tax_summary()
+            # we're interest only in those taxes associated with
+            # available_declarations
+            tax_summary = {
+                k: v
+                for k, v in tax_summary.items()
+                if k in available_declarations.taxes_ids
+            }
+
+            # 16.0 values = [fields.Command.clear()]
+            values = [(5, 0, 0)]
+            amount_per_declaration = {d: 0.0 for d in available_declarations}
+
+            # handle forced declarations first
+            # remove their amounts from tax_summary
+            for line in record.line_ids.filtered(
+                lambda li: li.force_declaration_of_intent_id
+            ):
+                declaration = line.force_declaration_of_intent_id
+                available = (
+                    declaration.available_amount - amount_per_declaration[declaration]
+                )
+                # try and assign the declaration
+                assert line.price_subtotal >= 0  # TMP check if amounts are positive
+                if cmp(line.price_subtotal, available) <= 0:
+                    amount_per_declaration[declaration] -= line.price_subtotal
+                    tax_summary[line.tax_ids[0]] -= line.price_subtotal
+                    assert cmp(tax_summary[line.tax_ids[0]], 0.0) > 0
+                else:
+                    raise UserError(
+                        _("Available plafond insufficent.\n" "Excess value: %s")
+                        % (line.price_subtotal - available,)
+                    )
+
+            for tax_id, todo_amount in tax_summary.items():
+                for declaration in available_declarations.sorted("date_end"):
+                    if tax_id not in declaration.taxes_ids:
+                        continue
+
+                    available = (
+                        declaration.used_amount - amount_per_declaration[declaration]
+                    )
+                    if cmp(todo_amount, available) <= 0:
+                        amount_per_declaration[declaration] += todo_amount
+                        todo_amount = 0
+                        break
+                    else:
+                        amount_per_declaration[declaration] += available
+                        # amount_per_declaration[declaration] = declaration.available_amount
+                        todo_amount -= available
+                if cmp(todo_amount, 0.0) != 0:
                     raise UserError(
                         _(
-                            "Declaration of intent not found. Add new declaration or "
-                            "change fiscal position and verify applied tax"
+                            "Insufficient amount on declarations %r (tax %r).\n"
+                            "Excess value: %s"
+                        )
+                        % (
+                            available_declarations,
+                            tax_id,
+                            todo_amount,
                         )
                     )
-                else:
+
+            for d, amount in amount_per_declaration.items():
+                if cmp(amount, 0.0) == 0:
                     continue
-
-            invoice.check_declarations_amounts(declarations)
-            declarations_used_amounts = invoice.get_declarations_used_amounts(
-                declarations
-            )
-
-            # Assign account move lines to declarations for each invoice
-            # Get only lines with taxes
-            lines = invoice.line_ids.filtered("tax_ids")
-            if not lines:
-                continue
-            # Group lines by tax
-            grouped_lines = self.get_move_lines_by_declaration(lines)
-            invoice.update_declarations(declarations_used_amounts, grouped_lines)
-
-        return posted
-
-    def update_declarations(self, declarations_used_amounts, grouped_lines):
-        """
-        Update the declarations adding a new line representing this invoice.
-
-        Also add a comment in this invoice stating which declaration is into.
-        """
-        self.ensure_one()
-        is_sale_document = self.is_sale_document()
-        for force_declaration in grouped_lines.keys():
-            for tax, lines in grouped_lines[force_declaration].items():
-                # Create a detail in declaration for every tax group
-                amount = sum(line.balance for line in lines)
-                if is_sale_document:
-                    amount *= -1
-                # Select right declaration(s)
-                if force_declaration:
-                    declaration_id_to_amount_dict = {force_declaration.id: amount}
-                else:
-                    declaration_id_to_amount_dict = declarations_used_amounts
-
-                for declaration_id in declaration_id_to_amount_dict:
-                    declaration = self.env[
-                        "l10n_it_declaration_of_intent.declaration"
-                    ].browse(declaration_id)
-                    if tax not in declaration.taxes_ids:
-                        continue
-                    # avoid creating line with same invoice_id
-                    declaration.line_ids.filtered(
-                        lambda line: line.invoice_id == self
-                    ).unlink()
-                    declaration.line_ids = [
-                        (
-                            0,
-                            0,
-                            self._prepare_declaration_line(
-                                declaration_id_to_amount_dict[declaration_id],
-                                lines,
-                                tax,
-                            ),
-                        ),
-                    ]
-                    # Link declaration to invoice
-                    self.declaration_of_intent_ids = [(4, declaration.id)]
-                    if is_sale_document:
-                        cmt = self.narration or ""
-                        msg = (
-                            "Vostra dichiarazione d'intento del %s, "
-                            "protocollo telematico nr %s."
-                            % (
-                                format_date(self.env, declaration.date),
-                                declaration.telematic_protocol,
-                            )
-                        )
-                        # Avoid duplication
-                        if msg not in cmt:
-                            if cmt.strip():
-                                cmt += "\n\n" + msg
-                            else:
-                                cmt = msg
-                        self.narration = cmt
-
-    def _prepare_declaration_line(self, amount, lines, tax):
-        """Dictionary used to create declaration line for this invoice."""
-        self.ensure_one()
-        return {
-            "taxes_ids": [
-                (6, 0, tax.ids),
-            ],
-            "move_line_ids": [
-                (6, 0, lines.ids),
-            ],
-            "amount": amount,
-            "invoice_id": self.id,
-            "base_amount": self.amount_untaxed,
-            "currency_id": self.currency_id.id,
-        }
-
-    @api.model
-    def get_move_lines_by_declaration(self, lines):
-        """Get account move lines grouped by the declaration forced in each line."""
-        grouped_lines = {}
-        invoice_line_model = self.env["account.move.line"]
-        for line in lines:
-            force_declaration = line.force_declaration_of_intent_id
-            if force_declaration not in grouped_lines:
-                grouped_lines.update({force_declaration: {}})
-
-            tax = line.tax_ids[0]
-            if tax not in grouped_lines[force_declaration]:
-                grouped_lines[force_declaration].update(
-                    {tax: invoice_line_model.browse()}
+                # values.append(fields.Command.create({
+                values.append(
+                    (
+                        0,
+                        0,
+                        {
+                            "declaration_id": d.id,
+                            "invoice_id": record.id,
+                            "amount": -amount,
+                            "currency_id": record.currency_id.id,
+                        },
+                    )
                 )
+            record.declaration_of_intent_amount_ids = values
 
-            grouped_lines[force_declaration][tax] |= line
-        return grouped_lines
+        (self - invoices - refunds).declaration_of_intent_amount_ids = [(5, 0, 0)]
 
-    def get_declarations(self):
-        """Get declarations linked directly or indirectly to this invoice."""
+    def _get_available_declarations(self, check_dates=True):
         self.ensure_one()
-        declaration_model = self.env["l10n_it_declaration_of_intent.declaration"]
-        if self.declaration_of_intent_ids:
-            declarations = self.declaration_of_intent_ids
-        else:
-            declarations = declaration_model.with_context(
-                ignore_state=True if self.move_type.endswith("_refund") else False
-            ).get_valid(
-                type_d=self.move_type.split("_")[0],
-                partner_id=self.partner_id.id,
-                date=self.invoice_date,
-            )
-        return declarations
-
-    def get_declarations_used_amounts(self, declarations):
-        """Get used amount by declarations for this invoice."""
-        self.ensure_one()
-        declarations_available_amounts = {
-            declaration.id: declaration.available_amount for declaration in declarations
-        }
-        declarations_used_amounts = {}
-        sign = 1 if self.move_type in ["out_invoice", "in_invoice"] else -1
-        for tax_line in self.line_ids.filtered("tax_ids"):
-            amount = sign * tax_line.price_subtotal
-            matching_declarations = declarations.filtered(
-                lambda declaration, line_taxes=tax_line.tax_ids: any(
-                    tax in declaration.taxes_ids for tax in line_taxes
-                )
-            )
-            for declaration in matching_declarations:
-                if declaration.id not in declarations_used_amounts:
-                    declarations_used_amounts[declaration.id] = 0
-
-                if declaration == matching_declarations[-1]:
-                    # If this is the last available declaration,
-                    # assign all the remaining amount.
-                    declaration_used_amount = amount
-                else:
-                    declaration_available_amount = declarations_available_amounts[
-                        declaration.id
-                    ]
-                    declaration_used_amount = min(amount, declaration_available_amount)
-                declarations_available_amounts[
-                    declaration.id
-                ] -= declaration_used_amount
-
-                declarations_used_amounts[declaration.id] += declaration_used_amount
-                amount -= declaration_used_amount
-        return declarations_used_amounts
-
-    def check_declarations_amounts(self, declarations):
-        """
-        Compare this invoice's tax amounts and `declarations` plafond.
-
-        An exception is raised if the plafond of the declarations
-        is not sufficient for this invoice's taxes.
-        """
-        self.ensure_one()
-        declarations_amounts = self.get_declaration_residual_amounts(declarations)
-
-        declarations_residual = sum(
-            [declarations_amounts[da] for da in declarations_amounts]
+        all_declarations = (
+            self.reversed_entry_id.declaration_of_intent_amount_ids.declaration_id
         )
-        if self.currency_id.compare_amounts(declarations_residual, 0) == -1:
-            raise UserError(
-                _("Available plafond insufficent.\n" "Excess value: %s")
-                % (abs(declarations_residual))
+        invoice_type_short = self.get_type_short()
+        if not invoice_type_short:
+            return []
+        all_declarations |= self.env[
+            "l10n_it_declaration_of_intent.declaration"
+        ].get_all_for_partner(
+            invoice_type_short,
+            self.partner_id.commercial_partner_id.id,
+            ignore_state=not check_dates,
+        )
+        all_declarations = all_declarations.filtered(
+            lambda d: d.taxes_ids & self.line_ids.tax_ids
+        )
+        if check_dates:
+            all_declarations = all_declarations.filtered(
+                lambda d: d.state == "valid"
+                and d.date_start
+                <= (self.invoice_date or fields.Date.today())
+                <= d.date_end
             )
+        return all_declarations
 
-        # Check se con nota credito ho superato il plafond
-        declaration_model = self.env["l10n_it_declaration_of_intent.declaration"]
-        for declaration_id in declarations_amounts:
-            declaration = declaration_model.browse(declaration_id)
-            # declarations_amounts contains residual, so, if > limit_amount,
-            # used_amount went < 0
-            if (
-                self.currency_id.compare_amounts(
-                    declarations_amounts[declaration_id], declaration.limit_amount
-                )
-                == 1
-            ):
-                excess = abs(
-                    declarations_amounts[declaration_id] - declaration.limit_amount
-                )
-                raise UserError(
-                    _("Available plafond insufficent.\n" "Excess value: %s") % excess
-                )
-        return True
+    def _get_tax_summary(self):
+        self.ensure_one()
+        tax_summary = defaultdict(lambda: 0.0)
+        for line in self.line_ids.filtered(lambda li: len(li.tax_ids) == 1):
+            tax_summary[line.tax_ids[0]] += line.price_subtotal
+        return tax_summary
 
-    def get_declaration_residual_amounts(self, declarations):
-        """Get residual amount for every `declarations`."""
-        available_plafond = 0.0
-        if self.move_type in ["in_invoice", "in_refund"]:
-            plafond = self.company_id.declaration_yearly_limit_ids.filtered(
-                lambda r: r.year == str(fields.first(declarations).date_start.year)
-            )
-            available_plafond = plafond.limit_amount - plafond.actual_used_amount
-        declarations_amounts = {}
-        # If the tax amount is 0, then there is no line representing the tax
-        # so there will be no line having tax_line_id.
-        # Therefore we choose instead the lines that
-        # should generate the tax line i.e. the lines that have `tax_ids`
-        tax_lines = self.line_ids.filtered("tax_ids")
-        for tax_line in tax_lines:
-            # Move lines having `tax_ids` represent the base amount for those taxes
-            if self.move_type.endswith("_refund"):
-                amount = -tax_line.price_subtotal
-            else:
-                amount = tax_line.price_subtotal
+    def _post(self, soft=True):
+        # XXX - potrebbe servire, per ora no
+        # self._compute_declaration_amounts()
 
-            for declaration in declarations:
-                if declaration.id not in declarations_amounts:
-                    if (
-                        self.move_type in ["in_invoice", "in_refund"]
-                        and declaration.available_amount > available_plafond
-                    ):
-                        declarations_amounts[declaration.id] = available_plafond
-                    else:
-                        declarations_amounts[
-                            declaration.id
-                        ] = declaration.available_amount
-                if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
-                    declarations_amounts[declaration.id] -= amount
-                    amount = 0.0
-        for declaration in declarations:
-            # exclude amount from lines with invoice_id equals to self
-            for line in declaration.line_ids.filtered(lambda l: l.invoice_id == self):
-                declarations_amounts[declaration.id] += line.amount
-        return declarations_amounts
+        posted = super()._post(soft)
 
-    def button_cancel(self):
-        line_model = self.env["l10n_it_declaration_of_intent.declaration_line"]
-        for invoice in self:
-            # Force unlink of declaration details to compute used amount field
-            lines = line_model.search([("invoice_id", "=", invoice.id)])
-            if lines:
-                for line in lines:
-                    invoice.declaration_of_intent_ids = [(3, line.declaration_id.id)]
-                lines.unlink()
-        return super().button_cancel()
+        # XXX HACK - why this isn't triggered by its api.depends()?
+        # line_ids.invoice_id.state has changed!
+        posted.declaration_of_intent_ids._compute_amounts()
+        return posted
 
 
 class AccountMoveLine(models.Model):
