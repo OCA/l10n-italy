@@ -65,6 +65,18 @@ Le funzionalità principali incluse sono:
       modalità e termini stabiliti con decreto ministeriale ai sensi
       dell'articolo 73 del DPR 633/72. Da impostare in odoo nell'azienda
       o direttamente in fattura.
+   -  ``<AltriDatiGestionali>`` (2.2.1.16): dati gestionali aggiuntivi
+      che possono essere inseriti manualmente su ogni riga fattura ed
+      esportati nel file XML FatturaPA. Ogni voce include:
+
+      -  ``<TipoDato>``: tipo di dato (max 10 caratteri, obbligatorio)
+      -  ``<RiferimentoTesto>``: riferimento testuale (max 60 caratteri)
+      -  ``<RiferimentoNumero>``: riferimento numerico (fino a 8
+         decimali)
+      -  ``<RiferimentoData>``: riferimento data
+      -  Per aggiungere questi dati, aprire la riga fattura e compilare
+         la sezione "Altri Dati Gestionali".
+
    -  ``<IndirizzoResa>``: rappresenta l'indirizzo di consegna della
       merce.
 
@@ -223,6 +235,18 @@ The main features included are:
    -  ``<Art73>``: indicates if the document was issued according to
       methods and terms established by ministerial decree pursuant to
       article 73 of DPR 633/72
+   -  ``<AltriDatiGestionali>`` (2.2.1.16): additional management data
+      that can be manually entered on each invoice line and exported to
+      the FatturaPA XML file. Each entry includes:
+
+      -  ``<TipoDato>``: data type (max 10 characters, required)
+      -  ``<RiferimentoTesto>``: text reference (max 60 characters)
+      -  ``<RiferimentoNumero>``: numeric reference (up to 8 decimal
+         places)
+      -  ``<RiferimentoData>``: date reference
+      -  To add this data, open the invoice line and fill in the "Other
+         Management Data" section.
+
    -  ``<IndirizzoResa>``: represents the shipping address of the goods.
 
 3. Improvements in XML invoice import:

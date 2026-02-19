@@ -24,6 +24,7 @@
         "security/ir.model.access.csv",
         "data/invoice_it_template.xml",
         "data/res.city.it.code.csv",
+        "views/l10n_it_edi_move_line_other_data_view.xml",
         "views/l10n_it_view.xml",
         "views/res_partner_view.xml",
         "views/company_view.xml",
