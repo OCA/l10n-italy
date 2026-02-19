@@ -244,9 +244,24 @@ class AccountMoveInherit(models.Model):
         )
         for base_line, _aggregated_values in base_lines_aggregated_values:
             line = base_line["record"]
+            # Build other_data list from l10n_it_edi_other_data_ids
+            other_data_list = []
+            for other_data in line.l10n_it_edi_other_data_ids:
+                other_data_dict = {
+                    "tipo_dato": other_data.name,
+                    "riferimento_testo": other_data.text_ref or False,
+                    "riferimento_numero": other_data.num_ref or False,
+                    # Pass date object directly, format_date() in template handles it
+                    "riferimento_data": other_data.date_ref or False,
+                }
+                other_data_list.append(other_data_dict)
+
+            # Get existing altri_dati_gestionali_list or initialize empty list
+            existing_list = base_line["it_values"].get("altri_dati_gestionali_list", [])
             base_line["it_values"].update(
                 {
                     "admin_ref": line.l10n_it_edi_admin_ref or None,
+                    "altri_dati_gestionali_list": existing_list + other_data_list,
                 }
             )
         return res
