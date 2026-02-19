@@ -405,6 +405,18 @@ trascrive i “Termini e condizioni” della fattura</li>
 modalità e termini stabiliti con decreto ministeriale ai sensi
 dell’articolo 73 del DPR 633/72. Da impostare in odoo nell’azienda
 o direttamente in fattura.</li>
+<li><tt class="docutils literal">&lt;AltriDatiGestionali&gt;</tt> (2.2.1.16): dati gestionali aggiuntivi
+che possono essere inseriti manualmente su ogni riga fattura ed
+esportati nel file XML FatturaPA. Ogni voce include:<ul>
+<li><tt class="docutils literal">&lt;TipoDato&gt;</tt>: tipo di dato (max 10 caratteri, obbligatorio)</li>
+<li><tt class="docutils literal">&lt;RiferimentoTesto&gt;</tt>: riferimento testuale (max 60 caratteri)</li>
+<li><tt class="docutils literal">&lt;RiferimentoNumero&gt;</tt>: riferimento numerico (fino a 8
+decimali)</li>
+<li><tt class="docutils literal">&lt;RiferimentoData&gt;</tt>: riferimento data</li>
+<li>Per aggiungere questi dati, aprire la riga fattura e compilare
+la sezione “Altri Dati Gestionali”.</li>
+</ul>
+</li>
 <li><tt class="docutils literal">&lt;IndirizzoResa&gt;</tt>: rappresenta l’indirizzo di consegna della
 merce.</li>
 </ul>
@@ -558,6 +570,18 @@ transcribes the “Terms and conditions” of the invoice.</li>
 <li><tt class="docutils literal">&lt;Art73&gt;</tt>: indicates if the document was issued according to
 methods and terms established by ministerial decree pursuant to
 article 73 of DPR 633/72</li>
+<li><tt class="docutils literal">&lt;AltriDatiGestionali&gt;</tt> (2.2.1.16): additional management data
+that can be manually entered on each invoice line and exported to
+the FatturaPA XML file. Each entry includes:<ul>
+<li><tt class="docutils literal">&lt;TipoDato&gt;</tt>: data type (max 10 characters, required)</li>
+<li><tt class="docutils literal">&lt;RiferimentoTesto&gt;</tt>: text reference (max 60 characters)</li>
+<li><tt class="docutils literal">&lt;RiferimentoNumero&gt;</tt>: numeric reference (up to 8 decimal
+places)</li>
+<li><tt class="docutils literal">&lt;RiferimentoData&gt;</tt>: date reference</li>
+<li>To add this data, open the invoice line and fill in the “Other
+Management Data” section.</li>
+</ul>
+</li>
 <li><tt class="docutils literal">&lt;IndirizzoResa&gt;</tt>: represents the shipping address of the goods.</li>
 </ul>
 </li>
