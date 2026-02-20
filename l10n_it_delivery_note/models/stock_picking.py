@@ -114,8 +114,6 @@ class StockPicking(models.Model):
             }
         )
 
-        type(self)._delivery_note_fields = fields
-
         return fields
 
     def _compute_boolean_flags(self):
