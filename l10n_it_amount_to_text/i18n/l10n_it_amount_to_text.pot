@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,4 +16,14 @@ msgstr ""
 #. module: l10n_it_amount_to_text
 #: model:ir.model,name:l10n_it_amount_to_text.model_res_currency
 msgid "Currency"
+msgstr ""
+
+#. module: l10n_it_amount_to_text
+#: model:ir.model.fields,field_description:l10n_it_amount_to_text.field_res_currency__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_amount_to_text
+#: model:ir.model.fields,field_description:l10n_it_amount_to_text.field_res_currency__id
+msgid "ID"
 msgstr ""
