@@ -525,3 +525,24 @@ class TestFatturaPAXMLValidation(Common):
                 },
             ],
         )
+
+    def test_import_wrong_company(self):
+        """If the invoice is not of current company,
+        there is no exception during parsing"""
+        # Arrange
+        company = self.company
+        company.l10n_it_codice_fiscale = False
+
+        # Act
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+
+        # Assert
+        error_message = invoice.message_ids.filtered(
+            lambda message: "Error importing attachment" in (message.body or "")
+        )
+        self.assertFalse(error_message)
