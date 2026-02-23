@@ -1041,9 +1041,11 @@ class AccountMoveInherit(models.Model):
                 )
             self._l10n_it_edi_extension_update_partner_bank(body_tree, invoice)
 
-        if tax_representative := self._l10n_it_edi_extension_create_partner(
-            body_tree,
-            "tax_representative",
+        if invoice and (
+            tax_representative := self._l10n_it_edi_extension_create_partner(
+                body_tree,
+                "tax_representative",
+            )
         ):
             invoice.l10n_it_edi_tax_representative_id = tax_representative
 
