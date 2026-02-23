@@ -2,6 +2,7 @@
 # ©  2015 Apulia Software srl
 # Copyright (C) 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright 2026 Nextev Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -1074,3 +1075,61 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             bank_fee_line.partner_id,
             "Bank fee line should not have partner_id when charge_to_customer is False",
         )
+
+    def test_button_settle_sbf_credited(self):
+        """
+        button_settle returns a payment wizard action for SBF lines in credited state.
+        """
+        # Arrange: create an SBF slip that has gone through the credit step
+        _invoice, riba_list = self.riba_sbf_common()
+        credited_line = riba_list.line_ids[0]
+        # pre-condition
+        self.assertEqual(credited_line.type, "sbf")
+        self.assertEqual(credited_line.state, "credited")
+
+        # Act
+        action = credited_line.button_settle()
+
+        # Assert: the wizard can be instantiated and used to settle the line
+        self.assertEqual(action["res_model"], "riba.payment.multiple")
+        payment_wizard = (
+            self.env[action["res_model"]].with_context(**action["context"]).create({})
+        )
+        payment_wizard.pay()
+        self.assertEqual(riba_list.state, "paid")
+
+    def test_button_settle_no_valid_lines(self):
+        """
+        button_settle raises UserError when no lines can be settled.
+
+        Lines of type 'incasso' are excluded by the filter, so calling
+        button_settle on an incasso confirmed line always raises UserError.
+        """
+        # Arrange: create an incasso slip and confirm it
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+
+        to_issue_action = self.env.ref("l10n_it_riba_oca.action_riba_to_issue")
+        to_issue_model = self.env[to_issue_action.res_model]
+        to_issue_domain = safe_eval.safe_eval(to_issue_action.domain)
+        to_issue_records = (
+            to_issue_model.search(to_issue_domain) & self.invoice.line_ids
+        )
+        issue_wizard_model = self.env["riba.issue"].with_context(
+            active_model=to_issue_records._name,
+            active_ids=to_issue_records.ids,
+        )
+        issue_wizard_form = Form(issue_wizard_model)
+        issue_wizard_form.configuration_id = self.riba_config_incasso
+        issue_wizard = issue_wizard_form.save()
+        issue_result = issue_wizard.create_list()
+        riba_list = self.env[issue_result["res_model"]].browse(issue_result["res_id"])
+        riba_list.confirm()
+        # pre-condition: incasso lines in confirmed state
+        self.assertEqual(riba_list.line_ids[0].type, "incasso")
+        self.assertEqual(riba_list.line_ids[0].state, "confirmed")
+
+        # Act & Assert
+        with self.assertRaises(UserError) as cm:
+            riba_list.line_ids.button_settle()
+        self.assertIn("No line can be settled", cm.exception.args[0])
