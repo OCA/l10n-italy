@@ -977,14 +977,14 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 "name": "Test slip",
             }
         )
-        distinta_line = self.env["riba.slip.line"].create(
+        slip_line = self.env["riba.slip.line"].create(
             {"slip_id": distinta.id, "amount": 100.0}
         )
         wizard = (
             self.env["riba.past_due"]
             .with_context(
                 active_model="riba.slip.line",
-                active_id=distinta_line.id,
+                active_id=slip_line.id,
             )
             .create({})
         )

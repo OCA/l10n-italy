@@ -281,7 +281,7 @@
         <field name="model_id" ref="l10n_it_riba_oca.model_riba_slip_line" />
         <field name="binding_model_id" ref="l10n_it_riba_oca.model_riba_slip_line" />
         <field name="state">code</field>
-        <field name="code">action = records.settle_riba_line()</field>
+        <field name="code">action = records.button_settle()</field>
     </record>
 
     <!-- ====================================================== -->
