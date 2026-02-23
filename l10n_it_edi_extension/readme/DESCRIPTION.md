@@ -6,7 +6,7 @@ Le funzionalità principali incluse sono:
 
 1. Anteprima e Download del file XML:
 
-   - Aggiunge un pulsante ("Preview XML") direttamente nel form della fattura.
+   - Aggiunge un pulsante ("Preview") direttamente nel form della fattura, sia per fatture inviate che ricevute.
    - Dalla stessa finestra della fattura, è possibile scaricare il file XML generato.
 
 2. Valorizza i seguenti campi/nodi della fattura elettronica esportata:
@@ -88,7 +88,7 @@ The main features included are:
 
 1. XML File Preview and Download:
 
-   - Adds a button ("Preview XML") directly in the invoice form.
+   - Adds a button ("Preview") directly in the invoice form, both for exported and imported invoices.
    - From the same invoice form, you can download the generated XML file.
 
 2. Adds fields in XML invoice export:
