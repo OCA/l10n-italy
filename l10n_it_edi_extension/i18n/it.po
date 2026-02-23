@@ -464,6 +464,12 @@ msgstr ""
 "Impostare un livello di dettaglio dell'importazione nell'azienda %(company)s."
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_attachment_in_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_attachment_in_id
+msgid "Imported Electronic Bill"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__incidental_charges
 msgid "Incidental Charges"
 msgstr "Spese accessorie"
@@ -802,14 +808,20 @@ msgstr ""
 
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
-msgid "Preview FPA"
-msgstr "Anteprima FPA"
+msgid "Preview"
+msgstr ""
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_attachment_preview_link
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_attachment_preview_link
 msgid "Preview link"
 msgstr "Collegamento di anteprima"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_attachment_in_preview_link
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_attachment_in_preview_link
+msgid "Preview link for imported Electronic Bill"
+msgstr ""
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_register
@@ -1280,3 +1292,6 @@ msgstr ""
 #: code:addons/l10n_it_edi_extension/__init__.py:0
 msgid "from XML file:"
 msgstr "da file XML:"
+
+#~ msgid "Preview FPA"
+#~ msgstr "Anteprima FPA"

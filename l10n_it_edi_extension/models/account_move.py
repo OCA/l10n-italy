@@ -24,6 +24,15 @@ class AccountMoveInherit(models.Model):
         string="Preview link",
         compute="_compute_l10n_it_edi_attachment_preview_link",
     )
+    l10n_it_edi_ext_attachment_in_id = fields.Many2one(
+        comodel_name="ir.attachment",
+        string="Imported Electronic Bill",
+        readonly=True,
+    )
+    l10n_it_edi_ext_attachment_in_preview_link = fields.Char(
+        string="Preview link for imported Electronic Bill",
+        compute="_compute_l10n_it_edi_ext_attachment_in_preview_link",
+    )
     l10n_it_edi_line_ids = fields.One2many(
         "l10n_it_edi.line",
         "invoice_id",
@@ -134,6 +143,15 @@ class AccountMoveInherit(models.Model):
             else:
                 move.l10n_it_edi_attachment_preview_link = ""
 
+    @api.depends("l10n_it_edi_ext_attachment_in_id")
+    def _compute_l10n_it_edi_ext_attachment_in_preview_link(self):
+        for move in self:
+            if attachment := move.l10n_it_edi_ext_attachment_in_id:
+                link = f"{move.get_base_url()}/fatturapa/preview/{attachment.id}"
+            else:
+                link = ""
+            move.l10n_it_edi_ext_attachment_in_preview_link = link
+
     @api.depends(
         "l10n_it_edi_amount_untaxed", "l10n_it_edi_amount_tax", "l10n_it_edi_rounding"
     )
@@ -201,6 +219,16 @@ class AccountMoveInherit(models.Model):
             "type": "ir.actions.act_url",
             "name": "Show preview",
             "url": self.l10n_it_edi_attachment_preview_link,
+            "target": "new",
+        }
+
+    def action_l10n_it_edi_ext_attachment_in_preview(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_url",
+            "name": "Show preview",
+            "url": self.l10n_it_edi_ext_attachment_in_preview_link,
             "target": "new",
         }
 
@@ -803,5 +831,8 @@ class AccountMoveInherit(models.Model):
             "tax_representative",
         ):
             invoice.l10n_it_edi_tax_representative_id = tax_representative
+
+        if invoice and (attachment := data["attachment"]):
+            invoice.l10n_it_edi_ext_attachment_in_id = attachment.id
 
         return invoice

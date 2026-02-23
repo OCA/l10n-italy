@@ -48,7 +48,23 @@
                     <button
                         name="action_l10n_it_edi_attachment_preview"
                         type="object"
-                        string="Preview FPA"
+                        string="Preview"
+                    />
+                </div>
+                <label
+                    for="l10n_it_edi_ext_attachment_in_id"
+                    class="oe_inline"
+                    invisible="not l10n_it_edi_ext_attachment_in_id"
+                />
+                <div class="o_row" invisible="not l10n_it_edi_ext_attachment_in_id">
+                    <field
+                        name="l10n_it_edi_ext_attachment_in_id"
+                        groups="account.group_account_invoice"
+                    />
+                    <button
+                        name="action_l10n_it_edi_ext_attachment_in_preview"
+                        type="object"
+                        string="Preview"
                     />
                 </div>
             </xpath>

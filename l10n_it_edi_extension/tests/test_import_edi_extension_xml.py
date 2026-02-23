@@ -434,3 +434,22 @@ class TestFatturaPAXMLValidation(Common):
 
         # Assert
         self.assertFalse(invoice.invoice_line_ids)
+
+    def test_preview_link(self):
+        """The preview is available for imported bills."""
+        # Arrange
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+
+        # Act
+        preview_action = invoice.action_l10n_it_edi_ext_attachment_in_preview()
+
+        # Assert
+        self.assertEqual(
+            preview_action["url"],
+            invoice.l10n_it_edi_ext_attachment_in_preview_link,
+        )
