@@ -24,6 +24,11 @@ class AccountMoveInherit(models.Model):
         string="Preview link",
         compute="_compute_l10n_it_edi_attachment_preview_link",
     )
+    l10n_it_edi_ext_attachment_in_id = fields.Many2one(
+        comodel_name="ir.attachment",
+        string="Imported Electronic Bill",
+        readonly=True,
+    )
     l10n_it_edi_line_ids = fields.One2many(
         "l10n_it_edi.line",
         "invoice_id",
@@ -123,10 +128,13 @@ class AccountMoveInherit(models.Model):
     # Computes
     # -------------------------------------------------------------------------
 
-    @api.depends("l10n_it_edi_attachment_file")
+    @api.depends("l10n_it_edi_attachment_file", "l10n_it_edi_ext_attachment_in_id")
     def _compute_l10n_it_edi_attachment_preview_link(self):
         for move in self:
-            if move.l10n_it_edi_attachment_file:
+            if (
+                move.l10n_it_edi_attachment_file
+                or move.l10n_it_edi_ext_attachment_in_id
+            ):
                 move.l10n_it_edi_attachment_preview_link = (
                     move.get_base_url() + f"/fatturapa/preview/{move.id}"
                 )
@@ -202,6 +210,20 @@ class AccountMoveInherit(models.Model):
             "url": self.l10n_it_edi_attachment_preview_link,
             "target": "new",
         }
+
+    def _get_invoice_legal_documents(self, filetype, allow_fallback=False):
+        self.ensure_one()
+
+        if filetype == "fatturapa":
+            if fatturapa_attachment := self.l10n_it_edi_ext_attachment_in_id:
+                return {
+                    "filename": fatturapa_attachment.name,
+                    "filetype": "xml",
+                    "content": fatturapa_attachment.raw,
+                }
+        return super()._get_invoice_legal_documents(
+            filetype, allow_fallback=allow_fallback
+        )
 
     # -------------------------------------------------------------------------
     # Helpers
@@ -802,5 +824,22 @@ class AccountMoveInherit(models.Model):
             "tax_representative",
         ):
             invoice.l10n_it_edi_tax_representative_id = tax_representative
+
+        if (
+            invoice
+            and not invoice.is_sale_document()
+            and (attachment_name := data.get("name", ""))
+            and (attachment_raw := data.get("raw", b""))
+        ):
+            xml_att = self.env["ir.attachment"].create(
+                {
+                    "name": attachment_name,
+                    "raw": attachment_raw,
+                    "res_model": invoice._name,
+                    "res_id": invoice.id,
+                    "mimetype": "application/xml",
+                }
+            )
+            invoice.l10n_it_edi_ext_attachment_in_id = xml_att.id
 
         return invoice
