@@ -3,14 +3,13 @@
 from openupgradelib import openupgrade
 
 
-def set_exclude_from_vat_settlements(env):
-    openupgrade.logged_query(
-        env.cr,
+def post_absorb_old_module(env):
+    if openupgrade.column_exists(env.cr, "account_tax", "vat_statement_account_id"):
+        query = """
+            UPDATE account_tax SET exclude_from_vat_settlements = True
+            WHERE vat_statement_account_id IS NULL;
         """
-        UPDATE account_tax SET exclude_from_vat_settlements = True
-        WHERE vat_statement_account_id IS NULL;
-        """,
-    )
+        openupgrade.logged_query(env.cr, query)
 
 
 def pre_absorb_old_module(env):
@@ -25,4 +24,3 @@ def pre_absorb_old_module(env):
             ],
             merge_modules=True,
         )
-        set_exclude_from_vat_settlements(env)
