@@ -11,7 +11,7 @@
     "author": "Pordenone Linux User Group (PNLUG), Odoo Community Association (OCA), "
     "Dinamiche Aziendali srl, Sergio Corato",
     "category": "Warehouse",
-    "website": "https://github.com/OCA/stock-logistics-reporting",
+    "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "maintainers": ["MarcoCalcagni", "Borruso"],
     "depends": [
