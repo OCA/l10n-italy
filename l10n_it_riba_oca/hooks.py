@@ -13,5 +13,4 @@ def pre_absorb_old_module(env):
             [
                 ("l10n_it_riba", "l10n_it_riba_oca"),
             ],
-            merge_modules=True,
         )
