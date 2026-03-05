@@ -13,8 +13,12 @@ class AccountMove(models.Model):
         self.action_post()
 
         # Export
-        export_action = self.env["ir.actions.act_window"]._for_xml_id(
-            "l10n_it_fatturapa_out.action_wizard_export_fatturapa",
+        export_action = (
+            self.env["ir.actions.act_window"]
+            .sudo()
+            ._for_xml_id(
+                "l10n_it_fatturapa_out.action_wizard_export_fatturapa",
+            )
         )
         export_wizard_model = export_action.get("res_model")
         export_wizard = (
