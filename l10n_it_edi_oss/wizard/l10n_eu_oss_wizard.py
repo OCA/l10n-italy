@@ -3,7 +3,7 @@
 
 from odoo import models
 
-from .. import OSS_EXEMPT_REASON, OSS_LAW_REFERENCE
+from ..constants import OSS_EXEMPT_REASON, OSS_LAW_REFERENCE
 
 
 class L10nEuOssWizard(models.TransientModel):

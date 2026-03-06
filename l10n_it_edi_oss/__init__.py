@@ -1,11 +1,11 @@
 from . import models
 from . import wizard
-
-OSS_EXEMPT_REASON = "N3.2"
-OSS_LAW_REFERENCE = "Art. 41 D.L. 331/1993"
+from .hooks import pre_absorb_old_module
 
 
 def _l10n_it_edi_oss_post_init_hook(env):
+    from .constants import OSS_EXEMPT_REASON, OSS_LAW_REFERENCE
+
     oss_taxes = env["account.tax"].search(
         [
             ("oss_country_id", "!=", False),

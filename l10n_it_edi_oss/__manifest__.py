@@ -14,6 +14,8 @@
         "l10n_it_edi",
         "l10n_eu_oss_oca",
     ],
+    "external_dependencies": {"python": ["openupgradelib"]},
     "installable": True,
+    "pre_init_hook": "pre_absorb_old_module",
     "post_init_hook": "_l10n_it_edi_oss_post_init_hook",
 }

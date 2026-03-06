@@ -1,6 +1,8 @@
 # Copyright 2026 Lorenzo Battistini
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from lxml import etree
+
 from odoo.tests import tagged
 
 from odoo.addons.l10n_it_edi.tests.common import TestItEdi
@@ -56,3 +58,28 @@ class TestEdiOssExport(TestItEdi):
         invoice.invoice_date_due = invoice.date
         invoice.action_post()
         self._assert_export_invoice(invoice, "oss_invoice.xml")
+
+    def test_non_oss_invoice_export(self):
+        """Non-OSS invoices are not affected by this module."""
+        invoice = self.init_invoice(
+            "out_invoice",
+            amounts=[100],
+            company=self.company,
+            partner=self.italian_partner_a,
+            taxes=self.default_tax,
+        )
+        invoice.invoice_date_due = invoice.date
+        invoice.action_post()
+        xml = invoice._l10n_it_edi_render_xml()
+        tree = etree.fromstring(xml)
+        oss_nodes = [n for n in tree.iter("TipoDato") if n.text == "OSS"]
+        self.assertFalse(
+            oss_nodes, "Non-OSS invoice should not have OSS AltriDatiGestionali"
+        )
+        aliquota_nodes = list(tree.iter("AliquotaIVA"))
+        for node in aliquota_nodes:
+            self.assertNotEqual(
+                node.text,
+                "0.00",
+                "Non-OSS invoice should have actual tax rate",
+            )

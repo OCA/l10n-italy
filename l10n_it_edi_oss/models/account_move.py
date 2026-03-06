@@ -19,13 +19,13 @@ class AccountMove(models.Model):
         result = super()._l10n_it_edi_grouping_function_tax_lines(base_line, tax_data)
         if result and tax_data and tax_data["tax"].oss_country_id:
             result["tax_amount_field"] = 0.0
-            result["is_oss"] = True
+            result["oss_country_id"] = tax_data["tax"].oss_country_id
         return result
 
     def _l10n_it_edi_add_base_lines_xml_values(
         self, base_lines_aggregated_values, is_downpayment
     ):
-        super()._l10n_it_edi_add_base_lines_xml_values(
+        result = super()._l10n_it_edi_add_base_lines_xml_values(
             base_lines_aggregated_values, is_downpayment
         )
         for base_line, _aggregated_values in base_lines_aggregated_values:
@@ -39,6 +39,7 @@ class AccountMove(models.Model):
                         "riferimento_data": None,
                     }
                 )
+        return result
 
     def _l10n_it_edi_get_tax_lines_xml_values(
         self, base_lines_aggregated_values, values_per_grouping_key
@@ -54,7 +55,7 @@ class AccountMove(models.Model):
             grouping_key = values["grouping_key"]
             if not grouping_key or grouping_key.get("skip"):
                 continue
-            if grouping_key.get("is_oss") and idx < len(tax_lines):
+            if grouping_key.get("oss_country_id") and idx < len(tax_lines):
                 tax_lines[idx]["imposta"] = 0.0
             idx += 1
         return tax_lines
