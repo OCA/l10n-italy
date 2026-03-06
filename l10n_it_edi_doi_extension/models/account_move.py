@@ -112,9 +112,7 @@ class AccountMove(models.Model):
                 move.l10n_it_edi_doi_amount = 0
                 continue
             declaration_lines = move.invoice_line_ids.filtered(
-                # The declaration tax cannot be used with other taxes on a single line
-                # (checked in `_post`)
-                lambda line, tax=tax: line.tax_ids.ids == tax.ids
+                lambda line, tax=tax: tax in line.tax_ids
             )
             move.l10n_it_edi_doi_amount = sum(declaration_lines.mapped("price_total"))
         return  # W8110
@@ -164,13 +162,6 @@ class AccountMove(models.Model):
                     self.env._(
                         "Given the tax %s is applied, there should be a "
                         "Declaration of Intent selected.",
-                        doi_bill_tax.name,
-                    )
-                )
-            if any(line.tax_ids != doi_bill_tax for line in declaration_lines):
-                errors.append(
-                    self.env._(
-                        "A line using tax %s should not contain any other taxes",
                         doi_bill_tax.name,
                     )
                 )
