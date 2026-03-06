@@ -1,5 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo.fields import Command
+
 from odoo.addons.l10n_it_edi.tests.common import TestItEdi
 
 
@@ -26,14 +28,12 @@ class TestItEdiExport(TestItEdi):
                     "partner_id": self.italian_partner_a.id,
                     "invoice_date": "2024-01-15",
                     "invoice_line_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "name": "Test product",
                                 "quantity": 1,
                                 "price_unit": 100.0,
-                                "tax_ids": [(6, 0, self.default_tax.ids)],
+                                "tax_ids": [Command.set(self.default_tax.ids)],
                             },
                         )
                     ],
