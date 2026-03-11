@@ -48,8 +48,8 @@ class Move(models.Model):
                         }])
                 if credit_amount != 0 and write_off_vals:
                     write_off_vals.append([0, 0, {
-                        "debit": credit_amount if credit_amount > 0 else 0,
-                        "credit": credit_amount if credit_amount < 0 else 0,
+                        "debit": abs(credit_amount) if credit_amount > 0 else 0,
+                        "credit": abs(credit_amount) if credit_amount < 0 else 0,
                         "account_id": invoice.agent_74ter_id.property_account_receivable_id.id,
                         "partner_id": invoice.agent_74ter_id.id,
                         "name": ", ".join(line_names),

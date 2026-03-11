@@ -13,7 +13,8 @@
     "license": "AGPL-3",
     "depends": [
         "account",
-        "l10n_it_fatturapa_out"
+        "l10n_it_fatturapa_out",
+        "l10n_it_reverse_charge",
     ],
     "data": [
         'views/res_partner_views.xml',

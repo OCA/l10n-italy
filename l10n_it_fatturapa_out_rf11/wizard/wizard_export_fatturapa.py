@@ -1,14 +1,26 @@
 from odoo import models, _
 from odoo.exceptions import UserError
 
+
 class WizardExportFatturapa(models.TransientModel):
     _inherit = 'wizard.export.fatturapa'
+
+    def _get_rc_supplier(self, invoice):
+        """Get the original supplier from a reverse charge invoice chain."""
+        if not invoice.rc_purchase_invoice_id:
+            return self.env['res.partner']
+        original_invoices = (
+            invoice.rc_purchase_invoice_id.rc_original_purchase_invoice_ids
+        )
+        if not original_invoices:
+            return self.env['res.partner']
+        return original_invoices[0].partner_id
 
     def getTemplateValues(self, template_values):
         template_values = super().getTemplateValues(template_values)
         company_fiscal_position = self.env.company.fatturapa_fiscal_position_id.code
 
-        rc_supplier = template_values['invoices'][0].rc_purchase_invoice_id.rc_original_purchase_invoice_ids[0].partner_id
+        rc_supplier = self._get_rc_supplier(template_values['invoices'][0])
 
         if rc_supplier.is_74ter_agent and company_fiscal_position == "RF11":
             template_values['codice_destinatario'] = rc_supplier.codice_destinatario
@@ -22,13 +34,14 @@ class WizardExportFatturapa(models.TransientModel):
         if not kind_id:
             raise UserError(_("Tax kind N6.9 not found."))
         tax_backup = {}
+        rc_supplier = self.env['res.partner']
         invoices = fatturapa.invoices
         if invoices:
             for invoice in invoices:
                 if invoice.rc_purchase_invoice_id:
                     if len(invoices) > 1:
                         raise UserError(_("You can only export one self invoice at a time."))
-                    rc_supplier = invoice.rc_purchase_invoice_id.rc_original_purchase_invoice_ids[0].partner_id
+                    rc_supplier = self._get_rc_supplier(invoice)
                     if rc_supplier.is_74ter_agent and company_fiscal_position == "RF11":
                         for line in invoice.invoice_line_ids:
                             if line.tax_ids.amount > 0.0:
@@ -38,9 +51,8 @@ class WizardExportFatturapa(models.TransientModel):
                                 }
                                 line.tax_ids.sudo().amount = 0.0
                                 line.tax_ids.sudo().kind_id = kind_id
-            rc_supplier = invoices[0].rc_purchase_invoice_id.rc_original_purchase_invoice_ids[0].partner_id
 
-        if self.env.company.fatturapa_fiscal_position_id.code == "RF11" and rc_supplier and rc_supplier.is_74ter_agent:
+        if company_fiscal_position == "RF11" and rc_supplier and rc_supplier.is_74ter_agent:
             self.env.company.sudo().fatturapa_sender_partner = self.env.company.partner_id
 
         res = super().saveAttachment(fatturapa, number)
@@ -60,7 +72,7 @@ class WizardExportFatturapa(models.TransientModel):
 
         # We need to edit only 'Imposta', the other fields are already edited in saveAttachment method
         if invoice.rc_purchase_invoice_id:
-            rc_supplier = invoice.rc_purchase_invoice_id.rc_original_purchase_invoice_ids[0].partner_id
+            rc_supplier = self._get_rc_supplier(invoice)
             if rc_supplier.is_74ter_agent and self.env.company.fatturapa_fiscal_position_id.code == "RF11":
                 for tax_id in res:
                     tax = self.env['account.tax'].browse(tax_id)
