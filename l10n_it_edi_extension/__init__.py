@@ -10,9 +10,13 @@ from odoo.tools import config
 from openupgradelib import openupgrade, openupgrade_tools
 
 from odoo.addons.base.models.ir_qweb_fields import Markup, nl2br, nl2br_enclose
-from odoo.addons.l10n_it_account.migration_tools import _remove_module
+from odoo.addons.l10n_it_account.migration_tools import (
+    _remove_module,
+    remove_modules_views,
+)
 
 OLD_MODULES = [
+    "l10n_it_account_tax_kind",
     "l10n_it_fatturapa_in_purchase",
     "l10n_it_fatturapa_in_rc",
     "l10n_it_fatturapa_in",
@@ -23,13 +27,15 @@ OLD_MODULES = [
     "l10n_it_fiscal_payment_term",
     "l10n_it_fiscalcode",
     "l10n_it_ipa",
+    "l10n_it_payment_reason",
     "l10n_it_pec",
     "l10n_it_rea",
-    "l10n_it_reverse_charge_start_end_dates",
-    "l10n_it_reverse_charge",
     "l10n_it_vat_payability",
     "l10n_it_vat_registries_rc",
     "l10n_it_vat_settlement_date_rc",
+    "l10n_it_withholding_tax",
+    "l10n_it_withholding_tax_payment",
+    "l10n_it_withholding_tax_reason",
 ]
 
 
@@ -967,6 +973,11 @@ def _l10n_it_vat_payability_pre_migration(env):
 
 
 def _l10n_it_edi_extension_pre_init_hook(env):
+    # Drop the views registered by the old invoicing modules (and any view
+    # inheriting them) before their features are migrated: these are the base
+    # modules typically installed alongside l10n_it_fatturapa_in and
+    # l10n_it_fatturapa_out in v16, no longer present in v18.
+    remove_modules_views(env.cr, OLD_MODULES)
     for module in OLD_MODULES:
         migration_function = globals().get(f"_{module}_pre_migration")
         if openupgrade.is_module_installed(env.cr, module) and migration_function:
