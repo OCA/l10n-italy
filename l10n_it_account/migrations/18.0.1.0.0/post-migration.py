@@ -3,13 +3,36 @@ from psycopg2 import sql
 
 from odoo import SUPERUSER_ID, api
 
-from odoo.addons.l10n_it_account.migration_tools import _remove_module
+from odoo.addons.l10n_it_account.migration_tools import (
+    _remove_module,
+    remove_modules_views,
+)
 
 OLD_MODULES = [
     "l10n_it_account_tax_kind",
+    "l10n_it_declaration_of_intent",
     "l10n_it_fatturapa",
     "l10n_it_fatturapa_pec",
 ]
+
+# Old OCA modules superseded in v18: split payment and reverse charge are now
+# handled by Odoo core (l10n_it / account). We migrate no data for them here --
+# we only drop their now-dangling views and uninstall them.
+OLD_MODULES_TO_REMOVE = [
+    "l10n_it_reverse_charge_start_end_dates",
+    "l10n_it_reverse_charge",
+    "l10n_it_split_payment",
+]
+
+# Old modules migrated here but uninstalled by their v18 replacement module
+# (marked "to install" by the per-module migration functions below), so we must
+# not remove them here:
+#   l10n_it_declaration_of_intent -> l10n_it_edi_doi_extension
+#   l10n_it_fatturapa_pec         -> l10n_it_edi_pec
+MODULES_REMOVED_BY_REPLACEMENT = {
+    "l10n_it_declaration_of_intent",
+    "l10n_it_fatturapa_pec",
+}
 
 
 def rename_fields(env, table, field_updates, condition=None):
@@ -99,6 +122,22 @@ def _l10n_it_account_tax_kind_migration(env):
     )
 
 
+def _l10n_it_declaration_of_intent_migration(env):
+    """
+    Install "l10n_it_edi_doi_extension" which replaces the old
+    l10n_it_declaration_of_intent module.
+    """
+    openupgrade.logged_query(
+        env.cr,
+        """
+        UPDATE ir_module_module
+        SET state = 'to install'
+        WHERE name = 'l10n_it_edi_doi_extension'
+        AND state = 'uninstalled'
+        """,
+    )
+
+
 def _l10n_it_fatturapa_migration(env):
     # Remove exclusion for installation of "l10n_it_edi"
     query = """
@@ -146,8 +185,9 @@ def migrate(cr, version):
         migration_function = globals().get(f"_{module}_migration")
         if openupgrade.is_module_installed(env.cr, module) and migration_function:
             migration_function(env)
-        if module != "l10n_it_fatturapa_pec":
-            # `l10n_it_fatturapa_pec` will be
-            # migrated and removed
-            # in `l10n_it_edi_pec`
+        if module not in MODULES_REMOVED_BY_REPLACEMENT:
             _remove_module(env, module)
+
+    remove_modules_views(cr, OLD_MODULES_TO_REMOVE)
+    for module in OLD_MODULES_TO_REMOVE:
+        _remove_module(env, module)
