@@ -1,1 +1,2 @@
 - Lorenzo Battistini \<<https://github.com/eLBati>\>
+- Simone Rubino \<<simone.rubino88@gmail.com>\>
