@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2026 Simone Rubino
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+  -->
+<templates id="template" xml:space="preserve">
+     <t
+        t-name="l10n_it_pos_fiscalcode.PartnerLine"
+        t-inherit="point_of_sale.PartnerLine"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//div[hasclass('partner-line-email')]" position="after">
+            <div
+                t-if="props.partner.l10n_it_codice_fiscale"
+                class="l10n_it_codice_fiscale-field mb-1"
+            >
+                <i class="fa fa-fw fa-address-card-o me-2" />
+                <t t-esc="props.partner.l10n_it_codice_fiscale" />
+            </div>
+        </xpath>
+        <xpath expr="//td[hasclass('partner-line-email')]" position="inside">
+            <div
+                t-if="props.partner.l10n_it_codice_fiscale"
+                class="l10n_it_codice_fiscale-field mb-1"
+            >
+                <i class="fa fa-fw fa-address-card-o me-2" />
+                <t t-esc="props.partner.l10n_it_codice_fiscale" />
+            </div>
+        </xpath>
+    </t>
+ </templates>

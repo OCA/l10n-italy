@@ -1,5 +1,6 @@
 # Copyright 2019 Lorenzo Battistini
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# Copyright 2026 Simone Rubino
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "ITA - POS - Codice fiscale",
@@ -12,15 +13,16 @@
     "author": "Odoo Community Association (OCA)",
     "maintainers": ["eLBati"],
     "license": "AGPL-3",
-    "application": False,
-    "installable": True,
     "depends": [
         "point_of_sale",
-        "l10n_it_edi_extension",
+        "l10n_it_edi",
     ],
     "assets": {
-        "point_of_sale.assets": [
-            "l10n_it_pos_fiscalcode/static/src/xml/pos.xml",
+        "point_of_sale._assets_pos": [
+            "l10n_it_pos_fiscalcode/static/src/**/*",
+        ],
+        "web.assets_tests": [
+            "l10n_it_pos_fiscalcode/static/tests/tours/**/*",
         ],
     },
 }
