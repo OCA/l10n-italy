@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-02 18:45+0000\n"
+"PO-Revision-Date: 2026-03-19 17:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -63,6 +63,8 @@ msgid ""
 "Additional management data (AltriDatiGestionali) to be exported in the "
 "FatturaPA XML."
 msgstr ""
+"Dati gestionali aggiuntivi (AltriDatiGestionali) da esportare nel file XML "
+"FatturaPA."
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_admin_ref
@@ -120,6 +122,8 @@ msgid ""
 "At least one of Text Reference, Number Reference, or Date Reference must be "
 "provided."
 msgstr ""
+"È necessario fornire almeno uno dei seguenti riferimenti: Testo, Numero o "
+"Data."
 
 #. module: l10n_it_edi_extension
 #: model:ir.model,name:l10n_it_edi_extension.model_ir_attachment
@@ -266,7 +270,7 @@ msgstr "Esigibilità differita"
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.l10n_it_edi_move_line_other_data_list_view
 msgid "Delete"
-msgstr ""
+msgstr "Cancella"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__name
@@ -413,7 +417,7 @@ msgstr "Codice EORI"
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
 msgid "Edit other Data"
-msgstr ""
+msgstr "Modifica altri dati"
 
 #. module: l10n_it_edi_extension
 #. odoo-python
@@ -796,19 +800,19 @@ msgstr "Altri dati gestionali"
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
 msgid "Other Data"
-msgstr ""
+msgstr "Altri dati"
 
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.l10n_it_edi_move_line_other_data_form_view
 msgid "Other Invoice Data"
-msgstr ""
+msgstr "Altri dati fattura"
 
 #. module: l10n_it_edi_extension
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/l10n_it_edi_line_other_data.py:0
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_other_data_ids
 msgid "Other Management Data"
-msgstr ""
+msgstr "Altri dati gestione"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_res_partner__l10n_it_edi_import_detail_level
@@ -969,17 +973,17 @@ msgstr "Fattura collegata dalla riga"
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__date_ref
 msgid "RiferimentoData: Date reference"
-msgstr ""
+msgstr "RiferimentoData: riferimento data"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__num_ref
 msgid "RiferimentoNumero: Numeric reference (up to 8 decimal places)"
-msgstr ""
+msgstr "RiferimentoNumero: riferimento numerico (fino a 8 cifre decimali)"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__text_ref
 msgid "RiferimentoTesto: Text reference (max 60 characters)"
-msgstr ""
+msgstr "RiferimentoTesto: riferimento testo (massimo 60 caratteri)"
 
 #. module: l10n_it_edi_extension
 #. odoo-python
@@ -1132,7 +1136,7 @@ msgstr "Soggetto terzo"
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__name
 msgid "TipoDato: Type of additional data (max 10 characters)"
-msgstr ""
+msgstr "TipoDato: tipo dati addizionali (massimo 10 caratteri)"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__total_price
