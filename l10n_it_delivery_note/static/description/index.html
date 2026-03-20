@@ -389,6 +389,24 @@ installed together.</p>
 <li>Base (default): one picking, one DN.</li>
 <li>Advanced: more picking in one DN.</li>
 </ul>
+<p><strong>Electronic Invoicing Integration</strong></p>
+<p>This module integrates with Italian electronic invoicing
+(<tt class="docutils literal">l10n_it_stock_ddt</tt>).</p>
+<p>It automatically adds Delivery Note references to the FatturaPA XML,
+including:</p>
+<ul class="simple">
+<li>DDT Number</li>
+<li>DDT Date</li>
+<li>Line references</li>
+</ul>
+<p>The module also handles the distinction between immediate and deferred
+invoices:</p>
+<ul class="simple">
+<li><strong>TD01 (Immediate invoice)</strong>: when the invoice has the same date as
+the linked DDTs</li>
+<li><strong>TD24 (Deferred invoice)</strong>: when the invoice is issued on a
+different day than the DDTs</li>
+</ul>
 <p><strong>Italiano</strong></p>
 <p>Questo modulo consente di gestire i DDT.</p>
 <p>Da un prelievo è possibile generare un DDT e raggruppare più prelievi in
@@ -401,6 +419,24 @@ modalità Odoo di gestire ordini di vendita, prelievi e fatture.</p>
 <ul class="simple">
 <li>Base (predefinita): un prelievo, un DDT.</li>
 <li>Avanzata: più prelievi in un DDT.</li>
+</ul>
+<p><strong>Integrazione Fatturazione Elettronica</strong></p>
+<p>Questo modulo si integra con la fatturazione elettronica italiana
+(<tt class="docutils literal">l10n_it_stock_ddt</tt>).</p>
+<p>Aggiunge automaticamente i riferimenti ai DDT nell’XML della FatturaPA,
+includendo:</p>
+<ul class="simple">
+<li>Numero del DDT</li>
+<li>Data del DDT</li>
+<li>Riferimenti alle righe</li>
+</ul>
+<p>Il modulo gestisce anche la distinzione tra fatture immediate e
+differite:</p>
+<ul class="simple">
+<li><strong>TD01 (Fattura immediata)</strong>: quando la fattura ha la stessa data dei
+DDT collegati</li>
+<li><strong>TD24 (Fattura differita)</strong>: quando la fattura è emessa in un giorno
+diverso rispetto ai DDT</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
