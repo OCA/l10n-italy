@@ -8,9 +8,11 @@
 #   from ... import hooks
 # raises
 #   ImportError: attempted relative import with no known parent package
+from openupgradelib import openupgrade
 from odoo.addons.l10n_it_riba_oca import hooks
 
 
-def migrate(cr, installed_version):
+@openupgrade.migrate()
+def migrate(env, version):
     # Used by OpenUpgrade when module is in `apriori`
-    hooks.migrate_old_module(cr)
+    hooks.pre_absorb_old_module(env)
