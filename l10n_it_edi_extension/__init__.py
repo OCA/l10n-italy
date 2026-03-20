@@ -772,7 +772,7 @@ def _l10n_it_fatturapa_in_post_migration(env):
                         l10n_it_edi_line_id, name, text_ref, num_ref, date_ref
                     )
                 SELECT
-                    e_invoice_line_id, name, text_ref, num_ref, date_ref
+                    e_invoice_line_id, name, text_ref, num_ref, date_ref::date
                 FROM
                     einvoice_line_other_data
                 """,
