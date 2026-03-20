@@ -383,6 +383,7 @@
                     name="validated_delivery_note"
                     domain="[('delivery_note_state', '=', 'confirm')]"
                 />
+                <field name="delivery_note_id" />
                 <field name="dn_supplier_number" />
             </xpath>
             <group position="inside">
@@ -397,6 +398,51 @@
                     context="{'group_by': 'delivery_note_date'}"
                 />
             </group>
+        </field>
+    </record>
+
+    <record id="stock_picking_form_view_hide_ddt_group" model="ir.ui.view">
+        <field name="name">stock.picking.form.hide.ddt.group</field>
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_stock_ddt.view_picking_form_inherit_l10n_it_ddt"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[field[@name='l10n_it_ddt_number']]"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_picking_search_view_hide_ddt_number" model="ir.ui.view">
+        <field name="name">stock.picking.search.hide.ddt.number</field>
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_stock_ddt.view_picking_search_inherit_l10n_it_ddt"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='l10n_it_ddt_number']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_picking_tree_view_hide_ddt_number" model="ir.ui.view">
+        <field name="name">stock.picking.tree.hide.ddt.number</field>
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_stock_ddt.view_picking_tree_inherit_l10n_it_ddt"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='l10n_it_ddt_number']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
         </field>
     </record>
 
