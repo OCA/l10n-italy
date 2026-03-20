@@ -26,4 +26,28 @@
             </xpath>
         </field>
     </record>
+    <record id="account_invoice_form_hide_ddt_button" model="ir.ui.view">
+        <field name="name">account.invoice.form.hide.ddt.button</field>
+        <field name="model">account.move</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_stock_ddt.account_invoice_view_form_inherit_ddt"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='get_linked_ddts']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_invoice_form_hide_l10n_it_ddt_id" model="ir.ui.view">
+        <field name="name">account.invoice.form.hide.l10n.it.ddt.id</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='l10n_it_ddt_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>

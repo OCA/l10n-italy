@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="l10n_it_delivery_note_data"
+        inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
+        priority="99"
+    >
+        <!-- Export the DdT of this module instead of the DDT of l10n_it_edi -->
+        <xpath expr='//DatiDDT[@t-if="record.l10n_it_ddt_id"]' position="before">
+            <t t-foreach="dati_ddt_list" t-as="ddt_data">
+                <DatiDDT>
+                    <NumeroDDT
+                        t-out="format_alphanumeric(ddt_data['NumeroDDT'], -20)"
+                    />
+                    <DataDDT t-out="format_date(ddt_data['DataDDT'])" />
+                    <!-- The lines are only worth exporting with several DdT -->
+                    <t
+                        t-if="len(dati_ddt_list) > 1"
+                        t-foreach="ddt_data['RiferimentoNumeroLinea']"
+                        t-as="numero_linea"
+                    >
+                        <RiferimentoNumeroLinea t-out="numero_linea" />
+                    </t>
+                </DatiDDT>
+            </t>
+        </xpath>
+        <xpath expr='//DatiDDT[@t-if="record.l10n_it_ddt_id"]' position="attributes">
+            <attribute
+                name="t-if"
+            >record.l10n_it_ddt_id and not dati_ddt_list</attribute>
+        </xpath>
+    </template>
+</odoo>
