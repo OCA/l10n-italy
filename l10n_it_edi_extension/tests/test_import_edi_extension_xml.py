@@ -367,6 +367,41 @@ class TestFatturaPAXMLValidation(Common):
         # Assert
         self.assertEqual(len(invoice.invoice_line_ids), 1)
 
+    def test_import_zip_tax_detail_level_sale(self):
+        """If import detail level is Tax rate,
+        and a zip containing a customer invoice is imported,
+        the used tax is for customers."""
+        # Arrange
+        company = self.company
+        company.vat = "01654010345"
+        company.l10n_it_edi_import_detail_level = "tax"
+        zip_name = "INV_2026_00005.zip"
+
+        # Act
+        moves = self._import_moves_from_zip(zip_name)
+
+        # Assert
+        self.assertEqual(moves.move_type, "out_invoice")
+        self.assertEqual(moves.invoice_line_ids.tax_ids.type_tax_use, "sale")
+
+    def test_import_zip_max_detail_level_sale(self):
+        """If import detail level is Maximum,
+        and a zip containing a customer invoice is imported,
+        the used tax is for customers."""
+        # Arrange
+        company = self.company
+        company.vat = "01654010345"
+        zip_name = "INV_2026_00005.zip"
+        # pre-condition
+        self.assertEqual(company.l10n_it_edi_import_detail_level, "max")
+
+        # Act
+        moves = self._import_moves_from_zip(zip_name)
+
+        # Assert
+        self.assertEqual(moves.move_type, "out_invoice")
+        self.assertEqual(moves.invoice_line_ids.tax_ids.type_tax_use, "sale")
+
     def test_max_import_detail_level(self):
         """If import detail level is Maximum,
         all lines are imported."""

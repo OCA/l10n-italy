@@ -66,6 +66,30 @@ class Common(TestItEdi):
                 }
             )
         )
+        cls.n32_sale_tax = (
+            cls.env["account.tax"]
+            .with_company(cls.company)
+            .create(
+                {
+                    "name": "0 % with N3.2",
+                    "amount": 0.0,
+                    "amount_type": "percent",
+                    "l10n_it_exempt_reason": "N3.2",
+                    "l10n_it_law_reference": "N3.2 tax law reference",
+                    "type_tax_use": "sale",
+                    "invoice_repartition_line_ids": cls.repartition_lines(
+                        cls.RepartitionLine(100, "base", ("+03", "+vj3")),
+                        cls.RepartitionLine(100, "tax", ("+5v",)),
+                        cls.RepartitionLine(-100, "tax", ("-4v",)),
+                    ),
+                    "refund_repartition_line_ids": cls.repartition_lines(
+                        cls.RepartitionLine(100, "base", ("-03", "-vj3")),
+                        cls.RepartitionLine(100, "tax", False),
+                        cls.RepartitionLine(-100, "tax", False),
+                    ),
+                }
+            )
+        )
         cls.default_product = cls.env["product.product"].create(
             {
                 "name": "Test default Product",
