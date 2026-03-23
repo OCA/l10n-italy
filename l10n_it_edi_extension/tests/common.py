@@ -2,7 +2,9 @@
 #  Copyright 2025 Simone Rubino
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import base64
 
+from odoo import tools
 from odoo.fields import Command
 
 from odoo.addons.l10n_it_edi.tests.common import TestItEdi
@@ -91,3 +93,23 @@ class Common(TestItEdi):
                 }
             )
         )
+
+    def _import_moves_from_zip(self, zip_name):
+        path = f"{self.module}/tests/import_xmls/{zip_name}"
+        with tools.file_open(path, mode="rb") as file:
+            encoded_file = base64.encodebytes(file.read())
+
+        wizard_attachment_import = (
+            self.env["l10n_it_edi.import_file_wizard"]
+            .with_company(self.company)
+            .create(
+                {
+                    "l10n_it_edi_attachment_filename": zip_name,
+                    "l10n_it_edi_attachment": encoded_file,
+                }
+            )
+        )
+        action = wizard_attachment_import.action_import()
+
+        move_ids = action.get("domain")[0][2]
+        return self.env["account.move"].browse(move_ids)
