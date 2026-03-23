@@ -7,7 +7,6 @@ from unittest.mock import patch
 
 from odoo import tools
 from odoo.exceptions import MissingError
-from odoo.fields import Domain
 
 from .common import Common
 
@@ -96,24 +95,9 @@ class TestFatturaPAXMLValidation(Common):
             self.assertEqual(edi_attachment.raw, orig_attachment_data)
 
     def test_import_zip(self):
-        path = "l10n_it_edi_extension/tests/import_xmls/xml_import.zip"
-        import_file_model = self.env["l10n_it_edi.import_file_wizard"].with_company(
-            self.company
-        )
+        zip_name = "xml_import.zip"
+        moves = self._import_moves_from_zip(zip_name)
 
-        with tools.file_open(path, mode="rb") as file:
-            encoded_file = base64.encodebytes(file.read())
-
-            wizard_attachment_import = import_file_model.create(
-                {
-                    "l10n_it_edi_attachment_filename": "xml_import.zip",
-                    "l10n_it_edi_attachment": encoded_file,
-                }
-            )
-            action = wizard_attachment_import.action_import()
-
-        move_ids = action.get("domain", Domain).value
-        moves = self.env["account.move"].browse(move_ids)
         out_moves = moves.filtered(lambda m: m.is_sale_document())
         in_moves = moves.filtered(lambda m: m.is_purchase_document())
         self.assertEqual(len(out_moves), 6)
