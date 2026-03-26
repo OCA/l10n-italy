@@ -1,8 +1,11 @@
 # Copyright (c) 2021 Marco Colombo (https://github/TheMule71)
 # Copyright 2024 Simone Rubino - Aion Tech
+# Copyright 2026 Andrea Martinelli - MKT SRL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
+from odoo.tools import format_date
 
 
 class AccountMove(models.Model):
