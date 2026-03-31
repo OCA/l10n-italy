@@ -8,6 +8,20 @@ from odoo import api, models
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
+    def group_invoices_by_partner(self):
+        res = super().group_invoices_by_partner()
+        new_res = {}
+        for partner, invoice_groups in res.items():
+            for invoice_ids in invoice_groups:
+                invoices = self.env["account.move"].browse(invoice_ids)
+                rc_invoices = invoices.filtered(lambda x: x.rc_purchase_invoice_id)
+                if not rc_invoices:
+                    new_res.setdefault(partner, []).append(invoice_ids)
+                    continue
+                for invoice in rc_invoices:
+                    new_res.setdefault(partner, []).append([invoice.id])
+        return new_res
+
     @api.model
     def getSign(self, invoice):
         sign = 1
