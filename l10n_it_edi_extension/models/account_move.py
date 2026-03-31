@@ -420,7 +420,12 @@ class AccountMoveInherit(models.Model):
         return partner
 
     def _l10n_it_edi_search_tax_for_import(
-        self, company, percentage, extra_domain=None, l10n_it_exempt_reason=None
+        self,
+        company,
+        percentage,
+        extra_domain=None,
+        l10n_it_exempt_reason=None,
+        **kwargs,
     ):
         # Check if a tax of the default product fits what is requested
         partner_default_product = self.partner_id.l10n_it_edi_ext_default_product_id
@@ -438,6 +443,7 @@ class AccountMoveInherit(models.Model):
                 percentage,
                 product_extra_domain,
                 l10n_it_exempt_reason=l10n_it_exempt_reason,
+                **kwargs,
             )
             if not tax:
                 tax = super()._l10n_it_edi_search_tax_for_import(
@@ -445,6 +451,7 @@ class AccountMoveInherit(models.Model):
                     percentage,
                     extra_domain,
                     l10n_it_exempt_reason=l10n_it_exempt_reason,
+                    **kwargs,
                 )
         else:
             tax = super()._l10n_it_edi_search_tax_for_import(
@@ -452,6 +459,7 @@ class AccountMoveInherit(models.Model):
                 percentage,
                 extra_domain,
                 l10n_it_exempt_reason=l10n_it_exempt_reason,
+                **kwargs,
             )
         return tax
 

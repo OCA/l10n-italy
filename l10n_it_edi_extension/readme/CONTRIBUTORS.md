@@ -3,3 +3,5 @@
   - Simone Rubino \<<simone.rubino@aion-tech.it>\>
 - Simone Rubino \<<simone.rubino88@gmail.com>\>
 - Nextev Srl \<<odoo@nextev.it>\>
+- [Stesi Consulting srl](https://www.stesi.consulting/):
+  - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
