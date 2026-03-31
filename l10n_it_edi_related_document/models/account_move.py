@@ -63,7 +63,7 @@ class AccountMoveRelatedDocumentType(models.Model):
         # after creating documents, check if one should is eligible
         # to become the standard_related_document_id
         for record in ret.filtered(
-            lambda r: r.type == "order"
+            lambda r: r.type in ("order", "contract", "agreement")
             and r.invoice_id
             and not r.invoice_id.standard_related_document_id
         ):
@@ -71,11 +71,13 @@ class AccountMoveRelatedDocumentType(models.Model):
                 l10n_it_edi_related_loop_avoid=True
             )
             invoice.standard_related_document_id = record
-            invoice.l10n_it_origin_document_type = "purchase_order"
+            invoice.l10n_it_origin_document_type = (
+                "purchase_order" if record.type == "order" else record.type
+            )
             invoice.l10n_it_origin_document_name = record.name
             invoice.l10n_it_origin_document_date = record.date
             invoice.l10n_it_cig = record.cig
-            record.invoice_id.l10n_it_cup = record.cup
+            invoice.l10n_it_cup = record.cup
 
         return ret
 
