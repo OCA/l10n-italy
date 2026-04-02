@@ -10,6 +10,7 @@ import zipfile
 from odoo import fields, models
 from odoo.exceptions import UserError
 from odoo.fields import Domain
+from odoo.tools import html_escape
 
 _logger = logging.getLogger(__name__)
 
@@ -27,6 +28,7 @@ class EInvoiceImportFileWizard(models.TransientModel):
         zip_binary = base64.b64decode(self.l10n_it_edi_attachment)
         zip_io = io.BytesIO(zip_binary)
         moves = self.env["account.move"]
+        skipped_files = []
 
         with zipfile.ZipFile(zip_io, "r") as zip_ref:
             for member in zip_ref.infolist():
@@ -72,6 +74,7 @@ class EInvoiceImportFileWizard(models.TransientModel):
 
                         if not files_data:
                             _logger.info(f"Skipping {filename}, not an XML/P7M file")
+                            skipped_files.append(filename)
                             attachment.unlink()
                             continue
 
@@ -105,12 +108,31 @@ class EInvoiceImportFileWizard(models.TransientModel):
                                 )
 
                         moves |= records
-
-        return {
-            "view_type": "form",
+        action = {
             "name": self.env._("E-invoices"),
-            "view_mode": "list,form",
-            "res_model": "account.move",
             "type": "ir.actions.act_window",
+            "res_model": "account.move",
+            "view_mode": "list,form",
+            "views": [[False, "list"], [False, "form"]],
             "domain": Domain("id", "in", moves.ids),
         }
+        if skipped_files:
+            skipped_list_html = "".join(
+                f"<li>{html_escape(f)}</li>" for f in skipped_files
+            )
+            skipped_info_html = self.env._(
+                "The following files were skipped (not valid XML/P7M):<ul>%s</ul>",
+                skipped_list_html,
+            )
+            # Create activity for the current user
+            self.env["mail.activity"].create(
+                {
+                    "activity_type_id": self.env.ref("mail.mail_activity_data_todo").id,
+                    "note": skipped_info_html,
+                    "summary": self.env._("Partial import: skipped files"),
+                    "user_id": self.env.uid,
+                    "res_id": self.env.user.partner_id.id,
+                    "res_model_id": self.env["ir.model"]._get_id("res.partner"),
+                }
+            )
+        return action
