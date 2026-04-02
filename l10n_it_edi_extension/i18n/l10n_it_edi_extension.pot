@@ -381,6 +381,12 @@ msgid "E-invoice summary data"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "E-invoices"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_eori_code
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_eori_code
 msgid "EORI Code"
@@ -766,6 +772,12 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "Partial import: skipped files"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__percentage
 msgid "Percentage"
 msgstr ""
@@ -1040,6 +1052,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/res_partner.py:0
 msgid "The fiscal code '%s' must have 16 characters."
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "The following files were skipped (not valid XML/P7M):<ul>%s</ul>"
 msgstr ""
 
 #. module: l10n_it_edi_extension
