@@ -92,3 +92,40 @@ class TestItEdiImport(TestItEdi):
         )
         self.assertEqual(invoice.l10n_it_cig, "CIG2")
         self.assertEqual(invoice.l10n_it_cup, "CUP2")
+
+    def test_standard_related_document_not_copied_to_refund(self):
+        """Test that standard_related_document_id error when creating a credit note"""
+        euro = self.setup_other_currency("EUR")
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner_a.id,
+                "invoice_date": fields.Date.from_string("2016-01-01"),
+                "currency_id": euro.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        None,
+                        {
+                            "product_id": self.product_a.id,
+                            "quantity": 1,
+                            "price_unit": 100,
+                        },
+                    ),
+                ],
+            }
+        )
+        self.env["account.move.related_document"].create(
+            {
+                "invoice_id": invoice.id,
+                "type": "contract",
+                "name": "C00001",
+                "cig": "CIG123",
+            }
+        )
+        self.assertTrue(invoice.standard_related_document_id)
+        # Create refund from invoice
+        refund = invoice.copy({"move_type": "out_refund"})
+        # standard_related_document_id must not be copied to the refund
+        self.assertFalse(refund.standard_related_document_id)
+        self.assertFalse(refund.l10n_it_origin_document_type)
