@@ -534,7 +534,7 @@
                         <span
                             style="font-size: 14px; margin-right: 4px; text-align: right; font-weight: bold;"
                         >
-                            SURPLUS: <t
+			<t t-out="surplus" /> <t
                                 t-out="total_balance"
                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                             />
@@ -546,7 +546,7 @@
                         <span
                             style="font-size: 14px; margin-right: 4px; text-align: right; font-weight: bold;"
                         >
-                            DEFICIT: <t
+			<t t-out="deficit" /> <t
                                 t-out="total_balance"
                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
                             />
