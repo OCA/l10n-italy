@@ -107,8 +107,6 @@ class TestExport(Common):
             taxes=self.default_tax,
         )
         invoice.invoice_date_due = invoice.date
-        invoice.narration = (
-            "\u201cVirgolette\u201d" "e trattino lungo \u2013" "e apostrofo\u2019"
-        )
+        invoice.narration = "\u201cVirgolette\u201d e trattino \u2013 apostrofo\u2019"
         invoice.action_post()
         self._assert_export_invoice(invoice, "narration_sanitize.xml")
