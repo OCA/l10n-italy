@@ -10,6 +10,29 @@ from odoo.addons.base.models.ir_qweb_fields import Markup
 from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get_text
 
 
+def _sanitize_fatturapa_string(value):
+    """Replace characters outside BasicLatin+Latin-1 Supplement range
+    with ASCII equivalents, to comply with SDI String200LatinType pattern."""
+    if not value:
+        return value
+    replacements = {
+        "\u201c": '"',  # " left double quotation mark
+        "\u201d": '"',  # " right double quotation mark
+        "\u2018": "'",  # ' left single quotation mark
+        "\u2019": "'",  # ' right single quotation mark / apostrophe
+        "\u2013": "-",  # – en dash
+        "\u2014": "-",  # — em dash
+        "\u2026": "...",  # … horizontal ellipsis
+        "\u00ab": '"',  # « left-pointing double angle quotation mark
+        "\u00bb": '"',  # » right-pointing double angle quotation mark
+    }
+    for char, replacement in replacements.items():
+        value = value.replace(char, replacement)
+    # Remove any remaining characters outside U+0000-U+00FF
+    value = "".join(c if ord(c) <= 0x00FF else "" for c in value)
+    return value
+
+
 class AccountMoveInherit(models.Model):
     _inherit = "account.move"
 
@@ -286,7 +309,7 @@ class AccountMoveInherit(models.Model):
                 for causale200 in causale_list_200:
                     causale_list.append(causale200)
 
-        res["causale"] = causale_list
+        res["causale"] = [_sanitize_fatturapa_string(c) for c in causale_list]
 
         return res
 

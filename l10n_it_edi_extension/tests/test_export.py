@@ -95,3 +95,20 @@ class TestExport(Common):
         )
         invoice.action_post()
         self._assert_export_invoice(invoice, "us_partner_shipping.xml")
+
+    def test_narration_sanitize(self):
+        """Special typographic characters in narration (curly quotes, en dash)
+        are replaced with ASCII equivalents to comply with SDI Latin-1 pattern."""
+        invoice = self.init_invoice(
+            "out_invoice",
+            amounts=[100],
+            company=self.company,
+            partner=self.italian_partner_a,
+            taxes=self.default_tax,
+        )
+        invoice.invoice_date_due = invoice.date
+        invoice.narration = (
+            "\u201cVirgolette\u201d" "e trattino lungo \u2013" "e apostrofo\u2019"
+        )
+        invoice.action_post()
+        self._assert_export_invoice(invoice, "narration_sanitize.xml")
