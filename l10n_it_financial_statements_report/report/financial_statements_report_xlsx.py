@@ -656,6 +656,12 @@ class FinancialStatementsReportXslx(models.AbstractModel):
 
     def write_total_balance(self, report, data, report_data, report_result):
         """Writes total balance row"""
+        rep_type = data.get("financial_statements_report_type")
+        cols = (
+            self.env["report.l10n_it_financial_statements_report.report"]
+            .get_column_data()
+            .get(rep_type)
+        )
         lang_code = data["account_financial_report_lang"]
         lang = get_lang(self.env, lang_code=lang_code)
         currency = report_data["financial_statements_report_currency"]
@@ -665,12 +671,17 @@ class FinancialStatementsReportXslx(models.AbstractModel):
         )
         total_credit = report_result["total_credit"]
         total_debit = report_result["total_debit"]
-        surplus = float_compare(total_credit, total_debit, decimals) == 1
-        deficit = float_compare(total_credit, total_debit, decimals) == -1
-        if surplus or deficit:
-            title = _("SURPLUS") if surplus else _("DEFICIT")
+
+        _cmp = float_compare(total_credit, total_debit, decimals)
+        if _cmp != 0:
             bal_data = order_currency_amount(currency, balance)
-            balance_str = f"{title}: {bal_data[0]} {bal_data[1]}"
+            balance_str_left = (
+                f"{cols['surplus']}: {bal_data[0]} {bal_data[1]}" if _cmp == 1 else ""
+            )
+            balance_str_right = (
+                f"{cols['deficit']}: {bal_data[0]} {bal_data[1]}" if _cmp == -1 else ""
+            )
+
             left_columns = _extract_financial_statements_report_columns(
                 report_data["columns"], "left"
             )
@@ -679,7 +690,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
                 min(left_columns.keys()),
                 report_data["row_pos"],
                 max(left_columns.keys()),
-                balance_str if surplus else "",
+                balance_str_left,
                 report_data["formats"]["format_header_amount_right"],
             )
             right_columns = _extract_financial_statements_report_columns(
@@ -690,7 +701,7 @@ class FinancialStatementsReportXslx(models.AbstractModel):
                 min(right_columns.keys()),
                 report_data["row_pos"],
                 max(right_columns.keys()),
-                balance_str if deficit else "",
+                balance_str_right,
                 report_data["formats"]["format_header_amount_right"],
             )
             report_data["row_pos"] += 1

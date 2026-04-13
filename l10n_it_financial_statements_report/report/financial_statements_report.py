@@ -3,7 +3,7 @@
 
 from odoo import _, api, models
 from odoo.exceptions import ValidationError
-from odoo.tools.float_utils import float_compare
+from odoo.tools import float_is_zero
 
 
 def get_xmlid(id_str):
@@ -158,11 +158,11 @@ class ReportFinancialStatementsReport(models.AbstractModel):
         digits = curr.decimal_places
         if not digits:
             digits = self.env["decimal.precision"].precision_get("Account")
-        total_balance = 0
-        if float_compare(total_credit, total_debit, digits) == 1:
-            total_balance = total_credit - total_debit
-        elif float_compare(total_credit, total_debit, digits) == -1:
-            total_balance = total_debit - total_credit
+        total_balance = abs(total_credit - total_debit)
+        if float_is_zero(total_balance, digits):
+            # backward compatibility: this was a side effect of previous code
+            # total_balance is rounded only if zero
+            total_balance = 0
 
         # Preserve generic data like accounts_data and similar
         report_data = trial_balance_data
@@ -173,6 +173,8 @@ class ReportFinancialStatementsReport(models.AbstractModel):
                 "section_credit_ids": section_credit_vals,
                 "section_debit_ids": section_debit_vals,
                 "title": cols["title"],
+                "surplus": cols["surplus"],
+                "deficit": cols["deficit"],
                 "total_balance": total_balance,
                 "total_credit": total_credit,
                 "total_debit": total_debit,
@@ -196,6 +198,8 @@ class ReportFinancialStatementsReport(models.AbstractModel):
                     "name": _("LIABILITIES"),
                 },
                 "title": _("BALANCE SHEET"),
+                "surplus": _("SURPLUS"),
+                "deficit": _("DEFICT"),
             },
             "profit_loss": {
                 "left": {
@@ -207,6 +211,8 @@ class ReportFinancialStatementsReport(models.AbstractModel):
                     "name": _("REVENUES"),
                 },
                 "title": _("PROFIT & LOSS"),
+                "surplus": _("PROFIT"),
+                "deficit": _("LOSS"),
             },
         }
 
