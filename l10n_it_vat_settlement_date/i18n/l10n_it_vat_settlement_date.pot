@@ -62,6 +62,11 @@ msgid "VAT statement communication - VP table"
 msgstr ""
 
 #. module: l10n_it_vat_settlement_date
+#: model:ir.model,name:l10n_it_vat_settlement_date.model_wizard_open_tax_balances
+msgid "Wizard Open Tax Balances"
+msgstr ""
+
+#. module: l10n_it_vat_settlement_date
 #: model:ir.model,name:l10n_it_vat_settlement_date.model_report_l10n_it_vat_registries_report_registro_iva_xlsx
 msgid "XLSX report for VAT registries"
 msgstr ""

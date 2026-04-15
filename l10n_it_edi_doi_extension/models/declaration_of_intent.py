@@ -1,3 +1,5 @@
+# Copyright 2025 Nextev Srl
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -11,6 +13,15 @@ class L10nItDeclarationOfIntent(models.Model):
         string="Purchase / Rfq Orders",
         copy=False,
         readonly=True,
+    )
+
+    move_doi_ids = fields.One2many(
+        "account.move.doi",
+        "declaration_id",
+        string="Invoice Declaration Lines",
+        copy=False,
+        readonly=True,
+        help="Links to invoices using this declaration with specific amounts.",
     )
 
     type = fields.Selection(
@@ -39,6 +50,58 @@ class L10nItDeclarationOfIntent(models.Model):
             ("type", "=", doi_type),
         ]
         return self.search(domain, limit=1)
+
+    @api.depends(
+        "invoice_ids",
+        "invoice_ids.state",
+        "invoice_ids.l10n_it_edi_doi_amount",
+        "invoice_ids.move_type",
+        "move_doi_ids",
+        "move_doi_ids.amount",
+        "move_doi_ids.move_id.state",
+        "move_doi_ids.move_id.move_type",
+    )
+    def _compute_invoiced(self):
+        """Override to use bridge model amounts when available.
+
+        For invoices with bridge records (multiple declarations), use the specific
+        amounts from the bridge model. For invoices without bridge records (single
+        declaration via l10n_it_edi_doi_id), use the standard l10n_it_edi_doi_amount.
+
+        Refunds (in_refund, out_refund) reduce the invoiced amount.
+        """
+        for declaration in self:
+            total_invoiced = 0
+
+            # Get all posted invoices and draft with name linked through the bridge
+            # model
+            posted_doi_links = declaration.move_doi_ids.filtered(
+                lambda doi: doi.move_id.state == "posted"
+                or (doi.move_id.state == "draft" and doi.move_id.name)
+            )
+            bridge_moves = posted_doi_links.mapped("move_id")
+
+            # Sum amounts from bridge records for multi-declaration invoices
+            # Refunds reduce the total (negative contribution)
+            for doi_link in posted_doi_links:
+                amount = doi_link.amount
+                if doi_link.move_id.move_type in ("in_refund", "out_refund"):
+                    amount = -amount
+                total_invoiced += amount
+
+            # For single-declaration invoices (not using bridge model),
+            # use the standard field
+            posted_invoices = declaration.invoice_ids.filtered(
+                lambda invoice: invoice.state == "posted"
+            )
+            single_declaration_invoices = posted_invoices - bridge_moves
+            for invoice in single_declaration_invoices:
+                amount = invoice.l10n_it_edi_doi_amount
+                if invoice.move_type in ("in_refund", "out_refund"):
+                    amount = -amount
+                total_invoiced += amount
+
+            declaration.invoiced = total_invoiced
 
     @api.depends(
         "purchase_order_ids",

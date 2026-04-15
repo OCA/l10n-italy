@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-15 09:03+0000\n"
+"POT-Creation-Date: 2026-03-29 12:20+0000\n"
+"PO-Revision-Date: 2026-03-29 14:21+0200\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.view_account_config_settings_create_partner
@@ -56,6 +57,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__activity_progress
 msgid "Activity Progress"
 msgstr "Stato avanzamento lavori"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_other_data_ids
+msgid ""
+"Additional management data (AltriDatiGestionali) to be exported in the "
+"FatturaPA XML."
+msgstr ""
+"Dati gestionali aggiuntivi (AltriDatiGestionali) da esportare nel file XML "
+"FatturaPA."
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_admin_ref
@@ -105,6 +115,16 @@ msgstr "Codice articoli"
 #: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__account_move__l10n_it_edi_sender__cc
 msgid "Assignee / Partner"
 msgstr "Cessionario / Committente"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/l10n_it_edi_line_other_data.py:0
+msgid ""
+"At least one of Text Reference, Number Reference, or Date Reference must be "
+"provided."
+msgstr ""
+"È necessario fornire almeno uno dei seguenti riferimenti: Testo, Numero o "
+"Data."
 
 #. module: l10n_it_edi_extension
 #: model:ir.model,name:l10n_it_edi_extension.model_ir_attachment
@@ -249,6 +269,11 @@ msgid "Deferred payability"
 msgstr "Esigibilità differita"
 
 #. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.l10n_it_edi_move_line_other_data_list_view
+msgid "Delete"
+msgstr "Cancella"
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__name
 msgid "Description"
 msgstr "Descrizione"
@@ -330,6 +355,12 @@ msgid "E-Invoice Untaxed Amount"
 msgstr "Imponibile e-fattura"
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_it_edi_ext_default_product_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_it_edi_ext_default_product_id
+msgid "E-bills default Product"
+msgstr "Prodotto predefinito e-fattura"
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_it_edi_import_detail_level
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_config_settings__l10n_it_edi_import_detail_level
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_it_edi_import_detail_level
@@ -379,10 +410,21 @@ msgid "E-invoice summary data"
 msgstr "Dati riepilogo e-fattura"
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "E-invoices"
+msgstr "E-fatture"
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_eori_code
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_eori_code
 msgid "EORI Code"
 msgstr "Codice EORI"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Edit other Data"
+msgstr "Modifica altri dati"
 
 #. module: l10n_it_edi_extension
 #. odoo-python
@@ -464,6 +506,12 @@ msgstr ""
 "Impostare un livello di dettaglio dell'importazione nell'azienda %(company)s."
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_attachment_in_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_attachment_in_id
+msgid "Imported Electronic Bill"
+msgstr "Fattura elettronica importata"
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__incidental_charges
 msgid "Incidental Charges"
 msgstr "Spese accessorie"
@@ -513,6 +561,7 @@ msgstr "Fattura"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__invoice_line_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__move_line_id
 msgid "Invoice Line"
 msgstr "Riga fattura"
 
@@ -588,6 +637,16 @@ msgstr "Riferimento normativo"
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__line_number
 msgid "Line Number"
 msgstr "Numero riga"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"Line with description %(line_description)s has been replaced by summary line "
+"because import detail level is tax."
+msgstr ""
+"La riga con descrizione %(line_description)s è stata sostituita dalla riga "
+"di riepilogo perché il livello di dettaglio dell'importazione è imposta."
 
 #. module: l10n_it_edi_extension
 #. odoo-python
@@ -746,6 +805,23 @@ msgid "Other Administrative Data"
 msgstr "Altri dati gestionali"
 
 #. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Other Data"
+msgstr "Altri dati"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.l10n_it_edi_move_line_other_data_form_view
+msgid "Other Invoice Data"
+msgstr "Altri dati fattura"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/l10n_it_edi_line_other_data.py:0
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_other_data_ids
+msgid "Other Management Data"
+msgstr "Altri dati gestione"
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_res_partner__l10n_it_edi_import_detail_level
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_res_users__l10n_it_edi_import_detail_level
 msgid ""
@@ -766,6 +842,12 @@ msgstr ""
 "creerà una riga nella fattura.\n"
 "Massimo: ogni riga contenuta nella fattura elettronica creerà una riga nella "
 "fattura."
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "Partial import: skipped files"
+msgstr "Importazione parziale: alcuni file non importati"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__percentage
@@ -792,14 +874,20 @@ msgstr ""
 
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
-msgid "Preview FPA"
-msgstr "Anteprima FPA"
+msgid "Preview"
+msgstr "Anteprima"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_attachment_preview_link
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_attachment_preview_link
 msgid "Preview link"
 msgstr "Collegamento di anteprima"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_attachment_in_preview_link
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_attachment_in_preview_link
+msgid "Preview link for imported Electronic Bill"
+msgstr "Collegamento anteprima fattura elettronica importata"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_register
@@ -894,6 +982,21 @@ msgstr "Data fattura collegata"
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__invoice_line_id
 msgid "Related Invoice from line"
 msgstr "Fattura collegata dalla riga"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__date_ref
+msgid "RiferimentoData: Date reference"
+msgstr "RiferimentoData: riferimento data"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__num_ref
+msgid "RiferimentoNumero: Numeric reference (up to 8 decimal places)"
+msgstr "RiferimentoNumero: riferimento numerico (fino a 8 cifre decimali)"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__text_ref
+msgid "RiferimentoTesto: Text reference (max 60 characters)"
+msgstr "RiferimentoTesto: riferimento testo (massimo 60 caratteri)"
 
 #. module: l10n_it_edi_extension
 #. odoo-python
@@ -1000,8 +1103,8 @@ msgstr "Aliquota fiscale"
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/account_move.py:0
 msgid ""
-"Taxed amount (%(tax_amount)s}) does not match with e-invoice taxed amount "
-"(%(edi_tax_amount)s)"
+"Taxed amount (%(tax_amount)s}) does not match with e-invoice taxed amount (%"
+"(edi_tax_amount)s)"
 msgstr ""
 "L'importo tassato (%(tax_amount)s}) non corrisponde all'importo tassato "
 "della e-fattura (%(edi_tax_amount)s)"
@@ -1039,9 +1142,21 @@ msgid "The fiscal code '%s' must have 16 characters."
 msgstr "Il codice fiscale '%s' deve avere 16 caratteri."
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "The following files were skipped (not valid XML/P7M):<ul>%s</ul>"
+msgstr ""
+"Questi file non sono stati importati (formato XML/P7M invalido):<ul>%s</ul>"
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__account_move__l10n_it_edi_sender__tz
 msgid "Third Person"
 msgstr "Soggetto terzo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__name
+msgid "TipoDato: Type of additional data (max 10 characters)"
+msgstr "TipoDato: tipo dati addizionali (massimo 10 caratteri)"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__total_price
@@ -1052,8 +1167,8 @@ msgstr "Prezzo totale"
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/account_move.py:0
 msgid ""
-"Total amount (%(total_amount)s) does not match with e-invoice total amount "
-"(%(edi_total_amount)s)"
+"Total amount (%(total_amount)s) does not match with e-invoice total amount (%"
+"(edi_total_amount)s)"
 msgstr ""
 "L'importo totale (%(total_amount)s) non corrisponde all'importo totale della "
 "e-fattura (%(edi_total_amount)s)"
@@ -1086,9 +1201,20 @@ msgid ""
 "Untaxed amount (%(amount_untaxed)s}) minus rounding (%(rounding)s}) does not "
 "match with e-invoice untaxed amount %(edi_amount_untaxed)s)"
 msgstr ""
-"L'importo non tassato (%(amount_untaxed)s}) meno l'arrotondamento "
-"(%(rounding)s}) non corrisponde all'importo non tassato della e-fattura "
-"%(edi_amount_untaxed)s)"
+"L'importo non tassato (%(amount_untaxed)s}) meno l'arrotondamento (%"
+"(rounding)s}) non corrisponde all'importo non tassato della e-fattura %"
+"(edi_amount_untaxed)s)"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_partner__l10n_it_edi_ext_default_product_id
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_users__l10n_it_edi_ext_default_product_id
+msgid ""
+"Used by electronic invoice XML import. If filled in, generated bill lines "
+"will use this product when no other possible product is found."
+msgstr ""
+"Usato nell'importazione XML della fattura elettronica. Se valorizzato, le "
+"righe fattura generate useranno questo prodotto in mancanza di altri "
+"disponibili."
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__tax_amount
@@ -1270,3 +1396,16 @@ msgstr ""
 #: code:addons/l10n_it_edi_extension/__init__.py:0
 msgid "from XML file:"
 msgstr "da file XML:"
+
+#~ msgid ""
+#~ "The following files were skipped (not valid XML/P7M):\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Questi file non sono stati importati (formato XML/P7M invalido):\n"
+#~ "%s"
+
+#~ msgid "Some e-invoices were not imported"
+#~ msgstr "Alcune fatture non sono state importate"
+
+#~ msgid "Preview FPA"
+#~ msgstr "Anteprima FPA"

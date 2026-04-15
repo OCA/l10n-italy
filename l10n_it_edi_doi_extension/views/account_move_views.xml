@@ -1,21 +1,84 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="view_move_form_doi" model="ir.ui.view">
-        <field name="name">account.move.doi.type.form</field>
+    <!-- Hide standard DOI fields and warning from header -->
+    <record id="view_move_form_doi_hide_header" model="ir.ui.view">
+        <field name="name">account.move.doi.hide.header</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_edi_doi.view_move_form" />
+        <field name="arch" type="xml">
+            <!-- Add invisible helper fields -->
+            <xpath expr="//field[@name='l10n_it_edi_doi_id']" position="before">
+                <field name="doi_type" invisible="1" />
+                <field name="l10n_it_edi_doi_count" invisible="1" />
+                <field name="l10n_it_edi_doi_total_amount" invisible="1" />
+            </xpath>
+            <!-- Hide standard DOI field from header -->
+            <xpath expr="//field[@name='l10n_it_edi_doi_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Update warning to show only when there's a message -->
+            <xpath
+                expr="//field[@name='l10n_it_edi_doi_warning']"
+                position="attributes"
+            >
+                <attribute name="invisible">not l10n_it_edi_doi_warning</attribute>
+            </xpath>
+            <!-- Hide the "Open Declaration" button -->
+            <xpath
+                expr="//button[@name='action_open_declaration_of_intent']"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add Declarations of Intent tab after Other Info -->
+    <record id="view_move_form_doi_tab" model="ir.ui.view">
+        <field name="name">account.move.doi.tab</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='l10n_it_edi_doi_id']" position="before">
-                <field name="doi_type" invisible="1" />
-            </xpath>
-            <xpath expr="//field[@name='l10n_it_edi_doi_id']" position="attributes">
-                <attribute name="domain">
-                    [('state', '!=', 'draft'),
-                    ('company_id', '=', company_id),
-                    ('currency_id', '=', currency_id),
-                    ('partner_id', '=', commercial_partner_id),
-                    ('type', '=', doi_type)]
-                </attribute>
+            <xpath expr="//page[@id='other_tab']" position="after">
+                <page
+                    id="doi_tab"
+                    string="Declarations of Intent"
+                    name="declarations_of_intent"
+                    invisible="not l10n_it_edi_doi_use"
+                >
+                    <group>
+                        <group>
+                            <field name="l10n_it_edi_doi_amount" />
+                        </group>
+                        <group>
+                            <field name="l10n_it_edi_doi_total_amount" />
+                        </group>
+                    </group>
+                    <field name="l10n_it_edi_doi_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle" />
+                            <field
+                                name="declaration_id"
+                                required="1"
+                                domain="[
+                                    ('state', '!=', 'draft'),
+                                    ('company_id', '=', parent.company_id),
+                                    ('currency_id', '=', parent.currency_id),
+                                    ('partner_id', '=', parent.commercial_partner_id),
+                                    ('type', '=', parent.doi_type)
+                                ]"
+                            />
+                            <field name="protocol_number_part1" readonly="1" />
+                            <field name="protocol_number_part2" readonly="1" />
+                            <field name="declaration_start_date" optional="show" />
+                            <field name="declaration_end_date" optional="show" />
+                            <field name="declaration_threshold" optional="hide" />
+                            <field name="declaration_available" optional="show" />
+                            <field name="amount" required="1" />
+                            <field name="currency_id" column_invisible="1" />
+                        </list>
+                    </field>
+                </page>
             </xpath>
         </field>
     </record>

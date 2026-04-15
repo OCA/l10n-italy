@@ -304,10 +304,10 @@
                                                 </t>
                                         </t>
                                             <t
-                                            t-if="line.product_qty != lot_line.qty_done"
+                                            t-if="line.product_qty != lot_line.quantity"
                                         >
                                                 qty
-                                                <span t-field="lot_line.qty_done" />
+                                                <span t-field="lot_line.quantity" />
                                             </t>
                                             ;
                                         </t>

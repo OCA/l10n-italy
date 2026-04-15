@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <!-- ====================================================== -->
+    <!--                     EXTRA FIELDS                       -->
+    <!-- ====================================================== -->
+    <record id="view_riba_add_text_field" model="ir.ui.view">
+        <field name="name">account.riba.add.text.field</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <div colspan="2">
+                    <label for="riba" />
+                    <field name="riba" />
+                    <group invisible="not riba">
+                        <field name="riba_payment_cost" />
+                    </group>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_res_bank_add_text_field" model="ir.ui.view">
+        <field name="name">res.bank.add.text.field</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_form" />
+        <field name="arch" type="xml">
+            <field name="bic" position="after">
+                <field name="banca_estera" />
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_bank_sia_form" model="ir.ui.view">
+        <field name="name">res.partner.bank.form.sia.inherit</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form" />
+        <field name="arch" type="xml">
+            <field name="acc_number" position="after">
+                <field name="codice_sia" />
+            </field>
+        </field>
+    </record>
+
+    <!-- RiBa To Issue - List View -->
+
+    <record model="ir.ui.view" id="view_riba_to_issue_tree">
+        <field name="name">RiBa Issue</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="partner_id" readonly="1" />
+                <field name="move_id" readonly="1" />
+                <field name="iban" readonly="1" />
+                <!-- TODO: field name="partner_ref" readonly="1"/>
+                <field name="invoice_date" readonly="1"/>
+                <field name="stored_invoice_id" readonly="1"/>
+                <field name="invoice_origin" readonly="1"/>
+                <field name="invoice_payment_term_id" readonly="1"/>-->
+                <field name="account_id" readonly="1" />
+                <field name="debit" readonly="1" sum="Debit Total" />
+                <field name="amount_residual" readonly="1" sum="Total Amount" />
+                <field name="date_maturity" />
+                <field name="riba" />
+                <field name="slip_line_ids" invisible="1" />
+                <field name="reconciled" invisible="1" />
+                <field name="past_due_invoice_ids" />
+            </list>
+        </field>
+    </record>
+
+    <!-- RiBa To Issue - Filter -->
+
+    <record id="riba_filter" model="ir.ui.view">
+        <field name="name">RiBa filter</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account_due_list.view_payments_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator />
+                <filter
+                    name="da_emettere"
+                    string="RiBa To Issue"
+                    domain="[('slip_line_ids', '=', False)]"
+                />
+                <filter
+                    name="emesse"
+                    string="Issued RiBas"
+                    domain="[('slip_line_ids', '!=', False)]"
+                />
+                <separator />
+                <filter
+                    name="reconciled"
+                    string="Reconciled"
+                    domain="[('reconciled', '!=', False)]"
+                />
+                <filter
+                    name="to_reconcile"
+                    string="To Reconcile"
+                    domain="[('reconciled', '=', False)]"
+                />
+                <separator />
+                <filter
+                    name="past_due"
+                    string="Past Due"
+                    domain="[('past_due_invoice_ids', '!=', False)]"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- RiBa To Issue - Action -->
+
+    <record model="ir.actions.act_window" id="action_riba_to_issue">
+        <field name="name">RiBa Issue</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_riba_to_issue_tree" />
+        <field name="search_view_id" ref="riba_filter" />
+        <field name="domain">
+            ['&amp;', ('parent_state', '=', 'posted'), '&amp;',('riba','=',True),
+            '|',('past_due_invoice_ids','!=',False),('account_id.account_type','=','asset_receivable')]</field>
+        <field
+            name="context"
+        >{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
+    </record>
+
+    <menuitem
+        name="Issue"
+        parent="menu_riba"
+        id="menu_riba_to_issue"
+        action="action_riba_to_issue"
+    />
+
+    <!-- Invoice -->
+
+    <record id="invoice_form" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_payment_term_id']" position="after">
+                <field
+                    name="riba_partner_bank_id"
+                    invisible="not is_riba_payment or move_type != 'out_invoice'"
+                    required="is_riba_payment and move_type == 'out_invoice'"
+                    readonly="state != 'draft'"
+                    domain="[('partner_id','=', commercial_partner_id)]"
+                />
+                <field
+                    name="riba_supplier_company_bank_id"
+                    invisible="not is_riba_payment or move_type != 'in_invoice'"
+                    readonly="state != 'posted'"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_tree" model="ir.ui.view">
+        <field name="name">account.move.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="move_type" position="after">
+                <field name="open_amount" widget="monetary" />
+            </field>
+        </field>
+    </record>
+
+    <record id="action_invoice_tree1" model="ir.actions.act_window">
+        <field name="name">Past Due Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,form,graph</field>
+        <field eval="False" name="view_id" />
+        <field
+            name="domain"
+        >[('move_type','=','out_invoice'), ('past_due_move_line_ids', '!=', False)]</field>
+        <field
+            name="context"
+        >{'default_type':'out_invoice', 'move_type':'out_invoice', 'journal_type':
+            'sale', 'search_default_past_due': True}</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter" />
+    </record>
+
+    <record id="action_invoice_tree1_view1" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence" />
+        <field name="view_mode">list</field>
+        <field name="act_window_id" ref="action_invoice_tree1" />
+    </record>
+
+    <record id="action_invoice_tree1_view2" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account.view_move_form" />
+        <field name="act_window_id" ref="action_invoice_tree1" />
+    </record>
+    <menuitem
+        name="Past Due Invoices"
+        parent="menu_riba"
+        id="menu_invoices"
+        action="action_invoice_tree1"
+    />
+</odoo>

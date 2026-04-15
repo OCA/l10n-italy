@@ -14,6 +14,7 @@
                 <field name="l10n_edi_it_register_code" />
                 <field name="l10n_edi_it_register_regdate" />
                 <field name="l10n_it_edi_import_detail_level" />
+                <field name="l10n_it_edi_ext_default_product_id" />
             </xpath>
         </field>
     </record>

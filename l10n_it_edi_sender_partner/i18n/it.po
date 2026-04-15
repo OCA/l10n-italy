@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_edi_sender_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-03-09 14:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: l10n_it_edi_sender_partner
+#: model:ir.model,name:l10n_it_edi_sender_partner.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_edi_sender_partner
+#: model:ir.model.fields,help:l10n_it_edi_sender_partner.field_res_company__l10n_edi_it_sender_partner
+msgid ""
+"Data of Third-Party Issuer Intermediary who emits the invoice on behalf of "
+"the seller/provider"
+msgstr ""
+"Dati relativi al terzo intermediario soggetto emittente che emette la "
+"fattura per conto del cedente/prestatore"
+
+#. module: l10n_it_edi_sender_partner
+#: model:ir.model.fields,field_description:l10n_it_edi_sender_partner.field_account_bank_statement_line__l10n_it_edi_intermediary_id
+#: model:ir.model.fields,field_description:l10n_it_edi_sender_partner.field_account_move__l10n_it_edi_intermediary_id
+msgid "Intermediary"
+msgstr "Intermediario"
+
+#. module: l10n_it_edi_sender_partner
+#: model:ir.model,name:l10n_it_edi_sender_partner.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: l10n_it_edi_sender_partner
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_sender_partner.account_invoice_it_partner_sender
+msgid "TZ"
+msgstr "TZ"
+
+#. module: l10n_it_edi_sender_partner
+#: model:ir.model.fields,field_description:l10n_it_edi_sender_partner.field_res_company__l10n_edi_it_sender_partner
+msgid "Third Party/Sender"
+msgstr "Terzo / Trasmittente"

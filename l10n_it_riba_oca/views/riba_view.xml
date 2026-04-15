@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <menuitem name="RiBa" parent="account.menu_finance" id="menu_riba" />
+
+    <!-- ====================================================== -->
+    <!--                     RIBA SLIP - FILTERS             -->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_slip_riba_filter">
+        <field name="name">riba.slip.filter</field>
+        <field name="model">riba.slip</field>
+        <field name="arch" type="xml">
+            <search string="RiBa Slips">
+                <filter
+                    name="filter_draft"
+                    string="Draft"
+                    domain="[('state','=','draft')]"
+                    help="Draft"
+                />
+                <filter
+                    name="filter_confirm"
+                    string="Confirmed"
+                    domain="[('state','=','accepted')]"
+                    help="Confirmed"
+                />
+                <filter
+                    name="filter_paid"
+                    string="Paid"
+                    domain="[('state','=','paid')]"
+                    help="Paid"
+                />
+                <separator orientation="vertical" />
+                <field name="name" />
+                <field name="config_id" />
+                <field name="date_accepted" />
+                <field name="date_paid" />
+            </search>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     RIBA SLIP TREE                 -->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_slip_riba_tree">
+        <field name="name">riba.slip.tree</field>
+        <field name="model">riba.slip</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="config_id" />
+                <field name="date_accepted" />
+                <field name="date_paid" />
+                <field name="state" />
+                <field name="total_amount" widget="monetary" />
+            </list>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     RIBA SLIP LINE FORM                 -->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_riba_slip_line_form">
+        <field name="name">riba.slip.line.form</field>
+        <field name="model">riba.slip.line</field>
+        <field name="arch" type="xml">
+            <form string="Detail">
+                <sheet>
+                    <notebook colspan="4">
+                        <page string="General">
+                            <group>
+                                <group>
+                                    <field name="state" />
+                                    <field name="type" />
+                                    <field name="invoice_number" />
+                                    <field name="invoice_date" />
+                                    <field name="partner_id" />
+                                    <field name="amount" />
+                                    <field name="due_date" />
+                                </group>
+                                <group>
+                                    <field name="amount" />
+                                    <field name="due_date" />
+                                    <field name="state" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Accounting">
+                            <separator string="Invoice Entries" colspan="4" />
+                            <field name="move_line_ids" nolabel="1" colspan="4">
+                                <list>
+                                    <field name="amount" />
+                                    <field name="move_line_id" />
+                                </list>
+                                <form string="Move Line">
+                                    <group>
+                                        <field name="amount" />
+                                        <field name="move_line_id" />
+                                    </group>
+                                </form>
+                            </field>
+                            <group>
+                                <field name="acceptance_move_id" />
+                                <field name="past_due_move_id" />
+                            </group>
+                            <separator string="Payments" colspan="4" />
+                            <field name="payment_id" />
+                            <field name="past_due_move_id" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     RIBA SLIP FORM                 -->
+    <!-- ====================================================== -->
+    <record model="ir.ui.view" id="view_riba_slip_form">
+        <field name="name">riba.slip.form</field>
+        <field name="model">riba.slip</field>
+        <field name="arch" type="xml">
+            <form string="RiBa Slip" version="7.0">
+                <header>
+                    <button
+                        name="confirm"
+                        type='object'
+                        string="Mark as Accepted"
+                        class="oe_highlight"
+                        invisible="state != 'draft' or type not in ('incasso', 'sbf')"
+                    />
+                    <button
+                        name="%(riba_credit_action)d"
+                        type='action'
+                        invisible="state != 'accepted' or type == 'incasso'"
+                        string="Mark as Credited"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="riba_cancel"
+                        type='object'
+                        invisible="state == 'cancel'"
+                        string="Cancel"
+                    />
+                    <button
+                        name="settle_all_line"
+                        type='object'
+                        string="Mark lines as Settled"
+                        class="oe_highlight"
+                        invisible="(state != 'credited' and type == 'sbf') or (state != 'accepted' and type == 'incasso')"
+                    />
+                    <button
+                        name="action_cancel_draft"
+                        invisible="state != 'cancel' or type == 'incasso'"
+                        string="Reset to Draft"
+                        type="object"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                            type="object"
+                            name="action_open_lines"
+                            string="Slip lines"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        />
+                    </div>
+                    <group>
+                        <field name="name" readonly="state != 'draft'" />
+                        <field
+                            name="config_id"
+                            widget="selection"
+                            readonly="state != 'draft'"
+                        />
+                        <field
+                            name="registration_date"
+                            readonly="state not in ('draft', 'cancel')"
+                        />
+                    </group>
+                    <notebook colspan="4">
+                        <page string="General">
+                            <field
+                                name="line_ids"
+                                readonly="state != 'draft'"
+                                nolabel="1"
+                                colspan="4"
+                            >
+                                <list>
+                                    <field name="sequence" />
+                                    <field name="invoice_number" />
+                                    <field name="invoice_date" />
+                                    <field name="partner_id" />
+                                    <field name="iban" />
+                                    <field name="amount" sum="Amount" />
+                                    <field name="due_date" />
+                                    <field name="state" />
+                                    <button
+                                        name="%(riba_past_due_action)d"
+                                        type='action'
+                                        invisible="(type == 'sbf' and state != 'credited') or (type == 'incasso' and state != 'confirmed')"
+                                        string="Mark as Past Due"
+                                        icon="fa-exclamation-triangle"
+                                    />
+                                    <button
+                                        name="button_settle"
+                                        type='object'
+                                        invisible="(type == 'sbf' and state != 'credited') or (type == 'incasso' and state != 'confirmed')"
+                                        string="Mark as Settled"
+                                        icon="fa-check"
+                                    />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="user_id" readonly="state != 'draft'" />
+                                <field name="date_created" />
+                                <field
+                                    name="date_accepted"
+                                    readonly="state != 'draft'"
+                                />
+                                <field
+                                    name="date_credited"
+                                    readonly="state not in ('draft', 'accepted')"
+                                />
+                                <field
+                                    name="date_paid"
+                                    readonly="state != 'credited'"
+                                />
+                                <field name="total_amount" widget="monetary" />
+                            </group>
+                        </page>
+                        <page string="Accounting">
+                            <separator colspan="4" string="Acceptance Entries" />
+                            <field name='acceptance_move_ids' colspan="4" nolabel="1" />
+                            <separator colspan="4" string="Credit Entry" />
+                            <field name='credit_move_id' colspan="4" nolabel="1" />
+                            <separator colspan="4" string="Payments" />
+                            <field name='payment_ids' colspan="4" nolabel="1">
+                                <list>
+                                    <field name="date" />
+                                    <field name="move_id" />
+                                    <field name="ref" />
+                                    <field name="name" />
+                                    <field name="journal_id" groups="base.group_user" />
+                                    <field name="debit" />
+                                    <field name="credit" />
+                                    <field name="amount_currency" />
+                                    <field name="currency_id" />
+                                </list>
+                            </field>
+                            <separator colspan="4" string="Past Dues" />
+                            <field name='past_due_move_ids' colspan="4" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     RIBA SLIP ACTION               -->
+    <!-- ====================================================== -->
+    <record id="slip_riba_action" model="ir.actions.act_window">
+        <field name="name">RiBa Slip</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">riba.slip</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_slip_riba_filter" />
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     RIBA SLIP LINE ACTION               -->
+    <!-- ====================================================== -->
+    <record id="riba_line_settle_action_server" model="ir.actions.server">
+        <field name="name">Settle RiBa Line</field>
+        <field name="model_id" ref="l10n_it_riba_oca.model_riba_slip_line" />
+        <field name="binding_model_id" ref="l10n_it_riba_oca.model_riba_slip_line" />
+        <field name="state">code</field>
+        <field name="code">action = records.settle_riba_line()</field>
+    </record>
+
+    <!-- ====================================================== -->
+    <!--                     RIBA SLIP - MENU               -->
+    <!-- ====================================================== -->
+    <menuitem
+        name="Slips"
+        parent="menu_riba"
+        id="menu_riba_distinte"
+        action="slip_riba_action"
+    />
+</odoo>

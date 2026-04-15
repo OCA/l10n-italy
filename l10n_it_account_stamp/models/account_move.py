@@ -25,6 +25,27 @@ class AccountMove(models.Model):
     l10n_it_account_stamp_manually_apply_stamp_duty = fields.Boolean(
         string="Apply stamp duty",
     )
+    l10n_it_stamp_duty = fields.Float(
+        compute="_compute_l10n_it_stamp_duty",
+        store=True,
+    )
+
+    @api.depends(
+        "l10n_it_account_stamp_is_stamp_duty_applied",
+        "company_id.l10n_it_account_stamp_stamp_duty_product_id.list_price",
+    )
+    def _compute_l10n_it_stamp_duty(self):
+        for invoice in self:
+            if invoice.state != "draft":
+                continue
+            elif invoice.l10n_it_account_stamp_is_stamp_duty_applied:
+                stamp_product = (
+                    invoice.company_id.l10n_it_account_stamp_stamp_duty_product_id
+                )
+                stamp_duty_amount = stamp_product.list_price
+            else:
+                stamp_duty_amount = 0
+            invoice.l10n_it_stamp_duty = stamp_duty_amount
 
     def is_stamp_duty_applicable(self):
         stamp_product_id = self.company_id.with_context(

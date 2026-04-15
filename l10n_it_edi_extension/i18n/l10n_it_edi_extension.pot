@@ -37,6 +37,13 @@ msgid "Activity Progress"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_other_data_ids
+msgid ""
+"Additional management data (AltriDatiGestionali) to be exported in the "
+"FatturaPA XML."
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_admin_ref
 msgid "Admin. ref."
 msgstr ""
@@ -83,6 +90,14 @@ msgstr ""
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__account_move__l10n_it_edi_sender__cc
 msgid "Assignee / Partner"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/l10n_it_edi_line_other_data.py:0
+msgid ""
+"At least one of Text Reference, Number Reference, or Date Reference must be "
+"provided."
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -225,6 +240,11 @@ msgid "Deferred payability"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.l10n_it_edi_move_line_other_data_list_view
+msgid "Delete"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__name
 msgid "Description"
 msgstr ""
@@ -306,6 +326,12 @@ msgid "E-Invoice Untaxed Amount"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_it_edi_ext_default_product_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_it_edi_ext_default_product_id
+msgid "E-bills default Product"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_it_edi_import_detail_level
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_config_settings__l10n_it_edi_import_detail_level
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_it_edi_import_detail_level
@@ -355,9 +381,20 @@ msgid "E-invoice summary data"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "E-invoices"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_eori_code
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_eori_code
 msgid "EORI Code"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Edit other Data"
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -430,6 +467,12 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_attachment_in_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_attachment_in_id
+msgid "Imported Electronic Bill"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__incidental_charges
 msgid "Incidental Charges"
 msgstr ""
@@ -471,6 +514,7 @@ msgstr ""
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__invoice_line_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__move_line_id
 msgid "Invoice Line"
 msgstr ""
 
@@ -545,6 +589,14 @@ msgstr ""
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__line_number
 msgid "Line Number"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"Line with description %(line_description)s has been replaced by summary line"
+" because import detail level is tax."
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -693,6 +745,23 @@ msgid "Other Administrative Data"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Other Data"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.l10n_it_edi_move_line_other_data_form_view
+msgid "Other Invoice Data"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/l10n_it_edi_line_other_data.py:0
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_other_data_ids
+msgid "Other Management Data"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_res_partner__l10n_it_edi_import_detail_level
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_res_users__l10n_it_edi_import_detail_level
 msgid ""
@@ -700,6 +769,12 @@ msgid ""
 "Minimum: the bill is created with no lines; the user will have to create them, according to what specified in the electronic bill.\n"
 "Tax rate: every tax rate present in the electronic bill will create a line in the bill.\n"
 "Maximum: every line contained in the electronic bill will create a line in the bill."
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "Partial import: skipped files"
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -725,13 +800,19 @@ msgstr ""
 
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
-msgid "Preview FPA"
+msgid "Preview"
 msgstr ""
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_attachment_preview_link
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_attachment_preview_link
 msgid "Preview link"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_attachment_in_preview_link
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_attachment_in_preview_link
+msgid "Preview link for imported Electronic Bill"
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -824,6 +905,21 @@ msgstr ""
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__invoice_line_id
 msgid "Related Invoice from line"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__date_ref
+msgid "RiferimentoData: Date reference"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__num_ref
+msgid "RiferimentoNumero: Numeric reference (up to 8 decimal places)"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__text_ref
+msgid "RiferimentoTesto: Text reference (max 60 characters)"
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -959,8 +1055,19 @@ msgid "The fiscal code '%s' must have 16 characters."
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/l10n_it_edi_import_file_wizard.py:0
+msgid "The following files were skipped (not valid XML/P7M):<ul>%s</ul>"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__account_move__l10n_it_edi_sender__tz
 msgid "Third Person"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__name
+msgid "TipoDato: Type of additional data (max 10 characters)"
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -1003,6 +1110,14 @@ msgstr ""
 msgid ""
 "Untaxed amount (%(amount_untaxed)s}) minus rounding (%(rounding)s}) does not"
 " match with e-invoice untaxed amount %(edi_amount_untaxed)s)"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_partner__l10n_it_edi_ext_default_product_id
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_users__l10n_it_edi_ext_default_product_id
+msgid ""
+"Used by electronic invoice XML import. If filled in, generated bill lines "
+"will use this product when no other possible product is found."
 msgstr ""
 
 #. module: l10n_it_edi_extension

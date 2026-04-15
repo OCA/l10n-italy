@@ -93,8 +93,8 @@ class TestIntrastat(AccountTestInvoicingCommon):
         """Weight from variants is propagated to the intrastat lines."""
         # Arrange
         variant_weight = 100
-        product = self.product01
-        product.weight = 0
+        product_tmpl = self.product01.product_tmpl_id
+        product_tmpl.weight = 0
 
         attribute = self.env["product.attribute"].create(
             {
@@ -113,7 +113,7 @@ class TestIntrastat(AccountTestInvoicingCommon):
                 ],
             }
         )
-        product.attribute_line_ids = [
+        product_tmpl.attribute_line_ids = [
             Command.create(
                 {
                     "attribute_id": attribute.id,
@@ -123,10 +123,10 @@ class TestIntrastat(AccountTestInvoicingCommon):
                 }
             )
         ]
-        variant = first(product.product_variant_ids)
+        variant = first(product_tmpl.product_variant_ids)
         variant.weight = variant_weight
         # pre-condition
-        self.assertFalse(product.weight)
+        self.assertFalse(product_tmpl.weight)
         self.assertEqual(variant.weight, variant_weight)
 
         # Act

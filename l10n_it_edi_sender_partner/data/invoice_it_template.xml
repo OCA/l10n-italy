@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="account_invoice_it_partner_sender"
+        inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
+    >
+        <xpath expr="//CessionarioCommittente" position="after">
+            <t
+                t-call="l10n_it_edi_sender_partner.l10n_it_edi_terzo_intermediario_soggetto_emittente"
+            />
+            <SoggettoEmittente
+                t-if="company.l10n_edi_it_sender_partner"
+            >TZ</SoggettoEmittente>
+        </xpath>
+    </template>
+</odoo>

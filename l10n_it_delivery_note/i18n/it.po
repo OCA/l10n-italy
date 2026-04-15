@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2025-08-06 15:25+0000\n"
+"PO-Revision-Date: 2025-11-25 11:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -25,8 +25,8 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Definire altri diritti aggiuntivi sulla gestione dell'inventario."
-"\n"
+"            Definire altri diritti aggiuntivi sulla gestione "
+"dell'inventario.\n"
 "        "
 
 #. module: l10n_it_delivery_note
@@ -55,7 +55,7 @@ msgstr "'Documento di trasporto - %s' % object.display_name"
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_delivery_note_page
 msgid "<i class=\"fa fa-download\"/> Download"
-msgstr "<i class=\"fa fa-download\"/> Download"
+msgstr "<i class=\"fa fa-download\"/> Scarica"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_select_form_view
@@ -962,8 +962,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note_type.py:0
 #: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__incoming
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__incoming
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_type__code__incoming
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 msgid "Incoming"
@@ -981,8 +979,6 @@ msgid "Initial"
 msgstr "Iniziale"
 
 #. module: l10n_it_delivery_note
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__internal
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__internal
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_type__code__internal
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 msgid "Internal"
@@ -1152,12 +1148,6 @@ msgstr "Campo \"Riferimento Partner\" in DdT obbligatorio"
 #: model:res.groups,name:l10n_it_delivery_note.group_required_partner_ref
 msgid "Make Partner Ref. in DN Required"
 msgstr "Campo Riferimento Partner in DdT obbligatorio"
-
-#. module: l10n_it_delivery_note
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__mrp_operation
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__mrp_operation
-msgid "Manufacturing Operation"
-msgstr "Operazione Prodotta"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_has_error
@@ -1338,8 +1328,6 @@ msgstr "Apri consegna"
 #. odoo-python
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note_type.py:0
 #: code:addons/l10n_it_delivery_note/tests/test_stock_delivery_note_sequence.py:0
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__picking_type__outgoing
-#: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_create_wizard__picking_type__outgoing
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note_type__code__outgoing
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 msgid "Outgoing"
@@ -2313,6 +2301,9 @@ msgstr "di:"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "qty"
 msgstr "q.tà"
+
+#~ msgid "Manufacturing Operation"
+#~ msgstr "Operazione Prodotta"
 
 #~ msgid "<i class=\"fa fa-print\"/> Print"
 #~ msgstr "<i class=\"fa fa-print\"/> Stampa"

@@ -1,3 +1,5 @@
+# Copyright 2025 Nextev Srl
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
@@ -251,7 +253,16 @@ class PurchaseOrder(models.Model):
                 raise ValidationError("\n".join(errors))
 
     def action_open_declaration_of_intent(self):
+        """Open declaration of intent.
+
+        Note: Purchase orders only support a single declaration,
+        but we check for consistency with the invoice multi-declaration approach.
+        """
         self.ensure_one()
+        if not self.l10n_it_edi_doi_id:
+            raise UserError(
+                _("No Declaration of Intent found for %s.", self.display_name)
+            )
         return {
             "name": _("Declaration of Intent for %s", self.display_name),
             "type": "ir.actions.act_window",

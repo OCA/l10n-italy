@@ -1,3 +1,5 @@
+# Copyright 2025 Nextev Srl
+
 from odoo import _, api, models
 from odoo.exceptions import UserError
 

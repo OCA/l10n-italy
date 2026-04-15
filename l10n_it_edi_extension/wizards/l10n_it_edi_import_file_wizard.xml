@@ -36,6 +36,7 @@
             name="view_id"
             ref="l10n_it_edi_extension.l10n_it_edi_import_file_wizard_form"
         />
+        <field name="context">{'l10n_it_validate_all_invoices': True}</field>
     </record>
 
     <menuitem

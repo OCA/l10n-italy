@@ -1,0 +1,339 @@
+#  Copyright 2023 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import fields
+from odoo.tests import common
+
+
+class TestRibaCommon(common.TransactionCase):
+    def setUp(self):
+        super().setUp()
+        tax_model = self.env["account.tax"]
+        self.account_tax = (
+            self.env.ref("l10n_it.2601", raise_if_not_found=False)
+            or self.env.ref("l10n_generic_coa.tax_payable", raise_if_not_found=False)
+            or self.env["account.account"].search(
+                [("account_type", "=", "liability_current")], limit=1
+            )
+        )
+        self.tax_22 = tax_model.create(
+            {
+                "name": "IVA 22 Sale",
+                "description": "22",
+                "amount": 22.00,
+                "type_tax_use": "sale",
+                "invoice_repartition_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "base",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
+                            "account_id": self.account_tax.id,
+                        },
+                    ),
+                ],
+                "refund_repartition_line_ids": [
+                    (5, 0, 0),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "base",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "factor_percent": 100,
+                            "repartition_type": "tax",
+                            "account_id": self.account_tax.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        self.env.company.vat = "IT12345670017"
+        self.company2 = self.env["res.company"].create(
+            {
+                "name": "company 2",
+            }
+        )
+        self.service_due_cost = self._create_service_due_cost()
+        self.account_model = self.env["account.account"]
+        self.move_line_model = self.env["account.move.line"]
+        self.move_model = self.env["account.move"]
+        self.slip_model = self.env["riba.slip"]
+        self.partner = self.env.ref("base.res_partner_3")
+        self.partner.vat = "IT01234567890"
+        self.product1 = self.env.ref("product.product_product_5")
+        self.sale_journal = self.env["account.journal"].search([("type", "=", "sale")])[
+            0
+        ]
+        self.bank_journal = self.env["account.journal"].search(
+            [("type", "=", "bank")], limit=1
+        )
+        self.payment_term1 = self._create_pterm()
+        self.payment_term2 = self._create_pterm2()
+        self.account_rec1_id = self.account_model.create(
+            dict(
+                code="custacc",
+                name="customer account",
+                account_type="asset_receivable",
+                reconcile=True,
+            )
+        )
+        self.sale_account = self.env["account.account"].search(
+            [
+                (
+                    "account_type",
+                    "=",
+                    "income_other",
+                )
+            ],
+            limit=1,
+        )
+        self.expenses_account = self.env["account.account"].search(
+            [
+                (
+                    "account_type",
+                    "=",
+                    "expense",
+                )
+            ],
+            limit=1,
+        )
+        self.bank_account = self.env["account.account"].search(
+            [
+                (
+                    "account_type",
+                    "=",
+                    "asset_cash",
+                )
+            ],
+            limit=1,
+        )
+        self.account_payment_term_riba = self.env.ref(
+            "l10n_it_riba_oca.account_payment_term_riba"
+        )
+        self.invoice = self._create_invoice()
+        self.invoice2 = self._create_invoice()
+        self.invoice_sbf = self._create_sbf_invoice()
+        self.acceptance_account = self.env["account.account"].create(
+            {
+                "code": "STC",
+                "name": "STC Bills (test)",
+                "reconcile": True,
+                "account_type": "asset_receivable",
+            }
+        )
+        self.riba_account = self.env["account.account"].create(
+            {
+                "code": "RiBa",
+                "name": "RiBa Account (test)",
+                "reconcile": True,
+                "account_type": "asset_fixed",
+            }
+        )
+        self.past_due_account = self.env["account.account"].create(
+            {
+                "code": "PastDue",
+                "name": "Past Due Bills Account (test)",
+                "reconcile": True,
+                "account_type": "asset_receivable",
+            }
+        )
+        self.company_bank = self.env.ref("l10n_it_riba_oca.company_bank")
+        self.company2_bank = self.env["res.partner.bank"].create(
+            {
+                "acc_number": "IT000000000000000000",
+                "partner_id": self.company2.partner_id.id,
+                "company_id": self.company2.id,
+            }
+        )
+        self.riba_config_incasso = self.create_config_incasso()
+        self.riba_config_sbf = self.create_config_sbf()
+        self.company_bank.codice_sia = "AA555"
+
+    def _create_service_due_cost(self):
+        return self.env["product.product"].create(
+            {
+                "name": "Collection Fees",
+                "type": "service",
+                "taxes_id": [[6, 0, self.tax_22.ids]],
+                "property_account_income_id": self._account_expense().id,
+            }
+        )
+
+    def _account_expense(self):
+        return self.env["account.account"].create(
+            {
+                "code": "demoduecost",
+                "name": "cashing fees",
+                "account_type": "expense",
+            }
+        )
+
+    def _create_invoice(self):
+        # ----- Set invoice date to recent date in the system
+        # ----- This solves problems with account_invoice_sequential_dates
+        self.partner.property_account_receivable_id = self.account_rec1_id.id
+        recent_date = (
+            self.env["account.move"]
+            .search([("invoice_date", "!=", False)], order="invoice_date desc", limit=1)
+            .invoice_date
+        )
+        return self.env["account.move"].create(
+            {
+                "invoice_date": recent_date or fields.Date.today(),
+                "move_type": "out_invoice",
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "invoice_payment_term_id": self.payment_term1.id,
+                "riba_partner_bank_id": self.partner.bank_ids[0].id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.product1.name,
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 100.00,
+                            "account_id": self.sale_account.id,
+                            "tax_ids": [[6, 0, self.tax_22.ids]],
+                        },
+                    )
+                ],
+            }
+        )
+
+    def _create_sbf_invoice(self):
+        self.partner.property_account_receivable_id = self.account_rec1_id.id
+        recent_date = (
+            self.env["account.move"]
+            .search([("invoice_date", "!=", False)], order="invoice_date desc", limit=1)
+            .invoice_date
+        )
+        return self.env["account.move"].create(
+            {
+                "invoice_date": recent_date,
+                "move_type": "out_invoice",
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "invoice_payment_term_id": self.account_payment_term_riba.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "product1",
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 450.00,
+                            "account_id": self.sale_account.id,
+                            "tax_ids": [[6, 0, []]],
+                        },
+                    )
+                ],
+            }
+        )
+
+    def _create_pterm(self):
+        return self.env["account.payment.term"].create(
+            {
+                "name": "RiBa 30/60",
+                "riba": True,
+                "riba_payment_cost": 5.00,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "value": "percent",
+                            "delay_type": "days_after",
+                            "nb_days": 30,
+                            "days_next_month": "0",
+                            "value_amount": 0.50,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "value": "percent",
+                            "delay_type": "days_after",
+                            "nb_days": 60,
+                            "days_next_month": "0",
+                        },
+                    ),
+                ],
+            }
+        )
+
+    def _create_pterm2(self):
+        return self.env["account.payment.term"].create(
+            {
+                "name": "RiBa 30",
+                "riba": True,
+                "riba_payment_cost": 5.00,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "value": "percent",
+                            "delay_type": "days_after_end_of_month",
+                            "nb_days": 1,
+                            "days_next_month": "0",
+                        },
+                    )
+                ],
+            }
+        )
+
+    def create_config_sbf(self):
+        return self.env["riba.configuration"].create(
+            {
+                "name": "Subject To Collection",
+                "type": "sbf",
+                "bank_id": self.company_bank.id,
+                "acceptance_journal_id": self.bank_journal.id,
+                "credit_journal_id": self.bank_journal.id,
+                "acceptance_account_id": self.acceptance_account.id,
+                "credit_account_id": self.riba_account.id,
+                "bank_account_id": self.bank_account.id,
+                "bank_expense_account_id": self.expenses_account.id,
+                "past_due_journal_id": self.bank_journal.id,
+                "overdue_credit_account_id": self.past_due_account.id,
+                "protest_charge_account_id": self.expenses_account.id,
+                "settlement_journal_id": self.bank_journal.id,
+            }
+        )
+
+    def create_config_incasso(self):
+        return self.env["riba.configuration"].create(
+            {
+                "name": "After Collection",
+                "type": "incasso",
+                "bank_id": self.company_bank.id,
+                "acceptance_journal_id": self.bank_journal.id,
+                "acceptance_account_id": self.acceptance_account.id,
+                "credit_account_id": self.riba_account.id,
+                "past_due_journal_id": self.bank_journal.id,
+                "overdue_credit_account_id": self.past_due_account.id,
+                "protest_charge_account_id": self.expenses_account.id,
+                "settlement_journal_id": self.bank_journal.id,
+            }
+        )

@@ -19,8 +19,20 @@ msgid "Agreement"
 msgstr ""
 
 #. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_bank_statement_line__l10n_it_cig
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move__l10n_it_cig
+msgid "CIG"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
 #: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__cig
 msgid "CIG Code"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_bank_statement_line__l10n_it_cup
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move__l10n_it_cup
+msgid "CUP"
 msgstr ""
 
 #. module: l10n_it_edi_related_document
@@ -114,6 +126,30 @@ msgid "Order Agreement Code"
 msgstr ""
 
 #. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_bank_statement_line__l10n_it_origin_document_date
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move__l10n_it_origin_document_date
+msgid "Origin Document Date"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_bank_statement_line__l10n_it_origin_document_name
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move__l10n_it_origin_document_name
+msgid "Origin Document Name"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_bank_statement_line__l10n_it_origin_document_type
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move__l10n_it_origin_document_type
+msgid "Origin Document Type"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,help:l10n_it_edi_related_document.field_account_bank_statement_line__l10n_it_cup
+#: model:ir.model.fields,help:l10n_it_edi_related_document.field_account_move__l10n_it_cup
+msgid "Public Investment Unique Identifier"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
 #: model:ir.model.fields.selection,name:l10n_it_edi_related_document.selection__account_move_related_document__type__reception
 msgid "Reception"
 msgstr ""
@@ -145,4 +181,28 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_it_edi_related_document.account_move_related_document_action
 #: model:ir.ui.menu,name:l10n_it_edi_related_document.account_move_related_document_menu
 msgid "Related documents"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_bank_statement_line__standard_related_document_id
+#: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move__standard_related_document_id
+msgid "Standard Related Document"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,help:l10n_it_edi_related_document.field_account_bank_statement_line__standard_related_document_id
+#: model:ir.model.fields,help:l10n_it_edi_related_document.field_account_move__standard_related_document_id
+msgid "Technical field to store the document corresponding to standard fields"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#: model:ir.model.fields,help:l10n_it_edi_related_document.field_account_bank_statement_line__l10n_it_cig
+#: model:ir.model.fields,help:l10n_it_edi_related_document.field_account_move__l10n_it_cig
+msgid "Tender Unique Identifier"
+msgstr ""
+
+#. module: l10n_it_edi_related_document
+#. odoo-python
+#: code:addons/l10n_it_edi_related_document/models/account_move.py:0
+msgid "Unknown document type %s"
 msgstr ""

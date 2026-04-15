@@ -14,11 +14,7 @@ from ..mixins.delivery_mixin import (
     _domain_volume_uom,
     _domain_weight_uom,
 )
-from ..mixins.picking_checker import (
-    DOMAIN_PICKING_TYPES,
-    DONE_PICKING_STATE,
-    PICKING_TYPES,
-)
+from ..mixins.picking_checker import ALLOWED_PICKING_STATES
 
 DATE_FORMAT = "%d/%m/%Y"
 DATETIME_FORMAT = "%d/%m/%Y %H:%M:%S"
@@ -63,7 +59,7 @@ class StockDeliveryNote(models.Model):
     def _default_type(self):
         return self.env["stock.delivery.note.type"].search(
             [
-                ("code", "=", DOMAIN_PICKING_TYPES[1]),
+                ("code", "=", "outgoing"),
                 ("company_id", "=", self.env.company.id),
             ],
             limit=1,
@@ -242,7 +238,7 @@ class StockDeliveryNote(models.Model):
     )
 
     picking_type = fields.Selection(
-        PICKING_TYPES,
+        lambda self: self.env["stock.picking.type"]._fields["code"].selection,
         string="Picking type",
         compute="_compute_picking_type",
         store=True,
@@ -524,7 +520,7 @@ class StockDeliveryNote(models.Model):
         if self.partner_id:
             pickings_picker_domain = [
                 ("delivery_note_id", "=", False),
-                ("state", "=", DONE_PICKING_STATE),
+                ("state", "in", ALLOWED_PICKING_STATES),
                 ("picking_type_code", "=", self.picking_type),
                 ("partner_id", "=", self.partner_id.id),
             ]
