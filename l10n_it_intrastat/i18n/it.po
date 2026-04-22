@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e-20191007\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-16 15:53+0000\n"
-"PO-Revision-Date: 2025-11-25 11:42+0000\n"
+"PO-Revision-Date: 2026-04-22 11:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_33074100
@@ -347,7 +347,7 @@ msgstr "6-esanolattame (epsilon-caprolattame)"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__a
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39029010
@@ -4503,7 +4503,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__b
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_62092000
@@ -8396,7 +8396,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__c
 msgid "C"
-msgstr ""
+msgstr "C"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_85299041
@@ -16081,7 +16081,7 @@ msgstr "Cisteina e cistina"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__d
 msgid "D"
-msgstr ""
+msgstr "D"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29362400
@@ -18585,7 +18585,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__e
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_28212000
@@ -21220,7 +21220,7 @@ msgstr "Prodotti per il trucco degli occhi"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__f
 msgid "F"
-msgstr ""
+msgstr "F"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_68129910
@@ -31335,7 +31335,7 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__g
 msgid "G"
-msgstr ""
+msgstr "G"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.920012
@@ -34139,7 +34139,7 @@ msgstr "Pietra di gesso; anidrite"
 #. module: l10n_it_intrastat
 #: model:ir.model.fields.selection,name:l10n_it_intrastat.selection__account_intrastat_transaction_nature__triangulation__h
 msgid "H"
-msgstr ""
+msgstr "H"
 
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_72163390
