@@ -399,16 +399,20 @@ class RibaListLine(models.Model):
     def confirm(self):
         move_model = self.env["account.move"]
         move_line_model = self.env["account.move.line"]
+        today = fields.Date.context_today(self)
         for line in self:
             journal = line.slip_id.config_id.acceptance_journal_id
             total_credit = 0.0
+            date_accepted = line.slip_id.date_accepted
+            if not date_accepted:
+                line.slip_id.date_accepted = date_accepted = line.due_date or today
             move = move_model.create(
                 {
                     "ref": "{} RiBa {} - Line {}".format(
                         line.invoice_number, line.slip_id.name, line.sequence
                     ),
                     "journal_id": journal.id,
-                    "date": line.due_date,
+                    "date": date_accepted,
                 }
             )
             to_be_reconciled = self.env["account.move.line"]
@@ -482,8 +486,6 @@ class RibaListLine(models.Model):
                 }
             )
             line.slip_id.state = "accepted"
-            if not line.slip_id.date_accepted:
-                line.slip_id.date_accepted = fields.Date.context_today(self)
 
     def button_settle(self):
         payment_wizard_action = (
