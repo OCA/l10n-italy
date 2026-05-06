@@ -376,12 +376,12 @@ class AccountMoveInherit(models.Model):
             if not extra_info["simplified"]
             else ".//DatiBeniServizi"
         )
-        if elements_line := body_tree.xpath(tag_name):
-            for element_line in elements_line:
-                self.l10n_it_edi_amount_untaxed += get_float(
-                    element_line, ".//PrezzoTotale"
-                )
+        amount_untaxed = sum(
+            get_float(element_line, ".//PrezzoTotale")
+            for element_line in body_tree.xpath(tag_name)
+        )
 
+        amount_tax = 0.0
         if elements_summary := body_tree.xpath(".//DatiBeniServizi/DatiRiepilogo"):
             self.env["l10n_it_edi.summary_data"].create(
                 [
@@ -405,8 +405,22 @@ class AccountMoveInherit(models.Model):
                     for element_summary in elements_summary
                 ]
             )
-            for element_summary in elements_summary:
-                self.l10n_it_edi_amount_tax += get_float(element_summary, ".//Imposta")
+            amount_tax = sum(
+                get_float(element_summary, ".//Imposta")
+                for element_summary in elements_summary
+            )
+
+        # Single batch write replaces N+M per-iteration writes from the
+        # previous "self.field += value" accumulation loops.
+        # skip_invoice_sync avoids _sync_dynamic_lines firing on a write
+        # that only touches XML-derived header amounts.
+        if amount_untaxed or amount_tax:
+            self.with_context(skip_invoice_sync=True).write(
+                {
+                    "l10n_it_edi_amount_untaxed": amount_untaxed,
+                    "l10n_it_edi_amount_tax": amount_tax,
+                }
+            )
 
         return extra_info, message_to_log
 
