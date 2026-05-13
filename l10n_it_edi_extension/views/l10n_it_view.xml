@@ -50,6 +50,10 @@
                 expr="//page[@name='electronic_invoicing']//field[@name='l10n_it_edi_attachment_id']"
                 position="after"
             >
+                <field
+                    name="l10n_it_edi_hide_line_type"
+                    readonly="l10n_it_edi_attachment_id"
+                />
                 <label
                     for="l10n_it_edi_attachment_id"
                     class="oe_inline"
