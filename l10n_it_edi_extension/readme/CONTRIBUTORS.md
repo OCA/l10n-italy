@@ -7,3 +7,5 @@
   - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
 - [Agile Business Group](https://www.agilebg.com/):
   - Alex Comba \<<alex.comba@agilebg.com>\>
+- [PyTech](https://www.pytech.it):
+  - Simone Rubino \<<simone.rubino@pytech.it>\>
