@@ -407,10 +407,41 @@ class AccountMoveInherit(models.Model):
 
         return extra_info, message_to_log
 
+    @api.model
+    def _l10n_it_edi_extension_core_partner_fields(self):
+        """Return partner fields core writes during FatturaPA import.
+
+        Override this hook when another module starts (or stops) writing
+        a partner field through core's ``_l10n_it_edi_import_partner``,
+        so that ``_l10n_it_edi_update_partner`` keeps respecting core.
+        """
+        return {
+            "name",
+            "vat",
+            "email",
+            "phone",
+            "street",
+            "street2",
+            "zip",
+            "city",
+            "country_id",
+            "is_company",
+            "l10n_it_codice_fiscale",
+        }
+
     def _l10n_it_edi_update_partner(self, xml_tree, role, partner):
+        """Fill on ``partner`` the FatturaPA fields core does not handle.
+
+        Core writes the basic identity and address block. Drop those
+        keys from the prepared values so they stay as core wrote them,
+        and write the FatturaPA extras (state_id, EORI, professional
+        register data, firstname/lastname split).
+        """
         vals = self._l10n_it_edi_extension_prepare_partner_values(xml_tree, role)
-        del vals["vat"]  # Because VAT is used to identify the partner
-        partner.update(vals)
+        for field_name in self._l10n_it_edi_extension_core_partner_fields():
+            vals.pop(field_name, None)
+        if vals:
+            partner.update(vals)
         return partner
 
     def _l10n_it_edi_search_tax_for_import(
@@ -831,15 +862,136 @@ class AccountMoveInherit(models.Model):
         return vals
 
     def _l10n_it_edi_extension_create_partner(self, invoice_data, role):
+        """Return a partner for ``role``, looking up an existing one first.
+
+        Used for roles core does not handle (e.g. ``RappresentanteFiscale``).
+        Follows the path core uses for buyer/seller: match by Italian
+        Codice Fiscale, then delegate to ``_l10n_it_edi_import_partner``
+        which calls ``_retrieve_partner`` and creates a new partner when
+        nothing matches. ``_l10n_it_edi_update_partner`` fills the
+        FatturaPA extras (state_id, EORI, Albo*, firstname/lastname)
+        on top.
+        """
+        Partner = self.env["res.partner"]
         partner_values = self._l10n_it_edi_extension_prepare_partner_values(
             invoice_data,
             role,
         )
-        if partner_values:
-            partner = self.env["res.partner"].create(partner_values)
-        else:
-            partner = self.env["res.partner"].browse()
+        if not partner_values:
+            return Partner
+        company = self.env.company
+        codice_fiscale = partner_values.get("l10n_it_codice_fiscale")
+        partner = Partner
+        if codice_fiscale:
+            partner = Partner.with_company(company).search(
+                [
+                    *Partner._check_company_domain(company),
+                    ("l10n_it_codice_fiscale", "=like", codice_fiscale),
+                ],
+                limit=1,
+            )
+        if not partner:
+            partner, _logs = self.env["account.edi.common"]._import_partner(
+                company_id=company,
+                name=partner_values.get("name"),
+                phone=partner_values.get("phone"),
+                email=partner_values.get("email"),
+                vat=partner_values.get("vat"),
+                street=partner_values.get("street"),
+                city=partner_values.get("city"),
+                zip_code=partner_values.get("zip"),
+            )
+            if partner and codice_fiscale and not partner.l10n_it_codice_fiscale:
+                partner.l10n_it_codice_fiscale = codice_fiscale
+            if partner and not partner.country_id and partner_values.get("country_id"):
+                partner.country_id = partner_values["country_id"]
+        if partner:
+            self._l10n_it_edi_update_partner(invoice_data, role, partner)
         return partner
+
+    def _l10n_it_edi_extension_get_bank_partner(self, invoice):
+        """Return the partner that owns the bank accounts in this FatturaPA.
+
+        Mirrors core's ``_l10n_it_edi_import_partner_bank`` selection
+        via ``is_outbound``/``is_inbound``: the invoice partner on
+        outbound documents (in_invoice, out_refund), the company
+        partner on inbound documents (out_invoice, in_refund). Empty
+        recordset on any other move type skips the bank update.
+        """
+        if invoice.is_outbound(include_receipts=False):
+            return invoice.partner_id
+        if invoice.is_inbound(include_receipts=False):
+            return invoice.company_id.partner_id
+        return self.env["res.partner"]
+
+    def _l10n_it_edi_extension_get_or_create_bank(self, bic, bank_name):
+        """Return a ``res.bank`` matching ``bic`` or ``bank_name``.
+
+        Search by BIC, then by name; create one when nothing matches.
+        Returns empty when both inputs are empty.
+        """
+        ResBank = self.env["res.bank"]
+        if not (bic or bank_name):
+            return ResBank
+        bank = ResBank
+        if bic:
+            bank = ResBank.search([("bic", "=", bic)], limit=1)
+        if not bank and bank_name:
+            bank = ResBank.search([("name", "=", bank_name)], limit=1)
+        if not bank:
+            bank = ResBank.create({"name": bank_name or bic, "bic": bic or False})
+        return bank
+
+    def _l10n_it_edi_extension_update_partner_bank(self, tree, invoice):
+        """Fill bank_id and acc_holder_name on partner banks created on import.
+
+        Core sets ``acc_number`` on ``res.partner.bank`` and stops there.
+        FatturaPA carries ``BIC`` and ``IstitutoFinanziario`` inside each
+        ``DatiPagamento/DettaglioPagamento`` plus ``Beneficiario`` at the
+        ``DatiPagamento`` level. Map them to ``res.bank`` (creating it
+        when missing) and link the record via ``bank_id``. Values already
+        set on the partner bank stay untouched.
+
+        ``_l10n_it_edi_extension_get_bank_partner`` picks the partner
+        the same way core does. The search filters by company so banks
+        from other companies cannot match.
+        """
+        if tree is None:
+            return
+        bank_partner = self._l10n_it_edi_extension_get_bank_partner(invoice)
+        if not bank_partner:
+            return
+        PartnerBank = self.env["res.partner.bank"]
+        bank_domain = [
+            *PartnerBank._check_company_domain(invoice.company_id),
+            ("partner_id", "child_of", bank_partner.commercial_partner_id.id),
+        ]
+        for payment_node in tree.xpath("//DatiPagamento"):
+            holder = get_text(payment_node, "./Beneficiario") or False
+            for detail_node in payment_node.xpath("./DettaglioPagamento"):
+                iban = get_text(detail_node, "./IBAN")
+                if not iban:
+                    continue
+                bic = get_text(detail_node, "./BIC") or False
+                bank_name = get_text(detail_node, "./IstitutoFinanziario") or False
+                if not (bic or bank_name or holder):
+                    continue
+                partner_bank = PartnerBank.search(
+                    [*bank_domain, ("acc_number", "=", iban)],
+                    limit=1,
+                )
+                if not partner_bank:
+                    continue
+                vals = {}
+                if holder and not partner_bank.acc_holder_name:
+                    vals["acc_holder_name"] = holder
+                if (bic or bank_name) and not partner_bank.bank_id:
+                    if bank := self._l10n_it_edi_extension_get_or_create_bank(
+                        bic, bank_name
+                    ):
+                        vals["bank_id"] = bank.id
+                if vals:
+                    partner_bank.write(vals)
 
     def _l10n_it_edi_import_invoice(self, invoice, data, is_new):
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
@@ -879,23 +1031,15 @@ class AccountMoveInherit(models.Model):
                             invoice.sudo().message_post(body=message)
 
         partner_role = "seller" if is_incoming else "buyer"
-        if (
-            invoice
-            and invoice.partner_id
-            and not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update
-        ):
-            self._l10n_it_edi_update_partner(
-                body_tree, partner_role, invoice.partner_id
-            )
-        elif (
-            invoice
-            and not invoice.partner_id
-            and self.env.company.l10n_edi_it_create_partner
-        ):
-            invoice.partner_id = self._l10n_it_edi_extension_create_partner(
-                body_tree,
-                partner_role,
-            )
+        if invoice and invoice.partner_id:
+            if not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update:
+                # Core creates the partner; fill the FatturaPA extras core
+                # leaves out (Provincia, EORI, Albo*, firstname/lastname) on
+                # both pre-existing partners and partners core created.
+                self._l10n_it_edi_update_partner(
+                    body_tree, partner_role, invoice.partner_id
+                )
+            self._l10n_it_edi_extension_update_partner_bank(body_tree, invoice)
 
         if tax_representative := self._l10n_it_edi_extension_create_partner(
             body_tree,
