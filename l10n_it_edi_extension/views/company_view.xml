@@ -6,13 +6,6 @@
         <field name="inherit_id" ref="l10n_it_edi.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <setting id="italian_edi" position="after">
-                <setting
-                    id="l10n_edi_it_create_partner"
-                    help="Automatically create the partner if it does not exist during the import of Electronic Invoices."
-                    company_dependent="1"
-                >
-                    <field name="l10n_edi_it_create_partner" />
-                </setting>
                 <setting id="l10n_it_edi_import_detail_level">
                     <div class="group-content">
                         <span

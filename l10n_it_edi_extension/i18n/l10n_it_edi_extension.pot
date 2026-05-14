@@ -106,15 +106,6 @@ msgid "Attachment"
 msgstr ""
 
 #. module: l10n_it_edi_extension
-#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_edi_it_create_partner
-#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_config_settings__l10n_edi_it_create_partner
-#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.view_account_config_settings_create_partner
-msgid ""
-"Automatically create the partner if it does not exist during the import of "
-"Electronic Invoices."
-msgstr ""
-
-#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__cadastre_code
 msgid "Belfiore cadastre code (not used anymore)"
 msgstr ""
@@ -180,12 +171,6 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_nazione
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_nazione
 msgid "Country code according to the ISO 3166-1 alpha-2 code standard"
-msgstr ""
-
-#. module: l10n_it_edi_extension
-#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_edi_it_create_partner
-#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_config_settings__l10n_edi_it_create_partner
-msgid "Create Partner on Eletronic Invoice import"
 msgstr ""
 
 #. module: l10n_it_edi_extension

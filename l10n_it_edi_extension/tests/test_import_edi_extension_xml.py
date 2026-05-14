@@ -12,12 +12,6 @@ from .common import Common
 
 
 class TestFatturaPAXMLValidation(Common):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.env.company.l10n_edi_it_create_partner = True
-        cls.company.l10n_edi_it_create_partner = True
-
     def _edi_import_invoice(self, filename):
         moves = self.env["account.move"]
         path = f"l10n_it_edi_extension/tests/import_xmls/{filename}"
@@ -100,10 +94,10 @@ class TestFatturaPAXMLValidation(Common):
         self.assertEqual(move.l10n_it_edi_summary_ids[0].amount_tax, 7.48)
         self.assertEqual(move.l10n_it_edi_summary_ids[0].payability, "D")
         self.assertEqual(move.partner_id.name, "SOCIETA' ALPHA SRL")
-        self.assertEqual(move.partner_id.street, "VIALE ROMA 543")
+        self.assertEqual(move.partner_id.street, "Viale Roma 543")
         self.assertEqual(move.partner_id.state_id.code, "SS")
         self.assertEqual(move.partner_id.country_id.code, "IT")
-        self.assertEqual(move.partner_id.vat, "02780790107")
+        self.assertEqual(move.partner_id.vat, "IT02780790107")
         self.assertEqual(
             move.l10n_it_edi_tax_representative_id.name, "Rappresentante fiscale"
         )
@@ -221,26 +215,6 @@ class TestFatturaPAXMLValidation(Common):
         # Assert
         partner = invoice.partner_id
         self.assertEqual(partner.name, partner_name)
-
-    def test_avoid_create_partner(self):
-        """Partner is not created during import if the setting is disabled."""
-        self.env.company.l10n_edi_it_create_partner = False
-        partner_name = "SOCIETA' BETA SRL"
-        # pre-condition
-        partner = self.env["res.partner"].search(
-            [
-                ("name", "=", partner_name),
-            ],
-            limit=1,
-        )
-        self.assertFalse(partner)
-
-        # Act
-        invoice = self._assert_import_invoice("IT02780790107_11004.xml", [{}])
-
-        # Assert
-        partner = invoice.partner_id
-        self.assertFalse(partner)
 
     def test_min_import_detail_level(self):
         """If import detail level is Minimum,

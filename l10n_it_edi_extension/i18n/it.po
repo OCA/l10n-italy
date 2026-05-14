@@ -132,17 +132,6 @@ msgid "Attachment"
 msgstr "Allegato"
 
 #. module: l10n_it_edi_extension
-#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_edi_it_create_partner
-#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_config_settings__l10n_edi_it_create_partner
-#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.view_account_config_settings_create_partner
-msgid ""
-"Automatically create the partner if it does not exist during the import of "
-"Electronic Invoices."
-msgstr ""
-"Crea automaticamente il partner se non esiste durante l'importazione delle "
-"fatture elettroniche."
-
-#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__cadastre_code
 msgid "Belfiore cadastre code (not used anymore)"
 msgstr "Codice catasto Belfiore (non più in uso)"
@@ -210,12 +199,6 @@ msgstr "Contatto"
 msgid "Country code according to the ISO 3166-1 alpha-2 code standard"
 msgstr ""
 "Codice della nazione espresso secondo lo standard ISO 3166-1 alpha-2 code"
-
-#. module: l10n_it_edi_extension
-#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_edi_it_create_partner
-#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_config_settings__l10n_edi_it_create_partner
-msgid "Create Partner on Eletronic Invoice import"
-msgstr "Crea partner nell'importazione di fatture elettroniche"
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__create_uid
@@ -1396,6 +1379,16 @@ msgstr ""
 #: code:addons/l10n_it_edi_extension/__init__.py:0
 msgid "from XML file:"
 msgstr "da file XML:"
+
+#~ msgid ""
+#~ "Automatically create the partner if it does not exist during the import "
+#~ "of Electronic Invoices."
+#~ msgstr ""
+#~ "Crea automaticamente il partner se non esiste durante l'importazione "
+#~ "delle fatture elettroniche."
+
+#~ msgid "Create Partner on Eletronic Invoice import"
+#~ msgstr "Crea partner nell'importazione di fatture elettroniche"
 
 #~ msgid ""
 #~ "The following files were skipped (not valid XML/P7M):\n"
