@@ -23,17 +23,10 @@ class ComunicazioneLiquidazione(models.Model):
         company_id = self.env.context.get("company_id", self.env.company.id)
         return company_id
 
-    @api.constrains("identificativo")
-    def _check_identificativo(self):
-        domain = [("identificativo", "=", self.identificativo)]
-        dichiarazioni = self.search(domain)
-        if len(dichiarazioni) > 1:
-            raise ValidationError(
-                self.env._(
-                    "Communication with identifier %s already exists",
-                    self.identificativo,
-                )
-            )
+    _unique_identificativo_per_company = models.Constraint(
+        "UNIQUE(company_id, identificativo)",
+        "Communication with this identifier already exists for the company.",
+    )
 
     def _compute_name(self):
         for dich in self:
@@ -52,13 +45,14 @@ class ComunicazioneLiquidazione(models.Model):
                     name += f", {str(quadro.quarter)}"
             dich.name = name
 
-    # pylint: disable=no-search-all
     def _get_identificativo(self):
-        dichiarazioni = self.search([])
-        if dichiarazioni:
-            return len(dichiarazioni) + 1
-        else:
-            return 1
+        company_id = self.env.context.get("company_id", self.env.company.id)
+        last = self.search(
+            [("company_id", "=", company_id)],
+            order="identificativo desc",
+            limit=1,
+        )
+        return (last.identificativo or 0) + 1
 
     company_id = fields.Many2one(
         "res.company",
