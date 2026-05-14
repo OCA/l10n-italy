@@ -236,10 +236,13 @@ class AccountMove(models.Model):
                     )
                     if invoice_line:
                         invoice_lineid = invoice_line.id
+                name = get_text(element, "./IdDocumento")
+                if not name:
+                    continue
                 entry = {
                     "type": key,
                     "lineRef": lineRef,
-                    "name": get_text(element, "./IdDocumento"),
+                    "name": name,
                     "date": get_text(element, "./Data"),
                     "numitem": get_text(element, "./NumItem"),
                     "code": get_text(element, "./CodiceCommessaConvenzione"),

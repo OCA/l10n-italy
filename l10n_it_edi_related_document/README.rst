@@ -76,6 +76,9 @@ Contributors
 ------------
 
 -  Nextev Srl <odoo@nextev.it>
+-  `Stesi Consulting srl <https://www.stesi.consulting/>`__:
+
+   -  Michele Di Croce <dicroce.m@stesi.consulting>
 
 Maintainers
 -----------
