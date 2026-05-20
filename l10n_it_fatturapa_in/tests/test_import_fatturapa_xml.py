@@ -31,7 +31,7 @@ class TestDuplicatedAttachment(FatturapaCommon):
 
 class TestFatturaPAXMLValidation(FatturapaCommon):
     def setUp(self):
-        super(TestFatturaPAXMLValidation, self).setUp()
+        super().setUp()
         self.wt = self.create_wt_4q()
         self.wtq = self.create_wt_27_20q()
         self.wt4q = self.create_wt_26_40q()
@@ -1012,32 +1012,36 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         and we try to import an Electronic Invoice for that VAT,
         an exception is raised."""
         # Arrange: There are two partners with the same VAT
-        common_vat = 'IT03309970733'
-        partners = self.env['res.partner'].create([
-            {
-                'name': "Test partner1",
-                'vat': common_vat,
-            },
-            {
-                'name': "Test partner2",
-                'vat': common_vat,
-            },
-        ])
+        common_vat = "IT03309970733"
+        partners = self.env["res.partner"].create(
+            [
+                {
+                    "name": "Test partner1",
+                    "vat": common_vat,
+                },
+                {
+                    "name": "Test partner2",
+                    "vat": common_vat,
+                },
+            ]
+        )
 
         # Update any conflicting partner from other tests
-        existing_partners = self.env['res.partner'].search(
+        existing_partners = self.env["res.partner"].search(
             [
-                ('sanitized_vat', '=', common_vat),
-                ('id', 'not in', partners.ids),
+                ("vat", "=", common_vat),
+                ("id", "not in", partners.ids),
             ],
         )
-        existing_partners.update({
-            'vat': 'IT12345670017',
-        })
+        existing_partners.update(
+            {
+                "vat": "IT12345670017",
+            }
+        )
 
         # Assert: The import wizard can't choose between the two created partners
         with self.assertRaises(UserError) as ue:
-            self.run_wizard('VATG1', 'IT03309970733_VATG1.xml')
+            self.run_wizard("VATG1", "IT03309970733_VATG1.xml")
         exc_message = ue.exception.args[0]
         self.assertIn("Two distinct partners", exc_message)
         self.assertIn("VAT number", exc_message)
@@ -1049,42 +1053,48 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         # Arrange: The involved XMLs contain suppliers from a VAT group:
         # the suppliers have the same VAT `common_vat`,
         # but each supplier has a different fiscal code
-        common_vat = 'IT03309970733'
-        vat_group_1_fiscalcode = 'MRORSS90E25B111T'
-        vat_group_2_fiscalcode = '03533590174'
+        common_vat = "IT03309970733"
+        vat_group_1_fiscalcode = "MRORSS90E25B111T"
+        vat_group_2_fiscalcode = "03533590174"
 
         # Update any conflicting partner from other tests
-        existing_partners = self.env['res.partner'].search(
+        existing_partners = self.env["res.partner"].search(
             [
-                '|',
-                ('sanitized_vat', '=', common_vat),
-                ('fiscalcode', 'in', (
-                    vat_group_1_fiscalcode,
-                    vat_group_2_fiscalcode,
-                )),
+                "|",
+                ("vat", "=", common_vat),
+                (
+                    "fiscalcode",
+                    "in",
+                    (
+                        vat_group_1_fiscalcode,
+                        vat_group_2_fiscalcode,
+                    ),
+                ),
             ],
         )
-        existing_partners.update({
-            'vat': 'IT12345670017',
-            'fiscalcode': '1234567890123456',
-        })
+        existing_partners.update(
+            {
+                "vat": "IT12345670017",
+                "fiscalcode": "1234567890123456",
+            }
+        )
 
         # Act: Import the XMLs,
         # checking that the suppliers match the data in the XML
-        res = self.run_wizard('VATG1', 'IT03309970733_VATG1.xml')
-        invoice_model = res.get('res_model')
-        invoice_domain = res.get('domain')
+        res = self.run_wizard("VATG1", "IT03309970733_VATG1.xml")
+        invoice_model = res.get("res_model")
+        invoice_domain = res.get("domain")
         invoice_vat_group_1 = self.env[invoice_model].search(invoice_domain)
         vat_group_1_partner = invoice_vat_group_1.partner_id
-        self.assertEqual(vat_group_1_partner.sanitized_vat, common_vat)
+        self.assertEqual(vat_group_1_partner.vat, common_vat)
         self.assertEqual(vat_group_1_partner.fiscalcode, vat_group_1_fiscalcode)
 
-        res = self.run_wizard('VATG2', 'IT03309970733_VATG2.xml')
-        invoice_model = res.get('res_model')
-        invoice_domain = res.get('domain')
+        res = self.run_wizard("VATG2", "IT03309970733_VATG2.xml")
+        invoice_model = res.get("res_model")
+        invoice_domain = res.get("domain")
         invoice_vat_group_2 = self.env[invoice_model].search(invoice_domain)
         vat_group_2_partner = invoice_vat_group_2.partner_id
-        self.assertEqual(vat_group_2_partner.sanitized_vat, common_vat)
+        self.assertEqual(vat_group_2_partner.vat, common_vat)
         self.assertEqual(vat_group_2_partner.fiscalcode, vat_group_2_fiscalcode)
 
         # Assert: Two different partners have been created
@@ -1344,7 +1354,7 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
 
 class TestFatturaPAEnasarco(FatturapaCommon):
     def setUp(self):
-        super(TestFatturaPAEnasarco, self).setUp()
+        super().setUp()
 
         self.invoice_model = self.env["account.move"]
 

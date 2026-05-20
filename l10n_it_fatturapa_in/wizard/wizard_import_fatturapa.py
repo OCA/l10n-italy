@@ -2,6 +2,7 @@
 #  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import datetime
 import logging
 import re
 import warnings
@@ -29,7 +30,7 @@ WT_CODES_MAPPING = {
 }
 
 
-class PartnerDuplicatedException (UserError):
+class PartnerDuplicatedException(UserError):
     pass
 
 
@@ -202,17 +203,16 @@ class WizardImportFatturapa(models.TransientModel):
             )
 
     def _get_partner_domains_by_vat_fc(self, vat, fc):
-        """Return domains for searching partner using VAT and FC.
-        """
-        vat_domain = [('sanitized_vat', '=', vat)]
-        fc_domain = [('fiscalcode', '=', fc)]
+        """Return domains for searching partner using VAT and FC."""
+        vat_domain = [("vat", "=", vat)]
+        fc_domain = [("fiscalcode", "=", fc)]
         domains = list()
         if vat and fc:
             # The partner must match exactly (both VAT and FC)
             domains.append(expression.AND([vat_domain, fc_domain]))
             # Or it is missing either FC or VAT
-            no_vat_domain = [('sanitized_vat', '=', False)]
-            no_fc_domain = [('fiscalcode', '=', False)]
+            no_vat_domain = [("vat", "=", False)]
+            no_fc_domain = [("fiscalcode", "=", False)]
             vat_domain = expression.AND([vat_domain, no_fc_domain])
             fc_domain = expression.AND([no_vat_domain, fc_domain])
 
@@ -222,59 +222,76 @@ class WizardImportFatturapa(models.TransientModel):
             domains.append(fc_domain)
 
         # Inject the multi-company partners sharing rule, if enabled
-        res_partner_rule = self.env['ir.model.data'].sudo().xmlid_to_object(
-            "base.res_partner_rule", raise_if_not_found=False)
-        att = self.env.context.get('from_attachment')
+        res_partner_rule = (
+            self.env["ir.model.data"]
+            .sudo()
+            .xmlid_to_object("base.res_partner_rule", raise_if_not_found=False)
+        )
+        att = self.env.context.get("from_attachment")
         if att and res_partner_rule and res_partner_rule.active:
             partner_rule_domain = res_partner_rule.domain_force
             partner_rule_domain = partner_rule_domain.replace(
-                'user.company_id', 'company_id',
+                "user.company_id",
+                "company_id",
             )
             partner_rule_domain = safe_eval(
                 partner_rule_domain,
                 locals_dict={
-                    'company_id': att.company_id,
+                    "company_id": att.company_id,
                 },
             )
             for domain_index in range(len(domains)):
                 domain = domains[domain_index]
-                domains[domain_index] = expression.AND([
-                    domain, partner_rule_domain,
-                ])
+                domains[domain_index] = expression.AND(
+                    [
+                        domain,
+                        partner_rule_domain,
+                    ]
+                )
         return domains
 
     def _search_partner_by_vat_fc(self, vat, fc):
         """Search partner using VAT and FC."""
         domains = self._get_partner_domains_by_vat_fc(vat, fc)
-        partner_model = self.env['res.partner']
+        partner_model = self.env["res.partner"]
         for domain in domains:
             partners = partner_model.search(domain)
             if partners:
                 break
         else:
             partners = partner_model.browse()
+        company = self._get_company_from_attachment()
+        if partners and company:
+            # in case of multi company instance, can happen that a
+            # partner with same VAT and FC is present in one or more of
+            # other company, leading to a duplicated partner excpetion
+            partners = partners.filtered(
+                lambda partner: not partner.company_id or partner.company_id == company
+            )
         return partners
 
     def _get_commercial_partner(self, partners):
         """Get the common commercial partner from `partners`."""
         if len(partners) > 1:
             # Ensure that all found partners have the same commercial partner
-            commercial_partner = self.env['res.partner'].browse()
+            commercial_partner = self.env["res.partner"].browse()
             for partner in partners:
                 partner_commercial_partner = partner.commercial_partner_id
                 if (
-                    commercial_partner and
-                    partner_commercial_partner != commercial_partner
+                    commercial_partner
+                    and partner_commercial_partner != commercial_partner
                 ):
-                    same_vat_cf_partners = partner_commercial_partner \
-                        | commercial_partner
+                    same_vat_cf_partners = (
+                        partner_commercial_partner | commercial_partner
+                    )
                     raise PartnerDuplicatedException(
-                        _("Two distinct partners {partners} with "
-                          "VAT number {vat} or Fiscal Code {cf} already "
-                          "present in db.")
-                        .format(
-                            partners=', '.join(
-                                same_vat_cf_partners.mapped('display_name')
+                        _(
+                            "Two distinct partners {partners} with "
+                            "VAT number {vat} or Fiscal Code {cf} already "
+                            "present in db."
+                        ).format(
+                            partners=", ".join(
+                                same_vat_cf_partners.mapped("display_name")
                             ),
                             vat=partner.vat,
                             cf=partner.fiscalcode,
@@ -284,8 +301,21 @@ class WizardImportFatturapa(models.TransientModel):
         elif len(partners) == 1:
             commercial_partner = first(partners).commercial_partner_id
         else:
-            commercial_partner = self.env['res.partner'].browse()
+            commercial_partner = self.env["res.partner"]
         return commercial_partner
+
+    @api.model
+    def _get_company_from_attachment(self):
+        # Try to retrieve company from context key
+        company = self.env.context.get("att_company", self.env["res.company"])
+        if not company:
+            # If no company record passed in context, try to get from
+            # the attachment in context or if it is not present get as
+            # False
+            company = self.env.context.get(
+                "from_attachment", self.env["ir.attachment"]
+            ).company_id
+        return company
 
     def _extract_vat(self, DatiAnagrafici):
         """Extract VAT from node DatiAnagrafici."""
@@ -301,11 +331,11 @@ class WizardImportFatturapa(models.TransientModel):
             else:
                 vat = "%s%s" % (
                     DatiAnagrafici.IdFiscaleIVA.IdPaese.upper(),
-                    re.sub(r'\W+', '', DatiAnagrafici.IdFiscaleIVA.IdCodice).upper()
+                    re.sub(r"\W+", "", DatiAnagrafici.IdFiscaleIVA.IdCodice).upper(),
                 )
         return vat
 
-    def _prepare_partner_values(self, DatiAnagrafici, cf, vat, supplier):
+    def _prepare_partner_values(self, DatiAnagrafici, cf, vat):
         country_id = False
         if DatiAnagrafici.IdFiscaleIVA:
             CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
@@ -313,28 +343,25 @@ class WizardImportFatturapa(models.TransientModel):
             if countries:
                 country_id = countries[0].id
             else:
-                raise UserError(
-                    _("Country Code %s not found in system.") % CountryCode
-                )
+                raise UserError(_("Country Code %s not found in system.") % CountryCode)
         vals = {
-            'vat': vat,
-            'fiscalcode': cf,
-            'customer': False,
-            'supplier': supplier,
-            'is_company': (
-                DatiAnagrafici.Anagrafica.Denominazione and True or False),
-            'eori_code': DatiAnagrafici.Anagrafica.CodEORI or '',
-            'country_id': country_id,
+            "vat": vat,
+            "fiscalcode": cf,
+            "is_company": (DatiAnagrafici.Anagrafica.Denominazione and True or False),
+            "eori_code": DatiAnagrafici.Anagrafica.CodEORI or "",
+            "country_id": country_id,
         }
         if DatiAnagrafici.Anagrafica.Nome:
-            vals['firstname'] = DatiAnagrafici.Anagrafica.Nome
+            vals["firstname"] = DatiAnagrafici.Anagrafica.Nome
         if DatiAnagrafici.Anagrafica.Cognome:
-            vals['lastname'] = DatiAnagrafici.Anagrafica.Cognome
+            vals["lastname"] = DatiAnagrafici.Anagrafica.Cognome
         if DatiAnagrafici.Anagrafica.Denominazione:
-            vals['name'] = DatiAnagrafici.Anagrafica.Denominazione
+            vals["name"] = DatiAnagrafici.Anagrafica.Denominazione
+        company = self._get_company_from_attachment()
+        vals["company_id"] = company.id
         return vals
 
-    def getPartnerBase(self, DatiAnagrafici, supplier=True, raise_if_duplicated=True):
+    def getPartnerBase(self, DatiAnagrafici, raise_if_duplicated=True):
         if not DatiAnagrafici:
             return False
         cf = DatiAnagrafici.CodiceFiscale or False
@@ -347,7 +374,7 @@ class WizardImportFatturapa(models.TransientModel):
                 raise duplicated_exception
             else:
                 self.log_inconsistency(duplicated_exception.args[0])
-                found_partner = self.env['res.partner'].browse()
+                found_partner = self.env["res.partner"].browse()
         else:
             if commercial_partner:
                 commercial_partner_id = commercial_partner.id
@@ -355,8 +382,8 @@ class WizardImportFatturapa(models.TransientModel):
                 found_partner = commercial_partner
             else:
                 # partner to be created
-                vals = self._prepare_partner_values(DatiAnagrafici, cf, vat, supplier)
-                found_partner = self.env['res.partner'].create(vals)
+                vals = self._prepare_partner_values(DatiAnagrafici, cf, vat)
+                found_partner = self.env["res.partner"].create(vals)
         return found_partner.id
 
     def get_partner_from_einvoice_node(self, partner_node):
@@ -492,7 +519,7 @@ class WizardImportFatturapa(models.TransientModel):
         self.get_partner_from_einvoice_node(cedPrest)
 
     def getCarrirerPartner(self, Carrier):
-        partner_model = self.env['res.partner']
+        partner_model = self.env["res.partner"]
         partner_id = self.getPartnerBase(
             Carrier.DatiAnagraficiVettore,
             raise_if_duplicated=False,
@@ -1211,9 +1238,11 @@ class WizardImportFatturapa(models.TransientModel):
 
         invoice_data = {
             "e_invoice_received_date": e_invoice_received_date,
-            "date": e_invoice_received_date
-            if company.in_invoice_registration_date == "rec_date"
-            else e_invoice_date,
+            "date": (
+                e_invoice_received_date
+                if company.in_invoice_registration_date == "rec_date"
+                else e_invoice_date
+            ),
             "fiscal_document_type_id": fiscal_document_type.id,
             "sender": fatt.FatturaElettronicaHeader.SoggettoEmittente or False,
             "move_type": invoice_type,
@@ -1577,9 +1606,9 @@ class WizardImportFatturapa(models.TransientModel):
         if not partner.property_supplier_payment_term_id:
             due_dates = self._get_last_due_date(FatturaBody.DatiPagamento)
             if due_dates:
-                self.env["account.move"].browse(
-                    invoice_id
-                ).invoice_date_due = due_dates[0]
+                self.env["account.move"].browse(invoice_id).invoice_date_due = (
+                    due_dates[0]
+                )
         if PaymentsData:
             PaymentDataModel = self.env["fatturapa.payment.data"]
             PaymentTermsModel = self.env["fatturapa.payment_term"]
@@ -1948,11 +1977,7 @@ class WizardImportFatturapa(models.TransientModel):
                         supplier=False,
                         raise_if_duplicated=False,
                     )
-                    invoice.write(
-                        {
-                            'tax_representative_id': tax_partner_id
-                        }
-                    )
+                    invoice.write({"tax_representative_id": tax_partner_id})
                     invoice.write({"tax_representative_id": tax_partner_id})
                 if Intermediary:
                     Intermediary_id = self.getPartnerBase(
@@ -1960,11 +1985,7 @@ class WizardImportFatturapa(models.TransientModel):
                         supplier=False,
                         raise_if_duplicated=False,
                     )
-                    invoice.write(
-                        {
-                            'intermediary': Intermediary_id
-                        }
-                    )
+                    invoice.write({"intermediary": Intermediary_id})
                 new_invoices.append(invoice_id)
                 self.check_invoice_amount(invoice, fattura)
 
