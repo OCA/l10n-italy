@@ -264,7 +264,7 @@ class WizardImportFatturapa(models.TransientModel):
         if partners and company:
             # in case of multi company instance, can happen that a
             # partner with same VAT and FC is present in one or more of
-            # other company, leading to a duplicated partner excpetion
+            # other company, leading to a duplicated partner exception
             partners = partners.filtered(
                 lambda partner: not partner.company_id or partner.company_id == company
             )
