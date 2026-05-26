@@ -347,6 +347,8 @@ class WizardImportFatturapa(models.TransientModel):
         vals = {
             "vat": vat,
             "fiscalcode": cf,
+            "customer_rank": 0,
+            "supplier_rank": supplier,
             "is_company": (DatiAnagrafici.Anagrafica.Denominazione and True or False),
             "eori_code": DatiAnagrafici.Anagrafica.CodEORI or "",
             "country_id": country_id,
