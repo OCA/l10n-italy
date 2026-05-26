@@ -384,7 +384,7 @@ class WizardImportFatturapa(models.TransientModel):
                 found_partner = commercial_partner
             else:
                 # partner to be created
-                vals = self._prepare_partner_values(DatiAnagrafici, cf, vat)
+                vals = self._prepare_partner_values(DatiAnagrafici, cf, vat, supplier)
                 found_partner = self.env["res.partner"].create(vals)
         return found_partner.id
 
