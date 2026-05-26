@@ -335,7 +335,7 @@ class WizardImportFatturapa(models.TransientModel):
                 )
         return vat
 
-    def _prepare_partner_values(self, DatiAnagrafici, cf, vat):
+    def _prepare_partner_values(self, DatiAnagrafici, cf, vat, supplier):
         country_id = False
         if DatiAnagrafici.IdFiscaleIVA:
             CountryCode = DatiAnagrafici.IdFiscaleIVA.IdPaese
@@ -361,7 +361,7 @@ class WizardImportFatturapa(models.TransientModel):
         vals["company_id"] = company.id
         return vals
 
-    def getPartnerBase(self, DatiAnagrafici, raise_if_duplicated=True):
+    def getPartnerBase(self, DatiAnagrafici, supplier=True, raise_if_duplicated=True):
         if not DatiAnagrafici:
             return False
         cf = DatiAnagrafici.CodiceFiscale or False
