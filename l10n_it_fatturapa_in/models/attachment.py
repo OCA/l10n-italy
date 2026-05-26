@@ -238,7 +238,8 @@ class FatturaPAAttachmentIn(models.Model):
             # That is why we set it as the last field.
             cedentePrestatore = fatt.FatturaElettronicaHeader.CedentePrestatore
             wiz_obj = self.env["wizard.import.fatturapa"].with_context(
-                from_attachment=att, att_company=att.company_id
+                from_attachment=att,
+                att_company=att.company_id
             )
             partner_id = wiz_obj.get_partner_from_einvoice_node(cedentePrestatore)
             att.xml_supplier_id = partner_id
