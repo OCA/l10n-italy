@@ -1980,7 +1980,6 @@ class WizardImportFatturapa(models.TransientModel):
                         raise_if_duplicated=False,
                     )
                     invoice.write({"tax_representative_id": tax_partner_id})
-                    invoice.write({"tax_representative_id": tax_partner_id})
                 if Intermediary:
                     Intermediary_id = self.getPartnerBase(
                         Intermediary.DatiAnagrafici,
