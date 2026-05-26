@@ -1987,7 +1987,7 @@ class WizardImportFatturapa(models.TransientModel):
                         raise_if_duplicated=False,
                     )
                     invoice.write({"intermediary": Intermediary_id})
-                new_invoices.append(invoice_id)
+                new_invoices.append(invoice.id)
                 self.check_invoice_amount(invoice, fattura)
 
                 invoice.set_einvoice_data(fattura)
