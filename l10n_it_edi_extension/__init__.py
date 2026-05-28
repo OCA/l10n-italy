@@ -714,12 +714,12 @@ def _l10n_it_fatturapa_in_post_migration(env):
                 """
                 INSERT INTO
                     l10n_it_edi_line (
-                        id, invoice_id, line_number, service_type, name, qty, uom,
+                        invoice_id, line_number, service_type, name, qty, uom,
                         period_start_date, period_end_date, unit_price,
                         total_price, tax_amount, wt_amount, tax_kind
                     )
                 SELECT
-                    id, invoice_id, line_number, service_type, name, qty, uom,
+                    invoice_id, line_number, service_type, name, qty, uom,
                     period_start_date, period_end_date, unit_price,
                     total_price, tax_amount, wt_amount, tax_kind
                 FROM
