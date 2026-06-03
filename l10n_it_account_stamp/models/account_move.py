@@ -58,7 +58,12 @@ class AccountMove(models.Model):
             )
         total_tax_base = sum(
             (
-                inv_tax.price_subtotal
+                self.currency_id._convert(
+                    inv_tax.price_subtotal,
+                    self.env.ref("base.EUR"),
+                    self.company_id,
+                    inv_tax.date,
+                )
                 for inv_tax in self.line_ids.filtered(
                     lambda line: set(line.tax_ids.ids)
                     & set(
@@ -81,7 +86,7 @@ class AccountMove(models.Model):
         "invoice_date",
         "move_type",
         "l10n_it_account_stamp_manually_apply_stamp_duty",
-        "invoice_line_ids.tax_ids",
+        "line_ids.tax_ids",
     )
     def _compute_l10n_it_account_stamp_is_stamp_duty_applied(self):
         for invoice in self:
@@ -121,13 +126,17 @@ class AccountMove(models.Model):
                         stamp_product_id.name,
                     )
                 )
+            currency_id = stamp_product_id.currency_id or inv.company_currency_id
+            price_unit = currency_id._convert(
+                stamp_product_id.list_price, inv.currency_id, inv.company_id, inv.date
+            )
             invoice_line_vals = {
                 "move_id": inv.id,
                 "product_id": stamp_product_id.id,
                 "name": stamp_product_id.description_sale,
                 "sequence": 99999,
                 "account_id": stamp_account.id,
-                "price_unit": stamp_product_id.list_price,
+                "price_unit": price_unit,
                 "quantity": 1,
                 "display_type": "product",
                 "product_uom_id": stamp_product_id.uom_id.id,
