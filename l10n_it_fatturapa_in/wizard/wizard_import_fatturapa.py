@@ -238,6 +238,7 @@ class WizardImportFatturapa(models.TransientModel):
                 partner_rule_domain,
                 locals_dict={
                     "company_id": att.company_id,
+                    "company_ids": att.company_id.ids,
                 },
             )
             for domain_index in range(len(domains)):
