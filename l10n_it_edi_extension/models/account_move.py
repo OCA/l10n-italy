@@ -1009,43 +1009,42 @@ class AccountMoveInherit(models.Model):
 
     def _l10n_it_edi_import_invoice(self, invoice, data, is_new):
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
+        if not invoice:
+            return invoice
 
         body_tree = data.get("xml_tree")
         is_incoming = self.is_purchase_document(include_receipts=True)
-        if invoice:
-            import_detail_level = (
-                invoice.partner_id.l10n_it_edi_import_detail_level
-                or invoice.company_id.l10n_it_edi_import_detail_level
-            )
-            if import_detail_level == "min":
-                # Delete all lines - Odoo creates them in the import loop
-                # but we don't want any for minimum detail level
-                invoice.invoice_line_ids.unlink()
-            elif import_detail_level == "tax":
-                # Delete all lines created by Odoo and create summary lines instead
-                invoice.invoice_line_ids.unlink()
-                if body_tree is not None:
-                    # Ignore these messages
-                    # because they have already been logged
-                    # when this method was executed during super's import
-                    extra_info, _messages = self._l10n_it_edi_get_extra_info(
-                        invoice.company_id,
-                        get_text(body_tree, "//DatiGeneraliDocumento/TipoDocumento"),
-                        body_tree,
-                        incoming=is_incoming,
+        import_detail_level = (
+            invoice.partner_id.l10n_it_edi_import_detail_level
+            or invoice.company_id.l10n_it_edi_import_detail_level
+        )
+        if import_detail_level == "min":
+            # Delete all lines - Odoo creates them in the import loop
+            # but we don't want any for minimum detail level
+            invoice.invoice_line_ids.unlink()
+        elif import_detail_level == "tax":
+            # Delete all lines created by Odoo and create summary lines instead
+            invoice.invoice_line_ids.unlink()
+            if body_tree is not None:
+                # Ignore these messages
+                # because they have already been logged
+                # when this method was executed during super's import
+                extra_info, _messages = self._l10n_it_edi_get_extra_info(
+                    invoice.company_id,
+                    get_text(body_tree, "//DatiGeneraliDocumento/TipoDocumento"),
+                    body_tree,
+                    incoming=is_incoming,
+                )
+                for summary_line in body_tree.xpath(".//DatiBeniServizi/DatiRiepilogo"):
+                    messages = invoice._l10n_it_edi_ext_import_summary_line(
+                        summary_line,
+                        extra_info=extra_info,
                     )
-                    for summary_line in body_tree.xpath(
-                        ".//DatiBeniServizi/DatiRiepilogo"
-                    ):
-                        messages = invoice._l10n_it_edi_ext_import_summary_line(
-                            summary_line,
-                            extra_info=extra_info,
-                        )
-                        for message in messages:
-                            invoice.sudo().message_post(body=message)
+                    for message in messages:
+                        invoice.sudo().message_post(body=message)
 
         partner_role = "seller" if is_incoming else "buyer"
-        if invoice and invoice.partner_id:
+        if invoice.partner_id:
             if not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update:
                 # Core creates the partner; fill the FatturaPA extras core
                 # leaves out (Provincia, EORI, Albo*, firstname/lastname) on
@@ -1055,15 +1054,13 @@ class AccountMoveInherit(models.Model):
                 )
             self._l10n_it_edi_extension_update_partner_bank(body_tree, invoice)
 
-        if invoice and (
-            tax_representative := self._l10n_it_edi_extension_create_partner(
-                body_tree,
-                "tax_representative",
-            )
+        if tax_representative := self._l10n_it_edi_extension_create_partner(
+            body_tree,
+            "tax_representative",
         ):
             invoice.l10n_it_edi_tax_representative_id = tax_representative
 
-        if invoice and (attachment := data["attachment"]):
+        if attachment := data["attachment"]:
             invoice.l10n_it_edi_ext_attachment_in_id = attachment.id
 
         return invoice
