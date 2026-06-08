@@ -13,7 +13,7 @@
         <xpath expr="//table//th[@name='th_description']" position="attributes">
             <attribute name="style">display: none;</attribute>
         </xpath>
-        <xpath expr="//div[hasclass('page')]/table/thead/tr/th[3]" position="after">
+        <xpath expr="//table//th[@name='th_description']" position="after">
             <th name="th_customer_name" class="text-start">Product Name</th>
         </xpath>
         <xpath expr="//table//td[@name='td_product']/span" position="attributes">
