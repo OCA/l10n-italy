@@ -218,7 +218,6 @@ class AccountMove(models.Model):
                 if inv.state == "posted":
                     posted = True
                     inv.state = "draft"
-                line_model = self.env["account.move.line"]
                 stamp_product_id = inv.company_id.with_context(
                     lang=inv.partner_id.lang
                 ).l10n_it_account_stamp_stamp_duty_product_id
@@ -229,10 +228,12 @@ class AccountMove(models.Model):
                 income_vals, expense_vals = inv._build_stamp_duty_lines(
                     stamp_product_id
                 )
-                income_vals["move_id"] = inv.id
-                expense_vals["move_id"] = inv.id
-                line_model.with_context(check_move_validity=False).create(income_vals)
-                line_model.with_context(check_move_validity=False).create(expense_vals)
+
+                inv.line_ids = [
+                    Command.create(income_vals),
+                    Command.create(expense_vals),
+                ]
+
                 if posted:
                     inv.state = "posted"
         return res
