@@ -82,7 +82,6 @@ class MailThread(models.AbstractModel):
                 continue
 
             # Create empty move and attachment
-            move = AccountMove.with_company(company).create({})
             attachment = (
                 self.env["ir.attachment"]
                 .sudo()
@@ -92,19 +91,28 @@ class MailThread(models.AbstractModel):
                         "name": filename,
                         "raw": content,
                         "type": "binary",
+                    }
+                )
+            )
+            files_data = self.env["account.move"]._to_files_data(attachment)
+            files_data.extend(self.env["account.move"]._unwrap_attachments(files_data))
+
+            moves = AccountMove.with_company(company).create([{}] * len(files_data))
+            for move, file_data in zip(moves, files_data, strict=False):
+                attachment = file_data["attachment"]
+                attachment.write(
+                    {
                         "res_model": "account.move",
                         "res_id": move.id,
                         "res_field": "l10n_it_edi_attachment_file",
                     }
                 )
-            )
-            move.with_context(
-                account_predictive_bills_disable_prediction=True,
-                no_new_invoice=True,
-            ).message_post(attachment_ids=attachment.ids)
+                move.l10n_it_edi_attachment_name = file_data.get("name", "")
+                move.message_post(attachment_ids=attachment.ids)
 
             # Parse the XML and populate the move fields
-            move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
+            for move, file_data in zip(moves, files_data, strict=False):
+                move._extend_with_attachments([file_data], new=True)
 
         _logger.info(
             "Processed incoming FatturaPA with Message-Id: %s",
