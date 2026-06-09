@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="l10n_it_edi.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//block[@id='account_edi']//setting[@id='italian_edi']"
+                expr="//block[@id='l10n_it_edi']//setting[@id='l10n_it_edi_setting']"
                 position="after"
             >
                 <setting id="l10n_it_edi_pec" string="PEC Channel">

@@ -39,7 +39,7 @@ class AccountMove(models.Model):
             filename = file_data["filename"]
             xml_bytes = base64.b64decode(file_data["xml"])
             try:
-                msg = self.env["ir.mail_server"].build_email(
+                msg = self.env["ir.mail_server"]._build_email__(
                     email_from=email_from,
                     email_to=sdi_email,
                     subject=filename,

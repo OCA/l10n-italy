@@ -7,8 +7,9 @@ from imaplib import IMAP4
 
 from markupsafe import Markup, escape
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 
 _logger = logging.getLogger(__name__)
 
@@ -32,7 +33,7 @@ class FetchmailServer(models.Model):
         string="Contacts to notify",
         help="Contacts to notify when PEC message can't be processed",
         domain=[("email", "!=", False)],
-        default=lambda self: [(6, 0, [self.env.user.partner_id.id])],
+        default=lambda self: [Command.set(self.env.user.partner_id.ids)],
     )
 
     def _l10n_it_edi_pec_fetch_imap(self, error_messages, additional_context):
@@ -64,7 +65,7 @@ class FetchmailServer(models.Model):
                     self._l10n_it_edi_pec_manage_failure(e, error_messages)
                     continue
                 imap_server.store(num, "+FLAGS", "\\Seen")
-                self._cr.commit()  # pylint: disable=invalid-commit
+                self.env.cr.commit()  # pylint: disable=invalid-commit
         except Exception as e:
             self._l10n_it_edi_pec_manage_failure(e, error_messages)
         finally:
@@ -105,7 +106,7 @@ class FetchmailServer(models.Model):
                         self._l10n_it_edi_pec_manage_failure(e, error_messages)
                         failed_in_loop += 1
                         continue
-                    self._cr.commit()  # pylint: disable=invalid-commit
+                    self.env.cr.commit()  # pylint: disable=invalid-commit
                 if num_messages < MAX_POP_MESSAGES or failed_in_loop == num:
                     break
                 pop_server.quit()
@@ -197,7 +198,7 @@ class FetchmailServer(models.Model):
         """Notify partners that the PEC server has been disabled."""
         self.ensure_one()
         self._l10n_it_edi_pec_notify_or_log(
-            _(
+            self.env._(
                 "PEC server %(name)s has been reset. "
                 "Last error message is '%(error_message)s'",
                 name=self.name,
@@ -216,9 +217,9 @@ class FetchmailServer(models.Model):
         if self.e_inv_notify_partner_ids:
             self.env["mail.mail"].create(
                 {
-                    "subject": _("Fetchmail PEC server [%s] error", self.name),
+                    "subject": self.env._("Fetchmail PEC server [%s] error", self.name),
                     "body_html": message,
-                    "recipient_ids": [(6, 0, self.e_inv_notify_partner_ids.ids)],
+                    "recipient_ids": [Command.set(self.e_inv_notify_partner_ids.ids)],
                 }
             ).send()
             _logger.info(

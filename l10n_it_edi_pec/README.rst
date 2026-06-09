@@ -21,13 +21,13 @@ ITA - Fattura elettronica - Supporto PEC
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_pec
+    :target: https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_edi_pec
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_edi_pec
+    :target: https://translation.odoo-community.org/projects/l10n-italy-19-0/l10n-italy-19-0-l10n_it_edi_pec
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -44,11 +44,11 @@ specifico via PEC.
 
 Funzionalità principali:
 
-- Invio fatture elettroniche via PEC al SdI
-- Ricezione email PEC dal SdI e instradamento ai gestori appropriati
-- Gestione errori PEC con notifica automatica ai contatti configurati e
-  disabilitazione del server dopo ripetuti fallimenti
-- Configurazione server SMTP e IMAP/POP3 dedicati alla PEC
+-  Invio fatture elettroniche via PEC al SdI
+-  Ricezione email PEC dal SdI e instradamento ai gestori appropriati
+-  Gestione errori PEC con notifica automatica ai contatti configurati e
+   disabilitazione del server dopo ripetuti fallimenti
+-  Configurazione server SMTP e IMAP/POP3 dedicati alla PEC
 
 **English**
 
@@ -61,11 +61,11 @@ and invoice reception logic, adding PEC-specific transport.
 
 Main features:
 
-- Send electronic invoices to SdI via PEC
-- Receive PEC emails from SdI and route to appropriate handlers
-- PEC error handling with automatic notification to configured contacts
-  and server auto-disable after repeated failures
-- Dedicated SMTP and IMAP/POP3 server configuration for PEC
+-  Send electronic invoices to SdI via PEC
+-  Receive PEC emails from SdI and route to appropriate handlers
+-  PEC error handling with automatic notification to configured contacts
+   and server auto-disable after repeated failures
+-  Dedicated SMTP and IMAP/POP3 server configuration for PEC
 
 **Table of contents**
 
@@ -79,24 +79,25 @@ Configuration
 
 1. Configurare un server SMTP in uscita per la PEC:
 
-   - Andare in *Impostazioni → Tecnico → Server di posta in uscita*
-   - Creare un nuovo server con i parametri del provider PEC
-   - Spuntare "E-invoice PEC server"
-   - Inserire l'indirizzo email PEC mittente
+   -  Andare in *Impostazioni → Tecnico → Server di posta in uscita*
+   -  Creare un nuovo server con i parametri del provider PEC
+   -  Spuntare "E-invoice PEC server"
+   -  Inserire l'indirizzo email PEC mittente
 
 2. Configurare un server di posta in ingresso per la PEC:
 
-   - Andare in *Impostazioni → Tecnico → Server di posta in ingresso*
-   - Creare un nuovo server IMAP o POP3 con i parametri del provider PEC
-   - Spuntare "E-invoice PEC server"
-   - Configurare i contatti da notificare in caso di errore
+   -  Andare in *Impostazioni → Tecnico → Server di posta in ingresso*
+   -  Creare un nuovo server IMAP o POP3 con i parametri del provider
+      PEC
+   -  Spuntare "E-invoice PEC server"
+   -  Configurare i contatti da notificare in caso di errore
 
 3. Abilitare il canale PEC per l'azienda:
 
-   - Andare in *Impostazioni → Contabilità → Fatturazione elettronica*
-   - Spuntare "Use PEC for e-invoicing"
-   - Selezionare i server PEC in uscita e in ingresso
-   - Inserire l'indirizzo PEC del SdI
+   -  Andare in *Impostazioni → Contabilità → Fatturazione elettronica*
+   -  Spuntare "Use PEC for e-invoicing"
+   -  Selezionare i server PEC in uscita e in ingresso
+   -  Inserire l'indirizzo PEC del SdI
 
 4. Il parametro di sistema ``fetchmail.pec.max.retry`` (default: 5)
    controlla il numero massimo di errori consecutivi prima che il server
@@ -108,24 +109,24 @@ Configuration
 
 1. Configure an outgoing PEC SMTP server:
 
-   - Go to *Settings → Technical → Outgoing Mail Servers*
-   - Create a new server with your PEC provider parameters
-   - Check "E-invoice PEC server"
-   - Enter the PEC sender email address
+   -  Go to *Settings → Technical → Outgoing Mail Servers*
+   -  Create a new server with your PEC provider parameters
+   -  Check "E-invoice PEC server"
+   -  Enter the PEC sender email address
 
 2. Configure an incoming PEC mail server:
 
-   - Go to *Settings → Technical → Incoming Mail Servers*
-   - Create a new IMAP or POP3 server with your PEC provider parameters
-   - Check "E-invoice PEC server"
-   - Configure contacts to notify on errors
+   -  Go to *Settings → Technical → Incoming Mail Servers*
+   -  Create a new IMAP or POP3 server with your PEC provider parameters
+   -  Check "E-invoice PEC server"
+   -  Configure contacts to notify on errors
 
 3. Enable PEC channel for the company:
 
-   - Go to *Settings → Accounting → Italian Electronic Invoicing*
-   - Check "Use PEC for e-invoicing"
-   - Select the outgoing and incoming PEC servers
-   - Enter the SdI PEC email address
+   -  Go to *Settings → Accounting → Italian Electronic Invoicing*
+   -  Check "Use PEC for e-invoicing"
+   -  Select the outgoing and incoming PEC servers
+   -  Enter the SdI PEC email address
 
 4. The system parameter ``fetchmail.pec.max.retry`` (default: 5)
    controls the maximum number of consecutive errors before the incoming
@@ -151,11 +152,11 @@ Le notifiche dal SdI vengono ricevute automaticamente tramite il cron di
 fetchmail. Lo stato della fattura viene aggiornato automaticamente in
 base alla notifica ricevuta:
 
-- RC (Ricevuta di Consegna) → Inoltrata al destinatario
-- NS (Notifica di Scarto) → Rifiutata
-- MC (Mancata Consegna) → Inoltro al destinatario fallito
-- NE (Notifica Esito) → Accettata/Rifiutata dal partner PA
-- DT (Decorrenza Termini) → Accettata per decorrenza termini
+-  RC (Ricevuta di Consegna) → Inoltrata al destinatario
+-  NS (Notifica di Scarto) → Rifiutata
+-  MC (Mancata Consegna) → Inoltro al destinatario fallito
+-  NE (Notifica Esito) → Accettata/Rifiutata dal partner PA
+-  DT (Decorrenza Termini) → Accettata per decorrenza termini
 
 Ricezione fatture passive
 -------------------------
@@ -185,11 +186,11 @@ SdI notifications are received automatically via the fetchmail cron. The
 invoice state is updated automatically based on the notification
 received:
 
-- RC (Delivery Receipt) → Forwarded to recipient
-- NS (Rejection) → Rejected
-- MC (Failed Delivery) → Forward to recipient failed
-- NE (Outcome Notification) → Accepted/Rejected by PA partner
-- DT (Deadline Expiry) → Accepted after term expiry
+-  RC (Delivery Receipt) → Forwarded to recipient
+-  NS (Rejection) → Rejected
+-  MC (Failed Delivery) → Forward to recipient failed
+-  NE (Outcome Notification) → Accepted/Rejected by PA partner
+-  DT (Deadline Expiry) → Accepted after term expiry
 
 Receiving vendor bills
 ----------------------
@@ -220,9 +221,9 @@ The module was renamed from ``l10n_it_fatturapa_pec`` to
 
 Dependencies were drastically simplified:
 
-- **v16**: ``l10n_it_fatturapa_out``, ``l10n_it_fatturapa_in``,
-  ``l10n_it_sdi_channel``, ``mail``
-- **v18**: ``l10n_it_edi``, ``mail``
+-  **v16**: ``l10n_it_fatturapa_out``, ``l10n_it_fatturapa_in``,
+   ``l10n_it_sdi_channel``, ``mail``
+-  **v18**: ``l10n_it_edi``, ``mail``
 
 The modules ``l10n_it_fatturapa_out``, ``l10n_it_fatturapa_in`` and
 ``l10n_it_sdi_channel`` are no longer needed.
@@ -233,15 +234,15 @@ Integration with l10n_it_edi core
 The module now extends Odoo 18's ``l10n_it_edi`` core methods instead of
 implementing a standalone flow:
 
-- ``_l10n_it_edi_upload()`` on ``account.move``: intercepts sending for
-  PEC-enabled companies and sends directly via SMTP, with fallback to
-  ``super()`` for the proxy channel
-- ``_l10n_it_edi_update_send_state()``: excludes PEC invoices from proxy
-  polling
-- ``_l10n_it_edi_export_check()``: validates PEC configuration and
-  removes the proxy user requirement
-- ``action_check_l10n_it_edi()``: triggers PEC fetchmail for manual
-  status check
+-  ``_l10n_it_edi_upload()`` on ``account.move``: intercepts sending for
+   PEC-enabled companies and sends directly via SMTP, with fallback to
+   ``super()`` for the proxy channel
+-  ``_l10n_it_edi_update_send_state()``: excludes PEC invoices from
+   proxy polling
+-  ``_l10n_it_edi_export_check()``: validates PEC configuration and
+   removes the proxy user requirement
+-  ``action_check_l10n_it_edi()``: triggers PEC fetchmail for manual
+   status check
 
 Removed sdi.channel model
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -249,10 +250,10 @@ Removed sdi.channel model
 The ``sdi.channel`` model has been completely removed. PEC configuration
 is now managed directly on ``res.company`` through the fields:
 
-- ``l10n_it_edi_use_pec`` (Boolean)
-- ``l10n_it_edi_pec_server_id`` (Many2one -> ir.mail_server)
-- ``l10n_it_edi_pec_fetch_server_id`` (Many2one -> fetchmail.server)
-- ``l10n_it_edi_pec_email_exchange_system`` (Char)
+-  ``l10n_it_edi_use_pec`` (Boolean)
+-  ``l10n_it_edi_pec_server_id`` (Many2one -> ir.mail_server)
+-  ``l10n_it_edi_pec_fetch_server_id`` (Many2one -> fetchmail.server)
+-  ``l10n_it_edi_pec_email_exchange_system`` (Char)
 
 These fields are exposed in Settings via ``res.config.settings``. The
 views ``sdi_view.xml`` and ``company_view.xml`` are replaced by
@@ -284,25 +285,26 @@ SdI state mapping
 
 State mapping has changed to align with the ``l10n_it_edi`` core:
 
-+----------------------+----------------------------+----------------------+
-| SdI Code             | v16                        | v18 (account.move)   |
-|                      | (fatturapa.attachment.out) |                      |
-+======================+============================+======================+
-| NS (Notifica di      | ``sender_error``           | ``rejected``         |
-| Scarto)              |                            |                      |
-+----------------------+----------------------------+----------------------+
-| RC (Ricevuta di      | ``validated``              | ``forwarded``        |
-| Consegna)            |                            |                      |
-+----------------------+----------------------------+----------------------+
-| MC (Mancata          | ``recipient_error``        | ``forward_failed``   |
-| Consegna)            |                            |                      |
-+----------------------+----------------------------+----------------------+
-| NE (Notifica Esito)  | ``accepted`` /             | ``accepted`` /       |
-|                      | ``rejected``               | ``rejected``         |
-+----------------------+----------------------------+----------------------+
-| DT (Decorrenza       | ``validated``              | ``accepted``         |
-| Termini)             |                            |                      |
-+----------------------+----------------------------+----------------------+
++----------------------+----------------------+----------------------+
+| SdI Code             | v16                  | v18 (account.move)   |
+|                      | (fattu               |                      |
+|                      | rapa.attachment.out) |                      |
++======================+======================+======================+
+| NS (Notifica di      | ``sender_error``     | ``rejected``         |
+| Scarto)              |                      |                      |
++----------------------+----------------------+----------------------+
+| RC (Ricevuta di      | ``validated``        | ``forwarded``        |
+| Consegna)            |                      |                      |
++----------------------+----------------------+----------------------+
+| MC (Mancata          | ``recipient_error``  | ``forward_failed``   |
+| Consegna)            |                      |                      |
++----------------------+----------------------+----------------------+
+| NE (Notifica Esito)  | ``accepted`` /       | ``accepted`` /       |
+|                      | ``rejected``         | ``rejected``         |
++----------------------+----------------------+----------------------+
+| DT (Decorrenza       | ``validated``        | ``accepted``         |
+| Termini)             |                      |                      |
++----------------------+----------------------+----------------------+
 
 Removed first_invoice_sent flow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -316,11 +318,11 @@ PEC address must now be configured directly in the
 Simplified sending mechanism
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **v16**: ``sdi.channel.send_via_pec()`` created ``mail.message`` and
-  ``mail.mail`` records, then delegated sending to Odoo's mail system
-- **v18**: ``_l10n_it_edi_upload()`` directly builds a Python
-  ``EmailMessage`` and sends it via ``ir.mail_server.send_email()``,
-  without creating intermediate database records
+-  **v16**: ``sdi.channel.send_via_pec()`` created ``mail.message`` and
+   ``mail.mail`` records, then delegated sending to Odoo's mail system
+-  **v18**: ``_l10n_it_edi_upload()`` directly builds a Python
+   ``EmailMessage`` and sends it via ``ir.mail_server.send_email()``,
+   without creating intermediate database records
 
 Field renames
 ~~~~~~~~~~~~~
@@ -346,7 +348,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_edi_pec%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_edi_pec%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -356,12 +358,12 @@ Credits
 Contributors
 ------------
 
-- Andrea Colangelo (andreacolangelo@openforce.it)
-- Sergio Corato https://efatto.it
-- Lorenzo Battistini https://github.com/eLBati
-- Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
-- Roberto Fichera https://levelprime.com
-- Simone Rubino
+-  Andrea Colangelo (andreacolangelo@openforce.it)
+-  Sergio Corato https://efatto.it
+-  Lorenzo Battistini https://github.com/eLBati
+-  Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+-  Roberto Fichera https://levelprime.com
+-  Simone Rubino
 
 Maintainers
 -----------
@@ -376,6 +378,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_pec>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_edi_pec>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
