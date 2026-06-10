@@ -707,21 +707,34 @@ def _l10n_it_fatturapa_in_post_migration(env):
     openupgrade.logged_query(env.cr, query)
 
     if openupgrade_tools.table_exists(env.cr, "einvoice_line"):
+        l10n_it_edi_line_id_legacy = openupgrade.get_legacy_name("l10n_it_edi_line_id")
+        openupgrade.add_columns(
+            env,
+            [
+                (
+                    "l10n_it_edi_line",
+                    l10n_it_edi_line_id_legacy,
+                    "integer",
+                ),
+            ],
+        )
         env.cr.execute("SELECT * FROM einvoice_line LIMIT 1")
         if env.cr.fetchone():
             openupgrade.logged_query(
                 env.cr,
-                """
+                f"""
                 INSERT INTO
                     l10n_it_edi_line (
                         invoice_id, line_number, service_type, name, qty, uom,
                         period_start_date, period_end_date, unit_price,
-                        total_price, tax_amount, wt_amount, tax_kind
+                        total_price, tax_amount, wt_amount, tax_kind,
+                        {l10n_it_edi_line_id_legacy}
                     )
                 SELECT
                     invoice_id, line_number, service_type, name, qty, uom,
                     period_start_date, period_end_date, unit_price,
-                    total_price, tax_amount, wt_amount, tax_kind
+                    total_price, tax_amount, wt_amount, tax_kind,
+                    id
                 FROM
                     einvoice_line
                 """,
@@ -732,13 +745,16 @@ def _l10n_it_fatturapa_in_post_migration(env):
         if env.cr.fetchone():
             openupgrade.logged_query(
                 env.cr,
-                """
+                f"""
                 INSERT INTO
                     l10n_it_edi_article_code (name, code_val, l10n_it_edi_line_id)
                 SELECT
-                    name, code_val, e_invoice_line_id
+                    fac.name, fac.code_val, edi_line.id
                 FROM
-                    fatturapa_article_code
+                    fatturapa_article_code AS fac
+                LEFT JOIN
+                    l10n_it_edi_line AS edi_line
+                    ON fac.e_invoice_line_id = edi_line.{l10n_it_edi_line_id_legacy}
                 """,
             )
 
@@ -747,17 +763,20 @@ def _l10n_it_fatturapa_in_post_migration(env):
         if env.cr.fetchone():
             openupgrade.logged_query(
                 env.cr,
-                """
+                f"""
                 INSERT INTO
                     l10n_it_edi_discount_rise_price (
                         name, percentage, amount, invoice_line_id, invoice_id,
                         l10n_it_edi_line_id
                     )
                 SELECT
-                    name, percentage, amount, invoice_line_id, invoice_id,
-                    e_invoice_line_id
+                    drp.name, drp.percentage, drp.amount, drp.invoice_line_id,
+                    drp.invoice_id, edi_line.id
                 FROM
-                    discount_rise_price
+                    discount_rise_price AS drp
+                LEFT JOIN
+                    l10n_it_edi_line AS edi_line
+                    ON drp.e_invoice_line_id = edi_line.{l10n_it_edi_line_id_legacy}
                 """,
             )
 
@@ -766,15 +785,19 @@ def _l10n_it_fatturapa_in_post_migration(env):
         if env.cr.fetchone():
             openupgrade.logged_query(
                 env.cr,
-                """
+                f"""
                 INSERT INTO
                     l10n_it_edi_line_other_data (
                         l10n_it_edi_line_id, name, text_ref, num_ref, date_ref
                     )
                 SELECT
-                    e_invoice_line_id, name, text_ref, num_ref, date_ref::date
+                    edi_line.id, elod.name, elod.text_ref, elod.num_ref,
+                    elod.date_ref::date
                 FROM
-                    einvoice_line_other_data
+                    einvoice_line_other_data AS elod
+                LEFT JOIN
+                    l10n_it_edi_line AS edi_line
+                    ON elod.e_invoice_line_id = edi_line.{l10n_it_edi_line_id_legacy}
                 """,
             )
 
