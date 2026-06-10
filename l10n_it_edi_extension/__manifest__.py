@@ -18,6 +18,7 @@
     },
     "depends": [
         "account",
+        "l10n_it_account",
         "l10n_it_edi",
         "l10n_it_edi_ndd",
         "partner_firstname",
