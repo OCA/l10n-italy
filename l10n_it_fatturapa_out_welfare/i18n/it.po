@@ -1,0 +1,177 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_fatturapa_out_welfare
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-19 13:06+0000\n"
+"PO-Revision-Date: 2023-04-26 16:05+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__administration_reference
+msgid "Administration Reference"
+msgstr "Riferimento amministrativo"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__amount
+msgid "Amount"
+msgstr "Importo"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_welfare.invoice_form
+msgid ""
+"Existing Grouping Welfare Invoice Lines will be deleted, and new ones will "
+"be created."
+msgstr ""
+"Le righe fattura che raggruppano per cassa previdenziale esistenti saranno "
+"eliminate, e ne saranno create di nuove."
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model,name:l10n_it_fatturapa_out_welfare.model_wizard_export_fatturapa
+msgid "Export E-invoice"
+msgstr "Esporta e-fattura"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out_welfare.invoice_form
+msgid "Generate Welfare Lines"
+msgstr "Genera righe cassa previdenziale"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_account_invoice_line__welfare_grouping_fund_type_amount_id
+msgid "Grouped Welfare Amount"
+msgstr "Importo cassa previdenziale raggruppato"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_account_invoice_line__welfare_grouped_invoice_line_ids
+msgid "Grouped Welfare Invoice Lines"
+msgstr "Righe fattura raggruppate per cassa previdenziale"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_account_invoice_line__welfare_grouping_invoice_line_ids
+msgid "Grouping Welfare Invoice Lines"
+msgstr "Righe fattura che raggruppano per cassa previdenziale"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model,name:l10n_it_fatturapa_out_welfare.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model,name:l10n_it_fatturapa_out_welfare.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga fattura"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_welfare.field_account_invoice_line__welfare_grouping_invoice_line_ids
+msgid "Invoice Lines that represent this Line's Welfare Amount."
+msgstr ""
+"Righe fattura che rappresentano l'importo della cassa previdenziale di "
+"questa riga."
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_welfare.field_account_invoice_line__welfare_grouped_invoice_line_ids
+msgid "Invoice Lines whose Welfare Amount is represented by this Line."
+msgstr ""
+"Righe fattura il cui importo di cassa previdenziale è rappresentato da "
+"questa riga."
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: code:addons/l10n_it_fatturapa_out_welfare/models/account_invoice.py:62
+#, python-format
+msgid "Please regenerate Welfare Lines for invoices: {invoices}"
+msgstr "Rigenerare le righe di cassa previdenziale per le fatture: {invoices}"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_account_invoice__should_regenerate_welfare_lines
+msgid "Should Regenerate Welfare Lines"
+msgstr "Deve rigenerare le righe di cassa previdenziale"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: code:addons/l10n_it_fatturapa_out_welfare/models/welfare_fund_type_amount.py:55
+#, python-format
+msgid "Welfare '{welfare}' should be present in Invoice Line '{line}'"
+msgstr ""
+"La cassa previdenziale '{welfare}' deve essere presente nella riga fattura "
+"'{line}'"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_welfare.field_account_invoice_line__welfare_grouping_fund_type_amount_id
+msgid "Welfare Amount represented by this Invoice Line."
+msgstr "Importo di cassa previdenziale rappresentato da questa riga fattura."
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,help:l10n_it_fatturapa_out_welfare.field_account_invoice_line__welfare_fund_type_amount_ids
+msgid "Welfare Amounts to be applied on this Invoice Line."
+msgstr "Importi di cassa previdenziale da applicare a questa riga fattura."
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_welfare_fund_type_amount__welfare_fund_type_id
+msgid "Welfare Fund Type"
+msgstr "Tipo cassa previdenziale"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.model,name:l10n_it_fatturapa_out_welfare.model_welfare_fund_type_amount
+msgid "Welfare Fund Type Amount"
+msgstr "Importo di cassa previdenziale"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: model:ir.actions.act_window,name:l10n_it_fatturapa_out_welfare.welfare_fund_type_amount_action
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out_welfare.field_account_invoice_line__welfare_fund_type_amount_ids
+#: model:ir.ui.menu,name:l10n_it_fatturapa_out_welfare.welfare_fund_type_amount_menu
+msgid "Welfare Fund Type Amounts"
+msgstr "Casse previdenziali"
+
+#. module: l10n_it_fatturapa_out_welfare
+#: sql_constraint:welfare.fund.type.amount:0
+msgid "Welfare Type and amount must be unique."
+msgstr "Il tipo di cassa previdenziale e l'importo devono essere univoci."
