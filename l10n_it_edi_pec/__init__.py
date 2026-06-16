@@ -6,6 +6,7 @@
 from . import models
 
 from openupgradelib import openupgrade, openupgrade_tools
+from odoo.addons.l10n_it_account.migration_tools import _remove_module
 
 
 def _l10n_it_edi_pec_pre_init_hook(env):
@@ -72,3 +73,4 @@ def _l10n_it_edi_pec_post_init_hook(env):
             AND sc.channel_type = 'pec'
         """,
     )
+    _remove_module(env, "l10n_it_fatturapa_pec")
