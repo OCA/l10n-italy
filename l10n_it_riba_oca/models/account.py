@@ -184,6 +184,81 @@ class AccountMove(models.Model):
         return False
 
     def _post(self, soft=True):
+        for invoice in self:
+            # Add a line with collection fees for each due date only for first due
+            # date of the month
+            if (
+                invoice.move_type != "out_invoice"
+                or not invoice.invoice_payment_term_id
+                or not invoice.invoice_payment_term_id.riba
+                or invoice.invoice_payment_term_id.riba_payment_cost == 0.0
+            ):
+                continue
+            if not invoice.company_id.due_cost_service_id:
+                raise UserError(
+                    self.env._("Set a Service for Collection Fees in Company Config.")
+                )
+            # Apply Collection Fees on invoice only on first due date of the month
+            # Get Date of first due date
+            move_line = self.env["account.move.line"].search(
+                [("partner_id", "=", invoice.partner_id.id)]
+            )
+            if not any(line.due_cost_line for line in move_line):
+                move_line = self.env["account.move.line"]
+            # Filtered recordset with date_maturity
+            move_line = move_line.filtered(lambda line: line.date_maturity is not False)
+            # Sorted
+            move_line = move_line.sorted(key=lambda r: r.date_maturity)
+            # Get date
+            previous_date_due = move_line.mapped("date_maturity")
+            pterm = self.env["account.payment.term"].browse(
+                invoice.invoice_payment_term_id.id
+            )
+
+            pterm_list = pterm._compute_terms(
+                date_ref=invoice.invoice_date,
+                currency=invoice.currency_id,
+                company=invoice.company_id,
+                tax_amount=1,
+                tax_amount_currency=1,
+                untaxed_amount=0,
+                untaxed_amount_currency=0,
+                sign=1,
+            )
+
+            for pay_date in pterm_list["line_ids"]:
+                if not self.month_check(pay_date["date"], previous_date_due):
+                    # Get Line values for service product
+                    service_prod = invoice.company_id.due_cost_service_id
+                    account = service_prod.product_tmpl_id.get_product_accounts(
+                        invoice.fiscal_position_id
+                    )["income"]
+                    line_vals = {
+                        "partner_id": invoice.partner_id.id,
+                        "product_id": service_prod.id,
+                        "move_id": invoice.id,
+                        "price_unit": (
+                            invoice.invoice_payment_term_id.riba_payment_cost
+                        ),
+                        "due_cost_line": True,
+                        "name": self.env._(
+                            "%(line_name)s for %(month)s-%(year)s",
+                            line_name=service_prod.name,
+                            month=pay_date["date"].month,
+                            year=pay_date["date"].year,
+                        ),
+                        "account_id": account.id,
+                        "sequence": 9999,
+                    }
+                    # Update Line Value with tax if is set on product
+                    if invoice.company_id.due_cost_service_id.taxes_id:
+                        tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
+                        line_vals.update({"tax_ids": [Command.link(tax.id)]})
+                    invoice.write({"invoice_line_ids": [Command.create(line_vals)]})
+                    # recompute invoice taxes
+                    invoice._sync_dynamic_lines(
+                        container={"records": invoice, "self": invoice}
+                    )
         inv_riba_no_bank = self.filtered(
             lambda x: x.is_riba_payment
             and x.move_type == "out_invoice"
@@ -207,85 +282,7 @@ class AccountMove(models.Model):
                     "\n- ".join(inv_details),
                 )
             )
-        return super()._post(soft=soft)
-
-    def action_post(self):
-        for invoice in self:
-            # ---- Add a line with collection fees for each due date only for first due
-            # ---- date of the month
-            if (
-                invoice.move_type != "out_invoice"
-                or not invoice.invoice_payment_term_id
-                or not invoice.invoice_payment_term_id.riba
-                or invoice.invoice_payment_term_id.riba_payment_cost == 0.0
-            ):
-                continue
-            if not invoice.company_id.due_cost_service_id:
-                raise UserError(
-                    self.env._("Set a Service for Collection Fees in Company Config.")
-                )
-            # ---- Apply Collection Fees on invoice only on first due date of the month
-            # ---- Get Date of first due date
-            move_line = self.env["account.move.line"].search(
-                [("partner_id", "=", invoice.partner_id.id)]
-            )
-            if not any(line.due_cost_line for line in move_line):
-                move_line = self.env["account.move.line"]
-            # ---- Filtered recordset with date_maturity
-            move_line = move_line.filtered(lambda line: line.date_maturity is not False)
-            # ---- Sorted
-            move_line = move_line.sorted(key=lambda r: r.date_maturity)
-            # ---- Get date
-            previous_date_due = move_line.mapped("date_maturity")
-            pterm = self.env["account.payment.term"].browse(
-                self.invoice_payment_term_id.id
-            )
-            pterm_list = pterm._compute_terms(
-                date_ref=self.invoice_date,
-                currency=self.currency_id,
-                company=self.company_id,
-                tax_amount=1,
-                tax_amount_currency=1,
-                untaxed_amount=0,
-                untaxed_amount_currency=0,
-                sign=1,
-            )
-
-            for pay_date in pterm_list["line_ids"]:
-                if not self.month_check(pay_date["date"], previous_date_due):
-                    # ---- Get Line values for service product
-                    service_prod = invoice.company_id.due_cost_service_id
-                    account = service_prod.product_tmpl_id.get_product_accounts(
-                        invoice.fiscal_position_id
-                    )["income"]
-                    line_vals = {
-                        "partner_id": invoice.partner_id.id,
-                        "product_id": service_prod.id,
-                        "move_id": invoice.id,
-                        "price_unit": (
-                            invoice.invoice_payment_term_id.riba_payment_cost
-                        ),
-                        "due_cost_line": True,
-                        "name": self.env._(
-                            "%(line_name)s for %(month)s-%(year)s",
-                            line_name=service_prod.name,
-                            month=pay_date["date"].month,
-                            year=pay_date["date"].year,
-                        ),
-                        "account_id": account.id,
-                        "sequence": 9999,
-                    }
-                    # ---- Update Line Value with tax if is set on product
-                    if invoice.company_id.due_cost_service_id.taxes_id:
-                        tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
-                        line_vals.update({"tax_ids": [Command.link(tax.id)]})
-                    invoice.write({"invoice_line_ids": [Command.create(line_vals)]})
-                    # ---- recompute invoice taxes
-                    invoice._sync_dynamic_lines(
-                        container={"records": invoice, "self": invoice}
-                    )
-        res = super().action_post()
-
+        res = super()._post(soft=soft)
         # Automatic reconciliation for RiBa credit moves
         # When a credit move is posted and there are related RiBa slips,
         # we need to reconcile the acceptance and credit move lines
