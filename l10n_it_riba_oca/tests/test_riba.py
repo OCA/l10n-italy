@@ -43,6 +43,41 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         new_inv = self.invoice.copy()
         self.assertEqual(len(new_inv.invoice_line_ids), 1)
 
+    def test_add_due_cost_from_list_confirm(self):
+        """Collection fees are added when confirming from the list view.
+
+        Regression test for https://github.com/OCA/l10n-italy/issues/5063:
+        when invoices are confirmed in batch from the list view through the
+        "Confirm Entries" wizard, the collection fees must be added. Before
+        this fix the fee-adding logic lived in action_post() only, so it was
+        skipped because the wizard posts the moves calling _post() directly.
+        """
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        # Reproduce the list-view "Confirm Entries" action: the wizard posts
+        # the selected moves calling _post() (not action_post()).
+        wizard = (
+            self.env["validate.account.move"]
+            .with_context(active_model="account.move", active_ids=self.invoice.ids)
+            .create({})
+        )
+        wizard.validate_move()
+        self.assertEqual(self.invoice.state, "posted")
+        # The invoice has 3 lines: 1 product + 2 collection fees (one per due
+        # date).
+        self.assertEqual(len(self.invoice.invoice_line_ids), 3)
+        self.assertEqual(
+            self.invoice.invoice_line_ids[1].product_id, self.service_due_cost
+        )
+        self.assertEqual(
+            self.invoice.invoice_line_ids[2].product_id, self.service_due_cost
+        )
+        # The two collection fees total 10.00 (5.00 x 2 due dates).
+        self.assertEqual(
+            self.invoice.invoice_line_ids[1].price_unit
+            + self.invoice.invoice_line_ids[2].price_unit,
+            10.00,
+        )
+
     def test_not_add_due_cost(self):
         # create 2 invoice for partner in same month on the second one no
         # collection fees line expected
@@ -972,9 +1007,11 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
         # Find the bank fee line
         bank_fee_line = past_due_move.line_ids.filtered(
-            lambda line: line.name == "Bank Fee"
-            and line.account_id == past_due_wizard.bank_expense_account_id
-            and line.debit > 0
+            lambda line: (
+                line.name == "Bank Fee"
+                and line.account_id == past_due_wizard.bank_expense_account_id
+                and line.debit > 0
+            )
         )
 
         # Assert that partner_id is set
@@ -1013,9 +1050,11 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
         # Find the bank fee line
         bank_fee_line = past_due_move.line_ids.filtered(
-            lambda line: line.name == "Bank Fee"
-            and line.account_id == past_due_wizard.bank_expense_account_id
-            and line.debit > 0
+            lambda line: (
+                line.name == "Bank Fee"
+                and line.account_id == past_due_wizard.bank_expense_account_id
+                and line.debit > 0
+            )
         )
 
         # Assert that partner_id is not set
