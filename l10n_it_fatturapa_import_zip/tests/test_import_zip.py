@@ -9,7 +9,7 @@ from odoo.addons.l10n_it_fatturapa_in.tests.fatturapa_common import FatturapaCom
 
 class TestImportZIP(FatturapaCommon):
     def setUp(self):
-        super(TestImportZIP, self).setUp()
+        super().setUp()
         self.attachment_import_model = self.env["fatturapa.attachment.import.zip"]
         self.cleanPartners()
         self.create_wt()
@@ -85,7 +85,9 @@ class TestImportZIP(FatturapaCommon):
             expected_invoices_values = check_invoices_values.get(attachment.name)
             if expected_invoices_values is not None:
                 invoices = attachment.out_invoice_ids
-                for invoice, expected_values in zip(invoices, expected_invoices_values):
+                for invoice, expected_values in zip(
+                    invoices, expected_invoices_values, strict=False
+                ):
                     for field, expected_value in expected_values.items():
                         self.assertEqual(
                             getattr(invoice, field),
