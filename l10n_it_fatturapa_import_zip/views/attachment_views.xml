@@ -9,11 +9,11 @@
                     <button
                         name="action_import"
                         type="object"
-                        states="draft"
+                        invisible="state != 'draft'"
                         string="Import invoices"
                         class="oe_highlight"
                     />
-                    <field name="state" widget="statusbar" />
+                    <field name="state" widget="statusbar" readonly="True" />
                 </header>
                 <sheet string="Import e-bill ZIP">
                     <div class="oe_button_box" name="button_box">
@@ -23,12 +23,13 @@
                             class="oe_stat_button"
                             icon="fa-files-o"
                             context="{'xml_type': 'out_xml'}"
-                            attrs="{'invisible': [('xml_out_count', '=', 0)]}"
+                            invisible="xml_out_count == 0"
                         >
                             <field
                                 name="xml_out_count"
                                 widget="statinfo"
                                 string="XML Out"
+                                readonly="True"
                             />
                         </button>
                         <button
@@ -37,12 +38,13 @@
                             class="oe_stat_button"
                             icon="fa-files-o"
                             context="{'xml_type': 'in_xml'}"
-                            attrs="{'invisible': [('xml_in_count', '=', 0)]}"
+                            invisible="xml_in_count == 0"
                         >
                             <field
                                 name="xml_in_count"
                                 widget="statinfo"
                                 string="XML In"
+                                readonly="True"
                             />
                         </button>
                         <button
@@ -51,12 +53,13 @@
                             class="oe_stat_button"
                             icon="fa-pencil-square-o"
                             context="{'invoice_type': 'out_invoice'}"
-                            attrs="{'invisible': [('invoices_out_count', '=', 0)]}"
+                            invisible="invoices_out_count == 0"
                         >
                             <field
                                 name="invoices_out_count"
                                 widget="statinfo"
                                 string="Out invoices"
+                                readonly="True"
                             />
                         </button>
                         <button
@@ -65,12 +68,13 @@
                             class="oe_stat_button"
                             icon="fa-pencil-square-o"
                             context="{'invoice_type': 'in_invoice'}"
-                            attrs="{'invisible': [('invoices_in_count', '=', 0)]}"
+                            invisible="invoices_in_count == 0"
                         >
                             <field
                                 name="invoices_in_count"
                                 widget="statinfo"
                                 string="In invoices"
+                                readonly="True"
                             />
                         </button>
                     </div>
@@ -82,7 +86,7 @@
                                     <field
                                         name="datas"
                                         filename="name"
-                                        attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                        readonly="state != 'draft'"
                                     />
                                 </div>
                                 <field name="name" invisible="1" />
@@ -90,15 +94,12 @@
                         </group>
                         <notebook>
                             <page string="Messages">
-                                <field name="messages" />
+                                <field name="messages" readonly="True" />
                             </page>
                         </notebook>
                     </div>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -106,11 +107,11 @@
         <field name="name">fatturapa_attachment_import_zip_tree</field>
         <field name="model">fatturapa.attachment.import.zip</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'draft'" decoration-muted="state == 'done'">
+            <list decoration-info="state == 'draft'" decoration-muted="state == 'done'">
                 <field name="name" />
                 <field name="create_date" />
-                <field name="state" />
-            </tree>
+                <field name="state" readonly="True" />
+            </list>
         </field>
     </record>
     <record id="fatturapa_attachment_import_zip_search" model="ir.ui.view">
@@ -119,14 +120,14 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" />
-                <field name="state" />
+                <field name="state" readonly="True" />
             </search>
         </field>
     </record>
     <record id="action_fatturapa_attachment_import_zip" model="ir.actions.act_window">
         <field name="name">Import E-bill ZIP Files</field>
         <field name="res_model">fatturapa.attachment.import.zip</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="fatturapa_attachment_import_zip_tree" />
     </record>
     <menuitem
@@ -144,12 +145,9 @@
         />
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page
-                    string="ZIP import"
-                    attrs="{'invisible': [('attachment_import_zip_id', '=', False)]}"
-                >
+                <page string="ZIP import" invisible="not attachment_import_zip_id">
                     <group>
-                        <field name="attachment_import_zip_id" />
+                        <field name="attachment_import_zip_id" readonly="True" />
                     </group>
                 </page>
             </xpath>
@@ -166,7 +164,8 @@
             <field name="invoice_partner_id" position="after">
                 <field
                     name="attachment_import_zip_id"
-                    attrs="{'invisible': [('attachment_import_zip_id', '=', False)]}"
+                    invisible="not attachment_import_zip_id"
+                    readonly="True"
                 />
             </field>
         </field>

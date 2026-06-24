@@ -11,11 +11,13 @@
             <field name="has_pdf_invoice_print" position="after">
                 <field
                     name="attachment_out_import_zip_id"
-                    attrs="{'invisible': [('attachment_out_import_zip_id', '=', False)]}"
+                    readonly="True"
+                    invisible="not attachment_out_import_zip_id"
                 />
                 <field
                     name="attachment_in_import_zip_id"
-                    attrs="{'invisible': [('attachment_in_import_zip_id', '=', False)]}"
+                    readonly="True"
+                    invisible="not attachment_in_import_zip_id"
                 />
             </field>
         </field>

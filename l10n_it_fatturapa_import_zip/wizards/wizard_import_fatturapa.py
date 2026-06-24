@@ -62,9 +62,9 @@ class WizardImportFatturapa(models.TransientModel):
         if self._is_import_attachment_out():
             exception = UserError(
                 _(
-                    "Define a sale journal for this company: '%s' (id: %d).",
-                    company.name,
-                    company.id,
+                    "Define a sale journal for this company: '%(name)s' (id: %(id)d).",
+                    name=company.name,
+                    id=company.id,
                 )
             )
         else:

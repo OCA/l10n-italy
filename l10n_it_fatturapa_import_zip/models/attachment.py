@@ -39,37 +39,27 @@ class FatturaPAAttachmentImportZIP(models.Model):
             ("draft", "Draft"),
             ("done", "Completed"),
         ],
-        string="State",
         default="draft",
         required=True,
-        readonly=True,
     )
-    messages = fields.Text(
-        "Error Messages", readonly=True, compute="_compute_invoices_data"
-    )
+    messages = fields.Text("Error Messages", compute="_compute_invoices_data")
     xml_out_count = fields.Integer(
-        string="XML Out Count", compute="_compute_invoices_data", readonly=True
+        string="XML Out Count", compute="_compute_invoices_data"
     )
     xml_in_count = fields.Integer(
-        string="XML In Count", compute="_compute_invoices_data", readonly=True
+        string="XML In Count", compute="_compute_invoices_data"
     )
-    invoices_out_count = fields.Integer(
-        string="Invoices Out Count", compute="_compute_invoices_data", readonly=True
-    )
-    invoices_in_count = fields.Integer(
-        string="Invoices In Count", compute="_compute_invoices_data", readonly=True
-    )
+    invoices_out_count = fields.Integer(compute="_compute_invoices_data")
+    invoices_in_count = fields.Integer(compute="_compute_invoices_data")
     attachment_out_ids = fields.One2many(
         "fatturapa.attachment.out",
         "attachment_import_zip_id",
         string="Attachments Out",
-        readonly=True,
     )
     attachment_in_ids = fields.One2many(
         "fatturapa.attachment.in",
         "attachment_import_zip_id",
         string="Attachments In",
-        readonly=True,
     )
     invoice_out_ids = fields.One2many(
         "account.move", "attachment_out_import_zip_id", string="Invoices Out"
@@ -185,7 +175,6 @@ class FatturaPAAttachmentIn(models.Model):
     attachment_import_zip_id = fields.Many2one(
         "fatturapa.attachment.import.zip",
         "E-bill ZIP import",
-        readonly=True,
         ondelete="restrict",
     )
 
@@ -196,7 +185,6 @@ class FatturaPAAttachmentOut(models.Model):
     attachment_import_zip_id = fields.Many2one(
         "fatturapa.attachment.import.zip",
         "E-bill ZIP import",
-        readonly=True,
         ondelete="restrict",
     )
 

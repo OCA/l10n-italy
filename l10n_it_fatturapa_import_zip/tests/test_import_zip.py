@@ -8,8 +8,8 @@ from odoo.addons.l10n_it_fatturapa_in.tests.fatturapa_common import FatturapaCom
 
 
 class TestImportZIP(FatturapaCommon):
-    def setUp(self):
-        super().setUp()
+    def setUpClass(self):
+        super().setUpClass()
         self.attachment_import_model = self.env["fatturapa.attachment.import.zip"]
         self.cleanPartners()
         self.create_wt()
@@ -92,7 +92,10 @@ class TestImportZIP(FatturapaCommon):
                         self.assertEqual(
                             getattr(invoice, field),
                             expected_value,
-                            f"Field {field} of invoice {invoice.display_name} does not match",
+                            (
+                                f"Field {field} of invoice {invoice.display_name}"
+                                "does not match"
+                            ),
                         )
 
     def test_access_other_user_zip(self):
