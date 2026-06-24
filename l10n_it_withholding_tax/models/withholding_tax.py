@@ -295,20 +295,30 @@ class WithholdingTaxStatement(models.Model):
                     )
                     # Exclude payments created for Withholding Taxes
                     wt_moves = self.env["withholding.tax.move"].search(
-                        [("account_move_id", "in", payment_moves.ids)]
+                        [("wt_account_move_id", "in", payment_moves.ids)]
                     )
                     wt_payment_moves = wt_moves.wt_account_move_id
                     no_wt_payment_moves = payment_moves - wt_payment_moves
                     no_wt_paid_amount = sum(
-                        [payment_moves_to_amount[move] for move in no_wt_payment_moves]
+                        [
+                            payment_moves_to_amount.get(move, 0.0)
+                            for move in no_wt_payment_moves
+                        ]
+                    )
+                    wt_paid_amount = sum(
+                        [
+                            payment_moves_to_amount.get(move, 0.0)
+                            for move in wt_payment_moves
+                        ]
                     )
 
                     amount_base = st.invoice_id.amount_untaxed * (
                         no_wt_paid_amount / st.invoice_id.amount_net_pay
                     )
                     base = round(amount_base * wt_inv.base_coeff, 5)
-                    amount_wt = round(
-                        base * wt_inv.tax_coeff, dp_obj.precision_get("Account")
+                    amount_wt = (
+                        round(base * wt_inv.tax_coeff, dp_obj.precision_get("Account"))
+                        - wt_paid_amount
                     )
                 if st.invoice_id.move_type in ["in_refund", "out_refund"]:
                     amount_wt = -1 * amount_wt
