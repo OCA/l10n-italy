@@ -33,13 +33,23 @@ class AccountTax(models.Model):
     # portions (with their own VAT credit account) do not carry dates
     # because they represent a tax credit, not a cost attributable to a
     # service period.
+    #
+    # The "start_date" in record._fields guard is required because the same
+    # tax computation engine is reused with records that do not carry these
+    # fields.  start_date/end_date are added by this module only to
+    # account.move.line, but base_line["record"] can be of a different model:
+    # e.g. on POS session closing (point_of_sale/models/pos_session.py,
+    # _prepare_tax_lines is called on base lines whose record is a
+    # pos.order.line).  Without the guard, record.start_date would raise
+    # AttributeError on those models.
 
     @api.model
     def _prepare_base_line_grouping_key(self, base_line):
         grouping_key = super()._prepare_base_line_grouping_key(base_line)
         record = base_line["record"]
-        grouping_key["start_date"] = record.start_date if record else False
-        grouping_key["end_date"] = record.end_date if record else False
+        has_dates = record and "start_date" in record._fields
+        grouping_key["start_date"] = record.start_date if has_dates else False
+        grouping_key["end_date"] = record.end_date if has_dates else False
         return grouping_key
 
     @api.model
@@ -50,8 +60,8 @@ class AccountTax(models.Model):
             base_line, base_line_grouping_key, tax_data, tax_rep_data
         )
         tax_rep = tax_rep_data["tax_rep"]
-        if not tax_rep.account_id:
-            record = base_line["record"]
+        record = base_line["record"]
+        if not tax_rep.account_id and record and "start_date" in record._fields:
             grouping_key["start_date"] = record.start_date
             grouping_key["end_date"] = record.end_date
         else:
@@ -66,8 +76,8 @@ class AccountTax(models.Model):
     def _prepare_tax_line_repartition_grouping_key(self, tax_line):
         grouping_key = super()._prepare_tax_line_repartition_grouping_key(tax_line)
         tax_rep = tax_line["tax_repartition_line_id"]
-        if not tax_rep.account_id:
-            record = tax_line["record"]
+        record = tax_line["record"]
+        if not tax_rep.account_id and record and "start_date" in record._fields:
             grouping_key["start_date"] = record.start_date
             grouping_key["end_date"] = record.end_date
         else:

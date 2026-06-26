@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Account Invoice Start End Dates",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Hidden",
     "license": "LGPL-3",
     "summary": "Set start/end dates on Italian tax move lines"
