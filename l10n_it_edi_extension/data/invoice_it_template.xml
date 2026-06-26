@@ -39,8 +39,8 @@
             />
         </xpath>
         <xpath expr="//DatiGeneraliDocumento/ImportoTotaleDocumento" position="after">
-            <t t-foreach="causale" t-as="c">
-                <Causale t-out="c" />
+            <t t-foreach="causale_lines" t-as="causale_line">
+                <Causale t-out="format_alphanumeric(causale_line, 200)" />
             </t>
             <Art73
                 t-if="record.l10n_edi_it_art73 or company.l10n_edi_it_art73"
