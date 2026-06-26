@@ -520,6 +520,9 @@ Contributors
 
 -  Simone Rubino <simone.rubino88@gmail.com>
 -  Nextev Srl <odoo@nextev.it>
+-  `Agile Business Group <https://www.agilebg.com/>`__:
+
+   -  Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 -----------

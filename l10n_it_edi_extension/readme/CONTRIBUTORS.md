@@ -3,3 +3,5 @@
   - Simone Rubino \<<simone.rubino@aion-tech.it>\>
 - Simone Rubino \<<simone.rubino88@gmail.com>\>
 - Nextev Srl \<<odoo@nextev.it>\>
+- [Agile Business Group](https://www.agilebg.com/):
+  - Alex Comba \<<alex.comba@agilebg.com>\>
