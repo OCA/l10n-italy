@@ -5,3 +5,5 @@
 - Nextev Srl \<<odoo@nextev.it>\>
 - [Stesi Consulting srl](https://www.stesi.consulting/):
   - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
+- [Agile Business Group](https://www.agilebg.com/):
+  - Alex Comba \<<alex.comba@agilebg.com>\>

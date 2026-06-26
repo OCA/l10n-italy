@@ -2,9 +2,6 @@
 # Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import re
-import unicodedata
-
 from odoo import api, fields, models, osv
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, html2plaintext, is_html_empty
@@ -269,35 +266,10 @@ class AccountMoveInherit(models.Model):
             )
         return res
 
-    @api.model
-    def _sanitize_causale(self, text):
-        # Normalize text into NFC
-        text = unicodedata.normalize("NFC", text)
-
-        # Mapping of "fancy" or typographic characters to ASCII-friendly equivalents
-        replacements = {
-            "\u2018": "'",  # left single quotation mark → straight apostrophe
-            "\u2019": "'",  # right single quotation mark → straight apostrophe
-            "\u201c": '"',  # left double quotation mark → straight quote
-            "\u201d": '"',  # right double quotation mark → straight quote
-            "\u2013": "-",  # en dash → hyphen
-            "\u2014": "-",  # em dash → hyphen
-            "\u2026": "...",  # ellipsis → three dots
-            "\u20ac": "EUR",  # euro sign → EUR text
-        }
-
-        for bad, good in replacements.items():
-            text = text.replace(bad, good)
-
-        # Remove any character outside Basic Latin + Latin-1 Supplement range
-        text = re.sub(r"[^\u0000-\u00FF]", "?", text)
-
-        return text
-
     def _l10n_it_edi_get_values(self, pdf_values=None):
         res = super()._l10n_it_edi_get_values(pdf_values)
 
-        causale_list = []
+        causale_lines = []
         if not is_html_empty(self.narration):
             try:
                 narration_text = html2plaintext(self.narration)
@@ -305,19 +277,13 @@ class AccountMoveInherit(models.Model):
                 narration_text = ""
 
             # max length of Causale is 200
-            for causale in narration_text.split("\n"):
-                # Skip if causale is empty or only spaces
-                if not causale.strip():
-                    continue
+            for line in narration_text.splitlines():
+                if line.strip():
+                    causale_lines.extend(
+                        line[i : i + 200] for i in range(0, len(line), 200)
+                    )
 
-                causale = self._sanitize_causale(causale)
-                causale_list_200 = [
-                    causale[i : i + 200] for i in range(0, len(causale), 200)
-                ]
-                for causale200 in causale_list_200:
-                    causale_list.append(causale200)
-
-        res["causale"] = causale_list
+        res["causale_lines"] = causale_lines
 
         return res
 

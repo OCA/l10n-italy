@@ -69,11 +69,19 @@
                 <ImportoTotaleDocumento>976.49</ImportoTotaleDocumento>
                 <Causale>```</Causale>
                 <Causale
-                >L'impresa è un'attività economica organizzata ai fini della produzione</Causale>
+                >L?impresa è un?attività economica organizzata ai fini della produzione</Causale>
                 <Causale>o dello scambio di beni o servizi.</Causale>
-                <Causale>Importo totale fattura è 976,49 EUR.</Causale>
+                <Causale>Importo totale fattura è 976,49 ?.</Causale>
                 <Causale>```</Causale>
             </DatiGeneraliDocumento>
+            <DatiTrasporto>
+                <IndirizzoResa>
+                    <Indirizzo>Via Privata Alessi 6</Indirizzo>
+                    <CAP>28887</CAP>
+                    <Comune>Milan</Comune>
+                    <Nazione>IT</Nazione>
+                </IndirizzoResa>
+            </DatiTrasporto>
         </DatiGenerali>
         <DatiBeniServizi>
             <DettaglioLinee>
