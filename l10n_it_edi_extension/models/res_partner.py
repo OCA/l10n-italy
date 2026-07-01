@@ -57,9 +57,13 @@ class ResPartnerInherit(models.Model):
                 continue
             elif partner.company_type == "person":
                 # Person case
-                if partner.company_name:
+                if partner.company_name or (
+                    partner.parent_id and partner.parent_id.company_type == "company"
+                ):
                     # In E-commerce, if there is company_name,
                     # the user might insert VAT in l10n_it_codice_fiscale field.
+                    # Extend the case, where a company contact children receive
+                    # the parent fiscal code as its fiscal code.
                     # Perform the same check as Company case
                     continue
                 if len(partner.l10n_it_codice_fiscale) != 16:
