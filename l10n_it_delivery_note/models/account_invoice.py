@@ -94,7 +94,9 @@ class AccountInvoice(models.Model):
             new_lines = []
             old_lines = invoice.invoice_line_ids.filtered(lambda li: li.note_dn)
             old_lines.unlink()
-
+            # move all the invoice lines sequence (included sections/notes)
+            for inv_line in invoice.invoice_line_ids:
+                inv_line.sequence += 10
             #
             # TODO: Come bisogna comportarsi nel caso in
             #        cui il DdT non sia un DdT "valido"?
@@ -112,7 +114,15 @@ class AccountInvoice(models.Model):
             context["lang"] = invoice.partner_id.lang
 
             if len(invoice.delivery_note_ids) == 1:
-                sequence = invoice.invoice_line_ids[0].sequence - 1
+                # get the first position of the normal invoice lines
+                sequence = (
+                    min(
+                        invoice.invoice_line_ids.filtered(
+                            lambda l: not l.display_type
+                        ).mapped("sequence")
+                    )
+                    - 5
+                )
                 new_lines.append(
                     (
                         0,
@@ -123,7 +133,6 @@ class AccountInvoice(models.Model):
                     )
                 )
             else:
-                sequence = 1
                 done_invoice_lines = self.env["account.move.line"]
                 for dn in invoice.mapped("delivery_note_ids").sorted(key="name"):
                     dn_invoice_lines = invoice.invoice_line_ids.filtered(
@@ -147,6 +156,9 @@ class AccountInvoice(models.Model):
                                     note_line.delivery_note_id.id
                                 )
                     if dn_invoice_lines:
+                        # get the first position of the invoice lines linked to a
+                        # delivery note, excluding in this way the section/note lines
+                        sequence = min(dn_invoice_lines.mapped("sequence")) - 5
                         new_lines.append(
                             (
                                 0,
@@ -154,10 +166,6 @@ class AccountInvoice(models.Model):
                                 self._prepare_note_dn_value(sequence, dn),
                             )
                         )
-                        sequence += 1
-                    for invoice_line in dn_invoice_lines:
-                        invoice_line.sequence = sequence
-                        sequence += 1
 
             invoice.write({"line_ids": new_lines})
 
