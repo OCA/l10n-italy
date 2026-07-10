@@ -7,3 +7,5 @@
   - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
 - [Agile Business Group](https://www.agilebg.com/):
   - Alex Comba \<<alex.comba@agilebg.com>\>
+- [Phi srl](https://www.phi.technology/):
+  - Marco Colombo \<<marco.colombo@phi.technology>\>
