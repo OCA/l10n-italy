@@ -22,6 +22,20 @@ class ResPartner(models.Model):
         readonly=True,
     )
 
+    riba_exclude_expenses = fields.Boolean(
+        string="Exclude expenses Ri.Ba.",
+    )
+    riba_policy_expenses = fields.Selection(
+        [
+            ("one_a_month", "More invoices, one expense per Month"),
+            ("unlimited", "One expense per maturity"),
+            ("one_a_maturity", "More invoices, one expense per maturity"),
+            ("one_per_invoice", "One expense per invoice"),
+        ],
+        default="one_a_month",
+        string="Ri.Ba. Policy expenses",
+    )
+
     def _domain_property_riba_supplier_company_bank_id(self):
         """Allow to select bank accounts linked to the current company."""
         return self.env["res.partner.bank"]._domain_riba_partner_bank_id()

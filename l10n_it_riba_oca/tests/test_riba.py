@@ -21,6 +21,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
     def test_add_due_cost(self):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.partner_id.riba_policy_expenses = "unlimited"
         # ---- Validate Invoice
         self.invoice.action_post()
         # ---- Test Invoice has 2 line
@@ -774,6 +775,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         cannot be confirmed (e.g. via the list view)
         """
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.partner_id.riba_policy_expenses = "unlimited"
         self.invoice.riba_partner_bank_id = False
         with self.assertRaises(UserError) as err:
             self.invoice.action_post()
@@ -1035,3 +1037,40 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             bank_fee_line.partner_id,
             "Bank fee line should not have partner_id when charge_to_customer is False",
         )
+
+    def test_add_one_per_invoice_due_cost(self):
+        # ---- Set Service in Company Config
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.partner_id.riba_policy_expenses = "one_per_invoice"
+        # ---- Validate Invoice
+        self.invoice.action_post()
+        # ---- Test Invoice has 2 line
+        self.assertEqual(len(self.invoice.invoice_line_ids), 2)
+        # ---- Test Invoice Line for service cost
+        self.assertEqual(
+            self.invoice.invoice_line_ids[1].product_id.id, self.service_due_cost.id
+        )
+        new_inv = self.invoice.copy()
+        new_inv.action_post()
+        # ---- New invoice should have due cost line
+        self.assertEqual(
+            new_inv.invoice_line_ids[1].product_id.id, self.service_due_cost.id
+        )
+        self.assertEqual(len(new_inv.invoice_line_ids), 2)
+
+    def test_add_one_a_month_due_cost(self):
+        # ---- Set Service in Company Config
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.partner_id.riba_policy_expenses = "one_a_month"
+        # ---- Validate Invoice
+        self.invoice.action_post()
+        # ---- Test Invoice has 2 line
+        self.assertEqual(len(self.invoice.invoice_line_ids), 2)
+        # ---- Test Invoice Line for service cost
+        self.assertEqual(
+            self.invoice.invoice_line_ids[1].product_id.id, self.service_due_cost.id
+        )
+        new_inv = self.invoice.copy()
+        new_inv.action_post()
+        # ---- New invoice shouldn't have due cost line
+        self.assertEqual(len(new_inv.invoice_line_ids), 1)
