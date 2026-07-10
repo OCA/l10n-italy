@@ -565,6 +565,9 @@ Contributors
    -  Alex Comba <alex.comba@agilebg.com>
 
 -  Lorenzo Battistini <https://github.com/eLBati>
+-  `Phi srl <https://www.phi.technology/>`__:
+
+   -  Marco Colombo <marco.colombo@phi.technology>
 
 Maintainers
 -----------

@@ -2,6 +2,8 @@
 # Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+import binascii
 import logging
 
 from odoo import api, fields, models
@@ -13,6 +15,8 @@ from odoo.addons.base.models.ir_qweb_fields import Markup
 from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get_text
 
 _logger = logging.getLogger(__name__)
+
+_ASCII_WHITESPACE = b" \t\n\r\x0b\x0c"
 
 
 class AccountMoveInherit(models.Model):
@@ -341,6 +345,25 @@ class AccountMoveInherit(models.Model):
             )
             if self._is_l10n_it_edi_import_file({"xml_tree": p7m_xml_tree}):
                 xml_tree = p7m_xml_tree
+        return xml_tree
+
+    def _parse_xml_with_recovery(self, content, name=None):
+        """Handle .xml.p7m files downloaded by some programs as base64 text files"""
+        xml_tree = super()._parse_xml_with_recovery(content, name=name)
+        if xml_tree is None and content:
+            try:
+                stripped = bytes(content).translate(None, _ASCII_WHITESPACE)
+                decoded = base64.b64decode(stripped, validate=True)
+            except (TypeError, binascii.Error):
+                return xml_tree
+            _logger.info(
+                "'%s' detected as Base64-encoded p7m "
+                "(%d ASCII bytes -> %d DER bytes). Auto-decoding applied.",
+                name,
+                len(content),
+                len(decoded),
+            )
+            xml_tree = super()._parse_xml_with_recovery(decoded, name=name)
         return xml_tree
 
     def _l10n_it_edi_ext_is_self_invoice(self):
