@@ -28,8 +28,7 @@
   <xsl:template name="FormatIVA">
     <xsl:param name="Natura" />
     <xsl:param name="IVA" />
-   
-	<xsl:choose>
+   	<xsl:choose>
       <xsl:when test="$Natura">
         <xsl:value-of select="$Natura" />
 		<xsl:if test="number($IVA)" >
