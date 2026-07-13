@@ -1,7 +1,0 @@
-Gli operatori economici che effettuano attività di organizzazione di viaggi attraverso la vendita di "pacchetti turistici" (agenzie di viaggio e tour operator) devono adempiere ad uno speciale regime di applicazione dell'IVA. Si tratta del regime disciplinato dall'art. 74-ter del DPR n. 633/72 legato all'organizzazione in proprio di pacchetti turistici o di commercio in proprio di pacchetti turistici acquistati da altri soggetti
-
-https://def.finanze.it/DocTribFrontend/decodeurn?urn=urn:doctrib::DPR:1972-10-26;633_art74ter
-
-Il tour operator compila la fattura elettronica ordinaria, evidenziando che la stessa è emessa per conto dell'agenzia viaggi intermediaria. Tale fattura rappresenta le provvigioni che il tour operator deve corrispondere all'agenzia viaggi e sostituisce la fattura passiva che l'agenzia viaggi presenterebbe al tour operator.
-
-Nel dettaglio il tour operator compila la fattura elettronica ordinaria ("TipoDocumento" TD01 e "RegimeFiscale" RF11 "Agenzie viaggi e turismo (art.74-ter, DPR 633/72)") evidenziando che la stessa è emessa per conto dell’agenzia viaggi intermediaria (valorizzando i blocchi "Terzo Intermediario o Soggetto emittente" e "Soggetto emittente") ed inserendo, in luogo dell’aliquota IVA, il codice natura N3.6 se la fattura riguarda operazioni non imponibili o l'IVA al 22% ma con autofattura inviata senza iva e con codice N6.9 se il viaggio è nell'UE

@@ -1,7 +1,10 @@
-from odoo import models, fields
+# Copyright 2024-2026 Innovyou srl <http://www.innovyou.it>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import fields, models
 
 
-class AccountConfigSettings(models.TransientModel):
+class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     payments_74ter_journal_id = fields.Many2one(
