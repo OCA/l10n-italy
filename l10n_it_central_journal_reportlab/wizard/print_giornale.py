@@ -391,13 +391,37 @@ class WizardGiornaleReportlab(models.TransientModel):
         for line in list_grupped_line:
             start_row += 1
             account_name = (
-                account_dict[line["account_id"]] + " - " + line["account_name"]
-                and line["account_name"][user_lang]
+                account_dict[line["account_id"]]
+                + " - "
+                + (
+                    line["account_name"]
+                    and (
+                        line["account_name"].get(user_lang)
+                        or line["account_name"].get("en_US")
+                        or ""
+                    )
+                )
+                and (
+                    line["account_name"]
+                    and (
+                        line["account_name"].get(user_lang)
+                        or line["account_name"].get("en_US")
+                        or ""
+                    )
+                )
                 or ""
                 if account_dict
                 and "line_id" in account_dict.keys()
                 and "account_id" in account_dict[line].keys()
-                else line["account_name"] and line["account_name"][user_lang] or ""
+                else (
+                    line["account_name"]
+                    and (
+                        line["account_name"].get(user_lang)
+                        or line["account_name"].get("en_US")
+                        or ""
+                    )
+                )
+                or ""
             )
             if not account_name:
                 continue
@@ -469,13 +493,37 @@ class WizardGiornaleReportlab(models.TransientModel):
         for line in list_line_not_grouped:
             start_row += 1
             account_name = (
-                account_dict[line["account_id"]] + " - " + line["account_name"]
-                and line["account_name"][user_lang]
+                account_dict[line["account_id"]]
+                + " - "
+                + (
+                    line["account_name"]
+                    and (
+                        line["account_name"].get(user_lang)
+                        or line["account_name"].get("en_US")
+                        or ""
+                    )
+                )
+                and (
+                    line["account_name"]
+                    and (
+                        line["account_name"].get(user_lang)
+                        or line["account_name"].get("en_US")
+                        or ""
+                    )
+                )
                 or ""
                 if account_dict
                 and "line_id" in account_dict.keys()
                 and "account_id" in account_dict[line].keys()
-                else line["account_name"] and line["account_name"][user_lang] or ""
+                else (
+                    line["account_name"]
+                    and (
+                        line["account_name"].get(user_lang)
+                        or line["account_name"].get("en_US")
+                        or ""
+                    )
+                )
+                or ""
             )
             if not account_name:
                 continue
