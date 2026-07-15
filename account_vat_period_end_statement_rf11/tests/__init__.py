@@ -1,1 +1,0 @@
-from . import test_vat_statement_rf11

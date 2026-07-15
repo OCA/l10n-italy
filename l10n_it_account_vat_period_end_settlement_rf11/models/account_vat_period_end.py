@@ -1,6 +1,9 @@
-# Copyright 2024 Innovyou srl <http://www.innovyou.it>
+# Copyright 2024-2026 Innovyou srl <http://www.innovyou.it>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, _
+from odoo import fields, models
+from odoo.exceptions import UserError
+
 
 class AccountVatPeriodEndStatement(models.Model):
     _inherit = "account.vat.period.end.statement"
@@ -34,20 +37,25 @@ class AccountVatPeriodEndStatement(models.Model):
     def compute_amounts(self):
         res = super().compute_amounts()
         for statement in self:
-            taxes_74ter = self.env['account.tax'].search([('is_tax_74ter', '=', True)])
+            taxes_74ter = self.env["account.tax"].search([("is_tax_74ter", "=", True)])
+            if not taxes_74ter:
+                continue
 
             tax_74ter_perc = taxes_74ter[0].tax_74ter_amount
             tax_74ter_total = 0.0
-            tax_74ter_data = []
             for tax in taxes_74ter:
-                for date_range in statement.date_range_ids:
-                    tax_74ter_data = tax._compute_totals_tax(
-                        {
-                            "from_date": date_range.date_start,
-                            "to_date": date_range.date_end,
-                        }
-                    )
-                    tax_74ter_total += tax_74ter_data[1]
+                for period in statement.date_range_ids:
+                    # NB (v18 port): v16 summed account.tax._compute_totals_tax(
+                    # ...)[1] (the base balance). In Odoo 18 that helper negates
+                    # the base of *purchase* taxes in the "customer" registry
+                    # (a reverse-charge fix that did not exist in v16), which
+                    # would break the 74-ter "base su base" computation
+                    # (sale_base - purchase_base). We therefore read
+                    # ``base_balance`` directly, preserving the original signs.
+                    tax_74ter_total += tax.with_context(
+                        from_date=period.date_start,
+                        to_date=period.date_end,
+                    ).base_balance
 
             statement.net_tax_74_ter = tax_74ter_total / (1 + tax_74ter_perc / 100)
             statement.tax_74_ter_amount = tax_74ter_total - statement.net_tax_74_ter
@@ -56,8 +64,13 @@ class AccountVatPeriodEndStatement(models.Model):
             if previous_statements and not statement.annual:
                 previous_statement = previous_statements[0]
                 if previous_statement.tax_74_ter_amount_total < 0:
-                    statement.tax_74_ter_amount_previous = previous_statement.tax_74_ter_amount_total
-                    statement.tax_74_ter_amount_total = statement.tax_74_ter_amount + statement.tax_74_ter_amount_previous
+                    statement.tax_74_ter_amount_previous = (
+                        previous_statement.tax_74_ter_amount_total
+                    )
+                    statement.tax_74_ter_amount_total = (
+                        statement.tax_74_ter_amount
+                        + statement.tax_74_ter_amount_previous
+                    )
                 else:
                     statement.tax_74_ter_amount_previous = 0.0
                     statement.tax_74_ter_amount_total = statement.tax_74_ter_amount
@@ -78,12 +91,26 @@ class AccountVatPeriodEndStatement(models.Model):
         move_obj = self.env["account.move"]
         for statement in self:
             if statement.tax_74_ter_amount_total > 0:
-                tax_74_ter = self.env["account.tax"].search([("is_tax_74ter", "=", True), ("type_tax_use", "=", "sale")])
+                tax_74_ter = self.env["account.tax"].search(
+                    [("is_tax_74ter", "=", True), ("type_tax_use", "=", "sale")]
+                )
                 tax_74_ter_income_account = tax_74_ter.tax_74_ter_income_account_id
-                vat_statement_account = tax_74_ter.vat_statement_account_id
+                # v18 port: account.tax.vat_statement_account_id was removed in
+                # Odoo 18. The VAT-on-sales account is now sourced from the tax
+                # repartition via _get_debit_accounts() -- the same source the
+                # settlement itself uses to build its debit VAT lines.
+                vat_statement_account = tax_74_ter._get_debit_accounts()
+                if len(vat_statement_account) != 1:
+                    raise UserError(
+                        self.env._(
+                            "The 74ter sale tax '%s' must have exactly one VAT "
+                            "account defined in its repartition lines."
+                        )
+                        % tax_74_ter.name
+                    )
                 statement_date = fields.Date.to_string(statement.date)
                 move_data = {
-                    "name": _("74 Ter VAT statement") + " - " + statement_date,
+                    "ref": self.env._("74 Ter VAT statement") + " - " + statement_date,
                     "date": statement_date,
                     "journal_id": statement.journal_id.id,
                     "line_ids": [
@@ -91,7 +118,7 @@ class AccountVatPeriodEndStatement(models.Model):
                             0,
                             0,
                             {
-                                "name": _("74 Ter VAT statement"),
+                                "name": self.env._("74 Ter VAT statement"),
                                 "account_id": tax_74_ter_income_account.id,
                                 "debit": statement.tax_74_ter_amount_total,
                                 "credit": 0.0,
@@ -101,7 +128,7 @@ class AccountVatPeriodEndStatement(models.Model):
                             0,
                             0,
                             {
-                                "name": _("74 Ter VAT statement"),
+                                "name": self.env._("74 Ter VAT statement"),
                                 "account_id": vat_statement_account.id,
                                 "debit": 0.0,
                                 "credit": statement.tax_74_ter_amount_total,
