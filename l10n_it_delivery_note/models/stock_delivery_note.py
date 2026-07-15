@@ -815,9 +815,11 @@ class StockDeliveryNote(models.Model):
                 if order_lines.filtered(lambda l: l.need_to_be_invoiced):  # noqa: E741
                     cache[downpayment] = downpayment.fix_qty_to_invoice()
 
-            invoice_ids = sale_ids.filtered(
-                lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
-            )._create_invoices(final=True)
+            invoice_ids = (
+                sale_ids.with_context(invoicing_delivery_notes=self)
+                .filtered(lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1])
+                ._create_invoices(final=True)
+            )
 
             for line, vals in cache.items():
                 line.write(vals)

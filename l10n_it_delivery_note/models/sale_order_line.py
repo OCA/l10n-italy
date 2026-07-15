@@ -64,3 +64,36 @@ class SaleOrderLine(models.Model):
         return self.filtered(lambda line: line.has_picking).filtered(
             lambda line: line.is_pickings_related(picking_ids)
         )
+
+    def _prepare_invoice_line(self, **optional_values):
+        values = super()._prepare_invoice_line(**optional_values)
+        invoiced_dn_lines = self.env.context.get(
+            "delivery_note_invoiced_lines",
+            self.env["stock.delivery.note.line"].browse(),
+        )
+        invoiceable_dn_lines = (
+            self.delivery_note_line_ids.filtered(lambda dn_line: dn_line.is_invoiceable)
+            - invoiced_dn_lines
+        )
+        invoicing_delivery_notes = self.env.context.get(
+            "invoicing_delivery_notes",
+            self.env["stock.delivery.note"].browse(),
+        )
+        if invoicing_delivery_notes:
+            invoiceable_dn_lines = invoiceable_dn_lines.filtered(
+                lambda dn_line: dn_line.delivery_note_id in invoicing_delivery_notes
+            )
+
+        if invoiceable_dn_lines:
+            invoiced_dn_line = fields.first(invoiceable_dn_lines)
+            values.update(
+                {
+                    "delivery_note_line_id": invoiced_dn_line.id,
+                    "quantity": invoiced_dn_line.product_qty,
+                }
+            )
+            self.env.context = dict(
+                self.env.context,
+                delivery_note_invoiced_lines=invoiced_dn_lines | invoiced_dn_line,
+            )
+        return values
