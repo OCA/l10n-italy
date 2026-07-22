@@ -25,7 +25,9 @@ class Invoice(models.Model):
     def e_inv_check_amount_tax(self):
         if any(self.invoice_line_ids.mapped("rc")) and self.e_invoice_amount_tax:
             error_message = ""
-            amount_added_for_rc = self.get_tax_amount_added_for_rc()
+            amount_added_for_rc = self.currency_id.round(
+                self.get_tax_amount_added_for_rc()
+            )
             amount_tax = self.amount_tax - amount_added_for_rc
             if (
                 float_compare(
@@ -50,7 +52,9 @@ class Invoice(models.Model):
     def e_inv_check_amount_total(self):
         if any(self.invoice_line_ids.mapped("rc")) and self.e_invoice_amount_total:
             error_message = ""
-            amount_added_for_rc = self.get_tax_amount_added_for_rc()
+            amount_added_for_rc = self.currency_id.round(
+                self.get_tax_amount_added_for_rc()
+            )
             amount_total = self.amount_total - amount_added_for_rc
             if (
                 float_compare(

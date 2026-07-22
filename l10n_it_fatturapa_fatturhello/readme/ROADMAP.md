@@ -1,0 +1,1 @@
+- Parse more types of status notification

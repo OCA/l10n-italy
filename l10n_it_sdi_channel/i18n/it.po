@@ -28,8 +28,8 @@ msgstr ""
 "<span class=\"o_form_label\">Creatore e-fattura</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
 "valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
-"impostati qui sono specifici per azienda.\" groups=\"base."
-"group_multi_company\" role=\"img\"/>"
+"impostati qui sono specifici per azienda.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_sdi_channel
 #: model_terms:ir.ui.view,arch_db:l10n_it_sdi_channel.view_account_config_settings
@@ -42,8 +42,8 @@ msgstr ""
 "<span class=\"o_form_label\">Canale SdI</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
 "valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
-"impostati qui sono specifici per azienda.\" groups=\"base."
-"group_multi_company\" role=\"img\"/>"
+"impostati qui sono specifici per azienda.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_sdi_channel
 #: model:mail.message.subtype,name:l10n_it_sdi_channel.e_invoice_accepted
@@ -74,6 +74,9 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_fatturapa_attachment__channel_type
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_fatturapa_attachment_in__channel_type
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_fatturapa_attachment_out__channel_type
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company__sdi_channel_type
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_type
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__channel_type
@@ -195,6 +198,9 @@ msgid "ES channel"
 msgstr "Canale SdI"
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment__channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_in__channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out__channel_type
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__sdi_channel_type
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_type
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__channel_type
@@ -492,9 +498,9 @@ msgstr "Si possono inviare file solo con lo stesso canale."
 #~ msgstr "Il canale %s con server PEC %s esiste già"
 
 #~ msgid ""
-#~ "The first time you send a PEC to SDI, you must use the address sdi01@pec."
-#~ "fatturapa.it . The system, with the first response or notification, "
-#~ "communicates the PEC address to be used for future messages"
+#~ "The first time you send a PEC to SDI, you must use the address "
+#~ "sdi01@pec.fatturapa.it . The system, with the first response or "
+#~ "notification, communicates the PEC address to be used for future messages"
 #~ msgstr ""
 #~ "Il primo invio di una PEC al SdI deve essere effettuato usando "
 #~ "l'indirizzo sdi01@pec.fatturapa.it . Con la prima risposta del sistema "

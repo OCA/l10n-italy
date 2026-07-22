@@ -1,5 +1,5 @@
 from odoo import api, models
-from odoo.tools.float_utils import float_round
+from odoo.tools.float_utils import float_is_zero, float_round
 
 from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 from odoo.addons.l10n_it_fatturapa_out.wizard.wizard_export_fatturapa import (
@@ -47,9 +47,11 @@ class WizardExportFatturapa(models.TransientModel):
     @api.model
     def getPayments(self, invoice):
         payments = super().getPayments(invoice)
+        dp = self.env["decimal.precision"].precision_get("Account")
         wt_hack_rate = (
             invoice.amount_net_pay / invoice.amount_total
             if invoice.withholding_tax_line_ids
+            and not float_is_zero(invoice.amount_total, precision_digits=dp)
             else 1.0
         )
         for payment in payments:

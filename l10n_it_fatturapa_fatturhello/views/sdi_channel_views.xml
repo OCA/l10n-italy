@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!--
+    ~ Copyright 2025 Simone Rubino - PyTech
+    ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_sdi_channel_form" model="ir.ui.view">
+        <field name="name">Add Fatturhello fields to SdI channel form</field>
+        <field name="model">sdi.channel</field>
+        <field name="inherit_id" ref="l10n_it_sdi_channel.view_sdi_channel_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    attrs="{
+                        'invisible': [
+                            ('channel_type', '!=', 'fatturhello'),
+                        ],
+                    }"
+                    class="btn-primary"
+                    name="fatturhello_action_login"
+                    string="Login"
+                    type="object"
+                />
+            </header>
+            <xpath expr="//newline" position="after">
+                <group
+                    attrs="{
+                        'invisible': [
+                            ('channel_type', '!=', 'fatturhello'),
+                        ],
+                    }"
+                    name="fatturhello"
+                    string="Fatturhello"
+                >
+                    <field name="fatturhello_base_url" string="Base URL" />
+                    <field name="fatturhello_username" string="Username" />
+                    <field
+                        name="fatturhello_login_authtoken"
+                        string="Login Auth Token"
+                        groups="base.group_no_one"
+                    />
+                    <field
+                        name="fatturhello_login_authtoken_create_date"
+                        string="Login Auth Token creation date"
+                        groups="base.group_no_one"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

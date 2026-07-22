@@ -31,8 +31,8 @@ msgid ""
 "%(rea_office.code)s - %(rea_code)s / Share Cap. %(rea_capital)s € / "
 "%(rea_member_type)s / %(rea_liquidation_state)s"
 msgstr ""
-"%(rea_office.code)s - %(rea_code)s / Gesellschaftskapital %(rea_capital)s € /"
-" %(rea_member_type)s / %(rea_liquidation_state)s"
+"%(rea_office.code)s - %(rea_code)s / Gesellschaftskapital %(rea_capital)s "
+"€ / %(rea_member_type)s / %(rea_liquidation_state)s"
 
 #. module: l10n_it_rea
 #: model:ir.model,name:l10n_it_rea.model_res_company

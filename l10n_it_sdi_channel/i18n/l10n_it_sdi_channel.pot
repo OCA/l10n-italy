@@ -54,6 +54,9 @@ msgid "Cancel"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_fatturapa_attachment__channel_type
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_fatturapa_attachment_in__channel_type
+#: model:ir.model.fields,help:l10n_it_sdi_channel.field_fatturapa_attachment_out__channel_type
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_company__sdi_channel_type
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_type
 #: model:ir.model.fields,help:l10n_it_sdi_channel.field_sdi_channel__channel_type
@@ -175,6 +178,9 @@ msgid "ES channel"
 msgstr ""
 
 #. module: l10n_it_sdi_channel
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment__channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_in__channel_type
+#: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_fatturapa_attachment_out__channel_type
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_company__sdi_channel_type
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_res_config_settings__sdi_channel_type
 #: model:ir.model.fields,field_description:l10n_it_sdi_channel.field_sdi_channel__channel_type

@@ -71,7 +71,7 @@ msgstr ""
 
 #. module: l10n_it_split_payment
 #. odoo-python
-#: code:addons/l10n_it_split_payment/models/account_move_line.py:0
+#: code:addons/l10n_it_split_payment/models/account_move.py:0
 #, python-format
 msgid ""
 "Please set 'Split Payment Write-off Account' field in accounting "
@@ -94,7 +94,7 @@ msgstr ""
 
 #. module: l10n_it_split_payment
 #. odoo-python
-#: code:addons/l10n_it_split_payment/models/account_move_line.py:0
+#: code:addons/l10n_it_split_payment/models/account_move.py:0
 #, python-format
 msgid "Split Payment Write Off"
 msgstr ""

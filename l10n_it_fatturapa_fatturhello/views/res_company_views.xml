@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!--
+    ~ Copyright 2025 Simone Rubino - PyTech
+    ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_company_form_e_invoice_sdi" model="ir.ui.view">
+        <field name="name">Add Fatturhello fields to Company form</field>
+        <field name="model">res.company</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_sdi_channel.view_company_form_e_invoice_sdi"
+        />
+        <field name="arch" type="xml">
+            <field name="sdi_channel_id" position="after">
+                <field name="sdi_channel_type" invisible="True" />
+                <field
+                    name="fatturhello_identifier"
+                    attrs="{
+                        'invisible': [
+                            ('sdi_channel_type', '!=', 'fatturhello'),
+                        ],
+                    }"
+                    groups="base.group_no_one"
+                />
+                <field
+                    name="fatturhello_last_downloaded_e_bill_identifer"
+                    string="Last downloaded E-Bill identifier"
+                    attrs="{
+                        'invisible': [
+                            ('sdi_channel_type', '!=', 'fatturhello'),
+                        ],
+                    }"
+                    groups="base.group_no_one"
+                    placeholder="YYYYXXXXXXXX"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

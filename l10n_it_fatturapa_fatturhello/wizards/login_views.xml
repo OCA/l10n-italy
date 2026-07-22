@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!--
+    ~ Copyright 2025 Simone Rubino - PyTech
+    ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="fatturhello_login_view_form" model="ir.ui.view">
+        <field name="name">Login to Fatturhello for view</field>
+        <field name="model">l10n_it_fatturapa_fatturhello.login</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="channel_id" invisible="True" />
+                        <field name="username" />
+                        <field name="password" password="True" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="confirm"
+                        type="object"
+                        string="Confirm"
+                        class="btn-primary"
+                    />
+                    <button special="cancel" string="Cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

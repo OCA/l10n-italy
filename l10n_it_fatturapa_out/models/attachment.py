@@ -132,12 +132,20 @@ class FatturaPAAttachment(models.Model):
                 )
         return res
 
+    def _is_sent_to_sdi(self):
+        self.ensure_one()
+        return self.state != "ready"
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_not_sent_to_sdi(self):
+        for attachment_out in self:
+            if attachment_out._is_sent_to_sdi():
+                raise UserError(
+                    _("You can only delete files that haven't been sent to SdI yet.")
+                )
+
     def unlink(self):
         for attachment_out in self:
-            if attachment_out.state != "ready":
-                raise UserError(
-                    _("You can only delete files in 'Ready to Send' state.")
-                )
             for invoice in attachment_out.out_invoice_ids:
                 invoice.fatturapa_doc_attachments.filtered(
                     "is_pdf_invoice_print"

@@ -39,8 +39,8 @@ msgstr ""
 "<span class=\"o_form_label\">Fatture fornitori</span>\n"
 "                            <span class=\"fa fa-lg fa-building-o\" title=\"I "
 "valori impostati qui sono specifici per azienda.\" aria-label=\"I valori "
-"impostati qui sono specifici per azienda.\" groups=\"base."
-"group_multi_company\" role=\"img\"/>"
+"impostati qui sono specifici per azienda.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__access_token
@@ -82,6 +82,7 @@ msgstr "Codice articoli"
 
 #. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__ir_attachment_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__payrol_rel
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_wizard_link_to_invoice__attachment_id
 msgid "Attachment"
 msgstr "Allegato"

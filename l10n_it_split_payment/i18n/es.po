@@ -23,9 +23,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_it_split_payment.view_account_config_settings
 msgid ""
 "<span class=\"o_form_label\">Configuration for Split Payment module</span>\n"
-"                        <span class=\"fa fa-lg fa-building-o\" title="
-"\"Values set here are company-specific.\" aria-label=\"Values set here are "
-"company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Values set here are company-specific.\" aria-label=\"Values set here "
+"are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 
 #. module: l10n_it_split_payment
@@ -79,7 +79,7 @@ msgstr ""
 
 #. module: l10n_it_split_payment
 #. odoo-python
-#: code:addons/l10n_it_split_payment/models/account_move_line.py:0
+#: code:addons/l10n_it_split_payment/models/account_move.py:0
 #, python-format
 msgid ""
 "Please set 'Split Payment Write-off Account' field in accounting "
@@ -104,7 +104,7 @@ msgstr "Pago Fraccionado"
 
 #. module: l10n_it_split_payment
 #. odoo-python
-#: code:addons/l10n_it_split_payment/models/account_move_line.py:0
+#: code:addons/l10n_it_split_payment/models/account_move.py:0
 #, python-format
 msgid "Split Payment Write Off"
 msgstr "Por Escrito Pago Fraccionado"

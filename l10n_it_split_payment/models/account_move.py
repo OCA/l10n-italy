@@ -4,7 +4,8 @@
 # Copyright 2023  Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import Command, fields, models
+from odoo import Command, _, fields, models
+from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
 
@@ -26,8 +27,6 @@ class AccountMove(models.Model):
         res = super()._compute_amount()
         for move in self:
             if move.split_payment:
-                if move.is_purchase_document():
-                    continue
                 if move.tax_totals:
                     move.amount_sp = (
                         move.tax_totals["amount_total"]
@@ -63,7 +62,12 @@ class AccountMove(models.Model):
             return res
         self.compute_split_payment()
         container = {"records": self}
-        self._check_balanced(container)
+        with self._check_balanced(container):
+            if "fiscal_position_id" in vals:
+                self._compute_amount()
+            self.with_context(
+                skip_split_payment_computation=True, check_move_validity=False
+            ).compute_split_payment()
         return res
 
     def copy(self, default=None):
@@ -76,15 +80,57 @@ class AccountMove(models.Model):
             res = super().copy(default=default)
         return res
 
+    def _build_writeoff_line(self):
+        self.ensure_one()
+
+        if not self.company_id.sp_account_id:
+            raise UserError(
+                _(
+                    "Please set 'Split Payment Write-off Account' field in"
+                    " accounting configuration"
+                )
+            )
+        debit = 0
+        credit = 0
+        move_tax_lines = self.line_ids.filtered(
+            lambda line: ((line.display_type == "tax") and (not line.is_split_payment))
+        )
+        for tax_line in move_tax_lines:
+            debit += tax_line.credit
+            credit += tax_line.debit
+        if debit != 0 and credit != 0:
+            if debit >= credit:
+                debit = debit - credit
+                credit = 0
+            else:
+                credit = credit - debit
+                debit = 0
+
+        vals = {
+            "name": _("Split Payment Write Off"),
+            "partner_id": self.partner_id.id,
+            "account_id": self.company_id.sp_account_id.id,
+            "journal_id": self.journal_id.id,
+            "date": self.invoice_date,
+            "date_maturity": self.invoice_date,
+            "price_unit": -debit + credit,
+            "amount_currency": debit - credit,
+            "debit": debit,
+            "credit": credit,
+            "display_type": "tax",
+            "is_split_payment": True,
+        }
+        return vals
+
     def compute_split_payment(self):
         for move in self:
-            if move.split_payment:
+            if move.is_sale_document(include_receipts=True):
                 line_sp = fields.first(
                     move.line_ids.filtered(lambda move_line: move_line.is_split_payment)
                 )
-                for line in move.line_ids:
-                    if line.display_type == "tax" and not line.is_split_payment:
-                        write_off_line_vals = line._build_writeoff_line()
+                with move._sync_dynamic_lines(container={"records": move}):
+                    if move.split_payment:
+                        write_off_line_vals = move._build_writeoff_line()
                         if line_sp:
                             if (
                                 float_compare(
@@ -94,9 +140,26 @@ class AccountMove(models.Model):
                                 )
                                 != 0
                             ):
-                                line_sp.write(write_off_line_vals)
+                                line_sp.with_context(
+                                    skip_split_payment_computation=True
+                                ).write(write_off_line_vals)
                         else:
-                            if move.amount_sp:
+                            if write_off_line_vals.get("price_unit"):
                                 move.with_context(
                                     skip_split_payment_computation=True
                                 ).line_ids = [Command.create(write_off_line_vals)]
+                    elif line_sp:
+                        neutralize_vals = {
+                            "debit": 0.0,
+                            "credit": 0.0,
+                            "amount_currency": 0.0,
+                            "price_unit": 0.0,
+                            "tax_base_amount": 0.0,
+                            "tax_tag_ids": [(6, 0, [])],
+                        }
+                        move.with_context(
+                            skip_split_payment_computation=True,
+                            check_move_validity=False,
+                        ).write(
+                            {"line_ids": [Command.update(line_sp.id, neutralize_vals)]}
+                        )

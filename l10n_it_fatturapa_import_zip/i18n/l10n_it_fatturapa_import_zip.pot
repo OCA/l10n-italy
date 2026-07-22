@@ -45,6 +45,7 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_import_zip
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__ir_attachment_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_import_zip.field_fatturapa_attachment_import_zip__payrol_rel
 msgid "Attachment"
 msgstr ""
 

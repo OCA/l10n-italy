@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-09 10:03+0000\n"
-"PO-Revision-Date: 2026-04-03 09:45+0000\n"
+"PO-Revision-Date: 2026-05-11 16:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -65,6 +65,7 @@ msgstr "Documento allegato"
 
 #. module: l10n_it_fatturapa_out
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__ir_attachment_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa_out.field_fatturapa_attachment_out__payrol_rel
 msgid "Attachment"
 msgstr "Allegato"
 
@@ -968,8 +969,9 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_fatturapa_out/models/attachment.py:0
 #, python-format
-msgid "You can only delete files in 'Ready to Send' state."
-msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
+msgid "You can only delete files that haven't been sent to SdI yet."
+msgstr ""
+"Si possono cancellare solo file che non sono stati ancora inviati allo SDI."
 
 #. module: l10n_it_fatturapa_out
 #. odoo-python
@@ -982,6 +984,10 @@ msgstr "È possibile reimpostare solo file con stato «Errore trasmittente»."
 #: model_terms:ir.ui.view,arch_db:l10n_it_fatturapa_out.view_fatturapa_out_attachment_form
 msgid "on"
 msgstr "il"
+
+#, python-format
+#~ msgid "You can only delete files in 'Ready to Send' state."
+#~ msgstr "È possibile eliminare solo file con stato «Pronto per l'invio»."
 
 #~ msgid "Electronic Invoice Attachments"
 #~ msgstr "Allegati fattura elettronica"

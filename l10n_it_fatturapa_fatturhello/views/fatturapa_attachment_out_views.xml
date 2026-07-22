@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    ~ Copyright 2025 Simone Rubino - PyTech
+    ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record model="ir.ui.view" id="view_fatturapa_out_attachment_search">
+        <field
+            name="name"
+        >Add fatturhello fields to Electronic Invoice search view</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_search"
+        />
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="fatturhello_protocol" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_fatturapa_out_attachment_form">
+        <field
+            name="name"
+        >Add fatturhello fields to Electronic Invoice form view</field>
+        <field name="model">fatturapa.attachment.out</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"
+        />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <field name="channel_type" invisible="True" />
+                <page
+                    attrs="{
+                        'invisible': [
+                            ('channel_type', '!=', 'fatturhello'),
+                        ],
+                    }"
+                    name="fatturhello"
+                    string="Fatturhello"
+                >
+                    <group>
+                        <field name="fatturhello_protocol" string="Protocol" />
+                        <field
+                            groups="base.group_no_one"
+                            name="fatturhello_last_processed_status_datetime"
+                            string="Last processed status"
+                        />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

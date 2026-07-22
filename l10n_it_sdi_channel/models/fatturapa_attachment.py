@@ -12,6 +12,10 @@ class FatturaPAAttachment(models.AbstractModel):
         related="company_id.sdi_channel_id",
         store=True,
     )
+    channel_type = fields.Selection(
+        related="channel_id.channel_type",
+        readonly=True,
+    )
 
     def _message_auto_subscribe_followers(self, updated_values, default_subtype_ids):
         res = super()._message_auto_subscribe_followers(

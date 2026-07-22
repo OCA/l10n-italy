@@ -142,7 +142,9 @@ msgstr "AssoSoftware"
 
 #. module: l10n_it_fatturapa
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachment__ir_attachment_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachment__payrol_rel
 #: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__ir_attachment_id
+#: model:ir.model.fields,field_description:l10n_it_fatturapa.field_fatturapa_attachments__payrol_rel
 msgid "Attachment"
 msgstr "Allegato"
 
