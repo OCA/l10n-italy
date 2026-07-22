@@ -63,6 +63,59 @@ class TestEdiOssExport(TestItEdi):
         invoice.action_post()
         self._assert_export_invoice(invoice, "oss_invoice.xml")
 
+    def test_oss_invoice_export_tax_without_exempt_reason(self):
+        """OSS taxes missing the exoneration fields still export Natura N3.2:
+        the l10n_it constraint only covers 0% taxes, so nothing guarantees
+        these fields are set on an OSS tax."""
+        oss_tax_no_reason = self.oss_tax_fr.copy(
+            {
+                "name": "OSS for EU to France: 20.0 (no exempt reason)",
+                "l10n_it_exempt_reason": False,
+                "l10n_it_law_reference": False,
+            }
+        )
+        invoice = self.init_invoice(
+            "out_invoice",
+            amounts=[100],
+            company=self.company,
+            partner=self.french_partner,
+            taxes=oss_tax_no_reason,
+        )
+        invoice.invoice_date_due = invoice.date
+        invoice.action_post()
+        xml = invoice._l10n_it_edi_render_xml()
+        tree = etree.fromstring(xml)
+        self.assertEqual(
+            [n.text for n in tree.iter("Natura")],
+            ["N3.2", "N3.2"],
+            "Line and summary must fall back to Natura N3.2",
+        )
+        self.assertEqual(
+            [n.text for n in tree.iter("RiferimentoNormativo")],
+            ["Art. 41 D.L. 331/1993"],
+            "Summary must fall back to the OSS law reference",
+        )
+
+    def test_oss_refund_export(self):
+        """OSS credit notes get the same OSS treatment as invoices."""
+        refund = self.init_invoice(
+            "out_refund",
+            amounts=[100],
+            company=self.company,
+            partner=self.french_partner,
+            taxes=self.oss_tax_fr,
+        )
+        refund.invoice_date_due = refund.date
+        refund.action_post()
+        xml = refund._l10n_it_edi_render_xml()
+        tree = etree.fromstring(xml)
+        self.assertEqual([n.text for n in tree.iter("TipoDocumento")], ["TD04"])
+        self.assertEqual([n.text for n in tree.iter("Natura")], ["N3.2", "N3.2"])
+        self.assertEqual([n.text for n in tree.iter("AliquotaIVA")], ["0.00", "0.00"])
+        self.assertEqual([n.text for n in tree.iter("Imposta")], ["0.00"])
+        oss_nodes = [n for n in tree.iter("TipoDato") if n.text == "OSS"]
+        self.assertEqual(len(oss_nodes), 1)
+
     def test_non_oss_invoice_export(self):
         """Non-OSS invoices are not affected by this module."""
         invoice = self.init_invoice(
