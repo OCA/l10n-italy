@@ -3,6 +3,8 @@
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import math
+
 from odoo import fields, models
 
 from .stock_delivery_note import DOMAIN_INVOICE_STATUSES
@@ -89,7 +91,10 @@ class SaleOrderLine(models.Model):
             values.update(
                 {
                     "delivery_note_line_id": invoiced_dn_line.id,
-                    "quantity": invoiced_dn_line.product_qty,
+                    "quantity": math.copysign(
+                        invoiced_dn_line.product_qty,
+                        values.get("quantity", 1),
+                    ),
                 }
             )
             self.env.context = dict(

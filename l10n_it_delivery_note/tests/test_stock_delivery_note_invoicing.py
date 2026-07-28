@@ -1544,3 +1544,63 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         )
         self.assertEqual(dn.invoice_status, "invoiced")
         self.assertEqual(back_dn.invoice_status, "to invoice")
+
+    def test_return_credit_note(self):
+        """When a Delivery Note is created for a return,
+        the generated invoice is a Credit Note.
+        """
+        sale_order = self.create_sales_order(
+            [
+                self.desk_combination_line,
+            ],
+        )
+        sale_order.action_confirm()
+
+        # Create Delivery Note
+        picking = sale_order.picking_ids
+        picking.move_ids.quantity = 1
+        picking.button_validate()
+        res_dict = picking.action_delivery_note_create()
+        wizard = Form(
+            self.env[(res_dict.get("res_model"))].with_context(**res_dict["context"])
+        ).save()
+        wizard.confirm()
+        dn = picking.delivery_note_id
+        dn.action_confirm()
+        dn.action_done()
+
+        # Invoice the Sale Order
+        self.env["sale.advance.payment.inv"].with_context(
+            active_ids=sale_order.ids
+        ).create({}).create_invoices()
+        invoice = sale_order.invoice_ids
+        invoice.action_post()
+        self.assertEqual("out_invoice", invoice.move_type)
+
+        # Create a Return and its Delivery Note
+        return_wiz_form = Form(
+            self.env["stock.return.picking"].with_context(
+                active_id=picking.id,
+                active_model=picking._name,
+            )
+        )
+        return_wiz = return_wiz_form.save()
+        return_wiz.product_return_moves.quantity = 1
+        return_action = return_wiz.action_create_returns()
+        return_picking = self.env["stock.picking"].browse(return_action["res_id"])
+        return_picking.move_ids.quantity = 1
+        return_picking.button_validate()
+        return_dn_action = return_picking.action_delivery_note_create()
+        return_dn_wiz = Form(
+            self.env[(return_dn_action.get("res_model"))].with_context(
+                **return_dn_action["context"]
+            )
+        ).save()
+        return_dn_wiz.confirm()
+
+        # Invoice the Sale Order
+        self.env["sale.advance.payment.inv"].with_context(
+            active_ids=sale_order.ids
+        ).create({}).create_invoices()
+        return_invoice = sale_order.invoice_ids - invoice
+        self.assertEqual("out_refund", return_invoice.move_type)
