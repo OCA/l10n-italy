@@ -165,7 +165,6 @@ class AccountInvoice(models.Model):
         inv_dnls = self.mapped("delivery_note_ids").mapped("line_ids")
         dnls_to_unlink = all_dnls & inv_dnls
         res = super().unlink()
-        dnls_to_unlink.sync_invoice_status()
         dnls_to_unlink.mapped("delivery_note_id")._compute_invoice_status()
         for dn in dnls_to_unlink.mapped("delivery_note_id"):
             dn.state = "confirm"
@@ -177,9 +176,13 @@ class AccountInvoice(models.Model):
             self.invoice_line_ids.sale_line_ids.delivery_note_line_ids
             | self.delivery_note_ids.line_ids
         )
-        dn_lines.sync_invoice_status()
         dn_lines.delivery_note_id._compute_invoice_status()
         dn_lines.delivery_note_id.state = "confirm"
+
+    def _reverse_moves(self, default_values_list=None, cancel=False):
+        return super(
+            AccountInvoice, self.with_context(switching_dn_invoice=True)
+        )._reverse_moves(default_values_list=default_values_list, cancel=cancel)
 
     def _l10n_it_edi_invoice_is_direct(self):
         """An invoice is direct if ddt are all done the same day as the invoice."""

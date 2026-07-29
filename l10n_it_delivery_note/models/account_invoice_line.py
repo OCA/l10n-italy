@@ -31,3 +31,12 @@ class AccountInvoiceLine(models.Model):
     def _compute_delivery_note_id(self):
         for line in self:
             line.delivery_note_id = line.delivery_note_line_id.delivery_note_id
+
+    def copy_data(self, default=None):
+        data = super().copy_data(default=default)
+        if self.env.context.get("switching_dn_invoice"):
+            # Keep the delivery note link
+            # when a refund is created by switching an invoice
+            for line, values in zip(self, data, strict=False):
+                values["delivery_note_line_id"] = line.delivery_note_line_id.id
+        return data

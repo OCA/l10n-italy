@@ -1597,6 +1597,9 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
             )
         ).save()
         return_dn_wiz.confirm()
+        return_dn = return_picking.delivery_note_id
+        return_dn.action_confirm()
+        return_dn.action_done()
 
         # Invoice the Sale Order
         self.env["sale.advance.payment.inv"].with_context(
@@ -1604,3 +1607,20 @@ class StockDeliveryNoteInvoicingTest(StockDeliveryNoteCommon):
         ).create({}).create_invoices()
         return_invoice = sale_order.invoice_ids - invoice
         self.assertEqual("out_refund", return_invoice.move_type)
+        self.assertRecordValues(
+            return_invoice.invoice_line_ids.sorted("sequence"),
+            [
+                {
+                    "note_dn": True,
+                    "delivery_note_id": return_dn.id,
+                    "product_id": False,
+                    "quantity": 0,
+                },
+                {
+                    "note_dn": False,
+                    "delivery_note_id": return_dn.id,
+                    "product_id": self.desk_combination_line[2]["product_id"],
+                    "quantity": 1,
+                },
+            ],
+        )

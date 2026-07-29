@@ -69,53 +69,37 @@ class SaleOrder(models.Model):
             order.delivery_note_count = len(delivery_notes)
 
     def _assign_delivery_notes_invoices(self, invoice_ids):
-        order_lines = self.mapped("order_line").filtered(
-            lambda order_line: order_line.is_invoiced
-            and order_line.delivery_note_line_ids
-        )
+        invoices = self.env["account.move"].browse(invoice_ids)
+        for order_line in self.order_line:
+            for dn_line in order_line.delivery_note_line_ids:
+                if dn_line.delivery_note_id.state == DOMAIN_DELIVERY_NOTE_STATES[0]:
+                    # The Delivery Note is not ready for invoicing yet,
+                    # so all its lines do not have to be invoiced
+                    dn_line.invoice_status = DOMAIN_INVOICE_STATUSES[0]
+                    continue
 
-        delivery_note_lines = order_lines.mapped("delivery_note_line_ids").filtered(
-            lambda dn_line: dn_line.is_invoiceable
-        )
-        delivery_notes = delivery_note_lines.mapped("delivery_note_id")
+                invoiced_dn_lines = (
+                    dn_line.sale_line_id.invoice_lines.delivery_note_line_id
+                )
+                for inv_line in invoices.invoice_line_ids:
+                    if dn_line.sale_line_id in inv_line.sale_line_ids:
+                        if not inv_line.delivery_note_line_id:
+                            # The invoice line is usually linked
+                            # upon invoice line creation
+                            # (see `sale.order.line._prepare_invoice_line`).
+                            # In the case of Kits, we need to create the link
+                            # because the Invoiced Kit does not appear in the
+                            # Delivery Note.
+                            inv_line.delivery_note_line_id = dn_line
+                        elif dn_line not in invoiced_dn_lines:
+                            # The Delivery Note Line is not linked
+                            # to any Invoice of the current Sale Order Line
+                            continue
 
-        ready_delivery_notes = delivery_notes.filtered(
-            lambda n: n.state != DOMAIN_DELIVERY_NOTE_STATES[0]
-        )
-
-        draft_delivery_notes = delivery_notes - ready_delivery_notes
-        draft_delivery_note_lines = (
-            draft_delivery_notes.mapped("line_ids") & delivery_note_lines
-        )
-
-        ready_delivery_note_lines = delivery_note_lines - draft_delivery_note_lines
-
-        #
-        # TODO: È necessario gestire il caso di fatturazione splittata
-        #        di una stessa riga d'ordine associata ad una sola
-        #        picking (e di conseguenza, ad un solo DdT)?
-        #       Può essere, invece, un caso "borderline"
-        #        da lasciar gestire all'operatore?
-        #       Personalmente, non lo gestirei e delegherei
-        #        all'operatore questa responsabilità...
-        #
-
-        draft_delivery_note_lines.write(
-            {"invoice_status": DOMAIN_INVOICE_STATUSES[0], "sale_line_id": None}
-        )
-
-        ready_delivery_note_lines.write({"invoice_status": DOMAIN_INVOICE_STATUSES[2]})
-        for ready_delivery_note in ready_delivery_notes:
-            ready_invoice_ids = [
-                invoice_id
-                for invoice_id in ready_delivery_note.sale_ids.mapped("invoice_ids").ids
-                if invoice_id in invoice_ids
-            ]
-            ready_delivery_note.write(
-                {"invoice_ids": [(4, invoice_id) for invoice_id in ready_invoice_ids]}
-            )
-
-        ready_delivery_notes._compute_invoice_status()
+                        dn_line.invoice_status = DOMAIN_INVOICE_STATUSES[2]
+                        break
+                else:
+                    dn_line.invoice_status = DOMAIN_INVOICE_STATUSES[1]
 
     def _generate_delivery_note_lines(self, invoice_ids):
         invoices = self.env["account.move"].browse(invoice_ids)
