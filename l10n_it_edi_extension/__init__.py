@@ -321,6 +321,16 @@ def _l10n_it_fatturapa_pre_migration(env):
         env,
         field_spec,
     )
+    # set tax system from old field, new field already exists
+    fpa_companys = env["res.company"].search([
+        ("fatturapa_fiscal_position_id", "!=", False),
+    ])
+    for fpa_company in fpa_companys:
+        code = fpa_company.fatturapa_fiscal_position_id.code
+        if code == "RF03":
+            # RF03 is no more possible, leave to the user the choice
+            continue
+        fpa_company.write({"l10n_it_tax_system": code})
 
 
 def _l10n_it_fatturapa_post_migration_related_ddt(env):
