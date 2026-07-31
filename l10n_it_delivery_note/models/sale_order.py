@@ -130,7 +130,8 @@ class SaleOrder(models.Model):
         new_order_lines = self.env["sale.order.line"].browse()
         for order_line in order_lines:
             invoiceable_dn_lines = order_line.delivery_note_line_ids.filtered(
-                lambda dn_line: dn_line.is_invoiceable
+                lambda dn_line, ol=order_line: dn_line.is_invoiceable
+                and ol.product_id == dn_line.product_id
             )
             if invoicing_delivery_notes:
                 invoiceable_dn_lines = invoiceable_dn_lines.filtered(

@@ -74,7 +74,10 @@ class SaleOrderLine(models.Model):
             self.env["stock.delivery.note.line"].browse(),
         )
         invoiceable_dn_lines = (
-            self.delivery_note_line_ids.filtered(lambda dn_line: dn_line.is_invoiceable)
+            self.delivery_note_line_ids.filtered(
+                lambda dn_line: dn_line.is_invoiceable
+                and self.product_id == dn_line.product_id
+            )
             - invoiced_dn_lines
         )
         invoicing_delivery_notes = self.env.context.get(
