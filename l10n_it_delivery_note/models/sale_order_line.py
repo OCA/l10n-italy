@@ -67,18 +67,10 @@ class SaleOrderLine(models.Model):
             lambda line: line.is_pickings_related(picking_ids)
         )
 
-    def _prepare_invoice_line(self, **optional_values):
-        values = super()._prepare_invoice_line(**optional_values)
-        invoiced_dn_lines = self.env.context.get(
-            "delivery_note_invoiced_lines",
-            self.env["stock.delivery.note.line"].browse(),
-        )
-        invoiceable_dn_lines = (
-            self.delivery_note_line_ids.filtered(
-                lambda dn_line: dn_line.is_invoiceable
-                and self.product_id == dn_line.product_id
-            )
-            - invoiced_dn_lines
+    def _get_invoiceable_dn_lines(self):
+        invoiceable_dn_lines = self.delivery_note_line_ids.filtered(
+            lambda dn_line: dn_line.is_invoiceable
+            and self.product_id == dn_line.product_id
         )
         invoicing_delivery_notes = self.env.context.get(
             "invoicing_delivery_notes",
@@ -88,6 +80,15 @@ class SaleOrderLine(models.Model):
             invoiceable_dn_lines = invoiceable_dn_lines.filtered(
                 lambda dn_line: dn_line.delivery_note_id in invoicing_delivery_notes
             )
+        return invoiceable_dn_lines
+
+    def _prepare_invoice_line(self, **optional_values):
+        values = super()._prepare_invoice_line(**optional_values)
+        invoiced_dn_lines = self.env.context.get(
+            "delivery_note_invoiced_lines",
+            self.env["stock.delivery.note.line"].browse(),
+        )
+        invoiceable_dn_lines = self._get_invoiceable_dn_lines() - invoiced_dn_lines
 
         if invoiceable_dn_lines:
             invoiced_dn_line = fields.first(invoiceable_dn_lines)

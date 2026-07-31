@@ -123,20 +123,9 @@ class SaleOrder(models.Model):
 
     def _get_invoiceable_lines(self, final=False):
         order_lines = super()._get_invoiceable_lines(final=final)
-        invoicing_delivery_notes = self.env.context.get(
-            "invoicing_delivery_notes",
-            self.env["stock.delivery.note"].browse(),
-        )
         new_order_lines = self.env["sale.order.line"].browse()
         for order_line in order_lines:
-            invoiceable_dn_lines = order_line.delivery_note_line_ids.filtered(
-                lambda dn_line, ol=order_line: dn_line.is_invoiceable
-                and ol.product_id == dn_line.product_id
-            )
-            if invoicing_delivery_notes:
-                invoiceable_dn_lines = invoiceable_dn_lines.filtered(
-                    lambda dn_line: dn_line.delivery_note_id in invoicing_delivery_notes
-                )
+            invoiceable_dn_lines = order_line._get_invoiceable_dn_lines()
             if len(invoiceable_dn_lines) > 1:
                 # Add a new order line for each linked delivery note line.
                 # Every new corresponding invoice line
