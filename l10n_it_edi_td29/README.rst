@@ -21,13 +21,13 @@ Italy - E-invoicing - TD29
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_td29
+    :target: https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_edi_td29
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_edi_td29
+    :target: https://translation.odoo-community.org/projects/l10n-italy-19-0/l10n-italy-19-0-l10n_it_edi_td29
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -43,9 +43,9 @@ emesse o irregolari" prevista dall'art. 6, comma 8, del D.Lgs. 471/97.
 Quando il flag **TD29** è attivato su una fattura fornitore, il
 documento viene esportato con:
 
-- ``<TipoDocumento>TD29</TipoDocumento>``
-- ``<CodiceDestinatario>0000000</CodiceDestinatario>`` (indirizzato al
-  Sistema di Interscambio)
+-  ``<TipoDocumento>TD29</TipoDocumento>``
+-  ``<CodiceDestinatario>0000000</CodiceDestinatario>`` (indirizzato al
+   Sistema di Interscambio)
 
 Per questo tipo di documento è necessario configurare un sezionale
 dedicato (giornale con propria sequenza di numerazione), da utilizzare
@@ -62,7 +62,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_edi_td29%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_edi_td29%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -77,7 +77,7 @@ Authors
 Contributors
 ------------
 
-- Nextev Srl <https://www.nextev.it>
+-  Nextev Srl <https://www.nextev.it>
 
 Maintainers
 -----------
@@ -92,6 +92,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_td29>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_edi_td29>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
