@@ -714,11 +714,8 @@ class StockDeliveryNote(models.Model):
                         "%s hasn't sale order!", delivery_note_id.display_name
                     )
                 )
-            if (
-                len(
-                    delivery_note_id.mapped("sale_ids.picking_ids.picking_type_id.code")
-                )
-                > 1
+            if delivery_note_id.mapped("sale_ids.picking_ids").filtered(
+                lambda pick: pick.is_return_picking
             ):
                 raise UserError(
                     delivery_note_id.env._(
