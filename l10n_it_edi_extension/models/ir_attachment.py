@@ -1,6 +1,7 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
 import logging
 from io import BytesIO
 
@@ -12,6 +13,8 @@ from odoo.exceptions import UserError
 from odoo.addons.l10n_it_edi.tools.remove_signature import remove_signature
 
 _logger = logging.getLogger(__name__)
+
+_ASCII_WHITESPACE = b" \t\n\r\x0b\x0c"
 
 
 class IrAttachmentInherit(models.Model):
@@ -66,3 +69,22 @@ class IrAttachmentInherit(models.Model):
         transform = etree.XSLT(xslt)
         newdom = transform(dom)
         return etree.tostring(newdom, pretty_print=True, encoding="unicode")
+
+    def _decode_edi_l10n_it_edi(self, name, content):
+        """Handle .xml.p7m files downloaded by some programs as base64 text files"""
+        try:
+            stripped = bytes(content).translate(None, _ASCII_WHITESPACE)
+            decoded = base64.b64decode(stripped, validate=True)
+            _logger.info(
+                "'%s' detected as Base64-encoded p7m "
+                "(%d ASCII bytes -> %d DER bytes). Auto-decoding applied.",
+                name,
+                len(content),
+                len(decoded),
+            )
+            content = decoded
+            _logger.info(type(content))
+        except Exception:  # pylint: disable=except-pass
+            pass
+
+        return super()._decode_edi_l10n_it_edi(name, content)

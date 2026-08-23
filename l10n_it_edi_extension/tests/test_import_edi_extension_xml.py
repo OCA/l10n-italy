@@ -5,7 +5,7 @@
 from datetime import date
 from unittest.mock import patch
 
-from odoo import tools
+from odoo import fields, tools
 from odoo.exceptions import MissingError
 
 from .common import Common
@@ -539,3 +539,29 @@ class TestFatturaPAXMLValidation(Common):
             lambda message: "Error importing attachment" in (message.body or "")
         )
         self.assertFalse(error_message)
+
+    def test_receive_signed_vendor_bill(self):
+        """Test a signed (P7M) sample e-invoice file from
+        https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2/IT01234567890_FPR01.xml
+
+        Note: this is the SAME test (code is identical on purpose) found in
+        odoo/addons/l10n_it_edi/tests/test_edi_import.py
+        but IT01234567890_FPR01.xml.p7m is actually a base64-encoded text file.
+        """
+        self._assert_import_invoice(
+            "IT01234567890_FPR01.xml.p7m",
+            [
+                {
+                    "ref": "01234567890",
+                    "invoice_date": fields.Date.from_string("2014-12-18"),
+                    "amount_untaxed": 5.0,
+                    "amount_tax": 1.1,
+                    "invoice_line_ids": [
+                        {
+                            "quantity": 5.0,
+                            "price_unit": 1.0,
+                        }
+                    ],
+                }
+            ],
+        )
