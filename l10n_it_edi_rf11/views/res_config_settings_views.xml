@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_74ter" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.74ter</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <!-- v17+ settings use the <block>/<setting> structure -->
+            <xpath expr="//setting[@id='use_invoice_terms']" position="after">
+                <setting
+                    id="payments_74ter_journal"
+                    string="Journal for agencies payments"
+                    help="Journal where to register entries used to write off customer credit in favor of agency credit"
+                >
+                    <field name="payments_74ter_journal_id" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
