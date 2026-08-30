@@ -33,8 +33,16 @@ ITA - Documento di trasporto
 This module manage the Italian DDT (Delivery note).
 
 From a picking is possible to generate a Delivery Note and group more
-picking in one delivery note. It's also possible to invoice from the
-delivery note form.
+picking in one delivery note. It's also possible to invoice directly
+from the delivery note form, with configurable options to use DN data
+(product names, prices) instead of sale order data when generating
+invoices.
+
+This is particularly useful when:
+
+-  Products are substituted at delivery time
+-  Prices are negotiated during delivery
+-  Detailed descriptions need to be added in the DN
 
 This module is alternative to ``l10n_it_ddt``, it follows the Odoo way
 to process sale orders, pickings and invoices.
@@ -44,15 +52,24 @@ installed together.
 
 There are two available settings:
 
-- Base (default): one picking, one DN.
-- Advanced: more picking in one DN.
+-  Base (default): one picking, one DN.
+-  Advanced: more picking in one DN.
 
 **Italiano**
 
 Questo modulo consente di gestire i DDT.
 
 Da un prelievo è possibile generare un DDT e raggruppare più prelievi in
-un DDT. È anche possibile fatturare dalla scheda del DDT.
+un DDT. È anche possibile fatturare direttamente dalla scheda del DDT,
+con opzioni configurabili per utilizzare i dati del DDT (nomi prodotti,
+prezzi) invece dei dati dell'ordine di vendita nella generazione delle
+fatture.
+
+Questo è particolarmente utile quando:
+
+-  I prodotti vengono sostituiti al momento della consegna
+-  I prezzi vengono negoziati durante la consegna
+-  È necessario aggiungere descrizioni dettagliate nel DDT
 
 Questo modulo è un alternativa al modulo ``l10n_it_ddt``, segue la
 modalità Odoo di gestire ordini di vendita, prelievi e fatture.
@@ -62,8 +79,8 @@ Non è possibile avere installati contemporaneamente ``l10n_it_ddt`` e
 
 Ci sono due impostazioni possibili.
 
-- Base (predefinita): un prelievo, un DDT.
-- Avanzata: più prelievi in un DDT.
+-  Base (predefinita): un prelievo, un DDT.
+-  Avanzata: più prelievi in un DDT.
 
 **Table of contents**
 
@@ -90,17 +107,32 @@ To configure this module, go to:
    Checking 'Display Delivery Method in Delivery Note Report' enables in
    report field 'Delivery Method'.
 
+   **Invoice Generation from Delivery Notes:**
+
+   -  Checking 'Use Delivery Note Product Name in Invoice' makes the
+      invoice use the product description from the delivery note instead
+      of the sale order. This is useful when you modify product
+      descriptions in the DN to reflect what was actually delivered.
+
+   -  Checking 'Use Delivery Note Price Unit in Invoice' makes the
+      invoice use the unit price from the delivery note instead of the
+      sale order. This is useful for price negotiations at delivery time
+      or when substituting products with different prices.
+
 2. *Inventory → Configuration → Warehouse Management → Delivery Note
    Types*
 
    In delivery note type you can specify if the product price have to be
    printed in the delivery note report/slip.
 
-   - *Inventory → Configuration → Delivery Notes → Conditions of
-     Transport*
-   - *Inventory → Configuration → Delivery Notes → Appearances of Goods*
-   - *Inventory → Configuration → Delivery Notes → Reasons of Transport*
-   - *Inventory → Configuration → Delivery Notes → Methods of Transport*
+   -  *Inventory → Configuration → Delivery Notes → Conditions of
+      Transport*
+   -  *Inventory → Configuration → Delivery Notes → Appearances of
+      Goods*
+   -  *Inventory → Configuration → Delivery Notes → Reasons of
+      Transport*
+   -  *Inventory → Configuration → Delivery Notes → Methods of
+      Transport*
 
 3. *Settings → User & Companies → Users*
 
@@ -138,10 +170,10 @@ Funzionalità avanzata
 
 Vengono attivate varie funzionalità aggiuntive:
 
-- più prelievi per un DDT
-- selezione multipla di prelievi e generazione dei DDT
-- aggiunta righe nota e righe sezione descrittive.
-- lista dei DDT.
+-  più prelievi per un DDT
+-  selezione multipla di prelievi e generazione dei DDT
+-  aggiunta righe nota e righe sezione descrittive.
+-  lista dei DDT.
 
 Il report DDT stampa in righe aggiuntive i lotti/seriali e le scadenze
 del prodotto.
@@ -152,6 +184,50 @@ permessi dell'utente.
 
 Le fatture generate dai DDT contengono i riferimenti al DDT stesso nelle
 righe nota.
+
+Fatturazione da DN
+------------------
+
+E' possibile creare una fattura selezionando una o più DN dello stesso
+partner dalla tree view tramite il wizard "crea fattura". Si può
+scegliere se includere anche i servizi non ancora fatturati dell'ordine
+di vendita correlato o considerare solo le righe nei DN. In maniera
+predefinita vengono dedotti gli eventuali anticipi fatturati.
+
+Utilizzo dei dati dal DDT nelle fatture
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Dalle impostazioni (*Inventario → Configurazione → Impostazioni -
+Documenti di Trasporto*) è possibile configurare se la fattura deve
+utilizzare i dati dal DDT anziché dall'ordine di vendita:
+
+-  **Usa Nome Prodotto da DDT nelle Fatture**: Quando attivo, la
+   descrizione del prodotto nella fattura viene presa dal DDT invece che
+   dall'ordine di vendita. Utile quando si modificano le descrizioni nel
+   DDT per riflettere ciò che è stato effettivamente consegnato.
+
+-  **Usa Prezzo Unitario da DDT nelle Fatture**: Quando attivo, il
+   prezzo unitario nella fattura viene preso dal DDT invece che
+   dall'ordine di vendita. Utile per negoziazioni di prezzo al momento
+   della consegna o quando si sostituiscono prodotti con prezzi diversi.
+
+**Esempi pratici:**
+
+1. **Prodotto sostituito**: Se ordini "Scrivania Modello A - €500" ma
+   consegni "Scrivania Modello B - €450", modificando DDT e attivando
+   entrambe le opzioni, la fattura rifletterà automaticamente il
+   prodotto e prezzo reale consegnato.
+
+2. **Negoziazione alla consegna**: Se il cliente nota un difetto e
+   negoziate uno sconto, modificando il prezzo nel DDT con l'opzione
+   attiva, la fattura sarà corretta senza bisogno di note credito.
+
+3. **Descrizioni dettagliate**: Se nel DDT specifichi "3 sacchi cemento
+   CEM II, 5 pannelli isolanti" invece di "Materiale edile vario", con
+   l'opzione attiva la fattura mostrerà i dettagli completi.
+
+**Nota**: Queste opzioni sono disabilitate per default per mantenere la
+retrocompatibilità. Attivarle solo se si desidera questo comportamento.
 
 Accesso da portale
 ------------------
@@ -183,39 +259,39 @@ Authors
 Contributors
 ------------
 
-- Riccardo Bellanova <r.bellanova@apuliasoftware.it>
+-  Riccardo Bellanova <r.bellanova@apuliasoftware.it>
 
-- Matteo Bilotta <mbilotta@linkeurope.it>
+-  Matteo Bilotta <mbilotta@linkeurope.it>
 
-- Giuseppe Borruso <gconte@dinamicheaziendali.it>
+-  Giuseppe Borruso <gconte@dinamicheaziendali.it>
 
-- Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
 
-- Marco Colombo <marco.colombo@gmail.com>
+-  Marco Colombo <marco.colombo@gmail.com>
 
-- Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
 
-- Letizia Freda <letizia.freda@netfarm.it>
+-  Letizia Freda <letizia.freda@netfarm.it>
 
-- Andrea Piovesana <andrea.m.piovesana@gmail.com>
+-  Andrea Piovesana <andrea.m.piovesana@gmail.com>
 
-- Alex Comba <alex.comba@agilebg.com>
+-  Alex Comba <alex.comba@agilebg.com>
 
-- `Ooops <https://www.ooops404.com>`__:
+-  `Ooops <https://www.ooops404.com>`__:
 
-     - Giovanni Serra <giovanni@gslab.it>
-     - Foresti Francesco <francesco.foresti@ooops404.com>
+      -  Giovanni Serra <giovanni@gslab.it>
+      -  Foresti Francesco <francesco.foresti@ooops404.com>
 
-- Nextev Srl <odoo@nextev.it>
+-  Nextev Srl <odoo@nextev.it>
 
-- `PyTech-SRL <https://www.pytech.it>`__:
+-  `PyTech-SRL <https://www.pytech.it>`__:
 
-     - Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
-     - Sebastiano Picchi <sebastiano.picchi@pytech.it>
+      -  Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
+      -  Sebastiano Picchi <sebastiano.picchi@pytech.it>
 
-- `Aion Tech <https://aiontech.company/>`__:
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
