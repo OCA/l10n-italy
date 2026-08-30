@@ -100,3 +100,44 @@ class TestCentralJournalReportlab(TransactionCase):
             if not has_move and out_invoice.name in page_content:
                 has_move = True
         self.assertTrue(has_move)
+
+    def test_account_name_false_does_not_crash(self):
+        """Falsy account_name must be safely ignored in both report modes."""
+        wizard_form = Form(self.wizard_model)
+        wizard_form.daterange_id = self.current_period
+        wizard = wizard_form.save()
+
+        grouped_line = {
+            "account_id": 0,
+            "date": self.today.date(),
+            "move_name": "MISC/2026/0001",
+            "ref": "",
+            "account_name": False,
+            "name": "",
+            "debit": 10.0,
+            "credit": 0.0,
+        }
+        non_grouped_line = {
+            "account_id": 0,
+            "date": self.today.date(),
+            "move_name": "MISC/2026/0001",
+            "ref": "",
+            "account_name": False,
+            "name": "",
+            "partner_name": "",
+            "account_type": "asset_receivable",
+            "debit": 10.0,
+            "credit": 0.0,
+        }
+
+        grouped_tables, grouped_balance = (
+            wizard.get_grupped_final_tables_report_giornale([grouped_line], [], 0, 500)
+        )
+        final_tables, final_balance = wizard.get_final_tables_report_giornale(
+            [non_grouped_line], [], 0, 500
+        )
+
+        self.assertEqual(grouped_tables, [])
+        self.assertEqual(final_tables, [])
+        self.assertEqual(grouped_balance, [(0, 0), (0, 0)])
+        self.assertEqual(final_balance, [(0, 0), (0, 0)])
