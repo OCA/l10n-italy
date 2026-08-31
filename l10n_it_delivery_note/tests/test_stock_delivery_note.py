@@ -119,6 +119,10 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         dn.confirm()
 
         delivery_note_id = picking.delivery_note_id
+        carrier_partner_id = self.env["res.partner"].name_create(
+            "Test carrier partner"
+        )[0]
+        delivery_note_id.delivery_method_id.partner_id = carrier_partner_id
         product_product_delivery_normal = self.env["product.product"].create(
             {
                 "name": "Normal Delivery Charges",
@@ -147,6 +151,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
 
         delivery_note_id.write({"picking_ids": [(4, new_picking.id)]})
 
+        self.assertEqual(delivery_note_id.carrier_id.id, carrier_partner_id)
         warning_context = delivery_note_id.action_confirm().get("context")
         self.assertTrue(warning_context)
         self.assertIn(
