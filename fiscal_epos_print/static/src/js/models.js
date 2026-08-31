@@ -9,7 +9,8 @@ odoo.define('fiscal_epos_print.models', function (require) {
     var OrderSuper = models.Order;
 
     models.load_fields("account.journal",
-        ["fiscalprinter_payment_type", "fiscalprinter_payment_index"]);
+        ["fiscalprinter_payment_type", "fiscalprinter_payment_index", "fiscalprinter_eftpos",
+         "fiscalprinter_eftpos_timeout"]);
 
     models.Order = models.Order.extend({
         initialize: function(attributes, options){
