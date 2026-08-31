@@ -103,8 +103,8 @@
             <div class="clearfix delivery_note_main">
                 <div class="page mb-4">
                     <t t-set="layout_document_title">
-                        <span t-if="doc.state in ['draft']">Draft document:</span>
-                        <span t-if="doc.state not in ['draft']">Document:</span>
+                        <span t-if="doc.state in ['draft']">Draft Delivery Slip:</span>
+                        <span t-if="doc.state not in ['draft']">Delivery Slip:</span>
                         <span t-field="doc.display_name" />
                         <span t-if="doc.date"> of: </span>
                         <span t-field="doc.date" />
