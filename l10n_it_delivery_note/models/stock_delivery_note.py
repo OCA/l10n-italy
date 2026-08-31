@@ -11,6 +11,7 @@ from odoo.exceptions import UserError, ValidationError
 from ..mixins.delivery_mixin import (
     _default_volume_uom,
     _default_weight_uom,
+    _domain_delivery_carrier_partner,
     _domain_volume_uom,
     _domain_weight_uom,
 )
@@ -130,6 +131,7 @@ class StockDeliveryNote(models.Model):
         "res.partner",
         string="Carrier",
         compute="_compute_carrier_id",
+        domain=_domain_delivery_carrier_partner,
         store=True,
         tracking=True,
     )
