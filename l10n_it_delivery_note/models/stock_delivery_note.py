@@ -152,7 +152,10 @@ class StockDeliveryNote(models.Model):
     type_code = fields.Selection(
         string="Type of Operation", related="type_id.code", store=True
     )
-    packages = fields.Integer()
+    packages = fields.Integer(
+        compute="_compute_packages",
+        store=True,
+    )
     volume = fields.Float()
 
     volume_uom_id = fields.Many2one(
@@ -404,6 +407,12 @@ class StockDeliveryNote(models.Model):
     def _compute_get_pickings(self):
         for note in self:
             note.pickings_picker = note.picking_ids
+
+    @api.depends("picking_ids")
+    def _compute_packages(self):
+        for note in self:
+            packages = note.picking_ids.move_line_ids.result_package_id
+            note.packages = len(packages) or 1
 
     @api.depends("picking_ids")
     def _compute_weights(self):
