@@ -234,6 +234,10 @@
                                             <span
                                                 class="text-nowrap"
                                                 t-field="line.price_unit"
+                                                t-options="{
+                                                    'widget': 'monetary',
+                                                    'display_currency': line.currency_id,
+                                                }"
                                             />
                                         </td>
                                         <td
