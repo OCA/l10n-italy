@@ -68,6 +68,9 @@ odoo.define("fiscal_epos_print.screens", function (require) {
             var currentOrder = this.pos.get('selectedOrder');
             this._super.apply(this, arguments);
             if (this.pos.config.printer_ip && !currentOrder.is_to_invoice()) {
+                if (currentOrder._eftpos_timing) {
+                    currentOrder._eftpos_timing.print_start_ts = Date.now();
+                }
                 this.chrome.loading_show();
                 this.chrome.loading_message(_t('Connecting to the fiscal printer'));
                 var printer_options = currentOrder.getPrinterOptions();
@@ -76,6 +79,80 @@ odoo.define("fiscal_epos_print.screens", function (require) {
                 this.sendToFP90Printer(receipt, printer_options);
             }
         },
+        _get_eftpos_payment_line: function(order) {
+            return _.find(order.get_paymentlines(), function(line) {
+                var journal = line.cashregister && line.cashregister.journal;
+                return journal && journal.fiscalprinter_eftpos;
+            }) || null;
+        },
+
+        /*
+          When the order is paid through a journal flagged "Activate EFT-POS",
+          authorize the amount on the terminal BEFORE creating the order and
+          printing. authorizeEftpos() is asynchronous, so we show an animated
+          loading overlay while the customer taps the card / enters the PIN and
+          branch on the outcome in the callback:
+            - approved -> mark the order authorized and re-enter validate_order,
+              which now falls through to the standard validation (_super) and
+              creates the order and prints the receipt exactly as before;
+            - declined -> show an error and abort - no order, no receipt.
+        */
+        validate_order: function(force_validation) {
+            var self = this;
+            var order = this.pos.get_order();
+            var eftposLine = order && this._get_eftpos_payment_line(order);
+            if (this.pos.config.printer_ip && eftposLine && !order.is_to_invoice()
+                    && !order._eftpos_authorized) {
+                // Only contact the terminal once the order is otherwise valid.
+                if (!this.order_is_valid(force_validation)) {
+                    return;
+                }
+                this.chrome.loading_show();
+                this.chrome.loading_message(_t('Waiting for the payment terminal'));
+                var printer_options = order.getPrinterOptions();
+                printer_options.order = order;
+                var fp90 = new eposDriver(printer_options, this);
+                fp90.authorizeEftpos({
+                    amount: eftposLine.get_amount(),
+                    timeout: eftposLine.cashregister.journal.fiscalprinter_eftpos_timeout,
+                }, function(outcome) {
+                    self.chrome.loading_hide();
+                    if (!outcome.approved) {
+                        console.log('EFT-POS not approved:', outcome);
+                        var details = 'code: ' + (outcome.code || 'n/d') +
+                            (outcome.status != null ? ', status: ' + outcome.status : '') +
+                            (outcome.elapsed_ms != null ? ', ' + Math.round(outcome.elapsed_ms / 1000) + 's' : '');
+                        var body;
+                        if (outcome.declined) {
+                            body = _t('The payment terminal declined the transaction (electronic payment error).') +
+                                ' (' + details + '). ' +
+                                _t('No receipt or order was created.');
+                        } else {
+                            body = _t('No answer from the payment terminal') +
+                                ' (' + details + '). ' +
+                                _t('The transaction was not completed; no receipt or order was created.');
+                            if (outcome.code === 'FP_NO_ANSWER') {
+                                body += ' ' + _t('This usually means a time-out: increase the EFT-POS timeout on the payment method and on the printer (SET 31).');
+                            }
+                        }
+                        self.gui.show_popup('error', {
+                            'title': _t('EFT-POS payment not completed'),
+                            'body': body,
+                        });
+                        return;
+                    }
+                    order._eftpos_authorized = true;
+                    order._eftpos_timing = {
+                        authorize_ms: outcome.elapsed_ms,
+                        auth_done_ts: Date.now(),
+                    };
+                    self.validate_order(force_validation);
+                });
+                return;
+            }
+            return this._super(force_validation);
+        },
+
         order_is_valid: function(force_validation) {
             if (this.pos.config.iface_tax_included == 'subtotal') {
                 this.gui.show_popup('error',{

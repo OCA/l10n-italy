@@ -8,6 +8,21 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
     var _t = core._t;
     var round_pr = utils.round_precision;
 
+    // Operator number used for the EFT-POS authorizeSales command (01..12);
+    // mirrors the module's default operator "1" used elsewhere.
+    var EFTPOS_OPERATOR = '1';
+
+    // Default printer-side time-out (seconds) for the <authorizeSales> command,
+    // used when the journal does not set one. The per-journal field
+    // "EFT-POS timeout (s)" (fiscalprinter_eftpos_timeout) overrides it. Allow
+    // enough time for card insertion, PIN and the bank round-trip, and keep it
+    // >= the printer's SET 31 time-out.
+    var EFTPOS_DEFAULT_TIMEOUT_SEC = 70;
+
+    // The browser (XHR) waits this much longer than the printer-side time-out,
+    // so it never gives up before the printer answers.
+    var EFTPOS_XHR_MARGIN_MS = 20000;
+
     function addPadding(str, padding=4) {
         var pad = new Array(padding).fill(0).join('') + str;
         return pad.substr(pad.length - padding, padding);
@@ -177,6 +192,25 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
                         order.fiscal_receipt_date = moment(fiscalReceiptDate).format('YYYY-MM-DD');
                         order.fiscal_z_rep_number = add_info.zRepNumber;
                         order.fiscal_printer_serial = sender.pos.config.fiscal_printer_serial;
+                        // Append EFT-POS timing to the order debug info so it can
+                        // be read on pos.order in Odoo without the browser console.
+                        // exchange = whole authorizeSales (card + PIN + printer
+                        // finalizing); gap = Odoo time from authorization to the
+                        // fiscal-receipt request; print = fiscal receipt printing.
+                        if (order._eftpos_timing) {
+                            var t = order._eftpos_timing;
+                            var fmtSec = function(ms) {
+                                return (ms == null) ? 'n/d' : (Math.round(ms / 100) / 10) + 's';
+                            };
+                            var gap_ms = (t.print_start_ts != null && t.auth_done_ts != null)
+                                ? (t.print_start_ts - t.auth_done_ts) : null;
+                            var print_ms = (t.print_start_ts != null)
+                                ? (Date.now() - t.print_start_ts) : null;
+                            var timing_line = 'EFT-POS timing: exchange=' + fmtSec(t.authorize_ms)
+                                + ', gap=' + fmtSec(gap_ms) + ', print=' + fmtSec(print_ms);
+                            order.fiscal_printer_debug_info = (order.fiscal_printer_debug_info
+                                ? order.fiscal_printer_debug_info + '\n' : '') + timing_line;
+                        }
                         sender.pos.db.add_order(order.export_as_JSON());
                         // try to save the order
                         sender.pos.push_order(order);
@@ -434,6 +468,113 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             xml += '<endFiscalReceipt /></printerFiscalReceipt>';
             this.fiscalPrinter.send(this.url, xml);
             console.log(xml);
+        },
+
+        /*
+          EFT-POS "authorize then print" - phase 1.
+
+          Sends the "Online" amount-exchange command to the printer with the
+          commercial document CLOSED (STATO REGISTRAZIONE) - the only state in
+          which the printer dials the terminal - and delivers the bank outcome
+          to the given callback. The caller uses that outcome to decide whether
+          to create the order and print the receipt.
+
+          The send is ASYNCHRONOUS (default callMode): the browser UI thread
+          stays responsive so the caller can show an animated loading overlay
+          while the customer taps the card and enters the PIN. The outcome is
+          delivered exactly once, via onreceive (approved / declined) or
+          onerror (network failure or client timeout). The client-side (XHR)
+          timeout is the per-journal EFT-POS timeout plus EFTPOS_XHR_MARGIN_MS,
+          so it stays above the printer-side authorizeSales / SET 31 time-out
+          that normally bounds the wait.
+
+          Use a dedicated eposDriver instance for this call: its onreceive /
+          onerror are overwritten here and not restored.
+        */
+        authorizeEftpos: function(paymentLine, callback) {
+            var self = this;
+            var timeoutMs = this.eftposTimeoutMs(paymentLine);
+            var xml = this.buildEftposExchangeXml(paymentLine, timeoutMs);
+            var started = Date.now();
+            var done = false;
+            var finish = function(outcome) {
+                if (done) {
+                    return;
+                }
+                done = true;
+                outcome.elapsed_ms = Date.now() - started;
+                callback(outcome);
+            };
+            this.fiscalPrinter.onreceive = function(res, tags, add_info, res_add) {
+                finish(self.parseEftposOutcome(res, tags, add_info));
+            };
+            this.fiscalPrinter.onerror = function() {
+                finish({
+                    approved: false,
+                    code: 'FP_NO_ANSWER_NETWORK',
+                    res_frame: null,
+                    raw: null,
+                });
+            };
+            console.log(xml);
+            this.fiscalPrinter.send(this.url, xml, timeoutMs + EFTPOS_XHR_MARGIN_MS);
+        },
+
+        /*
+          Build the EFT-POS amount-exchange request using the dedicated ePOS
+          <authorizeSales> element (Epson "ePOS Fiscal Print Solution
+          Development Guide", section 5.9.2), the native 1-084 "Online"
+          exchange.
+
+          Attributes: operator and amount. amount is a DECIMAL amount in euro
+          (dot or comma, max 2 decimals, non-zero) - NOT cents. timeout is the
+          printer-side time-out in ms. The command must reach the printer with
+          the commercial document CLOSED (STATO REGISTRAZIONE). On approval the
+          response carries paymentResult and the POS receipt lines
+          (lineCount / lineNumberN).
+        */
+        buildEftposExchangeXml: function(paymentLine, timeoutMs) {
+            var amount = (parseFloat(paymentLine.amount) || 0).toFixed(2);
+            return '<printerCommand>'
+                + '<authorizeSales operator="' + EFTPOS_OPERATOR + '"'
+                + ' amount="' + amount + '"'
+                + ' timeout="' + timeoutMs + '" />'
+                + '</printerCommand>';
+        },
+
+        // Printer-side time-out (ms) for the EFT-POS exchange: the per-journal
+        // value (seconds, fiscalprinter_eftpos_timeout) if set, otherwise
+        // EFTPOS_DEFAULT_TIMEOUT_SEC.
+        eftposTimeoutMs: function(paymentLine) {
+            var sec = parseInt(paymentLine && paymentLine.timeout, 10);
+            if (!sec || sec <= 0) {
+                sec = EFTPOS_DEFAULT_TIMEOUT_SEC;
+            }
+            return sec * 1000;
+        },
+
+        /*
+          Interpret the <authorizeSales> response (Dev Guide 5.9.2 + error
+          table, chapter 6):
+            - approved: success="true"; the response carries paymentResult
+              (the POS reply string) and the POS receipt lines;
+            - declined: success="false" code="EFT_POS_ERROR" status="38"
+              ("Electronic payment error", i.e. the bank refused);
+            - any other failure is NOT a bank decline: e.g. FP_NO_ANSWER
+              (fiscal firmware / FpMate time-out) or FP_NO_ANSWER_NETWORK
+              (client / network). We keep the real code/status so the caller
+              can tell a decline apart from a time-out.
+        */
+        parseEftposOutcome: function(res, tags, add_info) {
+            return {
+                approved: !!(res && res.success),
+                declined: !!(res && res.code === 'EFT_POS_ERROR'),
+                code: res && res.code,
+                status: res && res.status,
+                payment_result: (add_info && add_info.paymentResult) || null,
+                res_frame: (add_info && add_info.paymentResult) || null,
+                raw: {res: res, add_info: add_info},
+            };
         },
 
         printFiscalReport: function() {
