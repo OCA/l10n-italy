@@ -391,6 +391,9 @@
                     </div>
 
                     <t t-call="l10n_it_delivery_note.parcels_data" />
+                    <div t-if="not is_html_empty(doc.print_note)" name="print_note">
+                        <span t-field="doc.print_note" />
+                    </div>
                 </div>
             </div>
         </t>

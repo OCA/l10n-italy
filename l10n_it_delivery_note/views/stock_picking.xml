@@ -318,16 +318,27 @@
                                         <field name="dn_supplier_date" />
                                     </group>
                                 </group>
-                                <separator
+                                <group
                                     string="Delivery Notes"
                                     invisible="not delivery_note_exists"
-                                />
-                                <field
-                                    name="delivery_note_note"
-                                    nolabel="1"
-                                    readonly="delivery_note_readonly"
+                                >
+                                    <field
+                                        name="delivery_note_note"
+                                        nolabel="1"
+                                        readonly="delivery_note_readonly"
+                                    />
+                                </group>
+                                <group
+                                    string="Report Notes"
                                     invisible="not delivery_note_exists"
-                                />
+                                >
+                                    <field
+                                        name="delivery_note_print_note"
+                                        colspan="2"
+                                        nolabel="1"
+                                        readonly="delivery_note_readonly"
+                                    />
+                                </group>
                             </div>
                         </div>
                     </page>
