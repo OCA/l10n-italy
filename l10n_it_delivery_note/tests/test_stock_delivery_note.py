@@ -89,6 +89,7 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         picking.delivery_note_id.action_confirm()
         self.assertEqual(picking.delivery_note_id.state, "confirm")
         self.assertEqual(picking.delivery_note_id.invoice_status, "no")
+        self.assertEqual(picking.delivery_note_id.packages, 1)
 
         test_company = self.env["res.company"].create({"name": "Test Company"})
         with self.assertRaises(UserError) as exc:
