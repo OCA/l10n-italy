@@ -285,6 +285,10 @@ class StockDeliveryNote(models.Model):
         copy=False,
     )
 
+    print_packages = fields.Boolean(
+        related="type_id.print_packages",
+        store=True,
+    )
     print_prices = fields.Boolean(
         string="Show prices on printed DN", related="type_id.print_prices", store=True
     )
