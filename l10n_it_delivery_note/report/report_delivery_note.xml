@@ -134,6 +134,14 @@
                         <strong>Delivery Method:</strong>
                         <t t-esc="doc.delivery_method_id.name" />
                     </div>
+                    <div
+                        id="incoterm"
+                        t-if="doc.incoterm_id"
+                        groups="sale_stock.group_display_incoterm"
+                    >
+                        <strong>Incoterm:</strong>
+                        <span t-field="doc.incoterm_id" />
+                    </div>
 
                     <div id="dn_terms">
                         <strong> Delivery Note: </strong>

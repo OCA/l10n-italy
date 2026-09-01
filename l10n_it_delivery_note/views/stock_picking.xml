@@ -215,6 +215,10 @@
                                             readonly="not delivery_note_draft"
                                         />
                                         <field
+                                            name="delivery_note_incoterm_id"
+                                            readonly="not delivery_note_draft"
+                                        />
+                                        <field
                                             name="delivery_note_date"
                                             readonly="not delivery_note_draft"
                                         />

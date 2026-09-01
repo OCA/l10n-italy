@@ -143,6 +143,9 @@ class StockDeliveryNote(models.Model):
     )
 
     date = fields.Date(copy=False)
+    incoterm_id = fields.Many2one(
+        comodel_name="account.incoterms",
+    )
     type_id = fields.Many2one(
         "stock.delivery.note.type",
         string="Type",

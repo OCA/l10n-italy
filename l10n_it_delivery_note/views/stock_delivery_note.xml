@@ -155,6 +155,7 @@
                                 widget="selection"
                             />
                             <field name="date" readonly="state != 'draft'" />
+                            <field name="incoterm_id" />
                         </group>
                     </group>
                     <group>
