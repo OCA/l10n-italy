@@ -1,6 +1,6 @@
 # Copyright 2025 Nextev Srl
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -72,36 +72,37 @@ class AccountMove(models.Model):
             )
         return  # W8110
 
+    @api.depends("l10n_it_edi_doi_total_amount")
     def _compute_l10n_it_edi_doi_warning(self):
-        """Override to show custom warning when DOI amounts don't cover
-        invoice total.
+        """Append a coverage warning when the bridge rows do not cover the
+        invoice DOI amount. Core warnings (threshold, validity) are kept.
         """
         super()._compute_l10n_it_edi_doi_warning()
-        for move in self:
-            # Clear the warning first
-            move.l10n_it_edi_doi_warning = ""
-
-            # Only show warning if amounts don't match
+        for move in self.filtered("l10n_it_edi_doi_ids"):
+            # Sale documents carry a signed amount (core), purchase ones do not
+            doi_amount = abs(move.l10n_it_edi_doi_amount)
             if (
-                move.l10n_it_edi_doi_use
-                and move.l10n_it_edi_doi_amount > 0
-                and move.l10n_it_edi_doi_total_amount < move.l10n_it_edi_doi_amount
+                move.currency_id.compare_amounts(
+                    move.l10n_it_edi_doi_total_amount, doi_amount
+                )
+                >= 0
             ):
-                covered = (
-                    f"{move.l10n_it_edi_doi_total_amount:.2f} "
-                    f"{move.currency_id.symbol}"
-                )
-                total = (
-                    f"{move.l10n_it_edi_doi_amount:.2f} " f"{move.currency_id.symbol}"
-                )
-                move.l10n_it_edi_doi_warning = _(
-                    "Warning: The total amount covered by declarations "
-                    "(%(covered)s) is less than the invoice DOI amount "
-                    "(%(total)s). Please adjust the amounts or add more "
-                    "declarations.",
-                    covered=covered,
-                    total=total,
-                )
+                continue
+            covered = (
+                f"{move.l10n_it_edi_doi_total_amount:.2f} {move.currency_id.symbol}"
+            )
+            total = f"{doi_amount:.2f} {move.currency_id.symbol}"
+            coverage = _(
+                "Warning: The total amount covered by declarations "
+                "(%(covered)s) is less than the invoice DOI amount "
+                "(%(total)s). Please adjust the amounts or add more "
+                "declarations.",
+                covered=covered,
+                total=total,
+            )
+            move.l10n_it_edi_doi_warning = "\n\n".join(
+                filter(None, [move.l10n_it_edi_doi_warning, coverage])
+            )
         return  # W8110
 
     def _compute_l10n_it_edi_doi_amount(self):
@@ -113,18 +114,13 @@ class AccountMove(models.Model):
             if not tax or not move.l10n_it_edi_doi_id:
                 move.l10n_it_edi_doi_amount = 0
                 continue
+            # The DOI tax can share the line with other taxes: read the taxable base
             declaration_lines = move.invoice_line_ids.filtered(
                 lambda line, tax=tax: tax in line.tax_ids
             )
-            move.l10n_it_edi_doi_amount = sum(declaration_lines.mapped("price_total"))
-
-        # Fallback for migrated invoices: old v16 invoices don't have the v18
-        # DOI tax on their lines, so the standard compute gives 0.
-        # If the invoice has a DOI but no DOI-taxed lines, use amount_untaxed
-        # (which was the full DOI amount in v16).
-        for move in self:
-            if move.l10n_it_edi_doi_id and not move.l10n_it_edi_doi_amount:
-                move.l10n_it_edi_doi_amount = abs(move.amount_untaxed)
+            move.l10n_it_edi_doi_amount = sum(
+                declaration_lines.mapped("price_subtotal")
+            )
         return  # W8110
 
     def _compute_l10n_it_edi_doi_id(self):
@@ -179,30 +175,35 @@ class AccountMove(models.Model):
             raise UserError("\n".join(errors))
         return super()._post(soft)
 
-    def _reverse_moves(self, default_values_list=None, cancel=False):
-        """Override to copy DOI data from original invoice to refund."""
-        reverse_moves = super()._reverse_moves(
-            default_values_list=default_values_list, cancel=cancel
-        )
+    def copy_data(self, default=None):
+        """Carry the bridge lines onto credit notes only.
 
-        # Copy DOI links from original invoices to their refunds
-        for reverse_move in reverse_moves:
-            if not reverse_move.reversed_entry_id:
-                continue
-
-            original_move = reverse_move.reversed_entry_id
-            # Copy DOI bridge records
-            for doi_link in original_move.l10n_it_edi_doi_ids:
-                self.env["account.move.doi"].create(
+        A credit note must reverse the same declarations with the same amounts.
+        A duplicate follows core instead: the split between declarations depends
+        on their remaining amount at invoicing time, so it is not copied.
+        Core _reverse_moves builds the credit note with copy(), so the lines are
+        created while the move is still draft.
+        The lines are copied whatever the current state of the declaration: a
+        credit note reverses a consumption that already happened, so it must
+        point to the same declaration even if it was terminated or revoked since.
+        Core copy_data keeps l10n_it_edi_doi_id in that case as well (state and
+        dates are not blocking when the amount is not positive).
+        """
+        data_list = super().copy_data(default)
+        if not (default and default.get("reversed_entry_id")):
+            return data_list
+        for move, data in zip(self, data_list, strict=True):
+            data["l10n_it_edi_doi_ids"] = [
+                Command.create(
                     {
-                        "move_id": reverse_move.id,
-                        "declaration_id": doi_link.declaration_id.id,
-                        "amount": doi_link.amount,
-                        "sequence": doi_link.sequence,
+                        "declaration_id": link.declaration_id.id,
+                        "amount": link.amount,
+                        "sequence": link.sequence,
                     }
                 )
-
-        return reverse_moves
+                for link in move.l10n_it_edi_doi_ids
+            ]
+        return data_list
 
     def action_open_declaration_of_intent(self):
         """Open declaration(s) of intent.
