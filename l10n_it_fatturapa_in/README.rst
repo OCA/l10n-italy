@@ -83,11 +83,12 @@ Consultare anche il file README del modulo l10n_it_fatturapa.
 Per ciascun fornitore è possibile impostare il "Livello dettaglio
 e-fatture":
 
-   - Livello minimo: la fattura fornitore viene creata senza righe, che
-     dovranno essere create dall'utente in base a quanto indicato nella
-     fattura elettronica
-   - Livello massimo: le righe della fattura fornitore verranno generate
-     a partire da tutte quelle presenti nella fattura elettronica
+   -  Livello minimo: la fattura fornitore viene creata senza righe, che
+      dovranno essere create dall'utente in base a quanto indicato nella
+      fattura elettronica
+   -  Livello massimo: le righe della fattura fornitore verranno
+      generate a partire da tutte quelle presenti nella fattura
+      elettronica
 
 Nella scheda fornitore è inoltre possibile impostare il "Prodotto
 predefinito per e-fattura": verrà usato, durante la generazione delle
@@ -110,10 +111,10 @@ See also the README file of l10n_it_fatturapa module.
 
 For every supplier, it is possible to set the 'E-bills Detail Level':
 
-   - Minimum level: Bill is created with no lines; User will have to
-     create them, according to what specified in the electronic bill
-   - Maximum level: Every line contained in electronic bill will create
-     a line in bill
+   -  Minimum level: Bill is created with no lines; User will have to
+      create them, according to what specified in the electronic bill
+   -  Maximum level: Every line contained in electronic bill will create
+      a line in bill
 
 Moreover, in supplier form you can set the 'E-bill Default Product':
 this product will be used, during generation of bills, when no other
@@ -133,13 +134,13 @@ Usage
 
 **Italiano**
 
-   - Andare in Contabilità → Acquisti → Fattura elettronica
-   - Caricare un file XML
-   - Visualizzare il contenuto della fattura facendo clic su "Mostra
-     anteprima"
-   - Eseguire la procedura guidata "Importa e-fattura" per creare una
-     fattura in bozza oppure "Collega a fattura esistente" per collegare
-     il file XML a una fattura già (automaticamente) creata
+   -  Andare in Contabilità → Acquisti → Fattura elettronica
+   -  Caricare un file XML
+   -  Visualizzare il contenuto della fattura facendo clic su "Mostra
+      anteprima"
+   -  Eseguire la procedura guidata "Importa e-fattura" per creare una
+      fattura in bozza oppure "Collega a fattura esistente" per
+      collegare il file XML a una fattura già (automaticamente) creata
 
 Nell'elenco file delle fatture elettroniche in ingresso saranno
 presenti, in modo predefinito, quelli da registrare. Sono i file che
@@ -147,12 +148,12 @@ devono ancora essere collegati a una o più fatture fornitore.
 
 **English**
 
-   - Go to Accounting → Purchases → Electronic Bill
-   - Upload XML file
-   - View bill content clicking on 'Show preview'
-   - Run 'Import e-bill' wizard to create a draft bill or run 'Link to
-     existing bill' to link the XML file to an already (automatically)
-     created bill
+   -  Go to Accounting → Purchases → Electronic Bill
+   -  Upload XML file
+   -  View bill content clicking on 'Show preview'
+   -  Run 'Import e-bill' wizard to create a draft bill or run 'Link to
+      existing bill' to link the XML file to an already (automatically)
+      created bill
 
 In the incoming electronic bill files list you will see, by default,
 files to be registered. These are files not yet linked to one or more
@@ -208,17 +209,17 @@ Authors
 Contributors
 ------------
 
-- Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-- Roberto Onnis
-- Alessio Gerace
-- Sergio Zanchetta <https://github.com/primes2h>
-- Giovanni Serra <giovanni@gslab.it>
-- Gianmarco Conte <gconte@dinamicheaziendali.it>
-- Marco Colombo <https://github.com/TheMule71>
-- Salvo Rapisarda <https://github.com/salvorapi>
-- `Aion Tech <https://aiontech.company/>`__:
+-  Lorenzo Battistini
+-  Roberto Onnis
+-  Alessio Gerace
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Giovanni Serra <giovanni@gslab.it>
+-  Gianmarco Conte <gconte@dinamicheaziendali.it>
+-  Marco Colombo <https://github.com/TheMule71>
+-  Salvo Rapisarda <https://github.com/salvorapi>
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
