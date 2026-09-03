@@ -67,29 +67,38 @@ class EInvoiceImportFileWizard(models.TransientModel):
                             attachment.unlink()
                             continue
 
-                        for file_data in attachment._decode_edi_l10n_it_edi(
-                            filename, content
-                        ):
-                            move = (
-                                self.env["account.move"]
-                                .with_company(company)
-                                .create({})
+                        # Since odoo@d1759c9, _decode_edi_l10n_it_edi returns
+                        # one file data per attachment, so if the e-invoice
+                        # contains multiple e-invoices, first its split
+                        # then each single invoice content is decoded
+                        split_contents = self.env[
+                            "account.journal"
+                        ]._l10n_it_edi_extension_split_content(attachment)
+                        for split_content in split_contents:
+                            file_datas = attachment._decode_edi_l10n_it_edi(
+                                filename, split_content
                             )
-                            attachment.write(
-                                {
-                                    "res_model": "account.move",
-                                    "res_id": move.id,
-                                    "res_field": "l10n_it_edi_attachment_file",
-                                }
-                            )
+                            for file_data in file_datas:
+                                move = (
+                                    self.env["account.move"]
+                                    .with_company(company)
+                                    .create({})
+                                )
+                                attachment.write(
+                                    {
+                                        "res_model": "account.move",
+                                        "res_id": move.id,
+                                        "res_field": "l10n_it_edi_attachment_file",
+                                    }
+                                )
 
-                            move.with_context(
-                                account_predictive_bills_disable_prediction=True,
-                                no_new_invoice=True,
-                            ).message_post(attachment_ids=attachment.ids)
+                                move.with_context(
+                                    account_predictive_bills_disable_prediction=True,
+                                    no_new_invoice=True,
+                                ).message_post(attachment_ids=attachment.ids)
 
-                            move._l10n_it_edi_import_invoice(move, file_data, True)
-                            moves |= move
+                                move._l10n_it_edi_import_invoice(move, file_data, True)
+                                moves |= move
         action = {
             "name": self.env._("E-invoices"),
             "type": "ir.actions.act_window",
