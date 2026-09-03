@@ -33,6 +33,9 @@ class TestAssetDepreciation(Common):
             asset_depreciation.loss_account_id, asset.category_id.loss_account_id
         )
 
+        # Generate fiscal year
+        self._generate_fiscal_years(purchase_date, depreciation_date)
+
         # Act: change depreciation account and generate move
         asset_depreciation.depreciation_account_id = new_depreciation_account
         self._depreciate_asset(asset, depreciation_date)
@@ -71,6 +74,9 @@ class TestAssetDepreciation(Common):
         self.assertEqual(asset_depreciation.base_coeff, depreciation_base_coeff)
         self.assertEqual(asset_depreciation.percentage, depreciation_percentage)
         self.assertEqual(asset_depreciation.amount_residual, 200)
+
+        # Generate fiscal year
+        self._generate_fiscal_years(purchase_date, depreciation_date)
 
         # Act: Depreciate and dismiss with sale
         self._depreciate_asset(asset, depreciation_date)
@@ -135,6 +141,9 @@ class TestAssetDepreciation(Common):
         self.assertEqual(asset_depreciation.percentage, depreciation_percentage)
         self.assertEqual(asset_depreciation.amount_residual, 200)
 
+        # Generate fiscal year
+        self._generate_fiscal_years(purchase_date, depreciation_date)
+
         # Act: Depreciate and update with purchase
         self._depreciate_asset(asset, depreciation_date)
         self.assertEqual(asset_depreciation.amount_residual, depreciated_amount)
@@ -194,6 +203,9 @@ class TestAssetDepreciation(Common):
         self.assertEqual(asset_depreciation.base_coeff, depreciation_base_coeff)
         self.assertEqual(asset_depreciation.percentage, depreciation_percentage)
         self.assertEqual(asset_depreciation.amount_residual, 200)
+
+        # Generate fiscal year
+        self._generate_fiscal_years(purchase_date, depreciation_date)
 
         # Act: Depreciate and update with purchase
         self._depreciate_asset(asset, depreciation_date)
