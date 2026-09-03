@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================================================
 ITA - Documento di trasporto - Prelievo raggruppato
 ===================================================
@@ -17,7 +13,7 @@ ITA - Documento di trasporto - Prelievo raggruppato
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
@@ -100,9 +96,9 @@ promote its widespread use.
 .. |maintainer-Borruso| image:: https://github.com/Borruso.png?size=40px
     :target: https://github.com/Borruso
     :alt: Borruso
-.. |maintainer-aleuffre| image:: https://github.com/aleuffre.png?size=40px
-    :target: https://github.com/aleuffre
-    :alt: aleuffre
+.. |maintainer-HekkiMelody| image:: https://github.com/HekkiMelody.png?size=40px
+    :target: https://github.com/HekkiMelody
+    :alt: HekkiMelody
 .. |maintainer-PicchiSeba| image:: https://github.com/PicchiSeba.png?size=40px
     :target: https://github.com/PicchiSeba
     :alt: PicchiSeba
@@ -112,7 +108,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-MarcoCalcagni| |maintainer-TheMule71| |maintainer-Borruso| |maintainer-aleuffre| |maintainer-PicchiSeba| |maintainer-renda-dev| 
+|maintainer-MarcoCalcagni| |maintainer-TheMule71| |maintainer-Borruso| |maintainer-HekkiMelody| |maintainer-PicchiSeba| |maintainer-renda-dev| 
 
 This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_delivery_note_batch>`_ project on GitHub.
 
