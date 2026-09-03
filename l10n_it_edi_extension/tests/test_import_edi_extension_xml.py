@@ -2,11 +2,15 @@
 #  Copyright 2025 Simone Rubino
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import base64
+import io
+import zipfile
 from datetime import date
 from unittest.mock import patch
 
 from odoo import tools
 from odoo.exceptions import MissingError
+from odoo.tools import file_open
 
 from .common import Common
 
@@ -531,3 +535,160 @@ class TestFatturaPAXMLValidation(Common):
             lambda message: "Error importing attachment" in (message.body or "")
         )
         self.assertFalse(error_message)
+
+
+class TestIsL10nItEdiImportFile(Common):
+    """Cover ``account.move._is_l10n_it_edi_import_file``."""
+
+    def _create_attachment(self, name, raw, mimetype=False):
+        """Create an ``ir.attachment`` with the given name and content.
+
+        ``mimetype`` may be set to a known value to bypass ``guess_mimetype``;
+        otherwise the attachment is left for Odoo to compute.
+        """
+        values = {
+            "name": name,
+            "raw": raw,
+            "type": "binary",
+        }
+        if mimetype is not False:
+            values["mimetype"] = mimetype
+        return self.env["ir.attachment"].create(values)
+
+    def _is_l10n_it_edi_import_file(self, attachment):
+        move_model = self.env["account.move"]
+        file_data = move_model._to_files_data(attachment)[0]
+        return move_model._is_l10n_it_edi_import_file(file_data)
+
+    def test_super_recognises_xml(self):
+        """When Odoo core already recognises the file, the result is kept."""
+        path = "l10n_it_edi_extension/tests/import_xmls/IT01234567890_FPR03.xml"
+        with file_open(path, mode="rb") as fd:
+            attachment = self._create_attachment("IT01234567890_FPR03.xml", fd.read())
+        self.assertTrue(attachment.mimetype, "Mimetype should be auto-detected")
+        self.assertTrue(self._is_l10n_it_edi_import_file(attachment))
+
+    def test_p7m_with_undetected_mimetype_is_recognised(self):
+        """``.p7m`` files whose mimetype is ``application/octet-stream``
+        (because ``guess_mimetype`` cannot detect CAdES) are still recognised
+        thanks to the extension's signature-stripping fallback.
+        """
+        path = "l10n_it_edi_extension/tests/import_xmls/IT05979361218_003.xml.p7m"
+        with file_open(path, mode="rb") as fd:
+            raw = fd.read()
+        attachment = self._create_attachment(
+            "IT05979361218_003.xml.p7m", raw, mimetype="application/octet-stream"
+        )
+        self.assertTrue(self._is_l10n_it_edi_import_file(attachment))
+
+    def test_p7m_with_invalid_content_is_not_recognised(self):
+        """``.p7m`` whose contents cannot be parsed as a FatturaElettronica
+        is rejected by the extension's fallback.
+        """
+        attachment = self._create_attachment(
+            "bogus.p7m",
+            b"not a valid signed e-invoice",
+            mimetype="application/octet-stream",
+        )
+        self.assertFalse(self._is_l10n_it_edi_import_file(attachment))
+
+    def test_non_p7m_with_undetected_mimetype_is_not_recognised(self):
+        """The fallback only triggers for ``.p7m`` files."""
+        attachment = self._create_attachment(
+            "random.bin",
+            b"random binary data",
+            mimetype="application/octet-stream",
+        )
+        self.assertFalse(self._is_l10n_it_edi_import_file(attachment))
+
+    def test_empty_raw_is_not_recognised(self):
+        """Empty content with a ``.p7m`` name is rejected (no raw to parse)."""
+        attachment = self.env["ir.attachment"].create(
+            {
+                "name": "empty.p7m",
+                "type": "binary",
+            }
+        )
+        self.assertFalse(self._is_l10n_it_edi_import_file(attachment))
+
+
+class TestImportWizardSplitting(Common):
+    # Cover l10n_it_edi.import_file_wizard.action_import for multiple e-invoices
+    # in one file, and for multiple files in one zip
+
+    def _build_zip(self, members):
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+            for arcname, data in members.items():
+                zf.writestr(arcname, data)
+        return base64.b64encode(buf.getvalue())
+
+    def _run_wizard(self, zip_name, zip_bytes):
+        wizard = (
+            self.env["l10n_it_edi.import_file_wizard"]
+            .with_company(self.company)
+            .create(
+                {
+                    "l10n_it_edi_attachment_filename": zip_name,
+                    "l10n_it_edi_attachment": zip_bytes,
+                }
+            )
+        )
+        action = wizard.action_import()
+        return self.env["account.move"].search(action["domain"])
+
+    def test_multi_body_xml_in_zip_creates_one_invoice_per_body(self):
+        path = "l10n_it_edi_extension/tests/import_xmls/IT01234567890_FPR03.xml"
+        with file_open(path, mode="rb") as fd:
+            xml_bytes = fd.read()
+        zip_bytes = self._build_zip({"IT01234567890_FPR03.xml": xml_bytes})
+        # FPR03's CedentePrestatore CodiceFiscale is 03533590174.
+        self.company.l10n_it_codice_fiscale = "03533590174"
+        moves = self._run_wizard("multi_body.zip", zip_bytes)
+        # IT01234567890_FPR03.xml has 2 bodies with refs 123 and 456.
+        self.assertEqual(len(moves), 2)
+        self.assertEqual(
+            sorted(moves.mapped("ref")),
+            ["123", "456"],
+        )
+        # Each created move is linked to its own e-invoice.
+        self.assertEqual(
+            sorted(moves.l10n_it_edi_ext_attachment_in_id.mapped("name")),
+            ["IT01234567890_FPR03.xml", "IT01234567890_FPR03_2.xml"],
+        )
+
+    def test_single_body_xml_in_zip_creates_one_invoice(self):
+        path = "l10n_it_edi_extension/tests/import_xmls/IT02780790107_11004.xml"
+        with file_open(path, mode="rb") as fd:
+            xml_bytes = fd.read()
+        zip_bytes = self._build_zip({"IT02780790107_11004.xml": xml_bytes})
+        moves = self._run_wizard("single_body.zip", zip_bytes)
+        self.assertEqual(len(moves), 1)
+
+    def test_p7m_with_undetected_mimetype_in_zip(self):
+        path = "l10n_it_edi_extension/tests/import_xmls/IT05979361218_003.xml.p7m"
+        with file_open(path, mode="rb") as fd:
+            p7m_bytes = fd.read()
+        zip_bytes = self._build_zip({"IT05979361218_003.xml.p7m": p7m_bytes})
+        moves = self._run_wizard("signed.zip", zip_bytes)
+        self.assertTrue(moves)
+        self.assertEqual(
+            moves.l10n_it_edi_ext_attachment_in_id.name, "IT05979361218_003.xml.p7m"
+        )
+
+    def test_zip_with_multi_and_single_invoices(self):
+        multi_path = "l10n_it_edi_extension/tests/import_xmls/IT01234567890_FPR03.xml"
+        single_path = "l10n_it_edi_extension/tests/import_xmls/IT02780790107_11004.xml"
+        with file_open(multi_path, mode="rb") as fd:
+            multi_bytes = fd.read()
+        with file_open(single_path, mode="rb") as fd:
+            single_bytes = fd.read()
+        zip_bytes = self._build_zip(
+            {
+                "IT01234567890_FPR03.xml": multi_bytes,
+                "IT02780790107_11004.xml": single_bytes,
+            }
+        )
+        moves = self._run_wizard("mixed.zip", zip_bytes)
+        # must be 3 invoices in total
+        self.assertEqual(len(moves), 3)

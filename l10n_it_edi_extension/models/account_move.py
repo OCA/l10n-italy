@@ -230,6 +230,23 @@ class AccountMoveInherit(models.Model):
     # Helpers
     # -------------------------------------------------------------------------
 
+    def _get_xml_tree(self, file_data):
+        # Extend Odoo standard check to also recognize signed e-invoice files
+        # (e.g. .p7m files reported as "application/octet-stream").
+        xml_tree = super()._get_xml_tree(file_data)
+        if (
+            xml_tree is None
+            and file_data["raw"]
+            and file_data["name"]
+            and file_data["name"].lower().endswith(".p7m")
+        ):
+            p7m_xml_tree = self._parse_xml_with_recovery(
+                file_data["raw"], file_data["name"]
+            )
+            if self._is_l10n_it_edi_import_file({"xml_tree": p7m_xml_tree}):
+                xml_tree = p7m_xml_tree
+        return xml_tree
+
     def _l10n_it_edi_add_base_lines_xml_values(
         self, base_lines_aggregated_values, is_downpayment
     ):
