@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-12-08 03:45+0000\n"
 "PO-Revision-Date: 2017-12-08 03:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: French (Switzerland) (https://www.transifex.com/oca/"
-"teams/23907/fr_CH/)\n"
+"Language-Team: French (Switzerland) (https://www.transifex.com/oca/teams/"
+"23907/fr_CH/)\n"
 "Language: fr_CH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,7 +325,7 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:462
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:463
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -352,7 +352,7 @@ msgid "VAT Integration"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:452
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:453
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"

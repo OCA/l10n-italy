@@ -324,7 +324,7 @@ msgid "Text on Self Invoice"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:462
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:463
 #, python-format
 msgid ""
 "There are more than one payment line.\n"
@@ -351,7 +351,7 @@ msgid "VAT Integration"
 msgstr ""
 
 #. module: l10n_it_reverse_charge
-#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:452
+#: code:addons/l10n_it_reverse_charge/models/account_invoice.py:453
 #, python-format
 msgid ""
 "VAT integration RC type, defined in fiscal position {fp}, is not managed yet"
