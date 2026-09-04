@@ -90,7 +90,7 @@ addon | version | maintainers | summary
 [l10n_it_pos_fatturapa_send_directly](l10n_it_pos_fatturapa_send_directly/) | 12.0.2.0.0 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Inviare automaticamente a SDI la fattura elettronica dal POS
 [l10n_it_pos_fiscalcode](l10n_it_pos_fiscalcode/) | 12.0.1.0.1 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Gestione codice fiscale del cliente all'interno dell'interfaccia del POS
 [l10n_it_rea](l10n_it_rea/) | 12.0.1.0.4 |  | Gestisce i campi del Repertorio Economico Amministrativo
-[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 12.0.1.3.2 |  | Inversione contabile
+[l10n_it_reverse_charge](l10n_it_reverse_charge/) | 12.0.1.3.3 |  | Inversione contabile
 [l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 12.0.1.9.0 |  | Ricevute bancarie
 [l10n_it_sdi_channel](l10n_it_sdi_channel/) | 12.0.2.3.0 | <a href='https://github.com/sergiocorato'><img src='https://github.com/sergiocorato.png' width='32' height='32' style='border-radius:50%;' alt='sergiocorato'/></a> | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI
 [l10n_it_split_payment](l10n_it_split_payment/) | 12.0.1.0.2 |  | Split Payment
