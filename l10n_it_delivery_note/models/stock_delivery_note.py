@@ -6,7 +6,7 @@
 import datetime
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 from ..mixins.delivery_mixin import (
     _default_volume_uom,
@@ -273,6 +273,22 @@ class StockDeliveryNote(models.Model):
     sale_count = fields.Integer(compute="_compute_sales")
     sales_transport_check = fields.Boolean(compute="_compute_sales", default=True)
 
+    currency_id = fields.Many2one("res.currency", compute="_compute_currency_id")
+
+    untaxed_amount_total = fields.Monetary(
+        "Untaxed Total Amount",
+        compute="_compute_amount_total",
+        currency_field="currency_id",
+        store=True,
+    )
+
+    amount_total = fields.Monetary(
+        "Total Amount",
+        compute="_compute_amount_total",
+        currency_field="currency_id",
+        store=True,
+    )
+
     invoice_ids = fields.Many2many(
         "account.move",
         "stock_delivery_note_account_invoice_rel",
@@ -290,6 +306,7 @@ class StockDeliveryNote(models.Model):
     can_change_number = fields.Boolean(compute="_compute_boolean_flags")
     show_product_information = fields.Boolean(compute="_compute_boolean_flags")
     company_id = fields.Many2one("res.company", required=True, default=_default_company)
+    show_discount = fields.Boolean(compute="_compute_show_discount")
 
     # Sync with delivery mixin fields
     delivery_transport_reason_id = fields.Many2one(
@@ -398,6 +415,19 @@ class StockDeliveryNote(models.Model):
                     invoice_status = DOMAIN_INVOICE_STATUSES[1]
             note.invoice_status = invoice_status
 
+    @api.depends("line_ids.currency_id")
+    def _compute_currency_id(self):
+        for sdn in self:
+            sdn.currency_id = sdn.line_ids.mapped("currency_id")
+
+    @api.depends("line_ids.amount", "line_ids.untaxed_amount")
+    def _compute_amount_total(self):
+        for sdn in self:
+            sdn.untaxed_amount_total = (
+                sum(line.untaxed_amount or 0.0 for line in sdn.line_ids) or 0.0
+            )
+            sdn.amount_total = sum(line.amount or 0.0 for line in sdn.line_ids) or 0.0
+
     def _compute_get_pickings(self):
         for note in self:
             note.pickings_picker = note.picking_ids
@@ -421,6 +451,13 @@ class StockDeliveryNote(models.Model):
                     )
             note.gross_weight = gross_weight
             note.net_weight = net_weight
+
+    @api.depends("line_ids.discount")
+    def _compute_show_discount(self):
+        for sdn in self:
+            sdn.show_discount = any(
+                sdn.line_ids.filtered(lambda line: line.discount != 0)
+            )
 
     @api.onchange("picking_ids")
     def _onchange_picking_ids(self):
@@ -579,6 +616,17 @@ class StockDeliveryNote(models.Model):
 
         else:
             self.delivery_method_id = False
+
+    @api.constrains("line_ids")
+    def _check_line_ids(self):
+        for rec in self:
+            if len(rec.line_ids.mapped("currency_id")) > 1:
+                raise ValidationError(
+                    _(
+                        "You cannot have different currencies in the lines of a"
+                        "Delivery Note"
+                    )
+                )
 
     def check_compliance(self, pickings):
         super().check_compliance(pickings)

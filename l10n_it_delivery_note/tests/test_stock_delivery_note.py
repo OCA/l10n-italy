@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests import new_test_user
-from odoo.tests.common import Form
+from odoo.tests import Form, new_test_user
 
 from .delivery_note_common import StockDeliveryNoteCommon
 
@@ -237,3 +236,50 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
 
         delivery_note_id.partner_ref = "Reference #1234"
         delivery_note_id.action_confirm()
+
+    def test_ddt_line_amount(self):
+        user = new_test_user(
+            self.env,
+            login="test",
+            groups="stock.group_stock_manager,"
+            "l10n_it_delivery_note.use_advanced_delivery_notes",
+        )
+
+        self.env.user = user
+
+        sales_order = self.create_sales_order(
+            [
+                self.large_desk_line,  # 1
+                self.desk_combination_line,  # 1
+            ],
+        )
+
+        tax_id = self.env["account.tax"].search(
+            [("type_tax_use", "=", "sale")], limit=1
+        )
+
+        for line in sales_order.order_line:
+            line.tax_id = [(6, 0, tax_id.ids)]
+
+        sales_order.action_confirm()
+        picking = sales_order.picking_ids
+
+        # deliver all the products
+        for move in picking.move_ids:
+            move.quantity_done = 1
+
+        picking.button_validate()
+        dn_form = Form(
+            self.env["stock.delivery.note.create.wizard"].with_context(
+                **{"active_id": picking.id, "active_ids": picking.ids}
+            )
+        )
+        dn = dn_form.save()
+        dn.confirm()
+
+        delivery_note_id = picking.delivery_note_id
+        for note_line in delivery_note_id.line_ids:
+            self.assertEqual(
+                note_line.price_unit * note_line.product_qty, note_line.untaxed_amount
+            )
+            self.assertNotEqual(note_line.untaxed_amount, note_line.amount)
