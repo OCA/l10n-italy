@@ -8,6 +8,19 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
     var _t = core._t;
     var round_pr = utils.round_precision;
 
+    // Native command that performs the EFT-POS "Online" amount exchange (the
+    // command that actually dials the terminal). Sent as a directIO with the
+    // commercial document CLOSED. NB: 1-084 (PRINT REC TOTAL) is the exchange;
+    // 1-078 type 8 only inserts the buffered POS receipt lines afterwards.
+    var EFTPOS_EXCHANGE_COMMAND = '1084';
+
+    // Value of the TYPE / paymentType field for a credit-card EFT-POS payment.
+    var EFTPOS_PAYMENT_TYPE = '2';
+
+    // The amount exchange can be slow: card insertion, PIN entry and the bank
+    // round-trip. Give it the SET 31 time-out headroom (default 60 s).
+    var EFTPOS_EXCHANGE_TIMEOUT_MS = 90000;
+
     function addPadding(str, padding=4) {
         var pad = new Array(padding).fill(0).join('') + str;
         return pad.substr(pad.length - padding, padding);
@@ -434,6 +447,95 @@ odoo.define("fiscal_epos_print.epson_epos_print", function (require) {
             xml += '<endFiscalReceipt /></printerFiscalReceipt>';
             this.fiscalPrinter.send(this.url, xml);
             console.log(xml);
+        },
+
+        /*
+          EFT-POS "authorize then print" - phase 1.
+
+          Sends the "Online" amount-exchange command to the printer with the
+          commercial document CLOSED (STATO REGISTRAZIONE) - the only state in
+          which the printer dials the terminal - and delivers the bank outcome
+          to the given callback. The caller uses that outcome to decide whether
+          to create the order and print the receipt.
+
+          The send is ASYNCHRONOUS (default callMode): the browser UI thread
+          stays responsive so the caller can show an animated loading overlay
+          while the customer taps the card and enters the PIN. The outcome is
+          delivered exactly once, via onreceive (approved / declined) or
+          onerror (network failure or client timeout). The client-side timeout
+          (EFTPOS_EXCHANGE_TIMEOUT_MS) is a safety net above the printer's own
+          SET 31 time-out, which normally bounds the wait.
+
+          Use a dedicated eposDriver instance for this call: its onreceive /
+          onerror are overwritten here and not restored.
+        */
+        authorizeEftpos: function(paymentLine, callback) {
+            var self = this;
+            var xml = this.buildEftposExchangeXml(paymentLine);
+            var done = false;
+            var finish = function(outcome) {
+                if (done) {
+                    return;
+                }
+                done = true;
+                callback(outcome);
+            };
+            this.fiscalPrinter.onreceive = function(res, tags, add_info, res_add) {
+                finish(self.parseEftposOutcome(res, tags, add_info));
+            };
+            this.fiscalPrinter.onerror = function() {
+                finish({
+                    approved: false,
+                    code: 'FP_NO_ANSWER_NETWORK',
+                    res_frame: null,
+                    raw: null,
+                });
+            };
+            console.log(xml);
+            this.fiscalPrinter.send(this.url, xml, EFTPOS_EXCHANGE_TIMEOUT_MS);
+        },
+
+        /*
+          Build the stand-alone EFT-POS amount-exchange command as a directIO,
+          mirroring the lottery directIO (1-135) used in printFiscalReceipt.
+
+          Native 1-084 TX fields: OP(2) DESCR(1-38, unused) AMN(9, cents)
+          TYPE(1)=2 IND(2)=00..10 L/R(1)=1|2. DESCR is documented "Not used"
+          and omitted below.
+
+          TODO(hardware): confirm the directIO command id and the exact data
+          layout (unused DESCR handling / separators) against the ePOS-Print
+          XML Reference Guide and validate against the ECR17 emulator before
+          production.
+        */
+        buildEftposExchangeXml: function(paymentLine) {
+            var op = '01';
+            var amountCents = addPadding(Math.round((parseFloat(paymentLine.amount) || 0) * 100), 9);
+            var type = EFTPOS_PAYMENT_TYPE;
+            var index = addPadding(paymentLine.type_index || 1, 2);
+            var align = '1';
+            var data = op + amountCents + type + index + align;
+            return '<printerCommand>'
+                + '<directIO command="' + EFTPOS_EXCHANGE_COMMAND + '" data="' + data + '" />'
+                + '</printerCommand>';
+        },
+
+        /*
+          Interpret the phase-1 response.
+          Approved -> printer accepted the exchange (returns the RES frame).
+          Declined -> printer reports Error 38 (success=false).
+
+          TODO(hardware): confirm exactly how approval vs. Error 38 surfaces
+          here (res.success/code vs. a CMP/RES field inside responseData) and
+          refine the test below accordingly.
+        */
+        parseEftposOutcome: function(res, tags, add_info) {
+            return {
+                approved: !!(res && res.success),
+                code: res && res.code,
+                res_frame: (add_info && add_info.responseData) || null,
+                raw: {res: res, add_info: add_info},
+            };
         },
 
         printFiscalReport: function() {
