@@ -13,8 +13,11 @@
         </table>
         <td name="account_invoice_line_name" position="inside">
             <t t-if="show_intrastat_code">
-                <t t-set="product" t-value="line.product_id" />
-                <span class="d-block text-muted" t-field="product.intrastat_code_id" />
+                <t t-set="intrastat_code" t-value="line.product_id.intrastat_code_id" />
+                <div t-if="intrastat_code" class="d-block text-muted">
+                    <strong>Intrastat Code: </strong>
+                    <span t-field="intrastat_code.name">n/a</span>
+                </div>
             </t>
         </td>
     </template>
