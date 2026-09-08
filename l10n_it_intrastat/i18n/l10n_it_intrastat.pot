@@ -310,6 +310,11 @@ msgid "6-Hexanelactam \"epsilon-caprolactam\""
 msgstr ""
 
 #. module: l10n_it_intrastat
+#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.report_invoice_document
+msgid "<strong>Intrastat Code: </strong>"
+msgstr ""
+
+#. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_39029010
 msgid ""
 "A-B-A block copolymer of propylene or of other olefins, of polystyrene, "
@@ -75577,6 +75582,11 @@ msgstr ""
 #. module: l10n_it_intrastat
 #: model:report.intrastat.code,description:l10n_it_intrastat.intrastat_category_2014_29153300
 msgid "n-Butyl acetate"
+msgstr ""
+
+#. module: l10n_it_intrastat
+#: model_terms:ir.ui.view,arch_db:l10n_it_intrastat.report_invoice_document
+msgid "n/a"
 msgstr ""
 
 #. module: l10n_it_intrastat
