@@ -12,16 +12,19 @@ class AccountPaymentRegister(models.TransientModel):
     @api.model
     def _get_wizard_values_from_batch(self, batch_result):
         wizard_values_from_batch = super()._get_wizard_values_from_batch(batch_result)
-        self._inject_withholding_net_pay_residual(wizard_values_from_batch)
+        self._inject_withholding_net_pay_residual(
+            wizard_values_from_batch, batch_result
+        )
         return wizard_values_from_batch
 
-    def _inject_withholding_net_pay_residual(self, wizard_values_from_batch):
+    def _inject_withholding_net_pay_residual(
+        self, wizard_values_from_batch, batch_result
+    ):
         """If the payment is for Invoices having Withholding Taxes,
         set the Residual Net To Pay as the amount to be paid.
         """
         if self.env.context.get("active_model") == "account.move":
-            moves_ids = self.env.context.get("active_ids", [])
-            moves = self.env["account.move"].browse(moves_ids)
+            moves = batch_result.get("lines").mapped("move_id")
             withholding_moves = moves.filtered("withholding_tax")
             if withholding_moves:
                 net_pay_residual_amount = sum(
