@@ -1,5 +1,6 @@
 # Copyright 2017 Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 # Copyright 2022 Michele Rusticucci <michele.rusticucci@agilebg.com>
+# Copyright 2025 Marco Colombo <marco.colombo@phi.technology>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -12,6 +13,8 @@ class AccountMove(models.Model):
 
     declaration_of_intent_ids = fields.Many2many(
         comodel_name="l10n_it_declaration_of_intent.declaration",
+        compute="_compute_declarations",
+        store=True,
         string="Declarations of intent",
     )
 
@@ -81,7 +84,7 @@ class AccountMove(models.Model):
         posted = super()._post(soft)
         # Check if there is enough available amount on declarations
         for invoice in self.filtered(lambda m: m.is_invoice()):
-            declarations = invoice.get_declarations()
+            declarations = invoice.declaration_of_intent_ids
             # If partner has no declarations, do nothing
             if not declarations:
                 # If fiscal position is valid for declaration of intent,
@@ -208,25 +211,36 @@ class AccountMove(models.Model):
             grouped_lines[force_declaration][tax] |= line
         return grouped_lines
 
-    def get_declarations(self):
-        """Get declarations linked directly or indirectly to this invoice."""
-        self.ensure_one()
+    @api.depends(
+        "invoice_date",
+        "fiscal_position_id",
+        "declaration_of_intent_ids.state",
+    )
+    def _compute_declarations(self):
         declaration_model = self.env["l10n_it_declaration_of_intent.declaration"]
-        if self.declaration_of_intent_ids:
-            declarations = self.declaration_of_intent_ids
-        else:
-            declarations = declaration_model.with_context(
-                ignore_state=True if self.move_type.endswith("_refund") else False
+        no_di = self.filtered(
+            lambda am: not am.fiscal_position_id.valid_for_declaration_of_intent
+        )
+        no_di.declaration_of_intent_ids = [(5, 0, 0)]  # clear
+        for invoice in self - no_di:
+            is_refund = invoice.move_type.endswith("_refund")
+            valid_declarations = declaration_model.with_context(
+                ignore_state=is_refund
             ).get_valid(
-                type_d=self.move_type.split("_")[0],
-                partner_id=self.partner_id.id,
-                date=self.invoice_date,
+                type_d=invoice.get_type_short(),
+                partner_id=invoice.partner_id.id,
+                date=invoice.invoice_date,
             )
-        return declarations
+            if invoice.declaration_of_intent_ids:
+                new_value = valid_declarations & invoice.declaration_of_intent_ids
+            else:
+                new_value = valid_declarations
+            invoice.declaration_of_intent_ids = new_value
 
     def get_declarations_used_amounts(self, declarations):
         """Get used amount by declarations for this invoice."""
         self.ensure_one()
+        cmp = self.currency_id.compare_amounts
         declarations_available_amounts = {
             declaration.id: declaration.available_amount for declaration in declarations
         }
@@ -246,16 +260,29 @@ class AccountMove(models.Model):
                 if declaration == matching_declarations[-1]:
                     # If this is the last available declaration,
                     # assign all the remaining amount.
-                    declaration_used_amount = amount
+                    if cmp(amount, -declaration.used_amount) == -1:
+                        raise UserError(
+                            _("Available plafond insufficent.\n" "Excess value: %s")
+                            % (amount + declaration.used_amount)
+                        )
+                    else:
+                        declaration_used_amount = amount
                 else:
                     declaration_available_amount = declarations_available_amounts[
                         declaration.id
                     ]
-                    declaration_used_amount = min(amount, declaration_available_amount)
+                    if cmp(amount, declaration_available_amount) == -1:
+                        # amount can be negative (refund), make sure we don't get negative
+                        if cmp(amount, 0.0) == 1:
+                            declaration_used_amount = amount
+                        else:
+                            # use what's available
+                            declaration_used_amount = -declaration.used_amount
+                    else:
+                        declaration_used_amount = declaration_available_amount
                 declarations_available_amounts[
                     declaration.id
                 ] -= declaration_used_amount
-
                 declarations_used_amounts[declaration.id] += declaration_used_amount
                 amount -= declaration_used_amount
         return declarations_used_amounts
@@ -268,12 +295,17 @@ class AccountMove(models.Model):
         is not sufficient for this invoice's taxes.
         """
         self.ensure_one()
+        is_refund = self.move_type.endswith("_refund")
+
         declarations_amounts = self.get_declaration_residual_amounts(declarations)
 
         declarations_residual = sum(
             [declarations_amounts[da] for da in declarations_amounts]
         )
-        if self.currency_id.compare_amounts(declarations_residual, 0) == -1:
+        if (
+            not is_refund
+            and self.currency_id.compare_amounts(declarations_residual, 0) == -1
+        ):
             raise UserError(
                 _("Available plafond insufficent.\n" "Excess value: %s")
                 % (abs(declarations_residual))
@@ -313,6 +345,7 @@ class AccountMove(models.Model):
         # Therefore we choose instead the lines that
         # should generate the tax line i.e. the lines that have `tax_ids`
         tax_lines = self.line_ids.filtered("tax_ids")
+        cmp = self.currency_id.compare_amounts
         for tax_line in tax_lines:
             # Move lines having `tax_ids` represent the base amount for those taxes
             if self.move_type.endswith("_refund"):
@@ -324,7 +357,7 @@ class AccountMove(models.Model):
                 if declaration.id not in declarations_amounts:
                     if (
                         self.move_type in ["in_invoice", "in_refund"]
-                        and declaration.available_amount > available_plafond
+                        and cmp(declaration.available_amount, available_plafond) == 1
                     ):
                         declarations_amounts[declaration.id] = available_plafond
                     else:
@@ -333,7 +366,23 @@ class AccountMove(models.Model):
                         ] = declaration.available_amount
                 if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
                     declarations_amounts[declaration.id] -= amount
-                    amount = 0.0
+                    # amount can be negative for refunds and
+                    # declarations_amounts[declaration.id] can exceed
+                    # declaration.limit_amount, so we limit it
+                    if (
+                        cmp(
+                            declarations_amounts[declaration.id],
+                            declaration.limit_amount,
+                        )
+                        == 1
+                    ):
+                        amount = (
+                            declarations_amounts[declaration.id]
+                            - declaration.limit_amount
+                        )
+                        declarations_amounts[declaration.id] = declaration.limit_amount
+                    else:
+                        amount = 0.0
         for declaration in declarations:
             # exclude amount from lines with invoice_id equals to self
             for line in declaration.line_ids.filtered(lambda li: li.invoice_id == self):

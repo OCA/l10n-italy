@@ -23,8 +23,11 @@ class SelectManuallyDeclarations(models.TransientModel):
         domain = [
             ("partner_id", "=", invoice.partner_id.commercial_partner_id.id),
             ("type", "=", type_short),
-            ("state", "not in", ("close", "expired")),
         ]
+        # refunds may reopen closed DIs
+        if not invoice.move_type.endswith("_refund"):
+            domain.append(("state", "not in", ("close", "expired")))
+
         if invoice.invoice_date:
             date_domain = [
                 ("date_start", "<=", invoice.invoice_date),
@@ -32,7 +35,7 @@ class SelectManuallyDeclarations(models.TransientModel):
             ]
             domain = expression.AND([domain, date_domain])
 
-        return declaration_model.search(domain)
+        return declaration_model.search(domain, order="date_end desc")
 
     declaration_ids = fields.Many2many(
         comodel_name="l10n_it_declaration_of_intent.declaration",
@@ -49,7 +52,7 @@ class SelectManuallyDeclarations(models.TransientModel):
         if not invoice_id:
             return res
         invoice = self.env["account.move"].browse(invoice_id)
-        invoice.declaration_of_intent_ids = [(6, 0, [])]
-        for declaration in self.declaration_ids:
-            invoice.declaration_of_intent_ids = [(4, declaration.id)]
+        invoice.declaration_of_intent_ids = [
+            (6, 0, [d.id for d in self.declaration_ids])
+        ]
         return True
