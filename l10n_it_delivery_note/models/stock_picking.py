@@ -432,11 +432,18 @@ class StockPicking(models.Model):
                 else partner_id
             )
 
-        if self.mapped("sale_id"):
+        if self.location_dest_id.usage == "customer" and self.mapped("sale_id"):
             partner_ids = self.mapped("sale_id.partner_invoice_id")
             if len(partner_ids) > 1:
                 raise ValueError(
                     "Multiple partner found for sale order linked to pickings!"
+                )
+            partner_id = partner_ids[0]
+        elif self.location_dest_id.usage == "supplier" and self.mapped("purchase_id"):
+            partner_ids = self.mapped("purchase_id.partner_id")
+            if len(partner_ids) > 1:
+                raise ValueError(
+                    "Multiple partner found for purchase order linked to pickings!"
                 )
             partner_id = partner_ids[0]
         else:
