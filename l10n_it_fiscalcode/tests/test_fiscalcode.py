@@ -1,7 +1,6 @@
 # Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from codicefiscale import isvalid
 
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
@@ -34,6 +33,14 @@ class TestFiscalCode(TransactionCase):
         self.assertEqual(self.partner.fiscalcode, "RSSMRA84H04H501X")
 
     def test_fiscalcode_check(self):
+        # Omocodia
+        self.env["res.partner"].create(
+            {
+                "name": "Person",
+                "is_company": False,
+                "fiscalcode": "RSSMRA70A01Z50QQ",
+            }
+        )
         # Wrong FC length
         with self.assertRaises(ValidationError):
             self.env["res.partner"].create(
@@ -90,8 +97,6 @@ class TestFiscalCode(TransactionCase):
             }
         )
         partner.fiscalcode = wrong_person_fiscalcode
-        # pre-condition
-        self.assertFalse(isvalid(partner.fiscalcode))
 
         # Act
         with self.assertRaises(ValidationError) as ve:
@@ -117,8 +122,6 @@ class TestFiscalCode(TransactionCase):
             }
         )
         partner.fiscalcode = company_vat
-        # pre-condition
-        self.assertFalse(isvalid(partner.fiscalcode))
 
         # Act
         with self.assertRaises(ValidationError) as ve:
