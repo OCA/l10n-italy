@@ -37,7 +37,15 @@ class AccountMove(models.Model):
                 move.amount_sp = move.amount_tax
                 move.amount_tax = 0.0
                 move.amount_total = move.amount_untaxed
-                move._compute_split_payments()
+                # Because method _compute_amount is called many times, need to
+                # call method to compute split payment data only when the
+                # account move has a line which belong to split payment tax,
+                # otherwise the tax and refund line are duplicated
+                move_has_split_line = move.line_ids.filtered(
+                    lambda aml: aml.tax_repartition_line_id.tax_id.is_split_payment
+                )
+                if move_has_split_line:
+                    move._compute_split_payments()
             else:
                 move.amount_sp = 0.0
 
@@ -158,7 +166,7 @@ class AccountMove(models.Model):
         else:
             self.set_receivable_line_ids()
             if self.amount_sp:
-                self.invoice_line_ids = [(0, 0, write_off_line_vals)]
+                self.line_ids = [(0, 0, write_off_line_vals)]
 
 
 class AccountMoveLine(models.Model):
