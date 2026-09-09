@@ -740,10 +740,19 @@ class TestImportWizardSplitting(Common):
             sorted(moves.mapped("ref")),
             ["123", "456"],
         )
-        # All created moves are linked back to the same archive attachment.
+        # Each created move must keep its OWN e-invoice attachment linked:
+        # since l10n_it_edi_attachment_file is keyed by (res_id, res_field),
+        # a shared attachment would leave every move but the last unlinked.
+        for move in moves:
+            self.assertTrue(
+                move.l10n_it_edi_attachment_id,
+                f"Move {move.ref} has no linked e-invoice attachment",
+            )
+            self.assertEqual(
+                move.l10n_it_edi_attachment_id.name, "IT01234567890_FPR03.xml"
+            )
         attachments = moves.l10n_it_edi_attachment_id
-        self.assertEqual(len(attachments), 1)
-        self.assertEqual(attachments.name, "IT01234567890_FPR03.xml")
+        self.assertEqual(len(attachments), 2)
 
     def test_single_body_xml_in_zip_creates_one_invoice(self):
         path = "l10n_it_edi_extension/tests/import_xmls/IT02780790107_11004.xml"

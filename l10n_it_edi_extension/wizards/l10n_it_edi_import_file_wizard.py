@@ -74,6 +74,14 @@ class EInvoiceImportFileWizard(models.TransientModel):
                         split_contents = self.env[
                             "account.journal"
                         ]._l10n_it_edi_extension_split_content(attachment)
+                        # The e-invoice is stored in l10n_it_edi_attachment_file,
+                        # an ir.attachment keyed by (res_id, res_field), so a
+                        # single record can be linked to only one move. When the
+                        # file holds several invoices, each resulting move needs
+                        # its own attachment: reuse the uploaded one for the
+                        # first invoice and copy it for the others (otherwise
+                        # only the last move would keep the e-invoice attached).
+                        first_move = True
                         for split_content in split_contents:
                             file_datas = attachment._decode_edi_l10n_it_edi(
                                 filename, split_content
@@ -84,7 +92,17 @@ class EInvoiceImportFileWizard(models.TransientModel):
                                     .with_company(company)
                                     .create({})
                                 )
-                                attachment.write(
+                                if first_move:
+                                    move_attachment = attachment
+                                else:
+                                    move_attachment = attachment_model.create(
+                                        {
+                                            "name": filename,
+                                            "raw": content,
+                                            "type": "binary",
+                                        }
+                                    )
+                                move_attachment.write(
                                     {
                                         "res_model": "account.move",
                                         "res_id": move.id,
@@ -95,10 +113,11 @@ class EInvoiceImportFileWizard(models.TransientModel):
                                 move.with_context(
                                     account_predictive_bills_disable_prediction=True,
                                     no_new_invoice=True,
-                                ).message_post(attachment_ids=attachment.ids)
+                                ).message_post(attachment_ids=move_attachment.ids)
 
                                 move._l10n_it_edi_import_invoice(move, file_data, True)
                                 moves |= move
+                                first_move = False
         action = {
             "name": self.env._("E-invoices"),
             "type": "ir.actions.act_window",

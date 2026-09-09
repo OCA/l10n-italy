@@ -78,8 +78,14 @@ class AccountJournal(models.Model):
         if (
             xml_tree := self._l10n_it_edi_extension_parse_e_invoice(attachment)
         ) is not None:
-            header = xml_tree.xpath("//FatturaElettronicaHeader")[0]
             bodies = xml_tree.xpath("//FatturaElettronicaBody")
+            if len(bodies) <= 1:
+                # Nothing to split: return the original bytes untouched. Avoids a
+                # needless parse-rebuild-serialize round-trip for the common
+                # single-invoice case, and keeps the original signed/namespaced
+                # file intact (no lossy re-serialization).
+                return [attachment.raw]
+            header = xml_tree.xpath("//FatturaElettronicaHeader")[0]
             result = []
             for body in bodies:
                 e_invoice_root = etree.Element("FatturaElettronica")
