@@ -193,6 +193,54 @@ class AccountMove(models.Model):
                     l10n_it_edi_related_loop_avoid=True
                 ).update(vals)
 
+    def _l10n_it_edi_base_export_check(self):
+        errors = super()._l10n_it_edi_base_export_check()
+
+        errors.pop("move_missing_origin_document", None)
+        errors.pop("l10n_it_edi_move_future_origin_document_date", None)
+        errors.pop("move_missing_origin_document_field", None)
+
+        def build_error(message, records):
+            return {
+                "message": message,
+                **(
+                    {
+                        "action_text": self.env._("View invoice(s)"),
+                        "action": records._get_records_action(
+                            name=self.env._("Invoice(s) to check")
+                        ),
+                    }
+                    if len(self) > 1
+                    else {}
+                ),
+            }
+
+        if pa_moves := self.filtered(
+            lambda move: move.commercial_partner_id._l10n_it_edi_is_public_administration()  # noqa: E501
+        ):
+            if moves := pa_moves.filtered(lambda move: not move.related_document_ids):
+                message = self.env._(
+                    "Partner(s) belongs to the Public Administration, "
+                    "please fill out Origin Document Type field in "
+                    "the Electronic Invoicing tab."
+                )
+                errors["move_missing_origin_document"] = build_error(
+                    message=message, records=moves
+                )
+            if moves := pa_moves.filtered(
+                lambda move: any(
+                    rd.date and rd.date > fields.Date.today()
+                    for rd in move.related_document_ids
+                )
+            ):
+                message = self.env._(
+                    "The Origin Document Date cannot be in the future."
+                )
+                errors["l10n_it_edi_move_future_origin_document_date"] = build_error(
+                    message=message, records=moves
+                )
+        return errors
+
     def _l10n_it_edi_get_values(self, pdf_values=None):
         res = super()._l10n_it_edi_get_values(pdf_values=pdf_values)
         updated_values = self.remove_redundant_values(res)
