@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Marco Colombo
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="account_invoice_form_l10n_it_generate_xml" model="ir.ui.view">
+        <field name="name">account.move.form.l10n.it.generate.xml</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_l10n_it_edi_send']" position="before">
+                <button
+                    name="action_l10n_it_edi_generate_xml"
+                    type="object"
+                    string="Generate XML"
+                    invisible="state != 'posted' or not l10n_it_edi_is_self_invoice or is_move_sent or country_code != 'IT' or l10n_it_edi_state in ('rejected', 'rejected_by_pa_partner') or l10n_it_edi_attachment_id"
+                    data-hotkey="g"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
