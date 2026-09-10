@@ -42,11 +42,25 @@ class AccountMove(models.Model):
         return res
 
     def write(self, vals):
+        sp_moves = self.filtered(lambda am: am.split_payment)
+        if sp_moves:
+            # Add context key to skip move validity only for split
+            # payment moves, otherwise adding for all unconditionally
+            # allow to create unbalanced account.move
+            super(AccountMove, sp_moves.with_context(check_move_validity=False)).write(
+                vals
+            )
+            # Because Environment context not allow manipulation, and
+            # with_context merge old context with new key(s) pass a
+            # dictionary without wanted key(s) not working; so need to
+            # pass the key we want update with new value
+            self_ctx = self.with_context(check_move_validity=True)
+            res = super(AccountMove, self_ctx - sp_moves).write(vals)
+        else:
+            res = super().write(vals)
         if self.env.context.get("skip_split_payment_computation"):
-            return super().write(vals)
-        res = super(AccountMove, self.with_context(check_move_validity=False)).write(
-            vals
-        )
+            return res
+        self.compute_split_payment()
         container = {"records": self}
         with self._check_balanced(container):
             if "fiscal_position_id" in vals:
