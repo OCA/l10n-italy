@@ -39,7 +39,7 @@ addon | version | maintainers | summary
 [l10n_it_delivery_note_customer_code](l10n_it_delivery_note_customer_code/) | 18.0.1.0.0 | <a href='https://github.com/aleuffre'><img src='https://github.com/aleuffre.png' width='32' height='32' style='border-radius:50%;' alt='aleuffre'/></a> <a href='https://github.com/renda-dev'><img src='https://github.com/renda-dev.png' width='32' height='32' style='border-radius:50%;' alt='renda-dev'/></a> <a href='https://github.com/PicchiSeba'><img src='https://github.com/PicchiSeba.png' width='32' height='32' style='border-radius:50%;' alt='PicchiSeba'/></a> | Product Customer code and name for delivery note
 [l10n_it_delivery_note_order_link](l10n_it_delivery_note_order_link/) | 18.0.1.0.0 | <a href='https://github.com/andreampiovesana'><img src='https://github.com/andreampiovesana.png' width='32' height='32' style='border-radius:50%;' alt='andreampiovesana'/></a> | Crea collegamento tra i DDT e ordine di vendita/acquisto
 [l10n_it_edi_doi_extension](l10n_it_edi_doi_extension/) | 18.0.1.1.2 |  | Declaration of Intent for Italy (OCA)
-[l10n_it_edi_extension](l10n_it_edi_extension/) | 18.0.1.12.1 |  | E-invoice base feature
+[l10n_it_edi_extension](l10n_it_edi_extension/) | 18.0.1.12.2 |  | E-invoice base feature
 [l10n_it_edi_pec](l10n_it_edi_pec/) | 18.0.1.1.0 |  | Invio e ricezione fatture elettroniche tramite PEC
 [l10n_it_edi_related_document](l10n_it_edi_related_document/) | 18.0.1.2.1 |  | Related Documents for EDI
 [l10n_it_edi_sdi](l10n_it_edi_sdi/) | 18.0.1.0.0 |  | Logica condivisa per la comunicazione con lo SdI
