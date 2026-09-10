@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* currency_rate_update_boi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-11-10 11:42+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: l10n_it_currency_rate_update_boi
+#: model:ir.model.fields.selection,name:l10n_it_currency_rate_update_boi.selection__res_currency_rate_provider__service__boi
+msgid "Bank of Italy"
+msgstr "Banca d'Italia"
+
+#. module: l10n_it_currency_rate_update_boi
+#: model:ir.model,name:l10n_it_currency_rate_update_boi.model_res_currency_rate_provider
+msgid "Currency Rates Provider"
+msgstr "Fornitore tassi di cambio"
+
+#. module: l10n_it_currency_rate_update_boi
+#: model:ir.model.fields,field_description:l10n_it_currency_rate_update_boi.field_res_currency_rate_provider__service
+msgid "Provider"
+msgstr "Fornitore"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Source Service"
+#~ msgstr "Servizio Sorgente"
+
+#~ msgid "European Central Bank"
+#~ msgstr "Banca Centrale Europea"
