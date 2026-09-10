@@ -78,8 +78,14 @@ class AccountJournal(models.Model):
         if (
             xml_tree := self._l10n_it_edi_extension_parse_e_invoice(attachment)
         ) is not None:
-            header = xml_tree.xpath("//FatturaElettronicaHeader")[0]
             bodies = xml_tree.xpath("//FatturaElettronicaBody")
+            if len(bodies) <= 1:
+                # Nothing to split: return the original bytes untouched. Avoids a
+                # needless parse-rebuild-serialize round-trip for the common
+                # single-invoice case, and keeps the original signed/namespaced
+                # file intact (no lossy re-serialization).
+                return [attachment.raw]
+            header = xml_tree.xpath("//FatturaElettronicaHeader")[0]
             result = []
             for body in bodies:
                 e_invoice_root = etree.Element("FatturaElettronica")
@@ -97,7 +103,7 @@ class AccountJournal(models.Model):
 
         Do not touch the attachments that do not need splitting.
 
-        Return the IDs of the splitted attachments and of the unaffected ones.
+        Return the IDs of the split attachments and of the unaffected ones.
         """
         attachment_model = self.env["ir.attachment"]
         attachments = attachment_model.browse(attachment_ids)
@@ -107,40 +113,35 @@ class AccountJournal(models.Model):
                 attachment_model._get_edi_supported_formats(),
             )
         )
-        l10n_it_edi_check, l10n_it_edi_decoder = (
-            l10n_it_edi_format["check"],
-            l10n_it_edi_format["decoder"],
-        )
+        l10n_it_edi_check = l10n_it_edi_format["check"]
 
         e_invoice_attachments = attachment_model.browse()
-        splitted_attachments_values = dict()
+        split_attachments_values = dict()
         other_attachments = attachment_model.browse()
         for attachment in attachments:
             if l10n_it_edi_check(attachment):
-                parsed_xml_bodies = l10n_it_edi_decoder(attachment.name, attachment.raw)
-                if len(parsed_xml_bodies) >= 2:
+                contents = self._l10n_it_edi_extension_split_content(attachment)
+                if len(contents) >= 2:
                     # In this e-invoice there are multiple invoices,
-                    # extract the content of the splitted e-invoice
+                    # extract the content of the split e-invoice
                     # containing only one FatturaElettronicaBody each
-                    splitted_attachments_values[attachment] = {
+                    split_attachments_values[attachment] = {
                         "original_attachment": attachment,
-                        "contents": self._l10n_it_edi_extension_split_content(
-                            attachment
-                        ),
+                        "contents": contents,
                     }
                 else:
                     e_invoice_attachments |= attachment
             else:
                 other_attachments |= attachment
 
-        if splitted_attachments_values:
+        if split_attachments_values:
             e_invoice_attachments |= attachment_model.create(
                 [
                     {
                         "name": f"Partial {attachment.name}",
                         "raw": content,
                     }
-                    for attachment, att_data in splitted_attachments_values.items()
+                    for attachment, att_data in split_attachments_values.items()
                     for content in att_data["contents"]
                 ]
             )

@@ -17,6 +17,20 @@ _logger = logging.getLogger(__name__)
 class IrAttachmentInherit(models.Model):
     _inherit = "ir.attachment"
 
+    def _is_l10n_it_edi_import_file(self):
+        # Extend Odoo standard check to also recognize signed e-invoice files
+        # (e.g. .p7m files reported as "application/octet-stream").
+        is_import_file = super()._is_l10n_it_edi_import_file()
+        if is_import_file:
+            return True
+        if self.raw and self.name and self.name.lower().endswith(".p7m"):
+            xml_tree = self._parse_xml_with_recovery(self.raw, self.name)
+            if xml_tree is not None and etree.QName(xml_tree).localname.startswith(
+                "FatturaElettronica"
+            ):
+                return True
+        return False
+
     @api.model
     def get_fatturapa_preview_style_name(self):
         """Hook to have a clean inheritance."""
