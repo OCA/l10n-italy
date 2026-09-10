@@ -15,3 +15,5 @@
 - [TAKOBI](https://takobi.online):
   - Simone Rubino \<<sir@takobi.online>\>
 - Nextev Srl \<<odoo@nextev.it>\>
+- [PyTech](<https://www.pytech.it>):
+  - Simone Rubino \<<simone.rubino@pytech.it>\>

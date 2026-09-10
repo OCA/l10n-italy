@@ -441,11 +441,24 @@ class RibaListLine(models.Model):
                 line.slip_id.date_accepted = fields.Date.context_today(self)
 
     def button_settle(self):
+        # The domain after "!" must match the domain
+        # that shows the 'Pay' button in each RiBa line
+        to_settle_lines = self.filtered_domain(
+            [
+                "!",
+                "|",
+                ("type", "=", "incasso"),
+                ("state", "!=", "credited"),
+            ]
+        )
+        if not to_settle_lines:
+            raise UserError(self.env._("No line can be settled"))
+
         payment_wizard_action = (
             self.env["riba.payment.multiple"]
             .with_context(
-                active_ids=self.slip_id.ids,
-                default_riba_line_ids=self.ids,
+                active_ids=to_settle_lines.slip_id.ids,
+                default_riba_line_ids=to_settle_lines.ids,
             )
             .get_formview_action()
         )
@@ -558,11 +571,6 @@ class RibaListLine(models.Model):
         # Reconcile all related move lines to complete the settlement
         # This closes the accounting cycle for this RiBa collection
         to_be_settled.reconcile()
-
-    def settle_riba_line(self):
-        for line in self:
-            if line.state == "credited":
-                line.riba_line_settlement()
 
 
 class RibaListMoveLine(models.Model):
