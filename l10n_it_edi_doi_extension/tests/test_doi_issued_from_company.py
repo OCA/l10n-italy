@@ -3,7 +3,7 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import fields
+from odoo import exceptions, fields
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
@@ -17,8 +17,8 @@ class TestDoiIssuedFromCompany(TransactionCase):
             if not hasattr(cls, "_protocol_counter"):
                 cls._protocol_counter = 0
             cls._protocol_counter += 1
-            protocol_part1 = str(1000 + cls._protocol_counter)
-            protocol_part2 = str(2000 + cls._protocol_counter)
+            protocol_part1 = str(cls.current_year) + str(1000 + cls._protocol_counter)
+            protocol_part2 = str(1234_56789 + cls._protocol_counter)
 
         return cls.env["l10n_it_edi_doi.declaration_of_intent"].create(
             {
@@ -74,6 +74,7 @@ class TestDoiIssuedFromCompany(TransactionCase):
         cls.partner = cls.env.ref("base.res_partner_2")
         cls.partner.country_id = cls.env.ref("base.it")
         cls.partner.company_id = cls.company
+        cls.current_year = fields.Date.today().year
         cls.doi_in = cls._create_declaration("in")
         cls.tax_group = cls.env["account.tax.group"].create(
             {"name": "Vat Free", "sequence": 1}
@@ -504,3 +505,60 @@ class TestDoiIssuedFromCompany(TransactionCase):
         self.assertNotEqual(previous_used_amount, used_amount)
         self.assertEqual(used_amount, invoice.amount_total)
         self.assertEqual(self.doi_in.state, "active")
+
+    def test_valid_protocol_17_chars(self):
+        """Test that valid 17-character protocol is accepted."""
+        # Format: AAAANNNNNNNNCCCCC (4 + 8 + 5 = 17 chars)
+        # Using current year
+        part1 = f"{self.current_year}0000"  # 8 chars
+        part2 = "123456789"  # 9 chars -> total 17
+        doi = self._create_declaration(
+            "in",
+            protocol_part1=part1,
+            protocol_part2=part2,
+        )
+        self.assertTrue(doi.id)
+
+    def test_invalid_protocol_length(self):
+        """Test that protocol with wrong length is rejected."""
+        # Too short
+        with self.assertRaises(exceptions.ValidationError) as ve:
+            self._create_declaration(
+                "in",
+                protocol_part1="2025",
+                protocol_part2="123",
+            )  # Only 7 chars
+        exc_message = ve.exception.args[0]
+        self.assertIn("must be exactly 17 characters", exc_message)
+
+    def test_invalid_protocol_format(self):
+        """Test that protocol with invalid format is rejected."""
+        # Invalid format (letters in wrong place)
+        with self.assertRaises(exceptions.ValidationError) as ve:
+            self._create_declaration(
+                "in",
+                protocol_part1="ABCD0000",
+                protocol_part2="123456789",
+            )  # Letters instead of year
+        exc_message = ve.exception.args[0]
+        self.assertIn("does not match AdE format", exc_message)
+
+    def test_protocol_not_validated_for_out(self):
+        """Test that protocol validation is skipped for type 'out'."""
+        # Type 'out' should not validate protocol format
+        doi = self.env["l10n_it_edi_doi.declaration_of_intent"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.company.id,
+                "state": "draft",
+                "type": "out",
+                "currency_id": self.company.currency_id.id,
+                "issue_date": fields.Date.today(),
+                "start_date": fields.Date.today(),
+                "end_date": fields.Date.today() + relativedelta(months=2),
+                "threshold": 5000,
+                "protocol_number_part1": "ABC",  # Invalid format but OK for 'out'
+                "protocol_number_part2": "123",
+            }
+        )
+        self.assertTrue(doi)
