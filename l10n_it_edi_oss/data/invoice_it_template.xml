@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="account_invoice_it_FatturaPA_export_oss_inherit"
+        inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
+    >
+        <xpath
+            expr="//DatiBeniServizi/t[@t-as='tax_line']/DatiRiepilogo"
+            position="attributes"
+        >
+            <attribute name="t-if">
+                not (tax_line.get('oss_country_id', False) and tax_line.get('natura', False))
+            </attribute>
+        </xpath>
+        <xpath
+            expr="//DatiBeniServizi/t[@t-as='tax_line']/DatiRiepilogo"
+            position="after"
+        >
+            <DatiRiepilogo
+                t-if="tax_line.get('oss_country_id', False) and tax_line.get('natura', False)"
+            >
+                <AliquotaIVA>0.00</AliquotaIVA>
+                <Natura
+                    t-if="tax_line.get('natura', False)"
+                    t-out="tax_line['natura']"
+                />
+                <Arrotondamento
+                    t-if="tax_line.get('arrotondamento', False)"
+                    t-out="format_float(tax_line['arrotondamento'], 8)"
+                />
+                <ImponibileImporto
+                    t-out="format_float(tax_line['imponibile_importo'], 2)"
+                />
+                <Imposta>0.00</Imposta>
+                <EsigibilitaIVA
+                    t-if="tax_line.get('esigibilita_iva', False)"
+                    t-out="tax_line['esigibilita_iva']"
+                />
+                <RiferimentoNormativo
+                    t-if="tax_line.get('riferimento_normativo', False)"
+                    t-out="format_alphanumeric(tax_line['riferimento_normativo'][:100])"
+                />
+            </DatiRiepilogo>
+        </xpath>
+    </template>
+
+    <template
+        id="account_invoice_line_it_FatturaPA_oss_inherit"
+        inherit_id="l10n_it_edi.account_invoice_line_it_FatturaPA"
+    >
+        <xpath expr="//DettaglioLinee/AliquotaIVA" position="attributes">
+            <attribute name="t-out">
+                format_float(0, 2) if it_values.get('oss_country_id', False) and it_values.get('natura', False) else format_float(aliquota_iva, 2)
+            </attribute>
+        </xpath>
+    </template>
+</odoo>
