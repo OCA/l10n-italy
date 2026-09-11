@@ -1,0 +1,3 @@
+- Creare una nuova comunicazione.
+- Nel "Quadro VP" aggiungere una voce selezionando in alto la
+  liquidazione, precedentemente creata, da inserire.

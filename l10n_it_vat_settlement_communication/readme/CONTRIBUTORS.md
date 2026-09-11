@@ -1,0 +1,4 @@
+- Alessandro Camilli
+- Lorenzo Battistini
+- Lara Baggio
+- [Nextev Srl](https://nextev.it) <odoo@nextev.it>
