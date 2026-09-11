@@ -19,6 +19,8 @@
                     <field name="credit_journal_id" />
                     <field name="credit_account_id" />
                     <field name="credit_amount" />
+                    <field name="date_credited" />
+                    <field name="bank_account_id" />
                     <field name="bank_expense_account_id" />
                     <field name="expense_amount" />
                 </group>
