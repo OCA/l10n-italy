@@ -269,6 +269,13 @@ class RibaCredit(models.TransientModel):
             line.state = "credited"
             line.credit_move_id = move  # Link credit move to each line
 
+        # Post the move only now that it is linked to the slip: posting
+        # reconciles its line on the acceptance account with the acceptance
+        # entries of the slip. Its line on the RiBa account has to be
+        # reconciled too, when the bank collects the RiBa or when the RiBa is
+        # past due, and draft entries cannot be reconciled.
+        move.action_post()
+
         # Return action to display the created move
         return {
             "name": self.env._("Credit Entry"),
