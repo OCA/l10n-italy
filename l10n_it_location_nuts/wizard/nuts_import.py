@@ -10,6 +10,7 @@ class NutsImport(models.TransientModel):
         "ITG14": "base.state_it_ag",  # Agrigento
         "ITC18": "base.state_it_al",  # Alessandria
         "ITI32": "base.state_it_an",  # Ancona
+        "ITC20": "base.state_it_ao",  # Aosta
         "ITI18": "base.state_it_ar",  # Arezzo
         "ITI34": "base.state_it_ap",  # Ascoli Piceno
         "ITC17": "base.state_it_at",  # Asti
