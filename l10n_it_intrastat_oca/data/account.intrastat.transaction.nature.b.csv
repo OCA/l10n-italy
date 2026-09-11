@@ -1,0 +1,19 @@
+id,name,code,"nature_parent_id:id"
+b_1, Vendita/acquisto a titolo definitivo fatta eccezione per gli scambi diretti con consumatori privati o da parte di questi,1,code_1
+b_2, Scambi diretti con consumatori privati o da parte di questi (compresa la vendita a distanza),2,code_1
+b_3, Restituzione di merci,1,code_2
+b_4, Sostituzione di merci restituite,2,code_2
+b_5, Sostituzione (ad esempio in garanzia) di merci non restituite,3,code_2
+b_6, Movimenti da/verso un deposito (esclusi i regimi call-off stock e consignment stock),1,code_3
+b_7, Spedizione in visione o in prova a fini di vendita (inclusi i regimi call-off stock e consignment stock),2,code_3
+b_8, Leasing finanziario,3,code_3
+b_9, Transazioni che comportano un trasferimento della proprieta' senza corrispettivo finanziario,4,code_3
+b_10, Merci che devono ritornare nello Stato membro iniziale o nel paese esportatore,1,code_4
+b_11, Merci che non devono ritornare nello Stato membro iniziale o nel paese esportatore,2,code_4
+b_12, Merci che ritornano nello Stato membro iniziale o nel paese esportatore,1,code_5
+b_13, Merci che non ritornano nello Stato membro iniziale o nel paese esportatore,2,code_5
+b_14, Immissione in libera pratica di merci in uno Stato membro con successiva esportazione verso un altro Stato membro,1,code_7
+b_15, Trasporto di merci da uno Stato membro a un altro Stato membro per sottoporre le merci al regime di esportazione,2,code_7
+b_16, Non definito,0,code_8
+b_17, Locazione prestito e leasing operativo per un periodo superiore a 24 mesi,1,code_9
+b_18, Altra,9,code_9

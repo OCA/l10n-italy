@@ -1,0 +1,24 @@
+<odoo>
+    <!-- Intrastat Codes -->
+    <record id="intrastat_intrastat_01012100" model="report.intrastat.code">
+        <field name="name">Pure-bred breeding horses</field>
+        <field name="type">good</field>
+    </record>
+    <record id="intrastat_intrastat_01019000" model="report.intrastat.code">
+        <field name="name">Live mules and hinnies</field>
+        <field name="type">good</field>
+    </record>
+
+    <!-- Intrastat on product -->
+    <record id="product.product_product_10_product_template" model="product.template">
+        <field name="intrastat_type">good</field>
+        <field name="intrastat_code_id" ref="intrastat_intrastat_01012100" />
+    </record>
+
+    <record id="tax_22" model="account.tax">
+        <field name="name">22% intr</field>
+        <field name="description">22</field>
+        <field name="amount">22</field>
+        <field name="type_tax_use">sale</field>
+    </record>
+</odoo>
