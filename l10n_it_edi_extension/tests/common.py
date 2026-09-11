@@ -16,6 +16,13 @@ class Common(TestItEdi):
         super().setUpClass()
         cls.module = "l10n_it_edi_extension"
 
+        # The company's bank accounts may or may not be in the invoice,
+        # depending on whether the module `account_payment_partner` is installed.
+        # The invoice's bank account generates the node `DatiPagamento`,
+        # and that causes the generated files to be different from the test data.
+        # Remove the company's bank accounts in order to have more deterministic tests.
+        cls.company.bank_ids.unlink()
+
         cls.italian_shipping_partner_a = cls.env["res.partner"].create(
             {
                 "name": "Mario Rossi Shipping",
