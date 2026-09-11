@@ -1,0 +1,2 @@
+odoo-addon-l10n_it_accompanying_invoice @ git+https://github.com/OCA/l10n-italy@refs/pull/5068/head#subdirectory=l10n_it_accompanying_invoice
+odoo-addon-l10n_it_edi_extension @ git+https://github.com/OCA/l10n-italy@refs/pull/5083/head#subdirectory=l10n_it_edi_extension

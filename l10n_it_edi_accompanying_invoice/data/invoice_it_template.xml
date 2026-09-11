@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="account_invoice_it_FatturaPA_export_accompanying_inherit"
+        inherit_id="l10n_it_edi_extension.account_invoice_it_FatturaPA_export_inherit"
+    >
+        <xpath expr="//DatiTrasporto/IndirizzoResa" position="before">
+            <!-- 2.1.9.1 -->
+            <DatiAnagraficiVettore t-if="accompanying_carrier_info">
+                <IdFiscaleIVA>
+                    <IdPaese t-out="accompanying_carrier_info['country_code']" />
+                    <IdCodice t-out="accompanying_carrier_info['vat']" />
+                </IdFiscaleIVA>
+                <CodiceFiscale
+                    t-if="accompanying_carrier_info['codice_fiscale']"
+                    t-out="accompanying_carrier_info['codice_fiscale']"
+                />
+                <Anagrafica>
+                    <t t-if="accompanying_carrier_info['is_company']">
+                        <Denominazione
+                            t-out="format_alphanumeric(record.delivery_carrier_id.display_name, 80)"
+                        />
+                    </t>
+                    <t t-else="">
+                        <Nome
+                            t-out="format_alphanumeric(accompanying_carrier_info['first_name'], 60)"
+                        />
+                        <Cognome
+                            t-out="format_alphanumeric(accompanying_carrier_info['last_name'], 60)"
+                        />
+                    </t>
+                </Anagrafica>
+            </DatiAnagraficiVettore>
+
+            <!-- 2.1.9.2 -->
+            <MezzoTrasporto
+                t-if="record.delivery_transport_method_id"
+                t-out="format_alphanumeric(record.delivery_transport_method_id.display_name, 80)"
+            />
+
+            <!-- 2.1.9.3 -->
+            <CausaleTrasporto
+                t-if="record.delivery_transport_reason_id"
+                t-out="format_alphanumeric(record.delivery_transport_reason_id.display_name, 100)"
+            />
+
+            <!-- 2.1.9.4 -->
+            <NumeroColli
+                t-if="record.delivery_packages"
+                t-out="record.delivery_packages"
+            />
+
+            <!-- 2.1.9.5 -->
+            <Descrizione
+                t-if="record.delivery_goods_appearance_id"
+                t-out="format_alphanumeric(record.delivery_goods_appearance_id.display_name, 100)"
+            />
+
+            <!-- 2.1.9.6 -->
+            <UnitaMisuraPeso
+                t-if="accompanying_common_uom"
+                t-out="format_uom(accompanying_common_uom.name, 10)"
+            />
+
+            <!-- 2.1.9.7 -->
+            <PesoLordo
+                t-if="accompanying_gross_weight"
+                t-out="format_numbers_two(accompanying_gross_weight)"
+            />
+
+            <!-- 2.1.9.8 -->
+            <PesoNetto
+                t-if="accompanying_net_weight"
+                t-out="format_numbers_two(accompanying_net_weight)"
+            />
+
+            <!-- 2.1.9.9 -->
+            <!-- <DataOraRitiro /> -->
+
+            <!-- 2.1.9.10 -->
+            <DataInizioTrasporto
+                t-if="record.delivery_transport_datetime"
+                t-out="format_date(record.delivery_transport_datetime)"
+            />
+
+            <!-- 2.1.9.11 -->
+            <TipoResa
+                t-if="record.invoice_incoterm_id"
+                t-out="format_alphanumeric(record.invoice_incoterm_id.code, 3)"
+            />
+
+            <!-- 2.1.9.12 -->
+            <!-- <IndirizzoResa /> -->
+
+            <!-- 2.1.9.13 -->
+            <!-- <DataOraConsegna /> -->
+        </xpath>
+    </template>
+</odoo>
