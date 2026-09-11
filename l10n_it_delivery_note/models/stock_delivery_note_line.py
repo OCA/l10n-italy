@@ -227,12 +227,3 @@ class StockDeliveryNoteLine(models.Model):
             )
 
         return super().write(vals)
-
-    def sync_invoice_status(self):
-        for line in self.filtered(lambda note_line: note_line.sale_line_id):
-            invoice_status = line.sale_line_id.invoice_status
-            line.invoice_status = (
-                DOMAIN_INVOICE_STATUSES[1]
-                if invoice_status == "upselling"
-                else invoice_status
-            )

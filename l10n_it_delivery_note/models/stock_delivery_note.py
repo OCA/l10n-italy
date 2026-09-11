@@ -95,6 +95,9 @@ class StockDeliveryNote(models.Model):
         DELIVERY_NOTE_STATES,
         copy=False,
         default=DOMAIN_DELIVERY_NOTE_STATES[0],
+        compute="_compute_state",
+        readonly=False,
+        store=True,
         required=True,
         tracking=True,
     )
@@ -380,13 +383,21 @@ class StockDeliveryNote(models.Model):
                 if all(
                     line.invoice_status == DOMAIN_INVOICE_STATUSES[2] for line in lines
                 ):
-                    note.state = DOMAIN_DELIVERY_NOTE_STATES[2]
                     invoice_status = DOMAIN_INVOICE_STATUSES[2]
                 elif any(
                     line.invoice_status == DOMAIN_INVOICE_STATUSES[1] for line in lines
                 ):
                     invoice_status = DOMAIN_INVOICE_STATUSES[1]
             note.invoice_status = invoice_status
+
+    @api.depends("invoice_status")
+    def _compute_state(self):
+        for note in self:
+            if note.invoice_status == DOMAIN_INVOICE_STATUSES[2]:
+                state = DOMAIN_DELIVERY_NOTE_STATES[2]
+            else:
+                state = note.state
+            note.state = state
 
     @api.depends("line_ids.currency_id")
     def _compute_currency_id(self):
@@ -619,7 +630,6 @@ class StockDeliveryNote(models.Model):
 
     def action_draft(self):
         self.write({"state": DOMAIN_DELIVERY_NOTE_STATES[0]})
-        self.line_ids.sync_invoice_status()
 
     def _action_confirm(self):
         for note in self:
@@ -813,9 +823,11 @@ class StockDeliveryNote(models.Model):
                 if order_lines.filtered(lambda l: l.need_to_be_invoiced):  # noqa: E741
                     cache[downpayment] = downpayment.fix_qty_to_invoice()
 
-            invoice_ids = sale_ids.filtered(
-                lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1]
-            )._create_invoices(final=True)
+            invoice_ids = (
+                sale_ids.with_context(invoicing_delivery_notes=self)
+                .filtered(lambda o: o.invoice_status == DOMAIN_INVOICE_STATUSES[1])
+                ._create_invoices(final=True)
+            )
 
             for line, vals in cache.items():
                 line.write(vals)
@@ -953,10 +965,28 @@ class StockDeliveryNote(models.Model):
         return notes
 
     def write(self, vals):
+        state_changed = "state" in vals
+        if state_changed:
+            old_draft_delivery_notes = self.filtered(
+                lambda dn: dn.state == DOMAIN_DELIVERY_NOTE_STATES[0]
+            )
+
         res = super().write(vals)
 
         if "picking_ids" in vals:
             self.update_detail_lines()
+
+        if state_changed:
+            new_draft_delivery_notes = self.filtered(
+                lambda dn: dn.state == DOMAIN_DELIVERY_NOTE_STATES[0]
+            )
+            draft_delivery_notes = old_draft_delivery_notes | new_draft_delivery_notes
+
+            # The invoice status of the Delivery Note Lines
+            # depends on whether the Delivery Note is/was in draft.
+            draft_delivery_notes.sale_ids._assign_delivery_notes_invoices(
+                draft_delivery_notes.sale_ids.invoice_ids.ids
+            )
 
         return res
 
