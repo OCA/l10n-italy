@@ -1,0 +1,128 @@
+/*
+ *    Copyright (c) 2019, Link IT Europe Srl
+ *    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+ */
+
+.o_form_view .o_notebook > .tab-content > .tab-pane {
+    & > .no-margin-page-content {
+        margin-bottom: -46px;
+        margin-left: -16px;
+        margin-right: -16px;
+        margin-top: -16px;
+
+        min-height: 83px;
+
+        & > .header {
+            border-bottom: 1px solid #ced4da;
+            border-top: 1px solid #ced4da;
+            display: flex;
+            margin-top: -17px;
+            min-height: 34px;
+            padding-left: 16px;
+
+            & > div > .btn,
+            & > div > div > .btn {
+                margin: 4px 3px 4px 0px;
+                min-height: 25px;
+                padding-bottom: 2px;
+                padding-top: 2px;
+            }
+
+            & > .statusbar_status {
+                align-content: space-around;
+                align-items: center;
+                align-self: stretch;
+                display: flex;
+                flex-flow: row-reverse wrap-reverse;
+                margin-bottom: 0px;
+                margin-left: auto;
+                overflow: hidden;
+
+                & > .arrow_button {
+                    background-color: #ffffff;
+                    border-left: 1px solid #dee2e6;
+                    border-radius: 0;
+                    border-width: 0 0 0;
+                    color: #adb5bd;
+                    cursor: default;
+                    font-size: 11px;
+                    font-weight: bold;
+                    margin: 0px;
+                    min-height: 33px;
+                    opacity: 1;
+                    padding-left: 22px;
+                    pointer-events: none;
+                    position: relative;
+                    transition: all 0.1s ease 0s;
+
+                    &:not(:first-child):before,
+                    &:not(:first-child):after {
+                        border-bottom: 17px solid transparent;
+                        border-left: 11px solid white;
+                        border-right: none;
+                        border-top: 16px solid transparent;
+                        bottom: auto;
+                        content: " ";
+                        display: block;
+                        left: auto;
+                        position: absolute;
+                        right: -10px;
+                        transition: border 0.2s ease 0s;
+                        top: 0;
+                    }
+                    &:not(:first-child):before {
+                        border-left-color: #dee2e6;
+                        right: -11px;
+                    }
+
+                    &.first_arrow {
+                        padding-left: 15px;
+                        border-left: 1px solid #ced4da;
+                    }
+
+                    &.active {
+                        background-color: #e9ecef;
+                        color: #7c7bad;
+
+                        &:after {
+                            border-left-color: #e9ecef;
+                        }
+                    }
+                }
+            }
+        }
+        & > .content {
+            box-shadow: inset 0px 5px 10px -4px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+
+            & > :first-child {
+                margin-top: 0;
+
+                &.o_field_x2many.o_field_x2many_list tr > :first-child,
+                &.o_field_x2many.o_field_x2many_list tr > :first-child .o_input {
+                    padding-left: 16px;
+                }
+            }
+        }
+    }
+}
+
+.btn,
+.o_icon_button {
+    &.fa {
+        font-family: FontAwesome, Roboto, sans-serif;
+    }
+
+    & > .fa:not(:last-child):before {
+        margin-right: 0.5em;
+    }
+}
+
+table.o_list_view tr.o_data_row > td.o_list_button {
+    padding-left: 16px !important;
+    width: 1px;
+
+    & > button.o_icon_button > .fa:before {
+        margin: 0px;
+    }
+}
