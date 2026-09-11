@@ -181,7 +181,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         )
         res = credit_wizard.create_move()
         credit_move_id = self.env["account.move"].browse(res["res_id"])
-        credit_move_id.action_post()
+        self.assertEqual(credit_move_id.state, "posted")
         self.assertEqual(riba_list.state, "credited")
 
         # Test that credit_move_id is properly set on riba lines
@@ -422,7 +422,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
         res = credit_wizard.create_move()
         credit_move_id = self.env["account.move"].browse(res["res_id"])
-        credit_move_id.action_post()
+        self.assertEqual(credit_move_id.state, "posted")
         self.assertEqual(riba_list.state, "credited")
 
         # pay wizard with skip
@@ -914,7 +914,8 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             )
         )
         res = credit_wizard.create_move()
-        self.env["account.move"].browse([res["res_id"]]).action_post()
+        credit_move = self.env["account.move"].browse([res["res_id"]])
+        self.assertEqual(credit_move.state, "posted")
         self.assertEqual(slip.state, "credited")
         # Act
         payment_wizard_action = slip.settle_all_line()

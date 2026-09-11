@@ -250,8 +250,11 @@ class RibaCredit(models.TransientModel):
                 ]
             )
 
-        # Create the accounting move
+        # Create and post the accounting move: the line on the RiBa account
+        # has to be reconciled when the bank collects the RiBa, or when the
+        # RiBa is past due, and draft entries cannot be reconciled.
         move = move_model.create(move_vals)
+        move.action_post()
 
         # Update RiBa slip to credited state
         vals = {
