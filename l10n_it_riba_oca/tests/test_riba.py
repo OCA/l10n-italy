@@ -226,6 +226,26 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                 break
         self.assertTrue(bank_past_due_line)
 
+    def test_riba_sbf_cancel_credited(self):
+        """A credited slip can be cancelled, deleting its entries."""
+        # Arrange
+        invoice, riba_list = self.riba_sbf_common()
+        acceptance_moves = riba_list.line_ids.acceptance_move_id
+        credit_move = riba_list.credit_move_id
+        # pre-condition: the entries are posted and the invoice is reconciled
+        self.assertEqual(set(acceptance_moves.mapped("state")), {"posted"})
+        self.assertEqual(credit_move.state, "posted")
+        self.assertEqual(invoice.payment_state, "paid")
+
+        # Act
+        riba_list.riba_cancel()
+
+        # Assert
+        self.assertEqual(riba_list.state, "cancel")
+        self.assertFalse(acceptance_moves.exists())
+        self.assertFalse(credit_move.exists())
+        self.assertEqual(invoice.payment_state, "not_paid")
+
     def test_riba_incasso_all_paid(self):
         """
         RiBa of type 'After Collection' all paid flow
