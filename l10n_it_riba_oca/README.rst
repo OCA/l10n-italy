@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =======================
 ITA - Ricevute bancarie
 =======================
@@ -17,7 +13,7 @@ ITA - Ricevute bancarie
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
@@ -50,25 +46,33 @@ Nella configurazione delle RiBa è possibile specificare se si tratti di
 'Salvo buon fine' o 'Al dopo incasso', che hanno un flusso completamente
 diverso.
 
-- Al dopo incasso: le fatture risulteranno pagate all'accettazione;
-  l'incasso potrà essere registrato con una normale riconciliazione
-  bancaria, che andrà a chiudere gli "effetti attivi" aperti
-  all'accettazione.
-- Salvo buon fine: le registrazioni generate seguiranno la struttura
-  descritta nel documento http://goo.gl/jpRhJp
+-  Al dopo incasso: le fatture risulteranno pagate all'accettazione;
+   l'incasso potrà essere registrato con una normale riconciliazione
+   bancaria, che andrà a chiudere gli "effetti attivi" aperti
+   all'accettazione.
+-  Salvo buon fine: le registrazioni generate seguiranno la struttura
+   descritta nel documento http://goo.gl/jpRhJp
 
 È possibile specificare diverse configurazioni (dal menù *Configurazione
 → Pagamenti → Configurazione RiBa*). Per ognuna, in caso di 'Salvo buon
 fine', è necessario specificare almeno il registro e il conto da
 utilizzare al momento dell'accettazione della distinta da parte della
 banca. Tale conto deve essere di tipo 'Crediti' (ad esempio "RiBa
-all'incasso", eventualmente da creare).
+all'incasso", eventualmente da creare) e deve essere riconciliabile: nel
+caso 'Al dopo incasso' è il conto che viene chiuso dal movimento di
+conto corrente dell'incasso.
 
 La configurazione relativa alla fase di accredito, verrà usata nel
 momento in cui la banca accredita l'importo della distinta. È possibile
 utilizzare un registro creato appositamente, ad esempio "Accredito
 RiBa", e un conto chiamato ad esempio "Banche c/RiBa all'incasso", che
 non deve essere di tipo 'Banca e cassa'.
+
+Il conto RiBa rappresenta il credito verso la banca, di cui l'azienda
+può disporre (ad esempio per andare in negativo sul conto corrente con
+meno costi) fino a quando la banca non paga effettivamente. Anche questo
+conto deve quindi essere riconciliabile: è il conto che viene chiuso dal
+movimento di conto corrente dell'incasso.
 
 La configurazione relativa all'insoluto verrà utilizzata in caso di
 mancato pagamento da parte del cliente. Il conto può chiamarsi ad
@@ -96,10 +100,12 @@ elemento della distinta.
 I possibili stati della distinta sono: *Bozza*, *Accettata*,
 *Accreditata*, *Pagata*, *Insoluta* e *Annullata*. Ad ogni passaggio di
 stato sarà possibile generare le relative registrazioni contabili, le
-quali verranno riepilogate nella scheda «Contabilità». Questa scheda è
-presente sia sulla distinta che sulle sue righe. Queste ultime hanno una
-vista dedicata per facilitare le operazioni sul singolo elemento invece
-che su tutta la distinta.
+quali verranno riepilogate nella scheda «Contabilità». Fa eccezione lo
+stato *Pagata*, che non è un'operazione da fare a mano: la distinta ci
+arriva quando l'incasso viene riconciliato, come descritto sotto. Questa
+scheda è presente sia sulla distinta che sulle sue righe. Queste ultime
+hanno una vista dedicata per facilitare le operazioni sul singolo
+elemento invece che su tutta la distinta.
 
 Il campo ``Data accettazione`` è obbligatorio per poter indicare la RiBa
 come accettata. All'accettazione, il valore del campo
@@ -113,16 +119,55 @@ Nella lista delle fatture è presente una colonna per monitorare l'
 esposizione, cioè l'importo dovuto dal cliente a fronte dell'emissione
 della RiBa non ancora scaduta.
 
-In maniera predefinita la data delle registrazioni dei pagamenti viene
-impostata con la data di scadenza della RiBa, ma è possibile modificarla
-in due momenti:
+Incasso della distinta
+----------------------
 
-- durante la creazione del pagamento, cliccando su "Segna righe come
-  pagate" o su "Segna coma pagata" o usando l'azione "Registrazione Riba
-  a data di scadenza" e indicando una data nel campo ``Data pagamento``,
-- successivamente a pagamento effettivamente avvenuto selezionando la
-  registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta
-  data di pagamento RiBa".
+Il modulo non genera nessuna registrazione di incasso: la distinta
+risulta pagata quando il movimento di conto corrente effettivo, in
+riconciliazione bancaria, chiude il credito verso la banca.
+
+Le righe da riconciliare sono elencate nella scheda «Contabilità» della
+distinta, sotto «Righe da incassare»:
+
+-  'Salvo buon fine': la riga in DARE del conto RiBa della registrazione
+   di accredito. L'accredito rappresenta un credito su un conto a parte,
+   di cui si può disporre fino all'incasso effettivo;
+-  'Al dopo incasso': le righe in DARE del conto effetti attivi delle
+   registrazioni di accettazione.
+
+La riconciliazione avviene sul totale della distinta, e i pagamenti sono
+gestiti come in fattura: i campi ``Importo pagato`` e
+``Importo residuo`` mostrano quanto la banca ha già accreditato e quanto
+deve ancora incassare, e lo ``Stato pagamento`` passa a *Parzialmente
+pagata* e poi a *Pagata*. Quando il residuo è zero la distinta passa in
+stato *Pagata*, e il campo ``Data pagamento`` riporta la data della
+registrazione che l'ha incassata. Se la riconciliazione viene annullata,
+la distinta torna in stato *Accreditata* (o *Accettata* nel caso 'Al
+dopo incasso').
+
+Le righe della distinta non hanno un pulsante per l'incasso e restano in
+stato *Accreditata*: l'unica operazione che le riguarda singolarmente è
+l'insoluto.
+
+Insoluto
+--------
+
+Nei giorni successivi all'incasso la banca può comunicare l'insoluto di
+una o più ricevute. L'insoluto è un'operazione manuale, da registrare
+per ogni riga interessata: dalla distinta, o da *RiBa → Dettaglio
+distinte*, si usa il pulsante "Segna come insoluta" sulla riga.
+
+La registrazione generata riapre il credito verso il cliente sul conto
+insoluti e chiude la parte corrispondente del conto RiBa (o del conto
+effetti attivi nel caso 'Al dopo incasso'), riducendo quindi il residuo
+della distinta come farebbe un incasso. Le eventuali spese di insoluto
+addebitate dalla banca sono indicate nel wizard.
+
+Il movimento di conto corrente con cui la banca addebita l'insoluto (e
+le relative spese) va poi riconciliato manualmente. Per velocizzare
+l'operazione conviene creare un modello di riconciliazione (*Contabilità
+→ Configurazione → Modelli di riconciliazione*) che proponga il conto
+insoluti e il conto spese configurati nella configurazione RiBa.
 
 Non è possibile emettere Riba per fatture verso Enti che richiedono più
 di un CIG e un CUP differenti per fattura. In questo caso particolare,
@@ -146,30 +191,30 @@ Credits
 Contributors
 ------------
 
-- Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-- Andrea Cometa <a.cometa@apuliasoftware.it>
-- Andrea Gallina <a.gallina@apuliasoftware.it>
-- Davide Corio <info@davidecorio.com>
-- Giacomo Grasso <giacomo.grasso@agilebg.com>
-- Gabriele Baldessari <gabriele.baldessari@gmail.com>
-- Alex Comba <alex.comba@agilebg.com>
-- Marco Calcagni <mcalcagni@dinamicheaziendali.it>
-- Sergio Zanchetta <https://github.com/primes2h>
-- Simone Vanin <simone.vanin@agilebg.com>
-- Sergio Corato <https://github.com/sergiocorato>
-- Giovanni Serra <giovanni@gslab.it>
-- `Aion Tech <https://aiontech.company/>`__:
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Andrea Cometa <a.cometa@apuliasoftware.it>
+-  Andrea Gallina <a.gallina@apuliasoftware.it>
+-  Davide Corio <info@davidecorio.com>
+-  Giacomo Grasso <giacomo.grasso@agilebg.com>
+-  Gabriele Baldessari <gabriele.baldessari@gmail.com>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Simone Vanin <simone.vanin@agilebg.com>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  Giovanni Serra <giovanni@gslab.it>
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
-- `TAKOBI <https://takobi.online>`__:
+-  `TAKOBI <https://takobi.online>`__:
 
-  - Simone Rubino <sir@takobi.online>
+   -  Simone Rubino <sir@takobi.online>
 
-- Nextev Srl <odoo@nextev.it>
-- `PyTech <https://www.pytech.it>`__:
+-  Nextev Srl <odoo@nextev.it>
+-  `PyTech <https://www.pytech.it>`__:
 
-  - Simone Rubino <simone.rubino@pytech.it>
+   -  Simone Rubino <simone.rubino@pytech.it>
 
 Maintainers
 -----------

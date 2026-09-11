@@ -24,7 +24,8 @@ class RibaCredit(models.TransientModel):
     1. Bank accepts RiBa collection from company
     2. Bank may immediately credit company's account (this wizard)
     3. Bank collects payment from customers
-    4. If customer pays: settlement completes the cycle
+    4. If customer pays: the bank entry of the collection is reconciled
+       with the RiBa account, closing the credit towards the bank
     5. If customer doesn't pay: past due process reverses the credit
 
     Accounting Impact:
