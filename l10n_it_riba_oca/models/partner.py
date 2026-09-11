@@ -38,8 +38,24 @@ class ResPartner(models.Model):
     )
     riba_policy_expenses = fields.Selection(
         [
-            ("one_a_month", "More invoices, one expense per Month"),
-            ("unlimited", "One expense per maturity"),
+            ("unlimited", "One expense per maturity (no deduplication)"),
+            (
+                "one_per_invoice",
+                "One expense per invoice (fixed, regardless of maturities)",
+            ),
+            (
+                "one_a_month",
+                "One expense per maturity month (deduplicated across invoices)",
+            ),
+            (
+                "one_a_maturity_invoice_month",
+                "One expense per invoice month (deduplicated by invoice date)",
+            ),
+            (
+                "maturity_per_invoice_month",
+                "One expense per maturity month "
+                "(deduplicated within the invoice month)",
+            ),
         ],
         default="one_a_month",
         string="Ri.Ba. Policy expenses",
