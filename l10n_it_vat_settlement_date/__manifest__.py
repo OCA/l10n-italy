@@ -22,4 +22,9 @@
         "views/account_move_views.xml",
         "reports/report_registro_iva.xml",
     ],
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
 }
