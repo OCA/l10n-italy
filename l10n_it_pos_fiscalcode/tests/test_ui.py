@@ -12,7 +12,7 @@ class TestUi(TestPointOfSaleHttpCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.pos_user.groups_id += cls.env.ref("base.group_system")
+        cls.pos_user.group_ids += cls.env.ref("base.group_system")
 
     def test_fiscal_code_search(self):
         """A Customer can be found using its fiscal code."""
