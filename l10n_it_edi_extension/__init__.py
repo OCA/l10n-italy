@@ -565,6 +565,42 @@ def _l10n_it_fatturapa_post_migration_payment_data(env):
             move.sudo().message_post(body=message)
 
 
+def _l10n_it_fatturapa_out_pre_migration(env):
+    renamed_fields = [
+        [
+            (
+                model,
+                "e_invoice_hide_line_type",
+            ),
+            (
+                model,
+                "l10n_it_edi_hide_line_type",
+            ),
+        ]
+        for model in (
+            "res.company",
+            "res.partner",
+            "account.move",
+        )
+    ]
+
+    field_spec = []
+    for renamed_field in renamed_fields:
+        (old_model, old_field), (new_model, new_field) = renamed_field
+        field_spec.append(
+            (
+                old_model,
+                new_model.replace(".", "_"),
+                old_field,
+                new_field,
+            )
+        )
+    openupgrade.rename_fields(
+        env,
+        field_spec,
+    )
+
+
 def _l10n_it_fatturapa_post_migration(env):
     query = """
         UPDATE res_partner

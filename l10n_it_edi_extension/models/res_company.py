@@ -3,6 +3,13 @@
 
 from odoo import fields, models
 
+E_INVOICE_HIDE_LINE_TYPE_SELECTION = [
+    ("none", "None"),
+    ("note", "Notes"),
+    ("section", "Sections"),
+    ("note_section", "Notes and Sections"),
+]
+
 
 class ResCompanyInherit(models.Model):
     _inherit = "res.company"
@@ -39,6 +46,11 @@ class ResCompanyInherit(models.Model):
         "Maximum (default): every line contained in the electronic bill "
         "will create a line in the bill.",
     )
+    l10n_it_edi_hide_line_type = fields.Selection(
+        selection=E_INVOICE_HIDE_LINE_TYPE_SELECTION,
+        default="note_section",  # keep default Odoo behavior
+        help="Choose which type of descriptive line will not be present in e-invoices.",
+    )
 
 
 class AccountConfigSettings(models.TransientModel):
@@ -46,5 +58,9 @@ class AccountConfigSettings(models.TransientModel):
 
     l10n_it_edi_import_detail_level = fields.Selection(
         related="company_id.l10n_it_edi_import_detail_level",
+        readonly=False,
+    )
+    l10n_it_edi_hide_line_type = fields.Selection(
+        related="company_id.l10n_it_edi_hide_line_type",
         readonly=False,
     )
