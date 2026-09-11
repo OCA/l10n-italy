@@ -1136,3 +1136,24 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(
             acceptance_lines.mapped("date"), [acceptance_date] * len(acceptance_lines)
         )
+
+    def test_button_settle_multiple_lines(self):
+        """
+        button_settle can handle multiple lines.
+        """
+        # Arrange
+        _invoice, riba_list = self.riba_sbf_common()
+        _invoice, other_riba_list = self.riba_sbf_common()
+        credited_lines = riba_list.line_ids[0] + other_riba_list.line_ids[0]
+
+        # Act
+        action = credited_lines.button_settle()
+
+        # Assert
+        self.assertEqual(action["res_model"], "riba.payment.multiple")
+        payment_wizard = (
+            self.env[action["res_model"]].with_context(**action["context"]).create({})
+        )
+        payment_wizard.pay()
+        self.assertEqual(riba_list.state, "paid")
+        self.assertEqual(other_riba_list.state, "paid")
