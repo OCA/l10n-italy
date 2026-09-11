@@ -1,0 +1,18 @@
+# Copyright 2025 Nextev Srl
+
+from odoo import api, models
+from odoo.exceptions import UserError
+
+
+class AccountTax(models.Model):
+    _inherit = "account.tax"
+
+    @api.ondelete(at_uninstall=False)
+    def _never_unlink_declaration_of_intent_bill_tax(self):
+        for tax in self:
+            if tax == tax.company_id.l10n_it_edi_doi_bill_tax_id:
+                raise UserError(
+                    self.env._(
+                        "You cannot delete the special tax for Declarations of Intent."
+                    )
+                )
