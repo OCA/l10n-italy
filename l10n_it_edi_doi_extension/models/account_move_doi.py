@@ -1,7 +1,7 @@
 # Copyright 2025 Nextev Srl
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class AccountMoveDoi(models.Model):
@@ -31,8 +31,7 @@ class AccountMoveDoi(models.Model):
     )
     amount = fields.Monetary(
         currency_field="currency_id",
-        help="Amount of the invoice covered by this declaration of intent. "
-        "If zero, the full remaining amount will be used.",
+        help="Amount of the invoice covered by this declaration of intent.",
     )
     currency_id = fields.Many2one(
         related="move_id.currency_id",
@@ -106,10 +105,18 @@ class AccountMoveDoi(models.Model):
     @api.constrains("amount")
     def _check_amount(self):
         for record in self:
-            if record.amount < 0:
+            if record.amount <= 0:
                 raise ValidationError(
-                    _("The amount covered by a declaration cannot be negative.")
+                    _("The amount covered by a declaration must be positive.")
                 )
+
+    def _check_move_is_draft(self):
+        # Rows with amount 0 come from the v16 migration (raw SQL, no constraint):
+        # they stay editable so the amount can be fixed or the row removed.
+        if any(record.move_id.state != "draft" and record.amount for record in self):
+            raise UserError(
+                _("Declarations of Intent can only be changed on draft invoices.")
+            )
 
     def _compute_display_name(self):
         for record in self:
@@ -136,16 +143,22 @@ class AccountMoveDoi(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
+        # Credit notes get their rows through copy_data while still draft, so a
+        # row created on a non draft move can only be a manual change.
+        records._check_move_is_draft()
         records._sync_l10n_it_edi_doi_id()
         return records
 
     def write(self, vals):
+        if vals.keys() & {"declaration_id", "amount", "move_id"}:
+            self._check_move_is_draft()
         res = super().write(vals)
         if "declaration_id" in vals:
             self._sync_l10n_it_edi_doi_id()
         return res
 
     def unlink(self):
+        self._check_move_is_draft()
         moves = self.mapped("move_id")
         res = super().unlink()
         self._sync_l10n_it_edi_doi_id(moves)
