@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_tax_registry_account_manager,account.tax_registry account manager,model_account_tax_registry,account.group_account_manager,1,1,1,1
+access_account_tax_registry_account_user,account.tax_registry account user,model_account_tax_registry,account.group_account_user,1,0,0,0
+access_wizard_registro_iva_account_manager,access_wizard_registro_iva account manager,model_wizard_registro_iva,account.group_account_manager,1,1,1,1
+access_wizard_registro_iva_account_user,access_wizard_registro_iva account user,model_wizard_registro_iva,account.group_account_user,1,0,0,0

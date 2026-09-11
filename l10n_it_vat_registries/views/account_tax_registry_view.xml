@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_tax_registry_form" model="ir.ui.view">
+        <field name="name">account.tax.registry.form</field>
+        <field name="model">account.tax.registry</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                    <field name="layout_type" />
+                    <field name="entry_order" />
+                    <field name="show_full_contact_addess" />
+                </group>
+                <separator string="Journals" />
+                <field name="journal_ids" />
+                <separator string="RC Journals" />
+                <group>
+                    <field name="include_rc_moves" />
+                </group>
+                <group>
+                    <field
+                        name="rc_journal_ids"
+                        invisible="not include_rc_moves"
+                        widget="many2many_tags"
+                    />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_tax_registry_form" model="ir.actions.act_window">
+        <field name="name">VAT registries</field>
+        <field name="path">vat-registries</field>
+        <field name="res_model">account.tax.registry</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Click to add a VAT registry.
+          </p>
+            <p>
+            A VAT registry is used to group several journals in one registry.
+          </p>
+        </field>
+    </record>
+    <menuitem
+        action="action_account_tax_registry_form"
+        id="menu_action_account_tax_registry_form"
+        parent="account.account_account_menu"
+    />
+</odoo>
