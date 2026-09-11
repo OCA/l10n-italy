@@ -16,6 +16,7 @@
         "views/res_company.xml",
         "views/purchase_order_views.xml",
         "views/account_move_views.xml",
+        "views/plafond_year_views.xml",
     ],
     "installable": True,
     "pre_init_hook": "_l10n_it_edi_doi_extension_pre_init_hook",
