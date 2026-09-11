@@ -1,0 +1,601 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_financial_statement_eu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-20 09:39+0000\n"
+"PO-Revision-Date: 2024-09-17 10:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
+msgid "&amp;emsp;"
+msgstr "&amp;emsp;"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
+msgid "- Fiscal Code"
+msgstr "- Codice fiscale"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
+msgid "- REA:"
+msgstr "- REA:"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu_wizard__values_precision__d
+#, python-format
+msgid "2 decimals Euro"
+msgstr "2 decimali di Euro"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
+msgid ""
+"<br/>\n"
+"                        Share capital Euro"
+msgstr ""
+"<br/>\n"
+"                        Capitale sociale Euro"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
+msgid ""
+"<br/>\n"
+"                        Taxcode"
+msgstr ""
+"<br/>\n"
+"                        Partiva IVA"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_search_view
+msgid "ASSETS (Balance Sheet)"
+msgstr "ATTIVO (Patrimoniale)"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
+#, python-format
+msgid "ASSETS codes must starting by PA"
+msgstr "I codici dei cespiti devono iniziare con PA"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model,name:l10n_it_financial_statement_eu.model_account_account
+msgid "Account"
+msgstr "Conto"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__account_id
+msgid "Account unlinked"
+msgstr "Conto non associato"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu__sign_calculation__
+msgid "Add"
+msgstr "Somma"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,help:l10n_it_financial_statement_eu.field_account_account__financial_statement_eu_credit_id
+msgid "Add this account in a Financial statement EU line amount CREDITS"
+msgstr ""
+"inserisci questo conto nel conteggio degli AVERE di una voce del Bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,help:l10n_it_financial_statement_eu.field_account_account__financial_statement_eu_debit_id
+msgid "Add this account in a Financial statement EU line amount DEBITS"
+msgstr ""
+"inserisci questo conto nel conteggio dei DARE di una voce del Bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__address
+msgid "Address"
+msgstr "Indirizzo"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__amount
+msgid "Amount"
+msgstr "Saldo"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu__zone_bal__pa
+msgid "Assets"
+msgstr "Attivo"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu_wizard__state__unlinked_accounts
+msgid "CHECK ACCOUNTS"
+msgstr "VERIFICARE CONTI"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu_wizard__state__ok
+msgid "COMPLETE"
+msgstr "COMPLETO"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.actions.act_window,name:l10n_it_financial_statement_eu.action_financial_statement_eu_wizard
+msgid "Calculate Financial statement EU"
+msgstr "Calcola Bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__child_ids
+msgid "Childs"
+msgstr "Figli"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__city
+msgid "City"
+msgstr "Città"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__code
+#, python-format
+msgid "Code"
+msgstr "Codice"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__company_name
+msgid "Company Name"
+msgstr "Ragione Sociale"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__long_desc
+msgid "Complete Description"
+msgstr "Descrizione Completa"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__complete_name
+msgid "Complete Name"
+msgstr "Nome completo"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__create_uid
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__create_uid
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__create_date
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__create_date
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_account_account__financial_statement_eu_credit_id
+msgid "Credit (Financial statement EU)"
+msgstr "Avere (Bilancio UE)"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__date_range_id
+msgid "Date range"
+msgstr "Intervallo date"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_account_account__financial_statement_eu_debit_id
+msgid "Debit (Financial statement EU)"
+msgstr "Dare (Bilancio UE)"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__name
+#, python-format
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model,name:l10n_it_financial_statement_eu.model_report_l10n_it_financial_statement_eu_fseu_html_report
+msgid "Export Financial statement EU in HTML format"
+msgstr "Visualizza Bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model,name:l10n_it_financial_statement_eu.model_report_l10n_it_financial_statement_eu_fseu_xbrl_report
+msgid "Export Financial statement EU in XBRL format"
+msgstr "Esporta Bilancio UE in formato XBRL"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model,name:l10n_it_financial_statement_eu.model_report_l10n_it_financial_statement_eu_fseu_xlsx_report
+msgid "Export Financial statement EU in XLSX format"
+msgstr "Esportazione del bilancio UE in formato XLSX"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-javascript
+#: code:addons/l10n_it_financial_statement_eu/static/src/xml/report.xml:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
+#, python-format
+msgid "Export XBRL"
+msgstr "Esporta XBRL"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-javascript
+#: code:addons/l10n_it_financial_statement_eu/static/src/xml/report.xml:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
+#, python-format
+msgid "Export XLSX"
+msgstr "Esporta XLSX"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__financial_statement_id
+msgid "Financial statement"
+msgstr "Bilancio"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: code:addons/l10n_it_financial_statement_eu/wizard/financial_statement_eu_wizard.py:0
+#: model:ir.actions.report,name:l10n_it_financial_statement_eu.action_report_financial_statement_eu_xlsx
+#: model:ir.actions.report,name:l10n_it_financial_statement_eu.action_report_financial_statement_eu_xml
+#: model:ir.ui.menu,name:l10n_it_financial_statement_eu.financial_statement_eu_wizard_menu
+#, python-format
+msgid "Financial statement EU"
+msgstr "Bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model,name:l10n_it_financial_statement_eu.model_financial_statement_eu
+msgid "Financial statement EU line"
+msgstr "Linee del bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.actions.act_window,name:l10n_it_financial_statement_eu.financial_statement_eu_act_window
+#: model:ir.ui.menu,name:l10n_it_financial_statement_eu.financial_statement_eu_menu
+msgid "Financial statement EU lines"
+msgstr "Voci Bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,help:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__hide_acc_amount_0
+msgid ""
+"Financial statements lines will showed anyway, hide only accounts with "
+"balance 0"
+msgstr ""
+"Le linee di bilancio verranno comunque visualizzate, nasconde solo i conti "
+"con saldo 0"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__fiscalcode
+msgid "Fiscal Code"
+msgstr "Codice fiscale"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__date_from
+msgid "From date"
+msgstr "Dalla data"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__hide_acc_amount_0
+#, python-format
+msgid "Hide account with amount 0"
+msgstr "Nascondere conti a 0"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_search_view
+msgid "INCOME STATEMENT"
+msgstr "CONTO ECONOMICO"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
+#, python-format
+msgid "INCOME STATEMENT codes must starting by E"
+msgstr "I codici conto economico devono iniziare con E"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu__zone_bal__--
+msgid "Ignore"
+msgstr "Ignora"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__ignore_closing_move
+#, python-format
+msgid "Ignore closing registration"
+msgstr "Ignora registrazioni di chiusura"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu__zone_bal__ec
+msgid "Income statement"
+msgstr "Conto economico"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_search_view
+msgid "LIABILITIES (Balance Sheet)"
+msgstr "PASSIVO (Patrimoniale)"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
+#, python-format
+msgid "LIABILITIES codes must starting by PP"
+msgstr "I codici delle passività devono iniziare con PP"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu____last_update
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log____last_update
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__write_uid
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__write_uid
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__write_date
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_log__write_date
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu__zone_bal__pp
+msgid "Liabilities"
+msgstr "Passivo"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.view_form_account_financial_statement_eu
+msgid "Link to Financial statement EU"
+msgstr "Associa a Bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#, python-format
+msgid "NO"
+msgstr "NO"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__tag_xbrl
+msgid "Name XBRL"
+msgstr "Nome XBRL"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu__sign_display__-
+msgid "Negative"
+msgstr "Negativo"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_search_view
+msgid "No childs only"
+msgstr "Solo voci foglie albero"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__parent_id
+msgid "Parent"
+msgstr "Padre"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu__sign_display__+
+msgid "Positive"
+msgstr "Positivo"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__rea_num
+msgid "REA number"
+msgstr "Numero REA"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__rea_office
+msgid "REA office"
+msgstr "Ufficio REA"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__rea_capital
+msgid "Share Capital"
+msgstr "Capitale sociale"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#, python-format
+msgid "Share capital Euro "
+msgstr "Capitale sociale Euro "
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__sign_calculation
+msgid "Sign (calc)"
+msgstr "Segno (calcoli)"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__sign_display
+msgid "Sign (view)"
+msgstr "Segno (visualizzazione)"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__state
+msgid "State"
+msgstr "Stato"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu__sign_calculation__-
+msgid "Subtract"
+msgstr "Sottrai"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
+#, python-format
+msgid "There are accounts not linked to any financial statement line:"
+msgstr "Sono presenti conti non associati a nessuna voce di bilancio:"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
+#, python-format
+msgid "There are accounts to ignore but with non-zero amount:"
+msgstr "Sono presenti conti da ignorare ma che hanno saldo diverso da zero:"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__date_to
+msgid "To date"
+msgstr "Alla data"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu_wizard__state__unbalanced
+msgid "UNBALANCED"
+msgstr "NON QUADRATO"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/models/financial_statement_eu.py:0
+#, python-format
+msgid ""
+"Unbalanced financial statements: %(tot_assets)s (Assets) - "
+"%(tot_liabilities)s (Liabilities) = %(diff)s"
+msgstr ""
+"Bilancio NON quadrato: %(tot_assets)s (Attivo) - %(tot_liabilities)s "
+"(Passivo) = %(diff)s"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__financial_statement_log_ids
+msgid "Unlinked Account"
+msgstr "Conto non associato"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model,name:l10n_it_financial_statement_eu.model_financial_statement_eu_log
+msgid "Unlinked account in Financial statement EU"
+msgstr "Conti non associati per bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__only_posted_move
+#, python-format
+msgid "Use only posted registration"
+msgstr "Solo registrazioni confermate"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__vat_code
+msgid "VAT number"
+msgstr "Partita IVA"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__vat_code_nation
+msgid "VAT number nation"
+msgstr "Paese Partita IVA"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__values_precision
+#, python-format
+msgid "Values show as"
+msgstr "Visualizza valori"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
+msgid "View"
+msgstr "Visualizza"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__log_warnings
+msgid "WARNING:"
+msgstr "ATTENZIONE:"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model,name:l10n_it_financial_statement_eu.model_financial_statement_eu_wizard
+msgid "Wizard for Financial statement EU calculation"
+msgstr "Wizard per calcolo bilancio UE"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.actions.report,name:l10n_it_financial_statement_eu.action_report_financial_statement_eu_xbrl
+msgid "XBRL-financial-statements"
+msgstr "XBRL-bilancio-esercizio"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#, python-format
+msgid "YES"
+msgstr "SI"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu_wizard__year
+msgid "Year"
+msgstr "Anno"
+
+#. module: l10n_it_financial_statement_eu
+#: model:ir.model.fields,field_description:l10n_it_financial_statement_eu.field_financial_statement_eu__zone_bal
+msgid "Zone"
+msgstr "Zona"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model:ir.model.fields.selection,name:l10n_it_financial_statement_eu.selection__financial_statement_eu_wizard__values_precision__u
+#, python-format
+msgid "euro units"
+msgstr "unità di Euro"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
+#, python-format
+msgid "from"
+msgstr "dal"
+
+#. module: l10n_it_financial_statement_eu
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.financial_statement_eu_wizard_view
+msgid "or"
+msgstr "o"
+
+#. module: l10n_it_financial_statement_eu
+#. odoo-python
+#: code:addons/l10n_it_financial_statement_eu/report/financial_statement_eu_report.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_financial_statement_eu.fseu_html_report
+#, python-format
+msgid "to"
+msgstr "al"
