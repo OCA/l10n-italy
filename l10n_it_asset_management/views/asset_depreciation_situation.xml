@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_asset_depreciation_situation_list" model="ir.ui.view">
+        <field name="name">asset.depreciation.situation.list</field>
+        <field name="model">asset.depreciation</field>
+        <field name="arch" type="xml">
+            <list string="Asset Situation">
+                <field name="l10n_it_asset_id" string="Asset" />
+                <field name="type_id" string="Depreciation Type" />
+                <field
+                    name="amount_depreciable_updated"
+                    string="Depreciable Amount"
+                    sum="Total Depreciable"
+                />
+                <field
+                    name="amount_depreciated"
+                    string="Depreciated Amount"
+                    sum="Total Depreciated"
+                />
+                <field name="amount_residual" string="Residual" sum="Total Residual" />
+                <field name="last_depreciation_date" string="Last Depreciation Date" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_asset_depreciation_situation" model="ir.actions.act_window">
+        <field name="name">Asset Situation</field>
+        <field name="path">asset-situation</field>
+        <field name="res_model">asset.depreciation</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_asset_depreciation_situation_list" />
+        <field name="context">{'group_by': 'category_id'}</field>
+    </record>
+
+    <menuitem
+        id="menu_asset_situation"
+        name="Asset Situation"
+        parent="menu_asset_reports"
+        action="action_asset_depreciation_situation"
+        sequence="30"
+    />
+</odoo>
