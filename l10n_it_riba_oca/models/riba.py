@@ -174,16 +174,26 @@ class RibaList(models.Model):
             for line in slip.line_ids:
                 line.confirm()
 
+    def _unlink_move(self, move):
+        """Delete `move`, setting it back to draft first if it is posted.
+
+        Posted entries cannot be deleted while they are reconciled:
+        `button_draft` takes care of removing the reconciliation.
+        """
+        if move.state == "posted":
+            move.button_draft()
+        move.unlink()
+
     def riba_cancel(self):
         for slip in self:
             for line in slip.line_ids:
                 line.state = "cancel"
                 if line.acceptance_move_id:
-                    line.acceptance_move_id.unlink()
+                    slip._unlink_move(line.acceptance_move_id)
                 if line.past_due_move_id:
-                    line.past_due_move_id.unlink()
+                    slip._unlink_move(line.past_due_move_id)
             if slip.credit_move_id:
-                slip.credit_move_id.unlink()
+                slip._unlink_move(slip.credit_move_id)
             slip.state = "cancel"
 
     def settle_all_line(self):
