@@ -89,6 +89,12 @@ class RibaCredit(models.TransientModel):
             amount += line.amount
         return amount
 
+    @api.model
+    def _get_date_credited(self):
+        """Get the credit date of the slip, or today if it is not set."""
+        slip = self.env["riba.slip"].browse(self.env.context.get("active_id"))
+        return slip.date_credited or fields.Date.context_today(self)
+
     _name = "riba.credit"
     _description = "Bank Credit Wizard for RiBa Collections"
 
@@ -107,6 +113,12 @@ class RibaCredit(models.TransientModel):
     )
     credit_amount = fields.Float(
         help="Amount the bank is crediting to the company. ",
+    )
+    date_credited = fields.Date(
+        string="Credit Date",
+        required=True,
+        default=_get_date_credited,
+        help="Date of the credit entry.",
     )
 
     # Acceptance account configuration
@@ -185,15 +197,27 @@ class RibaCredit(models.TransientModel):
             not wizard.credit_journal_id
             or not wizard.credit_account_id
             or not wizard.acceptance_account_id
-            or not wizard.bank_account_id
-            or not wizard.bank_expense_account_id
         ):
             raise UserError(self.env._("Every account is mandatory."))
+        # fees accounts are only needed to record the fees
+        if wizard.expense_amount and (
+            not wizard.bank_account_id or not wizard.bank_expense_account_id
+        ):
+            raise UserError(
+                self.env._(
+                    "Bank fees need the A/C bank account and the bank fees account."
+                )
+            )
+        if slip.date_accepted and wizard.date_credited < slip.date_accepted:
+            raise UserError(
+                self.env._("Credit date must be greater or equal to acceptance date.")
+            )
 
         # Prepare the basic credit move with core RiBa entries
         move_vals = {
             "ref": self.env._("RiBa Credit %s") % slip.name,
             "journal_id": wizard.credit_journal_id.id,
+            "date": wizard.date_credited,
             "line_ids": [
                 # Debit RiBa Credit Account - Represents amount bank will collect
                 (
@@ -254,20 +278,26 @@ class RibaCredit(models.TransientModel):
         move = move_model.create(move_vals)
 
         # Update RiBa slip to credited state
-        vals = {
-            "credit_move_id": move.id,  # Link the credit move to the slip
-            "state": "credited",  # Mark slip as credited by bank
-        }
-        # Set credit date if not already set
-        if not slip.date_credited:
-            vals.update({"date_credited": fields.Date.context_today(self)})
-        slip.update(vals)
+        slip.update(
+            {
+                "credit_move_id": move.id,  # Link the credit move to the slip
+                "state": "credited",  # Mark slip as credited by bank
+                "date_credited": wizard.date_credited,
+            }
+        )
 
         # Update all RiBa lines to credited state
         # This indicates the bank has provided credit for these collections
         for line in slip.line_ids:
             line.state = "credited"
             line.credit_move_id = move  # Link credit move to each line
+
+        # Post the move only now that it is linked to the slip: posting
+        # reconciles its line on the acceptance account with the acceptance
+        # entries of the slip. Its line on the RiBa account has to be
+        # reconciled too, when the bank collects the RiBa or when the RiBa is
+        # past due, and draft entries cannot be reconciled.
+        move.action_post()
 
         # Return action to display the created move
         return {

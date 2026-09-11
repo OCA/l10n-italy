@@ -11,7 +11,7 @@ import os
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import Command
+from odoo import Command, fields
 from odoo.exceptions import UserError
 from odoo.fields import first
 from odoo.tests import Form
@@ -175,14 +175,21 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             .create(
                 {
                     "credit_amount": 450,
+                    "date_credited": riba_list.date_accepted,
                     "expense_amount": 5,
                 }
             )
         )
         res = credit_wizard.create_move()
         credit_move_id = self.env["account.move"].browse(res["res_id"])
-        credit_move_id.action_post()
+        self.assertEqual(credit_move_id.state, "posted")
         self.assertEqual(riba_list.state, "credited")
+        # The credit entry closes the bills accepted
+        acceptance_lines = riba_list.line_ids.acceptance_move_id.line_ids.filtered(
+            lambda line: line.account_id == self.acceptance_account
+        )
+        self.assertTrue(acceptance_lines)
+        self.assertTrue(all(acceptance_lines.mapped("reconciled")))
 
         # Test that credit_move_id is properly set on riba lines
         for line in riba_list.line_ids:
@@ -245,6 +252,86 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertFalse(acceptance_moves.exists())
         self.assertFalse(credit_move.exists())
         self.assertEqual(invoice.payment_state, "not_paid")
+
+    def _issue_riba_sbf(self, invoice):
+        """Issue and accept a 'Subject to collection' slip for `invoice`."""
+        riba_move_lines = invoice.line_ids.filtered(
+            lambda line: line.display_type == "payment_term"
+        )
+        wizard_riba_issue = self.env["riba.issue"].create(
+            {"configuration_id": self.riba_config_sbf.id}
+        )
+        action = wizard_riba_issue.with_context(
+            active_ids=riba_move_lines.ids
+        ).create_list()
+        slip = self.slip_model.browse(action["res_id"])
+        slip.date_accepted = invoice.invoice_date
+        slip.confirm()
+        return slip
+
+    def _credit_wizard(self, slip, vals=None):
+        return (
+            self.env["riba.credit"]
+            .with_context(
+                active_model="riba.slip",
+                active_ids=slip.ids,
+                active_id=slip.id,
+            )
+            .create(dict({"credit_amount": slip.total_amount}, **(vals or {})))
+        )
+
+    def test_riba_credit_date(self):
+        """The credit entry is dated at the credit date of the wizard."""
+        # Arrange
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+        slip = self._issue_riba_sbf(self.invoice)
+        credit_date = slip.date_accepted + relativedelta(days=3)
+        wizard = self._credit_wizard(slip)
+        # pre-condition: the credit date is proposed as today
+        self.assertEqual(wizard.date_credited, fields.Date.context_today(wizard))
+
+        # Act & Assert: the credit date cannot precede the acceptance date
+        wizard.date_credited = slip.date_accepted - relativedelta(days=1)
+        with self.assertRaises(UserError):
+            wizard.create_move()
+        self.assertFalse(slip.credit_move_id)
+
+        # Act
+        wizard.date_credited = credit_date
+        wizard.create_move()
+
+        # Assert
+        self.assertEqual(slip.credit_move_id.date, credit_date)
+        self.assertEqual(slip.credit_move_id.state, "posted")
+        self.assertEqual(slip.date_credited, credit_date)
+
+    def test_riba_credit_fees_accounts(self):
+        """The fees accounts are only needed to record credit fees."""
+        # Arrange
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+        slip = self._issue_riba_sbf(self.invoice)
+        wizard = self._credit_wizard(
+            slip,
+            {
+                "date_credited": slip.date_accepted,
+                "bank_account_id": False,
+                "expense_amount": 5,
+            },
+        )
+
+        # Act & Assert: the fees cannot be recorded without the A/C bank account
+        with self.assertRaises(UserError) as error:
+            wizard.create_move()
+        self.assertIn("A/C bank account", error.exception.args[0])
+        self.assertFalse(slip.credit_move_id)
+
+        # Act & Assert: without fees, the fees accounts are not needed
+        wizard.write({"expense_amount": 0, "bank_expense_account_id": False})
+        wizard.create_move()
+        self.assertEqual(slip.state, "credited")
+        self.assertEqual(slip.credit_move_id.state, "posted")
 
     def test_riba_incasso_all_paid(self):
         """
@@ -415,6 +502,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             .create(
                 {
                     "credit_amount": 100,
+                    "date_credited": riba_list.date_accepted,
                     "expense_amount": 5,
                 }
             )
@@ -422,7 +510,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
         res = credit_wizard.create_move()
         credit_move_id = self.env["account.move"].browse(res["res_id"])
-        credit_move_id.action_post()
+        self.assertEqual(credit_move_id.state, "posted")
         self.assertEqual(riba_list.state, "credited")
 
         # pay wizard with skip
@@ -910,11 +998,13 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             .create(
                 {
                     "credit_amount": invoice.amount_total,
+                    "date_credited": slip.date_accepted,
                 }
             )
         )
         res = credit_wizard.create_move()
-        self.env["account.move"].browse([res["res_id"]]).action_post()
+        credit_move = self.env["account.move"].browse([res["res_id"]])
+        self.assertEqual(credit_move.state, "posted")
         self.assertEqual(slip.state, "credited")
         # Act
         payment_wizard_action = slip.settle_all_line()
