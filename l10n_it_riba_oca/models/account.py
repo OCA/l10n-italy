@@ -372,22 +372,11 @@ class AccountMove(models.Model):
     def get_due_cost_line_ids(self):
         return self.invoice_line_ids.filtered(lambda line: line.due_cost_line).ids
 
-    def action_riba_payment_date(self):
-        return {
-            "type": "ir.actions.act_window",
-            "name": "RiBa Payment Date",
-            "res_model": "riba.payment.date",
-            "view_mode": "form",
-            "target": "new",
-            "context": self.env.context,
-        }
-
 
 # se slip_line_ids == None allora non è stata emessa
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    slip_line_id = fields.Many2one("riba.slip.line", "RiBa Line", readonly=True)
     slip_line_ids = fields.One2many(
         "riba.slip.move.line", "move_line_id", "RiBa Detail"
     )
@@ -440,37 +429,6 @@ class AccountMoveLine(models.Model):
             )
         return result
 
-    def update_paid_riba_lines(self):
-        """
-        Update RiBa line status to 'paid' when move lines are reconciled.
-
-        This method is called during reconciliation to mark RiBa lines as paid
-        when the related account move lines are reconciled, but only if:
-        - We're not in a past_due_reconciliation context
-        - The RiBa line is in a state that allows transition to 'paid'
-        """
-        sl = self.slip_line_id
-        # Only update if not processing past due reconciliation and line exists
-        if not self.env.context.get("past_due_reconciliation") and sl.state in [
-            "confirmed",  # Accepted by bank but not yet credited
-            "credited",  # Already credited by bank
-        ]:
-            # Mark the RiBa line as paid
-            sl.state = "paid"
-
-    def reconcile(self):
-        """
-        Override reconcile to update RiBa line states.
-
-        When account move lines are reconciled, we need to check if any
-        of them are related to RiBa lines and update their status accordingly.
-        """
-        res = super().reconcile()
-        # Update RiBa line states for each reconciled line
-        for line in self:
-            line.update_paid_riba_lines()
-        return res
-
     def action_riba_issue(self):
         for line in self:
             if not line.move_id.riba_partner_bank_id.active:
@@ -495,66 +453,28 @@ class AccountMoveLine(models.Model):
         }
 
 
-class AccountFullReconcile(models.Model):
-    _inherit = "account.full.reconcile"
-
-    def get_riba_lines(self):
-        riba_lines = self.env["riba.slip.line"]
-        for move_line in self.reconciled_line_ids:
-            riba_lines |= riba_lines.search(
-                [("acceptance_move_id", "=", move_line.move_id.id)]
-            )
-        return riba_lines
-
-    def unreconcile_riba_lines(self, riba_lines):
-        """
-        Reset RiBa line states when reconciliation is undone.
-
-        When account move lines are unreconciled, we need to revert RiBa lines
-        to their previous state to maintain consistency in the RiBa workflow.
-        """
-        for riba_line in riba_lines:
-            # Only process lines that are in final states (paid or past_due)
-            if riba_line.state in ["paid", "past_due"]:
-                # Only revert if there's no specific payment recorded
-                if not riba_line.payment_id:
-                    # If the RiBa slip has a credit move, revert to "credited" state
-                    if riba_line.slip_id.credit_move_id:
-                        riba_line.state = "credited"
-                        riba_line.slip_id.state = "credited"
-                    else:
-                        # Otherwise, revert to "confirmed" state (acceptance phase)
-                        riba_line.state = "confirmed"
-                        riba_line.slip_id.state = "accepted"
-
-    def unlink(self):
-        riba_lines = None
-        for rec in self:
-            riba_lines = rec.get_riba_lines()
-        res = super().unlink()
-        if riba_lines:
-            self.unreconcile_riba_lines(riba_lines)
-        return res
-
-
 class AccountPartialReconcile(models.Model):
     _inherit = "account.partial.reconcile"
 
-    def unlink(self):
-        riba_lines = None
-        for rec in self:
-            riba_lines = rec.get_riba_lines()
-        res = super().unlink()
-        if riba_lines:
-            self.env["account.full.reconcile"].unreconcile_riba_lines(riba_lines)
-        return res
+    def _get_riba_slips(self):
+        """Return the RiBa slips whose collection involves these matchings."""
+        moves = (self.debit_move_id | self.credit_move_id).move_id
+        return self.env["riba.slip"].search(
+            [
+                "|",
+                ("credit_move_id", "in", moves.ids),
+                ("line_ids.acceptance_move_id", "in", moves.ids),
+            ]
+        )
 
-    def get_riba_lines(self):
-        riba_lines = self.env["riba.slip.line"]
-        riba_lines |= riba_lines.search(
-            [("acceptance_move_id", "=", self.debit_move_id.move_id.id)]
-        )
-        riba_lines |= riba_lines.search(
-            [("acceptance_move_id", "=", self.credit_move_id.move_id.id)]
-        )
-        return riba_lines
+    @api.model_create_multi
+    def create(self, vals_list):
+        partials = super().create(vals_list)
+        partials._get_riba_slips()._update_state_from_payment()
+        return partials
+
+    def unlink(self):
+        slips = self._get_riba_slips()
+        res = super().unlink()
+        slips._update_state_from_payment()
+        return res

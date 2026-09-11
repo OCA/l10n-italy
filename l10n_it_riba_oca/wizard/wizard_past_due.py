@@ -217,24 +217,31 @@ class RibaPastDue(models.TransientModel):
         move_line_model = self.env["account.move.line"]
         move_model = self.env["account.move"]
 
-        riba_credit_to_be_reconciled, customers_to_be_reconciled = [], []
+        customers_to_be_reconciled = []
 
         # Process move lines for reconciliation
         for move_line in move.line_ids:
             if move_line.account_id.id == self.overdue_credit_account_id.id:
                 self._process_overdue_move_line(move_line, slip_line, move_model)
                 customers_to_be_reconciled.append(move_line.id)
-            if move_line.account_id.id == self.credit_account_id.id:
-                riba_credit_to_be_reconciled.append(move_line.id)
 
-        # Add credit move lines for reconciliation
-        for credit_move_line in slip_line.credit_move_id.line_ids:
-            if credit_move_line.account_id.id == self.credit_account_id.id:
-                riba_credit_to_be_reconciled.append(credit_move_line.id)
-
-        # Reconcile RiBa credit lines
-        if riba_credit_to_be_reconciled:
-            move_line_model.browse(riba_credit_to_be_reconciled).reconcile()
+        # Close the part of the credit towards the bank that is not collected:
+        # the RiBa account for 'Subject to collection', the bills account for
+        # 'After collection'. This lowers the amount due of the slip, exactly
+        # like a collection does.
+        collect_lines = slip_line.slip_id.collect_line_ids
+        # In 'After collection' mode each line has its own acceptance entry,
+        # so only the one of this line has to be closed
+        line_collect_lines = collect_lines.filtered(
+            lambda line: line.move_id == slip_line.acceptance_move_id
+        )
+        if line_collect_lines:
+            collect_lines = line_collect_lines
+        past_due_collect_lines = move.line_ids.filtered(
+            lambda line: line.account_id in collect_lines.account_id and line.credit > 0
+        )
+        if past_due_collect_lines:
+            (collect_lines + past_due_collect_lines).reconcile()
 
         # Remove existing reconciliations
         slip_line.move_line_ids.move_line_id.remove_move_reconcile()
@@ -245,9 +252,9 @@ class RibaPastDue(models.TransientModel):
                 customers_to_be_reconciled.append(acceptance_move_line.id)
 
         # Reconcile customer lines
-        customers_to_be_reconciled_lines = move_line_model.with_context(
-            past_due_reconciliation=True
-        ).browse(customers_to_be_reconciled)
+        customers_to_be_reconciled_lines = move_line_model.browse(
+            customers_to_be_reconciled
+        )
         customers_to_be_reconciled_lines.reconcile()
 
     def _process_overdue_move_line(self, move_line, slip_line, move_model):

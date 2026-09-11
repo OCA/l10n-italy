@@ -6,12 +6,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
-import datetime
 import os
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import Command
+from odoo import Command, fields
 from odoo.exceptions import UserError
 from odoo.fields import first
 from odoo.tests import Form
@@ -215,6 +214,8 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(len(riba_list.line_ids), 1)
         self.assertEqual(riba_list.line_ids[0].state, "past_due")
         self.assertTrue(invoice.past_due_move_line_ids)
+        # the past due closes the credit towards the bank
+        self.assertFalse(riba_list.amount_residual)
 
         # Se la compute non viene invocata il test fallisce
         riba_list._compute_past_due_move_ids()
@@ -245,6 +246,61 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertFalse(acceptance_moves.exists())
         self.assertFalse(credit_move.exists())
         self.assertEqual(invoice.payment_state, "not_paid")
+
+    def test_riba_sbf_collection(self):
+        """The slip is paid when the bank entry closes the RiBa account."""
+        # Arrange
+        _invoice, riba_list = self.riba_sbf_common()
+        # pre-condition: the credit towards the bank is still to be collected
+        self.assertEqual(riba_list.payment_state, "not_paid")
+        self.assertEqual(len(riba_list.collect_line_ids), 1)
+        self.assertEqual(riba_list.collect_line_ids.account_id, self.riba_account)
+        self.assertEqual(riba_list.amount_residual, 450)
+        self.assertFalse(riba_list.amount_paid)
+
+        # Act
+        self.collect_slip(riba_list)
+
+        # Assert
+        self.assertEqual(riba_list.payment_state, "paid")
+        self.assertEqual(riba_list.state, "paid")
+        self.assertEqual(riba_list.amount_paid, 450)
+        self.assertFalse(riba_list.amount_residual)
+        # the collection is tracked on the slip: the lines stay credited,
+        # only the past due changes their state
+        self.assertEqual(set(riba_list.line_ids.mapped("state")), {"credited"})
+
+    def test_riba_sbf_partial_collection(self):
+        """A partial collection leaves the slip credited, with a residual."""
+        # Arrange
+        _invoice, riba_list = self.riba_sbf_common()
+
+        # Act
+        self.collect_slip(riba_list, amount=200)
+
+        # Assert
+        self.assertEqual(riba_list.payment_state, "partial")
+        self.assertEqual(riba_list.state, "credited")
+        self.assertEqual(riba_list.amount_paid, 200)
+        self.assertEqual(riba_list.amount_residual, 250)
+        self.assertFalse(riba_list.date_paid)
+
+    def test_riba_sbf_collection_undone(self):
+        """Undoing the reconciliation brings the slip back to credited."""
+        # Arrange
+        _invoice, riba_list = self.riba_sbf_common()
+        collection_move = self.collect_slip(riba_list)
+        # pre-condition
+        self.assertEqual(riba_list.state, "paid")
+
+        # Act
+        collection_move.line_ids.remove_move_reconcile()
+
+        # Assert
+        self.assertEqual(riba_list.payment_state, "not_paid")
+        self.assertEqual(riba_list.state, "credited")
+        self.assertEqual(riba_list.amount_residual, 450)
+        self.assertFalse(riba_list.date_paid)
 
     def test_riba_incasso_all_paid(self):
         """
@@ -282,21 +338,21 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
         # invoice should be paid
         self.assertEqual(self.invoice.payment_state, "paid")
+        # the bills accepted are what the bank has still to collect
+        self.assertEqual(riba_list.payment_state, "not_paid")
+        self.assertEqual(riba_list.amount_residual, riba_list.total_amount)
 
-        # Action: Pay the RiBa
-        payment_wizard_action = riba_list.settle_all_line()
-        payment_wizard_form = Form(
-            self.env[payment_wizard_action["res_model"]].with_context(
-                **payment_wizard_action["context"]
-            )
-        )
-        # payment_wizard_form.payment_date = datetime.date.today()
-        payment_wizard = payment_wizard_form.save()
-        payment_wizard.pay()
+        # Action: the bank collects the RiBa, the entry of the current account
+        # is reconciled with the bills accepted
+        self.collect_slip(riba_list)
 
         # Assert
+        self.assertEqual(riba_list.payment_state, "paid")
         self.assertEqual(riba_list.state, "paid")
-        # invoice should be partial paid
+        self.assertFalse(riba_list.amount_residual)
+        # the collection is tracked on the slip, the lines are not touched
+        self.assertEqual(set(riba_list.line_ids.mapped("state")), {"confirmed"})
+        # invoice is still paid
         self.assertEqual(self.invoice.payment_state, "paid")
 
     def test_riba_incasso_past_due(self):
@@ -351,6 +407,9 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(len(riba_list.line_ids), 2)
         self.assertEqual(riba_list.line_ids[0].state, "past_due")
         self.assertTrue(self.invoice.past_due_move_line_ids)
+        # the past due closes the bills accepted for this line, so what the
+        # bank has still to collect is the other line only
+        self.assertEqual(riba_list.amount_residual, riba_list.line_ids[1].amount)
         # invoice should be partial paid
         self.assertEqual(self.invoice.payment_state, "partial")
 
@@ -424,20 +483,6 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         credit_move_id = self.env["account.move"].browse(res["res_id"])
         self.assertEqual(credit_move_id.state, "posted")
         self.assertEqual(riba_list.state, "credited")
-
-        # pay wizard with skip
-        payment_wizard = (
-            self.env["riba.payment.multiple"]
-            .with_context(
-                active_model="riba.slip",
-                active_ids=[riba_list_id],
-                active_id=riba_list_id,
-            )
-            .create({})
-        )
-        payment_wizard.skip()
-        self.assertEqual(riba_list.state, "paid")
-        self.assertEqual(riba_list.line_ids[0].state, "paid")
 
         # past due wizard
         past_due_wizard = (
@@ -858,11 +903,11 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             err_msg,
         )
 
-    def test_riba_payment_date_multiple_lines(self):
-        """A specific date can be set to pay multiple RiBa lines."""
+    def test_riba_collection_date(self):
+        """The slip is paid at the date of the entry that collected it."""
         # Arrange
         company = self.env.company
-        payment_date = datetime.date(2020, month=1, day=1)
+        collection_date = fields.Date.add(fields.Date.today(), days=30)
         payment_term = self.payment_term2
         riba_configuration = self.riba_config_sbf
         product = self.product1
@@ -918,24 +963,12 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(credit_move.state, "posted")
         self.assertEqual(slip.state, "credited")
         # Act
-        payment_wizard_action = slip.settle_all_line()
-        payment_wizard_form = Form(
-            self.env[payment_wizard_action["res_model"]].with_context(
-                **payment_wizard_action["context"]
-            )
-        )
-        payment_wizard_form.payment_date = payment_date
-        payment_wizard = payment_wizard_form.save()
-        payment_wizard.pay()
+        collection_move = self.collect_slip(slip, date=collection_date)
 
         # Assert
         self.assertEqual(slip.state, "paid")
-        payment_lines = self.env["account.move.line"].search(
-            [("slip_line_id", "in", slip.line_ids.ids)]
-        )
-        self.assertTrue(payment_lines)
-        payment_move = payment_lines[0].move_id
-        self.assertEqual(payment_move.date, payment_date)
+        self.assertEqual(slip.date_paid, collection_date)
+        self.assertEqual(slip.payment_ids.move_id, collection_move)
 
     def test_supplier_company_bank_account_domain(self):
         """The domain for Company Bank Account for Supplier
