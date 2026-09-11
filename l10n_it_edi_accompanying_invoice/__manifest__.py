@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Fattura elettronica - Integrazione fattura accompagnatoria",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Popolare DatiTrasporto nella fattura elettronica.",
     "author": "Odoo Community Association (OCA)",
