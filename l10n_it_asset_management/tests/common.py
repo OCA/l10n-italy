@@ -346,10 +346,9 @@ class Common(TransactionCase):
         return True
 
     def _generate_fiscal_years(self, start_date, end_date):
-        fiscal_years = range(
-            start_date.year,
-            end_date.year + 1,
-        )
+        fiscal_years = set()
+        for year in range(start_date.year, end_date.year + 1):
+            fiscal_years.add(year)
         fiscal_years_values = list()
         for fiscal_year in fiscal_years:
             fiscal_year_values = {
