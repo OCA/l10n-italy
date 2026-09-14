@@ -86,6 +86,9 @@ class StockDeliveryNoteLine(models.Model):
         copy=False,
     )
 
+    untaxed_amount = fields.Monetary(compute="_compute_amount", store=True)
+    amount = fields.Monetary(compute="_compute_amount", store=True)
+
     _sql_constraints = [
         (
             "move_uniq",
@@ -110,6 +113,42 @@ class StockDeliveryNoteLine(models.Model):
             sdnl.sale_order_client_ref = (
                 sdnl.sale_line_id.order_id.client_order_ref or ""
             )
+
+    @api.depends(
+        "product_id",
+        "price_unit",
+        "discount",
+        "product_qty",
+        "tax_ids",
+        "currency_id",
+        "delivery_note_id.partner_shipping_id",
+    )
+    def _compute_amount(self):
+        for sdnl in self:
+            price = sdnl.price_unit * (100.0 - sdnl.discount or 0.0) / 100.0
+
+            taxed_amount_data = sdnl._get_taxed_amount()
+
+            sdnl.untaxed_amount = taxed_amount_data.get("total_excluded", price)
+            sdnl.amount = taxed_amount_data.get("total_included", price)
+
+    def _get_taxed_amount(self):
+        price = self.price_unit * (100.0 - self.discount or 0.0) / 100.0
+        res = {}
+        if self.tax_ids:
+            tax_data = self.tax_ids.compute_all(
+                price,
+                self.currency_id,
+                self.product_qty,
+                product=self.product_id,
+                partner=self.delivery_note_id.partner_shipping_id,
+            )
+            res.update(
+                total_excluded=tax_data.get("total_excluded"),
+                total_included=tax_data.get("total_included"),
+                taxes=tax_data.get("taxes"),
+            )
+        return res
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
