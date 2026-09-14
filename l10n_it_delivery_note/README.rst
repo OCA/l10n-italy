@@ -63,6 +63,11 @@ including:
 -  DDT Date
 -  Line references
 
+Only the confirmed Delivery Notes of this module are exported: the DDT
+number that ``l10n_it_stock_ddt`` assigns to the pickings and the DDT
+field of ``l10n_it_edi`` on the invoice are hidden and they are never
+exported, not even for invoices without Delivery Notes.
+
 The module also handles the distinction between immediate and deferred
 invoices:
 
@@ -100,6 +105,11 @@ includendo:
 -  Numero del DDT
 -  Data del DDT
 -  Riferimenti alle righe
+
+Vengono esportati solo i DDT confermati di questo modulo: il numero DDT
+che ``l10n_it_stock_ddt`` assegna ai prelievi e il campo DDT di
+``l10n_it_edi`` nella fattura sono nascosti e non vengono mai esportati,
+nemmeno nelle fatture senza DDT.
 
 Il modulo gestisce anche la distinzione tra fatture immediate e
 differite:
