@@ -104,7 +104,7 @@ class RibaPastDue(models.TransientModel):
     )
     bank_expense_account_id = fields.Many2one(
         "account.account",
-        "Bank Fees Account",
+        "Protest Fee Account",
         default=lambda self: self._get_bank_expense_account_id(),
     )
     date = fields.Date(
