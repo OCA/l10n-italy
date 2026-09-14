@@ -331,8 +331,9 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(len(riba_list.line_ids), 2)
         self.assertEqual(riba_list.line_ids[0].state, "past_due")
         self.assertTrue(self.invoice.past_due_move_line_ids)
-        # invoice should be partial paid
-        self.assertEqual(self.invoice.payment_state, "partial")
+        # the past due account is not the receivable account of the invoice:
+        # the invoice stays paid and the credit is on the past due account
+        self.assertEqual(self.invoice.payment_state, "paid")
 
     def test_past_due_riba(self):
         """
@@ -1243,11 +1244,55 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
             lambda line: due_line in line.move_line_ids.move_line_id
         )
 
-        # Act
-        self._past_due_wizard(slip_line).create_move()
+        # Act: the past due account is the receivable account of the invoice,
+        # so the invoice is unlinked from the acceptance entry
+        self._past_due_wizard(
+            slip_line, {"overdue_credit_account_id": due_line.account_id.id}
+        ).create_move()
 
         # Assert
         matched_lines = due_line.matched_credit_ids.credit_move_id
         self.assertIn(payment_line, matched_lines)
         self.assertFalse(matched_lines & slip_line.acceptance_move_id.line_ids)
         self.assertEqual(self.invoice.payment_state, "partial")
+
+    def test_riba_sbf_past_due_separate_account(self):
+        """With a separate past due account the invoice stays paid."""
+        # Arrange
+        invoice, riba_list = self.riba_sbf_common()
+        slip_line = riba_list.line_ids
+        # pre-condition
+        self.assertNotEqual(self.past_due_account, self.account_rec1_id)
+
+        # Act
+        self._past_due_wizard(slip_line).create_move()
+
+        # Assert: the credit is only on the past due account
+        self.assertEqual(invoice.payment_state, "paid")
+        past_due_line = slip_line.past_due_move_id.line_ids.filtered(
+            lambda line: line.account_id == self.past_due_account
+        )
+        self.assertEqual(past_due_line.partner_id, invoice.partner_id)
+        self.assertEqual(past_due_line.amount_residual, slip_line.amount)
+        self.assertIn(past_due_line, invoice.past_due_move_line_ids)
+
+    def test_riba_sbf_past_due_receivable_account(self):
+        """With the receivable account as past due account the invoice is due."""
+        # Arrange
+        invoice, riba_list = self.riba_sbf_common()
+        slip_line = riba_list.line_ids
+        wizard = self._past_due_wizard(
+            slip_line, {"overdue_credit_account_id": self.account_rec1_id.id}
+        )
+
+        # Act
+        wizard.create_move()
+
+        # Assert: the past due entry replaces the acceptance entry in closing
+        # the credit on the receivable account, and the invoice is due again
+        self.assertEqual(invoice.payment_state, "not_paid")
+        receivable_lines = (
+            slip_line.acceptance_move_id.line_ids | slip_line.past_due_move_id.line_ids
+        ).filtered(lambda line: line.account_id == self.account_rec1_id)
+        self.assertEqual(len(receivable_lines), 2)
+        self.assertTrue(all(receivable_lines.mapped("reconciled")))

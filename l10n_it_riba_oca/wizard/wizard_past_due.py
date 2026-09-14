@@ -256,9 +256,15 @@ class RibaPastDue(models.TransientModel):
         if riba_credit_to_be_reconciled:
             move_line_model.browse(riba_credit_to_be_reconciled).reconcile()
 
-        # Unlink the invoices from the acceptance entry, keeping any other
-        # reconciliation they have, like partial payments
-        invoice_lines = slip_line.move_line_ids.move_line_id
+        # Unlink the invoices from the acceptance entry only when the past due
+        # entry is on their receivable account: it then replaces the acceptance
+        # entry in closing their credit, and the invoices are due again.
+        # Otherwise the invoices stay paid, and the credit is tracked on the
+        # past due account. Any other reconciliation, like partial payments,
+        # is kept.
+        invoice_lines = slip_line.move_line_ids.move_line_id.filtered(
+            lambda line: line.account_id == self.overdue_credit_account_id
+        )
         acceptance_lines = slip_line.acceptance_move_id.line_ids
         (invoice_lines.matched_debit_ids | invoice_lines.matched_credit_ids).filtered(
             lambda partial: partial.debit_move_id in acceptance_lines
