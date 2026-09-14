@@ -47,6 +47,16 @@ class RibaPastDue(models.TransientModel):
         return self.env["riba.slip.line"].browse(self.env.context["active_id"]).amount
 
     @api.model
+    def _get_credited(self):
+        if not self.env.context.get("active_id", False):
+            return False
+        return bool(
+            self.env["riba.slip.line"]
+            .browse(self.env.context["active_id"])
+            .slip_id.credit_move_id
+        )
+
+    @api.model
     def _get_overdue_credit_account_id(self):
         return self.env["riba.configuration"].get_default_value_by_list_line(
             "overdue_credit_account_id"
@@ -70,6 +80,11 @@ class RibaPastDue(models.TransientModel):
         [("sbf", "Subject To Collection"), ("incasso", "After Collection")],
         "Issue Mode",
         default=_get_config_type,
+    )
+    credited = fields.Boolean(
+        default=_get_credited,
+        help="The slip has been credited by the bank: "
+        "the past due has to be recorded with its journal entry.",
     )
     past_due_journal_id = fields.Many2one(
         "account.journal",
@@ -119,6 +134,18 @@ class RibaPastDue(models.TransientModel):
             raise UserError(self.env._("No active ID found."))
         line_model = self.env["riba.slip.line"]
         line = line_model.browse(active_id)
+        if line.slip_id.credit_move_id:
+            # The acceptance entry is closed by the credit entry:
+            # deleting it would leave the credit towards the bank open
+            raise UserError(
+                self.env._(
+                    "Slip %(slip)s has been credited by the bank: "
+                    "the past due of line %(line)s has to be recorded "
+                    "with its journal entry.",
+                    slip=line.slip_id.name,
+                    line=line.sequence,
+                )
+            )
         line.acceptance_move_id.button_draft()
         line.acceptance_move_id.unlink()
         line.state = "past_due"

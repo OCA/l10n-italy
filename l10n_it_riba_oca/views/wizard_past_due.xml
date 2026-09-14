@@ -15,6 +15,7 @@
                 />
                 <group>
                     <field name="config_type" invisible="1" />
+                    <field name="credited" invisible="1" />
                     <field name="past_due_journal_id" />
                     <field
                         name="credit_account_id"
@@ -44,12 +45,14 @@
                     <separator
                         string="You can also skip this step and set the line status to 'Past Due' anyway"
                         colspan="4"
+                        invisible="credited"
                     />
                     <button
                         string="Skip and Confirm Past Due"
                         name="skip"
                         type="object"
                         class="oe_link"
+                        invisible="credited"
                     />
                 </footer>
             </form>
