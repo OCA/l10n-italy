@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <form string="Choose Close Period">
                 <group>
-                    <field name="close_name" required="True" />
+                    <field name="close_period_id" required="True" />
                 </group>
                 <footer>
                     <button

@@ -4,9 +4,10 @@
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import copy
+from datetime import datetime, time
 
 from odoo import models
+from odoo.tools import SQL
 
 
 class Product(models.Model):
@@ -17,199 +18,139 @@ class Product(models.Model):
         self.ensure_one()
         return self.standard_price
 
-    def _compute_qty_available(self, to_date):
-        res = self._compute_quantities_available(to_date)
+    def _compute_qty_available(self, to_date, company):
+        res = self._compute_quantities_available(to_date, company)
         return res
 
-    def _compute_quantities_available(self, to_date=False):
-        date = to_date
+    def _get_stock_key(self, product_id, location_id, lot_id, package_id, owner_id):
+        """Key grouping the quantities, lots are not considered for serial numbers"""
+        if self.tracking == "serial" or lot_id is None:
+            lot_id = 0
+        return f"{product_id}_{location_id}_{lot_id}_{package_id or 0}_{owner_id or 0}"
 
-        # get quants
-        quan = {}
+    def _get_moved_quantities(self, date_end, company, location_field):
+        """Quantities of the move lines done after `date_end`.
+
+        :param location_field: `location_id` or `location_dest_id`, the location
+            the quantities are grouped by
+        :return: rows of quantity, product, location, lot, package and owner
+        """
+        location = SQL.identifier("stock_move_line", location_field)
         self.env.cr.execute(
-            """
-            SELECT
-                stock_quant.quantity,
-                stock_quant.product_id,
-                stock_quant.location_id,
-                stock_quant.lot_id,
-                stock_quant.package_id,
-                stock_quant.owner_id,
-                stock_quant.id
-            FROM
-                stock_quant,
-                stock_location
-            WHERE
-                stock_quant.location_id = stock_location.id
-                AND stock_quant.product_id = %s
-                AND stock_location.company_id = %s
-            ORDER BY
-                stock_quant.product_id,
-                stock_quant.location_id,
-                stock_quant.lot_id,
-                stock_quant.package_id,
-                stock_quant.owner_id;
-        """,
-            (self.id, self.env.user.company_id.id),
-        )
-
-        for row2 in self._cr.fetchall():
-            quant_qty = row2[0] * 1.0
-            product_id = row2[1]
-            location_id = row2[2]
-            lot_id = row2[3] if self.tracking != "serial" and row2[3] is not None else 0
-            package_id = row2[4] if row2[4] and row2[4] is not None else 0
-            owner_id = row2[5] if row2[5] and row2[5] is not None else 0
-            key = f"{product_id}_{location_id}_{lot_id}_{package_id}_{owner_id}"
-            if key in quan.keys():
-                quan[key] = quan[key] + quant_qty
-            else:
-                quan[key] = quant_qty * 1.0
-
-        # rename quan -> move
-        move = quan
-
-        # duplicate quan dict
-        stock_now = copy.deepcopy(quan)
-
-        # recompute moves if set request date
-        # moves +
-        self.env.cr.execute(
-            """
-            SELECT
-                SUM(stock_move_line.quantity),
-                stock_move_line.product_id,
-                stock_move_line.location_id,
-                stock_move_line.lot_id,
-                stock_move_line.package_id,
-                stock_move_line.owner_id,
-                stock_move_line.date
-            FROM
-                stock_move_line
-            WHERE
-                stock_move_line.date >= %s
-                AND stock_move_line.state = 'done'
-                AND stock_move_line.product_id = %s
-                AND stock_move_line.company_id = %s
-            GROUP BY
-                stock_move_line.product_id,
-                stock_move_line.location_id,
-                stock_move_line.lot_id,
-                stock_move_line.package_id,
-                stock_move_line.owner_id,
-                stock_move_line.date
-            ORDER BY
-                stock_move_line.product_id,
-                stock_move_line.location_id,
-                stock_move_line.lot_id,
-                stock_move_line.package_id,
-                stock_move_line.owner_id,
-                stock_move_line.date desc;
-        """,
-            (date, self.id, self.env.user.company_id.id),
-        )
-
-        for row in self._cr.fetchall():
-            move_qty = row[0]
-            product_id = row[1]
-            location_id = row[2]
-            lot_id = row[3] if self.tracking != "serial" and row[3] is not None else 0
-            package_id = row[4] if row[4] and row[4] is not None else 0
-            owner_id = row[5] if row[5] and row[5] is not None else 0
-            key = f"{product_id}_{location_id}_{lot_id}_{package_id}_{owner_id}"
-            if key in move.keys():
-                move[key] += move_qty
-            else:
-                move[key] = move_qty
-                stock_now[key] = 0
-
-        # moves -
-        self.env.cr.execute(
-            """
-            SELECT
-                SUM(stock_move_line.quantity),
-                stock_move_line.product_id,
-                stock_move_line.location_dest_id,
-                stock_move_line.lot_id,
-                stock_move_line.package_id,
-                stock_move_line.owner_id,
-                stock_move_line.date
-            FROM
-                stock_move_line
-            WHERE
-                stock_move_line.date >= %s
-                AND stock_move_line.state='done'
-                AND stock_move_line.product_id = %s
-                AND stock_move_line.company_id = %s
-            GROUP BY
-                stock_move_line.product_id,
-                stock_move_line.location_dest_id,
-                stock_move_line.lot_id,
-                stock_move_line.package_id,
-                stock_move_line.owner_id,
-                stock_move_line.date
-            ORDER BY
-                stock_move_line.product_id,
-                stock_move_line.location_dest_id,
-                stock_move_line.lot_id,
-                stock_move_line.package_id,
-                stock_move_line.owner_id,
-                stock_move_line.date desc;
-        """,
-            (date, self.id, self.env.user.company_id.id),
-        )
-
-        for row in self._cr.fetchall():
-            move_qty = row[0]
-            product_id = row[1]
-            location_dest_id = row[2]
-            lot_id = row[3] if self.tracking != "serial" and row[3] is not None else 0
-            package_id = row[4] if row[4] and row[4] is not None else 0
-            owner_id = row[5] if row[5] and row[5] is not None else 0
-            key = f"{product_id}_{location_dest_id}_{lot_id}_{package_id}_{owner_id}"
-            if key in move.keys():
-                move[key] -= move_qty
-            else:
-                move[key] = -move_qty
-                stock_now[key] = 0
-
-        # compute
-        list_internal_quant = []
-        for key, _qty in move.items():
-            key_split = key.split("_")
-            product_id = int(key_split[0])
-            uom_id = self.env["product.product"].browse(product_id).uom_id.id
-            location_id = int(key_split[1])
-            lot_id = int(key_split[2])
-            if lot_id == 0:
-                lot_id = None
-            package_id = int(key_split[3])
-            if package_id == 0:
-                package_id = None
-            owner_id = int(key_split[4])
-            if owner_id == 0:
-                owner_id = None
-            mov = move[key] or 0.0
-            qua = stock_now[key] or 0.0
-            dif = qua - mov
-
-            # only internal locations
-            location_obj = self.env["stock.location"].search(
-                [("id", "=", location_id)], limit=1
+            SQL(
+                """
+                SELECT
+                    SUM(stock_move_line.quantity),
+                    stock_move_line.product_id,
+                    %(location)s,
+                    stock_move_line.lot_id,
+                    stock_move_line.package_id,
+                    stock_move_line.owner_id
+                FROM
+                    stock_move_line
+                WHERE
+                    stock_move_line.date > %(date_end)s
+                    AND stock_move_line.state = 'done'
+                    AND stock_move_line.product_id = %(product_id)s
+                    AND stock_move_line.company_id = %(company_id)s
+                GROUP BY
+                    stock_move_line.product_id,
+                    %(location)s,
+                    stock_move_line.lot_id,
+                    stock_move_line.package_id,
+                    stock_move_line.owner_id
+                ORDER BY
+                    stock_move_line.product_id,
+                    %(location)s,
+                    stock_move_line.lot_id,
+                    stock_move_line.package_id,
+                    stock_move_line.owner_id;
+                """,
+                location=location,
+                date_end=date_end,
+                product_id=self.id,
+                company_id=company.id,
             )
-            if location_obj.usage == "internal":
-                list_internal_quant.append(
-                    {
-                        "date": date,
-                        "product_id": product_id,
-                        "uom_id": uom_id,
-                        "location_id": location_id,
-                        "lot_id": lot_id,
-                        "package_id": package_id,
-                        "owner_id": owner_id,
-                        "stock_at_date": mov,
-                        "stock_now": qua,
-                        "diff_qty": dif,
-                    }
-                )
+        )
+        return self.env.cr.fetchall()
+
+    def _compute_quantities_available(self, to_date, company):
+        """Quantities of the product at the end of `to_date`, in internal locations.
+
+        The quantities start from the current quants, then the move lines done
+        after `to_date` are reverted: their quantity is added back to the source
+        location and removed from the destination one.
+
+        :return: a list of dict for each location, lot, package and owner, with
+            the quantity at date, the current one and their difference
+        """
+        self.ensure_one()
+        # moves done after the end of to_date are reverted from current quants
+        date_end = datetime.combine(to_date, time.max)
+
+        quants = {}
+        self.env.cr.execute(
+            SQL(
+                """
+                SELECT
+                    stock_quant.quantity,
+                    stock_quant.product_id,
+                    stock_quant.location_id,
+                    stock_quant.lot_id,
+                    stock_quant.package_id,
+                    stock_quant.owner_id
+                FROM
+                    stock_quant,
+                    stock_location
+                WHERE
+                    stock_quant.location_id = stock_location.id
+                    AND stock_quant.product_id = %s
+                    AND stock_location.company_id = %s
+                ORDER BY
+                    stock_quant.product_id,
+                    stock_quant.location_id,
+                    stock_quant.lot_id,
+                    stock_quant.package_id,
+                    stock_quant.owner_id;
+                """,
+                self.id,
+                company.id,
+            )
+        )
+        for row in self.env.cr.fetchall():
+            key = self._get_stock_key(*row[1:])
+            quants[key] = quants.get(key, 0.0) + row[0]
+
+        stock_at_date = dict(quants)
+        # quantities moved after to_date left the source location, so they were
+        # there at date, and entered the destination location later
+        for location_field, sign in (("location_id", 1), ("location_dest_id", -1)):
+            for row in self._get_moved_quantities(date_end, company, location_field):
+                key = self._get_stock_key(*row[1:])
+                stock_at_date[key] = stock_at_date.get(key, 0.0) + sign * row[0]
+                quants.setdefault(key, 0.0)
+
+        list_internal_quant = []
+        for key, stock_at_date_qty in stock_at_date.items():
+            product_id, location_id, lot_id, package_id, owner_id = (
+                int(value) for value in key.split("_")
+            )
+            location = self.env["stock.location"].browse(location_id)
+            if location.usage != "internal":
+                continue
+            stock_now_qty = quants[key]
+            list_internal_quant.append(
+                {
+                    "date": to_date,
+                    "product_id": product_id,
+                    "uom_id": self.uom_id.id,
+                    "location_id": location_id,
+                    "lot_id": lot_id or None,
+                    "package_id": package_id or None,
+                    "owner_id": owner_id or None,
+                    "stock_at_date_qty": stock_at_date_qty,
+                    "stock_now_qty": stock_now_qty,
+                    "diff_qty": stock_now_qty - stock_at_date_qty,
+                }
+            )
         return list_internal_quant
