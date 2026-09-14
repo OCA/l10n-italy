@@ -1136,3 +1136,55 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(
             acceptance_lines.mapped("date"), [acceptance_date] * len(acceptance_lines)
         )
+
+    def _issue_riba_incasso(self, invoice):
+        """Issue and accept a slip 'After collection' for `invoice`."""
+        to_issue_action = self.env.ref("l10n_it_riba_oca.action_riba_to_issue")
+        to_issue_records = (
+            self.env[to_issue_action.res_model].search(
+                safe_eval.safe_eval(to_issue_action.domain)
+            )
+            & invoice.line_ids
+        )
+        issue_wizard_form = Form(
+            self.env["riba.issue"].with_context(
+                active_model=to_issue_records._name,
+                active_ids=to_issue_records.ids,
+            )
+        )
+        issue_wizard_form.configuration_id = self.riba_config_incasso
+        issue_result = issue_wizard_form.save().create_list()
+        riba_list = self.env[issue_result["res_model"]].browse(issue_result["res_id"])
+        riba_list.confirm()
+        return riba_list
+
+    def _past_due_wizard(self, slip_line, vals=None):
+        return (
+            self.env["riba.past_due"]
+            .with_context(
+                active_model="riba.slip.line",
+                active_ids=slip_line.ids,
+                active_id=slip_line.id,
+            )
+            .create(vals or {})
+        )
+
+    def test_riba_incasso_past_due_fees_accounts(self):
+        """The fees accounts are only needed to record past due fees."""
+        # Arrange
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+        slip_line = self._issue_riba_incasso(self.invoice).line_ids[0]
+        # pre-condition
+        self.assertFalse(self.riba_config_incasso.bank_account_id)
+        wizard = self._past_due_wizard(slip_line, {"past_due_fee_amount": 5})
+
+        # Act & Assert: the fees cannot be recorded without the A/C bank account
+        with self.assertRaises(UserError) as error:
+            wizard.create_move()
+        self.assertIn("A/C bank account", error.exception.args[0])
+
+        # Act & Assert: without fees, the fees accounts are not needed
+        wizard.write({"past_due_fee_amount": 0, "bank_expense_account_id": False})
+        wizard.create_move()
+        self.assertEqual(slip_line.state, "past_due")
