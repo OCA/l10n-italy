@@ -126,9 +126,7 @@ class RibaPastDue(models.TransientModel):
     def _validate_accounts(self, riba_type):
         """Validate that all required accounts are set based on RiBa type."""
         account_check = (
-            not self.past_due_journal_id
-            or not self.overdue_credit_account_id
-            or not self.bank_expense_account_id
+            not self.past_due_journal_id or not self.overdue_credit_account_id
         )
         # only incasso type needs "Acceptance Account"
         if riba_type == "incasso":
@@ -138,6 +136,16 @@ class RibaPastDue(models.TransientModel):
             account_check = account_check or not self.credit_account_id
         if account_check:
             raise UserError(self.env._("Every account is mandatory."))
+        # fees accounts are only needed to record the fees
+        if self.past_due_fee_amount and (
+            not self.bank_account_id or not self.bank_expense_account_id
+        ):
+            raise UserError(
+                self.env._(
+                    "Past due fees need the A/C bank account "
+                    "and the protest fee account."
+                )
+            )
 
     def _prepare_move_lines(self, slip_line, riba_type, date):
         """Prepare move lines for the past due entry."""
