@@ -100,7 +100,9 @@ class RibaPastDue(models.TransientModel):
         "account.account", "A/C Bank Account", default=_get_bank_account_id
     )
     bank_expense_account_id = fields.Many2one(
-        "account.account", "Bank Fees Account", default=_get_bank_expense_account_id
+        "account.account",
+        "Protest Fee Account",
+        default=_get_bank_expense_account_id,
     )
     date = fields.Date(
         help="If empty, the due date in the line will be used.",
