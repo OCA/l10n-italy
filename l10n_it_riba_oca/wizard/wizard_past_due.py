@@ -119,6 +119,18 @@ class RibaPastDue(models.TransientModel):
             raise UserError(self.env._("No active ID found."))
         line_model = self.env["riba.slip.line"]
         line = line_model.browse(active_id)
+        if line.slip_id.credit_move_id:
+            # The acceptance entry is closed by the credit entry:
+            # deleting it would leave the credit towards the bank open
+            raise UserError(
+                self.env._(
+                    "Slip %(slip)s has been credited by the bank: "
+                    "the past due of line %(line)s has to be recorded "
+                    "with its journal entry.",
+                    slip=line.slip_id.name,
+                    line=line.sequence,
+                )
+            )
         line.acceptance_move_id.button_draft()
         line.acceptance_move_id.unlink()
         line.state = "past_due"
