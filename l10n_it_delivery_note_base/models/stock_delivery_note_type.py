@@ -27,6 +27,7 @@ class StockDeliveryNoteType(models.Model):
     active = fields.Boolean(default=True)
     sequence = fields.Integer(index=True, default=10)
     name = fields.Char(index=True, required=True, translate=True)
+    print_packages = fields.Boolean(string="Show packages on printed DN")
     print_prices = fields.Boolean(string="Show prices on printed DN", default=False)
     code = fields.Selection(
         DELIVERY_NOTE_TYPE_CODES,
