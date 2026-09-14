@@ -20,7 +20,6 @@
                         name="credit_account_id"
                         invisible="config_type == 'incasso'"
                     />
-                    <field name="credit_amount" invisible="config_type == 'incasso'" />
                     <field name="overdue_credit_account_id" />
                     <field name="overdue_credit_amount" />
                     <field
@@ -29,7 +28,6 @@
                     />
                     <field name="bank_account_id" />
                     <field name="bank_expense_account_id" />
-                    <field name="expense_amount" />
                     <field name="date" />
                     <field name="past_due_fee_amount" />
                     <field name="charge_to_customer" />
