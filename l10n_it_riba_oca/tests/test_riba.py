@@ -1188,3 +1188,19 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         wizard.write({"past_due_fee_amount": 0, "bank_expense_account_id": False})
         wizard.create_move()
         self.assertEqual(slip_line.state, "past_due")
+
+    def test_riba_sbf_past_due_skip_credited(self):
+        """The past due of a credited slip cannot be skipped."""
+        # Arrange
+        _invoice, riba_list = self.riba_sbf_common()
+        slip_line = riba_list.line_ids
+        acceptance_move = slip_line.acceptance_move_id
+        wizard = self._past_due_wizard(slip_line)
+
+        # Act
+        with self.assertRaises(UserError):
+            wizard.skip()
+
+        # Assert
+        self.assertTrue(acceptance_move.exists())
+        self.assertEqual(slip_line.state, "credited")

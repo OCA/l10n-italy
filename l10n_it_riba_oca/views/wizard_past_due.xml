@@ -44,12 +44,14 @@
                     <separator
                         string="You can also skip this step and set the line status to 'Past Due' anyway"
                         colspan="4"
+                        invisible="config_type == 'sbf'"
                     />
                     <button
                         string="Skip and Confirm Past Due"
                         name="skip"
                         type="object"
                         class="oe_link"
+                        invisible="config_type == 'sbf'"
                     />
                 </footer>
             </form>
