@@ -7,8 +7,9 @@
 import logging
 from datetime import datetime
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import float_compare, float_is_zero
 
 logger = logging.getLogger(__name__)
 
@@ -57,8 +58,8 @@ class StockClosePeriod(models.Model):
         store=True,
     )
     amount = fields.Float(string="Stock Amount Value", readonly=True, copy=False)
-    work_start = fields.Datetime(readonly=True, default=fields.Datetime.now)
-    work_end = fields.Datetime(readonly=True)
+    work_start_date = fields.Datetime(readonly=True, default=fields.Datetime.now)
+    work_end_date = fields.Datetime(readonly=True)
     force_evaluation_method = fields.Selection(
         [
             ("no_force", "Category setup"),
@@ -114,12 +115,11 @@ class StockClosePeriod(models.Model):
     def _get_product_lines(self):
         self.ensure_one()
         # add all products active or not, of not service type,
-        # if not set no_recompute_lines
+        # if not set no_recompute_lines: existing lines, e.g. copied with the
+        # closing, are replaced
         if not self.no_recompute_lines:
-            self.line_ids = [
-                (
-                    0,
-                    0,
+            self.line_ids = [Command.clear()] + [
+                Command.create(
                     dict(
                         close_id=self.id,
                         product_id=product.id,
@@ -144,14 +144,21 @@ class StockClosePeriod(models.Model):
                 )
             ]
 
-        # get quantity on end period for each product
+        # get quantity on hand at close date for each product
         for closing_line_id in self.line_ids:
             product_id = closing_line_id.product_id
-            list_product_qty = product_id._compute_qty_available(self.close_date)
+            list_product_qty = product_id._compute_qty_available(
+                self.close_date, self.company_id
+            )
             count = 0
             for line in list_product_qty:
+                # the quantity at date is split by internal location, lot,
+                # package and owner. The first one is written on the closing
+                # line, which only holds the product: it is created above with
+                # no quantity, or already present if no_recompute_lines is set.
+                # Every other quantity creates a new line of the same product.
                 if count == 0:
-                    closing_line_id.product_qty = line["stock_at_date"]
+                    closing_line_id.product_qty = line["stock_at_date_qty"]
                     closing_line_id.location_id = line["location_id"]
                     closing_line_id.lot_id = line["lot_id"]
                     closing_line_id.owner_id = line["owner_id"]
@@ -161,7 +168,7 @@ class StockClosePeriod(models.Model):
                             "close_id": self.id,
                             "product_id": line["product_id"],
                             "product_uom_id": line["uom_id"],
-                            "product_qty": line["stock_at_date"],
+                            "product_qty": line["stock_at_date_qty"],
                             "location_id": line["location_id"],
                             "lot_id": line["lot_id"],
                             "owner_id": line["owner_id"],
@@ -192,14 +199,8 @@ class StockClosePeriod(models.Model):
 
     def _check_qty_available(self):
         self.ensure_one()
-
         # if a negative value, can't continue
-        negative = self.line_ids.filtered(lambda x: x.product_qty < 0)
-        if negative:
-            res = False
-        else:
-            res = True
-        return res
+        return not self.line_ids.filtered(lambda x: x.product_qty < 0)
 
     def action_recalculate_purchase(self):
         for closing in self:
@@ -213,7 +214,7 @@ class StockClosePeriod(models.Model):
 
             self.env["stock.move.line"].recompute_average_cost_period_purchase(closing)
             closing.purchase_ok = True
-            closing.work_end = datetime.now()
+            closing.work_end_date = datetime.now()
         return True
 
     def action_cancel(self):
@@ -227,14 +228,24 @@ class StockClosePeriod(models.Model):
             closing.amount = sum(closing.mapped("line_ids.amount_line"))
 
     def action_done(self):
+        qty_digits = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
+        price_digits = self.env["decimal.precision"].precision_get("Product Price")
         for closing in self:
             closing.state = "done"
             closing.amount = sum(closing.mapped("line_ids.amount_line"))
             if closing.bypass_negative_qty:
-                closing.line_ids.filtered(lambda x: x.product_qty <= 0).unlink()
+                closing.line_ids.filtered(
+                    lambda x: float_compare(
+                        x.product_qty, 0, precision_digits=qty_digits
+                    )
+                    <= 0
+                ).unlink()
             else:
                 closing.line_ids.filtered(
-                    lambda x: x.product_qty == 0 and x.price_unit == 0
+                    lambda x: float_is_zero(x.product_qty, precision_digits=qty_digits)
+                    and float_is_zero(x.price_unit, precision_digits=price_digits)
                 ).unlink()
         return True
 

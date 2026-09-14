@@ -8,8 +8,8 @@
                 <field name="name" />
                 <field name="close_date" />
                 <field name="amount" />
-                <field name="work_start" />
-                <field name="work_end" />
+                <field name="work_start_date" />
+                <field name="work_end_date" />
                 <field name="state" />
                 <field name="company_id" readonly="1" />
             </list>
