@@ -1204,3 +1204,50 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # Assert
         self.assertTrue(acceptance_move.exists())
         self.assertEqual(slip_line.state, "credited")
+
+    def test_riba_incasso_past_due_keeps_payments(self):
+        """The past due only unlinks the invoice from the acceptance entry."""
+        # Arrange: the largest due date of the invoice is partially paid
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost
+        self.invoice.action_post()
+        due_line = self.invoice.line_ids.filtered(
+            lambda line: line.display_type == "payment_term"
+        ).sorted("debit")[-1]
+        payment = self.env["account.move"].create(
+            {
+                "journal_id": self.bank_journal.id,
+                "line_ids": [
+                    Command.create(
+                        {
+                            "account_id": due_line.account_id.id,
+                            "partner_id": self.partner.id,
+                            "credit": 10,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "account_id": self.bank_account.id,
+                            "debit": 10,
+                        }
+                    ),
+                ],
+            }
+        )
+        payment.action_post()
+        payment_line = payment.line_ids.filtered(
+            lambda line: line.account_id == due_line.account_id
+        )
+        (due_line | payment_line).reconcile()
+        riba_list = self._issue_riba_incasso(self.invoice)
+        slip_line = riba_list.line_ids.filtered(
+            lambda line: due_line in line.move_line_ids.move_line_id
+        )
+
+        # Act
+        self._past_due_wizard(slip_line).create_move()
+
+        # Assert
+        matched_lines = due_line.matched_credit_ids.credit_move_id
+        self.assertIn(payment_line, matched_lines)
+        self.assertFalse(matched_lines & slip_line.acceptance_move_id.line_ids)
+        self.assertEqual(self.invoice.payment_state, "partial")

@@ -256,8 +256,14 @@ class RibaPastDue(models.TransientModel):
         if riba_credit_to_be_reconciled:
             move_line_model.browse(riba_credit_to_be_reconciled).reconcile()
 
-        # Remove existing reconciliations
-        slip_line.move_line_ids.move_line_id.remove_move_reconcile()
+        # Unlink the invoices from the acceptance entry, keeping any other
+        # reconciliation they have, like partial payments
+        invoice_lines = slip_line.move_line_ids.move_line_id
+        acceptance_lines = slip_line.acceptance_move_id.line_ids
+        (invoice_lines.matched_debit_ids | invoice_lines.matched_credit_ids).filtered(
+            lambda partial: partial.debit_move_id in acceptance_lines
+            or partial.credit_move_id in acceptance_lines
+        ).unlink()
 
         # Add acceptance move lines for reconciliation
         for acceptance_move_line in slip_line.acceptance_move_id.line_ids:
