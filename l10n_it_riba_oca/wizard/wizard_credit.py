@@ -24,7 +24,8 @@ class RibaCredit(models.TransientModel):
     1. Bank accepts RiBa collection from company
     2. Bank may immediately credit company's account (this wizard)
     3. Bank collects payment from customers
-    4. If customer pays: settlement completes the cycle
+    4. If customer pays: the bank entry of the collection is reconciled
+       with the RiBa account, closing the credit towards the bank
     5. If customer doesn't pay: past due process reverses the credit
 
     Accounting Impact:
@@ -268,6 +269,13 @@ class RibaCredit(models.TransientModel):
         for line in slip.line_ids:
             line.state = "credited"
             line.credit_move_id = move  # Link credit move to each line
+
+        # Post the move only now that it is linked to the slip: posting
+        # reconciles its line on the acceptance account with the acceptance
+        # entries of the slip. Its line on the RiBa account has to be
+        # reconciled too, when the bank collects the RiBa or when the RiBa is
+        # past due, and draft entries cannot be reconciled.
+        move.action_post()
 
         # Return action to display the created move
         return {
