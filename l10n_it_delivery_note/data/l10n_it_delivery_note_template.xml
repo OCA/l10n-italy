@@ -24,10 +24,9 @@
                 </DatiDDT>
             </t>
         </xpath>
+        <!-- The DDT of l10n_it_edi is hidden, so it is never exported -->
         <xpath expr='//DatiDDT[@t-if="record.l10n_it_ddt_id"]' position="attributes">
-            <attribute
-                name="t-if"
-            >record.l10n_it_ddt_id and not dati_ddt_list</attribute>
+            <attribute name="t-if">False</attribute>
         </xpath>
     </template>
 </odoo>

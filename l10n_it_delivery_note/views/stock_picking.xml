@@ -418,6 +418,24 @@
         </field>
     </record>
 
+    <record id="stock_picking_form_view_hide_ddt_print" model="ir.ui.view">
+        <field name="name">stock.picking.form.hide.ddt.print</field>
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_stock_ddt.view_picking_form_inherit_l10n_it_ddt"
+        />
+        <field name="arch" type="xml">
+            <!-- The DdT to print are the delivery notes of this module -->
+            <xpath
+                expr="//button[@name='%(l10n_it_stock_ddt.action_report_ddt)d']"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record id="stock_picking_search_view_hide_ddt_number" model="ir.ui.view">
         <field name="name">stock.picking.search.hide.ddt.number</field>
         <field name="model">stock.picking</field>
