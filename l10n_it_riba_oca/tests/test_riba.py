@@ -1177,3 +1177,53 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         wizard.write({"past_due_fee_amount": 0, "bank_expense_account_id": False})
         wizard.create_move()
         self.assertEqual(slip_line.state, "past_due")
+
+    def test_riba_sbf_past_due_skip_credited(self):
+        """The past due of a credited slip cannot be skipped."""
+        # Arrange
+        _invoice, riba_list = self.riba_sbf_common()
+        slip_line = riba_list.line_ids
+        acceptance_move = slip_line.acceptance_move_id
+        wizard = self._past_due_wizard(slip_line)
+        # pre-condition: the skip is hidden in the wizard
+        self.assertTrue(wizard.credited)
+
+        # Act
+        with self.assertRaises(UserError):
+            wizard.skip()
+
+        # Assert
+        self.assertTrue(acceptance_move.exists())
+        self.assertEqual(slip_line.state, "credited")
+
+    def test_riba_sbf_past_due_skip_not_credited(self):
+        """The past due of a slip not credited yet can be skipped."""
+        # Arrange
+        invoice = self._create_sbf_invoice()
+        invoice._onchange_riba_partner_bank_id()
+        invoice.action_post()
+        riba_move_line = invoice.line_ids.filtered(
+            lambda line: line.account_id == self.account_rec1_id
+        )
+        issue_wizard = self.env["riba.issue"].create(
+            {"configuration_id": self.riba_config_sbf.id}
+        )
+        action = issue_wizard.with_context(active_ids=riba_move_line.ids).create_list()
+        riba_list = self.slip_model.browse(action["res_id"])
+        riba_list.confirm()
+        slip_line = riba_list.line_ids
+        acceptance_move = slip_line.acceptance_move_id
+        # pre-condition
+        self.assertEqual(riba_list.state, "accepted")
+        self.assertEqual(invoice.payment_state, "paid")
+        wizard = self._past_due_wizard(slip_line)
+        self.assertFalse(wizard.credited)
+
+        # Act
+        wizard.skip()
+
+        # Assert: the acceptance entry is deleted and the invoice is due again
+        self.assertFalse(acceptance_move.exists())
+        self.assertEqual(slip_line.state, "past_due")
+        self.assertEqual(riba_list.state, "past_due")
+        self.assertEqual(invoice.payment_state, "not_paid")
