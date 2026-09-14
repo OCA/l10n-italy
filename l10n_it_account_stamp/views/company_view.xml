@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_account_config_settings_stamp">
+        <field name="name">view_account_config_settings_stamp</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="default_taxes_setting_container" position="inside">
+                <setting
+                    id="l10n_it_account_stamp_stamp_product"
+                    title="Configuration for stamp duty"
+                    company_dependent="1"
+                >
+                    <field name="l10n_it_account_stamp_stamp_duty_product_id" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
