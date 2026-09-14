@@ -88,7 +88,6 @@ class RibaPastDue(models.TransientModel):
         "Credit Account",
         default=lambda self: self._get_credit_account_id(),
     )
-    credit_amount = fields.Float(default=lambda self: self._get_credit_amount())
     overdue_credit_account_id = fields.Many2one(
         "account.account",
         "Past Due Bills Account",
@@ -108,7 +107,6 @@ class RibaPastDue(models.TransientModel):
         "Bank Fees Account",
         default=lambda self: self._get_bank_expense_account_id(),
     )
-    expense_amount = fields.Float("Fees Amount")
     date = fields.Date(
         help="If empty, the due date in the line will be used.",
         readonly=False,
