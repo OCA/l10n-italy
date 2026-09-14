@@ -420,7 +420,7 @@ class StockDeliveryNote(models.Model):
                         pick.shipping_weight, note.gross_weight_uom_id
                     )
                     net_weight += weight_uom._compute_quantity(
-                        pick.shipping_weight, note.net_weight_uom_id
+                        pick.weight, note.net_weight_uom_id
                     )
             note.gross_weight = gross_weight
             note.net_weight = net_weight
