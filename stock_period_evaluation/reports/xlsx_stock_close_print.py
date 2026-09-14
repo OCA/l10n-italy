@@ -29,7 +29,6 @@ class XlsxStockClosePeriod(models.AbstractModel):
         sheet = workbook.add_worksheet(_("Stock Period Evaluation"))
         sheet.set_landscape()
         sheet.fit_to_pages(1, 0)
-        sheet.fit_to_pages(1, 0)
         sheet.set_column(0, 0, 20)
         sheet.set_column(1, 1, 50)
         sheet.set_column(2, 2, 50)

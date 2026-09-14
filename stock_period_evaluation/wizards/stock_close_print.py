@@ -11,12 +11,12 @@ class StockClosePrint(models.TransientModel):
     _name = "stock.close.print.wizard"
     _description = "Stock Close Print Wizard"
 
-    close_name = fields.Many2one("stock.close.period", string="Close Period")
+    close_period_id = fields.Many2one("stock.close.period", string="Close Period")
 
     def generate_report(self):
         rows = self.env["stock.close.period.line"].search(
             [
-                ("close_id", "=", self.close_name.id),
+                ("close_id", "=", self.close_period_id.id),
             ],
             order="product_code",
         )
@@ -24,7 +24,7 @@ class StockClosePrint(models.TransientModel):
             "ids": rows.ids,
             "model": "stock.close.period.line",
             "form": {
-                "close_name": self.close_name.name,
+                "close_name": self.close_period_id.name,
             },
         }
 

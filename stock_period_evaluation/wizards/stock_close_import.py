@@ -24,17 +24,17 @@ class StockCloseImportWizard(models.TransientModel):
         products = {}
         for row in lines:
             default_code = row["CODE"]
-            product_obj = self.env["product.product"].search(
+            product = self.env["product.product"].search(
                 [("default_code", "=", default_code)], limit=1
             )
-            if not product_obj:
+            if not product:
                 raise UserError(_("Product %s not found") % default_code)
-            products[default_code] = product_obj[0]
+            products[default_code] = product
         return products
 
     def import_csv(self):
         # set done close_id
-        self.close_id.work_start = datetime.now()
+        self.close_id.work_start_date = datetime.now()
 
         try:
             file_to_import = base64.b64decode(self.file)
@@ -77,7 +77,7 @@ class StockCloseImportWizard(models.TransientModel):
 
             # set done close_id
             self.close_id.amount = total
-            self.close_id.work_end = datetime.now()
+            self.close_id.work_end_date = datetime.now()
             self.close_id.state = "done"
 
         except Exception as e:
