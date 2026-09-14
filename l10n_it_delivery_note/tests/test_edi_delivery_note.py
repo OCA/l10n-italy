@@ -15,6 +15,10 @@ class TestEdiDeliveryNote(TestItEdi):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Do not export the pickings as DdT, see _export_pickings_as_ddt
+        cls.env = cls.env(
+            context=dict(cls.env.context, test_l10n_it_delivery_note=True)
+        )
 
         cls.env.user.groups_id |= cls.env.ref(
             "sales_team.group_sale_salesman"
@@ -90,6 +94,21 @@ class TestEdiDeliveryNote(TestItEdi):
         delivery_note = picking.delivery_note_id
         self.assertTrue(delivery_note)
         delivery_note.action_confirm()
+        return delivery_note
+
+    def _create_draft_delivery_note(self):
+        delivery_note = (
+            self.env["stock.delivery.note"]
+            .with_company(self.company)
+            .create(
+                {
+                    "partner_sender_id": self.company.partner_id.id,
+                    "partner_id": self.italian_partner_a.id,
+                    "partner_shipping_id": self.italian_partner_a.id,
+                }
+            )
+        )
+        self.assertFalse(delivery_note.name)
         return delivery_note
 
     def _create_deferred_invoice(self, delivery_notes):
@@ -246,21 +265,64 @@ class TestEdiDeliveryNote(TestItEdi):
         invoice = self._create_deferred_invoice(delivery_note)
         invoice.action_post()
 
-        draft_delivery_note = (
-            self.env["stock.delivery.note"]
-            .with_company(self.company)
-            .create(
-                {
-                    "partner_sender_id": self.company.partner_id.id,
-                    "partner_id": self.italian_partner_a.id,
-                    "partner_shipping_id": self.italian_partner_a.id,
-                }
-            )
-        )
-        self.assertFalse(draft_delivery_note.name)
-        invoice.delivery_note_ids |= draft_delivery_note
+        invoice.delivery_note_ids |= self._create_draft_delivery_note()
 
         self.assertEqual(
             self._get_exported_dati_ddt(invoice),
             [(delivery_note.name, str(delivery_note.date), [])],
         )
+
+    def test_draft_delivery_note_immediate_invoice(self):
+        """An invoice with only DdT without number and date is not deferred.
+
+        None of its DdT is exported, so there is nothing to defer it to.
+        """
+        product = self.products[0]
+        sale_order = self._create_sale_order([(product, 5)])
+        picking = self._validate_picking(sale_order.picking_ids)
+        invoice = sale_order._create_invoices()
+        invoice.invoice_date = picking.date_done.date() + timedelta(days=1)
+        invoice.action_post()
+
+        invoice.delivery_note_ids = self._create_draft_delivery_note()
+
+        self.assertEqual(self._get_exported_dati_ddt(invoice), [])
+        self.assertEqual(self._get_exported_document_type(invoice), "TD01")
+
+    def test_picking_without_delivery_note(self):
+        """A picking without DdT is not exported as a DdT.
+
+        l10n_it_stock_ddt numbers the validated pickings as DdT,
+        but that number is hidden: only the DdT of this module are exported.
+        """
+        product = self.products[0]
+        sale_order = self._create_sale_order([(product, 5)])
+        picking = self._validate_picking(sale_order.picking_ids)
+        self.assertTrue(picking.l10n_it_ddt_number)
+        invoice = sale_order._create_invoices()
+        invoice.invoice_date = picking.date_done.date() + timedelta(days=1)
+        invoice.action_post()
+
+        self.assertFalse(invoice.delivery_note_ids)
+        self.assertEqual(self._get_exported_dati_ddt(invoice), [])
+        self.assertEqual(self._get_exported_document_type(invoice), "TD01")
+
+    def test_invoice_ddt_not_exported(self):
+        """The DDT of l10n_it_edi is not exported.
+
+        Its field on the invoice is hidden: only the DdT of this module are exported.
+        """
+        product = self.products[0]
+        sale_order = self._create_sale_order([(product, 5)])
+        picking = self._validate_picking(sale_order.picking_ids)
+        invoice = sale_order._create_invoices()
+        invoice.invoice_date = picking.date_done.date() + timedelta(days=1)
+        invoice.l10n_it_ddt_id = self.env["l10n_it.ddt"].create(
+            {
+                "name": "Test DDT",
+                "date": picking.date_done.date(),
+            }
+        )
+        invoice.action_post()
+
+        self.assertEqual(self._get_exported_dati_ddt(invoice), [])
