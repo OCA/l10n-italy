@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_registro_iva" model="ir.ui.view">
+        <field name="name">VAT Registry</field>
+        <field name="model">wizard.registro.iva</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Tax Journal">
+                <group>
+                    <group>
+                        <field name="date_range_id" />
+                    </group>
+                    <newline />
+                    <group>
+                        <field name="from_date" />
+                    </group>
+                    <group>
+                        <field name="to_date" />
+                    </group>
+                    <group>
+                        <field name="year_footer" />
+                    </group>
+                    <group>
+                        <field name="enable_currency" />
+                    </group>
+                    <separator string="Journals" colspan="2" />
+                    <group>
+                        <field name="tax_registry_id" />
+                        <field name="entry_order" />
+                    </group>
+                    <field
+                        name="journal_ids"
+                        colspan="2"
+                        nolabel="1"
+                        height="250"
+                        domain="[('type', 'in', ('sale','purchase'))]"
+                    />
+                    <group string="Layout" colspan="2">
+                        <group colspan="2">
+                            <field name="layout_type" />
+                        </group>
+                        <group>
+                            <field
+                                name="include_rc_moves"
+                                invisible="layout_type != 'customer'"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="rc_journal_ids"
+                                domain="[('type', '=', 'purchase')]"
+                                invisible="not include_rc_moves or layout_type != 'customer'"
+                                widget="many2many_tags"
+                            />
+                        </group>
+                        <group colspan="2">
+                            <field name="show_full_contact_addess" />
+                            <field name="only_totals" />
+                            <field name="fiscal_page_base" />
+                        </group>
+                    </group>
+                    <field name="message" nolabel="1" colspan="2" />
+                </group>
+                <footer>
+                    <button
+                    string="Print"
+                    name="print_registro"
+                    type="object"
+                    class="oe_highlight"
+                />
+                    or
+                    <button
+                    string="Print XLSX"
+                    name="print_registro_xlsx"
+                    type="object"
+                    class="oe_highlight"
+                />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_registro_iva" model="ir.actions.act_window">
+        <field name="name">VAT Registry</field>
+        <field name="path">vat-registry</field>
+        <field name="res_model">wizard.registro.iva</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_finance_legal_statement_taxes"
+        name="Taxes"
+        parent="account.menu_finance_reports"
+        groups="account.group_account_user,account.group_account_manager"
+    />
+
+    <menuitem
+        name="VAT Registries"
+        parent="menu_finance_legal_statement_taxes"
+        action="action_registro_iva"
+        id="menu_registro_iva"
+    />
+</odoo>
