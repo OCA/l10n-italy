@@ -1,0 +1,54 @@
+**Italiano**
+
+> Per generare i periodi della dichiarazione IVA, aprire Fatturazione \>
+> Configurazione \> Contabilità \> Intervalli date \> Generazione
+> intervalli data (visibile solo in modalità debug):
+>
+> - prefisso nome intervallo: prefisso identificativo per i periodi da
+>   generare (tipicamente l'anno)
+> - durata: 1 mese
+> - numero di intervalli da generare: 12
+> - tipo: creare un tipo o utilizzarne uno esistente, non è richiesta
+>   una configurazione particolare
+> - data iniziale: primo giorno del primo periodo che sarà generato
+>   (tipicamente il primo giorno dell'anno i.e. 01/01/2018)
+>
+> Per escludere un'imposta dalla liquidazione IVA:
+>
+> 1.  aprire l'imposta da Fatturazione \> Configurazione \> Contabilità
+>     \> Imposte,
+> 2.  nella scheda 'Opzioni avanzate' impostare 'Escludere da liquidazioni IVA'.
+>
+> Per calcolare gli interessi, è possibile aggiungere le informazioni da
+> utilizzare (conto e percentuale) nei dati aziendali, nella scheda
+> 'Liquidazione IVA'.
+>
+> Per le imposte interamente indetraibili è comunque necessario indicare
+> una riga di ripartizione a 0% che faccia riferimento ad un conto IVA.
+
+**English**
+
+> In order to generate VAT Settlement's periods, open Accounting \>
+> Configuration \> Accounting \> Date ranges \> Generate Date Ranges
+> (visible only in debug mode):
+>
+> - range name prefix: prefix identifying the periods to be generated
+>   (usually the year)
+> - duration: 1 month
+> - number of ranges to generate: 12
+> - type: create a type or use an existing one, no specific
+>   configuration is required
+> - date start: first day of the first period to be generated (usually
+>   the first day of the year e.g. 01/01/2018)
+>
+> In order to exclude a tax from VAT settlement:
+>
+> 1.  open a tax in Accounting \> Configuration \> Accounting \> Taxes,
+> 2.  in the tab 'Advanced Options' set 'Exclude from VAT settlements'.
+>
+> If you need to calculate interest, you can add default information in
+> your company data (percentage and account), in the 'VAT Settlement'
+> tab.
+>
+> Fully undeductable taxes still need one repartition line (0% amount)
+> with a reference to a VAT account.
