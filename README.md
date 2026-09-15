@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [l10n_it_central_journal_reportlab](l10n_it_central_journal_reportlab/) | 19.0.1.0.0 | <a href='https://github.com/MarcoCalcagni'><img src='https://github.com/MarcoCalcagni.png' width='32' height='32' style='border-radius:50%;' alt='MarcoCalcagni'/></a> <a href='https://github.com/Borruso'><img src='https://github.com/Borruso.png' width='32' height='32' style='border-radius:50%;' alt='Borruso'/></a> | ITA - Libro giornale - Reportlab
 [l10n_it_currency_rate_update_boi](l10n_it_currency_rate_update_boi/) | 19.0.1.0.0 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Update exchange rates using www.bancaditalia.it
 [l10n_it_edi_related_document](l10n_it_edi_related_document/) | 19.0.1.0.0 |  | Related Documents for EDI
+[l10n_it_fiscalcode_sale](l10n_it_fiscalcode_sale/) | 19.0.1.0.0 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Mostra il codice fiscale del cliente nella stampa del preventivo
 
 [//]: # (end addons)
 
