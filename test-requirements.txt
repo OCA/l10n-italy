@@ -1,0 +1,1 @@
+odoo-addon-l10n_it_edi_sdi @ git+https://github.com/OCA/l10n-italy@refs/pull/5217/head#subdirectory=l10n_it_edi_sdi
