@@ -67,3 +67,59 @@ class TestSendSelfInvoices(Common):
         self.assertEqual(td29_bill.l10n_it_edi_state, "processing")
         self.assertFalse(bill.is_move_sent)
         self.assertFalse(bill.l10n_it_edi_attachment_id)
+
+    def test_send_td29_document_type(self):
+        """TD29 communications are sent whatever their document type."""
+        purchase_tax_22 = (
+            self.env["account.tax"]
+            .with_company(self.company)
+            .create(
+                {
+                    "name": "22% purchase",
+                    "amount": 22.0,
+                    "amount_type": "percent",
+                    "type_tax_use": "purchase",
+                }
+            )
+        )
+        td29_bills = (
+            self.env["account.move"]
+            .with_company(self.company)
+            .create(
+                [
+                    {
+                        "move_type": "in_invoice",
+                        "invoice_date": "2026-01-10",
+                        "date": "2026-01-10",
+                        "partner_id": self.italian_partner_a.id,
+                        "l10n_it_edi_is_td29": True,
+                        "l10n_it_document_type": document_type.id,
+                        "invoice_line_ids": [
+                            Command.create(
+                                {
+                                    "name": "test line",
+                                    "price_unit": 100.0,
+                                    "tax_ids": [Command.set(purchase_tax_22.ids)],
+                                }
+                            ),
+                        ],
+                    }
+                    for document_type in self.env["l10n_it.document.type"].search(
+                        [("code", "in", ("TD01", "TD04", "TD24"))]
+                    )
+                ]
+            )
+        )
+        td29_bills.action_post()
+        self.assertEqual(
+            sorted(td29_bills.mapped("l10n_it_document_type_code")),
+            ["TD01", "TD04", "TD24"],
+        )
+
+        with patch(
+            UPLOAD_SINGLE, return_value={"id_transaction": "SDI ID"}
+        ) as upload_single:
+            td29_bills.action_l10n_it_edi_ext_send_self_invoices()
+
+        self.assertEqual(upload_single.call_count, 3)
+        self.assertTrue(all(td29_bills.mapped("is_move_sent")))

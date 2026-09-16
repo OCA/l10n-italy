@@ -19,6 +19,14 @@ class AccountMove(models.Model):
         # TD29 is not a self-invoice, but it is sent the same way
         return super()._l10n_it_edi_ext_is_self_invoice() or self.l10n_it_edi_is_td29
 
+    def _l10n_it_edi_ext_is_document_type_to_send(self):
+        # TD29 is always sent:
+        # its XML ignores the document type set in the move
+        return (
+            self.l10n_it_edi_is_td29
+            or super()._l10n_it_edi_ext_is_document_type_to_send()
+        )
+
     def _l10n_it_edi_get_document_type(self):
         if self.l10n_it_edi_is_td29:
             return "TD29"

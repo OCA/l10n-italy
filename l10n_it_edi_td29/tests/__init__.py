@@ -3,3 +3,4 @@
 
 from . import test_export
 from . import test_send_self_invoices
+from . import test_send_button
