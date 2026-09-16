@@ -313,6 +313,12 @@ msgid "Do not update the contact from Electronic Invoice Details"
 msgstr "Non aggiornare il contatto dai dati della fattura elettronica"
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_document_type_code
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_document_type_code
+msgid "Document Type Code"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_activity_progress_ids
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_activity_progress_ids
 msgid "E-Invoice Activity Progress"

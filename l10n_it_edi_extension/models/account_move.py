@@ -131,6 +131,10 @@ class AccountMoveInherit(models.Model):
     l10n_it_edi_validation_message = fields.Text(
         compute="_compute_l10n_it_edi_validation_message"
     )
+    l10n_it_document_type_code = fields.Char(
+        related="l10n_it_document_type.code",
+        string="Document Type Code",
+    )
 
     # -------------------------------------------------------------------------
     # Computes
@@ -342,7 +346,8 @@ class AccountMoveInherit(models.Model):
         """Tell whether the move can be sent now with `action_l10n_it_edi_send`.
 
         Keep in sync with the visibility of the "Send to SDI" button
-        in view `l10n_it_edi.account_invoice_form_l10n_it`.
+        in view `l10n_it_edi.account_invoice_form_l10n_it`
+        and in its extension in this module.
         """
         self.ensure_one()
         return (
@@ -351,7 +356,13 @@ class AccountMoveInherit(models.Model):
             and not self.is_move_sent
             and self.country_code == "IT"
             and self.l10n_it_edi_state not in ("rejected", "rejected_by_pa_partner")
+            and self._l10n_it_edi_ext_is_document_type_to_send()
         )
+
+    def _l10n_it_edi_ext_is_document_type_to_send(self):
+        """Tell whether the document type of the move can be sent to the SdI."""
+        self.ensure_one()
+        return self.l10n_it_document_type_code not in ("TD01", "TD04", "TD24")
 
     def _l10n_it_edi_add_base_lines_xml_values(
         self, base_lines_aggregated_values, is_downpayment
