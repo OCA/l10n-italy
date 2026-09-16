@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-09-16 08:18+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: l10n_it_edi_td29
 #: model:ir.model.fields,help:l10n_it_edi_td29.field_account_bank_statement_line__l10n_it_edi_is_td29
@@ -21,14 +23,17 @@ msgid ""
 "Check this box to generate a TD29 communication for omitted or irregular "
 "invoicing by the Italian seller/provider (art. 6, comma 8, D.Lgs. 471/97)."
 msgstr ""
+"Spuntare questa casella per generare una comunicazione TD29 relativa a "
+"fatturazione omessa o irregolare da parte del venditore/fornitore italiano "
+"(art. 6, comma 8, D.Lgs. 471/97)."
 
 #. module: l10n_it_edi_td29
 #: model:ir.model,name:l10n_it_edi_td29.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Registrazione contabile"
 
 #. module: l10n_it_edi_td29
 #: model:ir.model.fields,field_description:l10n_it_edi_td29.field_account_bank_statement_line__l10n_it_edi_is_td29
 #: model:ir.model.fields,field_description:l10n_it_edi_td29.field_account_move__l10n_it_edi_is_td29
 msgid "TD29 - Omitted/Irregular Invoice Communication"
-msgstr ""
+msgstr "TD29 - Comunicazione fattura omessa/irregolare"
