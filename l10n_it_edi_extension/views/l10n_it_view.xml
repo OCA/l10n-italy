@@ -18,6 +18,19 @@
                     />
                 </div>
             </xpath>
+            <xpath expr="//button[@name='action_l10n_it_edi_send']" position="before">
+                <field name="l10n_it_document_type_code" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//button[@name='action_l10n_it_edi_send']"
+                position="attributes"
+            >
+                <attribute
+                    name="invisible"
+                    add="l10n_it_document_type_code in ('TD01', 'TD04', 'TD24')"
+                    separator=" or "
+                />
+            </xpath>
             <xpath
                 expr="//field[@name='invoice_line_ids']/list/field[@name='analytic_distribution']"
                 position="after"
