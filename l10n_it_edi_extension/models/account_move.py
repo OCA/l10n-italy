@@ -127,6 +127,10 @@ class AccountMoveInherit(models.Model):
     l10n_it_edi_validation_message = fields.Text(
         compute="_compute_l10n_it_edi_validation_message"
     )
+    l10n_it_document_type_code = fields.Char(
+        related="l10n_it_document_type.code",
+        string="Document Type Code",
+    )
 
     # -------------------------------------------------------------------------
     # Computes
