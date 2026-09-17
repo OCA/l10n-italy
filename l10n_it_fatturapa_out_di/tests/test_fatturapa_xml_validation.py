@@ -32,6 +32,9 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.env.company.fatturapa_fiscal_position_id = self.env.ref(
             "l10n_it_fatturapa.fatturapa_RF01"
         ).id
+        self.env.company.declaration_yearly_limit_ids = [
+            (0, 0, {"year": 2016, "limit_amount": 500})
+        ]
 
         self.env.ref("product.decimal_product_uom").digits = 3
         self.env.ref("uom.product_uom_unit").name = "Unit(s)"

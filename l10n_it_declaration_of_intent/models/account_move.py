@@ -220,21 +220,44 @@ class AccountMove(models.Model):
                 partner_id=self.partner_id.id,
                 date=self.invoice_date,
             )
+        ids = [dec.id for dec in sorted(declarations, key=lambda d: d.date_start)]
+        declarations = declaration_model.browse(ids)
         return declarations
 
     def get_declarations_used_amounts(self, declarations):
         """Get used amount by declarations for this invoice."""
         self.ensure_one()
+        declarations_available_amounts = {
+            declaration.id: declaration.available_amount for declaration in declarations
+        }
         declarations_used_amounts = {}
         sign = 1 if self.move_type in ["out_invoice", "in_invoice"] else -1
         for tax_line in self.line_ids.filtered("tax_ids"):
             amount = sign * tax_line.price_subtotal
-            for declaration in declarations:
+            matching_declarations = declarations.filtered(
+                lambda declaration, line_taxes=tax_line.tax_ids: any(
+                    tax in declaration.taxes_ids for tax in line_taxes
+                )
+            )
+            for declaration in matching_declarations:
                 if declaration.id not in declarations_used_amounts:
                     declarations_used_amounts[declaration.id] = 0
-                if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
-                    declarations_used_amounts[declaration.id] += amount
-                    amount = 0.0
+
+                if declaration == matching_declarations[-1]:
+                    # If this is the last available declaration,
+                    # assign all the remaining amount.
+                    declaration_used_amount = amount
+                else:
+                    declaration_available_amount = declarations_available_amounts[
+                        declaration.id
+                    ]
+                    declaration_used_amount = min(amount, declaration_available_amount)
+                declarations_available_amounts[
+                    declaration.id
+                ] -= declaration_used_amount
+
+                declarations_used_amounts[declaration.id] += declaration_used_amount
+                amount -= declaration_used_amount
         return declarations_used_amounts
 
     def check_declarations_amounts(self, declarations):
@@ -278,6 +301,12 @@ class AccountMove(models.Model):
 
     def get_declaration_residual_amounts(self, declarations):
         """Get residual amount for every `declarations`."""
+        available_plafond = 0.0
+        if self.move_type in ["in_invoice", "in_refund"]:
+            plafond = self.company_id.declaration_yearly_limit_ids.filtered(
+                lambda r: r.year == str(fields.first(declarations).date_start.year)
+            )
+            available_plafond = plafond.limit_amount - plafond.actual_used_amount
         declarations_amounts = {}
         # If the tax amount is 0, then there is no line representing the tax
         # so there will be no line having tax_line_id.
@@ -293,9 +322,18 @@ class AccountMove(models.Model):
 
             for declaration in declarations:
                 if declaration.id not in declarations_amounts:
-                    declarations_amounts[declaration.id] = declaration.available_amount
+                    if (
+                        self.move_type in ["in_invoice", "in_refund"]
+                        and declaration.available_amount > available_plafond
+                    ):
+                        declarations_amounts[declaration.id] = available_plafond
+                    else:
+                        declarations_amounts[
+                            declaration.id
+                        ] = declaration.available_amount
                 if any(tax in declaration.taxes_ids for tax in tax_line.tax_ids):
                     declarations_amounts[declaration.id] -= amount
+                    amount = 0.0
         for declaration in declarations:
             # exclude amount from lines with invoice_id equals to self
             for line in declaration.line_ids.filtered(
