@@ -243,3 +243,40 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
                 note_line.price_unit * note_line.product_qty, note_line.untaxed_amount
             )
             self.assertNotEqual(note_line.untaxed_amount, note_line.amount)
+
+    def test_split_transfer_with_delivery_note(self):
+        #
+        #     Picking ┐
+        #             ├ DdT
+        #     Picking ┘ (backorder, no DdT)
+        #
+        # `action_split_transfer` calls `_create_backorder(backorder_moves=...)`:
+        # the override must accept the keyword argument.
+        user = new_test_user(
+            self.env,
+            login="test",
+            groups="stock.group_stock_manager",
+        )
+        StockPicking = self.env["stock.picking"].with_user(user)
+
+        picking = self.create_picking()
+        picking.move_ids.product_uom_qty = 2
+        picking.with_user(user).action_confirm()
+
+        delivery_note = self.create_delivery_note()
+        picking.delivery_note_id = delivery_note
+        self.assertEqual(delivery_note.line_ids.move_id, picking.move_ids)
+
+        # process only a part of the demand and split the rest in a backorder
+        picking.move_ids.quantity = 1
+        picking.action_split_transfer()
+
+        picking_backorder = StockPicking.search([("backorder_id", "=", picking.id)])
+        self.assertEqual(len(picking_backorder), 1)
+        self.assertFalse(picking_backorder.delivery_note_id)
+
+        # the delivery note still details the moves left on the original picking
+        self.assertEqual(delivery_note.line_ids.move_id, picking.move_ids)
+        self.assertNotIn(
+            picking_backorder.move_ids, delivery_note.mapped("line_ids.move_id")
+        )
