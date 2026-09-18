@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =====================================
 Declaration of Intent for Italy (OCA)
 =====================================
@@ -17,7 +13,7 @@ Declaration of Intent for Italy (OCA)
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
@@ -40,11 +36,13 @@ vendor bills and purchase orders.
 
 Key features:
 
-- Support for multiple Declarations of Intent per invoice
-- Dedicated tab in invoice form for managing DOI associations
-- Automatic validation of DOI amounts and available thresholds
-- Smart warnings when invoice amounts don't match DOI coverage
-- Backward compatibility with single-declaration workflow
+-  Support for multiple Declarations of Intent per invoice
+-  Dedicated tab in invoice form for managing DOI associations
+-  Automatic validation of DOI amounts and available thresholds
+-  Smart warnings when invoice amounts don't match DOI coverage
+-  Backward compatibility with single-declaration workflow
+-  Annual threshold (plafond annuale) management for monitoring DOIs
+   usage across the fiscal year
 
 **Italiano**
 
@@ -54,11 +52,13 @@ ingresso e gli ordini di acquisto.
 
 Caratteristiche principali:
 
-- Supporto per dichiarazioni di intento multiple per fattura
-- Tab dedicato nel form fattura per gestire le associazioni DOI
-- Validazione automatica degli importi e soglie disponibili
-- Avvisi intelligenti quando gli importi non corrispondono
-- Retrocompatibilità con il flusso a dichiarazione singola
+-  Supporto per dichiarazioni di intento multiple per fattura
+-  Tab dedicato nel form fattura per gestire le associazioni DOI
+-  Validazione automatica degli importi e soglie disponibili
+-  Avvisi intelligenti quando gli importi non corrispondono
+-  Retrocompatibilità con il flusso a dichiarazione singola
+-  Gestione del plafond annuale per monitorare l'utilizzo delle DOI
+   durante l'anno fiscale
 
 **Table of contents**
 
@@ -78,9 +78,9 @@ migration runs automatically when installing
 
 Prerequisites:
 
-- Back up the database before starting
-- The ``openupgradelib`` Python library must be installed in the Odoo
-  environment
+-  Back up the database before starting
+-  The ``openupgradelib`` Python library must be installed in the Odoo
+   environment
 
 Steps:
 
@@ -90,67 +90,67 @@ Steps:
 
    The pre-init hook runs automatically and handles:
 
-   - Renaming of the old table and model
-   - Splitting ``telematic_protocol`` into ``protocol_number_part1`` /
-     ``protocol_number_part2``
-   - Renaming fields (``date`` → ``issue_date``, ``date_start`` →
-     ``start_date``, etc.)
-   - Mapping states (``valid`` → ``active``, ``expired`` →
-     ``terminated``, ``close`` → ``revoked``)
-   - Removing old views incompatible with Odoo 18
+   -  Renaming of the old table and model
+   -  Splitting ``telematic_protocol`` into ``protocol_number_part1`` /
+      ``protocol_number_part2``
+   -  Renaming fields (``date`` → ``issue_date``, ``date_start`` →
+      ``start_date``, etc.)
+   -  Mapping states (``valid`` → ``active``, ``expired`` →
+      ``terminated``, ``close`` → ``revoked``)
+   -  Removing old views incompatible with Odoo 18
 
    The post-init hook:
 
-   - Creates ``account.move.doi`` bridge records from the old many2many
-     relations
-   - Populates ``l10n_it_edi_doi_amount`` on invoices that had no DOI
-     tax lines
-   - Cleans up residual metadata from the old module and removes it
-     entirely (records, model metadata, and module entry — no manual
-     uninstall is needed or possible after this point)
+   -  Creates ``account.move.doi`` bridge records from the old many2many
+      relations
+   -  Populates ``l10n_it_edi_doi_amount`` on invoices that had no DOI
+      tax lines
+   -  Cleans up residual metadata from the old module and removes it
+      entirely (records, model metadata, and module entry — no manual
+      uninstall is needed or possible after this point)
 
 3. **Verify the migrated data:**
 
-   - Declarations appear in the new menu with correct protocol numbers
-   - States are correctly mapped
-   - Invoice links are working
-   - Computed amounts (invoiced, remaining) are shown correctly
-   - **For invoices that had multiple declarations in v16: check the**
-     **"Declarations of Intent" tab and assign the correct amount to
-     each entry** **(they are migrated with ``amount = 0``)**
+   -  Declarations appear in the new menu with correct protocol numbers
+   -  States are correctly mapped
+   -  Invoice links are working
+   -  Computed amounts (invoiced, remaining) are shown correctly
+   -  **For invoices that had multiple declarations in v16: check the**
+      **"Declarations of Intent" tab and assign the correct amount to
+      each entry** **(they are migrated with ``amount = 0``)**
 
 **Data that is NOT migrated** (no equivalent in v18):
 
-- ``partner_document_number``, ``partner_document_date``
-- ``taxes_ids``, ``fiscal_position_id``
-- Declaration lines (``declaration_line`` model)
-- Yearly limits (``yearly_limit`` model) — adjust individual declaration
-  thresholds manually
+-  ``partner_document_number``, ``partner_document_date``
+-  ``taxes_ids``, ``fiscal_position_id``
+-  Declaration lines (``declaration_line`` model)
+-  Yearly limits (``yearly_limit`` model) — adjust individual
+   declaration thresholds manually
 
 **Troubleshooting:**
 
-- *ValidationError about repartition lines during installation*: the
-  migration script automatically adds missing repartition lines to split
-  payment group taxes. If the error persists, check that
-  ``openupgradelib`` is installed correctly.
+-  *ValidationError about repartition lines during installation*: the
+   migration script automatically adds missing repartition lines to
+   split payment group taxes. If the error persists, check that
+   ``openupgradelib`` is installed correctly.
 
-- *Duplicate key error on fiscal positions or taxes during
-  l10n_it_edi_doi installation*: this can happen when the old module had
-  already created the same fiscal position data. The installation of
-  ``l10n_it_edi_doi`` may fail or show a warning. Remove the duplicate
-  fiscal position tax mappings manually and retry.
+-  *Duplicate key error on fiscal positions or taxes during
+   l10n_it_edi_doi installation*: this can happen when the old module
+   had already created the same fiscal position data. The installation
+   of ``l10n_it_edi_doi`` may fail or show a warning. Remove the
+   duplicate fiscal position tax mappings manually and retry.
 
-- *Invoice DOI amount shows 0 or an approximate value*: in the normal
-  migration path, ``l10n_it_edi_doi_amount`` is derived from the sum of
-  the v16 declaration line amounts (accurate). If the declaration lines
-  table was already absent at migration time, the fallback uses
-  ``ABS(amount_untaxed)`` as an approximation. If you see zero amounts,
-  open each affected invoice and assign the correct amount in the
-  "Declarations of Intent" tab.
+-  *Invoice DOI amount shows 0 or an approximate value*: in the normal
+   migration path, ``l10n_it_edi_doi_amount`` is derived from the sum of
+   the v16 declaration line amounts (accurate). If the declaration lines
+   table was already absent at migration time, the fallback uses
+   ``ABS(amount_untaxed)`` as an approximation. If you see zero amounts,
+   open each affected invoice and assign the correct amount in the
+   "Declarations of Intent" tab.
 
-- *Yearly limits not migrated*: the concept no longer exists in v18.
-  Review each declaration and set the ``threshold`` field to the
-  appropriate value.
+-  *Yearly limits not migrated*: the concept no longer exists in v18.
+   Review each declaration and set the ``threshold`` field to the
+   appropriate value.
 
 **Italiano**
 
@@ -163,9 +163,9 @@ manualmente.
 
 Prerequisiti:
 
-- Eseguire un backup del database prima di iniziare
-- La libreria Python ``openupgradelib`` deve essere installata
-  nell'ambiente Odoo
+-  Eseguire un backup del database prima di iniziare
+-  La libreria Python ``openupgradelib`` deve essere installata
+   nell'ambiente Odoo
 
 Passi:
 
@@ -175,70 +175,73 @@ Passi:
 
    L'hook pre-init viene eseguito automaticamente e gestisce:
 
-   - Rinomina della tabella e del modello
-   - Split di ``telematic_protocol`` in ``protocol_number_part1`` /
-     ``protocol_number_part2``
-   - Rinomina dei campi (``date`` → ``issue_date``, ``date_start`` →
-     ``start_date``, ecc.)
-   - Mappatura degli stati (``valid`` → ``active``, ``expired`` →
-     ``terminated``, ``close`` → ``revoked``)
-   - Rimozione delle view del vecchio modulo incompatibili con Odoo 18
+   -  Rinomina della tabella e del modello
+   -  Split di ``telematic_protocol`` in ``protocol_number_part1`` /
+      ``protocol_number_part2``
+   -  Rinomina dei campi (``date`` → ``issue_date``, ``date_start`` →
+      ``start_date``, ecc.)
+   -  Mappatura degli stati (``valid`` → ``active``, ``expired`` →
+      ``terminated``, ``close`` → ``revoked``)
+   -  Rimozione delle view del vecchio modulo incompatibili con Odoo 18
 
    L'hook post-init:
 
-   - Crea i record bridge ``account.move.doi`` dalle vecchie relazioni
-     many2many
-   - Popola ``l10n_it_edi_doi_amount`` sulle fatture prive di righe con
-     imposta DOI
-   - Pulisce i metadati residui del vecchio modulo e lo rimuove
-     completamente (record, metadati del modello e voce del modulo — non
-     è necessaria né possibile una disinstallazione manuale)
+   -  Crea i record bridge ``account.move.doi`` dalle vecchie relazioni
+      many2many
+   -  Popola ``l10n_it_edi_doi_amount`` sulle fatture prive di righe con
+      imposta DOI
+   -  Pulisce i metadati residui del vecchio modulo e lo rimuove
+      completamente (record, metadati del modello e voce del modulo —
+      non è necessaria né possibile una disinstallazione manuale)
 
 3. **Verificare i dati migrati:**
 
-   - Le dichiarazioni compaiono nel nuovo menu con i numeri di
-     protocollo corretti
-   - Gli stati sono correttamente mappati
-   - I collegamenti alle fatture funzionano
-   - Gli importi calcolati (fatturato, residuo) sono visualizzati
-     correttamente
-   - **Per le fatture che avevano più dichiarazioni in v16: controllare
-     il tab** **"Dichiarazioni di Intento" e assegnare l'importo
-     corretto a ciascuna voce** **(vengono migrate con ``amount = 0``)**
+   -  Le dichiarazioni compaiono nel nuovo menu con i numeri di
+      protocollo corretti
+   -  Gli stati sono correttamente mappati
+   -  I collegamenti alle fatture funzionano
+   -  Gli importi calcolati (fatturato, residuo) sono visualizzati
+      correttamente
+   -  **Per le fatture che avevano più dichiarazioni in v16: controllare
+      il tab** **"Dichiarazioni di Intento" e assegnare l'importo
+      corretto a ciascuna voce** **(vengono migrate con
+      ``amount = 0``)**
 
 **Dati NON migrati** (nessun equivalente in v18):
 
-- ``partner_document_number``, ``partner_document_date``
-- ``taxes_ids``, ``fiscal_position_id``
-- Righe della dichiarazione (modello ``declaration_line``)
-- Limiti annuali (modello ``yearly_limit``) — aggiustare manualmente la
-  soglia delle singole dichiarazioni
+-  ``partner_document_number``, ``partner_document_date``
+-  ``taxes_ids``, ``fiscal_position_id``
+-  Righe della dichiarazione (modello ``declaration_line``)
+-  Limiti annuali (modello ``yearly_limit``) — aggiustare manualmente la
+   soglia delle singole dichiarazioni
 
 **Risoluzione dei problemi:**
 
-- *ValidationError sulle repartition lines durante l'installazione*: lo
-  script di migrazione aggiunge automaticamente le repartition lines
-  mancanti sulle imposte di gruppo per lo split payment. Se l'errore
-  persiste, verificare che ``openupgradelib`` sia installato
-  correttamente.
+-  *ValidationError sulle repartition lines durante l'installazione*: lo
+   script di migrazione aggiunge automaticamente le repartition lines
+   mancanti sulle imposte di gruppo per lo split payment. Se l'errore
+   persiste, verificare che ``openupgradelib`` sia installato
+   correttamente.
 
-- *Errore di chiave duplicata su posizioni fiscali o imposte durante
-  l'installazione di l10n_it_edi_doi*: può accadere se il vecchio modulo
-  aveva già creato gli stessi dati di posizione fiscale. L'installazione
-  di ``l10n_it_edi_doi`` può fallire o mostrare un avviso. Rimuovere
-  manualmente le mappature di posizione fiscale duplicate e riprovare.
+-  *Errore di chiave duplicata su posizioni fiscali o imposte durante
+   l'installazione di l10n_it_edi_doi*: può accadere se il vecchio
+   modulo aveva già creato gli stessi dati di posizione fiscale.
+   L'installazione di ``l10n_it_edi_doi`` può fallire o mostrare un
+   avviso. Rimuovere manualmente le mappature di posizione fiscale
+   duplicate e riprovare.
 
-- *Importo DI sulla fattura a 0 o approssimativo*: nel percorso di
-  migrazione normale, ``l10n_it_edi_doi_amount`` viene derivato dalla
-  somma degli importi delle righe di dichiarazione v16 (valore esatto).
-  Se la tabella delle righe era già assente al momento della migrazione,
-  il fallback usa ``ABS(amount_untaxed)`` come approssimazione. Se si
-  riscontrano importi a zero, aprire le fatture interessate e assegnare
-  l'importo corretto nel tab "Dichiarazioni di Intento".
+-  *Importo DI sulla fattura a 0 o approssimativo*: nel percorso di
+   migrazione normale, ``l10n_it_edi_doi_amount`` viene derivato dalla
+   somma degli importi delle righe di dichiarazione v16 (valore esatto).
+   Se la tabella delle righe era già assente al momento della
+   migrazione, il fallback usa ``ABS(amount_untaxed)`` come
+   approssimazione. Se si riscontrano importi a zero, aprire le fatture
+   interessate e assegnare l'importo corretto nel tab "Dichiarazioni di
+   Intento".
 
-- *Limiti annuali non migrati*: il concetto non esiste in v18. Rivedere
-  ogni dichiarazione e impostare il campo ``threshold`` con il valore
-  appropriato.
+-  *Limiti annuali non migrati*: il concetto non esiste in v18. Rivedere
+   ogni dichiarazione e impostare il campo ``threshold`` con il valore
+   appropriato.
 
 Usage
 =====
@@ -251,8 +254,8 @@ for the Declaration of Intent for incoming vendor bills.
 In the contacts, you can create a Declaration of Intent by choosing
 between two types:
 
-- "Issued from company": for declarations issued by the company.
-- "Received from customers": for declarations received from suppliers.
+-  "Issued from company": for declarations issued by the company.
+-  "Received from customers": for declarations received from suppliers.
 
 **Multiple Declarations of Intent:**
 
@@ -264,10 +267,10 @@ Declarations of Intent:
 3. For each declaration, specify the amount to be covered
 4. The module will automatically:
 
-   - Validate that amounts don't exceed available thresholds
-   - Show a warning if total DOI amounts don't match invoice amount
-   - Update the invoiced amounts on each declaration
-   - Generate protocol numbers in the XML export
+   -  Validate that amounts don't exceed available thresholds
+   -  Show a warning if total DOI amounts don't match invoice amount
+   -  Update the invoiced amounts on each declaration
+   -  Generate protocol numbers in the XML export
 
 You can also use the traditional single-declaration field for backward
 compatibility, or mix both approaches for different invoices.
@@ -279,9 +282,9 @@ dedicata alla Dichiarazione di Intento per le fatture in ingresso. Nei
 contatti è possibile creare una Dichiarazione di Intento scegliendo tra
 due tipologie:
 
-- "Issued from company": per le dichiarazioni emesse dall'azienda.
-- "Received from customers": per le dichiarazioni ricevute dai
-  fornitori.
+-  "Issued from company": per le dichiarazioni emesse dall'azienda.
+-  "Received from customers": per le dichiarazioni ricevute dai
+   fornitori.
 
 **Dichiarazioni di Intento Multiple:**
 
@@ -293,11 +296,11 @@ possibile associare più Dichiarazioni di Intento:
 3. Per ogni dichiarazione, specifica l'importo da coprire
 4. Il modulo automaticamente:
 
-   - Valida che gli importi non superino le soglie disponibili
-   - Mostra un avviso se il totale DOI non corrisponde all'importo
-     fattura
-   - Aggiorna gli importi fatturati su ogni dichiarazione
-   - Genera i numeri di protocollo nell'esportazione XML
+   -  Valida che gli importi non superino le soglie disponibili
+   -  Mostra un avviso se il totale DOI non corrisponde all'importo
+      fattura
+   -  Aggiorna gli importi fatturati su ogni dichiarazione
+   -  Genera i numeri di protocollo nell'esportazione XML
 
 È possibile continuare ad usare il campo tradizionale a dichiarazione
 singola per retrocompatibilità, o combinare entrambi gli approcci per
@@ -324,10 +327,10 @@ Authors
 Contributors
 ------------
 
-- Nextev Srl <odoo@nextev.it>
-- `Stesi Consulting <https://www.stesi.consulting>`__:
+-  Nextev Srl <odoo@nextev.it>
+-  `Stesi Consulting <https://www.stesi.consulting>`__:
 
-  - Michele Di Croce <dicroce.m@stesi.consulting>
+   -  Michele Di Croce <dicroce.m@stesi.consulting>
 
 Maintainers
 -----------

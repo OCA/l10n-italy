@@ -10,6 +10,7 @@ Key features:
  - Automatic validation of DOI amounts and available thresholds
  - Smart warnings when invoice amounts don't match DOI coverage
  - Backward compatibility with single-declaration workflow
+ - Annual threshold (plafond annuale) management for monitoring DOIs usage across the fiscal year
 
 **Italiano**
 
@@ -23,3 +24,4 @@ Caratteristiche principali:
  - Validazione automatica degli importi e soglie disponibili
  - Avvisi intelligenti quando gli importi non corrispondono
  - Retrocompatibilità con il flusso a dichiarazione singola
+ - Gestione del plafond annuale per monitorare l'utilizzo delle DOI durante l'anno fiscale
