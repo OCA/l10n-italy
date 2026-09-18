@@ -17,6 +17,24 @@ There are two available settings:
 - Base (default): one picking, one DN.
 - Advanced: more picking in one DN.
 
+**Electronic Invoicing Integration**
+
+This module integrates with Italian electronic invoicing (`l10n_it_stock_ddt`).
+
+It automatically adds Delivery Note references to the FatturaPA XML, including:
+- DDT Number
+- DDT Date
+- Line references
+
+Only the confirmed Delivery Notes of this module are exported: the DDT
+number that `l10n_it_stock_ddt` assigns to the pickings and the DDT field
+of `l10n_it_edi` on the invoice are hidden and they are never exported,
+not even for invoices without Delivery Notes.
+
+The module also handles the distinction between immediate and deferred invoices:
+- **TD01 (Immediate invoice)**: when the invoice has the same date as the linked DDTs
+- **TD24 (Deferred invoice)**: when the invoice is issued on a different day than the DDTs
+
 **Italiano**
 
 Questo modulo consente di gestire i DDT.
@@ -34,3 +52,21 @@ Ci sono due impostazioni possibili.
 
 - Base (predefinita): un prelievo, un DDT.
 - Avanzata: più prelievi in un DDT.
+
+**Integrazione Fatturazione Elettronica**
+
+Questo modulo si integra con la fatturazione elettronica italiana (`l10n_it_stock_ddt`).
+
+Aggiunge automaticamente i riferimenti ai DDT nell'XML della FatturaPA, includendo:
+- Numero del DDT
+- Data del DDT
+- Riferimenti alle righe
+
+Vengono esportati solo i DDT confermati di questo modulo: il numero DDT
+che `l10n_it_stock_ddt` assegna ai prelievi e il campo DDT di
+`l10n_it_edi` nella fattura sono nascosti e non vengono mai esportati,
+nemmeno nelle fatture senza DDT.
+
+Il modulo gestisce anche la distinzione tra fatture immediate e differite:
+- **TD01 (Fattura immediata)**: quando la fattura ha la stessa data dei DDT collegati
+- **TD24 (Fattura differita)**: quando la fattura è emessa in un giorno diverso rispetto ai DDT
