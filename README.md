@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [l10n_it_currency_rate_update_boi](l10n_it_currency_rate_update_boi/) | 19.0.1.0.0 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Update exchange rates using www.bancaditalia.it
 [l10n_it_edi_related_document](l10n_it_edi_related_document/) | 19.0.1.0.0 |  | Related Documents for EDI
 [l10n_it_fiscalcode_sale](l10n_it_fiscalcode_sale/) | 19.0.1.0.0 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Mostra il codice fiscale del cliente nella stampa del preventivo
+[l10n_it_vat_registries](l10n_it_vat_registries/) | 19.0.1.0.0 |  | ITA - Registri IVA
 
 [//]: # (end addons)
 
