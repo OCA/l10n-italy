@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 (x64) (http://www.altova.com) by Ivana Gargiulo (CONSORZIO CUSTOMER TO BUSINESS INTERACTION - CBI) -->
+<xs:schema xmlns="urn:CBI:xsd:CBIHdrTrt.001.07" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:CBI:xsd:CBIHdrTrt.001.07" elementFormDefault="qualified">
+	<xs:element name="CBIHdrTrt" type="CBIHdrTrt.001.07">
+		<xs:annotation>
+			<xs:documentation>Header di Tratta incluso nella release 6.15 della documentazione Parte Generale</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="CBIHdrTrt.001.07">
+		<xs:sequence>
+			<xs:element name="IdCBISndrf" type="CBIIdentifier"/>
+			<xs:element name="IdCBIRcvrf" type="CBIIdentifier"/>
+			<xs:element name="SrvNm" type="ServiceName"/>
+			<xs:element name="IdMsgTrt" type="IdMsgTrt1"/>
+			<xs:element name="XMLCrtDt" type="ISODateTime"/>
+			<xs:element name="RtrnAddrl" type="RtrnAddrl1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CBIIdentifier">
+		<xs:restriction base="Max8Text">
+			<xs:pattern value="[A-Z0-9]{8,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IdMsgTrt1">
+		<xs:restriction base="Max61Text">
+			<xs:pattern value="[a-zA-Z0-9]{61,61}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ISODateTime">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="Max8Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max12Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max35Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="35"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max60Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max61Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="61"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RtrnAddrl1">
+		<xs:restriction base="Max12Text">
+			<xs:pattern value="[a-zA-Z0-9]{12,12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ServiceName">
+		<xs:restriction base="Max60Text">
+			<xs:enumeration value="PORTING-IR"/>
+			<xs:enumeration value="PORTING-IM"/>
+			<xs:enumeration value="PORTING-IB"/>
+			<xs:enumeration value="PORTING-AL"/>
+			<xs:enumeration value="PORTING-PC"/>
+			<xs:enumeration value="PORTING-PE"/>
+			<xs:enumeration value="PORTING-AP"/>
+			<xs:enumeration value="PORTING-AI"/>
+			<xs:enumeration value="PORTING-AB"/>
+			<xs:enumeration value="PORTING-SL-D"/>
+			<xs:enumeration value="PORTING-F4"/>
+			<xs:enumeration value="PORTING-I4"/>
+			<xs:enumeration value="PORTING-R4"/>
+			<xs:enumeration value="PORTING-EIR"/>
+			<xs:enumeration value="PORTING-EIM"/>
+			<xs:enumeration value="PORTING-EIB"/>
+			<xs:enumeration value="PORTING-EAL"/>
+			<xs:enumeration value="PORTING-BB"/>
+			<xs:enumeration value="PORTING-EP"/>
+			<xs:enumeration value="PORTING-AV"/>
+			<xs:enumeration value="PORTING-RH"/>
+			<xs:enumeration value="PORTING-RA"/>
+			<xs:enumeration value="PORTING-EC"/>
+			<xs:enumeration value="PORTING-DT"/>
+			<xs:enumeration value="PORTING-RP"/>
+			<xs:enumeration value="PORTING-SL-I"/>
+			<xs:enumeration value="PORTING-A4"/>
+			<xs:enumeration value="PORTING-Q4"/>
+			<xs:enumeration value="BON-INIZ-BEN"/>
+			<xs:enumeration value="ESITO-BON-ORD-BEN"/>
+			<xs:enumeration value="ANT-FATT-ITA"/>
+			<xs:enumeration value="ANT-FATT-EST"/>
+			<xs:enumeration value="STAT-RPT-ANT-FATT"/>
+			<xs:enumeration value="INV-E2E-FATT"/>
+			<xs:enumeration value="INV-E2E-DOC-NON-STRUTT"/>
+			<xs:enumeration value="SALDO-MOV-INTR"/>
+			<xs:enumeration value="DISP-PAG-ITA"/>
+			<xs:enumeration value="DISP-PAG-SEPA"/>
+			<xs:enumeration value="STAT-RPT-DISP-PAG"/>
+			<xs:enumeration value="AVV-BON-IN"/>
+			<xs:enumeration value="AVV-ISTR"/>
+			<xs:enumeration value="INF-TRF"/>
+			<xs:enumeration value="INC-SDDC"/>
+			<xs:enumeration value="INC-SDDB"/>
+			<xs:enumeration value="STAT-RPT-INC-SDD"/>
+			<xs:enumeration value="INF-ACCT-RT"/>
+			<xs:enumeration value="STAT-RPT-PSD"/>
+			<xs:enumeration value="CBILL-BATCH"/>
+			<xs:enumeration value="CBILL-BATCH-BILLER"/>
+			<xs:enumeration value="CERT-CRED-REQ"/>
+			<xs:enumeration value="STAT-RPT-CERT-CRED"/>
+			<xs:enumeration value="INF-STMT"/>
+			<xs:enumeration value="SALDI-ANAG-TRIB"/>
+			<xs:enumeration value="ESITO-SALDI-ANAG-TRIB"/>
+			<xs:enumeration value="INC-SEDAC"/>
+			<xs:enumeration value="INC-SEDAD"/>
+			<xs:enumeration value="DISP-PAG-EST"/>
+			<xs:enumeration value="STAT-RPT-DISP-PAG-EST"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
