@@ -1,0 +1,193 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_edi_pec
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_edi_pec
+#: model:ir.model,name:l10n_it_edi_pec.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model,name:l10n_it_edi_pec.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,help:l10n_it_edi_pec.field_fetchmail_server__e_inv_notify_partner_ids
+msgid "Contacts to notify when PEC message can't be processed"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_fetchmail_server__is_l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_ir_mail_server__is_l10n_it_edi_pec
+msgid "E-invoice PEC server"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model,name:l10n_it_edi_pec.model_mail_thread
+msgid "Email Thread"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,help:l10n_it_edi_pec.field_ir_mail_server__l10n_it_edi_pec_email_from
+msgid "Email address used as sender for e-invoices sent via PEC."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/fetchmail_server.py:0
+msgid "Fetchmail PEC server [%s] error"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,help:l10n_it_edi_pec.field_res_company__l10n_it_edi_use_pec
+#: model:ir.model.fields,help:l10n_it_edi_pec.field_res_config_settings__l10n_it_edi_use_pec
+msgid ""
+"If enabled, electronic invoices will be sent and received through PEC "
+"(Certified Email) instead of the standard IAP proxy."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model,name:l10n_it_edi_pec.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_company__l10n_it_edi_pec_fetch_server_id
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_config_settings__l10n_it_edi_pec_fetch_server_id
+msgid "Incoming PEC server"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model,name:l10n_it_edi_pec.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_fetchmail_server__last_pec_error_message
+msgid "Last PEC Error Message"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_pec.view_email_server_form_e_invoice
+msgid "Last error message"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model,name:l10n_it_edi_pec.model_ir_mail_server
+msgid "Mail Server"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_company__l10n_it_edi_pec_server_id
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_config_settings__l10n_it_edi_pec_server_id
+msgid "Outgoing PEC server"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_pec.res_config_settings_view_form
+msgid "PEC Channel"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_ir_mail_server__l10n_it_edi_pec_email_from
+msgid "PEC Sender Email Address"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,help:l10n_it_edi_pec.field_res_company__l10n_it_edi_pec_email_exchange_system
+#: model:ir.model.fields,help:l10n_it_edi_pec.field_res_config_settings__l10n_it_edi_pec_email_exchange_system
+msgid "PEC address used to communicate with the Exchange System (SDI)."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_pec.ir_mail_server_form
+msgid "PEC and Electronic Invoice"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_fetchmail_server__pec_error_count
+msgid "PEC error count"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/mail_thread.py:0
+msgid ""
+"PEC message \"%(subject)s\" has been read but not processed, as not related to an e-invoice.\n"
+"Please check PEC mailbox %(fetchmail_name)s, at server %(fetchmail_server)s, with user %(fetchmail_user)s."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/fetchmail_server.py:0
+msgid ""
+"PEC server %(name)s has been reset. Last error message is "
+"'%(error_message)s'"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/res_company.py:0
+msgid "Please configure an incoming PEC server."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/res_company.py:0
+msgid "Please configure an outgoing PEC server."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/res_company.py:0
+msgid ""
+"Please configure the PEC sender email address on the outgoing PEC server."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/res_company.py:0
+msgid "Please configure the SDI PEC email address."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_company__l10n_it_edi_pec_email_exchange_system
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_config_settings__l10n_it_edi_pec_email_exchange_system
+msgid "SDI PEC Email Address"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_pec.res_config_settings_view_form
+msgid ""
+"Send and receive electronic invoices through PEC\n"
+"                        (Certified Email) instead of the standard IAP proxy."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/res_company.py:0
+msgid "The incoming PEC server must be confirmed."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_company__l10n_it_edi_use_pec
+#: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_config_settings__l10n_it_edi_use_pec
+msgid "Use PEC for e-invoicing"
+msgstr ""
