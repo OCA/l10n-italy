@@ -1,0 +1,4 @@
+odoo-addon-l10n_it_account_vat_period_end_settlement @ git+https://github.com/OCA/l10n-italy@refs/pull/5071/head#subdirectory=l10n_it_account_vat_period_end_settlement
+odoo-addon-l10n_it_vat_registries @ git+https://github.com/OCA/l10n-italy@refs/pull/5091/head#subdirectory=l10n_it_vat_registries
+odoo-addon-l10n_it_appointment_code @ git+https://github.com/OCA/l10n-italy@refs/pull/5073/head#subdirectory=l10n_it_appointment_code
+odoo-addon-l10n_it_vat_settlement_communication @ git+https://github.com/OCA/l10n-italy@refs/pull/5092/head#subdirectory=l10n_it_vat_settlement_communication
