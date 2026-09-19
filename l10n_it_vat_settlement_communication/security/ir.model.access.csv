@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+account_comunicazione_liquidazione_manager,comunicazione.liquidazione,model_comunicazione_liquidazione,account.group_account_manager,1,1,1,1
+account_comunicazione_liquidazione_vp_manager,comunicazione.liquidazione.vp,model_comunicazione_liquidazione_vp,account.group_account_manager,1,1,1,1
+account_comunicazione_liquidazione_export_file_manager,comunicazione.liquidazione.export.file,model_comunicazione_liquidazione_export_file,account.group_account_manager,1,1,1,1
