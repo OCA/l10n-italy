@@ -815,4 +815,3 @@ class TestImportWizardSplitting(Common):
         moves = self._run_wizard("mixed.zip", zip_bytes)
         # must be 3 invoices in total
         self.assertEqual(len(moves), 3)
-

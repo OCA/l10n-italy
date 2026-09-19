@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
+import binascii
 import logging
 from io import BytesIO
 
@@ -14,11 +15,17 @@ from odoo.addons.l10n_it_edi.tools.remove_signature import remove_signature
 
 _logger = logging.getLogger(__name__)
 
-_ASCII_WHITESPACE = b" \t\n\r\x0b\x0c"
-
 
 class IrAttachmentInherit(models.Model):
     _inherit = "ir.attachment"
+
+    def _l10n_it_edi_ext_decode_p7m_base64(self, content, name=None):
+        """Some programs download p7m files as base64 text."""
+        try:
+            return base64.b64decode(content)
+        except binascii.Error:
+            _logger.info(f"The p7m file '{name}' is not base64 encoded")
+            return ""
 
     def _is_l10n_it_edi_import_file(self):
         # Extend Odoo standard check to also recognize signed e-invoice files
@@ -33,6 +40,13 @@ class IrAttachmentInherit(models.Model):
             ):
                 return True
         return False
+
+    def _parse_xml_with_recovery(self, content, name=None):
+        xml_tree = super()._parse_xml_with_recovery(content, name=name)
+        if xml_tree is None and name and name.lower().endswith(".p7m"):
+            decoded = self._l10n_it_edi_ext_decode_p7m_base64(content, name=name)
+            xml_tree = super()._parse_xml_with_recovery(decoded, name=name)
+        return xml_tree
 
     @api.model
     def get_fatturapa_preview_style_name(self):
@@ -83,22 +97,3 @@ class IrAttachmentInherit(models.Model):
         transform = etree.XSLT(xslt)
         newdom = transform(dom)
         return etree.tostring(newdom, pretty_print=True, encoding="unicode")
-
-    def _decode_edi_l10n_it_edi(self, name, content):
-        """Handle .xml.p7m files downloaded by some programs as base64 text files"""
-        try:
-            stripped = bytes(content).translate(None, _ASCII_WHITESPACE)
-            decoded = base64.b64decode(stripped, validate=True)
-            _logger.info(
-                "'%s' detected as Base64-encoded p7m "
-                "(%d ASCII bytes -> %d DER bytes). Auto-decoding applied.",
-                name,
-                len(content),
-                len(decoded),
-            )
-            content = decoded
-            _logger.info(type(content))
-        except Exception:  # pylint: disable=except-pass
-            pass
-
-        return super()._decode_edi_l10n_it_edi(name, content)
