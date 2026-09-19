@@ -16,8 +16,6 @@ from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get
 
 _logger = logging.getLogger(__name__)
 
-_ASCII_WHITESPACE = b" \t\n\r\x0b\x0c"
-
 
 class AccountMoveInherit(models.Model):
     _inherit = "account.move"
@@ -347,22 +345,18 @@ class AccountMoveInherit(models.Model):
                 xml_tree = p7m_xml_tree
         return xml_tree
 
+    def _l10n_it_edi_ext_decode_p7m_base64(self, content, name=None):
+        """Some programs download p7m files as base64 text."""
+        try:
+            return base64.b64decode(content)
+        except binascii.Error:
+            _logger.info(f"The p7m file '{name}' is not base64 encoded")
+            return ""
+
     def _parse_xml_with_recovery(self, content, name=None):
-        """Handle .xml.p7m files downloaded by some programs as base64 text files"""
         xml_tree = super()._parse_xml_with_recovery(content, name=name)
-        if xml_tree is None and content:
-            try:
-                stripped = bytes(content).translate(None, _ASCII_WHITESPACE)
-                decoded = base64.b64decode(stripped, validate=True)
-            except (TypeError, binascii.Error):
-                return xml_tree
-            _logger.info(
-                "'%s' detected as Base64-encoded p7m "
-                "(%d ASCII bytes -> %d DER bytes). Auto-decoding applied.",
-                name,
-                len(content),
-                len(decoded),
-            )
+        if xml_tree is None and name and name.lower().endswith(".p7m"):
+            decoded = self._l10n_it_edi_ext_decode_p7m_base64(content, name=name)
             xml_tree = super()._parse_xml_with_recovery(decoded, name=name)
         return xml_tree
 

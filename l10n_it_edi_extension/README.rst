@@ -141,6 +141,8 @@ Le funzionalità principali incluse sono:
    -  Scrittura nel chatter dei nodi di
       ``<DatiGenerali><DatiTrasporto>`` e ``<DatiVeicoli>``
 
+   -  Importazione di fatture elettroniche firmate e in base64
+
    -  Gestione avanzata dei Dati delle Righe Fattura:
 
       -  Creazione dei codici articolo in fase di importazione. Questi
@@ -326,6 +328,8 @@ The main features included are:
 
    -  Writing in chatter of ``<DatiGenerali><DatiTrasporto>`` and
       ``<DatiVeicoli>`` nodes
+
+   -  Import of signed electronic invoices (also base64 encoded)
 
    -  Advanced management of Invoice Line Data:
 
