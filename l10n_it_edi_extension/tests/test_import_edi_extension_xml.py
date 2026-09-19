@@ -673,9 +673,7 @@ class TestSplitAttachments(Common):
         self.assertNotIn(attachment.id, result_ids)
         self.assertTrue(all(a.name.startswith("Partial ") for a in result))
         for split in result:
-            xml_tree = self.env[
-                "account.journal"
-            ]._l10n_it_edi_extension_parse_e_invoice(split)
+            xml_tree = split._parse_xml_with_recovery(split.raw)
             self.assertEqual(len(xml_tree.xpath("//FatturaElettronicaBody")), 1)
 
     def test_single_body_attachment_is_kept(self):
@@ -815,4 +813,3 @@ class TestImportWizardSplitting(Common):
         moves = self._run_wizard("mixed.zip", zip_bytes)
         # must be 3 invoices in total
         self.assertEqual(len(moves), 3)
-
