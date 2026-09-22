@@ -324,14 +324,6 @@
                                 </group>
                             </group>
                             <group
-                                attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"
-                            >
-                                <group>
-                                    <field name="dn_supplier_number" />
-                                    <field name="dn_supplier_date" />
-                                </group>
-                            </group>
-                            <group
                                 string="Delivery Notes"
                                 attrs="{'invisible': [('delivery_note_exists', '=', False)]}"
                             >
@@ -345,6 +337,25 @@
                     </div>
                 </page>
             </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field
+            name="name"
+        >delivery.stock.picking.withcarrier.dnsupplier.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form" />
+        <field name="arch" type="xml">
+            <group name="other_infos" position="after">
+                <group
+                    name="Supplier DDT info"
+                    attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"
+                >
+                    <field name="dn_supplier_number" />
+                    <field name="dn_supplier_date" />
+                </group>
+            </group>
         </field>
     </record>
 
