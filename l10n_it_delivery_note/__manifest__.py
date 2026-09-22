@@ -25,6 +25,7 @@
         "delivery_carrier_partner",
         "l10n_it_delivery_note_base",
         "mail",
+        "purchase_stock",
         "sale_stock",
         "stock_account",
         "portal",
