@@ -125,6 +125,13 @@
                     style="width: 100%; font-size: 14px; margin: 3px;"
                 >
                     <t t-call="assets_management.template_asset_journal_asset_title" />
+                </div>
+            </div>
+            <div class="act_as_table" style="width: 100%">
+                <div
+                    class="act_as_thead"
+                    style="width: 100%; font-size: 14px; margin: 3px;"
+                >
                     <t
                         t-call="assets_management.template_asset_journal_asset_table_header"
                     />
@@ -180,20 +187,17 @@
     </template>
 
     <template id="template_asset_journal_asset_title">
-        <div name="asset_name">
-            <h2 style="text-align: left;">
-                <t t-set="active_id" t-value="asset_section.asset_id.id" />
-                <span style="margin: 5px;">
-                    <span>Asset: </span>
+        <div class="act_as_row labels">
+            <div class="act_as_cell" name="asset_name" style="width: 100%;">
+                <span>Asset: </span>
                     <a
-                        t-att-data-active-id="active_id"
-                        t-att-data-res-model="'asset.asset'"
-                        class="o_account_financial_reports_web_action"
-                    >
+                    t-att-data-active-id="active_id"
+                    t-att-data-res-model="'asset.asset'"
+                    class="o_account_financial_reports_web_action"
+                >
                         <t t-raw="asset_section.asset_name" />
                     </a>
-                </span>
-            </h2>
+            </div>
         </div>
     </template>
 
