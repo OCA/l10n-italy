@@ -91,8 +91,9 @@ class AccountMove(models.Model):
         for invoice in self:
             if invoice.is_riba_payment:
                 open_amount_line_ids = invoice.line_ids.filtered(
-                    lambda line, today=today: line.riba
+                    lambda line: line.riba
                     and line.account_id.internal_type in ["receivable", "payable"]
+                    and line.date_maturity
                     and line.date_maturity > today
                 )
                 invoice.open_amount = sum(open_amount_line_ids.mapped("balance"))
