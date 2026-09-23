@@ -96,27 +96,6 @@ class AccountInvoice(models.Model):
                     % invoice.name
                 )
 
-            if invoice.invoice_payment_term_id or invoice.invoice_date_due:
-                # The user wants to create the DatiPagamento node:
-                # they must fill these fields
-                # in order to populate the mandatory nodes
-                if not invoice.fatturapa_payment_method_id:
-                    # For node ModalitaPagamento
-                    raise UserError(
-                        _(
-                            "Invoice %(name)s: Fiscal Payment Method must be set.",
-                            name=invoice.name,
-                        )
-                    )
-                if not invoice.fatturapa_payment_term_id:
-                    # For node CondizioniPagamento
-                    raise UserError(
-                        _(
-                            "Invoice %(name)s: Fiscal Payment Term must be set.",
-                            name=invoice.name,
-                        )
-                    )
-
             if not all(
                 aml.tax_ids for aml in invoice.invoice_line_ids if aml.product_id
             ):
