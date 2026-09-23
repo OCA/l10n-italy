@@ -24,7 +24,8 @@ class RibaCredit(models.TransientModel):
     1. Bank accepts RiBa collection from company
     2. Bank may immediately credit company's account (this wizard)
     3. Bank collects payment from customers
-    4. If customer pays: settlement completes the cycle
+    4. If customer pays: the bank entry of the collection is reconciled
+       with the RiBa account, closing the credit towards the bank
     5. If customer doesn't pay: past due process reverses the credit
 
     Accounting Impact:
@@ -112,7 +113,10 @@ class RibaCredit(models.TransientModel):
         "This will be debited with the credit amount.",
     )
     credit_amount = fields.Float(
-        help="Amount the bank is crediting to the company. ",
+        default=_get_acceptance_amount,
+        readonly=True,
+        help="Amount the bank is crediting to the company: "
+        "it is the total of the slip, credited on a line for each due date.",
     )
     date_credited = fields.Date(
         string="Credit Date",
@@ -156,6 +160,34 @@ class RibaCredit(models.TransientModel):
         "If specified, separate entries will be created for the fee payment.",
     )
 
+    def _prepare_credit_lines(self, slip):
+        """
+        Prepare the lines on the RiBa account, one for each due date.
+
+        The bank pays the slip one due date at a time, so each payment in the
+        bank reconciliation closes exactly one of these lines, and the past
+        due of a slip line closes the line of its due date.
+        """
+        amounts = {}
+        for line in slip.line_ids:
+            amounts[line.due_date] = amounts.get(line.due_date, 0.0) + line.amount
+        return [
+            (
+                0,
+                0,
+                {
+                    "name": self.env._("Credit"),
+                    "account_id": self.credit_account_id.id,
+                    "debit": amount,
+                    "credit": 0.0,
+                    "date_maturity": due_date,
+                },
+            )
+            for due_date, amount in sorted(
+                amounts.items(), key=lambda item: item[0] or fields.Date.today()
+            )
+        ]
+
     def create_move(self):
         """
         Create bank credit accounting move for RiBa slip.
@@ -166,7 +198,8 @@ class RibaCredit(models.TransientModel):
         immediate liquidity to the company.
 
         Accounting Flow:
-        1. Debit RiBa Account (asset) - Amount the bank will collect
+        1. Debit RiBa Account (asset) - Amount the bank will collect,
+           on a line for each due date
         2. Credit Acceptance Account (liability) - Offset the acceptance entry
         3. Optional: Debit Bank Fees (expense) - Bank collection fees
         4. Optional: Credit Bank Account (asset) - Fees paid from bank account
@@ -218,18 +251,11 @@ class RibaCredit(models.TransientModel):
             "ref": self.env._("RiBa Credit %s") % slip.name,
             "journal_id": wizard.credit_journal_id.id,
             "date": wizard.date_credited,
-            "line_ids": [
-                # Debit RiBa Credit Account - Represents amount bank will collect
-                (
-                    0,
-                    0,
-                    {
-                        "name": self.env._("Credit"),
-                        "account_id": wizard.credit_account_id.id,
-                        "credit": 0.0,
-                        "debit": wizard.credit_amount,  # Amount bank credits to us
-                    },
-                ),
+            # Debit RiBa Credit Account - Represents amount bank will collect
+            "line_ids": wizard._prepare_credit_lines(slip),
+        }
+        move_vals["line_ids"].extend(
+            [
                 # Credit Acceptance Account - Reverses the acceptance liability
                 (
                     0,
@@ -241,8 +267,8 @@ class RibaCredit(models.TransientModel):
                         "credit": wizard.acceptance_amount,  # Offset acceptance entry
                     },
                 ),
-            ],
-        }
+            ]
+        )
 
         # Add bank fee entries if applicable
         # Banks often charge fees for RiBa collection services

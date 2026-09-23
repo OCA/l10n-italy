@@ -15,13 +15,21 @@ diverso.
 fine', è necessario specificare almeno il registro e il conto da
 utilizzare al momento dell'accettazione della distinta da parte della
 banca. Tale conto deve essere di tipo 'Crediti' (ad esempio "RiBa
-all'incasso", eventualmente da creare).
+all'incasso", eventualmente da creare) e deve essere riconciliabile:
+nel caso 'Al dopo incasso' è il conto che viene chiuso dal movimento
+di conto corrente dell'incasso.
 
 La configurazione relativa alla fase di accredito, verrà usata nel
 momento in cui la banca accredita l'importo della distinta. È possibile
 utilizzare un registro creato appositamente, ad esempio "Accredito
 RiBa", e un conto chiamato ad esempio "Banche c/RiBa all'incasso", che
 non deve essere di tipo 'Banca e cassa'.
+
+Il conto RiBa rappresenta il credito verso la banca, di cui l'azienda
+può disporre (ad esempio per andare in negativo sul conto corrente con
+meno costi) fino a quando la banca non paga effettivamente. Anche questo
+conto deve quindi essere riconciliabile: è il conto che viene chiuso dal
+movimento di conto corrente dell'incasso.
 
 La configurazione relativa all'insoluto verrà utilizzata in caso di
 mancato pagamento da parte del cliente. Il conto può chiamarsi ad
