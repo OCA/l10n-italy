@@ -124,11 +124,11 @@ class WizardImportFatturapa(models.TransientModel):
             payment_term_id = super()._get_payment_term(partner=partner)
         return payment_term_id
 
-    def get_credit_account(self, product=None):
+    def get_credit_account(self, product=None, partner=None):
         if self._is_import_attachment_out():
             ret = self.get_debit_account(product=product)
         else:
-            ret = super().get_credit_account(product=product)
+            ret = super().get_credit_account(product=product, partner=partner)
         return ret
 
     # function to mimics get_credit_account() for outgoing invoices
