@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo noupdate="1">
+    <!-- Conditions of transport -->
+    <record id="transport_condition_PF" model="stock.picking.transport.condition">
+        <field name="name">Carriage paid</field>
+    </record>
+    <record id="transport_condition_PA" model="stock.picking.transport.condition">
+        <field name="name">Carriage forward</field>
+    </record>
+    <record id="transport_condition_PAF" model="stock.picking.transport.condition">
+        <field name="name">Charged in invoice</field>
+    </record>
+
+    <!-- Goods appearance -->
+    <record id="goods_appearance_CAR" model="stock.picking.goods.appearance">
+        <field name="name">Box</field>
+    </record>
+    <record id="goods_appearance_BAN" model="stock.picking.goods.appearance">
+        <field name="name">Pallet</field>
+    </record>
+    <record id="goods_appearance_SFU" model="stock.picking.goods.appearance">
+        <field name="name">Bulk</field>
+    </record>
+    <record id="goods_appearance_CBA" model="stock.picking.goods.appearance">
+        <field name="name">Box / Pallet</field>
+    </record>
+
+    <!-- Reasons of transport -->
+    <record id="transport_reason_VEN" model="stock.picking.transport.reason">
+        <field name="name">Sale</field>
+    </record>
+    <record id="transport_reason_VIS" model="stock.picking.transport.reason">
+        <field name="name">Goods on approval</field>
+    </record>
+    <record id="transport_reason_RES" model="stock.picking.transport.reason">
+        <field name="name">Returned</field>
+    </record>
+
+    <!-- Methods of transport -->
+    <record id="transport_method_MIT" model="stock.picking.transport.method">
+        <field name="name">Sender</field>
+    </record>
+    <record id="transport_method_DES" model="stock.picking.transport.method">
+        <field name="name">Recipient</field>
+    </record>
+    <record id="transport_method_COR" model="stock.picking.transport.method">
+        <field name="name">Carrier</field>
+    </record>
+</odoo>
