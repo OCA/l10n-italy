@@ -14,7 +14,7 @@
             ref="model_dichiarazione_intento_yearly_limit"
         />
         <field name="domain_force">
-            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
+            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
         </field>
     </record>
 
@@ -25,7 +25,7 @@
             ref="model_dichiarazione_intento"
         />
         <field name="domain_force">
-            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
+            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
         </field>
     </record>
 
@@ -36,7 +36,7 @@
             ref="model_dichiarazione_intento_line"
         />
         <field name="domain_force">
-            ['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]
+            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
         </field>
     </record>
 
