@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_sct_cbi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-02 08:46+0000\n"
+"PO-Revision-Date: 2024-09-11 09:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"ABI is mandatory for Payment Type Code '%(pain_flavor)s', but the bank "
+"%(bank)s of %(partner_bank)s has no ABI.\n"
+msgstr ""
+"ABI è obbligatorio per il tipo di pagamento '%(pain_flavor)s', ma la banca "
+"%(bank)s di %(partner_bank)s non ha alcun ABI.\n"
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"BIC is mandatory for Payment Type Code '%(pain_flavor)s', but the bank "
+"%(bank)s of %(partner_bank)s has no BIC.\n"
+msgstr ""
+"BIC è obbligatorio per il tipo di pagamento '%(pain_flavor)s', ma la banca "
+"%(bank)s di %(partner_bank)s non ha alcun BIC.\n"
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid "Bank account '%(partner_bank)s' must have a valid IBAN"
+msgstr "Il conto bancario '%(partner_bank)s' deve avere un IBAN valido"
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"Bank account is missing on the bank payment line of partner "
+"'%(partner)s' (reference '%(reference)s')."
+msgstr ""
+"Il conto bancario non è presente sulla riga di pagamento bancario del "
+"partner '%(partner)s' (riferimento '%(reference)s')."
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model.fields.selection,name:l10n_it_sct_cbi.selection__account_payment_method__pain_version__cbibdycrossborderpaymentrequest_00_01_01
+msgid "CBIBdyCrossBorderPaymentRequest.00.01.01"
+msgstr "CBIBdyCrossBorderPaymentRequest.00.01.01"
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model.fields.selection,name:l10n_it_sct_cbi.selection__account_payment_method__pain_version__cbibdypaymentrequest_00_04_01
+msgid "CBIBdyPaymentRequest.00.04.01"
+msgstr "CBIBdyPaymentRequest.00.04.01"
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"Missing Country for Partner '%(partner)s' (payment order line reference "
+"'%(reference)s')"
+msgstr ""
+"Nazione mancante per il partner '%(partner)s' (riferimento riga ordine di "
+"pagamento '%(reference)s')"
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model.fields,field_description:l10n_it_sct_cbi.field_account_payment_method__pain_version
+msgid "PAIN Version"
+msgstr "Versione PAIN"
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model,name:l10n_it_sct_cbi.model_account_payment_method
+msgid "Payment Methods"
+msgstr "Metodi di pagamento"
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model,name:l10n_it_sct_cbi.model_account_payment_order
+msgid "Payment Order"
+msgstr "Ordine di pagamento"
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"Payment Type Code '%(pain_flavor)s' is not supported.\n"
+"The only Payment Type Codes supported for SEPA Credit Transfers "
+"'CBIBdyPaymentRequest.00.04.01' and "
+"'CBIBdyCrossBorderPaymentRequest.00.01.01'."
+msgstr ""
+"Il tipo di pagamento '%(pain_flavor)s' non è supportato.\n"
+"Gli unici tipi di pagamento supportati per SEPA Credit Transfer sono "
+"'CBIBdyPaymentRequest.00.04.01' e 'CBIBdyCrossBorderPaymentRequest.00.01.01'."
+
+#. module: l10n_it_sct_cbi
+#: model:account.payment.method,name:l10n_it_sct_cbi.sepa_cbi_credit_transfer
+msgid "SEPA Credit Transfer Payment Request CBI"
+msgstr "Richiesta di pagamento SEPA Credit Transfer con CBI"
