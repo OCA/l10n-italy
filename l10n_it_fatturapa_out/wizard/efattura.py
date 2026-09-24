@@ -2,10 +2,10 @@
 # Copyright 2020 Marco Colombo
 import logging
 import os
+import unicodedata
 from datetime import datetime
 
 from lxml import etree
-from unidecode import unidecode
 
 from odoo.exceptions import UserError
 from odoo.tools import float_repr
@@ -222,6 +222,13 @@ class EFatturaOut:
             euro = self.env.ref("base.EUR")
             return fpaToEur(amount, invoice, euro, rate)
 
+        def to_basiclatin(s):
+            return (
+                unicodedata.normalize("NFKD", s)
+                .encode("ascii", "ignore")
+                .decode("ascii")
+            )
+
         if self.partner_id.commercial_partner_id.is_pa:
             # check value code
             code = self.partner_id.ipa_code
@@ -249,7 +256,7 @@ class EFatturaOut:
             "get_id_fiscale_iva": get_id_fiscale_iva,
             "codice_destinatario": code.upper(),
             "in_eu": in_eu,
-            "unidecode": unidecode,
+            "to_basiclatin": to_basiclatin,
             "wizard": self.wizard,
             "get_importo": get_importo,
             "get_importo_totale": get_importo_totale,
