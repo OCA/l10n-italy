@@ -52,6 +52,7 @@ Le funzionalità principali incluse sono:
      - `<DatiSAL>` e `<RiferimentoFase>`: utilizzati per indicare lo stato di avanzamento dei lavori in caso di fatturazione dilazionata/progressiva (contratti di appalto, servizi continuativi o lavori in corso d'opera)
    - Importazione dei dati della fattura principale (`<NumeroFatturaPrincipale>` e `<DataFatturaPrincipale>`)
    - Scrittura nel chatter dei nodi di `<DatiGenerali><DatiTrasporto>` e `<DatiVeicoli>`
+   - Importazione di fatture elettroniche firmate e in base64
    - Gestione avanzata dei Dati delle Righe Fattura:
      - Creazione dei codici articolo in fase di importazione.
        Questi codici servono per identificare univocamente i prodotti/servizi secondo diversi standard di codifica.
@@ -140,6 +141,7 @@ The main features included are:
      - `<DatiSAL>` and `<RiferimentoFase>`: used to indicate the progress status of work in case of deferred/progressive invoicing (procurement contracts, continuous services, or work in progress)
    - Import of main invoice data (`<NumeroFatturaPrincipale>` and `<DataFatturaPrincipale>`)
    - Writing in chatter of `<DatiGenerali><DatiTrasporto>` and `<DatiVeicoli>` nodes
+   - Importazione of signed electronic invoices in base64
    - Advanced management of Invoice Line Data:
      - Creation of article codes during import.
        These codes are used to uniquely identify products/services according to different coding standards.

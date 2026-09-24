@@ -1,6 +1,8 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+import binascii
 import logging
 from io import BytesIO
 
@@ -17,6 +19,14 @@ _logger = logging.getLogger(__name__)
 class IrAttachmentInherit(models.Model):
     _inherit = "ir.attachment"
 
+    def _l10n_it_edi_ext_decode_p7m_base64(self, content, name=None):
+        """Some programs download p7m files as base64 text."""
+        try:
+            return base64.b64decode(content)
+        except binascii.Error:
+            _logger.info(f"The p7m file '{name}' is not base64 encoded")
+            return ""
+
     def _is_l10n_it_edi_import_file(self):
         # Extend Odoo standard check to also recognize signed e-invoice files
         # (e.g. .p7m files reported as "application/octet-stream").
@@ -30,6 +40,13 @@ class IrAttachmentInherit(models.Model):
             ):
                 return True
         return False
+
+    def _parse_xml_with_recovery(self, content, name=None):
+        xml_tree = super()._parse_xml_with_recovery(content, name=name)
+        if xml_tree is None and name and name.lower().endswith(".p7m"):
+            decoded = self._l10n_it_edi_ext_decode_p7m_base64(content, name=name)
+            xml_tree = super()._parse_xml_with_recovery(decoded, name=name)
+        return xml_tree
 
     @api.model
     def get_fatturapa_preview_style_name(self):
