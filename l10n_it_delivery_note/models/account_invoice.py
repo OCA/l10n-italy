@@ -6,7 +6,10 @@
 # @author: Matteo Bilotta <mbilotta@linkeurope.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from collections import defaultdict
+
 from odoo import fields, models
+from odoo.tools import config
 
 from .stock_delivery_note import DATE_FORMAT, DOMAIN_INVOICE_STATUSES
 
@@ -167,3 +170,97 @@ class AccountInvoice(models.Model):
         dn_lines.sync_invoice_status()
         dn_lines.delivery_note_id._compute_invoice_status()
         dn_lines.delivery_note_id.state = "confirm"
+
+    def _l10n_it_edi_invoice_is_direct(self):
+        """An invoice is direct if ddt are all done the same day as the invoice."""
+        delivery_notes = self._get_dati_ddt_delivery_notes()
+        if delivery_notes:
+            return all(ddt.date == self.invoice_date for ddt in delivery_notes)
+        if self._export_pickings_as_ddt():
+            return super()._l10n_it_edi_invoice_is_direct()
+        # There is no DdT to defer the invoice to
+        return True
+
+    def _l10n_it_edi_get_values(self, pdf_values=None):
+        """Extend to add dati_ddt_list for delivery notes."""
+        values = super()._l10n_it_edi_get_values(pdf_values)
+        values["dati_ddt_list"] = self._get_dati_ddt(values["base_lines"])
+        if values["dati_ddt_list"] or not self._export_pickings_as_ddt():
+            # Do not export the pickings of l10n_it_stock_ddt
+            values["ddt_dict"] = {}
+        return values
+
+    def _export_pickings_as_ddt(self):
+        """Whether the pickings are exported as DdT, as l10n_it_stock_ddt does.
+
+        The DdT are the delivery notes of this module, the pickings are not:
+        the DdT number that l10n_it_stock_ddt assigns to them is hidden,
+        so they are never exported, not even for invoices without delivery notes.
+
+        Only the tests of the other modules (e.g. l10n_it_stock_ddt) keep
+        the pickings as DdT, because they expect them to be exported.
+        """
+        return config["test_enable"] and not self.env.context.get(
+            "test_l10n_it_delivery_note"
+        )
+
+    def _get_dati_ddt_delivery_notes(self):
+        """Get the DdT to export, sorted by date.
+
+        NumeroDDT and DataDDT are mandatory, so only confirmed DdT are exported.
+        """
+        self.ensure_one()
+        return self.delivery_note_ids.filtered(lambda dn: dn.name and dn.date).sorted(
+            lambda dn: (dn.date, dn.id)
+        )
+
+    def _get_dati_ddt_invoice_lines(self, delivery_note):
+        """
+        Get the invoice lines shipped by `delivery_note`.
+
+        The link goes through the sale order lines because an invoice line
+        can be shipped by more than one DdT (partial deliveries),
+        while `delivery_note_id` can only store one of them.
+        """
+        self.ensure_one()
+        invoice_lines = self.invoice_line_ids.filtered(
+            lambda line: line.display_type == "product"
+        )
+        sale_lines = delivery_note.line_ids.sale_line_id
+        return invoice_lines.filtered(
+            lambda line, dn=delivery_note: line.sale_line_ids & sale_lines
+            or line.delivery_note_id == dn
+        )
+
+    def _get_dati_ddt(self, base_lines):
+        """
+        Get the data for rendering DatiDDT, one dictionary per DdT.
+
+        :param base_lines: the lines exported as DettaglioLinee
+        """
+        self.ensure_one()
+
+        delivery_notes = self._get_dati_ddt_delivery_notes()
+        if not delivery_notes:
+            return []
+
+        # RiferimentoNumeroLinea has to match the NumeroLinea of DettaglioLinee,
+        # that are numbered on base_lines and not on the invoice lines
+        line_numbers = defaultdict(list)
+        for base_line in base_lines:
+            line_numbers[base_line["record"]].append(
+                base_line["it_values"]["numero_linea"]
+            )
+
+        return [
+            {
+                "NumeroDDT": delivery_note.name,
+                "DataDDT": delivery_note.date,
+                "RiferimentoNumeroLinea": sorted(
+                    number
+                    for line in self._get_dati_ddt_invoice_lines(delivery_note)
+                    for number in line_numbers[line]
+                ),
+            }
+            for delivery_note in delivery_notes
+        ]
