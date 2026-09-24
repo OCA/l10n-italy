@@ -1,0 +1,2 @@
+odoo-addon-product_customerinfo_picking @ git+https://github.com/OCA/stock-logistics-workflow@refs/pull/2362/head#subdirectory=product_customerinfo_picking
+odoo-addon-l10n_it_delivery_note @ git+https://github.com/OCA/l10n-italy@refs/pull/5081/head#subdirectory=l10n_it_delivery_note
