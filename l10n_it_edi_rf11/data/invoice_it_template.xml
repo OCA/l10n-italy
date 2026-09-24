@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        Concern B (art. 74-ter / RegimeFiscale RF11).
+
+        Overrides the CORE FatturaPA export template. For a 74-ter self-billing
+        invoice the tour operator (the company) issues the invoice on behalf of
+        the agency, so - like the Odoo 16 module - it emits:
+          * a <TerzoIntermediarioOSoggettoEmittente> block with the COMPANY's
+            own data (the emitter), and
+          * <SoggettoEmittente>CC</SoggettoEmittente>
+        both driven by `soggetto_emittente == 'CC'` (set in
+        account.move._l10n_it_edi_get_values for the 74-ter case), NOT by the
+        global l10n_edi_it_sender_partner (which stays empty). For that case the
+        block/element emitted by l10n_it_edi_sender_partner is suppressed, so
+        there is never a duplicate. Ordinary invoices are left untouched.
+
+        This view applies after l10n_it_edi_sender_partner (a dependency).
+    -->
+    <template
+        id="account_invoice_it_74ter_export_inherit"
+        inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
+        priority="99"
+    >
+        <!--
+            TerzoIntermediarioOSoggettoEmittente: for 74-ter emit the company
+            (the emitter) and suppress l10n_it_edi_sender_partner's own block;
+            otherwise leave sender_partner's block as-is.
+        -->
+        <xpath
+            expr="//t[@t-call='l10n_it_edi_sender_partner.l10n_it_edi_terzo_intermediario_soggetto_emittente']"
+            position="replace"
+        >
+            <t
+                t-if="soggetto_emittente != 'CC'"
+                t-call="l10n_it_edi_sender_partner.l10n_it_edi_terzo_intermediario_soggetto_emittente"
+            />
+            <t t-if="soggetto_emittente == 'CC'">
+                <t
+                    t-set="emitter"
+                    t-value="company.partner_id._l10n_it_edi_get_values()"
+                />
+                <TerzoIntermediarioOSoggettoEmittente>
+                    <DatiAnagrafici>
+                        <IdFiscaleIVA>
+                            <IdPaese t-out="emitter['country_code']" />
+                            <IdCodice t-out="emitter['vat']" />
+                        </IdFiscaleIVA>
+                        <CodiceFiscale
+                            t-if="emitter['codice_fiscale']"
+                            t-out="emitter['codice_fiscale']"
+                        />
+                        <Anagrafica>
+                            <Denominazione
+                                t-if="emitter['is_company']"
+                                t-out="company.partner_id.display_name"
+                            />
+                            <Nome
+                                t-if="not emitter['is_company']"
+                                t-out="emitter['first_name']"
+                            />
+                            <Cognome
+                                t-if="not emitter['is_company']"
+                                t-out="emitter['last_name']"
+                            />
+                        </Anagrafica>
+                    </DatiAnagrafici>
+                </TerzoIntermediarioOSoggettoEmittente>
+            </t>
+        </xpath>
+
+        <!-- SoggettoEmittente: CC for 74-ter, else TZ when a sender is set. -->
+        <xpath expr="//SoggettoEmittente" position="replace">
+            <SoggettoEmittente t-if="soggetto_emittente == 'CC'">CC</SoggettoEmittente>
+            <SoggettoEmittente
+                t-if="soggetto_emittente != 'CC' and company.l10n_edi_it_sender_partner"
+            >TZ</SoggettoEmittente>
+        </xpath>
+
+        <!-- Omit ImportoTotaleDocumento for the 74-ter autofattura -->
+        <xpath expr="//DatiGeneraliDocumento/ImportoTotaleDocumento" position="replace">
+            <ImportoTotaleDocumento
+                t-if="importo_totale_documento is not None"
+                t-out="format_monetary(importo_totale_documento, currency)"
+            />
+        </xpath>
+    </template>
+</odoo>

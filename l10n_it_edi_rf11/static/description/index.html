@@ -1,0 +1,714 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>ITA - Supporto IVA 74-ter - Fattura elettronica</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="ita-supporto-iva-74-ter-fattura-elettronica">
+<h1 class="title">ITA - Supporto IVA 74-ter - Fattura elettronica</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:33aa59bb76bb856ca3e14ef051224e4e598a7ebcf3903dcc85dad8e2cf89bf7d
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_rf11"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_edi_rf11"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><strong>English</strong></p>
+<p>Support for the VAT scheme of article 74-ter, DPR 633/72 (travel
+agencies and tour operators) in the Italian electronic invoice
+(FatturaPA).</p>
+<p>Operators that organise travel through the sale of “travel packages”
+(travel agencies and tour operators) are subject to the special VAT
+scheme of art. 74-ter, DPR 633/72.</p>
+<p>The tour operator issues the ordinary electronic invoice on behalf of
+the intermediary travel agency. That invoice represents the commission
+the tour operator owes the agency and replaces the vendor bill the
+agency would otherwise issue to the tour operator.</p>
+<p>The invoice is emitted as <tt class="docutils literal">TipoDocumento</tt> TD01 with <tt class="docutils literal">RegimeFiscale</tt>
+RF11, showing that it is issued on behalf of the agency (the <em>Terzo
+Intermediario o Soggetto Emittente</em> and <em>Soggetto Emittente</em> blocks),
+and carrying the VAT nature code N3.6 for non-taxable operations, or
+N6.9 for travel within the EU, in place of the VAT rate.</p>
+<p>The module also lets the tour operator flag that a customer invoice is
+paid by the agency, transferring the customer receivable to the agency.</p>
+<p><strong>Italiano</strong></p>
+<p>Supporto al regime IVA dell’art. 74-ter, DPR 633/72 (agenzie viaggi e
+turismo) nella fattura elettronica (FatturaPA).</p>
+<p>Gli operatori economici che effettuano attività di organizzazione di
+viaggi attraverso la vendita di “pacchetti turistici” (agenzie di
+viaggio e tour operator) devono adempiere ad uno speciale regime di
+applicazione dell’IVA. Si tratta del regime disciplinato dall’art.
+74-ter del DPR n. 633/72 legato all’organizzazione in proprio di
+pacchetti turistici o di commercio in proprio di pacchetti turistici
+acquistati da altri soggetti.</p>
+<p><a class="reference external" href="https://def.finanze.it/DocTribFrontend/decodeurn?urn=urn:doctrib::DPR:1972-10-26;633_art74ter">https://def.finanze.it/DocTribFrontend/decodeurn?urn=urn:doctrib::DPR:1972-10-26;633_art74ter</a></p>
+<p>Il tour operator compila la fattura elettronica ordinaria, evidenziando
+che la stessa è emessa per conto dell’agenzia viaggi intermediaria. Tale
+fattura rappresenta le provvigioni che il tour operator deve
+corrispondere all’agenzia viaggi e sostituisce la fattura passiva che
+l’agenzia viaggi presenterebbe al tour operator.</p>
+<p>Nel dettaglio il tour operator compila la fattura elettronica ordinaria
+(“TipoDocumento” TD01 e “RegimeFiscale” RF11 “Agenzie viaggi e turismo
+(art.74-ter, DPR 633/72)”) evidenziando che la stessa è emessa per conto
+dell’agenzia viaggi intermediaria (valorizzando i blocchi “Terzo
+Intermediario o Soggetto emittente” e “Soggetto emittente”) ed
+inserendo, in luogo dell’aliquota IVA, il codice natura N3.6 se la
+fattura riguarda operazioni non imponibili o il codice N6.9 se il
+viaggio è nell’UE.</p>
+<p>Il modulo consente inoltre di indicare che una fattura cliente è pagata
+dall’agenzia, trasferendo il credito dal cliente all’agenzia.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This is an alpha version, the data model and design can change at any time without warning.
+Only for development or testing purpose, do not use in production.
+<a class="reference external" href="https://odoo-community.org/page/development-status">More details on development status</a></p>
+</div>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a><ul>
+<li><a class="reference internal" href="#fresh-install-odoo-18-no-prior-74-ter-data" id="toc-entry-2">Fresh install (Odoo 18, no prior 74-ter data)</a></li>
+<li><a class="reference internal" href="#upgrade-from-odoo-16-db-that-had-l10n-it-fatturapa-out-rf11" id="toc-entry-3">Upgrade from Odoo 16 (DB that had <tt class="docutils literal">l10n_it_fatturapa_out_rf11</tt>)</a><ul>
+<li><a class="reference internal" href="#best-way-mark-it-for-install-in-the-migration-run-itself" id="toc-entry-4">Best way — mark it for install <em>in the migration run itself</em></a></li>
+<li><a class="reference internal" href="#after-the-upgrade-verify" id="toc-entry-5">After the upgrade — verify</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-6">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-7">Usage</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-8">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-9">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-10">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-11">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-12">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
+<div class="section" id="fresh-install-odoo-18-no-prior-74-ter-data">
+<h2><a class="toc-backref" href="#toc-entry-2">Fresh install (Odoo 18, no prior 74-ter data)</a></h2>
+<p>Install the module normally, from <strong>Apps</strong> or with:</p>
+<pre class="code bash literal-block">
+odoo<span class="w"> </span>-c<span class="w"> </span>&lt;odoo.conf&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;DB&gt;<span class="w"> </span>-i<span class="w"> </span>l10n_it_edi_rf11<span class="w"> </span>--stop-after-init
+</pre>
+<p>It depends on <tt class="docutils literal">l10n_it_edi_sender_partner</tt>, which transitively pulls
+in core <tt class="docutils literal">l10n_it_edi</tt> + <tt class="docutils literal">l10n_it_edi_extension</tt>.</p>
+</div>
+<div class="section" id="upgrade-from-odoo-16-db-that-had-l10n-it-fatturapa-out-rf11">
+<h2><a class="toc-backref" href="#toc-entry-3">Upgrade from Odoo 16 (DB that had <tt class="docutils literal">l10n_it_fatturapa_out_rf11</tt>)</a></h2>
+<p>This module is the Odoo 18 successor of the Odoo 16 module
+<tt class="docutils literal">l10n_it_fatturapa_out_rf11</tt>. It ships a <tt class="docutils literal">pre_init_hook</tt>
+(<tt class="docutils literal">pre_absorb_old_module</tt>) that <strong>renames the old module into this
+one</strong>, merging its <tt class="docutils literal">ir.model.data</tt> and preserving every 74-ter value.
+All fields keep identical column names across versions, on core models:</p>
+<ul class="simple">
+<li><tt class="docutils literal">res.partner</tt>: <tt class="docutils literal">is_74ter_agent</tt>, <tt class="docutils literal">agent_74ter_id</tt>,
+<tt class="docutils literal">invoices_paid_by_agent</tt></li>
+<li><tt class="docutils literal">res.company</tt>: <tt class="docutils literal">payments_74ter_journal_id</tt></li>
+<li><tt class="docutils literal">account.move</tt>: <tt class="docutils literal">agent_74ter_id</tt>, <tt class="docutils literal">to_be_paid_by_agent_74ter</tt></li>
+</ul>
+<div class="section" id="best-way-mark-it-for-install-in-the-migration-run-itself">
+<h3><a class="toc-backref" href="#toc-entry-4">Best way — mark it for install <em>in the migration run itself</em></a></h3>
+<p>Because <tt class="docutils literal">l10n_it_edi_rf11</tt> is a <strong>new module name</strong> in v18, Odoo
+treats it as a fresh install (migration scripts under <tt class="docutils literal">migrations/</tt>
+never run for a first-time install — only <tt class="docutils literal">pre_init_hook</tt> does). You
+must therefore add it with <tt class="docutils literal"><span class="pre">-i</span></tt> to the <strong>same OpenUpgrade invocation</strong>
+that upgrades the rest of the DB:</p>
+<pre class="code bash literal-block">
+odoo<span class="w"> </span>-c<span class="w"> </span>&lt;odoo.conf&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;DB&gt;<span class="w"> </span>-u<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>l10n_it_edi_rf11<span class="w"> </span><span class="se">\
+</span><span class="w">     </span>--stop-after-init<span class="w"> </span>--no-http
+</pre>
+<p>(with your usual OpenUpgrade environment/config). Apply the <tt class="docutils literal"><span class="pre">-i</span></tt>
+<strong>only to customer databases where ``l10n_it_fatturapa_out_rf11`` was
+installed</strong>; installing it elsewhere is harmless (the hook is a no-op)
+but pointless.</p>
+<p><strong>Why the same run matters — ordering guarantee.</strong> In a single Odoo run,
+modules being installed execute their <tt class="docutils literal">pre_init_hook</tt> while the load
+graph is processed; modules that no longer exist in the code (here:
+<tt class="docutils literal">l10n_it_fatturapa_out_rf11</tt>) are flagged <em>to remove</em> and are
+uninstalled only at the <strong>end</strong> of that same run. So the rename fires
+<em>first</em> and the old module is absorbed before the obsolete-module
+cleanup could drop its columns — no data is lost.</p>
+</div>
+<div class="section" id="after-the-upgrade-verify">
+<h3><a class="toc-backref" href="#toc-entry-5">After the upgrade — verify</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal">l10n_it_fatturapa_out_rf11</tt> is gone from <strong>Apps</strong>;
+<tt class="docutils literal">l10n_it_edi_rf11</tt> is installed.</li>
+<li>The 74-ter flags/fields listed above are preserved on partners,
+company and posted invoices.</li>
+<li>Company <em>RegimeFiscale</em> RF11 is set:
+<tt class="docutils literal">res.company.l10n_it_tax_system = 'RF11'</tt>. This is migrated
+<strong>separately</strong> by <tt class="docutils literal">l10n_it_edi_extension</tt> (from the v16
+<tt class="docutils literal">fatturapa_fiscal_position.code</tt>), which runs ahead of this module
+via the dependency chain — this module does <strong>not</strong> touch it.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-6">Configuration</a></h1>
+<p><strong>English</strong></p>
+<p>To emit 74-ter self-billing electronic invoices:</p>
+<ol class="arabic">
+<li><p class="first">On the company record (<em>Settings &gt; Users &amp; Companies &gt; Companies &gt;
+your company</em>), set <strong>Tax System</strong> to
+<tt class="docutils literal">[RF11] Agenzie viaggi e turismo <span class="pre">(art.74-ter,</span> DPR 633/72)</tt>. The
+field is shown right after the <strong>Codice Fiscale</strong> field and only when
+the company <strong>Country</strong> is Italy.</p>
+</li>
+<li><p class="first">Configure the purchase taxes used for the agency commissions. Both
+carry an explicit <strong>nature</strong> (<tt class="docutils literal">Exoneration</tt>); the nature written in
+the FatturaPA is read from the tax, not hard-coded. The simplest way
+to create them is to <strong>duplicate an existing reverse-charge purchase
+tax</strong> (<em>Accounting &gt; Configuration &gt; Taxes</em>, then <em>Action ▸
+Duplicate</em>):</p>
+<ul class="simple">
+<li><strong>Extra-EU / non-taxable</strong>: duplicate <strong>``0% S RC``</strong> and set
+<strong>Exoneration</strong> to <tt class="docutils literal">N3.6</tt> with its <strong>Law Reference</strong> (e.g.
+<tt class="docutils literal">Art. <span class="pre">74-ter,</span> DPR 633/72</tt>). It is exported as-is (Natura N3.6,
+no VAT).</li>
+<li><strong>Intra-EU</strong>: duplicate <strong>``22% S RC``</strong> and set <strong>Exoneration</strong>
+to <tt class="docutils literal">N6.9</tt> with its <strong>Law Reference</strong>. The 22% is kept in the
+purchase and sales VAT registers (the reverse-charge repartition
+of the copied tax); the module emits the FatturaPA <strong>without VAT
+and with Natura N6.9</strong> automatically (the 22% stays only in the
+accounting).</li>
+</ul>
+<p><tt class="docutils literal">S</tt> in the tax name stands for <em>Servizi</em> (services), which is what
+agency commissions are. If a copied tax’s report grids were authored
+for a different case, have your accountant confirm they fit the
+74-ter operation.</p>
+</li>
+<li><p class="first">For <strong>each</strong> travel agency you work with, on its contact tick <strong>74ter
+agency</strong> and set its SdI destination code (<em>Codice Destinatario</em>); it
+is used as the <tt class="docutils literal">CodiceDestinatario</tt> of the invoices issued on its
+behalf.</p>
+</li>
+</ol>
+<p>The <em>Terzo Intermediario o Soggetto Emittente</em> block is filled
+automatically with the <strong>company’s own data</strong> (the tour operator issues
+the invoice on behalf of the agency), together with
+<tt class="docutils literal">SoggettoEmittente</tt> = <strong>CC</strong>. Leave the company <strong>Third Party/Sender</strong>
+(<tt class="docutils literal">l10n_edi_it_sender_partner</tt>) <strong>empty</strong>: it is only for ordinary
+invoices actually transmitted by a third party and is ignored for 74-ter
+documents.</p>
+<p>For the “invoice paid by the agency” feature:</p>
+<ol class="arabic simple">
+<li>In <em>Settings &gt; Accounting</em>, set <strong>Journal for agencies payments</strong>.</li>
+<li>On a customer contact, set <strong>Agency</strong> and, optionally, tick
+<strong>Invoices paid by agency</strong> so it is proposed automatically on
+invoices.</li>
+</ol>
+<p><strong>Italiano</strong></p>
+<p>Per emettere le fatture elettroniche in autofattura 74-ter:</p>
+<ol class="arabic">
+<li><p class="first">Sull’anagrafica azienda (<em>Impostazioni &gt; Utenti e aziende &gt; Aziende &gt;
+la propria azienda</em>), impostare il <strong>Regime fiscale</strong> su
+<tt class="docutils literal">[RF11] Agenzie viaggi e turismo <span class="pre">(art.74-ter,</span> DPR 633/72)</tt>. Il
+campo è mostrato subito dopo il <strong>Codice Fiscale</strong> e solo se il
+<strong>Paese</strong> dell’azienda è Italia.</p>
+</li>
+<li><p class="first">Configurare le imposte di acquisto usate per le provvigioni
+dell’agenzia. Entrambe portano una <strong>natura</strong> esplicita
+(<tt class="docutils literal">Esenzione</tt>); la natura scritta nella FatturaPA viene letta
+dall’imposta, non è cablata nel codice. Il modo più semplice per
+crearle è <strong>duplicare un’imposta di acquisto reverse charge
+esistente</strong> (<em>Contabilità &gt; Configurazione &gt; Imposte</em>, poi <em>Azione ▸
+Duplica</em>):</p>
+<ul class="simple">
+<li><strong>Extra-UE / non imponibile</strong>: duplicare <strong>``0% S RC``</strong> e
+impostare l’<strong>Esenzione</strong> su <tt class="docutils literal">N3.6</tt> con il relativo
+<strong>Riferimento normativo</strong> (es. <tt class="docutils literal">Art. <span class="pre">74-ter,</span> DPR 633/72</tt>). Viene
+esportata così com’è (Natura N3.6, senza IVA).</li>
+<li><strong>Intra-UE</strong>: duplicare <strong>``22% S RC``</strong> e impostare
+l’<strong>Esenzione</strong> su <tt class="docutils literal">N6.9</tt> con il relativo <strong>Riferimento
+normativo</strong>. Il 22% resta nei registri IVA acquisti e vendite (la
+ripartizione reverse charge dell’imposta copiata); il modulo
+emette la FatturaPA <strong>senza IVA e con Natura N6.9</strong>
+automaticamente (il 22% resta solo in contabilità).</li>
+</ul>
+<p>La <tt class="docutils literal">S</tt> nel nome dell’imposta indica <em>Servizi</em>, che è la natura
+delle provvigioni d’agenzia. Se le griglie di dichiarazione
+dell’imposta copiata erano pensate per un altro caso, farle
+verificare al commercialista per l’operazione 74-ter.</p>
+</li>
+<li><p class="first">Per <strong>ogni</strong> agenzia viaggi con cui si lavora, sull’anagrafica
+spuntare <strong>Agenzia 74ter</strong> e impostare il suo Codice Destinatario
+SdI; viene usato come <tt class="docutils literal">CodiceDestinatario</tt> delle fatture emesse per
+suo conto.</p>
+</li>
+</ol>
+<p>Il blocco <em>Terzo Intermediario o Soggetto Emittente</em> viene valorizzato
+automaticamente con i <strong>dati dell’azienda</strong> stessa (il tour operator
+emette la fattura per conto dell’agenzia), insieme a
+<tt class="docutils literal">SoggettoEmittente</tt> = <strong>CC</strong>. Lasciare <strong>vuoto</strong> il <strong>Terzo
+Intermediario o Soggetto Emittente</strong> (<tt class="docutils literal">l10n_edi_it_sender_partner</tt>)
+dell’azienda: serve solo per le fatture ordinarie effettivamente
+trasmesse da un terzo e viene ignorato per i documenti 74-ter.</p>
+<p>Per la funzione “fattura pagata dall’agenzia”:</p>
+<ol class="arabic simple">
+<li>In <em>Impostazioni &gt; Contabilità</em>, impostare il <strong>Registro pagamenti
+agenzie</strong>.</li>
+<li>Sull’anagrafica del cliente, impostare l’<strong>Agenzia</strong> e,
+facoltativamente, spuntare <strong>Fatture pagate dall’agenzia</strong> per
+proporlo automaticamente sulle fatture.</li>
+</ol>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#toc-entry-7">Usage</a></h1>
+<p><strong>English</strong></p>
+<p><em>74-ter electronic invoice (autofattura)</em></p>
+<ol class="arabic simple">
+<li>Register the vendor bill received from the travel agency (the agency
+must be flagged as <em>74ter agency</em>), using the extra-EU 0% N3.6 tax or
+the intra-EU 22% N6.9 tax on the commission line.</li>
+<li>On posting, the bill is treated as a self-invoice: in the FatturaPA
+XML the agency becomes the <em>CedentePrestatore</em> and the company the
+<em>CessionarioCommittente</em>, with <tt class="docutils literal">RegimeFiscale</tt> RF11,
+<tt class="docutils literal">TipoDocumento</tt> TD01, <tt class="docutils literal">SoggettoEmittente</tt> CC, the <em>Terzo
+Intermediario o Soggetto Emittente</em> block filled with the company,
+<tt class="docutils literal">CodiceDestinatario</tt> = the agency’s code, and the total
+(<tt class="docutils literal">ImportoTotaleDocumento</tt>) omitted. For intra-EU lines the 22% VAT
+is stripped and reported as Natura N6.9.</li>
+<li>Use the <strong>Send to Tax Agency</strong> button on the bill to send the XML to
+the SdI. A courtesy copy can then be forwarded to the agency.</li>
+</ol>
+<p><em>Invoice paid by the agency</em></p>
+<ol class="arabic simple">
+<li>On a customer invoice, set <strong>Agency</strong> and tick <strong>To be paid by
+agency</strong>.</li>
+<li>On posting, an entry is booked in the agencies-payments journal that
+moves the customer receivable to the agency, and the invoice is
+reconciled.</li>
+</ol>
+<p><strong>Italiano</strong></p>
+<p><em>Fattura elettronica 74-ter (autofattura)</em></p>
+<ol class="arabic simple">
+<li>Registrare la fattura fornitore ricevuta dall’agenzia viaggi
+(l’agenzia deve essere marcata come <em>Agenzia 74ter</em>), usando sulla
+riga della provvigione l’imposta extra-UE 0% N3.6 oppure l’imposta
+intra-UE 22% N6.9.</li>
+<li>Alla conferma, la fattura viene trattata come autofattura: nell’XML
+FatturaPA l’agenzia diventa il <em>CedentePrestatore</em> e l’azienda il
+<em>CessionarioCommittente</em>, con <tt class="docutils literal">RegimeFiscale</tt> RF11,
+<tt class="docutils literal">TipoDocumento</tt> TD01, <tt class="docutils literal">SoggettoEmittente</tt> CC, il blocco <em>Terzo
+Intermediario o Soggetto Emittente</em> valorizzato con l’azienda,
+<tt class="docutils literal">CodiceDestinatario</tt> = codice dell’agenzia e l’importo totale
+(<tt class="docutils literal">ImportoTotaleDocumento</tt>) omesso. Per le righe intra-UE l’IVA al
+22% viene azzerata e riportata come Natura N6.9.</li>
+<li>Usare il pulsante <strong>Invia all’Agenzia delle Entrate</strong> sulla fattura
+per inviare l’XML allo SdI. Una copia di cortesia può poi essere
+inviata all’agenzia.</li>
+</ol>
+<p><em>Fattura pagata dall’agenzia</em></p>
+<ol class="arabic simple">
+<li>Su una fattura cliente, impostare l’<strong>Agenzia</strong> e spuntare <strong>Da
+pagare a cura dell’agenzia</strong>.</li>
+<li>Alla conferma, viene registrata nel registro pagamenti agenzie una
+scrittura che trasferisce il credito dal cliente all’agenzia, e la
+fattura viene riconciliata.</li>
+</ol>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#toc-entry-8">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_edi_rf11%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#toc-entry-9">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#toc-entry-10">Authors</a></h2>
+<ul class="simple">
+<li>Innovyou</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#toc-entry-11">Contributors</a></h2>
+<ul class="simple">
+<li>Maurizio Pellegrinet</li>
+<li>Lorenzo Carta <a class="reference external" href="https://github.com/LorenzoC0">https://github.com/LorenzoC0</a></li>
+<li>Lorenzo Battistini <a class="reference external" href="https://github.com/eLBati">https://github.com/eLBati</a></li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#toc-entry-12">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/eLBati"><img alt="eLBati" src="https://github.com/eLBati.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/LorenzoC0"><img alt="LorenzoC0" src="https://github.com/LorenzoC0.png?size=40px" /></a></p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_edi_rf11">OCA/l10n-italy</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
