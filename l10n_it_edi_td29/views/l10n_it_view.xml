@@ -23,7 +23,7 @@
             >
                 <attribute
                     name="invisible"
-                >state != 'posted' or (not l10n_it_edi_is_self_invoice and not l10n_it_edi_is_td29) or is_move_sent or country_code != 'IT' or l10n_it_edi_state in ('rejected', 'rejected_by_pa_partner')</attribute>
+                >state != 'posted' or (not l10n_it_edi_is_self_invoice and not l10n_it_edi_is_td29) or is_move_sent or country_code != 'IT' or l10n_it_edi_state in ('rejected', 'rejected_by_pa_partner') or l10n_it_document_type_code not in ('TD16', 'TD17', 'TD18', 'TD19')</attribute>
             </xpath>
         </field>
     </record>
