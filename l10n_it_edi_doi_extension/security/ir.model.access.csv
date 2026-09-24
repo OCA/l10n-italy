@@ -1,3 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_account_move_doi_user,account.move.doi.user,model_account_move_doi,account.group_account_invoice,1,1,1,1
 access_account_move_doi_manager,account.move.doi.manager,model_account_move_doi,account.group_account_manager,1,1,1,1
+access_plafond_year_user,l10n_it_edi_doi_extension.plafond.year.user,model_l10n_it_edi_doi_extension_plafond_year,account.group_account_readonly,1,0,0,0
+access_plafond_year_invoice,l10n_it_edi_doi_extension.plafond.year.invoice,model_l10n_it_edi_doi_extension_plafond_year,account.group_account_invoice,1,1,1,0
+access_plafond_year_manager,l10n_it_edi_doi_extension.plafond.year.manager,model_l10n_it_edi_doi_extension_plafond_year,account.group_account_manager,1,1,1,1
+access_plafond_year_purchase,l10n_it_edi_doi_extension.plafond.year.purchase,model_l10n_it_edi_doi_extension_plafond_year,purchase.group_purchase_user,1,0,0,0
