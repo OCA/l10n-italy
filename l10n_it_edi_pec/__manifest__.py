@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Fattura elettronica - Supporto PEC",
-    "version": "18.0.1.1.0",
+    "version": "18.0.1.1.1",
     "category": "Localization/Italy",
     "summary": "Invio e ricezione fatture elettroniche tramite PEC",
     "author": "Odoo Community Association (OCA)",
