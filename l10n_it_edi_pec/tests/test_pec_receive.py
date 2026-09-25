@@ -60,11 +60,25 @@ class TestPecReceive(TestItEdiPecCommon):
         self.assertGreater(messages_after, messages_before)
 
     def test_process_incoming_invoice(self):
-        """Receiving an incoming invoice creates a new account.move."""
+        """Receiving an incoming invoice creates a new vendor bill."""
+        # The e-invoice in the test email is addressed to IT03339130126
+        self.company.write(
+            {"vat": "IT03339130126", "l10n_it_codice_fiscale": "03339130126"}
+        )
         moves_before = self.env["account.move"].search([])
         self._process_pec_email("POSTA CERTIFICATA_ Invio File 7339338.txt")
         moves_after = self.env["account.move"].search([]) - moves_before
-        self.assertTrue(moves_after)
+        self.assertRecordValues(
+            moves_after,
+            [
+                {
+                    "move_type": "in_invoice",
+                    "ref": "FATT/2018/0003",
+                    "amount_total": 997.96,
+                }
+            ],
+        )
+        self.assertEqual(len(moves_after.invoice_line_ids), 5)
         # Check that the attachment was created
         attachment = (
             self.env["ir.attachment"]
@@ -78,6 +92,21 @@ class TestPecReceive(TestItEdiPecCommon):
             )
         )
         self.assertTrue(attachment)
+
+    def test_process_incoming_invoice_other_company(self):
+        """An e-invoice not addressed to the company is kept as a vendor bill."""
+        moves_before = self.env["account.move"].search([])
+        self._process_pec_email("POSTA CERTIFICATA_ Invio File 7339338.txt")
+        moves_after = self.env["account.move"].search([]) - moves_before
+        self.assertRecordValues(
+            moves_after,
+            [{"move_type": "in_invoice", "amount_total": 0.0}],
+        )
+        self.assertTrue(moves_after.l10n_it_edi_attachment_id)
+        self.assertIn(
+            "Your company's VAT number and Fiscal Code haven't been found",
+            "".join(moves_after.message_ids.mapped("body")),
+        )
 
     def test_process_incoming_invoice_base64(self):
         """Receiving an incoming invoice with base64 attachment creates a new move."""
