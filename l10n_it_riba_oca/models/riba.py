@@ -482,84 +482,81 @@ class RibaListLine(models.Model):
         - Customer pays invoice → Bank receives payment → Bank notifies company
         - Company records settlement → RiBa line moves to 'paid' state
         """
-        # Validate configuration before proceeding
-        if not self.slip_id.config_id.settlement_journal_id:
-            raise UserError(self.env._("Please define a Settlement Journal."))
-
         # Initialize models for creating accounting entries
         move_model = self.env["account.move"]
         move_line_model = self.env["account.move.line"]
+        for line in self:
+            # Validate configuration before proceeding
+            if not line.slip_id.config_id.settlement_journal_id:
+                raise UserError(line.env._("Please define a Settlement Journal."))
 
-        # Find the original credit move line that needs to be settled
-        # This represents the amount that was credited when the RiBa was issued
-        settlement_move_line = move_line_model.search(
-            [
-                ("account_id", "=", self.slip_id.config_id.credit_account_id.id),
-                ("move_id", "=", self.credit_move_id.id),
-                ("debit", "!=", 0),  # We need the debit side of the credit entry
-            ]
-        )
+            # Find the original credit move line that needs to be settled
+            # This represents the amount that was credited when the RiBa was issued
+            settlement_move_line = move_line_model.search(
+                [
+                    ("account_id", "=", line.slip_id.config_id.credit_account_id.id),
+                    ("move_id", "=", line.credit_move_id.id),
+                    ("debit", "!=", 0),  # We need the debit side of the credit entry
+                ]
+            )
 
-        # Reduce settlement amount by amounts already matched (partial payments)
-        settlement_move_amount = settlement_move_line.debit - sum(
-            settlement_move_line.mapped("matched_credit_ids.amount")
-        )
+            # Reduce settlement amount by amounts already matched (partial payments)
+            settlement_move_amount = settlement_move_line.debit - sum(
+                settlement_move_line.mapped("matched_credit_ids.amount")
+            )
 
-        # Prepare settlement move data
-        move_ref = f"Settlement RiBa {self.slip_id.name}"
-        move_date = date or fields.Date.context_today(self)
+            # Prepare settlement move data
+            move_ref = f"Settlement RiBa {line.slip_id.name}"
+            move_date = date or fields.Date.context_today(line)
 
-        # Create the settlement accounting move
-        settlement_move = move_model.create(
-            {
-                "journal_id": (self.slip_id.config_id.settlement_journal_id.id),
-                "date": move_date,
-                "ref": move_ref,
-            }
-        )
-
-        # Create credit move lines for each RiBa line being settled
-        move_lines_credit = self.env["account.move.line"]
-        for riba_line in self:
-            # Credit the RiBa account to reduce the outstanding amount
-            move_line = move_line_model.with_context(check_move_validity=False).create(
+            # Create the settlement accounting move
+            settlement_move = move_model.create(
                 {
-                    "name": move_ref,
-                    "partner_id": riba_line.partner_id.id,
-                    "account_id": riba_line.slip_id.config_id.credit_account_id.id,
-                    "credit": riba_line.amount,  # Reduce RiBa credit account
-                    "debit": 0.0,
-                    "move_id": settlement_move.id,
-                    "slip_line_id": riba_line.id,  # Link back to RiBa line
+                    "journal_id": (line.slip_id.config_id.settlement_journal_id.id),
+                    "date": move_date,
+                    "ref": move_ref,
                 }
             )
-            move_lines_credit |= move_line
 
-        # Create the corresponding bank debit entry
-        bank_account = riba_line.slip_id.config_id.bank_account_id
-        move_line_model.with_context(check_move_validity=False).create(
-            {
-                "name": move_ref,
-                "account_id": bank_account.id,
-                "credit": 0.0,
-                "debit": settlement_move_amount,  # Increase bank account
-                "move_id": settlement_move.id,
-            }
-        )
+            # Credit the RiBa account to reduce the outstanding amount
+            move_line_credit = move_line_model.with_context(
+                check_move_validity=False
+            ).create(
+                {
+                    "name": move_ref,
+                    "partner_id": line.partner_id.id,
+                    "account_id": line.slip_id.config_id.credit_account_id.id,
+                    "credit": line.amount,  # Reduce RiBa credit account
+                    "debit": 0.0,
+                    "move_id": settlement_move.id,
+                    "slip_line_id": line.id,  # Link back to RiBa line
+                }
+            )
 
-        # Post the settlement move
-        move_lines_credit.mapped("move_id").action_post()
+            # Create the corresponding bank debit entry
+            bank_account = line.slip_id.config_id.bank_account_id
+            move_line_model.with_context(check_move_validity=False).create(
+                {
+                    "name": move_ref,
+                    "account_id": bank_account.id,
+                    "credit": 0.0,
+                    "debit": settlement_move_amount,  # Increase bank account
+                    "move_id": settlement_move.id,
+                }
+            )
 
-        # Prepare reconciliation: collect all move lines that need to be reconciled
-        to_be_settled = self.env["account.move.line"]
-        for move_line in move_lines_credit:
-            to_be_settled |= move_line
-        # Add the original credit move line
-        to_be_settled |= settlement_move_line
+            # Post the settlement move
+            move_line_credit.move_id.action_post()
 
-        # Reconcile all related move lines to complete the settlement
-        # This closes the accounting cycle for this RiBa collection
-        to_be_settled.reconcile()
+            # Prepare reconciliation: collect all move lines that need to be reconciled
+            to_be_settled = self.env["account.move.line"]
+            to_be_settled |= move_line_credit
+            # Add the original credit move line
+            to_be_settled |= settlement_move_line
+
+            # Reconcile all related move lines to complete the settlement
+            # This closes the accounting cycle for this RiBa collection
+            to_be_settled.reconcile()
 
     def settle_riba_line(self):
         for line in self:
