@@ -1,1 +1,2 @@
 - Nextev Srl \<<https://www.nextev.it>\>
+- Lorenzo Battistini \<<https://github.com/eLBati>\>
