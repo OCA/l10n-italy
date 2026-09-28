@@ -10,3 +10,5 @@ Quando il flag **TD29** è attivato su una fattura fornitore, il documento viene
 - `<CodiceDestinatario>0000000</CodiceDestinatario>` (indirizzato al Sistema di Interscambio)
 
 Per questo tipo di documento è necessario configurare un sezionale dedicato (giornale con propria sequenza di numerazione), da utilizzare separatamente dal sezionale delle fatture ordinarie.
+
+Le comunicazioni TD29 confermate possono essere inviate anche in blocco, insieme alle autofatture, con il pulsante "Send self-invoices to SDI" della vista elenco delle fatture fornitore.
