@@ -7,3 +7,4 @@
   - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
 - [Agile Business Group](https://www.agilebg.com/):
   - Alex Comba \<<alex.comba@agilebg.com>\>
+- Lorenzo Battistini \<<https://github.com/eLBati>\>
