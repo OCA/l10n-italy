@@ -540,6 +540,24 @@ quelli nella fattura elettronica.</li>
 </ul>
 </li>
 <li>Aggiunge di un wizard per calcolare i codici fiscali</li>
+<li>Invio massivo delle autofatture allo SdI:<ul>
+<li>Nella vista elenco delle fatture fornitore, selezionare le
+autofatture (ad es. TD17, TD18 e TD19 per il reverse charge) e
+usare il pulsante “Send self-invoices to SDI”.</li>
+<li>Vengono inviate solo le autofatture confermate e non ancora
+inviate, gli altri documenti selezionati vengono ignorati.</li>
+<li>Ogni autofattura viene controllata e inviata come con il pulsante
+“Invia a SDI” del documento: se un’autofattura ha degli errori, il
+motivo viene mostrato nel documento o nella notifica finale e le
+altre vengono inviate comunque.</li>
+<li>Ogni autofattura viene salvata subito dopo l’invio: se
+l’operazione si interrompe (ad es. per il limite di tempo del
+server), le autofatture già inviate risultano inviate anche in
+Odoo e le restanti si possono inviare ripetendo l’operazione.</li>
+<li>Al termine, una notifica riepiloga le autofatture inviate, quelle
+non inviate e i documenti ignorati.</li>
+</ul>
+</li>
 </ol>
 <p>&lt;<a class="reference external" href="https://www.fatturapa.gov.it">https://www.fatturapa.gov.it</a>&gt;</p>
 <p><strong>English</strong></p>
@@ -701,6 +719,24 @@ bill:<ul>
 </ul>
 </li>
 <li>Adds a wizard to calculate fiscal codes</li>
+<li>Bulk sending of self-invoices to the SdI:<ul>
+<li>In the vendor bills list view, select the self-invoices (e.g.
+TD17, TD18 and TD19 for reverse charge) and use the “Send
+self-invoices to SDI” button.</li>
+<li>Only confirmed self-invoices that have not been sent yet are sent,
+the other selected documents are skipped.</li>
+<li>Each self-invoice is checked and sent as with the “Send to SDI”
+button of the document: if a self-invoice has errors, the reason
+is shown in the document or in the final notification and the
+other self-invoices are sent anyway.</li>
+<li>Each self-invoice is saved right after being sent: if the
+operation is interrupted (e.g. by the server time limit), the
+self-invoices already sent are shown as sent in Odoo too and the
+remaining ones can be sent by repeating the operation.</li>
+<li>At the end, a notification summarizes the self-invoices sent, the
+ones not sent and the skipped documents.</li>
+</ul>
+</li>
 </ol>
 <p>&lt;<a class="reference external" href="https://www.fatturapa.gov.it">https://www.fatturapa.gov.it</a>&gt;</p>
 <p><strong>Table of contents</strong></p>
@@ -863,6 +899,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Alex Comba &lt;<a class="reference external" href="mailto:alex.comba&#64;agilebg.com">alex.comba&#64;agilebg.com</a>&gt;</li>
 </ul>
 </li>
+<li>Lorenzo Battistini &lt;<a class="reference external" href="https://github.com/eLBati">https://github.com/eLBati</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
