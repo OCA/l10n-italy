@@ -3,12 +3,15 @@
 # Copyright 2025 Odoo Community Association (OCA)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import time
 from unittest import mock
 from unittest.mock import patch
 
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import tagged
 from odoo.tools import mute_logger
+
+from odoo.addons.mail.models.fetchmail import FetchmailServer as MailFetchmailServer
 
 from .common import TestItEdiPecCommon
 
@@ -23,11 +26,59 @@ class TestPecReceive(TestItEdiPecCommon):
                 default_fetchmail_server_id=self.pec_fetch_server.id
             ).message_process(False, incoming_mail)
 
+    def _get_pec_imap_mock(self, filename):
+        """IMAP connection holding the PEC email from test data as unread."""
+        imap = mock.MagicMock()
+        imap.search.return_value = ("OK", [b"1"])
+        imap.fetch.return_value = ("OK", [(b"1", self._get_test_file(filename))])
+        return imap
+
+    def _patch_pec_connection(self, imap):
+        return patch.object(
+            type(self.pec_fetch_server), "_connect__", return_value=imap
+        )
+
     def test_process_response_rc(self):
         """Receiving a 'Ricevuta di consegna' (RC) sets state to forwarded."""
         move = self._create_sent_invoice("IT03339130126_00009.xml")
         self._process_pec_email("POSTA CERTIFICATA_ Ricevuta di consegna 6782414.txt")
         self.assertEqual(move.l10n_it_edi_state, "forwarded")
+
+    def test_process_response_rc_attachment_other_company(self):
+        """The receipt is matched on the invoice company, not on the attachment's.
+
+        The e-invoice attachment gets the company that was active when
+        the invoice was sent, which can be another company.
+        """
+        move = self._create_sent_invoice("IT03339130126_00009.xml")
+        attachment = (
+            self.env["ir.attachment"]
+            .sudo()
+            .search(
+                [
+                    ("res_model", "=", "account.move"),
+                    ("res_id", "=", move.id),
+                    ("res_field", "=", "l10n_it_edi_attachment_file"),
+                ]
+            )
+        )
+        attachment.company_id = self.company_data["company"]
+        self._process_pec_email("POSTA CERTIFICATA_ Ricevuta di consegna 6782414.txt")
+        self.assertEqual(move.l10n_it_edi_state, "forwarded")
+
+    def test_process_response_rc_ignores_received_bill(self):
+        """A received bill with the same e-invoice name does not get the receipt."""
+        bill = self.init_invoice(
+            "in_invoice",
+            partner=self.italian_partner_a,
+            company=self.company,
+            amounts=[1000],
+        )
+        bill.l10n_it_edi_attachment_name = "IT03339130126_00009.xml"
+        move = self._create_sent_invoice("IT03339130126_00009.xml")
+        self._process_pec_email("POSTA CERTIFICATA_ Ricevuta di consegna 6782414.txt")
+        self.assertEqual(move.l10n_it_edi_state, "forwarded")
+        self.assertFalse(bill.l10n_it_edi_state)
 
     def test_process_response_mc(self):
         """Receiving 'Mancata consegna' (MC) sets state to forward_failed."""
@@ -60,11 +111,25 @@ class TestPecReceive(TestItEdiPecCommon):
         self.assertGreater(messages_after, messages_before)
 
     def test_process_incoming_invoice(self):
-        """Receiving an incoming invoice creates a new account.move."""
+        """Receiving an incoming invoice creates a new vendor bill."""
+        # The e-invoice in the test email is addressed to IT03339130126
+        self.company.write(
+            {"vat": "IT03339130126", "l10n_it_codice_fiscale": "03339130126"}
+        )
         moves_before = self.env["account.move"].search([])
         self._process_pec_email("POSTA CERTIFICATA_ Invio File 7339338.txt")
         moves_after = self.env["account.move"].search([]) - moves_before
-        self.assertTrue(moves_after)
+        self.assertRecordValues(
+            moves_after,
+            [
+                {
+                    "move_type": "in_invoice",
+                    "ref": "FATT/2018/0003",
+                    "amount_total": 997.96,
+                }
+            ],
+        )
+        self.assertEqual(len(moves_after.invoice_line_ids), 5)
         # Check that the attachment was created
         attachment = (
             self.env["ir.attachment"]
@@ -79,11 +144,30 @@ class TestPecReceive(TestItEdiPecCommon):
         )
         self.assertTrue(attachment)
 
+    def test_process_incoming_invoice_other_company(self):
+        """An e-invoice not addressed to the company is kept as a vendor bill."""
+        moves_before = self.env["account.move"].search([])
+        self._process_pec_email("POSTA CERTIFICATA_ Invio File 7339338.txt")
+        moves_after = self.env["account.move"].search([]) - moves_before
+        self.assertRecordValues(
+            moves_after,
+            [{"move_type": "in_invoice", "amount_total": 0.0}],
+        )
+        # Core links the attachment to the field after creating the move
+        moves_after.invalidate_recordset(["l10n_it_edi_attachment_file"])
+        self.assertTrue(moves_after.l10n_it_edi_attachment_file)
+        self.assertIn(
+            "Your company's VAT number and Fiscal Code haven't been found",
+            "".join(moves_after.message_ids.mapped("body")),
+        )
+
     def test_process_incoming_invoice_base64(self):
         """Receiving an incoming invoice with base64 attachment creates a new move."""
         moves_before = self.env["account.move"].search([])
         self._process_pec_email("POSTA CERTIFICATA_ Invio File 7339338 (base64).txt")
         moves_after = self.env["account.move"].search([]) - moves_before
+        # The content of a base64-encoded .p7m is not imported yet,
+        # see https://github.com/OCA/l10n-italy/issues/5341
         self.assertTrue(moves_after)
         attachment = (
             self.env["ir.attachment"]
@@ -109,8 +193,8 @@ class TestPecReceive(TestItEdiPecCommon):
         self.assertEqual(len(moves_after_first), len(moves_after_second))
 
     def test_process_incoming_invoice_broken_xml(self):
-        """Receiving a broken XML sends a notification to e_inv_notify_partner_ids."""
-        incoming_mail = self._get_test_file(
+        """A broken XML is left unread and notified to e_inv_notify_partner_ids."""
+        imap = self._get_pec_imap_mock(
             "POSTA CERTIFICATA_ Invio File 7339338 (broken XML).txt"
         )
         outbound_mail_model = self.env["mail.mail"]
@@ -123,20 +207,67 @@ class TestPecReceive(TestItEdiPecCommon):
         ]
         error_mails_before = outbound_mail_model.search_count(error_mail_domain)
 
-        with mock.patch("odoo.addons.mail.models.fetchmail.IMAP4_SSL") as mock_imap:
-            instance = mock_imap.return_value
-            instance.search.return_value = ("OK", [b"1"])
-            instance.fetch.return_value = ("OK", [(b"1", incoming_mail)])
-            instance.store.return_value = True
+        with (
+            self._patch_pec_connection(imap),
+            # Keep the notification: sent mails are deleted
+            patch.object(type(outbound_mail_model), "send"),
+            patch.object(self.env.cr, "commit", lambda: None),
+            mute_logger("odoo.addons.l10n_it_edi_pec.models.fetchmail_server"),
+        ):
+            # "Fetch Now" raises the returned exception
+            exception = self.pec_fetch_server._fetch_mail()
 
-            with mute_logger(
-                "odoo.addons.l10n_it_edi_pec.models.fetchmail_server",
-            ):
-                self.pec_fetch_server.fetch_mail(raise_exception=False)
-
+        self.assertIsInstance(exception, ValidationError)
         error_mails = outbound_mail_model.search(error_mail_domain)
         self.assertGreater(len(error_mails), error_mails_before)
         self.assertTrue(self.pec_fetch_server.last_pec_error_message)
+        self.assertEqual(self.pec_fetch_server.pec_error_count, 1)
+        self.assertNotIn(mock.call(b"1", "+FLAGS", "\\Seen"), imap.store.call_args_list)
+
+    def test_fetch_other_server(self):
+        """Servers that are not for e-invoices are fetched by core."""
+        other_server = self.env["fetchmail.server"].create(
+            {
+                "name": "Test IMAP",
+                "server_type": "imap",
+                "server": "imap.example.com",
+                "port": 993,
+                "user": "info@example.com",
+                "password": "secret",
+                "state": "done",
+            }
+        )
+        with patch.object(
+            MailFetchmailServer, "_fetch_mail", autospec=True, return_value=None
+        ) as core_fetch_mail:
+            # "Fetch Now"
+            other_server.fetch_mail()
+        core_fetch_mail.assert_called_once()
+        self.assertEqual(core_fetch_mail.call_args.args[0], other_server)
+
+    def test_cron_fetches_pec_server(self):
+        """The mail gateway cron imports the e-invoices from the PEC server."""
+        # The e-invoice in the test email is addressed to IT03339130126
+        self.company.write(
+            {"vat": "IT03339130126", "l10n_it_codice_fiscale": "03339130126"}
+        )
+        imap = self._get_pec_imap_mock("POSTA CERTIFICATA_ Invio File 7339338.txt")
+        moves_before = self.env["account.move"].search([])
+        cron = self.env.ref("mail.ir_cron_mail_gateway_action")
+        with (
+            self._patch_pec_connection(imap),
+            patch.object(self.env.cr, "commit", lambda: None),
+        ):
+            self.env["fetchmail.server"].with_context(
+                cron_id=cron.id, cron_end_time=time.time() + 60
+            )._fetch_mails()
+
+        moves_after = self.env["account.move"].search([]) - moves_before
+        self.assertRecordValues(
+            moves_after, [{"move_type": "in_invoice", "ref": "FATT/2018/0003"}]
+        )
+        self.assertIn(mock.call(b"1", "+FLAGS", "\\Seen"), imap.store.call_args_list)
+        self.assertEqual(self.pec_fetch_server.pec_error_count, 0)
 
     def test_unrelated_pec_email_raises(self):
         """PEC email not related to e-invoice raises UserError."""
@@ -168,15 +299,16 @@ class TestPecReceive(TestItEdiPecCommon):
         )
         self.assertEqual(max_retry, 5)
 
-        with mock.patch("odoo.addons.mail.models.fetchmail.IMAP4") as mock_imap:
-            instance = mock_imap.return_value
-            instance.select.side_effect = Exception("Connection failed")
+        imap = mock.MagicMock()
+        imap.select.side_effect = Exception("Connection failed")
+        with (
+            self._patch_pec_connection(imap),
+            patch.object(self.env.cr, "commit", lambda: None),
+            mute_logger("odoo.addons.l10n_it_edi_pec.models.fetchmail_server"),
+        ):
+            exception = self.pec_fetch_server._fetch_mail()
 
-            with mute_logger(
-                "odoo.addons.l10n_it_edi_pec.models.fetchmail_server",
-            ):
-                self.pec_fetch_server.fetch_mail(raise_exception=False)
-
+        self.assertIsInstance(exception, ValidationError)
         # Error count exceeded max_retry -> server disabled
         self.assertEqual(self.pec_fetch_server.state, "draft")
 

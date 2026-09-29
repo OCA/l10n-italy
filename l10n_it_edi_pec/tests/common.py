@@ -23,6 +23,10 @@ class TestItEdiPecCommon(TestItEdi):
                 "l10n_it_edi_pec_email_from": "test@pec.example.it",
             }
         )
+        # Contacts to notify must have an email
+        cls.pec_notify_partner = cls.env["res.partner"].create(
+            {"name": "PEC errors", "email": "pec.errors@example.com"}
+        )
         cls.pec_fetch_server = cls.env["fetchmail.server"].create(
             {
                 "name": "Test PEC Fetch",
@@ -33,9 +37,7 @@ class TestItEdiPecCommon(TestItEdi):
                 "user": "test@pec.example.it",
                 "password": "secret",
                 "state": "done",
-                "e_inv_notify_partner_ids": [
-                    (6, 0, [cls.env.ref("base.user_admin").partner_id.id])
-                ],
+                "e_inv_notify_partner_ids": [(6, 0, cls.pec_notify_partner.ids)],
             }
         )
         cls.company.write(
@@ -89,6 +91,7 @@ class TestItEdiPecCommon(TestItEdi):
             {
                 "l10n_it_edi_state": "processing",
                 "l10n_it_edi_transaction": f"pec_{move.id}_{filename}",
+                "l10n_it_edi_attachment_name": filename,
             }
         )
         return move

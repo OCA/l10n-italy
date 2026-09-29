@@ -11,6 +11,8 @@ from odoo import fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 
+from odoo.addons.mail.models.fetchmail import MAIL_SERVER_DOMAIN
+
 _logger = logging.getLogger(__name__)
 
 MAX_POP_MESSAGES = 50
@@ -47,7 +49,7 @@ class FetchmailServer(models.Model):
         MailThread = self.env["mail.thread"]
         imap_server = None
         try:
-            imap_server = self.connect()
+            imap_server = self._connect__()
             imap_server.select()
             result, data = imap_server.search(None, "(UNSEEN)")
             for num in data[0].split():
@@ -87,7 +89,7 @@ class FetchmailServer(models.Model):
         try:
             while True:
                 failed_in_loop = 0
-                pop_server = self.connect()
+                pop_server = self._connect__()
                 (num_messages, total_size) = pop_server.stat()
                 pop_server.list()
                 for num in range(1, min(MAX_POP_MESSAGES, num_messages) + 1):
@@ -123,8 +125,10 @@ class FetchmailServer(models.Model):
                         exc_info=True,
                     )
 
-    def fetch_mail(self, raise_exception=True):
-        """Override to add PEC-specific error tracking and auto-disable.
+    def _fetch_mail(self, batch_limit=50):
+        """Fetch the PEC servers with PEC-specific error tracking.
+
+        Both the mail gateway cron and "Fetch Now" go through this method.
 
         PEC messages are legally relevant: if a message cannot be processed
         as an electronic invoice, it must NOT be marked as read (IMAP) or
@@ -134,52 +138,69 @@ class FetchmailServer(models.Model):
         After repeated failures the server is automatically disabled
         to prevent silent message loss.
         """
-        for server in self:
-            if not server.is_l10n_it_edi_pec:
-                super(FetchmailServer, server).fetch_mail(
-                    raise_exception=raise_exception
+        pec_servers = self.filtered("is_l10n_it_edi_pec")
+        other_servers = self - pec_servers
+        result_exception = None
+        if other_servers:
+            result_exception = super(FetchmailServer, other_servers)._fetch_mail(
+                batch_limit=batch_limit
+            )
+        for server in pec_servers:
+            if not server.try_lock_for_update(allow_referencing=True).filtered_domain(
+                MAIL_SERVER_DOMAIN
+            ):
+                _logger.info(
+                    "Skip checking for new e-invoices on PEC server %s (unavailable)",
+                    server.name,
                 )
                 continue
+            result_exception = server._l10n_it_edi_pec_fetch_mail() or result_exception
+            # Keep the error tracking even if the caller raises the exception
+            self.env.cr.commit()  # pylint: disable=invalid-commit
+        return result_exception
 
-            # Setting fetchmail_cron_running to avoid disabling the cron
-            # while it is running (otherwise it would be done by setting
-            # server.state = 'draft', see _update_cron method)
-            additional_context = {
-                "fetchmail_cron_running": True,
-                "default_fetchmail_server_id": server.id,
-            }
-            server_ctx = server.with_context(**additional_context)
-            _logger.info(
-                "Start checking for new e-invoices on %s server %s",
-                server.server_type,
-                server.name,
+    def _l10n_it_edi_pec_fetch_mail(self):
+        """Fetch the e-invoices from a PEC server.
+
+        :return: a ValidationError listing the failures, or None
+        """
+        self.ensure_one()
+        # Setting fetchmail_cron_running to avoid disabling the cron
+        # while it is running (otherwise it would be done by setting
+        # server.state = 'draft', see _update_cron method)
+        additional_context = {
+            "fetchmail_cron_running": True,
+            "default_fetchmail_server_id": self.id,
+        }
+        server_ctx = self.with_context(**additional_context)
+        connection_type = self._get_connection_type()
+        _logger.info(
+            "Start checking for new e-invoices on %s server %s",
+            connection_type,
+            self.name,
+        )
+        error_messages = []
+        if connection_type == "imap":
+            server_ctx._l10n_it_edi_pec_fetch_imap(error_messages, additional_context)
+        elif connection_type == "pop":
+            server_ctx._l10n_it_edi_pec_fetch_pop(error_messages, additional_context)
+        exception = None
+        if error_messages:
+            server_ctx._l10n_it_edi_pec_notify_or_log(error_messages)
+            server_ctx.pec_error_count += 1
+            max_retry = int(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("fetchmail.pec.max.retry", default="5")
             )
-            error_messages = []
-            if server.server_type == "imap":
-                server_ctx._l10n_it_edi_pec_fetch_imap(
-                    error_messages, additional_context
-                )
-            elif server.server_type == "pop":
-                server_ctx._l10n_it_edi_pec_fetch_pop(
-                    error_messages, additional_context
-                )
-            if error_messages:
-                server_ctx._l10n_it_edi_pec_notify_or_log(error_messages)
-                server_ctx.pec_error_count += 1
-                max_retry = int(
-                    self.env["ir.config_parameter"]
-                    .sudo()
-                    .get_param("fetchmail.pec.max.retry", default="5")
-                )
-                if server_ctx.pec_error_count > max_retry:
-                    server_ctx.state = "draft"
-                    server_ctx._l10n_it_edi_pec_notify_about_server_reset()
-                if raise_exception:
-                    raise ValidationError("\n".join(error_messages))
-            else:
-                server_ctx.pec_error_count = 0
-            server_ctx.write({"date": fields.Datetime.now()})
-        return True
+            if server_ctx.pec_error_count > max_retry:
+                server_ctx.state = "draft"
+                server_ctx._l10n_it_edi_pec_notify_about_server_reset()
+            exception = ValidationError("\n".join(error_messages))
+        else:
+            server_ctx.pec_error_count = 0
+        server_ctx.write({"date": fields.Datetime.now()})
+        return exception
 
     def _l10n_it_edi_pec_manage_failure(self, exception, error_messages):
         """Track a PEC processing failure."""
