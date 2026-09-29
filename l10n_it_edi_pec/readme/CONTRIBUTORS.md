@@ -1,0 +1,6 @@
+- Andrea Colangelo (andreacolangelo@openforce.it)
+- Sergio Corato <https://efatto.it>
+- Lorenzo Battistini <https://github.com/eLBati>
+- Sergio Zanchetta (Associazione PNLUG - Gruppo Odoo)
+- Roberto Fichera <https://levelprime.com>
+- Simone Rubino
