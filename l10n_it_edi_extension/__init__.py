@@ -581,11 +581,12 @@ def _l10n_it_fatturapa_post_migration(env):
     openupgrade.logged_query(env.cr, query)
 
     query = """
-        UPDATE res_company
+        UPDATE res_company rc
         SET l10n_it_tax_system = fp.code
-        FROM res_partner rp
-        LEFT JOIN fatturapa_fiscal_position fp ON rp.register_fiscalpos = fp.id
-        WHERE res_company.partner_id = rp.id AND rp.register_fiscalpos IS NOT NULL
+        FROM fatturapa_fiscal_position fp
+        WHERE rc.fatturapa_fiscal_position_id = fp.id
+        AND rc.fatturapa_fiscal_position_id IS NOT NULL
+        AND fp.code != 'RF03'
     """
     openupgrade.logged_query(env.cr, query)
 
