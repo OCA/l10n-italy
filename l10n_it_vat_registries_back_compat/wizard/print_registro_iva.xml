@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_registro_iva_back_compat" model="ir.ui.view">
+        <field name="name">VAT Registry - backward compatible buttons</field>
+        <field name="model">wizard.registro.iva</field>
+        <field name="inherit_id" ref="l10n_it_vat_registries.wizard_registro_iva" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='print_registro_xlsx']" position="after">
+                or
+                <button
+                string="Print V16 compat"
+                name="print_registro_back_compat"
+                type="object"
+            />
+                or
+                <button
+                string="Print V16 compat XLSX"
+                name="print_registro_back_compat_xlsx"
+                type="object"
+            />
+            </xpath>
+        </field>
+    </record>
+</odoo>
