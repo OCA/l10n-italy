@@ -14,11 +14,6 @@
     "author": "Odoo Community Association (OCA), Openforce",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
-    "external_dependencies": {
-        "python": [
-            "xlrd==1.2.0",
-        ],
-    },
     "depends": [
         "account_financial_report",
         "l10n_it_account",

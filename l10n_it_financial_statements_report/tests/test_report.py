@@ -3,8 +3,9 @@
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
+from io import BytesIO
 
-import xlrd
+import openpyxl
 
 from odoo import tests
 from odoo.tools.safe_eval import safe_eval
@@ -174,14 +175,15 @@ class TestReport(AccountTestInvoicingCommon):
             },
             report_type="xlsx",
         )
-        workbook = xlrd.open_workbook(file_contents=report_content)
-        sheet = workbook.sheet_by_index(0)
+        workbook = openpyxl.load_workbook(BytesIO(report_content))
+        sheet = workbook.worksheets[0]
 
         # Assert
         account_group = self.account_group
-        code_column_index, name_column_index, amount_column_index = 3, 4, 5
+        # openpyxl rows and columns start from 1
+        code_column_index, name_column_index, amount_column_index = 4, 5, 6
         # Group line
-        group_row_index = 11
+        group_row_index = 12
         self.assertEqual(
             sheet.cell(group_row_index, code_column_index).value,
             account_group.complete_code,
@@ -194,7 +196,7 @@ class TestReport(AccountTestInvoicingCommon):
             invoice.amount_untaxed,
         )
         # Account line
-        account_row_index = 12
+        account_row_index = 13
         account = invoice.invoice_line_ids.account_id
         self.assertEqual(account_group, account.group_id)
         self.assertEqual(
@@ -208,7 +210,7 @@ class TestReport(AccountTestInvoicingCommon):
             invoice.amount_untaxed,
         )
         # Totals line
-        totals_row_index = 14
+        totals_row_index = 15
         account = invoice.invoice_line_ids.account_id
         self.assertEqual(account_group, account.group_id)
         total_string = sheet.cell(totals_row_index, code_column_index).value
