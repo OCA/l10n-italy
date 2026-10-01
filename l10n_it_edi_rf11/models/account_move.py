@@ -184,9 +184,10 @@ class AccountMove(models.Model):
             values["document_type"] = "TD01"
             # Emitted by the Cessionario/Committente (the tour operator).
             values["soggetto_emittente"] = "CC"
-            # ImportoTotaleDocumento must be omitted for this case
-            # (the QWeb override drops the element when this is None).
-            values["importo_totale_documento"] = None
+            # No VAT is exported for this case (see the intra-EU stripping
+            # below), so the total must equal the untaxed amount: core would
+            # otherwise add the 22% booked for the VAT registers.
+            values["importo_totale_documento"] = self.amount_untaxed
             # CodiceDestinatario is the agency's SdI code (as in the v16
             # module), not the company's own. <CodiceDestinatario> is rendered
             # from buyer_info['pa_index'], which for a self-invoice is the

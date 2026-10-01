@@ -9,9 +9,8 @@
    agency becomes the *CedentePrestatore* and the company the
    *CessionarioCommittente*, with `RegimeFiscale` RF11, `TipoDocumento` TD01,
    `SoggettoEmittente` CC, the *Terzo Intermediario o Soggetto Emittente* block
-   filled with the company, `CodiceDestinatario` = the agency's code, and the
-   total (`ImportoTotaleDocumento`) omitted. For intra-EU lines the 22% VAT is
-   stripped and reported as Natura N6.9.
+   filled with the company and `CodiceDestinatario` = the agency's code. For
+   intra-EU lines the 22% VAT is stripped and reported as Natura N6.9.
 3. Use the **Send to Tax Agency** button on the bill to send the XML to the SdI.
    A courtesy copy can then be forwarded to the agency.
 
@@ -32,9 +31,8 @@
    FatturaPA l'agenzia diventa il *CedentePrestatore* e l'azienda il
    *CessionarioCommittente*, con `RegimeFiscale` RF11, `TipoDocumento` TD01,
    `SoggettoEmittente` CC, il blocco *Terzo Intermediario o Soggetto Emittente*
-   valorizzato con l'azienda, `CodiceDestinatario` = codice dell'agenzia e
-   l'importo totale (`ImportoTotaleDocumento`) omesso. Per le righe intra-UE
-   l'IVA al 22% viene azzerata e riportata come Natura N6.9.
+   valorizzato con l'azienda e `CodiceDestinatario` = codice dell'agenzia. Per
+   le righe intra-UE l'IVA al 22% viene azzerata e riportata come Natura N6.9.
 3. Usare il pulsante **Invia all'Agenzia delle Entrate** sulla fattura per
    inviare l'XML allo SdI. Una copia di cortesia può poi essere inviata
    all'agenzia.

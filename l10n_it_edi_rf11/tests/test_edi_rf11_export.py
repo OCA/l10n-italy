@@ -151,8 +151,12 @@ class TestEdiRf11Export(TestItEdi):
         # Extra-EU / non-taxable: Natura N3.6 from the tax config, tax 0
         self.assertEqual(tree.findtext(".//DatiRiepilogo/Natura"), "N3.6")
         self.assertEqual(tree.findtext(".//DatiRiepilogo/Imposta"), "0.00")
-        # ImportoTotaleDocumento omitted
-        self.assertIsNone(tree.find(".//ImportoTotaleDocumento"))
+        # ImportoTotaleDocumento is kept: no VAT is charged, so the total is
+        # the untaxed amount
+        self.assertEqual(
+            tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
+            f"{bill.amount_untaxed:.2f}",
+        )
 
     def test_74ter_bill_intra_eu_n69(self):
         """Intra-EU: an explicit 22% reverse-charge tax carrying N6.9 is kept in
@@ -174,8 +178,11 @@ class TestEdiRf11Export(TestItEdi):
         # DettaglioLinee: aliquota 0 and nature N6.9
         self.assertEqual(tree.findtext(".//DettaglioLinee/AliquotaIVA"), "0.00")
         self.assertEqual(tree.findtext(".//DettaglioLinee/Natura"), "N6.9")
-        # No total, as for the extra-EU case
-        self.assertIsNone(tree.find(".//ImportoTotaleDocumento"))
+        # Total kept and equal to the untaxed amount (the 22% is not exported)
+        self.assertEqual(
+            tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
+            f"{bill.amount_untaxed:.2f}",
+        )
 
     def test_74ter_bill_intra_eu_natura_fallback(self):
         """A 22% line whose tax carries no nature falls back to N6.9."""

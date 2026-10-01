@@ -76,13 +76,5 @@
                 t-if="soggetto_emittente != 'CC' and company.l10n_edi_it_sender_partner"
             >TZ</SoggettoEmittente>
         </xpath>
-
-        <!-- Omit ImportoTotaleDocumento for the 74-ter autofattura -->
-        <xpath expr="//DatiGeneraliDocumento/ImportoTotaleDocumento" position="replace">
-            <ImportoTotaleDocumento
-                t-if="importo_totale_documento is not None"
-                t-out="format_monetary(importo_totale_documento, currency)"
-            />
-        </xpath>
     </template>
 </odoo>
