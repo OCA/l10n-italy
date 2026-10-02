@@ -65,7 +65,7 @@
                     <field name="transaction_nature_id" />
                     <field name="transaction_nature_b_id" />
                     <field name="transport_code_id" />
-                    <field name="weight_kg" />
+                    <field name="weight_kg" sum="Total Weight" />
                     <field name="amount_currency" sum="Total" />
                     <field
                     name="company_id"
@@ -185,7 +185,7 @@
                     <field name="transaction_nature_id" />
                     <field name="transaction_nature_b_id" />
                     <field name="transport_code_id" />
-                    <field name="weight_kg" />
+                    <field name="weight_kg" sum="Total Weight" />
                     <field name="additional_units" />
                     <field name="amount_currency" sum="Total" />
                     <field
