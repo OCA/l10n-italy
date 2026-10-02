@@ -76,7 +76,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.invoice.action_post()
         # Test Invoice has 1 line, no collection fees added because
         # the partner is excluded from due costs
-        self.assertEqual(len(self.invoice2.invoice_line_ids), 1)
+        self.assertEqual(len(self.invoice.invoice_line_ids), 1)
 
     def test_delete_due_cost_line(self):
         # ---- Set Service in Company Config
