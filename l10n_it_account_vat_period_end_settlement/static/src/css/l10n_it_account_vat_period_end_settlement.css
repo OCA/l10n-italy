@@ -1,0 +1,5 @@
+@media (min-width: 576px) {
+    .o_form_view .o_inner_group.form_inner_group_auto_width {
+        grid-template-columns: auto auto;
+    }
+}
