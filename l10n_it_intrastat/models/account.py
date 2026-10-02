@@ -313,11 +313,13 @@ class AccountMove(models.Model):
                 val.update({"intrastat": intrastat})
         return super().create(vals_list)
 
-    def action_post(self):
-        for invoice in self:
+    def _post(self, soft=True):
+        for invoice in self.filtered(
+            lambda move: move.is_invoice(include_receipts=True)
+        ):
             if not invoice.intrastat_line_ids and invoice.intrastat:
                 invoice.compute_intrastat_lines()
-        res = super().action_post()
+        res = super()._post(soft)
         precision_digits = self.env["decimal.precision"].precision_get("Account")
         for invoice in self:
             if invoice.intrastat:
