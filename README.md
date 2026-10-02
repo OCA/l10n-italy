@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [l10n_it_account](l10n_it_account/) | 18.0.1.1.2 |  | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_account_invoice_start_end_dates](l10n_it_account_invoice_start_end_dates/) | 18.0.1.0.1 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Set start/end dates on Italian tax move lines for partially/totally deductible VAT
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 18.0.1.2.2 |  | Gestione automatica dell'imposta di bollo
-[l10n_it_account_vat_period_end_settlement](l10n_it_account_vat_period_end_settlement/) | 18.0.1.0.5 |  | Allow to create the 'VAT Settlement'.
+[l10n_it_account_vat_period_end_settlement](l10n_it_account_vat_period_end_settlement/) | 18.0.1.0.6 |  | Allow to create the 'VAT Settlement'.
 [l10n_it_amount_to_text](l10n_it_amount_to_text/) | 18.0.1.0.0 |  | Localizza le valute in italiano per amount_to_text
 [l10n_it_appointment_code](l10n_it_appointment_code/) | 18.0.1.0.0 |  | Aggiunge la tabella dei codici carica da usare nelle dichiarazioni fiscali italiane
 [l10n_it_asset_management](l10n_it_asset_management/) | 18.0.1.1.1 |  | Gestione Cespiti
