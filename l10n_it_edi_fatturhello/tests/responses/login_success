@@ -1,0 +1,15 @@
+﻿{
+  "aziende": [
+    {
+      "azienda": "ACME SRL",
+      "codice": "IKZFSKX6645VVG595QG7",
+      "menulight": true,
+      "cf": "06363391001",
+      "pi": "06363391001"
+    }
+  ],
+  "causali": [],
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTQiIsImV4cCI6MTUzNTUxMDEzNCwidGlwbyI6InNlc3Npb25lIiwiaWR1dGVudGUiOiI5NDgiLCJtZW51bGlnaHQiOiJUcnVlIiwiaWRzdHVkaW8iOiIwIn0.IUWPp2zDkesDJfoxeo42Sq3Ppf7jR0sY6rbtEVi2xs",
+  "authtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTQiIsImV4cCI6MTU2NzAxNzMzNCwidGlwbyI6ImF1dGgiLCJyZWFsbSI6ImJwbyIsImlkIjoiOTQ4In0.9y9gW2LAXYYB1jonR9cOClwNSr8dssssFzbDiodJc"
+}
