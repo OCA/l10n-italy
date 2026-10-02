@@ -81,8 +81,9 @@ class MailThread(models.AbstractModel):
                 _logger.info("Invoice %s already exists, skipping", filename)
                 continue
 
-            # Create empty move and attachment
-            move = AccountMove.with_company(company).create({})
+            # Create empty move and attachment. Use in_invoice as core does, so
+            # that the move is still a vendor bill if the import fails.
+            move = AccountMove.with_company(company).create({"move_type": "in_invoice"})
             attachment = (
                 self.env["ir.attachment"]
                 .sudo()
