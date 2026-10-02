@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ns2:FatturaElettronica
+    xmlns:ns2="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"
+    versione="FPR12"
+>
+    <FatturaElettronicaHeader>
+        <DatiTrasmissione>
+            <IdTrasmittente>
+                <IdPaese>IT</IdPaese>
+                <IdCodice>99490540210</IdCodice>
+            </IdTrasmittente>
+            <ProgressivoInvio>00000</ProgressivoInvio>
+            <FormatoTrasmissione>FPR12</FormatoTrasmissione>
+            <CodiceDestinatario>UFPQ1O</CodiceDestinatario>
+        </DatiTrasmissione>
+        <CedentePrestatore>
+            <DatiAnagrafici>
+                <IdFiscaleIVA>
+                    <IdPaese>IT</IdPaese>
+                    <IdCodice>99490540210</IdCodice>
+                </IdFiscaleIVA>
+                <Anagrafica>
+                    <Denominazione>Test Seller Company SA</Denominazione>
+                </Anagrafica>
+                <RegimeFiscale>RF01</RegimeFiscale>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>10 Estero Road</Indirizzo>
+                <CAP>00000</CAP>
+                <Comune>Test City</Comune>
+                <Nazione>AD</Nazione>
+            </Sede>
+            <StabileOrganizzazione>
+                <Indirizzo>Viale Tunisia 17</Indirizzo>
+                <CAP>12010</CAP>
+                <Comune>Prova</Comune>
+                <Provincia>PR</Provincia>
+                <Nazione>IT</Nazione>
+            </StabileOrganizzazione>
+            <IscrizioneREA>
+                <Ufficio>MI</Ufficio>
+                <NumeroREA>99490540210</NumeroREA>
+                <StatoLiquidazione>LN</StatoLiquidazione>
+            </IscrizioneREA>
+        </CedentePrestatore>
+        <CessionarioCommittente>
+            <DatiAnagrafici>
+                <CodiceFiscale>01234560157</CodiceFiscale>
+                <Anagrafica>
+                    <Denominazione>AMMINISTRAZIONE BETA</Denominazione>
+                </Anagrafica>
+            </DatiAnagrafici>
+            <Sede>
+                <Indirizzo>VIA TORINO 38-B</Indirizzo>
+                <CAP>00145</CAP>
+                <Comune>ROMA</Comune>
+                <Provincia>RM</Provincia>
+                <Nazione>IT</Nazione>
+            </Sede>
+        </CessionarioCommittente>
+    </FatturaElettronicaHeader>
+    <FatturaElettronicaBody>
+        <DatiGenerali>
+            <DatiGeneraliDocumento>
+                <TipoDocumento>TD01</TipoDocumento>
+                <Divisa>EUR</Divisa>
+                <Data>2026-02-01</Data>
+                <Numero>111111</Numero>
+                <ImportoTotaleDocumento>1.22</ImportoTotaleDocumento>
+            </DatiGeneraliDocumento>
+            <FatturaPrincipale>
+                <NumeroFatturaPrincipale>111111</NumeroFatturaPrincipale>
+                <DataFatturaPrincipale>2026-02-01</DataFatturaPrincipale>
+            </FatturaPrincipale>
+        </DatiGenerali>
+        <DatiBeniServizi>
+            <DettaglioLinee>
+                <NumeroLinea>1</NumeroLinea>
+                <Descrizione>Example Service</Descrizione>
+                <DataInizioPeriodo>2026-01-01</DataInizioPeriodo>
+                <DataFinePeriodo>2026-01-31</DataFinePeriodo>
+                <PrezzoUnitario>1.00</PrezzoUnitario>
+                <PrezzoTotale>1.00</PrezzoTotale>
+                <AliquotaIVA>22.00</AliquotaIVA>
+            </DettaglioLinee>
+            <DatiRiepilogo>
+                <AliquotaIVA>22.00</AliquotaIVA>
+                <Arrotondamento>0.00</Arrotondamento>
+                <ImponibileImporto>1.00</ImponibileImporto>
+                <Imposta>0.22</Imposta>
+            </DatiRiepilogo>
+        </DatiBeniServizi>
+    </FatturaElettronicaBody>
+</ns2:FatturaElettronica>
