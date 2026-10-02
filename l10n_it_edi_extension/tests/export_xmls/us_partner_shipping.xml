@@ -98,14 +98,5 @@
                 >Art. 8, c.1, lett.a - D.P.R. 633/1972</RiferimentoNormativo>
             </DatiRiepilogo>
         </DatiBeniServizi>
-        <DatiPagamento>
-            <CondizioniPagamento>TP02</CondizioniPagamento>
-            <DettaglioPagamento>
-                <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2024-08-07</DataScadenzaPagamento>
-                <ImportoPagamento>1068.11</ImportoPagamento>
-                <CodicePagamento>INV/2024/00001</CodicePagamento>
-            </DettaglioPagamento>
-        </DatiPagamento>
     </FatturaElettronicaBody>
 </p:FatturaElettronica>
