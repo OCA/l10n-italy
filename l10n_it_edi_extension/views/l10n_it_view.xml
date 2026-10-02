@@ -18,6 +18,17 @@
                     />
                 </div>
             </xpath>
+            <xpath expr="//button[@name='action_l10n_it_edi_send']" position="before">
+                <field name="l10n_it_document_type_code" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//button[@name='action_l10n_it_edi_send']"
+                position="attributes"
+            >
+                <attribute
+                    name="invisible"
+                >state != 'posted' or not l10n_it_edi_is_self_invoice or is_move_sent or country_code != 'IT' or l10n_it_edi_state in ('rejected', 'rejected_by_pa_partner') or l10n_it_document_type_code not in ('TD16', 'TD17', 'TD18', 'TD19')</attribute>
+            </xpath>
             <xpath
                 expr="//field[@name='invoice_line_ids']/list/field[@name='analytic_distribution']"
                 position="after"
