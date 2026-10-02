@@ -83,6 +83,13 @@ Le funzionalità principali incluse sono:
 
 4. Aggiunge di un wizard per calcolare i codici fiscali
 
+5. Invio massivo delle autofatture allo SdI:
+
+   - Nella vista elenco delle fatture fornitore, selezionare le autofatture (ad es. TD17, TD18 e TD19 per il reverse charge) e usare il pulsante "Send self-invoices to SDI".
+   - Vengono inviate solo le autofatture confermate e non ancora inviate, gli altri documenti selezionati vengono ignorati.
+   - Ogni autofattura viene controllata e inviata come con il pulsante "Invia a SDI" del documento: se un'autofattura ha degli errori, il motivo viene mostrato nel documento o nella notifica finale e le altre vengono inviate comunque.
+   - Al termine, una notifica riepiloga le autofatture inviate, quelle non inviate e i documenti ignorati.
+
 \<<https://www.fatturapa.gov.it>\>
 
 
@@ -170,5 +177,12 @@ The main features included are:
     - Partner's data can be updated to match the data in the e-bill
 
 4. Adds a wizard to calculate fiscal codes
+
+5. Bulk sending of self-invoices to the SdI:
+
+   - In the vendor bills list view, select the self-invoices (e.g. TD17, TD18 and TD19 for reverse charge) and use the "Send self-invoices to SDI" button.
+   - Only confirmed self-invoices that have not been sent yet are sent, the other selected documents are skipped.
+   - Each self-invoice is checked and sent as with the "Send to SDI" button of the document: if a self-invoice has errors, the reason is shown in the document or in the final notification and the other self-invoices are sent anyway.
+   - At the end, a notification summarizes the self-invoices sent, the ones not sent and the skipped documents.
 
 \<<https://www.fatturapa.gov.it>\>

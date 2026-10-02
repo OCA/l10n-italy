@@ -2,12 +2,16 @@
 # Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import logging
+
 from odoo import api, fields, models, osv
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, html2plaintext, is_html_empty
 
 from odoo.addons.base.models.ir_qweb_fields import Markup
 from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get_text
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountMoveInherit(models.Model):
@@ -232,9 +236,115 @@ class AccountMoveInherit(models.Model):
             "target": "new",
         }
 
+    def action_l10n_it_edi_ext_send_self_invoices(self):
+        """Send the selected self-invoices to the SdI.
+
+        Each move is sent with `action_l10n_it_edi_send`.
+        When a move fails the export checks, it stays unsent
+        with the reason in its e-invoicing warning.
+        When a move raises an error, it stays unsent
+        with the reason in the final notification.
+        In both cases, the other moves are sent anyway.
+        """
+        moves = self.filtered(
+            lambda move: move._l10n_it_edi_ext_is_self_invoice_to_send()
+        )
+        if not moves:
+            raise UserError(
+                self.env._(
+                    "None of the selected documents is a self-invoice "
+                    "ready to be sent to the SdI."
+                )
+            )
+
+        error_moves = self.browse()
+        error_messages = []
+        for move in moves:
+            try:
+                # Only roll back the failing move,
+                # the previous ones have already been sent to the SdI
+                with self.env.cr.savepoint():
+                    move.action_l10n_it_edi_send()
+            # Catch any error: raising it would roll back the moves already sent,
+            # or send them again when Odoo retries the request
+            # after a concurrency error
+            except Exception as error:
+                if not isinstance(error, UserError):
+                    _logger.exception(
+                        "Error while sending %s to the SdI", move.display_name
+                    )
+                # Do not write the error in the move:
+                # another process sending it could have locked it
+                error_moves |= move
+                error_messages.append(f"{move.display_name}: {error}")
+
+        not_sent_moves = moves.filtered(
+            lambda move: not (move.l10n_it_edi_transaction and move.l10n_it_edi_state)
+        )
+        messages = [
+            self.env._(
+                "%(count)s self-invoices sent to the SdI.",
+                count=len(moves - not_sent_moves),
+            )
+        ]
+        if warning_moves := not_sent_moves - error_moves:
+            messages.append(
+                self.env._(
+                    "Not sent, see the warning in each document: %(moves)s.",
+                    moves=", ".join(warning_moves.mapped("display_name")),
+                )
+            )
+        if error_messages:
+            messages.append(
+                self.env._(
+                    "Not sent because of an error: %(errors)s.",
+                    errors="; ".join(error_messages),
+                )
+            )
+        if skipped_moves := self - moves:
+            messages.append(
+                self.env._(
+                    "%(count)s selected documents skipped "
+                    "because they are not self-invoices ready to be sent.",
+                    count=len(skipped_moves),
+                )
+            )
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": self.env._("Send to SDI"),
+                "message": " ".join(messages),
+                "type": "warning" if not_sent_moves else "success",
+                "sticky": bool(not_sent_moves),
+                "next": {"type": "ir.actions.client", "tag": "soft_reload"},
+            },
+        }
+
     # -------------------------------------------------------------------------
     # Helpers
     # -------------------------------------------------------------------------
+
+    def _l10n_it_edi_ext_is_self_invoice(self):
+        """Tell whether the move is sent to the SdI like a self-invoice,
+        with `action_l10n_it_edi_send`."""
+        self.ensure_one()
+        return self.l10n_it_edi_is_self_invoice
+
+    def _l10n_it_edi_ext_is_self_invoice_to_send(self):
+        """Tell whether the move can be sent now with `action_l10n_it_edi_send`.
+
+        Keep in sync with the visibility of the "Send to SDI" button
+        in view `l10n_it_edi.account_invoice_form_l10n_it`.
+        """
+        self.ensure_one()
+        return (
+            self._l10n_it_edi_ext_is_self_invoice()
+            and self.state == "posted"
+            and not self.is_move_sent
+            and self.country_code == "IT"
+            and self.l10n_it_edi_state not in ("rejected", "rejected_by_pa_partner")
+        )
 
     def _l10n_it_edi_add_base_lines_xml_values(
         self, base_lines_aggregated_values, is_downpayment
