@@ -147,6 +147,7 @@
                     <group>
                         <field name="subcontracting" />
                         <field name="exceptional_events" />
+                        <field name="extraordinary_operations" />
                     </group>
                 </group>
                 <newline />
