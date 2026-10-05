@@ -184,10 +184,15 @@ class AccountMove(models.Model):
             values["document_type"] = "TD01"
             # Emitted by the Cessionario/Committente (the tour operator).
             values["soggetto_emittente"] = "CC"
-            # No VAT is exported for this case (see the intra-EU stripping
-            # below), so the total must equal the untaxed amount: core would
-            # otherwise add the 22% booked for the VAT registers.
-            values["importo_totale_documento"] = self.amount_untaxed
+            # The total must match DatiRiepilogo, where the intra-EU VAT is
+            # stripped (see _l10n_it_edi_get_tax_lines_xml_values below): core
+            # would otherwise add the 22% booked for the VAT registers. Summing
+            # the tax lines also keeps the total in the XML currency (EUR for a
+            # foreign-currency bill), which amount_untaxed is not.
+            values["importo_totale_documento"] = sum(
+                tax_line["imponibile_importo"] + tax_line["imposta"]
+                for tax_line in values["tax_lines"]
+            )
             # CodiceDestinatario is the agency's SdI code (as in the v16
             # module), not the company's own. <CodiceDestinatario> is rendered
             # from buyer_info['pa_index'], which for a self-invoice is the

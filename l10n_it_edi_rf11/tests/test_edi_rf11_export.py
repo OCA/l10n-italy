@@ -87,7 +87,7 @@ class TestEdiRf11Export(TestItEdi):
             )
         )
 
-    def _create_74ter_bill(self, tax=None):
+    def _create_74ter_bill(self, tax=None, currency=None):
         bill = (
             self.env["account.move"]
             .with_company(self.company)
@@ -96,6 +96,7 @@ class TestEdiRf11Export(TestItEdi):
                     "move_type": "in_invoice",
                     "invoice_date": "2024-01-01",
                     "partner_id": self.agency.id,
+                    "currency_id": (currency or self.company.currency_id).id,
                     "invoice_line_ids": [
                         Command.create(
                             {
@@ -155,7 +156,7 @@ class TestEdiRf11Export(TestItEdi):
         # the untaxed amount
         self.assertEqual(
             tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
-            f"{bill.amount_untaxed:.2f}",
+            "100.00",
         )
 
     def test_74ter_bill_intra_eu_n69(self):
@@ -181,7 +182,7 @@ class TestEdiRf11Export(TestItEdi):
         # Total kept and equal to the untaxed amount (the 22% is not exported)
         self.assertEqual(
             tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
-            f"{bill.amount_untaxed:.2f}",
+            "100.00",
         )
 
     def test_74ter_bill_intra_eu_natura_fallback(self):
@@ -192,6 +193,35 @@ class TestEdiRf11Export(TestItEdi):
         self.assertEqual(tree.findtext(".//DatiRiepilogo/Natura"), "N6.9")
         self.assertEqual(tree.findtext(".//DatiRiepilogo/AliquotaIVA"), "0.00")
         self.assertEqual(tree.findtext(".//DettaglioLinee/Natura"), "N6.9")
+        self.assertEqual(
+            tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
+            "100.00",
+        )
+
+    def test_74ter_bill_foreign_currency_total(self):
+        """A foreign-currency bill is exported in EUR: the total is converted
+        like the DatiRiepilogo amounts, not taken in the bill currency."""
+        usd = self.setup_other_currency("USD", rates=[])
+        # setup_other_currency puts its rates on env.company, not on the
+        # Italian company used by these tests.
+        self.env["res.currency.rate"].create(
+            {
+                "name": "2024-01-01",
+                "rate": 2.0,
+                "currency_id": usd.id,
+                "company_id": self.company.id,
+            }
+        )
+        bill = self._create_74ter_bill(currency=usd)
+        self.assertEqual(bill.amount_untaxed, 100.0)
+        tree = etree.fromstring(bill._l10n_it_edi_render_xml())
+
+        self.assertEqual(tree.findtext(".//DatiGeneraliDocumento/Divisa"), "EUR")
+        self.assertEqual(tree.findtext(".//DatiRiepilogo/ImponibileImporto"), "50.00")
+        self.assertEqual(
+            tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
+            "50.00",
+        )
 
     def test_normal_invoice_unaffected(self):
         """The overrides are inert for an ordinary customer invoice."""
