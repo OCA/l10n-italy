@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_vat_period_end_statement_inherit_74ter" model="ir.ui.view">
+        <field name="name">account.vat.period.end.statement.inherit.74ter</field>
+        <field name="model">account.vat.period.end.statement</field>
+        <!--
+            v16 inherited account_vat_period_end_statement.view_...; that module
+            was renamed to l10n_it_account_vat_period_end_settlement in v18.
+        -->
+        <field
+            name="inherit_id"
+            ref="l10n_it_account_vat_period_end_settlement.view_account_vat_period_end_statement"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_id']" position="after">
+                <field name="tax_74_ter_move_id" readonly="1" />
+            </xpath>
+            <xpath expr="//field[@name='previous_debit_vat_amount']" position="after">
+                <separator colspan="3" string="74Ter VAT details" />
+                <field name="net_tax_74_ter" />
+                <br />
+                <field name="tax_74_ter_amount" />
+                <br />
+                <field name="tax_74_ter_amount_previous" />
+                <br />
+                <field name="tax_74_ter_amount_total" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

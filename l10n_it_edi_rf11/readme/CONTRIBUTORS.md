@@ -1,0 +1,3 @@
+- Maurizio Pellegrinet
+- Lorenzo Carta https://github.com/LorenzoC0
+- Lorenzo Battistini https://github.com/eLBati

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        v16 inherited account_vat_period_end_statement.report_...; that module
+        was renamed to l10n_it_account_vat_period_end_settlement in v18. The
+        `total_statement` anchor still exists in the v18 template.
+    -->
+    <template
+        id="report_integration_74ter"
+        inherit_id="l10n_it_account_vat_period_end_settlement.report_vatperiodendstatement_document"
+    >
+        <xpath expr="//t[@t-set='total_statement']" position="after">
+            <h3>74 Ter VAT statement details</h3>
+            <table class="table table-condensed">
+                <tr>
+                    <td class="text-start">Net tax 74ter</td>
+                    <td class="text-end">
+                        <t t-esc="formatLang(env, statement.net_tax_74_ter)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-start">74ter tax amount</td>
+                    <td class="text-end">
+                        <t t-esc="formatLang(env, statement.tax_74_ter_amount)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-start">74ter tax amount of previous period</td>
+                    <td class="text-end">
+                        <t
+                            t-esc="formatLang(env, statement.tax_74_ter_amount_previous)"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <t t-if="statement.tax_74_ter_amount_total &lt; 0">
+                        <td class="text-start">74 Ter VAT total (credit)</td>
+                        <td class="text-end">
+                            <t
+                                t-esc="formatLang(env, abs(statement.tax_74_ter_amount_total))"
+                            />
+                        </td>
+                    </t>
+                    <t t-if="statement.tax_74_ter_amount_total &gt; 0">
+                        <td class="text-start">74 Ter VAT total (debit)</td>
+                        <td class="text-end">
+                            <t
+                                t-esc="formatLang(env, abs(statement.tax_74_ter_amount_total))"
+                            />
+                        </td>
+                    </t>
+                    <t t-if="statement.tax_74_ter_amount_total == 0">
+                        <td class="text-start">74 Ter VAT total</td>
+                        <td class="text-end">
+                            <t
+                                t-esc="formatLang(env, abs(statement.tax_74_ter_amount_total))"
+                            />
+                        </td>
+                    </t>
+                </tr>
+            </table>
+        </xpath>
+    </template>
+</odoo>
