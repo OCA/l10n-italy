@@ -1088,6 +1088,20 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
             vat_group_2_partner,
         )
 
+    def test_57_xml_import_empty_attachment(self):
+        """Attachments with an empty content are skipped."""
+        res = self.run_wizard("test57", "IT02780790107_11005_empty_attachment.xml")
+        invoice_id = res.get("domain")[0][2][0]
+        invoice = self.invoice_model.browse(invoice_id)
+        attachments = invoice.fatturapa_doc_attachments
+        self.assertEqual(len(attachments), 1)
+        self.assertEqual(attachments.name, "test.txt")
+        self.assertEqual(attachments.raw, b"test")
+        self.assertIn(
+            "Attachment 'empty.txt' has no content and has been skipped",
+            invoice.inconsistencies,
+        )
+
     def test_xml_import_bank_overwrite(self):
         """
         Test: Check if the bank account is overwritten by the XML file

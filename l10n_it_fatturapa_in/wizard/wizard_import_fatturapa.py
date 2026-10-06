@@ -1396,7 +1396,16 @@ class WizardImportFatturapa(models.TransientModel):
 
     def set_attachments_data(self, FatturaBody, invoice):
         invoice_id = invoice.id
-        AttachmentsData = FatturaBody.Allegati
+        AttachmentsData = []
+        for AttachmentData in FatturaBody.Allegati or []:
+            # An empty <Attachment/> element is parsed as None
+            if AttachmentData.Attachment:
+                AttachmentsData.append(AttachmentData)
+            else:
+                self.log_inconsistency(
+                    _("Attachment '%(name)s' has no content and has been skipped")
+                    % {"name": AttachmentData.NomeAttachment}
+                )
         if AttachmentsData:
             self.env["fatturapa.attachment.in"].extract_attachments(
                 AttachmentsData, invoice_id
