@@ -104,6 +104,14 @@
                     <strong>Delivery Method:</strong>
                     <t t-esc="doc.delivery_method_id.name" />
                 </div>
+                <div
+                    id="incoterm"
+                    t-if="doc.incoterm_id"
+                    groups="sale_stock.group_display_incoterm"
+                >
+                    <strong>Incoterm:</strong>
+                    <span t-field="doc.incoterm_id" />
+                </div>
 
                 <div id="dn_terms">
                     <strong> Delivery Note: </strong>
@@ -111,8 +119,8 @@
                 </div>
 
                 <h2 id="document_title">
-                    <span t-if="doc.state in ['draft']">Draft document:</span>
-                    <span t-if="doc.state not in ['draft']">Document:</span>
+                    <span t-if="doc.state in ['draft']">Draft Delivery Slip:</span>
+                    <span t-if="doc.state not in ['draft']">Delivery Slip:</span>
                     <small>
                         <span t-field="doc.display_name" />
                     </small>
@@ -133,6 +141,13 @@
                             </th>
                             <th class="text-start">
                                 Description
+                            </th>
+                            <th
+                                t-if="doc.print_packages"
+                                class="text-start"
+                                groups="stock.group_tracking_lot"
+                            >
+                                Packages
                             </th>
                             <th class="text-start">
                                 Quantity
@@ -187,6 +202,37 @@
                                             />
                                         </t>
                                     </td>
+                                    <td
+                                        t-if="doc.print_packages"
+                                        class="text-start"
+                                        groups="stock.group_tracking_lot"
+                                    >
+                                        <t
+                                            t-set="line_packages"
+                                            t-value="line.move_id.move_line_ids.result_package_id"
+                                        />
+                                        <ul t-if="line_packages">
+                                            <t
+                                                t-foreach="line_packages"
+                                                t-as="line_package"
+                                            >
+                                                <t
+                                                    t-set="package_move_lines"
+                                                    t-value="line.move_id.move_line_ids.filtered(
+                                                        lambda line: line.result_package_id == line_package
+                                                    )"
+                                                />
+                                                <li t-if="package_move_lines">
+                                                    <span
+                                                        t-field="line_package.name"
+                                                    />:
+                                                    <span
+                                                        t-esc="sum(package_move_lines.mapped('qty_done'))"
+                                                    />
+                                                </li>
+                                            </t>
+                                        </ul>
+                                    </td>
                                     <td class="text-start">
                                         <span t-field="line.product_qty" />
                                     </td>
@@ -194,7 +240,13 @@
                                         <span t-field="line.product_uom_id" />
                                     </td>
                                     <td t-if="doc.print_prices" class="text-start">
-                                        <span t-field="line.price_unit" />
+                                        <span
+                                            t-field="line.price_unit"
+                                            t-options="{
+                                                'widget': 'monetary',
+                                                'display_currency': line.currency_id,
+                                            }"
+                                        />
                                     </td>
                                     <td
                                         t-if="doc.print_prices"
@@ -263,6 +315,9 @@
                 </table>
 
                 <t t-call="l10n_it_delivery_note.parcels_data" />
+                <div t-if="not is_html_empty(doc.print_note)" name="print_note">
+                    <span t-field="doc.print_note" />
+                </div>
                 <div class="oe_structure" />
             </div>
         </t>

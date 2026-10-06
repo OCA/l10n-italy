@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    ~ Copyright 2026 Simone Rubino - PyTech
+    ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="stock_delivery_note_type_form_view" model="ir.ui.view">
+        <field name="name">Add DN fields to DN Type form view</field>
+        <field name="model">stock.delivery.note.type</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_delivery_note_base.stock_delivery_note_type_form_view"
+        />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <!-- Added here because base module does not depend on stock -->
+            <field name="print_packages" position="attributes">
+                <attribute name="groups">stock.group_tracking_lot</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
