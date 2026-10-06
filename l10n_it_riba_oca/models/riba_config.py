@@ -40,7 +40,10 @@ class RibaConfiguration(models.Model):
         "Acceptance Account",
         required=True,
         check_company=True,
-        help="Account used when RiBa is accepted by the bank.",
+        help="Account used when RiBa is accepted by the bank.\n"
+        "It must be reconcilable: in 'After Collection' mode it is the account "
+        "closed by the bank entry of the actual collection.",
+        domain="[('reconcile', '=', True)]",
     )
     company_id = fields.Many2one(
         "res.company",
@@ -58,8 +61,12 @@ class RibaConfiguration(models.Model):
         "account.account",
         "RiBa Account",
         check_company=True,
-        help="Account used when RiBa amount is credited by the bank.",
-        domain="[('account_type', '!=', 'liability_credit_card')]",
+        help="Account used when RiBa amount is credited by the bank.\n"
+        "It holds the credit towards the bank, that the company can dispose of, "
+        "until the bank actually pays it: it must be reconcilable, because it is "
+        "the account closed by the bank entry of the actual collection.",
+        domain="[('reconcile', '=', True), "
+        "('account_type', '!=', 'liability_credit_card')]",
     )
     bank_account_id = fields.Many2one(
         "account.account",
@@ -85,12 +92,6 @@ class RibaConfiguration(models.Model):
         "account.account",
         "Protest Fee Account",
         check_company=True,
-    )
-    settlement_journal_id = fields.Many2one(
-        "account.journal",
-        "Settlement Journal",
-        check_company=True,
-        help="Journal used when customers finally pay the invoice to bank.",
     )
 
     def get_default_value_by_list(self, field_name):

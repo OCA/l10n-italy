@@ -22,12 +22,6 @@
                     domain="[('state','=','accepted')]"
                 />
                 <filter
-                    name="paid"
-                    string="Paid"
-                    help="Paid"
-                    domain="[('state','=','paid')]"
-                />
-                <filter
                     name="credited"
                     string="Credited"
                     help="Credited"
@@ -72,7 +66,7 @@
                 <button
                     name="%(riba_past_due_action)d"
                     type='action'
-                    invisible="type == 'incasso' or state != 'credited'"
+                    invisible="(type == 'sbf' and state != 'credited') or (type == 'incasso' and state != 'confirmed')"
                     string="Mark as Past Due"
                     icon="fa-exclamation-triangle"
                 />

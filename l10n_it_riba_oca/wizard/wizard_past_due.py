@@ -125,33 +125,65 @@ class RibaPastDue(models.TransientModel):
         line.slip_id.state = "past_due"
         return {"type": "ir.actions.act_window_close"}
 
+    def _get_collect_account(self, riba_type):
+        """Return the account where the past due closes the credit to collect:
+        "Acceptance Account" for incasso type, "RiBa Account" for sbf type."""
+        if riba_type == "incasso":
+            return self.acceptance_account_id
+        return self.credit_account_id
+
+    def _get_lines_to_collect(self, slip_line):
+        """Return the lines to collect that the past due of `slip_line` closes."""
+        collect_lines = slip_line.slip_id.collect_line_ids
+        # In 'After collection' mode each line has its own acceptance entry,
+        # so only the one of this line has to be closed
+        line_collect_lines = collect_lines.filtered(
+            lambda line: line.move_id == slip_line.acceptance_move_id
+        )
+        if not line_collect_lines:
+            # In 'Subject to collection' mode the credit entry has a line
+            # for each due date, so only the one of this line has to be closed
+            line_collect_lines = collect_lines.filtered(
+                lambda line: line.date_maturity == slip_line.due_date
+            )
+        return line_collect_lines or collect_lines
+
     def _validate_accounts(self, riba_type):
         """Validate that all required accounts are set based on RiBa type."""
-        account_check = (
+        if (
             not self.past_due_journal_id
             or not self.overdue_credit_account_id
             or not self.bank_expense_account_id
-        )
-        # only incasso type needs "Acceptance Account"
-        if riba_type == "incasso":
-            account_check = account_check or not self.acceptance_account_id
-        # only sbf type needs "RiBa Account"
-        else:
-            account_check = account_check or not self.credit_account_id
-        if account_check:
+            or not self._get_collect_account(riba_type)
+        ):
             raise UserError(self.env._("Every account is mandatory."))
+
+    def _check_collect_account(self, slip_line, riba_type):
+        """The past due can only close the credit on the account it is on."""
+        collect_accounts = self._get_lines_to_collect(slip_line).account_id
+        account = self._get_collect_account(riba_type)
+        if collect_accounts and account not in collect_accounts:
+            raise UserError(
+                self.env._(
+                    "The past due of line %(line)s has to close the credit to "
+                    "collect on account %(collect_accounts)s, "
+                    "but account %(account)s has been set.",
+                    line=slip_line.sequence,
+                    collect_accounts=", ".join(collect_accounts.mapped("display_name")),
+                    account=account.display_name,
+                )
+            )
 
     def _prepare_move_lines(self, slip_line, riba_type, date):
         """Prepare move lines for the past due entry."""
         line_ids = []
 
         # Determine account and name based on RiBa type
+        aml_account_id = self._get_collect_account(riba_type).id
         if riba_type == "incasso":
             aml_name = self.env._("Bills Account")
-            aml_account_id = self.acceptance_account_id.id
         else:
             aml_name = self.env._("RiBa Credit")
-            aml_account_id = self.credit_account_id.id
 
         # Add bank fees line if applicable
         bank_fee_line = {
@@ -217,24 +249,24 @@ class RibaPastDue(models.TransientModel):
         move_line_model = self.env["account.move.line"]
         move_model = self.env["account.move"]
 
-        riba_credit_to_be_reconciled, customers_to_be_reconciled = [], []
+        customers_to_be_reconciled = []
 
         # Process move lines for reconciliation
         for move_line in move.line_ids:
             if move_line.account_id.id == self.overdue_credit_account_id.id:
                 self._process_overdue_move_line(move_line, slip_line, move_model)
                 customers_to_be_reconciled.append(move_line.id)
-            if move_line.account_id.id == self.credit_account_id.id:
-                riba_credit_to_be_reconciled.append(move_line.id)
 
-        # Add credit move lines for reconciliation
-        for credit_move_line in slip_line.credit_move_id.line_ids:
-            if credit_move_line.account_id.id == self.credit_account_id.id:
-                riba_credit_to_be_reconciled.append(credit_move_line.id)
-
-        # Reconcile RiBa credit lines
-        if riba_credit_to_be_reconciled:
-            move_line_model.browse(riba_credit_to_be_reconciled).reconcile()
+        # Close the part of the credit towards the bank that is not collected:
+        # the RiBa account for 'Subject to collection', the bills account for
+        # 'After collection'. This lowers the amount due of the slip, exactly
+        # like a collection does.
+        collect_lines = self._get_lines_to_collect(slip_line)
+        past_due_collect_lines = move.line_ids.filtered(
+            lambda line: line.account_id in collect_lines.account_id and line.credit > 0
+        )
+        if past_due_collect_lines:
+            (collect_lines + past_due_collect_lines).reconcile()
 
         # Remove existing reconciliations
         slip_line.move_line_ids.move_line_id.remove_move_reconcile()
@@ -245,9 +277,9 @@ class RibaPastDue(models.TransientModel):
                 customers_to_be_reconciled.append(acceptance_move_line.id)
 
         # Reconcile customer lines
-        customers_to_be_reconciled_lines = move_line_model.with_context(
-            past_due_reconciliation=True
-        ).browse(customers_to_be_reconciled)
+        customers_to_be_reconciled_lines = move_line_model.browse(
+            customers_to_be_reconciled
+        )
         customers_to_be_reconciled_lines.reconcile()
 
     def _process_overdue_move_line(self, move_line, slip_line, move_model):
@@ -277,6 +309,7 @@ class RibaPastDue(models.TransientModel):
 
         # Validate required accounts
         self._validate_accounts(riba_type)
+        self._check_collect_account(slip_line, riba_type)
 
         date = self.date or slip_line.due_date
 
