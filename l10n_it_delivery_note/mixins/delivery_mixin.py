@@ -29,6 +29,16 @@ def _domain_weight_uom(model):
     return [("category_id", "=", uom_category_id.id)]
 
 
+def _domain_delivery_carrier_partner(model):
+    carriers = model.env["delivery.carrier"].search([])
+    carrier_partners = carriers.partner_id
+    if carrier_partners:
+        domain = [("id", "in", carrier_partners.ids)]
+    else:
+        domain = []
+    return domain
+
+
 class DeliveryData(models.AbstractModel):
     _name = "l10n_it_delivery_note.delivery_mixin"
     _description = "Common data for records to be delivered"
@@ -47,6 +57,7 @@ class DeliveryData(models.AbstractModel):
     )
     delivery_carrier_id = fields.Many2one(
         comodel_name="res.partner",
+        domain=_domain_delivery_carrier_partner,
         string="Carrier of Delivery",
     )
     delivery_goods_appearance_id = fields.Many2one(
