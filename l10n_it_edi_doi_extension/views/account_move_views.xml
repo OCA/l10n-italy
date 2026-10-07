@@ -54,7 +54,7 @@
                             <field name="l10n_it_edi_doi_total_amount" />
                         </group>
                     </group>
-                    <field name="l10n_it_edi_doi_ids">
+                    <field name="l10n_it_edi_doi_ids" readonly="state != 'draft'">
                         <list editable="bottom">
                             <field name="sequence" widget="handle" />
                             <field
