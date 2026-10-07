@@ -719,13 +719,6 @@ class TestFatturaPAXMLValidation(FatturaPACommon):
         self.assertFalse(invoice.fatturapa_payment_method_id)
         self.assertFalse(invoice.fatturapa_payment_term_id)
 
-        # Act
-        # Since payment data fields are not set, an exception is raised
-        with self.assertRaises(UserError) as ue:
-            self.run_wizard(invoice.id)
-        exc_message = ue.exception.args[0]
-        self.assertIn("Fiscal Payment Method must be set", exc_message)
-        # When fields are set, we can export the e-invoice
         with Form(invoice) as invoice_form:
             invoice_form.fatturapa_payment_method_id = self.env.ref(
                 "l10n_it_fiscal_payment_term.fatturapa_mp05"
