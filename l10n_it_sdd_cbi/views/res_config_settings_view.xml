@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_form_inherit_view" model="ir.ui.view">
+        <field name="name">res.config.settings.form.inherit.view</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="account_banking_sepa_direct_debit.view_account_config_settings"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//setting/field[@name='sepa_creditor_identifier']/.."
+                position="after"
+            >
+                <setting>
+                    <field name="sepa_payment_order_schema" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
