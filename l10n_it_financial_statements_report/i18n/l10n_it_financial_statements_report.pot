@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -165,6 +165,16 @@ msgid "Date range filter"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_group__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_pdf__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_xlsx__display_name
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
 #: model_terms:ir.ui.view,arch_db:l10n_it_financial_statements_report.financial_statements_report_lines_header
 msgid "Ending balance"
 msgstr ""
@@ -279,6 +289,16 @@ msgid "Hide Accounts Codes"
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_account__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_account_group__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_pdf__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_report_l10n_it_financial_statements_report_report_xlsx__id
+#: model:ir.model.fields,field_description:l10n_it_financial_statements_report.field_trial_balance_report_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_financial_statements_report
 #: model:ir.model.fields.selection,name:l10n_it_financial_statements_report.selection__account_account__financial_statements_report_section__incomes
 msgid "Incomes"
 msgstr ""
@@ -334,7 +354,7 @@ msgstr ""
 #. module: l10n_it_financial_statements_report
 #. odoo-python
 #: code:addons/l10n_it_financial_statements_report/report/financial_statements_report.py:0
-msgid "No report has been defined for report type '{}'."
+msgid "No report has been defined for report type '%s'."
 msgstr ""
 
 #. module: l10n_it_financial_statements_report
