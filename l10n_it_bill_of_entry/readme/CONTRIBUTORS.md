@@ -1,0 +1,8 @@
+- Alex Comba \<<alex.comba@agilebg.com>\>
+- [TAKOBI](https://takobi.online):
+  - Lorenzo Battistini
+  - Simone Rubino \<<sir@takobi.online>\>
+- Diego Bruselli \<<d.bruselli@creativiquadrati.it>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>
+- [Nextev Srl](https://nextev.it/) \<<odoo@nextev.it>\>
