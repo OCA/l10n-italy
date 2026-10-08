@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="l10n_it_edi_terzo_intermediario_soggetto_emittente">
+        <t t-translation="off">
+            <TerzoIntermediarioOSoggettoEmittente
+                t-if="company.l10n_edi_it_sender_partner"
+            >
+                <DatiAnagrafici>
+                    <t
+                        t-set="partner_sender"
+                        t-value="company.l10n_edi_it_sender_partner._l10n_it_edi_get_values()"
+                    />
+                    <IdFiscaleIVA>
+                        <IdPaese t-out="partner_sender['country_code']" />
+                        <IdCodice t-out="partner_sender['vat']" />
+                    </IdFiscaleIVA>
+                    <CodiceFiscale
+                        t-if="partner_sender['codice_fiscale']"
+                        t-out="partner_sender['codice_fiscale']"
+                    />
+                    <Anagrafica>
+                        <Denominazione
+                            t-if="partner_sender['is_company']"
+                            t-out="company.l10n_edi_it_sender_partner.display_name"
+                        />
+                        <Nome
+                            t-if="not partner_sender['is_company']"
+                            t-out="partner_sender['first_name']"
+                        />
+                        <Cognome
+                            t-if="not partner_sender['is_company']"
+                            t-out="partner_sender['last_name']"
+                        />
+                    </Anagrafica>
+                </DatiAnagrafici>
+            </TerzoIntermediarioOSoggettoEmittente>
+        </t>
+    </template>
+</odoo>
