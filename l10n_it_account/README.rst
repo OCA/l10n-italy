@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ======================
 ITA - Contabilità base
 ======================
@@ -17,7 +13,7 @@ ITA - Contabilità base
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
@@ -77,23 +73,23 @@ Authors
 Contributors
 ------------
 
-- Davide Corio
-- Lorenzo Battistini
-- Alex Comba <alex.comba@agilebg.com>
-- Sergio Zanchetta <https://github.com/primes2h>
-- Gianmarco Conte - Dinamiche Aziendali Sr
-  <gconte@dinamicheaziendali.it>
-- Marco Colombo - Phi S.r.l. <marco.colombo@phi.technology>
-- `TAKOBI <https://takobi.online>`__:
+-  Davide Corio
+-  Lorenzo Battistini
+-  Alex Comba <alex.comba@agilebg.com>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Gianmarco Conte - Dinamiche Aziendali Sr
+   <gconte@dinamicheaziendali.it>
+-  Marco Colombo - Phi S.r.l. <marco.colombo@phi.technology>
+-  `TAKOBI <https://takobi.online>`__:
 
-  - Simone Rubino <sir@takobi.online>
+   -  Simone Rubino <sir@takobi.online>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Odoo Italia Network
+-  Odoo Italia Network
 
 Maintainers
 -----------

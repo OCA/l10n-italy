@@ -20,6 +20,48 @@ def _remove_module(env, module_name):
     )
 
 
+def rename_oca_module(env, old_module, new_module):
+    """Rename the installed OCA module ``old_module`` to ``new_module``.
+
+    ``new_module`` takes the state and the version of ``old_module``,
+    so that it is upgraded and its migration scripts are executed.
+
+    Nothing is done if ``new_module`` is not available,
+    otherwise the data of ``old_module`` would be left without a module.
+    """
+    cr = env.cr
+    cr.execute(
+        """
+        SELECT 1
+        FROM ir_module_module
+        WHERE name = %s
+            AND state IN ('installed', 'to upgrade')
+            AND author LIKE %s
+        """,
+        (old_module, "%OCA%"),
+    )
+    if not cr.fetchone():
+        return
+    cr.execute(
+        """
+        SELECT 1
+        FROM ir_module_module
+        WHERE name = %s
+            AND state = 'uninstalled'
+        """,
+        (new_module,),
+    )
+    if not cr.fetchone():
+        return
+    openupgrade.update_module_names(
+        cr,
+        [
+            (old_module, new_module),
+        ],
+        merge_modules=True,
+    )
+
+
 def remove_modules_views(cr, modules):
     """Remove the views and menus registered by the given modules.
 
