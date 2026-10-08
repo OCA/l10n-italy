@@ -7,6 +7,7 @@ from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 from odoo.tools import float_compare, float_is_zero
+from odoo.tools.date_utils import relativedelta
 
 
 class AssetDepreciation(models.Model):
@@ -507,7 +508,15 @@ class AssetDepreciation(models.Model):
                 )
             )
 
-        if self.pro_rata_temporis or self._context.get("force_prorata"):
+        pro_rata = self.pro_rata_temporis or self._context.get("force_prorata")
+        if pro_rata and period == "month":
+            # Monthly depreciation already divides the year by 12.
+            # Pro rata has to work on that month: applying it to the
+            # whole fiscal year cuts the amount a second time.
+            multiplier *= self.get_pro_rata_month_multiplier(
+                dep_date, period_count=period_count
+            )
+        elif pro_rata:
             fiscal_year_obj = self.env["account.fiscal.year"]
             fy_start = fiscal_year_obj.get_fiscal_year_by_date(
                 date_start, company=self.company_id
@@ -646,6 +655,35 @@ class AssetDepreciation(models.Model):
         raise NotImplementedError(
             self.env._("Cannot get pro rata temporis multiplier for unspecified mode")
         )
+
+    def get_pro_rata_month_multiplier(self, dep_date, period_count=None):
+        """
+        Computes and returns the pro rata multiplier of a monthly
+        depreciation.
+
+        The depreciated period ends on ``dep_date`` and begins
+        ``period_count`` months earlier, on the first day of that month.
+        An asset registered before the period gets the whole period.
+        An asset registered inside it gets the days from ``date_start``
+        to ``dep_date``.
+
+        :param dep_date: depreciation date as a fields.Date value
+        :param period_count: number of depreciated months, 1 when missing
+        :return: owned fraction of the depreciated period
+        """
+        self.ensure_one()
+        if not (self.pro_rata_temporis or self._context.get("force_prorata")):
+            return 1
+
+        dep_date = fields.Date.to_date(dep_date)
+        date_start = fields.Date.to_date(self.date_start)
+        period_start = dep_date + relativedelta(day=1, months=1 - (period_count or 1))
+        if date_start <= period_start:
+            return 1
+
+        period_days = (dep_date - period_start).days + 1
+        owned_days = (dep_date - date_start).days + 1
+        return owned_days / period_days
 
     def make_name(self):
         self.ensure_one()
