@@ -73,7 +73,7 @@
                 <t t-call="portal.portal_back_in_edit_mode">
                     <t
                         t-set="backend_url"
-                        t-value="'/odoo/action-l10n_it_delivery_note.stock_delivery_note_action/' % dn.id"
+                        t-value="'/odoo/action-l10n_it_delivery_note.stock_delivery_note_action/%s' % dn.id"
                     />
                 </t>
             </t>
