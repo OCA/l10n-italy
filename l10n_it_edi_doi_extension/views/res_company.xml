@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_company_bills_doi_tax" model="ir.ui.view">
+        <field name="name">res.company.bills.doi.tax</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <field name="company_registry" position="after">
+                <field name="l10n_it_edi_doi_bill_tax_id" />
+                <field name="l10n_it_edi_doi_tax_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
