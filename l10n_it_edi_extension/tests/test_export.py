@@ -90,6 +90,47 @@ class TestExport(Common):
         invoice.action_post()
         self._assert_export_invoice(invoice, "partner_shipping_sequence.xml")
 
+    def test_partner_shipping_with_ddt(self):
+        """DatiTrasporto is exported after the DatiDDT nodes
+        that other modules (e.g. l10n_it_stock_ddt) add after
+        the DatiDDT node of l10n_it_edi."""
+        # Simulate a module adding DatiDDT nodes after the DatiDDT of l10n_it_edi,
+        # with its view applied before the view of this module
+        self.env["ir.ui.view"].create(
+            {
+                "name": "test DatiDDT after l10n_it_edi DatiDDT",
+                "type": "qweb",
+                "mode": "extension",
+                "inherit_id": self.env.ref(
+                    "l10n_it_edi.account_invoice_it_FatturaPA_export"
+                ).id,
+                "priority": 1,
+                "arch": """
+<data>
+    <xpath expr="//DatiDDT" position="after">
+        <t t-foreach="['DDT/2019/00001']" t-as="ddt_number">
+            <DatiDDT>
+                <NumeroDDT t-out="ddt_number" />
+                <DataDDT t-out="format_date(record.invoice_date)" />
+            </DatiDDT>
+        </t>
+    </xpath>
+</data>
+""",
+            }
+        )
+        invoice = self.init_invoice(
+            "out_invoice",
+            amounts=[100],
+            company=self.company,
+            partner=self.italian_partner_a,
+            taxes=self.default_tax,
+        )
+        invoice.invoice_date_due = invoice.date
+        invoice.partner_shipping_id = self.italian_shipping_partner_a
+        invoice.action_post()
+        self._assert_export_invoice(invoice, "partner_shipping_ddt.xml")
+
     def test_us_partner_shipping(self):
         """The US partner shipping included in the invoice
         is exported to the XML in IndirizzoResa node."""
