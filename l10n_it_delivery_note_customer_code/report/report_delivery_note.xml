@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="delivery_note_report_template_customer_code"
+        inherit_id="l10n_it_delivery_note.delivery_note_report_template"
+    >
+        <xpath expr="//table//th[@name='th_product']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//table//th[@name='th_product']" position="after">
+            <th name="th_customer_code" class="text-start">Code</th>
+        </xpath>
+        <xpath expr="//table//th[@name='th_description']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//table//th[@name='th_description']" position="after">
+            <th name="th_customer_name" class="text-start">Product Name</th>
+        </xpath>
+        <xpath expr="//table//td[@name='td_product']/span" position="attributes">
+            <attribute name="t-if">not line.product_customer_code</attribute>
+        </xpath>
+        <xpath
+            expr="//table//td[@name='td_product']/span[@t-field='line.product_id.default_code']"
+            position="after"
+        >
+            <span
+                t-if="line.product_customer_code"
+                t-out="line.product_customer_code"
+            />
+        </xpath>
+        <xpath
+            expr="//table//td[@name='td_name']/span[@t-field='line.name']"
+            position="attributes"
+        >
+            <attribute name="t-if">not line.product_customer_name</attribute>
+        </xpath>
+        <xpath
+            expr="//table//td[@name='td_name']/span[@t-field='line.name']"
+            position="after"
+        >
+            <span
+                t-if="line.product_customer_name"
+                t-out="line.product_customer_name"
+            />
+        </xpath>
+    </template>
+</odoo>
