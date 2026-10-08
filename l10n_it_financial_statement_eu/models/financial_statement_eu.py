@@ -86,10 +86,6 @@ class FinancialStatementEU(models.Model):
                 p = ""
             line.complete_name = f"[{line.code}] {p}{line.name}"
 
-    def _compute_display_name(self):
-        for line in self:
-            line.display_name = line.complete_name
-
     @api.constrains("code", "zone_bal")
     def _check_code_zone(self):
         for line in self:
@@ -112,7 +108,8 @@ class FinancialStatementEU(models.Model):
         credit_fse_id,
         force_update,
     ):
-        for company in self.env.user.company_ids:
+        # pylint: disable=no-search-all
+        for company in self.env["res.company"].search([]):
             acc_ids = (
                 self.env["account.account"]
                 .with_company(company)
@@ -230,90 +227,65 @@ class FinancialStatementEU(models.Model):
         currency_precision = currency_id.decimal_places
         domain = Domain("company_ids", "in", company_id)
         domain = self.add_calc_type_domain(domain, calc_type, financial_statement_eu_id)
-        acc_model = self.env["account.account"]
-        account_ids = acc_model.formatted_read_group(
-            domain,
-            [
-                "id",
-                "code",
-                "name",
-                "financial_statement_eu_debit_id",
-                "financial_statement_eu_credit_id",
-            ],
-            ["__count"],
-            order="code",
-        )
-        if account_ids:
-            for item in account_ids:
-                account_id = item.get("id", False)
-                if account_id:
-                    acc_credit_id = item.get("financial_statement_eu_credit_id")
-                    acc_debit_id = item.get("financial_statement_eu_debit_id")
-                    domain = Domain("company_id", "=", company_id)
-                    domain &= Domain("account_id", "=", account_id[0])
-                    domain &= Domain("date", ">=", date_from)
-                    domain &= Domain("date", "<=", date_to)
-                    if only_posted_move:
-                        domain &= Domain("move_id.state", "=", "posted")
-                    if ignore_closing_move:
-                        domain &= Domain("move_id.closing_type", "!=", "closing")
-                        domain &= Domain("move_id.closing_type", "!=", "loss_profit")
-                    aml_model = self.env["account.move.line"]
-                    amls = aml_model.formatted_read_group(
-                        domain,
-                        ["account_id"],
-                        ["__count", "debit:sum", "credit:sum"],
-                    )
-                    if amls:
-                        for line in amls:
-                            acc_amount = tools.float_round(
-                                line.get("debit:sum") - line.get("credit:sum"),
-                                currency_precision,
+        accounts = self.env["account.account"].search(domain, order="code")
+        for account in accounts:
+            acc_credit_id = account.financial_statement_eu_credit_id
+            acc_debit_id = account.financial_statement_eu_debit_id
+            domain = Domain("company_id", "=", company_id)
+            domain &= Domain("account_id", "=", account.id)
+            domain &= Domain("date", ">=", date_from)
+            domain &= Domain("date", "<=", date_to)
+            if only_posted_move:
+                domain &= Domain("move_id.state", "=", "posted")
+            if ignore_closing_move:
+                domain &= Domain("move_id.closing_type", "!=", "closing")
+                domain &= Domain("move_id.closing_type", "!=", "loss_profit")
+            amls = self.env["account.move.line"]._read_group(
+                domain,
+                ["account_id"],
+                ["debit:sum", "credit:sum"],
+            )
+            if amls:
+                for _account, debit, credit in amls:
+                    acc_amount = tools.float_round(debit - credit, currency_precision)
+                    if (
+                        (calc_type == "non_assoc")
+                        or (
+                            (calc_type == "d")  # debit
+                            and (
+                                (currency_id.compare_amounts(acc_amount, 0) >= 0)
+                                or (not acc_credit_id)
                             )
-                            if (
-                                (calc_type == "non_assoc")
-                                or (
-                                    (calc_type == "d")  # debit
-                                    and (
-                                        (
-                                            currency_id.compare_amounts(acc_amount, 0)
-                                            >= 0
-                                        )
-                                        or (not acc_credit_id)
-                                    )
-                                )
-                                or (
-                                    (calc_type == "c")  # credit
-                                    and (
-                                        (
-                                            currency_id.compare_amounts(acc_amount, 0)
-                                            == -1
-                                        )
-                                        or (not acc_debit_id)
-                                    )
-                                )
-                            ):
-                                if sign_display == "-":
-                                    acc_amount = -acc_amount
-                                financial_statement_line_amount = (
-                                    financial_statement_line_amount + acc_amount
-                                )
-                                if (not hide_acc_amount_0) or (acc_amount != 0):
-                                    account_list.append(
-                                        {
-                                            "code": item.get("code"),
-                                            "desc": item.get("name"),
-                                            "amount": acc_amount,
-                                        }
-                                    )
-                    elif not hide_acc_amount_0:
-                        account_list.append(
-                            {
-                                "code": item.get("code"),
-                                "desc": item.get("name"),
-                                "amount": 0,
-                            }
                         )
+                        or (
+                            (calc_type == "c")  # credit
+                            and (
+                                (currency_id.compare_amounts(acc_amount, 0) == -1)
+                                or (not acc_debit_id)
+                            )
+                        )
+                    ):
+                        if sign_display == "-":
+                            acc_amount = -acc_amount
+                        financial_statement_line_amount = (
+                            financial_statement_line_amount + acc_amount
+                        )
+                        if (not hide_acc_amount_0) or (acc_amount != 0):
+                            account_list.append(
+                                {
+                                    "code": account.code,
+                                    "desc": account.name,
+                                    "amount": acc_amount,
+                                }
+                            )
+            elif not hide_acc_amount_0:
+                account_list.append(
+                    {
+                        "code": account.code,
+                        "desc": account.name,
+                        "amount": 0,
+                    }
+                )
         return financial_statement_line_amount
 
     def round_bal_val(self, val, precision):

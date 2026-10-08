@@ -14,11 +14,11 @@ def _get_financial_statement_line_amount(fs_lines, line_code):
 
 @tagged("-at_install", "post_install")
 class TestFinancialStatementEU(AccountTestInvoicingCommon):
-    def setUp(self):
-        # add env on cls and many other things
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-        self.data_it_company = self.setup_other_company(
+        cls.data_it_company = cls.setup_other_company(
             name="IT Company2",
             vat="IT01234560157",
             phone="0266766700",
@@ -29,13 +29,13 @@ class TestFinancialStatementEU(AccountTestInvoicingCommon):
             l10n_it_codice_fiscale="01234560157",
             l10n_it_tax_system="RF01",
         )
-        self.it_company = self.data_it_company["company"]
-        self.env.user.company_ids |= self.it_company
-        self.env.user.company_id = self.it_company
+        cls.it_company = cls.data_it_company["company"]
+        cls.env.user.company_ids |= cls.it_company
+        cls.env.user.company_id = cls.it_company
         # Now that current user can access the company,
         # log the user *only* in this company so that
         # searching, reading and other operations behave as expected
-        self.env.user.company_ids = self.it_company
+        cls.env.user.company_ids = cls.it_company
 
     def _find_or_create_account_account(self, company_id, code, name, code_fs_eu):
         acc_id = self.env["account.account"].search(
@@ -56,9 +56,13 @@ class TestFinancialStatementEU(AccountTestInvoicingCommon):
         if (not acc_id.financial_statement_eu_debit_id) or (
             acc_id.financial_statement_eu_debit_id.id != id_fs_eu
         ):
+            # Like the post-init hook, run as superuser:
+            # accounts of all the companies are updated
             self.env[
                 "financial.statement.eu"
-            ].financial_statement_eu_account_association(code, id_fs_eu, False, True)
+            ].sudo().financial_statement_eu_account_association(
+                code, id_fs_eu, False, True
+            )
         return acc_id
 
     def _add_move(self, company_id, ref, journal, date, line_list):
