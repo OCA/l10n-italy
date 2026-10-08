@@ -70,15 +70,16 @@ class TestIntrastat(AccountTestInvoicingCommon):
         )
         self.assertEqual(total_intrastat_amount, invoice.amount_untaxed)
 
-    def test_invoice_fiscal_postion(self):
+    def _test_invoice_fiscal_position(self, intrastat_type):
         self.partner01.property_account_position_id = self.fp_model.create(
             {
-                "name": "F.P subjected to intrastat",
-                "intrastat": True,
+                "name": "F.P subjected to intrastat on %s" % intrastat_type,
+                "intrastat_sale": True if intrastat_type == "sale" else False,
+                "intrastat_purchase": True if intrastat_type == "purchase" else False,
             }
         )
         invoice = self.init_invoice(
-            "out_invoice",
+            "out_invoice" if intrastat_type == "sale" else "in_invoice",
             partner=self.partner01,
             products=self.product01,
             taxes=self.tax22,
@@ -87,6 +88,17 @@ class TestIntrastat(AccountTestInvoicingCommon):
         invoice.action_post()
         invoice.compute_intrastat_lines()
         self.assertEqual(invoice.intrastat, True)
+
+        invoice_purchase = self.init_invoice(
+            "in_invoice" if intrastat_type == "sale" else "out_invoice",
+            partner=self.partner01,
+            products=self.product01,
+            taxes=self.tax22,
+        )
+        # Compute intrastat lines
+        invoice_purchase.action_post()
+        invoice_purchase.compute_intrastat_lines()
+        self.assertEqual(invoice_purchase.intrastat, False)
 
     def test_propagate_action_post_result(self):
         """The result of posting an invoice is propagated."""
@@ -149,3 +161,9 @@ class TestIntrastat(AccountTestInvoicingCommon):
 
         # Assert
         self.assertEqual(invoice.intrastat_line_ids.weight_kg, variant_weight)
+
+    def test_invoice_fiscal_position_sale(self):
+        self._test_invoice_fiscal_position("sale")
+
+    def test_invoice_fiscal_position_purchase(self):
+        self._test_invoice_fiscal_position("purchase")
