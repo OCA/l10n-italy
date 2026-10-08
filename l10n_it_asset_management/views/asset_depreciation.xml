@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record model="ir.ui.view" id="view_asset_depreciation_form">
+        <field name="name">asset.depreciation.form.view</field>
+        <field name="model">asset.depreciation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <group>
+                    <group>
+                        <field name="id" invisible="1" />
+                        <field name="type_id" readonly="state != 'non_depreciated'" />
+                        <field name="requires_account_move" invisible="1" />
+                        <field name="mode_id" readonly="state != 'non_depreciated'" />
+                        <field
+                            name="date_start"
+                            readonly="state != 'non_depreciated'"
+                        />
+                        <field
+                            name="zero_depreciation_until"
+                            readonly="state != 'non_depreciated'"
+                        />
+                        <field name="last_depreciation_date" />
+                        <field
+                            name="pro_rata_temporis"
+                            readonly="state != 'non_depreciated'"
+                        />
+                        <field
+                            name="percentage"
+                            readonly="state != 'non_depreciated'"
+                        />
+                        <field
+                            name="base_coeff"
+                            readonly="state != 'non_depreciated'"
+                        />
+                        <field
+                            name="base_max_amount"
+                            readonly="state != 'non_depreciated'"
+                        />
+                        <field
+                            name="depreciation_account_id"
+                            readonly="state != 'non_depreciated'"
+                        />
+                        <field
+                            name="gain_account_id"
+                            readonly="state != 'non_depreciated'"
+                        />
+                        <field
+                            name="loss_account_id"
+                            readonly="state != 'non_depreciated'"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="amount_depreciable"
+                            widget="monetary"
+                            readonly="state != 'non_depreciated'"
+                            force_save="1"
+                        />
+                        <field name="amount_depreciable_updated" widget="monetary" />
+                        <field name="amount_historical" widget="monetary" />
+                        <field name="amount_in" widget="monetary" />
+                        <field name="amount_out" widget="monetary" />
+                        <field name="amount_depreciated" widget="monetary" />
+                        <field name="amount_loss" widget="monetary" />
+                        <field name="amount_gain" widget="monetary" />
+                        <field name="amount_residual" widget="monetary" />
+                        <field name="currency_id" groups="base.group_multi_currency" />
+                        <field
+                            name="currency_id"
+                            invisible="True"
+                            groups="!base.group_multi_currency"
+                        />
+                        <field name="company_id" groups="base.group_multi_company" />
+                        <field
+                            name="company_id"
+                            invisible="True"
+                            groups="!base.group_multi_company"
+                        />
+                        <field name="dismiss_move_id" />
+                    </group>
+                </group>
+                <notebook>
+                    <page name="depreciation_lines" string="Depreciation Lines">
+                        <field
+                            name="line_ids"
+                            context="{'default_depreciation_id':id}"
+                            nolabel="1"
+                        >
+                            <list editable="bottom">
+                                <field name="id" invisible="1" />
+                                <field name="depreciation_id" invisible="1" />
+                                <field name="name" />
+                                <field name="date" />
+                                <field name="move_type" />
+                                <field
+                                    name="depreciation_line_type_id"
+                                    options="{'no_create_edit': 1}"
+                                    string="In/Out Amount Type"
+                                    domain="['|', ('type', '=', False), ('type', '=', move_type)]"
+                                    readonly="move_type not in ('in', 'out')"
+                                />
+                                <field name="force_dep_nr" invisible="1" />
+                                <field name="partial_dismissal" invisible="1" />
+                                <field
+                                    name="depreciation_nr"
+                                    readonly="not force_dep_nr"
+                                    invisible="not force_dep_nr and (partial_dismissal or move_type not in ('depreciated', 'historical'))"
+                                />
+                                <field
+                                    name="amount"
+                                    readonly="move_id"
+                                    widget="monetary"
+                                />
+                                <field name="asset_accounting_info_ids" invisible="1" />
+                                <field
+                                    name="move_id"
+                                    column_invisible="not parent.requires_account_move"
+                                />
+                                <field name="requires_account_move" invisible="1" />
+                                <field name="currency_id" invisible="1" />
+                                <field name="company_id" invisible="1" />
+                                <button
+                                    name="button_generate_account_move"
+                                    type="object"
+                                    string="Generate Move"
+                                    icon="fa-money"
+                                    invisible="not amount or move_id or move_type in ('in', 'out') or not requires_account_move"
+                                />
+                                <button
+                                    name="button_regenerate_account_move"
+                                    type="object"
+                                    string="Regenerate Move"
+                                    icon="fa-refresh"
+                                    invisible="not amount or not move_id or move_type in ('in', 'out') or not requires_account_move"
+                                />
+                                <button
+                                    name="button_remove_account_move"
+                                    type="object"
+                                    string="Remove Move"
+                                    icon="fa-times-circle"
+                                    invisible="not amount or not move_id or move_type in ('in', 'out') or not requires_account_move"
+                                />
+                            </list>
+                        </field>
+                        <group>
+                            <group>
+                                <field
+                                    name="force_all_dep_nr"
+                                    readonly="state != 'non_depreciated'"
+                                />
+                                <field
+                                    name="force_first_dep_nr"
+                                    readonly="state != 'non_depreciated'"
+                                />
+                                <field
+                                    name="first_dep_nr"
+                                    invisible="not force_first_dep_nr"
+                                    readonly="state != 'non_depreciated'"
+                                />
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_asset_depreciation_tree">
+        <field name="name">view.asset.depreciation.list</field>
+        <field name="model">asset.depreciation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="type_id" />
+                <field name="date_start" />
+                <field name="pro_rata_temporis" />
+                <field name="percentage" />
+                <field name="mode_id" />
+                <field name="amount_depreciable" widget="monetary" />
+                <field name="amount_depreciable_updated" widget="monetary" />
+                <field name="amount_depreciated" widget="monetary" />
+                <field name="last_depreciation_date" />
+                <field name="amount_residual" widget="monetary" />
+                <field name="currency_id" groups="base.group_multi_currency" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+</odoo>
