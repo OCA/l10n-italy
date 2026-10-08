@@ -62,7 +62,7 @@ class TestIntrastatStatement(TransactionCase):
             {
                 "intrastat_type": "service",
                 "intrastat_code_id": self.env.ref(
-                    "l10n_it_intrastat.intrastat_intrastat_01012100"
+                    "l10n_it_intrastat_oca.intrastat_intrastat_01012100"
                 ),
             }
         )
@@ -71,7 +71,7 @@ class TestIntrastatStatement(TransactionCase):
         # it is the default sale tax for the company
         # and it has already been used in other invoices.
         self.tax22_sale = (
-            self.env.ref("l10n_it_intrastat.tax_22")
+            self.env.ref("l10n_it_intrastat_oca.tax_22")
             .sudo()
             .copy(default={"company_id": self.env.company.id})
         )
@@ -80,12 +80,12 @@ class TestIntrastatStatement(TransactionCase):
 
         company = self.env.company
         company.partner_id.vat = "IT03339130126"
-        company.intrastat_custom_id = self.env.ref("l10n_it_intrastat.014100")
+        company.intrastat_custom_id = self.env.ref("l10n_it_intrastat_oca.014100")
         company.intrastat_purchase_transaction_nature_id = self.env.ref(
-            "l10n_it_intrastat.code_8"
+            "l10n_it_intrastat_oca.code_8"
         )
         company.intrastat_sale_transaction_nature_id = self.env.ref(
-            "l10n_it_intrastat.code_9"
+            "l10n_it_intrastat_oca.code_9"
         )
 
     def _get_intrastat_computed_bill(

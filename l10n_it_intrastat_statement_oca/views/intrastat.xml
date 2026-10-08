@@ -29,7 +29,7 @@
                 <header>
                     <button name="compute_statement" string="Recompute" type="object" />
                     <button
-                        name="%(l10n_it_intrastat_statement.action_wizard_wizard_account_intrastat_export_file)d"
+                        name="%(l10n_it_intrastat_statement_oca.action_wizard_wizard_account_intrastat_export_file)d"
                         string="Export File"
                         type="action"
                     />
@@ -249,7 +249,7 @@
     <menuitem
         id="menu_account_intrastat_statement"
         action="account_intrastat_statement_action"
-        parent="l10n_it_intrastat.menu_intrastat_statement"
+        parent="l10n_it_intrastat_oca.menu_intrastat_statement"
         sequence="10"
     />
 

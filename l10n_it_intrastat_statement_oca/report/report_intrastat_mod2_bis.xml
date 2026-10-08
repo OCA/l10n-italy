@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
-    <template id="report_intrastat_mod2_quinquies">
+    <template id="report_intrastat_mod2_bis">
         <t t-call="web.html_container">
             <t t-translation="off">
                 <t t-foreach="docs" t-as="o">
@@ -16,7 +16,7 @@
                                 <div class="col-3">
                                     <p class="text-right">
                                         <img
-                                            src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
+                                            src="/l10n_it_intrastat_statement_oca/static/img/agenzia_dogane.jpg"
                                             height="80px"
                                         />
                                     </p>
@@ -27,14 +27,14 @@
                                             <b>RIEPILOGO DEGLI ACQUISTI INTRACOMUNITARI
                                             <br />DI BENI E DEI SERVIZI RICEVUTI</b>
                                         </td>
-                                        <td>Mod. INTRA-2 Quinquies</td>
+                                        <td>Mod.INTRA-2 Bis</td>
                                     </table>
                                 </div>
                             </div>
                             <div class="row">
                                 <span class="text-center col-7 col-offset-3">
                                     <strong
-                                    >SEZIONE 4. RETTIFICHE AI SERVIZI RICEVUTI INDICATI IN SEZIONI 3 DI PERIODI PRECEDENTI</strong>
+                                    >SEZIONE 1. ACQUISTI DI BENI REGISTRATI NEL PERIODO</strong>
                                     <p />
                                 </span>
                             </div>
@@ -72,38 +72,27 @@
                                     <table class="table table-bordered">
                                         <thead class="fondo">
                                             <tr>
-                                                <th />
-                                                <th
-                                                    colspan="4"
-                                                    class="text-center"
-                                                >SEZIONE 3 DA RETTIFICARE</th>
+                                                <!-- <th></th> -->
                                                 <th
                                                     colspan="2"
                                                     class="text-center"
                                                 >FORNITORE</th>
                                                 <th />
                                                 <th />
-                                                <th
-                                                    colspan="2"
-                                                    class="text-center"
-                                                >RIFERIMENTO FATTURA</th>
+                                                <th />
+                                                <th />
+                                                <th />
+                                                <th />
+                                                <th />
+                                                <th />
+                                                <th />
                                                 <th />
                                                 <th />
                                                 <th />
                                                 <th />
                                             </tr>
                                             <tr>
-                                                <th class="text-center">PROGR.</th>
-                                                <th
-                                                    class="text-center"
-                                                >SEZIONE DOGANALE</th>
-                                                <th class="text-center">ANNO</th>
-                                                <th
-                                                    class="text-center"
-                                                >PROTOCOLLO DICHIARAZIONE</th>
-                                                <th
-                                                    class="text-center"
-                                                >PROGR. SEZ. 3</th>
+                                                <!-- <th class="text-center">PROGR.</th> -->
                                                 <th class="text-center">STATO</th>
                                                 <th class="text-center">CODICE IVA</th>
                                                 <th
@@ -112,20 +101,27 @@
                                                 <th
                                                     class="text-center"
                                                 >AMMONTARE DELLE OPERAZIONI IN VALUTA</th>
-                                                <th class="text-center">NUMERO</th>
-                                                <th class="text-center">DATA</th>
                                                 <th
                                                     class="text-center"
-                                                >CODICE SERVIZIO</th>
+                                                >NATURA TRANS.</th>
                                                 <th
                                                     class="text-center"
-                                                >MODALITA’ DI EROGAZIONE</th>
+                                                >NATURA TRANS. B</th>
                                                 <th
                                                     class="text-center"
-                                                >MODALITA’ DI INCASSO</th>
+                                                >NOMENCLATURA COMBINATA</th>
+                                                <th class="text-center">MASSA NETTA</th>
                                                 <th
                                                     class="text-center"
-                                                >PAESE DI PAGAMENTO</th>
+                                                >UNITA' SUPPLEMENTARE</th>
+                                                <th
+                                                    class="text-center"
+                                                >VALORE STATISTICO IN EURO</th>
+                                                <th class="text-center">COND. CONS.</th>
+                                                <th class="text-center">MODO TRASP.</th>
+                                                <th class="text-center">PAESE PROV.</th>
+                                                <th class="text-center">PAESE ORIG.</th>
+                                                <th class="text-center">PROV. DEST.</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -148,26 +144,10 @@
                                             </tr>
                                             <t t-set="total" t-value="0" />
                                             <tr
-                                                t-foreach="o.purchase_section4_ids"
+                                                t-foreach="o.purchase_section1_ids"
                                                 t-as="l"
                                             >
-                                                <td t-esc="l.sequence" />
-                                                <td>
-                                                    <span
-                                                        t-field="l.intrastat_custom_id"
-                                                    />
-                                                </td>
-                                                <td>
-                                                    <span t-field="l.year_id" />
-                                                </td>
-                                                <td>
-                                                    <span t-field="l.protocol" />
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        t-field="l.progressive_to_modify"
-                                                    />
-                                                </td>
+                                                <!-- <td t-esc="l.progressive"></td> -->
                                                 <td>
                                                     <span
                                                         t-field="l.country_partner_id.code"
@@ -179,31 +159,63 @@
                                                 <td>
                                                     <span t-field="l.amount_euro" />
                                                 </td>
-                                                <td />
-                                                <td>
-                                                    <span t-field="l.invoice_number" />
-                                                </td>
-                                                <td>
-                                                    <span t-field="l.invoice_date" />
-                                                </td>
                                                 <td>
                                                     <span
-                                                        t-field="l.intrastat_code_id"
+                                                        t-if="l.amount_currency"
+                                                        t-field="l.amount_currency"
                                                     />
                                                 </td>
                                                 <td>
                                                     <span
-                                                        t-esc="l.get_supply_method_key()"
+                                                        t-field="l.transaction_nature_id.code"
                                                     />
                                                 </td>
                                                 <td>
                                                     <span
-                                                        t-esc="l.get_payment_method_key()"
+                                                        t-field="l.transaction_nature_b_id.code"
                                                     />
                                                 </td>
                                                 <td>
                                                     <span
-                                                        t-field="l.country_payment_id.code"
+                                                        t-field="l.intrastat_code_id.name"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.weight_kg" />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="l.additional_units"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="l.statistic_amount_euro"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="l.delivery_code_id.code"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="l.transport_code_id.code"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="l.country_origin_id.code"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="l.country_good_origin_id.code"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="l.province_destination_id.code"
                                                     />
                                                 </td>
                                                 <t

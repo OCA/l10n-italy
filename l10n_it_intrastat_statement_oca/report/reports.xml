@@ -23,15 +23,15 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod1</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod1</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field name="binding_type">report</field>
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_vertical"
         />
     </record>
 
@@ -42,15 +42,15 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod2</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod2</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod2</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod2</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field name="binding_type">report</field>
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_vertical"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_vertical"
         />
     </record>
 
@@ -61,15 +61,15 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod1_bis</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1_bis</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod1_bis</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1_bis</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field name="binding_type">report</field>
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_landscape"
         />
     </record>
 
@@ -80,15 +80,15 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod1_ter</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1_ter</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod1_ter</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1_ter</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field name="binding_type">report</field>
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_landscape"
         />
     </record>
 
@@ -99,14 +99,14 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod2_bis</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod2_bis</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod2_bis</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod2_bis</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_landscape"
         />
     </record>
 
@@ -118,15 +118,15 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod1_quater</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1_quater</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod1_quater</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1_quater</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field name="binding_type">report</field>
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_landscape"
         />
     </record>
 
@@ -138,15 +138,15 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod1_quinquies</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1_quinquies</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod1_quinquies</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod1_quinquies</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field name="binding_type">report</field>
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_landscape"
         />
     </record>
 
@@ -157,15 +157,15 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod2_quater</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod2_quater</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod2_quater</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod2_quater</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field name="binding_type">report</field>
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_landscape"
         />
     </record>
 
@@ -176,15 +176,15 @@
         <field name="report_type">qweb-pdf</field>
         <field
             name="report_name"
-        >l10n_it_intrastat_statement.report_intrastat_mod2_quinquies</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod2_quinquies</field>
         <field
             name="report_file"
-        >l10n_it_intrastat_statement.report_intrastat_mod2_quinquies</field>
+        >l10n_it_intrastat_statement_oca.report_intrastat_mod2_quinquies</field>
         <field name="binding_model_id" ref="model_account_intrastat_statement" />
         <field name="binding_type">report</field>
         <field
             name="paperformat_id"
-            ref="l10n_it_intrastat_statement.no_header_format_a4_landscape"
+            ref="l10n_it_intrastat_statement_oca.no_header_format_a4_landscape"
         />
     </record>
 </odoo>

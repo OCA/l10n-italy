@@ -20,7 +20,7 @@
                                 <div class="col-3">
                                     <p class="text-right">
                                         <img
-                                            src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
+                                            src="/l10n_it_intrastat_statement_oca/static/img/agenzia_dogane.jpg"
                                             height="80px"
                                         />
                                     </p>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="report_intrastat_mod1">
+    <template id="report_intrastat_mod2">
         <t t-call="web.html_container">
             <t t-translation="off">
                 <t t-foreach="docs" t-as="o">
@@ -16,7 +16,7 @@
                                 <div class="col-2">
                                     <p class="text-right">
                                         <img
-                                            src="/l10n_it_intrastat_statement/static/img/agenzia_dogane.jpg"
+                                            src="/l10n_it_intrastat_statement_oca/static/img/agenzia_dogane.jpg"
                                             height="80px"
                                         />
                                     </p>
@@ -25,9 +25,9 @@
                                     <table class="table table-bordered">
                                         <tr>
                                             <td>
-                                                <b>ELENCO RIEPILOGATIVO DELLE CESSIONI
-                                        <br
-                                                />INTRACOMUNITARIE DI BENI E DEI SERVIZI RESI</b>
+                                                <b>ELENCO RIEPILOGATIVO DEGLI ACQUISTI
+                                            <br
+                                                />INTRACOMUNITARI DI BENI E DEI SERVIZI RICEVUTI</b>
                                             </td>
                                         </tr>
                                     </table>
@@ -35,7 +35,7 @@
                                 <div class="col-2">
                                     <table class="table table-bordered">
                                         <tr>
-                                            <td>Mod.INTRA-1</td>
+                                            <td>Mod.INTRA-2</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -61,12 +61,11 @@
                                         rowspan="2"
                                     > NUMERO DI RIFERIMENTO <br /><span
                                         class="font_bold"
-                                        t-esc="o.sale_statement_sequence"
+                                        t-esc="o.purchase_statement_sequence"
                                     /></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                    TRIMESTRE: <t t-if="o.period_type == 'T'"><span
+                                    <td>TRIMESTRE: <t t-if="o.period_type == 'T'"><span
                                         class="font_bold"
                                         t-esc="o.period_number"
                                     /> ANNO: <span
@@ -145,7 +144,7 @@
                                 <tr>
                                     <td
                                         colspan="4"
-                                    >DENOMINAZIONE / RAGIONE SOCIALE ><span
+                                    >DENOMINAZIONE / RAGIONE SOCIALE <span
                                         class="font_bold"
                                         t-esc="o.company_id.partner_id.name"
                                     /></td>
@@ -203,22 +202,22 @@
                                 <tr>
                                     <td>
                                         <span
-                                            t-esc="o.sale_section1_operation_number or ''"
+                                            t-esc="o.purchase_section1_operation_number or ''"
                                         />
                                     </td>
                                     <td>
                                         <span
-                                            t-esc="o.sale_section1_operation_amount or ''"
+                                            t-esc="o.purchase_section1_operation_amount or ''"
                                         />
                                     </td>
                                     <td>
                                         <span
-                                            t-esc="o.sale_section2_operation_number or ''"
+                                            t-esc="o.purchase_section2_operation_number or ''"
                                         />
                                     </td>
                                     <td>
                                         <span
-                                            t-esc="o.sale_section2_operation_amount or ''"
+                                            t-esc="o.purchase_section2_operation_amount or ''"
                                         />
                                     </td>
                                 </tr>
@@ -235,22 +234,22 @@
                                 <tr>
                                     <td>
                                         <span
-                                            t-esc="o.sale_section3_operation_number or ''"
+                                            t-esc="o.purchase_section3_operation_number or ''"
                                         />
                                     </td>
                                     <td>
                                         <span
-                                            t-esc="o.sale_section3_operation_amount or ''"
+                                            t-esc="o.purchase_section3_operation_amount or ''"
                                         />
                                     </td>
                                     <td>
                                         <span
-                                            t-esc="o.sale_section4_operation_number or ''"
+                                            t-esc="o.purchase_section4_operation_number or ''"
                                         />
                                     </td>
                                     <td>
                                         <span
-                                            t-esc="o.sale_section4_operation_amount or ''"
+                                            t-esc="o.purchase_section4_operation_amount or ''"
                                         />
                                     </td>
                                 </tr>

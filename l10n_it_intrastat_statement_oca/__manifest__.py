@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "depends": [
-        "l10n_it_intrastat",
+        "l10n_it_intrastat_oca",
     ],
     "data": [
         "data/sequence.xml",
@@ -31,4 +31,10 @@
         "report/report_intrastat_mod2_quinquies.xml",
         "report/reports.xml",
     ],
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
+    "pre_init_hook": "pre_absorb_old_module",
 }
