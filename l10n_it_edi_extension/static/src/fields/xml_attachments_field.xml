@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="l10n_it_edi_extension.XmlAttachmentsField">
+        <t t-set="files" t-value="xmlFiles" />
+        <p t-if="!files.length" class="text-muted">No attachments in the XML.</p>
+        <table t-else="" class="table table-sm o_main_table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Format</th>
+                    <th class="text-end">Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr t-foreach="files" t-as="file" t-key="file.index">
+                    <td>
+                        <a
+                            t-if="file.isViewable"
+                            href="#"
+                            t-on-click.prevent="() => this.openFile(file, files)"
+                            t-esc="file.name"
+                        />
+                        <a
+                            t-else=""
+                            t-att-href="file.downloadUrl"
+                            download=""
+                            t-esc="file.name"
+                        />
+                    </td>
+                    <td t-esc="file.description" />
+                    <td t-esc="file.format" />
+                    <td class="text-end" t-esc="formatSize(file.size)" />
+                </tr>
+            </tbody>
+        </table>
+    </t>
+</templates>

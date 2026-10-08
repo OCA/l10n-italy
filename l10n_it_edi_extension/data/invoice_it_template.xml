@@ -73,5 +73,38 @@
                 </IndirizzoResa>
             </DatiTrasporto>
         </xpath>
+        <xpath expr="//FatturaElettronicaBody/Allegati" position="after">
+            <t t-call="l10n_it_edi_extension.account_invoice_it_doc_attachments" />
+        </xpath>
+    </template>
+
+    <!-- One <Allegati> node for each e-invoice attachment,
+         after the invoice PDF possibly added by l10n_it_edi -->
+    <template id="account_invoice_it_doc_attachments">
+        <t t-foreach="doc_attachments or []" t-as="doc_attachment">
+            <Allegati>
+                <NomeAttachment
+                    t-out="format_alphanumeric(doc_attachment['name'], 60)"
+                />
+                <FormatoAttachment
+                    t-if="doc_attachment['format']"
+                    t-out="doc_attachment['format']"
+                />
+                <DescrizioneAttachment
+                    t-if="doc_attachment['description']"
+                    t-out="format_alphanumeric(doc_attachment['description'], 100)"
+                />
+                <Attachment t-out="doc_attachment['content']" />
+            </Allegati>
+        </t>
+    </template>
+
+    <template
+        id="account_invoice_it_simplified_FatturaPA_export_inherit"
+        inherit_id="l10n_it_edi.account_invoice_it_simplified_FatturaPA_export"
+    >
+        <xpath expr="//FatturaElettronicaBody/Allegati" position="after">
+            <t t-call="l10n_it_edi_extension.account_invoice_it_doc_attachments" />
+        </xpath>
     </template>
 </odoo>

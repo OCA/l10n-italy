@@ -1,10 +1,17 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # Copyright 2025 Simone Rubino
+# Copyright 2026 Luca Orioli <lucaorioli@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
 import binascii
 import logging
+import mimetypes
+import os
+from base64 import b64decode, b64encode
+from collections import Counter
+
+from lxml import etree
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
@@ -13,8 +20,34 @@ from odoo.tools import float_compare, html2plaintext, is_html_empty
 
 from odoo.addons.base.models.ir_qweb_fields import Markup
 from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get_text
+from odoo.addons.l10n_it_edi.tools.remove_signature import remove_signature
 
 _logger = logging.getLogger(__name__)
+
+# SdI limit on the size of the transmitted XML file
+SDI_MAX_FILE_SIZE = 5 * 1024 * 1024
+# Kept free below the SdI limit, since the XML size is only estimated
+SDI_SIZE_MARGIN = 100 * 1024
+# Estimated XML size without attachments: header, parties and totals, plus
+# each DettaglioLinee node without its description (from the l10n_it_edi
+# test files: about 3 KB, plus 0.5-0.8 KB per line, rounded up)
+XML_BASE_SIZE = 4 * 1024
+XML_LINE_SIZE = 1024
+# FatturaPA maximum lengths (block 2.2.1.4 Descrizione, block 2.5 Allegati)
+DESCRIZIONE_MAXLEN = 1000
+NOME_ATTACHMENT_MAXLEN = 60
+FORMATO_ATTACHMENT_MAXLEN = 10
+DOC_ATTACHMENT_FIELD = "l10n_it_edi_ext_doc_attachment_ids"
+# Attachments of the XML the browser may display: PDF and raster images
+VIEWABLE_MIMETYPES = {
+    "application/pdf",
+    "image/bmp",
+    "image/gif",
+    "image/jpeg",
+    "image/png",
+    "image/tiff",
+    "image/webp",
+}
 
 
 class AccountMoveInherit(models.Model):
@@ -135,6 +168,40 @@ class AccountMoveInherit(models.Model):
         related="l10n_it_document_type.code",
         string="Document Type Code",
     )
+    l10n_it_edi_ext_doc_attachment_ids = fields.Many2many(
+        comodel_name="ir.attachment",
+        relation="account_move_l10n_it_edi_ext_doc_attachment_rel",
+        column1="move_id",
+        column2="attachment_id",
+        string="E-Invoice Attachments",
+        copy=False,
+        # The attachments are linked with res_field (see _link_doc_attachments):
+        # without this key, ir.attachment._search would hide them from the field
+        context={"skip_res_field_check": True},
+        help="Files to be included in the electronic invoice XML, each one in an "
+        "<Allegati> node. They are read when the XML is generated: "
+        "if the XML already exists, it must be generated again to include changes.",
+    )
+    l10n_it_edi_ext_xml_generated = fields.Boolean(
+        string="E-Invoice XML Generated",
+        compute="_compute_l10n_it_edi_ext_xml_attachments",
+    )
+    l10n_it_edi_ext_xml_attachments_data = fields.Json(
+        string="Attachments in the XML",
+        compute="_compute_l10n_it_edi_ext_xml_attachments",
+    )
+    l10n_it_edi_ext_xml_attachments_missing = fields.Boolean(
+        string="E-Invoice Attachments Missing from the XML",
+        compute="_compute_l10n_it_edi_ext_xml_attachments",
+        help="At least one of the e-invoice attachments "
+        "is missing from the generated XML.",
+    )
+    l10n_it_edi_ext_xml_attachments_removed = fields.Boolean(
+        string="E-Invoice Attachments Removed from the List",
+        compute="_compute_l10n_it_edi_ext_xml_attachments",
+        help="The generated XML contains at least one attachment "
+        "that is no longer in the e-invoice attachments.",
+    )
 
     # -------------------------------------------------------------------------
     # Computes
@@ -208,6 +275,71 @@ class AccountMoveInherit(models.Model):
             if not error_messages:
                 continue
             invoice.l10n_it_edi_validation_message = ",\n".join(error_messages) + "."
+
+    @api.depends(
+        "l10n_it_edi_attachment_file",
+        "l10n_it_edi_ext_attachment_in_id",
+        "l10n_it_edi_ext_doc_attachment_ids",
+        "invoice_pdf_report_id",
+    )
+    def _compute_l10n_it_edi_ext_xml_attachments(self):
+        for move in self:
+            xml_attachments = move._l10n_it_edi_ext_read_xml_attachments()
+            move.l10n_it_edi_ext_xml_generated = xml_attachments is not None
+            move.l10n_it_edi_ext_xml_attachments_data = xml_attachments or []
+            # The list is only exported in the XML of customer documents
+            if xml_attachments is None or not move.is_sale_document():
+                move.l10n_it_edi_ext_xml_attachments_missing = False
+                move.l10n_it_edi_ext_xml_attachments_removed = False
+                continue
+            # Compare names as written in the XML (same truncation and encoding)
+            xml_names = Counter(att["name"] for att in xml_attachments)
+            # The invoice PDF added by l10n_it_edi is not in the list
+            xml_names -= Counter([move._l10n_it_edi_ext_invoice_pdf_xml_name()])
+            expected_names = Counter(
+                move._l10n_it_edi_ext_to_latin_1(
+                    move._l10n_it_edi_ext_attachment_xml_name(att.name)
+                )
+                for att in move._l10n_it_edi_ext_get_doc_attachments()
+            )
+            move.l10n_it_edi_ext_xml_attachments_missing = bool(
+                expected_names - xml_names
+            )
+            move.l10n_it_edi_ext_xml_attachments_removed = bool(
+                xml_names - expected_names
+            )
+
+    # -------------------------------------------------------------------------
+    # CRUD
+    # -------------------------------------------------------------------------
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        moves = super().create(vals_list)
+        moves._l10n_it_edi_ext_link_doc_attachments()
+        return moves
+
+    def write(self, vals):
+        if "l10n_it_edi_ext_doc_attachment_ids" not in vals:
+            return super().write(vals)
+        previous = {move: move.l10n_it_edi_ext_doc_attachment_ids for move in self}
+        res = super().write(vals)
+        self._l10n_it_edi_ext_link_doc_attachments()
+        for move in self:
+            removed = previous[move] - move.l10n_it_edi_ext_doc_attachment_ids
+            if removed:
+                move._l10n_it_edi_ext_remove_doc_attachments(removed)
+        return res
+
+    # -------------------------------------------------------------------------
+    # Mail
+    # -------------------------------------------------------------------------
+
+    def _get_mail_thread_data_attachments(self):
+        res = super()._get_mail_thread_data_attachments()
+        # Attachments with res_field are excluded: show the e-invoice attachments
+        # of this move (and only of this move) in the chatter and in the preview
+        return res | self.l10n_it_edi_ext_doc_attachment_ids
 
     # -------------------------------------------------------------------------
     # Business actions
@@ -441,8 +573,26 @@ class AccountMoveInherit(models.Model):
                     )
 
         res["causale_lines"] = causale_lines
+        res["doc_attachments"] = self._l10n_it_edi_ext_get_doc_attachments_values()
 
         return res
+
+    def _l10n_it_edi_export_data_check(self):
+        errors = super()._l10n_it_edi_export_data_check()
+        too_big = self.filtered(
+            lambda move: move._l10n_it_edi_ext_estimated_xml_size()
+            > SDI_MAX_FILE_SIZE - SDI_SIZE_MARGIN
+        )
+        if too_big:
+            errors["l10n_it_edi_ext_doc_attachments_too_big"] = {
+                "message": self.env._(
+                    "The e-invoice XML would exceed the SdI limit of 5 MB per "
+                    "file (estimated size with the attachments and the invoice "
+                    "PDF, with a 100 KB margin): %(moves)s",
+                    moves=", ".join(too_big.mapped("display_name")),
+                ),
+            }
+        return errors
 
     def _l10n_it_edi_get_extra_info(
         self, company, document_type, body_tree, incoming=True
@@ -1238,3 +1388,266 @@ class AccountMoveInherit(models.Model):
             invoice.l10n_it_edi_ext_attachment_in_id = xml_att.id
 
         return invoice
+
+    def _l10n_it_edi_ext_link_doc_attachments(self):
+        """Link to the move the attachments uploaded from the e-invoice tab.
+
+        The l10n_it_edi_ext_doc_attachments widget uploads the files without a
+        linked record (res_id = 0), so that `account` does not try to import
+        them as invoice documents: without a linked record, they could only be
+        read by their author and by system users. They are linked with a plain
+        write, which does not trigger the import, and with res_field set to the
+        e-invoice attachments field, like l10n_it_edi does for the XML: they
+        are not documents of the move, so they do not appear in the chatter by
+        themselves, and they are readable by whoever can read the field.
+        Attachments of other records (e.g. documents) are left untouched.
+        """
+        for move in self:
+            attachments = move.l10n_it_edi_ext_doc_attachment_ids.sudo()
+            orphans = attachments.filtered(lambda att: not att.res_id)
+            if orphans:
+                orphans.write(
+                    {
+                        "res_model": move._name,
+                        "res_id": move.id,
+                        "res_field": DOC_ATTACHMENT_FIELD,
+                    }
+                )
+            owned = attachments.filtered(
+                lambda att, move=move: att.res_model == move._name
+                and att.res_id == move.id
+                and not att.res_field
+            )
+            if owned:
+                owned.write({"res_field": DOC_ATTACHMENT_FIELD})
+
+    def _l10n_it_edi_ext_remove_doc_attachments(self, attachments):
+        """Delete the attachments removed from the e-invoice attachments list.
+
+        Only the files of this move are deleted, and only if no other move
+        lists them: files of other records (e.g. documents) are kept.
+        """
+        self.ensure_one()
+        if self.message_main_attachment_id & attachments:
+            self.message_main_attachment_id = False
+        owned = attachments.sudo().filtered(
+            lambda att: att.res_model == self._name
+            and att.res_id == self.id
+            and att.res_field == DOC_ATTACHMENT_FIELD
+        )
+        if not owned:
+            return
+        still_listed = (
+            self.sudo()
+            .search([("l10n_it_edi_ext_doc_attachment_ids", "in", owned.ids)])
+            .l10n_it_edi_ext_doc_attachment_ids
+        )
+        (owned - still_listed).unlink()
+
+    def _l10n_it_edi_ext_get_doc_attachments(self):
+        """Attachments to be included in the XML: hook for other modules."""
+        self.ensure_one()
+        return self.l10n_it_edi_ext_doc_attachment_ids.filtered(
+            lambda att: att.type == "binary"
+        )
+
+    def _l10n_it_edi_ext_estimated_xml_size(self):
+        """Estimated size in bytes of the e-invoice XML.
+
+        Files are base64 encoded in the XML (4 bytes every 3): the attachments
+        of the list and the invoice PDF, if already generated (l10n_it_edi adds
+        it when the XML is created by the send wizard). The rest of the XML is
+        estimated from the number of lines and their descriptions.
+        """
+        self.ensure_one()
+        files = self._l10n_it_edi_ext_get_doc_attachments() | self.invoice_pdf_report_id
+        xml_size = XML_BASE_SIZE + sum(
+            XML_LINE_SIZE + len((line.name or "")[:DESCRIZIONE_MAXLEN].encode())
+            for line in self.invoice_line_ids
+        )
+        return xml_size + sum(files.mapped("file_size")) * 4 // 3
+
+    def _l10n_it_edi_ext_get_doc_attachments_values(self):
+        self.ensure_one()
+        return [
+            {
+                "name": self._l10n_it_edi_ext_attachment_xml_name(attachment.name),
+                "format": self._l10n_it_edi_ext_attachment_xml_format(attachment),
+                "description": self._l10n_it_edi_ext_attachment_xml_description(
+                    attachment
+                ),
+                "content": b64encode(attachment.raw or b"").decode(),
+            }
+            for attachment in self._l10n_it_edi_ext_get_doc_attachments()
+        ]
+
+    def _l10n_it_edi_ext_get_xml_content(self):
+        """Content of the e-invoice XML of the move, None if there is none.
+
+        The generated or received XML (l10n_it_edi_attachment_file) or, when
+        missing, the imported e-bill: a vendor bill uploaded by hand keeps
+        the uploaded file only there.
+        """
+        self.ensure_one()
+        xml_b64 = self.with_context(bin_size=False).l10n_it_edi_attachment_file
+        if xml_b64:
+            return b64decode(xml_b64)
+        return self.l10n_it_edi_ext_attachment_in_id.sudo().raw or None
+
+    def _l10n_it_edi_ext_get_xml_tree(self):
+        """Parsed e-invoice XML, read as l10n_it_edi does when importing it.
+
+        The parser recovers from errors, and a CAdES signature (.p7m) is
+        removed if the file cannot be read as it is.
+
+        :return: the root element, None if there is no XML, False if the XML
+            cannot be read
+        """
+        content = self._l10n_it_edi_ext_get_xml_content()
+        if not content:
+            return None
+        parser = etree.XMLParser(recover=True, resolve_entities=False, huge_tree=True)
+
+        def parse_xml(xml_content):
+            try:
+                return etree.fromstring(xml_content, parser)
+            except (etree.XMLSyntaxError, ValueError) as e:
+                _logger.info("XML parsing of %s failed: %s", self.display_name, e)
+                return None
+
+        tree = parse_xml(content)
+        if tree is None and (unsigned := remove_signature(content)):
+            tree = parse_xml(unsigned)
+        if tree is None:
+            _logger.warning("Unreadable e-invoice XML for %s", self.display_name)
+            return False
+        return tree
+
+    def _l10n_it_edi_ext_get_xml_attachment_nodes(self):
+        """<Allegati> nodes of the e-invoice XML, None if there is no XML.
+
+        The actual file is read, so the invoice PDF added by l10n_it_edi
+        and any manual change to the XML are included.
+        """
+        tree = self._l10n_it_edi_ext_get_xml_tree()
+        if tree is None:
+            return None
+        if tree is False:
+            return []
+        return list(tree.iterfind(".//Allegati"))
+
+    def _l10n_it_edi_ext_read_xml_attachments(self):
+        """Data of the <Allegati> nodes of the generated XML (None if no XML)."""
+        nodes = self._l10n_it_edi_ext_get_xml_attachment_nodes()
+        if nodes is None:
+            return None
+        return [
+            {
+                "index": index,
+                "name": node.findtext("NomeAttachment") or "",
+                "format": node.findtext("FormatoAttachment") or "",
+                "description": node.findtext("DescrizioneAttachment") or "",
+                "size": len((node.findtext("Attachment") or "").strip()) * 3 // 4,
+                "mimetype": self._l10n_it_edi_ext_xml_attachment_mimetype(
+                    node.findtext("NomeAttachment"),
+                    node.findtext("FormatoAttachment"),
+                ),
+                "url": f"/l10n_it_edi_ext/xml_attachment/{self.id}/{index}",
+            }
+            for index, node in enumerate(nodes)
+        ]
+
+    def _l10n_it_edi_ext_get_xml_attachment_file(self, index):
+        """Name, mimetype and content of an <Allegati> node of the XML.
+
+        :return: (name, mimetype, content) or None if the node does not exist
+        """
+        nodes = self._l10n_it_edi_ext_get_xml_attachment_nodes() or []
+        if not 0 <= index < len(nodes):
+            return None
+        node = nodes[index]
+        name = node.findtext("NomeAttachment") or "attachment"
+        try:
+            content = b64decode(node.findtext("Attachment") or "")
+        except ValueError as e:
+            _logger.warning(
+                "Unreadable e-invoice attachment %s of %s: %s",
+                index,
+                self.display_name,
+                e,
+            )
+            return None
+        mimetype = self._l10n_it_edi_ext_xml_attachment_mimetype(
+            name, node.findtext("FormatoAttachment")
+        )
+        return name, mimetype, content
+
+    @api.model
+    def _l10n_it_edi_ext_xml_attachment_mimetype(self, name, file_format):
+        """Mimetype of an attachment of the XML, only among the safe ones.
+
+        The content of the XML is not trusted: only PDF and raster images can be
+        displayed by the browser, anything else (HTML, SVG...) is served as a
+        generic binary file, to be downloaded.
+        """
+        mimetype = mimetypes.guess_type(name or "")[0]
+        if not mimetype and file_format:
+            mimetype = mimetypes.guess_type(f"file.{file_format.lower()}")[0]
+        if mimetype in VIEWABLE_MIMETYPES:
+            return mimetype
+        return "application/octet-stream"
+
+    @api.model
+    def _l10n_it_edi_ext_to_latin_1(self, text):
+        """Text as written in the XML by l10n_it_edi (format_alphanumeric)."""
+        return text.encode("latin-1", "replace").decode("latin-1")
+
+    def _l10n_it_edi_ext_invoice_pdf_xml_name(self):
+        """NomeAttachment of the invoice PDF that l10n_it_edi adds to the XML."""
+        self.ensure_one()
+        pdf_name = self.invoice_pdf_report_id.name or (
+            self._get_invoice_report_filename()
+        )
+        return self._l10n_it_edi_ext_to_latin_1(pdf_name)[:NOME_ATTACHMENT_MAXLEN]
+
+    @api.model
+    def _l10n_it_edi_ext_attachment_xml_name(self, name):
+        """Name within the 60 characters allowed, keeping the extension."""
+        name = name or "attachment"
+        if len(name) <= NOME_ATTACHMENT_MAXLEN:
+            return name
+        stem, ext = os.path.splitext(name)
+        return stem[: NOME_ATTACHMENT_MAXLEN - len(ext)] + ext
+
+    def _l10n_it_edi_ext_is_own_doc_attachment(self, attachment):
+        """Whether the attachment belongs to this move, not to another record.
+
+        Files uploaded from the list (not linked yet, before saving) or
+        linked to the move: their description can be edited from the list.
+        """
+        self.ensure_one()
+        return not attachment.res_id or (
+            attachment.res_model == self._name and attachment.res_id == self.id
+        )
+
+    def _l10n_it_edi_ext_attachment_xml_description(self, attachment):
+        """DescrizioneAttachment: the description written in the list.
+
+        Hook for other modules. The description of a file of another record
+        is not used: it is shared by all its invoices and often holds internal
+        texts. Without a description, the file name without extension.
+        """
+        self.ensure_one()
+        if attachment.description and self._l10n_it_edi_ext_is_own_doc_attachment(
+            attachment
+        ):
+            return " ".join(attachment.description.split())
+        return os.path.splitext(attachment.name or "")[0] or False
+
+    @api.model
+    def _l10n_it_edi_ext_attachment_xml_format(self, attachment):
+        """FormatoAttachment: file extension, or the MIME subtype as fallback."""
+        ext = os.path.splitext(attachment.name or "")[1].lstrip(".")
+        if not ext and attachment.mimetype:
+            ext = attachment.mimetype.split("/")[-1]
+        return ext.upper()[:FORMATO_ATTACHMENT_MAXLEN] or False

@@ -226,4 +226,74 @@
             </xpath>
         </field>
     </record>
+
+    <!-- At the bottom of the Electronic Invoicing tab, after the nodes
+         added by other modules (higher priority) -->
+    <record id="account_invoice_form_l10n_it_doc_attachments" model="ir.ui.view">
+        <field name="name">account.move.form.l10n.it.doc.attachments</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it" />
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='electronic_invoicing']" position="inside">
+                <group
+                    name="l10n_it_edi_ext_doc_attachments"
+                    invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')"
+                >
+                    <group
+                        name="l10n_it_edi_ext_doc_attachments_list"
+                        string="E-Invoice Attachments"
+                        invisible="move_type not in ('out_invoice', 'out_refund')"
+                    >
+                        <field
+                            name="l10n_it_edi_ext_doc_attachment_ids"
+                            widget="l10n_it_edi_ext_doc_attachments"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
+                    <group
+                        name="l10n_it_edi_ext_xml_attachments"
+                        string="Attachments in the XML"
+                        invisible="not l10n_it_edi_ext_xml_generated"
+                    >
+                        <field name="l10n_it_edi_ext_xml_generated" invisible="1" />
+                        <field
+                            name="l10n_it_edi_ext_xml_attachments_missing"
+                            invisible="1"
+                        />
+                        <field
+                            name="l10n_it_edi_ext_xml_attachments_removed"
+                            invisible="1"
+                        />
+                        <div
+                            class="alert alert-warning"
+                            role="alert"
+                            colspan="2"
+                            invisible="not l10n_it_edi_ext_xml_attachments_missing or l10n_it_edi_ext_xml_attachments_removed"
+                        >Some e-invoice attachments are missing from the generated XML: you might want to generate the XML again.</div>
+                        <div
+                            class="alert alert-warning"
+                            role="alert"
+                            colspan="2"
+                            invisible="not l10n_it_edi_ext_xml_attachments_removed or l10n_it_edi_ext_xml_attachments_missing"
+                        >The generated XML contains attachments that have been removed from the e-invoice attachments: you might want to generate the XML again.</div>
+                        <div
+                            class="alert alert-warning"
+                            role="alert"
+                            colspan="2"
+                            invisible="not l10n_it_edi_ext_xml_attachments_missing or not l10n_it_edi_ext_xml_attachments_removed"
+                        >The generated XML does not match the e-invoice attachments: some are missing from the XML, others have been removed from the list. You might want to generate the XML again.</div>
+                        <field
+                            name="l10n_it_edi_ext_xml_attachments_data"
+                            widget="l10n_it_edi_ext_xml_attachments"
+                            nolabel="1"
+                            colspan="2"
+                            readonly="1"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
 </odoo>

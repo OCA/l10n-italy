@@ -10,3 +10,4 @@
 - Lorenzo Battistini \<<https://github.com/eLBati>\>
 - [Phi srl](https://www.phi.technology/):
   - Marco Colombo \<<marco.colombo@phi.technology>\>
+- Luca Orioli \<<lucaorioli@gmail.com>\>
