@@ -5,3 +5,4 @@
 - Nextev Srl \<<odoo@nextev.it>\>
 - [Agile Business Group](https://www.agilebg.com/):
   - Alex Comba \<<alex.comba@agilebg.com>\>
+- Luca Orioli \<<lucaorioli@gmail.com>\>

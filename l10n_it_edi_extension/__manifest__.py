@@ -31,5 +31,10 @@
         "wizards/compute_fc_view.xml",
         "wizards/l10n_it_edi_import_file_wizard.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "l10n_it_edi_extension/static/src/fields/*",
+        ],
+    },
     "installable": True,
 }

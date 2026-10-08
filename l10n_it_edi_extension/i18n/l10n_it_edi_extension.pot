@@ -14,6 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/ir_attachment.py:0
+msgid ""
+"%(files)s cannot be deleted: listed in the e-invoice attachments of "
+"%(moves)s. Remove them from the list first."
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.view_account_config_settings_create_partner
 msgid ""
 "<span class=\"o_form_label\" title=\"Minimum: the bill is created with no lines; the user will have to create them, according to what specified in the electronic bill. &#10;Tax rate: every tax rate present in the electronic bill will create a line in the bill. &#10;Maximum (default): every line contained in the electronic bill will create a line in the bill.\">\n"
@@ -86,8 +94,22 @@ msgid "Assignee / Partner"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_xml_attachments_missing
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_xml_attachments_missing
+msgid ""
+"At least one of the e-invoice attachments is missing from the generated XML."
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model,name:l10n_it_edi_extension.model_ir_attachment
 msgid "Attachment"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_xml_attachments_data
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_xml_attachments_data
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_doc_attachments
+msgid "Attachments in the XML"
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -230,6 +252,12 @@ msgid "Description"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#. odoo-javascript
+#: code:addons/l10n_it_edi_extension/static/src/fields/doc_attachments_field.esm.js:0
+msgid "Description in the e-invoice XML"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_discount_rise_price__name__sc
 msgid "Discount"
 msgstr ""
@@ -271,6 +299,25 @@ msgid "E-Invoice Activity Progress"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_doc_attachment_ids
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_doc_attachment_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_doc_attachments
+msgid "E-Invoice Attachments"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_xml_attachments_missing
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_xml_attachments_missing
+msgid "E-Invoice Attachments Missing from the XML"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_xml_attachments_removed
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_xml_attachments_removed
+msgid "E-Invoice Attachments Removed from the List"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
 msgid "E-Invoice Details"
 msgstr ""
@@ -303,6 +350,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_amount_untaxed
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_amount_untaxed
 msgid "E-Invoice Untaxed Amount"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_xml_generated
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_xml_generated
+msgid "E-Invoice XML Generated"
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -375,6 +428,15 @@ msgid "Female"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_doc_attachment_ids
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_doc_attachment_ids
+msgid ""
+"Files to be included in the electronic invoice XML, each one in an "
+"<Allegati> node. They are read when the XML is generated: if the XML already"
+" exists, it must be generated again to include changes."
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__fiscalcode_firstname
 msgid "First name"
 msgstr ""
@@ -382,6 +444,12 @@ msgstr ""
 #. module: l10n_it_edi_extension
 #: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.wizard_compute_fc_form
 msgid "Fiscal Code"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-javascript
+#: code:addons/l10n_it_edi_extension/static/src/fields/xml_attachments_field.xml:0
+msgid "Format"
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -630,6 +698,12 @@ msgid "Nature"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#. odoo-javascript
+#: code:addons/l10n_it_edi_extension/static/src/fields/xml_attachments_field.xml:0
+msgid "No attachments in the XML."
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__non_taxable_nature
 msgid "Non taxable nature"
 msgstr ""
@@ -827,6 +901,26 @@ msgid "Related Invoice from line"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#. odoo-javascript
+#: code:addons/l10n_it_edi_extension/static/src/fields/doc_attachments_field.esm.js:0
+msgid "Remove"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-javascript
+#: code:addons/l10n_it_edi_extension/static/src/fields/doc_attachments_field.esm.js:0
+msgid ""
+"Remove \"%s\" from the e-invoice attachments? When the invoice is saved, the"
+" file is deleted, unless other records use it."
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-javascript
+#: code:addons/l10n_it_edi_extension/static/src/fields/doc_attachments_field.esm.js:0
+msgid "Remove e-invoice attachment"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/account_move.py:0
 msgid "Role %(role)s is not supported for partner creation/update"
@@ -858,6 +952,19 @@ msgstr ""
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__sex
 msgid "Sex"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-javascript
+#: code:addons/l10n_it_edi_extension/static/src/fields/xml_attachments_field.xml:0
+msgid "Size"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_doc_attachments
+msgid ""
+"Some e-invoice attachments are missing from the generated XML: you might "
+"want to generate the XML again."
 msgstr ""
 
 #. module: l10n_it_edi_extension
@@ -937,6 +1044,15 @@ msgid "Text Reference"
 msgstr ""
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"The e-invoice XML would exceed the SdI limit of 5 MB per file (estimated "
+"size with the attachments and the invoice PDF, with a 100 KB margin): "
+"%(moves)s"
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_edi_it_stable_organization
 msgid ""
 "The fields must be entered only when the seller/provider is non-resident, "
@@ -956,6 +1072,29 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_edi_extension/models/res_partner.py:0
 msgid "The fiscal code '%s' must have 16 characters."
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_ext_xml_attachments_removed
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_ext_xml_attachments_removed
+msgid ""
+"The generated XML contains at least one attachment that is no longer in the "
+"e-invoice attachments."
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_doc_attachments
+msgid ""
+"The generated XML contains attachments that have been removed from the "
+"e-invoice attachments: you might want to generate the XML again."
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_doc_attachments
+msgid ""
+"The generated XML does not match the e-invoice attachments: some are missing"
+" from the XML, others have been removed from the list. You might want to "
+"generate the XML again."
 msgstr ""
 
 #. module: l10n_it_edi_extension
