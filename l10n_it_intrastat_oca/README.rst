@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============
 ITA - Intrastat
 ===============
@@ -17,14 +13,14 @@ ITA - Intrastat
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_intrastat
+    :target: https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_intrastat_oca
     :alt: OCA/l10n-italy
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_intrastat
+    :target: https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_intrastat_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
     :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&target_branch=18.0
@@ -43,12 +39,60 @@ transazioni, modalità di trasporto.
 
 Per la creazione delle dichiarazioni, degli elenchi riepilogativi e le
 estrazioni da presentare all'Agenzia delle Dogane è necessario
-installare il modulo l10n_it_intrastat_statement.
+installare il modulo l10n_it_intrastat_statement_oca.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Installation
+============
+
+**Italiano**
+
+Questo modulo è stato rinominato da ``l10n_it_intrastat`` a
+``l10n_it_intrastat_oca`` perché Odoo Enterprise contiene un modulo con
+lo stesso nome.
+
+Se nel database è installato ``l10n_it_intrastat``, viene sostituito da
+``l10n_it_intrastat_oca`` mantenendone i dati:
+
+-  aggiornando il modulo ``l10n_it_account``, se installato;
+-  altrimenti, installando manualmente ``l10n_it_intrastat_oca``.
+
+La sostituzione va fatta prima di migrare il database a una versione
+successiva di Odoo.
+
+I moduli esistenti che dipendevano da ``l10n_it_intrastat`` dovranno
+quindi:
+
+-  adattare il nome della dipendenza da ``l10n_it_intrastat`` a
+   ``l10n_it_intrastat_oca``;
+-  adattare eventuali riferimenti esterni (XMLID) da
+   ``l10n_it_intrastat.[...]`` a ``l10n_it_intrastat_oca.[...]``.
+
+**English**
+
+This module has been renamed from ``l10n_it_intrastat`` to
+``l10n_it_intrastat_oca`` because Odoo Enterprise contains a module with
+the same name.
+
+If ``l10n_it_intrastat`` is installed in the database, it is replaced by
+``l10n_it_intrastat_oca`` keeping its data:
+
+-  by updating the module ``l10n_it_account``, if installed;
+-  otherwise, by manually installing ``l10n_it_intrastat_oca``.
+
+The replacement must be done before migrating the database to a later
+version of Odoo.
+
+Existing modules depending on ``l10n_it_intrastat`` must then:
+
+-  change the dependency name from ``l10n_it_intrastat`` to
+   ``l10n_it_intrastat_oca``;
+-  change any external reference (XMLID) from
+   ``l10n_it_intrastat.[...]`` to ``l10n_it_intrastat_oca.[...]``.
 
 Configuration
 =============
@@ -133,10 +177,10 @@ generali".
 In *Fatturazione/Contabilità → Configurazione → Intrastat* sono presenti
 le funzionalità per la gestione delle tabelle di sistema.
 
-- Sezioni doganali
-- Nomenclature combinate
-- Modalità di trasporto
-- Natura transazione
+-  Sezioni doganali
+-  Nomenclature combinate
+-  Modalità di trasporto
+-  Natura transazione
 
 Tali tabelle sono pre-popolate in fase di installazione del modulo, in
 base ai valori ammessi per le dichiarazioni Intrastat.
@@ -166,10 +210,10 @@ quel prodotto è associato.
 Per il prodotto la sezione Intrastat si trova nella scheda
 «Fatturazione/Contabilità», ove è necessario inserire:
 
-- la tipologia (Bene, Servizio, Varie, Escludere);
-- il codice Intrastat, tra quelli censiti tramite l’apposita tabella di
-  sistema "Nomenclature combinate" (il campo viene abilitato solo per le
-  tipologie "Bene" e "Servizio").
+-  la tipologia (Bene, Servizio, Varie, Escludere);
+-  il codice Intrastat, tra quelli censiti tramite l’apposita tabella di
+   sistema "Nomenclature combinate" (il campo viene abilitato solo per
+   le tipologie "Bene" e "Servizio").
 
 Per le categorie di prodotti, le informazioni sono presenti in
 un’apposita area Intrastat della maschera di dettaglio.
@@ -188,51 +232,51 @@ fattura stessa.
 Sulla scheda Intrastat è presente un pulsante «Ricalcola righe
 Intrastat». Il pulsante permette al sistema:
 
-- di verificare se le righe prodotto presenti in fattura (scheda "Righe
-  fattura") si riferiscono a prodotti che hanno un codice Intrastat
-  assegnato, o appartengono ad una categoria che ha un codice Intrastat
-  aggregato;
-- di generare per questi prodotti le corrispondenti righe Intrastat: le
-  righe accorpano prodotti omogenei per codice Intrastat, indicando nel
-  campo "Massa netta (kg)" il peso totale dei prodotti presenti nelle
-  corrispondenti righe. La riga Intrastat, ovviamente, raggruppa il
-  valore economico dei prodotti;
-- N.B.: se una riga presente in fattura si riferisce ad un prodotto che
-  ha come tipologia Intrastat “Varie”, l’importo della riga verrà
-  automaticamente suddiviso in maniera uguale sulle altre righe
-  Intrastat che si riferiscono a beni o servizi. Tale automatismo
-  permette di gestire, in maniera conforme a quanto previsto dalla
-  normativa, il ribaltamento proporzionale dei costi sostenuti per spese
-  accessorie (es: spese di trasporto) sui costi sostenuti per l’acquisto
-  vero e proprio di beni o servizi.
+-  di verificare se le righe prodotto presenti in fattura (scheda "Righe
+   fattura") si riferiscono a prodotti che hanno un codice Intrastat
+   assegnato, o appartengono ad una categoria che ha un codice Intrastat
+   aggregato;
+-  di generare per questi prodotti le corrispondenti righe Intrastat: le
+   righe accorpano prodotti omogenei per codice Intrastat, indicando nel
+   campo "Massa netta (kg)" il peso totale dei prodotti presenti nelle
+   corrispondenti righe. La riga Intrastat, ovviamente, raggruppa il
+   valore economico dei prodotti;
+-  N.B.: se una riga presente in fattura si riferisce ad un prodotto che
+   ha come tipologia Intrastat “Varie”, l’importo della riga verrà
+   automaticamente suddiviso in maniera uguale sulle altre righe
+   Intrastat che si riferiscono a beni o servizi. Tale automatismo
+   permette di gestire, in maniera conforme a quanto previsto dalla
+   normativa, il ribaltamento proporzionale dei costi sostenuti per
+   spese accessorie (es: spese di trasporto) sui costi sostenuti per
+   l’acquisto vero e proprio di beni o servizi.
 
 Nella scheda Intrastat, un clic su una riga Intrastat permette di
 accedere alla maschera di dettaglio.
 
 Nella maschera:
 
-- il campo "Stato acquirente/fornitore" viene popolato in automatico dal
-  campo "Nazione" dell’indirizzo associato al partner;
-- i campi configurati in *Impostazioni → Utenti e aziende → Aziende →
-  Nome azienda* (vedi "Informazioni generali" su azienda) vengono
-  popolati in automatico con i valori predefiniti impostati, in ragione
-  della tipologia di fattura (vendita o acquisto);
-- se fattura di vendita:
+-  il campo "Stato acquirente/fornitore" viene popolato in automatico
+   dal campo "Nazione" dell’indirizzo associato al partner;
+-  i campi configurati in *Impostazioni → Utenti e aziende → Aziende →
+   Nome azienda* (vedi "Informazioni generali" su azienda) vengono
+   popolati in automatico con i valori predefiniti impostati, in ragione
+   della tipologia di fattura (vendita o acquisto);
+-  se fattura di vendita:
 
-  1. i campi *Origine → Paese di provenienza* e *Origine → Paese di
-     origine* vengono popolati in automatico con la nazione presente
-     nell’indirizzo associato all'azienda;
-  2. il campo *Destinazione → Paese di destinazione* viene popolato in
-     automatico con la nazione presente nell'indirizzo associato al
-     partner;
+   1. i campi *Origine → Paese di provenienza* e *Origine → Paese di
+      origine* vengono popolati in automatico con la nazione presente
+      nell’indirizzo associato all'azienda;
+   2. il campo *Destinazione → Paese di destinazione* viene popolato in
+      automatico con la nazione presente nell'indirizzo associato al
+      partner;
 
-- se fattura di acquisto:
+-  se fattura di acquisto:
 
-  1. i campi *Origine → Paese di provenienza* e *Origine → Paese di
-     origine* vengono popolati in automatico con la nazione presente
-     nell’indirizzo associato al partner (fornitore);
-  2. il campo *Destinazione → Paese di destinazione* viene preso dai
-     dati dell'azienda.
+   1. i campi *Origine → Paese di provenienza* e *Origine → Paese di
+      origine* vengono popolati in automatico con la nazione presente
+      nell’indirizzo associato al partner (fornitore);
+   2. il campo *Destinazione → Paese di destinazione* viene preso dai
+      dati dell'azienda.
 
 N.B.: tutti i campi possono ovviamente essere modificati, ma l’utilizzo
 del pulsante «Ricalcola righe Intrastat» ripristinerà i valori
@@ -255,7 +299,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-italy/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_intrastat_oca%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -273,29 +317,29 @@ Authors
 Contributors
 ------------
 
-- Alessandro Camilli
+-  Alessandro Camilli
 
-- Lorenzo Battistini
+-  Lorenzo Battistini
 
-- Lara Baggio <lbaggio@linkgroup.it>
+-  Lara Baggio <lbaggio@linkgroup.it>
 
-- Glauco Prina <gprina@linkgroup.it>
+-  Glauco Prina <gprina@linkgroup.it>
 
-- Sergio Zanchetta <https://github.com/primes2h>
+-  Sergio Zanchetta <https://github.com/primes2h>
 
-- `Ooops <https://www.ooops404.com>`__:
+-  `Ooops <https://www.ooops404.com>`__:
 
-     - Giovanni Serra <giovanni@gslab.it>
+      -  Giovanni Serra <giovanni@gslab.it>
 
-- Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+-  Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-- Fabio Giovannelli <fabio.giovannelli@didotech.com>
+-  Fabio Giovannelli <fabio.giovannelli@didotech.com>
 
-- Alex Comba <alex.comba@agilebg.com>
+-  Alex Comba <alex.comba@agilebg.com>
 
-- `Aion Tech <https://aiontech.company/>`__:
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
@@ -310,6 +354,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_intrastat>`_ project on GitHub.
+This module is part of the `OCA/l10n-italy <https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_intrastat_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
