@@ -42,9 +42,9 @@ addon | version | maintainers | summary
 [l10n_it_edi_doi_extension](l10n_it_edi_doi_extension/) | 18.0.1.2.0 |  | Declaration of Intent for Italy (OCA)
 [l10n_it_edi_doi_extension_vat_registry](l10n_it_edi_doi_extension_vat_registry/) | 18.0.1.1.0 |  | Modulo ponte tra Dichiarazioni d'Intento e registri IVA.
 [l10n_it_edi_extension](l10n_it_edi_extension/) | 18.0.1.12.3 |  | E-invoice base feature
-[l10n_it_edi_pec](l10n_it_edi_pec/) | 18.0.1.1.0 |  | Invio e ricezione fatture elettroniche tramite PEC
+[l10n_it_edi_pec](l10n_it_edi_pec/) | 18.0.1.1.1 |  | Invio e ricezione fatture elettroniche tramite PEC
 [l10n_it_edi_related_document](l10n_it_edi_related_document/) | 18.0.1.2.1 |  | Related Documents for EDI
-[l10n_it_edi_sdi](l10n_it_edi_sdi/) | 18.0.1.0.0 |  | Logica condivisa per la comunicazione con lo SdI
+[l10n_it_edi_sdi](l10n_it_edi_sdi/) | 18.0.1.0.1 |  | Logica condivisa per la comunicazione con lo SdI
 [l10n_it_edi_sender_partner](l10n_it_edi_sender_partner/) | 18.0.1.0.0 |  | Terzo intermediario o soggetto emittete per fatturazione elettronica
 [l10n_it_edi_td29](l10n_it_edi_td29/) | 18.0.1.0.0 |  | Support for TD29 - Omitted/Irregular Invoice Communication
 [l10n_it_financial_statement_eu](l10n_it_financial_statement_eu/) | 18.0.1.0.0 | <a href='https://github.com/mktsrl'><img src='https://github.com/mktsrl.png' width='32' height='32' style='border-radius:50%;' alt='mktsrl'/></a> | ITA - Bilancio UE con XBRL
