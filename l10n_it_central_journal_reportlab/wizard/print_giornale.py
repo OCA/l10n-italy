@@ -364,6 +364,34 @@ class WizardGiornaleReportlab(models.TransientModel):
             account_dict[account.id] = account.code
         return account_dict
 
+    def _get_account_dicts(self):
+        """Return (code_dict, name_dict) for all accounts of the current company.
+
+        Translations are resolved in the company partner's language when it is
+        installed, falling back to ``en_US`` otherwise.
+        """
+        company = self.env.company
+        user_lang = company.partner_id.lang
+        active_lang = (
+            user_lang
+            if user_lang
+            and self.env["res.lang"].search_count(
+                [("code", "=", user_lang), ("active", "=", True)]
+            )
+            else "en_US"
+        )
+        all_account = (
+            self.env["account.account"]
+            .search([])
+            .filtered(lambda acc: company.id in acc.company_ids.ids)
+        )
+        code_dict = {account.id: account.code for account in all_account}
+        name_dict = {
+            account.id: account.name
+            for account in all_account.with_context(lang=active_lang)
+        }
+        return code_dict, name_dict
+
     def get_grupped_final_tables_report_giornale(
         self, list_grupped_line, tables, start_row, width_available
     ):
@@ -380,24 +408,18 @@ class WizardGiornaleReportlab(models.TransientModel):
             (self.progressive_debit2, self.progressive_credit),
         ]
 
-        company = self.env.company
-        user_lang = company.partner_id.lang
-        model_account = self.env["account.account"]
-        all_account = model_account.search([]).filtered(
-            lambda acc: company.id in acc.company_ids.ids
-        )
-        account_dict = self.get_account_dict(all_account)
+        account_code_dict, account_name_dict = self._get_account_dicts()
 
         for line in list_grupped_line:
             start_row += 1
-            account_name = (
-                account_dict[line["account_id"]] + " - " + line["account_name"]
-                and line["account_name"][user_lang]
-                or ""
-                if account_dict
-                and "line_id" in account_dict.keys()
-                and "account_id" in account_dict[line].keys()
-                else line["account_name"] and line["account_name"][user_lang] or ""
+            account_name = " - ".join(
+                filter(
+                    None,
+                    [
+                        account_code_dict.get(line["account_id"]),
+                        account_name_dict.get(line["account_id"]),
+                    ],
+                )
             )
             if not account_name:
                 continue
@@ -458,24 +480,18 @@ class WizardGiornaleReportlab(models.TransientModel):
             (self.progressive_debit2, self.progressive_credit),
         ]
 
-        company = self.env.company
-        user_lang = company.partner_id.lang
-        model_account = self.env["account.account"]
-        all_account = model_account.search([]).filtered(
-            lambda acc: company.id in acc.company_ids.ids
-        )
-        account_dict = self.get_account_dict(all_account)
+        account_code_dict, account_name_dict = self._get_account_dicts()
 
         for line in list_line_not_grouped:
             start_row += 1
-            account_name = (
-                account_dict[line["account_id"]] + " - " + line["account_name"]
-                and line["account_name"][user_lang]
-                or ""
-                if account_dict
-                and "line_id" in account_dict.keys()
-                and "account_id" in account_dict[line].keys()
-                else line["account_name"] and line["account_name"][user_lang] or ""
+            account_name = " - ".join(
+                filter(
+                    None,
+                    [
+                        account_code_dict.get(line["account_id"]),
+                        account_name_dict.get(line["account_id"]),
+                    ],
+                )
             )
             if not account_name:
                 continue
