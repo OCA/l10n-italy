@@ -19,6 +19,8 @@
                         name="bank_id"
                         domain="[('partner_id.ref_company_ids', 'in', allowed_company_ids)]"
                     />
+                    <!-- Used for the fees of both credit and past due -->
+                    <field name="bank_account_id" required="1" />
                     <field
                         name="company_id"
                         widget="selection"
@@ -40,7 +42,6 @@
                 <group string="Credit" invisible="type != 'sbf'">
                     <field name="credit_journal_id" />
                     <field name="credit_account_id" />
-                    <field name="bank_account_id" />
                     <field name="bank_expense_account_id" />
                 </group>
 

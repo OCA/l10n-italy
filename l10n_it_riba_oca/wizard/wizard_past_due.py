@@ -87,7 +87,6 @@ class RibaPastDue(models.TransientModel):
         "Credit Account",
         default=_get_credit_account_id,
     )
-    credit_amount = fields.Float(default=_get_credit_amount)
     overdue_credit_account_id = fields.Many2one(
         "account.account",
         "Past Due Bills Account",
@@ -101,9 +100,10 @@ class RibaPastDue(models.TransientModel):
         "account.account", "A/C Bank Account", default=_get_bank_account_id
     )
     bank_expense_account_id = fields.Many2one(
-        "account.account", "Bank Fees Account", default=_get_bank_expense_account_id
+        "account.account",
+        "Protest Fee Account",
+        default=_get_bank_expense_account_id,
     )
-    expense_amount = fields.Float("Fees Amount")
     date = fields.Date(
         help="If empty, the due date in the line will be used.",
         readonly=False,
@@ -119,6 +119,18 @@ class RibaPastDue(models.TransientModel):
             raise UserError(self.env._("No active ID found."))
         line_model = self.env["riba.slip.line"]
         line = line_model.browse(active_id)
+        if line.slip_id.credit_move_id:
+            # The acceptance entry is closed by the credit entry:
+            # deleting it would leave the credit towards the bank open
+            raise UserError(
+                self.env._(
+                    "Slip %(slip)s has been credited by the bank: "
+                    "the past due of line %(line)s has to be recorded "
+                    "with its journal entry.",
+                    slip=line.slip_id.name,
+                    line=line.sequence,
+                )
+            )
         line.acceptance_move_id.button_draft()
         line.acceptance_move_id.unlink()
         line.state = "past_due"
@@ -128,9 +140,7 @@ class RibaPastDue(models.TransientModel):
     def _validate_accounts(self, riba_type):
         """Validate that all required accounts are set based on RiBa type."""
         account_check = (
-            not self.past_due_journal_id
-            or not self.overdue_credit_account_id
-            or not self.bank_expense_account_id
+            not self.past_due_journal_id or not self.overdue_credit_account_id
         )
         # only incasso type needs "Acceptance Account"
         if riba_type == "incasso":
@@ -140,6 +150,16 @@ class RibaPastDue(models.TransientModel):
             account_check = account_check or not self.credit_account_id
         if account_check:
             raise UserError(self.env._("Every account is mandatory."))
+        # fees accounts are only needed to record the fees
+        if self.past_due_fee_amount and (
+            not self.bank_account_id or not self.bank_expense_account_id
+        ):
+            raise UserError(
+                self.env._(
+                    "Past due fees need the A/C bank account "
+                    "and the protest fee account."
+                )
+            )
 
     def _prepare_move_lines(self, slip_line, riba_type, date):
         """Prepare move lines for the past due entry."""
@@ -236,8 +256,20 @@ class RibaPastDue(models.TransientModel):
         if riba_credit_to_be_reconciled:
             move_line_model.browse(riba_credit_to_be_reconciled).reconcile()
 
-        # Remove existing reconciliations
-        slip_line.move_line_ids.move_line_id.remove_move_reconcile()
+        # Unlink the invoices from the acceptance entry only when the past due
+        # entry is on their receivable account: it then replaces the acceptance
+        # entry in closing their credit, and the invoices are due again.
+        # Otherwise the invoices stay paid, and the credit is tracked on the
+        # past due account. Any other reconciliation, like partial payments,
+        # is kept.
+        invoice_lines = slip_line.move_line_ids.move_line_id.filtered(
+            lambda line: line.account_id == self.overdue_credit_account_id
+        )
+        acceptance_lines = slip_line.acceptance_move_id.line_ids
+        (invoice_lines.matched_debit_ids | invoice_lines.matched_credit_ids).filtered(
+            lambda partial: partial.debit_move_id in acceptance_lines
+            or partial.credit_move_id in acceptance_lines
+        ).unlink()
 
         # Add acceptance move lines for reconciliation
         for acceptance_move_line in slip_line.acceptance_move_id.line_ids:
