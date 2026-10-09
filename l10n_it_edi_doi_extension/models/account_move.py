@@ -72,15 +72,62 @@ class AccountMove(models.Model):
             )
         return  # W8110
 
-    def _compute_l10n_it_edi_doi_warning(self):
-        """Override to show custom warning when DOI amounts don't cover
-        invoice total.
-        """
-        super()._compute_l10n_it_edi_doi_warning()
-        for move in self:
-            # Clear the warning first
-            move.l10n_it_edi_doi_warning = ""
+    def _compute_edi_doi_ext_purchase_warning(self):
+        self.ensure_one()
+        # Copy/pasted from `super()._compute_l10n_it_edi_doi_warning`
+        # to do the same checks
+        # but for purchase instead of sale.
+        declaration = self.l10n_it_edi_doi_id
 
+        show_warning = (
+            declaration
+            and self.is_purchase_document(include_receipts=False)
+            and self.state != "cancel"
+        )
+        if not show_warning:
+            return ""
+
+        declaration_invoiced = declaration.invoiced
+        declaration_not_yet_invoiced = declaration.not_yet_invoiced
+
+        if self.state != "posted":
+            # Replicate what would happen when posting the invoice
+            declaration_invoiced += self.l10n_it_edi_doi_amount
+            # Update not_yet_invoiced for linked purchase orders
+            linked_orders = self.env["purchase.order"]
+            for invoice_line in self.invoice_line_ids:
+                for purchase_line in invoice_line.purchase_line_id:
+                    order = purchase_line.order_id
+                    if order.l10n_it_edi_doi_id == declaration:
+                        linked_orders |= order
+            for order in linked_orders:
+                not_yet_invoiced = order.l10n_it_edi_doi_not_yet_invoiced
+                # After posting, the order's not_yet_invoiced will be reduced
+                declaration_not_yet_invoiced -= not_yet_invoiced
+
+        validity_warnings = declaration._get_validity_warnings(
+            self.company_id,
+            self.commercial_partner_id,
+            self.currency_id,
+            self.l10n_it_edi_doi_date,
+            invoiced_amount=declaration_invoiced,
+        )
+
+        threshold_warning = declaration._build_threshold_warning_message(
+            declaration_invoiced, declaration_not_yet_invoiced
+        )
+        return "{}\n\n{}".format(
+            "\n".join(validity_warnings), threshold_warning
+        ).strip()
+
+    def _compute_l10n_it_edi_doi_warning(self):
+        result = super()._compute_l10n_it_edi_doi_warning()
+        for move in self:
+            messages = []
+            if move.doi_type == "in" and (
+                message := move._compute_edi_doi_ext_purchase_warning()
+            ):
+                messages += [message]
             # Only show warning if amounts don't match
             if (
                 move.l10n_it_edi_doi_use
@@ -94,15 +141,18 @@ class AccountMove(models.Model):
                 total = (
                     f"{move.l10n_it_edi_doi_amount:.2f} " f"{move.currency_id.symbol}"
                 )
-                move.l10n_it_edi_doi_warning = _(
-                    "Warning: The total amount covered by declarations "
-                    "(%(covered)s) is less than the invoice DOI amount "
-                    "(%(total)s). Please adjust the amounts or add more "
-                    "declarations.",
-                    covered=covered,
-                    total=total,
-                )
-        return  # W8110
+                messages += [
+                    move.env._(
+                        "Warning: The total amount covered by declarations "
+                        "(%(covered)s) is less than the invoice DOI amount "
+                        "(%(total)s). Please adjust the amounts or add more "
+                        "declarations.",
+                        covered=covered,
+                        total=total,
+                    )
+                ]
+            move.l10n_it_edi_doi_warning = "\n".join(messages)
+        return result
 
     def _compute_l10n_it_edi_doi_amount(self):
         purchase_move_ids = self.filtered(lambda x: x.doi_type == "in")
