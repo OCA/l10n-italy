@@ -1,6 +1,6 @@
 # Copyright 2025 Nextev Srl
 
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import UserError
 
 
@@ -207,6 +207,25 @@ class AccountMove(models.Model):
                 line_errors := move._l10n_it_edi_doi_ext_get_lines_messages(doi_tax)
             ):
                 errors.extend(line_errors)
+            currency = move.currency_id
+            doi_amount = move.l10n_it_edi_doi_amount
+            doi_total = move.l10n_it_edi_doi_total_amount
+            if declaration and currency.compare_amounts(doi_total, doi_amount) > 0:
+                errors.append(
+                    move.env._(
+                        "The Total Amount for the Declaration of Intent %(doi_total)s "
+                        "cannot be greater than "
+                        "the Declaration of Intent Amount %(doi_amount)s.\n"
+                        "Please set a different amount "
+                        "in the Declaration of Intent lines.",
+                        doi_total=tools.formatLang(
+                            move.env, doi_total, currency_obj=currency
+                        ),
+                        doi_amount=tools.formatLang(
+                            move.env, doi_amount, currency_obj=currency
+                        ),
+                    )
+                )
         if errors:
             raise UserError("\n".join(errors))
         return super()._post(soft)
