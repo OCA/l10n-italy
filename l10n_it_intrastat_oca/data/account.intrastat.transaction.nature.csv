@@ -1,0 +1,20 @@
+"id","name","code","triangulation","active"
+"code_1","Transazioni che comportano un effettivo trasferimento della proprieta'
+dietro corrispettivo finanziario","1","A",1
+"code_2","Restituzione e sostituzione di merci a titolo gratuito dopo la registrazione
+ della transazione originaria","2","B",1
+"code_3","Transazioni che prevedono un trasferimento di proprieta' o che comportano
+ un trasferimento di proprieta' senza corrispettivo finanziario","3","C",1
+"code_4","Transazioni finalizzate alla lavorazione per conto terzi (che non comportano
+ un trasferimento della proprieta')","4","D",1
+"code_5","Transazioni successive a una lavorazione per conto terzi (che non comportano
+ un trasferimento della proprieta')","5","E",1
+"code_6","Movimento di merci senza trasferimento di proprieta' (noleggio e leasing operativi)",6,"",0
+"code_7","Transazioni finalizzate allo sdoganamento o successive allo sdoganamento
+(non comportanti un trasferimento della proprieta' relative a merci in quasi
+importazione o quasi esportazione)","7","F",1
+"code_8","Transazioni che implicano la fornitura di materiali da costruzione e di
+attrezzature tecniche nell'ambito di un contratto generale di costruzione o di
+genio civile per il quale non e' richiesta alcuna fatturazione separata delle
+merci e per il quale e' emessa una fattura per l'intero contratto","8","G",1
+"code_9","Altre transazioni che non possono essere classificate sotto altri codici","9","H",1
