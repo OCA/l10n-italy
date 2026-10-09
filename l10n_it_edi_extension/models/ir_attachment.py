@@ -1,6 +1,8 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+import binascii
 import logging
 from io import BytesIO
 
@@ -9,13 +11,19 @@ from lxml import etree
 from odoo import api, models, tools
 from odoo.exceptions import UserError
 
-from odoo.addons.l10n_it_edi.tools.remove_signature import remove_signature
-
 _logger = logging.getLogger(__name__)
 
 
 class IrAttachmentInherit(models.Model):
     _inherit = "ir.attachment"
+
+    def _l10n_it_edi_ext_decode_p7m_base64(self, content, name=None):
+        """Some programs download p7m files as base64 text."""
+        try:
+            return base64.b64decode(content)
+        except binascii.Error:
+            _logger.info(f"The p7m file '{name}' is not base64 encoded")
+            return ""
 
     def _is_l10n_it_edi_import_file(self):
         # Extend Odoo standard check to also recognize signed e-invoice files
@@ -31,6 +39,13 @@ class IrAttachmentInherit(models.Model):
                 return True
         return False
 
+    def _parse_xml_with_recovery(self, content, name=None):
+        xml_tree = super()._parse_xml_with_recovery(content, name=name)
+        if xml_tree is None and name and name.lower().endswith(".p7m"):
+            decoded = self._l10n_it_edi_ext_decode_p7m_base64(content, name=name)
+            xml_tree = super()._parse_xml_with_recovery(decoded, name=name)
+        return xml_tree
+
     @api.model
     def get_fatturapa_preview_style_name(self):
         """Hook to have a clean inheritance."""
@@ -40,28 +55,12 @@ class IrAttachmentInherit(models.Model):
         if not self._is_l10n_it_edi_import_file():
             raise UserError(self.env._("Invalid xml %s.") % self.name)
 
-        # from _decode_edi_l10n_it_edi()
-        # for files with a Cades signature, _decode_edi_l10n_it_edi() returns the
-        # orginal (signed) contents and a list of etree subtrees, each starting
-        # from FatturaElettronicaBody, neither of which is useful to us here
-        #
-        # so we copy the code snipped that's useful to us
-        # 8<
-        def parse_xml(parser, name, content):
-            try:
-                return etree.fromstring(content, parser)
-            except (etree.ParseError, ValueError) as e:
-                _logger.info("XML parsing of %s failed: %s", name, e)
-
         name = self.name
         content = self.raw
-        parser = etree.XMLParser(recover=True, resolve_entities=False)
-        if (xml_tree := parse_xml(parser, name, content)) is None:
-            # The file may have a Cades signature, trying to remove it
-            if (xml_tree := parse_xml(parser, name, remove_signature(content))) is None:
-                _logger.info("Italian EDI invoice file %s cannot be decoded.", name)
-                return []
-        # >8
+        xml_tree = self._parse_xml_with_recovery(content, name=name)
+        if xml_tree is None:
+            _logger.info("Italian EDI invoice file %s cannot be decoded.", name)
+            return []
 
         xml_string = etree.tostring(
             xml_tree, pretty_print=True, encoding="unicode"

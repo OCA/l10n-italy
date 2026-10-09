@@ -7,43 +7,11 @@ from lxml import etree
 
 from odoo import api, models
 
-from odoo.addons.l10n_it_edi.tools.remove_signature import remove_signature
-
 _logger = logging.getLogger(__name__)
 
 
 class AccountJournal(models.Model):
     _inherit = "account.journal"
-
-    @api.model
-    def _l10n_it_edi_extension_e_invoice_parser(self):
-        """Parser used to parse an e-invoice attachment."""
-        # Expose the parser used by `l10n_it_edi`.
-        return etree.XMLParser(
-            recover=True,
-            resolve_entities=False,
-        )
-
-    @api.model
-    def _l10n_it_edi_extension_parse_e_invoice_content(self, content):
-        """Parse the `content` of an e-invoice to a XML tree.
-
-        Return None if the parsing fails.
-        """
-        parser = self._l10n_it_edi_extension_e_invoice_parser()
-        try:
-            parsed_xml = etree.fromstring(content, parser)
-        except (etree.ParseError, ValueError):
-            parsed_xml = None
-        return parsed_xml
-
-    @api.model
-    def _l10n_it_edi_extension_parse_e_invoice(self, attachment):
-        """Parse the e-invoice `attachment` to a XML tree, decoding it if needed."""
-        parse_content = self._l10n_it_edi_extension_parse_e_invoice_content
-        if (xml_tree := parse_content(attachment.raw)) is None:
-            xml_tree = parse_content(remove_signature(attachment.raw))
-        return xml_tree
 
     @api.model
     def _l10n_it_edi_extension_split_content(self, attachment):
@@ -76,7 +44,9 @@ class AccountJournal(models.Model):
         attachment.ensure_one()
 
         if (
-            xml_tree := self._l10n_it_edi_extension_parse_e_invoice(attachment)
+            xml_tree := attachment._parse_xml_with_recovery(
+                attachment.raw, name=attachment.name
+            )
         ) is not None:
             bodies = xml_tree.xpath("//FatturaElettronicaBody")
             if len(bodies) <= 1:
