@@ -1,0 +1,250 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_it_sct_cbi
+#
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-20 06:13+0000\n"
+"PO-Revision-Date: 2017-10-20 06:13+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"ABI is mandatory for Payment Type Code '%(pain_flavor)s', but the bank "
+"%(bank)s of %(partner_bank)s has no ABI.\n"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"BIC is mandatory for Payment Type Code '%(pain_flavor)s', but the bank "
+"%(bank)s of %(partner_bank)s has no BIC.\n"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid "Bank account '%(partner_bank)s' must have a valid IBAN"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"Bank account is missing on the bank payment line of partner "
+"'%(partner)s' (reference '%(reference)s')."
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model.fields.selection,name:l10n_it_sct_cbi.selection__account_payment_method__pain_version__cbibdycrossborderpaymentrequest_00_01_01
+msgid "CBIBdyCrossBorderPaymentRequest.00.01.01"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model.fields.selection,name:l10n_it_sct_cbi.selection__account_payment_method__pain_version__cbibdypaymentrequest_00_04_01
+msgid "CBIBdyPaymentRequest.00.04.01"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"Missing Country for Partner '%(partner)s' (payment order line reference "
+"'%(reference)s')"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model.fields,field_description:l10n_it_sct_cbi.field_account_payment_method__pain_version
+msgid "PAIN Version"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model,name:l10n_it_sct_cbi.model_account_payment_method
+msgid "Payment Methods"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#: model:ir.model,name:l10n_it_sct_cbi.model_account_payment_order
+msgid "Payment Order"
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#. odoo-python
+#: code:addons/l10n_it_sct_cbi/models/account_payment_order.py:0
+#, python-format
+msgid ""
+"Payment Type Code '%(pain_flavor)s' is not supported.\n"
+"The only Payment Type Codes supported for SEPA Credit Transfers "
+"'CBIBdyPaymentRequest.00.04.01' and "
+"'CBIBdyCrossBorderPaymentRequest.00.01.01'."
+msgstr ""
+
+#. module: l10n_it_sct_cbi
+#: model:account.payment.method,name:l10n_it_sct_cbi.sepa_cbi_credit_transfer
+msgid "SEPA Credit Transfer Payment Request CBI"
+msgstr ""
+
+#~ msgid "Batch Booking"
+#~ msgstr "Skupinska rezervacija"
+
+#~ msgid "Borne by Creditor"
+#~ msgstr "Nosi upnik"
+
+#~ msgid "Borne by Debtor"
+#~ msgstr "Nosi dolžnik"
+
+#~ msgid "Cancel"
+#~ msgstr "Preklic"
+
+#~ msgid "Charge Bearer"
+#~ msgstr "Nosilec stroškov"
+
+#~ msgid "Create"
+#~ msgstr "Ustvari"
+
+#~ msgid "Created by"
+#~ msgstr "Ustvaril"
+
+#~ msgid "Created on"
+#~ msgstr "Ustvarjeno"
+
+#~ msgid "Display Name"
+#~ msgstr "Prikazni naziv"
+
+#, python-format
+#~ msgid "Error Bank Code ABI"
+#~ msgstr "Napačna bančna koda ABI"
+
+#, python-format
+#~ msgid "Error Bank Code BIC"
+#~ msgstr "Napačna bančna koda BIC"
+
+#~ msgid "Export SEPA CBI Estero File"
+#~ msgstr "Izvoz SEPA CPI datoteke za tujino"
+
+#~ msgid "Export SEPA CBI File"
+#~ msgstr "Izvoz SEPA CBI datoteke"
+
+#~ msgid "File"
+#~ msgstr "Datoteka"
+
+#~ msgid "Filename"
+#~ msgstr "Naziv datoteke"
+
+#~ msgid "Finish"
+#~ msgstr "Dokončaj"
+
+#~ msgid "Following Service Level"
+#~ msgstr "Raven storitev"
+
+#~ msgid ""
+#~ "Following service level : transaction charges are to be applied following "
+#~ "the rules agreed in the service level and/or scheme (SEPA Core messages "
+#~ "must use this). Shared : transaction charges on the creditor side are to "
+#~ "be borne by the creditor, transaction charges on the debtor side are to "
+#~ "be borne by the debtor. Borne by creditor : all transaction charges are "
+#~ "to be borne by the creditor. Borne by debtor : all transaction charges "
+#~ "are to be borne by the debtor."
+#~ msgstr ""
+#~ "Nivo sledenja: stroške transakcije se dodeli glede na naslednja pravila v "
+#~ "sporazumu o ravni storitev in/ali shemi (SEPA temeljna sporočila morajo "
+#~ "to uporabljati). Deljeno: stroške transakcije na strani upnika nosi upnik "
+#~ "sam, stroške na strani dolžnika pa dolžnik. Nosi upnik: vse stroške "
+#~ "transakcije nosi upnik. Nosi dolžnik: vse stroške transakcije nosi "
+#~ "dolžnik."
+
+#~ msgid "Generate"
+#~ msgstr "Ustvari"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid ""
+#~ "If true, the bank statement will display only one credit line for all the "
+#~ "direct debits of the SEPA file ; if false, the bank statement will "
+#~ "display one credit line per direct debit of the SEPA file."
+#~ msgstr ""
+#~ "Če pravilno, bančni izpisek prikaže le eno postavko v dobro za vse "
+#~ "direktne obremenitve v SEPA XML datoteki ; če napačno, bančni izpisek "
+#~ "prikaže le eno postavko v dobro za vsako direktno obremenitev v SEPA "
+#~ "datoteki."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zadnjič spremenjeno"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Zadnji posodobil"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Zadnjič posodobljeno"
+
+#, python-format
+#~ msgid ""
+#~ "Missing Bank Account on invoice '%s' (payment order line reference '%s')"
+#~ msgstr ""
+#~ "Manjkajoča številka bančnega računa pri računu '%s' (sklic na postavko "
+#~ "plačilnega naloga '%s')"
+
+#, python-format
+#~ msgid "Missing Country for Partner '%s' (payment order line reference '%s')"
+#~ msgstr ""
+#~ "Manjkajoča država pri partnerju '%s' (sklic postavke plačilnega naloga "
+#~ "'%s')"
+
+#~ msgid "Number of Transactions"
+#~ msgstr "Število transakcij"
+
+#~ msgid "Payment Orders"
+#~ msgstr "Plačilni nalogi"
+
+#, python-format
+#~ msgid ""
+#~ "Payment Type Code '%s' is not supported. The only Payment Type Code "
+#~ "supported for SEPA Credit Transfers "
+#~ "'CBIBdyCrossBorderPaymentRequest.00.01.01'. "
+#~ msgstr ""
+#~ "Koda tipa plačila '%s' ni podprta. Edina koda tipov plačil, ki je podprta "
+#~ "za SEPA bremenilne transakcije, je "
+#~ "'CBIBdyCrossBorderPaymentRequest.00.01.01'."
+
+#, python-format
+#~ msgid ""
+#~ "Payment Type Code '%s' is not supported. The only Payment Type Code "
+#~ "supported for SEPA Credit Transfers 'CBIBdyPaymentRequest.00.04.00'. "
+#~ msgstr ""
+#~ "Koda tipa plačila '%s' ni podprta. Edina koda tipov plačil, ki je podprta "
+#~ "za SEPA bremenilne transakcije, je 'CBIBdyPaymentRequest.00.04.00'."
+
+#~ msgid "SEPA File Generation"
+#~ msgstr "Generiranje SEPA datoteke"
+
+#~ msgid "Shared"
+#~ msgstr "V souporabi"
+
+#~ msgid "State"
+#~ msgstr "Stanje"
+
+#~ msgid "Total Amount"
+#~ msgstr "Skupni znesek"
+
+#~ msgid "Validate"
+#~ msgstr "Overi"
