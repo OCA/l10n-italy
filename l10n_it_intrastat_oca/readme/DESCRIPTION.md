@@ -9,4 +9,4 @@ transazioni, modalità di trasporto.
 
 Per la creazione delle dichiarazioni, degli elenchi riepilogativi e le
 estrazioni da presentare all'Agenzia delle Dogane è necessario
-installare il modulo l10n_it_intrastat_statement.
+installare il modulo l10n_it_intrastat_statement_oca.
