@@ -34,6 +34,7 @@ OLD_MODULES = [
     "l10n_it_vat_registries_rc",
     "l10n_it_vat_settlement_date_rc",
     "l10n_it_withholding_tax",
+    "l10n_it_withholding_tax_financial_report",
     "l10n_it_withholding_tax_payment",
     "l10n_it_withholding_tax_reason",
 ]
