@@ -3,7 +3,7 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import fields
+from odoo import exceptions, fields
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
@@ -499,6 +499,13 @@ class TestDoiIssuedFromCompany(TransactionCase):
         )
 
         previous_used_amount = self.doi_in.invoiced
+        with self.assertRaises(exceptions.UserError) as ue:
+            invoice.action_post()
+        exc_message = ue.exception.args[0]
+        self.assertIn("must include only the Tax ", exc_message)
+        self.assertIn(self.tax.name, exc_message)
+
+        invoice.invoice_line_ids.tax_ids -= tax2
         invoice.action_post()
         used_amount = self.doi_in.invoiced
         self.assertNotEqual(previous_used_amount, used_amount)

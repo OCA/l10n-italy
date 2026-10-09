@@ -109,13 +109,11 @@ class AccountMove(models.Model):
         other_move_ids = self - purchase_move_ids
         super(AccountMove, other_move_ids)._compute_l10n_it_edi_doi_amount()
         for move in purchase_move_ids:
-            tax = move.company_id.l10n_it_edi_doi_bill_tax_id
+            tax = move._l10n_it_edi_doi_ext_get_declaration_tax()
             if not tax or not move.l10n_it_edi_doi_id:
                 move.l10n_it_edi_doi_amount = 0
                 continue
-            declaration_lines = move.invoice_line_ids.filtered(
-                lambda line, tax=tax: tax in line.tax_ids
-            )
+            declaration_lines = move._l10n_it_edi_doi_ext_get_declaration_lines(tax)
             move.l10n_it_edi_doi_amount = sum(declaration_lines.mapped("price_total"))
 
         # Fallback for migrated invoices: old v16 invoices don't have the v18
@@ -157,24 +155,58 @@ class AccountMove(models.Model):
             move.l10n_it_edi_doi_id = declaration
         return  # W8110
 
+    def _l10n_it_edi_doi_ext_get_declaration_tax(self):
+        """Get the DoI Tax to use with this line."""
+        company = self.company_id
+        return (
+            company.l10n_it_edi_doi_bill_tax_id
+            if self.is_purchase_document()
+            else company.l10n_it_edi_doi_tax_id
+        )
+
+    def _l10n_it_edi_doi_ext_get_declaration_lines(self, doi_tax):
+        """Extract the lines to be counted for DoI."""
+        self.ensure_one()
+        if self.l10n_it_edi_doi_id:
+            lines = self.invoice_line_ids.filtered(
+                lambda line,
+                doi_tax=doi_tax: not line._l10n_it_edi_doi_ext_get_validation_message(
+                    doi_tax
+                )
+            )
+        else:
+            lines = self.env["account.move.line"].browse()
+        return lines
+
+    def _l10n_it_edi_doi_ext_get_lines_messages(self, doi_tax):
+        """Check that all the invoice lines are valid for the DoI."""
+        self.ensure_one()
+        errors = []
+        for line in self.invoice_line_ids:
+            if error := line._l10n_it_edi_doi_ext_get_validation_message(doi_tax):
+                errors.append(error)
+        return errors
+
     def _post(self, soft=True):
         errors = []
         for move in self:
             declaration = move.l10n_it_edi_doi_id
-            doi_bill_tax = move.company_id.l10n_it_edi_doi_bill_tax_id
-            if not doi_bill_tax:
+            doi_tax = move._l10n_it_edi_doi_ext_get_declaration_tax()
+            if not doi_tax:
                 continue
-            declaration_lines = move.invoice_line_ids.filtered(
-                lambda line, doi_bill_tax=doi_bill_tax: doi_bill_tax in line.tax_ids
-            )
+            declaration_lines = move._l10n_it_edi_doi_ext_get_declaration_lines(doi_tax)
             if declaration_lines and not declaration:
                 errors.append(
                     _(
                         "Given the tax %s is applied, there should be a "
                         "Declaration of Intent selected.",
-                        doi_bill_tax.name,
+                        doi_tax.name,
                     )
                 )
+            if declaration and (
+                line_errors := move._l10n_it_edi_doi_ext_get_lines_messages(doi_tax)
+            ):
+                errors.extend(line_errors)
         if errors:
             raise UserError("\n".join(errors))
         return super()._post(soft)
