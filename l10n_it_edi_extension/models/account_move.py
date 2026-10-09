@@ -306,19 +306,19 @@ class AccountMoveInherit(models.Model):
                     "l10n_it_edi_stabile_organizzazione_indirizzo": get_text(
                         element_stabile_organizzazione, ".//Indirizzo"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_civico": get_date(
+                    "l10n_it_edi_stabile_organizzazione_civico": get_text(
                         element_stabile_organizzazione, ".//NumeroCivico"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_cap": get_date(
+                    "l10n_it_edi_stabile_organizzazione_cap": get_text(
                         element_stabile_organizzazione, ".//CAP"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_comune": get_date(
+                    "l10n_it_edi_stabile_organizzazione_comune": get_text(
                         element_stabile_organizzazione, ".//Comune"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_provincia": get_date(
+                    "l10n_it_edi_stabile_organizzazione_provincia": get_text(
                         element_stabile_organizzazione, ".//Provincia"
                     ),
-                    "l10n_it_edi_stabile_organizzazione_nazione": get_date(
+                    "l10n_it_edi_stabile_organizzazione_nazione": get_text(
                         element_stabile_organizzazione, ".//Nazione"
                     ),
                 }
@@ -761,26 +761,36 @@ class AccountMoveInherit(models.Model):
                 )
             )
 
+        partner_anagrafica_xpath = f"{partner_info_xpath}//DatiAnagrafici"
+        partner_sede_xpath = f"{partner_info_xpath}//Sede"
+        partner_vat_xpath = f"{partner_anagrafica_xpath}//IdFiscaleIVA"
+        partner_contact_xpath = f"{partner_info_xpath}//Contatti"
+
         partner_info.update(
             {
-                "city_xpath": f"{partner_info_xpath}//Comune",
-                "codice_fiscale_xpath": f"{partner_info_xpath}//CodiceFiscale",
-                "country_code_xpath": f"{partner_info_xpath}//IdPaese",
-                "email_xpath": f"{partner_info_xpath}//Email",
-                "eori_code_xpath": f"{partner_info_xpath}//CodEORI",
-                "first_name_xpath": f"{partner_info_xpath}//Nome",
-                "last_name_xpath": f"{partner_info_xpath}//Cognome",
-                "name_xpath": f"{partner_info_xpath}//Denominazione",
-                "phone_xpath": f"{partner_info_xpath}//Telefono",
-                "register_code_xpath": f"{partner_info_xpath}//NumeroIscrizioneAlbo",
-                "register_regdate_xpath": f"{partner_info_xpath}//DataIscrizioneAlbo",
-                "register_state_xpath": f"{partner_info_xpath}//ProvinciaAlbo",
-                "register_xpath": f"{partner_info_xpath}//AlboProfessionale",
-                "state_xpath": f"{partner_info_xpath}//Provincia",
-                "street_number_xpath": f"{partner_info_xpath}//NumeroCivico",
-                "street_xpath": f"{partner_info_xpath}//Indirizzo",
-                "vat_xpath": f"{partner_info_xpath}//IdCodice",
-                "zip_xpath": f"{partner_info_xpath}//CAP",
+                "city_xpath": f"{partner_sede_xpath}//Comune",
+                "codice_fiscale_xpath": f"{partner_anagrafica_xpath}//CodiceFiscale",
+                "country_code_xpath": f"{partner_sede_xpath}//Nazione",
+                "email_xpath": f"{partner_contact_xpath}//Email",
+                "eori_code_xpath": f"{partner_anagrafica_xpath}//CodEORI",
+                "first_name_xpath": f"{partner_anagrafica_xpath}//Nome",
+                "last_name_xpath": f"{partner_anagrafica_xpath}//Cognome",
+                "name_xpath": f"{partner_anagrafica_xpath}//Denominazione",
+                "phone_xpath": f"{partner_contact_xpath}//Telefono",
+                "register_code_xpath": (
+                    f"{partner_anagrafica_xpath}//NumeroIscrizioneAlbo"
+                ),
+                "register_regdate_xpath": (
+                    f"{partner_anagrafica_xpath}//DataIscrizioneAlbo"
+                ),
+                "register_state_xpath": f"{partner_anagrafica_xpath}//ProvinciaAlbo",
+                "register_xpath": f"{partner_anagrafica_xpath}//AlboProfessionale",
+                "state_xpath": f"{partner_sede_xpath}//Provincia",
+                "street_number_xpath": f"{partner_sede_xpath}//NumeroCivico",
+                "street_xpath": f"{partner_sede_xpath}//Indirizzo",
+                "vat_xpath": f"{partner_vat_xpath}//IdCodice",
+                "vat_country_xpath": f"{partner_vat_xpath}//IdPaese",
+                "zip_xpath": f"{partner_sede_xpath}//CAP",
             }
         )
 
@@ -821,6 +831,12 @@ class AccountMoveInherit(models.Model):
                     vals[field_name] = value
 
             country_code = get_text(tree, partner_info["country_code_xpath"])
+            if (
+                vat_country := get_text(tree, partner_info.get("vat_country_xpath", ""))
+            ) != country_code:
+                vat_code = get_text(tree, partner_info["vat_xpath"])
+                vals["vat"] = f"{vat_country}{vat_code}" if vat_country else vat_code
+
             if country := self.env["res.country"].search(
                 [
                     ("code", "=", country_code),
