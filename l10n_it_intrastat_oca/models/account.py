@@ -4,7 +4,6 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.fields import Domain
 from odoo.tools import float_is_zero
 
 
@@ -223,12 +222,13 @@ class AccountMoveLine(models.Model):
         self.ensure_one()
         intrastat_uom_kg = self.move_id.company_id.intrastat_uom_kg_id
         # ...Weight compute in Kg
-        # ...If Uom has the same category of kg -> Convert to Kg
+        # ...If Uom has the same reference of kg -> Convert to Kg
         # ...Else the weight will be product weight * qty
         product_weight = product.weight or 0
         if (
             intrastat_uom_kg
-            and product.uom_id.category_id == intrastat_uom_kg.category_id
+            and self.product_uom_id
+            and self.product_uom_id._has_common_reference(intrastat_uom_kg)
         ):
             weight_kg = self.product_uom_id._compute_quantity(
                 qty=self.quantity, to_unit=intrastat_uom_kg
@@ -597,6 +597,7 @@ class AccountInvoiceIntrastat(models.Model):
     transaction_nature_b_id = fields.Many2one(
         comodel_name="account.intrastat.transaction.nature.b",
         string="Transaction Nature B",
+        domain="[('nature_parent_id', '=', transaction_nature_id)]",
     )
     weight_kg = fields.Float(string="Net Mass (kg)")
     show_weight = fields.Boolean(string="Display weight in declaration", default=True)
@@ -651,12 +652,6 @@ class AccountInvoiceIntrastat(models.Model):
         string="Invoice Type",
         related="invoice_id.move_type",
     )
-
-    @api.onchange("transaction_nature_id")
-    def _onchange_transaction_nature_id(self):
-        domain = [("nature_parent_id", "=", self.transaction_nature_id.id)]
-        recs = self.env["account.intrastat.transaction.nature.b"].search(domain)
-        return {"domain": {"transaction_nature_b_id": Domain("id", "in", recs.ids)}}
 
     @api.onchange("weight_kg")
     def change_weight_kg(self):

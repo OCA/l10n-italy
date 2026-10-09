@@ -383,23 +383,36 @@ dichiarazione: nomenclature combinate, sezioni doganali, natura delle
 transazioni, modalità di trasporto.</p>
 <p>Per la creazione delle dichiarazioni, degli elenchi riepilogativi e le
 estrazioni da presentare all’Agenzia delle Dogane è necessario
-installare il modulo l10n_it_intrastat_statement.</p>
+installare il modulo l10n_it_intrastat_statement_oca.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
-<li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-3">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-4">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-5">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-6">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-7">Maintainers</a></li>
+<li><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-2">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-7">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-8">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#toc-entry-1">Installation</a></h2>
+<p><strong>Italiano</strong></p>
+<p>Questo modulo sostituisce <tt class="docutils literal">l10n_it_intrastat</tt>, rinominato perché Odoo
+Enterprise contiene un modulo con lo stesso nome.</p>
+<p>Nei database migrati con OpenUpgrade la rinomina è automatica.</p>
+<p>Nei database migrati con il servizio di Odoo SA (upgrade.odoo.com),
+installare questo modulo: durante l’installazione assorbe i dati del
+vecchio modulo <tt class="docutils literal">l10n_it_intrastat</tt>.</p>
+<p>I moduli che dipendono da <tt class="docutils literal">l10n_it_intrastat</tt> devono usare il nuovo
+nome nelle dipendenze e negli XMLID.</p>
+</div>
 <div class="section" id="configuration">
-<h2><a class="toc-backref" href="#toc-entry-1">Configuration</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-2">Configuration</a></h2>
 <p><strong>Italiano</strong></p>
 <p>In <em>Impostazioni → Utenti e aziende → Aziende → Nome azienda</em> impostare
 i parametri delle seguenti sezioni presenti nella scheda “Informazioni
@@ -513,7 +526,7 @@ le tipologie “Bene” e “Servizio”).</li>
 un’apposita area Intrastat della maschera di dettaglio.</p>
 </div>
 <div class="section" id="usage">
-<h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-3">Usage</a></h2>
 <p><strong>Italiano</strong></p>
 <p><strong>Fatture e note di credito Intrastat</strong></p>
 <p>È possibile indicare l’assoggettamento di una fattura ad Intrastat
@@ -584,7 +597,7 @@ combinata</em>.</div>
 </div>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-4">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -592,9 +605,9 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-4">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-5">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-5">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6">Authors</a></h3>
 <ul class="simple">
 <li>Openforce</li>
 <li>Link IT srl</li>
@@ -603,7 +616,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-6">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-7">Contributors</a></h3>
 <ul>
 <li><p class="first">Alessandro Camilli</p>
 </li>
@@ -636,7 +649,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-7">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />

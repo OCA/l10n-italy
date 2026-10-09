@@ -168,3 +168,47 @@ class TestIntrastat(AccountTestInvoicingCommon):
 
         # Assert
         self.assertEqual(invoice.intrastat_line_ids.weight_kg, variant_weight)
+
+    def test_line_weight_uom_kg(self):
+        """Quantity in a UoM sharing the reference of kg is converted to kg."""
+        # Arrange
+        product = self.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "uom_id": self.env.ref("uom.product_uom_gram").id,
+                "intrastat_type": "good",
+                "intrastat_code_id": self.intrastat_01012100.id,
+            }
+        )
+        invoice = self.init_invoice(
+            "out_invoice",
+            products=product,
+        )
+        invoice.company_id.intrastat_uom_kg_id = self.env.ref("uom.product_uom_kgm")
+        invoice.invoice_line_ids.quantity = 500
+        invoice.intrastat = True
+
+        # Act
+        invoice.action_post()
+
+        # Assert
+        self.assertEqual(invoice.intrastat_line_ids.weight_kg, 0.5)
+
+    def test_line_weight_uom_unit(self):
+        """Quantity in a UoM not sharing the reference of kg
+        is multiplied by the product weight."""
+        # Arrange
+        invoice = self.init_invoice(
+            "out_invoice",
+            products=self.product01,
+        )
+        invoice.company_id.intrastat_uom_kg_id = self.env.ref("uom.product_uom_kgm")
+        invoice.invoice_line_ids.quantity = 300
+        invoice.intrastat = True
+
+        # Act
+        invoice.action_post()
+
+        # Assert
+        self.assertAlmostEqual(invoice.intrastat_line_ids.weight_kg, 3)
