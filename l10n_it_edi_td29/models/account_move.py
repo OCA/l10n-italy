@@ -15,6 +15,10 @@ class AccountMove(models.Model):
         "(art. 6, comma 8, D.Lgs. 471/97).",
     )
 
+    def _l10n_it_edi_ext_is_self_invoice(self):
+        # TD29 is not a self-invoice, but it is sent the same way
+        return super()._l10n_it_edi_ext_is_self_invoice() or self.l10n_it_edi_is_td29
+
     def _l10n_it_edi_get_document_type(self):
         if self.l10n_it_edi_is_td29:
             return "TD29"
