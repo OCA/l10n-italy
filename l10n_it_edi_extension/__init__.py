@@ -922,7 +922,7 @@ def _l10n_it_ipa_post_migration(env):
 def _l10n_it_pec_post_migration(env):
     query = """
         UPDATE res_partner
-        SET l10n_it_pec_email = pec_mail
+        SET l10n_it_generic_pec_email = pec_mail
         WHERE pec_mail IS NOT NULL
     """
     openupgrade.logged_query(env.cr, query)
