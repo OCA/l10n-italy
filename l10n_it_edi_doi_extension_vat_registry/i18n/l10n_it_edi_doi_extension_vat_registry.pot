@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_edi_doi_extension_vat_registry
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_edi_doi_extension_vat_registry
+#: model:ir.model,name:l10n_it_edi_doi_extension_vat_registry.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension_vat_registry
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension_vat_registry/models/account_move_line.py:0
+msgid ""
+"Only Taxes excluded from VAT Registries are allowed.\n"
+"The Taxes %(taxes)s are not allowed."
+msgstr ""
