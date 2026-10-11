@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-07-20 08:36+0000\n"
+"PO-Revision-Date: 2026-10-11 08:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -222,7 +222,7 @@ msgstr "Registrazione contabile"
 #. module: l10n_it_edi_doi_extension
 #: model:ir.model,name:l10n_it_edi_doi_extension.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Movimento contabile"
 
 #. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__write_uid
@@ -354,6 +354,8 @@ msgid ""
 "The invoice line %(line_name)s must include only the Tax %(doi_tax)s for the "
 "Declaration of Intent."
 msgstr ""
+"La riga della fattura %(line_name)s deve includere esclusivamente l'imposta %"
+"(doi_tax)s relativa alla dichiarazione d'intento."
 
 #. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_threshold
