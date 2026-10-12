@@ -11,6 +11,7 @@ Key features:
  - Smart warnings when invoice amounts don't match DOI coverage
  - Backward compatibility with single-declaration workflow
  - Check that the moves only include the DoI tax
+ - In the Company form, only find Purchase/Sale Taxes of the shown Company for issued/received Declarations
 
 **Italiano**
 
@@ -25,3 +26,4 @@ Caratteristiche principali:
  - Avvisi intelligenti quando gli importi non corrispondono
  - Retrocompatibilità con il flusso a dichiarazione singola
  - Verifica che le registrazioni includano soltanto l'imposta per la DI
+ - Nel form dell'azienda, trova solo le imposte di acquisto/vendita dell'azienda mostrata per le dichiarazioni emesse/ricevute
