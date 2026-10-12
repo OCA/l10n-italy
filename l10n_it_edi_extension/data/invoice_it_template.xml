@@ -66,5 +66,40 @@
                 </IndirizzoResa>
             </DatiTrasporto>
         </xpath>
+        <xpath expr="//Allegati" position="after">
+            <t t-call="l10n_it_edi_extension.account_invoice_it_doc_attachments" />
+        </xpath>
+    </template>
+
+    <template
+        id="account_invoice_it_simplified_FatturaPA_export_inherit"
+        inherit_id="l10n_it_edi.account_invoice_it_simplified_FatturaPA_export"
+    >
+        <xpath expr="//Allegati" position="after">
+            <t t-call="l10n_it_edi_extension.account_invoice_it_doc_attachments" />
+        </xpath>
+    </template>
+
+    <template id="account_invoice_it_doc_attachments">
+        <t t-foreach="doc_attachments" t-as="doc_attachment">
+            <Allegati>
+                <NomeAttachment
+                    t-out="format_alphanumeric(doc_attachment['name'], 60)"
+                />
+                <!--                <AlgoritmoCompressione-->
+                <!--                    t-if="doc_attachment['compression']"-->
+                <!--                    t-out="doc_attachment['compression']"-->
+                <!--                />-->
+                <FormatoAttachment
+                    t-if="doc_attachment['format']"
+                    t-out="doc_attachment['format']"
+                />
+                <!--                <DescrizioneAttachment-->
+                <!--                    t-if="doc_attachment['description']"-->
+                <!--                    t-out="format_alphanumeric(doc_attachment['description'], 100)"-->
+                <!--                />-->
+                <Attachment t-out="doc_attachment['attachment']" />
+            </Allegati>
+        </t>
     </template>
 </odoo>

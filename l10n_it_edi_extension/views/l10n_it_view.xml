@@ -153,6 +153,24 @@
                             <field name="activity_progress" />
                         </list>
                     </field>
+                    <separator name="Attachments" />
+                    <field name="l10n_it_edi_doc_attachment_ids">
+                        <list>
+                            <field name="name" />
+                            <field name="description" />
+                        </list>
+                        <form string="Attachments">
+                            <group>
+                                <group>
+                                    <field name="description" />
+                                </group>
+                                <group>
+                                    <field name="datas" filename="name" />
+                                    <field name="name" />
+                                </group>
+                            </group>
+                        </form>
+                    </field>
                     <group>
                         <group string="Stable Organization">
                             <field

@@ -130,6 +130,14 @@ class TestFatturaPAXMLValidation(Common):
             orig_attachment_data = orig_attachment.read()
             self.assertEqual(attachments[0].raw, orig_attachment_data)
 
+        # The attachment is also recovered in the doc attachments field,
+        # reusing the attachment created by core
+        doc_attachment = move.l10n_it_edi_doc_attachment_ids
+        self.assertEqual(len(doc_attachment), 1)
+        self.assertEqual(doc_attachment.ir_attachment_id, attachments[0])
+        self.assertEqual(doc_attachment.format, "png")
+        self.assertEqual(doc_attachment.description, "descrizione test")
+
     def test_import_zip(self):
         zip_name = "xml_import.zip"
         moves = self._import_moves_from_zip(zip_name)

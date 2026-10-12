@@ -2,6 +2,8 @@
 # Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from base64 import b64encode
+
 from odoo import api, fields, models, osv
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, html2plaintext, is_html_empty
@@ -50,6 +52,12 @@ class AccountMoveInherit(models.Model):
         "l10n_it_edi.activity_progress",
         "invoice_id",
         string="E-Invoice Activity Progress",
+        copy=False,
+    )
+    l10n_it_edi_doc_attachment_ids = fields.One2many(
+        "l10n_it_edi.attachment",
+        "invoice_id",
+        string="Electronic Invoice Attachments",
         copy=False,
     )
     l10n_it_edi_rounding = fields.Float(
@@ -284,6 +292,18 @@ class AccountMoveInherit(models.Model):
                     )
 
         res["causale_lines"] = causale_lines
+        res["doc_attachments"] = [
+            {
+                "name": attachment.name,
+                # "compression": attachment.compression,
+                "format": attachment.format,
+                # "description": attachment.description,
+                "attachment": b64encode(
+                    attachment.ir_attachment_id.raw or b""
+                ).decode(),
+            }
+            for attachment in self.l10n_it_edi_doc_attachment_ids
+        ]
 
         return res
 
@@ -1018,12 +1038,55 @@ class AccountMoveInherit(models.Model):
                 if vals:
                     partner_bank.write(vals)
 
+    def _l10n_it_edi_extension_import_doc_attachments(
+        self, invoice, body_tree, pre_existing_attachments
+    ):
+        """Recover ``fatturapa_doc_attachments`` from the imported XML.
+
+        Core creates a plain ``ir.attachment`` for every ``Allegati`` node.
+        Wrap those attachments in ``l10n_it_edi.attachment`` records, without
+        duplicating the binary content, so that they can be exported again
+        and shown on the invoice.
+        """
+        if body_tree is None:
+            return
+        elements = body_tree.xpath(".//Allegati")
+        if not elements:
+            return
+        attachments = self.env["ir.attachment"].search(
+            [
+                ("res_model", "=", "account.move"),
+                ("res_id", "=", invoice.id),
+                ("res_field", "=", False),
+            ],
+            order="id",
+        )
+        new_attachments = attachments - pre_existing_attachments
+        attachment_model = self.env["l10n_it_edi.attachment"]
+        for element, attachment in zip(elements, new_attachments, strict=False):
+            attachment_model.create(
+                {
+                    "ir_attachment_id": attachment.id,
+                    "invoice_id": invoice.id,
+                    "compression": get_text(element, ".//AlgoritmoCompressione"),
+                    "format": get_text(element, ".//FormatoAttachment"),
+                    "description": get_text(element, ".//DescrizioneAttachment"),
+                }
+            )
+
     def _l10n_it_edi_import_invoice(self, invoice, data, is_new):
+        body_tree = data.get("xml_tree")
+        pre_existing_attachments = self.env["ir.attachment"].search(
+            [
+                ("res_model", "=", "account.move"),
+                ("res_id", "=", invoice.id),
+                ("res_field", "=", False),
+            ]
+        )
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
         if not invoice:
             return invoice
 
-        body_tree = data.get("xml_tree")
         is_incoming = self.is_purchase_document(include_receipts=True)
         import_detail_level = (
             invoice.partner_id.l10n_it_edi_import_detail_level
@@ -1070,6 +1133,10 @@ class AccountMoveInherit(models.Model):
             "tax_representative",
         ):
             invoice.l10n_it_edi_tax_representative_id = tax_representative
+
+        self._l10n_it_edi_extension_import_doc_attachments(
+            invoice, body_tree, pre_existing_attachments
+        )
 
         if attachment := data["attachment"]:
             invoice.l10n_it_edi_ext_attachment_in_id = attachment.id
