@@ -12,6 +12,7 @@ Key features:
  - Backward compatibility with single-declaration workflow
  - Check that the move lines only include the DoI Tax, when present
  - Check that at least one move line contains the DoI Tax when the DoI is set in the Move
+ - In the Company form, only find Purchase/Sale Taxes of the shown Company for issued/received Declarations
 
 **Italiano**
 
@@ -27,3 +28,4 @@ Caratteristiche principali:
  - Retrocompatibilità con il flusso a dichiarazione singola
  - Verifica che i movimenti contabili includano soltanto l'imposta per la DI, quando presente
  - Verifica che almeno un movimento contabile contenga l'imposta per la DI quando la DI è impostata nella registrazione
+ - Nel form dell'azienda, trova solo le imposte di acquisto/vendita dell'azienda mostrata per le dichiarazioni emesse/ricevute
