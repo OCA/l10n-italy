@@ -6,13 +6,17 @@
     "version": "18.0.1.0.0",
     "category": "Accounting/Localizations/EDI",
     "development_status": "Alpha",
-    "summary": "Generate FatturaPA XML for self-invoices without sending to SdI",
+    "summary": (
+        "Generate FatturaPA XML for self-invoices and customer invoices "
+        "without sending to SdI, single or batch"
+    ),
     "author": "Marco Colombo, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
-    "depends": ["l10n_it_edi"],
+    "depends": ["l10n_it_edi", "account"],
     "data": [
         "views/account_move_views.xml",
+        "data/ir_actions_server.xml",
     ],
     "installable": True,
     "auto_install": False,
