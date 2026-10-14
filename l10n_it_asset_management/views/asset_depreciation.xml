@@ -39,8 +39,12 @@
                             attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
                         />
                         <field
+                            name="date_end"
+                            attrs="{'readonly': [('state', '!=', 'non_depreciated')], 'invisible': [('pro_rata_temporis', '=', False)]}"
+                        />
+                        <field
                             name="percentage"
-                            attrs="{'readonly': [('state', '!=', 'non_depreciated')]}"
+                            attrs="{'readonly': [('state', '!=', 'non_depreciated')], 'invisible': [('date_end', '!=', False)]}"
                         />
                         <field
                             name="base_coeff"
