@@ -489,6 +489,82 @@ class TestFatturaPAXMLValidation(Common):
             ],
         )
 
+    def test_partner_default_product_off_balance_account(self):
+        """An imported line cannot use an off-balance account."""
+        # Arrange
+        supplier = self.env["res.partner"].create(
+            {
+                "name": "Test supplier",
+                "vat": "02780790107",
+            }
+        )
+        default_product = self.default_product.with_company(self.company)
+        off_balance_account = (
+            self.env["account.account"]
+            .with_company(self.company)
+            .create(
+                {
+                    "name": "Test off-balance account",
+                    "code": "TESTOFFBL",
+                    "account_type": "off_balance",
+                }
+            )
+        )
+        default_product.property_account_expense_id = off_balance_account
+        supplier.l10n_it_edi_ext_default_product_id = default_product
+
+        # Act
+        bill = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [{"partner_id": supplier.id}],
+        )
+
+        # Assert
+        self.assertEqual(len(bill.invoice_line_ids), 2)
+        self.assertFalse(
+            any(
+                line.account_id.account_type == "off_balance"
+                for line in bill.invoice_line_ids
+            )
+        )
+
+    def test_import_tax_with_off_balance_account(self):
+        """An imported tax line cannot use an off-balance account."""
+        # Arrange
+        off_balance_account = (
+            self.env["account.account"]
+            .with_company(self.company)
+            .create(
+                {
+                    "name": "Test off-balance tax account",
+                    "code": "TESTOFFTAX",
+                    "account_type": "off_balance",
+                }
+            )
+        )
+        purchase_taxes = self.env["account.tax"].search(
+            [
+                ("type_tax_use", "=", "purchase"),
+                ("amount", "=", 22),
+                ("amount_type", "=", "percent"),
+                ("company_id", "=", self.company.id),
+            ]
+        )
+        self.assertTrue(purchase_taxes)
+        purchase_taxes.invoice_repartition_line_ids.filtered(
+            lambda line: line.repartition_type == "tax"
+        ).account_id = off_balance_account
+
+        # Act
+        bill = self._edi_import_invoice("IT02780790107_11005.xml")
+
+        # Assert
+        self.assertEqual(len(bill.invoice_line_ids), 2)
+        self.assertTrue(bill.line_ids.filtered(lambda line: line.display_type == "tax"))
+        self.assertFalse(
+            any(line.account_id.account_type == "off_balance" for line in bill.line_ids)
+        )
+
     def test_partner_default_product_tax_detail_level(self):
         """If the partner has a default product and no product is found,
         and the invoice is imported with "Tax" detail level,
