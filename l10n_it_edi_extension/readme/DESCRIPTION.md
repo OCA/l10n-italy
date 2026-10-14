@@ -31,8 +31,7 @@ Le funzionalità principali incluse sono:
      - `<RappresentanteFiscale>`
    - Nome e cognome vengono assegnati ai nuovi contatti in base ai nodi `<Nome>` e `<Cognome>` della fattura elettronica.
    - Gestione delle Fatture Elettroniche Multiple:
-     - Supporto per la suddivisione automatica di file XML contenenti più fatture
-     - Ogni `<FatturaElettronicaBody>` viene convertito in una fattura separata mantenendo l'header originale
+     - Se un file XML contiene più fatture (più `<FatturaElettronicaBody>`), Odoo le importa in un'unica registrazione: il modulo lo segnala con un messaggio nel chatter della registrazione
    - Aggiunge la possibilità di scegliere tra 3 modalità di importazione:
      - senza righe
      - una riga per ogni aliquota
@@ -119,8 +118,7 @@ The main features included are:
      - `<RappresentanteFiscale>`
    - Name and surname are set in the new contacts based on the `<Nome>` and `<Cognome>` nodes of the E-Bill.
    - Multiple Electronic Invoice Management:
-     - Support for automatic splitting of XML files containing multiple invoices
-     - Each `<FatturaElettronicaBody>` is converted into a separate invoice maintaining the original header
+     - If an XML file contains multiple invoices (multiple `<FatturaElettronicaBody>`), Odoo imports them in a single document: the module points it out with a message in the chatter of the document
    - Adds the ability to choose between 3 import modes:
      - without lines
      - one line for each VAT rate

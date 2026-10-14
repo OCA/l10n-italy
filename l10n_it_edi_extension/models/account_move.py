@@ -1018,12 +1018,30 @@ class AccountMoveInherit(models.Model):
                 if vals:
                     partner_bank.write(vals)
 
+    def _l10n_it_edi_extension_notify_merged_invoices(self, invoice, xml_tree):
+        """Core imports every FatturaElettronicaBody of the file
+        in the same `invoice`: say so in its chatter."""
+        bodies = xml_tree.xpath("//FatturaElettronicaBody")
+        if len(bodies) <= 1:
+            return
+        numbers = [get_text(body, ".//DatiGeneraliDocumento/Numero") for body in bodies]
+        invoice.sudo().message_post(
+            body=self.env._(
+                "The e-invoice file contains %(count)s invoices (%(numbers)s): "
+                "they have been merged into this single document.",
+                count=len(bodies),
+                numbers=", ".join(numbers),
+            )
+        )
+
     def _l10n_it_edi_import_invoice(self, invoice, data, is_new):
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
         if not invoice:
             return invoice
 
         body_tree = data.get("xml_tree")
+        if body_tree is not None:
+            self._l10n_it_edi_extension_notify_merged_invoices(invoice, body_tree)
         is_incoming = self.is_purchase_document(include_receipts=True)
         import_detail_level = (
             invoice.partner_id.l10n_it_edi_import_detail_level
