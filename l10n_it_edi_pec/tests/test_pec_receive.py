@@ -109,11 +109,27 @@ class TestPecReceive(TestItEdiPecCommon):
         )
 
     def test_process_incoming_invoice_base64(self):
-        """Receiving an incoming invoice with base64 attachment creates a new move."""
+        """Receiving an incoming invoice with base64 attachment imports the invoice.
+
+        The attachment is a signed .xml.p7m whose content is base64 text
+        instead of binary DER: the invoice must still be imported,
+        not only created empty with the attachment.
+        """
+        # The e-invoice in the test email is addressed to CF 03533590174
+        self.company.write({"l10n_it_codice_fiscale": "03533590174"})
         moves_before = self.env["account.move"].search([])
         self._process_pec_email("POSTA CERTIFICATA_ Invio File 7339338 (base64).txt")
         moves_after = self.env["account.move"].search([]) - moves_before
         self.assertRecordValues(moves_after, [{"move_type": "in_invoice"}])
+        extension = self.env["ir.module.module"]._get("l10n_it_edi_extension")
+        if extension.state == "installed":
+            # Base64 encoded .p7m files are decoded by l10n_it_edi_extension
+            self.assertRecordValues(moves_after, [{"ref": "123"}])
+            self.assertTrue(moves_after.invoice_line_ids)
+        else:
+            # Without l10n_it_edi_extension the base64 .p7m can't be decoded:
+            # the bill is created empty with the attachment, no error is raised
+            self.assertFalse(moves_after.invoice_line_ids)
         attachment = (
             self.env["ir.attachment"]
             .sudo()
