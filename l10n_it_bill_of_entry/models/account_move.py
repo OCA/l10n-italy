@@ -147,7 +147,7 @@ class AccountMove(models.Model):
             "customs_doc_type": False,
             "move_type": "entry",
             "journal_id": self.company_id.bill_of_entry_journal_id.id,
-            "date": self.invoice_date,
+            "date": self.date,
         }
         move_lines = []
         for inv_line in self.invoice_line_ids.filtered(
