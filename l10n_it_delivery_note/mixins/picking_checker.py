@@ -74,9 +74,15 @@ class StockPickingCheckerMixin(models.AbstractModel):
                 _("You need to select pickings with all the same recipient.")
             )
 
+    def _get_first_view_location(self, location_id):
+        if location_id.usage == "view" or not location_id.location_id:
+            return location_id
+        else:
+            return self._get_first_view_location(location_id.location_id)
+
     @api.model
     def _check_pickings_src_locations(self, pickings):
-        src_locations = pickings.mapped("location_id")
+        src_locations = {self._get_first_view_location(x.location_id) for x in pickings}
 
         if not src_locations:
             raise ValidationError(
@@ -96,7 +102,9 @@ class StockPickingCheckerMixin(models.AbstractModel):
 
     @api.model
     def _check_pickings_dest_locations(self, pickings):
-        dest_locations = pickings.mapped("location_dest_id")
+        dest_locations = {
+            self._get_first_view_location(x.location_dest_id) for x in pickings
+        }
 
         if not dest_locations:
             raise ValidationError(
