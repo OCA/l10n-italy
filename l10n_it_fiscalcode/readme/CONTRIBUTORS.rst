@@ -16,3 +16,5 @@
   * Simone Rubino <simone.rubino@aion-tech.it>
 * Ooops404 <https://www.ooops404.com>
   * Eduard Brahas <eduardbrhas@outlook.it>
+* Phi srl <https://www.phi.technology>
+  * Marco Colombo <marco.colombo@phi.technology>
