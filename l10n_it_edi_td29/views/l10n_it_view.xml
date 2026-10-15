@@ -23,7 +23,10 @@
             >
                 <attribute
                     name="invisible"
-                >state != 'posted' or (not l10n_it_edi_is_self_invoice and not l10n_it_edi_is_td29) or is_move_sent or country_code != 'IT' or l10n_it_edi_state in ('rejected', 'rejected_by_pa_partner')</attribute>
+                    remove="not l10n_it_edi_is_self_invoice"
+                    add="not l10n_it_edi_is_self_invoice and not l10n_it_edi_is_td29"
+                    separator=" or "
+                />
             </xpath>
         </field>
     </record>
