@@ -1,9 +1,10 @@
 # Copyright 2022 Dinamiche Aziendali srl
 # (http://www.dinamicheaziendali.it/)
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
+# Copyright 2024 Nextev srl <odoo@nextev.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 
 DATE_FORMAT = "%d/%m/%Y"
@@ -197,3 +198,45 @@ class StockDeliveryNoteLine(models.Model):
                 if invoice_status == "upselling"
                 else invoice_status
             )
+
+    def _prepare_invoice_line(self, **optional_values):
+        """Prepare the values to create the new invoice line for a DN line.
+
+        :param optional_values: any parameter that should be added to the
+        returned invoice line
+        :rtype: dict
+        """
+        self.ensure_one()
+
+        product_name = self.sale_line_id.name
+        if self.company_id.use_dn_product_name_in_invoice:
+            product_name = self.name
+
+        price_unit = self.sale_line_id.price_unit
+        if self.company_id.use_dn_price_unit_in_invoice:
+            price_unit = self.price_unit
+
+        res = {
+            "display_type": self.display_type or "product",
+            "name": product_name,
+            "product_id": self.product_id.id,
+            "product_uom_id": self.product_uom_id.id,
+            "quantity": self.product_qty,
+            "discount": self.discount,
+            "price_unit": price_unit,
+            "tax_ids": [Command.set(self.tax_ids.ids)],
+            "sale_line_ids": [Command.link(self.sale_line_id.id)],
+            "delivery_note_line_id": self.id,
+        }
+        if optional_values.get("sequence"):
+            res["sequence"] = optional_values["sequence"]
+        if (
+            self.sale_line_id.analytic_distribution
+            and not self.sale_line_id.display_type
+        ):
+            res["analytic_distribution"] = self.sale_line_id.analytic_distribution
+        if optional_values:
+            res.update(optional_values)
+        if self.display_type:
+            res["account_id"] = False
+        return res

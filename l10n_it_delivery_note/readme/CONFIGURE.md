@@ -11,6 +11,12 @@ To configure this module, go to:
 
     Checking 'Display Delivery Method in Delivery Note Report' enables in report field 'Delivery Method'.
 
+    **Invoice Generation from Delivery Notes:**
+
+    - Checking 'Use Delivery Note Product Name in Invoice' makes the invoice use the product description from the delivery note instead of the sale order. This is useful when you modify product descriptions in the DN to reflect what was actually delivered.
+
+    - Checking 'Use Delivery Note Price Unit in Invoice' makes the invoice use the unit price from the delivery note instead of the sale order. This is useful for price negotiations at delivery time or when substituting products with different prices.
+
 2.  *Inventory → Configuration → Warehouse Management → Delivery Note
     Types*
 

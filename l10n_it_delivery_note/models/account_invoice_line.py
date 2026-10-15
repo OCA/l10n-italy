@@ -12,4 +12,10 @@ class AccountInvoiceLine(models.Model):
     delivery_note_id = fields.Many2one(
         "stock.delivery.note", string="Delivery Note", readonly=True, copy=False
     )
+    delivery_note_line_id = fields.Many2one(
+        "stock.delivery.note.line",
+        string="Delivery Note Line",
+        readonly=True,
+        copy=False,
+    )
     note_dn = fields.Boolean(string="Note DN")
