@@ -28,6 +28,24 @@
                         <field name="l10n_it_edi_import_detail_level" />
                     </div>
                 </setting>
+                <setting id="l10n_it_edi_hide_line_type">
+                    <div class="group-content">
+                        <span
+                            class="o_form_label"
+                            title="Choose which type of descriptive line will not be present in e-invoices."
+                        >
+                            Line types to hide
+                    </span>
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                        />
+                        <div class="text-muted">
+                            Descriptive lines that will not be present in e-invoices.
+                        </div>
+                        <field name="l10n_it_edi_hide_line_type" />
+                    </div>
+                </setting>
             </setting>
         </field>
     </record>
