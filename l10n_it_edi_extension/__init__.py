@@ -597,6 +597,30 @@ def _l10n_it_fatturapa_post_migration(env):
     """
     openupgrade.logged_query(env.cr, query)
 
+    if openupgrade_tools.table_exists(env.cr, "fatturapa_attachments"):
+        env.cr.execute("SELECT * FROM fatturapa_attachments LIMIT 1")
+        if env.cr.fetchone():
+            openupgrade.logged_query(
+                env.cr,
+                """
+                INSERT INTO
+                    l10n_it_edi_attachment (
+                        ir_attachment_id, compression, format, invoice_id
+                    )
+                SELECT
+                    fa.ir_attachment_id, fa.compression, fa.format, fa.invoice_id
+                FROM
+                    fatturapa_attachments fa
+                WHERE
+                    fa.invoice_id IS NOT NULL
+                    AND NOT EXISTS (
+                        SELECT 1
+                        FROM l10n_it_edi_attachment la
+                        WHERE la.ir_attachment_id = fa.ir_attachment_id
+                    )
+                """,
+            )
+
     query = """
         UPDATE account_move_line
         SET sequence = ftpa_line_number
