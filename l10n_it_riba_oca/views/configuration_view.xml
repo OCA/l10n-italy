@@ -50,11 +50,6 @@
                     <field name="overdue_credit_account_id" />
                     <field name="protest_charge_account_id" />
                 </group>
-
-                <group string="Settlement">
-                    <field name="past_due_journal_id" />
-                    <field name="settlement_journal_id" />
-                </group>
             </form>
         </field>
     </record>
