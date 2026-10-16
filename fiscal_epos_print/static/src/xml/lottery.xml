@@ -4,9 +4,8 @@
     <t t-name="LotteryCodePopupWidget">
         <div class="modal-dialog">
             <div class="popup popup-text">
-
                 <p class="title">
-                   <t t-esc=" widget.options.title || '' " />
+                    <t t-esc=" widget.options.title || '' " />
                 </p>
 
                 <div class='client-detail'>

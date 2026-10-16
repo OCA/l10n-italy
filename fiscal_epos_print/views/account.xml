@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_apos_payment_method_form_fp90" model="ir.ui.view">
         <field name="name">POS Journal - Fiscal Printer field</field>
         <field name="model">pos.payment.method</field>
@@ -28,5 +27,4 @@
             </field>
         </field>
     </record>
-
 </odoo>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_pos_config_printer_form" model="ir.ui.view">
         <field name="name">pos.config.form.view</field>
         <field name="model">pos.config</field>
@@ -157,5 +156,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

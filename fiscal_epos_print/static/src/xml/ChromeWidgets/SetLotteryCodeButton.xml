@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="SetLotteryCodeButton" owl="1">
-       <div
+        <div
             id="lottery_code_button"
             class='control-button'
             t-on-click="onClickLotteryCode"
