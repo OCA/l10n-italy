@@ -201,7 +201,6 @@ msgstr "Spese bancarie"
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__bank_expense_account_id
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__bank_expense_account_id
-#: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__bank_expense_account_id
 msgid "Bank Fees Account"
 msgstr "Conto spese bancarie"
 
@@ -434,7 +433,6 @@ msgstr "Conto avere"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_credit__credit_amount
-#: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__credit_amount
 msgid "Credit Amount"
 msgstr "Importo accredito"
 
@@ -476,6 +474,7 @@ msgstr ""
 "La data di accredito deve essere maggiore o pari alla data di accettazione."
 
 #. module: l10n_it_riba_oca
+#: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__credited
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip__state__credited
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__riba_slip_line__state__credited
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_detail_riba_filter
@@ -616,11 +615,6 @@ msgstr "Esporta file RiBa"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__past_due_fee_amount
 msgid "Fee Amount"
 msgstr "Valore tariffa"
-
-#. module: l10n_it_riba_oca
-#: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__expense_amount
-msgid "Fees Amount"
-msgstr "Importo spese"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_file_export__riba_txt
@@ -1130,6 +1124,12 @@ msgid "Past Dues"
 msgstr "Insoluti"
 
 #. module: l10n_it_riba_oca
+#. odoo-python
+#: code:addons/l10n_it_riba_oca/wizard/wizard_past_due.py:0
+msgid "Past due fees need the A/C bank account and the protest fee account."
+msgstr ""
+
+#. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_payment_multiple_view_form
 msgid "Pay"
 msgstr "Paga"
@@ -1206,6 +1206,7 @@ msgstr "Prodotto usato come servizio per le spese di incasso RiBa"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_configuration__protest_charge_account_id
+#: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_past_due__bank_expense_account_id
 msgid "Protest Fee Account"
 msgstr "Conto spese di protesto"
 
@@ -1463,6 +1464,14 @@ msgstr ""
 "solo documenti in stato «Bozza» o «Annullata»."
 
 #. module: l10n_it_riba_oca
+#. odoo-python
+#: code:addons/l10n_it_riba_oca/wizard/wizard_past_due.py:0
+msgid ""
+"Slip %(slip)s has been credited by the bank: the past due of line %(line)s "
+"has to be recorded with its journal entry."
+msgstr ""
+
+#. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_riba_slip_move_line__riba_line_id
 msgid "Slip Line"
 msgstr "Riga distinta"
@@ -1509,6 +1518,13 @@ msgid ""
 msgstr ""
 "I conti bancari con codice {acc_codes}s non possono essere eliminati perché "
 "utilizzati nelle RiBa. Se possibile, archiviare il conto bancario"
+
+#. module: l10n_it_riba_oca
+#: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_past_due__credited
+msgid ""
+"The slip has been credited by the bank: the past due has to be recorded with "
+"its journal entry."
+msgstr ""
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.riba_issue_view
@@ -1606,6 +1622,9 @@ msgstr "del"
 #: code:addons/l10n_it_riba_oca/models/account.py:0
 msgid "{line_name} for {month}-{year}"
 msgstr "{line_name} per {month}-{year}"
+
+#~ msgid "Fees Amount"
+#~ msgstr "Importo spese"
 
 #~ msgid ""
 #~ "<span class=\"o_form_label\">RiBa Collection Fees</span>\n"
