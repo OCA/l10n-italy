@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 (x64) (http://www.altova.com) by Ivana Gargiulo (CONSORZIO CUSTOMER TO BUSINESS INTERACTION - CBI) -->
+<!-- Entrata in vigore: 17/03/2024 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:PMRQ="urn:CBI:xsd:CBIPaymentRequest.00.04.01" xmlns:SGNT="urn:CBI:xsd:CBISgnInf.001.04" xmlns="urn:CBI:xsd:CBIBdyPaymentRequest.00.04.01" targetNamespace="urn:CBI:xsd:CBIBdyPaymentRequest.00.04.01" elementFormDefault="qualified">
+	<!-- Namespace import -->
+	<xs:import namespace="urn:CBI:xsd:CBIPaymentRequest.00.04.01" schemaLocation="CBIPaymentRequest.00.04.01.xsd"/>
+	<xs:import namespace="urn:CBI:xsd:CBISgnInf.001.04" schemaLocation="CBISgnInf.001.04.xsd"/>
+	<xs:element name="CBIBdyPaymentRequest" type="CBIBdyPaymentRequest.00.04.01"/>
+	<!-- Message Body structure definition -->
+	<xs:complexType name="CBIBdyPaymentRequest.00.04.01">
+		<xs:sequence>
+			<xs:element name="CBIEnvelPaymentRequest" type="CBIEnvelPaymentRequest.00.04.01" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Envel Payment Status Report structure definition -->
+	<xs:complexType name="CBIEnvelPaymentRequest.00.04.01">
+		<xs:choice>
+			<xs:element name="CBIPaymentRequest" type="PMRQ:CBIPaymentRequest.00.04.01"/>
+			<xs:element name="CBISgnInf" type="SGNT:CBISgnInf.001.04"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>
