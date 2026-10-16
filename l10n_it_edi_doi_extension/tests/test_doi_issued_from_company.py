@@ -511,3 +511,35 @@ class TestDoiIssuedFromCompany(TransactionCase):
         self.assertNotEqual(previous_used_amount, used_amount)
         self.assertEqual(used_amount, invoice.amount_total)
         self.assertEqual(self.doi_in.state, "active")
+
+    def test_post_extra_amount(self):
+        """If the Total Amount assigned to the Vendor Bill's DoI lines
+        is greater than the DoI amount of the Vendor Bill,
+        the vendor Bill cannot be posted."""
+        # Arrange
+        bill = self._create_invoice(
+            "check amounts", self.partner, taxes=self.tax, in_type=True
+        )
+        doi = bill.l10n_it_edi_doi_id
+        doi_amount = bill.l10n_it_edi_doi_amount
+        bill.l10n_it_edi_doi_ids.unlink()
+        with Form(bill) as bill_form, bill_form.l10n_it_edi_doi_ids.new() as doi_line:
+            doi_line.declaration_id = doi
+            doi_line.amount = doi_amount + 1000
+        doi_total = bill.l10n_it_edi_doi_total_amount
+        # pre-condition
+        self.assertTrue(doi_amount)
+        self.assertGreater(doi_total, doi_amount)
+
+        # Act
+        with self.assertRaises(exceptions.UserError) as ue:
+            bill.action_post()
+        exc_message = ue.exception.args[0]
+
+        # Assert
+        self.assertRegex(
+            exc_message,
+            "Total Amount for the Declaration of Intent .* "
+            "cannot be greater than .* "
+            "Declaration of Intent Amount",
+        )
