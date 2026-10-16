@@ -6,4 +6,6 @@ mock
 num2words>=0.5.12
 openupgradelib
 unidecode
+xlrd
+xlsxwriter
 xmlschema
