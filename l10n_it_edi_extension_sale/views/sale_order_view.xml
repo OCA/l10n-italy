@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_form_related_document_inherit_view" model="ir.ui.view">
+        <field name="name">sale.order.form.related.document.inherit.view</field>
+        <field name="model">sale.order</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_edi_sale.view_order_form_inherit_l10n_it_edi_sale"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='it_edi_sale_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='other_information']" position="after">
+                <page
+                    string="Related Documents"
+                    name="related_document"
+                    invisible="country_code != 'IT' or not l10n_it_partner_pa"
+                >
+                    <field name="related_document_ids">
+                        <list editable="bottom">
+                            <field name="type" />
+                            <field name="name" />
+                            <field name="lineRef" />
+                            <field name="date" />
+                            <field name="numitem" />
+                            <field name="code" />
+                            <field name="cig" />
+                            <field name="cup" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
