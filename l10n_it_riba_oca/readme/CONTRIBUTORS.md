@@ -17,3 +17,5 @@
 - Nextev Srl \<<odoo@nextev.it>\>
 - [PyTech](https://www.pytech.it):
   - Simone Rubino \<<simone.rubino@pytech.it>\>
+- [STeSI Consulting](https://stesi.consulting):
+  - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
