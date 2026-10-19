@@ -370,7 +370,12 @@ class WithholdingTaxMove(models.Model):
                 % (self.wt_account_move_id.name)
             )
         # Move - head
+        # Add name key in move vals, avoid to short circuit sequence date
+        # computation in
+        # https://github.com/odoo/odoo/blob/16.0/addons/account/models/sequence_mixin.py#l76
+        # that short circuit lead to duplicate account move exception
         move_vals = {
+            "name": "/",
             "ref": _(
                 "WT %(code)s - %(move)s",
                 code=self.withholding_tax_id.code,
