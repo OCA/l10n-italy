@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ====================
 ITA - Codice fiscale
 ====================
@@ -13,7 +17,7 @@ ITA - Codice fiscale
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github
@@ -46,11 +50,13 @@ Installation
 
 **Italiano**
 
-Installare il modulo Python: `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__.
+Installare i moduli Python: `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__
+e `python-stdnum <https://pypi.org/project/python-stdnum>`__.
 
 **English**
 
-Install the Python package: `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__.
+Install the Python packages: `codicefiscale <https://pypi.python.org/pypi/codicefiscale>`__
+and `python-stdnum <https://pypi.org/project/python-stdnum>`__.
 
 Usage
 =====
@@ -105,6 +111,8 @@ Contributors
   * Simone Rubino <simone.rubino@aion-tech.it>
 * Ooops404 <https://www.ooops404.com>
   * Eduard Brahas <eduardbrhas@outlook.it>
+* Phi srl <https://www.phi.technology>
+  * Marco Colombo <marco.colombo@phi.technology>
 
 Maintainers
 ~~~~~~~~~~~
