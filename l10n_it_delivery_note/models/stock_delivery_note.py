@@ -423,10 +423,12 @@ class StockDeliveryNote(models.Model):
     @api.depends("line_ids.amount", "line_ids.untaxed_amount")
     def _compute_amount_total(self):
         for sdn in self:
-            sdn.untaxed_amount_total = (
-                sum(line.untaxed_amount or 0.0 for line in sdn.line_ids) or 0.0
-            )
-            sdn.amount_total = sum(line.amount or 0.0 for line in sdn.line_ids) or 0.0
+            untaxed_total = total = 0
+            for dn_line in sdn.line_ids:
+                untaxed_total += dn_line.untaxed_amount
+                total += dn_line.amount
+            sdn.untaxed_amount_total = untaxed_total
+            sdn.amount_total = total
 
     def _compute_get_pickings(self):
         for note in self:
