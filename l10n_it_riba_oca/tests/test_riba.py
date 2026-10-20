@@ -11,6 +11,7 @@ import os
 
 from dateutil.relativedelta import relativedelta
 
+from odoo import fields
 from odoo.exceptions import UserError
 from odoo.fields import Command
 from odoo.tests import Form
@@ -86,10 +87,16 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # collection fees line expected
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        # ---- Day 10 of next month: the first due date of the invoice (30 days)
+        # ---- always falls in the same month of the one of invoice2 (end of
+        # ---- month + 1 day), and all the due dates are in the future
+        invoice_date = fields.Date.today() + relativedelta(months=1, day=10)
+        self.invoice.invoice_date = invoice_date
         # ---- Validate Invoice
         self.invoice.action_post()
 
         self.invoice2.invoice_payment_term_id = self.payment_term2
+        self.invoice2.invoice_date = invoice_date
         self.invoice2.action_post()
         # ---- Test Invoice has 1 line, no collection fees added because it's added on
         # ---- first due date for partner
@@ -1340,3 +1347,42 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         ).filtered(lambda line: line.account_id == self.account_rec1_id)
         self.assertEqual(len(receivable_lines), 2)
         self.assertTrue(all(receivable_lines.mapped("reconciled")))
+
+    def test_add_due_cost_different_month(self):
+        """Post two invoices for the same partner with due dates in different months.
+
+        Regression test for https://github.com/OCA/l10n-italy/issues/4637:
+        the month check must ignore the due dates of the invoice being posted,
+        otherwise the collection fees are never added after the first invoice.
+        """
+        today = fields.Date.today()
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.invoice_date = today
+        self.invoice.action_post()
+        first_due_months = {
+            (d.year, d.month)
+            for d in self.invoice.line_ids.filtered(
+                lambda line: line.display_type == "payment_term"
+            ).mapped("date_maturity")
+        }
+        self.assertEqual(len(self.invoice.invoice_line_ids), 3)
+        self.invoice2.invoice_payment_term_id = self.payment_term2
+        self.invoice2.invoice_date = today + relativedelta(months=4)
+        second_due_months = {
+            (d.year, d.month)
+            for d in self.invoice2.line_ids.filtered(
+                lambda line: line.display_type == "payment_term"
+            ).mapped("date_maturity")
+        }
+        # pre-condition: no overlap between due months of the two invoices
+        self.assertFalse(first_due_months & second_due_months)
+        self.invoice2.action_post()
+        self.assertEqual(
+            self.invoice2.partner_id.commercial_partner_id.riba_policy_expenses,
+            "one_a_month",
+        )
+        self.assertEqual(
+            len(self.invoice2.invoice_line_ids),
+            2,
+            "collection fees missing on second invoice",
+        )
