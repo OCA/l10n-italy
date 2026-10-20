@@ -49,3 +49,7 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.display_delivery_method_dn_report",
         readonly=False,
     )
+    display_total_in_dn_with_prices = fields.Boolean(
+        related="company_id.display_total_in_dn_with_prices",
+        readonly=False,
+    )
