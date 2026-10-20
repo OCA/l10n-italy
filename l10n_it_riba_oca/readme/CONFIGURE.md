@@ -31,3 +31,19 @@ Nel caso si vogliano gestire anche le spese per ogni scadenza con
 ricevuta bancaria, si deve configurare un prodotto di tipo servizio e
 collegarlo in *Configurazione → Impostazioni → Contabilità → Imposte →
 Spese di incasso RiBa*.
+
+Il comportamento delle spese di incasso può essere personalizzato per
+singolo cliente nella scheda *Contabilità* del partner, sezione *RiBa*:
+
+- *Exclude expenses Ri.Ba.*: se attivo, alle fatture del cliente non
+  verranno mai aggiunte righe di spese di incasso.
+- *Ri.Ba. Policy expenses* (visibile solo se il campo precedente non è
+  attivo):
+  - *More invoices, one expense per Month* (predefinito): viene
+    addebitata al massimo una spesa per ogni mese di scadenza. Alla
+    conferma di una fattura, la spesa non viene aggiunta per le scadenze
+    che cadono in un mese in cui il cliente ha già altre scadenze RiBa
+    non ancora maturate su fatture alle quali sono già state addebitate
+    le spese.
+  - *One expense per maturity*: viene addebitata una spesa per ogni
+    scadenza, indipendentemente dalle altre fatture del cliente.
