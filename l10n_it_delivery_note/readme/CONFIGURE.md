@@ -14,7 +14,7 @@ To configure this module, go to:
 2.  *Inventory → Configuration → Warehouse Management → Delivery Note
     Types*
 
-    In delivery note type you can specify if the product price have to
+    In delivery note type you can specify if the product price or the Packages have to
     be printed in the delivery note report/slip.
 
     - *Inventory → Configuration → Delivery Notes → Conditions of
