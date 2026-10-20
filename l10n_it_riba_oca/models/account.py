@@ -210,6 +210,7 @@ class AccountMove(models.Model):
             move_line = self.env["account.move.line"].search(
                 [
                     ("partner_id", "=", invoice.partner_id.id),
+                    ("move_id", "!=", invoice.id),
                     ("move_id.invoice_payment_term_id.riba", "=", True),
                     ("date_maturity", ">=", fields.Date.context_today(invoice)),
                 ]
