@@ -33,6 +33,7 @@ addon | version | maintainers | summary
 [l10n_it_edi_related_document](l10n_it_edi_related_document/) | 19.0.1.0.0 |  | Related Documents for EDI
 [l10n_it_financial_statements_report](l10n_it_financial_statements_report/) | 19.0.1.0.0 |  | Rendicontazione .pdf e .xls per stato patrimoniale e conto economico a sezioni contrapposte
 [l10n_it_fiscalcode_sale](l10n_it_fiscalcode_sale/) | 19.0.1.0.0 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Mostra il codice fiscale del cliente nella stampa del preventivo
+[l10n_it_location_nuts](l10n_it_location_nuts/) | 19.0.1.0.0 |  | Opzioni NUTS specifiche per l'Italia
 [l10n_it_vat_registries](l10n_it_vat_registries/) | 19.0.1.0.0 |  | ITA - Registri IVA
 
 [//]: # (end addons)
