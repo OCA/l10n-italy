@@ -155,6 +155,16 @@ class TestAccount(AccountTestInvoicingCommon):
         exc_message = ue.exception.args[0]
         self.assertEqual("Recursion Detected.", exc_message)
 
+    def test_prepayments_account_sign(self):
+        account = self.env["account.account"].create(
+            {
+                "name": "Prepayments",
+                "code": "TEST.PREPAYMENTS",
+                "account_type": "asset_prepayments",
+            }
+        )
+        self.assertEqual(account.account_balance_sign, 1)
+
     def test_vat_22_50(self):
         today = fields.Date.today()
         move_form = Form(
