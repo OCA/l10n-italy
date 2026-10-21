@@ -1,7 +1,23 @@
+from lxml import etree
+
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_it_edi.models.account_move import get_text
+
+# Sequence of the children of DatiGenerali in the FatturaPA schema
+DATI_GENERALI_SEQUENCE = [
+    "DatiGeneraliDocumento",
+    "DatiOrdineAcquisto",
+    "DatiContratto",
+    "DatiConvenzione",
+    "DatiRicezione",
+    "DatiFattureCollegate",
+    "DatiSAL",
+    "DatiDDT",
+    "DatiTrasporto",
+    "FatturaPrincipale",
+]
 
 
 class AccountMoveRelatedDocumentType(models.Model):
@@ -195,6 +211,29 @@ class AccountMove(models.Model):
         res = super()._l10n_it_edi_get_values(pdf_values=pdf_values)
         updated_values = self.remove_redundant_values(res)
         return updated_values
+
+    def _l10n_it_edi_render_xml(self, pdf_values=None):
+        xml = super()._l10n_it_edi_render_xml(pdf_values=pdf_values)
+        if (
+            not self.related_document_ids
+            or self._l10n_it_edi_is_simplified_document_type(
+                self._l10n_it_edi_get_document_type()
+            )
+        ):
+            return xml
+        # The related documents are all exported after the DatiOrdineAcquisto
+        # or DatiFattureCollegate that core exports for the reference,
+        # the debit note or the self-invoice:
+        # sort the children of DatiGenerali as required by the FatturaPA schema
+        tree = etree.fromstring(xml)
+        for dati_generali in tree.iter("DatiGenerali"):
+            dati_generali[:] = sorted(
+                dati_generali,
+                key=lambda node: DATI_GENERALI_SEQUENCE.index(node.tag)
+                if node.tag in DATI_GENERALI_SEQUENCE
+                else len(DATI_GENERALI_SEQUENCE),
+            )
+        return etree.tostring(tree, xml_declaration=True, encoding="UTF-8")
 
     def remove_redundant_values(self, values):
         redundant_list = [
