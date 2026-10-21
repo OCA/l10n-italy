@@ -35,6 +35,7 @@ class AccountMoveInherit(models.Model):
         comodel_name="ir.attachment",
         string="Imported Electronic Bill",
         readonly=True,
+        copy=False,
     )
     l10n_it_edi_line_ids = fields.One2many(
         "l10n_it_edi.line",
@@ -1214,13 +1215,13 @@ class AccountMoveInherit(models.Model):
             and (attachment_name := data.get("name", ""))
             and (attachment_raw := data.get("raw", b""))
         ):
-            xml_att = self.env["ir.attachment"].create(
+            # Link the imported attachment, create one only for embedded files
+            xml_att = data.get("attachment") or self.env["ir.attachment"].create(
                 {
                     "name": attachment_name,
                     "raw": attachment_raw,
                     "res_model": invoice._name,
                     "res_id": invoice.id,
-                    "mimetype": "application/xml",
                 }
             )
             invoice.l10n_it_edi_ext_attachment_in_id = xml_att.id

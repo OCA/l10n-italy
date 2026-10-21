@@ -57,17 +57,20 @@ class FatturaPAController(Controller):
         website=True,
     )
     def fatturapa_preview(self, invoice_id, **data):
-        invoice = request.env["account.move"].sudo().browse(int(invoice_id))
+        invoice = request.env["account.move"].browse(int(invoice_id)).exists()
+        if not invoice:
+            raise request.not_found()
+        invoice.check_access("read")
 
-        if doc_data := invoice._get_invoice_legal_documents(
+        doc_data = invoice.sudo()._get_invoice_legal_documents(
             "fatturapa", allow_fallback=True
-        ):
-            if errors := doc_data.get("errors"):
-                raise UserError(
-                    request.env._(
-                        "Error while creating XML:\n- %s", "\n- ".join(errors)
-                    )
-                )
+        )
+        if not doc_data:
+            raise request.not_found()
+        if errors := doc_data.get("errors"):
+            raise UserError(
+                request.env._("Error while creating XML:\n- %s", "\n- ".join(errors))
+            )
 
         html = self.get_fattura_elettronica_preview(doc_data)
         if isinstance(html, bytes):

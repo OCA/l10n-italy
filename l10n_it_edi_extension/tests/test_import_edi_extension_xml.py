@@ -8,48 +8,15 @@ import zipfile
 from datetime import date
 from unittest.mock import patch
 
-from odoo import fields, tools
+from odoo import Command, fields, tools
 from odoo.exceptions import MissingError
-from odoo.tools import file_open
+from odoo.tests import HttpCase, new_test_user
+from odoo.tools import file_open, mute_logger
 
 from .common import Common
 
 
 class TestFatturaPAXMLValidation(Common):
-    def _edi_import_invoice(self, filename):
-        moves = self.env["account.move"]
-        path = f"l10n_it_edi_extension/tests/import_xmls/{filename}"
-
-        with tools.file_open(path, mode="rb") as file:
-            content = file.read()
-
-            attachment = self.env["ir.attachment"].create(
-                {
-                    "name": filename,
-                    "raw": content,
-                    "type": "binary",
-                }
-            )
-
-            if not attachment._is_l10n_it_edi_import_file():
-                attachment.unlink()
-                return False
-
-            for file_data in attachment._decode_edi_l10n_it_edi(filename, content):
-                move = self.env["account.move"].with_company(self.company).create({})
-                attachment.write(
-                    {
-                        "res_model": "account.move",
-                        "res_id": move.id,
-                        "res_field": "l10n_it_edi_attachment_file",
-                    }
-                )
-
-                move._l10n_it_edi_import_invoice(move, file_data, True)
-                moves |= move
-
-        return moves
-
     def test_02_xml_import(self):
         move = self._assert_import_invoice("IT02780790107_11005.xml", [{}])
         self.assertEqual(move.ref, "124")
@@ -408,7 +375,7 @@ class TestFatturaPAXMLValidation(Common):
         partner = self.env["res.partner"].create(
             {
                 "name": "Test partner",
-                "vat": "02780790107",
+                "vat": "IT02780790107",
                 "l10n_it_edi_import_detail_level": "min",
             },
         )
@@ -443,6 +410,34 @@ class TestFatturaPAXMLValidation(Common):
         # Assert
         self.assertTrue(invoice.l10n_it_edi_ext_attachment_in_id)
 
+    def test_imported_attachment(self):
+        """The imported e-invoice is linked to the bill without duplicating it,
+        and the copies of the bill are not linked to it."""
+        # Arrange
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+        imported_attachment = invoice.l10n_it_edi_ext_attachment_in_id
+
+        # Act
+        invoice_copy = invoice.copy()
+
+        # Assert
+        self.assertEqual(
+            self.env["ir.attachment"].search_count(
+                [
+                    ("res_model", "=", invoice._name),
+                    ("res_id", "=", invoice.id),
+                    ("name", "=", imported_attachment.name),
+                ]
+            ),
+            1,
+        )
+        self.assertFalse(invoice_copy.l10n_it_edi_ext_attachment_in_id)
+
     def test_partner_default_product(self):
         """If the partner has a default product and no product is found,
         the partner's default product is used."""
@@ -450,7 +445,7 @@ class TestFatturaPAXMLValidation(Common):
         supplier = self.env["res.partner"].create(
             {
                 "name": "Test supplier",
-                "vat": "02780790107",
+                "vat": "IT02780790107",
             }
         )
         default_product = self.default_product.with_company(self.company)
@@ -489,7 +484,7 @@ class TestFatturaPAXMLValidation(Common):
         supplier = self.env["res.partner"].create(
             {
                 "name": "Test supplier",
-                "vat": "02780790107",
+                "vat": "IT02780790107",
                 "l10n_it_edi_import_detail_level": "tax",
             }
         )
@@ -718,3 +713,38 @@ class TestImportWizardSplitting(Common):
         moves = self._run_wizard("mixed.zip", zip_bytes)
         # must be 3 invoices in total
         self.assertEqual(len(moves), 3)
+
+
+class TestFatturaPAPreview(Common, HttpCase):
+    @mute_logger("odoo.http")
+    def test_preview_access(self):
+        """Only users that can read the bill get the preview of its e-invoice."""
+        # Arrange
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+        preview_url = f"/fatturapa/preview/{invoice.id}"
+        other_company = self.company_data["company"]
+        other_company_user = new_test_user(
+            self.env,
+            login="other_company_user",
+            groups="account.group_account_invoice",
+            company_id=other_company.id,
+            company_ids=[Command.set(other_company.ids)],
+        )
+        # pre-condition
+        self.assertNotEqual(invoice.company_id, other_company)
+
+        # Act
+        self.authenticate(other_company_user.login, other_company_user.login)
+        other_company_response = self.url_open(preview_url)
+        self.authenticate(self.env.user.login, self.env.user.login)
+        user_response = self.url_open(preview_url)
+
+        # Assert
+        self.assertEqual(other_company_response.status_code, 403)
+        self.assertEqual(user_response.status_code, 200)
+        self.assertEqual(user_response.headers["Content-Type"], "application/pdf")
