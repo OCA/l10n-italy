@@ -76,6 +76,60 @@ odoo.define("fiscal_epos_print.screens", function (require) {
                 this.sendToFP90Printer(receipt, printer_options);
             }
         },
+        _get_eftpos_payment_line: function(order) {
+            return _.find(order.get_paymentlines(), function(line) {
+                var journal = line.cashregister && line.cashregister.journal;
+                return journal && journal.fiscalprinter_eftpos;
+            }) || null;
+        },
+
+        /*
+          When the order is paid through a journal flagged "Activate EFT-POS",
+          authorize the amount on the terminal BEFORE creating the order and
+          printing. authorizeEftpos() is asynchronous, so we show an animated
+          loading overlay while the customer taps the card / enters the PIN and
+          branch on the outcome in the callback:
+            - approved -> mark the order authorized and re-enter validate_order,
+              which now falls through to the standard validation (_super) and
+              creates the order and prints the receipt exactly as before;
+            - declined -> show an error and abort - no order, no receipt.
+        */
+        validate_order: function(force_validation) {
+            var self = this;
+            var order = this.pos.get_order();
+            var eftposLine = order && this._get_eftpos_payment_line(order);
+            if (this.pos.config.printer_ip && eftposLine && !order.is_to_invoice()
+                    && !order._eftpos_authorized) {
+                // Only contact the terminal once the order is otherwise valid.
+                if (!this.order_is_valid(force_validation)) {
+                    return;
+                }
+                this.chrome.loading_show();
+                this.chrome.loading_message(_t('Waiting for the payment terminal'));
+                var printer_options = order.getPrinterOptions();
+                printer_options.order = order;
+                var fp90 = new eposDriver(printer_options, this);
+                fp90.authorizeEftpos({
+                    amount: eftposLine.get_amount(),
+                    type_index: eftposLine.cashregister.journal.fiscalprinter_payment_index,
+                }, function(outcome) {
+                    self.chrome.loading_hide();
+                    if (!outcome.approved) {
+                        console.log('EFT-POS payment declined:', outcome);
+                        self.gui.show_popup('error', {
+                            'title': _t('EFT-POS payment declined'),
+                            'body': _t('The payment terminal did not approve the transaction (Error 38). No receipt or order was created.'),
+                        });
+                        return;
+                    }
+                    order._eftpos_authorized = true;
+                    self.validate_order(force_validation);
+                });
+                return;
+            }
+            return this._super(force_validation);
+        },
+
         order_is_valid: function(force_validation) {
             if (this.pos.config.iface_tax_included == 'subtotal') {
                 this.gui.show_popup('error',{
