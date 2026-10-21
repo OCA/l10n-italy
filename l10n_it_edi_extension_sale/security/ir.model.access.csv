@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+l10n_it_edi_extension_sale.access_account_move_related_document_sale,access_account_move_related_document_sale,l10n_it_edi_related_document.model_account_move_related_document,sales_team.group_sale_salesman,1,1,1,1
