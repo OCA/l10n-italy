@@ -22,6 +22,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "wizard/pec_e_invoice_check_views.xml",
         "views/fetchmail_view.xml",
         "views/company_view.xml",
         "views/sdi_view.xml",
