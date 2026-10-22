@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Odoo Community Association (OCA)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="pec_e_invoice_check_wizard_view_form" model="ir.ui.view">
+        <field name="name">pec.e_invoice.check.wizard.form</field>
+        <field name="model">pec.e_invoice.check.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Check received PEC e-invoices">
+                <sheet>
+                    <group>
+                        <field name="fetchmail_server_id" />
+                        <field name="datetime_from" />
+                        <field name="datetime_to" />
+                        <field
+                            name="filter"
+                            widget="radio"
+                            options="{'horizontal': true}"
+                        />
+                    </group>
+                    <separator string="E-invoices found" />
+                    <field
+                        name="to_import_line_ids"
+                        attrs="{'invisible': [('filter', '!=', 'to_import')]}"
+                    >
+                        <tree create="false" delete="false">
+                            <field name="is_einvoice_xml_found" />
+                            <field name="date" />
+                            <field name="email_from" />
+                            <field name="subject" />
+                            <field name="file_name" />
+                            <field name="message_id" optional="hide" />
+                        </tree>
+                    </field>
+                    <field
+                        name="imported_line_ids"
+                        attrs="{'invisible': [('filter', '!=', 'imported')]}"
+                    >
+                        <tree create="false" delete="false">
+                            <field name="is_einvoice_xml_found" />
+                            <field name="date" />
+                            <field name="email_from" />
+                            <field name="subject" />
+                            <field name="file_name" />
+                            <field name="message_id" optional="hide" />
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_check"
+                        string="Check"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Close" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
