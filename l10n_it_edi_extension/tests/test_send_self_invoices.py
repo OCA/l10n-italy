@@ -221,3 +221,35 @@ class TestSendSelfInvoices(Common):
         # Only unexpected errors are logged
         self.assertEqual(len(logs.records), 1)
         self.assertIn(unexpected_error_self_invoice.name, logs.output[0])
+
+    def test_send_self_invoices_document_type(self):
+        """Self-invoices of type TD01, TD04 and TD24 are never sent."""
+        document_types = self.env["l10n_it.document.type"].search(
+            [("code", "in", ("TD01", "TD04", "TD24"))]
+        )
+        self.assertEqual(len(document_types), 3)
+        excluded_self_invoices = self.env["account.move"]
+        for document_type in document_types:
+            self_invoice = self._create_bill(self.french_partner, self.purchase_rc_tax)
+            self_invoice.l10n_it_document_type = document_type
+            excluded_self_invoices |= self_invoice
+        self_invoice = self._create_bill(self.french_partner, self.purchase_rc_tax)
+        (excluded_self_invoices | self_invoice).action_post()
+        self.assertTrue(
+            all(excluded_self_invoices.mapped("l10n_it_edi_is_self_invoice"))
+        )
+        self.assertEqual(
+            sorted(excluded_self_invoices.mapped("l10n_it_document_type_code")),
+            ["TD01", "TD04", "TD24"],
+        )
+
+        action, uploaded_moves = self._send_self_invoices(
+            excluded_self_invoices | self_invoice
+        )
+
+        self.assertEqual(uploaded_moves, self_invoice)
+        self.assertFalse(any(excluded_self_invoices.mapped("is_move_sent")))
+        self.assertIn("3 selected documents skipped", action["params"]["message"])
+
+        with self.assertRaises(UserError):
+            self._send_self_invoices(excluded_self_invoices)
