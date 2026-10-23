@@ -1,0 +1,1272 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_edi_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-09-15 09:03+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.view_account_config_settings_create_partner
+msgid ""
+"<span class=\"o_form_label\" title=\"Minimum: the bill is created with no "
+"lines; the user will have to create them, according to what specified in the "
+"electronic bill. &#10;Tax rate: every tax rate present in the electronic "
+"bill will create a line in the bill. &#10;Maximum (default): every line "
+"contained in the electronic bill will create a line in the bill.\">\n"
+"                            E-bills import detail level\n"
+"                    </span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" "
+"title=\"Values set here are company-specific.\"/>"
+msgstr ""
+"<span class=\"o_form_label\" title=\"Minimo: la fattura viene creata senza "
+"righe; l'utente dovrà crearle, in base a quanto specificato nella fattura "
+"elettronica. &#10;Aliquota: ogni aliquota presente nella fattura elettronica "
+"creerà una riga nella fattura. &#10;Massimo (predefinito): ogni riga "
+"contenuta nella fattura elettronica creerà una riga nella fattura.\">\n"
+"                            Livello di dettaglio per l'importazione delle "
+"fatture elettroniche\n"
+"                    </span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"I "
+"valori impostati qui sono specifici dell'azienda.\"/>"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_provincia
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_provincia
+msgid ""
+"Acronym of the Province to which the municipality indicated in the "
+"information element 1.2.3.4 <Comune> belongs. Must be filled if the "
+"information element 1.2.3.6 <Nazione> is equal to IT"
+msgstr ""
+"Sigla della provincia a cui appartiene il comune indicato nell'elemento "
+"informativo 1.2.3.4 <Comune>. Da valorizzare se l'elemento informativo "
+"1.2.3.6 <Nazione> è uguale a IT"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__activity_progress
+msgid "Activity Progress"
+msgstr "Stato avanzamento lavori"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move_line__l10n_it_edi_admin_ref
+msgid "Admin. ref."
+msgstr "Rif. ammin."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_admin_ref
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_admin_ref
+msgid "Administrative Reference"
+msgstr "Riferimento amministrativo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__amount
+msgid "Amount"
+msgstr "Saldo"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Amount Summary"
+msgstr "Riepilogo importo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__amount_tax
+msgid "Amount Tax"
+msgstr "Importo imposta"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__amount_untaxed
+msgid "Amount Untaxed"
+msgstr "Importo imponibile"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_edi_it_art73
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_edi_it_art73
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_edi_it_art73
+msgid "Art. 73"
+msgstr "Art. 73"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__l10n_it_edi_article_code_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Articles Code"
+msgstr "Codice articoli"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__account_move__l10n_it_edi_sender__cc
+msgid "Assignee / Partner"
+msgstr "Cessionario / Committente"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_ir_attachment
+msgid "Attachment"
+msgstr "Allegato"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_edi_it_create_partner
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_config_settings__l10n_edi_it_create_partner
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.view_account_config_settings_create_partner
+msgid ""
+"Automatically create the partner if it does not exist during the import of "
+"Electronic Invoices."
+msgstr ""
+"Crea automaticamente il partner se non esiste durante l'importazione delle "
+"fatture elettroniche."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__cadastre_code
+msgid "Belfiore cadastre code (not used anymore)"
+msgstr "Codice catasto Belfiore (non più in uso)"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__cadastre_code_var
+msgid "Cadastre code variation"
+msgstr "Variazione codice catastale"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.l10n_it_edi_import_file_wizard_form
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.wizard_compute_fc_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__birth_city
+msgid "City of birth"
+msgstr "Città di nascita"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__name
+msgid "Code Type"
+msgstr "Tipo codice"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__code_val
+msgid "Code Value"
+msgstr "Valore codice"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.wizard_compute_fc_form
+msgid "Compute"
+msgstr "Calcola"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.res_partner_form_l10n_it_button
+msgid "Compute FC"
+msgstr "Calcola CF"
+
+#. module: l10n_it_edi_extension
+#: model:ir.actions.act_window,name:l10n_it_edi_extension.action_compute_fc
+#: model:ir.model,name:l10n_it_edi_extension.model_wizard_compute_fc
+msgid "Compute Fiscal Code"
+msgstr "Calcolo codice fiscale"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_nazione
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_nazione
+msgid "Country code according to the ISO 3166-1 alpha-2 code standard"
+msgstr ""
+"Codice della nazione espresso secondo lo standard ISO 3166-1 alpha-2 code"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_edi_it_create_partner
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_config_settings__l10n_edi_it_create_partner
+msgid "Create Partner on Eletronic Invoice import"
+msgstr "Crea partner nell'importazione di fatture elettroniche"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__create_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__create_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__create_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_import_file_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__create_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__create_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__create_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__create_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__create_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__create_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__create_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_import_file_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__create_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__create_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__create_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__create_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__creation_date
+msgid "Creation Date"
+msgstr "Data creazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__name
+msgid "Data Type"
+msgstr "Tipo dati"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__date_ref
+msgid "Date Reference"
+msgstr "Riferimento data"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__birth_date
+msgid "Date of birth"
+msgstr "Data di nascita"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__payability__d
+msgid "Deferred payability"
+msgstr "Esigibilità differita"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__name
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_discount_rise_price__name__sc
+msgid "Discount"
+msgstr "Sconto"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Discount Supplement"
+msgstr "Sconto maggiorazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__l10n_it_edi_discount_rise_price_ids
+msgid "Discount and Supplement Details"
+msgstr "Dettagli sconto e maggiorazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_import_file_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code_distinct__display_name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_electronic_invoice_no_contact_update
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_electronic_invoice_no_contact_update
+msgid "Do not update the contact from Electronic Invoice Details"
+msgstr "Non aggiornare il contatto dai dati della fattura elettronica"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_activity_progress_ids
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_activity_progress_ids
+msgid "E-Invoice Activity Progress"
+msgstr "Stato avanzamento lavori e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "E-Invoice Details"
+msgstr "Dettagli e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_line_ids
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_line_ids
+msgid "E-Invoice Lines"
+msgstr "Righe e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_summary_ids
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_summary_ids
+msgid "E-Invoice Summary Data"
+msgstr "Dati riepilogo e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_amount_tax
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_amount_tax
+msgid "E-Invoice Tax Amount"
+msgstr "Importo imposta e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_amount_total
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_amount_total
+msgid "E-Invoice Total Amount"
+msgstr "Importo totale e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_amount_untaxed
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_amount_untaxed
+msgid "E-Invoice Untaxed Amount"
+msgstr "Imponibile e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_it_edi_import_detail_level
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_config_settings__l10n_it_edi_import_detail_level
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_it_edi_import_detail_level
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_it_edi_import_detail_level
+msgid "E-bills import detail level"
+msgstr "Livello dettaglio importazione e-fatture"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_l10n_it_edi_article_code
+msgid "E-invoice Article Code"
+msgstr "Codice articolo e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_l10n_it_edi_discount_rise_price
+msgid "E-invoice Discount Supplement Data"
+msgstr "Dati sconto maggiorazione e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.actions.act_window,name:l10n_it_edi_extension.action_l10n_it_edi_import_file_wizard
+#: model:ir.ui.menu,name:l10n_it_edi_extension.menu_l10n_it_edi_import_file_wizard
+msgid "E-invoice Import Files"
+msgstr "File importazione e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_l10n_it_edi_import_file_wizard
+msgid "E-invoice Import Files Wizard"
+msgstr "Procedura guidata file importazione e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_l10n_it_edi_line
+msgid "E-invoice Line"
+msgstr "Riga e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_l10n_it_edi_activity_progress
+msgid "E-invoice activity progress"
+msgstr "Stato avanzamento lavori e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_l10n_it_edi_line_other_data
+msgid "E-invoice line other data"
+msgstr "Altri dati riga e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_l10n_it_edi_summary_data
+msgid "E-invoice summary data"
+msgstr "Dati riepilogo e-fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_eori_code
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_eori_code
+msgid "EORI Code"
+msgstr "Codice EORI"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/compute_fc.py:0
+msgid ""
+"Existing fiscal code %(partner_fiscalcode)s is different from the computed "
+"one (%(compute)s). If you want to use the computed one, remove the existing "
+"one"
+msgstr ""
+"Il codice fiscale esistente %(partner_fiscalcode)s è diverso da quello "
+"calcolato (%(compute)s). Per usare il valore calcolato, rimuovere prima "
+"quello esistente"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__wizard_compute_fc__sex__f
+msgid "Female"
+msgstr "Femmina"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__fiscalcode_firstname
+msgid "First name"
+msgstr "Nome"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.wizard_compute_fc_form
+msgid "Fiscal Code"
+msgstr "Codice fiscale"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "General Data"
+msgstr "Dati generali"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.view_account_config_settings_create_partner
+msgid ""
+"How lines are converted from the e-bill to the bill.\n"
+"                            <br/>\n"
+"                            This setting can be overridden in each supplier."
+msgstr ""
+"Come vengono convertite le righe dalla e-fattura alla fattura.\n"
+"                            <br/>\n"
+"                            Questa impostazione può essere modificata per "
+"ciascun fornitore."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_import_file_wizard__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code_distinct__id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__payability__i
+msgid "Immediate payability"
+msgstr "Esigibilità immediata"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.l10n_it_edi_import_file_wizard_form
+msgid "Import Files"
+msgstr "Importa file"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"Import detail level %(import_detail_level)s not supported.\n"
+"Please set an import detail level in company %(company)s."
+msgstr ""
+"Livello di dettaglio dell'importazione %(import_detail_level)s non "
+"supportato.\n"
+"Impostare un livello di dettaglio dell'importazione nell'azienda %(company)s."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__incidental_charges
+msgid "Incidental Charges"
+msgstr "Spese accessorie"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_edi_it_art73
+msgid ""
+"Indicates whether the document has been issued according to methods and "
+"terms laid down in a ministerial decree under the terms of Article 73 of "
+"Italian Presidential Decree 633/72 (this enables the company to issue in the "
+"same year several documents with same number)"
+msgstr ""
+"Indica se il documento è stato emesso secondo le modalità e i termini "
+"stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR n. "
+"633/72 (ciò consente all'azienda l'emissione nello stesso anno di più "
+"documenti aventi lo stesso numero)"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_edi_it_art73
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_edi_it_art73
+msgid ""
+"Indicates whether the document has been issued according to methods and "
+"terms laid down in a ministerial decree under the terms of Article 73 of "
+"Italian Presidential Decree 633/72 (this enables the seller/provider to "
+"issue in the same year several documents with same number)"
+msgstr ""
+"Indica se il documento è stato emesso secondo le modalità e i termini "
+"stabiliti con decreto ministeriale ai sensi dell'articolo 73 del DPR n. "
+"633/72 (ciò consente al cedente/prestatore l'emissione nello stesso anno di "
+"più documenti aventi lo stesso numero)"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.wizard_compute_fc_form
+msgid "Individual Data"
+msgstr "Dati personali"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/ir_attachment.py:0
+msgid "Invalid xml %s."
+msgstr "Xml %s non valido."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__invoice_id
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__invoice_line_id
+msgid "Invoice Line"
+msgstr "Riga fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_account_journal
+msgid "Journal"
+msgstr "Registro"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_import_file_wizard__l10n_it_edi_attachment
+msgid "L10N It Edi Attachment"
+msgstr "Allegato EDI l10n It"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_import_file_wizard__l10n_it_edi_attachment_filename
+msgid "L10N It Edi Attachment Filename"
+msgstr "Nome file allegato EDI l10n It"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_protocol_number
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_protocol_number
+msgid "L10N It Edi Protocol Number"
+msgstr "Numero protocollo EDI l10n It"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_validation_message
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_validation_message
+msgid "L10N It Edi Validation Message"
+msgstr "Messaggio validazione EDI l10n It"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__write_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__write_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__write_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_import_file_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__write_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__write_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__write_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__write_uid
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__write_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__write_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__write_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_import_file_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__write_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__write_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__write_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__write_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__law_reference
+msgid "Law reference"
+msgstr "Riferimento normativo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__line_number
+msgid "Line Number"
+msgstr "Numero riga"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"Line with description %(line_description)s has been skipped because import "
+"detail level is minimum."
+msgstr ""
+"La riga con descrizione %(line_description)s è stata saltata perché il "
+"livello di dettaglio dell'importazione è minimo."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__wizard_compute_fc__sex__m
+msgid "Male"
+msgstr "Maschio"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__res_company__l10n_it_edi_import_detail_level__max
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__res_partner__l10n_it_edi_import_detail_level__max
+msgid "Maximum"
+msgstr "Massimo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__res_company__l10n_it_edi_import_detail_level__min
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__res_partner__l10n_it_edi_import_detail_level__min
+msgid "Minimum"
+msgstr "Minimo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_it_edi_import_detail_level
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_config_settings__l10n_it_edi_import_detail_level
+msgid ""
+"Minimum: the bill is created with no lines; the user will have to create "
+"them, according to what specified in the electronic bill.\n"
+"Tax rate: every tax rate present in the electronic bill will create a line "
+"in the bill.\n"
+"Maximum (default): every line contained in the electronic bill will create a "
+"line in the bill."
+msgstr ""
+"Minimo: la fattura viene creata senza righe; l'utente dovrà crearle, in base "
+"a quanto specificato nella fattura elettronica.\n"
+"Aliquota: ogni aliquota presente nella fattura elettronica creerà una riga "
+"nella fattura.\n"
+"Massimo (predefinito): ogni riga contenuta nella fattura elettronica creerà "
+"una riga nella fattura."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_comune
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_comune
+msgid "Municipality or city to which the Stable Organization refers"
+msgstr "Comune a cui si riferisce la stabile organizzazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__name
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code_distinct__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__name_var
+msgid "Name variation"
+msgstr "Variazione nome"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_res_city_it_code
+msgid "National city codes"
+msgstr "Codici nazionali città"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model,name:l10n_it_edi_extension.model_res_city_it_code_distinct
+msgid "National city codes distinct"
+msgstr "Codici nazionali distinti di città"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__national_code
+msgid "National code"
+msgstr "Codice nazionale"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/compute_fc.py:0
+msgid "National code is missing"
+msgstr "Codice nazionale mancante"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__national_code_var
+msgid "National code variation"
+msgstr "Variazione codice nazionale"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__tax_kind
+msgid "Nature"
+msgstr "Natura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__non_taxable_nature
+msgid "Non taxable nature"
+msgstr "Natura esenzione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__notes
+msgid "Notes"
+msgstr "Note"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__num_ref
+msgid "Number Reference"
+msgstr "Riferimento numero"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/wizards/compute_fc.py:0
+msgid "One or more fields are missing"
+msgstr "Uno o più campi mancanti"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_indirizzo
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_indirizzo
+msgid "Organization Address"
+msgstr "Indirizzo organizzazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_nazione
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_nazione
+msgid "Organization Country"
+msgstr "Nazione organizzazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_comune
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_comune
+msgid "Organization Municipality"
+msgstr "Comune organizzazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_provincia
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_provincia
+msgid "Organization Province"
+msgstr "Provincia organizzazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_civico
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_civico
+msgid "Organization Street Number"
+msgstr "Numero civico organizzazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_cap
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_cap
+msgid "Organization ZIP"
+msgstr "CAP organizzazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__l10n_it_edi_line_other_data_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Other Administrative Data"
+msgstr "Altri dati gestionali"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_partner__l10n_it_edi_import_detail_level
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_users__l10n_it_edi_import_detail_level
+msgid ""
+"Override the 'E-bills import detail level' of the company for bills of this "
+"supplier.\n"
+"Minimum: the bill is created with no lines; the user will have to create "
+"them, according to what specified in the electronic bill.\n"
+"Tax rate: every tax rate present in the electronic bill will create a line "
+"in the bill.\n"
+"Maximum: every line contained in the electronic bill will create a line in "
+"the bill."
+msgstr ""
+"Sostituirei il \"Livello di dettaglio importazione e-fatture\" dell'azienda "
+"per le fatture di questo fornitore.\n"
+"Minimo: la fattura viene creata senza righe; l'utente dovrà crearle, in base "
+"a quanto specificato nella fattura elettronica.\n"
+"Aliquota fiscale: ogni aliquota fiscale presente nella fattura elettronica "
+"creerà una riga nella fattura.\n"
+"Massimo: ogni riga contenuta nella fattura elettronica creerà una riga nella "
+"fattura."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__percentage
+msgid "Percentage"
+msgstr "Percentuale"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__period_end_date
+msgid "Period End Date"
+msgstr "Data fine periodo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__period_start_date
+msgid "Period Start Date"
+msgstr "Data inizio periodo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_rounding
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_rounding
+msgid "Possible total amount rounding on the document (negative sign allowed)"
+msgstr ""
+"Eventuale arrotondamento sull'importo totale del documento (è ammesso il "
+"segno negativo)"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Preview FPA"
+msgstr "Anteprima FPA"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_attachment_preview_link
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_attachment_preview_link
+msgid "Preview link"
+msgstr "Collegamento di anteprima"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_register
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_register
+msgid "Professional Register"
+msgstr "Albo professionale"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__province
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__birth_province
+msgid "Province"
+msgstr "Provincia"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid "Province (%(province)s) not present in your system"
+msgstr "Provincia ( %s ) non presente nel sistema"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__province_var
+msgid "Province variation"
+msgstr "Variazione provincia"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_edi_it_admin_ref
+msgid "Public Administration Reference Code"
+msgstr "Codice di riferimento pubblica amministrazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__qty
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_register_province_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_register_province_id
+msgid "Register Province"
+msgstr "Provincia albo"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid "Register Province (%(register_province)s) not present in your system"
+msgstr ""
+"Provincia di registrazione (%(register_province)s) non presente nel tuo "
+"sistema"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_register_regdate
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_register_regdate
+msgid "Register Registration Date"
+msgstr "Data iscrizione albo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_partner__l10n_edi_it_register_code
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_users__l10n_edi_it_register_code
+msgid "Register Registration Number"
+msgstr "Numero iscrizione albo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__l10n_it_edi_line_id
+msgid "Related E-bill Line"
+msgstr "Riga e-fattura collegata"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_article_code__l10n_it_edi_line_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__l10n_it_edi_line_id
+msgid "Related E-invoice Line"
+msgstr "Riga e-fattura collegata"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_activity_progress__invoice_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__invoice_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__invoice_id
+msgid "Related Invoice"
+msgstr "Fattura collegata"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_related_invoice_code
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_related_invoice_code
+msgid "Related Invoice Code"
+msgstr "Codice fattura collegata"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_related_invoice_date
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_related_invoice_date
+msgid "Related Invoice Date"
+msgstr "Data fattura collegata"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__invoice_line_id
+msgid "Related Invoice from line"
+msgstr "Fattura collegata dalla riga"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid "Role %(role)s is not supported for partner creation/update"
+msgstr ""
+"Il ruolo %(role)s non è supportato per la creazione/aggiornamento del partner"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_rounding
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_rounding
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__rounding
+msgid "Rounding"
+msgstr "Arrotondamento"
+
+#. module: l10n_it_edi_extension
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_it_FatturaPA_export_inherit
+msgid "SI"
+msgstr "SI"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__service_type
+msgid "Sale Provision Type"
+msgstr "Tipo cessione prestazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_sender
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_sender
+msgid "Sender"
+msgstr "Mittente"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__sex
+msgid "Sex"
+msgstr "Sesso"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__payability__s
+msgid "Split payment"
+msgstr "Scissione pagamenti"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_company__l10n_edi_it_stable_organization
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view
+msgid "Stable Organization"
+msgstr "Stabile organizzazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_civico
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_civico
+msgid ""
+"Street number of the address (no need to specify if already present in the "
+"address field)"
+msgstr ""
+"Numero civico dell'indirizzo (non specificare se già presente nel campo "
+"indirizzo)"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid "Summary for tax amount %(percentage)s"
+msgstr "Riepilogo per valore imposta %(percentage)s"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_discount_rise_price__name__mg
+msgid "Supplement"
+msgstr "Maggiorazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_wizard_compute_fc__fiscalcode_surname
+msgid "Surname"
+msgstr "Cognome"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__tax_rate
+msgid "Tax Rate"
+msgstr "Aliquota fiscale"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_tax_representative_id
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_account_move__l10n_it_edi_tax_representative_id
+msgid "Tax Representative"
+msgstr "Rappresentante fiscale"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__wt_amount
+msgid "Tax Withholding"
+msgstr "Ritenuta d'acconto"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid "Tax not found for summary line with percentage %(percentage)s."
+msgstr ""
+"Imposta non trovata per la riga di riepilogo con percentuale %(percentage)s."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__res_company__l10n_it_edi_import_detail_level__tax
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__res_partner__l10n_it_edi_import_detail_level__tax
+msgid "Tax rate"
+msgstr "Aliquota fiscale"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"Taxed amount (%(tax_amount)s}) does not match with e-invoice taxed amount "
+"(%(edi_tax_amount)s)"
+msgstr ""
+"L'importo tassato (%(tax_amount)s}) non corrisponde all'importo tassato "
+"della e-fattura (%(edi_tax_amount)s)"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__text_ref
+msgid "Text Reference"
+msgstr "Riferimento testo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_edi_it_stable_organization
+msgid ""
+"The fields must be entered only when the seller/provider is non-resident, "
+"with a stable organization in Italy"
+msgstr ""
+"Blocco da valorizzare solo nei casi di cedente/prestatore non residente, con "
+"stabile organizzazione in Italia"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_indirizzo
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_indirizzo
+msgid ""
+"The fields must be entered only when the seller/provider is non-resident, "
+"with a stable organization in Italy. Address of the stable organization in "
+"Italy (street name, square, etc.)"
+msgstr ""
+"Blocco da valorizzare solo nei casi di cedente/prestatore non residente, con "
+"stabile organizzazione in Italia. Indirizzo della stabile organizzazione in "
+"Italia (nome della via, piazza ecc.)"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/res_partner.py:0
+msgid "The fiscal code '%s' must have 16 characters."
+msgstr "Il codice fiscale '%s' deve avere 16 caratteri."
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__account_move__l10n_it_edi_sender__tz
+msgid "Third Person"
+msgstr "Soggetto terzo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__total_price
+msgid "Total Price"
+msgstr "Prezzo totale"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"Total amount (%(total_amount)s) does not match with e-invoice total amount "
+"(%(edi_total_amount)s)"
+msgstr ""
+"L'importo totale (%(total_amount)s) non corrisponde all'importo totale della "
+"e-fattura (%(edi_total_amount)s)"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid "Transport informations from XML file:"
+msgstr "Informazioni trasporto da file XML:"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_discount_rise_price__name
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__unit_price
+msgid "Unit Price"
+msgstr "Prezzo unitario"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__uom
+msgid "Unit of measure"
+msgstr "Unità di misura"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"Untaxed amount (%(amount_untaxed)s}) minus rounding (%(rounding)s}) does not "
+"match with e-invoice untaxed amount %(edi_amount_untaxed)s)"
+msgstr ""
+"L'importo non tassato (%(amount_untaxed)s}) meno l'arrotondamento "
+"(%(rounding)s}) non corrisponde all'importo non tassato della e-fattura "
+"%(edi_amount_untaxed)s)"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line__tax_amount
+msgid "VAT Rate"
+msgstr "Aliquota IVA"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_summary_data__payability
+msgid "VAT payability"
+msgstr "Esigibilità IVA"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_extension.field_res_city_it_code__var_date
+msgid "Variation date"
+msgstr "Data variazione"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid "Vehicle informations from XML file:"
+msgstr "Informazioni sul veicolo dal file XML:"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_bank_statement_line__l10n_it_edi_stabile_organizzazione_cap
+#: model:ir.model.fields,help:l10n_it_edi_extension.field_account_move__l10n_it_edi_stabile_organizzazione_cap
+msgid "ZIP Code"
+msgstr "CAP"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n1
+msgid "[N1] Escluse ex art. 15"
+msgstr "[N1] Escluse ex art. 15"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n2_1
+msgid ""
+"[N2.1] Non soggette ad IVA ai sensi degli artt. Da 7 a 7-septies del DPR "
+"633/72"
+msgstr ""
+"[N2.1] Non soggette ad IVA ai sensi degli artt. Da 7 a 7-septies del DPR "
+"633/72"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n2_2
+msgid "[N2.2] Non soggette - altri casi"
+msgstr "[N2.2] Non soggette - altri casi"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n2
+msgid "[N2] Non soggette"
+msgstr "[N2] Non soggette"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n3_1
+msgid "[N3.1] Non imponibili - esportazioni"
+msgstr "[N3.1] Non imponibili - esportazioni"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n3_2
+msgid "[N3.2] Non imponibili - cessioni intracomunitarie"
+msgstr "[N3.2] Non imponibili - cessioni intracomunitarie"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n3_3
+msgid "[N3.3] Non imponibili - cessioni verso San Marino"
+msgstr "[N3.3] Non imponibili - cessioni verso San Marino"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n3_4
+msgid ""
+"[N3.4] Non imponibili - operazioni assimilate alle cessioni all'esportazione"
+msgstr ""
+"[N3.4] Non imponibili - operazioni assimilate alle cessioni all'esportazione"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n3_5
+msgid "[N3.5] Non imponibili - a seguito di dichiarazioni d'intento"
+msgstr "[N3.5] Non imponibili - a seguito di dichiarazioni d'intento"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n3_6
+msgid ""
+"[N3.6] Non imponibili - altre operazioni che non concorrono alla formazione "
+"del plafond"
+msgstr ""
+"[N3.6] Non imponibili - altre operazioni che non concorrono alla formazione "
+"del plafond"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n3
+msgid "[N3] Non imponibili"
+msgstr "[N3] Non imponibili"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n4
+msgid "[N4] Esenti"
+msgstr "[N4] Esenti"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n5
+msgid "[N5] Regime del margine / IVA non esposta in fattura"
+msgstr "[N5] Regime del margine / IVA non esposta in fattura"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_1
+msgid ""
+"[N6.1] Inversione contabile - cessione di rottami e altri materiali di "
+"recupero"
+msgstr ""
+"[N6.1] Inversione contabile - cessione di rottami e altri materiali di "
+"recupero"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_2
+msgid "[N6.2] Inversione contabile - cessione di oro e argento puro"
+msgstr "[N6.2] Inversione contabile - cessione di oro e argento puro"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_3
+msgid "[N6.3] Inversione contabile - subappalto nel settore edile"
+msgstr "[N6.3] Inversione contabile - subappalto nel settore edile"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_4
+msgid "[N6.4] Inversione contabile - cessione di fabbricati"
+msgstr "[N6.4] Inversione contabile - cessione di fabbricati"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_5
+msgid "[N6.5] Inversione contabile - cessione di telefoni cellulari"
+msgstr "[N6.5] Inversione contabile - cessione di telefoni cellulari"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_6
+msgid "[N6.6] Inversione contabile - cessione di prodotti elettronici"
+msgstr "[N6.6] Inversione contabile - cessione di prodotti elettronici"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_7
+msgid ""
+"[N6.7] Inversione contabile - prestazioni comparto edile esettori connessi"
+msgstr ""
+"[N6.7] Inversione contabile - prestazioni comparto edile e settori connessi"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_8
+msgid "[N6.8] Inversione contabile - operazioni settore energetico"
+msgstr "[N6.8] Inversione contabile - operazioni settore energetico"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6_9
+msgid "[N6.9] Inversione contabile - altri casi"
+msgstr "[N6.9] Inversione contabile - altri casi"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n6
+msgid ""
+"[N6] Inversione contabile (per le operazioni in reverse charge ovvero nei "
+"casi di autofatturazione per acquisti extra UE di servizi ovvero per "
+"importazioni di beni nei soli casi previsti)"
+msgstr ""
+"[N6] Inversione contabile (per le operazioni in reverse charge ovvero nei "
+"casi di auto fatturazione per acquisti extra UE di servizi ovvero per "
+"importazioni di beni nei soli casi previsti)"
+
+#. module: l10n_it_edi_extension
+#: model:ir.model.fields.selection,name:l10n_it_edi_extension.selection__l10n_it_edi_summary_data__non_taxable_nature__n7
+msgid ""
+"[N7] IVA assolta in altro stato UE (prestazione di servizi di "
+"telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-octies, "
+"comma 1 lett. a, b, art. 74-sexies DPR 633/72)"
+msgstr ""
+"[N7] IVA assolta in altro stato UE (prestazione di servizi di "
+"telecomunicazioni, tele-radiodiffusione ed elettronici ex art. 7-octies, "
+"comma 1 lett. a, b, art. 74-sexies DPR 633/72)"
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/__init__.py:0
+msgid "from XML file:"
+msgstr "da file XML:"
