@@ -33,3 +33,20 @@ class ResPartner(models.Model):
         domain=_domain_property_riba_supplier_company_bank_id,
         help="Bank account used for the RiBa of this supplier.",
     )
+    riba_exclude_expenses = fields.Boolean(
+        string="Exclude expenses Ri.Ba.",
+        help="If set, collection fees are never added to the invoices "
+        "of this partner.",
+    )
+    riba_policy_expenses = fields.Selection(
+        [
+            ("one_a_month", "More invoices, one expense per Month"),
+            ("unlimited", "One expense per maturity"),
+        ],
+        default="one_a_month",
+        string="Ri.Ba. Policy expenses",
+        help="One expense per month: collection fees are not added for the due "
+        "dates falling in a month where the partner already has upcoming RiBa "
+        "due dates on invoices with collection fees.\n"
+        "One expense per maturity: collection fees are added for every due date.",
+    )
