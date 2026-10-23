@@ -1,0 +1,1 @@
+- Marco Colombo <marco.colombo@gmail.com> (`TheMule71 <https://github.com/TheMule71>`__)
