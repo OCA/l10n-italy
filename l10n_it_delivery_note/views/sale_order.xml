@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo>
+    <record id="sale_order_form_view" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_policy']" position="after">
+                <field name="default_goods_appearance_id" widget="selection" />
+                <field name="default_transport_condition_id" widget="selection" />
+                <field name="default_transport_reason_id" widget="selection" />
+                <field name="default_transport_method_id" widget="selection" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
