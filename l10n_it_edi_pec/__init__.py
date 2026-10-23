@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from . import models
+from . import wizard
 
 from openupgradelib import openupgrade, openupgrade_tools
 from odoo.addons.l10n_it_account.migration_tools import _remove_module
