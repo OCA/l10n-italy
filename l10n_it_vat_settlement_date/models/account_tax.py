@@ -1,0 +1,69 @@
+# Copyright (c) 2021 Marco Colombo (https://github/TheMule71)
+# Copyright 2024 Simone Rubino - Aion Tech
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+import re
+
+from odoo import models
+from odoo.fields import Domain
+
+
+class AccountTax(models.Model):
+    _inherit = "account.tax"
+
+    def _get_settlement_date_domain(self, domain):
+        """Create a copy of `domain`
+        where the settlement date is used instead of move date."""
+        # Substitute `date` with the settlement date in domain terms
+        settlement_domain = []
+        for term in Domain(domain).children:
+            field_expr = term.field_expr
+            operator = term.operator
+            value = term.value
+            if term.field_expr == "date":
+                field_expr = "l10n_it_vat_settlement_date"
+
+            child = field_expr, operator, value
+            settlement_domain.append(child)
+        return Domain(settlement_domain)
+
+    def _inject_vat_settlement_date_domain(self, domain):
+        """Create a new domain where the settlement date is used instead of move date.
+
+        The domain falls back on the move date if the settlement date is empty.
+        """
+        settlement_domain = self._get_settlement_date_domain(domain)
+        domain = Domain.OR(
+            [
+                settlement_domain,
+                Domain.AND(
+                    [
+                        [("l10n_it_vat_settlement_date", "=", None)],
+                        domain,
+                    ]
+                ),
+            ]
+        )
+        return domain
+
+    def get_move_line_partial_domain(self, from_date, to_date, company_ids):
+        domain = super().get_move_line_partial_domain(from_date, to_date, company_ids)
+        if self.env.context.get("use_l10n_it_vat_settlement_date"):
+            domain = self._inject_vat_settlement_date_domain(domain)
+        return domain
+
+    def _inject_vat_settlement_date_query(self, query):
+        date_field_name = "date"
+        settlement_date_field_name = "l10n_it_vat_settlement_date"
+        settled_query = re.sub(
+            rf"\b{date_field_name}\b",  # Substitute only whole word
+            settlement_date_field_name,
+            query,
+        )
+        return settled_query
+
+    def _account_tax_ids_with_moves_query(self):
+        query, params = super()._account_tax_ids_with_moves_query()
+        if self.env.context.get("use_l10n_it_vat_settlement_date"):
+            query = self._inject_vat_settlement_date_query(query)
+        return query, params
