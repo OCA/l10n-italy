@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_invoice_form_l10n_it_td29_view" model="ir.ui.view">
+        <field name="name">account.move.form.l10n.it.td29.view</field>
+        <field name="model">account.move</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_edi_extension.account_invoice_form_l10n_it_inherit_view"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='electronic_invoicing']//group/group[1]"
+                position="inside"
+            >
+                <field
+                    name="l10n_it_edi_is_td29"
+                    invisible="move_type not in ('in_invoice', 'in_refund') or country_code != 'IT'"
+                />
+            </xpath>
+            <xpath
+                expr="//button[@name='action_l10n_it_edi_send']"
+                position="attributes"
+            >
+                <attribute
+                    name="invisible"
+                >state != 'posted' or (not l10n_it_edi_is_self_invoice and not l10n_it_edi_is_td29) or is_move_sent or country_code != 'IT' or l10n_it_edi_state in ('rejected', 'rejected_by_pa_partner')</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_edi_td29
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_edi_td29
+#: model:ir.model.fields,help:l10n_it_edi_td29.field_account_bank_statement_line__l10n_it_edi_is_td29
+#: model:ir.model.fields,help:l10n_it_edi_td29.field_account_move__l10n_it_edi_is_td29
+msgid ""
+"Check this box to generate a TD29 communication for omitted or irregular "
+"invoicing by the Italian seller/provider (art. 6, comma 8, D.Lgs. 471/97)."
+msgstr ""
+
+#. module: l10n_it_edi_td29
+#: model:ir.model,name:l10n_it_edi_td29.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_edi_td29
+#: model:ir.model.fields,field_description:l10n_it_edi_td29.field_account_bank_statement_line__l10n_it_edi_is_td29
+#: model:ir.model.fields,field_description:l10n_it_edi_td29.field_account_move__l10n_it_edi_is_td29
+msgid "TD29 - Omitted/Irregular Invoice Communication"
+msgstr ""
