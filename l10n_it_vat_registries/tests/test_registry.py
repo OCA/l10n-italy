@@ -4,7 +4,10 @@ import io
 from zipfile import ZipFile
 
 from odoo import fields
+from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.models.ir_qweb import QWebException
 
 
 class TestRegistry(TransactionCase):
@@ -119,3 +122,125 @@ class TestRegistry(TransactionCase):
         report_ids = map(lambda report_action: report_action.get("id"), report_actions)
 
         self.assertNotIn(report_id, report_ids)
+
+    def _create_out_invoice(self, tax_ids, line_name):
+        invoice = self.env["account.move"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "invoice_date": self.test_date,
+                "move_type": "out_invoice",
+                "journal_id": self.journal.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        None,
+                        {
+                            "product_id": self.env.ref("product.product_product_4").id,
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "name": line_name,
+                            "account_id": self.invoice_line_account,
+                            "tax_ids": [(6, 0, tax_ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        invoice.action_post()
+        return invoice
+
+    def _render_registro_html(self):
+        wizard = self.env["wizard.registro.iva"].create(
+            {
+                "from_date": self.test_date,
+                "to_date": self.test_date,
+                "tax_registry_id": self.tax_registry.id,
+                "layout_type": "supplier",
+                "fiscal_page_base": 0,
+            }
+        )
+        wizard.on_change_tax_registry_id()
+        res = wizard.print_registro()
+
+        report_name = "l10n_it_vat_registries.report_registro_iva"
+        domain = [
+            ("report_type", "like", "qweb"),
+            ("report_name", "in", [report_name]),
+        ]
+        report = self.env["ir.actions.report"].search(domain)
+        data = res["context"]["report_action"]["data"]
+        return report._render_qweb_html(report_name, data["ids"], data)
+
+    def test_invoice_with_excluded_tax(self):
+        """Registry is printed when only one tax is not excluded."""
+        included_tax = self.env["account.tax"].create(
+            {
+                "name": "Tax included",
+                "amount": 10.0,
+                "amount_type": "fixed",
+            }
+        )
+        excluded_tax = self.env["account.tax"].create(
+            {
+                "name": "Tax excluded",
+                "amount": 4.0,
+                "amount_type": "fixed",
+                "exclude_from_registries": True,
+            }
+        )
+        self._create_out_invoice(
+            [included_tax.id, excluded_tax.id], "product that cost 100"
+        )
+
+        html = self._render_registro_html()
+
+        self.assertTrue(b"Tax included" in html[0])
+        self.assertFalse(b"Tax excluded" in html[0])
+
+    def test_invoice_with_multiple_taxes(self):
+        """Registry raises when more than one tax is included."""
+        tax_a = self.env["account.tax"].create(
+            {
+                "name": "Tax A",
+                "amount": 10.0,
+                "amount_type": "fixed",
+            }
+        )
+        tax_b = self.env["account.tax"].create(
+            {
+                "name": "Tax B",
+                "amount": 4.0,
+                "amount_type": "fixed",
+            }
+        )
+        self._create_out_invoice([tax_a.id, tax_b.id], "product that cost 100")
+
+        with self.assertRaises(QWebException) as error:
+            self._render_registro_html()
+        self.assertIsInstance(error.exception.__cause__, UserError)
+
+    def test_invoice_with_only_excluded_taxes(self):
+        """Registry skips lines whose taxes are all excluded."""
+        tax_a = self.env["account.tax"].create(
+            {
+                "name": "Excluded A",
+                "amount": 10.0,
+                "amount_type": "fixed",
+                "exclude_from_registries": True,
+            }
+        )
+        tax_b = self.env["account.tax"].create(
+            {
+                "name": "Excluded B",
+                "amount": 4.0,
+                "amount_type": "fixed",
+                "exclude_from_registries": True,
+            }
+        )
+        self._create_out_invoice([tax_a.id, tax_b.id], "product that cost 100")
+
+        html = self._render_registro_html()
+
+        self.assertTrue(b"Tax 10.0" in html[0])
+        self.assertFalse(b"Excluded A" in html[0])
+        self.assertFalse(b"Excluded B" in html[0])
