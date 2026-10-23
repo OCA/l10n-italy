@@ -502,7 +502,7 @@ class TestDoiIssuedFromCompany(TransactionCase):
         with self.assertRaises(exceptions.UserError) as ue:
             invoice.action_post()
         exc_message = ue.exception.args[0]
-        self.assertIn("must include only the Tax ", exc_message)
+        self.assertIn("cannot include other Taxes", exc_message)
         self.assertIn(self.tax.name, exc_message)
 
         invoice.invoice_line_ids.tax_ids -= tax2
@@ -511,3 +511,43 @@ class TestDoiIssuedFromCompany(TransactionCase):
         self.assertNotEqual(previous_used_amount, used_amount)
         self.assertEqual(used_amount, invoice.amount_total)
         self.assertEqual(self.doi_in.state, "active")
+
+    def test_in_invoice_mixed_tax(self):
+        """When a vendor bill has a line with only the DoI Tax
+        and another line with only other Taxes, it can be posted."""
+        # Arrange
+        company = self.company
+        default_tax = company.account_purchase_tax_id
+        doi_tax = company.l10n_it_edi_doi_bill_tax_id
+        bill = self._create_invoice("1", self.partner, taxes=doi_tax, in_type=True)
+        with Form(bill) as bill_form:
+            self._add_invoice_line_id(bill_form, taxes=default_tax)
+        # pre-condition
+        self.assertTrue(all((default_tax, doi_tax)))
+        self.assertNotEqual(default_tax, doi_tax)
+        self.assertRecordValues(
+            bill.invoice_line_ids,
+            [
+                {
+                    "tax_ids": doi_tax.ids,
+                    "price_total": 900,
+                },
+                {
+                    "tax_ids": default_tax.ids,
+                    "price_total": default_tax.compute_all(900)["total_included"],
+                },
+            ],
+        )
+
+        # Act
+        bill.action_post()
+
+        # Assert
+        self.assertRecordValues(
+            bill,
+            [
+                {
+                    "l10n_it_edi_doi_amount": 900,
+                }
+            ],
+        )

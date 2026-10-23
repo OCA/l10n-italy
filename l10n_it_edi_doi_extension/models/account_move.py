@@ -169,10 +169,7 @@ class AccountMove(models.Model):
         self.ensure_one()
         if self.l10n_it_edi_doi_id:
             lines = self.invoice_line_ids.filtered(
-                lambda line,
-                doi_tax=doi_tax: not line._l10n_it_edi_doi_ext_get_validation_message(
-                    doi_tax
-                )
+                lambda line, doi_tax=doi_tax: line._is_counted_for_doi(doi_tax)
             )
         else:
             lines = self.env["account.move.line"].browse()
