@@ -36,6 +36,14 @@
                 <Provincia>SS</Provincia>
                 <Nazione>IT</Nazione>
             </Sede>
+            <StabileOrganizzazione>
+                <Indirizzo>VIA PROVA 12</Indirizzo>
+                <NumeroCivico>12</NumeroCivico>
+                <CAP>00100</CAP>
+                <Comune>ROMA</Comune>
+                <Provincia>RM</Provincia>
+                <Nazione>IT</Nazione>
+            </StabileOrganizzazione>
         </CedentePrestatore>
         <RappresentanteFiscale>
             <DatiAnagrafici>
