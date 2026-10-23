@@ -25,7 +25,7 @@ automaticamente via PEC e importate come fatture in bozza.
 
 ## Verifica manuale stato
 
-Il pulsante "Verifica stato" sulla fattura inviata avvia una
+Il pulsante "Controlla Invio" sulla fattura inviata avvia una
 lettura manuale della casella PEC per recuperare eventuali
 notifiche in attesa.
 
@@ -56,5 +56,5 @@ and imported as draft invoices.
 
 ## Manual status check
 
-The "Check status" button on a sent invoice triggers a manual
+The "Check Sending" button on a sent invoice triggers a manual
 PEC mailbox read to retrieve any pending notifications.
