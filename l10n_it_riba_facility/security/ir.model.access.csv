@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_riba_facility_wizard,riba.facility.wizard,model_riba_facility_wizard,account.group_account_user,1,1,1,1
+access_riba_facility_summary,riba.facility.summary,model_riba_facility_summary,account.group_account_user,1,1,1,1
+access_riba_facility_detail,riba.facility.detail,model_riba_facility_detail,account.group_account_user,1,1,1,1
