@@ -25,13 +25,47 @@ RESPONSE_MAIL_REGEX = (
     "_[a-zA-Z0-9]{1,5}"
     "_MT_[a-zA-Z0-9]{,3}"
 )
-
 fatturapa_regex = re.compile(FATTURAPA_IN_REGEX)
 response_regex = re.compile(RESPONSE_MAIL_REGEX)
 
 
+def get_attachment_filename(attachment):
+    """Return the attachment base name, without path or quotes."""
+    file_name = attachment.fname or ""
+    if isinstance(file_name, bytes):
+        file_name = file_name.decode(errors="replace")
+    file_name = file_name.replace("\\", "/").rsplit("/", 1)[-1]
+    return file_name.strip().strip('"')
+
+
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
+
+    @api.model
+    def _is_pec_message(self, message):
+        """Return whether the message comes from the SdI PEC system."""
+        return any(
+            "@pec.fatturapa.it" in x
+            for x in [
+                message.get("Reply-To", ""),
+                message.get("From", ""),
+                message.get("Return-Path", ""),
+            ]
+        )
+
+    @api.model
+    def _get_pec_attachments(self, message_dict):
+        """Return the e-invoice and response attachments of a PEC message."""
+        attachments = message_dict.get("attachments", [])
+        fatturapa_attachments = []
+        response_attachments = []
+        for attachment in attachments:
+            file_name = get_attachment_filename(attachment)
+            if fatturapa_regex.match(file_name):
+                fatturapa_attachments.append(attachment)
+            if response_regex.match(file_name):
+                response_attachments.append(attachment)
+        return fatturapa_attachments, response_attachments
 
     def clean_message_dict(self, message_dict):
         fields_to_clean = [
@@ -55,25 +89,15 @@ class MailThread(models.AbstractModel):
     def message_route(
         self, message, message_dict, model=None, thread_id=None, custom_values=None
     ):
-        if any(
-            "@pec.fatturapa.it" in x
-            for x in [
-                message.get("Reply-To", ""),
-                message.get("From", ""),
-                message.get("Return-Path", ""),
-            ]
-        ):
+        if self._is_pec_message(message):
             _logger.info(
                 "Processing FatturaPA PEC with Message-Id: "
                 "{}".format(message.get("Message-Id"))
             )
-            fatturapa_attachments = [
-                x for x in message_dict["attachments"] if fatturapa_regex.match(x.fname)
-            ]
-            response_attachments = [
-                x for x in message_dict["attachments"] if response_regex.match(x.fname)
-            ]
-            if response_attachments and fatturapa_attachments:
+            fatturapa_attachments, response_attachments = self._get_pec_attachments(
+                message_dict
+            )
+            if fatturapa_attachments:
                 return self.manage_pec_fe_attachments(
                     message, message_dict, response_attachments
                 )
