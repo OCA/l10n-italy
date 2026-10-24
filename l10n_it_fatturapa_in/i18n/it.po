@@ -88,6 +88,13 @@ msgid "Attachment"
 msgstr "Allegato"
 
 #. module: l10n_it_fatturapa_in
+#. odoo-python
+#: code:addons/l10n_it_fatturapa_in/wizard/wizard_import_fatturapa.py:0
+#, python-format
+msgid "Attachment '%(name)s' has no content and has been skipped"
+msgstr ""
+
+#. module: l10n_it_fatturapa_in
 #: model:ir.model.fields,field_description:l10n_it_fatturapa_in.field_fatturapa_attachment_in__message_attachment_count
 msgid "Attachment Count"
 msgstr "Numero allegati"
