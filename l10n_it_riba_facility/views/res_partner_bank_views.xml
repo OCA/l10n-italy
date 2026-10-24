@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Nextev
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_riba_configuration_form_riba_facility" model="ir.ui.view">
+        <field name="name">riba.configuration.form.riba.facility</field>
+        <field name="model">riba.configuration</field>
+        <field name="inherit_id" ref="l10n_it_riba_oca.view_riba_configuration_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bank_expense_account_id']/.." position="after">
+                <group
+                    string="Bank Receipts Facility"
+                    invisible="type != 'sbf' or not bank_id"
+                >
+                    <field name="riba_facility_amount" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
