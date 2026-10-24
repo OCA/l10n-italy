@@ -32,3 +32,14 @@ class TestAccount(tests.TransactionCase):
             }
         )
         self.assertEqual(account.account_balance_sign, 1)
+
+    def test_type_other_expenses(self):
+        """Accounts of type "Other Expenses" are in the Expenses section."""
+        account = self.account_model.create(
+            {
+                "code": "TEST.EXP.OTHER",
+                "name": "Test Other Expenses",
+                "account_type": "expense_other",
+            }
+        )
+        self.assertEqual(account.financial_statements_report_section, "expenses")

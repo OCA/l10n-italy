@@ -14,11 +14,13 @@ SECTION_ACCOUNT_TYPES_DICT = {
         "asset_fixed",
         "asset_prepayments",
     ],
-    # Expenses = "Expenses", "Cost of Revenue", "Depreciation"
+    # Expenses = "Expenses", "Cost of Revenue", "Depreciation",
+    #            "Other Expenses"
     "expenses": [
         "expense",
         "expense_direct_cost",
         "expense_depreciation",
+        "expense_other",
     ],
     # Incomes = "Income", "Other Income"
     "incomes": [

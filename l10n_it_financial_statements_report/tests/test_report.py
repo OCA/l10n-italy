@@ -1,8 +1,9 @@
 #  Copyright 2023 Simone Rubino - TAKOBI
 #  Copyright 2023 Simone Rubino - Aion Tech
+#  Copyright 2026 Luca Orioli <lucaorioli@gmail.com>
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
+from datetime import date, timedelta
 from io import BytesIO
 
 import openpyxl
@@ -215,3 +216,80 @@ class TestReport(AccountTestInvoicingCommon):
         self.assertEqual(account_group, account.group_id)
         total_string = sheet.cell(totals_row_index, code_column_index).value
         self.assertIn(str(invoice.amount_untaxed), total_string)
+
+    def _get_report_data(self, report_type, date_from, date_to):
+        wizard = self.env["trial.balance.report.wizard"].create(
+            {
+                "financial_statements_report_type": report_type,
+                "date_from": date_from,
+                "date_to": date_to,
+            }
+        )
+        return self.env[
+            "report.l10n_it_financial_statements_report.report"
+        ].compute_data_for_report(wizard._prepare_report_data())
+
+    def test_totals(self):
+        """Both statements show the result of the period
+        computed from the journal items.
+        """
+        # Arrange: one move with an account for each section,
+        # in a year without the invoice of setUpClass (2019)
+        other_expense_account = self.env["account.account"].create(
+            {
+                "code": "TEST.EXP.OTHER",
+                "name": "Test Other Expenses",
+                "account_type": "expense_other",
+            }
+        )
+        prepayment_account = self.env["account.account"].create(
+            {
+                "code": "TEST.PREPAID",
+                "name": "Test Prepayments",
+                "account_type": "asset_prepayments",
+            }
+        )
+        move_date = date(2018, 6, 15)
+        lines = [
+            (self.company_data["default_account_revenue"], 0, 1000),
+            (self.company_data["default_account_expense"], 300, 0),
+            (other_expense_account, 100, 0),
+            (prepayment_account, 50, 0),
+            (self.company_data["default_journal_bank"].default_account_id, 550, 0),
+        ]
+        move = self.env["account.move"].create(
+            {
+                "move_type": "entry",
+                "date": move_date,
+                "journal_id": self.company_data["default_journal_misc"].id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test",
+                            "account_id": account.id,
+                            "debit": debit,
+                            "credit": credit,
+                        },
+                    )
+                    for account, debit, credit in lines
+                ],
+            }
+        )
+        move.action_post()
+        # pre-condition: the result of the period is 600
+        result = 1000 - 300 - 100
+        date_from, date_to = date(2018, 1, 1), date(2018, 12, 31)
+
+        # Act
+        profit_loss = self._get_report_data("profit_loss", date_from, date_to)
+        balance_sheet = self._get_report_data("balance_sheet", date_from, date_to)
+
+        # Assert: incomes minus expenses, and assets minus liabilities
+        self.assertAlmostEqual(
+            profit_loss["total_credit"] - profit_loss["total_debit"], result
+        )
+        self.assertAlmostEqual(
+            balance_sheet["total_debit"] - balance_sheet["total_credit"], result
+        )
