@@ -187,7 +187,8 @@ class AccountMove(models.Model):
         :return: True if month of invoice_date_due is in a list of all_date_due
         """
         self.ensure_one()
-        if self.partner_id.riba_policy_expenses != "unlimited":
+        partner = self.partner_id.commercial_partner_id
+        if partner.riba_policy_expenses != "unlimited":
             for d in all_date_due:
                 if (
                     invoice_date_due.month == d.month
@@ -242,7 +243,7 @@ class AccountMove(models.Model):
             # ---- Get Date of first due date
             move_line = self.env["account.move.line"].search(
                 [
-                    ("partner_id", "=", invoice.partner_id.id),
+                    ("partner_id", "=", invoice.partner_id.commercial_partner_id.id),
                     ("move_id.invoice_payment_term_id.riba", "=", True),
                     ("date_maturity", ">=", fields.Date.context_today(invoice)),
                 ]
