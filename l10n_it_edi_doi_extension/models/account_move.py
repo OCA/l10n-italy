@@ -200,10 +200,19 @@ class AccountMove(models.Model):
                         doi_tax.name,
                     )
                 )
-            if declaration and (
-                line_errors := move._l10n_it_edi_doi_ext_get_lines_messages(doi_tax)
-            ):
-                errors.extend(line_errors)
+            if declaration:
+                if not declaration_lines:
+                    errors.append(
+                        move.env._(
+                            "Given the Declaration of Intent %(doi_name)s "
+                            "is linked to this Move, at least one line "
+                            "should contain the Tax %(doi_tax_name)s.",
+                            doi_name=declaration.display_name,
+                            doi_tax_name=doi_tax.name,
+                        )
+                    )
+                if line_errors := move._l10n_it_edi_doi_ext_get_lines_messages(doi_tax):
+                    errors.extend(line_errors)
         if errors:
             raise UserError("\n".join(errors))
         return super()._post(soft)

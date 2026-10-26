@@ -551,3 +551,22 @@ class TestDoiIssuedFromCompany(TransactionCase):
                 }
             ],
         )
+
+    def test_in_invoice_no_doi_tax(self):
+        """When a vendor bill has no line with the DoI Tax
+        and is linked to a DoI, it cannot be posted."""
+        # Arrange
+        company = self.company
+        doi_tax = company.l10n_it_edi_doi_bill_tax_id
+        bill = self._create_invoice("1", self.partner, in_type=True)
+        # pre-condition
+        self.assertTrue(bill.l10n_it_edi_doi_id)
+        self.assertNotIn(doi_tax, bill.line_ids.tax_ids)
+
+        # Act
+        with self.assertRaises(exceptions.UserError) as ue:
+            bill.action_post()
+
+        # Assert
+        exc_message = ue.exception.args[0]
+        self.assertIn("one line should contain the Tax", exc_message)
