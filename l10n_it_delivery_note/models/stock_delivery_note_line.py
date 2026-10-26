@@ -3,6 +3,8 @@
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from collections import defaultdict
+
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
@@ -149,6 +151,13 @@ class StockDeliveryNoteLine(models.Model):
                 taxes=tax_data.get("taxes"),
             )
         return res
+
+    def _get_tax_amount_by_tax(self):
+        totals = defaultdict(float)
+        for line in self:
+            for tax_vals in line._get_taxed_amount().get("taxes", []):
+                totals[tax_vals["id"]] += tax_vals.get("amount", 0)
+        return totals
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
