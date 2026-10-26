@@ -299,35 +299,20 @@
                                     </td>
                                 </tr>
                                 <t
+                                    t-set="tax_amounts"
+                                    t-value="doc.line_ids._get_tax_amount_by_tax()"
+                                />
+                                <t
                                     t-foreach="doc.line_ids.mapped('tax_ids')"
                                     t-as="tax"
                                 >
-                                    <t
-                                        t-value="doc.line_ids.filtered(lambda x: tax in x.tax_ids)"
-                                        t-set="lines"
-                                    />
                                     <tr>
                                         <td>
                                             <t t-esc="tax.display_name" />
                                         </td>
                                         <td class="text-end">
-                                            <!--
-                                            Iterate through every line of the current tax
-                                            and sum up the tax amount to get the total
-                                            -->
-                                            <t t-value="0" t-set="tax_amount" />
-                                            <t
-                                                t-foreach="(line._get_taxed_amount()['taxes'] for line in lines)"
-                                                t-as="tax_line_dict"
-                                            >
-                                                <t
-                                                    t-value="tax_amount + sum(d.get('amount', 0) for d in tax_line_dict if d['id'] == tax.id)"
-                                                    t-set="tax_amount"
-                                                />
-                                            </t>
-
                                             <span
-                                                t-esc="tax_amount"
+                                                t-esc="tax_amounts.get(tax.id, 0)"
                                                 t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"
                                             />
                                         </td>
