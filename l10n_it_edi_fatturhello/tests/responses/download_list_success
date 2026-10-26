@@ -1,0 +1,54 @@
+﻿{
+    "success": true,
+    "total": 2,
+    "rows": [
+      {
+        "stato": "<span><i style='color:#FF8100;font-size=32px' class='fa fa-cloud-upload'></i></span>",
+        "clifor": "Cliente pubblico 1",
+        "totale": "1,22€",
+        "datafattura": "20/04/2018",
+        "tipodocumento": "Fattura",
+        "scadenza": "20/05/2018",
+        "action": "<a id='201701000121235' class='btn btn-primary' href='originali.ashx?protocollo=201701000121235' target='_blank' ><i class='fa fa-file-pdf-o'></i></a><a id='201701000121236' class='btn btn-primary' href='originali.ashx?protocollo=201701000121236' target='_blank' ><i class='fa fa-tag'> xml</i></a>",
+        "statosdi": "<span class='notificaQtipAJAX dot sdi dot dot2' idnotifica='dsds1-B458-44C0-879B-B4052E952E22'></span>",
+        "statopa": "3",
+        "statotesto": "ricevuta",
+        "identificativo": "dsds1-B458-44C0-879B-B4052E952E22",
+        "fatturaelettronica": false,
+        "idallegato": "201801000121235",
+        "idallegatoxml": "201801000121236"
+      },
+      {
+        "stato": "<span><i style='color:#FF8100;font-size=32px' class='fa fa-cloud-upload'></i></span>",
+        "clifor": "Cliente pubblico 1",
+        "totale": "1,22€",
+        "datafattura": "20/04/2018",
+        "tipodocumento": "Fattura",
+        "scadenza": "20/05/2018",
+        "action": "<a id='201701000121235' class='btn btn-primary' href='originali.ashx?protocollo=201701000121235' target='_blank' ><i class='fa fa-file-pdf-o'></i></a><a id='201701000121236' class='btn btn-primary' href='originali.ashx?protocollo=201701000121236' target='_blank' ><i class='fa fa-tag'> xml</i></a>",
+        "statosdi": "<span class='notificaQtipAJAX dot sdi dot dot2' idnotifica='dsds1-B458-44C0-879B-B4052E952E22'></span>",
+        "statopa": "3",
+        "statotesto": "ricevuta",
+        "identificativo": "dsds1-B458-44C0-879B-B4052E952E22",
+        "fatturaelettronica": false,
+        "idallegato": "201701000121235",
+        "idallegatoxml": "201701000121236"
+      },
+      {
+        "stato": "<span><i style='color:#FF8100;font-size=32px' class='fa fa-cloud-upload'></i></span>",
+        "clifor": "Cliente pubblico 1",
+        "totale": "12200,00€",
+        "datafattura": "23/04/2018",
+        "tipodocumento": "Fattura",
+        "scadenza": "23/05/2018",
+        "action": "<a id='201701000121235' class='btn btn-primary' href='originali.ashx?protocollo=201701000121235' target='_blank' ><i class='fa fa-file-pdf-o'></i></a><a id='201701000121236' class='btn btn-primary' href='originali.ashx?protocollo=201701000121236' target='_blank' ><i class='fa fa-tag'> xml</i></a>",
+        "statosdi": "<span class='notificaQtipAJAX dot sdi dot dot2' idnotifica='C0693A9B-6A34-40FD-ACCB-dssssss'></span>",
+        "statopa": "1",
+        "statotesto": "spedita",
+        "identificativo": "C0693A9B-6A34-40FD-ACCB-dssssss",
+        "fatturaelettronica": true,
+        "idallegato": "201701000120235",
+        "idallegatoxml": "201701000120236"
+      }
+    ]
+  }

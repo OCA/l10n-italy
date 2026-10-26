@@ -1,0 +1,15 @@
+﻿{
+  "success": true,
+  "rows": [
+        {
+            "Data": "01/07/2020 14:51:00",
+            "Esito": "Fattura ricevuta correttamente dal SDI.",
+            "Nome": "IT04075500373_EMZjW.xml"
+        },
+        {
+            "Data": "01/07/2020 10:45:00",
+            "Esito": "Inoltrata al Sdi",
+            "Nome": "IT04075500373_EMZjW.xml"
+        }
+    ]
+}
