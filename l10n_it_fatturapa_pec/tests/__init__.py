@@ -3,3 +3,4 @@
 from . import e_invoice_common
 from . import test_e_invoice_response
 from . import test_e_invoice_send
+from . import test_pec_fetch_mail
