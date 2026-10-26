@@ -20,3 +20,4 @@ class TestAccount(tests.TransactionCase):
         self.assertEqual(
             prepayment_account.financial_statements_report_section, "assets"
         )
+        self.assertEqual(prepayment_account.account_balance_sign, 1)
