@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="account_move_form_date_warning">
+        <field name="name">account.move.form.date.warning</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <!-- wrap date and icon in a row, so the icon sits next to the field;
+                 the id binds the label to this field, the form has other "date" fields -->
+            <xpath
+                expr="//group[@id='header_right_group']/field[@name='date']"
+                position="attributes"
+            >
+                <attribute name="id">accounting_date</attribute>
+            </xpath>
+            <xpath
+                expr="//group[@id='header_right_group']/field[@name='date']"
+                position="before"
+            >
+                <label
+                    for="accounting_date"
+                    invisible="move_type in ('out_invoice', 'out_refund', 'out_receipt') and not quick_edit_mode and not (state == 'posted' and date != invoice_date)"
+                />
+                <div
+                    name="date_warning_row"
+                    class="o_row"
+                    invisible="move_type in ('out_invoice', 'out_refund', 'out_receipt') and not quick_edit_mode and not (state == 'posted' and date != invoice_date)"
+                />
+            </xpath>
+            <xpath expr="//div[@name='date_warning_row']" position="inside">
+                <xpath
+                    expr="//group[@id='header_right_group']/field[@name='date']"
+                    position="move"
+                />
+                <span
+                    class="fa fa-exclamation-triangle text-warning"
+                    title="Accounting date is before Bill Date"
+                    invisible="not l10n_it_show_date_warning"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
