@@ -165,6 +165,14 @@ msgstr "Prima data di validità della dichiarazione di intento"
 #. module: l10n_it_edi_doi_extension
 #. odoo-python
 #: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
+msgid ""
+"Given the Declaration of Intent %(doi_name)s is linked to this Move, at "
+"least one line should contain the Tax %(doi_tax_name)s."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
 #: code:addons/l10n_it_edi_doi_extension/models/purchase_order.py:0
 msgid ""
 "Given the tax %s is applied, there should be a Declaration of Intent "
@@ -332,6 +340,14 @@ msgid "Show received declarations"
 msgstr "Visualizza dichiarazioni ricevute"
 
 #. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move_line.py:0
+msgid ""
+"Since the invoice line %(line_name)s includes the Tax %(doi_tax)s for the "
+"Declaration of Intent, it cannot include other Taxes."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_start_date
 msgid "Start Date"
 msgstr "Data inizio"
@@ -346,16 +362,6 @@ msgstr "Imposta"
 #: code:addons/l10n_it_edi_doi_extension/models/account_move_doi.py:0
 msgid "The amount covered by a declaration cannot be negative."
 msgstr "L'importo oggetto di una dichiarazione non può essere negativo."
-
-#. module: l10n_it_edi_doi_extension
-#. odoo-python
-#: code:addons/l10n_it_edi_doi_extension/models/account_move_line.py:0
-msgid ""
-"The invoice line %(line_name)s must include only the Tax %(doi_tax)s for the "
-"Declaration of Intent."
-msgstr ""
-"La riga della fattura %(line_name)s deve includere esclusivamente l'imposta %"
-"(doi_tax)s relativa alla dichiarazione d'intento."
 
 #. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_threshold
@@ -435,3 +441,10 @@ msgstr ""
 msgid "You cannot delete the special tax for Declarations of Intent."
 msgstr ""
 "Non si può cancellare l'imposta speciale per la dichiarazione di intento."
+
+#~ msgid ""
+#~ "The invoice line %(line_name)s must include only the Tax %(doi_tax)s for "
+#~ "the Declaration of Intent."
+#~ msgstr ""
+#~ "La riga della fattura %(line_name)s deve includere esclusivamente "
+#~ "l'imposta %(doi_tax)s relativa alla dichiarazione d'intento."
