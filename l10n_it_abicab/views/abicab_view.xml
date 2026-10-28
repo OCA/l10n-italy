@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_bank_filter_abicab" model="ir.ui.view">
         <field name="name">res.bank.filter.abicab</field>
