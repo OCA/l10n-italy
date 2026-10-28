@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_it_edi_sdi.models.mail_thread import (
@@ -66,7 +66,7 @@ class MailThread(models.AbstractModel):
 
         # Check if this is a PEC delivery receipt (CONSEGNA/ACCETTAZIONE)
         # from a PEC server that is configured for e-invoicing
-        fetchmail_server_id = self._context.get("default_fetchmail_server_id")
+        fetchmail_server_id = self.env.context.get("default_fetchmail_server_id")
         if fetchmail_server_id:
             fetchmail_server = self.env["fetchmail.server"].browse(fetchmail_server_id)
             if fetchmail_server.is_l10n_it_edi_pec:
@@ -78,7 +78,7 @@ class MailThread(models.AbstractModel):
                         move, message_dict
                     )
                 raise UserError(
-                    _(
+                    self.env._(
                         'PEC message "%(subject)s" has been read '
                         "but not processed, as not related to an "
                         "e-invoice.\n"
@@ -135,7 +135,7 @@ class MailThread(models.AbstractModel):
     @api.model
     def _l10n_it_edi_pec_get_company(self):
         """Get the company associated with the current PEC fetchmail server."""
-        fetchmail_server_id = self._context.get("default_fetchmail_server_id")
+        fetchmail_server_id = self.env.context.get("default_fetchmail_server_id")
         if fetchmail_server_id:
             companies = self.env["res.company"].search(
                 [

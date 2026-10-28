@@ -5,19 +5,13 @@
 
 {
     "name": "ITA - Fattura elettronica - Supporto PEC",
-    "version": "18.0.1.1.2",
+    "version": "19.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Invio e ricezione fatture elettroniche tramite PEC",
     "author": "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
-    "external_dependencies": {
-        "python": [
-            "openupgradelib",
-        ],
-    },
     "depends": [
-        "l10n_it_account",
         "l10n_it_edi_sdi",
         "mail",
     ],
@@ -29,6 +23,4 @@
         "views/ir_mail_server_view.xml",
     ],
     "installable": True,
-    "pre_init_hook": "_l10n_it_edi_pec_pre_init_hook",
-    "post_init_hook": "_l10n_it_edi_pec_post_init_hook",
 }
