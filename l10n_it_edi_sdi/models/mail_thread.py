@@ -55,8 +55,7 @@ class MailThread(models.AbstractModel):
             the e-invoice filename pattern
         :param company: the res.company to create invoices for
         """
-        AccountMove = self.env["account.move"]
-
+        attachment_vals = []
         for att in fatturapa_attachments:
             content = att.content
             if isinstance(content, str):
@@ -80,33 +79,15 @@ class MailThread(models.AbstractModel):
             if existing:
                 _logger.info("Invoice %s already exists, skipping", filename)
                 continue
+            attachment_vals.append({"name": filename, "raw": content, "type": "binary"})
 
-            # Create empty move and attachment. Use in_invoice as core does, so
-            # that the move is still a vendor bill if the import fails.
-            # See https://github.com/odoo/odoo/blob/35f2bbc8396938d2a17f88802ed614c2f8a49acd/addons/l10n_it_edi/models/account_move.py#L1080
-            move = AccountMove.with_company(company).create({"move_type": "in_invoice"})
-            attachment = (
-                self.env["ir.attachment"]
-                .sudo()
-                .with_company(company)
-                .create(
-                    {
-                        "name": filename,
-                        "raw": content,
-                        "type": "binary",
-                        "res_model": "account.move",
-                        "res_id": move.id,
-                        "res_field": "l10n_it_edi_attachment_file",
-                    }
-                )
+        if attachment_vals:
+            # Same processing as the invoices downloaded from the SdI:
+            # a vendor bill is created for each e-invoice, even if the
+            # import of its content fails.
+            self.env["account.move"]._l10n_it_edi_process_downloads_attachments(
+                company, attachment_vals
             )
-            move.with_context(
-                account_predictive_bills_disable_prediction=True,
-                no_new_invoice=True,
-            ).message_post(attachment_ids=attachment.ids)
-
-            # Parse the XML and populate the move fields
-            move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
 
         _logger.info(
             "Processed incoming FatturaPA with Message-Id: %s",
@@ -187,22 +168,30 @@ class MailThread(models.AbstractModel):
 
     @api.model
     def _l10n_it_edi_sdi_find_move_by_attachment_name(self, filename, company=None):
-        """Find the account.move whose e-invoice attachment has the given name.
+        """Find the sent account.move whose e-invoice has the given name.
 
-        :param filename: the attachment name to search for
-        :param company: optional res.company to scope the search
+        The search is done on the move, not on its e-invoice attachment:
+        in 19.0 the attachment gets the company that was active when the
+        invoice was sent, so the attachment's company is not reliable
+        while the move's company is.
+        Moves without a sending state are ignored: SdI notifications
+        concern the e-invoices sent by the company, whatever their move
+        type (customer invoices, but also self-invoices, which are vendor
+        bills), while a bill received from the SdI may carry the same file
+        name (e.g. when the sender is another company of the same
+        database).
+
+        :param filename: the e-invoice file name to search for
+        :param company: optional res.company, matched on the move's
+            company_id
         """
         domain = [
-            ("name", "=", filename),
-            ("res_model", "=", "account.move"),
-            ("res_field", "=", "l10n_it_edi_attachment_file"),
+            ("l10n_it_edi_attachment_name", "=", filename),
+            ("l10n_it_edi_state", "!=", False),
         ]
         if company:
             domain.append(("company_id", "=", company.id))
-        attachment = self.env["ir.attachment"].search(domain, limit=1)
-        if attachment and attachment.res_id:
-            return self.env["account.move"].browse(attachment.res_id)
-        return self.env["account.move"]
+        return self.env["account.move"].search(domain, limit=1)
 
     @api.model
     def _l10n_it_edi_sdi_get_type_from_filename(self, filename):
