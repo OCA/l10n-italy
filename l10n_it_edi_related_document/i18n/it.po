@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-09 11:43+0000\n"
+"PO-Revision-Date: 2026-01-11 17:43+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -109,7 +109,7 @@ msgstr "Rif. riga"
 #. module: l10n_it_edi_related_document
 #: model:ir.model.fields.selection,name:l10n_it_edi_related_document.selection__account_move_related_document__type__order
 msgid "Order"
-msgstr "Ordina"
+msgstr "Ordine"
 
 #. module: l10n_it_edi_related_document
 #: model:ir.model.fields,field_description:l10n_it_edi_related_document.field_account_move_related_document__code
