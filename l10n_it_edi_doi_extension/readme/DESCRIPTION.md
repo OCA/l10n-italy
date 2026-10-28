@@ -10,7 +10,8 @@ Key features:
  - Automatic validation of DOI amounts and available thresholds
  - Smart warnings when invoice amounts don't match DOI coverage
  - Backward compatibility with single-declaration workflow
- - Check that the moves only include the DoI tax
+ - Check that the move lines only include the DoI Tax, when present
+ - Check that at least one move line contains the DoI Tax when the DoI is set in the Move
 
 **Italiano**
 
@@ -24,4 +25,5 @@ Caratteristiche principali:
  - Validazione automatica degli importi e soglie disponibili
  - Avvisi intelligenti quando gli importi non corrispondono
  - Retrocompatibilità con il flusso a dichiarazione singola
- - Verifica che le registrazioni includano soltanto l'imposta per la DI
+ - Verifica che i movimenti contabili includano soltanto l'imposta per la DI, quando presente
+ - Verifica che almeno un movimento contabile contenga l'imposta per la DI quando la DI è impostata nella registrazione

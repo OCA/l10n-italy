@@ -169,10 +169,7 @@ class AccountMove(models.Model):
         self.ensure_one()
         if self.l10n_it_edi_doi_id:
             lines = self.invoice_line_ids.filtered(
-                lambda line,
-                doi_tax=doi_tax: not line._l10n_it_edi_doi_ext_get_validation_message(
-                    doi_tax
-                )
+                lambda line, doi_tax=doi_tax: line._is_counted_for_doi(doi_tax)
             )
         else:
             lines = self.env["account.move.line"].browse()
@@ -203,10 +200,19 @@ class AccountMove(models.Model):
                         doi_tax.name,
                     )
                 )
-            if declaration and (
-                line_errors := move._l10n_it_edi_doi_ext_get_lines_messages(doi_tax)
-            ):
-                errors.extend(line_errors)
+            if declaration:
+                if not declaration_lines:
+                    errors.append(
+                        move.env._(
+                            "Given the Declaration of Intent %(doi_name)s "
+                            "is linked to this Move, at least one line "
+                            "should contain the Tax %(doi_tax_name)s.",
+                            doi_name=declaration.display_name,
+                            doi_tax_name=doi_tax.name,
+                        )
+                    )
+                if line_errors := move._l10n_it_edi_doi_ext_get_lines_messages(doi_tax):
+                    errors.extend(line_errors)
         if errors:
             raise UserError("\n".join(errors))
         return super()._post(soft)
