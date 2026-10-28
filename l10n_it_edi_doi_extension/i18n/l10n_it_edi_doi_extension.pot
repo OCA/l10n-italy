@@ -159,6 +159,14 @@ msgstr ""
 #. module: l10n_it_edi_doi_extension
 #. odoo-python
 #: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
+msgid ""
+"Given the Declaration of Intent %(doi_name)s is linked to this Move, at "
+"least one line should contain the Tax %(doi_tax_name)s."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move.py:0
 #: code:addons/l10n_it_edi_doi_extension/models/purchase_order.py:0
 msgid ""
 "Given the tax %s is applied, there should be a Declaration of Intent "
@@ -319,6 +327,14 @@ msgid "Show received declarations"
 msgstr ""
 
 #. module: l10n_it_edi_doi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_doi_extension/models/account_move_line.py:0
+msgid ""
+"Since the invoice line %(line_name)s includes the Tax %(doi_tax)s for the "
+"Declaration of Intent, it cannot include other Taxes."
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_start_date
 msgid "Start Date"
 msgstr ""
@@ -332,14 +348,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/l10n_it_edi_doi_extension/models/account_move_doi.py:0
 msgid "The amount covered by a declaration cannot be negative."
-msgstr ""
-
-#. module: l10n_it_edi_doi_extension
-#. odoo-python
-#: code:addons/l10n_it_edi_doi_extension/models/account_move_line.py:0
-msgid ""
-"The invoice line %(line_name)s must include only the Tax %(doi_tax)s for the"
-" Declaration of Intent."
 msgstr ""
 
 #. module: l10n_it_edi_doi_extension
