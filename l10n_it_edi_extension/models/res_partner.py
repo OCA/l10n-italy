@@ -5,6 +5,8 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
+from .res_company import E_INVOICE_HIDE_LINE_TYPE_SELECTION
+
 
 class ResPartnerInherit(models.Model):
     _inherit = "res.partner"
@@ -43,6 +45,13 @@ class ResPartnerInherit(models.Model):
         help="Used by electronic invoice XML import. "
         "If filled in, generated bill lines will use this product when "
         "no other possible product is found.",
+    )
+    l10n_it_edi_hide_line_type = fields.Selection(
+        selection=E_INVOICE_HIDE_LINE_TYPE_SELECTION,
+        string="Line types to hide",
+        help="Choose which type of descriptive line "
+        "will not be present in the e-invoices of this partner.\n"
+        "If empty, the same field in the accounting settings is evaluated.",
     )
 
     @api.constrains(
