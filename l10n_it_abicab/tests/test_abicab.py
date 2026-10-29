@@ -13,7 +13,7 @@ class BankCase(TransactionCase):
         pbank_model = self.env["res.partner.bank"]
         pbank1 = pbank_model.create(
             {
-                "acc_number": "212",
+                "account_number": "212",
                 "partner_id": self.partner1.id,
                 "bank_abi": "abi_1",
                 "bank_cab": "cab_1",
