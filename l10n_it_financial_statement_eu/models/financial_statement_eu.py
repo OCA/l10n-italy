@@ -310,6 +310,7 @@ class FinancialStatementEU(models.Model):
                                 if (not hide_acc_amount_0) or (acc_amount != 0):
                                     account_list.append(
                                         {
+                                            "id": account_id,
                                             "code": item.get("code"),
                                             "desc": item.get("name"),
                                             "amount": acc_amount,
@@ -318,6 +319,7 @@ class FinancialStatementEU(models.Model):
                     elif not hide_acc_amount_0:
                         account_list.append(
                             {
+                                "id": account_id,
                                 "code": item.get("code"),
                                 "desc": item.get("name"),
                                 "amount": 0,
@@ -548,15 +550,10 @@ class FinancialStatementEU(models.Model):
             )
 
             for acc in unlinked_account:
-                account_id = (
-                    self.env["account.account"]
-                    .search([("code", "=", acc.get("code"))])
-                    .id
-                )
                 log_env.create(
                     {
                         "financial_statement_id": form_data["id"],
-                        "account_id": account_id,
+                        "account_id": acc.get("id"),
                         "amount": acc.get("amount"),
                     }
                 )

@@ -253,3 +253,62 @@ class TestFinancialStatementEU(TransactionCase):
         self.assertEqual(_get_financial_statement_line_amount(bal_lines, "PA"), 1037)
         self.assertEqual(_get_financial_statement_line_amount(bal_lines, "E.A"), 1030)
         self.assertEqual(_get_financial_statement_line_amount(bal_lines, "E=F"), 31)
+
+    def test_unlinked_accounts(self):
+        company_id = self.env.company.id
+        journal = self.env["account.journal"].search(
+            [("company_id", "=", company_id)], limit=1
+        )
+        unlinked_account = self.env["account.account"].create(
+            {
+                "code": "999901",
+                "name": "Unlinked account",
+                "account_type": "expense",
+            }
+        )
+        linked_account = self._find_or_create_account_account(
+            company_id, "210100", "Patrimonio netto", "PP.A1"
+        )
+        move = self.env["account.move"].create(
+            {
+                "ref": "unlinked account",
+                "journal_id": journal.id,
+                "date": datetime(2023, 4, 1).date(),
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "debit": 100,
+                            "credit": 0,
+                            "account_id": unlinked_account.id,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "debit": 0,
+                            "credit": 100,
+                            "account_id": linked_account.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        move.action_post()
+        bal_values = self._get_financial_statement_values(
+            datetime(2023, 1, 1).date(), datetime(2023, 12, 31).date(), "d"
+        )
+        self.assertEqual(
+            bal_values.get("financial_statement_state"), "UNLINKED_ACCOUNTS"
+        )
+        self.assertEqual(
+            [acc["id"] for acc in bal_values.get("unlinked_account")],
+            [unlinked_account.id],
+        )
+        log = self.env["financial.statement.eu.log"].search(
+            [("financial_statement_id", "=", bal_values["form_data"]["id"])]
+        )
+        self.assertEqual(log.account_id, unlinked_account)
+        self.assertEqual(log.amount, 100)
