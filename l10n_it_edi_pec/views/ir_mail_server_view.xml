@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ir_mail_server_form" model="ir.ui.view">
+        <field name="name">ir.mail.server.form.inherit.l10n.it.edi.pec</field>
+        <field name="model">ir.mail_server</field>
+        <field name="inherit_id" ref="base.ir_mail_server_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[last()]" position="after">
+                <group string="PEC and Electronic Invoice">
+                    <field name="is_l10n_it_edi_pec" />
+                    <field
+                        name="l10n_it_edi_pec_email_from"
+                        invisible="not is_l10n_it_edi_pec"
+                        required="is_l10n_it_edi_pec"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
