@@ -103,11 +103,7 @@ class AccountMoveRelatedDocumentType(models.Model):
                 document_type = record.type
                 if document_type == "order":
                     document_type = "purchase_order"
-                elif document_type == "reception":
-                    # unsupported type
-                    record.invoice_id.standard_related_document_id = False
-                    continue
-                elif document_type == "invoice":
+                elif document_type == "reception" or document_type == "invoice":
                     # unsupported type
                     record.invoice_id.standard_related_document_id = False
                     continue
@@ -208,12 +204,16 @@ class AccountMove(models.Model):
                 ).update(vals)
 
     def _l10n_it_edi_get_values(self, pdf_values=None, extra_attachments=None):
-        res = super()._l10n_it_edi_get_values(pdf_values=pdf_values, extra_attachments=extra_attachments)
+        res = super()._l10n_it_edi_get_values(
+            pdf_values=pdf_values, extra_attachments=extra_attachments
+        )
         updated_values = self.remove_redundant_values(res)
         return updated_values
 
     def _l10n_it_edi_render_xml(self, pdf_values=None, extra_attachments=None):
-        xml = super()._l10n_it_edi_render_xml(pdf_values=pdf_values, extra_attachments=extra_attachments)
+        xml = super()._l10n_it_edi_render_xml(
+            pdf_values=pdf_values, extra_attachments=extra_attachments
+        )
         if (
             not self.related_document_ids
             or self._l10n_it_edi_is_simplified_document_type(
@@ -229,9 +229,11 @@ class AccountMove(models.Model):
         for dati_generali in tree.iter("DatiGenerali"):
             dati_generali[:] = sorted(
                 dati_generali,
-                key=lambda node: DATI_GENERALI_SEQUENCE.index(node.tag)
-                if node.tag in DATI_GENERALI_SEQUENCE
-                else len(DATI_GENERALI_SEQUENCE),
+                key=lambda node: (
+                    DATI_GENERALI_SEQUENCE.index(node.tag)
+                    if node.tag in DATI_GENERALI_SEQUENCE
+                    else len(DATI_GENERALI_SEQUENCE)
+                ),
             )
         return etree.tostring(tree, xml_declaration=True, encoding="UTF-8")
 
