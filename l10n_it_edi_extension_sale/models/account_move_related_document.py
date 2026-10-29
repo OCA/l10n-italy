@@ -26,6 +26,22 @@ class AccountMoveRelatedDocumentInherit(models.Model):
         readonly=True,
     )
 
+    def _prepare_invoice_related_document_vals(self):
+        """
+        Values to copy the documents of a sale order (or its lines)
+        to an invoice (or its lines).
+
+        The documents are copied, not linked:
+        linking them would detach them from the sale order
+        and from the invoices created before (e.g. partial invoicing).
+        """
+        return self.copy_data(
+            default={
+                "sale_order_id": False,
+                "sale_order_line_id": False,
+            }
+        )
+
     def check_unlink(self):
         """
         Related documents only make sense if they are related (linked)

@@ -19,24 +19,31 @@ class SaleOrderInherit(models.Model):
     def _create_invoices(self, grouped=False, final=False, date=None):
         moves = super()._create_invoices(grouped=grouped, final=final, date=date)
 
-        # To each invoice, link the documents of the related order
+        # To each invoice, copy the documents of the related orders
         # only if the order is in `self`
         for invoice in moves:
             orders = invoice.invoice_line_ids.mapped("sale_line_ids.order_id")
             orders = orders.filtered(lambda o: o in self)
             sale_documents = orders.mapped("related_document_ids")
-            invoice.update(
-                {
-                    "related_document_ids": [
-                        Command.link(sale_document_id)
-                        for sale_document_id in sale_documents.ids
-                    ],
-                }
-            )
+            if sale_documents:
+                invoice.write(
+                    {
+                        "related_document_ids": [
+                            Command.create(document_vals)
+                            for document_vals in (
+                                sale_documents._prepare_invoice_related_document_vals()
+                            )
+                        ],
+                    }
+                )
         return moves
 
     def unlink(self):
-        related_documents = self.mapped("related_document_ids")
+        # Order lines are deleted by the database (cascade),
+        # so their documents have to be checked here too
+        related_documents = self.mapped("related_document_ids") | self.mapped(
+            "order_line.related_document_ids"
+        )
         res = super().unlink()
         related_documents.check_unlink().unlink()
         return res
