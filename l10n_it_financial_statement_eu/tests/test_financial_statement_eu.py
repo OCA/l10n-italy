@@ -312,3 +312,58 @@ class TestFinancialStatementEU(TransactionCase):
         )
         self.assertEqual(log.account_id, unlinked_account)
         self.assertEqual(log.amount, 100)
+
+    def test_off_balance_accounts(self):
+        company_id = self.env.company.id
+        journal = self.env["account.journal"].search(
+            [("company_id", "=", company_id)], limit=1
+        )
+        off_balance_accounts = self.env["account.account"].create(
+            [
+                {
+                    "code": "999902",
+                    "name": "Third-party assets",
+                    "account_type": "off_balance",
+                },
+                {
+                    "code": "999903",
+                    "name": "Depositors of goods",
+                    "account_type": "off_balance",
+                },
+            ]
+        )
+        move = self.env["account.move"].create(
+            {
+                "ref": "off-balance accounts",
+                "journal_id": journal.id,
+                "date": datetime(2023, 4, 1).date(),
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "debit": 100,
+                            "credit": 0,
+                            "account_id": off_balance_accounts[0].id,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "debit": 0,
+                            "credit": 100,
+                            "account_id": off_balance_accounts[1].id,
+                        },
+                    ),
+                ],
+            }
+        )
+        move.action_post()
+        bal_values = self._get_financial_statement_values(
+            datetime(2023, 1, 1).date(), datetime(2023, 12, 31).date(), "d"
+        )
+        self.assertNotEqual(
+            bal_values.get("financial_statement_state"), "UNLINKED_ACCOUNTS"
+        )
+        self.assertFalse(bal_values.get("unlinked_account"))

@@ -207,6 +207,8 @@ class FinancialStatementEU(models.Model):
         elif calc_type == "non_assoc":
             domain.append(("financial_statement_eu_debit_id", "=", False))
             domain.append(("financial_statement_eu_credit_id", "=", False))
+            # Off-balance accounts are not part of the financial statements
+            domain.append(("account_type", "!=", "off_balance"))
 
     def get_account_list_amount(
         self,
