@@ -117,7 +117,7 @@ class AccountMoveRelatedDocumentType(models.Model):
         ret = super().write(vals)
         if self.env.context.get("l10n_it_edi_related_loop_avoid"):
             return ret
-        if vals.keys() & {"type", "name", "date", "cig", "cup"}:
+        if not {"type", "name", "date", "cig", "cup"}.isdisjoint(vals):
             self.with_context(
                 l10n_it_edi_related_loop_avoid=True
             )._l10n_it_sync_related_document()
@@ -133,7 +133,6 @@ class AccountMove(models.Model):
 
     standard_related_document_id = fields.Many2one(
         comodel_name="account.move.related_document",
-        string="Standard Related Document",
         help="Technical field to store the document corresponding to standard fields",
     )
 
