@@ -105,6 +105,11 @@ msgid "Declaration of Intent Bills Tax"
 msgstr ""
 
 #. module: l10n_it_edi_doi_extension
+#: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_res_company__l10n_it_edi_doi_tax_id
+msgid "Declaration of Intent Tax"
+msgstr ""
+
+#. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_purchase_order__l10n_it_edi_doi_warning
 msgid "Declaration of Intent Threshold Warning"
 msgstr ""
