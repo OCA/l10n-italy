@@ -20,10 +20,13 @@ class SaleOrderLineInherit(models.Model):
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)
         if self.related_document_ids:
+            # Copy the documents of the order line to the invoice line
             invoice_line_documents = vals.get("related_document_ids", list())
             invoice_line_documents.extend(
-                Command.link(line_document_id)
-                for line_document_id in self.related_document_ids.ids
+                Command.create(document_vals)
+                for document_vals in (
+                    self.related_document_ids._prepare_invoice_related_document_vals()
+                )
             )
             vals.update(
                 {
