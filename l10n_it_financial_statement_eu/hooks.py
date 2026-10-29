@@ -190,4 +190,4 @@ def _l10n_it_financial_statement_eu_post_init(env):
     fse.financial_statement_eu_account_assoc_code("7202%", "E.B9", False)
     fse.financial_statement_eu_account_assoc_code("7203%", "E.B9", False)
     fse.financial_statement_eu_account_assoc_code("7204%", "E.F5", False)
-    fse.financial_statement_eu_account_assoc_code("8101%", "E_F1", False)
+    fse.financial_statement_eu_account_assoc_code("8101%", "E.F1", False)
