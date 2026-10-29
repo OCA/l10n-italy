@@ -207,13 +207,13 @@ class AccountMove(models.Model):
                     l10n_it_edi_related_loop_avoid=True
                 ).update(vals)
 
-    def _l10n_it_edi_get_values(self, pdf_values=None):
-        res = super()._l10n_it_edi_get_values(pdf_values=pdf_values)
+    def _l10n_it_edi_get_values(self, pdf_values=None, extra_attachments=None):
+        res = super()._l10n_it_edi_get_values(pdf_values=pdf_values, extra_attachments=extra_attachments)
         updated_values = self.remove_redundant_values(res)
         return updated_values
 
-    def _l10n_it_edi_render_xml(self, pdf_values=None):
-        xml = super()._l10n_it_edi_render_xml(pdf_values=pdf_values)
+    def _l10n_it_edi_render_xml(self, pdf_values=None, extra_attachments=None):
+        xml = super()._l10n_it_edi_render_xml(pdf_values=pdf_values, extra_attachments=extra_attachments)
         if (
             not self.related_document_ids
             or self._l10n_it_edi_is_simplified_document_type(

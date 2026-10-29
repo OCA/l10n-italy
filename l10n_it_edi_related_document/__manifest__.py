@@ -14,7 +14,7 @@
         "views/l10n_it_views.xml",
         "views/account_move_related_documents.xml",
         "data/invoice_it_template.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
     ],
     "installable": True,
 }
