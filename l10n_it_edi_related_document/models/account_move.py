@@ -79,9 +79,11 @@ class AccountMoveRelatedDocumentType(models.Model):
         # after creating documents, check if one should is eligible
         # to become the standard_related_document_id
         for record in ret.filtered(
-            lambda r: r.type in ("order", "contract", "agreement")
-            and r.invoice_id
-            and not r.invoice_id.standard_related_document_id
+            lambda r: (
+                r.type in ("order", "contract", "agreement")
+                and r.invoice_id
+                and not r.invoice_id.standard_related_document_id
+            )
         ):
             invoice = record.invoice_id.with_context(
                 l10n_it_edi_related_loop_avoid=True
@@ -175,11 +177,8 @@ class AccountMove(models.Model):
             if document_type == "purchase_order":
                 document_type = "order"
 
-            if (
-                document_type
-                not in dict(
-                    self.env["account.move.related_document"]._fields["type"].selection
-                ).keys()
+            if document_type not in dict(
+                self.env["account.move.related_document"]._fields["type"].selection
             ):
                 raise UserError(self.env._("Unknown document type %s", document_type))
 
