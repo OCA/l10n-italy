@@ -5,7 +5,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.fields import Command, Domain
+from odoo.fields import Command
 
 DATE_FORMAT = "%d/%m/%Y"
 DATETIME_FORMAT = "%d/%m/%Y %H:%M:%S"
@@ -160,15 +160,6 @@ class StockDeliveryNoteLine(models.Model):
                 name += "\n" + self.product_id.description_sale
 
             self.name = name
-
-            product_uom_domain = Domain(
-                "category_id", "=", self.product_id.uom_id.category_id.id
-            )
-
-        else:
-            product_uom_domain = Domain(Domain.TRUE)
-
-        return {"domain": {"product_uom_id": product_uom_domain}}
 
     @api.model
     def _prepare_detail_lines(self, moves):

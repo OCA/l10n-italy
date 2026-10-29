@@ -280,3 +280,11 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         self.assertNotIn(
             picking_backorder.move_ids, delivery_note.mapped("line_ids.move_id")
         )
+
+    def test_delivery_note_line_product_onchange(self):
+        delivery_note = self.create_delivery_note()
+        with Form(delivery_note) as delivery_note_form:
+            with delivery_note_form.line_ids.new() as line:
+                line.product_id = self.product_8
+        self.assertEqual(delivery_note.line_ids.product_id, self.product_8)
+        self.assertEqual(delivery_note.line_ids.name, self.product_8.name)

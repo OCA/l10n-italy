@@ -13,7 +13,6 @@ from ..mixins.delivery_mixin import (
     _default_volume_uom,
     _default_weight_uom,
 )
-from ..mixins.picking_checker import ALLOWED_PICKING_STATES
 
 DATE_FORMAT = "%d/%m/%Y"
 DATETIME_FORMAT = "%d/%m/%Y %H:%M:%S"
@@ -498,16 +497,6 @@ class StockDeliveryNote(models.Model):
                 and any(line.sale_order_client_ref for line in sdn.line_ids)
             )
 
-    @api.onchange("picking_type")
-    def _onchange_picking_type(self):
-        if self.picking_type:
-            type_domain = Domain("code", "=", self.picking_type)
-
-        else:
-            type_domain = Domain(Domain.TRUE)
-
-        return {"domain": {"type_id": type_domain}}
-
     @api.onchange("type_id")
     def _onchange_type(self):
         if self.type_id:
@@ -542,21 +531,6 @@ class StockDeliveryNote(models.Model):
     @api.onchange("partner_id")
     def _onchange_partner(self):
         self.partner_shipping_id = self.partner_id
-
-        if self.partner_id:
-            pickings_picker_domain = Domain(
-                [
-                    ("delivery_note_id", "=", False),
-                    ("state", "in", ALLOWED_PICKING_STATES),
-                    ("picking_type_code", "=", self.picking_type),
-                    ("partner_id", "=", self.partner_id.id),
-                ]
-            )
-
-        else:
-            pickings_picker_domain = Domain("id", "=", False)
-
-        return {"domain": {"pickings_picker": pickings_picker_domain}}
 
     @api.onchange("partner_shipping_id")
     def _onchange_partner_shipping(self):
