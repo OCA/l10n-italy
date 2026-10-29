@@ -1,30 +1,37 @@
+/*  ********* The Epson ePOS Button  ********* */
+
+.pos .header-button {
+    cursor: pointer;
+}
+
 /*  ********* The Epson ePOS FP81II Widget  ********* */
 
 .pos .epson-fp81ii-widget {
     z-index: 100000;
     position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 236px;
+    right: 48px;
+    top: 48px;
+    width: 260px;
     font-size: 14px;
-
     background: rgba(0, 0, 0, 0.82) !important;
     color: white;
     padding-bottom: 10px;
-    cursor: move;
     -webkit-transform: translate3d(0, 0, 0);
 }
 .pos .pos-rightheader .header-button > img {
     vertical-align: middle;
+    cursor: pointer;
 }
 .pos .epson-fp81ii-widget .toggle {
     position: absolute;
     font-size: 16px;
     cursor: pointer;
-    top: 0px;
-    right: 0px;
-    padding: 10px;
-    padding-right: 15px;
+    top: 5px;
+    right: 5px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .pos .epson-fp81ii-widget .content {
     overflow: hidden;
@@ -57,10 +64,14 @@
 .pos .epson-fp81ii-widget .category-label {
     position: relative;
     padding: 4px;
-    top: -12px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 8px;
 }
 .pos .epson-fp81ii-widget li img {
     min-width: 32px;
+    vertical-align: middle;
+    display: inline-block;
 }
 .pos .epson-fp81ii-widget .button:active {
     background: rgba(96, 21, 177, 0.45);

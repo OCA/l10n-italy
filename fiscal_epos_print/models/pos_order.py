@@ -1,8 +1,4 @@
-import logging
-
-from odoo import api, fields, models
-
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
 
 
 class PosOrder(models.Model):
@@ -20,51 +16,6 @@ class PosOrder(models.Model):
     fiscal_receipt_date = fields.Date("Fiscal receipt date")
     fiscal_z_rep_number = fields.Integer("Fiscal closure number")
     fiscal_printer_serial = fields.Char()
-    fiscal_printer_debug_info = fields.Text("Debug info", readonly=True)
-    fiscal_operator_number = fields.Text("Fiscal Operator", readonly=True)
-
-    # TODO allow to save code on customer and load customer, if present
+    fiscal_printer_debug_info = fields.Text("Debug info")
+    fiscal_operator_number = fields.Text("Fiscal Operator")
     lottery_code = fields.Char()
-
-    @api.model
-    def _order_fields(self, ui_order):
-        res = super()._order_fields(ui_order)
-        res["lottery_code"] = ui_order.get("lottery_code", "")
-        res["refund_date"] = ui_order.get("refund_date", False)
-        res["refund_report"] = ui_order.get("refund_report", False)
-        res["refund_doc_num"] = ui_order.get("refund_doc_num", False)
-        res["refund_cash_fiscal_serial"] = ui_order.get(
-            "refund_cash_fiscal_serial", False
-        )
-        res["refund_full_refund"] = ui_order.get("refund_full_refund", False)
-        res["fiscal_receipt_number"] = ui_order.get("fiscal_receipt_number", False)
-        res["fiscal_receipt_amount"] = ui_order.get("fiscal_receipt_amount", False)
-        res["fiscal_receipt_date"] = ui_order.get("fiscal_receipt_date", False)
-        res["fiscal_z_rep_number"] = ui_order.get("fiscal_z_rep_number", False)
-        res["fiscal_printer_serial"] = ui_order.get("fiscal_printer_serial", False)
-        res["fiscal_printer_debug_info"] = ui_order.get(
-            "fiscal_printer_debug_info", False
-        )
-        res["fiscal_operator_number"] = ui_order.get("fiscal_operator_number", False)
-        return res
-
-    def _export_for_ui(self, order):
-        result = super()._export_for_ui(order)
-        result.update(
-            {
-                "lottery_code": order.lottery_code,
-                "refund_date": order.refund_date,
-                "refund_report": order.refund_report,
-                "refund_doc_num": order.refund_doc_num,
-                "refund_cash_fiscal_serial": order.refund_cash_fiscal_serial,
-                "refund_full_refund": order.refund_full_refund,
-                "fiscal_receipt_number": order.fiscal_receipt_number,
-                "fiscal_receipt_amount": order.fiscal_receipt_amount,
-                "fiscal_receipt_date": order.fiscal_receipt_date,
-                "fiscal_z_rep_number": order.fiscal_z_rep_number,
-                "fiscal_printer_serial": order.fiscal_printer_serial,
-                "fiscal_printer_debug_info": order.fiscal_printer_debug_info,
-                "fiscal_operator_number": order.fiscal_operator_number,
-            }
-        )
-        return result

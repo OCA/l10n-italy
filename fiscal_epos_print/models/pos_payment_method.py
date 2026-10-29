@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class PosPaymentMethod(models.Model):
@@ -23,3 +23,10 @@ class PosPaymentMethod(models.Model):
         string="Electronic Payment / Ticket Index",
         help="Set the index of the given payment type to specify the detail.",
     )
+
+    @api.model
+    def _load_pos_data_fields(self, config_id):
+        fields = super()._load_pos_data_fields(config_id)
+        fields.append("fiscalprinter_payment_type")
+        fields.append("fiscalprinter_payment_index")
+        return fields

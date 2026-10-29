@@ -16,3 +16,9 @@ class AccountTax(models.Model):
         for tax in self:
             if not re.search(regex, tax.fpdeptax):
                 raise ValidationError(_("Department ID number range [1 - 99]"))
+
+    @api.model
+    def _load_pos_data_fields(self, config_id):
+        fields = super()._load_pos_data_fields(config_id)
+        fields.append("fpdeptax")
+        return fields

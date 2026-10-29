@@ -1,39 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
 
-    <t t-name="LotteryCodePopup" owl="1">
-        <div class="modal-dialog">
-            <div class="popup popup-text">
-                <p class="title">
-                    <t t-esc=" props.title || '' " />
-                </p>
-
-                <div class='client-detail'>
+    <t t-name="fiscal_epos_print.LotteryCodePopup">
+        <Dialog title="props.title || 'Lottery Code'" size="'md'">
+            <div class="lottery-code-popup">
+                <div class="form-group">
+                    <label for="lottery-code-input">Lottery Code:</label>
                     <input
-                        id="lottery_code"
-                        class="detail lottery_code"
-                        type='text'
-                        t-att-value="props.lottery_code || ''"
-                        t-ref="inputLotteryCode"
+                        id="lottery-code-input"
+                        class="form-control"
+                        type="text"
+                        t-model="state.lotteryCode"
+                        t-on-input="onInputChange"
+                        t-ref="lotteryCodeInput"
+                        placeholder="Enter lottery code"
                     />
-                </div>
-
-                <div class="footer">
-                    <div class="button confirm" t-on-click="clickConfirmLotteryCode">
-                        Apply
-                    </div>
-                    <div class="button cancel" t-on-click="cancel">
-                        <t t-esc="props.cancelText" />
-                    </div>
-                    <div
-                        id="error-message-dialog"
-                        style="color: red; font-weight: bold; font-size: 18px; font-style: italic; display: none;"
-                    >
-                        Some fields are empty.
+                    <div t-if="state.showError" class="text-danger mt-2">
+                        Lottery code is required
                     </div>
                 </div>
             </div>
-        </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="confirm">
+                    Apply
+                </button>
+                <button class="btn btn-secondary" t-on-click="cancel">
+                    Cancel
+                </button>
+            </t>
+        </Dialog>
     </t>
 
 </templates>
