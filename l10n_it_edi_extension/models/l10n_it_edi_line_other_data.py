@@ -2,7 +2,7 @@
 # Copyright 2025 Nextev Srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -63,7 +63,7 @@ class EInvoiceLineOtherData(models.Model):
         self.unlink()
         return {
             "type": "ir.actions.act_window",
-            "name": _("Other Management Data"),
+            "name": self.env._("Other Management Data"),
             "res_model": self._name,
             "view_mode": "list,form",
             "target": "new",
@@ -82,7 +82,7 @@ class EInvoiceLineOtherData(models.Model):
             has_date = bool(record.date_ref)
             if not has_text and not has_num and not has_date:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "At least one of Text Reference, Number Reference, "
                         "or Date Reference must be provided."
                     )

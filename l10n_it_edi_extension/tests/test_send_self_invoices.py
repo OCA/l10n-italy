@@ -38,12 +38,12 @@ class TestSendSelfInvoices(Common):
                     "amount_type": "percent",
                     "type_tax_use": "purchase",
                     "invoice_repartition_line_ids": cls.repartition_lines(
-                        cls.RepartitionLine(100, "base", ("+03", "+vj9")),
-                        cls.RepartitionLine(100, "tax", ("+5v",)),
-                        cls.RepartitionLine(-100, "tax", ("-4v",)),
+                        cls.RepartitionLine(100, "base", ("03", "vj9")),
+                        cls.RepartitionLine(100, "tax", ("5v",)),
+                        cls.RepartitionLine(-100, "tax", ("4v",)),
                     ),
                     "refund_repartition_line_ids": cls.repartition_lines(
-                        cls.RepartitionLine(100, "base", ("-03", "-vj9")),
+                        cls.RepartitionLine(100, "base", ("03", "vj9")),
                         cls.RepartitionLine(100, "tax", False),
                         cls.RepartitionLine(-100, "tax", False),
                     ),
@@ -131,9 +131,9 @@ class TestSendSelfInvoices(Common):
             self.assertEqual(
                 self_invoice.l10n_it_edi_transaction, f"SDI ID {self_invoice.id}"
             )
-            self.assertTrue(self_invoice.l10n_it_edi_attachment_id)
-        self.assertFalse(bill.l10n_it_edi_attachment_id)
-        self.assertFalse(draft_self_invoice.l10n_it_edi_attachment_id)
+            self.assertTrue(self_invoice.l10n_it_edi_attachment_file)
+        self.assertFalse(bill.l10n_it_edi_attachment_file)
+        self.assertFalse(draft_self_invoice.l10n_it_edi_attachment_file)
         self.assertEqual(action["params"]["type"], "success")
 
         # Self-invoices already sent are not sent again
@@ -204,11 +204,11 @@ class TestSendSelfInvoices(Common):
         for self_invoice in sent_self_invoices:
             self.assertTrue(self_invoice.is_move_sent)
             self.assertEqual(self_invoice.l10n_it_edi_state, "processing")
-            self.assertTrue(self_invoice.l10n_it_edi_attachment_id)
+            self.assertTrue(self_invoice.l10n_it_edi_attachment_file)
         for error_self_invoice in error_self_invoices:
             self.assertFalse(error_self_invoice.is_move_sent)
             self.assertFalse(error_self_invoice.l10n_it_edi_state)
-            self.assertFalse(error_self_invoice.l10n_it_edi_attachment_id)
+            self.assertFalse(error_self_invoice.l10n_it_edi_attachment_file)
         # Export check errors are in the warning of the document,
         # the other errors are in the notification
         self.assertTrue(check_error_self_invoice.l10n_it_edi_header)

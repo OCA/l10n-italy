@@ -2,10 +2,13 @@
 # Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+import binascii
 import logging
 
-from odoo import api, fields, models, osv
+from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.tools import float_compare, html2plaintext, is_html_empty
 
 from odoo.addons.base.models.ir_qweb_fields import Markup
@@ -32,10 +35,7 @@ class AccountMoveInherit(models.Model):
         comodel_name="ir.attachment",
         string="Imported Electronic Bill",
         readonly=True,
-    )
-    l10n_it_edi_ext_attachment_in_preview_link = fields.Char(
-        string="Preview link for imported Electronic Bill",
-        compute="_compute_l10n_it_edi_ext_attachment_in_preview_link",
+        copy=False,
     )
     l10n_it_edi_line_ids = fields.One2many(
         "l10n_it_edi.line",
@@ -140,25 +140,18 @@ class AccountMoveInherit(models.Model):
     # Computes
     # -------------------------------------------------------------------------
 
-    @api.depends("l10n_it_edi_attachment_id")
+    @api.depends("l10n_it_edi_attachment_file", "l10n_it_edi_ext_attachment_in_id")
     def _compute_l10n_it_edi_attachment_preview_link(self):
         for move in self:
-            if move.l10n_it_edi_attachment_id:
+            if (
+                move.l10n_it_edi_attachment_file
+                or move.l10n_it_edi_ext_attachment_in_id
+            ):
                 move.l10n_it_edi_attachment_preview_link = (
-                    move.get_base_url()
-                    + f"/fatturapa/preview/{move.l10n_it_edi_attachment_id.id}"
+                    move.get_base_url() + f"/fatturapa/preview/{move.id}"
                 )
             else:
                 move.l10n_it_edi_attachment_preview_link = ""
-
-    @api.depends("l10n_it_edi_ext_attachment_in_id")
-    def _compute_l10n_it_edi_ext_attachment_in_preview_link(self):
-        for move in self:
-            if attachment := move.l10n_it_edi_ext_attachment_in_id:
-                link = f"{move.get_base_url()}/fatturapa/preview/{attachment.id}"
-            else:
-                link = ""
-            move.l10n_it_edi_ext_attachment_in_preview_link = link
 
     @api.depends(
         "l10n_it_edi_amount_untaxed", "l10n_it_edi_amount_tax", "l10n_it_edi_rounding"
@@ -187,7 +180,7 @@ class AccountMoveInherit(models.Model):
         "amount_untaxed",
         "amount_tax",
         "amount_total",
-        "l10n_it_edi_attachment_id",
+        "l10n_it_edi_attachment_file",
         "l10n_it_edi_amount_untaxed",
         "l10n_it_edi_amount_tax",
         "l10n_it_edi_rounding",
@@ -198,7 +191,7 @@ class AccountMoveInherit(models.Model):
         invoices_to_check = self.filtered(
             lambda inv: inv._l10n_it_edi_is_to_validate()
             and inv.state in ["draft", "posted"]
-            and inv.l10n_it_edi_attachment_id
+            and inv.l10n_it_edi_attachment_file
         )
         for invoice in invoices_to_check:
             error_messages = list()
@@ -225,20 +218,24 @@ class AccountMoveInherit(models.Model):
 
         return {
             "type": "ir.actions.act_url",
-            "name": "Show preview",
+            "name": self.env._("Show preview"),
             "url": self.l10n_it_edi_attachment_preview_link,
             "target": "new",
         }
 
-    def action_l10n_it_edi_ext_attachment_in_preview(self):
+    def _get_invoice_legal_documents(self, filetype, allow_fallback=False):
         self.ensure_one()
 
-        return {
-            "type": "ir.actions.act_url",
-            "name": "Show preview",
-            "url": self.l10n_it_edi_ext_attachment_in_preview_link,
-            "target": "new",
-        }
+        if filetype == "fatturapa":
+            if fatturapa_attachment := self.l10n_it_edi_ext_attachment_in_id:
+                return {
+                    "filename": fatturapa_attachment.name,
+                    "filetype": "xml",
+                    "content": fatturapa_attachment.raw,
+                }
+        return super()._get_invoice_legal_documents(
+            filetype, allow_fallback=allow_fallback
+        )
 
     def action_l10n_it_edi_ext_send_self_invoices(self):
         """Send the selected self-invoices to the SdI.
@@ -335,6 +332,38 @@ class AccountMoveInherit(models.Model):
     # -------------------------------------------------------------------------
     # Helpers
     # -------------------------------------------------------------------------
+
+    def _get_xml_tree(self, file_data):
+        # Extend Odoo standard check to also recognize signed e-invoice files
+        # (e.g. .p7m files reported as "application/octet-stream").
+        xml_tree = super()._get_xml_tree(file_data)
+        if (
+            xml_tree is None
+            and file_data["raw"]
+            and file_data["name"]
+            and file_data["name"].lower().endswith(".p7m")
+        ):
+            p7m_xml_tree = self._parse_xml_with_recovery(
+                file_data["raw"], file_data["name"]
+            )
+            if self._is_l10n_it_edi_import_file({"xml_tree": p7m_xml_tree}):
+                xml_tree = p7m_xml_tree
+        return xml_tree
+
+    def _l10n_it_edi_ext_decode_p7m_base64(self, content, name=None):
+        """Some programs download p7m files as base64 text."""
+        try:
+            return base64.b64decode(content)
+        except binascii.Error:
+            _logger.info(f"The p7m file '{name}' is not base64 encoded")
+            return ""
+
+    def _parse_xml_with_recovery(self, content, name=None):
+        xml_tree = super()._parse_xml_with_recovery(content, name=name)
+        if xml_tree is None and name and name.lower().endswith(".p7m"):
+            decoded = self._l10n_it_edi_ext_decode_p7m_base64(content, name=name)
+            xml_tree = super()._parse_xml_with_recovery(decoded, name=name)
+        return xml_tree
 
     def _l10n_it_edi_ext_is_self_invoice(self):
         """Tell whether the move is sent to the SdI like a self-invoice,
@@ -590,17 +619,12 @@ class AccountMoveInherit(models.Model):
         return partner
 
     def _l10n_it_edi_search_tax_for_import(
-        self,
-        company,
-        percentage,
-        extra_domain=None,
-        l10n_it_exempt_reason=None,
-        **kwargs,
+        self, company, percentage, extra_domain=None, l10n_it_exempt_reason=None
     ):
         # Check if a tax of the default product fits what is requested
         partner_default_product = self.partner_id.l10n_it_edi_ext_default_product_id
         if default_product_taxes := partner_default_product.supplier_taxes_id:
-            product_extra_domain = osv.expression.AND(
+            product_extra_domain = Domain.AND(
                 [
                     extra_domain,
                     [
@@ -613,7 +637,6 @@ class AccountMoveInherit(models.Model):
                 percentage,
                 product_extra_domain,
                 l10n_it_exempt_reason=l10n_it_exempt_reason,
-                **kwargs,
             )
             if not tax:
                 tax = super()._l10n_it_edi_search_tax_for_import(
@@ -621,7 +644,6 @@ class AccountMoveInherit(models.Model):
                     percentage,
                     extra_domain,
                     l10n_it_exempt_reason=l10n_it_exempt_reason,
-                    **kwargs,
                 )
         else:
             tax = super()._l10n_it_edi_search_tax_for_import(
@@ -629,7 +651,6 @@ class AccountMoveInherit(models.Model):
                 percentage,
                 extra_domain,
                 l10n_it_exempt_reason=l10n_it_exempt_reason,
-                **kwargs,
             )
         return tax
 
@@ -1044,7 +1065,7 @@ class AccountMoveInherit(models.Model):
                 limit=1,
             )
         if not partner:
-            partner, _logs = self._l10n_it_edi_import_partner(
+            partner, _logs = self.env["account.edi.common"]._import_partner(
                 company_id=company,
                 name=partner_values.get("name"),
                 phone=partner_values.get("phone"),
@@ -1199,7 +1220,21 @@ class AccountMoveInherit(models.Model):
         ):
             invoice.l10n_it_edi_tax_representative_id = tax_representative
 
-        if attachment := data["attachment"]:
-            invoice.l10n_it_edi_ext_attachment_in_id = attachment.id
+        if (
+            invoice
+            and not invoice.is_sale_document()
+            and (attachment_name := data.get("name", ""))
+            and (attachment_raw := data.get("raw", b""))
+        ):
+            # Link the imported attachment, create one only for embedded files
+            xml_att = data.get("attachment") or self.env["ir.attachment"].create(
+                {
+                    "name": attachment_name,
+                    "raw": attachment_raw,
+                    "res_model": invoice._name,
+                    "res_id": invoice.id,
+                }
+            )
+            invoice.l10n_it_edi_ext_attachment_in_id = xml_att.id
 
         return invoice

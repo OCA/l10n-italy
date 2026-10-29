@@ -5,7 +5,7 @@
 import base64
 
 from odoo import tools
-from odoo.fields import Command
+from odoo.fields import Command, Domain
 
 from odoo.addons.l10n_it_edi.tests.common import TestItEdi
 
@@ -62,7 +62,7 @@ class Common(TestItEdi):
                     "amount": 0.0,
                     "amount_type": "percent",
                     "l10n_it_exempt_reason": "N3.1",
-                    "l10n_it_law_reference": "Art. 8, c.1, lett.a - D.P.R. 633/1972",
+                    "invoice_legal_notes": "Art. 8, c.1, lett.a - D.P.R. 633/1972",
                 }
             )
         )
@@ -75,15 +75,15 @@ class Common(TestItEdi):
                     "amount": 0.0,
                     "amount_type": "percent",
                     "l10n_it_exempt_reason": "N3.2",
-                    "l10n_it_law_reference": "N3.2 tax law reference",
+                    "invoice_legal_notes": "N3.2 tax law reference",
                     "type_tax_use": "sale",
                     "invoice_repartition_line_ids": cls.repartition_lines(
-                        cls.RepartitionLine(100, "base", ("+03", "+vj3")),
-                        cls.RepartitionLine(100, "tax", ("+5v",)),
-                        cls.RepartitionLine(-100, "tax", ("-4v",)),
+                        cls.RepartitionLine(100, "base", ("03", "vj3")),
+                        cls.RepartitionLine(100, "tax", ("5v",)),
+                        cls.RepartitionLine(-100, "tax", ("4v",)),
                     ),
                     "refund_repartition_line_ids": cls.repartition_lines(
-                        cls.RepartitionLine(100, "base", ("-03", "-vj3")),
+                        cls.RepartitionLine(100, "base", ("03", "vj3")),
                         cls.RepartitionLine(100, "tax", False),
                         cls.RepartitionLine(-100, "tax", False),
                     ),
@@ -135,5 +135,5 @@ class Common(TestItEdi):
         )
         action = wizard_attachment_import.action_import()
 
-        move_ids = action.get("domain")[0][2]
+        move_ids = action.get("domain", Domain).value
         return self.env["account.move"].browse(move_ids)

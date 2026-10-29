@@ -3,7 +3,7 @@
 
 {
     "name": "Italy - E-invoicing - Base Feature",
-    "version": "18.0.1.13.3",
+    "version": "19.0.1.0.0",
     "category": "Accounting/Localizations/EDI",
     "development_status": "Beta",
     "summary": "E-invoice base feature",
@@ -13,14 +13,11 @@
     "external_dependencies": {
         "python": [
             "codicefiscale",
-            "openupgradelib",
         ],
     },
     "depends": [
         "account",
-        "l10n_it_account",
         "l10n_it_edi",
-        "l10n_it_edi_ndd",
         "partner_firstname",
     ],
     "data": [
@@ -35,6 +32,4 @@
         "wizards/l10n_it_edi_import_file_wizard.xml",
     ],
     "installable": True,
-    "pre_init_hook": "_l10n_it_edi_extension_pre_init_hook",
-    "post_init_hook": "_l10n_it_edi_extension_post_init_hook",
 }

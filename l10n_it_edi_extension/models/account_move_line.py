@@ -22,7 +22,7 @@ class AccountMoveLineInherit(models.Model):
         """Open a popup to manage Other Management Data for this invoice line."""
         self.ensure_one()
         return {
-            "name": "Altri Dati Gestionali",
+            "name": self.env._("Other Management Data"),
             "type": "ir.actions.act_window",
             "res_model": "l10n_it_edi.line_other_data",
             "view_mode": "list,form",
