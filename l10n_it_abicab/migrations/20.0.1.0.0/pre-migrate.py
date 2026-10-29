@@ -40,20 +40,19 @@ def migrate(cr, version):
 
     # Ensure target columns exist (they should from the stored related,
     # but be defensive for fresh installs that jump straight to 20.0).
-    for col in ("bank_abi", "bank_cab"):
-        cr.execute(
-            """
-            SELECT 1
-              FROM information_schema.columns
-             WHERE table_name = 'res_partner_bank'
-               AND column_name = %s
-            """,
-            (col,),
-        )
-        if not cr.fetchone():
-            cr.execute(
-                f"ALTER TABLE res_partner_bank ADD COLUMN {col} varchar"
-            )
+    cr.execute(
+        """
+        SELECT column_name
+          FROM information_schema.columns
+         WHERE table_name = 'res_partner_bank'
+           AND column_name IN ('bank_abi', 'bank_cab')
+        """
+    )
+    existing_targets = {row[0] for row in cr.fetchall()}
+    if "bank_abi" not in existing_targets:
+        cr.execute("ALTER TABLE res_partner_bank ADD COLUMN bank_abi varchar")
+    if "bank_cab" not in existing_targets:
+        cr.execute("ALTER TABLE res_partner_bank ADD COLUMN bank_cab varchar")
 
     cr.execute(
         """
