@@ -9,8 +9,7 @@ from odoo.exceptions import UserError
 from .common import Common
 
 UPLOAD_SINGLE = (
-    "odoo.addons.l10n_it_edi.models.account_move.AccountMove"
-    "._l10n_it_edi_upload_single"
+    "odoo.addons.l10n_it_edi.models.account_move.AccountMove._l10n_it_edi_upload_single"
 )
 
 
