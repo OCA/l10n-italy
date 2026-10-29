@@ -10,20 +10,13 @@ class BankCase(TransactionCase):
         self.partner1 = self.env["res.partner"].create({"name": "Partner1"})
 
     def test_create_bank(self):
-        bank_model = self.env["res.bank"]
         pbank_model = self.env["res.partner.bank"]
-        bank1 = bank_model.create(
-            {
-                "name": "Bank1",
-                "abi": "abi_1",
-                "cab": "cab_1",
-            }
-        )
         pbank1 = pbank_model.create(
             {
                 "acc_number": "212",
                 "partner_id": self.partner1.id,
-                "bank_id": bank1.id,
+                "bank_abi": "abi_1",
+                "bank_cab": "cab_1",
             }
         )
 

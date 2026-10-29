@@ -13,7 +13,7 @@
     "website": "https://github.com/OCA/l10n-italy",
     "license": "AGPL-3",
     "maintainers": ["Borruso"],
-    "depends": ["base", "contacts", "account"],
+    "depends": ["base", "contacts"],
     "data": ["views/abicab_view.xml"],
     "installable": True,
 }
