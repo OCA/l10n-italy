@@ -9,4 +9,10 @@ class ResCompany(models.Model):
     l10n_it_edi_doi_bill_tax_id = fields.Many2one(
         comodel_name="account.tax",
         string="Declaration of Intent Bills Tax",
+        domain=[("type_tax_use", "=", "purchase")],
+        check_company=True,
+    )
+    l10n_it_edi_doi_tax_id = fields.Many2one(
+        domain=[("type_tax_use", "=", "sale")],
+        check_company=True,
     )
