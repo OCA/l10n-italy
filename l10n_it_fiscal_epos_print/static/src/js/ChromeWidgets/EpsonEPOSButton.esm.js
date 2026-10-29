@@ -30,7 +30,7 @@ export class EpsonEPOSButton extends Component {
     }
 }
 
-EpsonEPOSButton.template = "fiscal_epos_print.EpsonEPOSButton";
+EpsonEPOSButton.template = "l10n_it_fiscal_epos_print.EpsonEPOSButton";
 
 // Add the EpsonEPOSButton to Navbar components
 patch(Navbar, {

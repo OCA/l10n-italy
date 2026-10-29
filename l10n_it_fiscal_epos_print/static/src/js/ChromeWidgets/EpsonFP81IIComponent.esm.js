@@ -67,7 +67,7 @@ export class EpsonFP81IIComponent extends Component {
     }
 }
 
-EpsonFP81IIComponent.template = "fiscal_epos_print.EpsonFP81IIComponent";
+EpsonFP81IIComponent.template = "l10n_it_fiscal_epos_print.EpsonFP81IIComponent";
 
 // Add the EpsonFP81IIComponent to Navbar components
 patch(Navbar, {

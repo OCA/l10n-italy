@@ -8,7 +8,7 @@ import {registry} from "@web/core/registry";
 import {LotteryCodePopup} from "../Popups/LotteryCodePopup.esm";
 
 export class SetLotteryCodeButton extends Component {
-    static template = "fiscal_epos_print.SetLotteryCodeButton";
+    static template = "l10n_it_fiscal_epos_print.SetLotteryCodeButton";
 
     setup() {
         super.setup();

@@ -3,7 +3,7 @@ import {Dialog} from "@web/core/dialog/dialog";
 import {usePos} from "@point_of_sale/app/store/pos_hook";
 
 export class LotteryCodePopup extends Component {
-    static template = "fiscal_epos_print.LotteryCodePopup";
+    static template = "l10n_it_fiscal_epos_print.LotteryCodePopup";
     static components = {Dialog};
     static props = {
         title: {type: String, optional: true},

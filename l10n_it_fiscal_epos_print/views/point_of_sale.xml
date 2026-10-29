@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//form/sheet/div[3]" position="after">
-                <block title="Fiscal printer" id="fiscal_epos_print">
+                <block title="Fiscal printer" id="l10n_it_fiscal_epos_print">
                     <div class="row mt16 o_settings_container">
                         <setting
                             string="Printer address"
@@ -46,7 +46,7 @@
         <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <block id="restaurant_section" position="before">
-                <block title="Fiscal printer" id="fiscal_epos_print">
+                <block title="Fiscal printer" id="l10n_it_fiscal_epos_print">
                     <setting
                         string="Printer address"
                         help="The hostname or IP address of the fiscal printer"

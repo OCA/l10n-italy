@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
 
-    <t t-name="fiscal_epos_print.EpsonFP81IIComponent">
+    <t t-name="l10n_it_fiscal_epos_print.EpsonFP81IIComponent">
         <div class="epson-fp81ii-widget visually-hidden">
             <div class="toggle" t-on-click="onToggleComponent">
                 <i class='fa fa-times' />
@@ -18,7 +18,7 @@
                         >
                             <span>
                                 <img
-                                    src="/fiscal_epos_print/static/src/img/cashdrawer.svg"
+                                    src="/l10n_it_fiscal_epos_print/static/src/img/cashdrawer.svg"
                                     alt="Open CashDrawer"
                                     title="Open CashDrawer"
                                 />
@@ -36,7 +36,7 @@
                         >
                             <span>
                                 <img
-                                    src="/fiscal_epos_print/static/src/img/reprint.svg"
+                                    src="/l10n_it_fiscal_epos_print/static/src/img/reprint.svg"
                                     alt="Reprint Last Receipt"
                                     title="Reprint last receipt"
                                 />
@@ -58,7 +58,7 @@
                         >
                             <span>
                                 <img
-                                    src="/fiscal_epos_print/static/src/img/ade-logo.svg"
+                                    src="/l10n_it_fiscal_epos_print/static/src/img/ade-logo.svg"
                                     alt="IRA status"
                                     title="Status of files to be sent to IRA"
                                 />
@@ -76,7 +76,7 @@
                         >
                             <span>
                                 <img
-                                    src="/fiscal_epos_print/static/src/img/Z.svg"
+                                    src="/l10n_it_fiscal_epos_print/static/src/img/Z.svg"
                                     alt="Fiscal closure"
                                     title="Send fiscal closure command to the fiscal printer"
                                 />
@@ -94,7 +94,7 @@
                         >
                             <span>
                                 <img
-                                    src="/fiscal_epos_print/static/src/img/X.svg"
+                                    src="/l10n_it_fiscal_epos_print/static/src/img/X.svg"
                                     alt="Fiscal X report"
                                     title="Send fiscal X report to the fiscal printer"
                                 />
