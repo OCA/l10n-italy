@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-11 08:46+0000\n"
+"PO-Revision-Date: 2026-10-30 12:52+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -113,7 +113,7 @@ msgstr "Imposta fatture dichiarazione di intento"
 #. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_res_company__l10n_it_edi_doi_tax_id
 msgid "Declaration of Intent Tax"
-msgstr ""
+msgstr "Imposta dichiarazione di intento"
 
 #. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_purchase_order__l10n_it_edi_doi_warning
@@ -174,6 +174,8 @@ msgid ""
 "Given the Declaration of Intent %(doi_name)s is linked to this Move, at "
 "least one line should contain the Tax %(doi_tax_name)s."
 msgstr ""
+"Dato che la Dichiarazione di Intenti %(doi_name)s è collegata a questo "
+"movimento, almeno una riga deve contenere l'imposta %(doi_tax_name)s."
 
 #. module: l10n_it_edi_doi_extension
 #. odoo-python
@@ -351,6 +353,8 @@ msgid ""
 "Since the invoice line %(line_name)s includes the Tax %(doi_tax)s for the "
 "Declaration of Intent, it cannot include other Taxes."
 msgstr ""
+"Poiché la riga di fattura %(line_name)s include l'imposta %(doi_tax)s "
+"relativa alla Dichiarazione d'Intento, non può includere altre imposte."
 
 #. module: l10n_it_edi_doi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_doi_extension.field_account_move_doi__declaration_start_date
