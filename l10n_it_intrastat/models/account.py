@@ -10,7 +10,8 @@ from odoo.tools import float_is_zero
 class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
 
-    intrastat = fields.Boolean(string="Subject to Intrastat")
+    intrastat_purchase = fields.Boolean(string="Subject to Intrastat (purchases)")
+    intrastat_sale = fields.Boolean(string="Subject to Intrastat (sales)")
 
 
 class AccountMoveLine(models.Model):
@@ -296,7 +297,12 @@ class AccountMove(models.Model):
 
     @api.onchange("fiscal_position_id")
     def change_fiscal_position(self):
-        self.intrastat = self.fiscal_position_id.intrastat
+        self.intrastat = (
+            self.is_sale_document()
+            and self.fiscal_position_id.intrastat_sale
+            or self.is_purchase_document()
+            and self.fiscal_position_id.intrastat_purchase
+        )
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
@@ -307,13 +313,24 @@ class AccountMove(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for val in vals_list:
-            if "intrastat" not in val and "fiscal_position_id" in val:
-                intrastat = (
-                    self.env["account.fiscal.position"]
-                    .browse(val["fiscal_position_id"])
-                    .intrastat
+            if "fiscal_position_id" in val:
+                fiscal_position = self.env["account.fiscal.position"].browse(
+                    val["fiscal_position_id"]
                 )
-                val.update({"intrastat": intrastat})
+                if "intrastat" not in val:
+                    intrastat = False
+                    if "move_type" in val and val.get("move_type"):
+                        if (
+                            val.get("move_type")
+                            in self.env["account.move"].get_sale_types()
+                        ):
+                            intrastat = fiscal_position.intrastat_sale
+                        elif (
+                            val.get("move_type")
+                            in self.env["account.move"].get_purchase_types()
+                        ):
+                            intrastat = fiscal_position.intrastat_purchase
+                    val.update({"intrastat": intrastat})
         return super().create(vals_list)
 
     def action_post(self):
