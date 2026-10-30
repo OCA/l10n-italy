@@ -72,6 +72,72 @@ class AccountMove(models.Model):
             )
         return  # W8110
 
+    def _build_extended_threshold_warning(self):
+        self.ensure_one()
+        # Copied from core, with a few differences:
+        # - we consider all the linked declarations
+        # - we consider purchase orders in case of vendor bill
+        warnings = []
+        is_purchase = self.is_purchase_document()
+        for declaration_line in self.l10n_it_edi_doi_ids:
+            declaration = declaration_line.declaration_id
+            declaration_invoiced = declaration_line.amount
+            declaration_not_yet_invoiced = declaration.not_yet_invoiced
+            if (
+                self.state != "posted"
+            ):  # Here we replicate what would happen when posting the invoice.
+                additional_invoiced_qty = {}
+                linked_orders = (
+                    self.env["purchase.order"]
+                    if is_purchase
+                    else self.env["sale.order"]
+                )
+                for invoice_line in self.invoice_line_ids:
+                    order_lines = (
+                        invoice_line.purchase_line_id
+                        if is_purchase
+                        else invoice_line.sale_line_ids
+                    )
+                    for order_line in order_lines:
+                        order = order_line.order_id
+                        if order.l10n_it_edi_doi_id == declaration:
+                            linked_orders |= order
+                        qty_invoiced = (
+                            invoice_line.product_uom_id._compute_quantity(
+                                invoice_line.quantity, order_line.product_uom
+                            )
+                            * -self.direction_sign
+                        )
+                        order_line_id = order_line.ids[
+                            0
+                        ]  # do not just use `id` in case of NewId
+                        additional_invoiced_qty[order_line_id] = (
+                            additional_invoiced_qty.get(order_line_id, 0) + qty_invoiced
+                        )
+
+                for order in linked_orders:
+                    not_yet_invoiced = order.l10n_it_edi_doi_not_yet_invoiced
+                    not_yet_invoiced_after_posting = (
+                        order._l10n_it_edi_doi_get_amount_not_yet_invoiced(
+                            declaration,
+                            additional_invoiced_qty=additional_invoiced_qty,
+                        )
+                    )
+                    declaration_not_yet_invoiced -= (
+                        not_yet_invoiced - not_yet_invoiced_after_posting
+                    )
+
+            threshold_warning = declaration._build_threshold_warning_message(
+                declaration_invoiced, declaration_not_yet_invoiced
+            )
+            if threshold_warning:
+                warnings.append(threshold_warning)
+
+        return "\n".join(warnings)
+
+    @api.depends(
+        "l10n_it_edi_doi_ids.amount",
+    )
     def _compute_l10n_it_edi_doi_warning(self):
         """Override to show custom warning when DOI amounts don't cover
         invoice total.
@@ -79,7 +145,12 @@ class AccountMove(models.Model):
         super()._compute_l10n_it_edi_doi_warning()
         for move in self:
             # Clear the warning first
+            # because it is computed only on the first DoI
             move.l10n_it_edi_doi_warning = ""
+            warnings = []
+
+            if threshold_warning := move._build_extended_threshold_warning():
+                warnings.append(threshold_warning)
 
             # Only show warning if amounts don't match
             if (
@@ -94,14 +165,18 @@ class AccountMove(models.Model):
                 total = (
                     f"{move.l10n_it_edi_doi_amount:.2f} " f"{move.currency_id.symbol}"
                 )
-                move.l10n_it_edi_doi_warning = _(
-                    "Warning: The total amount covered by declarations "
-                    "(%(covered)s) is less than the invoice DOI amount "
-                    "(%(total)s). Please adjust the amounts or add more "
-                    "declarations.",
-                    covered=covered,
-                    total=total,
+                warnings.append(
+                    move.env._(
+                        "Warning: The total amount covered by declarations "
+                        "(%(covered)s) is less than the invoice DOI amount "
+                        "(%(total)s). Please adjust the amounts or add more "
+                        "declarations.",
+                        covered=covered,
+                        total=total,
+                    )
                 )
+
+            move.l10n_it_edi_doi_warning = "\n\n".join(warnings)
         return  # W8110
 
     def _compute_l10n_it_edi_doi_amount(self):
