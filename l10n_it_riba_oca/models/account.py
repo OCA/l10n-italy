@@ -417,26 +417,6 @@ class AccountMoveLine(models.Model):
     )
     due_cost_line = fields.Boolean("RiBa Collection Fees Line")
 
-    @api.model
-    def get_view(self, view_id=None, view_type="form", **options):
-        view_payments_tree_id = self.env.ref("l10n_it_riba_oca.view_riba_to_issue_tree")
-        if view_id == view_payments_tree_id.id:
-            # Use RiBa slip
-            result = super(models.Model, self).get_view(
-                view_id=view_id,
-                view_type=view_type,
-                **options,
-            )
-        else:
-            # Use special views for account.move.line object
-            # (for ex. list view contains user defined fields)
-            result = super().get_view(
-                view_id=view_id,
-                view_type=view_type,
-                **options,
-            )
-        return result
-
     def update_paid_riba_lines(self):
         """
         Update RiBa line status to 'paid' when move lines are reconciled.
