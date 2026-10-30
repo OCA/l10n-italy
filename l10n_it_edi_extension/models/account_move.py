@@ -1,0 +1,1653 @@
+# Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
+# Copyright 2025 Simone Rubino
+# Copyright 2026 Luca Orioli <lucaorioli@gmail.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+import base64
+import binascii
+import logging
+import mimetypes
+import os
+from base64 import b64decode, b64encode
+from collections import Counter
+
+from lxml import etree
+
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+from odoo.fields import Domain
+from odoo.tools import float_compare, html2plaintext, is_html_empty
+
+from odoo.addons.base.models.ir_qweb_fields import Markup
+from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get_text
+from odoo.addons.l10n_it_edi.tools.remove_signature import remove_signature
+
+_logger = logging.getLogger(__name__)
+
+# SdI limit on the size of the transmitted XML file
+SDI_MAX_FILE_SIZE = 5 * 1024 * 1024
+# Kept free below the SdI limit, since the XML size is only estimated
+SDI_SIZE_MARGIN = 100 * 1024
+# Estimated XML size without attachments: header, parties and totals, plus
+# each DettaglioLinee node without its description (from the l10n_it_edi
+# test files: about 3 KB, plus 0.5-0.8 KB per line, rounded up)
+XML_BASE_SIZE = 4 * 1024
+XML_LINE_SIZE = 1024
+# FatturaPA maximum lengths (block 2.2.1.4 Descrizione, block 2.5 Allegati)
+DESCRIZIONE_MAXLEN = 1000
+NOME_ATTACHMENT_MAXLEN = 60
+FORMATO_ATTACHMENT_MAXLEN = 10
+DOC_ATTACHMENT_FIELD = "l10n_it_edi_ext_doc_attachment_ids"
+# Attachments of the XML the browser may display: PDF and raster images
+VIEWABLE_MIMETYPES = {
+    "application/pdf",
+    "image/bmp",
+    "image/gif",
+    "image/jpeg",
+    "image/png",
+    "image/tiff",
+    "image/webp",
+}
+
+
+class AccountMoveInherit(models.Model):
+    _inherit = "account.move"
+
+    l10n_it_edi_protocol_number = fields.Char(size=64, copy=False)
+    l10n_it_edi_tax_representative_id = fields.Many2one(
+        "res.partner", string="Tax Representative"
+    )
+    l10n_it_edi_sender = fields.Selection(
+        [("CC", "Assignee / Partner"), ("TZ", "Third Person")], string="Sender"
+    )
+    l10n_it_edi_attachment_preview_link = fields.Char(
+        string="Preview link",
+        compute="_compute_l10n_it_edi_attachment_preview_link",
+    )
+    l10n_it_edi_ext_attachment_in_id = fields.Many2one(
+        comodel_name="ir.attachment",
+        string="Imported Electronic Bill",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_line_ids = fields.One2many(
+        "l10n_it_edi.line",
+        "invoice_id",
+        string="E-Invoice Lines",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_summary_ids = fields.One2many(
+        "l10n_it_edi.summary_data",
+        "invoice_id",
+        string="E-Invoice Summary Data",
+        copy=False,
+    )
+    l10n_it_edi_activity_progress_ids = fields.One2many(
+        "l10n_it_edi.activity_progress",
+        "invoice_id",
+        string="E-Invoice Activity Progress",
+        copy=False,
+    )
+    l10n_it_edi_rounding = fields.Float(
+        string="Rounding",
+        readonly=True,
+        help="Possible total amount rounding on the document (negative sign allowed)",
+        copy=False,
+    )
+    l10n_edi_it_art73 = fields.Boolean(
+        string="Art. 73",
+        readonly=True,
+        help="Indicates whether the document has been issued according to "
+        "methods and terms laid down in a ministerial decree under the "
+        "terms of Article 73 of Italian Presidential Decree 633/72 (this "
+        "enables the seller/provider to issue in the same year several "
+        "documents with same number)",
+        copy=False,
+    )
+    l10n_it_edi_related_invoice_code = fields.Char(
+        string="Related Invoice Code", copy=False
+    )
+    l10n_it_edi_related_invoice_date = fields.Date(
+        string="Related Invoice Date", copy=False
+    )
+    l10n_it_edi_stabile_organizzazione_indirizzo = fields.Char(
+        string="Organization Address",
+        help="The fields must be entered only when the seller/provider is "
+        "non-resident, with a stable organization in Italy. Address of "
+        "the stable organization in Italy (street name, square, etc.)",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_stabile_organizzazione_civico = fields.Char(
+        string="Organization Street Number",
+        help="Street number of the address (no need to specify if already "
+        "present in the address field)",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_stabile_organizzazione_cap = fields.Char(
+        string="Organization ZIP", help="ZIP Code", readonly=True, copy=False
+    )
+    l10n_it_edi_stabile_organizzazione_comune = fields.Char(
+        string="Organization Municipality",
+        help="Municipality or city to which the Stable Organization refers",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_stabile_organizzazione_provincia = fields.Char(
+        string="Organization Province",
+        help="Acronym of the Province to which the municipality indicated "
+        "in the information element 1.2.3.4 <Comune> belongs. "
+        "Must be filled if the information element 1.2.3.6 <Nazione> is "
+        "equal to IT",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_stabile_organizzazione_nazione = fields.Char(
+        string="Organization Country",
+        help="Country code according to the ISO 3166-1 alpha-2 code standard",
+        readonly=True,
+        copy=False,
+    )
+    l10n_it_edi_amount_untaxed = fields.Monetary(
+        string="E-Invoice Untaxed Amount", readonly=True
+    )
+    l10n_it_edi_amount_tax = fields.Monetary(
+        string="E-Invoice Tax Amount", readonly=True
+    )
+    l10n_it_edi_amount_total = fields.Monetary(
+        string="E-Invoice Total Amount",
+        compute="_compute_l10n_it_amount_total",
+        readonly=True,
+    )
+    l10n_it_edi_validation_message = fields.Text(
+        compute="_compute_l10n_it_edi_validation_message"
+    )
+    l10n_it_document_type_code = fields.Char(
+        related="l10n_it_document_type.code",
+        string="Document Type Code",
+    )
+    l10n_it_edi_ext_doc_attachment_ids = fields.Many2many(
+        comodel_name="ir.attachment",
+        relation="account_move_l10n_it_edi_ext_doc_attachment_rel",
+        column1="move_id",
+        column2="attachment_id",
+        string="E-Invoice Attachments",
+        copy=False,
+        # The attachments are linked with res_field (see _link_doc_attachments):
+        # without this key, ir.attachment._search would hide them from the field
+        context={"skip_res_field_check": True},
+        help="Files to be included in the electronic invoice XML, each one in an "
+        "<Allegati> node. They are read when the XML is generated: "
+        "if the XML already exists, it must be generated again to include changes.",
+    )
+    l10n_it_edi_ext_xml_generated = fields.Boolean(
+        string="E-Invoice XML Generated",
+        compute="_compute_l10n_it_edi_ext_xml_attachments",
+    )
+    l10n_it_edi_ext_xml_attachments_data = fields.Json(
+        string="Attachments in the XML",
+        compute="_compute_l10n_it_edi_ext_xml_attachments",
+    )
+    l10n_it_edi_ext_xml_attachments_missing = fields.Boolean(
+        string="E-Invoice Attachments Missing from the XML",
+        compute="_compute_l10n_it_edi_ext_xml_attachments",
+        help="At least one of the e-invoice attachments "
+        "is missing from the generated XML.",
+    )
+    l10n_it_edi_ext_xml_attachments_removed = fields.Boolean(
+        string="E-Invoice Attachments Removed from the List",
+        compute="_compute_l10n_it_edi_ext_xml_attachments",
+        help="The generated XML contains at least one attachment "
+        "that is no longer in the e-invoice attachments.",
+    )
+
+    # -------------------------------------------------------------------------
+    # Computes
+    # -------------------------------------------------------------------------
+
+    @api.depends("l10n_it_edi_attachment_file", "l10n_it_edi_ext_attachment_in_id")
+    def _compute_l10n_it_edi_attachment_preview_link(self):
+        for move in self:
+            if (
+                move.l10n_it_edi_attachment_file
+                or move.l10n_it_edi_ext_attachment_in_id
+            ):
+                move.l10n_it_edi_attachment_preview_link = (
+                    move.get_base_url() + f"/fatturapa/preview/{move.id}"
+                )
+            else:
+                move.l10n_it_edi_attachment_preview_link = ""
+
+    @api.depends(
+        "l10n_it_edi_amount_untaxed", "l10n_it_edi_amount_tax", "l10n_it_edi_rounding"
+    )
+    def _compute_l10n_it_amount_total(self):
+        for move in self:
+            move.l10n_it_edi_amount_total = sum(
+                [
+                    move.l10n_it_edi_amount_untaxed,
+                    move.l10n_it_edi_amount_tax,
+                    move.l10n_it_edi_rounding,
+                ]
+            )
+
+    def _l10n_it_edi_is_to_validate(self):
+        self.ensure_one()
+        return (
+            self.is_purchase_document()
+            or self.env.context.get("l10n_it_validate_all_invoices")
+            and self.is_sale_document()
+        )
+
+    @api.depends(
+        "move_type",
+        "state",
+        "amount_untaxed",
+        "amount_tax",
+        "amount_total",
+        "l10n_it_edi_attachment_file",
+        "l10n_it_edi_amount_untaxed",
+        "l10n_it_edi_amount_tax",
+        "l10n_it_edi_rounding",
+    )
+    def _compute_l10n_it_edi_validation_message(self):
+        self.l10n_it_edi_validation_message = ""
+
+        invoices_to_check = self.filtered(
+            lambda inv: inv._l10n_it_edi_is_to_validate()
+            and inv.state in ["draft", "posted"]
+            and inv.l10n_it_edi_attachment_file
+        )
+        for invoice in invoices_to_check:
+            error_messages = list()
+
+            if error_message := invoice._l10n_it_edi_check_amount_untaxed():
+                error_messages.append(error_message)
+
+            if error_message := invoice._l10n_it_edi_check_amount_tax():
+                error_messages.append(error_message)
+
+            if error_message := invoice._l10n_it_edi_check_amount_total():
+                error_messages.append(error_message)
+
+            if not error_messages:
+                continue
+            invoice.l10n_it_edi_validation_message = ",\n".join(error_messages) + "."
+
+    @api.depends(
+        "l10n_it_edi_attachment_file",
+        "l10n_it_edi_ext_attachment_in_id",
+        "l10n_it_edi_ext_doc_attachment_ids",
+        "invoice_pdf_report_id",
+    )
+    def _compute_l10n_it_edi_ext_xml_attachments(self):
+        for move in self:
+            xml_attachments = move._l10n_it_edi_ext_read_xml_attachments()
+            move.l10n_it_edi_ext_xml_generated = xml_attachments is not None
+            move.l10n_it_edi_ext_xml_attachments_data = xml_attachments or []
+            # The list is only exported in the XML of customer documents
+            if xml_attachments is None or not move.is_sale_document():
+                move.l10n_it_edi_ext_xml_attachments_missing = False
+                move.l10n_it_edi_ext_xml_attachments_removed = False
+                continue
+            # Compare names as written in the XML (same truncation and encoding)
+            xml_names = Counter(att["name"] for att in xml_attachments)
+            # The invoice PDF added by l10n_it_edi is not in the list
+            xml_names -= Counter([move._l10n_it_edi_ext_invoice_pdf_xml_name()])
+            expected_names = Counter(
+                move._l10n_it_edi_ext_to_latin_1(
+                    move._l10n_it_edi_ext_attachment_xml_name(att.name)
+                )
+                for att in move._l10n_it_edi_ext_get_doc_attachments()
+            )
+            move.l10n_it_edi_ext_xml_attachments_missing = bool(
+                expected_names - xml_names
+            )
+            move.l10n_it_edi_ext_xml_attachments_removed = bool(
+                xml_names - expected_names
+            )
+
+    # -------------------------------------------------------------------------
+    # CRUD
+    # -------------------------------------------------------------------------
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        moves = super().create(vals_list)
+        moves._l10n_it_edi_ext_link_doc_attachments()
+        return moves
+
+    def write(self, vals):
+        if "l10n_it_edi_ext_doc_attachment_ids" not in vals:
+            return super().write(vals)
+        previous = {move: move.l10n_it_edi_ext_doc_attachment_ids for move in self}
+        res = super().write(vals)
+        self._l10n_it_edi_ext_link_doc_attachments()
+        for move in self:
+            removed = previous[move] - move.l10n_it_edi_ext_doc_attachment_ids
+            if removed:
+                move._l10n_it_edi_ext_remove_doc_attachments(removed)
+        return res
+
+    # -------------------------------------------------------------------------
+    # Mail
+    # -------------------------------------------------------------------------
+
+    def _get_mail_thread_data_attachments(self):
+        res = super()._get_mail_thread_data_attachments()
+        # Attachments with res_field are excluded: show the e-invoice attachments
+        # of this move (and only of this move) in the chatter and in the preview
+        return res | self.l10n_it_edi_ext_doc_attachment_ids
+
+    # -------------------------------------------------------------------------
+    # Business actions
+    # -------------------------------------------------------------------------
+
+    def action_l10n_it_edi_attachment_preview(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_url",
+            "name": self.env._("Show preview"),
+            "url": self.l10n_it_edi_attachment_preview_link,
+            "target": "new",
+        }
+
+    def _get_invoice_legal_documents(self, filetype, allow_fallback=False):
+        self.ensure_one()
+
+        if filetype == "fatturapa":
+            if fatturapa_attachment := self.l10n_it_edi_ext_attachment_in_id:
+                return {
+                    "filename": fatturapa_attachment.name,
+                    "filetype": "xml",
+                    "content": fatturapa_attachment.raw,
+                }
+        return super()._get_invoice_legal_documents(
+            filetype, allow_fallback=allow_fallback
+        )
+
+    def action_l10n_it_edi_ext_send_self_invoices(self):
+        """Send the selected self-invoices to the SdI.
+
+        Each move is sent with `action_l10n_it_edi_send`
+        and committed right after, so that Odoo stays aligned with the SdI
+        even if the request is interrupted (e.g. worker time limit).
+        A move that cannot be sent does not stop the others:
+        the moves already sent stay sent and the next ones are still tried.
+        The reason is shown in the e-invoicing warning of the move
+        (failed export checks, upload errors)
+        or in the final notification (errors raised while sending).
+        """
+        moves = self.filtered(
+            lambda move: move._l10n_it_edi_ext_is_self_invoice_to_send()
+        )
+        if not moves:
+            raise UserError(
+                self.env._(
+                    "None of the selected documents is a self-invoice "
+                    "ready to be sent to the SdI."
+                )
+            )
+
+        error_moves = self.browse()
+        error_messages = []
+        for move in moves:
+            try:
+                # Roll back the changes of the failing move only,
+                # so that they are not committed
+                with self.env.cr.savepoint():
+                    move.action_l10n_it_edi_send()
+            # Catch any error, so that it does not stop the next moves
+            except Exception as error:
+                if not isinstance(error, UserError):
+                    _logger.exception(
+                        "Error while sending %s to the SdI", move.display_name
+                    )
+                # Do not write the error in the move:
+                # another process sending it could have locked it
+                error_moves |= move
+                error_messages.append(f"{move.display_name}: {error}")
+            # Save each move right away, like core e-invoicing localizations
+            # (e.g. l10n_ro_edi, l10n_my_edi): if the request is interrupted,
+            # Odoo still knows which moves the SdI has received.
+            # Committing is safe here because each move is sent independently:
+            # nothing left in the transaction depends on the next moves
+            if self._can_commit():
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+
+        not_sent_moves = moves.filtered(
+            lambda move: not (move.l10n_it_edi_transaction and move.l10n_it_edi_state)
+        )
+        messages = [
+            self.env._(
+                "%(count)s self-invoices sent to the SdI.",
+                count=len(moves - not_sent_moves),
+            )
+        ]
+        if warning_moves := not_sent_moves - error_moves:
+            messages.append(
+                self.env._(
+                    "Not sent, see the warning in each document: %(moves)s.",
+                    moves=", ".join(warning_moves.mapped("display_name")),
+                )
+            )
+        if error_messages:
+            messages.append(
+                self.env._(
+                    "Not sent because of an error: %(errors)s.",
+                    errors="; ".join(error_messages),
+                )
+            )
+        if skipped_moves := self - moves:
+            messages.append(
+                self.env._(
+                    "%(count)s selected documents skipped "
+                    "because they are not self-invoices ready to be sent.",
+                    count=len(skipped_moves),
+                )
+            )
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": self.env._("Send to SDI"),
+                "message": " ".join(messages),
+                "type": "warning" if not_sent_moves else "success",
+                "sticky": bool(not_sent_moves),
+                "next": {"type": "ir.actions.client", "tag": "soft_reload"},
+            },
+        }
+
+    # -------------------------------------------------------------------------
+    # Helpers
+    # -------------------------------------------------------------------------
+
+    def _get_xml_tree(self, file_data):
+        # Extend Odoo standard check to also recognize signed e-invoice files
+        # (e.g. .p7m files reported as "application/octet-stream").
+        xml_tree = super()._get_xml_tree(file_data)
+        if (
+            xml_tree is None
+            and file_data["raw"]
+            and file_data["name"]
+            and file_data["name"].lower().endswith(".p7m")
+        ):
+            p7m_xml_tree = self._parse_xml_with_recovery(
+                file_data["raw"], file_data["name"]
+            )
+            if self._is_l10n_it_edi_import_file({"xml_tree": p7m_xml_tree}):
+                xml_tree = p7m_xml_tree
+        return xml_tree
+
+    def _l10n_it_edi_ext_decode_p7m_base64(self, content, name=None):
+        """Some programs download p7m files as base64 text."""
+        try:
+            return base64.b64decode(content)
+        except binascii.Error:
+            _logger.info(f"The p7m file '{name}' is not base64 encoded")
+            return ""
+
+    def _parse_xml_with_recovery(self, content, name=None):
+        xml_tree = super()._parse_xml_with_recovery(content, name=name)
+        if xml_tree is None and name and name.lower().endswith(".p7m"):
+            decoded = self._l10n_it_edi_ext_decode_p7m_base64(content, name=name)
+            xml_tree = super()._parse_xml_with_recovery(decoded, name=name)
+        return xml_tree
+
+    def _l10n_it_edi_ext_is_self_invoice(self):
+        """Tell whether the move is sent to the SdI like a self-invoice,
+        with `action_l10n_it_edi_send`."""
+        self.ensure_one()
+        return self.l10n_it_edi_is_self_invoice
+
+    def _l10n_it_edi_ext_is_self_invoice_to_send(self):
+        """Tell whether the move can be sent now with `action_l10n_it_edi_send`.
+
+        Keep in sync with the visibility of the "Send to SDI" button
+        in view `l10n_it_edi.account_invoice_form_l10n_it`
+        and in its extension in this module.
+        """
+        self.ensure_one()
+        return (
+            self._l10n_it_edi_ext_is_self_invoice()
+            and self.state == "posted"
+            and not self.is_move_sent
+            and self.country_code == "IT"
+            and self.l10n_it_edi_state not in ("rejected", "rejected_by_pa_partner")
+            and self._l10n_it_edi_ext_is_document_type_to_send()
+        )
+
+    def _l10n_it_edi_ext_is_document_type_to_send(self):
+        """Tell whether the document type of the move can be sent to the SdI."""
+        self.ensure_one()
+        return self.l10n_it_document_type_code not in ("TD01", "TD04", "TD24")
+
+    def _l10n_it_edi_add_base_lines_xml_values(
+        self, base_lines_aggregated_values, is_downpayment
+    ):
+        res = super()._l10n_it_edi_add_base_lines_xml_values(
+            base_lines_aggregated_values, is_downpayment
+        )
+        for base_line, _aggregated_values in base_lines_aggregated_values:
+            line = base_line["record"]
+            # Build other_data list from l10n_it_edi_other_data_ids
+            other_data_list = []
+            for other_data in line.l10n_it_edi_other_data_ids:
+                other_data_dict = {
+                    "tipo_dato": other_data.name,
+                    "riferimento_testo": other_data.text_ref or False,
+                    "riferimento_numero": other_data.num_ref or False,
+                    # Pass date object directly, format_date() in template handles it
+                    "riferimento_data": other_data.date_ref or False,
+                }
+                other_data_list.append(other_data_dict)
+
+            # Get existing altri_dati_gestionali_list or initialize empty list
+            existing_list = base_line["it_values"].get("altri_dati_gestionali_list", [])
+            base_line["it_values"].update(
+                {
+                    "admin_ref": line.l10n_it_edi_admin_ref or None,
+                    "altri_dati_gestionali_list": existing_list + other_data_list,
+                }
+            )
+        return res
+
+    def _l10n_it_edi_get_values(self, pdf_values=None):
+        res = super()._l10n_it_edi_get_values(pdf_values)
+
+        causale_lines = []
+        if not is_html_empty(self.narration):
+            try:
+                narration_text = html2plaintext(self.narration)
+            except Exception:
+                narration_text = ""
+
+            # max length of Causale is 200
+            for line in narration_text.splitlines():
+                if line.strip():
+                    causale_lines.extend(
+                        line[i : i + 200] for i in range(0, len(line), 200)
+                    )
+
+        res["causale_lines"] = causale_lines
+        res["doc_attachments"] = self._l10n_it_edi_ext_get_doc_attachments_values()
+
+        return res
+
+    def _l10n_it_edi_export_data_check(self):
+        errors = super()._l10n_it_edi_export_data_check()
+        too_big = self.filtered(
+            lambda move: move._l10n_it_edi_ext_estimated_xml_size()
+            > SDI_MAX_FILE_SIZE - SDI_SIZE_MARGIN
+        )
+        if too_big:
+            errors["l10n_it_edi_ext_doc_attachments_too_big"] = {
+                "message": self.env._(
+                    "The e-invoice XML would exceed the SdI limit of 5 MB per "
+                    "file (estimated size with the attachments and the invoice "
+                    "PDF, with a 100 KB margin): %(moves)s",
+                    moves=", ".join(too_big.mapped("display_name")),
+                ),
+            }
+        return errors
+
+    def _l10n_it_edi_get_extra_info(
+        self, company, document_type, body_tree, incoming=True
+    ):
+        extra_info, message_to_log = super()._l10n_it_edi_get_extra_info(
+            company, document_type, body_tree, incoming=incoming
+        )
+
+        if sender := get_text(body_tree, "//SoggettoEmittente"):
+            self.l10n_it_edi_sender = sender
+
+        if elements_stabile_organizzazione := body_tree.xpath(
+            "//StabileOrganizzazione"
+        ):
+            element_stabile_organizzazione = elements_stabile_organizzazione[0]
+            self.update(
+                {
+                    "l10n_it_edi_stabile_organizzazione_indirizzo": get_text(
+                        element_stabile_organizzazione, ".//Indirizzo"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_civico": get_date(
+                        element_stabile_organizzazione, ".//NumeroCivico"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_cap": get_date(
+                        element_stabile_organizzazione, ".//CAP"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_comune": get_date(
+                        element_stabile_organizzazione, ".//Comune"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_provincia": get_date(
+                        element_stabile_organizzazione, ".//Provincia"
+                    ),
+                    "l10n_it_edi_stabile_organizzazione_nazione": get_date(
+                        element_stabile_organizzazione, ".//Nazione"
+                    ),
+                }
+            )
+
+        if rounding := get_float(body_tree, ".//DatiGeneraliDocumento/Arrotondamento"):
+            self.l10n_it_edi_rounding = rounding
+
+        if get_text(body_tree, "//DatiGeneraliDocumento/Art73"):
+            self.l10n_edi_it_art73 = True
+
+        if elements_sal := body_tree.xpath(".//DatiGenerali/DatiSAL"):
+            self.env["l10n_it_edi.activity_progress"].create(
+                [
+                    {
+                        "activity_progress": get_text(
+                            element_sal, ".//RiferimentoFase"
+                        ),
+                        "invoice_id": self.id,
+                    }
+                    for element_sal in elements_sal
+                ],
+            )
+
+        for xpath, label in [
+            (
+                ".//DatiGenerali/DatiTrasporto",
+                self.env._("Transport informations from XML file:"),
+            ),
+            (".//DatiVeicoli", self.env._("Vehicle informations from XML file:")),
+        ]:
+            if body_tree.xpath(xpath):
+                message = Markup("<br/>").join(
+                    (label, self._compose_info_message(body_tree, xpath))
+                )
+                message_to_log.append(message)
+
+        if elements_parent_invoice := body_tree.xpath(
+            ".//DatiGenerali/FatturaPrincipale"
+        ):
+            for element_parent_invoice in elements_parent_invoice:
+                self.write(
+                    {
+                        "l10n_it_edi_related_invoice_code": get_text(
+                            element_parent_invoice, ".//NumeroFatturaPrincipale"
+                        ),
+                        "l10n_it_edi_related_invoice_date": get_date(
+                            element_parent_invoice, ".//DataFatturaPrincipale"
+                        ),
+                    }
+                )
+
+        tag_name = (
+            ".//DettaglioLinee"
+            if not extra_info["simplified"]
+            else ".//DatiBeniServizi"
+        )
+        amount_untaxed = sum(
+            get_float(element_line, ".//PrezzoTotale")
+            for element_line in body_tree.xpath(tag_name)
+        )
+
+        amount_tax = 0.0
+        if elements_summary := body_tree.xpath(".//DatiBeniServizi/DatiRiepilogo"):
+            self.env["l10n_it_edi.summary_data"].create(
+                [
+                    {
+                        "tax_rate": get_float(element_summary, ".//AliquotaIVA"),
+                        "non_taxable_nature": get_text(element_summary, ".//Natura"),
+                        "incidental_charges": get_float(
+                            element_summary, ".//SpeseAccessorie"
+                        ),
+                        "rounding": get_float(element_summary, ".//Arrotondamento"),
+                        "amount_untaxed": get_float(
+                            element_summary, ".//ImponibileImporto"
+                        ),
+                        "amount_tax": get_float(element_summary, ".//Imposta"),
+                        "payability": get_text(element_summary, ".//EsigibilitaIVA"),
+                        "law_reference": get_text(
+                            element_summary, ".//RiferimentoNormativo"
+                        ),
+                        "invoice_id": self.id,
+                    }
+                    for element_summary in elements_summary
+                ]
+            )
+            amount_tax = sum(
+                get_float(element_summary, ".//Imposta")
+                for element_summary in elements_summary
+            )
+
+        # Single batch write replaces N+M per-iteration writes from the
+        # previous "self.field += value" accumulation loops.
+        # skip_invoice_sync avoids _sync_dynamic_lines firing on a write
+        # that only touches XML-derived header amounts.
+        if amount_untaxed or amount_tax:
+            self.with_context(skip_invoice_sync=True).write(
+                {
+                    "l10n_it_edi_amount_untaxed": amount_untaxed,
+                    "l10n_it_edi_amount_tax": amount_tax,
+                }
+            )
+
+        return extra_info, message_to_log
+
+    @api.model
+    def _l10n_it_edi_extension_core_partner_fields(self):
+        """Return partner fields core writes during FatturaPA import.
+
+        Override this hook when another module starts (or stops) writing
+        a partner field through core's ``_l10n_it_edi_import_partner``,
+        so that ``_l10n_it_edi_update_partner`` keeps respecting core.
+        """
+        return {
+            "name",
+            "vat",
+            "email",
+            "phone",
+            "street",
+            "street2",
+            "zip",
+            "city",
+            "country_id",
+            "is_company",
+            "l10n_it_codice_fiscale",
+        }
+
+    def _l10n_it_edi_update_partner(self, xml_tree, role, partner):
+        """Fill on ``partner`` the FatturaPA fields core does not handle.
+
+        Core writes the basic identity and address block. Drop those
+        keys from the prepared values so they stay as core wrote them,
+        and write the FatturaPA extras (state_id, EORI, professional
+        register data, firstname/lastname split).
+        """
+        vals = self._l10n_it_edi_extension_prepare_partner_values(xml_tree, role)
+        for field_name in self._l10n_it_edi_extension_core_partner_fields():
+            vals.pop(field_name, None)
+        if vals:
+            partner.update(vals)
+        return partner
+
+    def _l10n_it_edi_search_tax_for_import(
+        self, company, percentage, extra_domain=None, l10n_it_exempt_reason=None
+    ):
+        # Check if a tax of the default product fits what is requested
+        partner_default_product = self.partner_id.l10n_it_edi_ext_default_product_id
+        if default_product_taxes := partner_default_product.supplier_taxes_id:
+            product_extra_domain = Domain.AND(
+                [
+                    extra_domain,
+                    [
+                        ("id", "in", default_product_taxes.ids),
+                    ],
+                ]
+            )
+            tax = super()._l10n_it_edi_search_tax_for_import(
+                company,
+                percentage,
+                product_extra_domain,
+                l10n_it_exempt_reason=l10n_it_exempt_reason,
+            )
+            if not tax:
+                tax = super()._l10n_it_edi_search_tax_for_import(
+                    company,
+                    percentage,
+                    extra_domain,
+                    l10n_it_exempt_reason=l10n_it_exempt_reason,
+                )
+        else:
+            tax = super()._l10n_it_edi_search_tax_for_import(
+                company,
+                percentage,
+                extra_domain,
+                l10n_it_exempt_reason=l10n_it_exempt_reason,
+            )
+        return tax
+
+    def _l10n_it_edi_ext_import_summary_line(self, element, extra_info=None):
+        messages_to_log = []
+        if extra_info is None:
+            extra_info = {}
+        company = self.company_id
+        percentage = get_float(element, ".//AliquotaIVA")
+        extra_domain = extra_info.get(
+            "type_tax_use_domain", [("type_tax_use", "=", "purchase")]
+        )
+        l10n_it_exempt_reason = get_text(element, ".//Natura").upper() or False
+        tax = self._l10n_it_edi_search_tax_for_import(
+            company,
+            percentage,
+            extra_domain,
+            l10n_it_exempt_reason=l10n_it_exempt_reason,
+        )
+        if tax:
+            line_values = {
+                "move_id": self.id,
+                "name": self.env._(
+                    "Summary for tax amount %(percentage)s",
+                    percentage=percentage,
+                ),
+                "price_unit": get_float(element, ".//ImponibileImporto"),
+                "tax_ids": tax.ids,
+            }
+            if (
+                partner_default_product
+                := self.partner_id.l10n_it_edi_ext_default_product_id
+            ):
+                line_values["product_id"] = partner_default_product.id
+            self.env["account.move.line"].create(line_values)
+        else:
+            messages_to_log.append(
+                Markup("<br/>").join(
+                    (
+                        self.env._(
+                            "Tax not found for summary line "
+                            "with percentage %(percentage)s.",
+                            percentage=percentage,
+                        ),
+                        self._compose_info_message(element, "."),
+                    )
+                )
+            )
+
+        return messages_to_log
+
+    def _l10n_it_edi_import_line(self, element, move_line, extra_info=None):
+        if extra_info is None:
+            extra_info = dict()
+        messages_to_log = []
+        company = move_line.company_id
+        partner = move_line.partner_id
+        import_detail_level = (
+            partner.l10n_it_edi_import_detail_level
+            or company.l10n_it_edi_import_detail_level
+        )
+        if import_detail_level == "min":
+            line_description = " ".join(get_text(element, ".//Descrizione").split())
+            messages_to_log.append(
+                Markup("<br/>").join(
+                    (
+                        self.env._(
+                            "Line with description %(line_description)s "
+                            "has been skipped "
+                            "because import detail level is minimum.",
+                            line_description=line_description,
+                        ),
+                        self._compose_info_message(element, "."),
+                    )
+                )
+            )
+        elif import_detail_level == "tax":
+            # Lines will be replaced with summary lines in _l10n_it_edi_import_invoice
+            line_description = " ".join(get_text(element, ".//Descrizione").split())
+            messages_to_log.append(
+                Markup("<br/>").join(
+                    (
+                        self.env._(
+                            "Line with description %(line_description)s "
+                            "has been replaced by summary line "
+                            "because import detail level is tax.",
+                            line_description=line_description,
+                        ),
+                        self._compose_info_message(element, "."),
+                    )
+                )
+            )
+        elif import_detail_level == "max":
+            # Admin. ref.
+            if admin_ref := get_text(element, ".//RiferimentoAmministrazione"):
+                move_line.l10n_it_edi_admin_ref = admin_ref
+
+            vals = {
+                "line_number": int(get_text(element, ".//NumeroLinea")),
+                "service_type": get_text(element, ".//TipoCessionePrestazione"),
+                "name": " ".join(get_text(element, ".//Descrizione").split()),
+                "qty": float(get_text(element, ".//Quantita") or 0),
+                "uom": get_text(element, ".//UnitaMisura"),
+                "period_start_date": get_date(element, ".//DataInizioPeriodo"),
+                "period_end_date": get_date(element, ".//DataFinePeriodo"),
+                "unit_price": get_float(element, ".//PrezzoUnitario"),
+                "total_price": get_float(element, ".//PrezzoTotale"),
+                "tax_amount": get_float(element, ".//AliquotaIVA"),
+                "wt_amount": get_text(element, ".//Ritenuta"),
+                "tax_kind": get_text(element, ".//Natura").upper(),
+                "invoice_line_id": move_line.id,
+                "invoice_id": move_line.move_id.id,
+            }
+            einvoice_line = self.env["l10n_it_edi.line"].create(vals)
+
+            if elements_code := element.xpath(".//CodiceArticolo"):
+                self.env["l10n_it_edi.article_code"].create(
+                    [
+                        {
+                            "name": get_text(element_code, ".//CodiceTipo"),
+                            "code_val": get_text(element_code, ".//CodiceValore"),
+                            "l10n_it_edi_line_id": einvoice_line.id,
+                        }
+                        for element_code in elements_code
+                    ]
+                )
+
+            if elements_discount := element.xpath(".//ScontoMaggiorazione"):
+                self.env["l10n_it_edi.discount_rise_price"].create(
+                    [
+                        {
+                            "name": get_text(element_discount, ".//Tipo"),
+                            "percentage": get_float(element_discount, ".//Percentuale"),
+                            "amount": get_float(element_discount, ".//Importo"),
+                            "l10n_it_edi_line_id": einvoice_line.id,
+                        }
+                        for element_discount in elements_discount
+                    ]
+                )
+
+            if elements_other_data := element.xpath(".//AltriDatiGestionali"):
+                self.env["l10n_it_edi.line_other_data"].create(
+                    [
+                        {
+                            "name": get_text(element_other_data, ".//TipoDato"),
+                            "text_ref": get_text(
+                                element_other_data, ".//RiferimentoTesto"
+                            ),
+                            "num_ref": get_float(
+                                element_other_data, ".//RiferimentoNumero"
+                            ),
+                            "date_ref": get_date(
+                                element_other_data, ".//RiferimentoData"
+                            ),
+                            "l10n_it_edi_line_id": einvoice_line.id,
+                        }
+                        for element_other_data in elements_other_data
+                    ]
+                )
+
+            messages_to_log += super()._l10n_it_edi_import_line(
+                element, move_line, extra_info=extra_info
+            )
+            if not move_line.product_id and (
+                partner_default_product := partner.l10n_it_edi_ext_default_product_id
+            ):
+                # If no product is found use the default one set on the partner,
+                # without recomputing what was assigned
+                with self.env.protecting(
+                    [
+                        move_line._fields[field_name]
+                        for field_name in [
+                            "price_unit",
+                            "tax_ids",
+                        ]
+                    ],
+                    move_line,
+                ):
+                    move_line.product_id = partner_default_product
+
+        else:
+            raise UserError(
+                self.env._(
+                    "Import detail level %(import_detail_level)s not supported.\n"
+                    "Please set an import detail level in company %(company)s.",
+                    import_detail_level=import_detail_level,
+                    company=company.name,
+                )
+            )
+        return messages_to_log
+
+    def _l10n_it_edi_ext_check_amount(self, amount, edi_amount, message):
+        if (
+            edi_amount
+            and float_compare(
+                amount,
+                abs(edi_amount),
+                precision_rounding=self.currency_id.rounding,
+            )
+            != 0
+        ):
+            return message
+
+    def _l10n_it_edi_check_amount_untaxed(self):
+        return self._l10n_it_edi_ext_check_amount(
+            self.amount_untaxed - self.l10n_it_edi_rounding,
+            self.l10n_it_edi_amount_untaxed,
+            self.env._(
+                "Untaxed amount (%(amount_untaxed)s}) "
+                "minus rounding (%(rounding)s}) "
+                "does not match with "
+                "e-invoice untaxed amount %(edi_amount_untaxed)s)",
+                amount_untaxed=self.amount_untaxed,
+                rounding=self.l10n_it_edi_rounding,
+                edi_amount_untaxed=self.l10n_it_edi_amount_untaxed,
+            ),
+        )
+
+    def _l10n_it_edi_check_amount_tax(self):
+        return self._l10n_it_edi_ext_check_amount(
+            self.amount_tax,
+            self.l10n_it_edi_amount_tax,
+            self.env._(
+                "Taxed amount (%(tax_amount)s}) "
+                "does not match with "
+                "e-invoice taxed amount (%(edi_tax_amount)s)",
+                tax_amount=self.amount_tax,
+                edi_tax_amount=self.l10n_it_edi_amount_tax,
+            ),
+        )
+
+    def _l10n_it_edi_check_amount_total(self):
+        return self._l10n_it_edi_ext_check_amount(
+            self.amount_total,
+            self.l10n_it_edi_amount_total,
+            self.env._(
+                "Total amount (%(total_amount)s) "
+                "does not match with "
+                "e-invoice total amount (%(edi_total_amount)s)",
+                total_amount=self.amount_total,
+                edi_total_amount=self.l10n_it_edi_amount_total,
+            ),
+        )
+
+    def _l10n_it_edi_extend_partner_info(self, partner_role, partner_info):
+        if partner_role == "buyer":
+            partner_info_xpath = "//CessionarioCommittente"
+        elif partner_role == "seller":
+            partner_info_xpath = "//CedentePrestatore"
+        elif partner_role == "tax_representative":
+            partner_info_xpath = "//RappresentanteFiscale"
+        else:
+            raise UserError(
+                self.env._(
+                    "Role %(role)s is not supported for partner creation/update",
+                    role=partner_role,
+                )
+            )
+
+        partner_info.update(
+            {
+                "city_xpath": f"{partner_info_xpath}//Comune",
+                "codice_fiscale_xpath": f"{partner_info_xpath}//CodiceFiscale",
+                "country_code_xpath": f"{partner_info_xpath}//IdPaese",
+                "email_xpath": f"{partner_info_xpath}//Email",
+                "eori_code_xpath": f"{partner_info_xpath}//CodEORI",
+                "first_name_xpath": f"{partner_info_xpath}//Nome",
+                "last_name_xpath": f"{partner_info_xpath}//Cognome",
+                "name_xpath": f"{partner_info_xpath}//Denominazione",
+                "phone_xpath": f"{partner_info_xpath}//Telefono",
+                "register_code_xpath": f"{partner_info_xpath}//NumeroIscrizioneAlbo",
+                "register_regdate_xpath": f"{partner_info_xpath}//DataIscrizioneAlbo",
+                "register_state_xpath": f"{partner_info_xpath}//ProvinciaAlbo",
+                "register_xpath": f"{partner_info_xpath}//AlboProfessionale",
+                "state_xpath": f"{partner_info_xpath}//Provincia",
+                "street_number_xpath": f"{partner_info_xpath}//NumeroCivico",
+                "street_xpath": f"{partner_info_xpath}//Indirizzo",
+                "vat_xpath": f"{partner_info_xpath}//IdCodice",
+                "zip_xpath": f"{partner_info_xpath}//CAP",
+            }
+        )
+
+    @api.model
+    def _l10n_it_buyer_seller_info(self):
+        buyer_seller_info = super()._l10n_it_buyer_seller_info()
+        for role, partner_info in buyer_seller_info.items():
+            self._l10n_it_edi_extend_partner_info(role, partner_info)
+        return buyer_seller_info
+
+    def _l10n_it_edi_extension_get_partner_info_by_role(self, tree, role):
+        if role in ("buyer", "seller"):
+            buyer_seller_info = self._l10n_it_buyer_seller_info()
+            partner_info = buyer_seller_info[role]
+        else:
+            partner_info = dict()
+            self._l10n_it_edi_extend_partner_info(role, partner_info)
+        return partner_info
+
+    def _l10n_it_edi_extension_prepare_partner_values(self, tree, role):
+        if partner_info := self._l10n_it_edi_extension_get_partner_info_by_role(
+            tree, role
+        ):
+            vals = dict()
+            for field_name, partner_info_xpath in [
+                ("city", "city_xpath"),
+                ("email", "email_xpath"),
+                ("l10n_edi_it_eori_code", "eori_code_xpath"),
+                ("l10n_edi_it_register_code", "register_code_xpath"),
+                ("l10n_edi_it_register", "register_xpath"),
+                ("l10n_edi_it_register_regdate", "register_regdate_xpath"),
+                ("l10n_it_codice_fiscale", "codice_fiscale_xpath"),
+                ("phone", "phone_xpath"),
+                ("vat", "vat_xpath"),
+                ("zip", "zip_xpath"),
+            ]:
+                if value := get_text(tree, partner_info[partner_info_xpath]):
+                    vals[field_name] = value
+
+            country_code = get_text(tree, partner_info["country_code_xpath"])
+            if country := self.env["res.country"].search(
+                [
+                    ("code", "=", country_code),
+                ],
+                limit=1,
+            ):
+                vals["country_id"] = country.id
+
+                if province := get_text(tree, partner_info["state_xpath"]):
+                    if found_province := self.env["res.country.state"].search(
+                        [
+                            ("code", "=", province),
+                            ("country_id", "=", country.id),
+                        ],
+                        limit=1,
+                    ):
+                        vals["state_id"] = found_province.id
+                    else:
+                        message = self.env._(
+                            "Province (%(province)s) not present in your system",
+                            province=province,
+                        )
+                        self.sudo().message_post(body=message)
+
+                if register_province := get_text(
+                    tree, partner_info["register_state_xpath"]
+                ):
+                    if found_province := self.env["res.country.state"].search(
+                        [
+                            ("code", "=", register_province),
+                            ("country_id", "=", country.id),
+                        ],
+                        limit=1,
+                    ):
+                        vals["l10n_edi_it_register_province_id"] = found_province.id
+                    else:
+                        message = self.env._(
+                            "Register Province (%(register_province)s) not present in "
+                            "your system",
+                            register_province=register_province,
+                        )
+                        self.sudo().message_post(body=message)
+
+            if address_parts := list(
+                filter(
+                    None,
+                    [
+                        get_text(tree, partner_info["street_xpath"]),
+                        get_text(tree, partner_info["street_number_xpath"]),
+                    ],
+                )
+            ):
+                vals["street"] = " ".join(address_parts)
+
+            if name := get_text(tree, partner_info["name_xpath"]):
+                vals["name"] = name
+                vals["is_company"] = True
+            if first_name := get_text(tree, partner_info["first_name_xpath"]):
+                vals["firstname"] = first_name
+            if last_name := get_text(tree, partner_info["last_name_xpath"]):
+                vals["lastname"] = last_name
+        else:
+            vals = dict()
+        return vals
+
+    def _l10n_it_edi_extension_create_partner(self, invoice_data, role):
+        """Return a partner for ``role``, looking up an existing one first.
+
+        Used for roles core does not handle (e.g. ``RappresentanteFiscale``).
+        Follows the path core uses for buyer/seller: match by Italian
+        Codice Fiscale, then delegate to ``_l10n_it_edi_import_partner``
+        which calls ``_retrieve_partner`` and creates a new partner when
+        nothing matches. ``_l10n_it_edi_update_partner`` fills the
+        FatturaPA extras (state_id, EORI, Albo*, firstname/lastname)
+        on top.
+        """
+        Partner = self.env["res.partner"]
+        partner_values = self._l10n_it_edi_extension_prepare_partner_values(
+            invoice_data,
+            role,
+        )
+        if not partner_values:
+            return Partner
+        company = self.env.company
+        codice_fiscale = partner_values.get("l10n_it_codice_fiscale")
+        partner = Partner
+        if codice_fiscale:
+            partner = Partner.with_company(company).search(
+                [
+                    *Partner._check_company_domain(company),
+                    ("l10n_it_codice_fiscale", "=like", codice_fiscale),
+                ],
+                limit=1,
+            )
+        if not partner:
+            partner, _logs = self.env["account.edi.common"]._import_partner(
+                company_id=company,
+                name=partner_values.get("name"),
+                phone=partner_values.get("phone"),
+                email=partner_values.get("email"),
+                vat=partner_values.get("vat"),
+                street=partner_values.get("street"),
+                city=partner_values.get("city"),
+                zip_code=partner_values.get("zip"),
+            )
+            if partner and codice_fiscale and not partner.l10n_it_codice_fiscale:
+                partner.l10n_it_codice_fiscale = codice_fiscale
+            if partner and not partner.country_id and partner_values.get("country_id"):
+                partner.country_id = partner_values["country_id"]
+        if partner:
+            self._l10n_it_edi_update_partner(invoice_data, role, partner)
+        return partner
+
+    def _l10n_it_edi_extension_get_bank_partner(self, invoice):
+        """Return the partner that owns the bank accounts in this FatturaPA.
+
+        Mirrors core's ``_l10n_it_edi_import_partner_bank`` selection
+        via ``is_outbound``/``is_inbound``: the invoice partner on
+        outbound documents (in_invoice, out_refund), the company
+        partner on inbound documents (out_invoice, in_refund). Empty
+        recordset on any other move type skips the bank update.
+        """
+        if invoice.is_outbound(include_receipts=False):
+            return invoice.partner_id
+        if invoice.is_inbound(include_receipts=False):
+            return invoice.company_id.partner_id
+        return self.env["res.partner"]
+
+    def _l10n_it_edi_extension_get_or_create_bank(self, bic, bank_name):
+        """Return a ``res.bank`` matching ``bic`` or ``bank_name``.
+
+        Search by BIC, then by name; create one when nothing matches.
+        Returns empty when both inputs are empty.
+        """
+        ResBank = self.env["res.bank"]
+        if not (bic or bank_name):
+            return ResBank
+        bank = ResBank
+        if bic:
+            bank = ResBank.search([("bic", "=", bic)], limit=1)
+        if not bank and bank_name:
+            bank = ResBank.search([("name", "=", bank_name)], limit=1)
+        if not bank:
+            bank = ResBank.create({"name": bank_name or bic, "bic": bic or False})
+        return bank
+
+    def _l10n_it_edi_extension_update_partner_bank(self, tree, invoice):
+        """Fill bank_id and acc_holder_name on partner banks created on import.
+
+        Core sets ``acc_number`` on ``res.partner.bank`` and stops there.
+        FatturaPA carries ``BIC`` and ``IstitutoFinanziario`` inside each
+        ``DatiPagamento/DettaglioPagamento`` plus ``Beneficiario`` at the
+        ``DatiPagamento`` level. Map them to ``res.bank`` (creating it
+        when missing) and link the record via ``bank_id``. Values already
+        set on the partner bank stay untouched.
+
+        ``_l10n_it_edi_extension_get_bank_partner`` picks the partner
+        the same way core does. The search filters by company so banks
+        from other companies cannot match.
+        """
+        if tree is None:
+            return
+        bank_partner = self._l10n_it_edi_extension_get_bank_partner(invoice)
+        if not bank_partner:
+            return
+        PartnerBank = self.env["res.partner.bank"]
+        bank_domain = [
+            *PartnerBank._check_company_domain(invoice.company_id),
+            ("partner_id", "child_of", bank_partner.commercial_partner_id.id),
+        ]
+        for payment_node in tree.xpath("//DatiPagamento"):
+            holder = get_text(payment_node, "./Beneficiario") or False
+            for detail_node in payment_node.xpath("./DettaglioPagamento"):
+                iban = get_text(detail_node, "./IBAN")
+                if not iban:
+                    continue
+                bic = get_text(detail_node, "./BIC") or False
+                bank_name = get_text(detail_node, "./IstitutoFinanziario") or False
+                if not (bic or bank_name or holder):
+                    continue
+                partner_bank = PartnerBank.search(
+                    [*bank_domain, ("acc_number", "=", iban)],
+                    limit=1,
+                )
+                if not partner_bank:
+                    continue
+                vals = {}
+                if holder and not partner_bank.acc_holder_name:
+                    vals["acc_holder_name"] = holder
+                if (bic or bank_name) and not partner_bank.bank_id:
+                    if bank := self._l10n_it_edi_extension_get_or_create_bank(
+                        bic, bank_name
+                    ):
+                        vals["bank_id"] = bank.id
+                if vals:
+                    partner_bank.write(vals)
+
+    def _l10n_it_edi_import_invoice(self, invoice, data, is_new):
+        invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
+        if not invoice:
+            return invoice
+
+        body_tree = data.get("xml_tree")
+        is_incoming = self.is_purchase_document(include_receipts=True)
+        import_detail_level = (
+            invoice.partner_id.l10n_it_edi_import_detail_level
+            or invoice.company_id.l10n_it_edi_import_detail_level
+        )
+        if import_detail_level == "min":
+            # Delete all lines - Odoo creates them in the import loop
+            # but we don't want any for minimum detail level
+            invoice.invoice_line_ids.unlink()
+        elif import_detail_level == "tax":
+            # Delete all lines created by Odoo and create summary lines instead
+            invoice.invoice_line_ids.unlink()
+            if body_tree is not None:
+                # Ignore these messages
+                # because they have already been logged
+                # when this method was executed during super's import
+                extra_info, _messages = self._l10n_it_edi_get_extra_info(
+                    invoice.company_id,
+                    get_text(body_tree, "//DatiGeneraliDocumento/TipoDocumento"),
+                    body_tree,
+                    incoming=is_incoming,
+                )
+                for summary_line in body_tree.xpath(".//DatiBeniServizi/DatiRiepilogo"):
+                    messages = invoice._l10n_it_edi_ext_import_summary_line(
+                        summary_line,
+                        extra_info=extra_info,
+                    )
+                    for message in messages:
+                        invoice.sudo().message_post(body=message)
+
+        partner_role = "seller" if is_incoming else "buyer"
+        if invoice.partner_id:
+            if not invoice.partner_id.l10n_edi_it_electronic_invoice_no_contact_update:
+                # Core creates the partner; fill the FatturaPA extras core
+                # leaves out (Provincia, EORI, Albo*, firstname/lastname) on
+                # both pre-existing partners and partners core created.
+                self._l10n_it_edi_update_partner(
+                    body_tree, partner_role, invoice.partner_id
+                )
+            self._l10n_it_edi_extension_update_partner_bank(body_tree, invoice)
+
+        if tax_representative := self._l10n_it_edi_extension_create_partner(
+            body_tree,
+            "tax_representative",
+        ):
+            invoice.l10n_it_edi_tax_representative_id = tax_representative
+
+        if (
+            invoice
+            and not invoice.is_sale_document()
+            and (attachment_name := data.get("name", ""))
+            and (attachment_raw := data.get("raw", b""))
+        ):
+            # Link the imported attachment, create one only for embedded files
+            xml_att = data.get("attachment") or self.env["ir.attachment"].create(
+                {
+                    "name": attachment_name,
+                    "raw": attachment_raw,
+                    "res_model": invoice._name,
+                    "res_id": invoice.id,
+                }
+            )
+            invoice.l10n_it_edi_ext_attachment_in_id = xml_att.id
+
+        return invoice
+
+    def _l10n_it_edi_ext_link_doc_attachments(self):
+        """Link to the move the attachments uploaded from the e-invoice tab.
+
+        The l10n_it_edi_ext_doc_attachments widget uploads the files without a
+        linked record (res_id = 0), so that `account` does not try to import
+        them as invoice documents: without a linked record, they could only be
+        read by their author and by system users. They are linked with a plain
+        write, which does not trigger the import, and with res_field set to the
+        e-invoice attachments field, like l10n_it_edi does for the XML: they
+        are not documents of the move, so they do not appear in the chatter by
+        themselves, and they are readable by whoever can read the field.
+        Attachments of other records (e.g. documents) are left untouched.
+        """
+        for move in self:
+            attachments = move.l10n_it_edi_ext_doc_attachment_ids.sudo()
+            orphans = attachments.filtered(lambda att: not att.res_id)
+            if orphans:
+                orphans.write(
+                    {
+                        "res_model": move._name,
+                        "res_id": move.id,
+                        "res_field": DOC_ATTACHMENT_FIELD,
+                    }
+                )
+            owned = attachments.filtered(
+                lambda att, move=move: att.res_model == move._name
+                and att.res_id == move.id
+                and not att.res_field
+            )
+            if owned:
+                owned.write({"res_field": DOC_ATTACHMENT_FIELD})
+
+    def _l10n_it_edi_ext_remove_doc_attachments(self, attachments):
+        """Delete the attachments removed from the e-invoice attachments list.
+
+        Only the files of this move are deleted, and only if no other move
+        lists them: files of other records (e.g. documents) are kept.
+        """
+        self.ensure_one()
+        if self.message_main_attachment_id & attachments:
+            self.message_main_attachment_id = False
+        owned = attachments.sudo().filtered(
+            lambda att: att.res_model == self._name
+            and att.res_id == self.id
+            and att.res_field == DOC_ATTACHMENT_FIELD
+        )
+        if not owned:
+            return
+        still_listed = (
+            self.sudo()
+            .search([("l10n_it_edi_ext_doc_attachment_ids", "in", owned.ids)])
+            .l10n_it_edi_ext_doc_attachment_ids
+        )
+        (owned - still_listed).unlink()
+
+    def _l10n_it_edi_ext_get_doc_attachments(self):
+        """Attachments to be included in the XML: hook for other modules."""
+        self.ensure_one()
+        return self.l10n_it_edi_ext_doc_attachment_ids.filtered(
+            lambda att: att.type == "binary"
+        )
+
+    def _l10n_it_edi_ext_estimated_xml_size(self):
+        """Estimated size in bytes of the e-invoice XML.
+
+        Files are base64 encoded in the XML (4 bytes every 3): the attachments
+        of the list and the invoice PDF, if already generated (l10n_it_edi adds
+        it when the XML is created by the send wizard). The rest of the XML is
+        estimated from the number of lines and their descriptions.
+        """
+        self.ensure_one()
+        files = self._l10n_it_edi_ext_get_doc_attachments() | self.invoice_pdf_report_id
+        xml_size = XML_BASE_SIZE + sum(
+            XML_LINE_SIZE + len((line.name or "")[:DESCRIZIONE_MAXLEN].encode())
+            for line in self.invoice_line_ids
+        )
+        return xml_size + sum(files.mapped("file_size")) * 4 // 3
+
+    def _l10n_it_edi_ext_get_doc_attachments_values(self):
+        self.ensure_one()
+        return [
+            {
+                "name": self._l10n_it_edi_ext_attachment_xml_name(attachment.name),
+                "format": self._l10n_it_edi_ext_attachment_xml_format(attachment),
+                "description": self._l10n_it_edi_ext_attachment_xml_description(
+                    attachment
+                ),
+                "content": b64encode(attachment.raw or b"").decode(),
+            }
+            for attachment in self._l10n_it_edi_ext_get_doc_attachments()
+        ]
+
+    def _l10n_it_edi_ext_get_xml_content(self):
+        """Content of the e-invoice XML of the move, None if there is none.
+
+        The generated or received XML (l10n_it_edi_attachment_file) or, when
+        missing, the imported e-bill: a vendor bill uploaded by hand keeps
+        the uploaded file only there.
+        """
+        self.ensure_one()
+        xml_b64 = self.with_context(bin_size=False).l10n_it_edi_attachment_file
+        if xml_b64:
+            return b64decode(xml_b64)
+        return self.l10n_it_edi_ext_attachment_in_id.sudo().raw or None
+
+    def _l10n_it_edi_ext_get_xml_tree(self):
+        """Parsed e-invoice XML, read as l10n_it_edi does when importing it.
+
+        The parser recovers from errors, and a CAdES signature (.p7m) is
+        removed if the file cannot be read as it is.
+
+        :return: the root element, None if there is no XML, False if the XML
+            cannot be read
+        """
+        content = self._l10n_it_edi_ext_get_xml_content()
+        if not content:
+            return None
+        parser = etree.XMLParser(recover=True, resolve_entities=False, huge_tree=True)
+
+        def parse_xml(xml_content):
+            try:
+                return etree.fromstring(xml_content, parser)
+            except (etree.XMLSyntaxError, ValueError) as e:
+                _logger.info("XML parsing of %s failed: %s", self.display_name, e)
+                return None
+
+        tree = parse_xml(content)
+        if tree is None and (unsigned := remove_signature(content)):
+            tree = parse_xml(unsigned)
+        if tree is None:
+            _logger.warning("Unreadable e-invoice XML for %s", self.display_name)
+            return False
+        return tree
+
+    def _l10n_it_edi_ext_get_xml_attachment_nodes(self):
+        """<Allegati> nodes of the e-invoice XML, None if there is no XML.
+
+        The actual file is read, so the invoice PDF added by l10n_it_edi
+        and any manual change to the XML are included.
+        """
+        tree = self._l10n_it_edi_ext_get_xml_tree()
+        if tree is None:
+            return None
+        if tree is False:
+            return []
+        return list(tree.iterfind(".//Allegati"))
+
+    def _l10n_it_edi_ext_read_xml_attachments(self):
+        """Data of the <Allegati> nodes of the generated XML (None if no XML)."""
+        nodes = self._l10n_it_edi_ext_get_xml_attachment_nodes()
+        if nodes is None:
+            return None
+        return [
+            {
+                "index": index,
+                "name": node.findtext("NomeAttachment") or "",
+                "format": node.findtext("FormatoAttachment") or "",
+                "description": node.findtext("DescrizioneAttachment") or "",
+                "size": len((node.findtext("Attachment") or "").strip()) * 3 // 4,
+                "mimetype": self._l10n_it_edi_ext_xml_attachment_mimetype(
+                    node.findtext("NomeAttachment"),
+                    node.findtext("FormatoAttachment"),
+                ),
+                "url": f"/l10n_it_edi_ext/xml_attachment/{self.id}/{index}",
+            }
+            for index, node in enumerate(nodes)
+        ]
+
+    def _l10n_it_edi_ext_get_xml_attachment_file(self, index):
+        """Name, mimetype and content of an <Allegati> node of the XML.
+
+        :return: (name, mimetype, content) or None if the node does not exist
+        """
+        nodes = self._l10n_it_edi_ext_get_xml_attachment_nodes() or []
+        if not 0 <= index < len(nodes):
+            return None
+        node = nodes[index]
+        name = node.findtext("NomeAttachment") or "attachment"
+        try:
+            content = b64decode(node.findtext("Attachment") or "")
+        except ValueError as e:
+            _logger.warning(
+                "Unreadable e-invoice attachment %s of %s: %s",
+                index,
+                self.display_name,
+                e,
+            )
+            return None
+        mimetype = self._l10n_it_edi_ext_xml_attachment_mimetype(
+            name, node.findtext("FormatoAttachment")
+        )
+        return name, mimetype, content
+
+    @api.model
+    def _l10n_it_edi_ext_xml_attachment_mimetype(self, name, file_format):
+        """Mimetype of an attachment of the XML, only among the safe ones.
+
+        The content of the XML is not trusted: only PDF and raster images can be
+        displayed by the browser, anything else (HTML, SVG...) is served as a
+        generic binary file, to be downloaded.
+        """
+        mimetype = mimetypes.guess_type(name or "")[0]
+        if not mimetype and file_format:
+            mimetype = mimetypes.guess_type(f"file.{file_format.lower()}")[0]
+        if mimetype in VIEWABLE_MIMETYPES:
+            return mimetype
+        return "application/octet-stream"
+
+    @api.model
+    def _l10n_it_edi_ext_to_latin_1(self, text):
+        """Text as written in the XML by l10n_it_edi (format_alphanumeric)."""
+        return text.encode("latin-1", "replace").decode("latin-1")
+
+    def _l10n_it_edi_ext_invoice_pdf_xml_name(self):
+        """NomeAttachment of the invoice PDF that l10n_it_edi adds to the XML."""
+        self.ensure_one()
+        pdf_name = self.invoice_pdf_report_id.name or (
+            self._get_invoice_report_filename()
+        )
+        return self._l10n_it_edi_ext_to_latin_1(pdf_name)[:NOME_ATTACHMENT_MAXLEN]
+
+    @api.model
+    def _l10n_it_edi_ext_attachment_xml_name(self, name):
+        """Name within the 60 characters allowed, keeping the extension."""
+        name = name or "attachment"
+        if len(name) <= NOME_ATTACHMENT_MAXLEN:
+            return name
+        stem, ext = os.path.splitext(name)
+        return stem[: NOME_ATTACHMENT_MAXLEN - len(ext)] + ext
+
+    def _l10n_it_edi_ext_is_own_doc_attachment(self, attachment):
+        """Whether the attachment belongs to this move, not to another record.
+
+        Files uploaded from the list (not linked yet, before saving) or
+        linked to the move: their description can be edited from the list.
+        """
+        self.ensure_one()
+        return not attachment.res_id or (
+            attachment.res_model == self._name and attachment.res_id == self.id
+        )
+
+    def _l10n_it_edi_ext_attachment_xml_description(self, attachment):
+        """DescrizioneAttachment: the description written in the list.
+
+        Hook for other modules. The description of a file of another record
+        is not used: it is shared by all its invoices and often holds internal
+        texts. Without a description, the file name without extension.
+        """
+        self.ensure_one()
+        if attachment.description and self._l10n_it_edi_ext_is_own_doc_attachment(
+            attachment
+        ):
+            return " ".join(attachment.description.split())
+        return os.path.splitext(attachment.name or "")[0] or False
+
+    @api.model
+    def _l10n_it_edi_ext_attachment_xml_format(self, attachment):
+        """FormatoAttachment: file extension, or the MIME subtype as fallback."""
+        ext = os.path.splitext(attachment.name or "")[1].lstrip(".")
+        if not ext and attachment.mimetype:
+            ext = attachment.mimetype.split("/")[-1]
+        return ext.upper()[:FORMATO_ATTACHMENT_MAXLEN] or False

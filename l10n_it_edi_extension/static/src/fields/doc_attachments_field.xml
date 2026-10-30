@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t
+        t-name="l10n_it_edi_extension.DocAttachmentsField"
+        t-inherit="web.Many2ManyBinaryField"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//FileInput" position="attributes">
+            <attribute name="resModel">'ir.attachment'</attribute>
+            <attribute name="resId">0</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='web.Many2ManyBinaryField.attachment_preview']"
+            position="after"
+        >
+            <input
+                t-if="isOwnFile(file)"
+                type="text"
+                class="o_input o_l10n_it_edi_ext_doc_attachment_description px-1 mb-2"
+                maxlength="100"
+                t-att-value="file.description or ''"
+                t-att-placeholder="getDefaultDescription(file)"
+                t-att-readonly="props.readonly"
+                t-att-title="descriptionTitle"
+                t-on-change="(ev) => this.onDescriptionChange(file, ev)"
+            />
+        </xpath>
+    </t>
+</templates>
