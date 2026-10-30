@@ -67,3 +67,22 @@ msgstr ""
 #: model:ir.model,name:l10n_it_vat_settlement_date.model_report_l10n_it_vat_registries_report_registro_iva_xlsx
 msgid "XLSX report for VAT registries"
 msgstr ""
+
+#. module: l10n_it_vat_settlement_date
+#. odoo-python
+#: code:addons/l10n_it_vat_settlement_date/models/account_move.py:0
+#, python-format
+msgid ""
+"You cannot add/modify entries with settlement date "
+"(%(settlement)s) prior to and inclusive of the lock date "
+"%(lock)s."
+msgstr ""
+
+#. module: l10n_it_vat_settlement_date
+#. odoo-python
+#: code:addons/l10n_it_vat_settlement_date/models/account_move.py:0
+#, python-format
+msgid ""
+"You cannot set a settlement date (%(settlement)s) "
+"prior to and inclusive of the lock date %(lock)s."
+msgstr ""
