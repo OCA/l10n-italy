@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-28 10:26+0000\n"
-"PO-Revision-Date: 2026-10-19 10:46+0000\n"
+"PO-Revision-Date: 2026-10-30 12:52+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -591,7 +591,7 @@ msgstr "I conti sono tutti obbligatori."
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_partner__riba_exclude_expenses
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_users__riba_exclude_expenses
 msgid "Exclude expenses Ri.Ba."
-msgstr ""
+msgstr "Escludi spese Ri.Ba."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_riba_credit__bank_expense_account_id
@@ -730,6 +730,8 @@ msgstr "Se vuoto, verrà utilizzata la data di scadenza indicata nella riga."
 msgid ""
 "If set, collection fees are never added to the invoices of this partner."
 msgstr ""
+"Se impostata, le commissioni di riscossione non vengono mai aggiunte alle "
+"fatture di questo partner."
 
 #. module: l10n_it_riba_oca
 #. odoo-python
@@ -934,7 +936,7 @@ msgstr "Messaggi"
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__res_partner__riba_policy_expenses__one_a_month
 msgid "More invoices, one expense per Month"
-msgstr ""
+msgstr "Più fatture, una spesa per mese"
 
 #. module: l10n_it_riba_oca
 #: model_terms:ir.ui.view,arch_db:l10n_it_riba_oca.view_riba_slip_line_form
@@ -1030,7 +1032,7 @@ msgstr "Numero di messaggi con errore di consegna"
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields.selection,name:l10n_it_riba_oca.selection__res_partner__riba_policy_expenses__unlimited
 msgid "One expense per maturity"
-msgstr ""
+msgstr "Una spesa per scadenza"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,help:l10n_it_riba_oca.field_res_partner__riba_policy_expenses
@@ -1041,6 +1043,11 @@ msgid ""
 "invoices with collection fees.\n"
 "One expense per maturity: collection fees are added for every due date."
 msgstr ""
+"Una spesa al mese: le commissioni di incasso non vengono applicate alle "
+"scadenze che cadono in un mese in cui il partner ha già altre scadenze RiBa "
+"(relative a fatture che prevedono commissioni di incasso).\n"
+"Una spesa per singola scadenza: le commissioni di incasso vengono applicate "
+"a ogni scadenza."
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_bank_statement_line__open_amount
@@ -1269,7 +1276,7 @@ msgstr "Reimposta a bozza"
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_partner__riba_policy_expenses
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_res_users__riba_policy_expenses
 msgid "Ri.Ba. Policy expenses"
-msgstr ""
+msgstr "Impostazioni spese RiBa"
 
 #. module: l10n_it_riba_oca
 #: model:ir.model.fields,field_description:l10n_it_riba_oca.field_account_move_line__riba
