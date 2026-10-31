@@ -3,6 +3,8 @@
 
 import base64
 
+from freezegun import freeze_time
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, TransactionCase
@@ -115,6 +117,14 @@ class TestIntrastatStatement(TransactionCase):
             post=True,
         )
         return invoice
+
+    def test_statement_default_date_and_year(self):
+        # A new statement proposes today's date and year, not the ones of the
+        # day the server was started
+        with freeze_time("2030-02-15"):
+            statement = self.statement_model.create({})
+        self.assertEqual(statement.date, fields.Date.to_date("2030-02-15"))
+        self.assertEqual(statement.fiscalyear, 2030)
 
     def test_statement_sale(self):
         invoice = self._get_intrastat_computed_invoice()
