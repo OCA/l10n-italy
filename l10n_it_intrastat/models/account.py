@@ -469,13 +469,14 @@ class AccountInvoiceIntrastat(models.Model):
             line.country_partner_id = line.invoice_id.partner_id.country_id
 
     @api.depends(
-        "invoice_id.payment_reference", "invoice_id.name", "invoice_id.invoice_date"
+        "invoice_id.ref",
+        "invoice_id.payment_reference",
+        "invoice_id.name",
+        "invoice_id.invoice_date",
     )
     def _compute_invoice_ref(self):
         for line in self:
             if line.invoice_id.is_purchase_document():
-                if not line.invoice_id.payment_reference:
-                    continue
                 line.invoice_number = (
                     line.invoice_id.ref
                     or line.invoice_id.payment_reference
