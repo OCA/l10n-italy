@@ -76,13 +76,19 @@ class ReportRegistroIva(models.AbstractModel):
             if not (move_line.tax_line_id or move_line.tax_ids):
                 continue
 
-            if move_line.tax_ids and len(move_line.tax_ids) != 1:
-                raise UserError(
-                    _("Move line %s has too many base taxes") % move_line.name
-                )
-
             if move_line.tax_ids:
-                tax = move_line.tax_ids[0]
+                # excluded taxes must not count as base taxes
+                # (es. cassa previdenziale + IVA)
+                taxes = move_line.tax_ids.filtered(
+                    lambda tax: not tax.exclude_from_registries
+                )
+                if len(taxes) > 1:
+                    raise UserError(
+                        _("Move line %s has too many base taxes") % move_line.name
+                    )
+                if not taxes:
+                    continue
+                tax = taxes[0]
                 is_base = True
             else:
                 tax = move_line.tax_line_id
