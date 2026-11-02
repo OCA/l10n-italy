@@ -38,15 +38,6 @@
                     <field name="progressive_credit" invisible="1" />
                     <field name="progressive_debit2" invisible="1" />
                 </group>
-                <separator string="PDF" />
-                <group>
-                    <field
-                        name="report_giornale"
-                        filename="report_giornale_name"
-                        readonly="1"
-                    />
-                    <field name="report_giornale_name" invisible="1" />
-                </group>
                 <footer>
                     <button
                         name="print_giornale_reportlab"
@@ -59,9 +50,7 @@
                         string="Final print"
                         type="object"
                         class="oe_highlight"
-                    />
-                    or
-                    <button string="Cancel" class="oe_link" special="cancel" />
+                    /> or <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
         </field>

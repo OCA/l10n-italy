@@ -17,5 +17,10 @@
         "wizard/print_giornale.xml",
         "views/date_range_view.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "l10n_it_central_journal_reportlab/static/src/js/download_handler.esm.js",
+        ],
+    },
     "installable": True,
 }

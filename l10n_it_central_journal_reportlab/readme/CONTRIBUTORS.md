@@ -6,3 +6,5 @@
   - Simone Rubino \<<simone.rubino@aion-tech.it>\>
 - [Stesi Consulting](https://www.stesi.consulting/):
   - Michele Di Croce \<<dicroce.m@stesi.consulting>\>
+- [Nextev Srl](https://www.nextev.it/):
+  - \<<odoo@nextev.it>\>
