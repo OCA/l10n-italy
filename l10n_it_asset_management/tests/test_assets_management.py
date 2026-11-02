@@ -678,6 +678,60 @@ class TestAssets(Common):
         depreciate_wizard = self._depreciate_asset_wizard(asset, depreciation_date)
         self.assertFalse(depreciate_wizard.missing_fiscal_year_warning)
 
+    def test_fiscal_years_of_asset_company(self):
+        """Depreciations of several companies are generated at once:
+        count the fiscal years of the asset's company,
+        not the ones of the current company."""
+        # Arrange
+        main_company = self.env.ref("base.main_company")
+        other_company = self.env["res.company"].create(
+            {
+                "name": "Other company",
+            }
+        )
+        self.env["account.fiscal.year"].create(
+            {
+                "name": "Other company 2021",
+                "date_from": date(2021, 1, 1),
+                "date_to": date(2021, 12, 31),
+                "company_id": other_company.id,
+            }
+        )
+        purchase_date = date(2019, 1, 1)
+        asset = self._create_asset(purchase_date)
+        civil_depreciation = asset.depreciation_ids.filtered(
+            lambda d: d.type_id == self.civilistico_asset_dep_type
+        )
+        civil_depreciation.percentage = 20.0
+        self._generate_fiscal_years(purchase_date, date(2021, 12, 31))
+        self._depreciate_asset(asset, date(2019, 12, 31))
+        self._depreciate_asset(asset, date(2020, 12, 31))
+        # The wizard is opened from the menu with both companies selected,
+        # the current company is not the asset's company
+        wizard_model = self.env["wizard.asset.generate.depreciation"].with_context(
+            allowed_company_ids=[other_company.id, main_company.id],
+        )
+        self.assertEqual(wizard_model.env.company, other_company)
+
+        # Act
+        depreciate_wizard = wizard_model.create(
+            {
+                "date_dep": date(2021, 12, 31),
+                "company_id": False,
+                "l10n_it_asset_ids": [Command.set(asset.ids)],
+                "type_ids": [Command.set(self.civilistico_asset_dep_type.ids)],
+            }
+        )
+        warning = depreciate_wizard.missing_fiscal_year_warning
+        depreciate_wizard.do_generate()
+
+        # Assert: the coefficient of the first year is not applied
+        lines = civil_depreciation.line_ids.filtered(
+            lambda line: line.move_type == "depreciated"
+        ).sorted("date")
+        self.assertEqual(lines.mapped("amount"), [100.0, 200.0, 200.0])
+        self.assertFalse(warning)
+
     def test_override_journal(self):
         """
         Set an "Override Journal" in the depreciation wizard,
