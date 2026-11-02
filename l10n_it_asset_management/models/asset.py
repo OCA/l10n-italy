@@ -111,6 +111,12 @@ class Asset(models.Model):
                 create_deps_from_categ = True
             if vals.get("code"):
                 vals["code"] = " ".join(vals.get("code").split())
+            if not vals.get("currency_id"):
+                company = (
+                    self.env["res.company"].browse(vals.get("company_id"))
+                    or self.env.company
+                )
+                vals["currency_id"] = company.currency_id.id
             asset = super().create(vals)
             if create_deps_from_categ:
                 asset.onchange_category_id()
