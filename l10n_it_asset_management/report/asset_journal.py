@@ -838,7 +838,13 @@ class ReportDepreciationLineByYear(models.TransientModel):
         for dep_line in self.dep_line_ids.filtered(
             lambda line: line.move_type in ("in", "out")
         ):
-            for num, aa_info in enumerate(dep_line.asset_accounting_info_ids):
+            # Show each move once, even when several of its lines
+            # are linked to the depreciation line
+            aa_infos = self.env["asset.accounting.info"]
+            for aa_info in dep_line.asset_accounting_info_ids:
+                if not aa_info.move_id or aa_info.move_id not in aa_infos.move_id:
+                    aa_infos |= aa_info
+            for num, aa_info in enumerate(aa_infos):
                 vals = {
                     "document_date": format_date(dep_line, "date", "%d-%m-%Y"),
                     "document_nr": aa_info.move_id.name or "/",
