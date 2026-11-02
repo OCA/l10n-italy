@@ -3,6 +3,9 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import date
+from io import BytesIO
+
+import openpyxl
 
 from odoo import fields
 from odoo.exceptions import AccessError, ValidationError
@@ -722,6 +725,41 @@ class TestAssets(Common):
         # Assert
         account_move = asset.depreciation_ids.line_ids.move_id
         self.assertEqual(account_move.journal_id, depreciate_asset_wizard.journal_id)
+
+    def test_xlsx_report_amounts_are_numbers(self):
+        """Amounts are written as numbers in the XLSX reports."""
+        # Arrange
+        purchase_date = date(2019, 1, 1)
+        report_date = date(2019, 12, 31)
+        asset = self._create_asset(asset_date=purchase_date)
+        self.assertEqual(asset.purchase_amount, 1000)
+        self._generate_fiscal_years(purchase_date, report_date)
+
+        for report_type in ("journal", "previsional"):
+            with self.subTest(report_type=report_type):
+                # Act
+                report = self._get_report(report_date, report_type)
+                content, content_type = self.env["ir.actions.report"]._render(
+                    f"l10n_it_asset_management.report_asset_{report_type}_xlsx",
+                    report.ids,
+                )
+
+                # Assert
+                self.assertEqual(content_type, "xlsx")
+                sheet = openpyxl.load_workbook(BytesIO(content)).active
+                purchase_amount_cells = [
+                    cell
+                    for row in sheet.iter_rows()
+                    for cell in row
+                    if cell.value == 1000
+                ]
+                self.assertTrue(purchase_amount_cells)
+                self.assertTrue(
+                    all(
+                        cell.number_format == "#,##0.00"
+                        for cell in purchase_amount_cells
+                    )
+                )
 
     def test_same_asset_report_residual_partial_depreciation(self):
         """
