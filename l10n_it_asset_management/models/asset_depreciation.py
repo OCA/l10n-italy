@@ -515,7 +515,15 @@ class AssetDepreciation(models.Model):
             fy_dep = fiscal_year_obj.get_fiscal_year_by_date(
                 dep_date, company=self.company_id
             )
-            if fy_dep == fy_start:
+            if fy_dep == fy_start and not self.pro_rata_temporis:
+                # Pro rata temporis is only forced (e.g. by the previsional
+                # report): the depreciation of the first year, already reduced
+                # by the depreciation mode coefficient as in actual depreciations,
+                # is spread over the days from the purchase to the end of the year
+                owned_days = (dep_date - date_start).days + 1
+                year_owned_days = (fy_dep.date_to - date_start).days + 1
+                multiplier *= owned_days / year_owned_days
+            elif fy_dep == fy_start:
                 # If current depreciation lies within the same fiscal year in
                 # which the asset was registered, compute multiplier as a
                 # difference from date_dep multiplier and start_date
