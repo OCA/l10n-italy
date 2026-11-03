@@ -11,6 +11,8 @@ from odoo.tools import float_compare, html2plaintext, is_html_empty
 from odoo.addons.base.models.ir_qweb_fields import Markup
 from odoo.addons.l10n_it_edi.models.account_move import get_date, get_float, get_text
 
+from .res_company import E_INVOICE_HIDE_LINE_TYPE_SELECTION
+
 _logger = logging.getLogger(__name__)
 
 
@@ -134,6 +136,13 @@ class AccountMoveInherit(models.Model):
     l10n_it_document_type_code = fields.Char(
         related="l10n_it_document_type.code",
         string="Document Type Code",
+    )
+    l10n_it_edi_hide_line_type = fields.Selection(
+        selection=E_INVOICE_HIDE_LINE_TYPE_SELECTION,
+        string="Line types to hide",
+        help="Choose which type of descriptive line "
+        "will not be present in the e-invoice.\n"
+        "If empty, the same field in the partner is evaluated.",
     )
 
     # -------------------------------------------------------------------------
@@ -394,8 +403,117 @@ class AccountMoveInherit(models.Model):
             )
         return res
 
+    def _l10n_it_edi_get_line_types_from_hide_key(self, hide_key):
+        """Get which line types correspond to `hide_key`.
+
+        Line types are values of `account.move.line.display_type`.
+        Hide key is the value of `res.company.l10n_it_edi_hide_line_type`.
+        """
+        line_types = []
+        if hide_key in ("note", "note_section"):
+            line_types.append("line_note")
+        if hide_key in ("note_section", "section"):
+            line_types.append("line_section")
+        return line_types
+
+    def _l10n_it_edi_hide_invoice_lines(self):
+        """Exclude `invoice_lines` according to hide settings."""
+        invoice_lines = self.line_ids.sorted("sequence")
+        hide_keys = (
+            self.l10n_it_edi_hide_line_type,
+            self.partner_id.l10n_it_edi_hide_line_type,
+            self.company_id.l10n_it_edi_hide_line_type,
+        )
+        for hide_key in hide_keys:
+            if hide_key:
+                to_hide_types = self._l10n_it_edi_get_line_types_from_hide_key(hide_key)
+                invoice_lines = invoice_lines.filtered(
+                    lambda line, to_hide_types=to_hide_types: line.display_type
+                    not in to_hide_types
+                )
+                break
+        return invoice_lines
+
+    def _l10n_it_edi_get_descriptive_base_line(self, invoice_line, tax_amount=None):
+        """Get the XML values for `invoice_line`, when it is a note/section."""
+        base_line = self._prepare_product_base_line_for_taxes_computation(invoice_line)
+        tax_model = self.env["account.tax"]
+        tax_model._add_tax_details_in_base_lines([base_line], self.company_id)
+        tax_model._round_base_lines_tax_details([base_line], self.company_id)
+        base_line_aggregated_values = tax_model._aggregate_base_lines_tax_details(
+            [base_line], self._l10n_it_edi_grouping_function_base_lines
+        )
+        self._l10n_it_edi_add_base_lines_xml_values(base_line_aggregated_values, False)
+        # Descriptive lines may not have a tax,
+        # so we add one to populate AliquotaIVA that is mandatory
+        # in the Electronic Invoice
+        if not (tax_amount_list := base_line["it_values"]["aliquota_iva_list"]):
+            tax = fields.first(invoice_line.tax_ids)
+            tax_amount = tax.amount if tax.amount_type == "percent" else tax_amount
+            tax_amount_list.append(tax_amount or 0.0)
+        return base_line
+
+    def _l10n_it_edi_hide_base_lines(self, base_lines):
+        """Exclude `base_lines` according to hide settings."""
+        invoice_lines = self._l10n_it_edi_hide_invoice_lines()
+
+        # Insert the descriptive lines where needed
+        new_base_lines = []
+        added_lines_number = 0
+        descriptive_tax_amounts = [
+            tax_amount
+            for base_line in base_lines
+            for tax_amount in base_line["it_values"]["aliquota_iva_list"]
+        ]
+        descriptive_tax_amount = (
+            descriptive_tax_amounts[0] if descriptive_tax_amounts else None
+        )
+        for invoice_line in invoice_lines:
+            invoice_line_id = invoice_line.id
+            for base_line in base_lines:
+                invoice_line_data_id = base_line["id"]
+                if (
+                    invoice_line_id == invoice_line_data_id
+                    # OSS lines have their ID like {id}_vat
+                    or invoice_line_data_id == f"{invoice_line_id}_vat"
+                ):
+                    if added_lines_number:
+                        # offset the index of lines
+                        # because we have added new ones
+                        base_line["it_values"]["numero_linea"] += added_lines_number
+                    new_base_lines.append(base_line)
+                    break
+            else:
+                if invoice_line.display_type in ("line_note", "line_section"):
+                    # Create the data for missing descriptive line
+                    new_base_line = self._l10n_it_edi_get_descriptive_base_line(
+                        invoice_line,
+                        tax_amount=descriptive_tax_amount,
+                    )
+                    new_base_line["it_values"]["numero_linea"] = (
+                        max(
+                            [
+                                new_base_line["it_values"]["numero_linea"]
+                                for new_base_line in new_base_lines
+                            ],
+                            default=0,
+                        )
+                        + 1
+                    )
+
+                    new_base_lines.append(new_base_line)
+                    added_lines_number += 1
+
+        new_base_lines = sorted(
+            new_base_lines,
+            key=lambda new_base_line: new_base_line["it_values"]["numero_linea"],
+        )
+        return new_base_lines
+
     def _l10n_it_edi_get_values(self, pdf_values=None):
-        res = super()._l10n_it_edi_get_values(pdf_values)
+        res = super()._l10n_it_edi_get_values(pdf_values=pdf_values)
+
+        res["base_lines"] = self._l10n_it_edi_hide_base_lines(res["base_lines"])
 
         causale_lines = []
         if not is_html_empty(self.narration):
