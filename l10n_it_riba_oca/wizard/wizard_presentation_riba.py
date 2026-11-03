@@ -24,7 +24,7 @@ class PresentationRibaIssue(models.TransientModel):
             [
                 "&",
                 "|",
-                ("riba", "=", "True"),
+                ("riba", "=", True),
                 ("past_due_invoice_ids", "!=", False),
                 ("account_id.account_type", "=", "asset_receivable"),
             ],

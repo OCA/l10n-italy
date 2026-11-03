@@ -49,12 +49,12 @@ class ResPartnerBankAdd(models.Model):
             .mapped("riba_partner_bank_id")
         )
         if protected_records:
-            acc_numbers = [bank.acc_number for bank in protected_records]
+            account_numbers = [bank.account_number for bank in protected_records]
             message = self.env._(
                 "The bank accounts with accreditation code {acc_codes}s"
                 " cannot be deleted as they are used in invoices."
                 " If possible, archive the bank account",
-                acc_codes=", ".join(acc_numbers),
+                acc_codes=", ".join(account_numbers),
             )
             raise UserError(message)
 
@@ -418,7 +418,9 @@ class AccountMoveLine(models.Model):
         "Past Due Invoices",
     )
     iban = fields.Char(
-        related="move_id.riba_partner_bank_id.acc_number", string="IBAN", store=False
+        related="move_id.riba_partner_bank_id.account_number",
+        string="IBAN",
+        store=False,
     )
     due_cost_line = fields.Boolean("RiBa Collection Fees Line")
 
@@ -497,18 +499,13 @@ class AccountFullReconcile(models.Model):
         to their previous state to maintain consistency in the RiBa workflow.
         """
         for riba_line in riba_lines:
-            # Only process lines that are in final states (paid or past_due)
-            if riba_line.state in ["paid", "past_due"]:
-                # Only revert if there's no specific payment recorded
-                if not riba_line.payment_id:
-                    # If the RiBa slip has a credit move, revert to "credited" state
-                    if riba_line.slip_id.credit_move_id:
-                        riba_line.state = "credited"
-                        riba_line.slip_id.state = "credited"
-                    else:
-                        # Otherwise, revert to "confirmed" state (acceptance phase)
-                        riba_line.state = "confirmed"
-                        riba_line.slip_id.state = "accepted"
+            if riba_line.state in ["paid", "past_due"] and not riba_line.payment_id:
+                if riba_line.slip_id.credit_move_id:
+                    riba_line.state = "credited"
+                    riba_line.slip_id.state = "credited"
+                else:
+                    riba_line.state = "confirmed"
+                    riba_line.slip_id.state = "accepted"
 
     def unlink(self):
         riba_lines = None

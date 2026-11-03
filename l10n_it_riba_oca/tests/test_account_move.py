@@ -21,7 +21,7 @@ class TestAccountMove(TestRibaCommon):
                 "bank_ids": [
                     Command.create(
                         {
-                            "acc_number": "test account number",
+                            "account_number": "test account number",
                         }
                     ),
                 ],

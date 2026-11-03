@@ -19,14 +19,14 @@
 
     <!-- banks -->
     <record id="company_bank" model="res.partner.bank">
-        <field name="acc_number">BE74126201326907</field>
+        <field name="account_number">BE74126201326907</field>
         <field name="partner_id" ref="base.main_partner" />
         <field name="bank_bic">CPHBBE75</field>
         <field name="bank_name">Bank</field>
     </record>
 
     <record id="customer_bank" model="res.partner.bank">
-        <field name="acc_number">IT86Y0200809440000005235152</field>
+        <field name="account_number">IT86Y0200809440000005235152</field>
         <field name="partner_id" ref="base.res_partner_12" />
         <field name="bank_bic">CPHBBE75</field>
         <field name="bank_name">Bank</field>

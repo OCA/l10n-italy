@@ -89,18 +89,15 @@ class RibaPastDue(models.TransientModel):
     )
     past_due_journal_id = fields.Many2one(
         "account.journal",
-        "Past Due Journal",
         domain=[("type", "=", "bank")],
         default=lambda self: self._get_past_due_journal_id(),
     )
     acceptance_account_id = fields.Many2one(
         "account.account",
-        "Acceptance Account",
         default=lambda self: self._get_acceptance_account_id(),
     )
     credit_account_id = fields.Many2one(
         "account.account",
-        "Credit Account",
         default=lambda self: self._get_credit_account_id(),
     )
     overdue_credit_account_id = fields.Many2one(

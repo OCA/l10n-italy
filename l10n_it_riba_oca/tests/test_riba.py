@@ -5,7 +5,6 @@
 # Copyright 2025 Simone Rubino - PyTech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import base64
 import datetime
 import os
 
@@ -147,7 +146,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
                     [
                         "&",
                         "|",
-                        ("riba", "=", "True"),
+                        ("riba", "=", True),
                         ("past_due_invoice_ids", "!=", False),
                         ("account_type", "=", "asset_receivable"),
                         ("reconciled", "=", False),
@@ -186,10 +185,11 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         }
         data = self.env["ir.qweb"]._render("l10n_it_riba_oca.slip_qweb", docargs)
         if config.get("test_report_directory"):
-            open(
+            with open(
                 os.path.join(config["test_report_directory"], "riba-list." + format),
                 "wb+",
-            ).write(data)
+            ) as f:
+                f.write(data)
 
         # credit wizard
         credit_wizard = (
@@ -548,10 +548,10 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertEqual(riba_list.line_ids[0].cup, "H71N17000690124")
         wizard_riba_export = self.env["riba.file.export"].create({})
         wizard_riba_export.with_context(active_ids=[riba_list.id]).act_getfile()
-        riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
+        riba_txt = bytes(wizard_riba_export.riba_txt)
         self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690124" in riba_txt)
         # Assert
-        file_content = base64.decodebytes(wizard_riba_export.riba_txt).decode()
+        file_content = wizard_riba_export.riba_txt.decode("ascii")
         # Post invoice to have the name assigned
         self.invoice.company_id.due_cost_service_id = self.service_due_cost
         self.invoice.action_post()
@@ -652,11 +652,11 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertTrue(len(riba_list.line_ids), 2)
         wizard_riba_export = self.env["riba.file.export"].create({})
         wizard_riba_export.with_context(active_ids=[riba_list.id]).act_getfile()
-        riba_txt = base64.decodebytes(wizard_riba_export.riba_txt)
+        riba_txt = bytes(wizard_riba_export.riba_txt)
         self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690124" in riba_txt)
         self.assertTrue(b"CIG: 7987210EG5 CUP: H71N17000690125" in riba_txt)
         # Assert
-        file_content = base64.decodebytes(wizard_riba_export.riba_txt).decode()
+        file_content = wizard_riba_export.riba_txt.decode("ascii")
         # Post invoice to have the name assigned
         self.invoice.company_id.due_cost_service_id = self.service_due_cost
         self.invoice.action_post()
@@ -818,7 +818,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         export_wizard.act_getfile()
 
         # Assert
-        file_content = base64.decodebytes(export_wizard.riba_txt).decode()
+        file_content = export_wizard.riba_txt.decode("ascii")
         self.assertNotIn("Via di là", file_content)
         self.assertIn("Via di la", file_content)
 
@@ -1013,7 +1013,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
     def test_charge_to_customer_with_partner(self):
         """Test that bank fee line has partner_id when charge_to_customer is set."""
-        invoice, riba_list = self.riba_sbf_common()
+        _invoice, riba_list = self.riba_sbf_common()
 
         # Create past due wizard with charge_to_customer set
         past_due_wizard = (
@@ -1056,7 +1056,7 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
 
     def test_charge_to_customer_without_partner(self):
         """Test bank fee line has no partner_id when charge_to_customer is not set."""
-        invoice, riba_list = self.riba_sbf_common()
+        _invoice, riba_list = self.riba_sbf_common()
 
         # Create past due wizard without charge_to_customer set
         past_due_wizard = (

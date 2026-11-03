@@ -96,7 +96,6 @@ class RibaCredit(models.TransientModel):
     # Journal and account configuration fields
     credit_journal_id = fields.Many2one(
         "account.journal",
-        string="Credit Journal",
         default=lambda self: self._get_credit_journal_id(),
     )
     credit_account_id = fields.Many2one(
@@ -113,7 +112,6 @@ class RibaCredit(models.TransientModel):
     # Acceptance account configuration
     acceptance_account_id = fields.Many2one(
         "account.account",
-        string="Acceptance Account",
         default=lambda self: self._get_acceptance_account_id(),
         help="Liability account used during RiBa acceptance. "
         "This will be credited to reverse the acceptance entry.",
@@ -127,7 +125,6 @@ class RibaCredit(models.TransientModel):
     # Bank account and fee configuration
     bank_account_id = fields.Many2one(
         "account.account",
-        string="Bank Account",
         default=lambda self: self._get_bank_account_id(),
         help="Bank account from which collection fees will be paid. "
         "This account will be credited for any expense amounts.",

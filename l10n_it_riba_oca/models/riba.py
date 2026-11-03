@@ -57,7 +57,7 @@ class RibaList(models.Model):
 
     _name = "riba.slip"
     _description = "RiBa Slip"
-    _inherit = ["mail.thread"]
+    _inherit = "mail.thread"
     _order = "date_created desc"
 
     name = fields.Char(
@@ -90,7 +90,6 @@ class RibaList(models.Model):
     )
     user_id = fields.Many2one(
         "res.users",
-        "User",
         required=True,
         default=lambda self: self.env.user,
     )
@@ -108,7 +107,6 @@ class RibaList(models.Model):
     date_past_due = fields.Date("Past Due Date", readonly=True)
     company_id = fields.Many2one(
         "res.company",
-        "Company",
         required=True,
         default=lambda self: self.env.company,
     )
@@ -187,28 +185,27 @@ class RibaList(models.Model):
             slip.state = "cancel"
 
     def settle_all_line(self):
-        payment_wizard_action = (
-            self.env["riba.payment.multiple"]
-            .with_context(
-                active_ids=self.ids,
-            )
-            .get_formview_action()
-        )
-        payment_wizard_action.update(
-            name=self.env._("Settle lines"),
-            target="new",
-        )
-        return payment_wizard_action
+        return {
+            "type": "ir.actions.act_window",
+            "name": self.env._("Settle lines"),
+            "res_model": "riba.payment.multiple",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "active_ids": self.ids,
+            },
+        }
 
     @api.onchange("date_accepted", "date_credited")
     def _onchange_date(self):
-        if self.date_accepted and self.date_credited:
-            if self.date_accepted > self.date_credited:
-                raise UserError(
-                    self.env._(
-                        "Credit date must be greater or equal to acceptance date."
-                    )
-                )
+        if (
+            self.date_accepted
+            and self.date_credited
+            and self.date_accepted > self.date_credited
+        ):
+            raise UserError(
+                self.env._("Credit date must be greater or equal to acceptance date.")
+            )
 
     def riba_past_due(self):
         self.state = "past_due"
@@ -316,16 +313,12 @@ class RibaListLine(models.Model):
     past_due_move_id = fields.Many2one(
         "account.move", string="Past Due Entry", readonly=True
     )
-    acceptance_account_id = fields.Many2one(
-        "account.account", string="Acceptance Account"
-    )
+    acceptance_account_id = fields.Many2one("account.account")
     bank_id = fields.Many2one("res.partner.bank", string="Debtor Bank")
     iban = fields.Char(
-        related="bank_id.acc_number", string="IBAN", store=False, readonly=True
+        related="bank_id.account_number", string="IBAN", store=False, readonly=True
     )
-    slip_id = fields.Many2one(
-        "riba.slip", string="Slip", required=True, ondelete="cascade"
-    )
+    slip_id = fields.Many2one("riba.slip", required=True, ondelete="cascade")
     partner_id = fields.Many2one("res.partner", string="Customer", readonly=True)
     due_date = fields.Date(readonly=True)
     state = fields.Selection(
@@ -383,18 +376,16 @@ class RibaListLine(models.Model):
                     and str(riba_move_line.move_line_id.move_id.sequence_number)
                     not in riba_move_line_name
                 ):
-                    riba_move_line_name = " ".join(
-                        [
-                            riba_move_line_name,
-                            str(riba_move_line.move_line_id.move_id.sequence_number),
-                        ]
+                    riba_move_line_name = (
+                        f"{riba_move_line_name}"
+                        f" {riba_move_line.move_line_id.move_id.sequence_number}"
                     ).lstrip()
                 elif (
                     riba_move_line.move_line_id.name
                     and riba_move_line.move_line_id.name not in riba_move_line_name
                 ):
-                    riba_move_line_name = " ".join(
-                        [riba_move_line_name, riba_move_line.move_line_id.name]
+                    riba_move_line_name = (
+                        f"{riba_move_line_name} {riba_move_line.move_line_id.name}"
                     ).lstrip()
                 move_line = move_line_model.with_context(
                     check_move_validity=False
@@ -443,19 +434,17 @@ class RibaListLine(models.Model):
             line.slip_id.state = "accepted"
 
     def button_settle(self):
-        payment_wizard_action = (
-            self.env["riba.payment.multiple"]
-            .with_context(
-                active_ids=self.slip_id.ids,
-                default_riba_line_ids=self.ids,
-            )
-            .get_formview_action()
-        )
-        payment_wizard_action.update(
-            name=self.env._("Settle line"),
-            target="new",
-        )
-        return payment_wizard_action
+        return {
+            "type": "ir.actions.act_window",
+            "name": self.env._("Settle line"),
+            "res_model": "riba.payment.multiple",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "active_ids": self.slip_id.ids,
+                "default_riba_line_ids": self.ids,
+            },
+        }
 
     def riba_line_settlement(self, date=None):
         """

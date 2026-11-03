@@ -28,7 +28,7 @@
         <field name="model">res.partner.bank</field>
         <field name="inherit_id" ref="base.view_partner_bank_form" />
         <field name="arch" type="xml">
-            <field name="acc_number" position="after">
+            <field name="account_number" position="after">
                 <field name="banca_estera" />
                 <field name="codice_sia" />
             </field>

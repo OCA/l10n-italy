@@ -80,8 +80,8 @@ class TestRibaCommon(common.TransactionCase):
                 "bank_ids": [
                     Command.create(
                         {
-                            "acc_type": "iban",
-                            "acc_number": "SI56191000000123438",
+                            "account_type": "iban",
+                            "account_number": "SI56191000000123438",
                             "bank_bic": "GEBABEBB",
                             "bank_name": "BNP Paribas",
                         }
@@ -106,12 +106,12 @@ class TestRibaCommon(common.TransactionCase):
         self.payment_term1 = self._create_pterm()
         self.payment_term2 = self._create_pterm2()
         self.account_rec1_id = self.account_model.create(
-            dict(
-                code="custacc",
-                name="customer account",
-                account_type="asset_receivable",
-                reconcile=True,
-            )
+            {
+                "code": "custacc",
+                "name": "customer account",
+                "account_type": "asset_receivable",
+                "reconcile": True,
+            }
         )
         self.sale_account = self.env["account.account"].search(
             [
@@ -191,7 +191,7 @@ class TestRibaCommon(common.TransactionCase):
         )
         self.company_bank = self.env["res.partner.bank"].create(
             {
-                "acc_number": "BE74126201326907",
+                "account_number": "BE74126201326907",
                 "partner_id": self.env.company.partner_id.id,
                 "company_id": self.env.company.id,
                 "bank_bic": "CPHBBE75",
@@ -200,7 +200,7 @@ class TestRibaCommon(common.TransactionCase):
         )
         self.company2_bank = self.env["res.partner.bank"].create(
             {
-                "acc_number": "IT000000000000000000",
+                "account_number": "IT000000000000000000",
                 "partner_id": self.company2.partner_id.id,
                 "company_id": self.company2.id,
             }

@@ -97,6 +97,6 @@
         id="menu_riba_configuration"
         action="action_riba_configuration"
         name="RiBa Configuration"
-        parent="account.root_payment_menu"
+        parent="account.account_invoicing_menu"
     />
 </odoo>

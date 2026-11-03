@@ -122,7 +122,7 @@ class RibaFileExport(models.TransientModel):
             + " " * 12
             + due_date
             + "30000"
-            + str(int(round(amount * 100))).rjust(13, "0")
+            + str(round(amount * 100)).rjust(13, "0")
             + "-"
             + abi_creditor_bank.rjust(5, "0")
             + cab_creditor_bank.rjust(5, "0")
@@ -235,7 +235,7 @@ class RibaFileExport(models.TransientModel):
             + self._ribaStorage.support
             + " " * 6
             + str(self._ribaStorage.sequence).rjust(7, "0")
-            + str(int(round(self._ribaStorage.riba_total * 100))).rjust(15, "0")
+            + str(round(self._ribaStorage.riba_total * 100)).rjust(15, "0")
             + "0" * 15
             + str(int(self._ribaStorage.sequence) * 7 + 2).rjust(7, "0")
             + " " * 24
@@ -287,10 +287,10 @@ class RibaFileExport(models.TransientModel):
         order_obj = self.env["riba.slip"].browse(active_ids)[0]
         credit_bank = order_obj.config_id.bank_id
         company_name = order_obj.config_id.company_id.partner_id.name
-        if not credit_bank.acc_number:
+        if not credit_bank.account_number:
             raise UserError(self.env._("No IBAN specified."))
         # remove spaces automatically added by odoo
-        credit_iban = credit_bank.acc_number.replace(" ", "")
+        credit_iban = credit_bank.account_number.replace(" ", "")
         credit_abi = credit_iban[5:10]
         credit_cab = credit_iban[10:15]
         credit_account = credit_iban[-12:]
@@ -302,8 +302,9 @@ class RibaFileExport(models.TransientModel):
                 )
             )
         credit_sia = credit_bank.codice_sia
-        issued_date = datetime.datetime.now().strftime("%d%m%y")
-        support_name = datetime.datetime.now().strftime("%d%m%y%H%M%S") + credit_sia
+        now = datetime.datetime.now(tz=datetime.timezone.utc)
+        issued_date = now.strftime("%d%m%y")
+        support_name = now.strftime("%d%m%y%H%M%S") + credit_sia
         creditor_address = order_obj.config_id.company_id.partner_id
         creditor_city = unidecode(creditor_address.city or "")
         if (
@@ -343,8 +344,8 @@ class RibaFileExport(models.TransientModel):
             if debit_bank.bank_abi and debit_bank.bank_cab:
                 debit_abi = debit_bank.bank_abi
                 debit_cab = debit_bank.bank_cab
-            elif debit_bank.acc_number:
-                debit_iban = debit_bank.acc_number.replace(" ", "")
+            elif debit_bank.account_number:
+                debit_iban = debit_bank.account_number.replace(" ", "")
                 debit_abi = debit_iban[5:10]
                 debit_cab = debit_iban[10:15]
             else:
@@ -397,9 +398,9 @@ class RibaFileExport(models.TransientModel):
             ]
             array_riba.append(riba)
 
-        out = base64.encodebytes(
+        out = base64.b64encode(
             self._createFile(array_header, array_riba).encode("ascii", errors="replace")
-        )
+        ).decode("ascii")
         self.write(
             {"state": "get", "riba_txt": out, "file_name": f"{order_obj.name}.txt"}
         )

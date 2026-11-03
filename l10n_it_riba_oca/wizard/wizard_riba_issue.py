@@ -17,9 +17,7 @@ from odoo.exceptions import UserError
 class RibaIssue(models.TransientModel):
     _name = "riba.issue"
     _description = "RiBa Issue"
-    configuration_id = fields.Many2one(
-        "riba.configuration", string="Configuration", required=True
-    )
+    configuration_id = fields.Many2one("riba.configuration", required=True)
 
     def create_list(self):
         def create_rdl(
@@ -101,7 +99,7 @@ class RibaIssue(models.TransientModel):
                     )
                 )
             if move_line.partner_id.group_riba and do_group_riba:
-                for key in grouped_lines:
+                for key, value in grouped_lines.items():
                     if (
                         key[0] == move_line.partner_id.id
                         and key[1] == move_line.date_maturity
@@ -114,9 +112,7 @@ class RibaIssue(models.TransientModel):
                             move_line.partner_id.id,
                             self.configuration_id.acceptance_account_id.id,
                         ).id
-                        # total = 0.0
-                        # invoice_date_group = ''
-                        for grouped_line in grouped_lines[key]:
+                        for grouped_line in value:
                             riba_list_move_line.create(
                                 {
                                     "riba_line_id": rdl_id,

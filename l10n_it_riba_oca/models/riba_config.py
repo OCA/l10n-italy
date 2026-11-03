@@ -30,27 +30,23 @@ class RibaConfiguration(models.Model):
     )
     acceptance_journal_id = fields.Many2one(
         "account.journal",
-        "Acceptance Journal",
         required=True,
         check_company=True,
         help="Journal used when RiBa is accepted by the bank.",
     )
     acceptance_account_id = fields.Many2one(
         "account.account",
-        "Acceptance Account",
         required=True,
         check_company=True,
         help="Account used when RiBa is accepted by the bank.",
     )
     company_id = fields.Many2one(
         "res.company",
-        "Company",
         required=True,
         default=lambda self: self.env.company,
     )
     credit_journal_id = fields.Many2one(
         "account.journal",
-        "Credit Journal",
         check_company=True,
         help="Journal used when RiBa amount is credited by the bank.",
     )
@@ -69,7 +65,6 @@ class RibaConfiguration(models.Model):
     bank_expense_account_id = fields.Many2one("account.account", "Bank Fees Account")
     past_due_journal_id = fields.Many2one(
         "account.journal",
-        "Past Due Journal",
         check_company=True,
         help="Journal used when RiBa is past due.",
     )
@@ -88,7 +83,6 @@ class RibaConfiguration(models.Model):
     )
     settlement_journal_id = fields.Many2one(
         "account.journal",
-        "Settlement Journal",
         check_company=True,
         help="Journal used when customers finally pay the invoice to bank.",
     )
