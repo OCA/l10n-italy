@@ -53,10 +53,10 @@ https://github.com/odoo/enterprise/commit/03c2e68ad88e3430e7fe604804d2bcc6332dc9
 
 I moduli esistenti che dipendevano da ``l10n_it_riba`` dovranno quindi:
 
-- adattare il nome della dipendenza da ``l10n_it_riba`` a
-  ``l10n_it_riba_oca``
-- adattare eventuali riferimenti esterni (XMLID) da
-  ``l10n_it_riba.[...]`` a ``l10n_it_riba_oca.[...]``
+-  adattare il nome della dipendenza da ``l10n_it_riba`` a
+   ``l10n_it_riba_oca``
+-  adattare eventuali riferimenti esterni (XMLID) da
+   ``l10n_it_riba.[...]`` a ``l10n_it_riba_oca.[...]``
 
 Configuration
 =============
@@ -67,12 +67,12 @@ Nella configurazione delle RiBa è possibile specificare se si tratti di
 'Salvo buon fine' o 'Al dopo incasso', che hanno un flusso completamente
 diverso.
 
-- Al dopo incasso: le fatture risulteranno pagate all'accettazione;
-  l'incasso potrà essere registrato con una normale riconciliazione
-  bancaria, che andrà a chiudere gli "effetti attivi" aperti
-  all'accettazione.
-- Salvo buon fine: le registrazioni generate seguiranno la struttura
-  descritta nel documento http://goo.gl/jpRhJp
+-  Al dopo incasso: le fatture risulteranno pagate all'accettazione;
+   l'incasso potrà essere registrato con una normale riconciliazione
+   bancaria, che andrà a chiudere gli "effetti attivi" aperti
+   all'accettazione.
+-  Salvo buon fine: le registrazioni generate seguiranno la struttura
+   descritta nel documento http://goo.gl/jpRhJp
 
 È possibile specificare diverse configurazioni (dal menù *Configurazione
 → Pagamenti → Configurazione RiBa*). Per ognuna, in caso di 'Salvo buon
@@ -99,6 +99,61 @@ Nel caso si vogliano gestire anche le spese per ogni scadenza con
 ricevuta bancaria, si deve configurare un prodotto di tipo servizio e
 collegarlo in *Configurazione → Impostazioni → Contabilità → Imposte →
 Spese di incasso RiBa*.
+
+**Spese di incasso per cliente**
+
+Sulla scheda del cliente (*Contatti*), nella sezione **RiBa**, sono
+disponibili due campi che governano l'addebito delle spese di incasso al
+momento della conferma della fattura:
+
+-  **Escludi spese Ri.Ba.** (``riba_exclude_expenses``): se attivo, al
+   cliente non viene mai addebitata alcuna spesa di incasso, qualunque
+   sia la politica impostata.
+-  **Politica spese Ri.Ba.** (``riba_policy_expenses``): determina
+   quante righe spesa vengono aggiunte alla fattura. Le opzioni
+   disponibili sono:
+
++----------------------+----------------------+----------------------+
+| Politica (etichetta  | Quante spese per     | Comportamento tra    |
+| / chiave)            | fattura              | fatture diverse      |
++======================+======================+======================+
+| One expense per      | una per ogni         | nessuna              |
+| maturity —           | scadenza             | deduplicazione:      |
+| ``unlimited``        |                      | tutte le scadenze di |
+|                      |                      | tutte le fatture     |
+|                      |                      | vengono sempre       |
+|                      |                      | addebitate           |
++----------------------+----------------------+----------------------+
+| One expense per      | una sola, a          | nessuna              |
+| invoice —            | prescindere dal      | deduplicazione: ogni |
+| ``one_per_invoice``  | numero di scadenze   | fattura riceve la    |
+|                      |                      | propria spesa        |
++----------------------+----------------------+----------------------+
+| One expense per      | una per ciascun mese | salta la spesa se    |
+| maturity month —     | in cui cade una      | quel mese è già      |
+| ``one_a_month``      | scadenza             | coperto da una       |
+| (default)            |                      | scadenza di un'altra |
+|                      |                      | fattura del cliente  |
++----------------------+----------------------+----------------------+
+| One expense per      | una sola, a          | salta la spesa se    |
+| invoice month —      | prescindere dal      | nello stesso mese    |
+| ``one_a_matu         | numero di scadenze   | della data fattura   |
+| rity_invoice_month`` |                      | esiste già un'altra  |
+|                      |                      | fattura del cliente  |
+|                      |                      | con spesa            |
++----------------------+----------------------+----------------------+
+| One expense per      | una per ogni mese di | salta la spesa se    |
+| maturity month,      | scadenza             | nello stesso mese    |
+| dedup within invoice |                      | della data fattura   |
+| month —              |                      | esiste già un'altra  |
+| ``maturity           |                      | fattura con una      |
+| _per_invoice_month`` |                      | scadenza nello       |
+|                      |                      | **stesso mese**      |
++----------------------+----------------------+----------------------+
+
+La deduplicazione considera solo le fatture del cliente **già
+confermate** che riportano una riga spesa: l'ordine di conferma delle
+fatture quindi è rilevante.
 
 Usage
 =====
@@ -133,12 +188,13 @@ In maniera predefinita la data delle registrazioni dei pagamenti viene
 impostata con la data di scadenza della RiBa, ma è possibile modificarla
 in due momenti:
 
-- durante la creazione del pagamento, cliccando su "Segna righe come
-  pagate" o su "Segna coma pagata" o usando l'azione "Registrazione Riba
-  a data di scadenza" e indicando una data nel campo ``Data pagamento``,
-- successivamente a pagamento effettivamente avvenuto selezionando la
-  registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta
-  data di pagamento RiBa".
+-  durante la creazione del pagamento, cliccando su "Segna righe come
+   pagate" o su "Segna coma pagata" o usando l'azione "Registrazione
+   Riba a data di scadenza" e indicando una data nel campo
+   ``Data pagamento``,
+-  successivamente a pagamento effettivamente avvenuto selezionando la
+   registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta
+   data di pagamento RiBa".
 
 Bug Tracker
 ===========
@@ -156,27 +212,27 @@ Credits
 Contributors
 ------------
 
-- Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-- Andrea Cometa <a.cometa@apuliasoftware.it>
-- Andrea Gallina <a.gallina@apuliasoftware.it>
-- Davide Corio <info@davidecorio.com>
-- Giacomo Grasso <giacomo.grasso@agilebg.com>
-- Gabriele Baldessari <gabriele.baldessari@gmail.com>
-- Alex Comba <alex.comba@agilebg.com>
-- Marco Calcagni <mcalcagni@dinamicheaziendali.it>
-- Sergio Zanchetta <https://github.com/primes2h>
-- Simone Vanin <simone.vanin@agilebg.com>
-- Sergio Corato <https://github.com/sergiocorato>
-- Giovanni Serra <giovanni@gslab.it>
-- `Aion Tech <https://aiontech.company/>`__:
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Andrea Cometa <a.cometa@apuliasoftware.it>
+-  Andrea Gallina <a.gallina@apuliasoftware.it>
+-  Davide Corio <info@davidecorio.com>
+-  Giacomo Grasso <giacomo.grasso@agilebg.com>
+-  Gabriele Baldessari <gabriele.baldessari@gmail.com>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Simone Vanin <simone.vanin@agilebg.com>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  Giovanni Serra <giovanni@gslab.it>
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
-- `TAKOBI <https://takobi.online>`__:
+-  `TAKOBI <https://takobi.online>`__:
 
-  - Simone Rubino <sir@takobi.online>
+   -  Simone Rubino <sir@takobi.online>
 
-- Nextev Srl <odoo@nextev.it>
+-  Nextev Srl <odoo@nextev.it>
 
 Maintainers
 -----------
