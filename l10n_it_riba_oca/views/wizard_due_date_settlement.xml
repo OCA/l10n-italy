@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="riba_due_date_settlement" model="ir.ui.view">
         <field name="name">riba.due.date.settlement.wizard</field>

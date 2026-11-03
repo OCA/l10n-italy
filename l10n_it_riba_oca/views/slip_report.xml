@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ Copyright 2023 Simone Rubino - Aion Tech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -24,7 +24,7 @@
                                 </li>
                             </strong>
                             <li t-if="company.vat"><t
-                                t-esc="company.country_id.vat_label or 'Tax ID'"
+                                t-out="company.country_id.vat_label or 'Tax ID'"
                             />: <span t-field="company.vat" /></li>
                             <li t-if="company.phone">Tel: <span
                                 class="o_force_ltr"
@@ -63,7 +63,7 @@
                         <div class="row p-1">
                             <p>
                                 RiBa Slip No. <span
-                                t-esc="o.name or 'Draft'"
+                                t-out="o.name or 'Draft'"
                             /> of <span t-field="o.registration_date" />
                             </p>
                         </div>

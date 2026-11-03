@@ -284,8 +284,10 @@ class RibaPastDue(models.TransientModel):
         )
         acceptance_lines = slip_line.acceptance_move_id.line_ids
         (invoice_lines.matched_debit_ids | invoice_lines.matched_credit_ids).filtered(
-            lambda partial: partial.debit_move_id in acceptance_lines
-            or partial.credit_move_id in acceptance_lines
+            lambda partial: (
+                partial.debit_move_id in acceptance_lines
+                or partial.credit_move_id in acceptance_lines
+            )
         ).unlink()
 
         # Add acceptance move lines for reconciliation

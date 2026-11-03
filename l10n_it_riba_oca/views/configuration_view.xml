@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ Copyright 2023 Simone Rubino - Aion Tech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -7,7 +7,7 @@
     <!-- ====================================================== -->
     <!-- 				CONFIGURAZIONE RIBA FORM 				-->
     <!-- ====================================================== -->
-    <record model="ir.ui.view" id="view_riba_configuration_form">
+    <record id="view_riba_configuration_form" model="ir.ui.view">
         <field name="name">riba.configuration.form</field>
         <field name="model">riba.configuration</field>
         <field name="arch" type="xml">
@@ -69,7 +69,7 @@
     <!-- ====================================================== -->
     <!-- 				CONFIGURAZIONE RIBA TREE 				-->
     <!-- ====================================================== -->
-    <record model="ir.ui.view" id="view_riba_configuration_tree">
+    <record id="view_riba_configuration_tree" model="ir.ui.view">
         <field name="name">riba.configuration.tree</field>
         <field name="model">riba.configuration</field>
         <field name="arch" type="xml">
@@ -94,8 +94,8 @@
     <!-- 				CONFIGURAZIONE RIBA MENU 				-->
     <!-- ====================================================== -->
     <menuitem
-        action="action_riba_configuration"
         id="menu_riba_configuration"
+        action="action_riba_configuration"
         name="RiBa Configuration"
         parent="account.root_payment_menu"
     />
