@@ -1,0 +1,23 @@
+id,name,model_id,group_id/id,operation,domain
+access_riba_slip_invoice,riba.slip invoice,riba.slip,account.group_account_invoice,crud,
+access_riba_slip_user,riba.slip user,riba.slip,base.group_user,r,
+access_riba_slip_accountant,riba.slip accountant,riba.slip,account.group_account_user,r,
+access_riba_slip_line_invoice,riba.slip.line invoice,riba.slip.line,account.group_account_invoice,crud,
+access_riba_slip_line_user,riba.slip.line user,riba.slip.line,base.group_user,r,
+access_riba_slip_line_accountant,riba.slip.line accountant,riba.slip.line,account.group_account_user,r,
+access_riba_slip_move_line_invoice,riba.slip.move.line invoice,riba.slip.move.line,account.group_account_invoice,crud,
+access_riba_slip_move_line_user,riba.slip.move.line user,riba.slip.move.line,base.group_user,r,
+access_riba_slip_move_line_accountant,riba.slip.move.line accountant,riba.slip.move.line,account.group_account_user,r,
+access_riba_configuration_manager,riba.configuration manager,riba.configuration,account.group_account_manager,crud,
+access_riba_configuration_invoice,riba.configuration invoice,riba.configuration,account.group_account_invoice,r,
+access_riba_issue,riba.issue,riba.issue,account.group_account_invoice,crud,
+access_riba_past_due,riba.past_due,riba.past_due,account.group_account_invoice,crud,
+access_riba_credit,riba.credit,riba.credit,account.group_account_invoice,crud,
+access_riba_file_export,riba.file.export,riba.file.export,account.group_account_invoice,crud,
+access_presentation_riba_issue,presentation.riba.issue,presentation.riba.issue,account.group_account_invoice,crud,
+access_riba_due_date_settlement,riba.due.date.settlement,riba.due.date.settlement,account.group_account_invoice,crud,
+access_riba_payment_date,riba.payment.date,riba.payment.date,account.group_account_invoice,crud,
+access_riba_payment_multiple,riba.payment.multiple,riba.payment.multiple,account.group_account_invoice,crud,
+riba_slip_company_rule,RiBa slip multi-company,riba.slip,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"
+riba_slip_line_company_rule,RiBa slip line multi-company,riba.slip.line,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"
+riba_configuration_company_rule,Ri.Ba. configuration multi-company,riba.configuration,,crud,"['|',('company_id','=',False),('company_id','in',company_ids)]"

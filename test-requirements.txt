@@ -1,0 +1,4 @@
+odoo-addon-l10n_it_abicab @ git+https://github.com/OCA/l10n-italy.git@refs/pull/5393/head#subdirectory=l10n_it_abicab
+odoo-addon-l10n_it_edi_related_document @ git+https://github.com/OCA/l10n-italy.git@refs/pull/5392/head#subdirectory=l10n_it_edi_related_document
+odoo-addon-account_due_list @ git+https://github.com/OCA/account-payment.git@refs/pull/981/head#subdirectory=account_due_list
+odoo-addon-account_payment_term_extension @ git+https://github.com/OCA/account-payment.git@refs/pull/987/head#subdirectory=account_payment_term_extension
