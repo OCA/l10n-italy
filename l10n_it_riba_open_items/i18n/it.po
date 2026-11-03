@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_riba_open_items
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-24 12:20+0000\n"
+"PO-Revision-Date: 2026-10-24 12:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_riba_open_items
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba_open_items.report_open_items_filters_riba
+msgid "Hide"
+msgstr "Nascondi"
+
+#. module: l10n_it_riba_open_items
+#: model:ir.model.fields,help:l10n_it_riba_open_items.field_open_items_report_wizard__show_riba_uncovered
+msgid ""
+"Include invoices closed by a RiBa acceptance whose RiBa has not yet been "
+"paid, with zero balance and the uncovered amount in a dedicated column."
+msgstr ""
+"Include le fatture chiuse dall'accettazione RiBa la cui RiBa non è ancora "
+"andata a buon fine, con saldo zero e l'importo scoperto in una colonna "
+"dedicata."
+
+#. module: l10n_it_riba_open_items
+#. odoo-python
+#: code:addons/l10n_it_riba_open_items/report/open_items.py:0
+msgid "Missing Partner"
+msgstr "Partner mancante"
+
+#. module: l10n_it_riba_open_items
+#. odoo-python
+#: code:addons/l10n_it_riba_open_items/report/open_items.py:0
+msgid "Missing Salesperson"
+msgstr "Addetto vendite mancante"
+
+#. module: l10n_it_riba_open_items
+#. odoo-python
+#: code:addons/l10n_it_riba_open_items/report/open_items_xlsx.py:0
+msgid "No"
+msgstr "No"
+
+#. module: l10n_it_riba_open_items
+#: model:ir.model,name:l10n_it_riba_open_items.model_report_account_financial_report_open_items
+msgid "Open Items Report"
+msgstr "Resoconto partite aperte"
+
+#. module: l10n_it_riba_open_items
+#: model:ir.model,name:l10n_it_riba_open_items.model_open_items_report_wizard
+msgid "Open Items Report Wizard"
+msgstr "Procedura guidata resoconto partite aperte"
+
+#. module: l10n_it_riba_open_items
+#: model:ir.model,name:l10n_it_riba_open_items.model_report_a_f_r_report_open_items_xlsx
+msgid "Open Items XLSX Report"
+msgstr "Resoconto XLSX partite aperte"
+
+#. module: l10n_it_riba_open_items
+#. odoo-python
+#: code:addons/l10n_it_riba_open_items/report/open_items_xlsx.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba_open_items.report_open_items_filters_riba
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba_open_items.report_open_items_lines_header_riba
+msgid "RiBa uncovered"
+msgstr "Scoperto RiBa"
+
+#. module: l10n_it_riba_open_items
+#: model_terms:ir.ui.view,arch_db:l10n_it_riba_open_items.report_open_items_filters_riba
+msgid "Show"
+msgstr "Mostra"
+
+#. module: l10n_it_riba_open_items
+#. odoo-python
+#: code:addons/l10n_it_riba_open_items/report/open_items_xlsx.py:0
+#: model:ir.model.fields,field_description:l10n_it_riba_open_items.field_open_items_report_wizard__show_riba_uncovered
+msgid "Show RiBa uncovered"
+msgstr "Mostra scoperto RiBa"
+
+#. module: l10n_it_riba_open_items
+#. odoo-python
+#: code:addons/l10n_it_riba_open_items/report/open_items_xlsx.py:0
+msgid "Yes"
+msgstr "Sì"
