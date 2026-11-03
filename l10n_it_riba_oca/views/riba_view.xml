@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ Copyright 2023 Simone Rubino - Aion Tech
   ~ Copyright 2025 Simone Rubino - PyTech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-    <menuitem name="RiBa" parent="account.menu_finance" id="menu_riba" />
+    <menuitem id="menu_riba" name="RiBa" parent="account.menu_finance" />
 
     <!-- ====================================================== -->
     <!--                     RIBA SLIP - FILTERS             -->
     <!-- ====================================================== -->
-    <record model="ir.ui.view" id="view_slip_riba_filter">
+    <record id="view_slip_riba_filter" model="ir.ui.view">
         <field name="name">riba.slip.filter</field>
         <field name="model">riba.slip</field>
         <field name="arch" type="xml">
@@ -45,7 +45,7 @@
     <!-- ====================================================== -->
     <!--                     RIBA SLIP TREE                 -->
     <!-- ====================================================== -->
-    <record model="ir.ui.view" id="view_slip_riba_tree">
+    <record id="view_slip_riba_tree" model="ir.ui.view">
         <field name="name">riba.slip.tree</field>
         <field name="model">riba.slip</field>
         <field name="arch" type="xml">
@@ -63,7 +63,7 @@
     <!-- ====================================================== -->
     <!--                     RIBA SLIP LINE FORM                 -->
     <!-- ====================================================== -->
-    <record model="ir.ui.view" id="view_riba_slip_line_form">
+    <record id="view_riba_slip_line_form" model="ir.ui.view">
         <field name="name">riba.slip.line.form</field>
         <field name="model">riba.slip.line</field>
         <field name="arch" type="xml">
@@ -119,7 +119,7 @@
     <!-- ====================================================== -->
     <!--                     RIBA SLIP FORM                 -->
     <!-- ====================================================== -->
-    <record model="ir.ui.view" id="view_riba_slip_form">
+    <record id="view_riba_slip_form" model="ir.ui.view">
         <field name="name">riba.slip.form</field>
         <field name="model">riba.slip</field>
         <field name="arch" type="xml">
@@ -167,7 +167,7 @@
                             name="action_open_lines"
                             string="Slip lines"
                             class="oe_stat_button"
-                            icon="fa-list"
+                            icon="list"
                         />
                     </div>
                     <group>
@@ -218,14 +218,14 @@
                                         type='action'
                                         invisible="(type == 'sbf' and state != 'credited') or (type == 'incasso' and state != 'confirmed')"
                                         string="Mark as Past Due"
-                                        icon="fa-exclamation-triangle"
+                                        icon="warning"
                                     />
                                     <button
                                         name="button_settle"
                                         type='object'
                                         invisible="(type == 'sbf' and state != 'credited') or (type == 'incasso' and state != 'confirmed')"
                                         string="Mark as Settled"
-                                        icon="fa-check"
+                                        icon="check"
                                     />
                                 </list>
                             </field>
@@ -291,9 +291,9 @@
     <!--                     RIBA SLIP - MENU               -->
     <!-- ====================================================== -->
     <menuitem
+        id="menu_riba_distinte"
         name="Slips"
         parent="menu_riba"
-        id="menu_riba_distinte"
         action="slip_riba_action"
     />
 </odoo>

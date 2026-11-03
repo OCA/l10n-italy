@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ Copyright 2023 Simone Rubino - Aion Tech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -53,7 +53,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_detail_riba_tree">
+    <record id="view_detail_riba_tree" model="ir.ui.view">
         <field name="name">riba.slip.line.tree</field>
         <field name="model">riba.slip.line</field>
         <field name="arch" type="xml">
@@ -74,7 +74,7 @@
                     type='action'
                     invisible="type == 'incasso' or state != 'credited'"
                     string="Mark as Past Due"
-                    icon="fa-exclamation-triangle"
+                    icon="warning"
                 />
             </list>
         </field>
@@ -89,9 +89,9 @@
     </record>
 
     <menuitem
+        id="menu_riba_detail"
         name="Slips Detail"
         parent="menu_riba"
-        id="menu_riba_detail"
         action="detail_riba_action"
     />
 </odoo>

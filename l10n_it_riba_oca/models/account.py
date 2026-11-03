@@ -27,13 +27,9 @@ class AccountPaymentTerm(models.Model):
     )
 
 
-class ResBankAddField(models.Model):
-    _inherit = "res.bank"
-    banca_estera = fields.Boolean("Foreign Bank")
-
-
 class ResPartnerBankAdd(models.Model):
     _inherit = "res.partner.bank"
+    banca_estera = fields.Boolean("Foreign Bank")
     codice_sia = fields.Char(
         "SIA Code",
         size=5,
@@ -75,9 +71,11 @@ class AccountMove(models.Model):
         for invoice in self:
             if invoice.is_riba_payment:
                 open_amount_line_ids = invoice.line_ids.filtered(
-                    lambda line, today=today: line.riba
-                    and line.display_type == "payment_term"
-                    and line.date_maturity > today
+                    lambda line, today=today: (
+                        line.riba
+                        and line.display_type == "payment_term"
+                        and line.date_maturity > today
+                    )
                 )
                 invoice.open_amount = sum(open_amount_line_ids.mapped("balance"))
             else:
@@ -268,9 +266,11 @@ class AccountMove(models.Model):
                         container={"records": invoice, "self": invoice}
                     )
         inv_riba_no_bank = self.filtered(
-            lambda x: x.is_riba_payment
-            and x.move_type == "out_invoice"
-            and not x.riba_partner_bank_id
+            lambda x: (
+                x.is_riba_payment
+                and x.move_type == "out_invoice"
+                and not x.riba_partner_bank_id
+            )
         )
         if inv_riba_no_bank:
             inv_details = (

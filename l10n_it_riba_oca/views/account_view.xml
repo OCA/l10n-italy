@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ Copyright 2023 Simone Rubino - Aion Tech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -23,22 +23,13 @@
             </xpath>
         </field>
     </record>
-    <record id="view_res_bank_add_text_field" model="ir.ui.view">
-        <field name="name">res.bank.add.text.field</field>
-        <field name="model">res.bank</field>
-        <field name="inherit_id" ref="base.view_res_bank_form" />
-        <field name="arch" type="xml">
-            <field name="bic" position="after">
-                <field name="banca_estera" />
-            </field>
-        </field>
-    </record>
     <record id="view_partner_bank_sia_form" model="ir.ui.view">
         <field name="name">res.partner.bank.form.sia.inherit</field>
         <field name="model">res.partner.bank</field>
         <field name="inherit_id" ref="base.view_partner_bank_form" />
         <field name="arch" type="xml">
             <field name="acc_number" position="after">
+                <field name="banca_estera" />
                 <field name="codice_sia" />
             </field>
         </field>
@@ -46,7 +37,7 @@
 
     <!-- RiBa To Issue - List View -->
 
-    <record model="ir.ui.view" id="view_riba_to_issue_tree">
+    <record id="view_riba_to_issue_tree" model="ir.ui.view">
         <field name="name">RiBa Issue</field>
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
@@ -113,7 +104,7 @@
 
     <!-- RiBa To Issue - Action -->
 
-    <record model="ir.actions.act_window" id="action_riba_to_issue">
+    <record id="action_riba_to_issue" model="ir.actions.act_window">
         <field name="name">RiBa Issue</field>
         <field name="path">riba-issue</field>
         <field name="res_model">account.move.line</field>
@@ -129,9 +120,9 @@
     </record>
 
     <menuitem
+        id="menu_riba_to_issue"
         name="Issue"
         parent="menu_riba"
-        id="menu_riba_to_issue"
         action="action_riba_to_issue"
     />
 
@@ -199,9 +190,9 @@
         <field name="act_window_id" ref="action_invoice_tree1" />
     </record>
     <menuitem
+        id="menu_invoices"
         name="Past Due Invoices"
         parent="menu_riba"
-        id="menu_invoices"
         action="action_invoice_tree1"
     />
 </odoo>

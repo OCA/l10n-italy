@@ -67,12 +67,6 @@ class TestRibaCommon(common.TransactionCase):
         self.move_model = self.env["account.move"]
         self.slip_model = self.env["riba.slip"]
 
-        self.bank_bnp = self.env["res.bank"].create(
-            {
-                "name": "BNP Paribas",
-                "bic": "GEBABEBB",
-            }
-        )
         self.partner = self.env["res.partner"].create(
             {
                 "name": "Gemini Furniture",
@@ -88,7 +82,8 @@ class TestRibaCommon(common.TransactionCase):
                         {
                             "acc_type": "iban",
                             "acc_number": "SI56191000000123438",
-                            "bank_id": self.bank_bnp.id,
+                            "bank_bic": "GEBABEBB",
+                            "bank_name": "BNP Paribas",
                         }
                     )
                 ],
@@ -194,19 +189,13 @@ class TestRibaCommon(common.TransactionCase):
                 "account_type": "asset_receivable",
             }
         )
-        self.bank = self.env["res.bank"].create(
-            {
-                "name": "Bank",
-                "bic": "CPHBBE75",
-            }
-        )
         self.company_bank = self.env["res.partner.bank"].create(
             {
                 "acc_number": "BE74126201326907",
                 "partner_id": self.env.company.partner_id.id,
-                "bank_id": self.bank.id,
                 "company_id": self.env.company.id,
                 "bank_bic": "CPHBBE75",
+                "bank_name": "Bank",
             }
         )
         self.company2_bank = self.env["res.partner.bank"].create(

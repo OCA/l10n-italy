@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ Copyright 2023 Simone Rubino - Aion Tech
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -11,15 +11,16 @@
         <field name="arch" type="xml">
             <app name="account" position="inside">
                 <div
-                    class="col-12 col-lg-6 o_setting_box"
                     id="default_taxes"
+                    class="col-12 col-lg-6 o_setting_box"
                     title="RiBa Configuration"
                 >
                     <div class="o_setting_left_pane" />
                     <div class="o_setting_right_pane">
                         <span class="o_form_label">RiBa Collection Fees</span>
                         <span
-                            class="fa fa-lg fa-building-o"
+                            class="oi oi-lg"
+                            data-icon="apartment"
                             title="Product used as Service for RiBa Collection Fees"
                             aria-label="Product used as Service for RiBa Collection Fees"
                             groups="base.group_multi_company"
