@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Supporto IVA 74-ter - Fattura elettronica",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "development_status": "Alpha",
     "category": "Localization/Italy",
     "summary": "Supporto IVA secondo art. 74-ter, DPR 633/72 - Agenzie viaggi "
@@ -21,6 +21,11 @@
     "depends": [
         "account",
         "l10n_it_edi_sender_partner",
+        # Core, auto-installed for IT: owns the stored `l10n_it_document_type`
+        # field and overrides `_l10n_it_edi_get_document_type` to honour it.
+        # Depending on it explicitly puts our override first in the MRO, so
+        # the 74-ter rule (TD01 bill / TD04 credit note) is authoritative.
+        "l10n_it_edi_ndd",
     ],
     "data": [
         "views/res_partner_views.xml",

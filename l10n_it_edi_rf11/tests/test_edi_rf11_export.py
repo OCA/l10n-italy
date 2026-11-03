@@ -87,13 +87,41 @@ class TestEdiRf11Export(TestItEdi):
             )
         )
 
-    def _create_74ter_bill(self, tax=None, currency=None):
+        # Intra-EU N6.9 tax carrying the VJ9 grid, as found in real DBs: core
+        # would select TD18 from that tag (and, on an in_refund, flip the
+        # amounts negative) unless the 74-ter rule takes precedence.
+        cls.tax_22_n69_vj9 = (
+            cls.env["account.tax"]
+            .with_company(cls.company)
+            .create(
+                {
+                    "name": "22% 74-ter intra-UE (N6.9, +vj9)",
+                    "amount": 22.0,
+                    "amount_type": "percent",
+                    "type_tax_use": "purchase",
+                    "l10n_it_exempt_reason": "N6.9",
+                    "l10n_it_law_reference": "Art. 74-ter, DPR 633/72",
+                    "invoice_repartition_line_ids": cls.repartition_lines(
+                        cls.RepartitionLine(100.0, "base", ["+vj9"]),
+                        cls.RepartitionLine(100.0, "tax", []),
+                        cls.RepartitionLine(-100.0, "tax", []),
+                    ),
+                    "refund_repartition_line_ids": cls.repartition_lines(
+                        cls.RepartitionLine(100.0, "base", ["-vj9"]),
+                        cls.RepartitionLine(100.0, "tax", []),
+                        cls.RepartitionLine(-100.0, "tax", []),
+                    ),
+                }
+            )
+        )
+
+    def _create_74ter_bill(self, tax=None, currency=None, move_type="in_invoice"):
         bill = (
             self.env["account.move"]
             .with_company(self.company)
             .create(
                 {
-                    "move_type": "in_invoice",
+                    "move_type": move_type,
                     "invoice_date": "2024-01-01",
                     "partner_id": self.agency.id,
                     "currency_id": (currency or self.company.currency_id).id,
@@ -125,10 +153,11 @@ class TestEdiRf11Export(TestItEdi):
 
         # RegimeFiscale RF11 (core would force RF18 for a self-invoice)
         self.assertEqual(tree.findtext(".//CedentePrestatore//RegimeFiscale"), "RF11")
-        # Ordinary invoice document type
+        # Ordinary invoice document type, in the XML and in the stored field
         self.assertEqual(
             tree.findtext(".//DatiGeneraliDocumento/TipoDocumento"), "TD01"
         )
+        self.assertEqual(bill.l10n_it_document_type.code, "TD01")
         # Emitted by the Cessionario/Committente (the tour operator)
         self.assertEqual(tree.findtext(".//SoggettoEmittente"), "CC")
         # The issuer block carries the company (tour operator), emitted
@@ -193,6 +222,68 @@ class TestEdiRf11Export(TestItEdi):
         self.assertEqual(tree.findtext(".//DatiRiepilogo/Natura"), "N6.9")
         self.assertEqual(tree.findtext(".//DatiRiepilogo/AliquotaIVA"), "0.00")
         self.assertEqual(tree.findtext(".//DettaglioLinee/Natura"), "N6.9")
+        self.assertEqual(
+            tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
+            "100.00",
+        )
+
+    def _assert_74ter_refund_xml(self, refund, natura):
+        """A 74-ter credit note is a TD04 with positive amounts, for the given
+        nature, both in the XML and in the stored document type field."""
+        self.assertTrue(refund._l10n_it_edi_is_74ter_self_billing())
+        self.assertTrue(refund.l10n_it_edi_is_self_invoice)
+        self.assertEqual(refund._l10n_it_edi_get_document_type(), "TD04")
+        self.assertEqual(refund.l10n_it_document_type.code, "TD04")
+
+        tree = etree.fromstring(refund._l10n_it_edi_render_xml())
+        self.assertEqual(
+            tree.findtext(".//DatiGeneraliDocumento/TipoDocumento"), "TD04"
+        )
+        self.assertEqual(tree.findtext(".//CedentePrestatore//RegimeFiscale"), "RF11")
+        self.assertEqual(tree.findtext(".//SoggettoEmittente"), "CC")
+        self.assertEqual(tree.findtext(".//DatiRiepilogo/Natura"), natura)
+        self.assertEqual(tree.findtext(".//DettaglioLinee/Natura"), natura)
+        # Positive amounts everywhere (no reverse-charge refund sign flip)
+        self.assertEqual(
+            tree.findtext(".//DettaglioLinee/PrezzoUnitario"), "100.00000000"
+        )
+        self.assertEqual(
+            tree.findtext(".//DettaglioLinee/PrezzoTotale"), "100.00000000"
+        )
+        self.assertEqual(tree.findtext(".//DatiRiepilogo/ImponibileImporto"), "100.00")
+        self.assertEqual(tree.findtext(".//DatiRiepilogo/AliquotaIVA"), "0.00")
+        self.assertEqual(tree.findtext(".//DatiRiepilogo/Imposta"), "0.00")
+        self.assertEqual(
+            tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
+            "100.00",
+        )
+
+    def test_74ter_refund_n36(self):
+        """Extra-EU (N3.6) credit note: TD04, positive amounts."""
+        refund = self._create_74ter_bill(move_type="in_refund")
+        self._assert_74ter_refund_xml(refund, "N3.6")
+
+    def test_74ter_refund_n69(self):
+        """Intra-EU (N6.9, 22% stripped) credit note: TD04, positive amounts."""
+        refund = self._create_74ter_bill(tax=self.tax_22_n69, move_type="in_refund")
+        self._assert_74ter_refund_xml(refund, "N6.9")
+
+    def test_74ter_refund_n69_vj9_tag(self):
+        """Intra-EU N6.9 tax carrying the VJ9 grid: core alone would pick TD18
+        and export negative amounts; the 74-ter rule must win (TD04, positive)."""
+        refund = self._create_74ter_bill(tax=self.tax_22_n69_vj9, move_type="in_refund")
+        self._assert_74ter_refund_xml(refund, "N6.9")
+
+    def test_74ter_bill_n69_vj9_tag(self):
+        """Same VJ9 tax on a bill: TD01 (not TD18), field included."""
+        bill = self._create_74ter_bill(tax=self.tax_22_n69_vj9)
+        self.assertEqual(bill._l10n_it_edi_get_document_type(), "TD01")
+        self.assertEqual(bill.l10n_it_document_type.code, "TD01")
+        tree = etree.fromstring(bill._l10n_it_edi_render_xml())
+        self.assertEqual(
+            tree.findtext(".//DatiGeneraliDocumento/TipoDocumento"), "TD01"
+        )
+        self.assertEqual(tree.findtext(".//DatiRiepilogo/Natura"), "N6.9")
         self.assertEqual(
             tree.findtext(".//DatiGeneraliDocumento/ImportoTotaleDocumento"),
             "100.00",

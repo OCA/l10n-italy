@@ -128,8 +128,15 @@ class AccountMove(models.Model):
     #         its Natura is preserved from the tax (value-builder overrides
     #         below), leaving the accounting untouched. If such a tax carries no
     #         nature, N6.9 is used as a fallback.
-    #   * TipoDocumento TD01 and CodiceDestinatario = the agency's SdI code,
-    #     as in the Odoo 16 module.
+    #   * TipoDocumento TD01 for a bill and TD04 for a credit note (both with
+    #     positive amounts, as for any TD04), and CodiceDestinatario = the
+    #     agency's SdI code, as in the Odoo 16 module. The document type is
+    #     decided in `_l10n_it_edi_get_document_type` so that it drives BOTH
+    #     the XML and the stored `l10n_it_document_type` field (core
+    #     `l10n_it_edi_ndd`, computed at posting from that same method).
+    #     Core would otherwise pick TD16..TD19 from the VJ tax grids (e.g. an
+    #     N6.9 tax carrying +vj9 gives TD18) and, for an in_refund of those
+    #     types, flip every amount negative in the XML.
     # =================================================================
     def _l10n_it_edi_is_74ter_self_billing(self):
         """Return True for a 74-ter self-billing autofattura.
@@ -172,6 +179,22 @@ class AccountMove(models.Model):
                 move.l10n_it_edi_is_self_invoice = True
         return res
 
+    def _l10n_it_edi_get_document_type(self):
+        """TD01 for a 74-ter bill, TD04 for a 74-ter credit note.
+
+        This override comes first in the MRO (we depend on `l10n_it_edi_ndd`),
+        so for a 74-ter document it is authoritative over both the stored
+        `l10n_it_document_type` field and core's VJ-tag based selection
+        (TD16..TD19). Core's `_l10n_it_edi_get_values` reads the type from
+        here: with TD01/TD04 it never applies the reverse-charge refund sign
+        flip, so a credit note is exported with positive amounts, as the SdI
+        expects for a TD04.
+        """
+        self.ensure_one()
+        if self._l10n_it_edi_is_74ter_self_billing():
+            return "TD04" if self.move_type == "in_refund" else "TD01"
+        return super()._l10n_it_edi_get_document_type()
+
     def _l10n_it_edi_get_values(self, pdf_values=None):
         values = super()._l10n_it_edi_get_values(pdf_values=pdf_values)
         # Always expose `soggetto_emittente` so the QWeb override is safe for
@@ -180,8 +203,8 @@ class AccountMove(models.Model):
         if self._l10n_it_edi_is_74ter_self_billing():
             # RegimeFiscale RF11 (core forces RF18 for self-invoices).
             values["regime_fiscale"] = "RF11"
-            # Ordinary invoice document type, per art. 74-ter guidance.
-            values["document_type"] = "TD01"
+            # TipoDocumento (TD01 / TD04) already comes from core via
+            # `_l10n_it_edi_get_document_type` above.
             # Emitted by the Cessionario/Committente (the tour operator).
             values["soggetto_emittente"] = "CC"
             # The total must match DatiRiepilogo, where the intra-EU VAT is

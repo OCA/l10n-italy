@@ -381,11 +381,12 @@ scheme of art. 74-ter, DPR 633/72.</p>
 the intermediary travel agency. That invoice represents the commission
 the tour operator owes the agency and replaces the vendor bill the
 agency would otherwise issue to the tour operator.</p>
-<p>The invoice is emitted as <tt class="docutils literal">TipoDocumento</tt> TD01 with <tt class="docutils literal">RegimeFiscale</tt>
-RF11, showing that it is issued on behalf of the agency (the <em>Terzo
-Intermediario o Soggetto Emittente</em> and <em>Soggetto Emittente</em> blocks),
-and carrying the VAT nature code N3.6 for non-taxable operations, or
-N6.9 for travel within the EU, in place of the VAT rate.</p>
+<p>The invoice is emitted as <tt class="docutils literal">TipoDocumento</tt> TD01 (TD04 for a credit
+note, with positive amounts) with <tt class="docutils literal">RegimeFiscale</tt> RF11, showing that
+it is issued on behalf of the agency (the <em>Terzo Intermediario o
+Soggetto Emittente</em> and <em>Soggetto Emittente</em> blocks), and carrying the
+VAT nature code N3.6 for non-taxable operations, or N6.9 for travel
+within the EU, in place of the VAT rate.</p>
 <p>The module also lets the tour operator flag that a customer invoice is
 paid by the agency, transferring the customer receivable to the agency.</p>
 <p><strong>Italiano</strong></p>
@@ -405,13 +406,13 @@ fattura rappresenta le provvigioni che il tour operator deve
 corrispondere all’agenzia viaggi e sostituisce la fattura passiva che
 l’agenzia viaggi presenterebbe al tour operator.</p>
 <p>Nel dettaglio il tour operator compila la fattura elettronica ordinaria
-(“TipoDocumento” TD01 e “RegimeFiscale” RF11 “Agenzie viaggi e turismo
-(art.74-ter, DPR 633/72)”) evidenziando che la stessa è emessa per conto
-dell’agenzia viaggi intermediaria (valorizzando i blocchi “Terzo
-Intermediario o Soggetto emittente” e “Soggetto emittente”) ed
-inserendo, in luogo dell’aliquota IVA, il codice natura N3.6 se la
-fattura riguarda operazioni non imponibili o il codice N6.9 se il
-viaggio è nell’UE.</p>
+(“TipoDocumento” TD01, oppure TD04 con importi positivi per le note di
+credito, e “RegimeFiscale” RF11 “Agenzie viaggi e turismo (art.74-ter,
+DPR 633/72)”) evidenziando che la stessa è emessa per conto dell’agenzia
+viaggi intermediaria (valorizzando i blocchi “Terzo Intermediario o
+Soggetto emittente” e “Soggetto emittente”) ed inserendo, in luogo
+dell’aliquota IVA, il codice natura N3.6 se la fattura riguarda
+operazioni non imponibili o il codice N6.9 se il viaggio è nell’UE.</p>
 <p>Il modulo consente inoltre di indicare che una fattura cliente è pagata
 dall’agenzia, trasferendo il credito dal cliente all’agenzia.</p>
 <div class="admonition important">
@@ -626,10 +627,12 @@ the intra-EU 22% N6.9 tax on the commission line.</li>
 <li>On posting, the bill is treated as a self-invoice: in the FatturaPA
 XML the agency becomes the <em>CedentePrestatore</em> and the company the
 <em>CessionarioCommittente</em>, with <tt class="docutils literal">RegimeFiscale</tt> RF11,
-<tt class="docutils literal">TipoDocumento</tt> TD01, <tt class="docutils literal">SoggettoEmittente</tt> CC, the <em>Terzo
-Intermediario o Soggetto Emittente</em> block filled with the company and
-<tt class="docutils literal">CodiceDestinatario</tt> = the agency’s code. For intra-EU lines the
-22% VAT is stripped and reported as Natura N6.9.</li>
+<tt class="docutils literal">TipoDocumento</tt> TD01 (TD04 with positive amounts for a credit note,
+in both the N3.6 and N6.9 cases), <tt class="docutils literal">SoggettoEmittente</tt> CC, the
+<em>Terzo Intermediario o Soggetto Emittente</em> block filled with the
+company and <tt class="docutils literal">CodiceDestinatario</tt> = the agency’s code. For intra-EU
+lines the 22% VAT is stripped and reported as Natura N6.9. The same
+TD01/TD04 is stored in the document’s <em>Document Type</em> field.</li>
 <li>Use the <strong>Send to Tax Agency</strong> button on the bill to send the XML to
 the SdI. A courtesy copy can then be forwarded to the agency.</li>
 </ol>
@@ -651,10 +654,13 @@ intra-UE 22% N6.9.</li>
 <li>Alla conferma, la fattura viene trattata come autofattura: nell’XML
 FatturaPA l’agenzia diventa il <em>CedentePrestatore</em> e l’azienda il
 <em>CessionarioCommittente</em>, con <tt class="docutils literal">RegimeFiscale</tt> RF11,
-<tt class="docutils literal">TipoDocumento</tt> TD01, <tt class="docutils literal">SoggettoEmittente</tt> CC, il blocco <em>Terzo
-Intermediario o Soggetto Emittente</em> valorizzato con l’azienda e
-<tt class="docutils literal">CodiceDestinatario</tt> = codice dell’agenzia. Per le righe intra-UE
-l’IVA al 22% viene azzerata e riportata come Natura N6.9.</li>
+<tt class="docutils literal">TipoDocumento</tt> TD01 (TD04 con importi positivi per le note di
+credito, sia nel caso N3.6 che N6.9), <tt class="docutils literal">SoggettoEmittente</tt> CC, il
+blocco <em>Terzo Intermediario o Soggetto Emittente</em> valorizzato con
+l’azienda e <tt class="docutils literal">CodiceDestinatario</tt> = codice dell’agenzia. Per le
+righe intra-UE l’IVA al 22% viene azzerata e riportata come Natura
+N6.9. Lo stesso TD01/TD04 viene riportato nel campo <em>Tipo documento</em>
+del documento.</li>
 <li>Usare il pulsante <strong>Invia all’Agenzia delle Entrate</strong> sulla fattura
 per inviare l’XML allo SdI. Una copia di cortesia può poi essere
 inviata all’agenzia.</li>

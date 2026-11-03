@@ -12,7 +12,8 @@ intermediary travel agency. That invoice represents the commission the tour
 operator owes the agency and replaces the vendor bill the agency would
 otherwise issue to the tour operator.
 
-The invoice is emitted as `TipoDocumento` TD01 with `RegimeFiscale` RF11,
+The invoice is emitted as `TipoDocumento` TD01 (TD04 for a credit note, with
+positive amounts) with `RegimeFiscale` RF11,
 showing that it is issued on behalf of the agency (the *Terzo Intermediario o
 Soggetto Emittente* and *Soggetto Emittente* blocks), and carrying the VAT
 nature code N3.6 for non-taxable operations, or N6.9 for travel within the EU,
@@ -42,8 +43,9 @@ viaggi e sostituisce la fattura passiva che l'agenzia viaggi presenterebbe al
 tour operator.
 
 Nel dettaglio il tour operator compila la fattura elettronica ordinaria
-("TipoDocumento" TD01 e "RegimeFiscale" RF11 "Agenzie viaggi e turismo
-(art.74-ter, DPR 633/72)") evidenziando che la stessa è emessa per conto
+("TipoDocumento" TD01, oppure TD04 con importi positivi per le note di credito,
+e "RegimeFiscale" RF11 "Agenzie viaggi e turismo (art.74-ter, DPR 633/72)")
+evidenziando che la stessa è emessa per conto
 dell'agenzia viaggi intermediaria (valorizzando i blocchi "Terzo Intermediario
 o Soggetto emittente" e "Soggetto emittente") ed inserendo, in luogo
 dell'aliquota IVA, il codice natura N3.6 se la fattura riguarda operazioni non
