@@ -57,11 +57,6 @@
                         required="past_due_fee_amount"
                     />
                 </group>
-
-                <group string="Settlement">
-                    <field name="past_due_journal_id" />
-                    <field name="settlement_journal_id" />
-                </group>
             </form>
         </field>
     </record>
