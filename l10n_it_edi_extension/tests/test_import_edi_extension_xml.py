@@ -451,6 +451,25 @@ class TestFatturaPAXMLValidation(Common):
             invoice.l10n_it_edi_ext_attachment_in_preview_link,
         )
 
+    def test_preview_charset(self):
+        """The preview HTML declares its charset,
+        so wkhtmltopdf keeps the accented letters."""
+        # Arrange
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+        attachment = invoice.l10n_it_edi_ext_attachment_in_id
+
+        # Act
+        html = attachment.get_fattura_elettronica_preview()
+
+        # Assert
+        self.assertIn("charset=UTF-8", html)
+        self.assertIn("Quantità", html)
+
     def test_partner_default_product(self):
         """If the partner has a default product and no product is found,
         the partner's default product is used."""
