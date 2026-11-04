@@ -11,10 +11,28 @@
                     <field
                         name="ateco_category_ids"
                         nolabel="1"
+                        domain="[('active', '=', True)]"
                         options="{'no_create': True}"
                     />
                 </page>
             </notebook>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter" model="ir.ui.view">
+        <field name="name">res.partner.select.ateco</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <filter name="inactive" position="after">
+                <separator />
+                <filter
+                    string="Archived ATECO Codes"
+                    name="ateco_category_archived"
+                    domain="[('ateco_category_ids.active', '=', False)]"
+                    help="Contacts with archived ATECO codes, e.g. from a superseded ATECO version, to be reclassified"
+                />
+            </filter>
         </field>
     </record>
 </odoo>
