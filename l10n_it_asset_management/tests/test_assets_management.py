@@ -240,6 +240,29 @@ class TestAssets(Common):
         asset = wiz.link_asset()
         self.assertAlmostEqual(asset.purchase_amount, 7000 + (7000 * 0.22 * 0.4), 2)
 
+    def test_default_currency(self):
+        """An asset created without currency gets the currency of its company."""
+        company = self.env["res.company"].create(
+            {
+                "name": "Test company with another currency",
+                "currency_id": self.env.ref("base.USD").id,
+            }
+        )
+        category = self.asset_category_1.copy({"company_id": company.id})
+        asset = (
+            self.env["asset.asset"]
+            .with_company(company)
+            .create(
+                {
+                    "name": "Test asset without currency",
+                    "category_id": category.id,
+                    "company_id": company.id,
+                    "purchase_amount": 1000.0,
+                }
+            )
+        )
+        self.assertEqual(asset.currency_id, company.currency_id)
+
     def test_03_asset_from_purchase_invoice_increment(self):
         # create purchase invoice and generate asset
         today = fields.Date.today()
