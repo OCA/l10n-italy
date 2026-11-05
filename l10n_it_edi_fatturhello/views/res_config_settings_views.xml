@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    ~ Copyright 2025 Simone Rubino - PyTech
+    ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Add Fatturhello fields to Configuration Settings form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="l10n_it_edi.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="italian_edi" position="after">
+                <setting id="fatturhello">
+                    <field name="fatturhello_is_used" />
+                    <group invisible="not fatturhello_is_used">
+                        <field
+                            name="fatturhello_identifier"
+                            groups="base.group_no_one"
+                        />
+                        <field
+                            name="fatturhello_last_downloaded_e_bill_identifer"
+                            string="Last downloaded E-Bill identifier"
+                            groups="base.group_no_one"
+                            placeholder="YYYYXXXXXXXX"
+                        />
+                        <button
+                            class="btn-primary"
+                            name="fatturhello_action_login"
+                            string="Login"
+                            type="object"
+                        />
+                        <field name="fatturhello_base_url" string="Base URL" />
+                        <field name="fatturhello_username" string="Username" />
+                        <field
+                            name="fatturhello_login_authtoken"
+                            string="Login Auth Token"
+                            groups="base.group_no_one"
+                        />
+                        <field
+                            name="fatturhello_login_authtoken_create_date"
+                            string="Login Auth Token creation date"
+                            groups="base.group_no_one"
+                        />
+                    </group>
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
