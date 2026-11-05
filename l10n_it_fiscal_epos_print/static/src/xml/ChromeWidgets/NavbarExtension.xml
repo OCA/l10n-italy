@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Add EpsonEPOSButton to Navbar -->
+    <t
+        t-name="l10n_it_fiscal_epos_print.NavbarButtons"
+        t-inherit="point_of_sale.Navbar"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//div[hasclass('status-buttons')]" position="inside">
+            <EpsonEPOSButton />
+            <EpsonFP81IIComponent />
+        </xpath>
+    </t>
+
+</templates>
