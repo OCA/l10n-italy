@@ -772,6 +772,53 @@ class TestAssets(Common):
             asset_report_depreciation_line.amount_residual, expected_residual_amount
         )
 
+    def test_journal_report_document_once(self):
+        """A move linked to an asset with several lines
+        is shown once in the asset journal report."""
+        # Arrange
+        purchase_date = date(2019, 1, 1)
+        sale_date = date(2020, 6, 15)
+        report_date = date(2020, 12, 31)
+        asset = self._create_asset(asset_date=purchase_date)
+        sale_invoice = self._create_sale_invoice(
+            asset, amount=350, invoice_date=sale_date, post=False
+        )
+        sale_invoice.invoice_line_ids = [
+            Command.create(
+                {
+                    "account_id": asset.category_id.asset_account_id.id,
+                    "quantity": 1,
+                    "price_unit": 350,
+                },
+            )
+        ]
+        sale_invoice.action_post()
+        self._link_asset_move(
+            sale_invoice,
+            "dismiss",
+            wiz_values={
+                "l10n_it_asset_id": asset,
+            },
+        )
+        # pre-condition
+        out_line = asset.depreciation_ids.line_ids.filtered(
+            lambda line: line.move_type == "out"
+        )
+        self.assertEqual(len(out_line.asset_accounting_info_ids), 2)
+
+        # Act
+        self._generate_fiscal_years(purchase_date, report_date)
+        report = self._get_report(report_date, "journal")
+
+        # Assert
+        year_lines = report.report_depreciation_line_year_ids.filtered(
+            lambda line: line.fiscal_year_id.date_to == report_date
+        )
+        self.assertEqual(
+            year_lines.report_accounting_doc_ids.mapped("document_nr"),
+            [sale_invoice.name],
+        )
+
     def test_open_manage_asset_wiz(self):
         manager_user = self.user
         account_user = self.account_user
