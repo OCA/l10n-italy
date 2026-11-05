@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2026 Luca Orioli <lucaorioli@gmail.com>
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="wizard_asset_previsional_report_form_view" model="ir.ui.view">
+        <field name="name">Add interim depreciation to previsional report</field>
+        <field name="model">wizard.asset.previsional.report</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_asset_management.wizard_asset_previsional_report_form_view"
+        />
+        <field name="arch" type="xml">
+            <group name="report_options" position="after">
+                <group name="interim" string="Interim Depreciation">
+                    <group>
+                        <field
+                            name="interim_journal_id"
+                            options="{'no_create': True}"
+                        />
+                        <field name="interim_reversal_date" />
+                    </group>
+                </group>
+            </group>
+            <button name="button_export_asset_previsional_xlsx" position="after">
+                <button
+                    name="button_create_interim_depreciation"
+                    string="Create Interim Depreciation"
+                    class="btn-secondary"
+                    type="object"
+                    confirm="Create and post the interim depreciation entry at the report date, and its reversal?"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>

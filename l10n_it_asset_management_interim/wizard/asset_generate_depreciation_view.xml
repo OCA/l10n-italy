@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2026 Luca Orioli <lucaorioli@gmail.com>
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="wizard_asset_generate_depreciation_form_view" model="ir.ui.view">
+        <field name="name">Add interim depreciation to generate depreciations</field>
+        <field name="model">wizard.asset.generate.depreciation</field>
+        <field
+            name="inherit_id"
+            ref="l10n_it_asset_management.wizard_asset_generate_depreciation_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="date_dep" position="after">
+                <field name="interim" />
+                <field
+                    name="interim_journal_id"
+                    invisible="not interim"
+                    required="interim"
+                    options="{'no_create': True}"
+                />
+                <field
+                    name="interim_reversal_date"
+                    invisible="not interim"
+                    required="interim"
+                />
+            </field>
+            <label for="period" position="attributes">
+                <attribute name="invisible">interim</attribute>
+            </label>
+            <xpath expr="//field[@name='period']/.." position="attributes">
+                <attribute name="invisible">interim</attribute>
+            </xpath>
+            <field name="journal_id" position="attributes">
+                <attribute name="invisible">interim</attribute>
+            </field>
+            <field name="company_id" position="attributes">
+                <attribute name="required">interim</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
