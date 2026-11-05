@@ -364,7 +364,7 @@ class AssetDepreciationLine(models.Model):
         self.ensure_one()
         journal = self.env.context.get(
             "l10n_it_asset_override_journal",
-            self.l10n_it_asset_id.category_id.journal_id,
+            self._get_account_move_journal(),
         )
         return {
             "company_id": self.company_id.id,
@@ -374,6 +374,14 @@ class AssetDepreciationLine(models.Model):
             "ref": self.env._("Asset: ") + self.l10n_it_asset_id.make_name(),
             "move_type": "entry",
         }
+
+    def _get_account_move_journal(self):
+        """Journal of the entry of this line, according to its category."""
+        self.ensure_one()
+        category = self.l10n_it_asset_id.category_id
+        if self.move_type in ("gain", "loss") and category.gain_loss_journal_id:
+            return category.gain_loss_journal_id
+        return category.journal_id
 
     def get_account_move_line_vals(self):
         """Switcher between methods"""
