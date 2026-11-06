@@ -196,7 +196,7 @@ class TestEdiDeliveryNote(TestItEdi):
         )
         invoice.action_post()
         self.assertEqual(
-            len(invoice.invoice_line_ids.filtered(lambda line: line.product_id)), 3
+            len(invoice.invoice_line_ids.filtered(lambda line: line.product_id)), 4
         )
 
         self.assertEqual(
