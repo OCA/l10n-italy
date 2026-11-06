@@ -571,11 +571,6 @@ msgid "Invoice Line"
 msgstr "Riga fattura"
 
 #. module: l10n_it_edi_extension
-#: model:ir.model,name:l10n_it_edi_extension.model_account_journal
-msgid "Journal"
-msgstr "Registro"
-
-#. module: l10n_it_edi_extension
 #: model:ir.model,name:l10n_it_edi_extension.model_account_move
 msgid "Journal Entry"
 msgstr "Registrazione contabile"
@@ -1152,6 +1147,14 @@ msgid "Text Reference"
 msgstr "Riferimento testo"
 
 #. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"The e-invoice file contains %(count)s invoices (%(numbers)s): they have been "
+"merged into this single document."
+msgstr ""
+
+#. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_edi_it_stable_organization
 msgid ""
 "The fields must be entered only when the seller/provider is non-resident, "
@@ -1439,6 +1442,9 @@ msgstr ""
 #: code:addons/l10n_it_edi_extension/__init__.py:0
 msgid "from XML file:"
 msgstr "da file XML:"
+
+#~ msgid "Journal"
+#~ msgstr "Registro"
 
 #~ msgid ""
 #~ "Automatically create the partner if it does not exist during the import "
