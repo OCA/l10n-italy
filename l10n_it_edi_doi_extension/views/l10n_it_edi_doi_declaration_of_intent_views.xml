@@ -15,6 +15,41 @@
             <field name="company_id" position="after">
                 <field name="type" readonly="state != 'draft'" />
             </field>
+            <!-- Add plafond field after type, visible only for type 'in' -->
+            <field name="type" position="after">
+                <field
+                    name="plafond_id"
+                    readonly="state != 'draft'"
+                    invisible="type != 'in'"
+                    required="type == 'in'"
+                />
+            </field>
+            <!-- Make partner optional for type 'in' -->
+            <field name="partner_id" position="attributes">
+                <attribute name="required">type == 'out'</attribute>
+            </field>
+            <!-- Add plafond info after threshold for type 'in' without threshold -->
+            <field name="threshold" position="after">
+                <field name="has_threshold" invisible="1" />
+                <field
+                    name="plafond_available"
+                    invisible="type != 'in' or has_threshold"
+                    readonly="1"
+                />
+            </field>
+        </field>
+    </record>
+
+    <!-- Add plafond info to list view -->
+    <record id="view_l10n_it_edi_doi_list_plafond" model="ir.ui.view">
+        <field name="name">l10n_it_edi_doi.declaration_of_intent_plafond.list</field>
+        <field name="model">l10n_it_edi_doi.declaration_of_intent</field>
+        <field name="inherit_id" ref="l10n_it_edi_doi.view_l10n_it_edi_doi_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="type" optional="show" />
+                <field name="plafond_id" optional="hide" />
+            </field>
         </field>
     </record>
 
