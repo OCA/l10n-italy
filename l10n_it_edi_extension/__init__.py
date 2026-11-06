@@ -1,11 +1,14 @@
 # Copyright 2025 Giuseppe Borruso - Dinamiche Aziendali srl
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import logging
+
+from contextlib import contextmanager
 
 from . import controllers
 from . import models
 from . import wizards
 
-from odoo.tools import config
+from odoo.tools import SQL, config
 
 from openupgradelib import openupgrade, openupgrade_tools
 
@@ -14,6 +17,9 @@ from odoo.addons.l10n_it_account.migration_tools import (
     _remove_module,
     remove_modules_views,
 )
+
+_logger = logging.getLogger(__name__)
+
 
 OLD_MODULES = [
     "l10n_it_account_tax_kind",
@@ -831,6 +837,171 @@ def _l10n_it_fatturapa_in_post_migration(env):
         attachment.res_model = "account.move"
         attachment.res_id = move.id
         attachment.res_field = "l10n_it_edi_attachment_file"
+
+    _l10n_it_fatturapa_in_create_invoices_from_attachments(env)
+
+
+@contextmanager
+def _l10n_it_edi_extension_safe_partner_order(env):
+    """Allow ordering partners even when ``company_id`` is not stored.
+
+    Modules such as ``base_multi_company`` redefine ``res.partner.company_id``
+    as a non-stored computed field. Core's partner retrieval
+    (``res.partner._retrieve_partner``) sorts partners by ``company_id`` and
+    Odoo raises ``ValueError`` when a non-stored field is used in an
+    ``ORDER BY``. Since the ordering term is only relevant to prioritize a
+    result, skip it while creating the invoices instead of crashing.
+    """
+    Partner = env["res.partner"]
+    company_id_field = Partner._fields.get("company_id")
+    if not company_id_field or company_id_field.store:
+        yield
+        return
+
+    partner_class = type(Partner)
+    original_order_field_to_sql = partner_class._order_field_to_sql
+    owns_order_field_to_sql = "_order_field_to_sql" in partner_class.__dict__
+
+    def _order_field_to_sql(self, alias, field_name, direction, nulls, query):
+        fname = field_name.split(".", 1)[0]
+        field = self._fields.get(fname)
+        if field is not None and not field.store:
+            # Non-stored fields cannot be used in an ORDER BY: skip the term.
+            return SQL()
+        return original_order_field_to_sql(
+            self, alias, field_name, direction, nulls, query
+        )
+
+    partner_class._order_field_to_sql = _order_field_to_sql
+    try:
+        yield
+    finally:
+        if owns_order_field_to_sql:
+            partner_class._order_field_to_sql = original_order_field_to_sql
+        else:
+            del partner_class._order_field_to_sql
+
+
+def _l10n_it_fatturapa_in_create_invoices_from_attachments(env):
+    """Create vendor bills / refunds for e-invoices not registered yet."""
+    if not openupgrade_tools.table_exists(env.cr, "fatturapa_attachment_in"):
+        return
+
+    env.cr.execute("""
+        SELECT fai.ir_attachment_id
+        FROM fatturapa_attachment_in fai
+        LEFT JOIN account_move am ON am.fatturapa_attachment_in_id = fai.id
+        WHERE am.id IS NULL
+    """)
+    attachment_ids = [row[0] for row in env.cr.fetchall()]
+    if not attachment_ids:
+        return
+
+    attachment_model = env["ir.attachment"].sudo()
+    with _l10n_it_edi_extension_safe_partner_order(env):
+        for source_attachment in attachment_model.browse(attachment_ids):
+            # A single problematic e-invoice must not abort the whole upgrade:
+            # roll it back and keep going, the user can register it manually.
+            try:
+                with env.cr.savepoint():
+                    _l10n_it_fatturapa_in_import_attachment(env, source_attachment)
+            except Exception:
+                _logger.exception(
+                    "Could not create an invoice from attachment %s",
+                    source_attachment.name,
+                )
+
+
+def _l10n_it_fatturapa_in_import_attachment(env, source_attachment):
+    """Import a single e-invoice attachment as a vendor bill / refund."""
+    if not source_attachment.exists():
+        return
+    if not source_attachment.raw:
+        # No content to import (e.g. the file was deleted).
+        return
+
+    journal_model = env["account.journal"]
+    filename = source_attachment.name
+    # A single XML file may contain more than one invoice:
+    # split it so that every move gets its own attachment.
+    contents = journal_model._l10n_it_edi_extension_split_content(source_attachment)
+    first = True
+    for content in contents:
+        for file_data in source_attachment._decode_edi_l10n_it_edi(filename, content):
+            # Isolate every invoice of a multi-invoice file: a failure must
+            # not roll back the invoices that have already been created.
+            try:
+                with env.cr.savepoint():
+                    imported = _l10n_it_fatturapa_in_import_file_data(
+                        env,
+                        source_attachment,
+                        file_data,
+                        content,
+                        first,
+                        extra_context={"default_move_type": "in_invoice"},
+                    )
+            except Exception as error:
+                _logger.warning(
+                    "Could not create an invoice from attachment %s: %s",
+                    filename,
+                    error,
+                )
+                continue
+            if imported:
+                first = False
+
+
+def _l10n_it_fatturapa_in_import_file_data(
+    env,
+    source_attachment,
+    file_data,
+    content,
+    first,
+    extra_context=None,
+):
+    """Import one decoded e-invoice and link its attachment to the move."""
+    attachment_model = env["ir.attachment"].sudo()
+    move_model = env["account.move"]
+    company = source_attachment.company_id or env.company
+    filename = source_attachment.name
+    move = (
+        move_model.with_company(company)
+        .with_context(**(extra_context or {}))
+        .create({})
+    )
+    imported = move._l10n_it_edi_import_invoice(move, file_data, True)
+    if not imported:
+        # The XML could not be imported (e.g. the company is
+        # neither the buyer nor the seller): drop the empty
+        # move without touching the original file.
+        _logger.warning(
+            "Could not create an invoice from attachment %s",
+            filename,
+        )
+        move.unlink()
+        return False
+    if first:
+        move_attachment = source_attachment
+    else:
+        move_attachment = attachment_model.create(
+            {
+                "name": filename,
+                "raw": content,
+                "type": "binary",
+            }
+        )
+    move_attachment.write(
+        {
+            "res_model": "account.move",
+            "res_id": move.id,
+            "res_field": "l10n_it_edi_attachment_file",
+        }
+    )
+    move.with_context(
+        account_predictive_bills_disable_prediction=True,
+        no_new_invoice=True,
+    ).message_post(attachment_ids=move_attachment.ids)
+    return True
 
 
 def _l10n_it_fatturapa_out_post_migration(env):
