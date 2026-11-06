@@ -524,11 +524,6 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_it_edi_extension
-#: model:ir.model,name:l10n_it_edi_extension.model_account_journal
-msgid "Journal"
-msgstr ""
-
-#. module: l10n_it_edi_extension
 #: model:ir.model,name:l10n_it_edi_extension.model_account_move
 msgid "Journal Entry"
 msgstr ""
@@ -1066,6 +1061,14 @@ msgstr ""
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,field_description:l10n_it_edi_extension.field_l10n_it_edi_line_other_data__text_ref
 msgid "Text Reference"
+msgstr ""
+
+#. module: l10n_it_edi_extension
+#. odoo-python
+#: code:addons/l10n_it_edi_extension/models/account_move.py:0
+msgid ""
+"The e-invoice file contains %(count)s invoices (%(numbers)s): they have been"
+" merged into this single document."
 msgstr ""
 
 #. module: l10n_it_edi_extension
