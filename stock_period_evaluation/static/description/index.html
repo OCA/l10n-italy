@@ -1,0 +1,1228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>Stock Period Evaluation</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="stock-period-evaluation">
+<h1 class="title">Stock Period Evaluation</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:5130c92a2c7c7717eaf19a76e84b39638d338df992f8de4d5c8ec2b710c3c5b7
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/18.0/stock_period_evaluation"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-stock_period_evaluation"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><strong>Stock Period Evaluation</strong> is a comprehensive warehouse management
+module that provides period-end stock valuation and inventory closing
+capabilities for Odoo.</p>
+<p><strong>Overview</strong></p>
+<p>This module enables businesses to create accurate snapshots of their
+inventory valuation at specific dates without disrupting daily warehouse
+operations. It’s particularly valuable for companies that need periodic
+financial reporting, inventory audits, or cost analysis.</p>
+<p><strong>Key Features</strong></p>
+<ul class="simple">
+<li><strong>Flexible Valuation Methods</strong>: Calculate inventory value using
+multiple approaches:<ul>
+<li>Standard cost from product master data</li>
+<li>Purchase average cost based on historical purchases</li>
+<li>Category-based costing using product category settings</li>
+<li><strong>FIFO (First In, First Out)</strong> valuation method</li>
+<li><strong>LIFO (Last In, First Out)</strong> valuation method</li>
+<li>Manual cost override capabilities</li>
+</ul>
+</li>
+<li><strong>Date-Based Inventory Snapshots</strong>:<ul>
+<li>Create valuations at any specific closing date</li>
+<li>Track inventory changes between closing periods</li>
+<li>Link consecutive periods for incremental analysis</li>
+</ul>
+</li>
+<li><strong>Advanced Inventory Management</strong>:<ul>
+<li>Location-specific stock tracking</li>
+<li>Lot/serial number support</li>
+<li>Owner-based stock segregation (consignment)</li>
+<li>Multi-currency purchase price conversion</li>
+</ul>
+</li>
+<li><strong>Comprehensive Reporting</strong>:<ul>
+<li>Excel (XLSX) export with detailed product information</li>
+<li>Customizable report columns (location, lot, owner)</li>
+<li>Automatic value calculations and totals</li>
+<li>Print wizard for filtered data export</li>
+</ul>
+</li>
+<li><strong>Bulk Data Import</strong>:<ul>
+<li>CSV import functionality for mass inventory updates</li>
+<li>Support for European decimal formats</li>
+<li>Automatic product validation</li>
+</ul>
+</li>
+<li><strong>Performance Optimization</strong>:<ul>
+<li>Optional archiving of processed stock moves</li>
+<li>Efficient calculation algorithms for large datasets</li>
+<li>Bypass options for negative quantities</li>
+</ul>
+</li>
+</ul>
+<p><strong>Business Benefits</strong></p>
+<ul class="simple">
+<li>Accurate period-end financial reporting without stock freezing</li>
+<li>Historical inventory valuation tracking for audits</li>
+<li>Comparison of different costing methods</li>
+<li>Support for multi-location and multi-company operations</li>
+</ul>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a></li>
+<li><a class="reference internal" href="#changelog" id="toc-entry-3">Changelog</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-7">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-8">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
+<p><strong>User Access Configuration</strong></p>
+<ol class="arabic">
+<li><p class="first"><strong>Security Groups</strong>:</p>
+<ul class="simple">
+<li><strong>Stock Period Evaluation Manager</strong>
+(<tt class="docutils literal">stock_period_evaluation.group_stock_period_evaluation_manager</tt>):<ul>
+<li>Full access to create, edit, validate, and delete closing
+periods</li>
+<li>Access to import wizard and all reporting functions</li>
+<li>Can force evaluation methods for cost calculation</li>
+</ul>
+</li>
+<li><strong>Stock Period Evaluation User Read Only</strong>
+(<tt class="docutils literal">stock_period_evaluation.group_stock_period_evaluation_user_readonly</tt>):<ul>
+<li>View-only access to closing periods and reports</li>
+<li>Cannot modify or create new periods</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>User Assignment</strong>:</p>
+<p>Go to <em>Settings &gt; Users &amp; Companies &gt; Users</em>:</p>
+<ul class="simple">
+<li>Select the user to configure</li>
+<li>Assign appropriate Stock Period Evaluation group</li>
+</ul>
+</li>
+</ol>
+<p><strong>System Parameters</strong></p>
+<p>The module uses a system parameter for default configuration:</p>
+<ul class="simple">
+<li><strong>Default Last Close Date</strong>:
+<tt class="docutils literal">stock_period_evaluation.last_close_date</tt><ul>
+<li>Default value: 2010-01-01</li>
+<li>Can be modified via <em>Settings &gt; Technical &gt; System Parameters</em></li>
+<li>Used when no previous closing period is selected</li>
+</ul>
+</li>
+</ul>
+<p><strong>Performance Settings</strong></p>
+<p>Consider these optional configurations for large databases:</p>
+<ul class="simple">
+<li><strong>Bypass Negative Quantities</strong>: Enable to skip products with negative
+stock during calculations</li>
+<li><strong>No Recompute Lines</strong>: Skip recalculation of quantities for existing
+lines to improve performance</li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
+<p><strong>Creating a Stock Closing Period</strong></p>
+<ol class="arabic simple">
+<li>Navigate to <em>Inventory &gt; Stock Period Evaluation &gt; Stock Period
+Evaluation</em></li>
+<li>Click <strong>Create</strong> to start a new closing period</li>
+<li>Configure the following fields:<ul>
+<li><strong>Reference</strong>: Enter a unique name for this closing (e.g.,
+“2024-Q1 Closing”)</li>
+<li><strong>Close Date</strong>: Select the date for inventory valuation</li>
+<li><strong>Force Evaluation Method</strong>: Choose the costing approach:<ul>
+<li><em>Compute based on category setup</em>: Uses product category
+configuration</li>
+<li><em>Compute based on purchase average cost</em>: Calculates from
+purchase history</li>
+<li><em>Compute based on cost in product</em>: Uses standard product cost</li>
+<li><em>Compute based on FIFO</em>: First In, First Out valuation</li>
+<li><em>Compute based on LIFO (continuous)</em>: Last In, First Out
+valuation</li>
+</ul>
+</li>
+<li><strong>Last Closed</strong> (optional): Link to previous period for
+incremental calculations</li>
+<li><strong>Bypass Negative Quantity</strong>: Enable to ignore products with
+negative stock</li>
+</ul>
+</li>
+</ol>
+<p><strong>Processing Workflow</strong></p>
+<ol class="arabic simple">
+<li><strong>Start - Calculate Quantities</strong>:<ul>
+<li>Click the <strong>Start</strong> button to begin processing</li>
+<li>System calculates product quantities at the closing date</li>
+<li>Review and manually adjust quantities if needed (e.g., for
+consignment stock)</li>
+<li>The state changes to “In Progress”</li>
+</ul>
+</li>
+<li><strong>Compute Purchase Costs</strong>:<ul>
+<li>Click <strong>Compute Purchase</strong> to calculate product costs</li>
+<li>System applies the selected evaluation method</li>
+<li>For purchase average: calculates from purchase orders between
+periods</li>
+<li>Process may take time for large inventories</li>
+</ul>
+</li>
+<li><strong>Manual Adjustments</strong> (if needed):<ul>
+<li>Edit individual line items for cost corrections</li>
+<li>Modify quantities for special cases</li>
+<li>Add notes or references as needed</li>
+</ul>
+</li>
+<li><strong>Validation</strong>:<ul>
+<li>Review the total stock amount value</li>
+<li>Click <strong>Validate</strong> to finalize the closing</li>
+<li>State changes to “Validated”</li>
+<li>Period becomes read-only</li>
+</ul>
+</li>
+</ol>
+<p><strong>Using CSV Import</strong></p>
+<p>For bulk inventory data import:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <em>Inventory &gt; Stock Period Evaluation &gt; Stock Period
+Import</em></p>
+</li>
+<li><p class="first">Select the target <strong>Stock Period Evaluation</strong></p>
+</li>
+<li><p class="first">Prepare CSV file with semicolon-separated format:</p>
+<pre class="code text literal-block">
+CODE;COST;QTY
+PROD001;15,50;100,00
+PROD002;8,25;250,50
+PROD003;102,00;50,00
+</pre>
+<ul class="simple">
+<li>CODE: Product default code (must exist in system)</li>
+<li>COST: Unit cost (comma or dot as decimal separator)</li>
+<li>QTY: Quantity (comma or dot as decimal separator)</li>
+</ul>
+</li>
+<li><p class="first">Upload the file and click <strong>Import</strong></p>
+</li>
+<li><p class="first">System validates products and creates closing lines</p>
+</li>
+<li><p class="first">The period is automatically marked as “done”</p>
+</li>
+</ol>
+<p><strong>Understanding Valuation Methods: LIFO, FIFO, and Weighted Average</strong></p>
+<p>The module supports three main inventory valuation methods. Here’s a
+practical example showing how each method calculates costs using
+identical transactions:</p>
+<p><strong>LIFO Method (Last In, First Out)</strong></p>
+<p>LIFO assumes that the most recently purchased items are sold first. This
+method values ending inventory using the oldest costs.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="9%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Date</th>
+<th class="head">Oper
+ation</th>
+<th class="head">Qty</th>
+<th class="head">Ba
+lance</th>
+<th class="head">Unit
+Cost</th>
+<th class="head">Total
+Cost</th>
+<th class="head">Prog
+Cost</th>
+<th class="head">LIFO
+Avg
+Cost</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>15/11
+/2023</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>10</td>
+<td>3.00</td>
+<td>30</td>
+<td>30</td>
+<td>3.00</td>
+</tr>
+<tr><td>15/12
+/2023</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>20</td>
+<td>7.00</td>
+<td>70</td>
+<td>100</td>
+<td>5.00</td>
+</tr>
+<tr><td>31/12
+/2023</td>
+<td>Op
+ening
+Inv</td>
+<td>20</td>
+<td>20</td>
+<td>5.00</td>
+<td>100</td>
+<td>100</td>
+<td>5.00</td>
+</tr>
+<tr><td>31/10
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>30</td>
+<td>7.00</td>
+<td>70</td>
+<td>170</td>
+<td>5.67</td>
+</tr>
+<tr><td>15/11
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>40</td>
+<td>10.00</td>
+<td>100</td>
+<td>270</td>
+<td>6.75</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>30</td>
+<td>10.00</td>
+<td>-100</td>
+<td>170</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>20</td>
+<td>7.00</td>
+<td>-70</td>
+<td>100</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>10</td>
+<td>5.00</td>
+<td>-50</td>
+<td>50</td>
+<td>5.00</td>
+</tr>
+<tr><td>02/12
+/2024</td>
+<td>Pur
+chase</td>
+<td>15</td>
+<td>25</td>
+<td>12.00</td>
+<td>180</td>
+<td>230</td>
+<td>9.20</td>
+</tr>
+<tr><td>03/12
+/2024</td>
+<td>Sale</td>
+<td>-5</td>
+<td>20</td>
+<td>12.00</td>
+<td>-60</td>
+<td>170</td>
+<td>8.50</td>
+</tr>
+<tr><td>04/12
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>30</td>
+<td>15.00</td>
+<td>150</td>
+<td>320</td>
+<td>10.67</td>
+</tr>
+<tr><td><strong>Fi
+nal</strong></td>
+<td><strong>I
+nvent
+ory</strong></td>
+<td>30</td>
+<td>30</td>
+<td><strong>15
+.00</strong></td>
+<td><strong>0</strong></td>
+<td>**
+320**</td>
+<td><strong>10
+.67</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Final LIFO inventory value: €320 (30 units &#64; €10.67 average)</em></p>
+<p><strong>FIFO Method (First In, First Out)</strong></p>
+<p>FIFO assumes that the oldest purchased items are sold first. This method
+values ending inventory using the most recent costs.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="9%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Date</th>
+<th class="head">Oper
+ation</th>
+<th class="head">Qty</th>
+<th class="head">Ba
+lance</th>
+<th class="head">Unit
+Cost</th>
+<th class="head">Total
+Cost</th>
+<th class="head">Prog
+Cost</th>
+<th class="head">FIFO
+Avg
+Cost</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>31/12
+/2023</td>
+<td>Op
+ening
+Inv</td>
+<td>20</td>
+<td>20</td>
+<td>5.00</td>
+<td>100</td>
+<td>100</td>
+<td>5.00</td>
+</tr>
+<tr><td>31/10
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>30</td>
+<td>7.00</td>
+<td>70</td>
+<td>170</td>
+<td>5.67</td>
+</tr>
+<tr><td>15/11
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>40</td>
+<td>10.00</td>
+<td>100</td>
+<td>270</td>
+<td>6.75</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>30</td>
+<td>5.00</td>
+<td>-50</td>
+<td>220</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>20</td>
+<td>5.00</td>
+<td>-50</td>
+<td>170</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>10</td>
+<td>7.00</td>
+<td>-70</td>
+<td>100</td>
+<td>10.00</td>
+</tr>
+<tr><td>02/12
+/2024</td>
+<td>Pur
+chase</td>
+<td>15</td>
+<td>25</td>
+<td>12.00</td>
+<td>180</td>
+<td>280</td>
+<td>11.20</td>
+</tr>
+<tr><td>03/12
+/2024</td>
+<td>Sale</td>
+<td>-5</td>
+<td>20</td>
+<td>10.00</td>
+<td>-50</td>
+<td>230</td>
+<td>11.50</td>
+</tr>
+<tr><td>04/12
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>30</td>
+<td>15.00</td>
+<td>150</td>
+<td>380</td>
+<td>12.67</td>
+</tr>
+<tr><td><strong>Fi
+nal</strong></td>
+<td><strong>I
+nvent
+ory</strong></td>
+<td>30</td>
+<td>30</td>
+<td><strong>15
+.00</strong></td>
+<td><strong>0</strong></td>
+<td>**
+380**</td>
+<td><strong>12
+.67</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Final FIFO inventory value: €380 (30 units &#64; €12.67 average)</em></p>
+<p><strong>Weighted Average Method</strong></p>
+<p>The weighted average method calculates a new average cost after each
+purchase, which is then applied to all units in inventory.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="8%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Date</th>
+<th class="head">Oper
+ation</th>
+<th class="head">Qty</th>
+<th class="head">Ba
+lance</th>
+<th class="head">Purch
+Bal</th>
+<th class="head">Unit
+Cost</th>
+<th class="head">Total
+Cost</th>
+<th class="head">Prog
+Cost</th>
+<th class="head">Avg
+Cost</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>31/12
+/2023</td>
+<td>Op
+ening
+Inv</td>
+<td>20</td>
+<td>20</td>
+<td>20</td>
+<td>5.00</td>
+<td>100</td>
+<td>100</td>
+<td>5.00</td>
+</tr>
+<tr><td>31/10
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>30</td>
+<td>30</td>
+<td>7.00</td>
+<td>70</td>
+<td>170</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr><td>15/11
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>40</td>
+<td>40</td>
+<td>10.00</td>
+<td>100</td>
+<td>270</td>
+<td>6.75</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>30</td>
+<td>40</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>270</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>20</td>
+<td>40</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>270</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr><td>30/11
+/2024</td>
+<td>Sale</td>
+<td>-10</td>
+<td>10</td>
+<td>40</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>270</td>
+<td>6.75</td>
+</tr>
+<tr><td>02/12
+/2024</td>
+<td>Pur
+chase</td>
+<td>15</td>
+<td>25</td>
+<td>55</td>
+<td>12.00</td>
+<td>180</td>
+<td>450</td>
+<td>8.18</td>
+</tr>
+<tr><td>03/12
+/2024</td>
+<td>Sale</td>
+<td>-5</td>
+<td>20</td>
+<td>55</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>450</td>
+<td>8.18</td>
+</tr>
+<tr><td>04/12
+/2024</td>
+<td>Pur
+chase</td>
+<td>10</td>
+<td>30</td>
+<td>65</td>
+<td>15.00</td>
+<td>150</td>
+<td>600</td>
+<td>9.23</td>
+</tr>
+<tr><td><strong>Fi
+nal</strong></td>
+<td><strong>I
+nvent
+ory</strong></td>
+<td>30</td>
+<td>30</td>
+<td>65</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><strong>0</strong></td>
+<td>**
+600**</td>
+<td><strong>9
+.23</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Final weighted average inventory value: €277 (30 units &#64; €9.23
+average)</em></p>
+<p><strong>Comparison of Methods</strong></p>
+<p>Using the same transaction history, the three methods produce different
+results:</p>
+<ul class="simple">
+<li><strong>LIFO</strong>: €320 total value (€10.67/unit) - Reflects most recent
+purchase costs</li>
+<li><strong>FIFO</strong>: €380 total value (€12.67/unit) - Reflects current
+replacement costs</li>
+<li><strong>Weighted Average</strong>: €277 total value (€9.23/unit) - Smooths price
+fluctuations</li>
+</ul>
+<p><strong>Key Observations:</strong></p>
+<ol class="arabic simple">
+<li><strong>LIFO</strong> assumes newest items sold first, leaving older (cheaper)
+items in inventory</li>
+<li><strong>FIFO</strong> assumes oldest items sold first, leaving newer (more
+expensive) items in inventory</li>
+<li><strong>Weighted Average</strong> recalculates average cost after each purchase</li>
+</ol>
+<p>The choice significantly impacts:</p>
+<ul class="simple">
+<li>Balance sheet inventory valuation</li>
+<li>Cost of goods sold (COGS) calculation</li>
+<li>Gross profit and taxable income</li>
+<li>Cash flow from operations</li>
+</ul>
+</div>
+<div class="section" id="changelog">
+<h1><a class="toc-backref" href="#toc-entry-3">Changelog</a></h1>
+<p><strong>18.0.1.1.0 (2024-09-26)</strong></p>
+<ul class="simple">
+<li><strong>New Features</strong>:<ul>
+<li>Added FIFO (First In, First Out) valuation method</li>
+<li>Added LIFO (Last In, First Out) continuous valuation method</li>
+<li>Integrated evaluation details field showing transaction-level cost
+breakdown</li>
+<li>Added formatted value display for evaluation details</li>
+</ul>
+</li>
+<li><strong>Technical Improvements</strong>:<ul>
+<li>Ported FIFO/LIFO functionality from
+stock_close_period_evaluation_method module</li>
+<li>Enhanced _evaluate_product() method to support new valuation
+methods</li>
+<li>Added price_calculation() method for FIFO/LIFO computation</li>
+<li>Implemented _get_tuples() for transaction processing</li>
+<li>Added update_tuple() static method for valuation type handling</li>
+<li>Included _fix_zero_values() for handling missing prices</li>
+</ul>
+</li>
+<li><strong>UI Enhancements</strong>:<ul>
+<li>Added evaluation_details field to tree and form views</li>
+<li>Made evaluation details optional/hidden in tree view for better
+performance</li>
+<li>Displayed detailed cost breakdown in form view</li>
+</ul>
+</li>
+</ul>
+<p><strong>18.0.1.0.0</strong></p>
+<ul class="simple">
+<li>Initial release for Odoo 18</li>
+<li>Stock period evaluation with average and standard cost methods</li>
+<li>Multi-location and multi-company support</li>
+<li>Excel export functionality</li>
+<li>CSV import capabilities</li>
+</ul>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#toc-entry-4">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20stock_period_evaluation%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#toc-entry-5">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#toc-entry-6">Authors</a></h2>
+<ul class="simple">
+<li>Pordenone Linux User Group (PNLUG)</li>
+<li>Dinamiche Aziendali srl</li>
+<li>Sergio Corato</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#toc-entry-7">Contributors</a></h2>
+<ul class="simple">
+<li>Pordenone Linux User Group (PNLUG)</li>
+<li>Marco Calcagni - Dinamiche Aziendali srl
+&lt;<a class="reference external" href="mailto:mcalcagni&#64;dinamicheaziendali.it">mcalcagni&#64;dinamicheaziendali.it</a>&gt;</li>
+<li>Giuseppe Borruso - Dinamiche Aziendali srl
+&lt;<a class="reference external" href="mailto:gborruso&#64;dinamicheaziendali.it">gborruso&#64;dinamicheaziendali.it</a>&gt;</li>
+<li>Sergio Corato &lt;<a class="reference external" href="mailto:sergiocorato&#64;gmail.com">sergiocorato&#64;gmail.com</a>&gt;</li>
+<li>Lorenzo Battistini</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/MarcoCalcagni"><img alt="MarcoCalcagni" src="https://github.com/MarcoCalcagni.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/Borruso"><img alt="Borruso" src="https://github.com/Borruso.png?size=40px" /></a></p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/18.0/stock_period_evaluation">OCA/l10n-italy</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
