@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>ITA - Supporto IVA 74-ter - Liquidazione IVA</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="ita-supporto-iva-74-ter-liquidazione-iva">
+<h1 class="title">ITA - Supporto IVA 74-ter - Liquidazione IVA</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:cff3597da8a4d9879b7cc2bd282e60b31b9adc9c84860491fad2ce264bb21a8c
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_account_vat_period_end_settlement_rf11"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-18-0/l10n-italy-18-0-l10n_it_account_vat_period_end_settlement_rf11"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Supporto alla liquidazione IVA per le agenzie di viaggio e turismo
+secondo l’art. 74-ter, DPR 633/72 (regime speciale del margine). Vedi
+anche il modulo <tt class="docutils literal">l10n_it_edi_rf11</tt> per la parte di fatturazione
+elettronica.</p>
+<p>L’IVA 74-ter non si calcola “imposta da imposta” (IVA sulle vendite −
+IVA sugli acquisti) come nella liquidazione ordinaria, ma <strong>sul
+margine</strong>, con il metodo detto <strong>“base su base”</strong>: si sottrae la <em>base
+imponibile</em> degli acquisti dalla <em>base imponibile</em> delle vendite e sul
+margine così ottenuto si scorpora l’IVA. Il calcolo viene effettuato
+mensilmente. Se il risultato è a credito viene memorizzato e riportato
+alla liquidazione successiva; se a debito viene generata la scrittura
+contabile (esempio più sotto) e l’IVA a debito concorre alla
+liquidazione IVA ordinaria. La stampa del resoconto di liquidazione IVA
+viene integrata con una sezione dedicata “74 Ter”.</p>
+<p><strong>Calcolo “base su base”</strong></p>
+<ol class="arabic">
+<li><p class="first"><strong>Le imposte 74-ter sono aliquote allo 0%.</strong> Non devono esporre IVA
+in fattura (l’operazione è a margine): servono solo a <em>identificare e
+accumulare la base imponibile</em> delle vendite e degli acquisti 74-ter
+(imposta contrassegnata da <tt class="docutils literal">is_tax_74ter</tt>). L’aliquota effettiva
+(es. 22%) è memorizzata a parte nel campo <tt class="docutils literal">tax_74ter_amount</tt> e
+usata solo in liquidazione.</p>
+</li>
+<li><p class="first"><strong>Margine = base vendite − base acquisti.</strong> In <tt class="docutils literal">compute_amounts</tt> si
+somma la base imponibile (<tt class="docutils literal">base_balance</tt>) del periodo: le vendite
+hanno segno positivo, gli acquisti negativo, quindi la somma è il
+margine lordo (IVA inclusa).</p>
+</li>
+<li><p class="first"><strong>Scorporo dell’IVA dal margine:</strong></p>
+<pre class="literal-block">
+net_tax_74_ter    = margine / (1 + aliquota/100)   # margine netto
+tax_74_ter_amount = margine − net_tax_74_ter        # IVA 74-ter sul margine
+</pre>
+</li>
+<li><p class="first"><strong>Segno del risultato:</strong></p>
+<ul class="simple">
+<li>a <strong>debito</strong> (margine &gt; 0): viene registrata la scrittura
+<tt class="docutils literal">tax_74_ter_move_id</tt> e l’importo confluisce nella liquidazione
+ordinaria;</li>
+<li>a <strong>credito</strong> (margine &lt; 0): non si registra nulla e il valore
+viene riportato al periodo successivo
+(<tt class="docutils literal">tax_74_ter_amount_previous</tt>).</li>
+</ul>
+</li>
+</ol>
+<p><strong>Esempio numerico</strong></p>
+<p>Vendite 74-ter (base) € 3.660, acquisti 74-ter (base) € 1.220, aliquota
+22%:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="77%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Voce</th>
+<th class="head">Importo</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Base vendite</td>
+<td>3.660</td>
+</tr>
+<tr><td>Base acquisti</td>
+<td>−1.220</td>
+</tr>
+<tr><td><strong>Margine (lordo)</strong></td>
+<td><strong>2.440</strong></td>
+</tr>
+<tr><td>Margine netto (2.440 / 1,22)</td>
+<td>2.000</td>
+</tr>
+<tr><td><strong>IVA 74-ter (2.440 − 2.000)</strong></td>
+<td><strong>440</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scritture contabili</strong></p>
+<ol class="arabic simple">
+<li>All’atto della liquidazione IVA 74 ter mensile <strong>a debito</strong></li>
+</ol>
+<p>Con i dati dell’esempio sopra, IVA 74 ter scorporata dal margine = €
+440,00. Il modulo genera automaticamente la scrittura
+(<tt class="docutils literal">tax_74_ter_move_id</tt>):</p>
+<pre class="literal-block">
+Dare     Avere
+</pre>
+<p>0301009 Iva 74 Ter 440,00 0115001 IVA C/Vendite 440,00</p>
+<p>Il conto 0301009 Iva 74 Ter è un conto di ricavo, in quanto va a
+rettificare il valore dei ricavi delle vendite dei viaggi UE.
+Accreditando IVA C/Vendite, i € 440,00 si sommano all’IVA a debito e
+concorrono alla liquidazione IVA ordinaria del periodo.</p>
+<p>In caso di 74 ter <strong>a credito</strong> (margine negativo) non viene registrata
+alcuna scrittura: il credito viene riportato alla liquidazione
+successiva.</p>
+<ol class="arabic simple" start="2">
+<li>Come i € 440,00 confluiscono nella liquidazione IVA ordinaria</li>
+</ol>
+<p>Nella liquidazione mensile ordinaria l’IVA C/Vendite comprende ora anche
+i € 440,00 della scrittura 74 ter e viene chiusa contro l’IVA
+C/Acquisti; la differenza costituisce l’IVA a debito (erario) o a
+credito del periodo.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This is an alpha version, the data model and design can change at any time without warning.
+Only for development or testing purpose, do not use in production.
+<a class="reference external" href="https://odoo-community.org/page/development-status">More details on development status</a></p>
+</div>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a><ul>
+<li><a class="reference internal" href="#fresh-install-odoo-18-no-prior-74-ter-data" id="toc-entry-2">Fresh install (Odoo 18, no prior 74-ter data)</a></li>
+<li><a class="reference internal" href="#upgrade-from-odoo-16-db-that-had-account-vat-period-end-statement-rf11" id="toc-entry-3">Upgrade from Odoo 16 (DB that had <tt class="docutils literal">account_vat_period_end_statement_rf11</tt>)</a><ul>
+<li><a class="reference internal" href="#best-way-mark-it-for-install-in-the-migration-run-itself" id="toc-entry-4">Best way — mark it for install <em>in the migration run itself</em></a></li>
+<li><a class="reference internal" href="#after-the-upgrade-verify" id="toc-entry-5">After the upgrade — verify</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-6">Configuration</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-7">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-8">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-9">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-10">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-11">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
+<div class="section" id="fresh-install-odoo-18-no-prior-74-ter-data">
+<h2><a class="toc-backref" href="#toc-entry-2">Fresh install (Odoo 18, no prior 74-ter data)</a></h2>
+<p>Install the module normally, from <strong>Apps</strong> or with:</p>
+<pre class="code bash literal-block">
+odoo<span class="w"> </span>-c<span class="w"> </span>&lt;odoo.conf&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;DB&gt;<span class="w"> </span>-i<span class="w"> </span>l10n_it_account_vat_period_end_settlement_rf11<span class="w"> </span><span class="se">\
+</span><span class="w">     </span>--stop-after-init
+</pre>
+<p>It depends on <tt class="docutils literal">l10n_it_account_vat_period_end_settlement</tt> (the Odoo 18
+VAT settlement module) and <tt class="docutils literal">account_tax_balance</tt>.</p>
+</div>
+<div class="section" id="upgrade-from-odoo-16-db-that-had-account-vat-period-end-statement-rf11">
+<h2><a class="toc-backref" href="#toc-entry-3">Upgrade from Odoo 16 (DB that had <tt class="docutils literal">account_vat_period_end_statement_rf11</tt>)</a></h2>
+<p>This module is the Odoo 18 successor of the Odoo 16 module
+<tt class="docutils literal">account_vat_period_end_statement_rf11</tt>. It ships a <tt class="docutils literal">pre_init_hook</tt>
+(<tt class="docutils literal">pre_absorb_old_module</tt>) that <strong>renames the old module into this
+one</strong>, merging its <tt class="docutils literal">ir.model.data</tt> and preserving every 74-ter value.
+All fields keep identical column names across versions:</p>
+<ul class="simple">
+<li><tt class="docutils literal">account.tax</tt>: <tt class="docutils literal">is_tax_74ter</tt>, <tt class="docutils literal">tax_74ter_amount</tt>,
+<tt class="docutils literal">tax_74_ter_income_account_id</tt></li>
+<li><tt class="docutils literal">account.vat.period.end.statement</tt>: <tt class="docutils literal">tax_74_ter_move_id</tt>,
+<tt class="docutils literal">net_tax_74_ter</tt>, <tt class="docutils literal">tax_74_ter_amount</tt>,
+<tt class="docutils literal">tax_74_ter_amount_previous</tt>, <tt class="docutils literal">tax_74_ter_amount_total</tt></li>
+</ul>
+<div class="section" id="best-way-mark-it-for-install-in-the-migration-run-itself">
+<h3><a class="toc-backref" href="#toc-entry-4">Best way — mark it for install <em>in the migration run itself</em></a></h3>
+<p>Because <tt class="docutils literal">l10n_it_account_vat_period_end_settlement_rf11</tt> is a <strong>new
+module name</strong> in v18, Odoo treats it as a fresh install (migration
+scripts under <tt class="docutils literal">migrations/</tt> never run for a first-time install — only
+<tt class="docutils literal">pre_init_hook</tt> does). Add it with <tt class="docutils literal"><span class="pre">-i</span></tt> to the <strong>same OpenUpgrade
+invocation</strong> that upgrades the rest of the DB, so the rename happens
+before the obsolete v16 module is purged:</p>
+<pre class="code bash literal-block">
+odoo<span class="w"> </span>-c<span class="w"> </span>&lt;odoo.conf&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;DB&gt;<span class="w"> </span>-u<span class="w"> </span>all<span class="w"> </span><span class="se">\
+</span><span class="w">     </span>-i<span class="w"> </span>l10n_it_account_vat_period_end_settlement_rf11<span class="w"> </span><span class="se">\
+</span><span class="w">     </span>--stop-after-init<span class="w"> </span>--no-http
+</pre>
+<p>Apply the <tt class="docutils literal"><span class="pre">-i</span></tt> <strong>only to customer databases where
+``account_vat_period_end_statement_rf11`` was installed</strong>; installing it
+elsewhere is harmless (the hook is a no-op) but pointless.</p>
+<p><strong>Ordering guarantee.</strong> In a single Odoo run, modules being installed
+execute their <tt class="docutils literal">pre_init_hook</tt> while the load graph is processed;
+modules that no longer exist in the code are flagged <em>to remove</em> and are
+uninstalled only at the <strong>end</strong> of that same run. The base module
+<tt class="docutils literal">l10n_it_account_vat_period_end_settlement</tt> (our dependency) absorbs
+the v16 <tt class="docutils literal">account_vat_period_end_statement</tt> the same way and, being a
+dependency, loads first — so the base rename precedes ours, and no data
+is lost.</p>
+</div>
+<div class="section" id="after-the-upgrade-verify">
+<h3><a class="toc-backref" href="#toc-entry-5">After the upgrade — verify</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal">account_vat_period_end_statement_rf11</tt> is gone from <strong>Apps</strong>;
+<tt class="docutils literal">l10n_it_account_vat_period_end_settlement_rf11</tt> is installed.</li>
+<li>The 74-ter fields listed above are preserved on taxes and
+settlements.</li>
+</ul>
+<!--  -->
+<blockquote>
+Note (behaviour change vs v16):
+<tt class="docutils literal">account.tax.vat_statement_account_id</tt> was removed in Odoo 18, so
+the 74-ter settlement entry now sources its VAT account from the sale
+tax’s repartition lines (<tt class="docutils literal">_get_debit_accounts()</tt>), the same source
+the VAT settlement uses for its debit lines.</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-6">Configuration</a></h1>
+<p><strong>Italiano</strong></p>
+<p>Prima di poter liquidare l’IVA 74-ter occorre configurare le imposte
+usate per le operazioni a margine. Servono <strong>due imposte</strong> allo 0%: una
+di vendita e una di acquisto.</p>
+<p>In <em>Contabilità → Configurazione → Imposte</em> creare (o modificare) le due
+imposte con:</p>
+<ol class="arabic simple">
+<li><strong>Calcolo</strong> = “Percentuale” e <strong>Importo</strong> = <tt class="docutils literal">0</tt>: l’IVA non è
+esposta in fattura (regime del margine).</li>
+<li>Poiché sono imposte italiane allo 0%, nella scheda “Fattura
+elettronica” impostare <strong>Esonero</strong> = <tt class="docutils literal">N5</tt> (“Regime del margine /
+IVA non esposta in fattura”) e il relativo <strong>Riferimento normativo</strong>
+(es. “Art. 74-ter DPR 633/72”). Senza questi dati l’imposta non può
+essere salvata.</li>
+<li>Abilitare la casella <strong>74ter</strong> (<tt class="docutils literal">is_tax_74ter</tt>).</li>
+<li>In <strong>Importo 74ter</strong> (<tt class="docutils literal">tax_74ter_amount</tt>) indicare l’aliquota reale
+da scorporare dal margine (es. <tt class="docutils literal">22</tt>). Tutte le imposte 74-ter
+devono avere la <strong>stessa</strong> aliquota, e può esistere <strong>una sola</strong>
+imposta 74-ter di tipo vendita.</li>
+</ol>
+<p>Sulla sola imposta di <strong>vendita</strong> 74-ter configurare inoltre:</p>
+<ul class="simple">
+<li><strong>Conto ricavi 74ter</strong> (<tt class="docutils literal">tax_74_ter_income_account_id</tt>): un conto
+di ricavo (rettifica ricavi), usato in Dare nella scrittura di
+liquidazione;</li>
+<li>nelle righe di ripartizione (scheda “Definizione”) l’imposta deve
+puntare a <strong>un solo</strong> conto IVA a debito (es. “IVA C/Vendite”): è il
+conto usato in Avere nella scrittura. Se non è definito, o ne è
+definito più d’uno, la generazione della scrittura di liquidazione
+segnala un errore.</li>
+</ul>
+<p>A questo punto usare l’imposta di vendita sulle fatture di vendita dei
+viaggi e l’imposta di acquisto sulle fatture dei costi del viaggio: la
+liquidazione 74-ter accumulerà la base imponibile di queste imposte per
+il calcolo “base su base”.</p>
+<p><strong>English</strong></p>
+<p>Before you can settle the 74-ter VAT you have to configure the taxes
+used for margin-scheme operations. You need <strong>two</strong> 0% taxes: one for
+sales and one for purchases.</p>
+<p>In <em>Accounting → Configuration → Taxes</em> create (or edit) the two taxes
+with:</p>
+<ol class="arabic simple">
+<li><strong>Tax Computation</strong> = “Percentage” and <strong>Amount</strong> = <tt class="docutils literal">0</tt>: VAT is not
+shown on the invoice (margin scheme).</li>
+<li>Because they are 0% Italian taxes, on the “Electronic Invoicing” tab
+set <strong>Exoneration</strong> = <tt class="docutils literal">N5</tt> (“Regime del margine / IVA non esposta
+in fattura”) and the related <strong>Law Reference</strong> (e.g. “Art. 74-ter DPR
+633/72”). Without these the tax cannot be saved.</li>
+<li>Enable the <strong>74ter</strong> checkbox (<tt class="docutils literal">is_tax_74ter</tt>).</li>
+<li>In <strong>74ter Amount</strong> (<tt class="docutils literal">tax_74ter_amount</tt>) enter the real rate to be
+extracted from the margin (e.g. <tt class="docutils literal">22</tt>). All 74-ter taxes must share
+the <strong>same</strong> rate, and there can be <strong>only one</strong> sale 74-ter tax.</li>
+</ol>
+<p>On the <strong>sale</strong> 74-ter tax only, also configure:</p>
+<ul class="simple">
+<li><strong>74ter Income Account</strong> (<tt class="docutils literal">tax_74_ter_income_account_id</tt>): a
+revenue account (revenue adjustment), used on the debit side of the
+settlement entry;</li>
+<li>in the repartition lines (“Definition” tab) the tax must point to
+<strong>exactly one</strong> VAT-on-sales account (e.g. “IVA C/Vendite”): it is
+the account used on the credit side of the entry. If it is missing,
+or more than one is defined, generating the settlement entry raises
+an error.</li>
+</ul>
+<p>Then use the sale tax on travel sale invoices and the purchase tax on
+the travel cost bills: the 74-ter settlement will accumulate the taxable
+base of these taxes for the “base su base” computation.</p>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#toc-entry-7">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_account_vat_period_end_settlement_rf11%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#toc-entry-8">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#toc-entry-9">Authors</a></h2>
+<ul class="simple">
+<li>Innovyou</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#toc-entry-10">Contributors</a></h2>
+<ul class="simple">
+<li>Mario Riva</li>
+<li>Lorenzo Carta <a class="reference external" href="https://github.com/LorenzoC0">https://github.com/LorenzoC0</a></li>
+<li>Lorenzo Battistini <a class="reference external" href="https://github.com/eLBati">https://github.com/eLBati</a></li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#toc-entry-11">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/eLBati"><img alt="eLBati" src="https://github.com/eLBati.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/LorenzoC0"><img alt="LorenzoC0" src="https://github.com/LorenzoC0.png?size=40px" /></a></p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/18.0/l10n_it_account_vat_period_end_settlement_rf11">OCA/l10n-italy</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
