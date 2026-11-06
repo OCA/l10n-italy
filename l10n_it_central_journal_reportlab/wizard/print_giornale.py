@@ -606,6 +606,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         height_available = self.get_template_header_report_giornale(
             report, height_available
         )
+        height_available -= gap
 
         style_table = self.get_styles_report_giornale_line()["style_table"]
         style_table_line_above = self.get_styles_report_giornale_line()[
@@ -658,7 +659,6 @@ class WizardGiornaleReportlab(models.TransientModel):
             )
             end_row = start_row + len(move_line_ids)
 
-        height_available -= gap
         processed_count = 0
 
         # Process tables as they're generated
