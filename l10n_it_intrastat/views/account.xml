@@ -11,7 +11,8 @@
                 <xpath expr="//field[@name='note']" position="before">
                     <separator string="Intrastat" />
                     <group colspan="4">
-                        <field name="intrastat" />
+                        <field name="intrastat_purchase" />
+                        <field name="intrastat_sale" />
                     </group>
                 </xpath>
             </field>
