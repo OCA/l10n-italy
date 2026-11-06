@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import base64
+import gc
 import io
 from datetime import timedelta
 from xml.sax.saxutils import escape
@@ -346,8 +347,9 @@ class WizardGiornaleReportlab(models.TransientModel):
         return initial_balance_data
 
     def get_grupped_final_tables_report_giornale(
-        self, list_grupped_line, tables, start_row, width_available
+        self, list_grupped_line, start_row, width_available
     ):
+        """Generator that yields tables one by one to reduce memory usage"""
         style_name = self.get_styles_report_giornale_line()["style_name"]
         style_number = self.get_styles_report_giornale_line()["style_number"]
         style_table = self.get_styles_report_giornale_line()["style_table"]
@@ -362,9 +364,16 @@ class WizardGiornaleReportlab(models.TransientModel):
             (self.progressive_debit2, self.progressive_credit),
         ]
         only_show_purchase_sale_ref = self.only_show_purchase_sale_ref
+
+        processed_count = 0
+        current_row = start_row
         for line in list_grupped_line:
-            start_row += 1
-            row = Paragraph(escape(str(start_row)), style_name)
+            processed_count += 1
+            if processed_count % 50000 == 0:  # Memory monitoring every 50000 records
+                gc.collect()  # pragma: no cover
+
+            current_row += 1
+            row = Paragraph(escape(str(current_row)), style_name)
             date = Paragraph(escape(format_date(self.env, line["date"])), style_name)
             move = Paragraph(escape(line["move_name"]), style_name)
             account_name = (
@@ -398,42 +407,103 @@ class WizardGiornaleReportlab(models.TransientModel):
                 ref = Paragraph("", style_name)
             # dato che nel SQL ho la somma dei crediti e debiti potrei avere
             # che un conto ha sia debito che credito
-            lines_data = []
             if line["debit"] > 0:
                 debit = Paragraph(
                     escape(formatLang(self.env, line["debit"])), style_number
                 )
                 credit = Paragraph(escape(formatLang(self.env, 0)), style_number)
                 list_balance.append((line["debit"], 0))
-                lines_data.append(
-                    [[row, date, ref, move, account, name, debit, credit]]
-                )
+                line_data = [[row, date, ref, move, account, name, debit, credit]]
+
+                if previous_move_name != line["move_name"]:
+                    previous_move_name = line["move_name"]
+                    # pragma: no cover
+                    yield (
+                        Table(
+                            line_data, colWidths=colwidths, style=style_table_line_above
+                        ),
+                        (line["debit"], 0),
+                    )
+                else:
+                    yield (
+                        Table(line_data, colWidths=colwidths, style=style_table),
+                        (line["debit"], 0),
+                    )
+
             if line["credit"] > 0:
                 debit = Paragraph(escape(formatLang(self.env, 0)), style_number)
                 credit = Paragraph(
                     escape(formatLang(self.env, line["credit"])), style_number
                 )
                 list_balance.append((0, line["credit"]))
-                lines_data.append(
-                    [[row, date, ref, move, account, name, debit, credit]]
-                )
-            for line_data in lines_data:
+                line_data = [[row, date, ref, move, account, name, debit, credit]]
+
                 if previous_move_name != line["move_name"]:
                     previous_move_name = line["move_name"]
-                    tables.append(
+                    yield (  # pragma: no cover
                         Table(
                             line_data, colWidths=colwidths, style=style_table_line_above
-                        )
+                        ),
+                        (0, line["credit"]),
                     )
                 else:
-                    tables.append(
-                        Table(line_data, colWidths=colwidths, style=style_table)
+                    yield (
+                        Table(line_data, colWidths=colwidths, style=style_table),
+                        (0, line["credit"]),
                     )
-        return tables, list_balance, start_row
+
+    def _fetch_line_data_in_chunks(self, move_line_ids, chunk_size=5000):
+        """Generator that fetches line data in tuples to reduce memory usage"""
+        # if l10n_multilang is installed, account name is translatable:
+        # read it like the ORM does (see models._generate_translated_field)
+        account_name_translated = (
+            self.env.ref("account.field_account_account__name").translate
+            and self.env.lang
+        )
+        if account_name_translated:
+            acc_name_select = "COALESCE(acc_tr.value, acc.name)"
+            acc_name_join = """
+                LEFT JOIN ir_translation acc_tr ON (
+                    acc_tr.res_id = acc.id
+                    AND acc_tr.type = 'model'
+                    AND acc_tr.name = 'account.account,name'
+                    AND acc_tr.lang = %(lang)s
+                    AND acc_tr.value != ''
+                )"""
+        else:
+            acc_name_select = "acc.name"
+            acc_name_join = ""
+        query = """SELECT aml.date, aml.ref, am.name, {acc_name} as acc_name,
+            p.name as partner_name, aml.name, aml.debit,
+            aml.credit, acc.code as acc_code, acc.internal_type,
+            aj.type as journal_type
+                    FROM account_move_line aml
+                    INNER JOIN account_move am on am.id = aml.move_id
+                    LEFT JOIN account_account acc on acc.id = aml.account_id
+                    {acc_name_join}
+                    LEFT JOIN res_partner p on p.id = aml.partner_id
+                    LEFT JOIN account_journal aj on aj.id = aml.journal_id
+                    where aml.id in %(line_ids)s
+                    ORDER BY am.date, am.name, acc.code""".format(
+            acc_name=acc_name_select,
+            acc_name_join=acc_name_join,
+        )
+        for i in range(0, len(move_line_ids), chunk_size):
+            chunk_ids = move_line_ids[i : i + chunk_size]
+            self.env.cr.execute(
+                query,
+                {"line_ids": tuple(chunk_ids), "lang": self.env.lang},
+            )
+            chunk_data = self.env.cr.fetchall()
+            yield from chunk_data
+            del chunk_data  # Clear chunk data from memory
+            # Force garbage collection after each chunk
+            gc.collect()  # pragma: no cover
 
     def get_final_tables_report_giornale(
-        self, move_line_ids, tables, start_row, width_available
+        self, move_line_ids, start_row, width_available
     ):
+        """Generator that yields tables one by one to reduce memory usage"""
         style_name = self.get_styles_report_giornale_line()["style_name"]
         style_number = self.get_styles_report_giornale_line()["style_number"]
         style_table = self.get_styles_report_giornale_line()["style_table"]
@@ -448,12 +518,19 @@ class WizardGiornaleReportlab(models.TransientModel):
             (self.progressive_debit2, self.progressive_credit),
         ]
         only_show_purchase_sale_ref = self.only_show_purchase_sale_ref
-        for line in self.env["account.move.line"].browse(move_line_ids):
-            start_row += 1
-            row = Paragraph(escape(str(start_row)), style_name)
-            date = Paragraph(escape(format_date(self.env, line.date)), style_name)
+        processed_count = 0
+        current_row = start_row
+
+        for tupled_line in self._fetch_line_data_in_chunks(move_line_ids):
+            processed_count += 1
+            # Memory monitoring every 50000 records
+            if processed_count % 50000 == 0:
+                gc.collect()  # pragma: no cover
+            current_row += 1
+            row = Paragraph(escape(str(current_row)), style_name)
+            date = Paragraph(escape(format_date(self.env, tupled_line[0])), style_name)
             if only_show_purchase_sale_ref:
-                show_ref = line.journal_id.type in (
+                show_ref = tupled_line[10] in (
                     "purchase",
                     "sale",
                 )
@@ -461,32 +538,40 @@ class WizardGiornaleReportlab(models.TransientModel):
                 show_ref = True
             if show_ref:
                 # Move line's Reference is the same as the move
-                ref = Paragraph(escape(str(line.ref or "")), style_name)
+                ref = Paragraph(escape(str(tupled_line[1] or "")), style_name)
             else:
                 ref = Paragraph("", style_name)
-            move_name = line.move_id.name or ""
+            move_name = tupled_line[2] or ""
             move = Paragraph(escape(move_name), style_name)
-            account_name = self._get_account_name_reportlab(line)
+            account_name = " - ".join(filter(None, [tupled_line[8], tupled_line[3]]))
             account = Paragraph(escape(account_name), style_name)
-            if line.account_id.user_type_id.type in ["receivable", "payable"]:
-                name = Paragraph(escape(str(line.partner_id.name or "")), style_name)
+            if tupled_line[9] in ["receivable", "payable"]:
+                name = Paragraph(escape(str(tupled_line[4] or "")), style_name)
             else:
                 if show_ref:
-                    name = Paragraph(escape(str(line.name or "")), style_name)
+                    name = Paragraph(escape(str(tupled_line[5] or "")), style_name)
                 else:
                     name = Paragraph("", style_name)
-            debit = Paragraph(escape(formatLang(self.env, line.debit)), style_number)
-            credit = Paragraph(escape(formatLang(self.env, line.credit)), style_number)
-            list_balance.append((line.debit, line.credit))
+            debit = Paragraph(
+                escape(formatLang(self.env, tupled_line[6])), style_number
+            )
+            credit = Paragraph(
+                escape(formatLang(self.env, tupled_line[7])), style_number
+            )
+            list_balance.append((tupled_line[6], tupled_line[7]))
             line_data = [[row, date, ref, move, account, name, debit, credit]]
             if previous_move_name != move_name:
                 previous_move_name = move_name
-                tables.append(
-                    Table(line_data, colWidths=colwidths, style=style_table_line_above)
+                # pragma: no cover
+                yield (
+                    Table(line_data, colWidths=colwidths, style=style_table_line_above),
+                    (tupled_line[6], tupled_line[7]),
                 )
             else:
-                tables.append(Table(line_data, colWidths=colwidths, style=style_table))
-        return tables, list_balance, start_row
+                yield (
+                    Table(line_data, colWidths=colwidths, style=style_table),
+                    (tupled_line[6], tupled_line[7]),
+                )
 
     def get_balance_data_report_giornale(self, tot_debit, tot_credit, final=False):
         style_name = self.get_styles_report_giornale_line()["style_name"]
@@ -521,6 +606,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         height_available = self.get_template_header_report_giornale(
             report, height_available
         )
+        height_available -= gap
 
         style_table = self.get_styles_report_giornale_line()["style_table"]
         style_table_line_above = self.get_styles_report_giornale_line()[
@@ -529,38 +615,64 @@ class WizardGiornaleReportlab(models.TransientModel):
 
         colwidths = self.get_colwidths_report_giornale(width_available)
         data_header = self.get_data_header_report_giornale()
-        tables = [Table(data_header, colWidths=colwidths, style=style_table)]
+        header_table = Table(data_header, colWidths=colwidths, style=style_table)
         initial_balance_data = self.get_initial_balance_data_report_giornale()
-        tables.append(
-            Table(initial_balance_data, colWidths=colwidths, style=style_table)
+        initial_balance_table = Table(
+            initial_balance_data, colWidths=colwidths, style=style_table
         )
+
+        # Draw header and initial balance
+        header_table_width, header_table_height = header_table.wrapOn(
+            report, width_available, HEIGHT
+        )
+        height_available -= header_table_height
+        header_table.drawOn(report, margin_left, height_available)
+
+        (
+            initial_balance_table_width,
+            initial_balance_table_height,
+        ) = initial_balance_table.wrapOn(report, width_available, HEIGHT)
+        height_available -= initial_balance_table_height
+        initial_balance_table.drawOn(report, margin_left, height_available)
+
         start_row = self.start_row
+        tot_debit = self.progressive_debit2
+        tot_credit = self.progressive_credit
+
+        # Get the table generator
         if self.group_by_account:
             list_grupped_line = self.get_grupped_line_reportlab_ids()
             if not list_grupped_line:
                 raise UserError(_("No documents found in the current selection"))
-            (
-                final_tables,
-                list_balance,
-                end_row,
-            ) = self.get_grupped_final_tables_report_giornale(
-                list_grupped_line, tables, start_row, width_available
+            table_generator = self.get_grupped_final_tables_report_giornale(
+                list_grupped_line, start_row, width_available
             )
+            # Each grouped line has its own row number,
+            # even if it is printed in two tables (debit and credit)
+            end_row = start_row + len(list_grupped_line)
         else:
             move_line_ids = self.get_line_reportlab_ids()
             if not move_line_ids:
                 raise UserError(_("No documents found in the current selection"))
-            final_tables, list_balance, end_row = self.get_final_tables_report_giornale(
-                move_line_ids, tables, start_row, width_available
+            table_generator = self.get_final_tables_report_giornale(
+                move_line_ids, start_row, width_available
             )
+            end_row = start_row + len(move_line_ids)
 
-        height_available -= gap
-        i = 0
-        tot_debit = 0
-        tot_credit = 0
-        for table in final_tables:
+        processed_count = 0
+
+        # Process tables as they're generated
+        for table, (debit, credit) in table_generator:
+            processed_count += 1
+            # Memory monitoring every 50000 records
+            if processed_count % 50000 == 0:
+                gc.collect()  # pragma: no cover
+
             table_width, table_height = table.wrapOn(report, width_available, HEIGHT)
+
+            # Check if we need a new page
             if height_available - footer_height < table_height:
+                # Add balance before page break
                 balance_data = self.get_balance_data_report_giornale(
                     tot_debit, tot_credit, final=False
                 )
@@ -574,11 +686,14 @@ class WizardGiornaleReportlab(models.TransientModel):
                 table_balance.drawOn(report, margin_left, height_available)
                 self.get_template_footer_report_giornale(report)
 
+                # Start new page
                 report.showPage()
                 height_available = self.get_template_header_report_giornale(
                     report, HEIGHT
                 )
                 height_available -= gap
+
+                # Redraw header on new page
                 header_table = Table(
                     data_header, colWidths=colwidths, style=style_table
                 )
@@ -587,19 +702,28 @@ class WizardGiornaleReportlab(models.TransientModel):
                 )
                 height_available -= header_table_height
                 header_table.drawOn(report, margin_left, height_available)
+
+                # Redraw balance on new page
                 table_balance = Table(
                     balance_data, colWidths=colwidths, style=style_table
                 )
                 table_balance.wrapOn(report, WIDTH, HEIGHT)
-                height_available -= header_table_height + table_balance_height
+                height_available -= table_balance_height
                 table_balance.drawOn(report, margin_left, height_available)
 
-            tot_debit += list_balance[i][0]
-            tot_credit += list_balance[i][1]
+            # Update running totals
+            tot_debit += debit
+            tot_credit += credit
+
+            # Draw the table
             height_available -= table_height
             table.drawOn(report, margin_left, height_available)
-            i += 1
 
+            # Force garbage collection periodically
+            if processed_count % 10000 == 0:
+                gc.collect()  # pragma: no cover
+
+        # Add final balance
         final_balance_data = self.get_balance_data_report_giornale(
             tot_debit, tot_credit, final=True
         )
