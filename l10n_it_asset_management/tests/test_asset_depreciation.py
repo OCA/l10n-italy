@@ -162,6 +162,54 @@ class TestAssetDepreciation(Common):
             ],
         )
 
+    def test_gain_loss_journal(self):
+        """Gain and loss entries are created in the gain / loss journal
+        of the category, the other entries in the category journal."""
+        # Arrange
+        asset_dep_type = self.civilistico_asset_dep_type
+        asset_category = self.asset_category_1
+        gain_loss_journal = self.env["account.journal"].create(
+            {
+                "name": "Test gain / loss journal",
+                "code": "TGLJ",
+                "type": "general",
+            }
+        )
+        asset_category.gain_loss_journal_id = gain_loss_journal
+        category_depreciation_type = asset_category.type_ids.filtered(
+            lambda x, dep_type=asset_dep_type: x.depreciation_type_id == dep_type
+        )
+        category_depreciation_type.percentage = 20.0
+        category_depreciation_type.mode_id.line_ids.unlink()
+        asset = self._create_asset(date(2020, month=1, day=1))
+        asset_depreciation = asset.depreciation_ids.filtered(
+            lambda x, dep_type=asset_dep_type: x.type_id == dep_type
+        )
+        self._depreciate_asset(asset, date(2020, month=12, day=31))
+        self.assertEqual(asset_depreciation.amount_residual, 800)
+        depreciation_lines = asset_depreciation.line_ids
+
+        # Act
+        sale_invoice = self._create_sale_invoice(asset, amount=900)
+        self._link_asset_move(
+            sale_invoice,
+            "dismiss",
+            wiz_values={
+                "l10n_it_asset_id": asset,
+            },
+        )
+
+        # Assert
+        gain_line = (asset_depreciation.line_ids - depreciation_lines).filtered(
+            lambda line: line.move_type == "gain"
+        )
+        self.assertEqual(gain_line.amount, 100)
+        self.assertEqual(gain_line.move_id.journal_id, gain_loss_journal)
+        depreciated_line = depreciation_lines.filtered(
+            lambda line: line.move_type == "depreciated"
+        )
+        self.assertEqual(depreciated_line.move_id.journal_id, asset_category.journal_id)
+
     def test_depreciate_partial_sale_loss_coefficient(self):
         """Depreciate and partial depreciate an asset with a sale invoice.
         Loss is proportional to the depreciation coefficient."""
