@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-29 12:20+0000\n"
-"PO-Revision-Date: 2026-10-27 15:46+0000\n"
+"PO-Revision-Date: 2026-11-08 17:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -1153,6 +1153,8 @@ msgid ""
 "The e-invoice file contains %(count)s invoices (%(numbers)s): they have been "
 "merged into this single document."
 msgstr ""
+"Il file della fattura elettronica contiene %(count)s fatture (%(numbers)s): "
+"sono state accorpate in questo unico documento."
 
 #. module: l10n_it_edi_extension
 #: model:ir.model.fields,help:l10n_it_edi_extension.field_res_company__l10n_edi_it_stable_organization
