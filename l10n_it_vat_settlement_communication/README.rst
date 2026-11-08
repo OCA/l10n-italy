@@ -61,9 +61,9 @@ escludere il valore dell'imposta.
 Usage
 =====
 
-- Creare una nuova comunicazione.
-- Nel "Quadro VP" aggiungere una voce selezionando in alto la
-  liquidazione, precedentemente creata, da inserire.
+-  Creare una nuova comunicazione.
+-  Nel "Quadro VP" aggiungere una voce selezionando in alto la
+   liquidazione, precedentemente creata, da inserire.
 
 Bug Tracker
 ===========
@@ -86,10 +86,10 @@ Authors
 Contributors
 ------------
 
-- Alessandro Camilli
-- Lorenzo Battistini
-- Lara Baggio
-- `Nextev Srl <https://nextev.it>`__ odoo@nextev.it
+-  Alessandro Camilli
+-  Lorenzo Battistini
+-  Lara Baggio
+-  `Nextev Srl <https://nextev.it>`__ odoo@nextev.it
 
 Maintainers
 -----------
