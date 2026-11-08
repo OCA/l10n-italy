@@ -366,7 +366,9 @@ class AssetDepreciation(models.Model):
         if self.last_depreciation_date and self.last_depreciation_date > dep_date:
             return res
         passed_fiscal_years = self.env["account.fiscal.year"]._get_passed_years(
-            self.l10n_it_asset_id.purchase_date, dep_date
+            self.l10n_it_asset_id.purchase_date,
+            dep_date,
+            company=self.l10n_it_asset_id.company_id,
         )
         dep = self.with_context(
             passed_fiscal_years=passed_fiscal_years,
