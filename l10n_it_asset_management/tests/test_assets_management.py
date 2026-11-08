@@ -584,6 +584,65 @@ class TestAssets(Common):
         self.assertEqual(total.amount_depreciation_fund_curr_year, 1000)
         self.assertEqual(total.amount_depreciation_fund_prev_year, 1000)
 
+    def test_previsional_first_year(self):
+        """The previsional report of the first year applies
+        the first year coefficient, without a pro rata temporis
+        that the depreciation does not have: within the first year,
+        the depreciation of the first year is spread over the days owned.
+        In the next years the depreciation is proportional
+        to the days passed until the report date."""
+        # Arrange
+        asset_dep_type = self.civilistico_asset_dep_type
+        category_depreciation_type = self.asset_category_1.type_ids.filtered(
+            lambda x, dep_type=asset_dep_type: x.depreciation_type_id == dep_type
+        )
+        category_depreciation_type.percentage = 20.0
+        purchase_date = date(2025, 7, 1)
+        asset = self._create_asset(purchase_date)
+        asset_depreciation = asset.depreciation_ids.filtered(
+            lambda x, dep_type=asset_dep_type: x.type_id == dep_type
+        )
+        self.assertFalse(asset_depreciation.pro_rata_temporis)
+        self.assertEqual(
+            asset_depreciation.mode_id.line_ids.coefficient,
+            0.5,
+        )
+        self._generate_fiscal_years(purchase_date, date(2026, 12, 31))
+
+        # Act
+        first_year_report = self._get_report(date(2025, 12, 31), "previsional")
+        first_year_partial_report = self._get_report(date(2025, 9, 30), "previsional")
+        next_year_report = self._get_report(date(2026, 6, 30), "previsional")
+
+        # Assert
+        year_line_model = self.env["report_asset_previsional_depreciation_line_year"]
+        first_year_lines = year_line_model.search(
+            [("report_id", "=", first_year_report.id)]
+        )
+        self.assertRecordValues(
+            first_year_lines.sorted("sequence"),
+            [{"amount_depreciated": 100}],
+        )
+        # 1000 * 20% * 0.5 = 100 for the first year, 92 / 184 days owned
+        first_year_partial_lines = year_line_model.search(
+            [("report_id", "=", first_year_partial_report.id)]
+        )
+        self.assertRecordValues(
+            first_year_partial_lines.sorted("sequence"),
+            [{"amount_depreciated": 50}],
+        )
+        next_year_lines = year_line_model.search(
+            [("report_id", "=", next_year_report.id)]
+        )
+        self.assertRecordValues(
+            next_year_lines.sorted("sequence"),
+            [
+                {"amount_depreciated": 100},
+                {"amount_depreciated": round(200 * 181 / 365, 2)},
+            ],
+        )
+        self.assertFalse(asset_depreciation.line_ids)
+
     def test_monthly_depreciation(self):
         """
         Monthly depreciation uses 1/12 of the coefficient
