@@ -275,10 +275,17 @@ class Common(TransactionCase):
         self.assertEqual(purchase_invoice.state, "posted")
         return purchase_invoice
 
-    def _create_sale_invoice(self, asset, amount=7000, invoice_date=None, post=True):
+    def _create_sale_invoice(
+        self,
+        asset,
+        amount=7000,
+        invoice_date=None,
+        post=True,
+        move_type="out_invoice",
+    ):
         sale_invoice = self.env["account.move"].create(
             {
-                "move_type": "out_invoice",
+                "move_type": move_type,
                 "invoice_date": invoice_date,
                 "partner_id": self.env.ref("base.partner_demo").id,
                 "journal_id": self.sale_journal.id,
