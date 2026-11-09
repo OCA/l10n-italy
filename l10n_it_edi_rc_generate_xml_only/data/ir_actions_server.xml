@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Marco Colombo
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="action_l10n_it_edi_generate_xml" model="ir.actions.server">
+        <field name="name">Generate FatturaPA XML</field>
+        <field name="model_id" ref="model_account_move" />
+        <field name="binding_model_id" ref="model_account_move" />
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_l10n_it_edi_generate_xml()</field>
+        <field name="sequence">20</field>
+    </record>
+</odoo>

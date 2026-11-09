@@ -31,6 +31,7 @@
         "views/l10n_it_view.xml",
         "views/res_partner_view.xml",
         "views/company_view.xml",
+        "views/res_config_settings_views.xml",
         "wizards/compute_fc_view.xml",
         "wizards/l10n_it_edi_import_file_wizard.xml",
     ],

@@ -48,3 +48,6 @@ class AccountConfigSettings(models.TransientModel):
         related="company_id.l10n_it_edi_import_detail_level",
         readonly=False,
     )
+    module_l10n_it_edi_rc_generate_xml_only = fields.Boolean(
+        string="Italy EDI - Generate XML Only",
+    )
