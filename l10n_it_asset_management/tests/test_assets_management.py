@@ -652,6 +652,57 @@ class TestAssets(Common):
             ],
         )
 
+    def test_monthly_depreciation_pro_rata(self):
+        """
+        Monthly depreciation with pro rata reduces the month
+        the asset was registered in, and no other month.
+        """
+        # Arrange
+        purchase_date = date(2019, 7, 16)
+        asset = self._create_asset(purchase_date)
+        first_depreciation_date = date(2019, 7, 31)
+        second_depreciation_date = date(2019, 8, 31)
+        third_depreciation_date = date(2019, 10, 31)
+        self._generate_fiscal_years(purchase_date, third_depreciation_date)
+        civ_depreciation_type = self.env.ref(
+            "l10n_it_asset_management.ad_type_civilistico"
+        )
+        civ_depreciation = asset.depreciation_ids.filtered(
+            lambda x: x.type_id == civ_depreciation_type
+        )
+        civ_depreciation.percentage = 12.0
+        civ_depreciation.pro_rata_temporis = True
+        # pre-condition
+        self.assertEqual(civ_depreciation.date_start, purchase_date)
+        self.assertEqual(civ_depreciation.amount_depreciable, 1000)
+
+        # Act
+        self._depreciate_asset(asset, first_depreciation_date, period="month")
+        self._depreciate_asset(asset, second_depreciation_date, period="month")
+        self._depreciate_asset(
+            asset, third_depreciation_date, period="month", period_count=2
+        )
+
+        # Assert: July gets 16 days out of 31, the later months get
+        # their whole quota
+        self.assertRecordValues(
+            civ_depreciation.line_ids,
+            [
+                {
+                    "date": first_depreciation_date,
+                    "amount": 2.58,
+                },
+                {
+                    "date": second_depreciation_date,
+                    "amount": 5,
+                },
+                {
+                    "date": third_depreciation_date,
+                    "amount": 10,
+                },
+            ],
+        )
+
     def test_missing_fiscal_year_warning(self):
         """
         If some years are not configured as fiscal years,
