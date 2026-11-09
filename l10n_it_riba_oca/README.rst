@@ -50,12 +50,12 @@ Nella configurazione delle RiBa è possibile specificare se si tratti di
 'Salvo buon fine' o 'Al dopo incasso', che hanno un flusso completamente
 diverso.
 
-- Al dopo incasso: le fatture risulteranno pagate all'accettazione;
-  l'incasso potrà essere registrato con una normale riconciliazione
-  bancaria, che andrà a chiudere gli "effetti attivi" aperti
-  all'accettazione.
-- Salvo buon fine: le registrazioni generate seguiranno la struttura
-  descritta nel documento http://goo.gl/jpRhJp
+-  Al dopo incasso: le fatture risulteranno pagate all'accettazione;
+   l'incasso potrà essere registrato con una normale riconciliazione
+   bancaria, che andrà a chiudere gli "effetti attivi" aperti
+   all'accettazione.
+-  Salvo buon fine: le registrazioni generate seguiranno la struttura
+   descritta nel documento http://goo.gl/jpRhJp
 
 È possibile specificare diverse configurazioni (dal menù *Configurazione
 → Pagamenti → Configurazione RiBa*). Per ognuna, in caso di 'Salvo buon
@@ -82,19 +82,19 @@ Spese di incasso RiBa*.
 Il comportamento delle spese di incasso può essere personalizzato per
 singolo cliente nella scheda *Contabilità* del partner, sezione *RiBa*:
 
-- *Exclude expenses Ri.Ba.*: se attivo, alle fatture del cliente non
-  verranno mai aggiunte righe di spese di incasso.
-- *Ri.Ba. Policy expenses* (visibile solo se il campo precedente non è
-  attivo):
+-  *Exclude expenses Ri.Ba.*: se attivo, alle fatture del cliente non
+   verranno mai aggiunte righe di spese di incasso.
+-  *Ri.Ba. Policy expenses* (visibile solo se il campo precedente non è
+   attivo):
 
-  - *More invoices, one expense per Month* (predefinito): viene
-    addebitata al massimo una spesa per ogni mese di scadenza. Alla
-    conferma di una fattura, la spesa non viene aggiunta per le scadenze
-    che cadono in un mese in cui il cliente ha già altre scadenze RiBa
-    non ancora maturate su fatture alle quali sono già state addebitate
-    le spese.
-  - *One expense per maturity*: viene addebitata una spesa per ogni
-    scadenza, indipendentemente dalle altre fatture del cliente.
+   -  *More invoices, one expense per Month* (predefinito): viene
+      addebitata al massimo una spesa per ogni mese di scadenza. Alla
+      conferma di una fattura, la spesa non viene aggiunta per le
+      scadenze che cadono in un mese in cui il cliente ha già altre
+      scadenze RiBa non ancora maturate su fatture alle quali sono già
+      state addebitate le spese.
+   -  *One expense per maturity*: viene addebitata una spesa per ogni
+      scadenza, indipendentemente dalle altre fatture del cliente.
 
 Usage
 =====
@@ -132,14 +132,18 @@ della RiBa non ancora scaduta.
 
 In maniera predefinita la data delle registrazioni dei pagamenti viene
 impostata con la data di scadenza della RiBa, ma è possibile modificarla
-in due momenti:
+in diversi momenti:
 
-- durante la creazione del pagamento, cliccando su "Segna righe come
-  pagate" o su "Segna coma pagata" o usando l'azione "Registrazione Riba
-  a data di scadenza" e indicando una data nel campo ``Data pagamento``,
-- successivamente a pagamento effettivamente avvenuto selezionando la
-  registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta
-  data di pagamento RiBa".
+-  Nella distinta RiBa durante la creazione del pagamento, cliccando su
+   "Segna righe come pagate" o su "Segna coma pagata" o usando l'azione
+   "Registrazione Riba a data di scadenza" e indicando una data nel
+   campo ``Data pagamento``;
+-  Nella lista dei Dettagli RiBa selezionando una o più righe, poi
+   Azione > "Paga riga RiBa", e indicando una data nel campo
+   ``Data pagamento``;
+-  successivamente a pagamento effettivamente avvenuto selezionando la
+   registrazione dalla vista ed elenco ed eseguendo l'azione "Imposta
+   data di pagamento RiBa".
 
 Non è possibile emettere Riba per fatture verso Enti che richiedono più
 di un CIG e un CUP differenti per fattura. In questo caso particolare,
@@ -175,30 +179,30 @@ Credits
 Contributors
 ------------
 
-- Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-- Andrea Cometa <a.cometa@apuliasoftware.it>
-- Andrea Gallina <a.gallina@apuliasoftware.it>
-- Davide Corio <info@davidecorio.com>
-- Giacomo Grasso <giacomo.grasso@agilebg.com>
-- Gabriele Baldessari <gabriele.baldessari@gmail.com>
-- Alex Comba <alex.comba@agilebg.com>
-- Marco Calcagni <mcalcagni@dinamicheaziendali.it>
-- Sergio Zanchetta <https://github.com/primes2h>
-- Simone Vanin <simone.vanin@agilebg.com>
-- Sergio Corato <https://github.com/sergiocorato>
-- Giovanni Serra <giovanni@gslab.it>
-- `Aion Tech <https://aiontech.company/>`__:
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Andrea Cometa <a.cometa@apuliasoftware.it>
+-  Andrea Gallina <a.gallina@apuliasoftware.it>
+-  Davide Corio <info@davidecorio.com>
+-  Giacomo Grasso <giacomo.grasso@agilebg.com>
+-  Gabriele Baldessari <gabriele.baldessari@gmail.com>
+-  Alex Comba <alex.comba@agilebg.com>
+-  Marco Calcagni <mcalcagni@dinamicheaziendali.it>
+-  Sergio Zanchetta <https://github.com/primes2h>
+-  Simone Vanin <simone.vanin@agilebg.com>
+-  Sergio Corato <https://github.com/sergiocorato>
+-  Giovanni Serra <giovanni@gslab.it>
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
-- `TAKOBI <https://takobi.online>`__:
+-  `TAKOBI <https://takobi.online>`__:
 
-  - Simone Rubino <sir@takobi.online>
+   -  Simone Rubino <sir@takobi.online>
 
-- Nextev Srl <odoo@nextev.it>
-- `PyTech <https://www.pytech.it>`__:
+-  Nextev Srl <odoo@nextev.it>
+-  `PyTech <https://www.pytech.it>`__:
 
-  - Simone Rubino <simone.rubino@pytech.it>
+   -  Simone Rubino <simone.rubino@pytech.it>
 
 Maintainers
 -----------
