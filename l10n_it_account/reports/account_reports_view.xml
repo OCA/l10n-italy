@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ Copyright 2022 Simone Rubino - TAKOBI
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -56,17 +56,17 @@
             <div class="row">
                 <div class="col-xs-4">
                     <h3>
-                    <span t-esc="company.name" />
+                    <span t-out="company.name" />
                 </h3>
-                    <span t-esc="company.street" class="" /><br />
-                    <span t-esc="company.zip" class="" />
-                    - <span t-esc="company.city" class="" />
-                    - <span t-esc="company.state_id.code" class="" /><br />
+                    <span t-out="company.street" class="" /><br />
+                    <span t-out="company.zip" class="" />
+                    - <span t-out="company.city" class="" />
+                    - <span t-out="company.state_id.code" class="" /><br />
                     <span class="text-end">TIN: </span>
-                    <span t-esc="company.partner_id.vat" class="" /><br />
+                    <span t-out="company.partner_id.vat" class="" /><br />
                 </div>
                 <div class="col-xs-4 col-xs-offset-4 text-end" style="margin-left:10px">
-                    <h3 t-esc="title" />
+                    <h3 t-out="title" />
                 </div>
             </div>
         </div>
@@ -82,16 +82,16 @@
                     <span
                     style="display: none;"
                     id="l10n_it_count_fiscal_page_base"
-                    t-esc="l10n_it_count_fiscal_page_base"
+                    t-out="l10n_it_count_fiscal_page_base"
                 />
                     Page:
                     <t t-if="l10n_it_count_fiscal_year">
-                    <span t-esc="l10n_it_count_fiscal_year" />
+                    <span t-out="l10n_it_count_fiscal_year" />
                 </t>
                     <t t-if="not l10n_it_count_fiscal_year">
                     <li>
                         <span
-                            t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"
+                            t-out="context_timestamp(datetime.datetime.now()).strftime('%Y')"
                         />
                     </li>
                 </t>
