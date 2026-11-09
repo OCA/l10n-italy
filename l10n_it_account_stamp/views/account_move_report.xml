@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template
         id="report_invoice_document_custom_fields_ext"
@@ -7,8 +7,8 @@
         <xpath expr="//div[@name='incoterm_id']" position="before">
             <div
                 t-if="o.l10n_it_account_stamp_is_stamp_duty_applied"
-                name="l10n_it_account_stamp_is_stamp_duty_applied"
                 class="col"
+                name="l10n_it_account_stamp_is_stamp_duty_applied"
             >
                 Imposta di bollo assolta in modo virtuale ai sensi dell'articolo 15 del DPR 642/1972 e del DM 17/06/2014
             </div>

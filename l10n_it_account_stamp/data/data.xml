@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <record id="l10n_it_account_stamp_2_euro" model="product.product">
         <field name="name">Stamp duty 2 euro</field>
