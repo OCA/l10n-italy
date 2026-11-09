@@ -3,6 +3,7 @@
 # Copyright 2025 Odoo Community Association (OCA)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from email.message import EmailMessage
 from unittest import mock
 from unittest.mock import patch
 
@@ -206,6 +207,32 @@ class TestPecReceive(TestItEdiPecCommon):
             ).message_process(False, raw_email)
         self.assertIn("Some unrelated PEC message", str(cm.exception))
         self.assertIn("not processed", str(cm.exception))
+
+    def test_sdi_email_unrecognized_attachment_raises(self):
+        """An SDI email whose attachments are not recognized is not dropped.
+
+        Raising keeps the message in the PEC mailbox and lets fetch_mail
+        notify the configured contacts.
+        """
+        message = EmailMessage()
+        message["From"] = '"Per conto di: sdi01@pec.fatturapa.it" <posta@pec.it>'
+        message["Reply-To"] = "sdi01@pec.fatturapa.it"
+        message["To"] = "test@pec.example.it"
+        message["Subject"] = "POSTA CERTIFICATA: Notifica di scarto 123"
+        message["Message-Id"] = "<sdi-unrecognized@pec.fatturapa.it>"
+        message.set_content("Notifica")
+        # SDI notification for a file whose name lacks the Codice Fiscale
+        message.add_attachment(
+            b"<NotificaScarto/>",
+            maintype="application",
+            subtype="xml",
+            filename="ITNone_00001_NS_001.xml",
+        )
+        with self.assertRaises(UserError) as cm:
+            self.env["mail.thread"].with_context(
+                default_fetchmail_server_id=self.pec_fetch_server.id
+            ).message_process(False, message.as_bytes())
+        self.assertIn("ITNone_00001_NS_001.xml", str(cm.exception))
 
     def test_fetchmail_error_count_and_reset(self):
         """PEC server auto-disables after max retry failures."""

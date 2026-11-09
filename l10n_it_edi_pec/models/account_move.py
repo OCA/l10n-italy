@@ -6,11 +6,12 @@
 import base64
 import logging
 
-from odoo import models
+from odoo import _, models
 
 from odoo.addons.account_edi_proxy_client.models.account_edi_proxy_user import (
     AccountEdiProxyError,
 )
+from odoo.addons.l10n_it_edi_sdi.models.mail_thread import FATTURAPA_IN_REGEX
 
 _logger = logging.getLogger(__name__)
 
@@ -37,6 +38,19 @@ class AccountMove(models.Model):
         results = {}
         for file_data in files or []:
             filename = file_data["filename"]
+            if not FATTURAPA_IN_REGEX.match(filename):
+                # Such a name is against the SDI naming rules, and SDI
+                # notifications about it would not be recognized.
+                raise AccountEdiProxyError(
+                    "PEC",
+                    message=_(
+                        "The e-invoice file name %(filename)s does not follow "
+                        "the SDI naming rules: check the Codice Fiscale of "
+                        "company %(company)s.",
+                        filename=filename,
+                        company=company.name,
+                    ),
+                )
             xml_bytes = base64.b64decode(file_data["xml"])
             try:
                 msg = self.env["ir.mail_server"].build_email(
