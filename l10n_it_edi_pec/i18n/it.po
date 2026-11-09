@@ -209,3 +209,36 @@ msgstr "Il server PEC di ricezione deve essere confermato."
 #: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_config_settings__l10n_it_edi_use_pec
 msgid "Use PEC for e-invoicing"
 msgstr "Utilizzare la PEC per la fatturazione elettronica"
+
+#. module: l10n_it_edi_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_pec.account_move_form_l10n_it_edi_pec
+msgid "Reset SDI sending"
+msgstr "Sblocca reinvio SdI"
+
+#. module: l10n_it_edi_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_pec.account_move_form_l10n_it_edi_pec
+msgid ""
+"The SDI state is reset and the next sending builds a new e-invoice file. Use"
+" it only if the e-invoice has not been accepted by SDI, otherwise it would "
+"be sent twice. Continue?"
+msgstr ""
+"Lo stato SdI viene azzerato e il prossimo invio crea un nuovo file di "
+"fattura elettronica. Usalo solo se la fattura non è stata accettata dallo "
+"SdI, altrimenti verrebbe inviata due volte. Continuare?"
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/account_move.py:0
+msgid ""
+"%(move)s is not a posted move sent via PEC and waiting for an SDI answer."
+msgstr ""
+"%(move)s non è una registrazione confermata, inviata via PEC e in attesa di "
+"una risposta SdI."
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/account_move.py:0
+msgid "SDI sending reset (transaction %(transaction)s): %(files)s kept here as history."
+msgstr ""
+"Invio SdI azzerato (transazione %(transaction)s): %(files)s conservati qui "
+"come storico."

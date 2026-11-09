@@ -20,3 +20,17 @@ msgstr ""
 #: model:ir.model,name:l10n_it_edi_sdi.model_mail_thread
 msgid "Email Thread"
 msgstr "Discussione e-mail"
+
+#. module: l10n_it_edi_sdi
+#. odoo-python
+#: code:addons/l10n_it_edi_sdi/models/mail_thread.py:0
+msgid "SDI notification %(file)s is about an e-invoice that has not been found."
+msgstr ""
+"La notifica SdI %(file)s riguarda una fattura elettronica che non è stata "
+"trovata."
+
+#. module: l10n_it_edi_sdi
+#. odoo-python
+#: code:addons/l10n_it_edi_sdi/models/mail_thread.py:0
+msgid "SDI notification %(file)s has a type (%(type)s) that is not handled."
+msgstr "La notifica SdI %(file)s è di un tipo (%(type)s) non gestito."
