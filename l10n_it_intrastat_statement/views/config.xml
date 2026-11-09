@@ -8,6 +8,7 @@
 
             <xpath expr="//field[@name='intrastat_export_file_name']" position="after">
                 <field name="intrastat_custom_id" />
+                <field name="intrastat_date_type" />
             </xpath>
 
         </field>
