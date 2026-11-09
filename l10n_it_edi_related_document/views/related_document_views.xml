@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="account_move_related_document_view_list" model="ir.ui.view">
         <field name="name">Tree view for related_document</field>

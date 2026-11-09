@@ -51,7 +51,7 @@ class TestItEdiExport(TestItEdi):
             )
         )
 
-    def _create_invoice(self, **values):
+    def _create_test_invoice(self, **values):
         invoice = self.init_invoice(
             "out_invoice",
             amounts=[100],
@@ -75,7 +75,7 @@ class TestItEdiExport(TestItEdi):
     def test_export_reference(self):
         """The related documents are exported after the purchase order
         that core exports for the reference of the invoice."""
-        invoice = self._create_invoice(
+        invoice = self._create_test_invoice(
             ref="PO-CUSTOMER",
             related_document_ids=[
                 Command.create({"type": "invoice", "name": "INV1"}),
@@ -99,9 +99,9 @@ class TestItEdiExport(TestItEdi):
         """The related documents of a debit note are exported
         before the invoice that core exports for the debit note,
         as required by the FatturaPA schema."""
-        origin = self._create_invoice()
+        origin = self._create_test_invoice()
         origin.action_post()
-        debit_note = self._create_invoice(
+        debit_note = self._create_test_invoice(
             debit_origin_id=origin.id,
             ref="Price adjustment",
             related_document_ids=[

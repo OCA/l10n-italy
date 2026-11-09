@@ -79,9 +79,11 @@ class AccountMoveRelatedDocumentType(models.Model):
         # after creating documents, check if one should is eligible
         # to become the standard_related_document_id
         for record in ret.filtered(
-            lambda r: r.type in ("order", "contract", "agreement")
-            and r.invoice_id
-            and not r.invoice_id.standard_related_document_id
+            lambda r: (
+                r.type in ("order", "contract", "agreement")
+                and r.invoice_id
+                and not r.invoice_id.standard_related_document_id
+            )
         ):
             invoice = record.invoice_id.with_context(
                 l10n_it_edi_related_loop_avoid=True
@@ -103,11 +105,7 @@ class AccountMoveRelatedDocumentType(models.Model):
                 document_type = record.type
                 if document_type == "order":
                     document_type = "purchase_order"
-                elif document_type == "reception":
-                    # unsupported type
-                    record.invoice_id.standard_related_document_id = False
-                    continue
-                elif document_type == "invoice":
+                elif document_type == "reception" or document_type == "invoice":
                     # unsupported type
                     record.invoice_id.standard_related_document_id = False
                     continue
@@ -121,7 +119,7 @@ class AccountMoveRelatedDocumentType(models.Model):
         ret = super().write(vals)
         if self.env.context.get("l10n_it_edi_related_loop_avoid"):
             return ret
-        if vals.keys() & {"type", "name", "date", "cig", "cup"}:
+        if not {"type", "name", "date", "cig", "cup"}.isdisjoint(vals):
             self.with_context(
                 l10n_it_edi_related_loop_avoid=True
             )._l10n_it_sync_related_document()
@@ -137,7 +135,6 @@ class AccountMove(models.Model):
 
     standard_related_document_id = fields.Many2one(
         comodel_name="account.move.related_document",
-        string="Standard Related Document",
         help="Technical field to store the document corresponding to standard fields",
     )
 
@@ -180,11 +177,8 @@ class AccountMove(models.Model):
             if document_type == "purchase_order":
                 document_type = "order"
 
-            if (
-                document_type
-                not in dict(
-                    self.env["account.move.related_document"]._fields["type"].selection
-                ).keys()
+            if document_type not in dict(
+                self.env["account.move.related_document"]._fields["type"].selection
             ):
                 raise UserError(self.env._("Unknown document type %s", document_type))
 
@@ -207,13 +201,17 @@ class AccountMove(models.Model):
                     l10n_it_edi_related_loop_avoid=True
                 ).update(vals)
 
-    def _l10n_it_edi_get_values(self, pdf_values=None):
-        res = super()._l10n_it_edi_get_values(pdf_values=pdf_values)
+    def _l10n_it_edi_get_values(self, pdf_values=None, extra_attachments=None):
+        res = super()._l10n_it_edi_get_values(
+            pdf_values=pdf_values, extra_attachments=extra_attachments
+        )
         updated_values = self.remove_redundant_values(res)
         return updated_values
 
-    def _l10n_it_edi_render_xml(self, pdf_values=None):
-        xml = super()._l10n_it_edi_render_xml(pdf_values=pdf_values)
+    def _l10n_it_edi_render_xml(self, pdf_values=None, extra_attachments=None):
+        xml = super()._l10n_it_edi_render_xml(
+            pdf_values=pdf_values, extra_attachments=extra_attachments
+        )
         if (
             not self.related_document_ids
             or self._l10n_it_edi_is_simplified_document_type(
@@ -229,9 +227,11 @@ class AccountMove(models.Model):
         for dati_generali in tree.iter("DatiGenerali"):
             dati_generali[:] = sorted(
                 dati_generali,
-                key=lambda node: DATI_GENERALI_SEQUENCE.index(node.tag)
-                if node.tag in DATI_GENERALI_SEQUENCE
-                else len(DATI_GENERALI_SEQUENCE),
+                key=lambda node: (
+                    DATI_GENERALI_SEQUENCE.index(node.tag)
+                    if node.tag in DATI_GENERALI_SEQUENCE
+                    else len(DATI_GENERALI_SEQUENCE)
+                ),
             )
         return etree.tostring(tree, xml_declaration=True, encoding="UTF-8")
 

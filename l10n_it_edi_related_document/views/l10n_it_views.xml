@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="account_invoice_form_related_document" model="ir.ui.view">
         <field name="name">account.move.form.related.document</field>
         <field name="model">account.move</field>
-        <field name="priority">20</field>
+        <field name="priority" eval="20" />
         <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it" />
         <field name="arch" type="xml">
             <xpath

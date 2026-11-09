@@ -3,7 +3,7 @@
 
 {
     "name": "Related Documents for EDI",
-    "version": "19.0.1.0.1",
+    "version": "20.0.1.0.0",
     "category": "Localization/Italy",
     "author": "Nextev Srl, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
@@ -14,7 +14,7 @@
         "views/l10n_it_views.xml",
         "views/account_move_related_documents.xml",
         "data/invoice_it_template.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
     ],
     "installable": True,
 }
