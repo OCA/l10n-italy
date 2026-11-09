@@ -3,7 +3,7 @@
 {
     "name": "ITA - Invio buste paga",
     "summary": "Spacchetta e invia agli impiegati le buste paga.",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Payrolls",
     "website": "https://github.com/OCA/l10n-italy",
     "author": "PyTech, Odoo Community Association (OCA)",
@@ -13,6 +13,6 @@
     "license": "AGPL-3",
     "depends": [
         "hr_payroll_document",
-        "l10n_it_fiscalcode",
+        "l10n_it_edi",
     ],
 }

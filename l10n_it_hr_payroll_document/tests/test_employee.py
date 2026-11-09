@@ -1,11 +1,11 @@
 # Copyright 2025 Simone Rubino - PyTech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from codicefiscale import isvalid as is_fiscalcode_valid
+from stdnum.it.codicefiscale import is_valid as is_fiscalcode_valid
 
 from odoo import exceptions
 
-from odoo.addons.l10n_it_hr_payroll_document.tests.common import Common
+from .common import Common
 
 
 class TestEmployee(Common):
