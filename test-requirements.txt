@@ -1,0 +1,1 @@
+odoo-addon-l10n_it_abicab @ git+https://github.com/OCA/l10n-italy.git@refs/pull/5393/head#subdirectory=l10n_it_abicab
