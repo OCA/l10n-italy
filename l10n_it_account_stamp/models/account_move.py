@@ -10,7 +10,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     l10n_it_account_stamp_is_stamp_duty_applied = fields.Boolean(
-        string="Stamp Duty",
+        string="Stamp Duty Applied",
         help="Stamp duty is applied to this invoice.",
         readonly=False,
         compute="_compute_l10n_it_account_stamp_is_stamp_duty_applied",
@@ -168,9 +168,7 @@ class AccountMove(models.Model):
         product_stamp = self.invoice_line_ids.filtered(
             lambda line: line.product_id.l10n_it_account_stamp_is_stamp
         )
-        if product_stamp:
-            return True
-        return False
+        return bool(product_stamp)
 
     def _build_stamp_duty_lines(self, product):
         if (
