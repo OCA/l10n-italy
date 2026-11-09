@@ -1,0 +1,2 @@
+# https://github.com/OCA/payroll/pull/288
+odoo-addon-hr_payroll_document @ git+https://github.com/OCA/payroll.git@refs/pull/288/head#subdirectory=hr_payroll_document
