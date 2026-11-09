@@ -37,3 +37,21 @@ class SaleOrder(models.Model):
         res = super().unlink()
         related_documents.check_unlink().unlink()
         return res
+
+    def _prepare_invoice(self):
+        """
+        English:
+        When creating an invoice from a sale order, if the payment method
+        is RiBa (MP12),the recipient bank is automatically removed. This
+        ensures that the customer invoice is issued without a recipient bank,
+        as the recipient bank for RiBa is decided at a later stage. This avoids
+        misleading the customer and prevents potential disputes.
+        """
+        res = super()._prepare_invoice()
+        payment_term = self.env["account.payment.term"]
+        payment_mode = payment_term.browse(
+            res["invoice_payment_term_id"]
+        ).fatturapa_pm_id.code
+        if res.get("partner_bank_id") and payment_mode == "MP12":
+            res["partner_bank_id"] = False
+        return res
