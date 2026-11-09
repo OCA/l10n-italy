@@ -165,7 +165,7 @@ e 'line' per riga di fattura (a seconda del livello in cui sono chiamati)
                 <Quantita t-out="format_quantity(line)" />
                 <UnitaMisura
                     t-if="line.product_uom_id.name"
-                    t-out="unidecode(line.product_uom_id.name)"
+                    t-out="to_basiclatin(line.product_uom_id.name)"
                 />
                 <!--                <DataInizioPeriodo t-out=""/>-->
                 <!--                <DataFinePeriodo t-out=""/>-->
