@@ -6,12 +6,13 @@
         <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[last()]" position="after">
-                <page string="Declarations of intent">
+                <page string="Exporter Plafond">
                     <field name="declaration_yearly_limit_ids">
                         <tree editable="top">
                             <field name="year" />
                             <field name="limit_amount" />
                             <field name="used_amount" />
+                            <field name="actual_used_amount" />
                         </tree>
                     </field>
                 </page>
