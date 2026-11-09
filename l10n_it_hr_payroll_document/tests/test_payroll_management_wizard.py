@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
-from odoo.addons.l10n_it_hr_payroll_document.tests.common import Common
+from .common import Common
 
 
 class TestPayrollManagementWizard(Common):
@@ -12,7 +12,7 @@ class TestPayrollManagementWizard(Common):
         employee = self.employee_emp
         employee.identification_id = "RSSMRA84H04H501X"
         wizard = self._create_wizard(
-            "Ottobre", "l10n_it_hr_payroll_document/tests/data/cedolini.pdf".split("/")
+            "Ottobre", "l10n_it_hr_payroll_document/tests/data/cedolini.pdf"
         )
 
         # Act
@@ -25,9 +25,9 @@ class TestPayrollManagementWizard(Common):
         """If the employee is not found, payrolls are not sent."""
         # Arrange
         employee = self.employee_emp
-        employee.identification_id = "XSSMRA84H04H501X"
+        employee.identification_id = "FGYFKN32C17A944Z"
         wizard = self._create_wizard(
-            "Ottobre", "l10n_it_hr_payroll_document/tests/data/cedolini.pdf".split("/")
+            "Ottobre", "l10n_it_hr_payroll_document/tests/data/cedolini.pdf"
         )
 
         # Act
