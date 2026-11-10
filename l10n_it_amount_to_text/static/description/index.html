@@ -374,19 +374,20 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:7b04e2e50d1909c11dbde3d28c8b61efc683d6b2ac2b34e94fbb319090cb5020
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_amount_to_text"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-19-0/l10n-italy-19-0-l10n_it_amount_to_text"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-italy/tree/20.0/l10n_it_amount_to_text"><img alt="OCA/l10n-italy" src="https://img.shields.io/badge/github-OCA%2Fl10n--italy-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-italy-20-0/l10n-italy-20-0-l10n_it_amount_to_text"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-italy&amp;target_branch=20.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p><strong>Italiano</strong></p>
 <p>Il core di Odoo fornisce <tt class="docutils literal">amount_to_text</tt>, il quale converte importi
 numerici in testo ottenendo la lingua dal contesto fornito o dalle
 impostazioni utente/partner, con alcune limitazioni.</p>
 <p>Esempio: 45,75 €</p>
 <ul class="simple">
-<li>Lingua utente “Inglese” → Forty-Five Euros and Seventy-Five Cents</li>
-<li>Lingua utente “Italiano” → Quarantacinque Euros e Settantacinque Cents</li>
+<li>Lingua utente “Inglese” → forty-five euro and seventy-five cents</li>
+<li>Lingua utente “Italiano” → quarantacinque euro e settantacinque
+centesimi</li>
 </ul>
 <p>L’unità/sottounità di valuta non viene tradotta e non viene gestita la
-forma singolare. Inoltre tutte le parole possiedono l’iniziale
-maiuscola, forma non corretta nella lingua italiana.</p>
+forma singolare. Il core di Odoo restituisce l’importo inglese in
+minuscolo.</p>
 <p>Questo modulo fornisce una base per tradurre le unità/sottounità di
 valuta, adattando le parole alle regole della lingua italiana.</p>
 <p>Vengono inoltre gestite le eccezioni per la forma singolare delle valute
@@ -402,12 +403,12 @@ to text getting language from given context or user/partner setting,
 with some limitations.</p>
 <p>Example: 45,75 €</p>
 <ul class="simple">
-<li>User Language ‘English’ -&gt; Forty-Five Euros and Seventy-Five Cents</li>
-<li>User Language ‘Italian’ -&gt; Quaranta Euros e Settantacinque Cents</li>
+<li>User Language ‘English’ -&gt; forty-five euro and seventy-five cents</li>
+<li>User Language ‘Italian’ -&gt; quarantacinque euro e settantacinque
+centesimi</li>
 </ul>
 <p>Currency unit/subunit is not translated and singular form is not
-handled. Moreover all words are capitalized, which is incorrect in
-italian language.</p>
+handled. Odoo core returns the English amount in lowercase.</p>
 <p>This module provides a base for translating currency unit/subunit
 adapting words to italian language rules.</p>
 <p>Singular form expections for EUR, USD, GBP and CNY currencies are
@@ -477,7 +478,7 @@ reports:</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-italy/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_amount_to_text%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-italy/issues/new?body=module:%20l10n_it_amount_to_text%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -506,7 +507,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/19.0/l10n_it_amount_to_text">OCA/l10n-italy</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-italy/tree/20.0/l10n_it_amount_to_text">OCA/l10n-italy</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

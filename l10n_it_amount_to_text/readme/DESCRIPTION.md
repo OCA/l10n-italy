@@ -6,13 +6,13 @@ impostazioni utente/partner, con alcune limitazioni.
 
 Esempio: 45,75 €
 
-  - Lingua utente "Inglese" → Forty-Five Euros and Seventy-Five Cents
-  - Lingua utente "Italiano" → Quarantacinque Euros e Settantacinque
-    Cents
+  - Lingua utente "Inglese" → forty-five euro and seventy-five cents
+  - Lingua utente "Italiano" → quarantacinque euro e settantacinque
+    centesimi
 
 L'unità/sottounità di valuta non viene tradotta e non viene gestita la
-forma singolare. Inoltre tutte le parole possiedono l'iniziale
-maiuscola, forma non corretta nella lingua italiana.
+forma singolare. Il core di Odoo restituisce l'importo inglese in
+minuscolo.
 
 Questo modulo fornisce una base per tradurre le unità/sottounità di
 valuta, adattando le parole alle regole della lingua italiana.
@@ -33,12 +33,12 @@ some limitations.
 
 Example: 45,75 €
 
-  - User Language 'English' -\> Forty-Five Euros and Seventy-Five Cents
-  - User Language 'Italian' -\> Quaranta Euros e Settantacinque Cents
+  - User Language 'English' -\> forty-five euro and seventy-five cents
+  - User Language 'Italian' -\> quarantacinque euro e settantacinque
+    centesimi
 
 Currency unit/subunit is not translated and singular form is not
-handled. Moreover all words are capitalized, which is incorrect in
-italian language.
+handled. Odoo core returns the English amount in lowercase.
 
 This module provides a base for translating currency unit/subunit
 adapting words to italian language rules.
