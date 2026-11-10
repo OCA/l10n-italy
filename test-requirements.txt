@@ -1,0 +1,4 @@
+odoo-addon-account_fiscal_year @ git+https://github.com/OCA/account-financial-tools@refs/pull/2419/head#subdirectory=account_fiscal_year
+odoo-addon-l10n_it_account @ git+https://github.com/OCA/l10n-italy@refs/pull/5437/head#subdirectory=l10n_it_account
+odoo-addon-account_tax_balance @ git+https://github.com/OCA/account-financial-reporting@refs/pull/1586/head#subdirectory=account_tax_balance
+odoo-addon-report_xlsx_helper @ git+https://github.com/OCA/reporting-engine@refs/pull/1214/head#subdirectory=report_xlsx_helper
