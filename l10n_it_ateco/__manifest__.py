@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Codici Ateco",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Localization/Italy",
     "author": "Abstract,Odoo Community Association (OCA),Odoo Italia Network",
     "development_status": "Beta",
@@ -13,7 +13,7 @@
     "license": "AGPL-3",
     "depends": ["contacts"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/ateco_view.xml",
         "views/partner_view.xml",
         "data/ateco_data.xml",
