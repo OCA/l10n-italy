@@ -144,7 +144,7 @@ class TestDoiIssuedFromCompany(TransactionCase):
         self.company.l10n_it_edi_doi_tax_id = sale_tax
         declaration_1 = self._create_declaration("out", threshold=1000)
         declaration_2 = self._create_declaration("out", threshold=1000)
-        invoice = self._create_invoice_with_lines([1100.0], sale_tax)
+        invoice = self._create_invoice_with_lines([500.0, 600.0], sale_tax)
         declarations = invoice._l10n_it_edi_doi_ext_get_declarations()
         # pre-condition
         self.assertEqual(len(declarations), 2)

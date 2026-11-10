@@ -204,6 +204,9 @@ class AccountMove(models.Model):
     def _l10n_it_edi_doi_ext_get_declarations_used_amounts(self, declarations):
         """Get the amount of this invoice to assign to each declaration."""
         self.ensure_one()
+        declarations_available_amounts = {
+            declaration.id: declaration.remaining for declaration in declarations
+        }
         declarations_used_amounts = {}
         doi_tax = self._l10n_it_edi_doi_ext_get_declaration_tax()
         if not doi_tax or not declarations:
@@ -219,7 +222,12 @@ class AccountMove(models.Model):
                     # assign all the remaining amount.
                     declaration_used_amount = amount
                 else:
-                    declaration_used_amount = min(amount, declaration.remaining)
+                    declaration_used_amount = min(
+                        amount, declarations_available_amounts[declaration.id]
+                    )
+                declarations_available_amounts[declaration.id] -= (
+                    declaration_used_amount
+                )
                 declarations_used_amounts[declaration.id] += declaration_used_amount
                 amount -= declaration_used_amount
                 if self.currency_id.compare_amounts(amount, 0) <= 0:
