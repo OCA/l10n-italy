@@ -136,7 +136,7 @@ class TestRegistry(TransactionCase):
 
         bindings = self.env["ir.actions.actions"].get_bindings("account.move")
         report_actions = bindings.get("report")
-        report_ids = map(lambda report_action: report_action.get("id"), report_actions)
+        report_ids = (report_action.get("id") for report_action in report_actions)
 
         self.assertNotIn(report_id, report_ids)
 

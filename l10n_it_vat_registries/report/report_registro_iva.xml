@@ -223,7 +223,7 @@
                                                 <td class="right_without_line_bold">
                                                     <div
                                                         style="page-break-inside: avoid"
-                                                        t-out="company_currency_symbol + ' ' + formatLang(env, invoice_total(move))"
+                                                        t-out="format_amount(env, invoice_total(move), env.company.currency_id)"
                                                     />
                                                 </td>
                                                 <td
@@ -232,7 +232,7 @@
                                                 >
                                                     <div
                                                         style="page-break-inside: avoid"
-                                                        t-out="line['currency_symbol'] + ' ' + formatLang(env, currency_total(move))"
+                                                        t-out="format_amount(env, currency_total(move), move.currency_id)"
                                                     />
                                                 </td>
                                             </tr>
@@ -259,14 +259,14 @@
                                             <td class="right_without_line">
                                                 <div
                                                     style="page-break-inside: avoid"
-                                                    t-out="company_currency_symbol + ' ' + formatLang(env, line['base'])"
+                                                    t-out="format_amount(env, line['base'], env.company.currency_id)"
                                                 />
                                             </td>
                                             <!-- tax -->
                                             <td class="right_without_line">
                                                 <div
                                                     style="page-break-inside: avoid"
-                                                    t-out="company_currency_symbol + ' ' + formatLang(env, line['tax'])"
+                                                    t-out="format_amount(env, line['tax'], env.company.currency_id)"
                                                 />
                                             </td>
                                             <td class="left_without_line" />
@@ -377,25 +377,25 @@
                                                 />
                                                 <td
                                                     class="right_without_line"
-                                                    t-out="formatLang(env, base_balance)"
+                                                    t-out="format_amount(env, base_balance, env.company.currency_id)"
                                                 />
                                                 <td
                                                     t-if="registry_type == 'customer'"
                                                     class="right_without_line"
-                                                    t-out="formatLang(env, customer_balance)"
+                                                    t-out="format_amount(env, customer_balance, env.company.currency_id)"
                                                 />
                                                 <td
                                                     t-if="registry_type == 'supplier'"
                                                     class="right_without_line"
-                                                    t-out="formatLang(env, supplier_balance)"
+                                                    t-out="format_amount(env, supplier_balance, env.company.currency_id)"
                                                 />
                                                 <td
                                                     class="right_without_line"
-                                                    t-out="formatLang(env, deductible_balance)"
+                                                    t-out="format_amount(env, deductible_balance, env.company.currency_id)"
                                                 />
                                                 <td
                                                     class="right_without_line"
-                                                    t-out="formatLang(env, undeductible_balance)"
+                                                    t-out="format_amount(env, undeductible_balance, env.company.currency_id)"
                                                 />
                                             </tr>
                                         </t>
@@ -405,19 +405,19 @@
                                             >General Total EUR</td>
                                             <td
                                                 class="right_without_line_bold"
-                                                t-out="formatLang(env, tot_base)"
+                                                t-out="format_amount(env, tot_base, env.company.currency_id)"
                                             />
                                             <td
                                                 class="right_without_line_bold"
-                                                t-out="formatLang(env, tot_tax)"
+                                                t-out="format_amount(env, tot_tax, env.company.currency_id)"
                                             />
                                             <td
                                                 class="right_without_line_bold"
-                                                t-out="formatLang(env, tot_ded)"
+                                                t-out="format_amount(env, tot_ded, env.company.currency_id)"
                                             />
                                             <td
                                                 class="right_without_line_bold"
-                                                t-out="formatLang(env, tot_unded)"
+                                                t-out="format_amount(env, tot_unded, env.company.currency_id)"
                                             />
                                         </tr>
                                     </table>
