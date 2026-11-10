@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Codici carica",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Localization/Italy",
     "summary": "Aggiunge la tabella dei codici carica da usare nelle dichiarazioni"
     " fiscali italiane",
@@ -14,7 +14,7 @@
     "license": "LGPL-3",
     "depends": ["account"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "data/appointment_code_data.xml",
         "views/appointment_code_view.xml",
     ],
