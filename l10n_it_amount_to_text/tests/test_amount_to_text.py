@@ -21,7 +21,7 @@ class TestAmountToText(TransactionCase):
         amount = 1050.75
         amount_text_en = currency.amount_to_text(amount)
         self.assertEqual(
-            amount_text_en, "One Thousand And Fifty Euros and Seventy-Five Cents"
+            amount_text_en, "one thousand and fifty euro and seventy-five cents"
         )
         amount_text_it = currency.with_context(lang="it_IT").amount_to_text(amount)
         num2words(amount, to="currency", lang="it")
@@ -43,7 +43,7 @@ class TestAmountToText(TransactionCase):
         amount = 1050.75
         amount_text_usd = currency.amount_to_text(amount)
         self.assertEqual(
-            amount_text_usd, "One Thousand And Fifty Dollars and Seventy-Five Cents"
+            amount_text_usd, "one thousand and fifty dollars and seventy-five cents"
         )
 
     def test_04_currency_zero_fractional_value_it_amount_to_text(self):
