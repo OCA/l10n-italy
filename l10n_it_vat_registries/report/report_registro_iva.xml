@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="report_registro_iva">
         <t t-call="web.html_container">
@@ -43,7 +43,7 @@
                                 <td
                                     t-att-colspan="columns_number"
                                     style="padding:10;"
-                                    t-esc="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
+                                    t-out="tax_registry_name + ' Periodo di stampa dal ' + from_date + ' al ' + to_date"
                                 />
                             </tr>
 
@@ -113,7 +113,7 @@
                                                 <td t-att-colspan="columns_number">
                                                     <h5
                                                         style="page-break-inside: avoid;border-top:1px solid;border-bottom:1px solid; color:DimGrey;"
-                                                        t-esc="move.journal_id.name"
+                                                        t-out="move.journal_id.name"
                                                     />
                                                 </td>
                                             </tr>
@@ -141,14 +141,14 @@
                                                 <td class="left_without_line_bold">
                                                     <div
                                                         style="page-break-inside: avoid"
-                                                        t-esc="format_date(move.date,date_format)"
+                                                        t-out="format_date(move.date,date_format)"
                                                     />
                                                 </td>
                                                 <!-- Numero registrazione -->
                                                 <td class="left_without_line_bold">
                                                     <div
                                                         style="page-break-inside: avoid"
-                                                        t-esc="move.name"
+                                                        t-out="move.name"
                                                     />
                                                 </td>
                                                 <t
@@ -158,14 +158,14 @@
                                                     <td class="left_without_line_bold">
                                                         <div
                                                             style="page-break-inside: avoid"
-                                                            t-esc="line['invoice_type']"
+                                                            t-out="line['invoice_type']"
                                                         />
                                                     </td>
                                                     <!-- Data fattura -->
                                                     <td class="left_without_line_bold">
                                                         <div
                                                             style="page-break-inside: avoid"
-                                                            t-esc="format_date(line['invoice_date'],date_format)"
+                                                            t-out="format_date(line['invoice_date'],date_format)"
                                                         />
                                                     </td>
                                                     <t
@@ -177,7 +177,7 @@
                                                         >
                                                             <div
                                                                 style="page-break-inside: avoid"
-                                                                t-esc="move.ref"
+                                                                t-out="move.ref"
                                                             />
                                                         </td>
                                                     </t>
@@ -190,7 +190,7 @@
                                                         >
                                                             <div
                                                                 style="page-break-inside: avoid"
-                                                                t-esc="move.name"
+                                                                t-out="move.name"
                                                             />
                                                         </td>
                                                     </t>
@@ -202,19 +202,19 @@
                                                         />
                                                         <div
                                                             style="page-break-inside: avoid"
-                                                            t-esc="partner.name"
+                                                            t-out="partner.name"
                                                         />
                                                         <div
                                                             t-if="show_full_contact_addess"
                                                             style="page-break-inside: avoid"
-                                                            t-esc="partner._display_address(without_company=True)"
+                                                            t-out="partner._display_address(without_company=True)"
                                                         />
                                                     </td>
                                                     <!-- PIVA -->
                                                     <td class="left_without_line_bold">
                                                         <div
                                                             style="page-break-inside: avoid"
-                                                            t-esc="partner.vat"
+                                                            t-out="partner.vat"
                                                         />
                                                     </td>
                                                 </t>
@@ -223,7 +223,7 @@
                                                 <td class="right_without_line_bold">
                                                     <div
                                                         style="page-break-inside: avoid"
-                                                        t-esc="company_currency_symbol + ' ' + formatLang(env, invoice_total(move))"
+                                                        t-out="company_currency_symbol + ' ' + formatLang(env, invoice_total(move))"
                                                     />
                                                 </td>
                                                 <td
@@ -232,7 +232,7 @@
                                                 >
                                                     <div
                                                         style="page-break-inside: avoid"
-                                                        t-esc="line['currency_symbol'] + ' ' + formatLang(env, currency_total(move))"
+                                                        t-out="line['currency_symbol'] + ' ' + formatLang(env, currency_total(move))"
                                                     />
                                                 </td>
                                             </tr>
@@ -252,21 +252,21 @@
                                             <td class="left_without_line">
                                                 <div
                                                     style="page-break-inside: avoid"
-                                                    t-esc="(line['tax_code_name'])"
+                                                    t-out="(line['tax_code_name'])"
                                                 />
                                             </td>
                                             <!-- base -->
                                             <td class="right_without_line">
                                                 <div
                                                     style="page-break-inside: avoid"
-                                                    t-esc="company_currency_symbol + ' ' + formatLang(env, line['base'])"
+                                                    t-out="company_currency_symbol + ' ' + formatLang(env, line['base'])"
                                                 />
                                             </td>
                                             <!-- tax -->
                                             <td class="right_without_line">
                                                 <div
                                                     style="page-break-inside: avoid"
-                                                    t-esc="company_currency_symbol + ' ' + formatLang(env, line['tax'])"
+                                                    t-out="company_currency_symbol + ' ' + formatLang(env, line['tax'])"
                                                 />
                                             </td>
                                             <td class="left_without_line" />
@@ -373,29 +373,29 @@
                                             <tr>
                                                 <td
                                                     class="left_without_line"
-                                                    t-esc="tax_name"
+                                                    t-out="tax_name"
                                                 />
                                                 <td
                                                     class="right_without_line"
-                                                    t-esc="formatLang(env, base_balance)"
+                                                    t-out="formatLang(env, base_balance)"
                                                 />
                                                 <td
                                                     t-if="registry_type == 'customer'"
                                                     class="right_without_line"
-                                                    t-esc="formatLang(env, customer_balance)"
+                                                    t-out="formatLang(env, customer_balance)"
                                                 />
                                                 <td
                                                     t-if="registry_type == 'supplier'"
                                                     class="right_without_line"
-                                                    t-esc="formatLang(env, supplier_balance)"
+                                                    t-out="formatLang(env, supplier_balance)"
                                                 />
                                                 <td
                                                     class="right_without_line"
-                                                    t-esc="formatLang(env, deductible_balance)"
+                                                    t-out="formatLang(env, deductible_balance)"
                                                 />
                                                 <td
                                                     class="right_without_line"
-                                                    t-esc="formatLang(env, undeductible_balance)"
+                                                    t-out="formatLang(env, undeductible_balance)"
                                                 />
                                             </tr>
                                         </t>
@@ -405,19 +405,19 @@
                                             >General Total EUR</td>
                                             <td
                                                 class="right_without_line_bold"
-                                                t-esc="formatLang(env, tot_base)"
+                                                t-out="formatLang(env, tot_base)"
                                             />
                                             <td
                                                 class="right_without_line_bold"
-                                                t-esc="formatLang(env, tot_tax)"
+                                                t-out="formatLang(env, tot_tax)"
                                             />
                                             <td
                                                 class="right_without_line_bold"
-                                                t-esc="formatLang(env, tot_ded)"
+                                                t-out="formatLang(env, tot_ded)"
                                             />
                                             <td
                                                 class="right_without_line_bold"
-                                                t-esc="formatLang(env, tot_unded)"
+                                                t-out="formatLang(env, tot_unded)"
                                             />
                                         </tr>
                                     </table>

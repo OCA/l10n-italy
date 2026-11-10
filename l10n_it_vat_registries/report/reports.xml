@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <record id="action_report_registro_iva" model="ir.actions.report">
         <field name="name">Invoices VAT Registry</field>

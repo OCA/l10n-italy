@@ -245,10 +245,10 @@ class ReportRegistroIva(models.AbstractModel):
         total_currency = 0.0
         receivable_payable_found = False
         for move_line in move.line_ids:
-            if move_line.account_id.account_type == "asset_receivable":
-                total_currency += move_line.amount_currency
-                receivable_payable_found = True
-            elif move_line.account_id.account_type == "liability_payable":
+            if (
+                move_line.account_id.account_type == "asset_receivable"
+                or move_line.account_id.account_type == "liability_payable"
+            ):
                 total_currency += move_line.amount_currency
                 receivable_payable_found = True
         if receivable_payable_found:
