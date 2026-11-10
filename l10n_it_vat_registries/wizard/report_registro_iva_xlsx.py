@@ -1,9 +1,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+from typing import ClassVar
 
 from odoo import models
-from odoo.tools.misc import formatLang
+from odoo.tools.misc import format_amount
 
 from odoo.addons.report_xlsx_helper.report.report_xlsx_format import (
     FORMATS,
@@ -15,7 +16,7 @@ _logger = logging.getLogger(__name__)
 
 class ReportRegistroIvaXlsx(models.AbstractModel):
     _name = "report.l10n_it_vat_registries.report_registro_iva_xlsx"
-    _inherit = [
+    _inherit: ClassVar[list[str]] = [
         "report.report_xlsx.abstract",
         "report.l10n_it_vat_registries.report_registro_iva",
     ]
@@ -83,7 +84,10 @@ class ReportRegistroIvaXlsx(models.AbstractModel):
             "total": {
                 "header": {"value": self.env._("TOTAL")},
                 "lines": {
-                    "value": self._render("formatLang(env, invoice_total(move))")
+                    "value": self._render(
+                        "format_amount(env, invoice_total(move), "
+                        "env.company.currency_id)"
+                    )
                 },
                 "width": 20,
             },
@@ -94,12 +98,20 @@ class ReportRegistroIvaXlsx(models.AbstractModel):
             },
             "taxable": {
                 "header": {"value": self.env._("Taxable")},
-                "lines": {"value": self._render("formatLang(env, line['base'])")},
+                "lines": {
+                    "value": self._render(
+                        "format_amount(env, line['base'], env.company.currency_id)"
+                    )
+                },
                 "width": 20,
             },
             "tax": {
                 "header": {"value": self.env._("Tax")},
-                "lines": {"value": self._render("formatLang(env, line['tax'])")},
+                "lines": {
+                    "value": self._render(
+                        "format_amount(env, line['tax'], env.company.currency_id)"
+                    )
+                },
                 "width": 20,
             },
         }
@@ -141,7 +153,7 @@ class ReportRegistroIvaXlsx(models.AbstractModel):
         ws.freeze_panes(row_pos, 0)
 
         for move in objects:
-            inv_taxes, used_taxes = self._get_tax_lines(move, data["form"])
+            inv_taxes, _used_taxes = self._get_tax_lines(move, data["form"])
 
             for line in inv_taxes:
                 row_pos = self._write_line(
@@ -155,7 +167,7 @@ class ReportRegistroIvaXlsx(models.AbstractModel):
                         "line": line,
                         "format_date": self._format_date,
                         "date_format": data["form"]["date_format"],
-                        "formatLang": formatLang,
+                        "format_amount": format_amount,
                         "invoice_total": self._get_move_total,
                     },
                     default_format=FORMATS["format_tcell_left"],

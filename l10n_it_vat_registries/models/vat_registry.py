@@ -4,7 +4,7 @@ import time
 
 from odoo import api, models
 from odoo.exceptions import UserError
-from odoo.tools.misc import formatLang
+from odoo.tools.misc import format_amount
 
 
 class ReportRegistroIva(models.AbstractModel):
@@ -33,7 +33,7 @@ class ReportRegistroIva(models.AbstractModel):
             "show_currency": self._show_currency,
             "tax_registry_name": data["form"]["tax_registry_name"],
             "env": self.env,
-            "formatLang": formatLang,
+            "format_amount": format_amount,
             "compute_totals_tax": self._compute_totals_tax,
             "l10n_it_count_fiscal_page_base": data["form"]["fiscal_page_base"],
             "only_totals": data["form"]["only_totals"],
@@ -47,9 +47,7 @@ class ReportRegistroIva(models.AbstractModel):
         return docargs
 
     def _show_currency(self, move):
-        if move.currency_id != self.env.company.currency_id:
-            return True
-        return False
+        return move.currency_id != self.env.company.currency_id
 
     def _get_move(self, move_ids):
         move_list = self.env["account.move"].browse(move_ids)
@@ -193,7 +191,7 @@ class ReportRegistroIva(models.AbstractModel):
             move, move_lines, data["registry_type"]
         )
 
-        for tax_id in amounts_by_tax_id:
+        for index, tax_id in enumerate(amounts_by_tax_id):
             tax = self.env["account.tax"].browse(tax_id)
             tax_item = {
                 "tax_code_name": tax._get_tax_name(),
@@ -218,7 +216,6 @@ class ReportRegistroIva(models.AbstractModel):
                 "invoice_rec": move,
             }
             inv_taxes.append(tax_item)
-            index += 1
             used_taxes |= tax
 
         return inv_taxes, used_taxes

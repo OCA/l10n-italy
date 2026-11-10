@@ -92,13 +92,11 @@ class WizardRegistroIva(models.TransientModel):
         )
 
     def _include_rc_journals(self):
-        if (
+        return (
             self.include_rc_moves
             and self.rc_journal_ids
             and self.layout_type == "customer"
-        ):
-            return True
-        return False
+        )
 
     def _get_move_ids(self, wizard):
         MAPPING = {
