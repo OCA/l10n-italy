@@ -283,7 +283,7 @@ class ResCurrencyRateProviderBOI(models.Model):
             date_from += timedelta(days=1)
 
         if invert_calculation:
-            for k in content.keys():
+            for k in content:
                 base_rate = float(content[k][base_currency])
                 for rate in content[k].keys():
                     content[k][rate] = str(float(content[k][rate]) / base_rate)
