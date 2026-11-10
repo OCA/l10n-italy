@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="wizard_registro_iva" model="ir.ui.view">
         <field name="name">VAT Registry</field>
@@ -98,9 +98,9 @@
     />
 
     <menuitem
+        id="menu_registro_iva"
         name="VAT Registries"
         parent="menu_finance_legal_statement_taxes"
         action="action_registro_iva"
-        id="menu_registro_iva"
     />
 </odoo>
