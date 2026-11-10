@@ -12,7 +12,7 @@ from odoo.tests import tagged
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 _module_ns = "odoo.addons.l10n_it_currency_rate_update_boi"
-_file_ns = _module_ns + ".models.res_currency_rate_provider_BOI"
+_file_ns = _module_ns + ".models.res_currency_rate_provider_boi"
 _BOI_provider_class = _file_ns + ".ResCurrencyRateProviderBOI"
 
 

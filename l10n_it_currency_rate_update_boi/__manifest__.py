@@ -3,7 +3,7 @@
 
 {
     "name": "Currency Rate Update: Banca d'Italia",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Financial Management/Configuration",
     "summary": "Update exchange rates using www.bancaditalia.it",
     "author": "TAKOBI, Odoo Community Association (OCA)",
