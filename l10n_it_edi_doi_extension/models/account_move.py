@@ -184,6 +184,73 @@ class AccountMove(models.Model):
                 errors.append(error)
         return errors
 
+    def _l10n_it_edi_doi_ext_get_declarations(self):
+        """Return the declarations to use for this invoice, in date order."""
+        self.ensure_one()
+        if self.l10n_it_edi_doi_ids:
+            return self.l10n_it_edi_doi_ids.declaration_id.sorted(
+                lambda declaration: (declaration.start_date, declaration.id)
+            )
+        return self.env[
+            "l10n_it_edi_doi.declaration_of_intent"
+        ]._fetch_valid_declarations_of_intent(
+            self.company_id,
+            self.partner_id.commercial_partner_id,
+            self.currency_id,
+            self.l10n_it_edi_doi_date,
+            doi_type="in" if self.is_purchase_document() else "out",
+        )
+
+    def _l10n_it_edi_doi_ext_get_declarations_used_amounts(self, declarations):
+        """Get the amount of this invoice to assign to each declaration."""
+        self.ensure_one()
+        declarations_used_amounts = {}
+        doi_tax = self._l10n_it_edi_doi_ext_get_declaration_tax()
+        if not doi_tax or not declarations:
+            return declarations_used_amounts
+        for line in self.invoice_line_ids.filtered(
+            lambda line: line._is_counted_for_doi(doi_tax)
+        ):
+            amount = abs(line.price_subtotal)
+            for declaration in declarations:
+                declarations_used_amounts.setdefault(declaration.id, 0)
+                if declaration == declarations[-1]:
+                    # If this is the last available declaration,
+                    # assign all the remaining amount.
+                    declaration_used_amount = amount
+                else:
+                    declaration_used_amount = min(amount, declaration.remaining)
+                declarations_used_amounts[declaration.id] += declaration_used_amount
+                amount -= declaration_used_amount
+                if self.currency_id.compare_amounts(amount, 0) <= 0:
+                    break
+        return declarations_used_amounts
+
+    def _l10n_it_edi_doi_ext_update_declarations(self):
+        """Create bridge rows when the invoice exceeds a single declaration."""
+        self.ensure_one()
+        if self.l10n_it_edi_doi_ids:
+            return
+        declarations = self._l10n_it_edi_doi_ext_get_declarations()
+        if not declarations:
+            return
+        declarations_used_amounts = (
+            self._l10n_it_edi_doi_ext_get_declarations_used_amounts(declarations)
+        )
+        used_declarations = declarations.filtered(
+            lambda declaration: declarations_used_amounts.get(declaration.id)
+        )
+        if len(used_declarations) <= 1:
+            return
+        for declaration in used_declarations:
+            self.env["account.move.doi"].create(
+                {
+                    "move_id": self.id,
+                    "declaration_id": declaration.id,
+                    "amount": declarations_used_amounts[declaration.id],
+                }
+            )
+
     def _post(self, soft=True):
         errors = []
         for move in self:
@@ -215,6 +282,8 @@ class AccountMove(models.Model):
                     errors.extend(line_errors)
         if errors:
             raise UserError("\n".join(errors))
+        for move in self:
+            move._l10n_it_edi_doi_ext_update_declarations()
         return super()._post(soft)
 
     def _reverse_moves(self, default_values_list=None, cancel=False):
