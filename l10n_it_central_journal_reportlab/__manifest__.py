@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Libro giornale - Reportlab",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Beta",
     "category": "Localization/Italy",
     "author": "Gianmarco Conte - Dinamiche Aziendali srl, "
@@ -13,7 +13,7 @@
     "maintainers": ["MarcoCalcagni", "Borruso"],
     "depends": ["account", "date_range"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "wizard/print_giornale.xml",
         "views/date_range_view.xml",
     ],

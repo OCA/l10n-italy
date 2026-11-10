@@ -3,7 +3,6 @@
 # Copyright 2024 Simone Rubino - Aion Tech
 # Copyright 2025 Michele Di Croce - Stesi Consulting
 
-import base64
 import io
 from datetime import timedelta
 
@@ -18,6 +17,7 @@ from reportlab.platypus.paragraph import Paragraph
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import BinaryBytes
 from odoo.tools.misc import format_date, formatLang
 
 gap = 1 * cm  # gap between header/footer and page content
@@ -400,8 +400,8 @@ class WizardGiornaleReportlab(models.TransientModel):
                 and line["account_name"][user_lang]
                 or ""
                 if account_dict
-                and "line_id" in account_dict.keys()
-                and "account_id" in account_dict[line].keys()
+                and "line_id" in account_dict
+                and "account_id" in account_dict[line]
                 else line["account_name"] and line["account_name"][user_lang] or ""
             )
             if not account_name:
@@ -480,8 +480,8 @@ class WizardGiornaleReportlab(models.TransientModel):
                 and line["account_name"][user_lang]
                 or ""
                 if account_dict
-                and "line_id" in account_dict.keys()
-                and "account_id" in account_dict[line].keys()
+                and "line_id" in account_dict
+                and "account_id" in account_dict[line]
                 else line["account_name"] and line["account_name"][user_lang] or ""
             )
             if not account_name:
@@ -588,11 +588,10 @@ class WizardGiornaleReportlab(models.TransientModel):
             )
 
         height_available -= gap
-        i = 0
         tot_debit = 0
         tot_credit = 0
-        for table in final_tables:
-            table_width, table_height = table.wrapOn(report, width_available, HEIGHT)
+        for i, table in enumerate(final_tables):
+            _table_width, table_height = table.wrapOn(report, width_available, HEIGHT)
             if height_available - footer_height < table_height:
                 balance_data = self.get_balance_data_report_giornale(
                     tot_debit, tot_credit, final=False
@@ -600,7 +599,7 @@ class WizardGiornaleReportlab(models.TransientModel):
                 table_balance = Table(
                     balance_data, colWidths=colwidths, style=style_table_line_above
                 )
-                table_balance_width, table_balance_height = table_balance.wrapOn(
+                _table_balance_width, table_balance_height = table_balance.wrapOn(
                     report, WIDTH, HEIGHT
                 )
                 height_available -= table_balance_height
@@ -615,7 +614,7 @@ class WizardGiornaleReportlab(models.TransientModel):
                 header_table = Table(
                     data_header, colWidths=colwidths, style=style_table
                 )
-                header_table_width, header_table_height = header_table.wrapOn(
+                _header_table_width, header_table_height = header_table.wrapOn(
                     report, WIDTH, HEIGHT
                 )
                 height_available -= header_table_height
@@ -631,7 +630,6 @@ class WizardGiornaleReportlab(models.TransientModel):
             tot_credit += list_balance[i][1]
             height_available -= table_height
             table.drawOn(report, margin_left, height_available)
-            i += 1
 
         final_balance_data = self.get_balance_data_report_giornale(
             tot_debit, tot_credit, final=True
@@ -640,7 +638,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             final_balance_data, colWidths=colwidths, style=style_table_line_above
         )
         (
-            final_balance_table_width,
+            _final_balance_table_width,
             final_balance_table_height,
         ) = final_balance_table.wrapOn(report, WIDTH, HEIGHT)
         if height_available - footer_height >= final_balance_table_height:
@@ -653,7 +651,7 @@ class WizardGiornaleReportlab(models.TransientModel):
             height_available = self.get_template_header_report_giornale(report, HEIGHT)
             height_available -= gap
             header_table = Table(data_header, colWidths=colwidths, style=style_table)
-            header_table_width, header_table_height = header_table.wrapOn(
+            _header_table_width, header_table_height = header_table.wrapOn(
                 report, WIDTH, HEIGHT
             )
             height_available -= header_table_height
@@ -664,8 +662,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         report.showPage()
         report.save()
 
-        file_base64 = base64.b64encode(pdf_bytes.getvalue())
-        self.write({"report_giornale": file_base64})
+        self.write({"report_giornale": BinaryBytes(pdf_bytes.getvalue())})
 
         return start_row, tot_debit, tot_credit
 

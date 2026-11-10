@@ -2,12 +2,11 @@
 # Copyright 2024 Simone Rubino - Aion Tech
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-import base64
 import io
-from datetime import datetime
 
 from dateutil.rrule import MONTHLY
 
+from odoo import fields
 from odoo.tests import Form, tagged
 from odoo.tools import pdf
 
@@ -19,7 +18,7 @@ class TestCentralJournalReportlab(AccountTestInvoicingCommon):
     def setUp(self):
         super().setUp()
 
-        self.today = datetime.now()
+        self.today = fields.Datetime.now()
         self.data_it_company = self.setup_other_company(
             name="IT Company2",
             vat="IT01234560157",
@@ -101,7 +100,7 @@ class TestCentralJournalReportlab(AccountTestInvoicingCommon):
         wizard.fiscal_page_base = 99
 
         wizard.print_giornale_reportlab()
-        decode_giornale = base64.b64decode(wizard.report_giornale)
+        decode_giornale = bytes(wizard.report_giornale)
         self.minimal_reader_buffer = io.BytesIO(decode_giornale)
         self.minimal_pdf_reader = pdf.OdooPdfFileReader(self.minimal_reader_buffer)
         self.assertTrue(self.minimal_reader_buffer)
@@ -136,11 +135,11 @@ class TestCentralJournalReportlab(AccountTestInvoicingCommon):
 
         # Assert
         wizard.print_giornale_reportlab()
-        giornale_pdf_content = base64.b64decode(wizard.report_giornale)
+        giornale_pdf_content = bytes(wizard.report_giornale)
         giornale_content = pdf.PdfFileReader(io.BytesIO(giornale_pdf_content))
         has_move = False
         for page in giornale_content.pages:
-            page_content = page.extractText()
+            page_content = page.extract_text()
             if not has_move and out_invoice.name in page_content:
                 has_move = True
         self.assertTrue(has_move)
