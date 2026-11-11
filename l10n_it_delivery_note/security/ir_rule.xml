@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (c) 2019, Link IT Europe Srl
+    @author: Matteo Bilotta <mbilotta@linkeurope.it>
+  -->
+<odoo noupdate="1">
+    <record id="stock_delivery_note_type_company_rule" model="ir.rule">
+        <field name="name">Delivery note type multi-company</field>
+        <field
+            name="model_id"
+            ref="l10n_it_delivery_note.model_stock_delivery_note_type"
+        />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="stock_delivery_note_company_rule" model="ir.rule">
+        <field name="name">Delivery note multi-company</field>
+        <field name="model_id" ref="l10n_it_delivery_note.model_stock_delivery_note" />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','in',company_ids)]
+        </field>
+    </record>
+
+    <record id="stock_delivery_note_personal_rule" model="ir.rule">
+        <field name="name">Personal Delivery note</field>
+        <field name="model_id" ref="l10n_it_delivery_note.model_stock_delivery_note" />
+        <field name="domain_force">
+        ['|','|',('partner_id','=',user.partner_id.id),('partner_id','=',user.partner_id.parent_id.id),'|',('partner_shipping_id','=',user.partner_id.id),('partner_shipping_id','=',user.partner_id.parent_id.id)]
+        </field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+
+    <record id="stock_delivery_note_line_personal_rule" model="ir.rule">
+        <field name="name">Personal Delivery note line</field>
+        <field
+            name="model_id"
+            ref="l10n_it_delivery_note.model_stock_delivery_note_line"
+        />
+        <field name="domain_force">
+        ['|','|',('delivery_note_id.partner_id','=',user.partner_id.id),('delivery_note_id.partner_id','=',user.partner_id.parent_id.id),'|',('delivery_note_id.partner_shipping_id','=',user.partner_id.id),('delivery_note_id.partner_shipping_id','=',user.partner_id.parent_id.id)]
+        </field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+</odoo>
