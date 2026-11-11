@@ -10,7 +10,8 @@ from odoo.tools import float_is_zero
 class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
 
-    intrastat = fields.Boolean(string="Subject to Intrastat")
+    intrastat_purchase = fields.Boolean(string="Subject to Intrastat (purchases)")
+    intrastat_sale = fields.Boolean(string="Subject to Intrastat (sales)")
 
 
 class AccountMoveLine(models.Model):
@@ -296,7 +297,9 @@ class AccountMove(models.Model):
 
     @api.onchange("fiscal_position_id")
     def change_fiscal_position(self):
-        self.intrastat = self.fiscal_position_id.intrastat
+        self.intrastat = self._get_fiscal_position_intrastat(
+            self.fiscal_position_id, self.move_type
+        )
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
@@ -304,16 +307,27 @@ class AccountMove(models.Model):
         self.change_fiscal_position()
         return res
 
+    @api.model
+    def _get_fiscal_position_intrastat(self, fiscal_position, move_type):
+        if move_type in self.get_sale_types(include_receipts=True):
+            return fiscal_position.intrastat_sale
+        if move_type in self.get_purchase_types(include_receipts=True):
+            return fiscal_position.intrastat_purchase
+        return False
+
     @api.model_create_multi
     def create(self, vals_list):
-        for val in vals_list:
-            if "intrastat" not in val and "fiscal_position_id" in val:
-                intrastat = (
-                    self.env["account.fiscal.position"]
-                    .browse(val["fiscal_position_id"])
-                    .intrastat
-                )
-                val.update({"intrastat": intrastat})
+        default_move_type = self.default_get(["move_type"])["move_type"]
+        for vals in vals_list:
+            if "intrastat" in vals or "fiscal_position_id" not in vals:
+                continue
+            fiscal_position = self.env["account.fiscal.position"].browse(
+                vals["fiscal_position_id"]
+            )
+            move_type = vals.get("move_type") or default_move_type
+            vals["intrastat"] = self._get_fiscal_position_intrastat(
+                fiscal_position, move_type
+            )
         return super().create(vals_list)
 
     def action_post(self):
