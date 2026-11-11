@@ -3,7 +3,7 @@
 
 {
     "name": "ITA - Supporto IVA 74-ter - Fattura elettronica",
-    "version": "18.0.1.0.1",
+    "version": "18.0.1.0.2",
     "development_status": "Alpha",
     "category": "Localization/Italy",
     "summary": "Supporto IVA secondo art. 74-ter, DPR 633/72 - Agenzie viaggi "
@@ -21,6 +21,9 @@
     "depends": [
         "account",
         "l10n_it_edi_sender_partner",
+        # OCA: self-invoice send flow (`_l10n_it_edi_ext_is_document_type_to_send`
+        # and the bulk "Send self-invoices to SdI" action) overridden below.
+        "l10n_it_edi_extension",
         # Core, auto-installed for IT: owns the stored `l10n_it_document_type`
         # field and overrides `_l10n_it_edi_get_document_type` to honour it.
         # Depending on it explicitly puts our override first in the MRO, so

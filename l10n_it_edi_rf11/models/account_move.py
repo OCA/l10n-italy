@@ -138,6 +138,23 @@ class AccountMove(models.Model):
     #     N6.9 tax carrying +vj9 gives TD18) and, for an in_refund of those
     #     types, flip every amount negative in the XML.
     # =================================================================
+    l10n_it_edi_is_74ter_self_billing = fields.Boolean(
+        compute="_compute_l10n_it_edi_is_74ter_self_billing",
+        help="Technical field: the document is a 74-ter self-billing "
+        "autofattura (purchase document from a 74-ter agency, RF11 company).",
+    )
+
+    @api.depends(
+        "move_type",
+        "commercial_partner_id.is_74ter_agent",
+        "company_id.l10n_it_tax_system",
+    )
+    def _compute_l10n_it_edi_is_74ter_self_billing(self):
+        for move in self:
+            move.l10n_it_edi_is_74ter_self_billing = (
+                move._l10n_it_edi_is_74ter_self_billing()
+            )
+
     def _l10n_it_edi_is_74ter_self_billing(self):
         """Return True for a 74-ter self-billing autofattura.
 
@@ -178,6 +195,21 @@ class AccountMove(models.Model):
             if move._l10n_it_edi_is_74ter_self_billing():
                 move.l10n_it_edi_is_self_invoice = True
         return res
+
+    def _l10n_it_edi_ext_is_document_type_to_send(self):
+        """A 74-ter self-billing document is always sendable.
+
+        `l10n_it_edi_extension` excludes TD01/TD04/TD24 from the self-invoice
+        send flow because, on an ordinary purchase document, those types mean
+        an e-invoice RECEIVED from the supplier. A 74-ter autofattura is
+        instead issued by the company itself precisely as TD01 (bill) or TD04
+        (credit note), so it must stay sendable. The form button mirrors this
+        in `views/account_move_views.xml`.
+        """
+        return (
+            self._l10n_it_edi_is_74ter_self_billing()
+            or super()._l10n_it_edi_ext_is_document_type_to_send()
+        )
 
     def _l10n_it_edi_get_document_type(self):
         """TD01 for a 74-ter bill, TD04 for a 74-ter credit note.

@@ -289,6 +289,25 @@ class TestEdiRf11Export(TestItEdi):
             "100.00",
         )
 
+    def test_74ter_send_flow_allowed(self):
+        """TD01/TD04 are excluded from the self-invoice send flow by
+        l10n_it_edi_extension (received e-invoices), but a 74-ter bill or credit
+        note is issued by the company and must stay sendable."""
+        bill = self._create_74ter_bill()
+        refund = self._create_74ter_bill(move_type="in_refund")
+        for move in (bill, refund):
+            self.assertTrue(move.l10n_it_edi_is_74ter_self_billing)
+            self.assertIn(move.l10n_it_document_type.code, ("TD01", "TD04"))
+            self.assertTrue(move._l10n_it_edi_ext_is_document_type_to_send())
+            self.assertTrue(move._l10n_it_edi_ext_is_self_invoice_to_send())
+        # The bulk action finds them (sending itself needs the SdI proxy)
+        self.assertEqual(
+            (bill | refund).filtered(
+                lambda m: m._l10n_it_edi_ext_is_self_invoice_to_send()
+            ),
+            bill | refund,
+        )
+
     def test_74ter_bill_foreign_currency_total(self):
         """A foreign-currency bill is exported in EUR: the total is converted
         like the DatiRiepilogo amounts, not taken in the bill currency."""

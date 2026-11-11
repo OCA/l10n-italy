@@ -28,4 +28,33 @@
             </xpath>
         </field>
     </record>
+
+    <!--
+        "Send to SDI" for 74-ter autofatture.
+
+        l10n_it_edi_extension hides the core button when the document type is
+        TD01/TD04/TD24 (on an ordinary purchase document those are e-invoices
+        RECEIVED from the supplier). A 74-ter self-billing document is issued
+        by the company itself as TD01 (bill) or TD04 (credit note), so a
+        dedicated button is added with the core visibility conditions plus the
+        74-ter one, instead of fighting over the core button's `invisible`
+        expression with other modules (e.g. l10n_it_edi_td29). Keep in sync
+        with account.move._l10n_it_edi_ext_is_document_type_to_send.
+    -->
+    <record id="account_invoice_form_l10n_it_74ter_send" model="ir.ui.view">
+        <field name="name">account.move.form.l10n.it.74ter.send</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_l10n_it_edi_send']" position="after">
+                <field name="l10n_it_edi_is_74ter_self_billing" invisible="1" />
+                <button
+                    name="action_l10n_it_edi_send"
+                    type="object"
+                    string="Send to SDI"
+                    invisible="not l10n_it_edi_is_74ter_self_billing or state != 'posted' or is_move_sent or country_code != 'IT' or l10n_it_edi_state in ('rejected', 'rejected_by_pa_partner')"
+                />
+            </xpath>
+        </field>
+    </record>
 </odoo>
