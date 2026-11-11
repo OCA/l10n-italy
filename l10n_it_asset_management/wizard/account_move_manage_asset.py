@@ -1,6 +1,7 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright 2026 Luca Orioli <lucaorioli@gmail.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -350,8 +351,33 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     def create_asset(self):
         """Creates asset and returns it"""
         self.ensure_one()
+        self._set_asset_tax_lines()
         self.check_pre_create_asset()
         return self.env["asset.asset"].create(self.get_create_asset_vals())
+
+    def _set_asset_tax_lines(self):
+        """Select the tax lines of the selected lines of asset accounts.
+
+        Taxes charged to an asset account (e.g. non deductible VAT) have a tax
+        line for each line, with the same key: it is selected together with
+        its line, and it is not selected without it.
+        """
+        selected_lines = self.move_line_ids
+        keys = set(
+            selected_lines.filtered(lambda line: line.display_type != "tax").mapped(
+                "l10n_it_asset_tax_key"
+            )
+        ) - {False}
+        keyed_tax_lines = selected_lines.move_id.line_ids.filtered(
+            lambda line: line.display_type == "tax"
+            and line.l10n_it_asset_tax_key
+            and not line.asset_accounting_info_ids
+        )
+        lines = (selected_lines - keyed_tax_lines) | keyed_tax_lines.filtered(
+            lambda line: line.l10n_it_asset_tax_key in keys
+        )
+        if lines != selected_lines:
+            self.move_line_ids = lines
 
     def dismiss_asset(self):
         """Dismisses asset and returns it"""

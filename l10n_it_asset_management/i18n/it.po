@@ -574,6 +574,11 @@ msgid "Asset Tags"
 msgstr "Etichette cespite"
 
 #. module: l10n_it_asset_management
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_account_move_line__l10n_it_asset_tax_key
+msgid "Asset Tax Key"
+msgstr "Chiave imposta cespite"
+
+#. module: l10n_it_asset_management
 #: model:ir.model.fields.selection,name:l10n_it_asset_management.selection__asset_accounting_info__relation_type__update
 msgid "Asset Update"
 msgstr "Aggiornamento cespite"
@@ -2875,6 +2880,17 @@ msgstr "Etichette"
 #: model:ir.ui.menu,name:l10n_it_asset_management.menu_asset_technical_data
 msgid "Technical Data"
 msgstr "Dati tecnici"
+
+#. module: l10n_it_asset_management
+#: model:ir.model.fields,help:l10n_it_asset_management.field_account_move_line__l10n_it_asset_tax_key
+msgid ""
+"Technical field: on a line of an asset account, it keeps the taxes charged "
+"to the same account (e.g. non deductible VAT) on a tax line of their own, "
+"that is linked to the same asset."
+msgstr ""
+"Campo tecnico: su una riga di un conto cespiti, tiene le imposte addebitate "
+"sullo stesso conto (per esempio l'IVA indetraibile) su una riga d'imposta "
+"propria, collegata allo stesso cespite."
 
 #. module: l10n_it_asset_management
 #. odoo-python
