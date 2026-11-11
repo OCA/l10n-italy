@@ -147,6 +147,10 @@
                         <group>
                             <field name="type_id" widget="selection" />
                             <field name="date" />
+                            <field
+                                name="incoterm_id"
+                                groups="sale_stock.group_display_incoterm"
+                            />
                         </group>
                     </group>
                     <group>
@@ -468,6 +472,9 @@
                         </page>
                         <page name="internal_notes" string="Internal notes">
                             <field name="note" />
+                        </page>
+                        <page name="external_notes" string="External notes">
+                            <field name="print_note" />
                         </page>
                     </notebook>
                 </sheet>
