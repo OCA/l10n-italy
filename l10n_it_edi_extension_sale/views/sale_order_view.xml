@@ -8,9 +8,6 @@
             ref="l10n_it_edi_sale.view_order_form_inherit_l10n_it_edi_sale"
         />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='it_edi_sale_order']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
             <xpath expr="//page[@name='other_information']" position="after">
                 <page
                     string="Related Documents"
