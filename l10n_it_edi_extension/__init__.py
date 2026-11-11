@@ -21,6 +21,9 @@ OLD_MODULES = [
     "l10n_it_fatturapa_in_rc",
     "l10n_it_fatturapa_in",
     "l10n_it_fatturapa_out_rc",
+    "l10n_it_fatturapa_out_sp",
+    "l10n_it_fatturapa_out_stamp",
+    "l10n_it_fatturapa_out_wt",
     "l10n_it_fatturapa_out",
     "l10n_it_fatturapa",
     "l10n_it_fiscal_document_type",
@@ -33,9 +36,11 @@ OLD_MODULES = [
     "l10n_it_vat_payability",
     "l10n_it_vat_registries_rc",
     "l10n_it_vat_settlement_date_rc",
-    "l10n_it_withholding_tax",
+    "l10n_it_website_portal_fatturapa",
+    "l10n_it_withholding_tax_financial_report",
     "l10n_it_withholding_tax_payment",
     "l10n_it_withholding_tax_reason",
+    "l10n_it_withholding_tax",
 ]
 
 
