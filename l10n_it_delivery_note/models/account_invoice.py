@@ -8,10 +8,10 @@
 
 from collections import defaultdict
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.tools import config
 
-from .stock_delivery_note import DATE_FORMAT, DOMAIN_INVOICE_STATUSES
+from .stock_delivery_note import DATE_FORMAT
 
 
 class AccountInvoice(models.Model):
@@ -23,6 +23,9 @@ class AccountInvoice(models.Model):
         "invoice_id",
         "delivery_note_id",
         string="Delivery Notes",
+        compute="_compute_delivery_note_ids",
+        store=True,
+        readonly=False,
         copy=False,
     )
 
@@ -31,6 +34,13 @@ class AccountInvoice(models.Model):
     def _compute_delivery_note_count(self):
         for invoice in self:
             invoice.delivery_note_count = len(invoice.delivery_note_ids)
+
+    @api.depends(
+        "line_ids.delivery_note_id",
+    )
+    def _compute_delivery_note_ids(self):
+        for move in self:
+            move.delivery_note_ids = move.line_ids.delivery_note_id
 
     def goto_delivery_notes(self, **kwargs):
         delivery_notes = self.mapped("delivery_note_ids")
@@ -81,11 +91,11 @@ class AccountInvoice(models.Model):
         return {
             "sequence": sequence,
             "display_type": "line_note",
-            "name": self.env._("""Delivery Note "%(ddt_name)s" of %(ddt_date)s""")
-            % {
-                "ddt_name": delivery_note_id.name,
-                "ddt_date": delivery_note_id.date.strftime(DATE_FORMAT),
-            },
+            "name": self.env._(
+                """Delivery Note "%(ddt_name)s" of %(ddt_date)s""",
+                ddt_name=delivery_note_id.name,
+                ddt_date=delivery_note_id.date.strftime(DATE_FORMAT),
+            ),
             "note_dn": True,
             "delivery_note_id": delivery_note_id.id,
             "quantity": 0,
@@ -127,23 +137,23 @@ class AccountInvoice(models.Model):
                     )
                 )
             else:
-                for line in invoice.invoice_line_ids:
-                    sequence = line.sequence - 1
-                    delivery_note_line = invoice.mapped(
-                        "delivery_note_ids.line_ids"
-                    ) & line.mapped("sale_line_ids.delivery_note_line_ids")
-                    for delivery_note_id in delivery_note_line.filtered(
-                        lambda l: l.invoice_status  # noqa: E741
-                        == DOMAIN_INVOICE_STATUSES[2]
-                    ).mapped("delivery_note_id"):
-                        line.delivery_note_id = delivery_note_id.id
+                sequence = 1
+                for dn in invoice.mapped("delivery_note_ids").sorted(key="name"):
+                    dn_invoice_lines = invoice.invoice_line_ids.filtered(
+                        lambda x, d=dn: d == x.delivery_note_id
+                    )
+                    if dn_invoice_lines:
                         new_lines.append(
                             (
                                 0,
                                 False,
-                                self._prepare_note_dn_value(sequence, delivery_note_id),
+                                self._prepare_note_dn_value(sequence, dn),
                             )
                         )
+                        sequence += 1
+                    for invoice_line in dn_invoice_lines:
+                        invoice_line.sequence = sequence
+                        sequence += 1
 
             invoice.write({"line_ids": new_lines})
 
@@ -155,7 +165,6 @@ class AccountInvoice(models.Model):
         inv_dnls = self.mapped("delivery_note_ids").mapped("line_ids")
         dnls_to_unlink = all_dnls & inv_dnls
         res = super().unlink()
-        dnls_to_unlink.sync_invoice_status()
         dnls_to_unlink.mapped("delivery_note_id")._compute_invoice_status()
         for dn in dnls_to_unlink.mapped("delivery_note_id"):
             dn.state = "confirm"
@@ -167,9 +176,13 @@ class AccountInvoice(models.Model):
             self.invoice_line_ids.sale_line_ids.delivery_note_line_ids
             | self.delivery_note_ids.line_ids
         )
-        dn_lines.sync_invoice_status()
         dn_lines.delivery_note_id._compute_invoice_status()
         dn_lines.delivery_note_id.state = "confirm"
+
+    def _reverse_moves(self, default_values_list=None, cancel=False):
+        return super(
+            AccountInvoice, self.with_context(switching_dn_invoice=True)
+        )._reverse_moves(default_values_list=default_values_list, cancel=cancel)
 
     def _l10n_it_edi_invoice_is_direct(self):
         """An invoice is direct if ddt are all done the same day as the invoice."""
@@ -218,9 +231,9 @@ class AccountInvoice(models.Model):
         """
         Get the invoice lines shipped by `delivery_note`.
 
-        The link goes through the sale order lines because an invoice line
-        can be shipped by more than one DdT (partial deliveries),
-        while `delivery_note_id` can only store one of them.
+        Prefer the explicit delivery note link introduced for split invoice
+        lines. Fall back to the sale order lines for legacy invoice lines,
+        which can be shipped by more than one DdT.
         """
         self.ensure_one()
         invoice_lines = self.invoice_line_ids.filtered(
@@ -228,8 +241,8 @@ class AccountInvoice(models.Model):
         )
         sale_lines = delivery_note.line_ids.sale_line_id
         return invoice_lines.filtered(
-            lambda line, dn=delivery_note: line.sale_line_ids & sale_lines
-            or line.delivery_note_id == dn
+            lambda line, dn=delivery_note: line.delivery_note_id == dn
+            or (not line.delivery_note_id and line.sale_line_ids & sale_lines)
         )
 
     def _get_dati_ddt(self, base_lines):
