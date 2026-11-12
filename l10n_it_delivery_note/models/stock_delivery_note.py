@@ -511,18 +511,11 @@ class StockDeliveryNote(models.Model):
                     )
                 )
 
-            if self._update_generic_shipping_information(self.type_id):
-                return {
-                    "warning": {
-                        "title": _("Warning!"),
-                        "message": "Some of the shipping configuration have "
-                        "been overwritten with"
-                        " the default ones of the selected delivery"
-                        " note type.\n"
-                        "Please, make sure to check this "
-                        "information before continuing.",
-                    }
-                }
+            changed = self._update_generic_shipping_information(self.type_id)
+            if changed:
+                return self._get_shipping_overwritten_warning(
+                    changed, _("delivery note type")
+                )
 
     @api.onchange("partner_id")
     def _onchange_partner(self):
@@ -549,17 +542,9 @@ class StockDeliveryNote(models.Model):
             )
 
             if changed:
-                return {
-                    "warning": {
-                        "title": _("Warning!"),
-                        "message": "Some of the shipping configuration have "
-                        "been overwritten with"
-                        " the default ones of the selected "
-                        "shipping partner address.\n"
-                        "Please, make sure to check this "
-                        "information before continuing.",
-                    }
-                }
+                return self._get_shipping_overwritten_warning(
+                    changed, _("shipping partner address")
+                )
 
         else:
             self.delivery_method_id = False
@@ -1109,7 +1094,6 @@ class StockDeliveryNoteLine(models.Model):
     @api.onchange("product_id")
     def _onchange_product_id(self):
         if self.product_id:
-
             name = self.product_id.name
             if self.product_id.description_sale:
                 name += "\n" + self.product_id.description_sale
