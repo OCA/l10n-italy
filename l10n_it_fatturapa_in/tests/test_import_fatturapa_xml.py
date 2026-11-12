@@ -916,6 +916,22 @@ class TestFatturaPAXMLValidation(FatturapaCommon):
         self.assertEqual(invoice.partner_id.firstname, "Mario")
         self.assertEqual(invoice.partner_id.lastname, "Rossi")
 
+    def test_52_zero_imposta_xml_import(self):
+        """
+        Check that a simplified e-invoice line whose DatiIVA only has
+        Imposta equal to zero (no Aliquota) is imported with a 0% tax.
+        """
+        res = self.run_wizard("test52_zero_imposta", "IT02780790107_11010.xml")
+        invoice_ids = res.get("domain")[0][2]
+        invoice = self.invoice_model.browse(invoice_ids)
+
+        self.assertEqual(len(invoice.invoice_line_ids), 1)
+        self.assertEqual(invoice.invoice_line_ids[0].price_unit, 272.23)
+        self.assertEqual(len(invoice.invoice_line_ids[0].tax_ids), 1)
+        kind = self.env.ref("l10n_it_account_tax_kind.n4")
+        self.assertEqual(invoice.invoice_line_ids[0].tax_ids[0].kind_id, kind)
+        self.assertEqual(invoice.amount_total, 272.23)
+
     def test_53_xml_import(self):
         """
         Check that VAT of non-IT partner is not checked.
