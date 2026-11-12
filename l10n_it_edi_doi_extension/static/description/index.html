@@ -387,10 +387,12 @@ vendor bills and purchase orders.</p>
 <li>Smart warnings when invoice amounts don’t match DOI coverage</li>
 <li>Backward compatibility with single-declaration workflow</li>
 <li>Check that the move lines only include the DoI Tax, when present</li>
-<li>Check that at least one move line contains the DoI Tax when the DoI is
-set in the Move</li>
+<li>Check that at least one move line contains the DoI Tax when the DoI
+is set in the Move</li>
 <li>In the Company form, only find Purchase/Sale Taxes of the shown
 Company for issued/received Declarations</li>
+<li>Annual threshold (plafond annuale) management for monitoring DOIs
+usage across the fiscal year</li>
 </ul>
 <p><strong>Italiano</strong></p>
 <p>Questo modulo estende la funzionalità di l10n_it_edi_doi, permettendo
@@ -403,12 +405,14 @@ ingresso e gli ordini di acquisto.</p>
 <li>Validazione automatica degli importi e soglie disponibili</li>
 <li>Avvisi intelligenti quando gli importi non corrispondono</li>
 <li>Retrocompatibilità con il flusso a dichiarazione singola</li>
-<li>Verifica che i movimenti contabili includano soltanto l’imposta per la
-DI, quando presente</li>
+<li>Verifica che i movimenti contabili includano soltanto l’imposta per
+la DI, quando presente</li>
 <li>Verifica che almeno un movimento contabile contenga l’imposta per la
 DI quando la DI è impostata nella registrazione</li>
 <li>Nel form dell’azienda, trova solo le imposte di acquisto/vendita
 dell’azienda mostrata per le dichiarazioni emesse/ricevute</li>
+<li>Gestione del plafond annuale per monitorare l’utilizzo delle DOI
+durante l’anno fiscale</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -481,20 +485,20 @@ each entry</strong> <strong>(they are migrated with ``amount = 0``)</strong></li
 <li><tt class="docutils literal">partner_document_number</tt>, <tt class="docutils literal">partner_document_date</tt></li>
 <li><tt class="docutils literal">taxes_ids</tt>, <tt class="docutils literal">fiscal_position_id</tt></li>
 <li>Declaration lines (<tt class="docutils literal">declaration_line</tt> model)</li>
-<li>Yearly limits (<tt class="docutils literal">yearly_limit</tt> model) — adjust individual declaration
-thresholds manually</li>
+<li>Yearly limits (<tt class="docutils literal">yearly_limit</tt> model) — adjust individual
+declaration thresholds manually</li>
 </ul>
 <p><strong>Troubleshooting:</strong></p>
 <ul class="simple">
 <li><em>ValidationError about repartition lines during installation</em>: the
-migration script automatically adds missing repartition lines to split
-payment group taxes. If the error persists, check that
+migration script automatically adds missing repartition lines to
+split payment group taxes. If the error persists, check that
 <tt class="docutils literal">openupgradelib</tt> is installed correctly.</li>
 <li><em>Duplicate key error on fiscal positions or taxes during
-l10n_it_edi_doi installation</em>: this can happen when the old module had
-already created the same fiscal position data. The installation of
-<tt class="docutils literal">l10n_it_edi_doi</tt> may fail or show a warning. Remove the duplicate
-fiscal position tax mappings manually and retry.</li>
+l10n_it_edi_doi installation</em>: this can happen when the old module
+had already created the same fiscal position data. The installation
+of <tt class="docutils literal">l10n_it_edi_doi</tt> may fail or show a warning. Remove the
+duplicate fiscal position tax mappings manually and retry.</li>
 <li><em>Invoice DOI amount shows 0 or an approximate value</em>: in the normal
 migration path, <tt class="docutils literal">l10n_it_edi_doi_amount</tt> is derived from the sum of
 the v16 declaration line amounts (accurate). If the declaration lines
@@ -541,8 +545,8 @@ many2many</li>
 <li>Popola <tt class="docutils literal">l10n_it_edi_doi_amount</tt> sulle fatture prive di righe con
 imposta DOI</li>
 <li>Pulisce i metadati residui del vecchio modulo e lo rimuove
-completamente (record, metadati del modello e voce del modulo — non
-è necessaria né possibile una disinstallazione manuale)</li>
+completamente (record, metadati del modello e voce del modulo —
+non è necessaria né possibile una disinstallazione manuale)</li>
 </ul>
 </li>
 <li><p class="first"><strong>Verificare i dati migrati:</strong></p>
@@ -555,7 +559,8 @@ protocollo corretti</li>
 correttamente</li>
 <li><strong>Per le fatture che avevano più dichiarazioni in v16: controllare
 il tab</strong> <strong>“Dichiarazioni di Intento” e assegnare l’importo
-corretto a ciascuna voce</strong> <strong>(vengono migrate con ``amount = 0``)</strong></li>
+corretto a ciascuna voce</strong> <strong>(vengono migrate con
+``amount = 0``)</strong></li>
 </ul>
 </li>
 </ol>
@@ -575,17 +580,19 @@ mancanti sulle imposte di gruppo per lo split payment. Se l’errore
 persiste, verificare che <tt class="docutils literal">openupgradelib</tt> sia installato
 correttamente.</li>
 <li><em>Errore di chiave duplicata su posizioni fiscali o imposte durante
-l’installazione di l10n_it_edi_doi</em>: può accadere se il vecchio modulo
-aveva già creato gli stessi dati di posizione fiscale. L’installazione
-di <tt class="docutils literal">l10n_it_edi_doi</tt> può fallire o mostrare un avviso. Rimuovere
-manualmente le mappature di posizione fiscale duplicate e riprovare.</li>
+l’installazione di l10n_it_edi_doi</em>: può accadere se il vecchio
+modulo aveva già creato gli stessi dati di posizione fiscale.
+L’installazione di <tt class="docutils literal">l10n_it_edi_doi</tt> può fallire o mostrare un
+avviso. Rimuovere manualmente le mappature di posizione fiscale
+duplicate e riprovare.</li>
 <li><em>Importo DI sulla fattura a 0 o approssimativo</em>: nel percorso di
 migrazione normale, <tt class="docutils literal">l10n_it_edi_doi_amount</tt> viene derivato dalla
 somma degli importi delle righe di dichiarazione v16 (valore esatto).
-Se la tabella delle righe era già assente al momento della migrazione,
-il fallback usa <tt class="docutils literal">ABS(amount_untaxed)</tt> come approssimazione. Se si
-riscontrano importi a zero, aprire le fatture interessate e assegnare
-l’importo corretto nel tab “Dichiarazioni di Intento”.</li>
+Se la tabella delle righe era già assente al momento della
+migrazione, il fallback usa <tt class="docutils literal">ABS(amount_untaxed)</tt> come
+approssimazione. Se si riscontrano importi a zero, aprire le fatture
+interessate e assegnare l’importo corretto nel tab “Dichiarazioni di
+Intento”.</li>
 <li><em>Limiti annuali non migrati</em>: il concetto non esiste in v18. Rivedere
 ogni dichiarazione e impostare il campo <tt class="docutils literal">threshold</tt> con il valore
 appropriato.</li>
