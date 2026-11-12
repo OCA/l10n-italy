@@ -58,11 +58,18 @@ class MailThread(models.AbstractModel):
                 return self._l10n_it_edi_sdi_process_notifications(
                     message, response_attachments, company
                 )
-            _logger.warning(
-                "SDI PEC email with no matching attachments: %s",
-                message_dict.get("subject"),
+            # Never drop an SDI message silently: raising keeps it in the
+            # PEC mailbox (unread or not deleted) and notifies the
+            # contacts configured on the incoming PEC server.
+            raise UserError(
+                _(
+                    'SDI PEC message "%(subject)s" has been read but not '
+                    "processed: none of its attachments (%(attachments)s) "
+                    "is a recognized e-invoice or SDI notification.",
+                    subject=message_dict.get("subject"),
+                    attachments=", ".join(x.fname for x in attachments) or "-",
+                )
             )
-            return []
 
         # Check if this is a PEC delivery receipt (CONSEGNA/ACCETTAZIONE)
         # from a PEC server that is configured for e-invoicing
