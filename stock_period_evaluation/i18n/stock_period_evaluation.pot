@@ -1,0 +1,588 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_period_evaluation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-14 14:59+0000\n"
+"PO-Revision-Date: 2026-09-14 14:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_period_evaluation
+#: model:ir.actions.report,print_report_name:stock_period_evaluation.report_xlsx_stock_close_print
+msgid ""
+"\n"
+"            (\n"
+"            ('Stock Period Evaluation ' + object.name.replace('/',''))\n"
+"            )\n"
+"        "
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__force_evaluation_method__lifo
+msgid "  LIFO (continuous)"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_form
+msgid "Amount"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__bypass_negative_qty
+msgid "Bypass Negative Quantity"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_close_print_wizard
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_form
+msgid "Cancel"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+msgid "Category"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__categ_name
+msgid "Category Name"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__force_evaluation_method__no_force
+msgid "Category setup"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_close_print_wizard
+msgid "Choose Close Period"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__close_date
+msgid "Close Date"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_print_wizard__close_period_id
+msgid "Close Period"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__company_id
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_close_print_wizard
+msgid "Compute"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_form
+msgid "Compute Purchase"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__force_evaluation_method__standard
+msgid "Cost in product"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_import_wizard__create_uid
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__create_uid
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__create_uid
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_print_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_import_wizard__create_date
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__create_date
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__create_date
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_print_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__cumulative_amount
+msgid "Cumulative Amount"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__cumulative_landed_cost
+msgid "Cumulative Landed Cost"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__cumulative_qty
+msgid "Cumulative Quantity"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__amount_line
+msgid "Current Inventory Amount"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_import_wizard__display_name
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__display_name
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__display_name
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_print_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__no_recompute_lines
+msgid "Do not recompute lines"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__price_unit
+msgid "End Average Price"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+msgid "Evaluation"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__evaluation_details
+msgid "Evaluation Details"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_form
+msgid "Evaluation Info"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__evaluation_method
+msgid "Evaluation Method"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.actions.report,name:stock_period_evaluation.report_xlsx_stock_close_print
+msgid "Export Stock Period Evaluation to XLSX"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__force_evaluation_method__fifo
+msgid "FIFO"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_import_wizard__file
+msgid "File"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__force_evaluation_method
+msgid "Force Evaluation Method"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,help:stock_period_evaluation.field_stock_close_period__force_evaluation_method
+msgid "Force Evaluation method will be used only for compute purchase costs."
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_search
+msgid "Group By"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_import_wizard__id
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__id
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__id
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_print_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,help:stock_period_evaluation.field_stock_close_period__bypass_negative_qty
+msgid "Ignore lines with negative quantity."
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_close_import_wizard
+msgid "Import"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_close_import_wizard
+msgid "Import Stock Close"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__state__confirm
+msgid "In Progress"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__product_code
+msgid "Internal Reference"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/models/stock_close.py:0
+msgid ""
+"It's not possible to continue the execution.There are products with "
+"quantities < 0."
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__last_close_date
+msgid "Last Close Date"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__last_closed_id
+msgid "Last Closed"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__inventory_amount
+msgid "Last Inventory Amount"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__inventory_qty
+msgid "Last Inventory Quantity"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_import_wizard__write_uid
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__write_uid
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__write_uid
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_print_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_import_wizard__write_date
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__write_date
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__write_date
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_print_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__location_id
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_search
+msgid "Location"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__lot_id
+msgid "Lot/Serial Number"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:res.groups,name:stock_period_evaluation.group_stock_period_evaluation_manager
+msgid "Manager"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period_line__evaluation_method__manual
+msgid "Manual"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,help:stock_period_evaluation.field_stock_close_period__purchase_ok
+msgid "Marks if action 'Compute Purchase' is processed."
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+msgid "Name"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_search
+msgid "Negative Qty"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__owner_id
+msgid "Owner"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__line_ids
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__product_id
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_search
+msgid "Product"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/wizards/stock_close_import.py:0
+msgid "Product %s not found"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_form
+msgid "Product Info"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model,name:stock_period_evaluation.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__product_name
+msgid "Product Name"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model,name:stock_period_evaluation.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_form
+msgid "Product list"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period_line__evaluation_method__purchase
+msgid "Purchase"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__purchase_ok
+msgid "Purchase Ok"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__force_evaluation_method__purchase
+msgid "Purchase average cost"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,help:stock_period_evaluation.field_stock_close_period_line__cumulative_qty
+msgid "Purchased quantity for evaluation purposes"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_search
+msgid "Qty 0"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_form
+msgid "Quantity"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__product_qty
+msgid "Quantity at Current Inventory Date"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__name
+msgid "Reference"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model,name:stock_period_evaluation.model_report_stock_period_evaluation_report_xlsx_stock_close_print
+msgid "Report Stock Close XLSX"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_form
+msgid "Set to Draft"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period_line__evaluation_method__standard
+msgid "Standard"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_form
+msgid "Start"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/models/stock_close.py:0
+msgid "State in '%s'. You can only delete in state 'Draft' or 'Cancelled'."
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__state
+msgid "Status"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__amount
+msgid "Stock Amount Value"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.actions.act_window,name:stock_period_evaluation.action_stock_close_import_wizard
+#: model:ir.ui.menu,name:stock_period_evaluation.menu_stock_close_import_wizard
+msgid "Stock Close Import"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model,name:stock_period_evaluation.model_stock_close_import_wizard
+msgid "Stock Close Import Wizard"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.actions.act_window,name:stock_period_evaluation.action_stock_close_print_wizard
+#: model:ir.ui.menu,name:stock_period_evaluation.menu_stock_close_print_wizard
+msgid "Stock Close Print"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model,name:stock_period_evaluation.model_stock_close_print_wizard
+msgid "Stock Close Print Wizard"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model,name:stock_period_evaluation.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+#: model:ir.actions.act_window,name:stock_period_evaluation.action_stock_close_form
+#: model:ir.model,name:stock_period_evaluation.model_stock_close_period
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_import_wizard__close_id
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__close_id
+#: model:ir.module.category,name:stock_period_evaluation.module_category_stock_period_evaluation
+#: model:ir.ui.menu,name:stock_period_evaluation.menu_action_stock_close_form
+#: model:ir.ui.menu,name:stock_period_evaluation.menu_stock_close_group
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_search
+msgid "Stock Period Evaluation"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.actions.act_window,name:stock_period_evaluation.action_stock_close_form_line
+#: model:ir.model,name:stock_period_evaluation.model_stock_close_period_line
+#: model:ir.ui.menu,name:stock_period_evaluation.menu_action_stock_close_form_line
+msgid "Stock Period Evaluation Line"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,help:stock_period_evaluation.field_stock_close_period__close_date
+msgid ""
+"The date that will be used for the store the product quantity and average "
+"cost."
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+msgid "Total"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+msgid "Total Cost"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/models/stock_move.py:0
+#: code:addons/stock_period_evaluation/models/stock_move_line.py:0
+msgid "Total: %s"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period_line__product_uom_id
+msgid "UOM"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+msgid "Unit Cost"
+msgstr ""
+
+#. module: stock_period_evaluation
+#. odoo-python
+#: code:addons/stock_period_evaluation/reports/xlsx_stock_close_print.py:0
+msgid "Uom"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_form
+msgid "Update amount"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:res.groups,name:stock_period_evaluation.group_stock_period_evaluation_user_readonly
+msgid "User (Read Only)"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_form
+msgid "Validate"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__state__done
+msgid "Validated"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__work_end_date
+msgid "Work End Date"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model:ir.model.fields,field_description:stock_period_evaluation.field_stock_close_period__work_start_date
+msgid "Work Start Date"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_form
+msgid "e.g. Annual Closing YEAR"
+msgstr ""
+
+#. module: stock_period_evaluation
+#: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_search
+msgid "stock Close Period Lines"
+msgstr ""
