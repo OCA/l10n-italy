@@ -129,6 +129,7 @@ class TestTax(TestVATStatementCommon):
         self.assertEqual(len(self.vat_statement.credit_vat_account_line_ids), 1)
         self.vat_statement.advance_account_id = self.paid_vat_account
         self.vat_statement.advance_amount = 100
+        self.vat_statement._compute_total_vat_statement()
         self.vat_statement._compute_authority_vat_amount()
         self.assertEqual(self.vat_statement.authority_vat_amount, -100)
         self.vat_statement.create_move()

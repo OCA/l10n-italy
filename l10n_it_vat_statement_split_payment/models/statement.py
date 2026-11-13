@@ -71,6 +71,16 @@ class AccountVatPeriodEndStatement(models.Model):
                         }
                     )
 
+                    # Interests on total_vat_statement without split lines
+                    self._compute_total_vat_statement()
+                    if statement.interest and statement.total_vat_statement > 0:
+                        interest_amount = round(
+                            statement.total_vat_statement
+                            * (float(statement.interest_percent) / 100),
+                            self.env["decimal.precision"].precision_get("Account"),
+                        )
+                        statement.interests_debit_vat_amount = interest_amount
+
         return res
 
 
