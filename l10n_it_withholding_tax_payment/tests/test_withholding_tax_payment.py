@@ -92,7 +92,7 @@ class TestWithholdingTaxPayment(AccountTestInvoicingCommon):
         # Pay withholding tax
         payment = self.env[action_payment["res_model"]].browse(action_payment["res_id"])
         wh_tax_move = self.env["withholding.tax.move"].search(
-            [("account_move_id", "=", payment.move_id.id)]
+            [("payment_line_id.move_id", "=", payment.move_id.id)]
         )
         wh_tax_payment_wizard = (
             self.env["wizard.wt.move.payment.create"]
