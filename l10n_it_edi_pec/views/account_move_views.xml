@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="account_move_form_l10n_it_edi_pec" model="ir.ui.view">
+        <field name="name">account.move.form.l10n.it.edi.pec</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_it_edi.account_invoice_form_l10n_it" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_check_l10n_it_edi']" position="after">
+                <button
+                    name="action_l10n_it_edi_pec_reset"
+                    type="object"
+                    string="Reset SDI sending"
+                    groups="account.group_account_manager"
+                    invisible="state != 'posted' or l10n_it_edi_state != 'processing'"
+                    confirm="The SDI state is reset and the next sending builds a new e-invoice file. Use it only if the e-invoice has not been accepted by SDI, otherwise it would be sent twice. Continue?"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
