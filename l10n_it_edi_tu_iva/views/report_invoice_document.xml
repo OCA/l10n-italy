@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Odoo Community Association (OCA)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <!-- The notes of the Italian fiscal positions ship citations of the
+             D.P.R. 633/1972: print the ones of the document date. The
+             reference of each tax is printed by `taxes_legal_notes`, right
+             below. -->
+        <xpath expr="//p[@name='note']/span" position="attributes">
+            <attribute name="t-field">o.l10n_it_tu_iva_note</attribute>
+        </xpath>
+    </template>
+</odoo>
