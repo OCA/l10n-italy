@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="asset_search_view_inherit">
+        <field name="name">asset.search.view</field>
+        <field name="model">asset.asset</field>
+        <field name="inherit_id" ref="l10n_it_asset_management.asset_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="/search/field[@name='code']" position="after">
+                <field name="import_code" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asset_form_view_inherit">
+        <field name="name">asset.form.view</field>
+        <field name="model">asset.asset</field>
+        <field name="inherit_id" ref="l10n_it_asset_management.asset_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group/field[@name='code']" position="after">
+                <field name="import_code" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asset_tree_view_inherit">
+        <field name="name">asset.tree.view</field>
+        <field name="model">asset.asset</field>
+        <field name="inherit_id" ref="l10n_it_asset_management.asset_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="import_code" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
