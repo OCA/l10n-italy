@@ -1600,6 +1600,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/mixins/shipping_updater.py:0
+#, python-format
+msgid ""
+"The following shipping configuration have been overwritten with the default ones of the selected %(origin)s: %(fields)s.\n"
+"Please, make sure to check this information before continuing."
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_picking__carrier_partner_id
 msgid "The partner that is doing the delivery service."
 msgstr ""
@@ -1876,10 +1884,7 @@ msgid "Warning Message"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#: code:addons/l10n_it_delivery_note/mixins/shipping_updater.py:0
 #: code:addons/l10n_it_delivery_note/wizard/delivery_note_base.py:0
 #, python-format
 msgid "Warning!"
@@ -2014,6 +2019,13 @@ msgid "best before"
 msgstr ""
 
 #. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#, python-format
+msgid "delivery note type"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "lot / sn :"
 msgstr ""
@@ -2029,25 +2041,8 @@ msgid "qty"
 msgstr ""
 
 #. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/mixins/shipping_updater.py:0
-#, python-format
-msgid ""
-"The following shipping configuration have been overwritten with the default "
-"ones of the selected %(origin)s: %(fields)s.\n"
-"Please, make sure to check this information before continuing."
-msgstr ""
-
-#. module: l10n_it_delivery_note
-#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
-#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
-#, python-format
-msgid "delivery note type"
-msgstr ""
-
-#. module: l10n_it_delivery_note
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
 #: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
 #, python-format
 msgid "shipping partner address"
 msgstr ""
-
