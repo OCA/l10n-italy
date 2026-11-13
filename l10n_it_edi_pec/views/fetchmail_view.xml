@@ -15,6 +15,15 @@
                     invisible="not is_l10n_it_edi_pec"
                 />
             </field>
+            <xpath expr="//header/button[@name='fetch_mail']" position="after">
+                <button
+                    name="action_check_pec_e_invoices"
+                    string="Check e-invoices"
+                    type="object"
+                    invisible="state != 'done' or not is_l10n_it_edi_pec"
+                    groups="account.group_account_invoice"
+                />
+            </xpath>
             <notebook position="inside">
                 <page
                     string="Last error message"
