@@ -56,6 +56,25 @@ class L10nItDeclarationOfIntent(models.Model):
         ]
         return self.search(domain, limit=1)
 
+    @api.model
+    def _fetch_valid_declarations_of_intent(
+        self, company, partner, currency, date, doi_type="out"
+    ):
+        """Fetch all valid declarations for the given criteria, in date order."""
+        return self.search(
+            [
+                ("state", "=", "active"),
+                ("company_id", "=", company.id),
+                ("currency_id", "=", currency.id),
+                ("partner_id", "=", partner.commercial_partner_id.id),
+                ("start_date", "<=", date),
+                ("end_date", ">=", date),
+                ("remaining", ">", 0),
+                ("type", "=", doi_type),
+            ],
+            order="start_date, id",
+        )
+
     @api.depends(
         "invoice_ids",
         "invoice_ids.state",
