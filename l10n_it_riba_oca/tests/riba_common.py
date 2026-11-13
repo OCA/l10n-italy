@@ -303,6 +303,53 @@ class TestRibaCommon(common.TransactionCase):
             }
         )
 
+    def collect_slip(self, slip, amount=None, date=None):
+        """Simulate the bank entry that collects `slip` and reconcile it.
+
+        This is what the user does in the bank reconciliation when the money
+        of the RiBa is credited on the current account.
+        """
+        collect_lines = slip.collect_line_ids
+        account = collect_lines.account_id
+        self.assertEqual(len(account), 1)
+        if amount is None:
+            amount = slip.amount_residual
+        move = self.env["account.move"].create(
+            {
+                "journal_id": self.bank_journal.id,
+                "date": date or fields.Date.context_today(slip),
+                "ref": f"Collection {slip.name}",
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "RiBa collection",
+                            "account_id": account.id,
+                            "debit": 0.0,
+                            "credit": amount,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "RiBa collection",
+                            "account_id": self.bank_account.id,
+                            "debit": amount,
+                            "credit": 0.0,
+                        },
+                    ),
+                ],
+            }
+        )
+        move.action_post()
+        bank_collect_line = move.line_ids.filtered(
+            lambda line: line.account_id == account
+        )
+        (collect_lines + bank_collect_line).reconcile()
+        return move
+
     def create_config_sbf(self):
         return self.env["riba.configuration"].create(
             {
@@ -318,7 +365,6 @@ class TestRibaCommon(common.TransactionCase):
                 "past_due_journal_id": self.bank_journal.id,
                 "overdue_credit_account_id": self.past_due_account.id,
                 "protest_charge_account_id": self.expenses_account.id,
-                "settlement_journal_id": self.bank_journal.id,
             }
         )
 
@@ -334,6 +380,5 @@ class TestRibaCommon(common.TransactionCase):
                 "past_due_journal_id": self.bank_journal.id,
                 "overdue_credit_account_id": self.past_due_account.id,
                 "protest_charge_account_id": self.expenses_account.id,
-                "settlement_journal_id": self.bank_journal.id,
             }
         )
