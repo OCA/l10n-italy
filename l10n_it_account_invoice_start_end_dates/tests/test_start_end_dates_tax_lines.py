@@ -183,9 +183,11 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
         # The tax line without account_id (non-deductible portion) goes to the
         # expense account and should have start/end dates.
         cost_tax_lines = bill.line_ids.filtered(
-            lambda line: line.display_type == "tax"
-            and line.tax_repartition_line_id
-            and not line.tax_repartition_line_id.account_id
+            lambda line: (
+                line.display_type == "tax"
+                and line.tax_repartition_line_id
+                and not line.tax_repartition_line_id.account_id
+            )
         )
         self.assertTrue(cost_tax_lines)
         for line in cost_tax_lines:
@@ -194,9 +196,11 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
         # The tax line with account_id (deductible portion, VAT credit account)
         # should NOT have start/end dates.
         vat_credit_lines = bill.line_ids.filtered(
-            lambda line: line.display_type == "tax"
-            and line.tax_repartition_line_id
-            and line.tax_repartition_line_id.account_id
+            lambda line: (
+                line.display_type == "tax"
+                and line.tax_repartition_line_id
+                and line.tax_repartition_line_id.account_id
+            )
         )
         self.assertTrue(vat_credit_lines)
         for line in vat_credit_lines:
@@ -213,9 +217,11 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
         )
         bill.action_post()
         cost_tax_lines = bill.line_ids.filtered(
-            lambda line: line.display_type == "tax"
-            and line.tax_repartition_line_id
-            and not line.tax_repartition_line_id.account_id
+            lambda line: (
+                line.display_type == "tax"
+                and line.tax_repartition_line_id
+                and not line.tax_repartition_line_id.account_id
+            )
         )
         self.assertTrue(cost_tax_lines)
         for line in cost_tax_lines:
@@ -278,9 +284,11 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
         bill = move_form.save()
         bill.action_post()
         cost_tax_lines = bill.line_ids.filtered(
-            lambda line: line.display_type == "tax"
-            and line.tax_repartition_line_id
-            and not line.tax_repartition_line_id.account_id
+            lambda line: (
+                line.display_type == "tax"
+                and line.tax_repartition_line_id
+                and not line.tax_repartition_line_id.account_id
+            )
         )
         # Two separate cost tax lines (one per date range).
         self.assertEqual(len(cost_tax_lines), 2)
@@ -294,9 +302,11 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
         # Step 1: create bill with tax but no dates
         bill = self._create_vendor_bill(self.tax_partially_deductible)
         cost_tax_lines = bill.line_ids.filtered(
-            lambda line: line.display_type == "tax"
-            and line.tax_repartition_line_id
-            and not line.tax_repartition_line_id.account_id
+            lambda line: (
+                line.display_type == "tax"
+                and line.tax_repartition_line_id
+                and not line.tax_repartition_line_id.account_id
+            )
         )
         self.assertTrue(cost_tax_lines)
         for line in cost_tax_lines:
@@ -312,9 +322,11 @@ class TestStartEndDatesTaxLines(AccountTestInvoicingCommon):
 
         # Step 3: verify tax lines now have the dates
         cost_tax_lines = bill.line_ids.filtered(
-            lambda line: line.display_type == "tax"
-            and line.tax_repartition_line_id
-            and not line.tax_repartition_line_id.account_id
+            lambda line: (
+                line.display_type == "tax"
+                and line.tax_repartition_line_id
+                and not line.tax_repartition_line_id.account_id
+            )
         )
         self.assertTrue(cost_tax_lines)
         for line in cost_tax_lines:
