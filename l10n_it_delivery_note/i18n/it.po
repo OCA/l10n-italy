@@ -2129,6 +2129,32 @@ msgstr "del:"
 msgid "qty"
 msgstr "q.tà"
 
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/mixins/shipping_updater.py:0
+#, python-format
+msgid ""
+"The following shipping configuration have been overwritten with the default "
+"ones of the selected %(origin)s: %(fields)s.\n"
+"Please, make sure to check this information before continuing."
+msgstr ""
+"I seguenti dati di spedizione sono stati sovrascritti con quelli predefiniti "
+"di %(origin)s: %(fields)s.\n"
+"Verificare queste informazioni prima di continuare."
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#, python-format
+msgid "delivery note type"
+msgstr "tipo di DdT"
+
+#. module: l10n_it_delivery_note
+#: code:addons/l10n_it_delivery_note/models/stock_delivery_note.py:0
+#: code:addons/l10n_it_delivery_note/models/stock_picking.py:0
+#, python-format
+msgid "shipping partner address"
+msgstr "indirizzo di spedizione del partner"
+
 #~ msgid "Is Carrier"
 #~ msgstr "È un vettore"
 

@@ -168,18 +168,13 @@ class StockPicking(models.Model):
                     )
                 )
 
-            if self._update_generic_shipping_information(self.delivery_note_type_id):
-                return {
-                    "warning": {
-                        "title": _("Warning!"),
-                        "message": "Some of the shipping configuration have "
-                        "been overwritten with"
-                        " the default ones of the selected "
-                        "delivery note type.\n"
-                        "Please, make sure to check this "
-                        "information before continuing.",
-                    }
-                }
+            changed = self._update_generic_shipping_information(
+                self.delivery_note_type_id
+            )
+            if changed:
+                return self._get_shipping_overwritten_warning(
+                    changed, _("delivery note type")
+                )
 
     @api.onchange("delivery_note_partner_shipping_id")
     def _onchange_delivery_note_partner_shipping(self):
@@ -189,17 +184,9 @@ class StockPicking(models.Model):
             )
 
             if changed:
-                return {
-                    "warning": {
-                        "title": _("Warning!"),
-                        "message": "Some of the shipping configuration have "
-                        "been overwritten with"
-                        " the default ones of the selected shipping"
-                        " partner address.\n"
-                        "Please, make sure to check this "
-                        "information before continuing.",
-                    }
-                }
+                return self._get_shipping_overwritten_warning(
+                    changed, _("shipping partner address")
+                )
 
         else:
             self.delivery_method_id = False
@@ -490,7 +477,8 @@ class StockPicking(models.Model):
 
     def _create_backorder(self):
         """When we make a backorder of a picking the delivery note lines needed
-        to be updated otherwise stock_delivery_note_line_move_uniq constraint is raised"""
+        to be updated otherwise stock_delivery_note_line_move_uniq constraint is raised
+        """
         backorders = super()._create_backorder()
         for backorder in backorders:
             backorder.backorder_id.delivery_note_id.update_detail_lines()
