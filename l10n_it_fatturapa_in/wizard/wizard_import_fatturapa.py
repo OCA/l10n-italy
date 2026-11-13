@@ -1121,7 +1121,13 @@ class WizardImportFatturapa(models.TransientModel):
         received_date = attachment.e_invoice_received_date
         if not received_date:
             received_date = attachment.create_date
-        received_date = received_date.date()
+        # received_date is a naive UTC datetime; convert it to the context
+        # timezone before extracting the date, otherwise invoices received in
+        # the early hours (still the previous day in UTC) get a reception date
+        # (and accounting registration date) one day earlier than the local one.
+        received_date = fields.Datetime.context_timestamp(
+            attachment, received_date
+        ).date()
         return received_date
 
     def _prepare_invoice_values(self, fatt, fatturapa_attachment, FatturaBody, partner):
