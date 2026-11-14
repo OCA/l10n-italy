@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-14 14:59+0000\n"
-"PO-Revision-Date: 2023-09-25 10:29+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-11-14 14:14+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: stock_period_evaluation
 #: model:ir.actions.report,print_report_name:stock_period_evaluation.report_xlsx_stock_close_print
@@ -25,11 +26,16 @@ msgid ""
 "            )\n"
 "        "
 msgstr ""
+"\n"
+"            (\n"
+"            ('Valutazione periodo giacenza' + object.name.replace('/',''))\n"
+"            )\n"
+"        "
 
 #. module: stock_period_evaluation
 #: model:ir.model.fields.selection,name:stock_period_evaluation.selection__stock_close_period__force_evaluation_method__lifo
 msgid "  LIFO (continuous)"
-msgstr "LIFO (continuo)"
+msgstr "  LIFO (continuo)"
 
 #. module: stock_period_evaluation
 #: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_form
@@ -207,7 +213,7 @@ msgstr "Forza metodo di valutazione"
 #. module: stock_period_evaluation
 #: model:ir.model.fields,help:stock_period_evaluation.field_stock_close_period__force_evaluation_method
 msgid "Force Evaluation method will be used only for compute purchase costs."
-msgstr "Forza metodo di valutazione utilizzato solo per calcolo costi acquisti"
+msgstr "Forza metodo di valutazione utilizzato solo per calcolo costi acquisti."
 
 #. module: stock_period_evaluation
 #: model_terms:ir.ui.view,arch_db:stock_period_evaluation.stock_period_evaluation_line_search
@@ -510,7 +516,7 @@ msgstr "Riga chiusura di magazzino"
 msgid ""
 "The date that will be used for the store the product quantity and average "
 "cost."
-msgstr "Data utilizzata per memorizzare giacenza e costo medio dei prodotti"
+msgstr "Data utilizzata per memorizzare giacenza e costo medio dei prodotti."
 
 #. module: stock_period_evaluation
 #. odoo-python
