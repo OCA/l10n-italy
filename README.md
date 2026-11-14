@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [l10n_it_abicab](l10n_it_abicab/) | 18.0.1.0.0 | <a href='https://github.com/Borruso'><img src='https://github.com/Borruso.png' width='32' height='32' style='border-radius:50%;' alt='Borruso'/></a> | Base Bank ABI/CAB codes
 [l10n_it_accompanying_invoice](l10n_it_accompanying_invoice/) | 18.0.1.0.0 |  | Stampa della fattura accompagnatoria
-[l10n_it_account](l10n_it_account/) | 18.0.1.1.2 |  | Modulo base usato come dipendenza di altri moduli contabili
+[l10n_it_account](l10n_it_account/) | 18.0.1.1.3 |  | Modulo base usato come dipendenza di altri moduli contabili
 [l10n_it_account_invoice_start_end_dates](l10n_it_account_invoice_start_end_dates/) | 18.0.1.0.1 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Set start/end dates on Italian tax move lines for partially/totally deductible VAT
 [l10n_it_account_stamp](l10n_it_account_stamp/) | 18.0.1.2.2 |  | Gestione automatica dell'imposta di bollo
 [l10n_it_account_vat_period_end_settlement](l10n_it_account_vat_period_end_settlement/) | 18.0.1.0.6 |  | Allow to create the 'VAT Settlement'.
