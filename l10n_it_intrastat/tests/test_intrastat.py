@@ -4,7 +4,7 @@
 
 from unittest import mock
 
-from odoo import Command
+from odoo import Command, fields
 from odoo.fields import first
 from odoo.tests import tagged
 
@@ -59,6 +59,23 @@ class TestIntrastat(AccountTestInvoicingCommon):
             line.amount_currency for line in invoice.intrastat_line_ids
         )
         self.assertEqual(total_intrastat_amount, invoice.amount_untaxed)
+
+    def test_bill_invoice_number(self):
+        # The intrastat lines of a vendor bill get the bill reference, the
+        # payment reference of a bill is usually empty
+        bill = self.init_invoice(
+            "in_invoice",
+            partner=self.partner01,
+            invoice_date=fields.Date.from_string("2024-01-15"),
+            products=self.product01,
+            taxes=self.tax_purchase_a,
+        )
+        bill.ref = "EXT-001"
+        bill.action_post()
+        bill.compute_intrastat_lines()
+        line = bill.intrastat_line_ids
+        self.assertEqual(line.invoice_number, "EXT-001")
+        self.assertEqual(line.invoice_date, fields.Date.from_string("2024-01-15"))
 
     def test_invoice_fiscal_position(self):
         self.partner01.property_account_position_id = self.fp_model.create(
