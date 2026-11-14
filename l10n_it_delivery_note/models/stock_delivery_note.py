@@ -11,6 +11,7 @@ from odoo.exceptions import UserError, ValidationError
 from ..mixins.delivery_mixin import (
     _default_volume_uom,
     _default_weight_uom,
+    _domain_delivery_carrier_partner,
     _domain_volume_uom,
     _domain_weight_uom,
 )
@@ -129,6 +130,10 @@ class StockDeliveryNote(models.Model):
     carrier_id = fields.Many2one(
         "res.partner",
         string="Carrier",
+        compute="_compute_carrier_id",
+        domain=_domain_delivery_carrier_partner,
+        readonly=False,
+        store=True,
         tracking=True,
     )
     delivery_method_id = fields.Many2one(
@@ -152,7 +157,11 @@ class StockDeliveryNote(models.Model):
     type_code = fields.Selection(
         string="Type of Operation", related="type_id.code", store=True
     )
-    packages = fields.Integer()
+    packages = fields.Integer(
+        compute="_compute_packages",
+        readonly=False,
+        store=True,
+    )
     volume = fields.Float()
 
     volume_uom_id = fields.Many2one(
@@ -408,6 +417,12 @@ class StockDeliveryNote(models.Model):
             note.pickings_picker = note.picking_ids
 
     @api.depends("picking_ids")
+    def _compute_packages(self):
+        for note in self:
+            packages = note.picking_ids.move_line_ids.result_package_id
+            note.packages = len(packages) or 1
+
+    @api.depends("picking_ids")
     def _compute_weights(self):
         for note in self:
             # fill gross & net weight from pickings
@@ -438,9 +453,18 @@ class StockDeliveryNote(models.Model):
     def _onchange_picking_ids(self):
         self._compute_weights()
 
-    @api.onchange("delivery_method_id")
-    def _onchange_delivery_method_id(self):
-        self.carrier_id = self.delivery_method_id.partner_id
+    @api.depends(
+        "delivery_method_id",
+        "picking_ids",
+    )
+    def _compute_carrier_id(self):
+        for note in self:
+            carrier = note.delivery_method_id or fields.first(
+                note.picking_ids.carrier_id
+            )
+            carrier_partner = carrier.partner_id
+            if carrier_partner:
+                note.carrier_id = carrier_partner
 
     def _inverse_set_pickings(self):
         for note in self:
