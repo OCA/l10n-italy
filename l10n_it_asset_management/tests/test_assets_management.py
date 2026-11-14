@@ -4,9 +4,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import date
 
+from freezegun import freeze_time
+
 from odoo import fields
 from odoo.exceptions import AccessError, ValidationError
 from odoo.fields import Command
+from odoo.tests import Form
 from odoo.tools.date_utils import relativedelta
 
 from .common import Common
@@ -127,6 +130,16 @@ class TestAssets(Common):
         )
         asset = wiz.link_asset()
         self.assertTrue(asset.sold)
+
+    def test_default_dates(self):
+        # The asset form and the wizard propose today's date, not the day the
+        # server was started
+        with freeze_time("2030-02-15"):
+            asset_form = Form(self.env["asset.asset"])
+            wiz_form = Form(self.env["wizard.account.move.manage.asset"])
+        self.assertEqual(asset_form.purchase_date, date(2030, 2, 15))
+        self.assertEqual(wiz_form.purchase_date, date(2030, 2, 15))
+        self.assertEqual(wiz_form.dismiss_date, date(2030, 2, 15))
 
     def test_01_asset_from_purchase_invoice(self):
         # create purchase invoice and generate asset
