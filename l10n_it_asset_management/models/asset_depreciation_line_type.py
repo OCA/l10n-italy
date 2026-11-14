@@ -45,15 +45,17 @@ class DepLineType(models.Model):
                     )
                 )
 
-    def name_get(self):
-        return [(line_type.id, line_type.make_name()) for line_type in self]
+    @api.depends("code", "name", "type")
+    def _compute_display_name(self):
+        for line_type in self:
+            line_type.display_name = line_type.make_name()
 
     def make_name(self):
         self.ensure_one()
         name = ""
         if self.code:
             name += f"[{self.code}] "
-        name += self.name
+        name += self.name or ""
         type_name = dict(self._fields["type"].selection).get(self.type)
         if type_name:
             name += " - " + type_name

@@ -164,8 +164,15 @@ class AssetDepreciationLine(models.Model):
         self.mapped("move_id").unlink()
         return super().unlink()
 
-    def name_get(self):
-        return [(line.id, line.make_name()) for line in self]
+    @api.depends(
+        "name",
+        "depreciation_id.l10n_it_asset_id.name",
+        "depreciation_id.l10n_it_asset_id.code",
+        "depreciation_id.type_id.name",
+    )
+    def _compute_display_name(self):
+        for line in self:
+            line.display_name = line.make_name()
 
     def check_company(self):
         for dep_line in self:
@@ -272,7 +279,7 @@ class AssetDepreciationLine(models.Model):
 
     def make_name(self):
         self.ensure_one()
-        return f"{self.name} ({self.depreciation_id.make_name()})"
+        return f"{self.name or ''} ({self.depreciation_id.make_name()})"
 
     def need_normalize_depreciation_nr(self):
         """Check if numbers need to be normalized"""

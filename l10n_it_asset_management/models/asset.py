@@ -127,8 +127,10 @@ class Asset(models.Model):
         self.mapped("depreciation_ids").unlink()
         return super().unlink()
 
-    def name_get(self):
-        return [(asset.id, asset.make_name()) for asset in self]
+    @api.depends("name", "code")
+    def _compute_display_name(self):
+        for asset in self:
+            asset.display_name = asset.make_name()
 
     @api.constrains("company_id")
     def check_company(self):
@@ -245,7 +247,7 @@ class Asset(models.Model):
 
     def make_name(self):
         self.ensure_one()
-        name = self.name.strip()
+        name = (self.name or "").strip()
         if self.code:
             return f"[{self.code.strip()}] {name}"
         return name
