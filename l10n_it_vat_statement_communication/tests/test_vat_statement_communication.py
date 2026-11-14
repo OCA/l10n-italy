@@ -644,3 +644,49 @@ class VatStatementCommunicationCase(TestAccountReconciliationCommon):
                 c_l_vp_form.liquidazioni_ids.add(vat_statement_last_quarter_2022)
 
         self._check_file_report(comunicazione_liquidazione_quarter)
+
+    def test_quarter_interests(self):
+        """Interests of a quarterly settlement (not the 4th quarter) go in VP12."""
+        self.env.company.write(
+            {
+                "of_account_end_vat_statement_interest": True,
+                "of_account_end_vat_statement_interest_percent": 1.0,
+                "of_account_end_vat_statement_interest_account_id": (
+                    self.account_interessi.id
+                ),
+            }
+        )
+        self.init_invoice(
+            "out_invoice",
+            partner=self.res_partner_1,
+            invoice_date="2022-07-01",
+            products=self.product_product_10,
+            amounts=[1000.0],
+            taxes=self.tax_22_sale,
+        ).action_post()
+        vat_statement = self._create_vat_statement(
+            "2022-09-30",
+            interest=True,
+            name_period="3-2022",
+            type_period=self.type_quarter,
+            date_start_period="2022-07-01",
+            date_end_period="2022-09-30",
+        )
+        self.assertTrue(vat_statement.interests_debit_vat_amount)
+
+        comunicazione = self.env["comunicazione.liquidazione"].create(
+            self.get_vals_comunicazione_liquidazione()
+        )
+        with Form(comunicazione) as comunicazione_form:
+            with comunicazione_form.quadri_vp_ids.new() as c_l_vp_form:
+                c_l_vp_form.period_type = "quarter"
+                c_l_vp_form.quarter = 3
+                c_l_vp_form.liquidazioni_ids.add(vat_statement)
+        quadro = comunicazione.quadri_vp_ids
+        self.assertEqual(
+            quadro.interessi_dovuti, vat_statement.interests_debit_vat_amount
+        )
+        self.assertAlmostEqual(
+            quadro.iva_da_versare,
+            quadro.iva_esigibile + vat_statement.interests_debit_vat_amount,
+        )
