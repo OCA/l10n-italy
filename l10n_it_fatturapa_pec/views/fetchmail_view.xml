@@ -9,6 +9,16 @@
             <xpath expr="//field[@name='server_type']" position="after">
                 <field name="is_fatturapa_pec" />
             </xpath>
+            <xpath expr="//header/button[@name='fetch_mail']" position="after">
+                <button
+                    name="action_check_pec_e_invoices"
+                    string="Check e-invoices"
+                    type="object"
+                    states="done"
+                    attrs="{'invisible': [('is_fatturapa_pec', '!=', True)]}"
+                    groups="account.group_account_invoice"
+                />
+            </xpath>
             <notebook position="inside">
                 <page
                     string="Last error message"
