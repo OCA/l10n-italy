@@ -9,8 +9,29 @@ from openupgradelib import openupgrade, openupgrade_tools
 from odoo.addons.l10n_it_account.migration_tools import _remove_module
 
 
+def _is_data_migration_needed(env):
+    """True when data migration is needed.
+
+    When migrating from 16.0, data migration is needed in two cases:
+    - when migration is performed by Odoo SA:
+      l10n_it_fatturapa_pec has not been renamed
+      and l10n_it_edi_pec is set "to install" by l10n_it_account
+    - when migration is performed by OpenUpgrade:
+      l10n_it_fatturapa_pec has been renamed
+      and l10n_it_edi_pec is set "to upgrade"
+    """
+    # `is_module_installed` checks for both 'installed' and 'to upgrade' state
+    return any(
+        openupgrade.is_module_installed(env.cr, module)
+        for module in (
+            "l10n_it_edi_pec",
+            "l10n_it_fatturapa_pec",
+        )
+    )
+
+
 def _l10n_it_edi_pec_pre_init_hook(env):
-    if not openupgrade.is_module_installed(env.cr, "l10n_it_fatturapa_pec"):
+    if not _is_data_migration_needed(env):
         return
     openupgrade.rename_fields(
         env,
@@ -49,7 +70,7 @@ def _l10n_it_edi_pec_pre_init_hook(env):
 
 
 def _l10n_it_edi_pec_post_init_hook(env):
-    if not openupgrade.is_module_installed(env.cr, "l10n_it_fatturapa_pec"):
+    if not _is_data_migration_needed(env):
         return
     # Migrate PEC settings from sdi.channel to res.company.
     # In v16, PEC settings were stored on sdi.channel records linked
