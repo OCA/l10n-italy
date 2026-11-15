@@ -49,11 +49,15 @@ class Fetchmail(models.Model):
                 except Exception as e:
                     server.manage_pec_failure(e, error_messages)
                     continue
-                imap_server.store(num, "+FLAGS", "\\Seen")
                 # We need to commit because message is processed:
                 # Possible next exceptions, out of try, should not
-                # rollback processed messages
+                # rollback processed messages.
+                # The message is marked as read only after the commit,
+                # because the message is searched by status (UNSEEN):
+                # if the commit fails, flagging the message as read would
+                # make it impossible to process it again.
                 self._cr.commit()  # pylint: disable=invalid-commit
+                imap_server.store(num, "+FLAGS", "\\Seen")
         except Exception as e:
             server.manage_pec_failure(e, error_messages)
         finally:
@@ -80,14 +84,17 @@ class Fetchmail(models.Model):
                             save_original=server.original,
                             strip_attachments=(not server.attach),
                         )
-                        pop_server.dele(num)
-                        # See the comments in the IMAP part
                         server.last_pec_error_message = ""
                     except Exception as e:
                         server.manage_pec_failure(e, error_messages)
                         continue
                     # pylint: disable=invalid-commit
                     self._cr.commit()
+                    # Delete the message only after the commit: if the commit
+                    # fails, the message is still on the server and will be
+                    # processed again (possible duplicates are skipped thanks
+                    # to the Message-Id check in message_process)
+                    pop_server.dele(num)
                 if num_messages < MAX_POP_MESSAGES:
                     break
                 pop_server.quit()
