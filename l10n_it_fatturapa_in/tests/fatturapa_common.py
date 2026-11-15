@@ -339,7 +339,7 @@ class FatturapaCommon(SingleTransactionCase):
         cls.misc_journal = cls.create_misc_journal()
 
     def setUp(self):
-        super(FatturapaCommon, self).setUp()
+        super().setUp()
         self.wizard_model = self.env["wizard.import.fatturapa"]
         self.wizard_link_model = self.env["wizard.link.to.invoice"]
         self.data_model = self.env["ir.model.data"]

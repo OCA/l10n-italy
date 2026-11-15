@@ -55,7 +55,7 @@ class AccountInvoice(models.Model):
         "line_ids.full_reconcile_id",
     )
     def _compute_amount(self):
-        super(AccountInvoice, self)._compute_amount()
+        super()._compute_amount()
         for inv in self:
             if inv.efatt_rounding != 0:
                 inv.amount_total += inv.efatt_rounding
@@ -252,7 +252,7 @@ class AccountInvoice(models.Model):
             bill.e_invoice_validation_message = ",\n".join(error_messages) + "."
 
     def name_get(self):
-        result = super(AccountInvoice, self).name_get()
+        result = super().name_get()
         res = []
         for tup in result:
             invoice = self.browse(tup[0])
