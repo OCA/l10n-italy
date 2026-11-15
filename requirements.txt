@@ -5,6 +5,7 @@ elementpath
 num2words>=0.5.12
 openupgradelib
 phonenumbers
+python-stdnum
 unidecode
 xlrd
 xlsxwriter
