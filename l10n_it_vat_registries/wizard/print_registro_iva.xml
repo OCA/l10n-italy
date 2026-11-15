@@ -40,6 +40,8 @@
                         <field name="show_full_contact_addess" />
                         <field name="only_totals" />
                         <field name="fiscal_page_base" />
+                        <field name="holes_in_registry" />
+                        <field name="multiple_taxes" />
                     </group>
                     <field name="message" nolabel="1" colspan="2" />
                 </group>
