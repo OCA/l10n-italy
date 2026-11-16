@@ -22,3 +22,20 @@ class AccountJournal(models.Model):
     fiscalprinter_payment_index = fields.Integer(
         string='Electronic Payment / Ticket Index',
         help='Set the index of the given payment type to specify the detail.')
+
+    fiscalprinter_eftpos = fields.Boolean(
+        string='Activate EFT-POS',
+        help='If set, a payment on this journal is first authorized on the '
+             'connected EFT-POS terminal (amount exchange) before the receipt '
+             'is printed. Only if the terminal approves the transaction are the '
+             'fiscal receipt and the POS order created; if it declines '
+             '(Error 38) an error is shown and nothing is emitted.')
+
+    fiscalprinter_eftpos_timeout = fields.Integer(
+        string='EFT-POS timeout (s)',
+        default=70,
+        help='Maximum time, in seconds, to wait for the EFT-POS transaction '
+             '(card insertion, PIN entry and bank authorization) before giving '
+             'up. Should be greater than or equal to the printer SET 31 '
+             'time-out. If left to 0 a default of 70 s is used; the browser '
+             'waits a few seconds longer than this value.')
