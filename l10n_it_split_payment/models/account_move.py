@@ -110,42 +110,44 @@ class AccountMove(models.Model):
 
     def compute_split_payment(self):
         for move in self:
-            if move.is_sale_document(include_receipts=True):
+            if not move.is_sale_document(include_receipts=True):
+                continue
+            with move._sync_dynamic_lines(container={"records": move}):
+                # Entering _sync_dynamic_lines may trigger nested calls that
+                # create the split payment line. Look it up afterwards to
+                # avoid using a stale empty recordset and creating a duplicate.
                 line_sp = fields.first(
                     move.line_ids.filtered(lambda move_line: move_line.is_split_payment)
                 )
-                with move._sync_dynamic_lines(container={"records": move}):
-                    if move.split_payment:
-                        write_off_line_vals = move._build_writeoff_line()
-                        if line_sp:
-                            if (
-                                float_compare(
-                                    line_sp.price_unit,
-                                    write_off_line_vals["price_unit"],
-                                    precision_rounding=move.currency_id.rounding,
-                                )
-                                != 0
-                            ):
-                                line_sp.with_context(
-                                    skip_split_payment_computation=True
-                                ).write(write_off_line_vals)
-                        else:
-                            if write_off_line_vals.get("price_unit"):
-                                move.with_context(
-                                    skip_split_payment_computation=True
-                                ).line_ids = [Command.create(write_off_line_vals)]
-                    elif line_sp:
-                        neutralize_vals = {
-                            "debit": 0.0,
-                            "credit": 0.0,
-                            "amount_currency": 0.0,
-                            "price_unit": 0.0,
-                            "tax_base_amount": 0.0,
-                            "tax_tag_ids": [(6, 0, [])],
-                        }
-                        move.with_context(
-                            skip_split_payment_computation=True,
-                            check_move_validity=False,
-                        ).write(
-                            {"line_ids": [Command.update(line_sp.id, neutralize_vals)]}
-                        )
+                if move.split_payment:
+                    write_off_line_vals = move._build_writeoff_line()
+                    if line_sp:
+                        if (
+                            float_compare(
+                                line_sp.price_unit,
+                                write_off_line_vals["price_unit"],
+                                precision_rounding=move.currency_id.rounding,
+                            )
+                            != 0
+                        ):
+                            line_sp.with_context(
+                                skip_split_payment_computation=True
+                            ).write(write_off_line_vals)
+                    else:
+                        if write_off_line_vals.get("price_unit"):
+                            move.with_context(
+                                skip_split_payment_computation=True
+                            ).line_ids = [Command.create(write_off_line_vals)]
+                elif line_sp:
+                    neutralize_vals = {
+                        "debit": 0.0,
+                        "credit": 0.0,
+                        "amount_currency": 0.0,
+                        "price_unit": 0.0,
+                        "tax_base_amount": 0.0,
+                        "tax_tag_ids": [(6, 0, [])],
+                    }
+                    move.with_context(
+                        skip_split_payment_computation=True,
+                        check_move_validity=False,
+                    ).write({"line_ids": [Command.update(line_sp.id, neutralize_vals)]})
