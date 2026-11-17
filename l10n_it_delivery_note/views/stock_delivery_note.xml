@@ -96,7 +96,7 @@
                     />
                     <div class="oe_title">
                         <field name="active" invisible="True" />
-                        <div invisible="not name">
+                        <div invisible="name">
                             <label for="name" string="Draft document" />
                         </div>
                         <div invisible="not name">
