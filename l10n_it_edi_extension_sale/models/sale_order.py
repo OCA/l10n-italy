@@ -16,6 +16,17 @@ class SaleOrderInherit(models.Model):
         groups="account.group_account_user,sales_team.group_sale_salesman",
     )
 
+    def _prepare_invoice(self):
+        res = super()._prepare_invoice()
+        payment_term = self.payment_term_id
+        # RiBa (MP12) payment method is stored on the payment term by
+        # `l10n_it_riba_oca`; without that module the payment method cannot be
+        # detected from the sale order. For RiBa the recipient bank is chosen
+        # later, so it must not be set on the invoice.
+        if payment_term and "riba" in payment_term._fields and payment_term.riba:
+            res["partner_bank_id"] = False
+        return res
+
     def _create_invoices(self, grouped=False, final=False, date=None):
         moves = super()._create_invoices(grouped=grouped, final=final, date=date)
 

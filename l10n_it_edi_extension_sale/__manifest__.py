@@ -21,7 +21,9 @@
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
+        "views/account_move_related_document_view.xml",
         "views/sale_order_view.xml",
+        "views/sale_order_line_view.xml",
     ],
     "installable": True,
     "post_init_hook": "_post_init_hook",

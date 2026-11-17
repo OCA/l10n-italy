@@ -22,6 +22,10 @@ Alla creazione della fattura i documenti correlati vengono copiati
 dall'ordine (e dalle sue righe) alla fattura (e alle sue righe): in caso
 di fatturazione parziale ogni fattura riceve la propria copia.
 
+Se il termine di pagamento è RiBa (MP12) e il modulo
+`l10n_it_riba_oca` è installato, la banca ricevente viene rimossa dalla
+fattura creata dall'ordine.
+
 Gli utenti commerciali (senza permessi di contabilità) non possono
 modificare i documenti correlati delle fatture già emesse: la modifica è
 riservata agli utenti contabili.
@@ -47,6 +51,10 @@ header (type, number, date, CIG and CUP), this module allows to:
 When the invoice is created, the related documents are copied from the
 sale order (and its lines) to the invoice (and its lines): with partial
 invoicing, each invoice gets its own copy.
+
+If the payment term is RiBa (MP12) and the `l10n_it_riba_oca` module is
+installed, the recipient bank is removed from the invoice created from
+the order.
 
 Sales users (without accounting access rights) cannot change the related
 documents of posted invoices: changing them is reserved to accounting

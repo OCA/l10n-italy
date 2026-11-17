@@ -396,6 +396,12 @@ gestiti dal modulo <tt class="docutils literal">l10n_it_edi_related_document</tt
 <p>Alla creazione della fattura i documenti correlati vengono copiati
 dall’ordine (e dalle sue righe) alla fattura (e alle sue righe): in caso
 di fatturazione parziale ogni fattura riceve la propria copia.</p>
+<p>Se il termine di pagamento è RiBa (MP12) e il modulo
+<tt class="docutils literal">l10n_it_riba_oca</tt> è installato, la banca ricevente viene rimossa
+dalla fattura creata dall’ordine.</p>
+<p>Gli utenti commerciali (senza permessi di contabilità) non possono
+modificare i documenti correlati delle fatture già emesse: la modifica è
+riservata agli utenti contabili.</p>
 <p><strong>English</strong></p>
 <p>This module allows to set related documents and Admin. Ref. in the sale
 order (or its lines) and propagate them to the invoice (or its lines)
@@ -415,6 +421,12 @@ lines, as managed by the <tt class="docutils literal">l10n_it_edi_extension</tt>
 <p>When the invoice is created, the related documents are copied from the
 sale order (and its lines) to the invoice (and its lines): with partial
 invoicing, each invoice gets its own copy.</p>
+<p>If the payment term is RiBa (MP12) and the <tt class="docutils literal">l10n_it_riba_oca</tt> module
+is installed, the recipient bank is removed from the invoice created
+from the order.</p>
+<p>Sales users (without accounting access rights) cannot change the related
+documents of posted invoices: changing them is reserved to accounting
+users.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">

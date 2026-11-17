@@ -8,11 +8,30 @@
             ref="l10n_it_edi_sale.view_order_form_inherit_l10n_it_edi_sale"
         />
         <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/form/field[@name='name']"
+                position="after"
+            >
+                <group
+                    name="e_invoice"
+                    string="Electronic Invoice"
+                    invisible="display_type"
+                >
+                    <field name="l10n_it_edi_admin_ref" />
+                    <field name="related_document_ids" />
+                </group>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='product_uom_qty']"
+                position="before"
+            >
+                <field name="l10n_it_edi_admin_ref" optional="show" />
+            </xpath>
             <xpath expr="//page[@name='other_information']" position="after">
                 <page
                     string="Related Documents"
                     name="related_document"
-                    invisible="country_code != 'IT' or not l10n_it_partner_pa"
+                    invisible="country_code != 'IT'"
                 >
                     <field name="related_document_ids">
                         <list editable="bottom">
