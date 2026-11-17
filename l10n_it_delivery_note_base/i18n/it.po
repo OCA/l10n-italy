@@ -371,6 +371,11 @@ msgid "Sequence"
 msgstr "Sequenza"
 
 #. module: l10n_it_delivery_note_base
+#: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__print_packages
+msgid "Show packages on printed DN"
+msgstr ""
+
+#. module: l10n_it_delivery_note_base
 #: model:ir.model.fields,field_description:l10n_it_delivery_note_base.field_stock_delivery_note_type__print_prices
 msgid "Show prices on printed DN"
 msgstr "Mostre prezzi su DdT stampati"
