@@ -90,6 +90,204 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # Collection fees line has been unlink
         self.assertEqual(len(self.invoice.invoice_line_ids), 1)
 
+    def _riba_term(self, name, line):
+        # Single-maturity RiBa payment term with collection fees.
+        return self.env["account.payment.term"].create(
+            {
+                "name": name,
+                "riba": True,
+                "riba_payment_cost": 5.00,
+                "line_ids": [(0, 0, line)],
+            }
+        )
+
+    def _make_riba_invoice(self, invoice_date, payment_term):
+        # Customer invoice ready to be posted, with a controlled invoice date
+        # and payment term.
+        self.partner.property_account_receivable_id = self.account_rec1_id.id
+        invoice = self.env["account.move"].create(
+            {
+                "invoice_date": invoice_date,
+                "move_type": "out_invoice",
+                "journal_id": self.sale_journal.id,
+                "partner_id": self.partner.id,
+                "invoice_payment_term_id": payment_term.id,
+                "riba_partner_bank_id": self.partner.bank_ids[0].id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.product1.name,
+                            "product_id": self.product1.id,
+                            "quantity": 1.0,
+                            "price_unit": 100.00,
+                            "account_id": self.sale_account.id,
+                            "tax_ids": [[6, 0, self.tax_22.ids]],
+                        },
+                    )
+                ],
+            }
+        )
+        return invoice
+
+    def _fee_count(self, invoice):
+        return len(invoice.invoice_line_ids.filtered("due_cost_line"))
+
+    # The next tests tell one_a_month and one_a_maturity_invoice_month apart.
+    # With the default fixtures (same invoice date, same maturities) they
+    # behave identically, which hides their difference.
+
+    def test_one_a_month_dedup_by_maturity_month(self):
+        # one_a_month deduplicates by maturity *month*: two invoices in the
+        # same month with maturities in the same month (different days) -> the
+        # second invoice gets no fee.
+        self.partner.riba_policy_expenses = "one_a_month"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        term = self._riba_term("RiBa 30", {"value": "balance", "months": 0, "days": 30})
+        inv1 = self._make_riba_invoice(datetime.date(2024, 1, 5), term)  # mat 02-04
+        inv2 = self._make_riba_invoice(datetime.date(2024, 1, 25), term)  # mat 02-24
+        inv1.action_post()
+        inv2.action_post()
+        self.assertEqual(self._fee_count(inv1), 1)
+        self.assertEqual(self._fee_count(inv2), 0)
+
+    def _make_feb_and_feb_mar_invoices(self):
+        # A: invoice 01/01 with a single February maturity.
+        # B: invoice 01/01 with February + March maturities.
+        term_a = self._riba_term("RiBa Feb", {"value": "balance", "months": 1})
+        term_b = self.env["account.payment.term"].create(
+            {
+                "name": "RiBa Feb+Mar",
+                "riba": True,
+                "riba_payment_cost": 5.00,
+                "line_ids": [
+                    (0, 0, {"value": "percent", "value_amount": 50.0, "months": 1}),
+                    (0, 0, {"value": "balance", "months": 2}),
+                ],
+            }
+        )
+        inv_a = self._make_riba_invoice(datetime.date(2024, 1, 1), term_a)
+        inv_b = self._make_riba_invoice(datetime.date(2024, 1, 1), term_b)
+        return inv_a, inv_b
+
+    def test_one_a_month_second_invoice_charges_only_new_month(self):
+        # one_a_month, invoices posted one by one: February is already charged
+        # by A, so B is charged only for the new month (March) -> 1.
+        self.partner.riba_policy_expenses = "one_a_month"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        inv_a, inv_b = self._make_feb_and_feb_mar_invoices()
+        inv_a.action_post()
+        inv_b.action_post()
+        self.assertEqual(self._fee_count(inv_a), 1)
+        self.assertEqual(self._fee_count(inv_b), 1)
+
+    def test_one_a_month_batch_posting_charges_only_new_month(self):
+        # Same as above but A and B are posted in a single batch (as when
+        # several invoices are selected and confirmed together): B must still
+        # be charged only for March. Other invoices posted in the same batch
+        # are still draft, so the deduplication has to consider them too.
+        self.partner.riba_policy_expenses = "one_a_month"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        inv_a, inv_b = self._make_feb_and_feb_mar_invoices()
+        (inv_a + inv_b).action_post()
+        self.assertEqual(self._fee_count(inv_a), 1)
+        self.assertEqual(self._fee_count(inv_b), 1)
+
+    def test_one_a_maturity_invoice_month_one_fee_per_invoice_month(self):
+        # one_a_maturity_invoice_month: a single fee per invoice month, on the
+        # first invoice of that month, regardless of how many maturities it
+        # has. The 30/60 term has two maturities but only ONE fee is charged,
+        # and a second invoice issued in the same month gets nothing.
+        self.partner.riba_policy_expenses = "one_a_maturity_invoice_month"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        inv1 = self._make_riba_invoice(datetime.date(2024, 1, 5), self.payment_term1)
+        inv2 = self._make_riba_invoice(datetime.date(2024, 1, 25), self.payment_term1)
+        inv1.action_post()
+        inv2.action_post()
+        self.assertEqual(self._fee_count(inv1), 1)
+        self.assertEqual(self._fee_count(inv2), 0)
+
+    def test_one_a_maturity_invoice_month_charges_across_invoice_months(self):
+        # one_a_maturity_invoice_month: invoices issued in different months
+        # each get their own (single) fee.
+        self.partner.riba_policy_expenses = "one_a_maturity_invoice_month"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        inv1 = self._make_riba_invoice(datetime.date(2024, 1, 15), self.payment_term1)
+        inv2 = self._make_riba_invoice(datetime.date(2024, 2, 15), self.payment_term1)
+        inv1.action_post()
+        inv2.action_post()
+        self.assertEqual(self._fee_count(inv1), 1)
+        self.assertEqual(self._fee_count(inv2), 1)
+
+    def test_maturity_per_invoice_month_dedup_same_maturity_month(self):
+        # maturity_per_invoice_month: within the same invoice month, a maturity
+        # MONTH already charged by another invoice is not charged again, even
+        # if the exact day differs (Feb 4 and Feb 24 are both "February").
+        self.partner.riba_policy_expenses = "maturity_per_invoice_month"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        term = self._riba_term("RiBa 30", {"value": "balance", "months": 0, "days": 30})
+        inv1 = self._make_riba_invoice(datetime.date(2024, 1, 5), term)  # mat Feb 04
+        inv2 = self._make_riba_invoice(datetime.date(2024, 1, 25), term)  # mat Feb 24
+        inv1.action_post()
+        inv2.action_post()
+        self.assertEqual(self._fee_count(inv1), 1)
+        self.assertEqual(self._fee_count(inv2), 0)
+
+    def test_maturity_per_invoice_month_one_fee_per_maturity_month(self):
+        # maturity_per_invoice_month: an invoice with maturities in two
+        # different months gets a fee for each maturity month (unlike
+        # one_a_maturity_invoice_month, which charges a single fee per invoice
+        # month). A second invoice of the same month, whose maturity months are
+        # already covered, gets nothing.
+        self.partner.riba_policy_expenses = "maturity_per_invoice_month"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        # payment_term1 is 30/60 -> maturities fall in two different months
+        inv1 = self._make_riba_invoice(datetime.date(2024, 1, 5), self.payment_term1)
+        inv1.action_post()
+        self.assertEqual(self._fee_count(inv1), 2)
+        inv2 = self._make_riba_invoice(datetime.date(2024, 1, 25), self.payment_term1)
+        inv2.action_post()
+        self.assertEqual(self._fee_count(inv2), 0)
+
+    def test_maturity_per_invoice_month_charges_across_invoice_months(self):
+        # maturity_per_invoice_month: the dedup is scoped to the invoice month,
+        # so the same maturity month on invoices issued in different months is
+        # charged on each (unlike one_a_month, which would dedup globally).
+        self.partner.riba_policy_expenses = "maturity_per_invoice_month"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        term_jan = self._riba_term(
+            "RiBa +3m", {"value": "balance", "months": 3, "days": 0}
+        )
+        term_feb = self._riba_term(
+            "RiBa +2m", {"value": "balance", "months": 2, "days": 0}
+        )
+        inv1 = self._make_riba_invoice(datetime.date(2024, 1, 15), term_jan)  # Apr
+        inv2 = self._make_riba_invoice(datetime.date(2024, 2, 15), term_feb)  # Apr
+        inv1.action_post()
+        inv2.action_post()
+        self.assertEqual(self._fee_count(inv1), 1)
+        self.assertEqual(self._fee_count(inv2), 1)
+
+    def test_due_cost_one_per_invoice(self):
+        # one_per_invoice: exactly one fee per invoice, regardless of the
+        # number of maturities (the 30/60 term has two), and no deduplication
+        # across invoices.
+        self.partner.riba_policy_expenses = "one_per_invoice"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.action_post()
+        # 1 product line + 1 single fee line (not 2, despite 2 maturities)
+        self.assertEqual(len(self.invoice.invoice_line_ids), 2)
+        self.assertEqual(
+            len(self.invoice.invoice_line_ids.filtered("due_cost_line")), 1
+        )
+        # a second invoice for the same partner in the same month still gets
+        # its own fee (no deduplication)
+        self.invoice2.action_post()
+        self.assertEqual(
+            len(self.invoice2.invoice_line_ids.filtered("due_cost_line")), 1
+        )
+
     def riba_sbf_common(self, configuration_id):
         invoice = self._create_sbf_invoice()
         invoice._onchange_riba_partner_bank_id()

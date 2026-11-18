@@ -196,6 +196,65 @@ class AccountMove(models.Model):
                     return True
         return False
 
+    def invoice_month_check(self, move_lines):
+        """
+        Check whether the invoice month (based on the invoice date) is already
+        charged. Used for the 'one_a_maturity_invoice_month' policy, which adds
+        a single expense per invoice month regardless of the maturities.
+
+        :param move_lines: existing move lines (already charged with expenses)
+            for the partner
+        :return: True if another invoice issued in the same month/year as the
+            current invoice date already carries a collection fee, so the
+            current invoice must be skipped.
+        """
+        self.ensure_one()
+        if not self.invoice_date:
+            return False
+        for line in move_lines:
+            other_invoice_date = line.move_id.invoice_date
+            if (
+                other_invoice_date
+                and other_invoice_date.month == self.invoice_date.month
+                and other_invoice_date.year == self.invoice_date.year
+            ):
+                return True
+        return False
+
+    def maturity_per_invoice_month_check(self, invoice_date_due, move_lines):
+        """
+        Check whether a given maturity month is already charged within the
+        invoice month. Used for the 'maturity_per_invoice_month' policy, which
+        adds an expense for every maturity month unless another invoice issued
+        in the same month (of the invoice date) already carries an expense for
+        a maturity falling in the same month.
+
+        Maturities are compared by month/year, not by exact date: two invoices
+        of the same invoice month with maturities on different days of the same
+        month are charged only once.
+
+        :param invoice_date_due: due date of current invoice
+        :param move_lines: existing move lines (already charged with expenses)
+            for the partner
+        :return: True if another invoice of the same invoice month/year already
+            has a maturity in the same month/year (so the expense is skipped)
+        """
+        self.ensure_one()
+        if not self.invoice_date:
+            return False
+        for line in move_lines:
+            other_invoice_date = line.move_id.invoice_date
+            if (
+                line.date_maturity
+                and line.date_maturity.month == invoice_date_due.month
+                and line.date_maturity.year == invoice_date_due.year
+                and other_invoice_date
+                and other_invoice_date.month == self.invoice_date.month
+                and other_invoice_date.year == self.invoice_date.year
+            ):
+                return True
+        return False
+
     def _post(self, soft=True):
         inv_riba_no_bank = self.filtered(
             lambda x: x.is_riba_payment
@@ -238,24 +297,31 @@ class AccountMove(models.Model):
                 raise UserError(
                     _("Set a Service for Collection Fees in Company Config.")
                 )
-            # ---- Apply Collection Fees on invoice only on first due date of the month
-            # ---- Get Date of first due date
+            # Apply Collection Fees on invoice only on first due date of the month
+            # Get all due dates with collection fees already applied.
+            # Include draft moves (excluding the current one) so that other
+            # invoices posted in the same batch are also considered: during
+            # a multi-record post they are still draft when this one is
+            # evaluated, and would otherwise be missed by the deduplication.
             move_line = self.env["account.move.line"].search(
                 [
                     ("partner_id", "=", invoice.partner_id.id),
                     ("move_id.invoice_payment_term_id.riba", "=", True),
-                    ("date_maturity", ">=", fields.Date.context_today(invoice)),
+                    ("move_id.state", "in", ("posted", "draft")),
+                    ("move_id", "!=", invoice.id),
                 ]
             )
-            if not any(
-                line.due_cost_line for line in move_line.mapped("move_id.line_ids")
-            ):
-                move_line = self.env["account.move.line"]
-            # ---- Filtered recordset with date_maturity
+            # Keep only lines from invoices that already have collection fees
+            move_line = move_line.filtered(
+                lambda line: any(
+                    inv_line.due_cost_line for inv_line in line.move_id.invoice_line_ids
+                )
+            )
+            # Filtered recordset with date_maturity
             move_line = move_line.filtered(lambda line: line.date_maturity is not False)
-            # ---- Sorted
+            # Sorted
             move_line = move_line.sorted(key=lambda r: r.date_maturity)
-            # ---- Get date
+            # Get date
             previous_date_due = move_line.mapped("date_maturity")
             pterm_list = invoice.invoice_payment_term_id._compute_terms(
                 date_ref=invoice.invoice_date,
@@ -267,13 +333,52 @@ class AccountMove(models.Model):
                 untaxed_amount_currency=0,
                 sign=1,
             )
-            for pay_date in pterm_list:
-                if not invoice.month_check(pay_date["date"], previous_date_due):
-                    # ---- Get Line values for service product
+
+            policy = invoice.partner_id.riba_policy_expenses
+            # Policies that add a single fee per invoice only process the
+            # first maturity:
+            # - 'one_per_invoice': always one fee per invoice
+            # - 'one_a_maturity_invoice_month': one fee per invoice month,
+            #   skipped entirely if that month is already charged
+            pay_dates = pterm_list
+            if policy == "one_per_invoice":
+                pay_dates = pterm_list[:1]
+            elif policy == "one_a_maturity_invoice_month":
+                if invoice.invoice_month_check(move_line):
+                    pay_dates = []
+                else:
+                    pay_dates = pterm_list[:1]
+
+            for pay_date in pay_dates:
+                # Check if expenses should be applied based on policy
+                should_skip_expense = False
+                if policy == "maturity_per_invoice_month":
+                    should_skip_expense = invoice.maturity_per_invoice_month_check(
+                        pay_date["date"], move_line
+                    )
+                elif policy in ("one_per_invoice", "one_a_maturity_invoice_month"):
+                    should_skip_expense = False
+                else:
+                    should_skip_expense = invoice.month_check(
+                        pay_date["date"], previous_date_due
+                    )
+
+                if not should_skip_expense:
+                    # Get Line values for service product
                     service_prod = invoice.company_id.due_cost_service_id
                     account = service_prod.product_tmpl_id.get_product_accounts(
                         invoice.fiscal_position_id
                     )["income"]
+                    # 'one_per_invoice' fee is not tied to a maturity, so
+                    # it carries no date in its description
+                    if policy == "one_per_invoice":
+                        line_name = service_prod.name
+                    else:
+                        line_name = _("{line_name} for {month}-{year}").format(
+                            line_name=service_prod.name,
+                            month=pay_date["date"].month,
+                            year=pay_date["date"].year,
+                        )
                     line_vals = {
                         "partner_id": invoice.partner_id.id,
                         "product_id": service_prod.id,
@@ -282,20 +387,16 @@ class AccountMove(models.Model):
                             invoice.invoice_payment_term_id.riba_payment_cost
                         ),
                         "due_cost_line": True,
-                        "name": _("{line_name} for {month}-{year}").format(
-                            line_name=service_prod.name,
-                            month=pay_date["date"].month,
-                            year=pay_date["date"].year,
-                        ),
+                        "name": line_name,
                         "account_id": account.id,
                         "sequence": 9999,
                     }
-                    # ---- Update Line Value with tax if is set on product
+                    # Update Line Value with tax if is set on product
                     if invoice.company_id.due_cost_service_id.taxes_id:
                         tax = invoice.fiscal_position_id.map_tax(service_prod.taxes_id)
                         line_vals.update({"tax_ids": [(4, tax.id)]})
                     invoice.write({"invoice_line_ids": [(0, 0, line_vals)]})
-                    # ---- recompute invoice taxes
+                    # Recompute invoice taxes
                     invoice._sync_dynamic_lines(
                         container={"records": invoice, "self": invoice}
                     )
