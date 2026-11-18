@@ -123,6 +123,7 @@ class AccountMove(models.Model):
         comodel_name="account.move.related_document",
         string="Standard Related Document",
         help="Technical field to store the document corresponding to standard fields",
+        copy=False,
     )
 
     # override
