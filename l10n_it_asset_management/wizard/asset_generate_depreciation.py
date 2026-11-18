@@ -92,7 +92,9 @@ class WizardAssetsGenerateDepreciations(models.TransientModel):
             for asset in generate_depreciation.l10n_it_asset_ids:
                 asset_date = asset.purchase_date
                 passed_years = depreciation_date.year - asset_date.year + 1
-                passed_fiscal_years = _get_passed_years(asset_date, depreciation_date)
+                passed_fiscal_years = _get_passed_years(
+                    asset_date, depreciation_date, company=asset.company_id
+                )
                 if passed_years != passed_fiscal_years:
                     missing_fiscal_year_warning = self.env._(
                         "Some years between %(asset_date)s and %(depreciation_date)s "
