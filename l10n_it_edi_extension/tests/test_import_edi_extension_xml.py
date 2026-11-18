@@ -117,6 +117,14 @@ class TestFatturaPAXMLValidation(Common):
                 any(tag in str(body) for body in move.mapped("message_ids.body")),
                 f"'{tag}' not found in message bodies",
             )
+        self.assertEqual(
+            move.l10n_it_edi_stabile_organizzazione_indirizzo, "VIA PROVA 12"
+        )
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_civico, "12")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_cap, "00100")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_comune, "ROMA")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_provincia, "RM")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_nazione, "IT")
 
         # verify if attached documents are correctly imported
         attachments = self.env["ir.attachment"].search(
@@ -129,6 +137,24 @@ class TestFatturaPAXMLValidation(Common):
         with open(orig_attachment_path, "rb") as orig_attachment:
             orig_attachment_data = orig_attachment.read()
             self.assertEqual(attachments[0].raw, orig_attachment_data)
+
+    def test_05_xml_import_stabile_organizzazione(self):
+        move = self._edi_import_invoice("IT99490540210_EESO5.xml")
+        move._extend_with_attachments(move.l10n_it_edi_attachment_id, new=True)
+        self.assertEqual(move.ref, "111111")
+        self.assertEqual(move.partner_id.name, "Test Seller Company SA")
+        self.assertEqual(move.partner_id.street, "10 Estero Road")
+        self.assertEqual(move.partner_id.zip, "00000")
+        self.assertEqual(move.partner_id.city, "Test City")
+        self.assertEqual(move.partner_id.country_id.code, "AD")
+        self.assertEqual(move.partner_id.vat, "IT99490540210")
+        self.assertEqual(
+            move.l10n_it_edi_stabile_organizzazione_indirizzo, "Viale Tunisia 17"
+        )
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_cap, "12010")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_comune, "Prova")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_provincia, "PR")
+        self.assertEqual(move.l10n_it_edi_stabile_organizzazione_nazione, "IT")
 
     def test_import_zip(self):
         zip_name = "xml_import.zip"
