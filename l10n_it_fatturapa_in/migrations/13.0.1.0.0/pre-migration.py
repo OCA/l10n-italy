@@ -38,3 +38,17 @@ where
     eil.invoice_id = inv.id;
     """,
     )
+    # `inconsistencies` (new in 14.0) and `invoices_date` are stored fields
+    # computed by `_compute_xml_data`: when a column is missing, Odoo computes
+    # them for all the received e-bills, parsing every XML again
+    # and creating or updating the suppliers with the XML data,
+    # which also triggers the VAT number validation.
+    # With the columns, the existing e-bills keep their values.
+    openupgrade.logged_query(
+        cr,
+        """
+        ALTER TABLE fatturapa_attachment_in
+            ADD COLUMN IF NOT EXISTS inconsistencies text,
+            ADD COLUMN IF NOT EXISTS invoices_date varchar
+        """,
+    )
