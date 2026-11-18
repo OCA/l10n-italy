@@ -65,12 +65,13 @@ class AssetJournalXslx(models.AbstractModel):
                 "font_size": 14,
             }
         )
+        asset_value_props = {
+            "align": "center",
+            "font_color": "#337AB7",
+            "font_size": 14,
+        }
         report_data["formats"]["format_asset_value"] = workbook.add_format(
-            {
-                "align": "center",
-                "font_color": "#337AB7",
-                "font_size": 14,
-            }
+            asset_value_props
         )
 
         # 3- Depreciations formats
@@ -82,11 +83,12 @@ class AssetJournalXslx(models.AbstractModel):
             }
         )
 
+        depreciation_value_props = {
+            "align": "center",
+            "font_size": 12,
+        }
         report_data["formats"]["format_depreciation_value"] = workbook.add_format(
-            {
-                "align": "center",
-                "font_size": 12,
-            }
+            depreciation_value_props
         )
 
         # 4- Depreciation yearly and amount details formats
@@ -109,13 +111,12 @@ class AssetJournalXslx(models.AbstractModel):
             )
         )
 
+        year_line_value_right_props = {
+            "align": "right",
+            "font_size": 12,
+        }
         report_data["formats"]["format_depreciation_year_line_value_right"] = (
-            workbook.add_format(
-                {
-                    "align": "right",
-                    "font_size": 12,
-                }
-            )
+            workbook.add_format(year_line_value_right_props)
         )
 
         # 5- Report title
@@ -128,6 +129,30 @@ class AssetJournalXslx(models.AbstractModel):
                 "font_size": 20,
             }
         )
+
+        # 6- Amount formats: value formats showing numbers
+        # with the decimals of the currency
+        num_format = self._get_amount_num_format()
+        report_data["amount_formats"] = {
+            report_data["formats"][name]: workbook.add_format(
+                dict(props, num_format=num_format)
+            )
+            for name, props in (
+                ("format_asset_value", asset_value_props),
+                ("format_depreciation_value", depreciation_value_props),
+                (
+                    "format_depreciation_year_line_value_right",
+                    year_line_value_right_props,
+                ),
+            )
+        }
+
+    def _get_amount_num_format(self):
+        currency = self.env["res.company"]._default_currency_id()
+        num_format = "#,##0"
+        if currency.decimal_places:
+            num_format += "." + "0" * currency.decimal_places
+        return num_format
 
     def set_report_data(self, report_data):
         self.set_category_data(report_data)
@@ -679,8 +704,10 @@ class AssetJournalXslx(models.AbstractModel):
         pos = report_data["row_pos"]
         for col, data in report_data[index].items():
             value, style = getattr(obj, data["field"]), data["vstyle"]
-            if data.get("type") == "amount":
-                value = obj.format_amount(value)
+            if data.get("type") == "amount" and value not in (False, None):
+                style = report_data["amount_formats"].get(style, style)
+                report_data["sheet"].write_number(pos, col, value, style)
+                continue
             if value in (False, None):
                 value = "/"
             report_data["sheet"].write(pos, col, value, style)
