@@ -6,6 +6,7 @@
   - Simone Rubino \<<sir@takobi.online>\>
 - [Aion Tech](https://aiontech.company/):
   - Simone Rubino \<<simone.rubino@aion-tech.it>\>
+- Luca Orioli \<<lucaorioli@gmail.com>\>
 - Nextev Srl \<<odoo@nextev.it>\>
 
 Base icon made by [surang](https://www.flaticon.com/authors/surang) from
