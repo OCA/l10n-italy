@@ -10,6 +10,12 @@ Le uniche configurazioni disponibili sono:
   - Prodotto predefinito fatture elettroniche fornitore: è possibile impostare un prodotto nel campo apposito del fornitore, nella scheda "Fatturazione", sezione "Fatture cliente".
     Durante l'importazione di livello "Massimo": questo prodotto sarà impostato nelle righe della fattura importata se nessun altro prodotto viene trovato.
     Durante l'importazione di livello "Aliquota fiscale": questo prodotto sarà impostato nelle righe della fattura importata.
+  - Normalmente le righe descrittive (note, sezioni) della fattura sono escluse dalla fattura elettronica, per mostrarle modificare il valore del campo "Tipi di righe da nascondere".
+    Questo campo è presente in tre diversi posti, il valore impostato in uno di questi sovrascrive il valore presente nel successivo:
+    1. Nella fattura, scheda "Fatturazione elettronica";
+    2. Nel partner, scheda "Fatturazione";
+    3. In Fatturazione > Configurazione > Impostazioni, sezione "Fatturazione Elettronica Italiana".
+       Il valore predefinito è "Note e sezioni" per mantenere il comportamento di Odoo senza questo modulo.
 
 Non sono necessarie altre configurazioni specifiche per l10n_it_edi_extension: una volta installato, le sue funzionalità sono attive e si integrano automaticamente nell'interfaccia esistente.
 
@@ -36,6 +42,12 @@ The only available configurations are:
   - E-bills default product: You can set a product in the supplier's field in the "Invoicing" tab, "Customer Invoices" section.
     During "Maximum" level imports: this product will be set in the imported invoice lines if no other product is found.
     During "Tax Rate" level imports: this product will be set in the imported invoice lines.
+  - By default, the descriptive lines (notes, sections) of the invoice are excluded from the electronic invoice; if you want to display them update the value of the "Line types to hide" field.
+    This field is present in three different places; the value set in one place overrides the value in the following place:
+    1. In the invoice, "Electronic Invoicing" tab;
+    2. In the partner, "Invoicing" tab;
+    3. In Invoicing > Configuration > Settings, "Italian Electronic Invoicing" section.
+       The default value is "Notes and Sections" so that the behavior is the same of Odoo when this module is not installed.
 
 No other specific configurations are required for l10n_it_edi_extension: once installed, its features are active and automatically integrate into the existing interface.
 

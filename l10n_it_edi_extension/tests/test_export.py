@@ -1,7 +1,9 @@
 # Copyright 2025 Simone Rubino
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import Command
+from lxml import etree
+
+from odoo import Command, tests, tools
 
 from .common import Common
 
@@ -168,3 +170,122 @@ class TestExport(Common):
         )
         invoice.action_post()
         self._assert_export_invoice(invoice, "us_partner_shipping.xml")
+
+    def test_show_descriptive_lines_mandatory_natura(self):
+        """When an invoice has exempt tax and descriptive lines are exported,
+        the exported line has the mandatory Natura node.
+        """
+        # Arrange
+        invoice = self.init_invoice(
+            "out_invoice",
+            partner=self.italian_partner_b,
+            amounts=[
+                100,
+            ],
+            taxes=self.n32_sale_tax,
+            company=self.company,
+        )
+        note_name = "Test note"
+        with tests.Form(invoice) as invoice_form:
+            invoice_form.l10n_it_edi_hide_line_type = "none"
+            with invoice_form.invoice_line_ids.new() as note_line:
+                note_line.name = "Test note"
+                note_line.display_type = "line_note"
+
+        # Act
+        invoice.action_post()
+
+        # Assert
+        e_invoice_xml = etree.fromstring(invoice._l10n_it_edi_render_xml())
+        note_line_node = e_invoice_xml.xpath(
+            f"//DettaglioLinee[Descrizione[text()='{note_name}']]"
+        )[0]
+        self.assertTrue(note_line_node.find("Natura") is not None)
+
+    def test_hide_descriptive_lines_simplified(self):
+        """Check that descriptive lines are hidden in the simplified e-invoice
+        according to invoice/partner/company configuration."""
+        # Arrange
+        invoice = self.init_invoice(
+            "out_invoice",
+            partner=self.italian_partner_no_address_codice,
+            amounts=[
+                100,
+            ],
+            company=self.company,
+        )
+        self.assertTrue(invoice._l10n_it_edi_is_simplified())
+        self._assert_descriptive_lines_hidden(invoice)
+
+    def test_hide_descriptive_lines(self):
+        """Check that descriptive lines are hidden in the e-invoice
+        according to invoice/partner/company configuration."""
+        # Arrange
+        invoice = self.init_invoice(
+            "out_invoice",
+            partner=self.italian_partner_b,
+            amounts=[
+                100,
+            ],
+            company=self.company,
+        )
+        self.assertFalse(invoice._l10n_it_edi_is_simplified())
+        self._assert_descriptive_lines_hidden(invoice)
+
+    def _assert_descriptive_lines_hidden(self, invoice):
+        """Check that notes and sections are hidden
+        according to the configuration for `invoice`."""
+        note_name = "Test note"
+        section_name = "Test section"
+        with tests.Form(invoice) as invoice_form:
+            with invoice_form.invoice_line_ids.new() as section_line:
+                section_line.name = section_name
+                section_line.display_type = "line_section"
+            with invoice_form.invoice_line_ids.new() as note_line:
+                note_line.name = note_name
+                note_line.display_type = "line_note"
+        # Map settings for
+        # invoice, partner, company
+        # to their expected result
+        hide_keys_dict = {
+            (False, False, False): "nothing hidden",
+            ("none", False, False): "nothing hidden",
+            ("note", False, False): "notes hidden",
+            ("section", False, False): "sections hidden",
+            ("note_section", False, False): "both hidden",
+            (False, "note", False): "notes hidden",
+            (False, False, "note"): "notes hidden",
+            ("none", False, "note"): "nothing hidden",
+        }
+
+        for hide_keys, expected_result in hide_keys_dict.items():
+            (
+                invoice.l10n_it_edi_hide_line_type,
+                invoice.partner_id.l10n_it_edi_hide_line_type,
+                invoice.company_id.l10n_it_edi_hide_line_type,
+            ) = hide_keys
+            invoice.action_post()
+
+            # Act
+            e_invoice_content = invoice._l10n_it_edi_render_xml().decode()
+
+            # Assert
+            if expected_result == "nothing hidden":
+                self.assertIn(note_name, e_invoice_content)
+                self.assertIn(section_name, e_invoice_content)
+            elif expected_result == "notes hidden":
+                self.assertNotIn(note_name, e_invoice_content)
+                self.assertIn(section_name, e_invoice_content)
+            elif expected_result == "sections hidden":
+                self.assertIn(note_name, e_invoice_content)
+                self.assertNotIn(section_name, e_invoice_content)
+            elif expected_result == "both hidden":
+                self.assertNotIn(note_name, e_invoice_content)
+                self.assertNotIn(section_name, e_invoice_content)
+            else:
+                self.fail(f"Expected result {expected_result} not managed")
+
+            # cleanup for next loop,
+            # without spamming the logs with deleted mail.followers etc.
+            with tools.mute_logger("odoo.models.unlink"):
+                invoice.button_draft()
