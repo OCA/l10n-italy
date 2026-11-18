@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 14:45+0000\n"
-"PO-Revision-Date: 2026-11-15 13:46+0000\n"
+"PO-Revision-Date: 2026-11-18 12:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -124,7 +124,7 @@ msgstr "<strong>Indirizzo di consegna:</strong>"
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "<strong>Incoterm:</strong>"
-msgstr ""
+msgstr "<strong>Incoterm:</strong>"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_data
@@ -653,7 +653,7 @@ msgstr "Prelievo DdT"
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Delivery Slip:"
-msgstr ""
+msgstr "Bolle di consegna:"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__delivery_method_id
@@ -750,7 +750,7 @@ msgstr "Bozza DdT"
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Draft Delivery Slip:"
-msgstr ""
+msgstr "Bozza bolla di consegna:"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
@@ -773,12 +773,12 @@ msgstr "Messaggio di errore"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__print_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_print_note
 msgid "External note"
-msgstr ""
+msgstr "Nota esterna"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "External notes"
-msgstr ""
+msgstr "Note esterne"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__message_follower_ids
@@ -915,7 +915,7 @@ msgstr "In arrivo"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__incoterm_id
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_incoterm_id
 msgid "Incoterm"
-msgstr ""
+msgstr "Incoterm"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__sale_advance_payment_inv__step__initial
@@ -1201,7 +1201,7 @@ msgstr "Nota DdT"
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__print_note
 #: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_picking__delivery_note_print_note
 msgid "Note to include in the report."
-msgstr ""
+msgstr "Nota da includere nel resoconto."
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
@@ -1422,7 +1422,7 @@ msgstr "Rif. Ordine"
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
 msgid "Report Notes"
-msgstr ""
+msgstr "Note resoconto"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
@@ -1612,7 +1612,7 @@ msgstr "Mostra le informazioni di prodotto"
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__print_packages
 msgid "Show packages on printed DN"
-msgstr ""
+msgstr "Mostra colli su DdT stampati"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__print_prices
