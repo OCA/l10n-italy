@@ -65,7 +65,7 @@ class Asset(models.Model):
     )
 
     purchase_date = fields.Date(
-        default=fields.Date.today(),
+        default=fields.Date.context_today,
         tracking=True,
     )
 
