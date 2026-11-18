@@ -1,0 +1,134 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_asset_management_interim
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: l10n_it_asset_management_interim
+#: model:ir.model,name:l10n_it_asset_management_interim.model_asset_depreciation
+msgid "Assets Depreciations"
+msgstr "Ammortamenti cespiti"
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/wizard/asset_generate_depreciation.py:0
+msgid "Choose a company for interim depreciations."
+msgstr "Scegliere un'azienda per gli ammortamenti infrannuali."
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+#: code:addons/l10n_it_asset_management_interim/wizard/asset_previsional_report.py:0
+msgid "Choose a date for interim depreciations."
+msgstr "Scegliere una data per gli ammortamenti infrannuali."
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+msgid "Choose a journal for interim depreciations."
+msgstr "Scegliere un registro per gli ammortamenti infrannuali."
+
+#. module: l10n_it_asset_management_interim
+#: model_terms:ir.ui.view,arch_db:l10n_it_asset_management_interim.wizard_asset_previsional_report_form_view
+msgid "Create Interim Depreciation"
+msgstr "Crea ammortamento infrannuale"
+
+#. module: l10n_it_asset_management_interim
+#: model:ir.model.fields,help:l10n_it_asset_management_interim.field_wizard_asset_generate_depreciation__interim
+msgid ""
+"Create a journal entry with the depreciation until the date, and its "
+"reversal, without creating depreciation lines."
+msgstr ""
+"Crea una registrazione con l'ammortamento fino alla data, e il suo storno, "
+"senza creare righe di ammortamento."
+
+#. module: l10n_it_asset_management_interim
+#: model_terms:ir.ui.view,arch_db:l10n_it_asset_management_interim.wizard_asset_previsional_report_form_view
+msgid ""
+"Create and post the interim depreciation entry at the report date, and its "
+"reversal?"
+msgstr ""
+"Creare e confermare la registrazione di ammortamento infrannuale alla data "
+"del report, e il suo storno?"
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+msgid ""
+"Depreciate the previous fiscal year before the interim depreciation:\n"
+"%(depreciations)s"
+msgstr ""
+"Ammortizzare l'esercizio precedente prima dell'ammortamento infrannuale:\n"
+"%(depreciations)s"
+
+#. module: l10n_it_asset_management_interim
+#: model:ir.model,name:l10n_it_asset_management_interim.model_wizard_asset_generate_depreciation
+msgid "Generate Asset Depreciations"
+msgstr "Genera ammortamenti"
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+#: model:ir.model.fields,field_description:l10n_it_asset_management_interim.field_wizard_asset_generate_depreciation__interim
+#: model_terms:ir.ui.view,arch_db:l10n_it_asset_management_interim.wizard_asset_previsional_report_form_view
+msgid "Interim Depreciation"
+msgstr "Ammortamento infrannuale"
+
+#. module: l10n_it_asset_management_interim
+#: model:ir.model.fields,field_description:l10n_it_asset_management_interim.field_wizard_asset_generate_depreciation__interim_journal_id
+#: model:ir.model.fields,field_description:l10n_it_asset_management_interim.field_wizard_asset_previsional_report__interim_journal_id
+msgid "Interim Journal"
+msgstr "Registro infrannuale"
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+msgid "Interim depreciation"
+msgstr "Ammortamento infrannuale"
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+msgid "Interim depreciation at %(date)s"
+msgstr "Ammortamento infrannuale al %(date)s"
+
+#. module: l10n_it_asset_management_interim
+#: model:ir.model.fields,field_description:l10n_it_asset_management_interim.field_wizard_asset_generate_depreciation__interim_reversal_date
+#: model:ir.model.fields,field_description:l10n_it_asset_management_interim.field_wizard_asset_previsional_report__interim_reversal_date
+msgid "Reversal Date"
+msgstr "Data di storno"
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+msgid "Reversal of: %(ref)s"
+msgstr "Storno di: %(ref)s"
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+msgid "The reversal date must be later than the depreciation date."
+msgstr "La data di storno deve essere successiva alla data di ammortamento."
+
+#. module: l10n_it_asset_management_interim
+#. odoo-python
+#: code:addons/l10n_it_asset_management_interim/models/asset_depreciation.py:0
+msgid "There is nothing to depreciate."
+msgstr "Non c'è niente da ammortizzare."
+
+#. module: l10n_it_asset_management_interim
+#: model:ir.model,name:l10n_it_asset_management_interim.model_wizard_asset_previsional_report
+msgid "Wizard Asset Previsional Report"
+msgstr "Procedura guidata resoconto previsionale cespiti"
