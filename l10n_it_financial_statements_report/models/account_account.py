@@ -43,7 +43,6 @@ ACCOUNT_TYPES_NEGATIVE_SIGN = [
     "income_other",
     "liability_payable",
     "liability_credit_card",
-    "asset_prepayments",
     "liability_current",
     "liability_non_current",
 ]
