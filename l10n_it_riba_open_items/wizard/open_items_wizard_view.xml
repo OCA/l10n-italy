@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 nextev.it
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="open_items_wizard_riba" model="ir.ui.view">
+        <field name="name">open.items.report.wizard.form - RiBa uncovered</field>
+        <field name="model">open.items.report.wizard</field>
+        <field name="inherit_id" ref="account_financial_report.open_items_wizard" />
+        <field name="arch" type="xml">
+            <field name="foreign_currency" position="after">
+                <field name="show_riba_uncovered" />
+            </field>
+        </field>
+    </record>
+</odoo>

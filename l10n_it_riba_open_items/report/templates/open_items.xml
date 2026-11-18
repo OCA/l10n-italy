@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 nextev.it
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_open_items_lines_header_riba"
+        inherit_id="account_financial_report.report_open_items_lines_header"
+    >
+        <xpath
+            expr="//comment()[normalize-space(.)='## amount_residual']/following-sibling::div[1]"
+            position="after"
+        >
+            <!--## riba_uncovered-->
+            <t t-if="show_riba_uncovered">
+                <div class="act_as_cell" style="width: 6.57%;">RiBa uncovered</div>
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="report_open_items_lines_riba"
+        inherit_id="account_financial_report.report_open_items_lines"
+    >
+        <xpath expr="//div[hasclass('act_as_row', 'lines')]" position="attributes">
+            <!-- Fatture chiuse dall'accettazione RiBa in corsivo -->
+            <attribute
+                name="t-att-style"
+            >'font-style: italic;' if line.get('riba_closed') else None</attribute>
+        </xpath>
+        <xpath
+            expr="//span[@t-esc=&quot;line['amount_residual']&quot;]/.."
+            position="after"
+        >
+            <!--## riba_uncovered-->
+            <t t-if="show_riba_uncovered">
+                <div class="act_as_cell amount">
+                    <span
+                        t-if="line.get('riba_uncovered')"
+                        t-esc="line['riba_uncovered']"
+                        t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                    />
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="report_open_items_ending_cumul_riba"
+        inherit_id="account_financial_report.report_open_items_ending_cumul"
+    >
+        <xpath
+            expr="//span[@t-esc=&quot;total_amount[account_id]['residual']&quot;]/../.."
+            position="after"
+        >
+            <!--## riba_uncovered-->
+            <t t-if="show_riba_uncovered">
+                <div class="act_as_cell amount">
+                    <t t-if='type == "account_type"'>
+                        <span
+                            t-esc="total_amount[account_id].get('riba_uncovered', 0.0)"
+                            t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                        />
+                    </t>
+                    <t t-if='type == "partner_type"'>
+                        <span
+                            t-esc="total_amount[account_id][partner_id].get('riba_uncovered', 0.0)"
+                            t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                        />
+                    </t>
+                    <t t-if='type == "partner_subtotal_type"'>
+                        <span
+                            t-esc="partner_totals[account_id][partner_id_key].get('riba_uncovered', 0.0)"
+                            t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"
+                        />
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="report_open_items_filters_riba"
+        inherit_id="account_financial_report.report_open_items_filters"
+    >
+        <xpath expr="//div[hasclass('act_as_row', 'labels')]" position="inside">
+            <div class="act_as_cell">RiBa uncovered</div>
+        </xpath>
+        <xpath
+            expr="//div[hasclass('act_as_row')][not(hasclass('labels'))]"
+            position="inside"
+        >
+            <div class="act_as_cell">
+                <t t-if="show_riba_uncovered">Show</t>
+                <t t-if="not show_riba_uncovered">Hide</t>
+            </div>
+        </xpath>
+    </template>
+</odoo>
