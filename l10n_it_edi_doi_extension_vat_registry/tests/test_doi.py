@@ -39,7 +39,13 @@ class TestDoiIssuedFromCompany(AccountTestInvoicingCommon):
                 },
             ]
         )
-
+        cls.plafond = cls.env["l10n_it_edi_doi_extension.plafond.year"].create(
+            {
+                "year": fields.Date.today().year,
+                "company_id": cls.company.id,
+                "plafond_total": 100000.0,
+            }
+        )
         cls.purchase_declaration = cls.env[
             "l10n_it_edi_doi.declaration_of_intent"
         ].create(
@@ -48,6 +54,7 @@ class TestDoiIssuedFromCompany(AccountTestInvoicingCommon):
                 "company_id": cls.env.company.id,
                 "state": "active",
                 "type": "in",
+                "plafond_id": cls.plafond.id,
                 "currency_id": cls.env.company.currency_id.id,
                 "start_date": fields.Date.today(),
                 "end_date": fields.Date.today() + relativedelta(months=2),
