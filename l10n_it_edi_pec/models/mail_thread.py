@@ -3,54 +3,88 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
+import re
 
 from odoo import _, api, models
 from odoo.exceptions import UserError
 
 from odoo.addons.l10n_it_edi_sdi.models.mail_thread import (
     FATTURAPA_IN_REGEX,
-    METADATI_REGEX,
     RESPONSE_MAIL_REGEX,
 )
 
 _logger = logging.getLogger(__name__)
+
+# SdI messages can come from any sdiNN address, not only the configured one.
+SDI_PEC_EMAIL_REGEX = re.compile(r"^sdi[0-9]*@pec\.fatturapa\.it$", re.IGNORECASE)
+EMAIL_ADDRESS_REGEX = re.compile(r"[\w.+-]+@[\w.-]+")
+
+fatturapa_regex = FATTURAPA_IN_REGEX
+response_regex = RESPONSE_MAIL_REGEX
+
+
+def get_attachment_filename(attachment):
+    """Return the attachment base name, without path or quotes."""
+    file_name = attachment.fname or ""
+    if isinstance(file_name, bytes):
+        file_name = file_name.decode(errors="replace")
+    file_name = file_name.replace("\\", "/").rsplit("/", 1)[-1]
+    return file_name.strip().strip('"')
 
 
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
     @api.model
+    def _is_sdi_pec_address(self, value):
+        """Return whether a header value contains an SdI PEC address."""
+        return any(
+            SDI_PEC_EMAIL_REGEX.match(address)
+            for address in EMAIL_ADDRESS_REGEX.findall(value or "")
+        )
+
+    @api.model
+    def _is_pec_message(self, message, pec_email="@pec.fatturapa.it"):
+        """Return whether the message comes from a PEC address."""
+        pec_email = (pec_email or "").lower()
+        accept_any_sdi = self._is_sdi_pec_address(pec_email)
+        for header in ("Reply-To", "From", "Return-Path"):
+            value = message.get(header) or ""
+            if pec_email and pec_email in value.lower():
+                return True
+            if accept_any_sdi and self._is_sdi_pec_address(value):
+                return True
+        return False
+
+    @api.model
+    def _get_pec_attachments(self, message_dict):
+        """Return the e-invoice and response attachments of a PEC message."""
+        attachments = message_dict.get("attachments", [])
+        fatturapa_attachments = []
+        response_attachments = []
+        for attachment in attachments:
+            file_name = get_attachment_filename(attachment)
+            if fatturapa_regex.match(file_name):
+                fatturapa_attachments.append(attachment)
+            if response_regex.match(file_name):
+                response_attachments.append(attachment)
+        return fatturapa_attachments, response_attachments
+
+    @api.model
     def message_route(
         self, message, message_dict, model=None, thread_id=None, custom_values=None
     ):
         # Check if the email comes from the SDI PEC system
-        if any(
-            "@pec.fatturapa.it" in x
-            for x in [
-                message.get("Reply-To", ""),
-                message.get("From", ""),
-                message.get("Return-Path", ""),
-            ]
-        ):
+        if self._is_pec_message(message):
             _logger.info(
                 "Processing FatturaPA PEC with Message-Id: %s",
                 message.get("Message-Id"),
             )
-            attachments = message_dict.get("attachments", [])
-            fatturapa_attachments = [
-                x for x in attachments if FATTURAPA_IN_REGEX.match(x.fname)
-            ]
-            response_attachments = [
-                x for x in attachments if RESPONSE_MAIL_REGEX.match(x.fname)
-            ]
-            metadati_attachments = [
-                x for x in attachments if METADATI_REGEX.match(x.fname)
-            ]
+            fatturapa_attachments, response_attachments = self._get_pec_attachments(
+                message_dict
+            )
             company = self._l10n_it_edi_pec_get_company()
-            # SDI delivers incoming invoices with both the invoice XML
-            # and a Metadati (MT) file; require both to confirm this is
-            # genuinely an incoming invoice delivery.
-            if metadati_attachments and fatturapa_attachments:
+            if fatturapa_attachments:
                 return self._l10n_it_edi_sdi_process_incoming_invoices(
                     message, fatturapa_attachments, company
                 )
