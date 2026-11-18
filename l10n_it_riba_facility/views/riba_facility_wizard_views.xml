@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Nextev
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Wizard + result -->
+    <record id="view_riba_facility_wizard_form" model="ir.ui.view">
+        <field name="name">riba.facility.wizard.form</field>
+        <field name="model">riba.facility.wizard</field>
+        <field name="arch" type="xml">
+            <form string="RiBa Bank Receipts Facility" delete="false" create="false">
+                <header>
+                    <button
+                        name="action_compute"
+                        type="object"
+                        string="Compute"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_export_xlsx"
+                        type="object"
+                        string="Export Excel"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_details"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                            string="RiBa Detail"
+                            invisible="not computed"
+                        />
+                        <button
+                            name="action_open_anomalies"
+                            type="object"
+                            class="oe_stat_button text-danger"
+                            icon="fa-exclamation-triangle"
+                            invisible="anomaly_count == 0"
+                        >
+                            <field
+                                name="anomaly_count"
+                                widget="statinfo"
+                                string="Overdue not Closed"
+                            />
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                            />
+                            <field name="computed" invisible="1" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="available_bank_ids" invisible="1" />
+                            <field
+                                name="bank_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                    </group>
+                    <field name="summary_ids" invisible="not computed" readonly="1">
+                        <list>
+                            <field name="currency_id" column_invisible="1" />
+                            <field name="bank_id" width="180px" />
+                            <field name="facility_amount" sum="Total" width="130px" />
+                            <field name="used_from" sum="Total" width="130px" />
+                            <field
+                                name="available_from"
+                                sum="Total"
+                                optional="hide"
+                                width="130px"
+                            />
+                            <field name="used_to" sum="Total" width="130px" />
+                            <field
+                                name="available_to"
+                                sum="Total"
+                                width="130px"
+                                decoration-danger="available_to &lt; 0"
+                                decoration-bf="1"
+                            />
+                            <field
+                                name="to_credit"
+                                sum="Total"
+                                optional="show"
+                                width="130px"
+                            />
+                            <field
+                                name="account_balance"
+                                optional="show"
+                                width="130px"
+                            />
+                        </list>
+                    </field>
+                    <div class="text-muted" invisible="not computed">
+                        <strong>Committed Today</strong>: credited RiBa slips
+                        whose due date is on or after the reference date
+                        (a slip is committed up to and including its due date).
+                        <strong>Committed at Target</strong>: same logic applied
+                        to the target date.
+                        RiBa submitted but not yet credited are not included.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_riba_facility_wizard" model="ir.actions.act_window">
+        <field name="name">RiBa Bank Receipts Facility</field>
+        <field name="res_model">riba.facility.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem
+        id="menu_riba_facility"
+        name="Bank Receipts Facility"
+        parent="l10n_it_riba_oca.menu_riba"
+        action="action_riba_facility_wizard"
+        sequence="90"
+        groups="account.group_account_user"
+    />
+
+    <!-- Dettaglio -->
+    <record id="view_riba_facility_detail_list" model="ir.ui.view">
+        <field name="name">riba.facility.detail.list</field>
+        <field name="model">riba.facility.detail</field>
+        <field name="arch" type="xml">
+            <list
+                create="false"
+                edit="false"
+                delete="false"
+                decoration-danger="is_anomaly"
+                decoration-success="released_by_target"
+            >
+                <field name="currency_id" column_invisible="1" />
+                <field name="bank_id" width="130px" />
+                <field name="slip_id" width="110px" />
+                <field name="partner_id" width="180px" />
+                <field name="invoice_number" optional="show" width="150px" />
+                <field name="due_date" width="90px" />
+                <field name="release_date" column_invisible="1" />
+                <field name="release_week" column_invisible="1" />
+                <field name="amount" sum="Total" width="120px" />
+                <field name="line_state" optional="show" width="100px" />
+                <field name="released_by_target" optional="hide" />
+                <field name="is_anomaly" optional="hide" />
+                <field name="slip_line_id" column_invisible="1" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_riba_facility_detail_pivot" model="ir.ui.view">
+        <field name="name">riba.facility.detail.pivot</field>
+        <field name="model">riba.facility.detail</field>
+        <field name="arch" type="xml">
+            <pivot string="RiBa Bank Receipts Facility">
+                <field name="bank_id" type="row" />
+                <field name="due_date" interval="month" type="col" />
+                <field name="amount" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_riba_facility_detail_search" model="ir.ui.view">
+        <field name="name">riba.facility.detail.search</field>
+        <field name="model">riba.facility.detail</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="bank_id" />
+                <field name="slip_id" />
+                <filter
+                    name="filter_releasing"
+                    string="Released by Target Date"
+                    domain="[('released_by_target', '=', True)]"
+                />
+                <filter
+                    name="filter_still_used"
+                    string="Still Committed at Target"
+                    domain="[('released_by_target', '=', False), ('is_anomaly', '=', False)]"
+                />
+                <filter
+                    name="filter_anomaly"
+                    string="Overdue not Closed"
+                    domain="[('is_anomaly', '=', True)]"
+                />
+                <group>
+                    <filter
+                        name="group_bank"
+                        string="Bank"
+                        context="{'group_by': 'bank_id'}"
+                    />
+                    <filter
+                        name="group_due_month"
+                        string="Due Month"
+                        context="{'group_by': 'due_date:month'}"
+                    />
+                    <filter
+                        name="group_partner"
+                        string="Customer"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_riba_facility_detail" model="ir.actions.act_window">
+        <field name="name">RiBa Bank Receipts Facility Detail</field>
+        <field name="res_model">riba.facility.detail</field>
+        <field name="view_mode">list,pivot</field>
+        <field name="search_view_id" ref="view_riba_facility_detail_search" />
+    </record>
+</odoo>
