@@ -10,3 +10,10 @@ class ResCompany(models.Model):
     intrastat_custom_id = fields.Many2one(
         comodel_name="account.intrastat.custom", string="Customs Section"
     )
+    intrastat_date_type = fields.Selection(
+        [
+            ("date", "Move Date"),
+            ("invoice_date", "Invoice/Bill Date"),
+        ],
+        default="date",
+    )
