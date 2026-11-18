@@ -1,0 +1,14 @@
+<odoo>
+    <record id="account_tax_form_inherit_74ter" model="ir.ui.view">
+        <field name="name">account.tax.form.inherit.74ter</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_base_affected']" position="after">
+                <field name="is_tax_74ter" string="Is tax 74ter"/>
+                <field name="tax_74ter_amount" string="Tax 74ter amount" attrs="{'invisible': [('is_tax_74ter', '=', False)]}"/>
+                <field name="tax_74_ter_income_account_id" string="Tax 74ter income account" domain="[('deprecated', '=', False)]" attrs="{'invisible': ['|', ('is_tax_74ter', '=', False), ('type_tax_use', '!=', 'sale')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
