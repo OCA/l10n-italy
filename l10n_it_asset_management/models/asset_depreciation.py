@@ -242,8 +242,10 @@ class AssetDepreciation(models.Model):
                 )
             )
 
-    def name_get(self):
-        return [(dep.id, dep.make_name()) for dep in self]
+    @api.depends("l10n_it_asset_id.name", "l10n_it_asset_id.code", "type_id.name")
+    def _compute_display_name(self):
+        for dep in self:
+            dep.display_name = dep.make_name()
 
     @api.depends("amount_depreciable", "amount_depreciable_updated", "amount_residual")
     def _compute_state(self):

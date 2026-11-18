@@ -463,6 +463,18 @@ class TestAssets(Common):
             sum(civ_dep_lines.mapped("amount")), 7000 * 0.6 + 9000 * 0.4
         )
 
+    def test_display_names(self):
+        asset = self._create_asset()
+        asset.code = "AST01"
+        self.assertEqual(asset.display_name, "[AST01] Test asset")
+        civ_type = self.env.ref("l10n_it_asset_management.ad_type_civilistico")
+        depreciation = asset.depreciation_ids.filtered(lambda x: x.type_id == civ_type)
+        self.assertEqual(
+            depreciation.display_name, f"[AST01] Test asset - {civ_type.name}"
+        )
+        line_type = self.env.ref("l10n_it_asset_management.adpl_type_riv")
+        self.assertEqual(line_type.display_name, "[RIV] Rivalutazione - In")
+
     def test_entry_in_update_asset(self):
         """An entry adding to the asset account
         creates a positive accounting info."""
@@ -484,6 +496,7 @@ class TestAssets(Common):
         # Assert
         accounting_info = asset.asset_accounting_info_ids
         self.assertEqual(accounting_info.move_type, "in")
+        self.assertEqual(accounting_info.display_name, "Test asset - Asset Update")
         depreciation_info = asset.depreciation_ids
         self.assertEqual(
             depreciation_info.amount_residual, asset.purchase_amount + added_amount

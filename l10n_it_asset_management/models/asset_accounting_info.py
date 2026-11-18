@@ -92,8 +92,10 @@ class AssetAccountingInfo(models.Model):
 
         return res
 
-    def name_get(self):
-        return [(aa_info.id, aa_info.make_name()) for aa_info in self]
+    @api.depends("l10n_it_asset_id.name", "l10n_it_asset_id.code", "relation_type")
+    def _compute_display_name(self):
+        for aa_info in self:
+            aa_info.display_name = aa_info.make_name()
 
     @api.model
     def cron_vacuum_table(self):
