@@ -489,6 +489,24 @@ class TestAssets(Common):
             depreciation_info.amount_residual, asset.purchase_amount + added_amount
         )
 
+    def test_entry_update_asset_from_entries_action(self):
+        """The wizard can be opened from an entry
+        whose context has the defaults of the journal entries action."""
+        asset = self._create_asset()
+        entry = self._create_entry(asset.category_id.asset_account_id, 100)
+
+        # Act
+        self._link_asset_move(
+            entry.with_context(default_move_type="entry"),
+            "update",
+            wiz_values={
+                "l10n_it_asset_id": asset,
+            },
+        )
+
+        # Assert
+        self.assertEqual(asset.asset_accounting_info_ids.move_type, "in")
+
     def test_entry_out_update_asset(self):
         """An entry removing from the asset account
         creates a negative accounting info."""

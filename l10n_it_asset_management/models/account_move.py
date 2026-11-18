@@ -6,6 +6,7 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
+from odoo.tools.misc import clean_context
 
 
 class AccountMove(models.Model):
@@ -105,7 +106,9 @@ class AccountMove(models.Model):
 
         xmlid = "l10n_it_asset_management.action_wizard_account_move_manage_asset"
         act = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
-        ctx = dict(self._context)
+        # Defaults of the calling action (e.g. `default_move_type`)
+        # are not meant for the wizard
+        ctx = clean_context(self.env.context)
         ctx.update(
             {
                 "default_company_id": self.company_id.id,
