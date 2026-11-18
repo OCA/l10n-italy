@@ -27,6 +27,7 @@
         "views/res_config_settings_views.xml",
         "views/fetchmail_view.xml",
         "views/ir_mail_server_view.xml",
+        "views/account_move_views.xml",
     ],
     "installable": True,
     "pre_init_hook": "_l10n_it_edi_pec_pre_init_hook",

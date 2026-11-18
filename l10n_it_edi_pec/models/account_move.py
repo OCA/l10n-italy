@@ -6,13 +6,19 @@
 import base64
 import logging
 
-from odoo import models
+from markupsafe import Markup
+
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 from odoo.addons.account_edi_proxy_client.models.account_edi_proxy_user import (
     AccountEdiProxyError,
 )
 
 _logger = logging.getLogger(__name__)
+
+# Prefix of the e-invoice files kept as history by a reset of the sending
+HISTORY_PREFIX = "old_"
 
 
 class AccountMove(models.Model):
@@ -74,3 +80,72 @@ class AccountMove(models.Model):
         fetch_server = self.company_id.l10n_it_edi_pec_fetch_server_id
         if fetch_server and fetch_server.state == "done":
             fetch_server.fetch_mail()
+
+    def action_l10n_it_edi_pec_reset(self):
+        """Allow sending again an e-invoice sent via PEC that got no answer.
+
+        A move sent via PEC stays in "processing" until an SDI notification
+        is processed, and core neither exports it again nor shows "Reset to
+        draft". When the notification never arrives (for instance the file
+        name was wrong), this resets the sending.
+
+        The e-invoice XML and the PDF are not deleted: they are renamed
+        old_<timestamp>_<name>, detached from their fields and attached to
+        a chatter message, so that the next sending builds new ones.
+        A late SDI notification about the old file still finds the move.
+        """
+        for move in self:
+            if not (
+                move.state == "posted"
+                and move.company_id.l10n_it_edi_use_pec
+                and move.l10n_it_edi_state == "processing"
+            ):
+                raise UserError(
+                    _(
+                        "%(move)s is not a posted move sent via PEC "
+                        "and waiting for an SDI answer.",
+                        move=move.display_name,
+                    )
+                )
+            stamp = fields.Datetime.context_timestamp(
+                move, fields.Datetime.now()
+            ).strftime("%Y%m%d-%H%M")
+            old_attachments = (
+                move.l10n_it_edi_attachment_id | move.invoice_pdf_report_id
+            )
+            old_names = old_attachments.mapped("name")
+            for attachment in old_attachments.sudo():
+                attachment.write(
+                    {
+                        "res_field": False,
+                        "name": f"{HISTORY_PREFIX}{stamp}_{attachment.name}",
+                    }
+                )
+            old_transaction = move.l10n_it_edi_transaction
+            move.write(
+                {
+                    "l10n_it_edi_state": False,
+                    "l10n_it_edi_transaction": False,
+                    "l10n_it_edi_header": False,
+                }
+            )
+            move.invalidate_recordset(
+                fnames=[
+                    "l10n_it_edi_attachment_id",
+                    "l10n_it_edi_attachment_file",
+                    "invoice_pdf_report_id",
+                    "invoice_pdf_report_file",
+                ]
+            )
+            # no_new_invoice: do not decode the old XML into the move
+            move.with_context(no_new_invoice=True).message_post(
+                body=Markup("<p>%s</p>")
+                % _(
+                    "SDI sending reset (transaction %(transaction)s): "
+                    "%(files)s kept here as history.",
+                    transaction=old_transaction or "-",
+                    files=", ".join(old_names) or "-",
+                ),
+                attachment_ids=old_attachments.ids,
+            )
+        return True

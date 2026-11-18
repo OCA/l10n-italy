@@ -13,6 +13,8 @@ from odoo.addons.l10n_it_edi_sdi.models.mail_thread import (
     RESPONSE_MAIL_REGEX,
 )
 
+from .account_move import HISTORY_PREFIX
+
 _logger = logging.getLogger(__name__)
 
 
@@ -146,3 +148,27 @@ class MailThread(models.AbstractModel):
             if companies:
                 return companies
         return self.env.company
+
+    @api.model
+    def _l10n_it_edi_sdi_find_move_by_attachment_name(self, filename, company=None):
+        """Also find the move of a file kept as history by a sending reset."""
+        move = super()._l10n_it_edi_sdi_find_move_by_attachment_name(
+            filename, company=company
+        )
+        if move or not filename:
+            return move
+
+        def escape(value):
+            return value.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+
+        domain = [
+            # old_<timestamp>_<filename>
+            ("name", "=like", f"{escape(HISTORY_PREFIX)}%\\_{escape(filename)}"),
+            ("res_model", "=", "account.move"),
+        ]
+        if company:
+            domain.append(("company_id", "=", company.id))
+        attachment = self.env["ir.attachment"].search(domain, limit=1)
+        if attachment and attachment.res_id:
+            return self.env["account.move"].browse(attachment.res_id)
+        return self.env["account.move"]

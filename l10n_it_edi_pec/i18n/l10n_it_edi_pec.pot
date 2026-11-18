@@ -14,6 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/account_move.py:0
+msgid ""
+"%(move)s is not a posted move sent via PEC and waiting for an SDI answer."
+msgstr ""
+
+#. module: l10n_it_edi_pec
 #: model:ir.model,name:l10n_it_edi_pec.model_res_company
 msgid "Companies"
 msgstr ""
@@ -168,9 +175,22 @@ msgid "Please configure the SDI PEC email address."
 msgstr ""
 
 #. module: l10n_it_edi_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_pec.account_move_form_l10n_it_edi_pec
+msgid "Reset SDI sending"
+msgstr ""
+
+#. module: l10n_it_edi_pec
 #: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_company__l10n_it_edi_pec_email_exchange_system
 #: model:ir.model.fields,field_description:l10n_it_edi_pec.field_res_config_settings__l10n_it_edi_pec_email_exchange_system
 msgid "SDI PEC Email Address"
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#. odoo-python
+#: code:addons/l10n_it_edi_pec/models/account_move.py:0
+msgid ""
+"SDI sending reset (transaction %(transaction)s): %(files)s kept here as "
+"history."
 msgstr ""
 
 #. module: l10n_it_edi_pec
@@ -178,6 +198,14 @@ msgstr ""
 msgid ""
 "Send and receive electronic invoices through PEC\n"
 "                        (Certified Email) instead of the standard IAP proxy."
+msgstr ""
+
+#. module: l10n_it_edi_pec
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_pec.account_move_form_l10n_it_edi_pec
+msgid ""
+"The SDI state is reset and the next sending builds a new e-invoice file. Use"
+" it only if the e-invoice has not been accepted by SDI, otherwise it would "
+"be sent twice. Continue?"
 msgstr ""
 
 #. module: l10n_it_edi_pec
