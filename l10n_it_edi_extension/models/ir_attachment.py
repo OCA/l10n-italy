@@ -78,4 +78,6 @@ class IrAttachmentInherit(models.Model):
         dom = etree.parse(xml_file, parser=recovering_parser)
         transform = etree.XSLT(xslt)
         newdom = transform(dom)
-        return etree.tostring(newdom, pretty_print=True, encoding="unicode")
+        # str() keeps the serialization of xsl:output (method html), which
+        # declares the UTF-8 charset that wkhtmltopdf needs for accented letters.
+        return str(newdom)
