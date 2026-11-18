@@ -76,6 +76,38 @@ class TestPecSend(TestItEdiPecCommon):
             with self.assertRaises(AccountEdiProxyError):
                 invoice._l10n_it_edi_upload(files)
 
+    def test_pec_upload_invalid_filename(self):
+        """A file name SDI would reject is not sent."""
+        invoice = self._create_and_post_invoice()
+        files = [
+            {
+                "filename": "ITNone_00001.xml",
+                "xml": base64.b64encode(b"<xml/>").decode(),
+                "destination_code": "0000000",
+            }
+        ]
+        with mock.patch.object(
+            type(self.env["ir.mail_server"]), "send_email"
+        ) as mock_send:
+            with self.assertRaises(AccountEdiProxyError) as cm:
+                invoice._l10n_it_edi_upload(files)
+        mock_send.assert_not_called()
+        self.assertIn("ITNone_00001.xml", cm.exception.message)
+
+    def test_pec_export_check_missing_codice_fiscale(self):
+        """A PEC company without Codice Fiscale triggers an error."""
+        self.company.l10n_it_codice_fiscale = False
+        errors = self.company._l10n_it_edi_export_check()
+        self.assertIn("l10n_it_edi_pec_codice_fiscale", errors)
+
+    def test_pec_export_check_keeps_core_checks(self):
+        """Core company checks still apply to PEC companies."""
+        self.company.l10n_it_tax_system = False
+        errors = self.company._l10n_it_edi_export_check()
+        self.assertIn("l10n_it_edi_company_l10n_it_tax_system_missing", errors)
+        # The IAP proxy user is not needed with PEC
+        self.assertNotIn("l10n_it_edi_settings_l10n_it_edi_proxy_user_id", errors)
+
     def test_pec_export_check_ok(self):
         """Company with full PEC config passes export check."""
         errors = self.company._l10n_it_edi_export_check()

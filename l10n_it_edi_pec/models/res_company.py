@@ -37,6 +37,25 @@ class ResCompany(models.Model):
             result = {}
         if not pec_companies:
             return result
+        # Keep the core company checks (VAT or Codice Fiscale, address,
+        # tax system): only the IAP proxy user is not needed with PEC.
+        pec_result = super(ResCompany, pec_companies)._l10n_it_edi_export_check()
+        pec_result.pop("l10n_it_edi_settings_l10n_it_edi_proxy_user_id", None)
+        for key, error in pec_result.items():
+            result.setdefault(key, error)
+        # The e-invoice file name is built from the Codice Fiscale
+        # (see l10n_it_edi _l10n_it_edi_generate_filename): without it
+        # the file is named like ITNone_00001.xml, against the SDI naming
+        # rules, and SDI notifications about it are not recognized.
+        if missing_cf := pec_companies.filtered(lambda c: not c.l10n_it_codice_fiscale):
+            result["l10n_it_edi_pec_codice_fiscale"] = {
+                "message": _(
+                    "Please set the Codice Fiscale of the company: "
+                    "the e-invoice file name sent to SDI is built from it."
+                ),
+                "action_text": _("View Company/ies"),
+                "action": missing_cf._get_records_action(name=_("Check Company Data")),
+            }
         # Add PEC-specific checks
         for company in pec_companies:
             smtp = company.l10n_it_edi_pec_server_id
