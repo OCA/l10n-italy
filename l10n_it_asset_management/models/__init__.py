@@ -7,6 +7,7 @@ from . import account_fiscal_year
 from . import account_journal
 from . import account_move
 from . import account_move_line
+from . import account_tax
 from . import asset
 from . import asset_accounting_info
 from . import asset_category
