@@ -88,3 +88,9 @@ def remove_modules_views(cr, modules):
         """,
         (list(modules),),
     )
+
+
+# ir.config_parameter key used by the 14.0/16.0 -> 18.0 migrations to pass the
+# highest tax id that existed before the 18.0 chart records were created from
+# l10n_it_account to l10n_it_account_vat_period_end_settlement.
+EXISTING_TAX_MAX_ID_PARAM = "l10n_it_account.migration_existing_tax_max_id"
