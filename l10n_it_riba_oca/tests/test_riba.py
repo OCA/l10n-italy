@@ -78,6 +78,62 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         # the partner is excluded from due costs
         self.assertEqual(len(self.invoice.invoice_line_ids), 1)
 
+    def _create_invoice_address(self):
+        return self.env["res.partner"].create(
+            {
+                "name": "Invoice address",
+                "type": "invoice",
+                "parent_id": self.partner.id,
+            }
+        )
+
+    def test_not_add_due_cost_invoice_address(self):
+        """Invoices to a billing address share the collection fees
+        of its commercial partner."""
+        invoice_address = self._create_invoice_address()
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.write(
+            {
+                "partner_id": invoice_address.id,
+                "invoice_payment_term_id": self.payment_term1.id,
+            }
+        )
+        self.invoice.action_post()
+        # Collection fees added on the first invoice
+        self.assertEqual(len(self.invoice.invoice_line_ids), 3)
+        self.invoice2.write(
+            {
+                "partner_id": invoice_address.id,
+                "invoice_payment_term_id": self.payment_term2.id,
+            }
+        )
+        self.invoice2.action_post()
+        # No collection fees: same month of a due date of the first invoice
+        self.assertEqual(len(self.invoice2.invoice_line_ids), 1)
+
+    def test_add_due_cost_same_month_invoice_address(self):
+        """The policy set on the commercial partner applies
+        to invoices to its billing address."""
+        invoice_address = self._create_invoice_address()
+        self.partner.riba_policy_expenses = "unlimited"
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.write(
+            {
+                "partner_id": invoice_address.id,
+                "invoice_payment_term_id": self.payment_term1.id,
+            }
+        )
+        self.invoice.action_post()
+        self.invoice2.write(
+            {
+                "partner_id": invoice_address.id,
+                "invoice_payment_term_id": self.payment_term2.id,
+            }
+        )
+        self.invoice2.action_post()
+        # One collection fee for each due date
+        self.assertEqual(len(self.invoice2.invoice_line_ids), 2)
+
     def test_delete_due_cost_line(self):
         # ---- Set Service in Company Config
         self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
