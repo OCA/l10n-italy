@@ -505,7 +505,7 @@ class ReportAsset(models.TransientModel):
     def get_report_asset_data(self):
         self.ensure_one()
         asset = self.l10n_it_asset_id
-        states_dict = dict(asset._fields["state"].selection)
+        states_dict = dict(asset._fields["state"]._description_selection(self.env))
 
         vals = {
             "asset_code": asset.code or "/",
