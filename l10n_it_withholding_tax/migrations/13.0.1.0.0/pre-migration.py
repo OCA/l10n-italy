@@ -41,6 +41,29 @@ def migrate(env, installed_version):
                     ),
                 )
             if table == "account_invoice_line_tax_wt":
+                # The ids of the invoice lines and of the move lines overlap:
+                # while the rows are updated, the unique constraint of the
+                # many2many table can be violated by rows that the same query
+                # is going to update later.
+                # Drop it and restore it afterwards,
+                # because Odoo does not create it again on an existing table.
+                env.cr.execute(
+                    """
+                        SELECT conname
+                        FROM pg_constraint
+                        WHERE conrelid = %s::regclass AND contype = 'u'
+                    """,
+                    (table,),
+                )
+                unique_constraints = [row[0] for row in env.cr.fetchall()]
+                for constraint in unique_constraints:
+                    openupgrade.logged_query(
+                        env.cr,
+                        drop_sql.format(
+                            sql.Identifier(table),
+                            sql.Identifier(constraint),
+                        ),
+                    )
                 query = """
                     UPDATE {table}
                     SET
@@ -56,6 +79,17 @@ def migrate(env, installed_version):
                     env.cr,
                     query,
                 )
+                for constraint in unique_constraints:
+                    openupgrade.logged_query(
+                        env.cr,
+                        sql.SQL(
+                            "ALTER TABLE {} ADD CONSTRAINT {} "
+                            "UNIQUE (invoice_line_id, withholding_tax_id)"
+                        ).format(
+                            sql.Identifier(table),
+                            sql.Identifier(constraint),
+                        ),
+                    )
             else:
                 query = """
                     UPDATE {table}
