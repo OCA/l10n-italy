@@ -608,3 +608,24 @@ class VatStatementCommunicationCase(TestVATStatementCommon):
             quadro.iva_da_versare,
             quadro.iva_esigibile + vat_statement.interests_debit_vat_amount,
         )
+
+    def test_unlink_cascades_vp_rows(self):
+        """Deleting the comunicazione must also delete its VP rows, otherwise
+        the orphan rows keep the related VAT settlement moves linked and the
+        wizard would skip those months on the next extraction."""
+        comunicazione = self.env["comunicazione.liquidazione"].create(
+            self.get_vals_comunicazione_liquidazione()
+        )
+        vp = self.env["comunicazione.liquidazione.vp"].create(
+            {
+                "comunicazione_id": comunicazione.id,
+                "period_type": "month",
+                "month": 7,
+            }
+        )
+        vp_id = vp.id
+        comunicazione.unlink()
+        self.assertFalse(
+            self.env["comunicazione.liquidazione.vp"].browse(vp_id).exists(),
+            "VP row should be removed when its parent comunicazione is deleted",
+        )
