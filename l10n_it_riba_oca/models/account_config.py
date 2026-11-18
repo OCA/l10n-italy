@@ -25,7 +25,7 @@ class ResConfigSettings(models.TransientModel):
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
         if res:
-            res["due_cost_service_id"] = self.env.user.company_id.due_cost_service_id.id
+            res["due_cost_service_id"] = self.env.company.due_cost_service_id.id
         return res
 
 
