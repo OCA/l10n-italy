@@ -204,6 +204,51 @@ class TestDoiIssuedFromCompany(TransactionCase):
         # Warning should be empty
         self.assertFalse(invoice.l10n_it_edi_doi_warning)
 
+    def test_in_invoice_warning_below_threshold(self):
+        """Test that no warning is shown when below threshold."""
+        invoice = self._create_invoice("7", self.partner, taxes=self.tax, in_type=True)
+        invoice.l10n_it_edi_doi_ids = [
+            fields.Command.create(
+                {
+                    "declaration_id": self.doi_in.id,
+                    "amount": invoice.l10n_it_edi_doi_amount,
+                }
+            )
+        ]
+        # Amount is 900 (10 * 90), threshold is 5000
+        self.assertEqual(invoice.l10n_it_edi_doi_warning, "")
+
+    def test_in_invoice_warning_above_threshold(self):
+        """Test that warning is shown when above threshold."""
+        # Create a declaration with low threshold
+        doi_low = self.env["l10n_it_edi_doi.declaration_of_intent"].create(
+            {
+                "partner_id": self.partner.id,
+                "company_id": self.company.id,
+                "state": "active",
+                "type": "in",
+                "currency_id": self.company.currency_id.id,
+                "issue_date": fields.Date.today(),
+                "start_date": fields.Date.today(),
+                "end_date": fields.Date.today() + relativedelta(months=2),
+                "threshold": 500,
+                "protocol_number_part1": "789",
+                "protocol_number_part2": "012",
+            }
+        )
+        invoice = self._create_invoice("8", self.partner, taxes=self.tax, in_type=True)
+        invoice.l10n_it_edi_doi_ids = [
+            fields.Command.create(
+                {
+                    "declaration_id": doi_low.id,
+                    "amount": invoice.l10n_it_edi_doi_amount,
+                }
+            )
+        ]
+        # Amount is 900 (10 * 90), threshold is 500 -> should show warning
+        self.assertTrue(invoice.l10n_it_edi_doi_warning)
+        self.assertIn("exceeded", invoice.l10n_it_edi_doi_warning)
+
     def test_mixed_invoices_computation(self):
         """Test that invoiced amount correctly handles mixed approaches."""
         # Create invoice with bridge model
