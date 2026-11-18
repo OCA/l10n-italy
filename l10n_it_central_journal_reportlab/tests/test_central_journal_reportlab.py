@@ -96,7 +96,7 @@ class TestCentralJournalReportlab(TransactionCase):
         giornale_content = pdf.PdfFileReader(io.BytesIO(giornale_pdf_content))
         has_move = False
         for page in giornale_content.pages:
-            page_content = page.extractText()
+            page_content = page.extract_text()
             if not has_move and out_invoice.name in page_content:
                 has_move = True
         self.assertTrue(has_move)
