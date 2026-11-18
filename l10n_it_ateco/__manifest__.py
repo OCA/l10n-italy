@@ -5,7 +5,7 @@
 
 {
     "name": "ITA - Codici Ateco",
-    "version": "18.0.1.0.0",
+    "version": "18.0.2.0.0",
     "category": "Localization/Italy",
     "author": "Abstract,Odoo Community Association (OCA),Odoo Italia Network",
     "development_status": "Beta",
@@ -16,7 +16,7 @@
         "security/ir.model.access.csv",
         "views/ateco_view.xml",
         "views/partner_view.xml",
-        "data/ateco_data.xml",
+        "data/ateco_category_data.xml",
     ],
     "installable": True,
 }

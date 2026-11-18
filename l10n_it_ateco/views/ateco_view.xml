@@ -6,10 +6,18 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Ateco Category">
+                <widget
+                    name="web_ribbon"
+                    title="Archived"
+                    bg_color="text-bg-danger"
+                    invisible="active"
+                />
                 <group>
                     <field name="code" />
                     <field name="name" />
                     <field name="parent_id" />
+                    <field name="ateco_version" />
+                    <field name="active" invisible="1" />
                 </group>
                 <field name="partner_ids" nolabel="1" />
             </form>
@@ -21,9 +29,11 @@
         <field name="model">ateco.category</field>
         <field name="type">list</field>
         <field name="arch" type="xml">
-            <list>
+            <list decoration-muted="not active">
                 <field name="code" />
                 <field name="name" />
+                <field name="ateco_version" optional="show" />
+                <field name="active" column_invisible="1" />
             </list>
         </field>
     </record>
@@ -35,6 +45,20 @@
             <search string="Search Ateco categories">
                 <field name="name" />
                 <field name="code" />
+                <field name="ateco_version" />
+                <separator />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+                <group name="group_by" string="Group By">
+                    <filter
+                        string="ATECO Version"
+                        name="group_ateco_version"
+                        context="{'group_by': 'ateco_version'}"
+                    />
+                </group>
             </search>
         </field>
     </record>

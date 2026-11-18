@@ -14,4 +14,7 @@ class ResPartner(models.Model):
         column1="partner_id",
         column2="ateco_id",
         string="Ateco categories",
+        # Keep showing archived codes (e.g. superseded ATECO versions) so that
+        # users can see which partners still need to be reclassified.
+        context={"active_test": False},
     )
