@@ -1700,6 +1700,11 @@ msgid "Gain / Loss"
 msgstr "Plusvalenza / Minusvalenza"
 
 #. module: l10n_it_asset_management
+#: model:ir.model.fields,field_description:l10n_it_asset_management.field_asset_category__gain_loss_journal_id
+msgid "Gain / Loss Journal"
+msgstr "Registro plus/minusvalenze"
+
+#. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_depreciation_line_year__gain_loss
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal_totals__gain_loss
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_previsional_depreciation_line_year__gain_loss
@@ -1929,6 +1934,15 @@ msgstr "Registrazione contabile"
 #: model:ir.model,name:l10n_it_asset_management.model_account_move_line
 msgid "Journal Item"
 msgstr "Movimento contabile"
+
+#. module: l10n_it_asset_management
+#: model:ir.model.fields,help:l10n_it_asset_management.field_asset_category__gain_loss_journal_id
+msgid ""
+"Journal of the capital gain and loss entries. If not set, the category "
+"journal is used."
+msgstr ""
+"Registro delle scritture di plusvalenza e minusvalenza. Se non è impostato, "
+"si usa il registro della categoria."
 
 #. module: l10n_it_asset_management
 #: model:ir.model.fields,field_description:l10n_it_asset_management.field_report_asset_journal__l10n_it_asset_ids
