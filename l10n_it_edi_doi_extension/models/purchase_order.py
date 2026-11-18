@@ -112,7 +112,7 @@ class PurchaseOrder(models.Model):
             order.l10n_it_edi_doi_warning = ""
             declaration = order.l10n_it_edi_doi_id
 
-            show_warning = declaration and order.state != "cancelled"
+            show_warning = declaration and order.state != "cancel"
             if not show_warning:
                 continue
 
@@ -239,7 +239,7 @@ class PurchaseOrder(models.Model):
         for order in self:
             declaration = order.l10n_it_edi_doi_id
             if not declaration:
-                return
+                continue
             partner = order.partner_id.commercial_partner_id
             errors = declaration._get_validity_warnings(
                 order.company_id,
