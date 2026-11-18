@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        Backward-compatible VAT registry report template.
+
+        Uses primary="True" to create an independent copy of the v18
+        template, then adds v16 reverse-charge partner display logic
+        via XPath.
+    -->
+    <template
+        id="report_registro_iva"
+        inherit_id="l10n_it_vat_registries.report_registro_iva"
+        primary="True"
+        priority="99"
+    >
+        <!--
+            V16 RC compat: for supplier self-invoices (purchase journal),
+            show the original supplier from rc_original_purchase_invoice_ids
+            instead of the self-invoice partner.
+        -->
+        <xpath expr="//t[@t-set='partner']" position="after">
+            <t
+                t-set="rc_supplier"
+                t-value="move.mapped('rc_original_purchase_invoice_ids.partner_id')"
+            />
+            <t t-if="rc_supplier">
+                <t t-set="partner" t-value="rc_supplier" />
+            </t>
+        </xpath>
+
+        <!--
+            V16 RC compat: for purchase invoices that are RC self-invoices,
+            use the original purchase invoice ref if the self-invoice has
+            no ref of its own.
+        -->
+        <xpath expr="//div[@t-esc='move.ref']/.." position="replace">
+            <td class="left_without_line_bold">
+                <t t-set="move_ref" t-value="move.ref" />
+                <t
+                    t-if="move.is_purchase_document() and move.rc_original_purchase_invoice_ids and not move.ref"
+                >
+                    <t
+                        t-set="move_ref"
+                        t-value="move.rc_original_purchase_invoice_ids[0].ref"
+                    />
+                </t>
+                <div style="page-break-inside: avoid" t-esc="move_ref" />
+            </td>
+        </xpath>
+
+        <!--
+            V16 RC compat: for customer self-invoices, show original
+            supplier info and reference below the partner name.
+        -->
+        <xpath expr="//div[@t-if='show_full_contact_addess']" position="after">
+            <t
+                t-set="original_invoice"
+                t-value="move.rc_purchase_invoice_id.rc_original_purchase_invoice_ids"
+            />
+            <t t-if="original_invoice">
+                <t t-set="original_supplier" t-value="original_invoice.partner_id" />
+                <t
+                    t-set="reference"
+                    t-value="(original_invoice.ref or original_invoice.name or '') + ' - ' + (move.rc_purchase_invoice_id.ref or move.rc_purchase_invoice_id.name or '')"
+                />
+                <t t-if="original_supplier.id != partner.id">
+                    <div>Supplier: <span t-esc="original_supplier.display_name" /></div>
+                    <div t-if="reference">Reference: <span t-esc="reference" /></div>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>
