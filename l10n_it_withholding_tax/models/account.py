@@ -280,13 +280,11 @@ class AccountMove(models.Model):
         # "payment_move_line_ids",
     )
     def _compute_amount_withholding_tax(self):
-        dp_obj = self.env["decimal.precision"]
+        amount_dp = self.env["decimal.precision"].precision_get("Account")
         for invoice in self:
             withholding_tax_amount = 0.0
             for wt_line in invoice.withholding_tax_line_ids:
-                withholding_tax_amount += float_round(
-                    wt_line.tax, dp_obj.precision_get("Account")
-                )
+                withholding_tax_amount += float_round(wt_line.tax, amount_dp)
             invoice.amount_net_pay = invoice.amount_total - withholding_tax_amount
             amount_net_pay_residual = invoice.amount_net_pay
             invoice.withholding_tax_amount = withholding_tax_amount
@@ -301,9 +299,11 @@ class AccountMove(models.Model):
 
             for line in reconciled_amls:
                 if not line.withholding_tax_generated_by_move_id:
-                    amount_net_pay_residual -= abs(line.amount_currency)
+                    amount_net_pay_residual -= line.debit or line.credit
+            if float_compare(amount_net_pay_residual, 0, amount_dp) == -1:
+                amount_net_pay_residual = 0
             invoice.amount_net_pay_residual = float_round(
-                amount_net_pay_residual, dp_obj.precision_get("Account")
+                amount_net_pay_residual, amount_dp
             )
 
     withholding_tax = fields.Boolean()
