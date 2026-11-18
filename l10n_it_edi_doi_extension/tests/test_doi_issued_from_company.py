@@ -3,14 +3,16 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import exceptions, fields
+from odoo import Command, exceptions, fields
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
 class TestDoiIssuedFromCompany(TransactionCase):
     @classmethod
-    def _create_declaration(cls, type_doi, protocol_part1=None, protocol_part2=None):
+    def _create_declaration(
+        cls, type_doi, protocol_part1=None, protocol_part2=None, threshold=5000
+    ):
         """Create a declaration with unique protocol numbers."""
         if protocol_part1 is None:
             # Generate unique protocol numbers based on sequence
@@ -30,9 +32,30 @@ class TestDoiIssuedFromCompany(TransactionCase):
                 "issue_date": fields.Date.today(),
                 "start_date": fields.Date.today(),
                 "end_date": fields.Date.today() + relativedelta(months=2),
-                "threshold": 5000,
+                "threshold": threshold,
                 "protocol_number_part1": protocol_part1,
                 "protocol_number_part2": protocol_part2,
+            }
+        )
+
+    @classmethod
+    def _create_invoice_with_lines(cls, amounts, tax):
+        return cls.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": cls.partner.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": cls.env.ref("product.product_product_5").id,
+                            "quantity": 1,
+                            "price_unit": amount,
+                            "tax_ids": [Command.set(tax.ids)],
+                        }
+                    )
+                    for amount in amounts
+                ],
             }
         )
 
@@ -105,6 +128,41 @@ class TestDoiIssuedFromCompany(TransactionCase):
         self.assertNotEqual(previous_used_amount, used_amount)
         self.assertEqual(used_amount, 900.0)
         self.assertEqual(self.doi_in.state, "active")
+
+    def test_fallback(self):
+        """If multiple declarations are available, use them sequentially."""
+        sale_tax = self.tax_model.create(
+            {
+                "l10n_it_exempt_reason": "N3.5",
+                "l10n_it_law_reference": "Art. 8, comma 1, lett. a) DPR 633/72",
+                "type_tax_use": "sale",
+                "name": "0% declaration tax sale",
+                "amount": 0,
+                "tax_group_id": self.tax_group.id,
+            }
+        )
+        self.company.l10n_it_edi_doi_tax_id = sale_tax
+        declaration_1 = self._create_declaration("out", threshold=1000)
+        declaration_2 = self._create_declaration("out", threshold=1000)
+        invoice = self._create_invoice_with_lines([500.0, 600.0], sale_tax)
+        declarations = invoice._l10n_it_edi_doi_ext_get_declarations()
+        # pre-condition
+        self.assertEqual(len(declarations), 2)
+        self.assertTrue(all(d.remaining == 1000 for d in declarations))
+
+        invoice.action_post()
+
+        self.assertRecordValues(
+            invoice.l10n_it_edi_doi_ids,
+            [
+                {"declaration_id": declaration_1.id, "amount": 1000.0},
+                {"declaration_id": declaration_2.id, "amount": 100.0},
+            ],
+        )
+        self.assertEqual(declaration_1.invoiced, 1000.0)
+        self.assertEqual(declaration_2.invoiced, 100.0)
+        self.assertEqual(declaration_1.remaining, 0.0)
+        self.assertEqual(declaration_2.remaining, 900.0)
 
     def test_multiple_declarations_bridge_model(self):
         """Test that multiple declarations can be linked via bridge model."""
