@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Odoo Community Association (OCA)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="account_tax_form_l10n_it_tu_iva" model="ir.ui.view">
+        <field name="name">account.tax.form.l10n.it.tu.iva</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="l10n_it.account_tax_form_l10n_it" />
+        <field name="arch" type="xml">
+            <!-- The law reference of the tax cites the Testo Unico IVA from
+                 2027, the reference used before is kept next to it for the
+                 documents dated up to 2026. -->
+            <xpath expr="//field[@name='l10n_it_law_reference']" position="after">
+                <field
+                    name="l10n_it_law_reference_until_2026"
+                    invisible="amount_type == 'group'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
