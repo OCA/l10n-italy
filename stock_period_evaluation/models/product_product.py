@@ -7,7 +7,6 @@
 from datetime import datetime, time
 
 from odoo import models
-from odoo.tools import SQL
 
 
 class Product(models.Model):
@@ -35,14 +34,15 @@ class Product(models.Model):
             the quantities are grouped by
         :return: rows of quantity, product, location, lot, package and owner
         """
-        location = SQL.identifier("stock_move_line", location_field)
+        if location_field not in ("location_id", "location_dest_id"):
+            raise ValueError(location_field)
+        location = f"stock_move_line.{location_field}"
         self.env.cr.execute(
-            SQL(
-                """
+            f"""
                 SELECT
-                    SUM(stock_move_line.quantity),
+                    SUM(stock_move_line.qty_done),
                     stock_move_line.product_id,
-                    %(location)s,
+                    {location},
                     stock_move_line.lot_id,
                     stock_move_line.package_id,
                     stock_move_line.owner_id
@@ -55,22 +55,22 @@ class Product(models.Model):
                     AND stock_move_line.company_id = %(company_id)s
                 GROUP BY
                     stock_move_line.product_id,
-                    %(location)s,
+                    {location},
                     stock_move_line.lot_id,
                     stock_move_line.package_id,
                     stock_move_line.owner_id
                 ORDER BY
                     stock_move_line.product_id,
-                    %(location)s,
+                    {location},
                     stock_move_line.lot_id,
                     stock_move_line.package_id,
                     stock_move_line.owner_id;
-                """,
-                location=location,
-                date_end=date_end,
-                product_id=self.id,
-                company_id=company.id,
-            )
+            """,
+            {
+                "date_end": date_end,
+                "product_id": self.id,
+                "company_id": company.id,
+            },
         )
         return self.env.cr.fetchall()
 
@@ -90,8 +90,7 @@ class Product(models.Model):
 
         quants = {}
         self.env.cr.execute(
-            SQL(
-                """
+            """
                 SELECT
                     stock_quant.quantity,
                     stock_quant.product_id,
@@ -112,10 +111,8 @@ class Product(models.Model):
                     stock_quant.lot_id,
                     stock_quant.package_id,
                     stock_quant.owner_id;
-                """,
-                self.id,
-                company.id,
-            )
+            """,
+            (self.id, company.id),
         )
         for row in self.env.cr.fetchall():
             key = self._get_stock_key(*row[1:])

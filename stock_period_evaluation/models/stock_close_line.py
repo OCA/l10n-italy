@@ -7,6 +7,7 @@
 import logging
 
 from odoo import api, fields, models
+from odoo.tools.misc import format_amount
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +26,7 @@ class StockClosePeriodLine(models.Model):
     product_id = fields.Many2one(
         "product.product",
         string="Product",
-        domain=[("type", "=", "consu"), ("is_storable", "=", True)],
+        domain=[("type", "=", "product")],
         index=True,
         required=True,
     )
@@ -110,8 +111,6 @@ class StockClosePeriodLine(models.Model):
             line.amount_line = line.product_qty * line.price_unit
 
     def _format_value(self, value):
-        from odoo.tools.misc import format_amount
-
         return format_amount(
             self.env,
             value,

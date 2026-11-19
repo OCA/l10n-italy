@@ -27,8 +27,7 @@ class TestStockPeriodEvaluation(TransactionCase):
             {
                 "name": "Product Test Valuation",
                 "standard_price": 55.0,
-                "type": "consu",
-                "is_storable": True,
+                "type": "product",
                 "seller_ids": [(6, 0, [supplierinfo.id])],
                 "route_ids": [(6, 0, [cls.buy_route.id])],
             }
@@ -86,8 +85,8 @@ class TestStockPeriodEvaluation(TransactionCase):
         picking = purchase_order.picking_ids
 
         # Set quantities and validate
-        for move_line in picking.move_line_ids:
-            move_line.quantity = move_line.quantity
+        for move in picking.move_ids:
+            move.quantity_done = move.product_uom_qty
 
         # Backdate the picking if necessary
         if days_ago > 0:
@@ -97,10 +96,11 @@ class TestStockPeriodEvaluation(TransactionCase):
         if receive_qty is None:
             picking.button_validate()
         else:
-            picking.move_ids.quantity = receive_qty
-            picking.move_ids.picked = True
+            picking.move_ids.quantity_done = receive_qty
             action = picking.button_validate()
-            Form.from_action(self.env, action).save().process()
+            Form(
+                self.env[action["res_model"]].with_context(**action["context"])
+            ).save().process()
 
         # Update move dates
         for move in picking.move_ids:
@@ -150,8 +150,8 @@ class TestStockPeriodEvaluation(TransactionCase):
         picking.action_assign()
 
         # Set quantities and validate
-        for move_line in picking.move_line_ids:
-            move_line.quantity = move_line.quantity
+        for move in picking.move_ids:
+            move.quantity_done = move.product_uom_qty
 
         # Backdate and validate
         if days_ago > 0:
@@ -190,16 +190,24 @@ class TestStockPeriodEvaluation(TransactionCase):
 
     def _receive_backorder(self, purchase_order, days_ago=0):
         backorder = purchase_order.picking_ids.filtered(lambda p: p.state != "done")
+        for move in backorder.move_ids:
+            move.quantity_done = move.product_uom_qty
         backorder.button_validate()
         self._set_date(backorder, fields.Date.today() - timedelta(days=days_ago))
 
     def _return_to_vendor(self, purchase_order, product_qty, days_ago=0):
         """Return part of the first receipt, updating the purchased quantity"""
         picking = purchase_order.picking_ids.sorted("id")[:1]
-        wizard = self.env["stock.return.picking"].create({"picking_id": picking.id})
-        wizard.product_return_moves.quantity = product_qty
-        return_picking = wizard._create_return()
-        return_picking.move_ids.picked = True
+        wizard = Form(
+            self.env["stock.return.picking"].with_context(
+                active_id=picking.id, active_model="stock.picking"
+            )
+        ).save()
+        wizard.product_return_moves.write({"quantity": product_qty, "to_refund": True})
+        return_picking_id, _picking_type_id = wizard._create_returns()
+        return_picking = self.env["stock.picking"].browse(return_picking_id)
+        for move in return_picking.move_ids:
+            move.quantity_done = move.product_uom_qty
         return_picking.button_validate()
         self._set_date(return_picking, fields.Date.today() - timedelta(days=days_ago))
 
@@ -238,7 +246,7 @@ class TestStockPeriodEvaluation(TransactionCase):
         )
         move._action_confirm()
         move._action_assign()
-        move.picked = True
+        move.quantity_done = product_qty
         move._action_done()
         move.date = move.move_line_ids.date = fields.Date.today() - timedelta(
             days=days_ago

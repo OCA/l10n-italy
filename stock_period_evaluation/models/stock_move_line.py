@@ -68,7 +68,7 @@ class StockMoveLine(models.Model):
         It is negative for returns and zero for moves between internal locations.
         """
         qty = move_id.product_uom._compute_quantity(
-            move_id.quantity, move_id.product_id.uom_id
+            move_id.quantity_done, move_id.product_id.uom_id
         )
         if (
             move_id.location_id.usage != "internal"
@@ -332,7 +332,7 @@ class StockMoveLine(models.Model):
         move_line_domain = [
             ("state", "=", "done"),
             ("product_id", "=", line.product_id.id),
-            ("quantity", ">", 0),
+            ("qty_done", ">", 0),
             ("date", "<=", line.close_id.close_date),
             ("date", ">", line.close_id.last_close_date),
             ("company_id", "=", line.close_id.company_id.id),
@@ -404,9 +404,9 @@ class StockMoveLine(models.Model):
         # get all moves without the lot in the inventory line because it is not relevant
         flag = False
         for ml in move_line_ids:
-            uom_from = ml.move_id.product_uom
+            uom_from = ml.product_uom_id
             # Convert to UoM of the product each time
-            qty_from = ml.quantity
+            qty_from = ml.qty_done
             product_qty = uom_from._compute_quantity(qty_from, ml.product_id.uom_id)
             # Get price from the purchase line
             price_unit = 0

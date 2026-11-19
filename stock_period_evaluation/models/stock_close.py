@@ -65,8 +65,8 @@ class StockClosePeriod(models.Model):
             ("no_force", "Category setup"),
             ("purchase", "Purchase average cost"),
             ("standard", "Cost in product"),
-            ("fifo", "FIFO"),
-            ("lifo", "  LIFO (continuous)"),
+            ("fifo", "FIFO (continuous)"),
+            ("lifo", "LIFO (continuous)"),
         ],
         default="no_force",
         copy=False,
@@ -136,8 +136,7 @@ class StockClosePeriod(models.Model):
                 .with_context(active_test=False)
                 .search(
                     [
-                        ("type", "=", "consu"),
-                        ("is_storable", "=", True),
+                        ("type", "=", "product"),
                     ]
                 )
             ]

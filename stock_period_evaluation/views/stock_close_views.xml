@@ -4,7 +4,7 @@
         <field name="name">stock.close.period.tree</field>
         <field name="model">stock.close.period</field>
         <field name="arch" type="xml">
-            <list>
+            <tree>
                 <field name="name" />
                 <field name="close_date" />
                 <field name="amount" />
@@ -12,7 +12,7 @@
                 <field name="work_end_date" />
                 <field name="state" />
                 <field name="company_id" readonly="1" />
-            </list>
+            </tree>
         </field>
     </record>
 
@@ -24,7 +24,7 @@
                 <header>
                     <button
                         name="action_start"
-                        invisible="state != 'draft'"
+                        states="draft"
                         string="Start"
                         type="object"
                         class="oe_highlight"
@@ -32,7 +32,7 @@
                     />
                     <button
                         name="action_recalculate_purchase"
-                        invisible="state != 'confirm'"
+                        states="confirm"
                         string="Compute Purchase"
                         type="object"
                         class="oe_highlight"
@@ -44,18 +44,18 @@
                         type="object"
                         class="oe_highlight"
                         groups="stock_period_evaluation.group_stock_period_evaluation_manager"
-                        invisible="state not in ['confirm']"
+                        states="confirm"
                     />
                     <button
                         name="action_cancel"
-                        invisible="state not in ['confirm', 'done']"
+                        states="confirm,done"
                         string="Cancel"
                         type="object"
                         groups="stock_period_evaluation.group_stock_period_evaluation_manager"
                     />
                     <button
                         name="action_set_to_draft"
-                        invisible="state != 'cancel'"
+                        states="cancel"
                         string="Set to Draft"
                         type="object"
                         groups="stock_period_evaluation.group_stock_period_evaluation_manager"
@@ -95,7 +95,7 @@
                             <field name="last_close_date" />
                             <field
                                 name="force_evaluation_method"
-                                readonly="purchase_ok"
+                                attrs="{'readonly': [('purchase_ok', '=', True)]}"
                             />
                             <field name="company_id" readonly="1" />
                             <field name="purchase_ok" />
@@ -106,7 +106,7 @@
                     <notebook>
                         <page string="Product list">
                             <field name="line_ids">
-                                <list editable="top">
+                                <tree editable="top">
                                     <field name="product_id" />
                                     <field name="categ_name" />
                                     <field name="location_id" />
@@ -117,7 +117,7 @@
                                     <field name="product_qty" />
                                     <field name="price_unit" />
                                     <field name="amount_line" />
-                                </list>
+                                </tree>
                             </field>
                         </page>
                     </notebook>
@@ -138,7 +138,7 @@
         <field name="name">Stock Period Evaluation</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">stock.close.period</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <menuitem
