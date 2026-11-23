@@ -111,6 +111,11 @@ msgid "<strong>Delivery Method:</strong>"
 msgstr "<strong>Metodo di consegna:</strong>"
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "<strong>Incoterm:</strong>"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_data
 msgid "<strong>Method of Transport / Carrier</strong>"
 msgstr "<strong>Metodo di trasporto / Vettore</strong>"
@@ -720,6 +725,11 @@ msgstr "Prelievo DdT"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "Delivery Slip:"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Delivery address"
 msgstr "Indirizzo di consegna"
 
@@ -797,11 +807,6 @@ msgid "Document"
 msgstr "Documento"
 
 #. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "Document:"
-msgstr "Documento:"
-
-#. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__stock_delivery_note__state__done
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_search_view
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
@@ -826,14 +831,14 @@ msgid "Draft DN"
 msgstr "Bozza DdT"
 
 #. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
+msgid "Draft Delivery Slip:"
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
 msgid "Draft document"
 msgstr "Documento in bozza"
-
-#. module: l10n_it_delivery_note
-#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
-msgid "Draft document:"
-msgstr "Documento in bozza:"
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
@@ -846,6 +851,17 @@ msgstr "Firma del corriere"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_select_wizard__error_message
 msgid "Error Message"
 msgstr "Messaggio di errore"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__print_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_print_note
+msgid "External note"
+msgstr ""
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
+msgid "External notes"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_home_delivery_note
@@ -995,6 +1011,12 @@ msgstr "In arrivo"
 #: code:addons/l10n_it_delivery_note/models/stock_delivery_note_type.py:0
 msgid "Incoming DdT sequence"
 msgstr "Sequenza DdT in ingresso"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__incoterm_id
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_picking__delivery_note_incoterm_id
+msgid "Incoterm"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields.selection,name:l10n_it_delivery_note.selection__sale_advance_payment_inv__step__initial
@@ -1301,6 +1323,12 @@ msgid "Note DN"
 msgstr "Nota DdT"
 
 #. module: l10n_it_delivery_note
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_delivery_note__print_note
+#: model:ir.model.fields,help:l10n_it_delivery_note.field_stock_picking__delivery_note_print_note
+msgid "Note to include in the report."
+msgstr ""
+
+#. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 msgid "Notes"
 msgstr "Note"
@@ -1371,6 +1399,7 @@ msgstr "Sequenza DdT in uscita"
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__packages
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.parcels_data
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.portal_my_delivery_notes
 msgid "Packages"
@@ -1545,6 +1574,11 @@ msgstr "Rif. Cliente"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "Ref. Order"
 msgstr "Rif. Ordine"
+
+#. module: l10n_it_delivery_note
+#: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_picking_form_view
+msgid "Report Notes"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.stock_delivery_note_form_view
@@ -1738,6 +1772,12 @@ msgstr "Mostra sconto"
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__show_product_information
 msgid "Show Product Information"
 msgstr "Mostra le informazioni di prodotto"
+
+#. module: l10n_it_delivery_note
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__print_packages
+#: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note_type__print_packages
+msgid "Show packages on printed DN"
+msgstr ""
 
 #. module: l10n_it_delivery_note
 #: model:ir.model.fields,field_description:l10n_it_delivery_note.field_stock_delivery_note__print_prices
@@ -2355,6 +2395,12 @@ msgstr "di:"
 #: model_terms:ir.ui.view,arch_db:l10n_it_delivery_note.delivery_note_report_template
 msgid "qty"
 msgstr "q.tà"
+
+#~ msgid "Document:"
+#~ msgstr "Documento:"
+
+#~ msgid "Draft document:"
+#~ msgstr "Documento in bozza:"
 
 #~ msgid "Manufacturing Operation"
 #~ msgstr "Operazione Prodotta"
