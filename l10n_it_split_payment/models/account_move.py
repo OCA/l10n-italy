@@ -42,11 +42,41 @@ class AccountMove(models.Model):
         return res
 
     def write(self, vals):
+        sp_moves = self.filtered(lambda am: am.split_payment)
+        # In account move(s) where fiscal position value is changed
+        # manually, can happen that are not set as split payment
+        # Check if the value is present in vals, allow include the
+        # move(s) becoming split payment in this write, even if the
+        # value set for fiscal position is the old value
+        fiscal_position_id = vals.get("fiscal_position_id", 0)
+        fiscal_position = self.env["account.fiscal.position"].browse(
+            fiscal_position_id
+        ).exists()
+        if fiscal_position and fiscal_position.split_payment:
+            sp_moves = self
+
+        if sp_moves:
+            # Skip check move(s) validity, until split payment write-off
+            # completed
+            sp_moves_ctx = sp_moves.with_context(check_move_validity=False)
+            res = super(AccountMove, sp_moves_ctx).write(vals)
+            # Keep checking validity of move(s) that are not split
+            # payment
+            other_moves = (
+                self.with_context(check_move_validity=True) - sp_moves
+
+            )
+            # If no move(s) that are not in split payment, avoid write
+            # on empty recordset. Because Odoo methods keep processing
+            # relational commands in vals, that refer to non existent
+            # account.move.line managed by first write
+            if other_moves:
+                res = super(AccountMove, other_moves).write(vals)
+        else:
+            res = super().write(vals)
         if self.env.context.get("skip_split_payment_computation"):
-            return super().write(vals)
-        res = super(AccountMove, self.with_context(check_move_validity=False)).write(
-            vals
-        )
+            return res
+        self.compute_split_payment()
         container = {"records": self}
         with self._check_balanced(container):
             if "fiscal_position_id" in vals:
