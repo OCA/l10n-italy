@@ -30,6 +30,10 @@
                                 name="company_id"
                                 groups="base.group_multi_company"
                             />
+                            <field
+                                name="print_packages"
+                                groups="stock.group_tracking_lot"
+                            />
                             <field name="print_prices" />
                         </group>
                     </group>

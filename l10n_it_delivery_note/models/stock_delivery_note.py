@@ -143,6 +143,9 @@ class StockDeliveryNote(models.Model):
     )
 
     date = fields.Date(copy=False)
+    incoterm_id = fields.Many2one(
+        comodel_name="account.incoterms",
+    )
     type_id = fields.Many2one(
         "stock.delivery.note.type",
         string="Type",
@@ -282,10 +285,18 @@ class StockDeliveryNote(models.Model):
         copy=False,
     )
 
+    print_packages = fields.Boolean(
+        related="type_id.print_packages",
+        store=True,
+    )
     print_prices = fields.Boolean(
         string="Show prices on printed DN", related="type_id.print_prices", store=True
     )
     note = fields.Html(string="Internal note")
+    print_note = fields.Html(
+        string="External note",
+        help="Note to include in the report.",
+    )
 
     can_change_number = fields.Boolean(compute="_compute_boolean_flags")
     show_product_information = fields.Boolean(compute="_compute_boolean_flags")

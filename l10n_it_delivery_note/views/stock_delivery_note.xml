@@ -155,6 +155,7 @@
                                 widget="selection"
                             />
                             <field name="date" readonly="state != 'draft'" />
+                            <field name="incoterm_id" />
                         </group>
                     </group>
                     <group>
@@ -476,6 +477,9 @@
                         </page>
                         <page name="internal_notes" string="Internal notes">
                             <field name="note" readonly="state == 'done'" />
+                        </page>
+                        <page name="external_notes" string="External notes">
+                            <field name="print_note" />
                         </page>
                     </notebook>
                 </sheet>

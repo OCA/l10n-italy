@@ -87,6 +87,7 @@ class StockDeliveryNoteCreateWizard(models.TransientModel):
             "partner_shipping_id": self.partner_shipping_id.id,
             "type_id": self.type_id.id,
             "date": self.date,
+            "incoterm_id": sale_order_id.incoterm.id,
             "carrier_id": delivery_method_id.partner_id.id,
             "delivery_method_id": self.partner_id.property_delivery_carrier_id.id,
             "transport_condition_id": sale_order_id.default_transport_condition_id.id
