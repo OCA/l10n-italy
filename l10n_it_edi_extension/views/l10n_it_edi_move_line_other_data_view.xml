@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- List View -->
+    <record id="l10n_it_edi_move_line_other_data_list_view" model="ir.ui.view">
+        <field name="name">l10n_it_edi.line_other_data.list</field>
+        <field name="model">l10n_it_edi.line_other_data</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="move_line_id" column_invisible="1" />
+                <field name="name" />
+                <field name="text_ref" />
+                <field name="num_ref" />
+                <field name="date_ref" />
+                <button
+                    name="action_delete"
+                    type="object"
+                    title="Delete"
+                    icon="fa-trash-o"
+                    width="1"
+                />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="l10n_it_edi_move_line_other_data_form_view" model="ir.ui.view">
+        <field name="name">l10n_it_edi.line_other_data.form</field>
+        <field name="model">l10n_it_edi.line_other_data</field>
+        <field name="arch" type="xml">
+            <form string="Other Invoice Data">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="move_line_id" readonly="1" />
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="text_ref" />
+                            <field name="num_ref" />
+                            <field name="date_ref" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
