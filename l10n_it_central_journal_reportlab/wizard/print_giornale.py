@@ -259,7 +259,7 @@ class WizardGiornaleReportlab(models.TransientModel):
         if self.company_id.state_id.code:
             text += " - " + self.company_id.state_id.code
         if self.company_id.vat:
-            text += " IVA: " + self.company_id.vat
+            text += " - P.IVA: " + self.company_id.vat
         height_available -= gap_text
         report.drawString(margin_left, height_available, text)
         return height_available
