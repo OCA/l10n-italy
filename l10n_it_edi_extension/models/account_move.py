@@ -37,6 +37,10 @@ class AccountMoveInherit(models.Model):
         readonly=True,
         copy=False,
     )
+    l10n_it_edi_ext_attachment_in_preview_link = fields.Char(
+        string="Imported Electronic Bill Preview link",
+        compute="_compute_l10n_it_edi_ext_attachment_in_preview_link",
+    )
     l10n_it_edi_line_ids = fields.One2many(
         "l10n_it_edi.line",
         "invoice_id",
@@ -140,18 +144,25 @@ class AccountMoveInherit(models.Model):
     # Computes
     # -------------------------------------------------------------------------
 
-    @api.depends("l10n_it_edi_attachment_file", "l10n_it_edi_ext_attachment_in_id")
+    @api.depends("l10n_it_edi_attachment_file")
     def _compute_l10n_it_edi_attachment_preview_link(self):
         for move in self:
-            if (
-                move.l10n_it_edi_attachment_file
-                or move.l10n_it_edi_ext_attachment_in_id
-            ):
+            if move.l10n_it_edi_attachment_file:
                 move.l10n_it_edi_attachment_preview_link = (
                     move.get_base_url() + f"/fatturapa/preview/{move.id}"
                 )
             else:
                 move.l10n_it_edi_attachment_preview_link = ""
+
+    @api.depends("l10n_it_edi_ext_attachment_in_id")
+    def _compute_l10n_it_edi_ext_attachment_in_preview_link(self):
+        for move in self:
+            if move.l10n_it_edi_ext_attachment_in_id:
+                move.l10n_it_edi_ext_attachment_in_preview_link = (
+                    move.get_base_url() + f"/fatturapa/preview/{move.id}/fatturapa_in"
+                )
+            else:
+                move.l10n_it_edi_ext_attachment_in_preview_link = ""
 
     @api.depends(
         "l10n_it_edi_amount_untaxed", "l10n_it_edi_amount_tax", "l10n_it_edi_rounding"
@@ -181,6 +192,7 @@ class AccountMoveInherit(models.Model):
         "amount_tax",
         "amount_total",
         "l10n_it_edi_attachment_file",
+        "l10n_it_edi_ext_attachment_in_id",
         "l10n_it_edi_amount_untaxed",
         "l10n_it_edi_amount_tax",
         "l10n_it_edi_rounding",
@@ -191,7 +203,9 @@ class AccountMoveInherit(models.Model):
         invoices_to_check = self.filtered(
             lambda inv: inv._l10n_it_edi_is_to_validate()
             and inv.state in ["draft", "posted"]
-            and inv.l10n_it_edi_attachment_file
+            and (
+                inv.l10n_it_edi_attachment_file or inv.l10n_it_edi_ext_attachment_in_id
+            )
         )
         for invoice in invoices_to_check:
             error_messages = list()
@@ -223,10 +237,21 @@ class AccountMoveInherit(models.Model):
             "target": "new",
         }
 
-    def _get_invoice_legal_documents(self, filetype, allow_fallback=False):
+    def action_l10n_it_edi_ext_attachment_in_preview(self):
         self.ensure_one()
 
-        if filetype == "fatturapa":
+        return {
+            "type": "ir.actions.act_url",
+            "name": self.env._("Show preview"),
+            "url": self.l10n_it_edi_ext_attachment_in_preview_link,
+            "target": "new",
+        }
+
+    def _get_invoice_legal_documents(self, filetype, allow_fallback=False):
+        # Keep core's "fatturapa" type for the e-invoice sent to the SdI
+        self.ensure_one()
+
+        if filetype == "fatturapa_in":
             if fatturapa_attachment := self.l10n_it_edi_ext_attachment_in_id:
                 return {
                     "filename": fatturapa_attachment.name,
@@ -356,7 +381,7 @@ class AccountMoveInherit(models.Model):
             return base64.b64decode(content)
         except binascii.Error:
             _logger.info(f"The p7m file '{name}' is not base64 encoded")
-            return ""
+            return b""
 
     def _parse_xml_with_recovery(self, content, name=None):
         xml_tree = super()._parse_xml_with_recovery(content, name=name)
@@ -626,7 +651,7 @@ class AccountMoveInherit(models.Model):
         if default_product_taxes := partner_default_product.supplier_taxes_id:
             product_extra_domain = Domain.AND(
                 [
-                    extra_domain,
+                    extra_domain or [],
                     [
                         ("id", "in", default_product_taxes.ids),
                     ],
@@ -859,10 +884,10 @@ class AccountMoveInherit(models.Model):
             self.amount_untaxed - self.l10n_it_edi_rounding,
             self.l10n_it_edi_amount_untaxed,
             self.env._(
-                "Untaxed amount (%(amount_untaxed)s}) "
-                "minus rounding (%(rounding)s}) "
+                "Untaxed amount (%(amount_untaxed)s) "
+                "minus rounding (%(rounding)s) "
                 "does not match with "
-                "e-invoice untaxed amount %(edi_amount_untaxed)s)",
+                "e-invoice untaxed amount (%(edi_amount_untaxed)s)",
                 amount_untaxed=self.amount_untaxed,
                 rounding=self.l10n_it_edi_rounding,
                 edi_amount_untaxed=self.l10n_it_edi_amount_untaxed,
@@ -874,7 +899,7 @@ class AccountMoveInherit(models.Model):
             self.amount_tax,
             self.l10n_it_edi_amount_tax,
             self.env._(
-                "Taxed amount (%(tax_amount)s}) "
+                "Taxed amount (%(tax_amount)s) "
                 "does not match with "
                 "e-invoice taxed amount (%(edi_tax_amount)s)",
                 tax_amount=self.amount_tax,
@@ -1040,7 +1065,7 @@ class AccountMoveInherit(models.Model):
 
         Used for roles core does not handle (e.g. ``RappresentanteFiscale``).
         Follows the path core uses for buyer/seller: match by Italian
-        Codice Fiscale, then delegate to ``_l10n_it_edi_import_partner``
+        Codice Fiscale, then delegate to ``_import_partner``
         which calls ``_retrieve_partner`` and creates a new partner when
         nothing matches. ``_l10n_it_edi_update_partner`` fills the
         FatturaPA extras (state_id, EORI, Albo*, firstname/lastname)
@@ -1065,17 +1090,31 @@ class AccountMoveInherit(models.Model):
                 limit=1,
             )
         if not partner:
-            partner, _logs = self.env["account.edi.common"]._import_partner(
+            # Like core does for buyer and seller,
+            # prefix the VAT with the country code
+            # and pass the address in postal_address
+            country_code = (
+                self.env["res.country"].browse(partner_values.get("country_id")).code
+            )
+            vat = partner_values.get("vat")
+            if vat and country_code:
+                vat = f"{country_code}{vat}"
+            partner, logs = self.env["account.edi.common"]._import_partner(
                 company_id=company,
                 name=partner_values.get("name"),
                 phone=partner_values.get("phone"),
                 email=partner_values.get("email"),
-                vat=partner_values.get("vat"),
-                street=partner_values.get("street"),
-                city=partner_values.get("city"),
-                zip_code=partner_values.get("zip"),
+                vat=vat,
+                postal_address={
+                    "country_code": country_code,
+                    "street": partner_values.get("street"),
+                    "city": partner_values.get("city"),
+                    "zip": partner_values.get("zip"),
+                },
             )
-            if partner and codice_fiscale and not partner.l10n_it_codice_fiscale:
+            # Like core, set the Codice Fiscale only on created partners:
+            # core logs a message when it creates the partner
+            if partner and logs and codice_fiscale:
                 partner.l10n_it_codice_fiscale = codice_fiscale
             if partner and not partner.country_id and partner_values.get("country_id"):
                 partner.country_id = partner_values["country_id"]
@@ -1221,8 +1260,7 @@ class AccountMoveInherit(models.Model):
             invoice.l10n_it_edi_tax_representative_id = tax_representative
 
         if (
-            invoice
-            and not invoice.is_sale_document()
+            not invoice.is_sale_document()
             and (attachment_name := data.get("name", ""))
             and (attachment_raw := data.get("raw", b""))
         ):

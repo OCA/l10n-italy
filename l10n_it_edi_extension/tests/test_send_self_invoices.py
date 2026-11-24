@@ -221,6 +221,16 @@ class TestSendSelfInvoices(Common):
         self.assertEqual(len(logs.records), 1)
         self.assertIn(unexpected_error_self_invoice.name, logs.output[0])
 
+    def test_send_self_invoice_partner_default_product(self):
+        """A self-invoice is sent even if the supplier has a default product."""
+        self.french_partner.l10n_it_edi_ext_default_product_id = self.default_product
+        self_invoice = self._create_bill(self.french_partner, self.purchase_rc_tax)
+        self_invoice.action_post()
+
+        _action, uploaded_moves = self._send_self_invoices(self_invoice)
+
+        self.assertEqual(uploaded_moves, self_invoice)
+
     def test_send_self_invoices_document_type(self):
         """Self-invoices of type TD01, TD04 and TD24 are never sent."""
         document_types = self.env["l10n_it.document.type"].search(

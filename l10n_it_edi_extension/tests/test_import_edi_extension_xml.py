@@ -9,7 +9,7 @@ from datetime import date
 from unittest.mock import patch
 
 from odoo import Command, fields, tools
-from odoo.exceptions import MissingError
+from odoo.exceptions import MissingError, UserError
 from odoo.tests import HttpCase, new_test_user
 from odoo.tools import file_open, mute_logger
 
@@ -145,6 +145,46 @@ class TestFatturaPAXMLValidation(Common):
                             f"Field {field} of invoice {move.display_name} "
                             f"does not match",
                         )
+
+    def test_tax_representative_create(self):
+        """The tax representative is created with country and prefixed VAT."""
+        # Act
+        invoice = self._assert_import_invoice("IT02780790107_11004.xml", [{}])
+
+        # Assert
+        self.assertRecordValues(
+            invoice.l10n_it_edi_tax_representative_id,
+            [
+                {
+                    "name": "Rappresentante fiscale",
+                    "vat": "IT03339130126",
+                    "country_id": self.env.ref("base.it").id,
+                    "l10n_it_codice_fiscale": "03339130126",
+                }
+            ],
+        )
+
+    def test_tax_representative_existing(self):
+        """An existing partner with the same VAT is the tax representative,
+        and its Codice Fiscale is not changed."""
+        # Arrange
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Rappresentante fiscale",
+                "vat": "IT03339130126",
+            }
+        )
+        partner.l10n_it_codice_fiscale = False
+        # pre-condition: the Codice Fiscale of the file is not valid
+        # for this partner, that is not a company
+        self.assertFalse(partner.is_company)
+
+        # Act
+        invoice = self._assert_import_invoice("IT02780790107_11004.xml", [{}])
+
+        # Assert
+        self.assertEqual(invoice.l10n_it_edi_tax_representative_id, partner)
+        self.assertFalse(partner.l10n_it_codice_fiscale)
 
     def test_multiple_invoices(self):
         """If an e-invoice contains multiple invoices, they are all created."""
@@ -409,6 +449,62 @@ class TestFatturaPAXMLValidation(Common):
 
         # Assert
         self.assertTrue(invoice.l10n_it_edi_ext_attachment_in_id)
+        self.assertTrue(
+            invoice.l10n_it_edi_ext_attachment_in_preview_link.endswith(
+                f"/fatturapa/preview/{invoice.id}/fatturapa_in"
+            )
+        )
+        self.assertFalse(invoice.l10n_it_edi_attachment_preview_link)
+
+    def test_legal_documents_imported_and_sent(self):
+        """An imported bill sent as self-invoice keeps both e-invoices:
+        the sent one is the FatturaPA legal document,
+        the imported one has its own type."""
+        # Arrange
+        bill = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+        imported_attachment = bill.l10n_it_edi_ext_attachment_in_id
+        sent_content = b"<FatturaElettronica/>"
+
+        # Act
+        bill.write(
+            {
+                "l10n_it_edi_attachment_name": "IT01234567890_00001.xml",
+                "l10n_it_edi_attachment_file": base64.b64encode(sent_content),
+            }
+        )
+
+        # Assert
+        self.assertEqual(
+            bill._get_invoice_legal_documents("fatturapa"),
+            {
+                "filename": "IT01234567890_00001.xml",
+                "filetype": "xml",
+                "content": sent_content,
+            },
+        )
+        self.assertEqual(
+            bill._get_invoice_legal_documents("fatturapa_in"),
+            {
+                "filename": imported_attachment.name,
+                "filetype": "xml",
+                "content": imported_attachment.raw,
+            },
+        )
+        self.assertTrue(
+            bill.l10n_it_edi_attachment_preview_link.endswith(
+                f"/fatturapa/preview/{bill.id}"
+            )
+        )
+        self.assertTrue(
+            bill.l10n_it_edi_ext_attachment_in_preview_link.endswith(
+                f"/fatturapa/preview/{bill.id}/fatturapa_in"
+            )
+        )
 
     def test_imported_attachment(self):
         """The imported e-invoice is linked to the bill without duplicating it,
@@ -437,6 +533,27 @@ class TestFatturaPAXMLValidation(Common):
             1,
         )
         self.assertFalse(invoice_copy.l10n_it_edi_ext_attachment_in_id)
+
+    def test_validation_message_imported_bill(self):
+        """Imported bills warn when their amounts differ from the e-invoice."""
+        # Arrange
+        bill = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+        untaxed_message = "does not match with e-invoice untaxed amount"
+        # pre-condition
+        self.assertFalse(bill.l10n_it_edi_attachment_file)
+        self.assertTrue(bill.l10n_it_edi_ext_attachment_in_id)
+        self.assertNotIn(untaxed_message, bill.l10n_it_edi_validation_message or "")
+
+        # Act
+        bill.invoice_line_ids[0].price_unit += 1
+
+        # Assert
+        self.assertIn(untaxed_message, bill.l10n_it_edi_validation_message)
 
     def test_partner_default_product(self):
         """If the partner has a default product and no product is found,
@@ -714,6 +831,36 @@ class TestImportWizardSplitting(Common):
         # must be 3 invoices in total
         self.assertEqual(len(moves), 3)
 
+    @mute_logger(
+        "odoo.addons.l10n_it_edi_extension.wizards.l10n_it_edi_import_file_wizard"
+    )
+    def test_import_zip_twice_bill(self):
+        """A vendor bill already imported from a zip is not imported again."""
+        path = "l10n_it_edi_extension/tests/import_xmls/IT02780790107_11004.xml"
+        with file_open(path, mode="rb") as fd:
+            xml_bytes = fd.read()
+        zip_bytes = self._build_zip({"IT02780790107_11004.xml": xml_bytes})
+        bill = self._run_wizard("bill.zip", zip_bytes)
+        # pre-condition
+        self.assertTrue(bill.is_purchase_document())
+
+        with self.assertRaisesRegex(UserError, "IT02780790107_11004.xml"):
+            self._run_wizard("bill.zip", zip_bytes)
+
+    @mute_logger(
+        "odoo.addons.l10n_it_edi_extension.wizards.l10n_it_edi_import_file_wizard"
+    )
+    def test_import_zip_twice_invoice(self):
+        """A customer invoice already imported from a zip is not imported again."""
+        self.company.vat = "01654010345"
+        self.company.l10n_it_codice_fiscale = "01654010345"
+        invoice = self._import_moves_from_zip("INV_2026_00005.zip")
+        # pre-condition
+        self.assertTrue(invoice.is_sale_document())
+
+        with self.assertRaisesRegex(UserError, invoice.l10n_it_edi_attachment_name):
+            self._import_moves_from_zip("INV_2026_00005.zip")
+
 
 class TestFatturaPAPreview(Common, HttpCase):
     @mute_logger("odoo.http")
@@ -726,7 +873,7 @@ class TestFatturaPAPreview(Common, HttpCase):
                 {},
             ],
         )
-        preview_url = f"/fatturapa/preview/{invoice.id}"
+        preview_url = f"/fatturapa/preview/{invoice.id}/fatturapa_in"
         other_company = self.company_data["company"]
         other_company_user = new_test_user(
             self.env,
@@ -748,3 +895,46 @@ class TestFatturaPAPreview(Common, HttpCase):
         self.assertEqual(other_company_response.status_code, 403)
         self.assertEqual(user_response.status_code, 200)
         self.assertEqual(user_response.headers["Content-Type"], "application/pdf")
+
+    @mute_logger("odoo.http")
+    def test_preview_undecodable(self):
+        """The preview of an e-invoice that cannot be decoded shows an error."""
+        # Arrange
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+        invoice.l10n_it_edi_ext_attachment_in_id.raw = b"not an e-invoice"
+        preview_url = f"/fatturapa/preview/{invoice.id}/fatturapa_in"
+
+        # Act
+        self.authenticate(self.env.user.login, self.env.user.login)
+        response = self.url_open(preview_url)
+
+        # Assert
+        self.assertEqual(response.status_code, 422)
+        self.assertIn("cannot be decoded", response.text)
+
+    @mute_logger("odoo.http")
+    def test_preview_missing_document(self):
+        """The preview of a missing e-invoice, or of an unknown type, is not found."""
+        # Arrange
+        invoice = self._assert_import_invoice(
+            "IT02780790107_11004.xml",
+            [
+                {},
+            ],
+        )
+        # pre-condition
+        self.assertFalse(invoice.l10n_it_edi_attachment_file)
+
+        # Act
+        self.authenticate(self.env.user.login, self.env.user.login)
+        sent_response = self.url_open(f"/fatturapa/preview/{invoice.id}")
+        unknown_response = self.url_open(f"/fatturapa/preview/{invoice.id}/pdf")
+
+        # Assert
+        self.assertEqual(sent_response.status_code, 404)
+        self.assertEqual(unknown_response.status_code, 404)

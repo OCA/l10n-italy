@@ -40,7 +40,6 @@
 
     <record id="action_compute_fc" model="ir.actions.act_window">
         <field name="name">Compute Fiscal Code</field>
-        <field name="path">compute-fiscal-code</field>
         <field name="res_model">wizard.compute.fc</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

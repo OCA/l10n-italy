@@ -6,7 +6,7 @@ from io import BytesIO
 
 from lxml import etree
 
-from odoo import api, tools
+from odoo import tools
 from odoo.exceptions import UserError
 from odoo.http import Controller, request, route
 
@@ -14,7 +14,6 @@ _logger = logging.getLogger(__name__)
 
 
 class FatturaPAController(Controller):
-    @api.model
     def get_fatturapa_preview_style_name(self):
         """Hook to have a clean inheritance."""
         return "FoglioStileAssoSoftware.xsl"
@@ -27,7 +26,7 @@ class FatturaPAController(Controller):
         )
         if xml_tree is None:
             _logger.info("Italian EDI invoice file %s cannot be decoded.", name)
-            return []
+            raise UserError(request.env._("The e-invoice %s cannot be decoded.", name))
 
         xml_string = etree.tostring(
             xml_tree, pretty_print=True, encoding="unicode"
@@ -50,27 +49,26 @@ class FatturaPAController(Controller):
 
     @route(
         [
-            "/fatturapa/preview/<invoice_id>",
+            "/fatturapa/preview/<int:invoice_id>",
+            "/fatturapa/preview/<int:invoice_id>/<string:filetype>",
         ],
         type="http",
         auth="user",
         website=True,
     )
-    def fatturapa_preview(self, invoice_id, **data):
-        invoice = request.env["account.move"].browse(int(invoice_id)).exists()
+    def fatturapa_preview(self, invoice_id, filetype="fatturapa", **data):
+        # "fatturapa" is the e-invoice sent to the SdI,
+        # "fatturapa_in" is the imported e-invoice
+        if filetype not in ("fatturapa", "fatturapa_in"):
+            raise request.not_found()
+        invoice = request.env["account.move"].browse(invoice_id).exists()
         if not invoice:
             raise request.not_found()
         invoice.check_access("read")
 
-        doc_data = invoice.sudo()._get_invoice_legal_documents(
-            "fatturapa", allow_fallback=True
-        )
+        doc_data = invoice.sudo()._get_invoice_legal_documents(filetype)
         if not doc_data:
             raise request.not_found()
-        if errors := doc_data.get("errors"):
-            raise UserError(
-                request.env._("Error while creating XML:\n- %s", "\n- ".join(errors))
-            )
 
         html = self.get_fattura_elettronica_preview(doc_data)
         if isinstance(html, bytes):

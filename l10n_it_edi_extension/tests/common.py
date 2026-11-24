@@ -5,7 +5,7 @@
 import base64
 
 from odoo import tools
-from odoo.fields import Command, Domain
+from odoo.fields import Command
 
 from odoo.addons.l10n_it_edi.tests.common import TestItEdi
 
@@ -134,6 +134,4 @@ class Common(TestItEdi):
             )
         )
         action = wizard_attachment_import.action_import()
-
-        move_ids = action.get("domain", Domain).value
-        return self.env["account.move"].browse(move_ids)
+        return self.env["account.move"].search(action["domain"])

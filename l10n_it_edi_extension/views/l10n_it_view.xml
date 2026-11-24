@@ -78,7 +78,6 @@
                     />
                     <button
                         name="action_l10n_it_edi_attachment_preview"
-                        invisible="l10n_it_edi_ext_attachment_in_id"
                         type="object"
                         string="Preview"
                     />
@@ -94,7 +93,7 @@
                         groups="account.group_account_invoice"
                     />
                     <button
-                        name="action_l10n_it_edi_attachment_preview"
+                        name="action_l10n_it_edi_ext_attachment_in_preview"
                         type="object"
                         string="Preview"
                     />
