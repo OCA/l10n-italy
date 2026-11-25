@@ -203,6 +203,41 @@ class TestAssets(Common):
         wiz.link_asset()
         self.assertTrue(asset.sold)
 
+    def test_report_asset_state_translated(self):
+        """The asset state is translated in the language of the reports."""
+        # Arrange
+        purchase_date = date(2019, 1, 1)
+        report_date = date(2019, 12, 31)
+        asset = self._create_asset(asset_date=purchase_date)
+        self.assertEqual(asset.state, "non_depreciated")
+        self.env["res.lang"]._activate_lang("it_IT")
+        self.env.ref(
+            "l10n_it_asset_management.selection__asset_asset__state__non_depreciated"
+        ).with_context(lang="it_IT").name = "Non ammortizzato"
+        self._generate_fiscal_years(purchase_date, report_date)
+
+        for report_type in ("journal", "previsional"):
+            with self.subTest(report_type=report_type):
+                # Act
+                export_method, report_model, wizard_model = self._get_report_values(
+                    report_type
+                )
+                wiz = (
+                    self.env[wizard_model]
+                    .with_context(lang="it_IT")
+                    .create({"date": report_date})
+                )
+                report_result = getattr(wiz, export_method)()
+                report = self.env[report_model].browse(
+                    report_result["context"]["report_action"]["context"]["active_ids"]
+                )
+
+                # Assert
+                asset_report = report.report_l10n_it_asset_ids.filtered(
+                    lambda ar: ar.l10n_it_asset_id == asset
+                )
+                self.assertEqual(asset_report.asset_state, "Non ammortizzato")
+
     def test_02_asset_partial_deductible_from_purchase_invoice(self):
         # create purchase invoice partial deductible and generate asset
         invoice_date = fields.Date.today()
