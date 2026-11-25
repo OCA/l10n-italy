@@ -73,8 +73,12 @@ class ReportRegistroIva(models.AbstractModel):
         res = {}
 
         for move_line in move_lines:
+            # Odoo keeps only non-negative taxes as VAT (es. ritenuta).
+            # Excluded taxes must not count as base taxes
+            # (es. cassa previdenziale + IVA).
             taxes = move_line.tax_ids.filtered(
                 lambda tax: tax._l10n_it_filter_kind("vat")
+                and not tax.exclude_from_registries
             )
             tax_line = move_line.tax_line_id.filtered(
                 lambda tax: tax._l10n_it_filter_kind("vat")
