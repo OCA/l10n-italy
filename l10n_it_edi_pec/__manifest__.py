@@ -24,6 +24,7 @@
     "data": [
         "security/ir.model.access.csv",
         "data/fetchmail_data.xml",
+        "wizard/pec_e_invoice_check_views.xml",
         "views/res_config_settings_views.xml",
         "views/fetchmail_view.xml",
         "views/ir_mail_server_view.xml",
