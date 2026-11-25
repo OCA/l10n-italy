@@ -94,14 +94,5 @@
                 <EsigibilitaIVA>I</EsigibilitaIVA>
             </DatiRiepilogo>
         </DatiBeniServizi>
-        <DatiPagamento>
-            <CondizioniPagamento>TP02</CondizioniPagamento>
-            <DettaglioPagamento>
-                <ModalitaPagamento>MP05</ModalitaPagamento>
-                <DataScadenzaPagamento>2019-01-01</DataScadenzaPagamento>
-                <ImportoPagamento>122.00</ImportoPagamento>
-                <CodicePagamento>INV/2019/00001</CodicePagamento>
-            </DettaglioPagamento>
-        </DatiPagamento>
     </FatturaElettronicaBody>
 </p:FatturaElettronica>
