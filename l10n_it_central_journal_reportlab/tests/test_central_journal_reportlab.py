@@ -4,6 +4,7 @@
 
 import base64
 import io
+import types
 from datetime import datetime
 
 from dateutil.rrule import MONTHLY
@@ -100,3 +101,57 @@ class TestCentralJournalReportlab(TransactionCase):
             if not has_move and out_invoice.name in page_content:
                 has_move = True
         self.assertTrue(has_move)
+
+    def _create_posted_invoice(self):
+        out_invoice = Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
+        )
+        out_invoice.partner_id = self.env.ref("base.res_partner_1")
+        out_invoice.invoice_date = self.today
+        with out_invoice.invoice_line_ids.new() as line:
+            line.name = "Test line"
+            line.price_unit = 100
+        out_invoice = out_invoice.save()
+        out_invoice.action_post()
+        return out_invoice
+
+    def test_report_rows_are_generated_lazily(self):
+        """Rows are built one at a time and match the list-based methods."""
+        self._create_posted_invoice()
+        for group_by_account in (False, True):
+            wizard_form = Form(self.wizard_model)
+            wizard_form.daterange_id = self.current_period
+            wizard_form.group_by_account = group_by_account
+            wizard = wizard_form.save()
+            if group_by_account:
+                lines = wizard.get_grupped_line_reportlab_ids()
+                rows = wizard._get_grupped_final_rows_report_giornale(lines, 0, 500)
+                tables, list_balance = wizard.get_grupped_final_tables_report_giornale(
+                    lines, [], 0, 500
+                )
+            else:
+                lines = wizard.get_line_reportlab_ids()
+                rows = wizard._get_final_rows_report_giornale(lines, 0, 500)
+                tables, list_balance = wizard.get_final_tables_report_giornale(
+                    lines, [], 0, 500
+                )
+            self.assertTrue(lines)
+            self.assertIsInstance(rows, types.GeneratorType)
+            rows = list(rows)
+            self.assertEqual(len(tables), len(rows))
+            self.assertEqual(
+                list_balance[2:], [(debit, credit) for _table, debit, credit in rows]
+            )
+            self.assertAlmostEqual(
+                sum(debit for _table, debit, _credit in rows),
+                sum(line["debit"] for line in lines),
+            )
+            self.assertAlmostEqual(
+                sum(credit for _table, _debit, credit in rows),
+                sum(line["credit"] for line in lines),
+            )
+
+            start_row, tot_debit, tot_credit = wizard.create_report_giornale_reportlab()
+            self.assertAlmostEqual(tot_debit, sum(line["debit"] for line in lines))
+            self.assertAlmostEqual(tot_credit, sum(line["credit"] for line in lines))
+            self.assertTrue(wizard.report_giornale)
