@@ -119,15 +119,31 @@ def _migrate_old_declarations_into_new(env):
                     sql.Identifier(conname),
                 ),
             )
-
+        # Update rel_table in two steps to avoid PK issues
         openupgrade.logged_query(
             env.cr,
-            sql.SQL("""
+            sql.SQL(
+                """
+                UPDATE {rel_table} rel
+                SET l10n_it_declaration_of_intent_declaration_id = -new.id
+                FROM {new_table} new
+                WHERE rel.l10n_it_declaration_of_intent_declaration_id = new.old_id
+            """
+            ).format(
+                rel_table=sql.Identifier(rel_table),
+                new_table=sql.Identifier(_NEW_TABLE),
+            ),
+        )
+        openupgrade.logged_query(
+            env.cr,
+            sql.SQL(
+                """
                 UPDATE {rel_table} rel
                 SET l10n_it_declaration_of_intent_declaration_id = new.id
                 FROM {new_table} new
-                WHERE rel.l10n_it_declaration_of_intent_declaration_id = new.old_id
-            """).format(
+                WHERE rel.l10n_it_declaration_of_intent_declaration_id = -new.id
+            """
+            ).format(
                 rel_table=sql.Identifier(rel_table),
                 new_table=sql.Identifier(_NEW_TABLE),
             ),
