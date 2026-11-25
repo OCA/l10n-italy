@@ -1,7 +1,7 @@
 # Copyright 2024 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from codicefiscale import isvalid
+from stdnum.it.codicefiscale import is_valid
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -30,7 +30,7 @@ class ResPartner(models.Model):
                     # Check fiscalcode length of a person
                     msg = _("The fiscal code must have 16 characters.")
                     raise ValidationError(msg)
-                if not isvalid(partner.fiscalcode):
+                if not is_valid(partner.fiscalcode):
                     # Check fiscalcode validity
                     msg = _("The fiscal code isn't valid.")
                     raise ValidationError(msg)
