@@ -169,7 +169,7 @@ class AccountIntrastatStatement(models.Model):
 
     number = fields.Integer(default=_compute_progressive)
     date = fields.Date(
-        string="Submission Date", default=fields.Date.today(), required=True
+        string="Submission Date", default=fields.Date.context_today, required=True
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -193,7 +193,9 @@ class AccountIntrastatStatement(models.Model):
         default=lambda self: self.env.company.intrastat_delegated_name,
     )
     fiscalyear = fields.Integer(
-        string="Year", required=True, default=fields.Date.today().year
+        string="Year",
+        required=True,
+        default=lambda self: fields.Date.context_today(self).year,
     )
     period_type = fields.Selection(
         selection=[
