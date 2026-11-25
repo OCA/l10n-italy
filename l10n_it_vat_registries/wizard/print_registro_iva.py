@@ -48,6 +48,70 @@ class WizardRegistroIva(models.TransientModel):
     enable_currency = fields.Boolean(
         string="Enable currency values", help="Enable currency values in the report"
     )
+    holes_in_registry = fields.Text(
+        compute="_compute_holes_in_registry",
+        string="Holes in registry",
+    )
+    multiple_taxes = fields.Text(
+        compute="_compute_multiple_taxes",
+        string="Multiple taxes",
+    )
+
+    def _compute_multiple_taxes(self):
+        multiple_taxes = []
+        if self.journal_ids and self.from_date and self.to_date:
+            moves = self.env["account.move"].search(
+                [
+                    ("date", ">=", self.from_date),
+                    ("date", "<=", self.to_date),
+                    ("journal_id", "in", [j._origin.id for j in self.journal_ids]),
+                    ("state", "=", "posted"),
+                ],
+            )
+            for move_line in moves.mapped("line_ids"):
+                if move_line.tax_ids and len(move_line.tax_ids) != 1:
+                    multiple_taxes.append(
+                        _("Move line %s of invoice %s has too many base taxes: %s")
+                        % (
+                            move_line.name,
+                            move_line.move_id.name,
+                            move_line.tax_ids.mapped("name"),
+                        )
+                    )
+        self.multiple_taxes = "\n".join(multiple_taxes) or _("No multiple taxes found!")
+
+    def _compute_holes_in_registry(self):
+        # this method is called from onchange methods
+        holes = []
+        if self.journal_ids and self.from_date and self.to_date:
+            moves = self.env["account.move"].search(
+                [
+                    ("date", ">=", self.from_date),
+                    ("date", "<=", self.to_date),
+                    ("journal_id", "in", [j._origin.id for j in self.journal_ids]),
+                    ("state", "=", "posted"),
+                ],
+            )
+            # get the previous move for each journal and add to the moves to check
+            for journal in self.journal_ids:
+                move = self.env["account.move"].search(
+                    [
+                        ("date", "<", self.from_date),
+                        ("journal_id", "=", journal.id),
+                        ("state", "=", "posted"),
+                    ],
+                    order="name desc",
+                    limit=1,
+                )
+                if move:
+                    moves |= move
+            for journal in moves.mapped("journal_id"):
+                hole = journal.check_holes(
+                    moves.filtered(lambda m: m.journal_id == journal)
+                )
+                if hole:
+                    holes.append(hole)
+        self.holes_in_registry = "\n".join(holes) or _("No holes found!")
 
     @api.onchange("tax_registry_id")
     def on_change_tax_registry_id(self):
@@ -55,6 +119,9 @@ class WizardRegistroIva(models.TransientModel):
         self.layout_type = self.tax_registry_id.layout_type
         self.entry_order = self.tax_registry_id.entry_order
         self.show_full_contact_addess = self.tax_registry_id.show_full_contact_addess
+        if self.tax_registry_id and self.from_date and self.to_date:
+            self._compute_holes_in_registry()
+            self._compute_multiple_taxes()
 
     @api.onchange("date_range_id")
     def on_change_date_range_id(self):
@@ -66,6 +133,15 @@ class WizardRegistroIva(models.TransientModel):
     def get_year_footer(self):
         if self.from_date:
             self.year_footer = self.from_date.year
+        if self.tax_registry_id and self.from_date and self.to_date:
+            self._compute_holes_in_registry()
+            self._compute_multiple_taxes()
+
+    @api.onchange("to_date")
+    def on_change_to_date(self):
+        if self.tax_registry_id and self.from_date and self.to_date:
+            self._compute_holes_in_registry()
+            self._compute_multiple_taxes()
 
     def _get_move_ids(self, wizard):
         MAPPING = {
