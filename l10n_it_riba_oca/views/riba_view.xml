@@ -30,8 +30,14 @@
                 <filter
                     name="filter_paid"
                     string="Paid"
-                    domain="[('state','=','paid')]"
+                    domain="[('payment_state','=','paid')]"
                     help="Paid"
+                />
+                <filter
+                    name="filter_to_collect"
+                    string="To Collect"
+                    domain="[('payment_state','!=','paid'),('state','not in',('draft','cancel'))]"
+                    help="Accepted or credited, not collected by the bank yet"
                 />
                 <separator orientation="vertical" />
                 <field name="name" />
@@ -55,7 +61,15 @@
                 <field name="date_accepted" />
                 <field name="date_paid" />
                 <field name="state" />
-                <field name="total_amount" widget="monetary" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="total_amount" sum="Amount" />
+                <field name="amount_residual" sum="Amount Due" />
+                <field
+                    name="payment_state"
+                    widget="badge"
+                    decoration-success="payment_state == 'paid'"
+                    decoration-warning="payment_state == 'partial'"
+                />
             </list>
         </field>
     </record>
@@ -104,11 +118,9 @@
                             </field>
                             <group>
                                 <field name="acceptance_move_id" />
+                                <field name="credit_move_id" />
                                 <field name="past_due_move_id" />
                             </group>
-                            <separator string="Payments" colspan="4" />
-                            <field name="payment_id" />
-                            <field name="past_due_move_id" />
                         </page>
                     </notebook>
                 </sheet>
@@ -146,13 +158,6 @@
                         string="Cancel"
                     />
                     <button
-                        name="settle_all_line"
-                        type='object'
-                        string="Mark lines as Settled"
-                        class="oe_highlight"
-                        invisible="(state != 'credited' and type == 'sbf') or (state != 'accepted' and type == 'incasso')"
-                    />
-                    <button
                         name="action_cancel_draft"
                         invisible="state != 'cancel' or type == 'incasso'"
                         string="Reset to Draft"
@@ -182,6 +187,16 @@
                                 name="registration_date"
                                 readonly="state not in ('draft', 'cancel')"
                             />
+                            <field name="currency_id" invisible="1" />
+                            <field name="total_amount" />
+                            <field
+                                name="amount_paid"
+                                invisible="payment_state == 'not_paid'"
+                            />
+                            <field
+                                name="amount_residual"
+                                invisible="payment_state in ('not_paid', 'paid')"
+                            />
                         </group>
                         <group>
                             <field
@@ -193,7 +208,14 @@
                                 name="date_credited"
                                 readonly="state not in ('draft', 'accepted')"
                             />
-                            <field name="date_paid" readonly="state != 'credited'" />
+                            <field name="date_paid" />
+                            <field
+                                name="payment_state"
+                                widget="badge"
+                                decoration-success="payment_state == 'paid'"
+                                decoration-warning="payment_state == 'partial'"
+                                invisible="state in ('draft', 'cancel')"
+                            />
                         </group>
                     </group>
                     <notebook colspan="4">
@@ -220,13 +242,6 @@
                                         string="Mark as Past Due"
                                         icon="fa-exclamation-triangle"
                                     />
-                                    <button
-                                        name="button_settle"
-                                        type='object'
-                                        invisible="(type == 'sbf' and state != 'credited') or (type == 'incasso' and state != 'confirmed')"
-                                        string="Mark as Settled"
-                                        icon="fa-check"
-                                    />
                                 </list>
                             </field>
                         </page>
@@ -234,7 +249,6 @@
                             <group>
                                 <field name="user_id" readonly="state != 'draft'" />
                                 <field name="date_created" />
-                                <field name="total_amount" widget="monetary" />
                             </group>
                         </page>
                         <page string="Accounting">
@@ -242,6 +256,17 @@
                             <field name='acceptance_move_ids' colspan="4" nolabel="1" />
                             <separator colspan="4" string="Credit Entry" />
                             <field name='credit_move_id' colspan="4" nolabel="1" />
+                            <separator colspan="4" string="Lines to Collect" />
+                            <field name='collect_line_ids' colspan="4" nolabel="1">
+                                <list>
+                                    <field name="date" />
+                                    <field name="move_id" />
+                                    <field name="account_id" />
+                                    <field name="name" />
+                                    <field name="debit" />
+                                    <field name="amount_residual" />
+                                </list>
+                            </field>
                             <separator colspan="4" string="Payments" />
                             <field name='payment_ids' colspan="4" nolabel="1">
                                 <list>
@@ -274,17 +299,6 @@
         <field name="res_model">riba.slip</field>
         <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_slip_riba_filter" />
-    </record>
-
-    <!-- ====================================================== -->
-    <!--                     RIBA SLIP LINE ACTION               -->
-    <!-- ====================================================== -->
-    <record id="riba_line_settle_action_server" model="ir.actions.server">
-        <field name="name">Settle RiBa Line</field>
-        <field name="model_id" ref="l10n_it_riba_oca.model_riba_slip_line" />
-        <field name="binding_model_id" ref="l10n_it_riba_oca.model_riba_slip_line" />
-        <field name="state">code</field>
-        <field name="code">action = records.settle_riba_line()</field>
     </record>
 
     <!-- ====================================================== -->
