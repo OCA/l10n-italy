@@ -12,6 +12,13 @@ class AtecoCategory(models.Model):
 
     name = fields.Char(required=True)
     code = fields.Char(string="ATECO Code", required=False)
+    ateco_version = fields.Char(
+        string="ATECO Version",
+        index=True,
+        help="Edition of the ATECO classification this code belongs to, "
+        "e.g. 2007 or 2025.",
+    )
+    active = fields.Boolean(default=True)
     description = fields.Text()
     parent_id = fields.Many2one("ateco.category", string="Parent Category", index=True)
     child_ids = fields.One2many(
