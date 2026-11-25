@@ -441,6 +441,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                     line.credit - line.debit, currency, line.company_id, line.date
                 )
             writeoff = round(writeoff, digits)
+            self._check_dismiss_writeoff(writeoff)
 
             vals = {
                 "customer_id": move.partner_id.id,
@@ -512,6 +513,20 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
         return vals
 
+    def _check_dismiss_writeoff(self, writeoff):
+        """Block dismissals whose move lines decrease the sale amount,
+        such as a customer credit note on the asset account."""
+        self.ensure_one()
+        if self.l10n_it_asset_id.currency_id.compare_amounts(writeoff, 0) < 0:
+            raise ValidationError(
+                self.env._(
+                    "Cannot dismiss asset `%(asset)s`: the selected move lines"
+                    " have a negative amount (%(amount)s) on the asset account.",
+                    asset=self.l10n_it_asset_id.make_name(),
+                    amount=writeoff,
+                )
+            )
+
     def get_move_journal_type_2_dep_line_type(self):
         self.ensure_one()
         return self._move_journal_type_2_dep_line_type
@@ -555,6 +570,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
                 line.credit - line.debit, currency, line.company_id, line.date
             )
         writeoff = round(writeoff, digits)
+        self._check_dismiss_writeoff(writeoff)
 
         vals = {"depreciation_ids": []}
         for dep in asset.depreciation_ids:
