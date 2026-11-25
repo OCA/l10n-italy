@@ -60,23 +60,58 @@ class TestIntrastat(AccountTestInvoicingCommon):
         )
         self.assertEqual(total_intrastat_amount, invoice.amount_untaxed)
 
-    def test_invoice_fiscal_position(self):
+    def _test_invoice_fiscal_position(self, intrastat_type):
+        sale = intrastat_type == "sale"
         self.partner01.property_account_position_id = self.fp_model.create(
             {
-                "name": "F.P subjected to intrastat",
-                "l10n_it_oca_intrastat": True,
+                "name": f"F.P subjected to intrastat on {intrastat_type}",
+                "l10n_it_oca_intrastat_sale": sale,
+                "l10n_it_oca_intrastat_purchase": not sale,
             }
         )
         invoice = self.init_invoice(
-            "out_invoice",
+            "out_invoice" if sale else "in_invoice",
             partner=self.partner01,
             products=self.product01,
-            taxes=self.tax_sale_a,
+            taxes=self.tax_sale_a if sale else self.tax_purchase_a,
         )
         # Compute intrastat lines
         invoice.action_post()
         invoice.compute_intrastat_lines()
         self.assertEqual(invoice.intrastat, True)
+
+        invoice_purchase = self.init_invoice(
+            "in_invoice" if sale else "out_invoice",
+            partner=self.partner01,
+            products=self.product01,
+            taxes=self.tax_purchase_a if sale else self.tax_sale_a,
+        )
+        # Compute intrastat lines
+        invoice_purchase.action_post()
+        invoice_purchase.compute_intrastat_lines()
+        self.assertEqual(invoice_purchase.intrastat, False)
+
+    def test_invoice_fiscal_position_default_move_type(self):
+        """The move type can be set by the context default."""
+        fiscal_position = self.fp_model.create(
+            {
+                "name": "F.P subjected to intrastat on sale",
+                "l10n_it_oca_intrastat_sale": True,
+            }
+        )
+        for move_type in ("out_invoice", "out_receipt"):
+            with self.subTest(move_type=move_type):
+                invoice = (
+                    self.env["account.move"]
+                    .with_context(default_move_type=move_type)
+                    .create(
+                        {
+                            "partner_id": self.partner01.id,
+                            "fiscal_position_id": fiscal_position.id,
+                        }
+                    )
+                )
+                self.assertTrue(invoice.intrastat)
 
     def test_propagate_action_post_result(self):
         """The result of posting an invoice is propagated."""
@@ -139,3 +174,9 @@ class TestIntrastat(AccountTestInvoicingCommon):
 
         # Assert
         self.assertEqual(invoice.intrastat_line_ids.weight_kg, variant_weight)
+
+    def test_invoice_fiscal_position_sale(self):
+        self._test_invoice_fiscal_position("sale")
+
+    def test_invoice_fiscal_position_purchase(self):
+        self._test_invoice_fiscal_position("purchase")
