@@ -490,6 +490,12 @@ class AssetDepreciationLine(models.Model):
         )
         if gain_or_loss:
             gain_or_loss.generate_account_move_single()
+        # The depreciation fund has to be closed
+        # even when there is no gain or loss
+        if gain_or_loss or (
+            dep.requires_account_move
+            and not dep.currency_id.is_zero(dep.amount_depreciated)
+        ):
             dep.generate_dismiss_account_move()
 
     def post_partial_dismiss_asset(self):
