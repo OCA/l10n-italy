@@ -4,7 +4,7 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from collections import OrderedDict
+from collections import defaultdict
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -177,65 +177,72 @@ class Report(models.TransientModel):
                 self.env._("There is nothing to print according to current settings!")
             )
 
-        dep_lines_grouped = OrderedDict()
+        # Group depreciation lines ids by depreciation and fiscal year,
+        # fiscal years sorted by date
+        dep_lines_grouped = defaultdict(lambda: defaultdict(list))
+        fiscal_years = {}
         fiscal_year = self.env["account.fiscal.year"]
         for dep_line in dep_lines.sorted("date"):
-            dep = dep_line.depreciation_id
-            fyear = fiscal_year.get_fiscal_year_by_date(
-                dep_line.date, company=dep_line.company_id
-            )
-            key = (dep, fyear)
-            if key not in dep_lines_grouped:
-                dep_lines_grouped[key] = self.env["asset.depreciation.line"]
-            dep_lines_grouped[key] += dep_line
+            fy_key = (dep_line.date, dep_line.company_id)
+            if fy_key not in fiscal_years:
+                fiscal_years[fy_key] = fiscal_year.get_fiscal_year_by_date(
+                    dep_line.date, company=dep_line.company_id
+                )
+            fyear = fiscal_years[fy_key]
+            dep_lines_grouped[dep_line.depreciation_id][fyear].append(dep_line.id)
 
-        self.write(
-            {
-                "report_category_ids": [
-                    Command.create({"category_id": c.id, "report_id": self.id})
-                    for c in categories.sorted("name")
-                ]
-            }
+        report_categories = self.env["report_asset_journal_category"].create(
+            [
+                {"category_id": c.id, "report_id": self.id}
+                for c in categories.sorted("name")
+            ]
         )
-        for report_categ in self.report_category_ids:
-            report_categ.write(
+
+        assets_by_category = defaultdict(list)
+        for asset in self.sort_assets(assets):
+            assets_by_category[asset.category_id].append(asset)
+        report_assets = self.env["report_asset_journal_asset"].create(
+            [
                 {
-                    "report_l10n_it_asset_ids": [
-                        Command.create({"l10n_it_asset_id": a.id, "report_id": self.id})
-                        for a in self.sort_assets(assets)
-                        if a.category_id == report_categ.category_id
-                    ]
+                    "l10n_it_asset_id": asset.id,
+                    "report_category_id": report_categ.id,
+                    "report_id": self.id,
                 }
-            )
-        for report_asset in self.report_l10n_it_asset_ids:
-            report_asset.write(
+                for report_categ in report_categories
+                for asset in assets_by_category[report_categ.category_id]
+            ]
+        )
+
+        deps_by_asset = defaultdict(list)
+        for dep in deps:
+            deps_by_asset[dep.l10n_it_asset_id].append(dep)
+        report_deps = self.env["report_asset_journal_depreciation"].create(
+            [
                 {
-                    "report_depreciation_ids": [
-                        Command.create({"depreciation_id": d.id, "report_id": self.id})
-                        for d in deps
-                        if d.l10n_it_asset_id == report_asset.l10n_it_asset_id
-                    ]
+                    "depreciation_id": dep.id,
+                    "report_asset_id": report_asset.id,
+                    "report_id": self.id,
                 }
-            )
-        for report_dep in self.report_depreciation_ids:
-            sequence = 0
-            for (dep, fyear), lines in dep_lines_grouped.items():
-                if dep == report_dep.depreciation_id:
-                    sequence += 1
-                    report_dep.write(
-                        {
-                            "report_depreciation_year_line_ids": [
-                                Command.create(
-                                    {
-                                        "dep_line_ids": [Command.set(lines.ids)],
-                                        "fiscal_year_id": fyear.id,
-                                        "report_id": self.id,
-                                        "sequence": sequence,
-                                    },
-                                )
-                            ]
-                        }
-                    )
+                for report_asset in report_assets
+                for dep in deps_by_asset[report_asset.l10n_it_asset_id]
+            ]
+        )
+
+        self.env["report_asset_journal_depreciation_line_year"].create(
+            [
+                {
+                    "dep_line_ids": [Command.set(line_ids)],
+                    "fiscal_year_id": fyear.id,
+                    "report_depreciation_id": report_dep.id,
+                    "report_id": self.id,
+                    "sequence": sequence,
+                }
+                for report_dep in report_deps
+                for sequence, (fyear, line_ids) in enumerate(
+                    dep_lines_grouped[report_dep.depreciation_id].items(), start=1
+                )
+            ]
+        )
 
     def generate_totals(self):
         curr = self.company_id.currency_id
