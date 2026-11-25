@@ -1,7 +1,10 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright 2026 Luca Orioli <lucaorioli@gmail.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+import uuid
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -25,6 +28,31 @@ class AccountMoveLine(models.Model):
         store=True,
         string="Depreciation Lines",
     )
+
+    l10n_it_asset_tax_key = fields.Char(
+        compute="_compute_l10n_it_asset_tax_key",
+        store=True,
+        readonly=False,
+        precompute=True,
+        copy=False,
+        string="Asset Tax Key",
+        help="Technical field: on a line of an asset account, it keeps the"
+        " taxes charged to the same account (e.g. non deductible VAT) on a"
+        " tax line of their own, that is linked to the same asset.",
+    )
+
+    @api.depends("account_id", "display_type")
+    def _compute_l10n_it_asset_tax_key(self):
+        asset_accounts = self.env["account.move"].get_valid_accounts()
+        for line in self:
+            if line.display_type == "tax":
+                # Set by the grouping key of the tax line
+                line.l10n_it_asset_tax_key = line.l10n_it_asset_tax_key
+            elif line.display_type == "product" and line.account_id in asset_accounts:
+                if not line.l10n_it_asset_tax_key:
+                    line.l10n_it_asset_tax_key = uuid.uuid4().hex
+            else:
+                line.l10n_it_asset_tax_key = False
 
     @api.constrains("company_id")
     def check_company(self):

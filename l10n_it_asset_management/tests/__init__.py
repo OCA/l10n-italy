@@ -2,3 +2,4 @@
 
 from . import test_assets_management
 from . import test_asset_depreciation
+from . import test_non_deductible_tax
