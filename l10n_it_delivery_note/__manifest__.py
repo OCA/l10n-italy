@@ -20,6 +20,7 @@
         "MarcoCalcagni",
         "HekkiMelody",
         "renda-dev",
+        "Borruso",
     ],
     "depends": [
         "delivery_carrier_partner",

@@ -3,6 +3,8 @@
 # @author: Giuseppe Borruso <gborruso@dinamicheaziendali.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import math
+
 from odoo import fields, models
 
 from .stock_delivery_note import DOMAIN_INVOICE_STATUSES
@@ -64,3 +66,43 @@ class SaleOrderLine(models.Model):
         return self.filtered(lambda line: line.has_picking).filtered(
             lambda line: line.is_pickings_related(picking_ids)
         )
+
+    def _get_invoiceable_dn_lines(self):
+        invoiceable_dn_lines = self.delivery_note_line_ids.filtered(
+            lambda dn_line: dn_line.is_invoiceable
+            and self.product_id == dn_line.product_id
+        )
+        invoicing_delivery_notes = self.env.context.get(
+            "invoicing_delivery_notes",
+            self.env["stock.delivery.note"].browse(),
+        )
+        if invoicing_delivery_notes:
+            invoiceable_dn_lines = invoiceable_dn_lines.filtered(
+                lambda dn_line: dn_line.delivery_note_id in invoicing_delivery_notes
+            )
+        return invoiceable_dn_lines
+
+    def _prepare_invoice_line(self, **optional_values):
+        values = super()._prepare_invoice_line(**optional_values)
+        invoiced_dn_lines = self.env.context.get(
+            "delivery_note_invoiced_lines",
+            self.env["stock.delivery.note.line"].browse(),
+        )
+        invoiceable_dn_lines = self._get_invoiceable_dn_lines() - invoiced_dn_lines
+
+        if invoiceable_dn_lines:
+            invoiced_dn_line = fields.first(invoiceable_dn_lines)
+            values.update(
+                {
+                    "delivery_note_line_id": invoiced_dn_line.id,
+                    "quantity": math.copysign(
+                        invoiced_dn_line.product_qty,
+                        values.get("quantity", 1),
+                    ),
+                }
+            )
+            self.env.context = dict(
+                self.env.context,
+                delivery_note_invoiced_lines=invoiced_dn_lines | invoiced_dn_line,
+            )
+        return values
