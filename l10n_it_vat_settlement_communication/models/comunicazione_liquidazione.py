@@ -524,7 +524,10 @@ class ComunicazioneLiquidazioneVp(models.Model):
                 quadro.iva_a_credito = credito - debito
 
     comunicazione_id = fields.Many2one(
-        "comunicazione.liquidazione", string="Communication", readonly=True
+        "comunicazione.liquidazione",
+        string="Communication",
+        readonly=True,
+        ondelete="cascade",
     )
     period_type = fields.Selection(
         [("month", "Monthly"), ("quarter", "Quarterly")],
