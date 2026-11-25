@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        model="ir.ui.view"
+        id="res_config_settings_view_form_module_generate_xml_only"
+    >
+        <field
+            name="name"
+        >res.config.settings.view.form.module.generate.xml.only</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="l10n_it_edi.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='account_edi']" position="inside">
+                <setting
+                    id="l10n_it_edi_generate_xml_only"
+                    string="Generate the FatturaPA XML only"
+                    help="Install the Italy EDI - Generate XML Only module: it adds a button to generate the FatturaPA XML of invoices and attach it to the chatter, without sending it to the Exchange System (SdI)."
+                >
+                    <field name="module_l10n_it_edi_rc_generate_xml_only" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
