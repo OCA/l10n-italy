@@ -664,7 +664,13 @@ class AccountMoveInherit(models.Model):
                 := self.partner_id.l10n_it_edi_ext_default_product_id
             ):
                 line_values["product_id"] = partner_default_product.id
-            self.env["account.move.line"].create(line_values)
+            summary_line = self.env["account.move.line"].new(line_values)
+            self._l10n_it_edi_extension_avoid_off_balance_account(
+                summary_line, messages_to_log
+            )
+            self.env["account.move.line"].create(
+                summary_line._convert_to_write(summary_line._cache)
+            )
         else:
             messages_to_log.append(
                 Markup("<br/>").join(
@@ -680,6 +686,74 @@ class AccountMoveInherit(models.Model):
             )
 
         return messages_to_log
+
+    def _l10n_it_edi_extension_get_non_off_balance_account(self, move_line):
+        """Return an account that can be used on ``move_line``.
+
+        Off-balance accounts cannot be mixed with the other accounts of a
+        journal entry, so they cannot be used on invoice lines.
+        """
+        company = move_line.company_id
+        journal = move_line.journal_id
+        if (
+            journal.default_account_id
+            and journal.default_account_id.account_type != "off_balance"
+        ):
+            return journal.default_account_id
+
+        account_model = self.env["account.account"].with_company(company)
+        if move_line.partner_id:
+            account_id = account_model._get_most_frequent_account_for_partner(
+                company_id=company.id,
+                partner_id=move_line.partner_id.id,
+                move_type=move_line.move_id.move_type,
+                journal_id=journal.id,
+            )
+            if account_id:
+                account = account_model.browse(account_id)
+                if account.account_type != "off_balance":
+                    return account
+
+        account_type = (
+            "income"
+            if move_line.move_id.is_sale_document(include_receipts=True)
+            else "expense"
+        )
+        return account_model.search(
+            [
+                *account_model._check_company_domain(company),
+                ("account_type", "=", account_type),
+                ("deprecated", "=", False),
+            ],
+            limit=1,
+        )
+
+    def _l10n_it_edi_extension_avoid_off_balance_account(
+        self, move_line, messages_to_log
+    ):
+        """Replace an off-balance account on an imported line.
+
+        Odoo 18 checks the whole journal entry when a line is created, so an
+        invoice line imported on an off-balance account makes the import fail
+        as soon as the tax or payment term lines are added.
+        """
+        if move_line.account_id.account_type != "off_balance":
+            return
+        fallback_account = self._l10n_it_edi_extension_get_non_off_balance_account(
+            move_line
+        )
+        if not fallback_account:
+            return
+        messages_to_log.append(
+            self.env._(
+                "Line '%(line)s' uses the off-balance account %(off_balance)s; "
+                "the account %(account)s has been used instead.",
+                line=move_line.name or "",
+                off_balance=move_line.account_id.display_name,
+                account=fallback_account.display_name,
+            )
+        )
+        move_line.account_id = fallback_account
 
     def _l10n_it_edi_import_line(self, element, move_line, extra_info=None):
         if extra_info is None:
@@ -819,6 +893,9 @@ class AccountMoveInherit(models.Model):
                     company=company.name,
                 )
             )
+        self._l10n_it_edi_extension_avoid_off_balance_account(
+            move_line, messages_to_log
+        )
         return messages_to_log
 
     def _l10n_it_edi_ext_check_amount(self, amount, edi_amount, message):
@@ -1163,6 +1240,7 @@ class AccountMoveInherit(models.Model):
         )
 
     def _l10n_it_edi_import_invoice(self, invoice, data, is_new):
+        self = self.with_context(l10n_it_edi_extension_avoid_off_balance_accounts=True)
         invoice = super()._l10n_it_edi_import_invoice(invoice, data, is_new)
         if not invoice:
             return invoice
