@@ -98,7 +98,7 @@
     </template>
 
     <!-- oca-hooks:disable=xml-dangerous-qweb-replace-low-priority -->
-    <template id="minimal_layout" inherit_id="web.minimal_layout">
+    <template id="minimal_layout" inherit_id="web.minimal_layout" priority="100">
         <xpath expr="//head" position="inside">
             <link
                 rel="stylesheet"
@@ -125,10 +125,10 @@
 
                     var fromPage = document.getElementsByClassName('page');
                     for(var j = 0; j&lt;fromPage.length; j++)
-                        fromPage[j].textContent = parseInt(eval(vars['sitepage']) + fiscal_page_base);
+                        fromPage[j].textContent = parseInt(vars['sitepage']) + fiscal_page_base;
                     var toPage = document.getElementsByClassName('topage');
                     for(var j = 0; j&lt;toPage.length; j++)
-                        toPage[j].textContent = parseInt(eval(vars['sitepages']) + fiscal_page_base);
+                        toPage[j].textContent = parseInt(vars['sitepages']) + fiscal_page_base;
 
                     var index = vars['webpage'].split('.', 4)[3]
                     var header = document.getElementById('minimal_layout_report_headers');
