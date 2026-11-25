@@ -54,7 +54,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     )
 
     dismiss_date = fields.Date(
-        default=fields.Date.today(),
+        default=fields.Date.context_today,
     )
 
     is_move_state_ok = fields.Boolean(
@@ -99,7 +99,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
     name = fields.Char()
 
     purchase_date = fields.Date(
-        default=fields.Date.today(),
+        default=fields.Date.context_today,
     )
 
     used = fields.Boolean()
