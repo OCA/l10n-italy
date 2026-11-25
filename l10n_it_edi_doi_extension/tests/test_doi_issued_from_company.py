@@ -234,7 +234,7 @@ class TestDoiIssuedFromCompany(TransactionCase):
         invoice.l10n_it_edi_doi_id = False
 
         self.env["account.move.doi"].create(
-            {"move_id": invoice.id, "declaration_id": self.doi_in.id, "amount": 0}
+            {"move_id": invoice.id, "declaration_id": self.doi_in.id, "amount": 900.0}
         )
         self.assertEqual(invoice.l10n_it_edi_doi_id, self.doi_in)
 
@@ -245,7 +245,7 @@ class TestDoiIssuedFromCompany(TransactionCase):
         invoice.l10n_it_edi_doi_id = False
 
         bridge = self.env["account.move.doi"].create(
-            {"move_id": invoice.id, "declaration_id": self.doi_in.id, "amount": 0}
+            {"move_id": invoice.id, "declaration_id": self.doi_in.id, "amount": 900.0}
         )
         self.assertEqual(invoice.l10n_it_edi_doi_id, self.doi_in)
 
@@ -258,7 +258,7 @@ class TestDoiIssuedFromCompany(TransactionCase):
         invoice.l10n_it_edi_doi_id = False
 
         bridge = self.env["account.move.doi"].create(
-            {"move_id": invoice.id, "declaration_id": self.doi_in.id, "amount": 0}
+            {"move_id": invoice.id, "declaration_id": self.doi_in.id, "amount": 900.0}
         )
         self.assertEqual(invoice.l10n_it_edi_doi_id, self.doi_in)
 
