@@ -5,7 +5,8 @@ import re
 
 from lxml import etree
 
-from odoo import api, models
+from odoo import _, api, models
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -140,19 +141,28 @@ class MailThread(models.AbstractModel):
                 content, company=company
             )
             if not move:
-                _logger.warning("Could not find move for notification %s", filename)
-                continue
+                # Raise instead of dropping the notification: the message is
+                # kept in the mailbox and the configured contacts are notified.
+                raise UserError(
+                    _(
+                        "SDI notification %(file)s is about an e-invoice "
+                        "that has not been found.",
+                        file=filename,
+                    )
+                )
 
             # Extract notification type from filename and map to sdi_state
             notification_type = self._l10n_it_edi_sdi_get_type_from_filename(filename)
             sdi_state = NOTIFICATION_TYPE_MAP.get(notification_type)
             if not sdi_state:
-                _logger.warning(
-                    "Unknown notification type %s in %s",
-                    notification_type,
-                    filename,
+                raise UserError(
+                    _(
+                        "SDI notification %(file)s has a type (%(type)s) "
+                        "that is not handled.",
+                        file=filename,
+                        type=notification_type,
+                    )
                 )
-                continue
 
             # Process through core notification chain
             notification = {"state": sdi_state, "xml_content": content}
