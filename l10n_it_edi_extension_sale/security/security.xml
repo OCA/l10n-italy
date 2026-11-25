@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="rule_account_move_related_document_posted" model="ir.rule">
+        <field name="name">Related documents: no changes on posted invoices</field>
+        <field
+            name="model_id"
+            ref="l10n_it_edi_related_document.model_account_move_related_document"
+        />
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+        <!-- `invoice_id` and `invoice_line_id` are both checked because a
+        document can be related to the invoice or to one of its lines -->
+        <field
+            name="domain_force"
+        >['&amp;', '|', ('invoice_id', '=', False), ('invoice_id.state', '!=', 'posted'), '|', ('invoice_line_id', '=', False), ('invoice_line_id.move_id.state', '!=', 'posted')]</field>
+        <field name="perm_read" eval="False" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+    <!-- Group rules are combined with an OR: users having the sale and the
+    accounting access rights are not restricted by the rule above -->
+    <record id="rule_account_move_related_document_accounting" model="ir.rule">
+        <field
+            name="name"
+        >Related documents: accounting users are not restricted</field>
+        <field
+            name="model_id"
+            ref="l10n_it_edi_related_document.model_account_move_related_document"
+        />
+        <field name="groups" eval="[(4, ref('account.group_account_invoice'))]" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="False" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+</odoo>
