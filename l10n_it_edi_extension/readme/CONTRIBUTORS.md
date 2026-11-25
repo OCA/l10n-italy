@@ -10,3 +10,5 @@
 - Lorenzo Battistini \<<https://github.com/eLBati>\>
 - [Phi srl](https://www.phi.technology/):
   - Marco Colombo \<<marco.colombo@phi.technology>\>
+- [PyTech](https://www.pytech.it):
+  - Simone Rubino \<<simone.rubino@pytech.it>\>
