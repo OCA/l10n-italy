@@ -76,6 +76,14 @@ class AssetCategory(models.Model):
         string="Capital Gain Account",
     )
 
+    gain_loss_journal_id = fields.Many2one(
+        "account.journal",
+        check_company=True,
+        string="Gain / Loss Journal",
+        help="Journal of the capital gain and loss entries."
+        " If not set, the category journal is used.",
+    )
+
     journal_id = fields.Many2one("account.journal", required=True, string="Journal")
 
     loss_account_id = fields.Many2one(

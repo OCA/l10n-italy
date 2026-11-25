@@ -64,6 +64,7 @@
                         <group>
                             <field name="gain_account_id" />
                             <field name="loss_account_id" />
+                            <field name="gain_loss_journal_id" />
                         </group>
                     </group>
                     <group>
