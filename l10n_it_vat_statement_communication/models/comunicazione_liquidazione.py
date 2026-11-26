@@ -656,10 +656,8 @@ class ComunicazioneLiquidazioneVp(models.Model):
                     quadro.credito_periodo_precedente = liq.previous_credit_vat_amount
                 quadro.accounto_dovuto = liq.advance_amount
                 quadro.metodo_calcolo_acconto = liq.advance_computation_method
-                if (
-                    liq.interests_debit_vat_account_id
-                    and quadro.period_type != "quarter"
-                    and quadro.quarter != 5
+                if liq.interests_debit_vat_account_id and not (
+                    quadro.period_type == "quarter" and quadro.quarter == 5
                 ):
                     # I contribuenti che eseguono liquidazioni trimestrali, ai sensi
                     # dell’art. 7 del d.P.R. 14 ottobre 1999, n. 542, devono presentare
