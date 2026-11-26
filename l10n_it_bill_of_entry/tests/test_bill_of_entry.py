@@ -249,7 +249,7 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
         # Storno Bill of Entry account.move
         storno = self.forwarder_invoice.bill_of_entry_storno_id
         self.assertTrue(storno)
-        self.assertEqual(storno.date, self.forwarder_invoice.invoice_date)
+        self.assertEqual(storno.date, self.forwarder_invoice.date)
 
         # Advance Customs Expense account.move.line
         move_line_domain = [
@@ -300,3 +300,94 @@ class TestBillOfEntry(AccountTestInvoicingCommon):
             .ids
         )
         self.assertEqual(sorted(storno_reconcile_ids), sorted(boe_reconcile_ids))
+
+    def test_cancel_forwarder_invoice_removes_storno(self):
+        self.bill_of_entry.action_post()
+        self.forwarder_invoice.action_post()
+        storno = self.forwarder_invoice.bill_of_entry_storno_id
+        self.assertTrue(storno)
+        self.assertEqual(self.bill_of_entry.payment_state, "paid")
+
+        self.forwarder_invoice.button_cancel()
+
+        self.assertEqual(self.forwarder_invoice.state, "cancel")
+        self.assertFalse(self.forwarder_invoice.bill_of_entry_storno_id)
+        self.assertFalse(storno.exists())
+        self.assertEqual(self.bill_of_entry.payment_state, "not_paid")
+
+    def test_reset_to_draft_and_repost_forwarder_invoice(self):
+        self.bill_of_entry.action_post()
+        self.forwarder_invoice.action_post()
+        first_storno = self.forwarder_invoice.bill_of_entry_storno_id
+
+        self.forwarder_invoice.button_draft()
+
+        self.assertEqual(self.forwarder_invoice.state, "draft")
+        self.assertFalse(self.forwarder_invoice.bill_of_entry_storno_id)
+        self.assertFalse(first_storno.exists())
+        self.assertEqual(self.bill_of_entry.payment_state, "not_paid")
+
+        self.forwarder_invoice.action_post()
+
+        storno = self.forwarder_invoice.bill_of_entry_storno_id
+        self.assertTrue(storno)
+        self.assertEqual(storno.state, "posted")
+        self.assertEqual(self.bill_of_entry.payment_state, "paid")
+        stornos = self.env["account.move"].search(
+            [("journal_id", "=", self.bill_of_entry_journal.id)]
+        )
+        self.assertEqual(len(stornos), 1)
+
+    def test_storno_uses_accounting_date(self):
+        self.bill_of_entry.action_post()
+        self.forwarder_invoice.invoice_date = "2025-09-30"
+        self.forwarder_invoice.date = "2025-10-01"
+        self.forwarder_invoice.action_post()
+        storno = self.forwarder_invoice.bill_of_entry_storno_id
+        self.assertEqual(str(storno.date), "2025-10-01")
+
+    def test_bill_of_entry_must_be_in_company_currency(self):
+        usd = self.env.ref("base.USD")
+        usd.active = True
+        self.env["res.currency.rate"].create(
+            {
+                "name": "2000-01-01",
+                "currency_id": usd.id,
+                "rate": 1.10,
+                "company_id": self.env.company.id,
+            }
+        )
+        self.bill_of_entry.currency_id = usd
+        self.bill_of_entry.action_post()
+        with self.assertRaises(UserError):
+            self.forwarder_invoice.action_post()
+
+    def test_post_multiple_forwarder_invoices(self):
+        self.bill_of_entry.action_post()
+        bill_of_entry_2 = self._create_invoice(
+            self.customs,
+            "bill_of_entry",
+            self.journal,
+            [(self.product_extra, 1, 1000)],
+            [],
+        )
+        bill_of_entry_2.action_post()
+        forwarder_invoice_2 = self._create_invoice(
+            self.forwarder,
+            "forwarder_invoice",
+            self.journal,
+            [(self.product_delivery, 1, 100), (self.adv_customs_expense, 1, 220)],
+            [],
+        )
+        with Form(forwarder_invoice_2) as invoice_form:
+            with invoice_form.invoice_line_ids.edit(1) as line:
+                line.advance_customs_vat = True
+                line.tax_ids.clear()
+        forwarder_invoice_2.forwarder_bill_of_entry_ids = [(4, bill_of_entry_2.id)]
+
+        (self.forwarder_invoice | forwarder_invoice_2).action_post()
+
+        self.assertTrue(self.forwarder_invoice.bill_of_entry_storno_id)
+        self.assertTrue(forwarder_invoice_2.bill_of_entry_storno_id)
+        self.assertEqual(self.bill_of_entry.payment_state, "paid")
+        self.assertEqual(bill_of_entry_2.payment_state, "paid")
