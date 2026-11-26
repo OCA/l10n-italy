@@ -133,6 +133,18 @@ class AccountMove(models.Model):
                     )
                 )
 
+        for bill_of_entry in self.forwarder_bill_of_entry_ids:
+            if bill_of_entry.currency_id != bill_of_entry.company_currency_id:
+                raise UserError(
+                    self.env._(
+                        "Bill of entry %(name)s is in %(currency)s: it must be "
+                        "recorded in the company currency (%(company_currency)s)",
+                        name=bill_of_entry.name,
+                        currency=bill_of_entry.currency_id.name,
+                        company_currency=bill_of_entry.company_currency_id.name,
+                    )
+                )
+
         boe_tax_rates = self.forwarder_bill_of_entry_ids.mapped(
             "invoice_line_ids.tax_ids.amount"
         )
@@ -147,7 +159,7 @@ class AccountMove(models.Model):
             "customs_doc_type": False,
             "move_type": "entry",
             "journal_id": self.company_id.bill_of_entry_journal_id.id,
-            "date": self.invoice_date,
+            "date": self.date,
         }
         move_lines = []
         for inv_line in self.invoice_line_ids.filtered(
@@ -223,7 +235,9 @@ class AccountMove(models.Model):
 
         for invoice in self:
             if invoice.customs_doc_type == "forwarder_invoice":
-                boe_amounts, boe_tax_rates = self._get_forwarder_invoice_boe_amounts()
+                boe_amounts, boe_tax_rates = (
+                    invoice._get_forwarder_invoice_boe_amounts()
+                )
                 # In caso di dichiarazione d'intento inviata alla dogana,
                 # la dogana non addebita IVA.
                 # La bolla doganale ha righe positive e negative, il cui totale è 0
@@ -231,31 +245,43 @@ class AccountMove(models.Model):
                     # Nessuna registrazione di storno è necessaria
                     continue
 
-                self._check_forwarder_invoice_advance_customs_vat_line(boe_tax_rates)
+                invoice._check_forwarder_invoice_advance_customs_vat_line(boe_tax_rates)
 
-                move_vals = self._prepare_bill_of_entry_storno()
+                move_vals = invoice._prepare_bill_of_entry_storno()
                 move = self.env["account.move"].create(move_vals)
                 move.action_post()
                 invoice.write({"bill_of_entry_storno_id": move.id})
 
-                self._reconcile_bill_of_entry_storno(move)
+                invoice._reconcile_bill_of_entry_storno(move)
         return res
 
-    def button_cancel(self):
-        res = super().button_cancel()
+    def _remove_bill_of_entry_storno(self):
+        """Undo the closing entry of the forwarder invoice: unreconcile it from
+        the bills of entry, then delete it."""
         for invoice in self:
-            for boe in invoice.forwarder_bill_of_entry_ids:
-                move = boe.move_id
-                rec_lines = (
-                    move.mapped("line_ids")
-                    .filtered("full_reconcile_id")
-                    .mapped("full_reconcile_id.reconciled_line_ids")
-                )
-                rec_lines.remove_move_reconcile()
-            if invoice.bill_of_entry_storno_id:
-                invoice.bill_of_entry_storno_id.button_cancel()
-                invoice.bill_of_entry_storno_id.with_context(force_delete=True).unlink()
-        return res
+            storno = invoice.bill_of_entry_storno_id
+            if not storno:
+                continue
+            reconciled_lines = storno.line_ids.filtered(
+                lambda line: line.matched_debit_ids or line.matched_credit_ids
+            )
+            reconciled_lines.remove_move_reconcile()
+            invoice.bill_of_entry_storno_id = False
+            if storno.state == "posted":
+                storno.button_draft()
+            storno.with_context(force_delete=True).unlink()
+
+    def button_draft(self):
+        self.filtered(
+            lambda move: move.customs_doc_type == "forwarder_invoice"
+        )._remove_bill_of_entry_storno()
+        return super().button_draft()
+
+    def button_cancel(self):
+        self.filtered(
+            lambda move: move.customs_doc_type == "forwarder_invoice"
+        )._remove_bill_of_entry_storno()
+        return super().button_cancel()
 
     def _check_no_taxes(self):
         self.ensure_one()
