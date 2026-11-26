@@ -221,7 +221,7 @@ def CreateFromDocument(xml_string):  # noqa: C901
                         1 + decimal.Decimal(linea.AliquotaIVA) / 100
                     )
                     linea._imposta = DatiBeniServizi.Importo - linea._imponibile
-                if DatiBeniServizi.DatiIVA.Imposta:
+                if DatiBeniServizi.DatiIVA.Imposta is not None:
                     linea._imposta = decimal.Decimal(DatiBeniServizi.DatiIVA.Imposta)
                     linea._imponibile = (
                         decimal.Decimal(DatiBeniServizi.Importo) - linea._imposta
