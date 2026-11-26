@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_it_edi_extension_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model.fields,field_description:l10n_it_edi_extension_sale.field_sale_order_line__l10n_it_edi_admin_ref
+msgid "Admin. ref."
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model,name:l10n_it_edi_extension_sale.model_account_move_related_document
+msgid "E-invoice Related Documents"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model,name:l10n_it_edi_extension_sale.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model,name:l10n_it_edi_extension_sale.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model.fields,field_description:l10n_it_edi_extension_sale.field_sale_order__related_document_ids
+#: model:ir.model.fields,field_description:l10n_it_edi_extension_sale.field_sale_order_line__related_document_ids
+#: model_terms:ir.ui.view,arch_db:l10n_it_edi_extension_sale.sale_order_form_related_document_inherit_view
+msgid "Related Documents"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model.fields,field_description:l10n_it_edi_extension_sale.field_account_move_related_document__invoice_id
+msgid "Related Invoice"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model.fields,field_description:l10n_it_edi_extension_sale.field_account_move_related_document__invoice_line_id
+msgid "Related Invoice Line"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model.fields,field_description:l10n_it_edi_extension_sale.field_account_move_related_document__sale_order_id
+msgid "Sale order"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model.fields,field_description:l10n_it_edi_extension_sale.field_account_move_related_document__sale_order_line_id
+msgid "Sale order line"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model,name:l10n_it_edi_extension_sale.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: l10n_it_edi_extension_sale
+#: model:ir.model,name:l10n_it_edi_extension_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
