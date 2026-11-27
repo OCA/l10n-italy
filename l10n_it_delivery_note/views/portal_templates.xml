@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="portal_my_home_delivery_note"
+        name="Delivery Notes"
+        inherit_id="portal.portal_my_home"
+        customize_show="True"
+        priority="30"
+    >
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/account/static/src/img/DN.svg'" />
+                <t t-set="title">Your Delivery Notes</t>
+                <t t-set="url" t-value="'/my/delivery-notes'" />
+                <t t-set="text">Follow or download your delivery notes</t>
+                <t t-set="placeholder_count" t-value="'dn_count'" />
+            </t>
+        </div>
+    </template>
+</odoo>

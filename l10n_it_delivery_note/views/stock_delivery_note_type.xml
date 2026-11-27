@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_delivery_note_type_form_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.type.form</field>
+        <field name="model">stock.delivery.note.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <field name="active" invisible="True" />
+                        <label class="oe_edit_only" for="name" />
+                        <h1>
+                            <field name="name" default_focus="true" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sequence_id" />
+                            <field name="next_sequence_number" />
+                            <field name="code" />
+                        </group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="print_prices" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="default_transport_condition_id" />
+                            <field name="default_goods_appearance_id" />
+                        </group>
+                        <group>
+                            <field name="default_transport_reason_id" />
+                            <field name="default_transport_method_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="internal_notes" string="Internal notes">
+                            <field name="note" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_delivery_note_type_tree_view" model="ir.ui.view">
+        <field name="name">stock.delivery.note.type.tree</field>
+        <field name="model">stock.delivery.note.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <button
+                    type="object"
+                    name="goto_sequence"
+                    class="oe_button"
+                    icon="fa-external-link"
+                    aria-label="Go to sequence"
+                    title="Go to sequence"
+                />
+                <field name="sequence_id" />
+                <field name="next_sequence_number" />
+            </list>
+        </field>
+    </record>
+</odoo>
