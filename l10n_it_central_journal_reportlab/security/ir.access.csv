@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_date_range_group_account_manager,date.range group account manager,date.range,account.group_account_manager,ru,
+access_wizard_giornale_reportlab_manager,wizard.giornale.reportlab manager,wizard.giornale.reportlab,account.group_account_manager,crud,
